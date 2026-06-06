@@ -1,0 +1,43 @@
+{
+  "topic": "GAP AUDIT for the spec-memory CLI workstream (001-spec-memory-cli) - find what is MISSING before implementation starts. The packet documents are the audit SUBJECT; the repository source is the evidence base.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "specFolder": ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/gap-audit/lineages/gpt-gap",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-06-06T15:03:47Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "loopType": "research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "serviceTier": "fast",
+    "label": "gpt-gap",
+    "note": "Executor metadata retained from fan-out config; this Codex runtime executed the lineage in-process because cli-codex self-invocation is forbidden."
+  },
+  "lineage": {
+    "sessionId": "fanout-gpt-gap-1780758127854-uvnt9h",
+    "parentSessionId": "dr-20260606T153500-gap-spec-memory",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "lenses": [
+    "LENS-1 COVERAGE CROSS-CHECK",
+    "LENS-2 DELTA/REQUIREMENT TRACEABILITY",
+    "LENS-3 RUNTIME PAIRING COMPLETENESS",
+    "LENS-4 SEQUENCING, DEPENDENCIES, AND CROSS-WORKSTREAM SHARED INFRA",
+    "LENS-5 ADVERSARIAL RESIDUAL SWEEP"
+  ],
+  "outputPolicy": {
+    "writeScope": "artifact-dir-only",
+    "noResourceMapEmission": true,
+    "finalOutput": "research.md"
+  }
+}

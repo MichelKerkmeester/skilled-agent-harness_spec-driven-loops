@@ -1,3 +1,5 @@
+'use strict';
+
 // Deterministic path-reference resolver for the active skills/commands/agents surface.
 // Extracts markdown links + backtick-wrapped file paths from every active .md file,
 // resolves each relative reference, and reports the ones that do not exist on disk.

@@ -18,13 +18,13 @@
       "link card mobile animation glitch",
       "data-link-card button centering",
       "link_card_collapse_expand",
+      "iOS Chrome section flicker",
       "link card collapse expand plan",
       "link card mobile animation plan",
       "data-link-card button plan",
       "link card collapse expand tasks",
       "link card mobile animation tasks",
-      "data-link-card button tasks",
-      "link card collapse expand checklist"
+      "data-link-card button tasks"
     ],
     "key_topics": [
       "link",
@@ -41,11 +41,14 @@
       "centering"
     ],
     "importance_tier": "normal",
-    "status": "complete_(pending_user_publish_to_webflow)",
+    "status": "implementation_verified_(pending_user_publish_+_post_deploy_re_test)",
     "key_files": [
+      "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js",
       "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css",
+      "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js",
       "a_nobel_en_zn/3_staging/link_card_collapse_expand.js",
       "a_nobel_en_zn/3_staging/link_card_collapse_expand.css",
+      "a_nobel_en_zn/1_css/global/performance.css",
       "spec.md",
       "tasks.md",
       "checklist.md",
@@ -56,15 +59,27 @@
     ],
     "entities": [
       {
+        "name": "link_card_collapse_expand.js",
+        "kind": "code",
+        "path": "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js",
+        "source": "derived"
+      },
+      {
         "name": "link_card_collapse_expand.css",
         "kind": "file",
         "path": "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css",
         "source": "derived"
       },
       {
-        "name": "link_card_collapse_expand.js",
+        "name": "link_card_collapse_expand.min.js",
         "kind": "code",
-        "path": "a_nobel_en_zn/3_staging/link_card_collapse_expand.js",
+        "path": "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js",
+        "source": "derived"
+      },
+      {
+        "name": "performance.css",
+        "kind": "file",
+        "path": "a_nobel_en_zn/1_css/global/performance.css",
         "source": "derived"
       },
       {
@@ -158,20 +173,20 @@
         "source": "derived"
       },
       {
-        "name": "Implement Bug",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "exact",
+        "name": "Revision",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "collapsed",
         "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OVERVIEW",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
@@ -186,23 +201,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Create Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The sector-menu link card (`[data-link-card]`) has three defects:",
+    "causal_summary": "The sector-menu link card (`[data-link-card]`) had three original defects, then one follow-up iOS",
     "created_at": "2026-05-30T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.019Z",
+    "last_save_at": "2026-06-06T14:09:09.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

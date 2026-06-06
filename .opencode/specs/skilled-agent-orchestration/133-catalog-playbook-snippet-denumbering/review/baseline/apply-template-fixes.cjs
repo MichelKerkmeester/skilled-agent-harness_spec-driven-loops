@@ -1,3 +1,5 @@
+'use strict';
+
 // Fix the sub-kind (b) template links: sk-doc-internal references to REAL files written with
 // the wrong relative path (sibling templates, references/global/* standards, SKILL.md,
 // nested_changelog, the commands/ typo). These resolve from the template's own location once

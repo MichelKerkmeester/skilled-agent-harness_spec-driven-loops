@@ -1,0 +1,1 @@
+{"type":"delta","iteration":5,"focus":"LENS-5 ADVERSARIAL RESIDUAL SWEEP","newFindings":["No P0 implementation blocker found","Two P1 phase-3 gaps remain: Codex live hook registration and Gemini exclusion/scope contradiction","Major failure modes are covered by phase 1 auto-spawn, phase 2 D1/D7, and phase 3 transport-down fallback"],"severityCounts":{"P0":0,"P1":2,"P2":1}}

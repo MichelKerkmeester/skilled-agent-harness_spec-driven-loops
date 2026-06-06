@@ -1,0 +1,1 @@
+{"type":"delta","iteration":1,"focus":"LENS-1 COVERAGE CROSS-CHECK","newFindings":["37-tool CLI surface owned by phase 1; all-37 parity lock owned by phase 2","Daemon service preservation covered by IPC-over-unchanged-daemon split","Gemini appears as runtime scope despite parent pairing rule excluding it"],"severityCounts":{"P0":0,"P1":0,"P2":1}}

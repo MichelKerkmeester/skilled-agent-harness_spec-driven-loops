@@ -1,3 +1,5 @@
+'use strict';
+
 // Build a scoped RCAF prompt for one deep-review iteration dispatched to DeepSeek-v4-pro
 // (cli-opencode, --pure, read-only). Triage iterations embed the deterministic baseline
 // findings for their slice; hunt iterations point DeepSeek at a reference class the

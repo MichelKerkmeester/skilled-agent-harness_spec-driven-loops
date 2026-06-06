@@ -1,30 +1,39 @@
 {
-  "level": "1",
-  "specFolder": "specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
-  "description": "Feasibility study: replace mk-spec-memory MCP (37 tools) with a CLI at zero feature loss; evaluate pure-CLI vs CLI-over-daemon-IPC vs hybrid auto-spaw",
-  "keywords": [
-    "feasibility",
-    "study",
-    "replace",
-    "mk-spec-memory",
-    "mcp",
-    "tools",
-    "cli",
-    "zero",
-    "feature",
-    "loss",
-    "evaluate",
-    "pure-cli",
-    "cli-over-daemon-ipc",
-    "hybrid",
-    "auto-spawn",
-    "via",
-    "3-model",
-    "fan-out",
-    "deep",
-    "research"
+  "title": "Spec-Memory CLI Workstream",
+  "trigger_phrases": [
+    "spec-memory cli workstream",
+    "spec-memory cli phases",
+    "dual-stack cli implementation",
+    "memory cli build",
+    "028 001 phases"
   ],
-  "lastUpdated": "2026-06-06T12:30:00.000Z",
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
+  "status": "phase-parent",
+  "parent_id": "system-spec-kit/028-mcp-to-cli-tool-transition",
+  "importance_tier": "important",
+  "created_at": "2026-06-06T08:46:15Z",
+  "is_phase_parent": true,
+  "children": [
+    "000-spec-memory-cli-research",
+    "001-cli-core",
+    "002-hardening-and-tests",
+    "003-runtime-integration"
+  ],
+  "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
+  "description": "Feature Specification: Spec-Memory CLI Workstream (Phase Parent)",
+  "keywords": [
+    "spec-memory",
+    "cli",
+    "dual-stack",
+    "daemon",
+    "ipc",
+    "workstream",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-06T13:05:00.000Z",
   "specId": "001",
   "folderSlug": "spec-memory-cli",
   "parentChain": [
@@ -32,10 +41,6 @@
     "system-spec-kit",
     "028-mcp-to-cli-tool-transition"
   ],
-  "memorySequence": 3,
-  "memoryNameHistory": [
-    "06-06-26_10-38__new-028-phase-and-run-deep-research-with-deepseek.md",
-    "06-06-26_11-42__run-3-convergence-driven-2-lane-research-deepseek.md",
-    "06-06-26_13-11__run-4-done-definition-was-made-stricter-than-run.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

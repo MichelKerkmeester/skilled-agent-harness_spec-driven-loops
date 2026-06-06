@@ -1,0 +1,17 @@
+{
+  "specFolder": "002-code-index-cli/003-runtime-integration",
+  "description": "Phase 3: runtime-integration",
+  "keywords": [
+    "phase",
+    "runtime-integration"
+  ],
+  "lastUpdated": "2026-06-06T14:45:16.184Z",
+  "specId": "003",
+  "folderSlug": "runtime-integration",
+  "parentChain": [
+    "002-code-index-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

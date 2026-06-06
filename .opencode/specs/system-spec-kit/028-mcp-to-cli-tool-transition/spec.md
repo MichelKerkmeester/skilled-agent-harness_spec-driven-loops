@@ -12,15 +12,15 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition"
-    last_updated_at: "2026-06-06T12:30:00Z"
+    last_updated_at: "2026-06-06T15:05:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 001 research complete: GO verdict, zero unknowns, 10-13d implementation estimate"
+    recent_action: "All three workstreams phased and pairing encoded"
     next_safe_action: "Open the dual-stack CLI implementation phase via speckit:plan"
     blockers: []
     key_files:
       - "spec.md"
       - "001-spec-memory-cli/spec.md"
-      - "001-spec-memory-cli/research/research.md"
+      - "001-spec-memory-cli/000-spec-memory-cli-research/research/research.md"
     completion_pct: 0
     open_questions: []
     answered_questions:
@@ -99,14 +99,26 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 
 | Phase | Folder | Status | Scope |
 |-------|--------|--------|-------|
-| 001 | `001-spec-memory-cli/` | Complete | Four research runs: feasibility GO verdict (zero feature loss iff the daemon stays), dual-stack CLI design (codegen from TOOL_DEFINITIONS, exits 0/1/64/69/75), risk resolution, and total risk closure (2 RESOLVED, 4 MITIGATED-terminal, 2 ACCEPTED, 0 unknowns); 8 design deltas; 10–13d implementation estimate |
-| 002+ | not yet created | Pending | Dual-stack CLI implementation (inherits the 8 delta specs and corrected measurements), then a separately-gated migration decision |
+| 001 | `001-spec-memory-cli/` | Research complete; implementation phases scaffolded | The spec-memory CLI workstream. Research record nested as `000-spec-memory-cli-research/` (four runs ending in GO + zero unknowns, 8 delta specs, 10–13d estimate); implementation children: `001-cli-core/` (build), `002-hardening-and-tests/` (regression-lock), `003-runtime-integration/` (adoption + dual-stack window) |
+| 002 | `002-code-index-cli/` | Research complete (GO); implementation phases scaffolded | CLI-fallback workstream for `mk_code_index` (system-code-graph, 8 tools); phase 000 feasibility research, implementation phases on GO |
+| 003 | `003-skill-advisor-cli/` | Research complete (GO); implementation phases scaffolded | CLI-fallback workstream for `mk_skill_advisor` (system-skill-advisor, 9 tools); phase 000 feasibility research incl. the skill_advisor.py reconcile-vs-supersede question |
+| 004+ | not yet created | Pending | Separately-gated follow-ons: migration of the measured MCP reference surfaces, then the MCP-retirement decision |
 
 ### Phase Transition Rules
 
 - Each phase child carries its own full doc set (spec/plan/tasks/implementation-summary); this parent stays a lean control file.
-- The implementation phase must absorb the 8 design deltas (D1–D7, DD-001) verbatim from `001-spec-memory-cli/research/research.md` §14 and re-estimate as routine planning hygiene.
+- The implementation phase must absorb the 8 design deltas (D1–D7, DD-001) verbatim from `001-spec-memory-cli/000-spec-memory-cli-research/research/research.md` §14 and re-estimate as routine planning hygiene.
 - Full migration of MCP references (measured: 93 files / 1,041 references) stays out of scope until the dual-stack window proves the CLI in production use.
+
+### Runtime Pairing Requirement (program-wide)
+
+Every CLI workstream ships PAIRED with its runtime integrations — a CLI nobody's runtime calls does not close the transport-down incident class:
+
+- **Hooks** for Claude Code, Codex, and Devin: the existing hook adapters (session/prompt-submit family under `system-spec-kit/mcp_server/hooks/<runtime>/` and `system-skill-advisor/hooks/<runtime>/`) gain a CLI-backed path — warm-only with `--timeout-ms`, fail-open, used when the MCP transport is down or as the preferred transport where measurement favors it.
+- **An OpenCode plugin** per system: extend `mk-skill-advisor.js` and `mk-code-graph.js` (whose bridge has known import drift to repair) with CLI-backed fallback; CREATE the missing spec-memory plugin (none exists today — memory access is currently MCP-only in OpenCode).
+- Hook/plugin work lands in each workstream's runtime-integration phase and inherits the warm-only latency policy from the research records.
+- **Gemini is deliberately excluded from pairing scope** (operator decision): its hook adapters exist for external operators but no repo-level Gemini registration ships; do not treat Gemini work as a gap or an acceptance blocker. Revisit only on operator direction.
+- **Tri-daemon spawn drill (program gate)**: before the program's dual-stack window closes, run one drill spawning all three CLIs (spec-memory + code-index + skill-advisor) simultaneously in a single runtime/worktree — owned by the skill-advisor workstream's hardening phase, verifying all three launchers' lease/reap behavior under concurrent auto-spawn.
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -121,6 +133,7 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 
 ## RELATED DOCUMENTS
 
-- `001-spec-memory-cli/spec.md` — completed research phase (verdict chain, generated findings fence)
-- `001-spec-memory-cli/research/research.md` — canonical merged synthesis (§1–14)
+- `001-spec-memory-cli/spec.md` — CLI workstream phase parent (phase map)
+- `001-spec-memory-cli/000-spec-memory-cli-research/spec.md` — completed research phase (verdict chain, generated findings fence)
+- `001-spec-memory-cli/000-spec-memory-cli-research/research/research.md` — canonical merged synthesis (§1–14)
 - `context-index.md` — packet reorganization bridge

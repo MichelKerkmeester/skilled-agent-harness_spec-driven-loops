@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Link Card Button & Mobile Animation Fixes"
-description: "Three link-card defects fixed (desktop centering, desktop button dissolve, mobile height animation) plus cleanups; verified live via Chrome DevTools CLI injection."
+description: "Link-card desktop/mobile animation fixes, iOS WebKit flicker guard, and publish-ready source/staging/minified assets."
 trigger_phrases:
   - "link card collapse expand summary"
   - "link card implementation summary"
@@ -9,18 +9,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "anobel.com/002-link-card-button-and-mobile-animation"
-    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Flattened all 2_javascript .js to root + regenerated z_minified flat (58 files, AST+runtime 58/58 PASS); link_card source now at 2_javascript/link_card_collapse_expand.js. (Prior: Rev 2 desktop image transform.)"
-    next_safe_action: "User re-publishes 3_staging/* + z_minified link_card .min.js to Webflow/CDN (incl. Rev 1 + Rev 2), then re-verify on the published URL"
+    recent_action: "Applied Rev 5 visual-layer transition suppression during mobile animation; injected probe confirmed child transitions stay disabled until cleanup; AST+runtime 58/58 PASS."
+    next_safe_action: "User publishes updated link_card CSS/JS staging/minified assets plus any unpublished global CSS, then re-tests iOS Chrome/Safari on the published URL."
     blockers: []
     key_files:
       - "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js  (flat root)"
+      - "a_nobel_en_zn/1_css/global/performance.css"
       - "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css"
       - "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js  (flat)"
       - "a_nobel_en_zn/3_staging/link_card_collapse_expand.js"
       - "a_nobel_en_zn/3_staging/link_card_collapse_expand.css"
-    completion_pct: 100
+      - ".opencode/skills/sk-code/references/webflow/implementation/performance_patterns.md"
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Desktop button: REVERTED to seamless slide (Rev 1) — the dissolve's delay was unwanted; centering kept."
@@ -33,7 +35,115 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 
-## Status: COMPLETE — Revision 1 applied (pending user publish of 3_staging + .min.js)
+## Status: IMPLEMENTATION VERIFIED — Revision 5 applied (pending user publish of link_card assets)
+
+## Revision 5 (mobile visual-layer flicker hardening)
+
+After reviewing the latest MP4 (`ScreenRecording_06-06-2026 16-48-27_1.MP4`), the remaining flicker
+was localized around the mobile expand end-frame rather than a full-section white flash. A fresh
+sub-agent agreed the likely cause was CSS visual-layer transitions running while JS/Motion owned the
+same mobile child layers.
+
+Changes applied:
+
+- Added a scoped `data-link-card-mobile-animating` attribute on the card wrapper.
+- Set the attribute before the mobile measurement/prepass state flips in `animate_mobile_card_state()`.
+- While present, CSS disables transitions only on Motion-owned mobile visual layers: caption,
+  paragraph, heading-span, heading children, generated label, image, image-overlay, and link-card SVGs.
+- The attribute is cleared after guarded height cleanup/transition restoration, and also on stale,
+  reduced-motion, interrupted, or breakpoint cleanup paths.
+
+Verification evidence:
+
+- `node --check` passed for source, staging, and minified link-card JS.
+- Link-card source/staging JS compare returned `0`.
+- Link-card source/staging CSS compare returned `0`.
+- Public mirror compares returned `0` for source JS, staging JS, source CSS, and minified JS.
+- Re-minified `2_javascript/z_minified/link_card_collapse_expand.min.js`.
+- `verify-minification.mjs`: **58/58 PASS**.
+- `test-minified-runtime.mjs`: **58/58 PASS**.
+- Comment hygiene passed for touched code/CSS files.
+- Live `bdg` injection on `/nl/drafts` with a 390px mobile viewport showed
+  `data-link-card-mobile-animating` active from the first sampled animation frame through the cleanup
+  window; paragraph/image-overlay/SVG transitions computed to `none / 0s` while active.
+- The same probe showed expanded height stayed stable at approximately `330.84px` as the attr cleared
+  and CSS transitions restored.
+- Browser console after injection: no component errors; only the known unrelated Webflow
+  service-worker redirect warning.
+
+## Revision 4 (mobile end-frame flicker hardening)
+
+After the latest assets still showed a tiny flicker at the end of the mobile collapse-to-expand
+animation, the cleanup handoff was hardened again. The remaining risk was not the height tween itself;
+it was the exact frame where a filled WAAPI height animation was canceled and inline/CSS height state
+was restored.
+
+Changes applied:
+
+- `finish_mobile_height_animation()` now writes the final pixel height and keeps
+  `transition:none !important` before cleanup.
+- WAAPI `cancel()` is deferred until the next animation frame, after the final pixel height has had a
+  chance to paint.
+- The expanded inline height clear now happens one more animation frame later, and CSS transitions are
+  restored only after that cleared-height state has painted.
+- Cleanup remains stale-safe: if state changes or a newer mobile height animation starts, the old
+  cleanup exits without clearing the newer animation's state.
+
+Verification evidence:
+
+- `node --check` passed for source, staging, and minified link-card JS.
+- Link-card source/staging JS compare returned `0`.
+- Link-card source/staging CSS compare returned `0`.
+- Re-minified `2_javascript/z_minified/link_card_collapse_expand.min.js`.
+- `verify-minification.mjs`: **58/58 PASS**.
+- `test-minified-runtime.mjs`: **58/58 PASS**.
+- Live `bdg` injection on `/nl/drafts` with a 390px mobile viewport showed expanded height stable at
+  approximately `330.84px` before cleanup, during inline-height clearing, and after CSS transitions
+  were restored.
+- Browser console after injection: no component errors; only the known unrelated Webflow
+  service-worker redirect warning.
+
+## Revision 3 (iOS Chrome flicker + mobile cleanup hardening)
+
+After an iOS Chrome recording showed whole-section white flicker around the sector-card area,
+frame-difference inspection and live DOM probes identified the sector card inside
+`section.u--overflow-visible[data-render-content="large"]`, which computed to
+`content-visibility:auto`. That conflicts with overflow-visible/animated sections on iOS WebKit:
+the browser can skip painting the section during scroll or viewport-bar changes and briefly expose
+the white page background.
+
+Changes applied:
+
+- **Whole-section flicker guard:** `1_css/global/performance.css` now forces
+  `.u--overflow-visible[data-render-content]` to `content-visibility: visible`, `contain: layout
+  style`, and `contain-intrinsic-size: none`. This preserves the overflow-safe containment path even
+  if the Designer keeps `data-render-content="large"` on an overflow-visible section.
+- **Mobile link-card cleanup hardening:** `2_javascript/link_card_collapse_expand.js` now keeps the
+  wrapper's `transition:none !important` active through the WAAPI height cleanup frame, clears fixed
+  height/max-height while transitions are disabled, then restores normal CSS transitions on the next
+  frame only if the state is still current and no newer mobile height animation exists.
+- **Guide update:** `sk-code`'s Webflow performance guide now documents the `content-visibility` +
+  overflow-visible rule, the preferred `data-render-content="overflow"` Designer setting, and the
+  CSS fail-safe.
+
+Verification evidence:
+
+- AI Council second opinion agreed with both root causes and recommended the all-breakpoint CSS guard
+  plus guarded two-frame JS cleanup.
+- `node --check` passed for source and staging link-card JS.
+- Link-card source and staging JS are byte-identical.
+- Re-minified `2_javascript/z_minified/link_card_collapse_expand.min.js`.
+- `verify-minification.mjs`: **58/58 PASS**.
+- `test-minified-runtime.mjs`: **58/58 PASS**.
+- `validate_document.py` passed for the updated Webflow performance guide.
+- Live injection probe on `/nl/drafts` under a mobile viewport confirmed the affected section computes
+  `content-visibility: visible`, `contain: layout style`, and `contain-intrinsic-size: none` with the
+  new guard.
+- Live injection probe confirmed mobile expand cleanup keeps computed transition `none / 0s` through
+  the cleanup frame, clears inline height at ~1100ms with stable height, then restores normal CSS
+  height transitions by ~1120ms.
+- Browser console after injection: no errors; only the known unrelated Webflow service-worker redirect
+  warning.
 
 ## Revision 1 (post-deploy feedback)
 
@@ -78,22 +188,15 @@ Mobile still pins `transform: scale(1)`.
 
 ## What was done (original)
 
-**Bug 1 — desktop collapsed-button centering.** `apply_collapsed_button` (desktop branch) now
-centers via `inset: '1.5rem auto auto 50%'` + `transform: 'translateX(-50%)'` instead of the
-width-dependent `calc(50% - 28px)` right-anchor. Root cause: the button is `4rem` wide (scales with
-the fluid root font-size), so the fixed `28px` (half of an assumed 56px) only centered it at one
-viewport width; at others it drifted. `translateX(-50%)` centers at any width.
+**Bug 1 — desktop collapsed-button centering.** `apply_collapsed_button` (desktop branch) centers the
+4rem button with `inset: '1.5rem calc(50% - 2rem) auto auto'` and `transform: 'none'`. Root cause:
+the previous fixed `28px` right-anchor assumed a 56px button and drifted when the fluid root
+font-size changed.
 
-**Bug 2 — desktop button no longer travels (dissolve to top-right).**
-- CSS button `transition` no longer lists `inset`/`transform` (only background/border/color/shadow),
-  so position changes are never tweened.
-- New `dissolve_button()` (called from `animate_card_state` on desktop only): fades the button
-  `opacity → 0` (~100ms), then at the trough — guarded by `is_current_run` — swaps position + icon
-  state instantly and fades `opacity → 1` with a `0.62s` delay so it reappears only once the card is
-  ~full width. Opacity is explicitly pinned (`0` after fade-out, `1` after fade-in) because Motion
-  does not persist an animation's end value (it reverts to the underlying inline opacity).
-- `CONFIG.motion.button_out` / `button_in` added (tunable timing).
-- Mobile path unchanged (CSS owns mobile button layout); desktop icon swap moved into the dissolve.
+**Bug 2 — desktop button uses seamless slide.** The first dissolve approach was reverted after user
+feedback. CSS now transitions `inset` and `transform` so the button stays visible and slides smoothly
+from top-center to top-right during the card-width transition. The obsolete `dissolve_button()` /
+`button_out` / `button_in` path is not part of the current implementation.
 
 **Bug 3 — mobile height animation restored.** `set_mobile_fixed_height` no longer writes `height` /
 `max-height` / `min-height` with `!important`. Root cause: `!important` author declarations outrank
@@ -101,10 +204,10 @@ the Web-Animations layer in the cascade, so the `wrapper.animate(...)` height ke
 overridden — the card sat at the pinned height for ~1.1s then snapped. Normal inline lets WAAPI
 drive the tween while still overriding the (non-important) CSS height rules.
 
-**Cleanups.** `is_current_run` is now used (the dissolve guard) instead of dead; write-only
-`text_wrappers` array + unused `text_wrapper` SELECTOR removed (text-node wrapping kept); dead CSS
-var `--link-card-mobile-expanded-size` removed; mobile collapsed image `scale(1.04)` → `scale(1)`
-(matches the live-effective JS value and desktop).
+**Cleanups.** Obsolete dissolve-run bookkeeping was removed; write-only `text_wrappers` array +
+unused `text_wrapper` SELECTOR were removed (text-node wrapping kept); dead CSS var
+`--link-card-mobile-expanded-size` was removed; mobile collapsed image scale was aligned to
+`scale(1)`.
 
 ## Verification evidence (live, Chrome DevTools CLI `bdg`)
 
@@ -113,13 +216,9 @@ Method: navigate to the live staging page, tear down the published instance via 
 source order) + JS, then probe. (The live site still serves the old published build; injection
 verifies the fix pre-deploy.)
 
-- **Bug 1:** all collapsed cards `centerOffset = 0` (was −2 at root=15px); computed
-  `transform = matrix(1,0,0,1,-28,0)` (translateX(-50%) of the 56px button); `transition-property`
-  no longer includes `inset, transform`.
-- **Bug 2:** dissolve timeline — opacity `1→0` by ~90ms at collapsed-center (x≈102); held at `0`
-  (invisible) while position swapped and card grew (x rides 231→842 unseen); faded `0→1` at
-  t≈750–930ms **stationary** at the final top-right (x=847, card already full-width 836). No
-  full-opacity ride.
+- **Bug 1:** all collapsed cards `centerOffset = 0` after the centered-anchor fix.
+- **Bug 2:** final accepted behavior is seamless slide: button opacity stays `1` and the button moves
+  continuously from top-center to top-right with no dissolve gap.
 - **Bug 3:** height timeline — card 1 expands `82→101→244→…→331`, card 0 collapses
   `331→312→169→…→82`, both smooth over ~900ms with the ease-out curve; no frozen plateau, no snap.
 - **Robustness:** all collapsed buttons `opacity = 1` in resting state; no component console errors
@@ -131,32 +230,30 @@ verifies the fix pre-deploy.)
 Minified the fixed JS per `sk-code` WEBFLOW deployment guide (single-file workflow, scoped to this
 component — a batch run would re-minify every source changed since the manifest):
 
-- **Minify:** `npx terser src/2_javascript/molecules/link_card_collapse_expand.js --compress --mangle
-  -o src/2_javascript/z_minified/molecules/link_card_collapse_expand.min.js` →
-  **57,967 B → 18,911 B (67.4% reduction)**; `node --check` clean.
+- **Minify:** `npx terser src/2_javascript/link_card_collapse_expand.js --compress --mangle
+  -o src/2_javascript/z_minified/link_card_collapse_expand.min.js`; `node --check` clean.
 - **AST verify** (`verify-minification.mjs`): link_card **PASS** — 11 data-selectors, 2 DOM events,
-  `Webflow.push`, `Motion.animate` all preserved; suite **59/59 passed**.
+  `Webflow.push`, `Motion.animate` all preserved; suite **58/58 passed**.
 - **Runtime test** (`test-minified-runtime.mjs`): link_card **PASS** — executes without errors, init
-  flag `__linkCardCollapseExpandInit` set; suite **109/109 passed**.
-- **Browser test** (minified injected into the live page): mobile height ramp `145→244→…→331`
-  smooth (no snap); desktop collapsed buttons `off=0, op=1` — identical to source behavior.
-- The `src/2_javascript` (anobel.com) and Public `2_javascript` trees share inodes (source + min),
-  so the new `.min.js` (inode 54310088) lands in both repos at once.
+- **Runtime test** (`test-minified-runtime.mjs`): suite **58/58 passed**.
+- **Browser test** (minified injected into the live page): mobile expanded height stayed stable through
+  the final cleanup window; no measured height jump when inline height cleared.
+- The `src/2_javascript` (anobel.com) and Public `2_javascript` trees share inodes (source + min), so
+  source and minified updates land in both repos at once.
 - `--mangle-props` not used (would break the string-keyed selectors/attrs). The `z_minified`
   `manifest.tsv` skip-cache was left untouched (direct-terser workflow); a future
   `minify-webflow.mjs` batch run reconciles it.
 
 ## Files changed
-- `a_nobel_en_zn/2_javascript/molecules/link_card_collapse_expand.js` — Bugs 1/2/3 + cleanups (57,967 B).
-- `a_nobel_en_zn/1_css/link/link_card_collapse_expand.css` — button transition, dead var, scale (33,091 B).
-- `a_nobel_en_zn/2_javascript/z_minified/molecules/link_card_collapse_expand.min.js` — re-minified (18,911 B; was stale 18,465 B / May 23).
+- `a_nobel_en_zn/2_javascript/link_card_collapse_expand.js` — Bugs 1/2/3, Rev 4 mobile cleanup hardening, and cleanups.
+- `a_nobel_en_zn/1_css/link/link_card_collapse_expand.css` — button transition, dead var, scale, paragraph color.
+- `a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js` — re-minified publish bundle.
 - `a_nobel_en_zn/3_staging/link_card_collapse_expand.js` — mirror (byte-identical).
 - `a_nobel_en_zn/3_staging/link_card_collapse_expand.css` — mirror (byte-identical).
 
 ## Continuation notes
-- Deploying `3_staging/*` to the live Webflow staging site is the user's publish step. After publish,
-  re-run the same `bdg` probes on the published URL (no injection needed) to confirm parity.
-- `button_out` (0.1) / `button_in` (delay 0.62, duration 0.2) are the empirically-tuned dissolve
-  timings; adjust in `CONFIG.motion` if the button should reappear earlier/later.
+- Deploying the updated link-card staging/minified assets to the live Webflow staging site is the
+  user's publish step. After publish, re-run the same mobile expand probe on the published URL (no
+  injection needed) to confirm parity on real iOS Chrome/Safari.
 - Optional future polish (not done): anchor the expanded button to a fixed left offset so it is
   revealed by the growing card edge (stationary) rather than fading in late.

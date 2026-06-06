@@ -1,3 +1,5 @@
+'use strict';
+
 // Remove obsolete write-agent test scenarios (feature verified removed: no `write` agent,
 // no snippet anywhere) from the cli playbooks: the `### <ID> | ...` scenario block (to the
 // next ###/## header, trailing blanks/--- trimmed) + the `- <ID>:` index list item.

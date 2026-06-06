@@ -1,0 +1,42 @@
+{
+  "title": "Skill-Advisor CLI Workstream",
+  "trigger_phrases": [
+    "skill advisor cli feasibility",
+    "skill advisor cli fallback",
+    "mk_skill_advisor cli",
+    "028 003 research"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+  "status": "phase-parent",
+  "parent_id": "system-spec-kit/028-mcp-to-cli-tool-transition",
+  "importance_tier": "important",
+  "created_at": "2026-06-06T13:40:00Z",
+  "is_phase_parent": true,
+  "children": [
+    "000-skill-advisor-cli-research",
+    "001-cli-core",
+    "002-hardening-and-tests",
+    "003-runtime-integration"
+  ],
+  "specFolder": "003-skill-advisor-cli",
+  "description": "Dual-stack CLI implementation for 003-skill-advisor-cli paired with runtime hooks and OpenCode plugin",
+  "keywords": [
+    "dual-stack",
+    "cli",
+    "implementation",
+    "003-skill-advisor-cli",
+    "paired",
+    "runtime",
+    "hooks",
+    "opencode",
+    "plugin"
+  ],
+  "lastUpdated": "2026-06-06T15:05:00.000Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor-cli",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

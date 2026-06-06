@@ -9,12 +9,12 @@
     ".codex/agents",
     ".codex/commands"
   ],
-  "files_scanned": 3386,
-  "refs_seen": 24673,
-  "refs_checked": 24270,
+  "files_scanned": 3393,
+  "refs_seen": 24727,
+  "refs_checked": 24324,
   "broken_total": 23,
   "broken_denumber_fixable": 0,
-  "low_confidence_tickpath_total": 10363,
+  "low_confidence_tickpath_total": 10417,
   "by_area": {
     "skill:sk": {
       "total": 22,
@@ -2592,8 +2592,24 @@
       "area": "skill:cli",
       "file": ".opencode/skills/cli-devin/changelog/v1.0.1.0.md",
       "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-2026-05-15.md",
+      "resolved": ".opencode/skills/cli-devin/changelog/.opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-2026-05-15.md | .opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-2026-05-15.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:cli",
+      "file": ".opencode/skills/cli-devin/changelog/v1.0.1.0.md",
+      "kind": "tickpath",
       "ref": ".opencode/skills/cli-devin/manual_testing_playbook/02--permission-modes/003-bypass-mode.md",
       "resolved": ".opencode/skills/cli-devin/changelog/.opencode/skills/cli-devin/manual_testing_playbook/02--permission-modes/003-bypass-mode.md | .opencode/skills/cli-devin/manual_testing_playbook/02--permission-modes/003-bypass-mode.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:cli",
+      "file": ".opencode/skills/cli-devin/changelog/v1.0.1.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-2026-05-15.md",
+      "resolved": ".opencode/skills/cli-devin/changelog/.opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-2026-05-15.md | .opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-2026-05-15.md",
       "denumber_fixable": false
     },
     {
@@ -2856,8 +2872,40 @@
       "area": "skill:cli",
       "file": ".opencode/skills/cli-devin/changelog/v1.0.2.0.md",
       "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave2-2026-05-15.md",
+      "resolved": ".opencode/skills/cli-devin/changelog/.opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave2-2026-05-15.md | .opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave2-2026-05-15.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:cli",
+      "file": ".opencode/skills/cli-devin/changelog/v1.0.2.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave3-final-2026-05-15.md",
+      "resolved": ".opencode/skills/cli-devin/changelog/.opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave3-final-2026-05-15.md | .opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave3-final-2026-05-15.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:cli",
+      "file": ".opencode/skills/cli-devin/changelog/v1.0.2.0.md",
+      "kind": "tickpath",
       "ref": "evidence/playbook-run-wave2-2026-05-15.md",
       "resolved": ".opencode/skills/cli-devin/changelog/evidence/playbook-run-wave2-2026-05-15.md | evidence/playbook-run-wave2-2026-05-15.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:cli",
+      "file": ".opencode/skills/cli-devin/changelog/v1.0.2.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave2-2026-05-15.md",
+      "resolved": ".opencode/skills/cli-devin/changelog/.opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave2-2026-05-15.md | .opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave2-2026-05-15.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:cli",
+      "file": ".opencode/skills/cli-devin/changelog/v1.0.2.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave3-final-2026-05-15.md",
+      "resolved": ".opencode/skills/cli-devin/changelog/.opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave3-final-2026-05-15.md | .opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/playbook-run-wave3-final-2026-05-15.md",
       "denumber_fixable": false
     },
     {
@@ -2882,6 +2930,14 @@
       "kind": "tickpath",
       "ref": "001-council-design/ai-council/council-report.md",
       "resolved": ".opencode/skills/cli-devin/changelog/001-council-design/ai-council/council-report.md | 001-council-design/ai-council/council-report.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:cli",
+      "file": ".opencode/skills/cli-devin/changelog/v1.0.5.0.md",
+      "kind": "tickpath",
+      "ref": "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/004-skill-uplift/decision-record.md",
+      "resolved": ".opencode/skills/cli-devin/changelog/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/004-skill-uplift/decision-record.md | specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/004-skill-uplift/decision-record.md",
       "denumber_fixable": false
     },
     {
@@ -8710,6 +8766,70 @@
     },
     {
       "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/SKILL.md",
+      "kind": "tickpath",
+      "ref": "lib/council/multi-seat-dispatch.cjs",
+      "resolved": ".opencode/skills/deep-context/lib/council/multi-seat-dispatch.cjs | lib/council/multi-seat-dispatch.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/SKILL.md",
+      "kind": "tickpath",
+      "ref": "scripts/fanout-run.cjs",
+      "resolved": ".opencode/skills/deep-context/scripts/fanout-run.cjs | scripts/fanout-run.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/SKILL.md",
+      "kind": "tickpath",
+      "ref": "context/context-report.md",
+      "resolved": ".opencode/skills/deep-context/context/context-report.md | context/context-report.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/references/convergence.md",
+      "kind": "tickpath",
+      "ref": "scripts/convergence.cjs",
+      "resolved": ".opencode/skills/deep-context/references/scripts/convergence.cjs | scripts/convergence.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/references/loop_protocol.md",
+      "kind": "tickpath",
+      "ref": "iterations/iteration-NNN.md",
+      "resolved": ".opencode/skills/deep-context/references/iterations/iteration-NNN.md | iterations/iteration-NNN.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/references/loop_protocol.md",
+      "kind": "tickpath",
+      "ref": "deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+      "resolved": ".opencode/skills/deep-context/references/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs | deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/references/loop_protocol.md",
+      "kind": "tickpath",
+      "ref": "scripts/fanout-run.cjs",
+      "resolved": ".opencode/skills/deep-context/references/scripts/fanout-run.cjs | scripts/fanout-run.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-context/references/loop_protocol.md",
+      "kind": "tickpath",
+      "ref": "scripts/fanout-merge.cjs",
+      "resolved": ".opencode/skills/deep-context/references/scripts/fanout-merge.cjs | scripts/fanout-merge.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
       "file": ".opencode/skills/deep-improvement/README.md",
       "kind": "tickpath",
       "ref": "shared/loop-host.cjs",
@@ -12082,6 +12202,22 @@
       "kind": "tickpath",
       "ref": "system-spec-kit/mcp_server/vitest.config.ts",
       "resolved": ".opencode/skills/deep-loop-runtime/changelog/system-spec-kit/mcp_server/vitest.config.ts | system-spec-kit/mcp_server/vitest.config.ts",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-loop-runtime/changelog/v1.0.0.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/spec.md",
+      "resolved": ".opencode/skills/deep-loop-runtime/changelog/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/spec.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/spec.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-loop-runtime/changelog/v1.0.0.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md",
+      "resolved": ".opencode/skills/deep-loop-runtime/changelog/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md",
       "denumber_fixable": false
     },
     {
@@ -16690,6 +16826,22 @@
       "kind": "tickpath",
       "ref": "deep-review/scripts/reduce-state.cjs",
       "resolved": ".opencode/skills/deep-research/changelog/deep-review/scripts/reduce-state.cjs | deep-review/scripts/reduce-state.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-research/changelog/v1.12.0.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/spec.md",
+      "resolved": ".opencode/skills/deep-research/changelog/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/spec.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/spec.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:deep",
+      "file": ".opencode/skills/deep-research/changelog/v1.12.0.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md",
+      "resolved": ".opencode/skills/deep-research/changelog/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md",
       "denumber_fixable": false
     },
     {
@@ -36482,6 +36634,14 @@
       "kind": "tickpath",
       "ref": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-small-model.md",
       "resolved": ".opencode/skills/sk-prompt-small-model/changelog/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-small-model.md | .opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-small-model.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:sk",
+      "file": ".opencode/skills/sk-prompt-small-model/changelog/v0.2.0.0.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/changelog/.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md | .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md",
       "denumber_fixable": false
     },
     {
@@ -74032,8 +74192,40 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/A--comment-hygiene-checker-baseline.md",
       "kind": "tickpath",
+      "ref": "../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md | ../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/A--comment-hygiene-checker-baseline.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md",
+      "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/.opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md | .opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/A--comment-hygiene-checker-baseline.md",
+      "kind": "tickpath",
       "ref": "18--ux-hooks/A--comment-hygiene-checker-baseline.md",
       "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/18--ux-hooks/A--comment-hygiene-checker-baseline.md | 18--ux-hooks/A--comment-hygiene-checker-baseline.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/B--comment-hygiene-claude-code-hook.md",
+      "kind": "tickpath",
+      "ref": "../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md | ../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/B--comment-hygiene-claude-code-hook.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md",
+      "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/.opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md | .opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md",
       "denumber_fixable": false
     },
     {
@@ -74064,6 +74256,14 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/C--comment-hygiene-opencode-plugin.md",
       "kind": "tickpath",
+      "ref": "../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md | ../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/C--comment-hygiene-opencode-plugin.md",
+      "kind": "tickpath",
       "ref": "18--ux-hooks/C--comment-hygiene-opencode-plugin.md",
       "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/18--ux-hooks/C--comment-hygiene-opencode-plugin.md | 18--ux-hooks/C--comment-hygiene-opencode-plugin.md",
       "denumber_fixable": false
@@ -74082,6 +74282,14 @@
       "kind": "tickpath",
       "ref": "bash .opencode/hooks/install-hooks.sh",
       "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/bash .opencode/hooks/install-hooks.sh | bash .opencode/hooks/install-hooks.sh",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/D--comment-hygiene-devin-precommit.md",
+      "kind": "tickpath",
+      "ref": "../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md | ../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
       "denumber_fixable": false
     },
     {
@@ -74144,6 +74352,14 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/E--comment-hygiene-codex-hook.md",
       "kind": "tickpath",
+      "ref": "../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md | ../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/E--comment-hygiene-codex-hook.md",
+      "kind": "tickpath",
       "ref": "18--ux-hooks/E--comment-hygiene-codex-hook.md",
       "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/18--ux-hooks/E--comment-hygiene-codex-hook.md | 18--ux-hooks/E--comment-hygiene-codex-hook.md",
       "denumber_fixable": false
@@ -74178,6 +74394,14 @@
       "kind": "tickpath",
       "ref": "bash .opencode/hooks/install-hooks.sh",
       "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/bash .opencode/hooks/install-hooks.sh | bash .opencode/hooks/install-hooks.sh",
+      "denumber_fixable": false
+    },
+    {
+      "area": "catalog-playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/F--comment-hygiene-gemini-hook.md",
+      "kind": "tickpath",
+      "ref": "../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md | ../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/decision-record.md",
       "denumber_fixable": false
     },
     {
@@ -78414,6 +78638,14 @@
     },
     {
       "area": "skill:system",
+      "file": ".opencode/skills/system-spec-kit/references/config/launcher_lease.md",
+      "kind": "tickpath",
+      "ref": ".opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json",
+      "resolved": ".opencode/skills/system-spec-kit/references/config/.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json | .opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json",
+      "denumber_fixable": false
+    },
+    {
+      "area": "skill:system",
       "file": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
       "kind": "tickpath",
       "ref": "references/hooks/skill_advisor_hook_validation.md",
@@ -81118,6 +81350,14 @@
     },
     {
       "area": "commands",
+      "file": ".opencode/commands/deep/ask-ai-council.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md",
+      "resolved": ".opencode/commands/deep/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
       "file": ".opencode/commands/deep/start-agent-improvement-loop.md",
       "kind": "tickpath",
       "ref": "scripts/shared/loop-host.cjs",
@@ -81166,6 +81406,70 @@
     },
     {
       "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/references/loop_protocol.md",
+      "resolved": ".opencode/commands/deep/deep-context/references/loop_protocol.md | deep-context/references/loop_protocol.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/references/convergence.md",
+      "resolved": ".opencode/commands/deep/deep-context/references/convergence.md | deep-context/references/convergence.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/assets/context_report_template.md",
+      "resolved": ".opencode/commands/deep/deep-context/assets/context_report_template.md | deep-context/assets/context_report_template.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/assets/deep_context_config.json",
+      "resolved": ".opencode/commands/deep/deep-context/assets/deep_context_config.json | deep-context/assets/deep_context_config.json",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "scripts/convergence.cjs",
+      "resolved": ".opencode/commands/deep/scripts/convergence.cjs | scripts/convergence.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "scripts/upsert.cjs",
+      "resolved": ".opencode/commands/deep/scripts/upsert.cjs | scripts/upsert.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "scripts/fanout-run.cjs",
+      "resolved": ".opencode/commands/deep/scripts/fanout-run.cjs | scripts/fanout-run.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "lib/council/multi-seat-dispatch.cjs",
+      "resolved": ".opencode/commands/deep/lib/council/multi-seat-dispatch.cjs | lib/council/multi-seat-dispatch.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
       "file": ".opencode/commands/deep/start-model-benchmark-loop.md",
       "kind": "tickpath",
       "ref": "scripts/model-benchmark/scorer/score-model-variant.cjs",
@@ -81194,6 +81498,14 @@
       "kind": "tickpath",
       "ref": "research/research.md",
       "resolved": ".opencode/commands/deep/research/research.md | research/research.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-research-loop.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "resolved": ".opencode/commands/deep/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
       "denumber_fixable": false
     },
     {
@@ -81258,6 +81570,14 @@
       "kind": "tickpath",
       "ref": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json",
       "resolved": ".opencode/commands/deep/.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json | .opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".opencode/commands/deep/start-review-loop.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "resolved": ".opencode/commands/deep/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
       "denumber_fixable": false
     },
     {
@@ -81592,6 +81912,14 @@
       "area": "agents",
       "file": ".opencode/agents/ai-council.md",
       "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "resolved": ".opencode/agents/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "agents",
+      "file": ".opencode/agents/ai-council.md",
+      "kind": "tickpath",
       "ref": "lib/persist-artifacts.cjs",
       "resolved": ".opencode/agents/lib/persist-artifacts.cjs | lib/persist-artifacts.cjs",
       "denumber_fixable": false
@@ -81656,6 +81984,14 @@
       "area": "agents",
       "file": ".opencode/agents/deep-research.md",
       "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "resolved": ".opencode/agents/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "agents",
+      "file": ".opencode/agents/deep-research.md",
+      "kind": "tickpath",
       "ref": "research/iterations/iteration-NNN.md",
       "resolved": ".opencode/agents/research/iterations/iteration-NNN.md | research/iterations/iteration-NNN.md",
       "denumber_fixable": false
@@ -81890,6 +82226,14 @@
       "kind": "tickpath",
       "ref": "research/research.md",
       "resolved": ".opencode/agents/research/research.md | research/research.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "agents",
+      "file": ".opencode/agents/deep-review.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "resolved": ".opencode/agents/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
       "denumber_fixable": false
     },
     {
@@ -82646,6 +82990,14 @@
     },
     {
       "area": "commands",
+      "file": ".claude/commands/deep/ask-ai-council.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md",
+      "resolved": ".claude/commands/deep/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
       "file": ".claude/commands/deep/start-agent-improvement-loop.md",
       "kind": "tickpath",
       "ref": "scripts/shared/loop-host.cjs",
@@ -82694,6 +83046,70 @@
     },
     {
       "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/references/loop_protocol.md",
+      "resolved": ".claude/commands/deep/deep-context/references/loop_protocol.md | deep-context/references/loop_protocol.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/references/convergence.md",
+      "resolved": ".claude/commands/deep/deep-context/references/convergence.md | deep-context/references/convergence.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/assets/context_report_template.md",
+      "resolved": ".claude/commands/deep/deep-context/assets/context_report_template.md | deep-context/assets/context_report_template.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "deep-context/assets/deep_context_config.json",
+      "resolved": ".claude/commands/deep/deep-context/assets/deep_context_config.json | deep-context/assets/deep_context_config.json",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "scripts/convergence.cjs",
+      "resolved": ".claude/commands/deep/scripts/convergence.cjs | scripts/convergence.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "scripts/upsert.cjs",
+      "resolved": ".claude/commands/deep/scripts/upsert.cjs | scripts/upsert.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "scripts/fanout-run.cjs",
+      "resolved": ".claude/commands/deep/scripts/fanout-run.cjs | scripts/fanout-run.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-context-loop.md",
+      "kind": "tickpath",
+      "ref": "lib/council/multi-seat-dispatch.cjs",
+      "resolved": ".claude/commands/deep/lib/council/multi-seat-dispatch.cjs | lib/council/multi-seat-dispatch.cjs",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
       "file": ".claude/commands/deep/start-model-benchmark-loop.md",
       "kind": "tickpath",
       "ref": "scripts/model-benchmark/scorer/score-model-variant.cjs",
@@ -82722,6 +83138,14 @@
       "kind": "tickpath",
       "ref": "research/research.md",
       "resolved": ".claude/commands/deep/research/research.md | research/research.md",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-research-loop.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "resolved": ".claude/commands/deep/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
       "denumber_fixable": false
     },
     {
@@ -82786,6 +83210,14 @@
       "kind": "tickpath",
       "ref": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json",
       "resolved": ".claude/commands/deep/.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json | .opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json",
+      "denumber_fixable": false
+    },
+    {
+      "area": "commands",
+      "file": ".claude/commands/deep/start-review-loop.md",
+      "kind": "tickpath",
+      "ref": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
+      "resolved": ".claude/commands/deep/.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md | .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md",
       "denumber_fixable": false
     },
     {

@@ -1,0 +1,17 @@
+{
+  "specFolder": "001-spec-memory-cli/002-hardening-and-tests",
+  "description": "Phase 2: hardening-and-tests",
+  "keywords": [
+    "phase",
+    "hardening-and-tests"
+  ],
+  "lastUpdated": "2026-06-06T12:41:46.011Z",
+  "specId": "002",
+  "folderSlug": "hardening-and-tests",
+  "parentChain": [
+    "001-spec-memory-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

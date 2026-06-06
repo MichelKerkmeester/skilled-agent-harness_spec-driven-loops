@@ -1,3 +1,5 @@
+'use strict';
+
 // Parse one DeepSeek dispatch's raw NDJSON event stream into the canonical review
 // artifacts: deltas/iter-NNN.jsonl (type:"iteration" record) + iterations/iteration-NNN.md
 // (narrative ending in the mandatory `Review verdict: X` final line).

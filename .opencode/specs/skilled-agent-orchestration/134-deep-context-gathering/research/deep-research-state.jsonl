@@ -1,0 +1,12 @@
+{"type":"config","topic":"deep-context design — iterative small-model codebase-context-gathering loop producing an implementation-ready Context Report as a 3rd deep-loop-runtime consumer","maxIterations":10,"convergenceThreshold":0.05,"createdAt":"2026-06-06T13:37:23Z","specFolder":"specs/skilled-agent-orchestration/134-deep-context-gathering","executionMode":"orchestrator-driven","lineages":["mimo","minimax"]}
+{"type":"iteration","lineage":"mimo","run":1,"focus":"internal reuse survey + @context structure + reuse map/ADR/coverage-graph delta (Q7,Q8-internal)","status":"complete","timestamp":"2026-06-06T13:45:10Z"}
+{"type":"iteration","lineage":"minimax","run":1,"focus":"external prior-art survey: repo-map/RAG-for-code/agentic retrieval/context-engineering (Q8-external,Q1,Q2,Q3)","status":"complete","timestamp":"2026-06-06T13:46:34Z"}
+{"type":"iteration","lineage":"mimo","run":2,"status":"complete","timestamp":"2026-06-06T13:52:43Z"}
+{"type":"iteration","lineage":"mimo","run":3,"status":"complete","timestamp":"2026-06-06T13:52:43Z"}
+{"type":"iteration","lineage":"mimo","run":4,"status":"complete","timestamp":"2026-06-06T13:52:43Z"}
+{"type":"iteration","lineage":"mimo","run":5,"status":"complete","timestamp":"2026-06-06T13:52:43Z"}
+{"type":"iteration","lineage":"minimax","run":2,"status":"complete","timestamp":"2026-06-06T14:02:00Z"}
+{"type":"iteration","lineage":"minimax","run":3,"status":"complete","timestamp":"2026-06-06T14:02:00Z"}
+{"type":"iteration","lineage":"minimax","run":4,"status":"complete","timestamp":"2026-06-06T14:02:00Z"}
+{"type":"iteration","lineage":"minimax","run":5,"status":"complete","timestamp":"2026-06-06T14:02:00Z"}
+{"type":"convergence","decision":"STOP_ALLOWED","reason":"all 8 charter questions answered; strong cross-model agreement on architecture","iterations":10,"lineages":["mimo","minimax"],"synthesisOutput":"research/research.md","timestamp":"2026-06-06T14:13:58Z"}

@@ -1,0 +1,32 @@
+{
+  "sessionId": "fanout-gpt-1780754394644-rd2108",
+  "lineage": "gpt",
+  "status": "succeeded",
+  "executorRequested": "cli-codex model=gpt-5.5",
+  "executorActual": "direct-codex-session",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "stopReason": "maxIterationsReached",
+  "answeredQuestions": 10,
+  "totalQuestions": 10,
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/lineages/gpt",
+  "outputs": [
+    "deep-research-config.json",
+    "deep-research-state.jsonl",
+    "deep-research-strategy.md",
+    "deep-research-findings-registry.json",
+    "deep-research-dashboard.md",
+    "resource-map.md",
+    "research.md",
+    "iterations/iteration-001.md",
+    "iterations/iteration-002.md",
+    "iterations/iteration-003.md",
+    "iterations/iteration-004.md",
+    "iterations/iteration-005.md",
+    "iterations/iteration-006.md",
+    "iterations/iteration-007.md",
+    "iterations/iteration-008.md",
+    "iterations/iteration-009.md",
+    "iterations/iteration-010.md"
+  ]
+}

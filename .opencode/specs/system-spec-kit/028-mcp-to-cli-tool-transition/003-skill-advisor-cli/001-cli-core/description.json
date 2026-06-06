@@ -1,0 +1,17 @@
+{
+  "specFolder": "003-skill-advisor-cli/001-cli-core",
+  "description": "Phase 1: cli-core",
+  "keywords": [
+    "phase",
+    "cli-core"
+  ],
+  "lastUpdated": "2026-06-06T14:45:17.331Z",
+  "specId": "001",
+  "folderSlug": "cli-core",
+  "parentChain": [
+    "003-skill-advisor-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

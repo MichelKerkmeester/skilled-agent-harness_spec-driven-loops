@@ -1,3 +1,5 @@
+'use strict';
+
 // Wave 3: repoint catalog/playbook root references to snippets that exist under a different
 // slug. For each no_match in the catalog-playbook area, look inside the referenced category
 // directory and fuzzy-match the (de-numbered) snippet slug by token overlap. High-confidence

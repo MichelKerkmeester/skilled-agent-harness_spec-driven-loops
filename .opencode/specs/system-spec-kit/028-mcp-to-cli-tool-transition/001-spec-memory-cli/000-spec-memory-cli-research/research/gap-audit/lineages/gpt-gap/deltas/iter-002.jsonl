@@ -1,0 +1,1 @@
+{"type":"delta","iteration":2,"focus":"LENS-2 DELTA/REQUIREMENT TRACEABILITY","newFindings":["D1-D7 and DD-001 all map to phase 1 or phase 2 owners","OpenCode spec-memory plugin traces to the parent program rule and live plugin inventory","Gemini remains the only runtime item without clean traceability"],"severityCounts":{"P0":0,"P1":0,"P2":1}}

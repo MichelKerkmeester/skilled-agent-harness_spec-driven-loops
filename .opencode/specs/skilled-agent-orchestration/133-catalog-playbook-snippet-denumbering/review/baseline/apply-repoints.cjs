@@ -1,3 +1,5 @@
+'use strict';
+
 // Apply the verified REPOINT fix-map from the 113-residual triage (clean files only —
 // the 3 files staged by a concurrent session are deferred). Each fix is `](old)` -> `](new)`;
 // the new target is verified to resolve from the source dir before/after. Dry-run by default; --apply.

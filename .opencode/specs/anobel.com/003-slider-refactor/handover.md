@@ -172,29 +172,3 @@ The 21 vs 20 selector difference is expected: the removed colour-state blocks in
 ```
 2_javascript/
   slider_testimonial.js    ← full variant (image colour states in ensureStyles)
-  slider_timeline.js       ← timeline variant (layout/cursor/transform only)
-
-2_javascript/z_minified/
-  slider_testimonial.min.js
-  slider_timeline.min.js
-
-1_css/slider/
-  slider_timeline.css      ← timeline-only tab underline and active text styling
-```
-
----
-
-## 5. Tab Styling Architecture
-
-Discovered during analysis. Not changed. Documented here for continuity.
-
-### Static layer — `src/1_css/slider/slider_timeline.css`
-Handles timeline-only font weight, brand colour, hover/focus state, and underline on the active tab control.
-Selectors it watches (written by `updateTabState()` in the JS on every slide change):
-- `[data-tab][data-tab-active="true"]`
-- `[data-tab].is--set`
-- `[data-tab][aria-selected="true"]`
-
-These apply only inside `data-target="slider-timeline"` sections.
-
-### Runtime layer — `ensureStyles()` in `slider_testimonial.js` only

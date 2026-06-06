@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+  "description": "Feasibility study: dual-stack CLI fallback for mk_code_index (8 tools) at zero feature loss, leveraging the settled spec-memory record",
+  "keywords": [
+    "feasibility",
+    "code",
+    "cli",
+    "fallback",
+    "mk_code_index",
+    "dual-stack",
+    "research"
+  ],
+  "lastUpdated": "2026-06-06T14:11:08.284Z",
+  "specId": "000",
+  "folderSlug": "code-index-cli-research",
+  "parentChain": [
+    "specs",
+    "system-spec-kit",
+    "028-mcp-to-cli-tool-transition",
+    "002-code-index-cli"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-06-26_15-11__daemon-backed-cli-over-existing-ipc-not-daemon.md"
+  ]
+}

@@ -1,3 +1,5 @@
+'use strict';
+
 // Reduce all iteration deltas + the deterministic baseline/fix-proposals into the canonical
 // review state (config, state.jsonl, findings-registry, dashboard) and a synthesis summary.
 // Every model finding is cross-checked against on-disk truth (model path claims are unreliable).

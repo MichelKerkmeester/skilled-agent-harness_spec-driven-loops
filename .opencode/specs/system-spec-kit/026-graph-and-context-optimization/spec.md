@@ -102,6 +102,7 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 | 005 | `005-graph-impact-and-affordance/` | External-project adoption uplift: phase runner, edge/impact explanation, affordance + causal-trust display | deferred |
 | 006 | `006-operator-tooling/` | Runtime hook parity, doctor command surface, install-script/doctor realignment, session-lifecycle + worktree automation | complete |
 | 007 | `007-mcp-daemon-reliability/` | MCP daemon lifecycle reliability: IPC socket canonicalization, WAL checkpoint-on-close, graceful shutdown + watchdog, provider dispose, at-rest durability + memory-DB/graph-churn healing + infra follow-up hardening | complete |
+| 008 | `008-runtime-defect-fixes/` | Four live integration defects fixed in place (code-graph plugin bridge imports, Codex hook rewiring, DB-path note, Gemini catalog drift) + verified orphan-sweep no-op; surfaced by the 028 transition research | complete |
 
 ### Phase Transition Rules
 

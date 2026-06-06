@@ -1,3 +1,5 @@
+'use strict';
+
 // Deterministic remediation applier (dry-run by default; pass --apply to write).
 // Part A: the confident fix-resolver proposals (unique+ranked), as ](old)->](new) link
 //   rewrites, skipping intentional template-example sources.

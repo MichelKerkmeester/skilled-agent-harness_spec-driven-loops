@@ -1,3 +1,5 @@
+'use strict';
+
 // Remove dead-feature scenarios from system-spec-kit/manual_testing_playbook.md:
 // for each dead-feature ID (a §12 index row whose links are all dead), remove BOTH
 // (a) its §12 cross-reference index row and (b) its inline scenario block

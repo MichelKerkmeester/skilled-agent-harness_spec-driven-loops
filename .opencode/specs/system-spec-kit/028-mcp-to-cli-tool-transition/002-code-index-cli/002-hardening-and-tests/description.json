@@ -1,0 +1,17 @@
+{
+  "specFolder": "002-code-index-cli/002-hardening-and-tests",
+  "description": "Phase 2: hardening-and-tests",
+  "keywords": [
+    "phase",
+    "hardening-and-tests"
+  ],
+  "lastUpdated": "2026-06-06T14:45:15.394Z",
+  "specId": "002",
+  "folderSlug": "hardening-and-tests",
+  "parentChain": [
+    "002-code-index-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

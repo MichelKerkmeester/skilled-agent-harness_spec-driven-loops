@@ -1,3 +1,5 @@
+'use strict';
+
 // Remove dead listings from the (clean, hand-maintained) feature_catalog.md + 2 standalone
 // READMEs. Each feature_catalog dead ref is the sole content of a "#### Source Files" block —
 // remove the whole header+blank+See-line block. Line 40's dead ref is inline among other

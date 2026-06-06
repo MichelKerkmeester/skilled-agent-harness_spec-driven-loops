@@ -1,0 +1,17 @@
+{
+  "specFolder": "001-spec-memory-cli/003-runtime-integration",
+  "description": "Phase 3: runtime-integration",
+  "keywords": [
+    "phase",
+    "runtime-integration"
+  ],
+  "lastUpdated": "2026-06-06T12:41:46.765Z",
+  "specId": "003",
+  "folderSlug": "runtime-integration",
+  "parentChain": [
+    "001-spec-memory-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -11,7 +11,8 @@
     "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
     "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
     "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling",
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability"
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+    "system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -92,7 +93,7 @@
     ],
     "causal_summary": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes. This packet is the root coordination surface that decomposes that program into eight independently executable themed phase tracks.",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-06-06T03:47:50.495Z",
+    "last_save_at": "2026-06-06T16:45:00.000Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

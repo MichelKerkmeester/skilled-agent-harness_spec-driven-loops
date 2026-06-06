@@ -1,35 +1,42 @@
 ---
 title: "Feature Specification: Link Card Collapse/Expand — Button & Mobile Animation Fixes"
-description: "Fix three reported defects in the sector-menu link card (desktop collapsed-button centering, desktop button travel on expand, broken mobile height animation) plus approved code/CSS cleanups. Root-caused live with the Chrome DevTools CLI (bdg)."
+description: "Fix link-card desktop button behavior, mobile height animation, and iOS WebKit section flicker, with verified source/staging/minified assets ready for publish."
 trigger_phrases:
   - "link card collapse expand"
   - "sector menu card button"
   - "link card mobile animation glitch"
   - "data-link-card button centering"
   - "link_card_collapse_expand"
+  - "iOS Chrome section flicker"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "anobel.com/002-link-card-button-and-mobile-animation"
-    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Implemented + live-verified all 3 fixes and cleanups; staging mirror synced"
-    next_safe_action: "User publishes 3_staging/* to Webflow staging, then re-verify on the published URL"
+    recent_action: "Revision 5 mobile visual-layer transition suppression implemented and verified by local checks plus live injection; publish/re-test remains."
+    next_safe_action: "Publish updated link-card CSS/JS assets plus any unpublished global CSS, then re-verify on the published Webflow URL."
     blockers: []
     key_files:
-      - "a_nobel_en_zn/2_javascript/molecules/link_card_collapse_expand.js"
+      - "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js"
+      - "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js"
       - "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css"
+      - "a_nobel_en_zn/1_css/global/performance.css"
+      - "a_nobel_en_zn/3_staging/link_card_collapse_expand.js"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-anobel.com/002-link-card-button-and-mobile-animation"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions:
-      - "Desktop button behavior on expand: dissolve to top-right (no visible travel)."
+      - "Desktop button behavior on expand: seamless slide to top-right; the prior dissolve was reverted after feedback."
       - "Scope: fix the 3 bugs AND fold in the approved cleanups."
       - "Image scale reconciliation default: align CSS to scale(1) (live-effective value)."
+      - "Revision 3 scope: guard overflow-visible sections from content-visibility:auto on iOS WebKit."
+      - "Revision 4 scope: defer WAAPI cancel and height cleanup across animation frames to avoid mobile end-frame flicker."
+      - "Revision 5 scope: suppress CSS transitions on Motion-owned mobile child layers while the card is animating."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Link Card Collapse/Expand — Button & Mobile Animation Fixes
@@ -45,7 +52,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete (pending user publish to Webflow) |
+| **Status** | Implementation verified (pending user publish + post-deploy re-test) |
 | **Created** | 2026-05-30 |
 | **Branch** | `scaffold/002-link-card-button-and-mobile-animation` |
 | **Diagnosis** | Live, via Chrome DevTools CLI (`bdg`) against `a-nobel-en-zn.webflow.io/nl/drafts` |
@@ -57,7 +64,8 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The sector-menu link card (`[data-link-card]`) has three defects:
+The sector-menu link card (`[data-link-card]`) had three original defects, then one follow-up iOS
+paint defect was confirmed from a mobile recording:
 
 1. **Desktop — collapsed `+` button off-center.** With JS active the collapsed button is ~2px left
    of card center; in CSS-only mode it is perfectly centered.
@@ -65,10 +73,13 @@ The sector-menu link card (`[data-link-card]`) has three defects:
    expands; the user wants no positional travel — a clean swap to the expanded (arrow) state.
 3. **Mobile — no transition, just a glitch/snap.** Tapping a collapsed card does not animate height;
    the card stays collapsed ~1.1s then snaps open.
+4. **iOS Chrome/WebKit — whole-section white flicker.** The sector-card section can briefly expose
+   the white page background while scrolling because an overflow-visible section still used
+   `content-visibility:auto`.
 
 ### Purpose
-Make the collapsed `+` perfectly centered, replace the desktop button travel with a dissolve to the
-top-right arrow, and restore a smooth mobile height animation — then apply the approved cleanups.
+Make the collapsed `+` perfectly centered, preserve the final seamless desktop button slide, restore
+smooth mobile height animation, and prevent iOS paint skipping on overflow-visible sections.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -90,12 +101,13 @@ top-right arrow, and restore a smooth mobile height animation — then apply the
 
 ### In Scope
 - Center the desktop collapsed button robustly (width-independent).
-- Desktop expand/collapse: dissolve the button between collapsed (centered `+`) and expanded
-  (top-right arrow) — no visible horizontal travel.
+- Desktop expand/collapse: seamless slide from centered collapsed `+` to the top-right expanded state
+  with no fade gap.
 - Restore a smooth mobile height animation (expand and collapse).
-- Cleanups: keep+use `is_current_run`; remove write-only `text_wrappers` + unused `text_wrapper`
-  SELECTOR; remove dead CSS var `--link-card-mobile-expanded-size`; reconcile image
-  `scale(1.04)`↔`scale(1)` (align CSS to `scale(1)`).
+- Prevent `content-visibility:auto` from applying to overflow-visible sections.
+- Cleanups: remove obsolete dissolve bookkeeping; remove write-only `text_wrappers` + unused
+  `text_wrapper` SELECTOR; remove dead CSS var `--link-card-mobile-expanded-size`; reconcile image
+  transforms so desktop stays Webflow-owned and mobile remains explicit.
 
 ### Out of Scope
 - Any other component / file. No broader refactor of the no-JS fallback CSS.
@@ -105,8 +117,10 @@ top-right arrow, and restore a smooth mobile height animation — then apply the
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `a_nobel_en_zn/2_javascript/molecules/link_card_collapse_expand.js` | Modify | Centering, button dissolve, mobile height `!important` removal, cleanups |
+| `a_nobel_en_zn/2_javascript/link_card_collapse_expand.js` | Modify | Centering, seamless desktop button slide, guarded mobile height cleanup, cleanups |
+| `a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js` | Generate | Publish bundle regenerated from the source JS |
 | `a_nobel_en_zn/1_css/link/link_card_collapse_expand.css` | Modify | Button transition (drop inset/transform), dead var removal, scale reconcile |
+| `a_nobel_en_zn/1_css/global/performance.css` | Modify | Disable `content-visibility:auto` for overflow-visible sections |
 | `a_nobel_en_zn/3_staging/link_card_collapse_expand.js` | Mirror | Byte-identical copy of the JS source |
 | `a_nobel_en_zn/3_staging/link_card_collapse_expand.css` | Mirror | Byte-identical copy of the CSS source |
 <!-- /ANCHOR:scope -->
@@ -120,9 +134,10 @@ top-right arrow, and restore a smooth mobile height animation — then apply the
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Collapsed desktop button is centered | Live `btnCenterOffsetFromCardCenter` ≈ 0 (was −2); uses `left:50% + translateX(-50%)` |
+| REQ-001 | Collapsed desktop button is centered | Live `btnCenterOffsetFromCardCenter` approx 0 (was -2); uses `right: calc(50% - 2rem)` for the 4rem button |
 | REQ-002 | Desktop button slides seamlessly (Rev 1: reverted from dissolve) | Button slides top-center→top-right with `opacity` 1 throughout (no dissolve gap); collapsed button centered (`off ≈ 0`) |
 | REQ-003 | Mobile height animates smoothly | Live height ramps 82→331 across ~1.1s with no frozen plateau + snap, both directions |
+| REQ-008 | iOS overflow-visible sections do not skip paint | Overflow-visible sections with `data-render-content` compute to `content-visibility: visible`, `contain: layout style`, and `contain-intrinsic-size: none` |
 | REQ-007 | Expanded description uses the Webflow default color (Rev 1) | Paragraph computes to the Webflow grayish (`rgb(207,207,207)`) on desktop and mobile; no white override on the paragraph |
 
 ### P1 — Required (complete OR user-approved deferral)
@@ -130,8 +145,8 @@ top-right arrow, and restore a smooth mobile height animation — then apply the
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | Reduced-motion / no-Motion still correct | Instant paths apply final button position + `opacity:1`; no dissolve |
-| REQ-005 | Cleanups applied without regressions | `is_current_run` used as fade guard; `text_wrappers`/unused SELECTOR removed; dead CSS var removed; image scale consistent |
-| REQ-006 | Staging mirror stays in sync | `3_staging/*` byte-identical to canonical source after edits |
+| REQ-005 | Cleanups applied without regressions | Obsolete dissolve guard removed; `text_wrappers`/unused SELECTOR removed; dead CSS var removed; image transform ownership consistent |
+| REQ-006 | Staging and publish assets stay in sync | `3_staging` JS byte-identical to canonical source; minified bundle regenerated and verified |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -145,6 +160,7 @@ top-right arrow, and restore a smooth mobile height animation — then apply the
 - **SC-003**: Tapping a mobile card animates the height smoothly over ~1.1s.
 - **SC-004**: No console errors; reduced-motion path unaffected.
 - **SC-005**: Cleanups landed; staging mirror identical to source.
+- **SC-007**: Overflow-visible sections do not compute to `content-visibility:auto` on mobile/iOS.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -154,9 +170,8 @@ top-right arrow, and restore a smooth mobile height animation — then apply the
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Residual button ride during dissolve fade-in (card still growing) | Medium | Front-loaded card ease; tune `button_out/in` timing empirically via bdg screen-X probe |
-| Risk | Removing `!important` lets other CSS override mobile height | Low | Verified no `!important` height in component CSS; re-verify live computed height during animation |
-| Risk | Rapid desktop hovering interrupts the button fade | Low | Guard fade `onComplete` with `is_current_run`; `stop_card_animations` already cancels in-flight runs |
+| Risk | Mobile cleanup re-enables CSS transition too early | Low | Cleanup now holds `transition:none !important` through the height clear frame, then restores only after state/no-new-animation guards pass |
+| Risk | Webflow Designer re-adds `data-render-content="large"` to overflow-visible sections | Low | CSS fail-safe overrides any overflow-visible section with `data-render-content` to `content-visibility: visible` |
 | Dependency | Motion.dev present globally (Webflow) | Low | Existing graceful fallback to instant states preserved |
 <!-- /ANCHOR:risks -->
 

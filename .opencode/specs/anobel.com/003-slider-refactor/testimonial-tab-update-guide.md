@@ -1,6 +1,6 @@
 # Testimonial Tab Update Guide
 
-Use this guide when updating the testimonial tab controls in Webflow after the slider refactor. The testimonial slider now uses generic tab attributes, but it still has testimonial-specific runtime styling for tab images.
+Use this guide when updating the testimonial tab controls in Webflow after the slider refactor. The testimonial slider now uses testimonial-specific tab values, and it still has testimonial-specific runtime styling for tab images.
 
 ---
 
@@ -24,24 +24,26 @@ Update every testimonial tab item in Webflow Designer.
 | Webflow element | Old attribute to remove | New attribute to add |
 | --- | --- | --- |
 | Testimonial section wrapper | `data-testimonial-slider="section"`, `data-target="testimonial-section"`, or `data-slider="section"` | `data-target="slider-testimonial"` |
-| Tab list wrapper | `data-testimonial-tab-list` or `data-target="testimonial-tab-list"` | `data-slider-tab-list` |
-| Each testimonial tab item | `data-testimonial-tab` or `data-target="testimonial-tab"` | `data-slider-tab` |
+| Tab list wrapper | `data-testimonial-tab-list` or `data-target="testimonial-tab-list"` | `data-slider-tab-list="testimonial"` |
+| Each testimonial tab item wrapper | `data-testimonial-tab` or `data-target="testimonial-tab"` | `data-slider-tab="testimonial"` |
 
-The tab image must sit inside the element marked with `data-slider-tab`, or inside a visible control inside that element.
+The tab image must sit inside the element marked with `data-slider-tab="testimonial"`, or inside a visible control inside that element.
 
 Recommended tab item structure:
 
 ```text
-Tab list wrapper      data-slider-tab-list
-  Tab item            data-slider-tab
+Tab list wrapper      data-slider-tab-list="testimonial"
+  Tab item wrapper    data-slider-tab="testimonial"
     Button or link    optional visible control
       Logo image      img alt="Client name"
-  Tab item            data-slider-tab
+  Tab item wrapper    data-slider-tab="testimonial"
     Button or link    optional visible control
       Logo image      img alt="Client name"
 ```
 
 The script finds the first visible `button`, `a`, `[role="button"]`, or `[tabindex]` inside each tab item. If none exists, it uses the tab item itself as the tab control.
+
+Do not add Webflow's generic tab attributes (`data-tab-container`, `data-tab-list`, `data-tab`, or `data-tab-content`) to testimonial slider tabs. Use only the slider attributes in the table above.
 
 ---
 
@@ -57,7 +59,7 @@ The script finds the first visible `button`, `a`, `[role="button"]`, or `[tabind
 | Active tab image | Image returns to full colour |
 | Active tab item | Opacity is forced to `1` |
 
-This only applies when the section has `data-slider-ready="true"` and the tab image is inside `[data-slider-tab]` or `[data-target="slider-tab"]`.
+This only applies when the testimonial section has `data-slider-ready="true"` and the tab image is inside `[data-slider-tab="testimonial"]`, `[data-slider-tab]`, or a testimonial tab control fallback.
 
 Do not use `slider_timeline.min.js` for testimonial logo tabs. The timeline variant does not include these colour rules.
 
@@ -96,17 +98,21 @@ Use this for timeline sections:
 data-target="slider-timeline"
 ```
 
-Use the shared child attributes inside both section types:
+Use shared layout attributes inside both section types, but keep navigation and tab values variant-specific:
 
 | Child element | Attribute |
 | --- | --- |
 | Viewport | `data-slider="viewport"` |
 | Track | `data-slider="track"` |
 | Slide | `data-slider="slide"` |
-| Previous button | `data-slider-button="prev"` |
-| Next button | `data-slider-button="next"` |
-| Tab list wrapper | `data-slider-tab-list` |
-| Tab item | `data-slider-tab` |
+| Testimonial previous button | `data-slider-button="testimonial-prev"` |
+| Testimonial next button | `data-slider-button="testimonial-next"` |
+| Testimonial tab list wrapper | `data-slider-tab-list="testimonial"` |
+| Testimonial tab item wrapper | `data-slider-tab="testimonial"` |
+| Timeline previous button | `data-slider-button="timeline-prev"` |
+| Timeline next button | `data-slider-button="timeline-next"` |
+| Timeline tab list wrapper | `data-slider-tab-list="timeline"` |
+| Timeline tab item wrapper | `data-slider-tab="timeline"` |
 | Total counter | `data-slide-count="total"` |
 | Step counter | `data-slide-count="step"` |
 
@@ -134,9 +140,9 @@ These separate keys prevent one script from blocking the other during page init.
 - [ ] If the page also has timeline sections, it also embeds `slider_timeline.min.js`.
 - [ ] Testimonial section wrapper uses `data-target="slider-testimonial"`.
 - [ ] Timeline section wrapper uses `data-target="slider-timeline"` when present.
-- [ ] Tab list wrapper uses `data-slider-tab-list`.
-- [ ] Every testimonial tab item uses `data-slider-tab`.
-- [ ] Tab images sit inside the `data-slider-tab` element or its visible control.
+- [ ] Tab list wrapper uses `data-slider-tab-list="testimonial"`.
+- [ ] Every testimonial tab item wrapper uses `data-slider-tab="testimonial"`.
+- [ ] Tab images sit inside the `data-slider-tab="testimonial"` element or its visible control.
 - [ ] Each tab image has useful alt text for fallback tab labels.
 - [ ] Old `data-testimonial-tab-list`, `data-testimonial-tab`, and `data-target="testimonial-tab"` attributes are removed.
 - [ ] Published page sets `data-slider-ready="true"` on the testimonial section.

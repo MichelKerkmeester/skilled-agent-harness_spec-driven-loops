@@ -1,0 +1,42 @@
+{
+  "title": "Code-Index CLI Workstream",
+  "trigger_phrases": [
+    "code index cli feasibility",
+    "code graph cli fallback",
+    "mk_code_index cli",
+    "028 002 research"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli",
+  "status": "phase-parent",
+  "parent_id": "system-spec-kit/028-mcp-to-cli-tool-transition",
+  "importance_tier": "important",
+  "created_at": "2026-06-06T13:40:00Z",
+  "is_phase_parent": true,
+  "children": [
+    "000-code-index-cli-research",
+    "001-cli-core",
+    "002-hardening-and-tests",
+    "003-runtime-integration"
+  ],
+  "specFolder": "002-code-index-cli",
+  "description": "Dual-stack CLI implementation for 002-code-index-cli paired with runtime hooks and OpenCode plugin",
+  "keywords": [
+    "dual-stack",
+    "cli",
+    "implementation",
+    "002-code-index-cli",
+    "paired",
+    "runtime",
+    "hooks",
+    "opencode",
+    "plugin"
+  ],
+  "lastUpdated": "2026-06-06T15:05:00.000Z",
+  "specId": "002",
+  "folderSlug": "code-index-cli",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

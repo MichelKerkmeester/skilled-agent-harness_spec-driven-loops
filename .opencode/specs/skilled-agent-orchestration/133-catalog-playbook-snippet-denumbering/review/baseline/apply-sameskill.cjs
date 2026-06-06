@@ -1,3 +1,5 @@
+'use strict';
+
 // Wave 4: resolve ambiguous refs that actually point at a file inside the SOURCE's own skill
 // (typically a wrong-../-depth link to that skill's SKILL.md / README.md / a references doc).
 // Among the basename candidates, if exactly one lives under the source file's own skill, that

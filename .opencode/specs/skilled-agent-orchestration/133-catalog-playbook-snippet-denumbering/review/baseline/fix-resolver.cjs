@@ -1,3 +1,5 @@
+'use strict';
+
 // For every broken markdown link in the baseline, deterministically propose the correct
 // target by indexing the repo by basename and picking the candidate that best matches the
 // broken reference's trailing path segments. This is the authoritative remediation source —

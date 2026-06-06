@@ -1,0 +1,17 @@
+{
+  "specFolder": "003-skill-advisor-cli/003-runtime-integration",
+  "description": "Phase 3: runtime-integration",
+  "keywords": [
+    "phase",
+    "runtime-integration"
+  ],
+  "lastUpdated": "2026-06-06T14:45:18.866Z",
+  "specId": "003",
+  "folderSlug": "runtime-integration",
+  "parentChain": [
+    "003-skill-advisor-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

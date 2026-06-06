@@ -1,0 +1,32 @@
+{
+  "session_id": "fanout-gpt-1780754397647-byff4w",
+  "label": "gpt",
+  "executor": "cli-codex",
+  "model": "gpt-5.5",
+  "loop_type": "research",
+  "artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/lineages/gpt",
+  "status": "complete",
+  "stop_reason": "maxIterationsReached",
+  "iterations_completed": 10,
+  "questions_answered": 10,
+  "questions_total": 10,
+  "verdict": "go: additive generated Node CLI; no-go: MCP removal or Python-only CLI",
+  "outputs": [
+    "deep-research-config.json",
+    "deep-research-state.jsonl",
+    "deep-research-strategy.md",
+    "deep-research-dashboard.md",
+    "deep-research-findings-registry.json",
+    "iterations/iteration-001.md",
+    "iterations/iteration-002.md",
+    "iterations/iteration-003.md",
+    "iterations/iteration-004.md",
+    "iterations/iteration-005.md",
+    "iterations/iteration-006.md",
+    "iterations/iteration-007.md",
+    "iterations/iteration-008.md",
+    "iterations/iteration-009.md",
+    "iterations/iteration-010.md",
+    "research.md"
+  ]
+}

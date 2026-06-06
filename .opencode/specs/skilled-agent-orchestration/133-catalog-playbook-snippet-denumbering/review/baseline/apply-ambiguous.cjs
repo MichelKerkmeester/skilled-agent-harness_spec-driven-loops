@@ -1,3 +1,5 @@
+'use strict';
+
 // Wave 2: resolve the sk-code surface-marker ambiguous links deterministically.
 // A checklist under sk-code/assets/<surface>/ that links ../../references/<rest> is really
 // pointing at sk-code/references/<surface>/<rest> (the per-surface reference subtree). The

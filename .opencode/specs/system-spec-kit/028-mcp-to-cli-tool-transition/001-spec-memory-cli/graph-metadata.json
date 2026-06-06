@@ -3,7 +3,12 @@
   "packet_id": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
   "spec_folder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
   "parent_id": "system-spec-kit/028-mcp-to-cli-tool-transition",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
+    "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
+    "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests",
+    "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,66 +16,34 @@
   },
   "derived": {
     "trigger_phrases": [
-      "memory mcp cli feasibility",
-      "mcp to cli",
-      "zero feature loss",
-      "mk-spec-memory cli",
-      "replace mcp with cli",
-      "mcp cli feasibility plan",
-      "fan-out research plan",
-      "three lane research",
-      "mcp cli feasibility tasks",
-      "028 tasks",
-      "mcp cli feasibility result",
-      "028 go verdict"
+      "spec-memory cli workstream",
+      "spec-memory cli phases",
+      "dual-stack cli implementation",
+      "memory cli build",
+      "028 001 phases"
     ],
     "key_topics": [
-      "memory",
-      "mcp",
+      "spec-memory",
       "cli",
-      "feasibility",
-      "zero",
-      "feature",
-      "loss",
+      "workstream",
+      "phases",
+      "dual-stack",
+      "implementation",
+      "memory",
+      "build",
+      "028",
+      "001",
       "mk-spec-memory",
-      "replace",
-      "plan",
-      "fan-out",
-      "research"
+      "daemon"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "phase_parent",
     "key_files": [
-      "research/research.md",
-      "research/cli-backend/lineages/gpt/research.md",
-      "research/risk-closure/lineages/gpt-closure/research.md",
-      "research/orchestration-summary.json",
-      "research/orchestration-status.log",
-      "spec.md",
-      "plan.md",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      "tasks.md",
-      "implementation-summary.md"
+      "000-spec-memory-cli-research/research/research.md",
+      "000-spec-memory-cli-research/spec.md",
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-summary.json",
-        "kind": "config",
-        "path": "research/orchestration-summary.json",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "research/orchestration-status.log",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,31 +51,13 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -114,7 +69,7 @@
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "Purpose Deliver",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -126,91 +81,21 @@
         "source": "derived"
       },
       {
-        "name": "Research Key Questions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Command",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Topic",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "End Design",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Risk Resolution Matrix",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session disconnect on 2026-06-06 permanently removed 45 tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration. Whether a CLI tool could replace the MCP surface WITHOUT losing any feature is unknown.",
+    "causal_summary": "The mk-spec-memory daemon's only client surface is the MCP protocol layer: mid-session transport disconnects permanently remove the tools, every session pays schema token overhead, and hooks/cron/CI have no sanctioned path to the daemon at all.",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-06-06T12:11:16.644Z",
+    "last_save_at": "2026-06-06T14:09:11.243Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
+    "last_active_at": "2026-06-06T13:05:00.000Z"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes",
+  "description": "Runtime defect fixes: code-graph bridge repair, Codex hook rewiring, two doc corrections, verified sweep no-op",
+  "keywords": [
+    "runtime",
+    "defect",
+    "fixes",
+    "bridge",
+    "codex",
+    "hooks"
+  ],
+  "lastUpdated": "2026-06-06T16:45:00.000Z",
+  "specId": "008",
+  "folderSlug": "runtime-defect-fixes",
+  "parentChain": [
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
