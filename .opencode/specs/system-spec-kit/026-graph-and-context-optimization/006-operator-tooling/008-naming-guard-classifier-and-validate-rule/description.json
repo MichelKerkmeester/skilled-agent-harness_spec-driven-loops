@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/008-naming-guard-classifier-and-validate-rule",
+  "description": "Feature Specification: Naming-Guard Classifier and validate.sh SEMANTIC_NAMING Rule",
+  "keywords": [
+    "feature",
+    "specification",
+    "naming-guard",
+    "classifier",
+    "validate",
+    "rule"
+  ],
+  "lastUpdated": "2026-06-06T08:50:13.388Z",
+  "specId": "008",
+  "folderSlug": "naming-guard-classifier-and-validate-rule",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
