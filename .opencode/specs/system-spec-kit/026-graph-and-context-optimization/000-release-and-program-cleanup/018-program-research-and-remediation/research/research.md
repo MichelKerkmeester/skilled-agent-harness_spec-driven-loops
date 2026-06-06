@@ -65,3 +65,12 @@ These are real defects/gaps the models located with file evidence, ordered by va
 - **Prompt toolkit (36-39):** sk-prompt is cleanly forkable (HIGH confidence, 37); frameworks ~70% convention (36); open-model frontier partially mapped, DeepSeek unmeasured (38); variant-forwarding mostly confirmed, one code divergence (39).
 - **Operator (40-42):** doctor strong on data-plane, weak on control-plane (40); worktree isolation net-positive-by-construction but unquantified (41); hook parity is a goal not a state — Codex partial, Gemini/Copilot degraded (42).
 - **Program-meta (43-50):** phase decomposition net-positive above ~50 packets (43); centralization made drift *visible* not *smaller* (44); zero changelog fabrication (45); verify-first batches ~27% strict-confirmed / ~20% refuted (46); no working metadata TTL (47); shipped-then-removed marker incomplete coverage (48); index-race solved for scan, untested for daemon writes (49); front-proxy is the clear reusable extraction (50).
+
+<!-- ANCHOR:sources -->
+## Sources
+
+- Source: `research/research-angles.md` — the 50 angles investigated.
+- Source: `research/iterations/D1..D10.md` — the per-model deep-research notes (MiMo / DeepSeek / MiniMax-M3), each citing repo file:line and commit evidence.
+- Source: `research/measurement-backlog.md` — the deferred experiments with commands and diagnosed blockers.
+- Source: the 026 changelog tree at `026-graph-and-context-optimization/changelog/` and `.opencode/changelog/system-spec-kit/v3.5.0.0.md` — the shipped behavior the angles were assessed against.
+<!-- /ANCHOR:sources -->

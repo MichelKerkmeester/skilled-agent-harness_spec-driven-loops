@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation",
+  "description": "Feature Specification: 026 Program Research and Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "026",
+    "program",
+    "research",
+    "remediation"
+  ],
+  "lastUpdated": "2026-06-06T06:03:36.523Z",
+  "specId": "018",
+  "folderSlug": "program-research-and-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
