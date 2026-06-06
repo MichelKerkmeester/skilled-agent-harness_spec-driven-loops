@@ -44,9 +44,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..006)
-- [ ] CHK-002 [P0] Technical approach + dispatch briefs defined in plan.md
-- [ ] CHK-003 [P1] cli-opencode provider pre-flight passed (Xiaomi/opencode-go)
+- [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..006)
+- [x] CHK-002 [P0] Technical approach + dispatch briefs defined in plan.md
+- [x] CHK-003 [P1] cli-opencode provider pre-flight passed (Xiaomi/opencode-go)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -54,11 +54,11 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No prescriptive numbered-snippet-filename guidance remains (REQ-001/003): `rg 'NNN-feature|globally sequential|3-digit|[0-9]{3}-feature-name' sk-doc/references sk-doc/assets/feature_catalog sk-doc/assets/testing_playbook` = 0
-- [ ] CHK-011 [P0] Category-folder numbering `NN--category-name` PRESERVED everywhere (REQ-002)
-- [ ] CHK-012 [P0] Ordering rule (root doc defines order) present in both references (REQ-004)
-- [ ] CHK-013 [P1] create-command docs + YAML assets aligned (REQ-005)
-- [ ] CHK-014 [P1] Feature IDs (`{CAT}-001`, `M-NNN`) left intact in playbook template links
+- [x] CHK-010 [P0] No prescriptive numbered-snippet-filename guidance remains (REQ-001/003): `rg 'NNN-feature|globally sequential|3-digit|[0-9]{3}-feature-name' sk-doc/references sk-doc/assets/feature_catalog sk-doc/assets/testing_playbook` = 0
+- [x] CHK-011 [P0] Category-folder numbering `NN--category-name` PRESERVED everywhere (REQ-002)
+- [x] CHK-012 [P0] Ordering rule (root doc defines order) present in both references (REQ-004)
+- [x] CHK-013 [P1] create-command docs + YAML assets aligned (REQ-005)
+- [x] CHK-014 [P1] Feature IDs (`{CAT}-001`, `M-NNN`) left intact in playbook template links
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -66,9 +66,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] `python3 .opencode/skills/sk-doc/scripts/tests/test_validator.py` passes (logic unchanged)
-- [ ] CHK-021 [P0] sk-doc strict validation passes on edited references/templates
-- [ ] CHK-022 [P1] `git diff sk-doc/scripts/validate_document.py` shows comment-only change (no logic delta)
+- [x] CHK-020 [P0] `python3 .opencode/skills/sk-doc/scripts/tests/test_validator.py` passes (logic unchanged)
+- [x] CHK-021 [P0] sk-doc strict validation passes on edited references/templates
+- [x] CHK-022 [P1] `git diff sk-doc/scripts/validate_document.py` shows comment-only change (no logic delta)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -76,9 +76,9 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Finding class recorded: this is a `cross-consumer` doc-contract change (references → templates → create-commands → validator wording)
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory done: every sk-doc surface that states the snippet convention enumerated (spec §3)
-- [ ] CHK-FIX-003 [P0] Consumer inventory: create-commands + validator comment + template_rules description all updated together
+- [x] CHK-FIX-001 [P0] Finding class recorded: this is a `cross-consumer` doc-contract change (references → templates → create-commands → validator wording)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory done: every sk-doc surface that states the snippet convention enumerated (spec §3)
+- [x] CHK-FIX-003 [P0] Consumer inventory: create-commands + validator comment + template_rules description all updated together
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -86,8 +86,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No secrets; doc/config-only edits
-- [ ] CHK-031 [P1] Dispatch briefs carry BANNED OPERATIONS + ALLOWED WRITE PATHS (RM-8)
+- [x] CHK-030 [P0] No secrets; doc/config-only edits
+- [x] CHK-031 [P1] Dispatch briefs carry BANNED OPERATIONS + ALLOWED WRITE PATHS (RM-8)
 <!-- /ANCHOR:security -->
 
 ---
@@ -95,8 +95,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec/plan/tasks/checklist synchronized
-- [ ] CHK-041 [P1] DeepSeek review sign-off recorded (category numbering preserved)
+- [x] CHK-040 [P1] spec/plan/tasks/checklist synchronized
+- [x] CHK-041 [P1] DeepSeek review sign-off recorded (category numbering preserved)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -104,8 +104,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Only the 12 contract files changed (no snippet renames in this phase)
-- [ ] CHK-051 [P1] Scoped commit used (`git commit --only`); `git show --stat HEAD` verified
+- [x] CHK-050 [P1] Only the 12 contract files changed (no snippet renames in this phase)
+- [x] CHK-051 [P1] Scoped commit used (`git commit --only`); `git show --stat HEAD` verified
 <!-- /ANCHOR:file-org -->
 
 ---

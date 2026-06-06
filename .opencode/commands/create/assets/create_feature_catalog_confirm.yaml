@@ -148,13 +148,13 @@ operation_router:
     output_scope:
       - feature_catalog/feature_catalog.md
       - feature_catalog/NN--category-name/
-      - feature_catalog/NN--category-name/NN-feature-name.md
+      - feature_catalog/NN--category-name/feature-name.md
   update:
     requires_existing_catalog: true
     output_scope:
       - feature_catalog/feature_catalog.md
       - feature_catalog/NN--category-name/
-      - feature_catalog/NN--category-name/NN-feature-name.md
+      - feature_catalog/NN--category-name/feature-name.md
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/references/feature_catalog_creation.md

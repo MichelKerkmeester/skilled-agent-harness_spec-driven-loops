@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 cli-opencode provider pre-flight (Xiaomi/opencode-go); cache configured providers
-- [ ] T002 Read the 12 contract files + confirm exact edit anchors (spec §3)
+- [x] T001 cli-opencode provider pre-flight (Xiaomi/opencode-go); cache configured providers
+- [x] T002 Read the 12 contract files + confirm exact edit anchors (spec §3)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,18 +56,18 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Rewrite per-feature filename rule + add ordering rule (`sk-doc/references/feature_catalog_creation.md`)
-- [ ] T004 Rewrite numeric-slug line + tree example (`sk-doc/references/manual_testing_playbook_creation.md`)
-- [ ] T005 [P] De-number tree/table/rules/scaffold/Related-refs (`assets/feature_catalog/feature_catalog_template.md`)
-- [ ] T006 [P] De-number scaffold + metadata path + Related refs (`assets/feature_catalog/feature_catalog_snippet_template.md`)
-- [ ] T007 [P] De-number tree + Feature-File links + scaffold; KEEP Feature IDs (`assets/testing_playbook/manual_testing_playbook_template.md`)
-- [ ] T008 [P] De-number scaffold + metadata path (`assets/testing_playbook/manual_testing_playbook_snippet_template.md`)
-- [ ] T009 [P] Align create-command doc (`commands/create/feature-catalog.md`)
-- [ ] T010 [P] Align create-command doc (`commands/create/testing-playbook.md`)
-- [ ] T011 [P] Align YAML assets (`commands/create/assets/create_feature_catalog_{auto,confirm}.yaml`)
-- [ ] T012 [P] Align YAML assets (`commands/create/assets/create_testing_playbook_{auto,confirm}.yaml`)
-- [ ] T013 De-stale `NNN-feature.md` comment, NO logic change (`sk-doc/scripts/validate_document.py`)
-- [ ] T014 De-stale description if needed (`sk-doc/assets/template_rules.json`)
+- [x] T003 Rewrite per-feature filename rule + add ordering rule (`sk-doc/references/feature_catalog_creation.md`)
+- [x] T004 Rewrite numeric-slug line + tree example (`sk-doc/references/manual_testing_playbook_creation.md`)
+- [x] T005 [P] De-number tree/table/rules/scaffold/Related-refs (`assets/feature_catalog/feature_catalog_template.md`)
+- [x] T006 [P] De-number scaffold + metadata path + Related refs (`assets/feature_catalog/feature_catalog_snippet_template.md`)
+- [x] T007 [P] De-number tree + Feature-File links + scaffold; KEEP Feature IDs (`assets/testing_playbook/manual_testing_playbook_template.md`)
+- [x] T008 [P] De-number scaffold + metadata path (`assets/testing_playbook/manual_testing_playbook_snippet_template.md`)
+- [x] T009 [P] Align create-command doc (`commands/create/feature-catalog.md`)
+- [x] T010 [P] Align create-command doc (`commands/create/testing-playbook.md`)
+- [x] T011 [P] Align YAML assets (`commands/create/assets/create_feature_catalog_{auto,confirm}.yaml`)
+- [x] T012 [P] Align YAML assets (`commands/create/assets/create_testing_playbook_{auto,confirm}.yaml`)
+- [x] T013 De-stale `NNN-feature.md` comment, NO logic change (`sk-doc/scripts/validate_document.py`)
+- [x] T014 De-stale description if needed (`sk-doc/assets/template_rules.json`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,10 +75,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T015 Run `test_validator.py` + sk-doc strict validate
-- [ ] T016 Run REQ grep guards (no numbered-filename guidance remains; category folders intact)
-- [ ] T017 DeepSeek adversarial diff review: category numbering preserved; validator logic intact
-- [ ] T018 Scoped commit (`git commit --only -- <12 paths>`); verify `git show --stat HEAD`
+- [x] T015 Run `test_validator.py` + sk-doc strict validate
+- [x] T016 Run REQ grep guards (no numbered-filename guidance remains; category folders intact)
+- [x] T017 DeepSeek adversarial diff review: category numbering preserved; validator logic intact
+- [x] T018 Scoped commit (`git commit --only -- <12 paths>`); verify `git show --stat HEAD`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -86,9 +86,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Validator tests + grep guards pass; review sign-off recorded in checklist.md
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Validator tests + grep guards pass; review sign-off recorded in checklist.md
 <!-- /ANCHOR:completion -->
 
 ---

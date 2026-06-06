@@ -120,7 +120,7 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
     """Detect document type from file path or content."""
     path_lower = str(file_path).lower()
 
-    # Per-feature playbook files: under manual_testing_playbook/NN--category/NNN-feature.md
+    # Per-feature playbook files: under manual_testing_playbook/NN--category/feature.md
     # The root playbook file itself stays as the standard playbook type via its path.
     if '/manual_testing_playbook/' in path_lower or '\\manual_testing_playbook\\' in path_lower:
         stem = Path(path_lower).stem

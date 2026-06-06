@@ -60,17 +60,18 @@ The current playbook contract is:
 manual_testing_playbook/
 ├── manual_testing_playbook.md
 ├── 01--category-name/
-│   ├── 001-feature-name.md
-│   └── 002-feature-name.md
+│   ├── feature-name.md
+│   └── another-feature-name.md
 └── 02--another-category/
-    └── 001-feature-name.md
+    └── feature-name.md
 ```
 
 **Invariants**:
 - root file is always `manual_testing_playbook.md`
 - per-feature files live in numbered root-level category folders
 - category directories use `NN--category-name`
-- per-feature files use stable numeric slugs such as `001-feature-name.md`
+- per-feature files use stable slugs such as `feature-name.md` (no numeric prefix)
+- per-feature snippet order is defined by the root playbook listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order
 - every feature ID maps to exactly one per-feature file
 
 **Do not use**:

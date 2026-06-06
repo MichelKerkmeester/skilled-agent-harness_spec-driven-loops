@@ -344,7 +344,7 @@ The generated playbook must match the current shipped `sk-doc` contract:
 
 - Root file: `manual_testing_playbook/manual_testing_playbook.md`
 - Category directories: `NN--category-name`
-- Per-feature files: stable numeric file IDs such as `001-feature-name.md`
+- Per-feature files: stable slugs such as `feature-name.md`
 - Root structure:
   - frontmatter
   - H1 + short intro paragraph

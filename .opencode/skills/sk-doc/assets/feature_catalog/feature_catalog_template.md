@@ -32,10 +32,10 @@ Canonical layout:
 feature_catalog/
 ├── feature_catalog.md                 # Root inventory and summary catalog
 ├── 01--category-name/                 # Required per-feature files for category 1
-│   ├── 001-feature-name.md
-│   └── 002-feature-name.md
+│   ├── feature-name.md
+│   └── another-feature-name.md
 └── 02--another-category/              # Required per-feature files for category 2
-    └── 003-feature-name.md            # numbers continue across categories
+    └── feature-name.md
 ```
 
 **Existing Example**:
@@ -60,14 +60,14 @@ Each category groups related features under a numbered directory.
 
 | Category Purpose | Example Directory | Example File |
 |---|---|---|
-| Retrieval | `01--retrieval` | `001-unified-context-retrieval-memorycontext.md` |
-| Mutation | `02--mutation` | `016-memory-indexing-memorysave.md` (continues from retrieval) |
-| Tooling and scripts | `17--tooling-and-scripts` | `145-admin-cli-bootstrap.md` (continues from prior cats) |
+| Retrieval | `01--retrieval` | `unified-context-retrieval-memorycontext.md` |
+| Mutation | `02--mutation` | `memory-indexing-memorysave.md` |
+| Tooling and scripts | `17--tooling-and-scripts` | `admin-cli-bootstrap.md` |
 
 Directory and file rules:
 - Category directories use `NN--category-name`.
-- Per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** that continues across all categories (does not reset per category). This matches the manual testing playbook convention.
-- Assign numbers by sorting categories in directory order, then files within each category.
+- Per-feature files use `feature-name.md` (no numeric prefix).
+- Per-feature snippet order is defined by the root catalog listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order.
 - Published slugs should remain stable unless the feature is intentionally renamed.
 
 Per-feature file shape:
@@ -160,7 +160,7 @@ See [`{CAT2_DIR}/{FEATURE_FILE_3}`]({CAT2_DIR}/{FEATURE_FILE_3}) for full implem
 
 ## 5. PER-FEATURE FILE SCAFFOLD
 
-Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{NN}-{feature-name}.md`:
+Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:
 
 ```markdown
 ---
@@ -226,11 +226,11 @@ trigger_phrases:
 
 - Group: {CATEGORY_NAME}
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `{CATEGORY_DIR}/{NN}-{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
 
 Related references:
-- [{NNN-1}-{neighboring-feature}.md]({NNN-1}-{neighboring-feature}.md) — {brief description}
-- [{NNN+1}-{neighboring-feature}.md]({NNN+1}-{neighboring-feature}.md) — {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
 ```
 
 ---
@@ -258,7 +258,7 @@ Structure:
 - [ ] `feature_catalog.md` exists with frontmatter and H1 intro paragraph
 - [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
 - [ ] Category directories use `NN--category-name`
-- [ ] Per-feature file numbers are globally sequential across categories (not per-category), 3-digit zero-padded
+- [ ] Per-feature snippet order matches root catalog listing order (filenames do not encode order)
 - [ ] Every root catalog entry links to exactly one per-feature file
 - [ ] Every per-feature file includes frontmatter with `title` and `description`
 

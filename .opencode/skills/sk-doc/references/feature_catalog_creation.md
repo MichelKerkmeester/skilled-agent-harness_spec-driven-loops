@@ -59,22 +59,22 @@ The current catalog contract is:
 feature_catalog/
 ├── feature_catalog.md
 ├── 01--category-name/
-│   ├── 001-feature-name.md
-│   └── 002-feature-name.md
+│   ├── feature-name.md
+│   └── another-feature-name.md
 └── 02--another-category/
-    └── 003-feature-name.md          # numbers continue across categories
+    └── feature-name.md
 ```
 
 **Invariants**:
 - root file is always `feature_catalog.md` (lowercase)
 - category directories use `NN--category-name`
-- per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** per skill (does not reset per category — matches manual testing playbook convention)
+- per-feature files use `feature-name.md` (no numeric prefix)
 - one root entry maps to one per-feature file
 - slugs should remain stable after publication
 
 **Naming rule**:
 - category numbering defines root section order
-- per-feature numbering defines local order within the category
+- per-feature snippet order is defined by the root catalog listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order.
 
 ## 4. ROOT CATALOG RESPONSIBILITIES
 

@@ -48,7 +48,7 @@ importance_tier: "important"                       # optional — omit unless th
 
 ## 3. TEMPLATE SCAFFOLD
 
-Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{NN}-{feature-name}.md`:
+Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:
 
 ```markdown
 ---
@@ -114,11 +114,11 @@ trigger_phrases:
 
 - Group: {CATEGORY_NAME}
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `{CATEGORY_DIR}/{NN}-{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
 
 Related references:
-- [{NNN-1}-{neighboring-feature}.md]({NNN-1}-{neighboring-feature}.md) — {brief description}
-- [{NNN+1}-{neighboring-feature}.md]({NNN+1}-{neighboring-feature}.md) — {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
+- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
 ```
 
 ---
@@ -150,7 +150,7 @@ Related references:
 - If no implementation files exist yet, add a single row: `| — | — | Not yet implemented |`.
 
 **SOURCE METADATA**
-- Preserve the feature file path and category numbering after publication — other docs link to this path.
+- Preserve the feature file path after publication — other docs link to this path. Category FOLDER numbering is preserved; per-feature files have no numeric prefix.
 - Related references: link to the immediately adjacent features in the same category directory so readers can navigate without returning to the root catalog.
 
 ---

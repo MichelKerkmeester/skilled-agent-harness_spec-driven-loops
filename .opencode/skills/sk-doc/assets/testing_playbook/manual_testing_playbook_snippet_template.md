@@ -34,7 +34,7 @@ Each feature file is the canonical home for full scenario execution detail. The 
 
 ## 2. TEMPLATE SCAFFOLD
 
-Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md`:
+Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:
 
 ```markdown
 ---
@@ -129,7 +129,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Group: {CATEGORY_NAME}
 - Playbook ID: {FEATURE_ID}
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `{CATEGORY_DIR}/{NNN}-{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
 ```
 
 ### Authoring Notes

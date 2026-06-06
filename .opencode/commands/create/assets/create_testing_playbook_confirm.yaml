@@ -148,13 +148,13 @@ operation_router:
     output_scope:
       - manual_testing_playbook/manual_testing_playbook.md
       - manual_testing_playbook/NN--category-name/
-      - manual_testing_playbook/NN--category-name/NNN-feature-name.md
+      - manual_testing_playbook/NN--category-name/feature-name.md
   update:
     requires_existing_playbook: true
     output_scope:
       - manual_testing_playbook/manual_testing_playbook.md
       - manual_testing_playbook/NN--category-name/
-      - manual_testing_playbook/NN--category-name/NNN-feature-name.md
+      - manual_testing_playbook/NN--category-name/feature-name.md
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/references/manual_testing_playbook_creation.md

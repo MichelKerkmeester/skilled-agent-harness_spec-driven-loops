@@ -338,7 +338,7 @@ The generated catalog must match the current shipped `sk-doc` contract:
 
 - Root file: `feature_catalog/feature_catalog.md`
 - Category directories: `NN--category-name`
-- Per-feature files: `NN-feature-name.md`
+- Per-feature files: `feature-name.md`
 - Root structure:
   - frontmatter
   - H1 + short intro paragraph

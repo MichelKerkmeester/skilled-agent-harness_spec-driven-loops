@@ -33,10 +33,10 @@ Canonical layout:
 manual_testing_playbook/
 ├── manual_testing_playbook.md          # Root directory page, review rules, and orchestration guidance
 ├── 01--category-name/                  # Required per-feature files for category 1
-│   ├── 001-feature-name.md
-│   └── 002-feature-name.md
+│   ├── feature-name.md
+│   └── another-feature-name.md
 └── 02--another-category/               # Required per-feature files for category 2
-    └── 001-feature-name.md
+    └── feature-name.md
 ```
 
 **Existing Examples**:
@@ -97,7 +97,7 @@ ID format:
 Per-feature file path:
 
 ```text
-manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md
+manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md
 ```
 
 Per-feature file shape:
@@ -302,7 +302,7 @@ Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only 
 Desired user-visible outcome: {DESIRED_USER_OUTCOME}
 
 #### Test Execution
-> **Feature File:** [{CAT1}-001]({CAT1_DIR}/001-{FEATURE_SLUG}.md)
+> **Feature File:** [{CAT1}-001]({CAT1_DIR}/{FEATURE_SLUG}.md)
 > **Catalog:** [{CATALOG_PATH_1}](../feature_catalog/{CATALOG_PATH_1})
 
 ---
@@ -322,7 +322,7 @@ Prompt: `{PROMPT_2 — natural-human by default; use RCAF only for orchestrator-
 Desired user-visible outcome: {DESIRED_USER_OUTCOME_2}
 
 #### Test Execution
-> **Feature File:** [{CAT2}-001]({CAT2_DIR}/001-{FEATURE_SLUG_2}.md)
+> **Feature File:** [{CAT2}-001]({CAT2_DIR}/{FEATURE_SLUG_2}.md)
 > **Catalog:** [{CATALOG_PATH_2}](../feature_catalog/{CATALOG_PATH_2})
 
 ---
@@ -339,15 +339,15 @@ Desired user-visible outcome: {DESIRED_USER_OUTCOME_2}
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
-| {CAT1}-001 | {FEATURE_NAME} | {CAT1_HEADING} | [{CAT1}-001]({CAT1_DIR}/001-{FEATURE_SLUG}.md) |
-| {CAT2}-001 | {FEATURE_NAME_2} | {CAT2_HEADING} | [{CAT2}-001]({CAT2_DIR}/001-{FEATURE_SLUG_2}.md) |
+| {CAT1}-001 | {FEATURE_NAME} | {CAT1_HEADING} | [{CAT1}-001]({CAT1_DIR}/{FEATURE_SLUG}.md) |
+| {CAT2}-001 | {FEATURE_NAME_2} | {CAT2_HEADING} | [{CAT2}-001]({CAT2_DIR}/{FEATURE_SLUG_2}.md) |
 ```
 
 ---
 
 ## 6. PER-FEATURE FILE SCAFFOLD
 
-Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md`:
+Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:
 
 ```markdown
 ---
@@ -428,7 +428,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Group: {CATEGORY_NAME}
 - Playbook ID: {FEATURE_ID}
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `{CATEGORY_DIR}/{NNN}-{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
 ```
 
 Validator note: the current validator does not recurse into the numbered category folders, so per-feature file completeness must be checked manually until tooling catches up.
