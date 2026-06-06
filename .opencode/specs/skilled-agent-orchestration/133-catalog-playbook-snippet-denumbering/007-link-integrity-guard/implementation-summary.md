@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Added inline-code strip + --self-test (6/6 pass); tree still green"
+    recent_action: "Inventoried guard in catalog+playbook; hardened sibling check-links.sh"
     next_safe_action: "None; phase closed after commit/push"
     blockers: []
     key_files: []
@@ -79,6 +79,7 @@ The resolver was lifted from the validated `review/baseline/link-audit.cjs` (dua
 - Positive control: allowlisted placeholders (e.g. `reference-name.md`) not flagged.
 - `validate.sh --strict --recursive` on the 133 parent green including this child.
 - Inline-code refinement: `check-markdown-links.cjs --self-test` → **6/6 pass** (link syntax inside backticks ignored; a real link on the same line, and links behind escaped backticks, still fail). Full tree re-run after the change → exit 0 (3004 files, 6845 links, 0 broken).
+- Downstream: the guard is now inventoried in the feature catalog and testing playbook (`16--tooling-and-scripts/markdown-link-integrity-guard.md`), each `validate_document.py`-valid. The sibling wikilink checker `check-links.sh` received the same escaped-backtick handling — a fixture confirmed a wikilink behind escaped backticks is now caught while inline-code wikilinks stay ignored.
 <!-- /ANCHOR:verification -->
 
 ---

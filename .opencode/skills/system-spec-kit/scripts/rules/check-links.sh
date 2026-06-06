@@ -37,8 +37,10 @@ scan_wikilinks() {
     while IFS= read -r file; do
         dir=$(dirname "$file")
 
-        # Strip fenced code blocks and inline code before extracting wikilinks.
-        links=$(perl -0777 -pe 's/```[\s\S]*?```//g; s/`[^`]+`//g' "$file" | perl -ne 'while (/\[\[(.*?)\]\]/g) { print "$1\n" }')
+        # Strip fenced code blocks and inline code before extracting wikilinks. A backslash-escaped
+        # backtick is not a code-span delimiter, so a wikilink behind escaped backticks stays checked
+        # (no false negative); double-backtick spans are stripped before single-backtick spans.
+        links=$(perl -0777 -pe 's/```[\s\S]*?```//g; s/(?<!\\)``[\s\S]*?``//g; s/(?<!\\)`[^`]+`//g' "$file" | perl -ne 'while (/\[\[(.*?)\]\]/g) { print "$1\n" }')
         [[ -z "$links" ]] && continue
 
         while IFS= read -r inner; do
