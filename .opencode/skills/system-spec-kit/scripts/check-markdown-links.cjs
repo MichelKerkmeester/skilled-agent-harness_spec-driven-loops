@@ -72,9 +72,43 @@ function walk(dir, out) {
   }
 }
 
+// Blank out inline code spans so link/ref syntax DOCUMENTED inside backticks (prose showing
+// the bracket-paren link form) is not mistaken for a real link. Mirrors the fenced-block strip:
+// per CommonMark, code spans are literal text, not link surface. Guard-safe by construction —
+// it strips a span only when an opening backtick run is closed by a run of the SAME length,
+// treats a backslash-escaped backtick as literal (never a delimiter), and leaves unmatched runs
+// untouched. So the worst case is a documented placeholder staying checkable (a false positive
+// the ALLOWLIST handles), never a hidden real link (a false negative — the dangerous direction
+// for a guard). Blanks rather than deletes, preserving offsets/newlines so refDefRe's `^\s*`
+// cannot promote a stripped line into a phantom reference definition.
+function stripInlineCode(content) {
+  let out = '';
+  for (let i = 0; i < content.length; ) {
+    const ch = content[i];
+    if (ch === '\\' && i + 1 < content.length) { out += ch + content[i + 1]; i += 2; continue; }
+    if (ch !== '`') { out += ch; i++; continue; }
+    const open = i;
+    while (i < content.length && content[i] === '`') i++;
+    const runLen = i - open;
+    let close = -1;
+    for (let j = i; j < content.length; ) {
+      if (content[j] !== '`') { j++; continue; }
+      const r = j;
+      while (j < content.length && content[j] === '`') j++;
+      if (j - r === runLen) { close = r; break; }
+    }
+    if (close === -1) { out += content.slice(open, i); continue; }     // unmatched run: not a span
+    const end = close + runLen;
+    out += content.slice(open, end).replace(/[^\n]/g, ' ');            // blank the span, keep newlines
+    i = end;
+  }
+  return out;
+}
+
 function extractRefs(content) {
   const refs = [];
   content = content.replace(/```[\s\S]*?```/g, '\n'); // fenced code is not links
+  content = stripInlineCode(content);                 // inline code is not links either
   const linkRe = /\]\(\s*([^)\s]+?)\s*(?:\s+"[^"]*")?\)/g;
   let m;
   while ((m = linkRe.exec(content)) !== null) refs.push(m[1]);
@@ -102,6 +136,34 @@ function resolves(file, raw) {
     : [path.join(path.dirname(file), t), path.join('.', t)];
   return cands.some((c) => { try { return fs.existsSync(c); } catch { return false; } });
 }
+
+// `--self-test`: assert inline-code handling on synthetic inputs (no filesystem walk). A guard's
+// dangerous failure is a FALSE NEGATIVE (hiding a real broken link), so the same-line and
+// escaped-backtick cases below are the ones that MUST stay caught.
+function runSelfTest() {
+  const T = 'missing.md';
+  const targets = (s) => extractRefs(s).filter(checkable);
+  const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const cases = [
+    { name: 'inline-code link ignored',                      input: 'Literal `[bad](missing.md)` syntax.',                  expect: [] },
+    { name: 'real link on same line as inline code caught',  input: 'Pre `[x](missing.md)` then [bad](missing.md).',         expect: [T] },
+    { name: 'ref-style def inside inline code ignored',       input: '`[bad]: missing.md`',                                   expect: [] },
+    { name: 'escaped backticks do NOT hide a real link',     input: '\\`[bad](missing.md)\\`',                               expect: [T] },
+    { name: 'variable-length delimiter strips whole span',   input: '``Use `[x](missing.md)` with `tick` inside``',          expect: [] },
+    { name: 'plain broken link still caught (control)',      input: 'See [bad](missing.md) here.',                           expect: [T] },
+  ];
+  let failed = 0;
+  for (const c of cases) {
+    const got = targets(c.input);
+    const ok = eq(got, c.expect);
+    if (!ok) failed++;
+    console.log(`${ok ? 'PASS' : 'FAIL'}  ${c.name}  → [${got.join(', ')}] (expect [${c.expect.join(', ')}])`);
+  }
+  console.log(failed ? `\nself-test: ${failed} case(s) FAILED` : '\nself-test: all cases passed');
+  process.exit(failed ? 1 : 0);
+}
+
+if (process.argv.includes('--self-test')) runSelfTest();
 
 const files = [];
 for (const root of ROOTS) if (fs.existsSync(root)) walk(root, files);

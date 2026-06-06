@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Guard + CI built, verified green + catching, packet authored"
+    recent_action: "Added inline-code strip + --self-test (6/6 pass); tree still green"
     next_safe_action: "None; phase closed after commit/push"
     blockers: []
     key_files: []
@@ -66,6 +66,7 @@ The resolver was lifted from the validated `review/baseline/link-audit.cjs` (dua
 - **Node + `setup-node` in CI** (vs python3 re-port): reuse the validated resolver to avoid subtle divergence; the only deviation from the bash/python3 house gates.
 - **Markdown links + ref-defs only** (not backtick prose): the reliable signal; backtick paths are inherently noisy.
 - **CI-only** (not a `validate.sh` rule): validate.sh rules are per-spec-folder; this is a repo-wide sweep, matching the `prompt-card-sync` precedent.
+- **Code spans are not link surface**: fenced AND inline code are stripped before extraction (CommonMark), so link syntax shown in prose backticks isn't mis-flagged. The inline strip is a length-matched, escape-aware tokenizer that never hides a real link — guarded by `--self-test`.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -77,6 +78,7 @@ The resolver was lifted from the validated `review/baseline/link-audit.cjs` (dua
 - Negative test: injected 2 broken links into a scanned doc → **exit 1**, both named; removed the test file; re-ran → exit 0.
 - Positive control: allowlisted placeholders (e.g. `reference-name.md`) not flagged.
 - `validate.sh --strict --recursive` on the 133 parent green including this child.
+- Inline-code refinement: `check-markdown-links.cjs --self-test` → **6/6 pass** (link syntax inside backticks ignored; a real link on the same line, and links behind escaped backticks, still fail). Full tree re-run after the change → exit 0 (3004 files, 6845 links, 0 broken).
 <!-- /ANCHOR:verification -->
 
 ---
