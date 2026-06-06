@@ -220,7 +220,7 @@ The current validation workflow is partly automated and partly manual.
 - it does not recurse into category folders
 - it does not verify cross-file playbook links by itself
 
-That limitation must be documented honestly in both the reference and the generated playbook docs.
+Cross-file markdown links are covered separately: the `check-markdown-links.cjs` CI guard verifies every markdown link across skills/commands/agents and fails the PR on a broken link. Per-feature file structure inside the category folders still needs manual review. Document that remaining manual scope honestly in both the reference and the generated playbook docs.
 
 ## 8. COMMON MISTAKES
 

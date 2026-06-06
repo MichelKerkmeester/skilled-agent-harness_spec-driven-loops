@@ -247,6 +247,20 @@
       "gate": null,
       "version": "1.0.0",
       "dependencies": ["lib/embeddings/"]
+    },
+    {
+      "name": "check-markdown-links",
+      "path": "scripts/check-markdown-links.cjs",
+      "type": "node",
+      "description": "Repo-wide markdown-link (](path)) integrity guard over skills/commands/agents; complements the wikilink checker; exit 1 on any broken link",
+      "trigger": ["check markdown links", "link integrity", "broken links"],
+      "calledBy": ["CI/CD Pipeline", "Developer"],
+      "essential": false,
+      "inputs": {},
+      "outputs": ["Broken-link report", "Exit code (0 clean / 1 broken)"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": ["node:fs", "node:path"]
     }
   ],
   "rules": [

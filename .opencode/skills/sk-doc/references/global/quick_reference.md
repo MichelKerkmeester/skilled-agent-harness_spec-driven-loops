@@ -335,7 +335,7 @@ python scripts/package_skill.py skill-path        # Package skill
 7. **Plan waves** → Add integrated orchestration guidance and group non-destructive vs destructive scenarios
 8. **Validate** → Run playbook checklist (template Section 10)
 
-Validation note: the current validator checks the root playbook, but it does not recurse into the category folders or verify cross-file playbook links.
+Validation note: the current validator checks the root playbook and does not recurse into the category folders, so per-feature file structure still needs manual review. Cross-file markdown links, however, are now verified repo-wide by the `check-markdown-links.cjs` CI guard, which fails the PR on any broken markdown link.
 
 ---
 

@@ -75,6 +75,8 @@ scripts/
 +-- test-fixtures/         # Validation fixtures
 +-- templates/             # Inline renderer sources
 +-- types/                 # Shared TypeScript type definitions
++-- check-links.sh           # Wikilink ([[...]]) validator (compat entrypoint -> rules/check-links.sh)
++-- check-markdown-links.cjs # Markdown-link (](path)) integrity guard over skills/commands/agents
 +-- deploy-mcp.sh          # Rebuild all MCP server dists (+ optional recycle)
 +-- package.json           # ESM package manifest
 +-- scripts-registry.json  # Script inventory
@@ -104,6 +106,8 @@ Disallowed direction:
 | `memory/generate-context.ts` | Builds structured memory save output and metadata updates. |
 | `graph/backfill-graph-metadata.ts` | Refreshes graph metadata across spec folders. |
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
+| `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Complements the wikilink checker. |
+| `check-links.sh` | Wikilink (`[[...]]`) validator; delegates to `rules/check-links.sh` (opt-in via `SPECKIT_VALIDATE_LINKS`). |
 | `deploy-mcp.sh` | Rebuilds every MCP server `dist/` (mk-spec-memory + `@spec-kit/shared`, code-graph, advisor) after a source change; `--recycle` also transparently recycles the mk-spec-memory daemon. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
 | `scripts-registry.json` | Lists package scripts and known entrypoints. |
 | `package.json` | Defines ESM runtime settings and build scripts. |
@@ -167,6 +171,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --
 # Or use --stdin, or a session-scoped temp file (e.g. /tmp/save-context-data-<session-id>.json).
 # The legacy shared path /tmp/save-context-data.json is rejected (LEGACY_SHARED_DATA_FILE).
 node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --dry-run
+node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs   # markdown-link guard (exit 1 on broken)
 ```
 
 Use structured JSON input with `generate-context.js`. Do not pass free-form positional save text.

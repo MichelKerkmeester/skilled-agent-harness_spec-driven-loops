@@ -168,8 +168,9 @@ Feature catalogs and manual testing playbooks serve different purposes:
 - confirm the root entry list matches the per-feature file set
 
 **Current validator limitation**:
-- validation is strongest at the root-doc level
-- per-feature file link and source-anchor quality still require manual review
+- `validate_document.py` validation is strongest at the root-doc level
+- cross-file link resolution is enforced in CI by `check-markdown-links.cjs` (broken markdown links fail the PR)
+- per-feature link *correctness* and source-anchor quality still require manual review
 
 ## 8. COMMON MISTAKES
 

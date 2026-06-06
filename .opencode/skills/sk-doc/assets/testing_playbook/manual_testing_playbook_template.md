@@ -431,7 +431,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
 ```
 
-Validator note: the current validator does not recurse into the numbered category folders, so per-feature file completeness must be checked manually until tooling catches up.
+Validator note: the current validator does not recurse into the numbered category folders, so per-feature file completeness must be checked manually. Cross-file link resolution is now guarded in CI by `check-markdown-links.cjs` (broken markdown links fail the PR); per-feature completeness and source-anchor quality remain manual.
 
 ---
 

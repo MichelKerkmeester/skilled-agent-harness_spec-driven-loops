@@ -28,7 +28,7 @@ Each feature file is the canonical home for full scenario execution detail. The 
 - Replacing root-level review/release-readiness or orchestration guidance
 - Spreading one feature across multiple primary files without a clear reason
 
-**Validator note**: The current validator checks markdown structure on the root playbook. It does not recurse into category folders or verify cross-file links.
+**Validator note**: The current validator checks markdown structure on the root playbook and does not recurse into category folders, so per-feature file structure needs manual review. Cross-file markdown links are verified separately by the `check-markdown-links.cjs` CI guard (fails the PR on any broken markdown link).
 
 ---
 
