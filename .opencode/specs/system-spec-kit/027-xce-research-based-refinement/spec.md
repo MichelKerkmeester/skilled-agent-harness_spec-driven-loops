@@ -136,6 +136,13 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 006 | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation | Draft |
 | 007 | `007-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching | Spec-scaffolded |
 | 008 | `008-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
+| 009 | `009-peck-verification-discipline/` | Peck verification discipline: completion-freshness, escalation, anti-softening, reviewer read-budget, numeric-severity note (T5-T9) | Spec-scaffolded |
+| 010 | `010-reviewer-prompt-benchmark-substrate/` | Reviewer-prompt benchmark substrate in deep-improvement Lane B (T10); lands first as the regression substrate | Spec-scaffolded |
+| 011 | `011-acceptance-coverage-gate/` | Acceptance-criteria coverage gate (T1): AC-format normalization + AC traceability table + AC_COVERAGE rule (warn-then-error) | Spec-scaffolded |
+| 012 | `012-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
+| 016 | `016-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-008 | Phase-parent |
+
+> Children `009-011` (planning-only) hold the `research/006-peck-source-deep-mining` proposals; `012` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `016` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All four are scaffolded and planned, not implemented.
 
 ### Continuation Research Planning Amendments
 

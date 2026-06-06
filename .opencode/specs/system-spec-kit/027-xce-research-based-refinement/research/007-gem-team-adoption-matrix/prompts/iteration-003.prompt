@@ -1,0 +1,33 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 003, RQ3): **Context Envelope** — Gem Team's `docs/plan/{plan_id}/context_envelope.json`: a PROGRESSIVE cache enriched after each wave; every subagent reads it at Init for consistent context; the orchestrator keeps an in-memory copy and writes after each wave to avoid stale reads/races. This is the single most concrete "per-task shared context object" idea in gem-team — evaluate it hard.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID verdict.
+- Our equivalent surfaces: the `_memory.continuity` frontmatter block in spec docs, `memory_context`, the continuity ladder (handover.md → _memory.continuity → spec docs), resource-map.md, and `generate-context.js`. Judge whether gem-team's single progressive per-plan JSON envelope offers something our file-distributed continuity does NOT (e.g. a single consolidated snapshot handed to every sub-agent at dispatch).
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/AGENTS.md (rule 9 "Context Envelope Handoff" + rule 2), external/gem-team-main/README.md ("Context Envelope" + Phase 4 "Persist Learnings"), external/gem-team-main/.apm/agents/gem-orchestrator.agent.md, external/gem-team-main/.apm/agents/gem-documentation-writer.agent.md
+READ (spec-kit side): specs/system-spec-kit/027-xce-research-based-refinement/spec.md (the `_memory.continuity:` frontmatter), .opencode/skills/system-spec-kit/SKILL.md (continuity), and grep for: "continuity", "context_envelope", "handover", "_memory", "context bundle", "snapshot"
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-003-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+<checked, not worth adopting, with our-side evidence>
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ3 context envelope

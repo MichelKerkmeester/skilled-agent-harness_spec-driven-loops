@@ -1,0 +1,38 @@
+{
+  "topic": "Run 2: design the spec-memory CLI back-end for dual-stack use. MCP stays primary for interactive agent sessions; CLI is the fallback and universal surface for hooks, cron, CI, scripts, and MCP-transport-down recovery.",
+  "maxIterations": 3,
+  "convergenceThreshold": 0,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 180,
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility/research/cli-backend/lineages/gpt",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "executionMode": "auto",
+  "loopType": "research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5"
+  },
+  "createdAt": "2026-06-06T10:12:00Z",
+  "status": "initialized",
+  "lineage": {
+    "sessionId": "fanout-gpt-1780740389166-k7ph9k",
+    "parentSessionId": "dr-20260606T120541-cli-backend",
+    "lineageMode": "fanout",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "deep-research-strategy.md": "mutable",
+    "findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "research.md": "workflow-owned"
+  }
+}

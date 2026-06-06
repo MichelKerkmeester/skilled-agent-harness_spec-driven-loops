@@ -1,0 +1,28 @@
+### FINDINGS
+[F-013-01] Bundle (A) is CLEAR against live 002-008 scope: those phases are memory write-safety, incremental memory index, causal tombstones, metadata edge promotion, statediff reconciliation, semantic trigger fallback, and learning feedback reducers, not sk-code/agent-definition/reviewer/completion-gate discipline work. `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:128-138`
+
+[F-013-02] Bundle (A) also does not collide with Phase-0 prereqs: Phase 0 is limited to CocoIndex purge, parent drift reconcile, constants/vocab alignment, and 007-only path refresh. `specs/system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/research.md:112-120`
+
+[F-013-03] T1 acceptance-coverage gate remains unowned: parent 027 explicitly excludes T1 and asks whether it should become a separate future packet; 001-peck-teachings-adoption also excludes T1 and says it warrants its own packet. `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:101-103`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:180-183`, `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:64-68`, `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:82-84`
+
+[F-013-04] Shipped/planned 001 children do not duplicate T1: their mapped foci are source analysis, T3 self-check templates, T4 current-state discipline, and T2 constitutional rule review. `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:103-108`
+
+[F-013-05] Benchmark substrate (B) is CLEAR against 027 memory phases: the live phase map has no reviewer-prompt benchmark/deep-improvement lane owner; 002-008 are memory/index/causal/metadata/statediff/trigger/feedback scopes. `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:96-118`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:128-138`
+
+[F-013-06] Correct new top-level child numbering starts at 009, then 010, 011, 012 as needed: 000-008 are already occupied, context-index confirms the 001-peck fold plus contiguous 002-008 memory renumbering, and 000-release-cleanup is a placeholder to avoid reusing. `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:128-138`, `specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:29-40`
+
+[F-013-07] New packets should sequence independent of the 005 live re-plan: the re-plan gates 002-008 implementation via Phase 0 and orders `002 || 003 -> 008 -> 004 -> 005 -> 006 -> 007`, while 001 only folds into Phase-0 docs cleanup. `specs/system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/research.md:114-133`
+
+### RULED_OUT
+- T1 vs 001 is NOT a collision: 001 explicitly says T1 is excluded, deferred, and should use a future packet design. `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:82-84`, `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:131-133`
+- Bundle (A) vs Phase 0 is NOT a collision: Phase 0 is mechanical prereqs for CocoIndex purge, parent drift, constants/vocab, and 007 paths. `specs/system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/research.md:114-120`
+- Do NOT fill the internal 008/002 gap for new top-level packets: the live plan says keep that numbering gap after deleting coco scope. `specs/system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/research.md:57-58`
+
+### METRICS
+newInfoRatio: 0.42
+
+novelty: Main new value is confirming 009+ numbering and non-conflict sequencing against the post-rescope 027 map.
+
+status: complete
+
+sources: `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:96-118`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:128-138`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:180-183`, `specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:29-40`, `specs/system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/research.md:57-58`, `specs/system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/research.md:112-133`, `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:64-68`, `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:82-84`, `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:103-108`, `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:131-133`

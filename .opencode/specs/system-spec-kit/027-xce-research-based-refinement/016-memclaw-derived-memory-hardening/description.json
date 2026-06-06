@@ -1,0 +1,26 @@
+{
+  "specFolder": "016-memclaw-derived-memory-hardening",
+  "description": "Memclaw-derived memory hardening: provenance, idempotency, feedback reframe, tombstones, edges, stale audit, tool ownership",
+  "keywords": [
+    "memclaw-derived",
+    "memory",
+    "hardening",
+    "provenance",
+    "idempotency",
+    "feedback",
+    "reframe",
+    "tombstones",
+    "edges",
+    "stale",
+    "audit",
+    "tool",
+    "ownership"
+  ],
+  "lastUpdated": "2026-06-06T10:10:44.696Z",
+  "specId": "016",
+  "folderSlug": "memclaw-derived-memory-hardening",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

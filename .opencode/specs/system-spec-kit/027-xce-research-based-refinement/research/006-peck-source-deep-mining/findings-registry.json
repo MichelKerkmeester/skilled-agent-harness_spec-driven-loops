@@ -1,0 +1,64 @@
+{
+  "sessionId": "2026-06-06-027-peck-source-deep-mining",
+  "packet": "research/006-peck-source-deep-mining",
+  "generation": 1,
+  "continuedFromRun": 0,
+  "status": "converged + cross-model-verified",
+  "totalIterations": 18,
+  "iterationRange": "001-018 (13 discovery + 5 cross-model verify)",
+  "meanNewInfoRatio": 0.625,
+  "batchMeans": [0.64, 0.65, 0.60, 0.587],
+  "crossModelVerification": {
+    "model": "minimax-coding-plan/MiniMax-M3",
+    "iterations": "014-018",
+    "meanNewInfoRatio": 0.336,
+    "confirmed": ["T6 freshness", "T10 benchmark novelty (0.85 holds)", "T1 core reuse-heavy", "completeness (no material miss)"],
+    "refuted": [],
+    "refined": [
+      "T1 classification needs assertion-shaped ACs (AC-format is a HARD prereq, not optional)",
+      "canonical per-level AC location to avoid L3 requirement-table-vs-story-AC double-count",
+      "lifecycle opt-in (enforce only when implementation-summary is in-progress+), not just level opt-in",
+      "011 phases 001-002 share manifest templates with pending 001/002 -> sequence 001/002 first (proposal must-fix applied)"
+    ],
+    "proposalVerdict": "ENDORSE-WITH-CHANGES (D1-D5 agree, D6 refine applied)"
+  },
+  "iterations": [
+    {"iteration": "001", "focus": "implementer escalation / anti-thrash discipline", "newInfoRatio": 0.68, "findings": 5},
+    {"iteration": "002", "focus": "verdict-freshness binding", "newInfoRatio": 0.72, "findings": 6},
+    {"iteration": "003", "focus": "numeric weighted severity rubric", "newInfoRatio": 0.45, "findings": 6},
+    {"iteration": "004", "focus": "reviewer token-budget read discipline", "newInfoRatio": 0.72, "findings": 5},
+    {"iteration": "005", "focus": "anti-verdict-softening + anti-gaming", "newInfoRatio": 0.55, "findings": 5},
+    {"iteration": "006", "focus": "revim reviewer/prompt benchmark harness", "newInfoRatio": 0.85, "findings": 6},
+    {"iteration": "007", "focus": "CLI command mechanics / FILES manifest", "newInfoRatio": 0.62, "findings": 5},
+    {"iteration": "008", "focus": "deferred T1 re-evaluation (coverage gate)", "newInfoRatio": 0.58, "findings": 7},
+    {"iteration": "009", "focus": "cheap-model-gates cost architecture", "newInfoRatio": 0.48, "findings": 5},
+    {"iteration": "010", "focus": "reflection bounded-cap / promotion residue", "newInfoRatio": 0.72, "findings": 6},
+    {"iteration": "011", "focus": "AC assertion-format gap (T1 prerequisite)", "newInfoRatio": 0.72, "findings": 5},
+    {"iteration": "012", "focus": "T4 current-state generalization residue", "newInfoRatio": 0.62, "findings": 5},
+    {"iteration": "013", "focus": "non-conflict cross-check + new-child numbering", "newInfoRatio": 0.42, "findings": 7}
+  ],
+  "teachings": [
+    {"id": "T5", "name": "implementer escalation / anti-thrash gates", "verdict": "ADOPT+ADAPT", "target": "009", "iter": "001"},
+    {"id": "T6", "name": "completion-verdict freshness binding", "verdict": "ADOPT", "target": "009", "iter": "002"},
+    {"id": "T7", "name": "anti-verdict-softening", "verdict": "ADOPT+ADAPT", "target": "009", "iter": "005"},
+    {"id": "T8", "name": "reviewer token-budget read discipline", "verdict": "ADOPT(@review)+ADAPT", "target": "009", "iter": "004"},
+    {"id": "T9", "name": "numeric severity calibration aid", "verdict": "ADAPT(docs)+SKIP(literal>=4)", "target": "009", "iter": "003"},
+    {"id": "T10", "name": "reviewer-prompt benchmark substrate", "verdict": "ADAPT-into-LaneB", "target": "010", "iter": "006"},
+    {"id": "T11", "name": "benchmark-gated cheap-model review preset", "verdict": "ADAPT-optin+DEFER-blanket", "target": "optional", "iter": "009"},
+    {"id": "T12", "name": "reflection bounded-cap + recurrence-promotion", "verdict": "ADAPT(extend-004)+DEFER(prune)", "target": "coord-pending-004", "iter": "010"},
+    {"id": "T13", "name": "phase-aware resume FILES manifest", "verdict": "ADAPT-optional", "target": "optional", "iter": "007"},
+    {"id": "T14", "name": "current-state generalization + product.md analog", "verdict": "ADAPT(extend-003)+DEFER(nonparent)", "target": "coord-pending-003", "iter": "012"},
+    {"id": "T1", "name": "acceptance-coverage gate (revived)", "verdict": "ADOPT-AS-PACKET", "target": "011", "iter": "008,011"}
+  ],
+  "antiTeachings": [
+    "empty-commit verdict ledger",
+    "branch-per-story checkout",
+    "literal score>=4 blocks",
+    "blanket cheap-model release gate",
+    "automatic constitutional deletion"
+  ],
+  "proposedPackets": ["009-peck-verification-discipline", "010-reviewer-prompt-benchmark-substrate", "011-acceptance-coverage-gate"],
+  "coordinationItems": ["T14 -> pending 003-current-state-discipline", "T12 -> pending 004-constitutional-rule-review"],
+  "criticalCoordinationFinding": "peck teachings T2/T3/T4 (children 001/{002,003,004}) are spec'd but NOT yet implemented; residue findings extend those pending children rather than spawning duplicates",
+  "updatedAt": "2026-06-06T06:46:00Z"
+}

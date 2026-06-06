@@ -1,0 +1,27 @@
+### FINDINGS
+
+[F-004-01] @review has a real gap: peck requires reviewers to open files only when the diff is insufficient, state the reason before reading, and avoid newly-added-file reads because the diff is full content; spec-kit @review says to use Grep/Glob/Read for analysis and asks “Did I Read every file I’m reviewing?”, which can incentivize broad reads rather than reason-gated reads. Peck: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/code-reviewer.md:37`; spec-kit: `.opencode/agents/review.md:48-52`, `.opencode/agents/review.md:338-340`. GAP: real. VERDICT: ADOPT. EFFORT: S. RISK: low. BLAST-RADIUS: `.opencode/agents/review.md`, review prompt templates.
+
+[F-004-02] @context has a partial gap: peck’s rule is diff-review-specific, while @context is broader retrieval, but @context only has routing discipline, output budget, and “Over-Reading” guidance, not “state why before this Read.” Peck: `external/peck-master/src/assets/agents/code-reviewer.md:37`; spec-kit: `.opencode/agents/context.md:92-103`, `.opencode/agents/context.md:143-148`, `.opencode/agents/context.md:274-281`, `.opencode/agents/context.md:396-400`. GAP: partial. VERDICT: ADAPT. EFFORT: S. RISK: low. BLAST-RADIUS: `.opencode/agents/context.md`.
+
+[F-004-03] deep-review has a real but constraint-sensitive gap: spec-kit caps calls and tells the agent to count calls before each action, but it also mandates P0 evidence rereads, so peck’s “never re-read” should not override severity verification. Peck: `external/peck-master/src/assets/agents/code-reviewer.md:37`; spec-kit: `.opencode/skills/deep-review/SKILL.md:383-384`, `.opencode/skills/deep-review/SKILL.md:393`, `.opencode/agents/deep-review.md:166-170`, `.opencode/agents/deep-review.md:189-195`. GAP: real. VERDICT: ADAPT. EFFORT: M. RISK: med. BLAST-RADIUS: `.opencode/skills/deep-review/SKILL.md`, `.opencode/agents/deep-review.md`, deep-review iteration prompt pack.
+
+[F-004-04] deep-research has a partial gap: its loop already enforces one focus, exhausted-approach avoidance, 3-5 research actions, citations, and max 12 calls, but it lacks per-file-read justification; adopting “state reason before each non-diff Read” would improve focus while preserving evidence gathering. Peck: `external/peck-master/src/assets/agents/code-reviewer.md:37`; spec-kit: `.opencode/skills/deep-research/SKILL.md:375-382`, `.opencode/skills/deep-research/SKILL.md:396`, `.opencode/agents/deep-research.md:162-183`. GAP: partial. VERDICT: ADAPT. EFFORT: S. RISK: low. BLAST-RADIUS: `.opencode/skills/deep-research/SKILL.md`, `.opencode/agents/deep-research.md`.
+
+[F-004-05] The net-new mechanism is qualitative read-friction, not another numeric TCB: peck’s file-read rule ties each extra read to a stated unknown, while spec-kit’s deep loops state numeric budgets such as max 12 tool calls. Peck: `external/peck-master/src/assets/agents/code-reviewer.md:37`; spec-kit: `.opencode/skills/deep-review/SKILL.md:393`, `.opencode/skills/deep-research/SKILL.md:288`, `.opencode/skills/deep-research/SKILL.md:396`. GAP: real. VERDICT: ADOPT for diff-review surfaces, ADAPT for research/retrieval surfaces. EFFORT: S. RISK: low. BLAST-RADIUS: reviewer/context/deep-loop prompt contracts.
+
+### RULED_OUT
+
+- Read-only / LEAF-only is not net-new: peck code-reviewer is read-only, and spec-kit @review/@context/deep loops already enforce read-only or LEAF boundaries. Peck: `external/peck-master/src/assets/agents/code-reviewer.md:28`; spec-kit: `.opencode/agents/review.md:29`, `.opencode/agents/context.md:38-46`, `.opencode/skills/deep-research/SKILL.md:394`.
+- Acceptance-reviewer’s read-scope framing is not the same token-budget mechanism: it scopes `story.md` and test reads for AC coverage, while peck’s code-reviewer line is the explicit token-cost rule. Peck: `external/peck-master/src/assets/agents/acceptance-reviewer.md:36-42`, `external/peck-master/src/assets/agents/code-reviewer.md:37`; spec-kit: `.opencode/agents/context.md:52-61`.
+- Numeric TCB is already shipped: deep-review and deep-research both cap per-iteration calls, so the delta is per-read justification, not call counting. Spec-kit: `.opencode/skills/deep-review/SKILL.md:393`, `.opencode/skills/deep-research/SKILL.md:288`, `.opencode/skills/deep-research/SKILL.md:396`.
+
+### METRICS
+
+newInfoRatio: 0.72 vs T1-T4 baseline
+
+novelty: Peck adds a reviewer-specific “justify this read before spending tokens” discipline that spec-kit’s numeric TCB and routing rules do not currently encode.
+
+status: complete
+
+sources: `external/peck-master/src/assets/agents/code-reviewer.md:37`, `external/peck-master/src/assets/agents/acceptance-reviewer.md:36-42`, `.opencode/agents/review.md:48-52`, `.opencode/agents/review.md:338-340`, `.opencode/agents/context.md:92-103`, `.opencode/agents/context.md:143-148`, `.opencode/skills/deep-review/SKILL.md:383-393`, `.opencode/skills/deep-research/SKILL.md:288`, `.opencode/skills/deep-research/SKILL.md:375-396`, `.opencode/agents/deep-review.md:166-170`, `.opencode/agents/deep-research.md:162-183`

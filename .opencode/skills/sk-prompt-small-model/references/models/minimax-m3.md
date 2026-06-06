@@ -34,7 +34,7 @@ MiniMax wants guardrail-heavy TIDD-EC framing plus dense pre-planning — more s
 
 | Field | Value |
 |---|---|
-| **Model slug** | `minimax-coding-plan/MiniMax-M3-highspeed` (plain `minimax-coding-plan/MiniMax-M3` also resolves; `-highspeed` variant is account-holder-directed — confirm with `opencode models minimax-coding-plan`) |
+| **Model slug** | `minimax-coding-plan/MiniMax-M3` (plain — confirmed live; on opencode 1.16.2 there is **no `MiniMax-M3-highspeed`** variant: `opencode models minimax-coding-plan` lists only M2/M2.1/M2.5/M2.5-highspeed/M2.7/M2.7-highspeed/M3) |
 | **Context window** | Unverified (shares M2.7 usage patterns; M2.7 confirmed 204,800 tokens) |
 | **Quota pool** | `minimax-token-plan` (MiniMax Token Plan subscription; separate from `cognition-pro`, `opencode-go`, `minimax-api`) |
 | **Executor path** | `cli-opencode` → provider `minimax-coding-plan` |
@@ -131,7 +131,7 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 
 | Capability field | Value | Dispatch rule |
 |---|---|---|
-| `model_slug` | `minimax-coding-plan/MiniMax-M3` | Pass as `--model minimax-coding-plan/MiniMax-M3-highspeed` (account-holder-directed; confirm availability first) |
+| `model_slug` | `minimax-coding-plan/MiniMax-M3` | Pass as `--model minimax-coding-plan/MiniMax-M3` (plain; `-highspeed` does NOT exist for M3 on opencode 1.16.2) |
 | `variant_flag` | `--variant` | `variant_status: "omitted-by-default-historically"` — omit `--variant` until accepted behaviour on this provider is verified |
 | `agent_policy` | `omit-general` | **Do NOT pass `--agent`** — rejected on opencode 1.15.13; causes immediate dispatch failure |
 | `format_mode` | `json` | Pass `--format json` for the normalized token/cost/latency envelope |
@@ -141,7 +141,7 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 
 **Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
 
-**Slug availability note:** Plain `minimax-coding-plan/MiniMax-M3` is confirmed live (2026-06-02). The `-highspeed` variant slug is account-holder-directed — verify with `opencode models minimax-coding-plan` before relying on it. If absent, fall back to `minimax-coding-plan/MiniMax-M2.7-highspeed` (confirmed on opencode 1.15.13).
+**Slug availability note:** Plain `minimax-coding-plan/MiniMax-M3` is confirmed live (2026-06-02; re-verified on opencode 1.16.2 on 2026-06-06). There is **no `MiniMax-M3-highspeed`** on opencode 1.16.2 — `opencode models minimax-coding-plan` lists M2/M2.1/M2.5/M2.5-highspeed/M2.7/M2.7-highspeed/M3 only (M2.5 and M2.7 have a `-highspeed` variant; M3 does not yet). Dispatch the plain `MiniMax-M3` slug; if M3 itself is ever absent, fall back to `minimax-coding-plan/MiniMax-M2.7-highspeed`.
 
 ---
 

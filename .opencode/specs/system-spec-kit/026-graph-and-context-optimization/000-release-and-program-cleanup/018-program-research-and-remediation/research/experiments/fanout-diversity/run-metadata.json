@@ -1,0 +1,27 @@
+{
+  "experiment": "fanout-lineage-diversity",
+  "angles": [31, 35],
+  "date": "2026-06-06",
+  "opencode_version": "1.16.2",
+  "dispatch_flags_common": "--variant high --format json --dir <repo-root>, AI_SESSION_CHILD=1, </dev/null, gtimeout 2400",
+  "runs": [
+    { "id": "deepseek-r1", "model": "deepseek/deepseek-v4-pro", "framework": "RCAF/medium", "extra_flags": "--pure", "wall_clock_s": 393, "tool_calls": 22, "report_words": 2025, "output_tokens": 7627, "reasoning_tokens": 445, "cost_usd": 0.0435, "clusters_asserted": 45 },
+    { "id": "deepseek-r2", "model": "deepseek/deepseek-v4-pro", "framework": "RCAF/medium", "extra_flags": "--pure", "wall_clock_s": 330, "tool_calls": 39, "report_words": 1962, "output_tokens": 7109, "reasoning_tokens": 2833, "cost_usd": 0.0868, "clusters_asserted": 36 },
+    { "id": "minimax-r1", "model": "minimax-coding-plan/MiniMax-M3", "framework": "TIDD-EC/dense", "extra_flags": "", "wall_clock_s": 1548, "tool_calls": 140, "report_words": 4728, "output_tokens": 27748, "reasoning_tokens": 0, "cost_usd": 0, "clusters_asserted": 54 },
+    { "id": "minimax-r2", "model": "minimax-coding-plan/MiniMax-M3", "framework": "TIDD-EC/dense", "extra_flags": "", "wall_clock_s": 1152, "tool_calls": 142, "report_words": 4850, "output_tokens": 26270, "reasoning_tokens": 0, "cost_usd": 0, "clusters_asserted": 54 },
+    { "id": "mimo-r1", "model": "xiaomi-token-plan-ams/mimo-v2.5-pro", "framework": "COSTAR/lean", "extra_flags": "", "wall_clock_s": 130, "tool_calls": 53, "report_words": 1539, "output_tokens": 6677, "reasoning_tokens": 930, "cost_usd": 0, "clusters_asserted": 39 },
+    { "id": "mimo-r2", "model": "xiaomi-token-plan-ams/mimo-v2.5-pro", "framework": "COSTAR/lean", "extra_flags": "", "wall_clock_s": 235, "tool_calls": 27, "report_words": 2027, "output_tokens": 6925, "reasoning_tokens": 388, "cost_usd": 0, "clusters_asserted": 49 }
+  ],
+  "contamination": { "forbidden_path_citations": 0, "notes": "All .opencode/specs mentions across the 6 reports are exclusion/compliance statements, not citations. Token/cost fields are 0 where the subscription provider does not report them." },
+  "headline_metrics": {
+    "total_distinct_clusters_all_6_runs": 104,
+    "mean_cross_model_jaccard_run1": 0.421,
+    "mean_cross_model_jaccard_run2": 0.433,
+    "mean_same_model_jaccard": { "deepseek": 0.379, "minimax": 0.447, "mimo": 0.389, "overall": 0.405 },
+    "union_trio_run1": 78,
+    "union_best_same_model_pair": { "model": "minimax", "clusters": 74 },
+    "heterogeneous_lift": 1.054,
+    "preregistered_material_threshold": 1.25,
+    "singleton_clusters": 42
+  }
+}

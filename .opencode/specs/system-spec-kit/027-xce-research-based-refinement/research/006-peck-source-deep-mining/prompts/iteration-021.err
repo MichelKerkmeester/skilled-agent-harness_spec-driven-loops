@@ -1,0 +1,58 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"DEEP-RESEARCH — INTEGRATION & IMPACT Iteration 021 Automation integration: classify peck adoption rules fully-auto/semi-auto/manual and wire to existing hooks, CI gates, validators, and env flags; read-only no writes. Spec folder specs/system-spec-kit/027-xce-research-based-refinement","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-research"
+[0m✗ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research.md failed[90m [offset=1, limit=220][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/research.md
+
+Did you mean one of these?
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/research
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "pre-commit|post-mutation|completion|skill-advisor|hook"[90m in .opencode/skills/system-spec-kit/references · 190 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "AC_COVERAGE|EVIDENCE_CITED|WARNING|ERROR|warn"[90m in .opencode/skills/system-spec-kit/references/validation · 58 matches[0m
+[0m✱ [0mGrep "SPECKIT_.*(VALIDATION|COVERAGE|STRICT|ENFORCE|WARN|BENCH|PROMPT|QUALITY|HOOK)"[90m in .opencode/skills/system-spec-kit/mcp_server · 26 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/config/hook_system.md[90m [offset=20, limit=150][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/validation_rules.md[90m [offset=24, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/validation_rules.md[90m [offset=424, limit=70][0m
+[0m✱ [0mGrep "run_rule|SPEC_DOC_STRUCTURE|CONTINUITY_FRESHNESS|EVIDENCE_MARKER|validator_registry|STRICT_MODE|warnings"[90m in .opencode/skills/system-spec-kit/scripts/spec/validate.sh · 51 matches[0m
+[0m✱ [0mGlob "**/*prompt*quality*"[90m in .opencode/skills/system-spec-kit/scripts · 0 matches[0m
+[0m✱ [0mGrep "pre-commit|SPECKIT_RULES|validate.sh|check-prompt-quality|model-benchmark|reviewer|prompt"[90m in .opencode/skills · 5423 matches[0m
+[0m✱ [0mGlob "**/*pre*commit*"[90m in . · 3 matches[0m
+[0m→ [0mRead .opencode/hooks/pre-commit[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/scripts/git-hooks/pre-commit[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=678, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=357, limit=170][0m
+[0m✱ [0mGlob "**/*prompt*quality*"[90m in . · 6 matches[0m
+[0m✱ [0mGlob ".github/workflows/*"[90m in . · 3 matches[0m
+[0m✱ [0mGrep "check-prompt-quality-card-sync|model-benchmark|benchmark|deep-improvement|validate\.sh|pre-commit|card-sync"[90m in .github · 4 matches[0m
+[0m✱ [0mGrep "model-benchmark|Lane B|Lane C|benchmark|fixture|oracle|expected"[90m in .opencode/skills/deep-improvement · 1309 matches[0m
+[0m✱ [0mGlob "**/*model-benchmark*"[90m in .opencode/skills/deep-improvement · 0 matches[0m
+[0m→ [0mRead .github/workflows/prompt-card-sync.yml[90m [offset=1, limit=80][0m
+[0m→ [0mRead .github/workflows/comment-hygiene.yml[90m [offset=1, limit=100][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/SKILL.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGlob "scripts/model-benchmark/**"[90m in .opencode/skills/deep-improvement · 74 matches[0m
+[0m→ [0mRead .opencode/skills/deep-improvement/SKILL.md[90m [offset=261, limit=190][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts[90m [offset=1, limit=320][0m
+[0m✱ [0mGrep "fingerprint|normalizeForFingerprint|buildContinuityFingerprint|session_dedup|clean tree|git|HEAD"[90m in .opencode/skills/system-spec-kit · 603 matches[0m
+[0m✱ [0mGrep "Acceptance Criteria|AC-|Given|When|Then|How to Verify|Evidence|AC"[90m in .opencode/skills/system-spec-kit/templates/manifest · 42 matches[0m
+[0m✱ [0mGrep "acceptance|criteria|coverage|evidence|EVIDENCE_CITED|checklist|AC"[90m in .opencode/skills/deep-review · 702 matches[0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=220, limit=310][0m
+[0m✱ [0mGrep "escalat|3|three|root cause|contradict|same symptom|debug|uncertain|amend|conflict"[90m in .opencode/skills/sk-code · 1394 matches[0m
+[0m✱ [0mGrep "soften|downgrade|Fail|FAIL|verdict|conditional|partial|truncat|final report"[90m in .opencode/skills/deep-review · 587 matches[0m
+[0m✱ [0mGrep "read budget|Read|re-read|reread|tool calls|TCB|reason before|budget"[90m in .opencode/agents · 196 matches[0m
+[0m→ [0mRead CLAUDE.md[90m [offset=1, limit=220][0m
+[0m✗ [0mRead .opencode/skills/sk-code/SKILL.md failed[90m [offset=320, limit=180][0m
+[91m[1mError: [0mOffset 320 is out of range for this file (279 lines)
+[0m→ [0mRead .opencode/skills/sk-code/SKILL.md[90m [offset=1, limit=279][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json[90m [offset=259, limit=50][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=140, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=520, limit=60][0m
+[0m✱ [0mGrep "DEEP_REVIEW_V2_ENFORCEMENT|warn|strict|validator"[90m in .opencode/skills/deep-review · 123 matches[0m
+[0m✱ [0mGrep "PostToolUse|posttool|post-mutation|post mutation|mutation-feedback|mutation feedback|completion hook|Stop|PreToolUse"[90m in .opencode/skills/system-spec-kit · 168 matches[0m
+[0m✱ [0mGlob "**/*post*tool*"[90m in .opencode · 1 match[0m
+[0m✱ [0mGlob "**/*post*mutation*"[90m in .opencode · 0 matches[0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=1, limit=220][0m

@@ -1,0 +1,33 @@
+I'll start by reading all the relevant benchmark surfaces in parallel to build evidence for the verdicts.
+Some files weren't at the expected paths. Let me locate the actual peck and research iteration paths.
+Found the actual paths. Let me read the real peck revim files and the iter 006 finding.
+### VERDICTS
+
+`[V-016-C1] CONFIRMED — Lane B fixtures are pattern/function/code-task oracles, not "run a reviewer prompt over a real diff and compare to a Pass/Fail/Block expected verdict" — evidence `assets/model-benchmark/README.md:17,21-25,53-57` (two shapes: pattern-scoring evidence contract + t3-* 5-dim code task with `fn_name`/`tests`/`hidden_tests`); `benchmark-fixtures/README.md:17` (fixtures name a function, carry `{name, args[], expect}` oracle cases — no reviewer prompt, no `expectedVerdict`); `code-task-scorer.cjs:300-365` (5dim scorer returns `correctness_pass_rate` from oracle cases; lexicon has zero `verdict`/`pass`/`fail`/`block`); `start-model-benchmark-loop.md:344` (default pattern scorer is "byte-identical heading/pattern matcher" on an agent's output text, not a verdict extractor). All 16 fixtures in the taxonomy (T1 echo, T3 lowerBound/compareVersions, T4 tokenizer, hard/harder/validate packs) are computational oracles over an extracted function — not reviewer-bug-class verdict oracles.`
+
+`[V-016-C2] CONFIRMED — Lane C gold is routing/usefulness, not reviewer-bug-verdict — evidence `score-skill-benchmark.cjs:33` (`WEIGHTS = { d1inter: 12, d1intra: 13, d2: 20, d3: 15, d4: 25, d5: 15 }` — D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 structural gate; no "reviewer verdict" dim); `score-skill-benchmark.cjs:55-69` (`expectedFromScenario` returns `{skillId, intentKeys, resources, assets, negativeActivation}` — surface/resource/asset gold only); `run-skill-benchmark.cjs:13-20` (orchestrator is D5-gate → contamination-lint → router-replay → score; reviewer prompts/diffs are out of the input vocabulary). The fixtures' `priv.expected`/`priv.rubric` is routing gold, per the orchestrator's hard contract ("Post-run join: private gold never crosses the dispatch boundary" `run-skill-benchmark.cjs:11`).`
+
+`[V-016-C3] CONFIRMED — the reviewer-prompt-regression shape is genuinely missing; could be built from existing primitives but does not already exist — evidence `peck-master/benchmarks/AGENTS.md:1-34` (each benchmark = `AGENT` + `AGENT_FILE` + `case_config` setting `CHECKOUT` (git ref) / `INPUT` (commit range or free-form prompt) / `EXPECTED` (pass/fail)); `revim-code-reviewer/config.sh:4-11` (`CHECKOUT="3aa8339"; INPUT="83b65f5..3aa8339"; EXPECTED="fail"` — a real diff over a real repo state with a ground-truth verdict); `revim-planner/config.sh:5-22` (`compute_verdict` checks new commits + story.md diff + clean tree — workflow-state oracle on top of expected verdict); `AGENTS.md:34` ("Cases ending in `-1` expect `fail`, `-2` expect `pass`"). This `{real_diff | real_state} × expected_pass|fail|block}` shape has no Lane-B/Lane-C analogue. The pattern scorer *could* in principle be re-targeted to assert a reviewer output contains a "FAIL" marker, but (a) no fixture today takes a reviewer prompt + a known-buggy diff as input, (b) the pattern scorer would conflate "the reviewer said the word fail" with "the reviewer reached the right verdict on a real bug," and (c) iter-006 itself maps the cheapest path to "add a reviewer fixture type + expected-verdict rubric" (F-006-05/06) — not "re-use a Lane B/C primitive unchanged." "Could be built" ≠ "already exists."`
+
+### NEW_CONSIDERATIONS
+
+- Cheapest add: new `reviewer-*.json` Lane B fixture shape (`{agent, prompt_template, input_kind: "diff" | "state_ref", input, expectedVerdict: "pass"|"fail"|"block"}`) + a new sibling to `code-task-scorer.cjs` that runs the agent over the fixture input, extracts the verdict (pattern first, LLM-grader via existing `--grader llm` path as fallback), and compares. Reuses `dispatch-model.cjs` (`start-model-benchmark-loop.md:322`) and the 5dim output envelope; new code is ~one fixture schema + ~one scorer branch.
+- Near-miss the prior claim did not name: `fixture-baseline/-improved/-edge` (pattern scorer) is the closest thing to a "reviewer output structural oracle," but it scores the deep-improvement agent's own output (it-006 F-006-01 surface only), not an external reviewer prompt over a known-bug diff — so it does not close the gap, but it is the natural carrier for the verdict-extraction step of the new scorer.
+- The `t3-*` code-task fixtures' visible+hidden oracle split (`benchmark-fixtures/README.md:17,30-31`; `code-task-scorer.cjs:300-355`) is a real partial primitive the new reviewer fixture should mirror (visible hint + hidden gold) to prevent the reviewer prompt from being overfit to the known answer.
+
+### METRICS
+agreement: AGREE (vs prior ADAPT-into-Lane-B, novelty 0.85)
+newInfoRatio: 0.6
+status: complete
+sources:
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/iterations/iteration-006.md:1-20` (prior claim, 0.85 finding)
+- `.opencode/skills/deep-improvement/assets/model-benchmark/README.md:17,21-25,53-57` (Lane B two-shape taxonomy)
+- `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md:17,30-49` (oracle shape + tier taxonomy, 16 fixtures enumerated)
+- `.opencode/skills/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs:300-365` (5dim scorer: function extraction + oracle pass-rate, no verdict dim)
+- `.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:11-20,73-92,137-164` (Lane C orchestrator: D5 → lint → router-replay → score)
+- `.opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:33,55-69,388-408` (Lane C weights + expected-routing gold + verdict-less aggregate)
+- `.opencode/commands/deep/start-model-benchmark-loop.md:281-322,344` (Lane B runtime contract + "byte-identical heading/pattern matcher" default)
+- `.opencode/commands/deep/start-skill-benchmark-loop.md:1-45` (Lane C scope: routing/discovery/efficiency/usefulness, no reviewer verdicts)
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/AGENTS.md:1-34` (peck revim harness: agent + known pass/fail cases)
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/revim-code-reviewer/config.sh:1-11` (CHECKOUT/INPUT/EXPECTED=fail over real commit range)
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/revim-planner/config.sh:1-22` (planner fixture + `compute_verdict` workflow-state oracle)

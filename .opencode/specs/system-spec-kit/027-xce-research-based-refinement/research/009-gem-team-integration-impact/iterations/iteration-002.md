@@ -1,0 +1,51 @@
+# Iteration 002: RQ2 P2 scoped-preexec-and-handoff-gates — integration & impact
+
+**Focus:** RQ2 P2 scoped-preexec-and-handoff-gates — integration & impact  
+**Executor:** cli-opencode `openai/gpt-5.5-fast` --variant high (read-only). **Status:** complete. **newInfoRatio:** 0.82.  
+**Raw output:** prompts/iteration-002.out
+
+### IMPACT
+| Existing surface (file:line) | Change (ADD/MODIFY/NONE) | What changes | Severity (LOW/MED/HIGH) | Backward-compat risk |
+|---|---|---|---|---|
+| `.opencode/agents/debug.md:91-128`, `.opencode/agents/debug.md:243-260`, `.opencode/agents/debug.md:367-426` | MODIFY | Add a narrow `Debug Fix Handoff` block only when @debug diagnosis is handed to another implementer: `root_cause`, `target_files`, `fix_recommendations`, `confidence`. Keep current rich phase reports. | LOW | Medium if older handoffs are rejected; mitigate by requiring only for new cross-agent debug→implement handoffs. |
+| `.opencode/agents/debug.md:142-159`, `.opencode/agents/debug.md:271-303`, `.opencode/agents/debug.md:479-499` | NONE | Existing 5-phase method, adversarial validation, and pre-delivery checklist already cover diagnosis discipline; P2 should not replace or broaden them. | LOW | Low; no behavior change intended. |
+| `.opencode/agents/orchestrate.md:194-214`, `.opencode/agents/orchestrate.md:217-230`, `.opencode/agents/orchestrate.md:238-247`, `.opencode/agents/orchestrate.md:560-563` | MODIFY | Add scoped dispatch fields: `debug_handoff_required` only for diagnosis-sourced @code dispatches; `pre_mortem` only for medium/high tasks; keep existing user-opt-in @debug offer. | MED | Medium; orchestrator templates are central, but additive fields can tolerate absence outside scoped triggers. |
+| `.opencode/agents/code.md:55-60`, `.opencode/agents/code.md:121-122`, `.opencode/agents/code.md:178-188`, `.opencode/agents/code.md:303-310` | MODIFY | Receiver-side validation: if `Mode: Surgical Fix` is based on an @debug diagnosis, @code verifies the typed handoff exists before fixing. Missing fields return `BLOCKED`/`LOW_CONFIDENCE`, not a guessed fix. | MED | Medium; malformed legacy debug reports may block unless orchestrator synthesizes fields or asks for clarification. |
+| `.opencode/skills/sk-code/SKILL.md:35-45`, `.opencode/skills/sk-code/SKILL.md:181-193`, `.opencode/skills/sk-code/SKILL.md:226-238` | MODIFY | Add boundary contract-first check under API/schema/integration intent only: identify a contract, boundary test, or executable acceptance check before production edits. Not universal TDD. | LOW | Low if scoped by intent/change-class; high if accidentally applied to all edits. |
+| `.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl:44-90`, `.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl:92-106` | MODIFY | Template currently has error, affected files, and hypothesis but not the typed `root_cause`/`target_files`/`fix_recommendations`/`confidence` schema. Add fields inside existing sections or update section expectations. | MED | Medium; existing scaffold/playbook expect a five-section shape. |
+| `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh:18-33`, `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh:70-88`, `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh:261-339` | MODIFY | Add flags/JSON extraction/output for typed handoff fields. Current script only captures attempts, error metadata, affected files, and hypothesis. | MED | Medium; CLI/schema expansion affects tests and generated docs. |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:245-252`, `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:450-463`, `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:923-934` | MODIFY | Keep no-autonomous-routing, but update scaffold instructions to populate/validate the typed schema before user dispatches @debug or before orchestrator routes diagnosis to @code. | LOW | Low; existing y/continue/skip semantics stay intact. |
+| `.opencode/skills/system-spec-kit/SKILL.md:61-72`, `.opencode/skills/system-spec-kit/references/templates/template_guide.md:628-680` | MODIFY | Align utility-template docs with typed debug handoff and @debug-exclusive ownership. Current docs describe structured handoff generally, not typed receiver validation. | LOW | Low; documentation-only alignment. |
+
+### INTEGRATION
+1. Define the three scoped predicates first in `.opencode/agents/orchestrate.md`: `diagnosis_crosses_agents`, `change_class in {api,schema,integration}`, and `complexity in {medium,high}`. Every gate is skipped unless its predicate is true.
+
+2. Gate 1 lives across @debug → @orchestrate → @code. @debug emits `Debug Fix Handoff` only when its diagnosis will be consumed by another implementer. @orchestrate preserves that block in the @code dispatch. @code validates required fields before a diagnosis-based surgical fix.
+
+3. Gate 2 lives in `sk-code` and is consumed by @code. When sk-code detects API/schema/integration work, it requires a named contract, boundary test, or executable acceptance check before production edits. For ordinary bug fixes, prose docs, typos, or non-boundary changes, it does nothing.
+
+4. Gate 3 lives in `.opencode/agents/orchestrate.md` PDR/task format. Add `Pre-mortem: risk level; top 2-3 failure modes; assumptions` only when complexity is medium/high. Low and fast-path work remains unchanged.
+
+5. Update `debug-delegation.md.tmpl` and `scaffold-debug-delegation.sh` together so generated debug handoffs can satisfy the new schema. Prefer inserting typed fields into existing sections to avoid breaking five-section consumers.
+
+6. Update speckit implement/complete YAML only where they already mention debug-delegation scaffolding. Preserve the current rule that workflows prompt the user and never auto-dispatch @debug.
+
+### BREAKS / WATCH-OUTS
+- Do not make @debug automatic; existing surfaces repeatedly state user opt-in only.
+- Do not turn boundary contract-first into universal TDD.
+- Do not reject old `debug-delegation.md` documents outside the new debug→implement crossing.
+- Template path is `.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl`, not a root `templates/debug-delegation.md`.
+- The scaffold comment cites stale debug schema lines at `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh:343-347`.
+- Tests/playbooks expecting exactly five debug-delegation sections may need adjustment if a new section is added instead of embedding fields.
+
+### OPEN QUESTIONS
+1. Should `confidence` be numeric, banded, or both if P1’s envelope is not landed first?
+2. Does `target_files` become @code’s edit allowlist, or only a recommendation that orchestrator must translate into an allowlist?
+3. What exact detector classifies API/schema/integration changes: sk-code intent, orchestrator task metadata, or explicit dispatch field?
+4. Should legacy debug reports be auto-normalized by orchestrator when fields are inferable, or should missing fields always block?
+
+### METRICS
+newInfoRatio: 0.82
+novelty: P2 is mostly an additive seam-hardening pass; the genuinely new parts are typed receiver validation, scoped boundary contract-first ordering, and a medium/high pre-mortem field.
+status: complete
+focus: RQ2 P2 scoped-preexec-and-handoff-gates — integration & impact

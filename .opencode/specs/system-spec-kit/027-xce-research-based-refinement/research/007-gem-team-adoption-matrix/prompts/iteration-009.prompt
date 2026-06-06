@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 009, RQ9): **Token-efficiency mechanisms** — Gem Team claims 80-90% token reduction via: concise output (no preamble/meta-commentary), file-based context (researcher/planner save to YAML for reuse), and a self-validating context cache that prevents redundant work across sessions/agents. Evaluate each mechanism for adoption.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: the skill-advisor brief token caps (capText/DEFAULT_TOKEN_CAP), Code Mode MCP (~98% context reduction for tool calls), file-based spec-folder context + continuity, and the anti-pattern/simplicity discipline in CLAUDE.md. Judge whether gem-team's self-validating context cache + file-based-output-by-default add anything we lack. Be skeptical of the 80-90% marketing number.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/README.md ("Token Efficiency" + "Context Efficiency" + "Context Caching & Memory Management"), external/gem-team-main/AGENTS.md (rules 8,9 — file-based outputs + context envelope)
+READ (spec-kit side): grep for: "token", "concise", "cache", "context reduction", "DEFAULT_TOKEN_CAP", "98%" across .opencode/skills/mcp-code-mode, .opencode/skills/system-skill-advisor, .opencode/skills/sk-prompt, and CLAUDE.md (anti-patterns)
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-009-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ9 token-efficiency mechanisms

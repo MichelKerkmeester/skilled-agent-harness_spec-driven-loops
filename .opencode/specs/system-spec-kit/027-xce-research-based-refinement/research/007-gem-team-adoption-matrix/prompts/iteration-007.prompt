@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 007, RQ7): **Auto-skills extraction** — Gem Team's gem-skill-creator extracts reusable `SKILL.md` files from high-confidence patterns, and the orchestrator AUTOMATICALLY promotes patterns to skills during its enrich step (e.g. "create skills for patterns confidence ≥0.90"). Evaluate this pattern→skill auto-extraction pipeline.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: the `/create` command (skill scaffolding) and the deep-improvement loop (bounded agent improvement). Judge whether gem-team's AUTOMATIC, confidence-thresholded extraction of skills from accumulated run learnings is net-new vs our human-initiated /create + evaluator-first deep-improvement.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/README.md ("Auto-Skills" + "Skills & Guidelines"), external/gem-team-main/.apm/agents/gem-skill-creator.agent.md, external/gem-team-main/.apm/agents/gem-orchestrator.agent.md (Phase 3 Enrich — skill creation threshold)
+READ (spec-kit side): .opencode/skills/deep-improvement/SKILL.md, and grep for: "skill", "SKILL.md", "extract", "pattern", "promote", "confidence", "auto" across .opencode/commands/create and .opencode/skills/sk-doc
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-007-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ7 auto-skills extraction

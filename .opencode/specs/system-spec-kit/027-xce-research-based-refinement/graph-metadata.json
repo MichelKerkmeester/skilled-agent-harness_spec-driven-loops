@@ -12,7 +12,12 @@
     "system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter",
     "system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation",
     "system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback",
-    "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers"
+    "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers",
+    "system-spec-kit/027-xce-research-based-refinement/009-peck-verification-discipline",
+    "system-spec-kit/027-xce-research-based-refinement/010-reviewer-prompt-benchmark-substrate",
+    "system-spec-kit/027-xce-research-based-refinement/011-acceptance-coverage-gate",
+    "system-spec-kit/027-xce-research-based-refinement/012-gem-team-adoption",
+    "system-spec-kit/027-xce-research-based-refinement/016-memclaw-derived-memory-hardening"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -55,11 +60,6 @@
     "key_files": [
       "resource-map.md",
       "001-peck-teachings-adoption/spec.md",
-      "spec.md",
-      "lib/parsing/trigger-matcher.ts",
-      "lib/search/pipeline/stage4-filter.ts",
-      "specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md",
-      "research/027-relevance-audit-2026-06-05/research.md",
       ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl",
@@ -72,31 +72,18 @@
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
       ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json"
     ],
     "entities": [
       {
         "name": "resource-map.md",
         "kind": "doc",
-        "path": "specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-matcher.ts",
-        "kind": "code",
-        "path": "lib/parsing/trigger-matcher.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage4-filter.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage4-filter.ts",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -178,6 +165,36 @@
         "source": "derived"
       },
       {
+        "name": "save-quality-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-quality-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
+        "source": "derived"
+      },
+      {
         "name": "Derived Spec Kit Refinement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -186,7 +203,7 @@
       {
         "name": "Spec Kit",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -206,23 +223,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Coordinate",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Based Refinement",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-06T03:47:51.153Z",
+    "last_save_at": "2026-06-06T10:38:03.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [

@@ -1,0 +1,31 @@
+ROLE: You are a senior READ-ONLY research analyst MINING a changelog for net-new design signal. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`.
+
+TASK (iteration 012, RQ12): **CHANGELOG deep-mine.** The 64KB `external/gem-team-main/CHANGELOG.md` records the framework's evolution. Surface DESIGN DECISIONS, GOTCHAS, REMOVED/REVERSED approaches, and MECHANISMS that are NOT already covered by the README/AGENTS.md — i.e. net-new ideas worth considering for the spec-kit. This is a signal-hunt, not a full feature audit.
+
+IMPORTANT (time budget): DO NOT read the whole 64KB file. Instead: (1) read the FIRST ~120 lines (most recent/major entries); (2) grep the changelog for decision keywords and read only the matching neighborhoods: "BREAKING", "wave", "envelope", "memory", "skill", "verif", "contract", "classif", "fast", "token", "premortem|pre-mortem", "rollback|revert|remove|deprecat", "learn", "dedup". Cap total reading to stay well under your time budget.
+
+DECIDE per surfaced idea: ADOPT / ADAPT / REJECT for the spec-kit (REJECT REQUIRES citing our equivalent where one exists; for ideas with no spec-kit equivalent, mark ADOPT/ADAPT and note the GAP).
+
+HARD RULES:
+- Cite [SOURCE: external/gem-team-main/CHANGELOG.md:line] for every surfaced idea, and [SOURCE: spec-kit path:line] for any claimed existing equivalent.
+- Prioritize ideas the earlier angles (orchestration, memory, context-envelope, verification, diagnose-fix, auto-skills, classification, token-efficiency, resilience) did NOT already cover. Flag genuinely novel signal.
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Surfaced idea (CHANGELOG:line) | What it is | spec-kit equivalent or GAP (file:line) | Verdict | Net-new value>
+<2-6 bullets [F-012-01].. on the most novel signals, with evidence>
+
+### NEGATIVE / RULED-OUT
+<changelog themes that are NOT worth adopting or already covered>
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ12 CHANGELOG deep-mine

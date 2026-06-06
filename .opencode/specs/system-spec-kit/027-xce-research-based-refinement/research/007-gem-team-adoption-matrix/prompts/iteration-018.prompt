@@ -1,0 +1,29 @@
+ROLE: You are a skeptical READ-ONLY ADVERSARIAL VERIFIER. Your working dir (--dir) is the repo root. You MUST NOT write/edit/create any file or run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, return your ENTIRE analysis as TEXT only.
+
+CONTEXT: TRY HARD TO REFUTE two more proposed adoptions. Default to "the gap is smaller than claimed". Be the hostile reviewer.
+
+CLAIM 1 — "Security/quality STANDING gates" (verdict ADAPT): Gem reviewer runs OWASP + secrets/PII scanning and source-verified (zero-hallucination) checks as standing steps [external/gem-team-main/.apm/agents/gem-reviewer.agent.md:75-80]. The claim: spec-kit security coverage is "generic, not OWASP-labeled" and source-verification lives only in @review, not as a standing framework gate.
+CLAIM 2 — "Per-agent typed dispatch schemas + uniform output envelope" (verdict ADOPT, strongest candidate): Gem defines per-agent `task_definition`/`context_envelope_snapshot` input fields and a uniform `status/confidence/failure_type` output [external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:170-217, AGENTS.md:71-73]. The claim: spec-kit defines agent I/O in scattered PROSE, so a typed uniform contract is net-new.
+
+YOUR JOB: DEEP-READ the real spec-kit files and decide for EACH claim: upheld / downgraded / refuted.
+DEEP-READ for Claim 1: check whether a `/security-review` command and sk-code-review security minimums already provide OWASP/secrets coverage — grep ".opencode/commands" and read .opencode/skills/sk-code-review/SKILL.md security sections + CLAUDE.md honesty/uncertainty (source-verification) rules. Is the gap "absent" or merely "not named OWASP / not a per-task standing scan"?
+DEEP-READ for Claim 2: .opencode/agents/code.md (the RETURN contract + input parsing), .opencode/agents/review.md (gate input/output), .opencode/agents/context.md (Context Package), .opencode/agents/orchestrate.md (how it dispatches/what it passes). Is a uniform typed contract genuinely absent, or do @code/@review already define structured-enough I/O that a uniform schema is marginal?
+
+OUTPUT EXACTLY (NOTHING before "### VERDICTS"):
+
+### VERDICTS
+| Claim | Original verdict | Adversarial result (upheld/downgraded/refuted) | Revised verdict | Strongest counter-evidence (file:line) |
+|---|---|---|---|---|
+
+### EVIDENCE
+- [V-018-01] Claim 1 security standing gates: <deep-read findings, file:line — does /security-review + sk-code-review already cover it?>
+- [V-018-02] Claim 2 typed I/O contract: <deep-read findings, file:line — how structured is @code/@review I/O already?>
+
+### REVISED NET-NEW VALUE
+<honest narrowed value of each; what is genuinely sub-packet-worthy>
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-V5 adversarial — security gates + typed I/O contract

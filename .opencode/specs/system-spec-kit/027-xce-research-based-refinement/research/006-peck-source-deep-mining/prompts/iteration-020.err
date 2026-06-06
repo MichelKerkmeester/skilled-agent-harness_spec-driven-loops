@@ -1,0 +1,50 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m✗ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research.md failed[90m [offset=1, limit=220][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/research.md
+
+Did you mean one of these?
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/research
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGlob "**/*speckit*complete*"[90m in . · 6 matches[0m
+[0m✱ [0mGlob "**/*skill*advisor*hook*.md"[90m in . · 9 matches[0m
+[0m✱ [0mGlob "**/*checklist*.md"[90m in .opencode/skills · 61 matches[0m
+[0m✱ [0mGlob "**/validation_rules.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/*review-report*.md"[90m in . · 100 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/config/hook_system.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/validation_rules.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/examples/level_2/checklist.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=1, limit=240][0m
+[0m✱ [0mGrep "validate\.sh|Validation|FINAL|final|checklist|completion|error|warning|VERDICT|done|complete"[90m in .opencode/commands/speckit/assets/speckit_complete_auto.yaml · 126 matches[0m
+[0m✱ [0mGrep "AC|acceptance|How to verify|Given|When|Then|Acceptance"[90m in .opencode/skills/system-spec-kit/templates/manifest · 52 matches[0m
+[0m✱ [0mGrep "ERROR|WARNING|Passed|Validation|\[ERROR\]|\[WARNING\]|How to Fix|Exit Code|strict"[90m in .opencode/skills/system-spec-kit/scripts · 275 matches[0m
+[0m✱ [0mGrep "reason before|Read|read|budget|token|re-read|non-diff|review"[90m in .opencode/agents · 433 matches[0m
+[0m✱ [0mGrep "Findings|P0|P1|P2|VERDICT|Final|report|severity|riskScore|Pass|Fail|Block"[90m in .opencode/skills/deep-review · 1122 matches[0m
+[0m✱ [0mGrep "reviewer|benchmark|Lane B|model-benchmark|expected|oracle|verdict|Pass|Fail|Block|5dim"[90m in .opencode/skills/deep-improvement · 1494 matches[0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=300, limit=160][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=940, limit=190][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=888, limit=180][0m
+[0m→ [0mRead .opencode/agents/deep-review.md[90m [offset=150, limit=180][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md[90m [offset=682, limit=90][0m
+[0m✱ [0mGlob "**/review.md"[90m in .opencode/agents · 1 match[0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/agents/deep-review.md[90m [offset=324, limit=110][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl[90m [offset=60, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=524, limit=22][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=80, limit=24][0m
+[0m→ [0mRead .opencode/skills/sk-code-review/SKILL.md[90m [offset=1, limit=180][0m
+[0m✱ [0mGrep "AC_COVERAGE|EVIDENCE_CITED|PRIORITY_TAGS|rule|How to Fix|severity"[90m in .opencode/skills/system-spec-kit/references/validation/validation_rules.md · 28 matches[0m
+[0m✱ [0mGrep "add_result|RESULTS|severity|message|ERROR|WARNING|INFO|file|line"[90m in .opencode/skills/system-spec-kit/scripts/spec/validate.sh · 109 matches[0m
+[0m✱ [0mGrep "review-report|Executive Summary|Active Finding Registry|verdict|FAIL|CONDITIONAL|PASS|Traceability Status"[90m in .opencode/commands/deep/assets · 89 matches[0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/review_ux_single_pass.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/review_core.md[90m [offset=1, limit=180][0m
+[0m✱ [0mGrep "status.?line|startup|brief|Advisor:|Startup|status line|context injection|SessionStart"[90m in .opencode · 12056 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/validation_rules.md[90m [offset=342, limit=160][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml[90m [offset=1200, limit=140][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=237, limit=140][0m
+[0m→ [0mRead .opencode/agents/deep-review.md[90m [offset=430, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=308, limit=28][0m

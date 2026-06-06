@@ -1,0 +1,12 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/apm.yml[90m [offset=1, limit=240][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead CLAUDE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "agent directory|runtime|\.claude/agents|\.codex/agents|deploy|sync"[90m in . · 22 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=247, limit=130][0m
+[0m→ [0mRead CLAUDE.md[90m [offset=320, limit=32][0m
+[0m→ [0mRead AGENTS.md[90m [offset=320, limit=32][0m

@@ -1,0 +1,42 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m$ [0mpython3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "CHANGELOG deep-mine read-only research analyst compare external gem-team changelog against spec-kit" --threshold 0.8
+[]
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"CHANGELOG deep-mine for net-new design signal from external/gem-team-main/CHANGELOG.md against spec-kit. Read-only; no modifications; no git.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m✱ [0mGrep "BREAKING|wave|envelope|memory|skill|verif|contract|classif|fast|token|premortem|pre-mortem|rollback|revert|remove|deprecat|learn|dedup"[90m in specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main · 68 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=1, limit=130][0m
+[0m✱ [0mGlob "specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/{README.md,AGENTS.md,**/README.md,**/AGENTS.md}"[90m in . · 0 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md[90m [offset=1, limit=110][0m
+[0m✱ [0mGlob "**/gem-team-main/README.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/gem-team-main/AGENTS.md"[90m in . · 0 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=206, limit=115][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=410, limit=80][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=530, limit=75][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=636, limit=80][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=130, limit=76][0m
+[0m✱ [0mGrep "Task Classification|classif|intent|Gate 1|Skill Routing|skill advisor|Fast-Path|fast path"[90m in . · 7 matches[0m
+[0m✱ [0mGrep "get_errors|first lightweight|validation pipeline|accessibility_snapshot|screenshots|accessibility"[90m in .opencode · 269 matches[0m
+[0m✱ [0mGrep "quality_score|reviewer_focus|codebase validation|objective-aligned|objective aligned|research findings|focus_area|focus area"[90m in .opencode · 1433 matches[0m
+[0m✱ [0mGrep "template cache|objective_category|high-confidence|learning schema|learnings metadata|Learning Index|preflight|postflight"[90m in .opencode · 4217 matches[0m
+[0m✱ [0mGrep "shared component|shared-component|pre-save|detect_changes|blast_radius|impact"[90m in . · 5356 matches[0m
+[0m✱ [0mGrep "failure_type|confidence|structured JSON|Standard Output Contract|task_id|status"[90m in .opencode · 37722 matches[0m
+[0m→ [0mRead AGENTS.md[90m [offset=70, limit=45][0m
+[0m→ [0mRead AGENTS.md[90m [offset=188, limit=55][0m
+[0m→ [0mRead AGENTS.md[90m [offset=120, limit=60][0m
+[0m→ [0mRead README.md[90m [offset=630, limit=38][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md[90m [offset=888, limit=38][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md[90m [offset=2772, limit=16][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/SKILL.md[90m [offset=150, limit=25][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=470, limit=35][0m
+[0m→ [0mRead .opencode/skills/sk-code/README.md[90m [offset=80, limit=12][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md[90m [offset=3098, limit=14][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md[90m [offset=1450, limit=18][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md[90m [offset=4713, limit=8][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/deep-research-strategy.md[90m [offset=35, limit=50][0m
+[0m→ [0mRead .opencode/agents/CONTEXT.md[90m [offset=32, limit=22][0m
+[0m→ [0mRead .opencode/agents/CONTEXT.md[90m [offset=156, limit=25][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md[90m [offset=2468, limit=16][0m
+[0m→ [0mRead .opencode/skills/sk-doc/references/global/validation.md[90m [offset=32, limit=12][0m

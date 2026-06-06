@@ -33,7 +33,7 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md"
     ],
@@ -45,9 +45,9 @@
         "source": "derived"
       },
       {
-        "name": "214-feature-catalog-code-references.md",
+        "name": "feature-catalog-code-references.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md",
         "source": "derived"
       },
       {
@@ -101,7 +101,7 @@
     ],
     "causal_summary": "The system-spec-kit feature catalog (~412KB, 24 themes) and manual testing playbook (~293KB) claim a large set of features and verification procedures. The user specifically flagged \"playbooks or feature catalogs not verified\". This slice audits whether catalog entries have real code backing and whether the playbook actually verifies the cataloged features.",
     "created_at": "2026-06-04T18:53:35.320Z",
-    "last_save_at": "2026-06-05T12:47:33.220Z",
+    "last_save_at": "2026-06-06T09:38:26.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

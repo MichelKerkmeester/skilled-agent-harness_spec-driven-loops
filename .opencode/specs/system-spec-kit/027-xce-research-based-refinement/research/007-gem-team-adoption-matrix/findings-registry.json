@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement",
+  "artifactDir": "specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix",
+  "sessionId": "2026-06-06-027-gem-team-adoption-matrix",
+  "metrics": {
+    "iterationsCompleted": 24,
+    "keyFindings": 9,
+    "openQuestions": 0,
+    "resolvedQuestions": 13,
+    "convergenceScore": 0.51,
+    "newInfoRatioTrend": [0.18, 0.24, 0.42, 0.38, 0.64, 0.78, 0.64, 0.58, 0.31, 0.74, 0.83, 0.46, 0.72],
+    "status": "complete",
+    "verdict": "validate-and-incrementally-refine; 3 sub-packets (tentative 012-014) + 6 deferred to tags/aliases"
+  },
+  "findings": [],
+  "questions": [
+    {"id": "RQ1", "iter": "001", "focus": "orchestration & wave execution", "status": "open"},
+    {"id": "RQ2", "iter": "002", "focus": "memory architecture", "status": "open"},
+    {"id": "RQ3", "iter": "003", "focus": "context envelope", "status": "open"},
+    {"id": "RQ4", "iter": "004", "focus": "knowledge layers", "status": "open"},
+    {"id": "RQ5", "iter": "005", "focus": "verification & quality gates", "status": "open"},
+    {"id": "RQ6", "iter": "006", "focus": "diagnose-then-fix enforcement", "status": "open"},
+    {"id": "RQ7", "iter": "007", "focus": "auto-skills extraction", "status": "open"},
+    {"id": "RQ8", "iter": "008", "focus": "task classification & fast-path modes", "status": "open"},
+    {"id": "RQ9", "iter": "009", "focus": "token-efficiency mechanisms", "status": "open"},
+    {"id": "RQ10", "iter": "010", "focus": "pre-mortem / risk / resilience", "status": "open"},
+    {"id": "RQ11", "iter": "011", "focus": "standard output contract", "status": "open"},
+    {"id": "RQ12", "iter": "012", "focus": "CHANGELOG deep-mine", "status": "open"},
+    {"id": "RQ13", "iter": "013", "focus": "distribution / packaging (APM)", "status": "open"}
+  ]
+}

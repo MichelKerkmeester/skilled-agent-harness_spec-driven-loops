@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 011, RQ11): **Standard Output Contract** — Gem Team requires ALL task-level agents to return JSON with required fields (`plan_id`, `task_id`, `status`, `confidence`, `failure_type`); planner returns `plan_id` only; researcher may return `task_id:null`; orchestrator returns human markdown. It also defines per-agent `task_definition` field schemas and per-agent `context_envelope_snapshot` field subsets. Evaluate this uniform machine-parseable agent I/O contract.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: spec-kit agents (@code, @review, @context, @debug) mostly return PROSE with conventions, plus structured artifacts (debug-delegation.md, review-report.md) and confidence usage in CLAUDE.md §4. Judge whether a uniform typed agent-output contract (status/confidence/failure_type) + per-agent input field schemas would be net-new value for the spec-kit's multi-agent dispatch — or whether our prose+artifact model already suffices.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/AGENTS.md (rule 10 "Standard Output Contract"), external/gem-team-main/.apm/agents/gem-orchestrator.agent.md (Agent Input Reference — per-agent task_definition + context_envelope_snapshot fields), external/gem-team-main/.apm/agents/gem-reviewer.agent.md
+READ (spec-kit side): .opencode/agents/code.md, .opencode/agents/review.md, and grep for: "status", "confidence", "failure_type", "return", "output format", "JSON" across .opencode/agents
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-011-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ11 standard output contract

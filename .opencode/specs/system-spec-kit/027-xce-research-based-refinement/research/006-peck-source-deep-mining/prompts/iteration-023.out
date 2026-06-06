@@ -1,0 +1,65 @@
+### PRIORITY_SCORECARD
+`T6 completion-freshness | friction low | automation full | value high | ship-rank 1` — reuses existing fingerprint idea and strict validator surface; highest-value gap is completion not bound to content/HEAD/tree. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:24`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:36`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:828`
+
+`010 reviewer test-bench | friction med | automation full | value high | ship-rank 2` — not direct operator UX, but it automates regression safety for 009/011 and Lane B already has model-benchmark substrate. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:49`, `.opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md:682`, `.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/mode-switch-routing.md:26`
+
+`T7 anti-softening | friction low | automation semi | value high | ship-rank 3` — high UX value because final verdicts stay binary/visible; automation can enforce report fields but judgment remains human. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:42`, `.opencode/skills/deep-review/assets/deep_review_dashboard.md:34`
+
+`011 deep-review verdict binding | friction low | automation full | value high | ship-rank 4` — `/speckit:complete` already has a verification summary and deep-review already emits a provisional verdict. `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:1007`, `.opencode/skills/deep-review/assets/deep_review_dashboard.md:37`
+
+`011 AC_COVERAGE warning rule | friction med | automation semi | value high | ship-rank 5` — validator registry and warn/strict behavior exist, but AC classification needs normalized AC text first. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:66`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:70`, `.opencode/skills/system-spec-kit/references/validation/validation_rules.md:29`
+
+`011 AC-format normalization | friction med | automation semi | value high | ship-rank 6` — prerequisite for coverage classification; current template ACs are placeholders. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:64`, `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl:445`
+
+`011 AC traceability table | friction med | automation semi | value high | ship-rank 7` — checklist already forces P0 evidence, but replacing one self-attested AC checkbox adds authoring burden. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:65`, `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl:72`
+
+`T5 escalation gates | friction med | automation semi | value med | ship-rank 8` — good UX if surfaced as one concise halt reason; mostly judgment-bound. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:40`, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:914`
+
+`T12(a,b) cap + recurrence→promotion | friction low | automation semi | value med | ship-rank 9` — best as an extension to pending 004, not a new packet. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:86`
+
+`T13 resume FILES manifest | friction low | automation full | value med | ship-rank 10` — low-friction UX helper, but optional and less safety-critical than completion/coverage. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:92`, `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md:40`
+
+`T14 current-state/product narrative | friction med | automation semi | value med | ship-rank 11` — useful if generated from current-state docs; manual narrative risks drift. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:85`
+
+`T8 reviewer read-budget | friction med | automation manual | value med | ship-rank 12` — keep @review-focused; applying globally adds cognitive tax and can fight P0 rereads. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:39`
+
+`011 ERROR promotion | friction high | automation full | value high | ship-rank 13` — defer until warning window and lifecycle opt-in prove low false-block rate. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:68`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:73`
+
+`T9 numeric severity note | friction low | automation manual | value low | ship-rank 14` — docs-only calibration; do not gate. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:40`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:55`
+
+`T11 cheap-model preset | friction med | automation semi | value med | ship-rank 15` — only opt-in after 010; blanket default is high false-PASS risk. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:93`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:56`
+
+`T12(c) prune/demote lifecycle | friction high | automation manual | value low | ship-rank 16` — defer; constitutional deletion/demotion is intentionally human-gated. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:94`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:57`
+
+### RESHAPE_OR_DEFER
+`T8 read-budget` — reshape to @review-only default plus advisory guidance for deep-review/deep-research; do not block rereads needed for P0 verification. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:39`
+
+`T9 numeric severity` — reshape as non-gating docs/schema note only; literal numeric block was already rejected. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:40`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:55`
+
+`011 ERROR promotion` — defer until warning mode plus lifecycle opt-in has evidence; fresh scaffolds must not error before implementation starts. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:73`, `.opencode/skills/system-spec-kit/references/validation/validation_rules.md:31`
+
+`T11 cheap-model preset` — defer blanket use; ship later as opt-in only after 010 fixtures prove reviewer verdict parity. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:53`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:93`
+
+`T12(c)` — defer; automation cost and governance risk outweigh near-term UX value. `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:86`
+
+### NEW_UX_AUTO_OPPORTUNITIES
+`Validation auto-fix hints` — add `fix:` detail lines to validator failures and JSON output so `/speckit:complete` can show “run this / edit this” next steps; plug into `validate.sh` detail emission and validation rule remediation docs. `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:767`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:930`, `.opencode/skills/system-spec-kit/references/validation/validation_rules.md:16`
+
+`Startup/brief freshness + AC indicator` — surface `completion-freshness: stale|fresh` and `AC coverage: n/m` in startup/advisor context, fail-open and compact; plug into hooks that already inject startup/advisor briefs and share freshness vocabulary. `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:18`, `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md:28`, `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md:81`
+
+`Auto-generate AC stubs from requirements` — when `/speckit:complete` creates/checks checklist, derive `AC-id | expected evidence` rows from the `Requirement | Acceptance Criteria` table instead of forcing blank authoring. `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl:445`, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:638`
+
+`One-command refresh completion fingerprint` — add a helper that recomputes the completion fingerprint and reruns strict freshness without a full memory save; plug into checklist frontmatter fingerprint and strict freshness validator. `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl:21`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:828`
+
+`Single deep-review verdict in /speckit:complete` — read the deep-review dashboard verdict and include it in Step 12 completion summary as `reviewVerdict: PASS|CONDITIONAL|FAIL|PENDING`. `.opencode/skills/deep-review/assets/deep_review_dashboard.md:37`, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:975`
+
+`Checklist evidence quick-fill` — when validation sees completed tasks/checklist items without evidence, emit candidate evidence slots from changed files and test output; plug into existing evidence format contract. `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:951`, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:956`
+
+### METRICS
+newInfoRatio: 0.72
+
+novelty: Re-ranked the proposal away from packet dependency order toward invisible automation first: completion freshness, deep-review verdict surfacing, validator hints, and AC-stub generation.
+
+status: complete
+
+sources: `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:36`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:49`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:64`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:65`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md:66`, `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md:24`, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:946`, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:975`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:828`, `.opencode/skills/deep-review/assets/deep_review_dashboard.md:37`, `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:18`, `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md:81`

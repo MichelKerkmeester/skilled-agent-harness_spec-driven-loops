@@ -1,0 +1,37 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m✗ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research.md failed[90m [offset=1, limit=220][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/research.md
+
+Did you mean one of these?
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/research
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md[90m [offset=1, limit=240][0m
+[0m✱ [0mGlob "**/speckit*complete*"[90m in . · 2 matches[0m
+[0m✱ [0mGlob "**/validate.sh"[90m in . · 1 match[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_confirm.yaml[90m [offset=1, limit=220][0m
+[0m✱ [0mGlob "**/checklist.md.tmpl"[90m in .opencode · 1 match[0m
+[0m✱ [0mGlob "**/deep-review/**"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "status|startup|hook|coverage|fresh|fingerprint|deep-review|validate|checklist|verdict"[90m in .opencode/commands/speckit/assets/speckit_complete_auto.yaml · 82 matches[0m
+[0m→ [0mRead .opencode/skills/deep-review/assets/deep_review_dashboard.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "status-line|startup|hook|resume|handover|fresh|coverage"[90m in .opencode/skills/system-spec-kit/references/hooks · 75 matches[0m
+[0m✱ [0mGlob "**/*status*"[90m in .opencode · 71 matches[0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=620, limit=120][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=946, limit=145][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=520, limit=220][0m
+[0m✱ [0mGrep "StatusLine|statusline|status line|startup|UserPromptSubmit|additionalContext|freshness"[90m in .opencode · 15692 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=740, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md[90m [offset=22, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/README.md[90m [offset=1, limit=170][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=430, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/validation_rules.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/commands/speckit/complete.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=920, limit=150][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json[90m [offset=181, limit=120][0m
+[0m✱ [0mGrep "cheap|model-benchmark|reviewer|fixture|Lane B|Lane C"[90m in .opencode/skills/deep-improvement · 1404 matches[0m

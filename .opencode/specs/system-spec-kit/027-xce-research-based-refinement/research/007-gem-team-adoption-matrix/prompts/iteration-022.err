@@ -1,0 +1,14 @@
+[0m
+> build · mimo-v2.5-pro
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md
+[0m→ [0mRead .opencode/agents/orchestrate.md
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/SKILL.md
+[0m✱ [0mGrep "quality_score|reviewer_focus|conflicts_with|risk_score"[90m in specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main · 13 matches[0m
+[0m✱ [0mGrep "quality_score|reviewer_focus|risk_score|conflicts_with"[90m in .opencode · 1698 matches[0m
+[0m✱ [0mGrep "wave|parallel.*dispatch|dependency.*graph|DAG"[90m in .opencode/agents/orchestrate.md · 13 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=110, limit=60][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-reviewer.agent.md[90m [offset=35, limit=30][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-critic.agent.md[90m [offset=35, limit=20][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [limit=80][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=180, limit=120][0m

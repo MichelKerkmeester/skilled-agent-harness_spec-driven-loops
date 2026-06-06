@@ -1,0 +1,17 @@
+[0m
+> build · mimo-v2.5-pro
+[0m
+[0m✱ [0mGrep "research_findings|template cache|shared component|failure log|reinject|accessibility|focus_area|bypass"[90m in specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main · 11 matches[0m
+[0m✱ [0mGrep "memory_context|research|cache|retry|reinject"[90m in .opencode/skills/system-spec-kit · 6626 matches[0m
+[0m✱ [0mGrep "memory_context|research|cache|retry|reinject|focus_area"[90m in .opencode/skills/deep-research · 1695 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=230, limit=45][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=260, limit=20][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=545, limit=30][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/CHANGELOG.md[90m [offset=630, limit=20][0m
+[0m✱ [0mGrep "focus_area|research_findings|agent init|session_bootstrap|session_resume"[90m in .opencode/skills/system-spec-kit · 251 matches[0m
+[0m✱ [0mGrep "template.*cache|plan.*cache|bypass|high.confidence"[90m in .opencode/skills/system-spec-kit · 338 matches[0m
+[0m✱ [0mGrep "pre.save|shared.component|scope.*check|mutation.*check"[90m in .opencode/skills/system-spec-kit · 104 matches[0m
+[0m✱ [0mGrep "failure.*log|reinject|retry.*inject|error.*context|blocked_stop"[90m in .opencode/skills/system-spec-kit · 171 matches[0m
+[0m✱ [0mGrep "accessibility|snapshot|screenshot|a11y"[90m in .opencode/skills · 2487 matches[0m
+[0m✱ [0mGrep "failure|reinject|error.*context|blocked_stop|previous.*iteration"[90m in .opencode/skills/deep-research · 78 matches[0m
+[0m✱ [0mGrep "pre.save.*dedup|overlap.*check|shared.*component.*change"[90m in .opencode/skills/system-spec-kit · 14 matches[0m

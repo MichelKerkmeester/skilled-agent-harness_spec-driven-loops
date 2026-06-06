@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate",
+  "description": "Feature Specification: 011 — Acceptance-Criteria Coverage Gate",
+  "keywords": [
+    "feature",
+    "specification",
+    "011",
+    "acceptance-criteria",
+    "coverage",
+    "gate"
+  ],
+  "lastUpdated": "2026-06-06T10:44:45.273Z",
+  "specId": "003",
+  "folderSlug": "acceptance-coverage-gate",
+  "parentChain": [
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "009-peck-source-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

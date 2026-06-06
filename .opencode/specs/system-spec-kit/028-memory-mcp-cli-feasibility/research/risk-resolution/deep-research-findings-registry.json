@@ -1,0 +1,250 @@
+{
+  "mergedFrom": [
+    "deepseek-risk"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "RQ1",
+      "classification": "RESOLVED",
+      "summary": "Public CLI is IPC-only (SPECKIT_BACKEND_ONLY); socket 0o600, DB dir 0o700; admin direct-DB separate; trust model identical to MCP stdio.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ2",
+      "classification": "RESOLVED",
+      "summary": "All 37 tool schemas CLI-mappable; ~20 flat-flags, ~10 array-flags, ~7 need --json escape hatch; codegen from TOOL_DEFINITIONS feasible by construction.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ3",
+      "classification": "MITIGATED",
+      "summary": "Bootstrap lock + owner lease + respawn lock triple hierarchy prevents all race vectors. Design delta: add dual-spawn test and --session-id flag.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ4",
+      "classification": "RESOLVED",
+      "summary": "Exit codes: 0/1/64/69/75. Retryable (-32001, cold-start, recycle) → 75. Terminal (protocol mismatch, EPERM, no owner) → 69. Replayable/unsafe taxonomy in session proxy.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ5",
+      "classification": "MITIGATED",
+      "summary": "Cold path: 1-5s (no embedder) to 30-60s (cold embedder). Design delta: add --timeout-ms, document cold-start expectations.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ6",
+      "classification": "RESOLVED",
+      "summary": "Measured: ~40ms Node start on darwin/arm64. Per-call ~50-60ms warm, validates 50-150ms estimate.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ7",
+      "classification": "RESOLVED",
+      "summary": "Session ID via --session-id→resolveSessionTrackingId; sticky correlation in context server; runtime-agnostic flag.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ8",
+      "classification": "RESOLVED",
+      "summary": "Launcher build-check per spawn; bootstrap lock serializes; session proxy protocol-version mismatch → fail-closed exit 69.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ9",
+      "classification": "RESOLVED",
+      "summary": "Multi-client bridge test-proven; daemon serializes writes; design delta: add dual-client concurrent test.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ10",
+      "classification": "MITIGATED",
+      "summary": "10-13 engineering days center estimate (8-10 day implementation + 2-3 day risk deltas). Excludes OpenCode tools: block upstream + ~125-ref migration.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ11",
+      "classification": "MITIGATED",
+      "summary": "macOS sun_path near 104-char limit; use SPECKIT_IPC_SOCKET_DIR override to shorter path. Windows is non-goal.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "RQ4a",
+      "classification": "RESOLVED",
+      "summary": "Protocol-version-drift on build swap → session proxy detects mismatch → exit 69 → client reinvokes with fresh handshake.",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F1",
+      "source": "RQ1",
+      "title": "Public CLI path is provably IPC-only",
+      "evidence": "file:.opencode/bin/mk-spec-memory-launcher.cjs:1210-1218",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F2",
+      "source": "RQ1",
+      "title": "Socket permissions owner-only (0o600)",
+      "evidence": "file:.opencode/bin/lib/model-server-supervision.cjs:1316",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F3",
+      "source": "RQ2",
+      "title": "TOOL_DEFINITIONS contains all 37 tools with JSON Schema inputSchemas",
+      "evidence": "file:.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:709-756",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F4",
+      "source": "RQ2",
+      "title": "~20 tools map to flat flags, ~10 need array flags, ~7 need --json escape",
+      "evidence": "file:.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-708",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F5",
+      "source": "RQ3",
+      "title": "Owner lease prevents concurrent daemons via exclusive write + re-read verification",
+      "evidence": "file:.opencode/bin/mk-spec-memory-launcher.cjs:365-403",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F6",
+      "source": "RQ3",
+      "title": "Bootstrap lock serializes ALL concurrent launcher starts (mkdir-based, 120s timeout, 300s stale)",
+      "evidence": "file:.opencode/bin/mk-spec-memory-launcher.cjs:1151-1194",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F7",
+      "source": "RQ3",
+      "title": "Respawn lock prevents concurrent respawns with full lease re-verification",
+      "evidence": "file:.opencode/bin/mk-spec-memory-launcher.cjs:671-752",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F8",
+      "source": "RQ3",
+      "title": "Orphan cleanup via lastKnownDescendantPids snapshot + process-tree reap",
+      "evidence": "file:.opencode/bin/mk-spec-memory-launcher.cjs:1022-1048",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F9",
+      "source": "RQ3",
+      "title": "Heartbeat self-shutdown on lease failure prevents stale ownership",
+      "evidence": "file:.opencode/bin/mk-spec-memory-launcher.cjs:427-443",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F10",
+      "source": "RQ4",
+      "title": "Session proxy classifies replayable vs unsafe tools, replays safe-only on recycle",
+      "evidence": "file:.opencode/bin/lib/launcher-session-proxy.cjs:33-58, 623-638",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F11",
+      "source": "RQ4",
+      "title": "Cold-start handled via 30-probe-attempt backoff, then -32001/exit 75",
+      "evidence": "file:.opencode/bin/lib/launcher-session-proxy.cjs:199-217, 776-791",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F12",
+      "source": "RQ6",
+      "title": "Node per-call overhead measured: ~40ms cold start on darwin/arm64",
+      "evidence": "HOST: 2026-06-06, 5x time node -e '' consistently 0.04s",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F13",
+      "source": "RQ7",
+      "title": "Session ID resolved from args.sessionId → transport metadata → CODEX_THREAD_ID → fallback",
+      "evidence": "file:.opencode/skills/system-spec-kit/mcp_server/context-server.ts:518-536",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F14",
+      "source": "RQ8",
+      "title": "Launcher artifactsReady() checks dist on every spawn",
+      "evidence": "file:.opencode/bin/mk-spec-memory-launcher.cjs:953-984",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    },
+    {
+      "id": "F15",
+      "source": "RQ8",
+      "title": "Session proxy protocol-version drift → fail-closed exit 69",
+      "evidence": "file:.opencode/bin/lib/launcher-session-proxy.cjs:644-656",
+      "_lineages": [
+        "deepseek-risk"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 0,
+    "resolvedQuestions": 12,
+    "keyFindings": 15,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

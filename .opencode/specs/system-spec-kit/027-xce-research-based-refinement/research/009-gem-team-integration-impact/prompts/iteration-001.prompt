@@ -1,0 +1,25 @@
+ROLE: You are a senior systems analyst doing INTEGRATION + IMPACT analysis, READ-ONLY. Working dir (--dir) = repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP the Gate-3 question; return your analysis as TEXT only.
+
+CONTEXT: A prior study (`specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/`) recommended 3 small refinements for this repo's "spec-kit" AI-agent system. They are ADAPTERS / optional-modes over existing contracts — NOT replacements. The system is mature; integration must preserve existing rich-markdown agent contracts.
+
+THE PROPOSAL (iteration 001, P1 = proposed child `012-typed-agent-io-adapter`): Add (1) a typed **dispatch header** for sub-agent calls (`dispatch_id`, a per-agent `task_definition` field set, and a lean `context_snapshot`/read-directive header) and (2) a normalized **output envelope** (`status` / numeric `confidence` alongside HIGH/MED/LOW / `failure_type`) emitted as a small block that PRECEDES OR FOLLOWS the existing markdown body (never replacing it). The dispatch-INPUT side is the PRIMARY gap; the output side is partly covered (@code already has typed escalation enums + dispatch modes). Full proposal: `research/007-gem-team-adoption-matrix/sub-packet-proposals.md` §P1.
+
+YOUR JOB: (a) HOW to integrate P1, and (b) WHICH existing surfaces it impacts, with `file:line` evidence.
+
+READ (likely-impacted surfaces): `.opencode/agents/code.md`, `.opencode/agents/review.md`, `.opencode/agents/context.md`, `.opencode/agents/debug.md`, `.opencode/agents/orchestrate.md` (how each declares its inputs + RETURN contract). Then grep for who CONSUMES agent output/dispatches agents: grep "task(", "dispatch", "RETURN", "confidence", "failure" across `.opencode/commands` and `.opencode/skills/system-spec-kit`.
+
+RULES: cite `file:line` for every impacted surface. Classify each: ADD / MODIFY / NONE. Be honest where the surface ALREADY has the structure (then change = small MODIFY or NONE). Flag backward-compat risk (existing agents/specs that assume the old prose contract).
+
+OUTPUT EXACTLY (NOTHING before "### IMPACT"):
+### IMPACT
+| Existing surface (file:line) | Change (ADD/MODIFY/NONE) | What changes | Severity (LOW/MED/HIGH) | Backward-compat risk |
+(one row per impacted agent/skill/command/doc)
+### INTEGRATION
+<numbered steps, smallest-viable-first; exactly where the new dispatch header + output envelope live; where a shared `agent-io-contract.md` should sit>
+### BREAKS / WATCH-OUTS
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ1 P1 typed-agent-io-adapter — integration & impact

@@ -1,0 +1,34 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead /Users/michelkerkmeester/.claude/CLAUDE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/SKILL.md[90m [offset=1, limit=500][0m
+[0m✱ [0mGrep "failure|retry|stuck|recovery|escalate|transient|pre-mortem|premortem|risk|halt"[90m in .opencode/agents · 156 matches[0m
+[0m✱ [0mGrep "failure|retry|stuck|recovery|escalate|transient|pre-mortem|premortem|risk|halt"[90m in .opencode/skills/deep-loop-runtime · 178 matches[0m
+[0m✱ [0mGrep "failure|retry|stuck|recovery|escalate|transient|pre-mortem|premortem|risk|halt"[90m in .opencode/skills/deep-research · 428 matches[0m
+[0m✱ [0mGlob ".opencode/skills/deep-research/references/**/*"[90m in . · 13 matches[0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/deep-research/references/convergence/convergence_recovery.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-research/references/convergence/convergence.md[90m [offset=1, limit=320][0m
+[0m→ [0mRead .opencode/agents/deep-research.md[90m [offset=130, limit=260][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=220, limit=330][0m
+[0m→ [0mRead .opencode/skills/deep-research/references/protocol/loop_protocol.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=300, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-research/references/protocol/loop_protocol.md[90m [offset=260, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=520, limit=90][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs[90m [offset=150, limit=80][0m
+[0m✱ [0mGrep "pre-mortem|premortem|pre mortem"[90m in .opencode · 43 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=1, limit=140][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=365, limit=20][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=160, limit=30][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs[90m [offset=440, limit=50][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=280, limit=40][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=510, limit=60][0m
+[0m→ [0mRead .opencode/agents/deep-review.md[90m [offset=140, limit=95][0m
+[0m→ [0mRead .opencode/skills/deep-research/SKILL.md[90m [offset=280, limit=155][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=270, limit=25][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md[90m [offset=180, limit=25][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md[90m [offset=199, limit=20][0m

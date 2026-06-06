@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 008, RQ8): **Task classification & fast-path modes** — Gem Team auto-classifies tasks into 7 types (bug-fix, feature, refactor, docs, config, typo, research) with complexity LOW/MEDIUM/HIGH, then SMART-ROUTES: research skips to output; LOW-complexity bug-fix/typo/docs use FAST_TRACK (skip planning); trivial typos use MICRO_TRACK (edit directly, skip all subagents). Evaluate this classification + phase-skipping.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: spec-folder Documentation Levels 1-3 (LOC/complexity-based, CLAUDE.md §3), the Level-1 "skip completion verification" and "trivial typo/whitespace exempt" rules, and Gate skip conditions. Judge whether gem-team's EXPLICIT task-type × complexity → track (MICRO/FAST/full) routing matrix is net-new vs our level/LOC + gate-skip model. Be precise about what the spec-kit already skips and when.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/README.md ("Task Classification" + "Smart Routing" + "Fast-Path Modes"), external/gem-team-main/.apm/agents/gem-orchestrator.agent.md (Phase 0 Complexity + Phase 1 Routing matrix + MICRO/FAST_TRACK eligibility)
+READ (spec-kit side): CLAUDE.md (§3 Documentation Levels + the Gate skip/exempt conditions), and grep for: "Level 1", "trivial", "complexity", "MICRO", "FAST_TRACK", "skip", "exempt", "Bypass" across CLAUDE.md and AGENTS.md
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-008-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ8 task classification & fast-path modes

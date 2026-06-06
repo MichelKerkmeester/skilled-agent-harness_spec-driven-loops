@@ -1,0 +1,28 @@
+ROLE: You are a skeptical READ-ONLY ADVERSARIAL VERIFIER. Your working dir (--dir) is the repo root. You MUST NOT write/edit/create any file or run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, return your ENTIRE analysis as TEXT only.
+
+CONTEXT: An earlier pass proposed adopting two "multi-agent context" mechanisms from Gem Team. TRY HARD TO REFUTE them — prove the spec-kit already covers them, or that adoption isn't worth the cost. Default to "the gap is smaller than claimed". Be the hostile reviewer.
+
+CLAIM 1 — "Context Package dispatch snapshot + typed read-directives" (verdict ADAPT, lead candidate): Gem hands every subagent a single consolidated per-plan `context_envelope.json` snapshot at dispatch, progressively enriched after each wave, with typed read-directives [external/gem-team-main/AGENTS.md:72, gem-orchestrator.agent.md:205-218]. The claim: spec-kit's continuity is file-DISTRIBUTED (handover.md → _memory.continuity → spec docs) and does not hand subagents ONE consolidated dispatch snapshot, and lacks typed `safe_to_assume`/`verify_before_use`/`do_not_re_read` directives.
+CLAIM 2 — "Memory taxonomy: gotcha/failure_mode as first-class retrieval labels" (verdict ADAPT): Gem memory stores typed `facts/patterns/gotchas/failure_modes/decisions/conventions` [external/gem-team-main/AGENTS.md:61]. The claim: spec-kit's memory MCP lacks gotcha/failure_mode as first-class retrieval/use types.
+
+YOUR JOB: DEEP-READ the real spec-kit files and decide for EACH claim: upheld / downgraded / refuted.
+DEEP-READ: .opencode/agents/context.md (full — what context object does it hand to dispatch?), .opencode/skills/system-spec-kit/SKILL.md (continuity, memory_context, context bundle), and grep across .opencode/skills/system-spec-kit/mcp_server/handlers + mcp_server/lib + mcp_server/schemas for: "context_envelope", "snapshot", "context bundle", "memory_context", "node_type", "memory_type", "gotcha", "failure_mode", "importance_tier", "category". Check whether `memory_context`/Context Package already produces a consolidated snapshot and whether memory rows already carry a type/category taxonomy.
+
+OUTPUT EXACTLY (NOTHING before "### VERDICTS"):
+
+### VERDICTS
+| Claim | Original verdict | Adversarial result (upheld/downgraded/refuted) | Revised verdict | Strongest counter-evidence (file:line) |
+|---|---|---|---|---|
+
+### EVIDENCE
+- [V-015-01] Claim 1 context-package snapshot: <deep-read findings, file:line, does @context/memory_context already hand a consolidated snapshot?>
+- [V-015-02] Claim 2 memory taxonomy: <deep-read findings, file:line, are gotcha/failure_mode already typed?>
+
+### REVISED NET-NEW VALUE
+<honest narrowed value of each; what is genuinely sub-packet-worthy>
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-V2 adversarial — multi-agent context (context-package + memory taxonomy)

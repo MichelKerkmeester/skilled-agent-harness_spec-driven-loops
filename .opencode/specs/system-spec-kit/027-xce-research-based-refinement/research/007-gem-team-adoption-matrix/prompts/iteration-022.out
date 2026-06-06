@@ -1,0 +1,40 @@
+### FINDINGS
+
+| Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+|---|---|---|---|---|---|
+| **quality_score** (plan self-assessment) | Planner computes overall + breakdown (prd_coverage, target_files_verified, contracts_complete, wave_assignment_valid) at plan creation time (`gem-planner.agent.md:109,173-181`). Orchestrator gates on it before execution (`gem-orchestrator.agent.md:117-120`). | **GAP.** @review scores *code output* post-execution (5 dimensions, 0-100 — `review.md:245,269`); @orchestrate has quality bands for sub-agent output (`orchestrate.md:488-496`). Neither performs a plan-level self-assessment before execution. | **ADAPT** | S | Low-cost gate: planner/decomposition step emits a self-score so orchestrator can skip plan-review for simple plans or escalate for weak ones. |
+| **reviewer_focus** (attention routing hint) | Derived from quality_score dimensions < 0.9; consumed by gem-reviewer:46 and gem-critic:43 to focus scrutiny on weak areas. | **GAP.** @review does a full rubric sweep every time (`review.md:170-231`); @orchestrate §5 checklist is scope-agnostic (`orchestrate.md:442-452`). No mechanism to narrow review focus to planner-identified weak spots. | **ADAPT** | S | Narrowest net-new: a 1-field hint in task dispatch that tells @review "focus on contracts/wave-assignment/PRD-coverage" instead of full sweep. Reduces review token cost. |
+| **conflicts_with** (task conflict declaration) | Each task declares `conflicts_with: [task_ids]`; orchestrator filters at wave execution (`gem-orchestrator.agent.md:128`); reviewer checks wave parallelism validity (`gem-reviewer.agent.md:55`). | **GAP.** @orchestrate decides parallel vs sequential from explicit `Depends:` field (`orchestrate.md:267-278`); no conflict declaration beyond dependency. Skill graph has `conflicts_with` edges (`graph-metadata.json`) but for skill routing, not task scheduling. | **REJECT** | — | Orchestrator's dependency model + DEG heuristic (`orchestrate.md:256-265`) + "DEFAULT PARALLEL CEILING: 2 agents" (`orchestrate.md:276`) already prevent most conflicts. Adding explicit conflict fields adds ceremony without changing dispatch behavior at the spec-kit's agent-count ceiling. |
+| **risk_score** (plan-level risk) | `plan_metrics.risk_score: low|medium|high` (`gem-planner.agent.md:172`). Drives pre-mortem depth and complexity gating (`gem-orchestrator.agent.md:117-119`). | **PARTIAL.** @orchestrate complexity estimation (`orchestrate.md:242-248`) gates agent behavior. @review §7 circuit breaker flags persistent low scores (`review.md:257-260`). No explicit risk field. | **REJECT** | — | Complexity estimation already drives behavior; risk_score is a label on information already captured by complexity level. Low marginal value. |
+| **DAG/wave scheduling** | Explicit wave numbering from dependency graph: "no deps → wave 1, dep.wave + 1" (`gem-planner.agent.md:81`). Orchestrator iterates waves (`gem-orchestrator.agent.md:127-128`). | **COVERED.** @orchestrate uses `Depends:` field + parallel/sequential dispatch (`orchestrate.md:267-278`) + CWB wave-of-5 ceiling (`orchestrate.md:278,652`). Functionally equivalent without explicit wave numbering. | **REJECT** | — | Covered by existing dispatch model. |
+| **pre_mortem / failure_modes** | Required for MEDIUM/HIGH plans (`gem-planner.agent.md:199-205`). Tasks carry per-task failure_modes (`gem-planner.agent.md:275-279`). | **PARTIAL.** @orchestrate §6 failure handling is runtime-only (`orchestrate.md:510-562`). No pre-execution failure-mode analysis at plan time. | **REJECT** | — | Pre-mortem is valuable but orthogonal to the review-routing focus of this iteration. Flagged for future. |
+
+**Bullets:**
+
+- **[F-022-01]** `quality_score` (plan self-assessment) is the clearest net-new. Spec-kit has code-output quality scoring (`review.md:245`) but no plan-quality self-assessment before execution. A lightweight version (overall + 3-4 breakdown dimensions) emitted during @orchestrate's DECOMPOSE step would gate whether plan-review is needed — saving tokens on simple plans. **ADAPT, effort S.**
+
+- **[F-022-02]** `reviewer_focus` is the lowest-cost, highest-signal adoption. A single `[reviewer_focus: "contracts, wave-assignment"]` field in the task dispatch prompt would let @review skip irrelevant rubric dimensions. Gem-team derives it mechanically from quality_score dimensions < 0.9 (`gem-planner.agent.md:110`). No architectural change needed — just a prompt-contract addition to @orchestrate's task format. **ADAPT, effort S.**
+
+- **[F-022-03]** `conflicts_with` is **not net-new**. @orchestrate's dependency model + DEG + 2-agent ceiling already prevents concurrent writes to the same resource. Gem-team needs explicit conflicts because it allows up to N concurrent agents per wave; spec-kit caps at 2 by default (`orchestrate.md:276`). **REJECT.**
+
+- **[F-022-04]** `risk_score` is a label on information already captured by @orchestrate's complexity estimation (`orchestrate.md:242-248`). The mapping is: LOW complexity ≈ low risk, HIGH complexity ≈ high risk. Adding a separate risk field adds ceremony without behavioral delta. **REJECT.**
+
+### NEGATIVE / RULED-OUT
+
+- **DAG wave numbering**: Functionally replaced by @orchestrate's `Depends:` + parallel/sequential dispatch + CWB wave ceiling. No behavioral gap.
+- **conflicts_with task field**: Spec-kit's 2-agent default ceiling and DEG heuristic make explicit conflict declarations unnecessary overhead.
+- **risk_score label**: Redundant with complexity estimation.
+- **pre_mortem / failure_modes at plan time**: Valuable but out-of-scope for this review-routing slice. Would be a separate adoption study.
+
+### OPEN QUESTIONS
+
+1. Should `quality_score` breakdown dimensions mirror gem-team's 4 (prd_coverage, target_files_verified, contracts_complete, wave_assignment_valid) or use spec-kit-native dimensions (spec_coverage, dependency_validity, scope_clarity, acceptance_criteria)?
+2. Should `reviewer_focus` be a free-text array or a constrained enum tied to @review's rubric dimensions?
+3. Where in @orchestrate's workflow does the self-score emit — during DECOMPOSE (step 4) or after DELEGATE (step 6)?
+
+### METRICS
+
+newInfoRatio: 0.25
+novelty: Two sub-features (quality_score plan self-assessment, reviewer_focus attention routing) are net-new gaps worth ADAPT-ing; the rest are covered or redundant.
+status: complete
+focus: RQ-M3 planner intelligence (quality_score / reviewer_focus / risk / conflict)

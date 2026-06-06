@@ -1,0 +1,36 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m✗ [0mRead research/007-gem-team-adoption-matrix/sub-packet-proposals.md failed[90m [offset=1, limit=220][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/research/007-gem-team-adoption-matrix/sub-packet-proposals.md
+[0m→ [0mRead .opencode/commands/speckit/plan.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/speckit/implement.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_implement_auto.yaml[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/deep/start-research-loop.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=1, limit=320][0m
+[0m✱ [0mGrep "task\(|dispatch|@code|@review|@context|@debug|subagent"[90m in .opencode/commands · 187 matches[0m
+[0m✱ [0mGlob "*.yaml"[90m in .opencode/commands/speckit/assets · 8 matches[0m
+[0m✱ [0mGlob "deep_start-*-loop_*.yaml"[90m in .opencode/commands/deep/assets · 8 matches[0m
+[0m→ [0mRead .opencode/commands/speckit/plan.md[90m [offset=261, limit=320][0m
+[0m→ [0mRead .opencode/commands/speckit/implement.md[90m [offset=261, limit=220][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_implement_auto.yaml[90m [offset=261, limit=386][0m
+[0m→ [0mRead .opencode/commands/deep/start-review-loop.md[90m [offset=1, limit=480][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=321, limit=520][0m
+[0m→ [0mRead .opencode/commands/speckit/complete.md[90m [offset=1, limit=460][0m
+[0m✱ [0mGlob "**/sub-packet-proposals.md"[90m in . · 3 matches[0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_plan_auto.yaml[90m [offset=1, limit=520][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml[90m [offset=1, limit=520][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml[90m [offset=1, limit=540][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=1, limit=520][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/sub-packet-proposals.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_plan_auto.yaml[90m [offset=521, limit=180][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=521, limit=420][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml[90m [offset=521, limit=360][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml[90m [offset=541, limit=420][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=941, limit=240][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_implement_confirm.yaml[90m [offset=180, limit=380][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_plan_confirm.yaml[90m [offset=230, limit=360][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_confirm.yaml[90m [offset=250, limit=420][0m
+[0m→ [0mRead .opencode/commands/memory/save.md[90m [offset=640, limit=60][0m
+[0m✱ [0mGrep "dispatch|agent|Task|subagent|prompt_pack|executor|reviewer_focus|spec_drift|pre-mortem|handoff"[90m in .opencode/commands/deep · 265 matches[0m
+[0m✱ [0mGrep "dispatch:|step_dispatch|prompt_pack|agent_config|agent:|sub-agent|Task tool|reviewer_focus|spec_drift|pre-mortem|handoff"[90m in .opencode/commands/deep/assets · 61 matches[0m

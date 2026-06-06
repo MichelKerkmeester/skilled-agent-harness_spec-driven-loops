@@ -1,0 +1,21 @@
+### FINDINGS
+[F-005-01] Peck explicitly forbids softening a reviewer Fail into “conditional or partial,” while spec-kit only blocks completion on validation/checklist failures without naming relabeling as forbidden. peck: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/implementer.md:40`; spec-kit: `CLAUDE.md:247-251`, `.opencode/skills/system-spec-kit/SKILL.md:428-449`. GAP real; VERDICT ADOPT; EFFORT S; RISK low; BLAST-RADIUS completion ritual wording + `/speckit:complete` prompts.
+
+[F-005-02] Peck’s completion template requires current verdict lines and says a Fail must be reported as a blocker, not completion; spec-kit reconciles completion metadata but lacks an equivalent “Fail => blocker report, no completion claim” output contract. peck: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/implementer.md:52-72`; spec-kit: `CLAUDE.md:247-258`. GAP real; VERDICT ADAPT; EFFORT S; RISK low; BLAST-RADIUS completion-summary/checklist/handover wording.
+
+[F-005-03] Peck names the gaming move “Partially tested” instead of “Not covered” to inflate a ratio; spec-kit says verify by positive checks and read test summaries, but does not ban coverage-label inflation. peck: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md:86-91`; spec-kit: `.opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md:21-32`. GAP partial; VERDICT DEFER; EFFORT M; RISK med; BLAST-RADIUS overlaps deferred T1 per-AC coverage gate, but anti-label-gaming wording can be reused.
+
+[F-005-04] Peck requires every report to include an explicit Verdict section even on long output; deep-review already requires each iteration file to end with an exact verdict line parsed by automation. peck: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md:79-83`, `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md:93`; spec-kit: `.opencode/skills/deep-review/SKILL.md:349-367`, `.opencode/skills/deep-review/SKILL.md:450`. GAP none for deep-review iteration output; VERDICT SKIP; EFFORT S; RISK low; BLAST-RADIUS none.
+
+[F-005-05] Peck’s anti-truncation rule is sharper than spec-kit’s final report contract: spec-kit says the final report records verdict and carries required sections, but does not explicitly say truncation is invalid if the verdict is omitted. peck: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md:93`; spec-kit: `.opencode/skills/deep-review/SKILL.md:440`, `.opencode/skills/deep-review/SKILL.md:458-461`. GAP partial; VERDICT ADAPT; EFFORT S; RISK low; BLAST-RADIUS deep-review synthesis/report validation wording.
+
+### RULED_OUT
+- General honesty is already shipped: “Never lie or fabricate” and “use UNKNOWN” exist. `AGENTS.md:38-42`, `CLAUDE.md:38-42`.
+- Generic verify-before-claiming is already shipped: completion requires validation/checklist evidence. `.opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md:21-33`, `CLAUDE.md:247-251`.
+- Deep-review already has a mandatory iteration verdict line; the net-new piece is anti-truncation for final reports, not the existence of verdicts. `.opencode/skills/deep-review/SKILL.md:349-367`.
+
+### METRICS
+newInfoRatio: 0.55 vs T1-T4 baseline
+novelty: Net-new value is sharp anti-softening/anti-truncation language; deep-review verdict mechanics mostly already exist.
+status: complete
+sources: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/implementer.md:40`, `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/implementer.md:52-72`, `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md:79-93`, `CLAUDE.md:247-258`, `.opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md:21-33`, `.opencode/skills/deep-review/SKILL.md:349-367`, `.opencode/skills/deep-review/SKILL.md:440-461`

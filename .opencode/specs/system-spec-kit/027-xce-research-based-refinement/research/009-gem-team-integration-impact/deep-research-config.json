@@ -1,0 +1,30 @@
+{
+  "topic": "Integration & impact analysis for the 3 gem-team adoption proposals from research/007 — P1 typed-agent-io-adapter (child 012), P2 scoped-preexec-and-handoff-gates (child 013), P3 planner-review-focus-and-drift-hint (child 014). For each proposal: (a) HOW to integrate it into the LIVE spec-kit (concrete steps, where the new contract/fields live), and (b) WHICH existing skills / commands / agents / docs it impacts — change-type (add/modify/none), severity, and backward-compat risk. Read-only analysis; orchestrator writes state. Output: an impact matrix + integration roadmap + smallest-viable-first-step.",
+  "maxIterations": 6,
+  "convergenceThreshold": 0.05,
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement",
+  "artifactDir": "specs/system-spec-kit/027-xce-research-based-refinement/research/009-gem-team-integration-impact",
+  "createdAt": "2026-06-06T10:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high",
+    "variant": "high",
+    "timeoutSeconds": 1200,
+    "dispatchPattern": "read-only-analysis; orchestrator-writes-state (Gate-3-safe, race-safe)"
+  },
+  "lineage": {
+    "sessionId": "2026-06-06-027-gem-team-integration-impact",
+    "lineageMode": "new",
+    "generation": 1,
+    "iterationStart": 1
+  },
+  "scope_note": "Separate research packet (folder-local iterations 001-005), focused on integration/impact of 007's proposals. Not a new external-framework study.",
+  "subject_proposals": {
+    "P1": "012-typed-agent-io-adapter — typed dispatch header + normalized output envelope (status/confidence/failure_type) as an adapter over @code/@review/@context",
+    "P2": "013-scoped-preexec-and-handoff-gates — debug-handoff schema + boundary contract-first + pre-mortem field",
+    "P3": "014-planner-review-focus-and-drift-hint — reviewer_focus hint + spec_drift/update_recommended write-back"
+  }
+}

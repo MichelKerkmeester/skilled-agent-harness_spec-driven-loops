@@ -35,8 +35,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md",
-      ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/005-lifecycle-redirect-metadata.md",
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md",
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -44,15 +44,15 @@
     ],
     "entities": [
       {
-        "name": "004-ambiguous-brief-rendering.md",
+        "name": "ambiguous-brief-rendering.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md",
+        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md",
         "source": "derived"
       },
       {
-        "name": "005-lifecycle-redirect-metadata.md",
+        "name": "lifecycle-redirect-metadata.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/005-lifecycle-redirect-metadata.md",
+        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md",
         "source": "derived"
       },
       {
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "NC-004 (`01--native-mcp-tools/004-ambiguous-brief-rendering.md:38`) and NC-005 (`005-lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcp_server` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcp_server/tests/` during the skill extraction). Operators following the doc see \"No test files found.\" The audit found exactly these two scenarios affected.",
+    "causal_summary": "NC-004 (`01--native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcp_server` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcp_server/tests/` during the skill extraction). Operators following the doc see \"No test files found.\" The audit found exactly these two scenarios affected.",
     "created_at": "2026-05-26T21:20:49.841Z",
-    "last_save_at": "2026-05-30T10:12:02.002Z",
+    "last_save_at": "2026-06-06T09:38:26.649Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,28 @@
+ROLE: You are a skeptical READ-ONLY ADVERSARIAL VERIFIER. Your working dir (--dir) is the repo root. You MUST NOT write/edit/create any file or run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, return your ENTIRE analysis as TEXT only.
+
+CONTEXT: An earlier pass proposed adopting two Gem Team "learning & knowledge" mechanisms. TRY HARD TO REFUTE them. Default to "the gap is smaller than claimed". Be the hostile reviewer.
+
+CLAIM 1 — "Auto-skills extraction with thresholds" (verdict ADAPT): Gem auto-extracts reusable `SKILL.md` from successful tasks during the orchestrator Enrich step, gated by reuse ≥2× and confidence ≥0.90/0.95 [external/gem-team-main/.apm/agents/gem-skill-creator.agent.md, gem-orchestrator.agent.md:131]. The claim: spec-kit skill creation (/create) is human-initiated and deep-improvement is evaluator-first, so AUTOMATIC threshold-gated extraction from run-learnings is net-new.
+CLAIM 2 — "Explicit knowledge-source precedence order" (verdict ADAPT, high value): Gem mandates a fixed priority PRD → codebase → AGENTS.md → Context7 → docs [external/gem-team-main/AGENTS.md:60]. The claim: spec-kit has no explicit single conflict-resolution precedence across its knowledge sources (spec docs, code, CLAUDE.md/AGENTS.md, memory).
+
+YOUR JOB: DEEP-READ the real spec-kit files and decide for EACH claim: upheld / downgraded / refuted.
+DEEP-READ: .opencode/skills/deep-improvement/SKILL.md (does it auto-extract skills from learnings?), .opencode/commands/create/ (the /create command), .opencode/skills/sk-doc/SKILL.md, and CLAUDE.md / AGENTS.md (search for any existing knowledge-source precedence / "source of truth" / Logic-Sync precedence). Grep for: "extract", "promote", "SKILL.md", "confidence", "precedence", "source of truth", "PRD", "knowledge priority", "Logic-Sync".
+
+OUTPUT EXACTLY (NOTHING before "### VERDICTS"):
+
+### VERDICTS
+| Claim | Original verdict | Adversarial result (upheld/downgraded/refuted) | Revised verdict | Strongest counter-evidence (file:line) |
+|---|---|---|---|---|
+
+### EVIDENCE
+- [V-017-01] Claim 1 auto-skills: <deep-read findings, file:line — does deep-improvement/​/create already auto-extract?>
+- [V-017-02] Claim 2 knowledge precedence: <deep-read findings, file:line — does CLAUDE.md already define a precedence order (e.g. Logic-Sync)?>
+
+### REVISED NET-NEW VALUE
+<honest narrowed value of each; what is genuinely sub-packet-worthy>
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-V4 adversarial — learning & knowledge (auto-skills + knowledge precedence)

@@ -51,7 +51,6 @@
       ".opencode/agents/deep-review.md",
       ".opencode/skills/sk-code-review/SKILL.md",
       ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md",
       "implementation-summary.md",
       "spec.md"
     ],
@@ -96,12 +95,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code-review/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "001-base-non-interactive-invocation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 realistic scenarios across 6 categories, with RCAF-pattern operator prompts mirroring how humans actually invoke code review with an AI assistant - executable both natively (Claude Code / OpenCode) and via external CLIs (cli-codex, cli-opencode, cli-gemini, cli-copilot).",
     "created_at": "2026-05-18T07:49:27.225Z",
-    "last_save_at": "2026-06-05T12:47:32.879Z",
+    "last_save_at": "2026-06-06T09:52:35.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

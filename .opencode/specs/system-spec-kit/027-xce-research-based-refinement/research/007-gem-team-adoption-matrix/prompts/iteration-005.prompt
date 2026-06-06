@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 005, RQ5): **Verification & quality gates** — Gem Team's verification stack: gem-reviewer ("zero-hallucination filter": OWASP scan, secrets/PII detection, PRD compliance), gem-critic (challenges assumptions, finds edge cases, spots over-engineering), CONTRACT-FIRST (contract tests written before implementation), TDD, and "implementer never reviews own work".
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: sk-code verification (the Iron Law — no completion claims without stack verification), sk-code-review (findings-first severity, security/correctness minimums), the Four Laws + COMPLETION VERIFICATION gate in CLAUDE.md, and the @review / @debug agents. Judge what is genuinely net-new: e.g. an explicit zero-hallucination/source-verified output gate, contract-first test ordering, OWASP/secrets scanning as a standing step, or critic-style assumption challenging.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/README.md ("Quality & Security" + "Intelligence: Source Verified"), external/gem-team-main/AGENTS.md (rules 3,4,6), external/gem-team-main/.apm/agents/gem-reviewer.agent.md, external/gem-team-main/.apm/agents/gem-critic.agent.md
+READ (spec-kit side): .opencode/skills/sk-code-review/SKILL.md, CLAUDE.md (Iron Law / Four Laws / COMPLETION VERIFICATION), and grep for: "verify", "Iron Law", "OWASP", "contract-first", "TDD", "hallucinat", "secrets", "zero-hallucination" across .opencode/skills/sk-code and .opencode/agents/review.md
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-005-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ5 verification & quality gates

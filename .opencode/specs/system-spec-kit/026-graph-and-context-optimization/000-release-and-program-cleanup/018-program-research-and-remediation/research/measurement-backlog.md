@@ -18,10 +18,11 @@ The 028 research found that 026 shipped mechanisms but deferred the measurements
 - **Status:** NOT RUN (and gated by item 1 — the model must load first).
 - **Decision unblocked:** a calibrated default for `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` + a free-RAM preflight warning before spawn.
 
-## 4. Fan-out lineage diversity (angles 31, 35) — MEDIUM, SELF-CONTAINED
-- **Run:** send the SAME angle set through all three models (MiMo / DeepSeek / MiniMax-M3) and measure finding overlap vs unique findings. (The 028 run partitioned angles for coverage, so it cannot answer this.)
-- **Status:** NOT RUN. Fully feasible now (all three providers live + smoke-tested). Lowest external dependency of the backlog.
-- **Decision unblocked:** whether heterogeneous fan-out finds materially more than N runs of one model (justifies multi-model deep loops).
+## 4. Fan-out lineage diversity (angles 31, 35) — RUN 2026-06-06 ✔
+- **Run (executed):** 5 still-open angles (8/17/26/30/40) sent through all three lanes (DeepSeek/RCAF+`--pure`, MiniMax-M3/TIDD-EC, MiMo/COSTAR), 2 runs each, serial, pre-registered thresholds; 104 distinct finding-clusters extracted and matched. Artifacts + audit matrix: `experiments/fanout-diversity/`.
+- **Result:** cross-model Jaccard 0.42–0.43 ≈ same-model run1↔run2 Jaccard 0.405 — divergence is real (<<0.6) but **stochastic, not model-identity-driven**. Trio union 78 vs best same-model pair (MiniMax-M3) 74 = 1.05× lift, below the pre-registered 1.25× materiality bar.
+- **Decision:** heterogeneous fan-out is NOT justified by coverage volume (re-running the strongest lane matches it); it IS justified as blind-spot insurance + verdict adjudication (M3 double-missed a verified watcher-bypass defect that DeepSeek/MiMo caught; cross-lane disagreement exposed 1 false claim). Recommended deep-loop default: homogeneous fan-out on the task-matched lane + one heterogeneous skeptic seat.
+- **Bonus verified defect:** live folder renames take the watcher `unlink`+`add` path (`mcp_server/lib/ops/file-watcher.ts:575-582`), bypassing `reconcileMoves` entirely and destroying embeddings; scan-time reconcile only repairs moves that land between scans. Fix candidate for a follow-up packet.
 
 ## 5. Skill-advisor calibration (angles 27-29) — MEDIUM
 - **Run:** ship the semantic-vs-lexical diff report and a 0.8-threshold calibration curve from the existing shadow-delta data.

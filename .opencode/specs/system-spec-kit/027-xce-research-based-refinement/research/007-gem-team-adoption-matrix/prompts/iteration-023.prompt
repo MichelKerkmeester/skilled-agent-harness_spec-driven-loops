@@ -1,0 +1,34 @@
+## Context
+Two AI agent frameworks share this repo (cwd = repo root = your --dir). SUBJECT A = "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`. SUBJECT B = this repo's "spec-kit" (`.opencode/skills/**`, `.opencode/agents/**`). Iteration 023 of a READ-ONLY adoption study (phase 007). Spec folder pre-approved — skip Gate-3; change nothing. The spec-kit is mature; bar for net-new is high.
+Focus: OPERATIONAL signals buried in the 64KB `external/gem-team-main/CHANGELOG.md` that earlier angles flagged but did not fully evaluate — especially (a) FOCUS-SCOPED research-findings lookup at agent init before broad memory expansion, (b) plan-template cache + high-confidence bypasses, (c) shared-component pre-save check, (d) failure-log reinjection into the next attempt, (e) accessibility-tree snapshots over screenshots. Find which are genuinely net-new for the spec-kit.
+
+## Objective
+For each operational signal, decide ADOPT / ADAPT / REJECT for the spec-kit, with file:line evidence (CHANGELOG line + spec-kit equivalent or GAP).
+
+## Style
+precise, no preamble
+
+## Tone
+neutral, skeptical
+
+## Audience
+automated pipeline — parsed by a script. Preamble, prose wrapping, or writing to a file BREAKS parsing.
+
+## Response
+Return your whole analysis as your FINAL TEXT MESSAGE. Do NOT write/create/edit any file. Output EXACTLY this, nothing before "### FINDINGS":
+### FINDINGS
+| Signal | gem CHANGELOG mechanism (line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+(rows; then 2-4 bullets [F-023-01]..)
+### NEGATIVE / RULED-OUT
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-M4 CHANGELOG operational signals
+
+---
+Pre-plan (lean — do NOT read all 64KB):
+1. Grep `external/gem-team-main/CHANGELOG.md` for: "research_findings", "template cache", "shared component", "failure log", "reinject", "accessibility", "focus_area", "bypass"; read only the matching neighborhoods.
+2. Check spec-kit equivalents: grep `.opencode/skills/system-spec-kit` + `.opencode/skills/deep-research` for "memory_context", "research", "cache", "retry", "reinject".
+3. Verdict each signal with both-side file:line; prefer REJECT where the spec-kit already covers it.

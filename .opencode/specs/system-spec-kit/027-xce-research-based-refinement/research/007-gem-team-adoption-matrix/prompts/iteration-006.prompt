@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 006, RQ6): **Diagnose-then-fix enforcement** — Gem Team enforces "debugger diagnoses → implementer fixes → re-verify" at FOUR levels: (1) planner MUST pair every debugger task with a later implementer task carrying a `debugger_diagnosis` field; (2) orchestrator pre-wave gate verifies `debugger_diagnosis` has root_cause/target_files/fix_recommendations, confidence<0.85 escalates; (3) implementer Bug-Fix Mode validates the diagnosis first (missing ⇒ needs_revision); (4) reviewer verifies the pairing exists. Evaluate this structured enforcement.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalent: the @debug agent's 5-phase root-cause methodology + `debug-delegation.md` (exclusive write), and the diagnose-before-fix discipline in CLAUDE.md. Judge whether gem-team's MULTI-LEVEL machine-checked enforcement (a populated `debugger_diagnosis` contract gating the fix) is net-new vs our prose discipline.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/AGENTS.md (rule 5 "Diagnose-then-fix" — the 4 levels), external/gem-team-main/.apm/agents/gem-debugger.agent.md, external/gem-team-main/.apm/agents/gem-implementer.agent.md
+READ (spec-kit side): .opencode/agents/debug.md, and grep for: "diagnose", "root_cause", "root cause", "debug-delegation", "5-phase", "RCA" across .opencode/agents and .opencode/skills/system-spec-kit/templates
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-006-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ6 diagnose-then-fix enforcement

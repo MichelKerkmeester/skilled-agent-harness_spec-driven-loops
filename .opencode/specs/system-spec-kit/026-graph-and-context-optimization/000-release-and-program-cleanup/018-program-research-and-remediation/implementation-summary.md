@@ -10,15 +10,16 @@ contextType: "implementation-summary"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"
-    last_updated_at: "2026-06-06T10:30:00Z"
+    last_updated_at: "2026-06-06T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Merged the 026 program research + its remediation into one phase"
-    next_safe_action: "Run the measurement experiments in research/measurement-backlog.md"
+    recent_action: "Ran backlog item 4 (fan-out diversity) and wrote the analysis"
+    next_safe_action: "Run backlog item 5 (advisor calibration) or item 2 (cloud A/B)"
     blockers: []
     key_files:
       - "spec.md"
       - "implementation-summary.md"
       - "research/research.md"
+      - "research/experiments/fanout-diversity/analysis.md"
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -45,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A two-stage phase: (1) a three-model deep research over the closed 026 program (50 angles across the 8 tracks + runtime/process themes), and (2) the verified code remediation it drove. The research artifacts (angles, per-model notes, synthesis, measurement backlog) live in `research/`; the four code fixes shipped to the runtime.
+A two-stage phase: (1) a three-model deep research over the closed 026 program (50 angles across the 8 tracks + runtime/process themes), and (2) the verified code remediation it drove. The research artifacts (angles, per-model notes, synthesis, measurement backlog) live in `research/`; the four code fixes shipped to the runtime. A third stage followed on 2026-06-06: the first measurement-backlog experiment (item 4, fan-out lineage diversity) was executed and analyzed in `research/experiments/fanout-diversity/`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,6 +67,10 @@ Research ran as a parallel three-lane fan-out (one provider per lane, model-tune
 - `deep-improvement/scripts/skill-benchmark/live-executor.cjs`
 - `mcp_server/tests/launcher-ipc-bridge.vitest.ts`
 - `system-code-graph/mcp_server/handlers/query.ts` (+ `tests/code-graph-query-handler.vitest.ts`)
+
+### Measurement Experiment: Fan-Out Diversity (2026-06-06)
+
+Backlog item 4 ran as 6 serial cli-opencode dispatches (3 lanes × 2 runs, same 5 still-open angles, pre-registered design + thresholds, outputs staged outside the repo until completion). Results: angle 35 — models genuinely diverge (cross-model Jaccard 0.42–0.43, far under the 0.6 bar); angle 31 — heterogeneity adds no material coverage over resampling one model (same-model Jaccard 0.405 ≈ cross-model; trio union 78 vs best single-model pair 74 = 1.05×, below the 1.25× bar). Measured value of mixing models: blind-spot insurance (MiniMax-M3 double-missed a verified defect DeepSeek/MiMo caught) and cross-lane adjudication (one false claim exposed). Bonus verified defect: live folder renames bypass `reconcileMoves` via the watcher unlink+add path and destroy embeddings (`mcp_server/lib/ops/file-watcher.ts:575-582`).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,5 +101,6 @@ Research ran as a parallel three-lane fan-out (one provider per lane, model-tune
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- The measurement experiments (q8/fp16 bench, cloud-vs-local A/B, RSS calibration, fan-out diversity, advisor calibration) are deferred runs, tracked in `research/measurement-backlog.md` and `handover.md`. The q8/fp16 + RSS items are blocked on a missing `onnxruntime-common` dep.
+- The remaining measurement experiments (q8/fp16 bench, cloud-vs-local A/B, RSS calibration, advisor calibration) are deferred runs, tracked in `research/measurement-backlog.md` and `handover.md`. The q8/fp16 + RSS items are blocked on a missing `onnxruntime-common` dep. Fan-out diversity (item 4) is done — `research/experiments/fanout-diversity/analysis.md`.
+- The watcher-rename embedding-loss defect verified by the item-4 experiment is documented but NOT fixed in this packet (fix candidate for a follow-up).
 <!-- /ANCHOR:limitations -->

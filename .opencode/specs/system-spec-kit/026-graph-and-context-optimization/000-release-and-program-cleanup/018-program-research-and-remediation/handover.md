@@ -12,8 +12,10 @@
 
 ## What remains: the measurement experiments (runs, not fixes)
 
+### Done
+- **Item 4: fan-out lineage diversity** (angles 31, 35) — **RUN 2026-06-06** (`research/experiments/fanout-diversity/analysis.md`). Verdict: models diverge (cross-model J 0.42 << 0.6) but no more than one model diverges from itself (same-model J 0.405); trio union only 1.05× the best same-model pair (bar was 1.25×). Heterogeneous fan-out earns its seat as blind-spot insurance + adjudication, not coverage. Bonus verified defect: watcher rename path bypasses `reconcileMoves` and destroys embeddings (`lib/ops/file-watcher.ts:575-582`) — fix candidate.
+
 ### Unblocked now — start here
-- **Item 4: fan-out lineage diversity** (angles 31, 35). The most self-contained and fully unblocked — all three providers (MiMo / DeepSeek / MiniMax-M3) are configured and smoke-tested. Run the SAME angle set through all three models and measure finding overlap vs unique findings to settle whether heterogeneous fan-out finds materially more than N runs of one model.
 - **Item 5: skill-advisor calibration** (angles 27-29) and **Item 2: cloud-vs-local retrieval A/B** (angle 11) have no model-availability blocker (item 2 needs cloud API keys + a re-index pass).
 
 ### Blocked on a dependency repair
@@ -22,4 +24,4 @@
 
 ## Suggested next step
 
-Run item 4 (fan-out diversity) first — it is unblocked, self-contained, and answers a meta-question the rest of the deep-loop tooling depends on. Then tackle item 2 (cloud A/B) if cloud keys are available. Defer items 1/3 until `onnxruntime-common` is repaired on a verifiable host.
+Item 4 is done (2026-06-06). Next: item 5 (skill-advisor calibration — shadow-delta data exists, needs the report harness wired) or item 2 (cloud A/B) if cloud keys are available. Defer items 1/3 until `onnxruntime-common` is repaired on a verifiable host. Also consider a small fix packet for the verified watcher-rename embedding-loss defect surfaced by the item-4 experiment.

@@ -1,0 +1,30 @@
+ROLE: You are a senior systems analyst doing INTEGRATION + IMPACT analysis, READ-ONLY. Working dir (--dir) = repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3; return analysis as TEXT only.
+
+CONTEXT: A prior study recommended 3 small refinements for this repo's "spec-kit" AI-agent system: P1 typed agent I/O adapter, P2 scoped pre-exec/handoff gates, P3 planner reviewer-focus + spec-drift hint. All adapters/optional-modes over existing contracts. Full proposals: `research/007-gem-team-adoption-matrix/sub-packet-proposals.md`.
+
+FOCUS (iteration 004 — CROSS-CUTTING & GOVERNANCE impact): the system-wide concerns that span all three proposals. Determine impact + integration for:
+- **Governance docs:** do `CLAUDE.md` / `AGENTS.md` (the Gates, the Four Laws, Completion Verification, agent-routing §5) need any change to reference the new typed contract or the new gates?
+- **Shared contract:** where should a single shared `agent-io-contract.md` live, and how do P1's envelope + P2's gate fields + P3's advisory fields COEXIST in one schema without bloat?
+- **Skill advisor:** does the typed contract affect skill routing (`system-skill-advisor`)?
+- **Validation/tests:** do `validate.sh` / spec-doc-structure / any CI guards need to validate the new fields?
+- **Backward-compat:** existing agents/specs/continuity that assume today's prose contracts — what keeps working untouched?
+
+YOUR JOB: which governance/validation/shared surfaces are impacted, and how to integrate cleanly (keeping everything optional/advisory so nothing existing breaks).
+
+READ: `CLAUDE.md` (§1 Gates/Four Laws, §2 Gates, §5 Agent Routing), `AGENTS.md` (same sections), `.opencode/skills/system-skill-advisor/SKILL.md`, and grep for "validate", "Gate ", "Four Laws", "completion" across `.opencode/skills/system-spec-kit/scripts/spec` and `.opencode`.
+
+RULES: cite `file:line`; classify ADD/MODIFY/NONE; default to "optional/advisory ⇒ NONE-or-small-MODIFY" for governance unless a real gate is needed; flag anything that would force a breaking change.
+
+OUTPUT EXACTLY (NOTHING before "### IMPACT"):
+### IMPACT
+| Existing surface (file:line) | Change (ADD/MODIFY/NONE) | What changes | Severity (LOW/MED/HIGH) | Backward-compat risk |
+(rows)
+### INTEGRATION
+<numbered steps: shared-contract placement, field coexistence, governance/validation touch-ups, what stays untouched>
+### BREAKS / WATCH-OUTS
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ4 cross-cutting & governance — integration & impact

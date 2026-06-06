@@ -1,0 +1,28 @@
+{
+  "topic": "Can the system-spec-kit memory MCP (mk-spec-memory, 37 tools) be replaced by a CLI with ZERO feature loss? Evaluate three architectures — (a) pure per-invocation CLI, (b) CLI front-end over the existing daemon/IPC socket (kill only the MCP protocol layer), (c) hybrid CLI that auto-spawns the daemon on demand — scoring each against the zero-feature-loss bar across 5 key questions: KQ1 parity matrix for all 37 tools with a CLI equivalent per tool (prior art: generate-context.js already does memory_save; ~11 maintenance CLIs under scripts/dist/memory/); KQ2 daemon-dependency audit (warm embedder, file-watcher reindex, async retry queue/enrichment, RSS watchdog, single-writer serialization, warm session briefs — what dies per architecture); KQ3 MCP-only affordances and replacements (tool-schema auto-discovery, runtime permissioning, Zod boundary validation, -32001 retryable plus session-proxy replay semantics); KQ4 integration-surface migration (runtime hooks for Claude/OpenCode/Codex/Copilot calling session_bootstrap and memory_context, agents allowed-tools, /doctor flows, deep-loop allowed-tools); KQ5 comparison of a/b/c with effort estimates, risk register, go/no-go recommendation. Evidence: a mid-session MCP disconnect left Claude Code unable to reconnect while a CLI re-bridges per call; the launcher/IPC layer already speaks JSON-RPC over daemon-ipc.sock.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-06-06T08:50:55Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "lineage": {
+    "sessionId": "dr-20260606T105055-fanout028",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout": {
+    "executors": [
+      { "kind": "cli-opencode", "model": "deepseek/deepseek-v4-pro", "reasoningEffort": "high", "label": "deepseek", "count": 1, "iterations": 5 },
+      { "kind": "cli-opencode", "model": "minimax-coding-plan/MiniMax-M3", "reasoningEffort": "high", "label": "minimax", "count": 1, "iterations": 5, "timeoutSeconds": 1500 },
+      { "kind": "cli-opencode", "model": "xiaomi-token-plan-ams/mimo-v2.5-pro", "reasoningEffort": "high", "label": "mimo", "count": 1, "iterations": 5 }
+    ],
+    "concurrency": 2
+  }
+}

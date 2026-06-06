@@ -1,0 +1,27 @@
+### FINDINGS
+| Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+|---|---|---|---|---|---|
+| Explicit task-type × complexity routing matrix | 7 task types plus LOW/MEDIUM/HIGH assessment and smart routing [SOURCE: external/gem-team-main/README.md:91-93]; scope-based complexity definitions [SOURCE: external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:71-74] | Partial equivalent: spec-kit uses LOC/risk documentation levels, not a 7-type routing matrix [SOURCE: AGENTS.md:279-284]; `sk-code` does surface detection plus intent classification, but not Gem’s task-type track table [SOURCE: .opencode/skills/sk-code/SKILL.md:12-15] | ADAPT | S | Medium: clearer operator-facing routing, but mostly consolidation of existing level/gate/skill routing. |
+| Research skips implementation/planning path | Research tasks “skip to output” in smart routing [SOURCE: external/gem-team-main/README.md:92-93] | Equivalent exists: pure exploration/reading is excluded from system-spec-kit activation [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:48-54]; read-only analysis suppresses Gate 3 when alone [SOURCE: AGENTS.md:209-210]; `@context` is the read-only exploration entry point [SOURCE: .opencode/agents/CONTEXT.md:25-34] | REJECT | S | Low: already handled by read-only routing and Gate 3 disqualifiers. |
+| FAST_TRACK for LOW bug-fix/typo/config/docs | LOW complexity plus task type in bug-fix/typo/config/docs skips Phase 2 and integration check; skips reviewer/designer/envelope/memory persist [SOURCE: external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:84-95] | Partial equivalent: Level 1 reduces required docs for <100 LOC [SOURCE: AGENTS.md:279-282], Level 1 skips completion-checklist requirement [SOURCE: AGENTS.md:226,252], and `@code` has a low-complexity fast path for one-file <20 LOC verified surgical fixes [SOURCE: .opencode/agents/code.md:68-70] | ADAPT | S | Medium: adopt as an explicit policy overlay, but keep verification evidence and avoid blanket reviewer/memory skips for risky docs/config. |
+| MICRO_TRACK for trivial typos/direct edit | TRIVIAL typo, known location, no search; skip Phase 2/3 and all subagents, then output [SOURCE: external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:97-107] | Equivalent for narrow typo/whitespace already exists: single typo fixes under 5 chars and whitespace-only changes do not activate system-spec-kit [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:48-54]; AGENTS also exempts single typo/whitespace fixes under 5 chars [SOURCE: AGENTS.md:293] | REJECT | S | Low for typos; Gem’s broader “single-line config/trivial rename” should not be imported as MICRO without verification/scope safeguards. |
+
+- [F-008-01] Gem’s net-new piece is not “fast paths” themselves; it is the explicit matrix that combines task type, complexity, and track selection [SOURCE: external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:80-107]. Spec-kit already has LOC/risk levels and several skip conditions, but they are distributed across documentation levels, Gate 3, and agent fast paths [SOURCE: AGENTS.md:279-293; .opencode/agents/code.md:68-70].
+- [F-008-02] REJECT research-skip as a new feature: Gem’s research shortcut maps cleanly to spec-kit’s existing pure-read exclusion and read-only `@context` route [SOURCE: external/gem-team-main/README.md:92-93; .opencode/skills/system-spec-kit/SKILL.md:48-54; .opencode/agents/CONTEXT.md:25-34].
+- [F-008-03] ADAPT FAST_TRACK as documentation/routing clarity only. Spec-kit already reduces overhead for Level 1 and low-complexity surgical work, but Gem’s skip list is more aggressive because it skips reviewer, envelope update, and memory persist [SOURCE: external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:89-95; AGENTS.md:226,252; .opencode/agents/code.md:68-70].
+- [F-008-04] REJECT MICRO_TRACK for trivial typos because spec-kit already exempts narrow typo/whitespace changes; do not expand it to trivial renames/config toggles without preserving verification and scope controls [SOURCE: external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:99-107; AGENTS.md:293; .opencode/skills/sk-code/SKILL.md:43-45].
+
+### NEGATIVE / RULED-OUT
+- Do not adopt “research skips to output” as a new route; spec-kit already routes read-only work away from spec-folder mutation gates and into read-only context retrieval.
+- Do not import MICRO_TRACK’s broader examples wholesale: “trivial renames” and “truth-table toggles” can be behavior-affecting despite being one-line.
+- Do not let FAST_TRACK bypass fresh verification evidence; spec-kit’s Iron Law still requires verification before completion claims.
+
+### OPEN QUESTIONS
+- Should spec-kit expose a compact public matrix that maps `research/docs/config/typo/bug-fix/refactor/feature` to existing Gate 3, documentation level, `@context`, `@markdown`, and `@code` routes?
+- Should config-only one-line changes get a named “fast path,” or remain covered by Level 1 plus normal verification?
+
+### METRICS
+newInfoRatio: 0.58
+novelty: Gem Team offers a clearer explicit routing matrix, but most phase-skipping behavior already exists in spec-kit as distributed level, gate, and agent fast-path rules.
+status: complete
+focus: RQ8 task classification & fast-path modes

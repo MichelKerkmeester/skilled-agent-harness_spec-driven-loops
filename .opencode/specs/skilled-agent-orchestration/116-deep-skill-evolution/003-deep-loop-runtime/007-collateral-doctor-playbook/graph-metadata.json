@@ -45,7 +45,7 @@
     "key_files": [
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/commands/doctor/update.md",
-      ".opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md",
       ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
       "plan.md",
       "tasks.md",
@@ -67,9 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "009-deep-loop-graph-convergence-yaml-fire.md",
+        "name": "deep-loop-graph-convergence-yaml-fire.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After phases 003 (script shims), 004 (MCP tool surface removal), and 005 (workflow YAML migration), 4 collateral files still reference the deleted `mcp__mk_spec_memory__deep_loop_graph_<X>` MCP tools. These references will fail at runtime: `/doctor deep-loop` health checks will dispatch against tool IDs that no longer exist, and the `system-code-graph` manual playbook scenario will fail assertion gates that probe the removed tool surface.",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-06-05T12:47:32.303Z",
+    "last_save_at": "2026-06-06T09:52:34.900Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

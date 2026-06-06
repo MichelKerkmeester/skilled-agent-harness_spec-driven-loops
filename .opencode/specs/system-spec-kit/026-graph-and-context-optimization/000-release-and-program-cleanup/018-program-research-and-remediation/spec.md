@@ -11,10 +11,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"
-    last_updated_at: "2026-06-06T10:30:00Z"
+    last_updated_at: "2026-06-06T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Merged the 026 program research + its remediation into one phase"
-    next_safe_action: "Run the measurement experiments in research/measurement-backlog.md"
+    recent_action: "Ran backlog item 4 (fan-out diversity experiment)"
+    next_safe_action: "Run backlog item 5 (advisor calibration) or item 2 (cloud A/B)"
     blockers: []
     key_files:
       - "spec.md"
@@ -69,10 +69,11 @@ Deep-research the closed 026 program across 50 falsifiable angles using three di
 - A three-model parallel-lane deep research (MiMo-V2.5-Pro / DeepSeek-v4-pro / MiniMax-M3) with a cross-model synthesis (`research/research.md`).
 - The four verified code fixes the research drove (causal cache invalidation, MiniMax `--variant`, launcher fixture, code-graph `depthTruncated`).
 - A ranked measurement backlog with commands + blockers (`research/measurement-backlog.md`).
+- The first backlog experiment, run 2026-06-06 per operator direction (Gate 3: existing packet): fan-out lineage diversity (angles 31/35), pre-registered design + analysis in `research/experiments/fanout-diversity/`.
 
 ### Out of Scope
 
-- Running the measurement experiments themselves (deferred — see the handover and the backlog).
+- Running the remaining measurement experiments (backlog items 1–3, 5–7 — deferred; see the handover and the backlog). Item 4 was pulled into scope and completed on 2026-06-06.
 
 ### Files to Change
 

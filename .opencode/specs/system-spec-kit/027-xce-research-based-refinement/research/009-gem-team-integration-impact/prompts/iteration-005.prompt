@@ -1,0 +1,25 @@
+ROLE: You are a senior systems analyst doing INTEGRATION + IMPACT analysis, READ-ONLY. Working dir (--dir) = repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3; return analysis as TEXT only.
+
+CONTEXT: A prior study recommended 3 small refinements for this repo's "spec-kit" AI-agent system: P1 typed agent I/O adapter, P2 scoped pre-exec/handoff gates, P3 planner reviewer-focus + spec-drift hint. Full proposals: `research/007-gem-team-adoption-matrix/sub-packet-proposals.md`.
+
+FOCUS (iteration 005 — COMMAND / WORKFLOW BLAST RADIUS): the agents are changed by P1/P2/P3, but agents are dispatched BY commands and workflows. Determine which COMMANDS/WORKFLOWS produce or consume agent I/O and would need to understand the new typed fields — i.e. the integration touchpoints at the WORKFLOW layer (not the agent layer), plus rollout sequencing.
+
+Specifically: which steps in `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, the `/deep:start-*-loop` commands, and the `@orchestrate` dispatch path would EMIT a typed dispatch header (P1), CHECK a handoff schema / pre-mortem (P2), or READ a reviewer_focus / spec_drift field (P3)? What is the smallest rollout that delivers value without touching all of them at once?
+
+READ: `.opencode/commands/speckit/plan.md`, `.opencode/commands/speckit/implement.md`, `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`, `.opencode/commands/deep/start-research-loop.md`, `.opencode/agents/orchestrate.md` (Phase/dispatch sections). Grep "task(", "dispatch", "@code", "@review", "@context", "@debug", "subagent" across `.opencode/commands`.
+
+RULES: cite `file:line`; classify each command/workflow ADD/MODIFY/NONE; identify which are P1 vs P2 vs P3 consumers; recommend a rollout order (which workflow to wire first for fastest payoff); flag backward-compat (workflows that must keep working with agents that DON'T yet emit the typed fields).
+
+OUTPUT EXACTLY (NOTHING before "### IMPACT"):
+### IMPACT
+| Command/workflow (file:line) | Proposal(s) | Change (ADD/MODIFY/NONE) | What changes | Severity | Backward-compat risk |
+(rows)
+### INTEGRATION
+<rollout sequencing: which workflow to wire first, then next; how agents-without-the-fields keep working>
+### BREAKS / WATCH-OUTS
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ5 command/workflow blast radius + rollout sequencing

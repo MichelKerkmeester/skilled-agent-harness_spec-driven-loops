@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 010, RQ10): **Pre-mortem / risk / resilience / auto-replanning** — Gem Team's gem-planner does risk analysis + pre-mortem; the orchestrator has a typed FAILURE-HANDLING taxonomy (transient/fixable/needs_replan/escalate/flaky/test_bug/regression/new_failure/platform_specific/needs_approval) with per-type retry limits and actions; failures route to auto-replanning (needs_replan → planner). Evaluate this resilience model.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: the Confidence & Clarification Framework, Halt Conditions / Four Laws / Escalation / Logic-Sync Protocol in CLAUDE.md, and the deep-loop stuck-recovery / convergence machinery. Judge whether gem-team's EXPLICIT typed failure taxonomy (with per-type retry limits) and pre-mortem-before-execution are net-new vs our halt/escalate/confidence model + deep-loop recovery.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/README.md ("Resilient" — pre-mortem, failure handling, auto-replanning), external/gem-team-main/.apm/agents/gem-orchestrator.agent.md (Failure Handling table), external/gem-team-main/.apm/agents/gem-planner.agent.md (risk / pre-mortem fields)
+READ (spec-kit side): CLAUDE.md (§1 Halt Conditions / Four Laws, §4 Confidence & Clarification / Logic-Sync / Escalation), and grep for: "halt", "escalate", "confidence", "risk", "recovery", "stuck", "pre-mortem" across .opencode/skills/deep-research and .opencode/skills/deep-loop-runtime
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-010-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ10 pre-mortem / risk / resilience

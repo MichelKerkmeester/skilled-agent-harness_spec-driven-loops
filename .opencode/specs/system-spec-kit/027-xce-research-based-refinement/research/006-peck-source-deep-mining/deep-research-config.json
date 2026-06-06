@@ -1,0 +1,68 @@
+{
+  "topic": "Mine peck-master's ACTUAL SOURCE (agent prompts, CLI commands, reflect skill, revim-* benchmark harness, model/cost choices) for NET-NEW adoptable mechanisms beyond the already-extracted teachings T1-T4, and re-evaluate the deferred T1 per-AC coverage gate. Per-mechanism verdict ADOPT/ADAPT/DEFER/SKIP. Deliverables: research.md verdict matrix + sub-packet-proposal.md for a new 027 child phase.",
+  "maxIterations": 18,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 600,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 17,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement",
+  "createdAt": "2026-06-06T08:20:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": "read-only",
+    "timeoutSeconds": 1000,
+    "outputFormat": "text",
+    "note": "Plain text (no --format json) so each prompts/iteration-NNN.out holds the final answer for orchestrator transcription. </dev/null appended; gtimeout -k 60 1000."
+  },
+  "orchestratorWrites": true,
+  "executorContract": "READ-ONLY analysis only; the orchestrator (Claude Code) writes ALL iteration/delta/state artifacts. Sidesteps the Gate-3 executor-write block and is compaction-safe (proven in phase 005).",
+  "dispatch": {
+    "mode": "parallel-background-batches",
+    "batchSize": 4,
+    "killOrphansBetweenBatches": true,
+    "orphanMatchToken": "006-peck-source-deep-mining"
+  },
+  "lineage": {
+    "sessionId": "2026-06-06-027-peck-source-deep-mining",
+    "parentSessionId": "2026-06-05-027-continuation-22-coco-026-drift",
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": 0
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/006-peck-source-deep-mining/findings-registry.json",
+    "dashboardFile": "research/006-peck-source-deep-mining/deep-research-dashboard.md",
+    "strategyFile": "research/006-peck-source-deep-mining/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "resource_map": { "emit": true },
+  "resource_map_present": true,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

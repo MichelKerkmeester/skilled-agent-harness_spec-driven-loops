@@ -1,0 +1,34 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP the Gate-3 spec-folder question, make NO modifications, and return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, and `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 002, RQ2): **Memory architecture** — Gem Team's memory tool: orchestrator-OWNED, storing routing hints / pre-wave guards / facts / patterns / gotchas / failure_modes / decisions / conventions; deduped + self-validated; seeded into the planner via the context envelope; subagents return `learnings` and the orchestrator persists only high-confidence reusable entries.
+
+DECIDE per sub-feature: ADOPT (net-new) / ADAPT (cleaner take, refit) / REJECT (we already do it as well/better, or N/A — REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. A verdict without spec-kit-side citation is INVALID.
+- Our memory system is MATURE: Spec Kit Memory MCP with continuity ladder, causal graph + tombstones, learning-feedback reducers, semantic triggers, importance tiers. Prefer REJECT unless the net-new value is concrete (e.g. a taxonomy or self-validation step we lack).
+- Bound reading to the files below + greps. On the spec-kit side, grep/skim — do not read large files end-to-end.
+
+READ (gem-team side): external/gem-team-main/README.md ("Knowledge Layers" + "Continuous Learning"), external/gem-team-main/AGENTS.md (rule 2 "Memory ownership"), external/gem-team-main/.apm/agents/gem-orchestrator.agent.md (memory sections), external/gem-team-main/.apm/agents/gem-skill-creator.agent.md
+READ (spec-kit side): .opencode/skills/system-spec-kit/SKILL.md (memory sections), and grep across .opencode/skills/system-spec-kit/mcp_server/lib and .opencode/skills/system-spec-kit/mcp_server/handlers for: "memory_save", "causal", "learning", "reducer", "dedup", "self-valid", "importance_tier", "failure_mode", "gotcha"
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-002-01].. on the highest-value rows, both-side evidence>
+
+### NEGATIVE / RULED-OUT
+<checked, not worth adopting, with our-side evidence>
+
+### OPEN QUESTIONS
+<deeper-iteration questions, if any>
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ2 memory architecture

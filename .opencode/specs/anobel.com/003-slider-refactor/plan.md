@@ -10,14 +10,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "anobel.com/003-slider-refactor"
-    last_updated_at: "2026-05-31T00:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "All steps completed"
-    next_safe_action: "Update Webflow Designer data attributes"
+    last_updated_at: "2026-06-06T10:20:00Z"
+    last_updated_by: "opencode"
+    recent_action: "All repo work completed and spec folder closed"
+    next_safe_action: "No repo follow-on required; use webflow-update-guide.md for external Webflow Designer changes"
     blockers: []
     key_files:
-      - "a_nobel_en_zn/2_javascript/carousel/slider_testimonial.js"
-      - "a_nobel_en_zn/2_javascript/carousel/slider_timeline.js"
+      - "a_nobel_en_zn/2_javascript/slider_testimonial.js"
+      - "a_nobel_en_zn/2_javascript/slider_timeline.js"
+      - "a_nobel_en_zn/1_css/slider/slider_timeline.css"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-anobel.com/003-slider-refactor"
@@ -46,11 +47,16 @@ _memory:
 | 7 | Verify both via `verify-minification.mjs` | ✅ Done |
 | 8 | Runtime test both via `test-minified-runtime.mjs` | ✅ Done |
 | 9 | Delete stale `testimonial.min.js` and `slider.min.js` | ✅ Done |
+| 10 | Scope section selectors to `slider-testimonial` and `slider-timeline` | ✅ Done |
+| 11 | Scope timeline tab underline styling to timeline sections only | ✅ Done |
+| 12 | Fix mobile pagination click handling and regenerate minified outputs | ✅ Done |
+| 13 | Create Webflow Designer update guides | ✅ Done |
+| 14 | Close spec folder with strict validation | ✅ Done |
 
 ## Technical Context
 
 Both source repos are MEGA-synced:
-- **Canonical source**: `Code_Environment/Public/a_nobel_en_zn/2_javascript/carousel/`
-- **Mirror**: `anobel.com/src/2_javascript/carousel/`
+- **Canonical source**: `Code_Environment/Public/a_nobel_en_zn/2_javascript/`
+- **Mirror**: `anobel.com/src/2_javascript/`
 
 Changes applied to the canonical source propagate to the mirror automatically. Minification is run from the anobel.com project root using the sk-code webflow scripts.

@@ -1,0 +1,22 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-reviewer.agent.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead CLAUDE.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=261, limit=260][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=261, limit=230][0m
+[0m✱ [0mGrep "status|confidence|failure_type|return|output format|JSON"[90m in .opencode/agents · 246 matches[0m
+[0m✱ [0mGrep "failure_type"[90m in .opencode/agents · 0 matches[0m
+[0m✱ [0mGlob ".opencode/agents/*debug*.md"[90m in . · 1 match[0m
+[0m✱ [0mGrep "Return ONLY valid JSON|RETURN CONTRACT|OUTPUT FORMAT|Context Package|debug-delegation|failure_type|confidence=<|status:"[90m in .opencode/agents · 61 matches[0m
+[0m✱ [0mGlob ".opencode/agents/*context*.md"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=228, limit=70][0m
+[0m→ [0mRead CLAUDE.md[90m [offset=330, limit=70][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=50, limit=95][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=280, limit=165][0m
+[0m→ [0mRead CLAUDE.md[90m [offset=280, limit=45][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=261, limit=35][0m

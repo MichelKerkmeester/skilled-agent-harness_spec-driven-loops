@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 002",
+      "peck verification discipline",
+      "completion-verdict freshness",
+      "anti-verdict-softening",
+      "reviewer read-budget",
+      "verification",
+      "checklist",
+      "009 peck verification discipline",
+      "decision",
+      "record",
+      "decision record",
+      "SPECKIT_COMPLETION_FRESHNESS"
+    ],
+    "key_topics": [
+      "027",
+      "phase",
+      "009",
+      "peck",
+      "verification",
+      "discipline",
+      "completion-verdict",
+      "freshness",
+      "anti-verdict-softening",
+      "reviewer",
+      "read-budget",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "spec_scaffolded",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "scripts/validation/continuity-freshness.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/deep-review/SKILL.md",
+      ".opencode/agents/review.md",
+      ".opencode/skills/sk-code-review/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "mcp_server/lib/validation/spec-doc-structure.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
+      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
+      ".opencode/skills/sk-code-review/references/review_core.md",
+      ".opencode/agents/context.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/orchestrate.md"
+    ],
+    "entities": [
+      {
+        "name": "verify-before-completion-claims.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": "scripts/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_complete_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "review_core.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code-review/references/review_core.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "Peck Verification Discipline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proposal Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 13-iteration peck-source deep-research pass (cross-model verified by MiniMax M3) found a coherent \"peck verification discipline\" bundle implemented in peck's agent prompts that the 2026-06-02 README pass missed entirely. This packet adopts that bundle as five rules: completion-verdict freshness binding (T6, the anchor), implementer escalation gates (T5), anti-verdict-softening (T7), reviewer read-budget discipline (T8), and a docs-only numeric-severity calibration note (T9). All changes land on agent/skill prompts, the completion gate, and CLAUDE.md/AGENTS.md, with zero overlap with the 027 memory phases 002-008.",
+    "created_at": "2026-06-06T10:22:05.626Z",
+    "last_save_at": "2026-06-06T10:38:03.528Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

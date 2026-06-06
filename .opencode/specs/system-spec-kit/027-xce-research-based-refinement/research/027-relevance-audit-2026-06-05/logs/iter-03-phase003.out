@@ -1,3 +1,0 @@
-I’ll audit Phase 003 read-only against current code and recent commits, focusing on the planned tables/modules and any equivalent incremental-index mechanism.
-SKILL ROUTING: system-spec-kit and sk-code-review surfaced for read-only spec/code audit; I’ll keep this findings-style and avoid all writes.
-The phase docs still describe all core primitives as pending. The first broad search was noisy because `memo` matches ordinary text, so I’m narrowing to exact symbols and module paths now.

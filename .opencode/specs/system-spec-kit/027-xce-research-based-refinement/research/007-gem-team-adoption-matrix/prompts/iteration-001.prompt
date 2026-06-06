@@ -1,0 +1,37 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP the Gate-3 spec-folder question, make NO modifications, and return your ENTIRE analysis as TEXT in this response only.
+
+SUBJECT A (external framework under evaluation): "Gem Team" (mubaidr/gem-team) at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — this repo's `.opencode/skills/**`, `.opencode/agents/**`, root `CLAUDE.md`/`AGENTS.md`, and the MCP server at `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 001, RQ1): **Orchestration & wave execution** — Gem Team's gem-orchestrator delegating plan→implement→verify (never executing/validating directly), its effort/task-type ROUTING MATRIX, and WAVE EXECUTION with ≤2 concurrent tasks + integration check per wave.
+
+DECIDE: should the spec-kit ADOPT / ADAPT / REJECT each sub-feature?
+- ADOPT = net-new capability we lack and would benefit from.
+- ADAPT = gem-team has a cleaner take on something we do partially — worth refitting.
+- REJECT = we already do this as well or better, OR it doesn't apply. REJECT REQUIRES citing our existing equivalent.
+
+HARD RULES:
+- Every claim cites [SOURCE: relative/path:line] on BOTH sides (gem-team AND spec-kit). A verdict with no spec-kit-side citation is INVALID.
+- Be skeptical: the spec-kit is mature (deep-loop fan-out runtime, @orchestrate agent, Gates, memory+code-graph+advisor MCPs). Do NOT propose what already exists. Prefer REJECT unless net-new value is concrete.
+- Bound your reading to the files below + targeted greps. Do NOT attempt a full-repo audit. On the spec-kit side, grep/skim for the specific equivalent — do not read large SKILL.md files end-to-end.
+
+READ (gem-team side): external/gem-team-main/README.md (Architecture + "Why Gem Team" sections), external/gem-team-main/AGENTS.md (rules 2,3,9), external/gem-team-main/.apm/agents/gem-orchestrator.agent.md, external/gem-team-main/.apm/agents/gem-planner.agent.md
+READ (spec-kit side): .opencode/agents/orchestrate.md, .opencode/skills/deep-loop-runtime/SKILL.md, .opencode/skills/system-spec-kit/SKILL.md  —  and grep for: "fanout", "concurrency", "wave", "orchestrate", "parallel"
+
+OUTPUT EXACTLY this structure (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<a markdown table with columns: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<then 2-5 bullets labelled [F-001-01].. expanding the highest-value rows, each with both-side evidence>
+
+### NEGATIVE / RULED-OUT
+<sub-features you checked that are NOT worth adopting, with our-side evidence>
+
+### OPEN QUESTIONS
+<questions worth a deeper iteration, if any>
+
+### METRICS
+newInfoRatio: <0.00-1.00 = fraction genuinely new vs already-have>
+novelty: <one sentence>
+status: complete
+focus: RQ1 orchestration & wave execution

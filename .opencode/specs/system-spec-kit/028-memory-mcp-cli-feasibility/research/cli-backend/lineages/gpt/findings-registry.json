@@ -1,0 +1,67 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "kq1-cli-architecture",
+      "question": "What should the CLI architecture be?",
+      "answer": "A compiled mcp_server CLI plus a stable .opencode/bin/spec-memory shim that drives the existing daemon IPC socket and auto-spawns through mk-spec-memory-launcher.cjs."
+    },
+    {
+      "id": "kq2-dual-stack",
+      "question": "How should CLI and MCP coexist?",
+      "answer": "The CLI should behave as another IPC client against the one launcher-owned daemon, passing sessionId and preserving launcher env/db resolution."
+    },
+    {
+      "id": "kq3-delivery-plan",
+      "question": "What is the delivery plan?",
+      "answer": "Build the shim, generated manifest, JSON-RPC caller, validation/rendering layer, and focused unit/integration/live tests in 8-12 engineering days."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-cli-shim",
+      "title": "Stable shim belongs under .opencode/bin",
+      "evidence": [".opencode/bin/README.md:14", ".opencode/bin/README.md:71"]
+    },
+    {
+      "id": "f-daemon-ipc",
+      "title": "CLI should call the daemon over existing IPC",
+      "evidence": [".opencode/bin/lib/launcher-ipc-bridge.cjs:59", ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2183"]
+    },
+    {
+      "id": "f-tool-codegen",
+      "title": "Subcommands should be generated from the canonical tool definitions",
+      "evidence": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:709", ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:525"]
+    },
+    {
+      "id": "f-single-owner",
+      "title": "Launcher owner lease prevents competing daemons",
+      "evidence": [".opencode/bin/mk-spec-memory-launcher.cjs:365", ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts:287"]
+    },
+    {
+      "id": "f-session-continuity",
+      "title": "Session continuity can be preserved by forwarding sessionId",
+      "evidence": [".opencode/skills/system-spec-kit/mcp_server/context-server.ts:522", ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:535"]
+    },
+    {
+      "id": "f-tests",
+      "title": "Existing tests cover most hard substrate behavior",
+      "evidence": [".opencode/skills/system-spec-kit/mcp_server/tests/launcher-ipc-bridge.vitest.ts:279", ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-session-proxy.vitest.ts:258"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "pure per-invocation CLI",
+      "reason": "Run 1 already found it fails zero-feature-loss; run 2 is dual-stack."
+    },
+    {
+      "direction": "MCP removal",
+      "reason": "Run 2 explicitly keeps MCP primary for interactive sessions."
+    },
+    {
+      "direction": "second direct database writer",
+      "reason": "Would bypass launcher ownership, daemon queues, watcher, and session runtime."
+    }
+  ],
+  "lastUpdated": "2026-06-06T10:30:00Z"
+}

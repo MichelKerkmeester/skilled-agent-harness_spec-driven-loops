@@ -1,0 +1,17 @@
+{
+  "specFolder": "016-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
+  "description": "Phase 5: stale-audit-and-tool-ownership",
+  "keywords": [
+    "phase",
+    "stale-audit-and-tool-ownership"
+  ],
+  "lastUpdated": "2026-06-06T10:10:50.115Z",
+  "specId": "005",
+  "folderSlug": "stale-audit-and-tool-ownership",
+  "parentChain": [
+    "016-memclaw-derived-memory-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

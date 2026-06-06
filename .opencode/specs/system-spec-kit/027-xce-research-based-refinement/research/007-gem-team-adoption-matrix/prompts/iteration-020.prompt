@@ -1,0 +1,34 @@
+## Context
+Two AI agent frameworks share this repo (cwd = repo root = your --dir). SUBJECT A = "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`. SUBJECT B = this repo's "spec-kit" (`.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`). This is iteration 020 of a READ-ONLY adoption study (phase 007). The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — skip the Gate-3 question; change nothing. A prior 13-angle + adversarial pass found the spec-kit mature, so the bar for "net-new" is high.
+Focus: Gem Team's SPECIALIZED leaf agents as narrow operating MODES — gem-code-simplifier (behavior-preserving simplification), gem-browser-tester (E2E with console/network/accessibility evidence), gem-devops (deploy approval + health-check contracts). The useful slice is mode-specific CHECKLISTS/PRESETS, not adding agents.
+
+## Objective
+Decide ADOPT / ADAPT / REJECT for adding these mode-checklists to the spec-kit's sk-code surfaces / @review, with file:line evidence on both sides. Prefer REJECT where sk-code/@review already covers it.
+
+## Style
+precise, no preamble
+
+## Tone
+neutral, skeptical
+
+## Audience
+automated pipeline — your response is parsed by a script. Preamble, prose wrapping, or writing to a file BREAKS parsing.
+
+## Response
+Return your whole analysis as your FINAL TEXT MESSAGE. Do NOT write, create, or edit any file (no file-write tool calls). Output EXACTLY this, nothing before "### FINDINGS":
+### FINDINGS
+| Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+(one row per sub-feature; then 2-4 bullets labelled [F-020-01]..)
+### NEGATIVE / RULED-OUT
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-M1 specialized-agent mode-checklists
+
+---
+Pre-plan (lean):
+1. Read `external/gem-team-main/.apm/agents/gem-code-simplifier.agent.md`, `gem-browser-tester.agent.md`, `gem-devops.agent.md` → extract each agent's concrete checklist/preset.
+2. Check spec-kit: `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/sk-code-review/SKILL.md`, `.opencode/agents/review.md`, `debug.md`; grep "simplif", "browser", "e2e", "deploy", "health check", "accessibility".
+3. Verdict each sub-feature with both-side file:line.

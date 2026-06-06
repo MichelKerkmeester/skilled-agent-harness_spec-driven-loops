@@ -15,7 +15,7 @@ Unmeasured-but-shipped, by angle:
 - **q8 vs fp16 dtype** (12): harness complete, never run — blocked on an `onnxruntime-common` dependency resolution. *Most actionable deferred item in the embedding stack.*
 - **Local vs cloud retrieval quality** (11): the bake-off compared local models against each other; cloud (Voyage/OpenAI) was never in the judged fixture. Local-first cost is **UNKNOWN**.
 - **Async-enrichment latency delta** (1): no-latency is structurally enforced via `setImmediate`, but the p50/p95 claim is unbenchmarked.
-- **Fan-out lineage diversity** (31, 35): the plumbing exists; whether N models find materially more than N runs of one model has never been measured (this very run is single-lineage-per-angle, so it can't answer it either).
+- **Fan-out lineage diversity** (31, 35): ~~never measured~~ — **measured 2026-06-06** (`experiments/fanout-diversity/`): heterogeneity ≈ resampling for coverage (trio union 1.05× best same-model pair; cross-model J 0.42 ≈ same-model 0.405); its real value is blind-spot insurance + cross-lane adjudication, not volume.
 - **Skill-advisor in-the-wild accuracy** (27), semantic-vs-lexical ablation (28), 0.8 threshold calibration (29), enhancement-edge discovery lift (30): all synthetic-proxy only, no real-stream measurement.
 - **Prompt-framework picks** (36): ~70% convention default, ~30% empirically validated; CRISPE/CRAFT have zero coverage.
 - **Convergence 0.10 threshold** (34), **detector provenance precision/recall** (23), **model-benchmark near-saturation edge** (32): uncalibrated/unvalidated.
@@ -23,7 +23,7 @@ Unmeasured-but-shipped, by angle:
 **Implication:** the highest-leverage follow-up to 026 is not new features but a **measurement sprint** that converts these contracts into numbers.
 
 ## Cross-model behavior (angle 35, observed live)
-The three models could not be directly compared on identical angles (the run partitioned angles for coverage), but their *styles* diverged usefully: **MiMo** produced the richest historical context (embedding bake-off lineage, cold-start phases, generalizability ordering); **DeepSeek** gave the crispest formal-correctness verdicts (checkpoint crash-window proof, WAL bound); **MiniMax** was the best at finding **concrete in-code defects** (the cache-invalidation gap, the variant-suppression line). A true diversity test (same angles, 3 models, measure overlap) remains the open meta-question.
+The three models could not be directly compared on identical angles (the run partitioned angles for coverage), but their *styles* diverged usefully: **MiMo** produced the richest historical context (embedding bake-off lineage, cold-start phases, generalizability ordering); **DeepSeek** gave the crispest formal-correctness verdicts (checkpoint crash-window proof, WAL bound); **MiniMax** was the best at finding **concrete in-code defects** (the cache-invalidation gap, the variant-suppression line). The diversity test has now been run (2026-06-06, `experiments/fanout-diversity/`): the same 5 angles through all three lanes, twice each. The styles above are real; the coverage dividend is not — cross-model Jaccard (0.42) equals same-model resampling (0.405), and the trio union beats the best single-model pair by only 1.05×. Heterogeneity's measured value: blind-spot insurance (M3 double-missed a verified watcher-bypass defect that DeepSeek and MiMo each caught once) and adjudication (cross-lane disagreement exposed one false MiMo claim and one DeepSeek verdict flip).
 
 ---
 
@@ -51,7 +51,7 @@ These are real defects/gaps the models located with file evidence, ordered by va
 1. Unblock `onnxruntime-common`, run `bench-dtype-q8-fp16.cjs` → decide DEFAULT_DTYPE (angle 12).
 2. Run the cat-24/409 + 50-query holdout against Voyage-4 / OpenAI vs nomic/jina, with and without rescue → quantify local-first cost (11), plus a code-domain fixture (14).
 3. Measure peak hf-local RSS under load → set a calibrated `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` default + a memory-sufficiency preflight (13).
-4. Run the same angles through all 3 models and measure finding-overlap → settle the fan-out diversity question (31, 35).
+4. ~~Run the same angles through all 3 models and measure finding-overlap~~ → **DONE 2026-06-06** (31, 35 answered): diversity is stochastic, not model-driven; see `experiments/fanout-diversity/analysis.md`.
 5. Skill-advisor: ship the semantic-vs-lexical diff + a 0.8-threshold calibration report from existing shadow-delta data (28, 29).
 6. Add a CI fan-out speedup benchmark at K={1,2,3} (21) and a convergence auto-tuning curve (34).
 
@@ -61,7 +61,7 @@ These are real defects/gaps the models located with file evidence, ordered by va
 - **Daemon/MCP (16-22):** transparency is "retryable not silent-hang" by design; lease model is defense-in-depth-sound with a 120s no-secondary-demand gap (17); generalizing transparent recycle needs shared-daemon mode first (18); 2 latent test fixtures (22).
 - **Code-graph (23-26):** provenance honest but unvalidated (23); maxDepth truncates silently (25); CocoIndex decoupling lost nothing material (24); union/breadcrumb unused-but-harmless (26).
 - **Skill-advisor (27-30):** all four are built-but-unmeasured; do not quote a top-1 from the synthetic corpus.
-- **Deep-loop (31-35):** fan-out is concurrency-not-diversity today; correctness gate solid except near-saturation edge; round-2 verify works but FP-reduction unmeasured.
+- **Deep-loop (31-35):** fan-out diversity now measured (31/35, 2026-06-06): stochastic-not-model-driven, heterogeneity earns its seat as insurance/adjudication only; correctness gate solid except near-saturation edge; round-2 verify works but FP-reduction unmeasured.
 - **Prompt toolkit (36-39):** sk-prompt is cleanly forkable (HIGH confidence, 37); frameworks ~70% convention (36); open-model frontier partially mapped, DeepSeek unmeasured (38); variant-forwarding mostly confirmed, one code divergence (39).
 - **Operator (40-42):** doctor strong on data-plane, weak on control-plane (40); worktree isolation net-positive-by-construction but unquantified (41); hook parity is a goal not a state — Codex partial, Gemini/Copilot degraded (42).
 - **Program-meta (43-50):** phase decomposition net-positive above ~50 packets (43); centralization made drift *visible* not *smaller* (44); zero changelog fabrication (45); verify-first batches ~27% strict-confirmed / ~20% refuted (46); no working metadata TTL (47); shipped-then-removed marker incomplete coverage (48); index-race solved for scan, untested for daemon writes (49); front-proxy is the clear reusable extraction (50).
@@ -72,5 +72,6 @@ These are real defects/gaps the models located with file evidence, ordered by va
 - Source: `research/research-angles.md` — the 50 angles investigated.
 - Source: `research/iterations/D1..D10.md` — the per-model deep-research notes (MiMo / DeepSeek / MiniMax-M3), each citing repo file:line and commit evidence.
 - Source: `research/measurement-backlog.md` — the deferred experiments with commands and diagnosed blockers.
+- Source: `research/experiments/fanout-diversity/` — the executed angle-31/35 diversity experiment (pre-registered design, 6 runs, audit matrix, adjudications).
 - Source: the 026 changelog tree at `026-graph-and-context-optimization/changelog/` and `.opencode/changelog/system-spec-kit/v3.5.0.0.md` — the shipped behavior the angles were assessed against.
 <!-- /ANCHOR:sources -->

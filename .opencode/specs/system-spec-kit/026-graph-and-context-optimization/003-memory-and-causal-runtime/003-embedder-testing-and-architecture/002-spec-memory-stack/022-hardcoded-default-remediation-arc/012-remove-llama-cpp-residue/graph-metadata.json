@@ -47,9 +47,9 @@
       ".opencode/commands/doctor/assets/doctor_memory.yaml",
       ".opencode/commands/doctor/update.md",
       ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
-      ".opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/024-detect-changes-multi-file-diff.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md",
       "shared/embeddings/providers/hf-local.ts",
-      ".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/022-code-graph-query-blast-radius.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md",
       "shared/embeddings/types.ts",
       "references/memory/embedder_architecture.md",
       "spec.md",
@@ -107,9 +107,9 @@
         "source": "derived"
       },
       {
-        "name": "024-detect-changes-multi-file-diff.md",
+        "name": "detect-changes-multi-file-diff.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/024-detect-changes-multi-file-diff.md",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md",
         "source": "derived"
       },
       {
@@ -119,9 +119,9 @@
         "source": "derived"
       },
       {
-        "name": "022-code-graph-query-blast-radius.md",
+        "name": "code-graph-query-blast-radius.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/022-code-graph-query-blast-radius.md",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Operator directive: \"remove all references to llama-cpp.\" Arc 016 phases 003/006/007 already purged llama-cpp from runtime code paths (factory, profile, auto-select, providers, types), but historical narrative and documentation residue remained across 11 live files: source-code comments documenting the prior purge, install-guide sections listing llama-cpp as a supported provider, a `NODE_LLAMA_CPP_GPU` env var setter in a repair script, two test-fixture strings, doctor-command examples, an embedder architecture table column, and two manual-testing-playbook scenario fixtures using `llama-cpp.ts` as the example subject path.",
     "created_at": "2026-05-23T20:00:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.264Z",
+    "last_save_at": "2026-06-06T09:38:26.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

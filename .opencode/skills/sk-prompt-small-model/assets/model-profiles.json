@@ -1,6 +1,6 @@
 {
   "version": "1.4",
-  "description": "Shared small-model profile registry for cli-devin and cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax (default via the MiniMax Token Plan provider `minimax-coding-plan` — MiniMax-M3-highspeed default, MiniMax-M2.7-highspeed fallback; pay-per-token Direct API via provider `minimax` retained as a selectable alternative), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider xiaomi-token-plan-ams; free opencode/mimo-v2.5-free sibling). Optional unverified separate-pool stub: Claude Haiku.",
+  "description": "Shared small-model profile registry for cli-devin and cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax (default via the MiniMax Token Plan provider `minimax-coding-plan` — MiniMax-M3 default (plain slug; no `-highspeed` variant for M3 on opencode 1.16.2), MiniMax-M2.7-highspeed fallback; pay-per-token Direct API via provider `minimax` retained as a selectable alternative), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider xiaomi-token-plan-ams; free opencode/mimo-v2.5-free sibling). Optional unverified separate-pool stub: Claude Haiku.",
   "models": [
     {
       "id": "swe-1.6",
@@ -269,7 +269,7 @@
           "provider": "minimax-coding-plan",
           "quota_pool": "minimax-token-plan",
           "status": "active",
-          "notes": "Default MiniMax path. MiniMax Token Plan (subscription) via opencode provider `minimax-coding-plan`; Anthropic-compatible endpoint `https://api.minimax.io/anthropic/v1` (China: api.minimaxi.com). Live slug `minimax-coding-plan/MiniMax-M3-highspeed`; verify availability with `opencode models minimax-coding-plan` (the live install confirms M2.7 ids; M3-highspeed is account-holder-directed). Omit `--agent` (rejected on opencode 1.15.13). Best prompt framework carried from MiniMax-2.7: TIDD-EC + dense pre-planning. --variant omitted by default."
+          "notes": "Default MiniMax path. MiniMax Token Plan (subscription) via opencode provider `minimax-coding-plan`; Anthropic-compatible endpoint `https://api.minimax.io/anthropic/v1` (China: api.minimaxi.com). Live slug `minimax-coding-plan/MiniMax-M3` (plain); on opencode 1.16.2 `opencode models minimax-coding-plan` lists M2/M2.1/M2.5/M2.5-highspeed/M2.7/M2.7-highspeed/M3 — there is NO `MiniMax-M3-highspeed` (verified 2026-06-06). Omit `--agent` (rejected on opencode 1.15.13). Best prompt framework carried from MiniMax-2.7: TIDD-EC + dense pre-planning. --variant omitted by default."
         }
       ],
       "primary_quota_pool": "minimax-token-plan",
@@ -283,7 +283,7 @@
         "format_mode": "json",
         "quota_pool": "minimax-token-plan",
         "variant_status": "omitted-by-default-historically",
-        "notes": "Plain `minimax-coding-plan/MiniMax-M3` confirmed live (2026-06-02); the `-highspeed` variant slug is account-holder-directed. agent_policy omit-general: `--agent` is rejected on opencode 1.15.13. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high is the dispatch-layer default; `--variant` forwarding for this provider was historically omitted (unverified) — confirm acceptance before relying on a non-default variant."
+        "notes": "Plain `minimax-coding-plan/MiniMax-M3` confirmed live (2026-06-02; re-verified on opencode 1.16.2 2026-06-06); there is NO `MiniMax-M3-highspeed` on 1.16.2 (only M2.5/M2.7 carry a `-highspeed` variant). agent_policy omit-general: `--agent` is rejected on opencode 1.15.13. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high is the dispatch-layer default; `--variant` forwarding for this provider was historically omitted (unverified) — confirm acceptance before relying on a non-default variant."
       },
       "strengths": [
         "subscription billing (no pay-per-token burn) via the MiniMax Token Plan",
@@ -291,7 +291,7 @@
         "responds well to guardrail-heavy framing (TIDD-EC) + dense pre-planning"
       ],
       "weaknesses": [
-        "MiniMax-M3-highspeed slug availability unverified on tier (fallback to minimax-2.7 highspeed)",
+        "no MiniMax-M3-highspeed slug on opencode 1.16.2 (verified 2026-06-06) — dispatch plain MiniMax-M3; fallback minimax-2.7-highspeed",
         "subscription request budget resets on a 5-hour rolling window",
         "--variant behavior unverified (omitted by default)"
       ],

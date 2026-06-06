@@ -1,0 +1,12 @@
+[0m
+> build · mimo-v2.5-pro
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md
+[0m→ [0mRead CLAUDE.md
+[0m✱ [0mGrep "drift|requirements.*drift|update_recommended|prd_update"[90m in .opencode/skills/system-spec-kit · 297 matches[0m
+[0m✱ [0mGrep "acceptance.criteria|acceptance_criteria|ac:"[90m in .opencode/skills/system-spec-kit · 34 matches[0m
+[0m✱ [0mGrep "Logic-Sync|contradiction|spec.*vs.*code|conflicting"[90m in .opencode/skills/system-spec-kit · 85 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/examples/level_2/plan.md
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/workflows/intake_contract.md

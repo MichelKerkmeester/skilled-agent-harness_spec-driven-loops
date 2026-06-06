@@ -1,0 +1,133 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Integration + impact analysis, read-only, for P1 typed-agent-io-adapter in specs/system-spec-kit/027-xce-research-based-refinement. Analyze existing OpenCode agent input and return contracts plus commands/skills consumers of dispatch, RETURN, confidence, failure.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m
+[0m$ [0mpython3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "Integration + impact analysis READ-ONLY for typed agent IO adapter across OpenCode agents/commands/system-spec-kit skills" --threshold 0.8
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.8996,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.706218,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.706218,
+      "shadowScore": 0.653637,
+      "delta": -0.052581,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.8838,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.67686,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.67686,
+      "shadowScore": 0.662716,
+      "delta": -0.014144,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "system-code-graph",
+    "kind": "skill",
+    "confidence": 0.8771,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.664318,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-code-graph",
+      "liveScore": 0.664318,
+      "shadowScore": 0.634236,
+      "delta": -0.030082,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "cli-opencode",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.18,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.414498,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-opencode",
+      "liveScore": 0.414498,
+      "shadowScore": 0.389253,
+      "delta": -0.025245,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m→ [0mSkill "sk-code"
+[0m→ [0mSkill "system-code-graph"
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=1, limit=300][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/sub-packet-proposals.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=241, limit=300][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=241, limit=260][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=241, limit=260][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=261, limit=380][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=301, limit=520][0m
+[0m✱ [0mGrep "task\("[90m in .opencode/commands · 0 matches[0m
+[0m✱ [0mGrep "RETURN"[90m in .opencode/commands · 17 matches[0m
+[0m✱ [0mGrep "dispatch"[90m in .opencode/commands · 174 matches[0m
+[0m✱ [0mGrep "confidence|failure"[90m in .opencode/commands · 67 matches[0m
+[0m✱ [0mGrep "RETURN"[90m in .opencode/skills/system-spec-kit · 12 matches[0m
+[0m✱ [0mGrep "task\("[90m in .opencode/skills/system-spec-kit · 37 matches[0m
+[0m✱ [0mGrep "dispatch"[90m in .opencode/skills/system-spec-kit · 382 matches[0m
+[0m✱ [0mGrep "confidence|failure"[90m in .opencode/skills/system-spec-kit · 3060 matches[0m
+[0m✱ [0mGrep "@code|@review|@context|@debug|Task tool|Agent:|Output Format|RETURN:|failure_count|confidence|dispatch_id|task_definition|Context Package"[90m in .opencode/commands/speckit · 127 matches[0m
+[0m✱ [0mGlob ".opencode/commands/**/*.{yaml,yml,md}"[90m in . · 67 matches[0m
+[0m✱ [0mGrep "@code|@review|@context|@debug|Task tool|Agent:|Output Format|RETURN:|failure_count|confidence|Context Package"[90m in .opencode/commands · 182 matches[0m
+[0m✱ [0mGrep "@code|@review|@context|@debug|Task tool|Agent:|Output Format|RETURN:|failure_count|confidence|Context Package"[90m in .opencode/skills/system-spec-kit · 0 matches[0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_plan_auto.yaml[90m [offset=250, limit=120][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_plan_confirm.yaml[90m [offset=560, limit=100][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_implement_auto.yaml[90m [offset=80, limit=140][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=320, limit=120][0m
+[0m→ [0mRead .opencode/commands/create/assets/create_agent_auto.yaml[90m [offset=260, limit=90][0m
+[0m→ [0mRead .opencode/commands/create/assets/create_agent_confirm.yaml[90m [offset=290, limit=80][0m
+[0m✱ [0mGrep "@code|@review|@context|Agent: @|Task tool|subagent_type|Context Package|RETURN|failure_count"[90m in .opencode/commands/speckit/assets/speckit_complete_auto.yaml · 8 matches[0m
+[0m✱ [0mGrep "@code|@review|@context|Agent: @|Task tool|subagent_type|Context Package|RETURN|failure_count"[90m in .opencode/commands/speckit/assets/speckit_implement_auto.yaml · 11 matches[0m
+[0m✱ [0mGrep "@code|@review|@context|Agent: @|Task tool|subagent_type|Context Package|RETURN|failure_count"[90m in .opencode/commands/speckit/assets/speckit_complete_confirm.yaml · 8 matches[0m
+[0m✱ [0mGrep "@code|@review|@context|Agent: @|Task tool|subagent_type|Context Package|RETURN|failure_count"[90m in .opencode/commands/speckit/assets/speckit_implement_confirm.yaml · 4 matches[0m
+[0m✱ [0mGrep "Task tool|@context|@code|@review|@debug|Context Package|dispatches? @|agent dispatch|RETURN"[90m in .opencode/skills/system-spec-kit/references · 15 matches[0m
+[0m✱ [0mGrep "Task tool|@context|@code|@review|@debug|Context Package|dispatches? @|agent dispatch|RETURN"[90m in .opencode/skills/system-spec-kit/templates · 0 matches[0m
+[0m✱ [0mGrep "Task tool|@context|@code|@review|@debug|Context Package|dispatches? @|agent dispatch|RETURN"[90m in .opencode/skills/system-spec-kit/feature_catalog · 5 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/templates/template_guide.md[90m [offset=620, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/debugging/universal_debugging_methodology.md[90m [offset=140, limit=70][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/phase_checklists.md[90m [offset=80, limit=55][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/debug-delegation-scaffold-generator.md[90m [offset=18, limit=45][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_plan_auto.yaml[90m [offset=520, limit=95][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=660, limit=95][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_auto.yaml[90m [offset=895, limit=45][0m
+[0m→ [0mRead .opencode/commands/deep/start-research-loop.md[90m [offset=224, limit=40][0m
+[0m→ [0mRead .opencode/commands/deep/start-review-loop.md[90m [offset=252, limit=40][0m

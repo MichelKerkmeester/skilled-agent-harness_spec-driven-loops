@@ -1,0 +1,46 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"ROLE: senior systems analyst doing INTEGRATION + IMPACT analysis, READ-ONLY. Focus iteration 004 cross-cutting and governance impact for P1 typed agent I/O adapter, P2 scoped pre-exec/handoff gates, P3 planner reviewer-focus + spec-drift hint. Spec folder specs/system-spec-kit/027-xce-research-based-refinement pre-approved, skip Gate-3. Need governance docs, shared contract, skill advisor, validation/tests, backward compat analysis only.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"default","userId":"default","agentId":"opencode","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m✱ [0mGlob "CLAUDE.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "AGENTS.md"[90m in . · 3 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-skill-advisor/SKILL.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "research/007-gem-team-adoption-matrix/sub-packet-proposals.md"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "validate|Gate |Four Laws|completion"[90m in .opencode/skills/system-spec-kit/scripts/spec · 103 matches[0m
+[0m✱ [0mGlob "**/007-gem-team-adoption-matrix/sub-packet-proposals.md"[90m in . · 1 match[0m
+[0m✱ [0mGrep "P1 typed|typed agent|agent I/O|P2 scoped|P3 planner|spec-drift|reviewer-focus"[90m in . · 15 matches[0m
+[0m✱ [0mGrep "validate|Gate |Four Laws|completion"[90m in .opencode · 48693 matches[0m
+[0m→ [0mRead .claude/CLAUDE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/SKILL.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/sub-packet-proposals.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead AGENTS.md[90m [offset=261, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/SKILL.md[90m [offset=261, limit=140][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=1, limit=170][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=171, limit=230][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=620, limit=170][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/README.md[90m [offset=1, limit=160][0m
+[0m✱ [0mGrep "RETURN|Output|Context Package|gate_type|confidence|failure_type|reviewer_focus|spec_drift|Logic-Sync|UNKNOWN_STACK|VERIFY_FAIL|P0/P1/P2|debug-delegation|debug handoff"[90m in .opencode/agents · 181 matches[0m
+[0m✱ [0mGrep "FRONTMATTER_MEMORY_BLOCK|SPEC_DOC_SUFFICIENCY|validator-registry|strict_only|check-.*\.sh|RuleDiagnostic"[90m in .opencode/skills/system-spec-kit · 412 matches[0m
+[0m✱ [0mGlob ".opencode/agents/*.md"[90m in . · 11 matches[0m
+[0m✱ [0mGrep "agent-io-contract|agent io contract|typed.*envelope|context_snapshot|safe_to_assume|verify_before_use|do_not_re_read|reviewer_focus|spec_drift|update_recommended"[90m in .opencode · 116 matches[0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=180, limit=130][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=430, limit=90][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=100, limit=35][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=260, limit=60][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=230, limit=85][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=230, limit=90][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=50, limit=90][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=452, limit=55][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/contracts/README.md[90m [offset=1, limit=150][0m
+[0m✱ [0mGrep "description.json|graph-metadata|frontmatter|Skill discovery|advisor_validate|skill_graph_scan|frontmatter and `graph-metadata.json`"[90m in .opencode/skills/system-skill-advisor · 176 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/references/**"[90m in . · 41 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/shared/contracts/**"[90m in . · 2 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=80, limit=70][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=500, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-validation-rule-engine.md[90m [offset=20, limit=70][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts[90m [offset=330, limit=75][0m
+[0m✱ [0mGrep "REQUIRED_FRONTMATTER_KEYS|memoryBlock|continuity|unknown|allowed"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts · 40 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts[90m [offset=610, limit=155][0m

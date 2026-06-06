@@ -1,0 +1,25 @@
+ROLE: You are a senior systems analyst doing INTEGRATION + IMPACT analysis, READ-ONLY. Working dir (--dir) = repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3; return analysis as TEXT only.
+
+CONTEXT: A prior study recommended 3 small refinements for this repo's "spec-kit" AI-agent system — adapters/optional-modes/advisory-fields over existing contracts, NOT replacements. The system is mature.
+
+THE PROPOSAL (iteration 003, P3 = proposed child `014-planner-review-focus-and-drift-hint`, the lowest-cost one): two advisory fields — (1) a **`reviewer_focus`** hint (the planning/decomposition step names high-risk files/areas so @review/@orchestrate route attention there) + an optional self-assessed `quality_score`; (2) a **`spec_drift` / `update_recommended`** write-back field letting task agents flag when implementation reveals the spec/plan should change (surfaced into continuity, not silently diverging). Both are advisory; Logic-Sync stays the authority for hard contradictions. Full proposal: `research/007-gem-team-adoption-matrix/sub-packet-proposals.md` §P3.
+
+YOUR JOB: (a) HOW to integrate P3, and (b) WHICH existing surfaces it impacts, with `file:line` evidence.
+
+READ (likely-impacted surfaces): `.opencode/agents/orchestrate.md` (decomposition/dispatch/review routing), `.opencode/agents/review.md` (gate input/threshold), `.opencode/agents/code.md` (RETURN contract — where a drift flag would live), `.opencode/commands/memory/save.md` + grep `.opencode/skills/system-spec-kit` for "continuity", "generate-context", "Logic-Sync", "drift", "reviewer". Check where continuity/save writes happen (the spec_drift field's destination).
+
+RULES: cite `file:line`; classify ADD/MODIFY/NONE; advisory fields should be low-severity; confirm Logic-Sync precedence is preserved; flag backward-compat.
+
+OUTPUT EXACTLY (NOTHING before "### IMPACT"):
+### IMPACT
+| Existing surface (file:line) | Change (ADD/MODIFY/NONE) | What changes | Severity (LOW/MED/HIGH) | Backward-compat risk |
+(rows)
+### INTEGRATION
+<numbered steps, smallest-viable-first; where reviewer_focus + spec_drift fields live + their destination in continuity>
+### BREAKS / WATCH-OUTS
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ3 P3 planner-review-focus-and-drift-hint — integration & impact

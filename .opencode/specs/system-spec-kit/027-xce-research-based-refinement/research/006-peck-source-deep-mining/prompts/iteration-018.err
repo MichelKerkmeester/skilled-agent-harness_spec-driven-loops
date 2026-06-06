@@ -1,0 +1,102 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/spec.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/research.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md[90m [limit=300][0m
+[0m
+[0m$ [0mls -1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/ | sort
+000-release-cleanup
+001-peck-teachings-adoption
+002-memory-write-safety
+003-incremental-index-foundation
+004-causal-edge-tombstones
+005-metadata-edge-promoter
+006-write-path-reconciliation
+007-semantic-trigger-fallback
+008-learning-feedback-reducers
+context-index.md
+description.json
+external
+graph-metadata.json
+research
+resource-map.md
+spec.md
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md
+[0m
+[0m$ [0mls -la /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/ 2>&1; echo '---'; ls -la /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/ 2>&1; echo '---'; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-improvement/ 2>&1
+total 32
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  6 05:47 .
+drwxr-xr-x  18 michelkerkmeester  staff   576 Jun  6 05:47 ..
+drwxr-xr-x@ 11 michelkerkmeester  staff   352 Jun  6 05:47 001-aggregator
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  6 05:47 003-causal-reducer
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  6 05:47 004-retention-reducer
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  6 05:47 005-env-tests-integration
+-rw-r--r--@  1 michelkerkmeester  staff  1873 Jun  5 23:35 description.json
+-rw-r--r--@  1 michelkerkmeester  staff  3011 Jun  6 05:47 graph-metadata.json
+-rw-r--r--@  1 michelkerkmeester  staff  6864 Jun  5 23:44 spec.md
+---
+total 0
+drwxr-xr-x@  8 michelkerkmeester  staff  256 May 16 10:23 .
+drwxr-xr-x  18 michelkerkmeester  staff  576 Jun  6 05:47 ..
+-rw-r--r--@  1 michelkerkmeester  staff    0 May 16 10:22 .gitkeep
+drwxr-xr-x@  3 michelkerkmeester  staff   96 May 16 10:22 001-release-readiness
+drwxr-xr-x@  3 michelkerkmeester  staff   96 May 16 10:22 002-audit
+drwxr-xr-x@  3 michelkerkmeester  staff   96 May 16 10:22 003-cleanup
+drwxr-xr-x@  3 michelkerkmeester  staff   96 May 16 10:22 004-refinement
+drwxr-xr-x@  3 michelkerkmeester  staff   96 May 16 10:22 005-stress-test
+---
+README.md
+SKILL.md
+assets
+changelog
+feature_catalog
+graph-metadata.json
+manual_testing_playbook
+references
+scripts
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-improvement/assets/ 2>&1; echo '---'; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scripts/ 2>&1 | head -40
+agent-improvement
+model-benchmark
+skill-benchmark
+---
+setup-maintainer-filters.sh
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-improvement/assets/model-benchmark/ 2>&1; echo '---SKILL.md lane refs---'; grep -n -i "lane\|reviewer\|reviewer-prompt\|reviewer-scorer\|fixture" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-improvement/SKILL.md 2>&1 | head -30
+README.md
+benchmark-fixtures
+benchmark-profiles
+---SKILL.md lane refs---
+28:### Three Co-Equal Lanes
+30:This skill supports three co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
+32:| Lane | Pick when | Command |
+34:| **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:start-agent-improvement-loop` |
+35:| **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:start-model-benchmark-loop` |
+36:| **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
+38:Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill-benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. All three lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+43:- You want to test whether an agent prompt or instruction surface can be improved (Lane A)
+44:- You want to benchmark a model or prompt framework against repeatable fixtures (Lane B)
+45:- You want to diagnose whether a skill is well-routed, discoverable, efficient, and useful in practice (Lane C)
+67:Use Lane B (model-benchmark) when the thing under test is a model or prompt framework rather than an agent definition. It runs the same loop shape against a benchmark profile and scores produced outputs, sharing the candidate, dispatcher, and scorer seams with the agent-improvement path. See §4 below.
+71:Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See `references/skill-benchmark/operator_guide.md`.
+94:**Lane awareness**: resources are organized by lane. `references/agent-improvement/` + `assets/agent-improvement/` carry Lane A guidance, `references/model-benchmark/` + `assets/model-benchmark/` carry Lane B guidance, and `references/skill-benchmark/` + `assets/skill-benchmark/` carry Lane C guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` and `SKILL_BENCHMARK` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all three lanes.
+230:## 3. LANE A: AGENT-IMPROVEMENT
+232:Lane A improves a bounded agent `.md` file. Command: `/deep:start-agent-improvement-loop`. It runs the proposal-first loop in three modes (initialization, proposal and evaluation, promotion and recovery) and scores candidates with dynamic-mode 5-dimension scoring.
+247:5. Run `scripts/model-benchmark/run-benchmark.cjs` to measure produced outputs against the active fixture set.
+285:## 4. LANE B: MODEL-BENCHMARK
+287:Lane B benchmarks a model or prompt framework instead of mutating an agent file. Command: `/deep:start-model-benchmark-loop`. Runtime entry is `scripts/shared/loop-host.cjs --mode=model-benchmark`. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
+289:1. **Entry point**: `scripts/shared/loop-host.cjs` resolves the mode. `--mode=agent-improvement` (or no flag) routes to `scripts/agent-improvement/score-candidate.cjs`. `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. An unknown mode warns and falls back to agent-improvement.
+292:4. **Mode-aware records and promotion path**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports carry `scoringMethod: pattern|5dim`, so the reducer (`reduce-state.cjs`) and downstream consumers can attribute results per lane. Record-level mode metadata lives in the reducer, NOT in the promoter. Lane A promotes a scored candidate through the agent-scored gates in `promote-candidate.cjs`. Lane B promotes from the benchmark report: pass `promote-candidate.cjs --benchmark-report <report.json>`, and when the report status is `benchmark-complete` with a passing benchmark recommendation, the benchmark-report path drives promotion and bypasses the agent-scored-file requirement. The promoter is NOT otherwise lane-branching beyond this benchmark-report path, both lanes share the same single canonical-target guard, archive, and runtime-mirror sync.
+356:- Fixtures: `assets/model-benchmark/benchmark-fixtures/*.json`
+357:- Materializer: `scripts/shared/materialize-benchmark-fixtures.cjs`
+360:The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
+376:If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `deep-improvement/scripts/shared/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+534:- `/deep:start-agent-improvement-loop` initializes and runs the Lane A bounded workflow
+535:- `/deep:start-model-benchmark-loop` initializes and runs the Lane B model-benchmark workflow
+546:Scripts: `scripts/agent-improvement/benchmark-stability.cjs` (repeatability and weight recommendations), `scripts/agent-improvement/candidate-lineage.cjs` (candidate parentage across waves), `scripts/agent-improvement/check-mirror-drift.cjs` (runtime mirror drift report), `scripts/agent-improvement/generate-profile.cjs` (dynamic target profile), `scripts/shared/improvement-journal.cjs` (append-only lifecycle journal), `scripts/shared/materialize-benchmark-fixtures.cjs` (static fixture materializer), `scripts/shared/mutation-coverage.cjs` (mutation coverage graph), `scripts/shared/promote-candidate.cjs` (guarded canonical promotion), `scripts/shared/reduce-state.cjs` (dashboard and registry reducer), `scripts/shared/loop-host.cjs` (deep-loop host entrypoint), `scripts/agent-improvement/rollback-candidate.cjs` (promotion rollback), `scripts/model-benchmark/run-benchmark.cjs` (Lane B fixture runner), `scripts/model-benchmark/sweep-benchmark.cjs` (Lane B matrix sweep and scoring), `scripts/agent-improvement/scan-integration.cjs` (integration surface scanner), `scripts/agent-improvement/score-candidate.cjs` (Lane A candidate scorer), `scripts/agent-improvement/trade-off-detector.cjs` (Pareto trade-off detector), `scripts/skill-benchmark/run-skill-benchmark.cjs` (Lane C orchestrator), `scripts/skill-benchmark/live-executor.cjs` (Lane C live dispatch executor), `scripts/skill-benchmark/score-skill-benchmark.cjs` (Lane C D1-D5 scorer), `scripts/skill-benchmark/d4-ablation.cjs` (D4 and D4-R ablation), `scripts/skill-benchmark/build-report.cjs` (Lane C markdown report renderer), `scripts/skill-benchmark/executor-dispatch.cjs` (Lane C executor router), `scripts/skill-benchmark/router-replay.cjs` (router-mode replay harness), `scripts/skill-benchmark/advisor-probe.cjs` (D1-inter deterministic advisor probe), `scripts/skill-benchmark/d5-connectivity.cjs` (D5 router-connectivity drift guard), `scripts/skill-benchmark/contamination-lint.cjs` (skill-off contamination linter), `scripts/skill-benchmark/load-playbook-scenarios.cjs` (playbook scenario loader), `scripts/skill-benchmark/playbook-generator.cjs` (playbook scenario generator), `scripts/skill-benchmark/browser-executor.cjs` (Lane C browser-trace executor), and `scripts/model-benchmark/dispatch-model.cjs` (Lane B per-cell dispatch envelope). This list names the lane-level scripts; per-lane `scorer/`, `lib/`, and `tests/` helpers are discovered dynamically and not all enumerated here.
+[0m
+[0m✗ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md failed[90m [offset=300, limit=200][0m
+[91m[1mError: [0mOffset 300 is out of range for this file (96 lines)

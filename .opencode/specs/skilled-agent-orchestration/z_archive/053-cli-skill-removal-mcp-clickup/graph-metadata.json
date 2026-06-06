@@ -45,7 +45,6 @@
       ".opencode/skills/README.md",
       ".opencode/install_guides/README.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/003-tool-info-schema.md",
       "implementation-summary.md",
       "checklist.md",
       "spec.md",
@@ -75,12 +74,6 @@
         "name": "SET-UP - AGENTS.md",
         "kind": "doc",
         "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "003-tool-info-schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/003-tool-info-schema.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "file-by-file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mcp-clickup` skill is being decommissioned. Its presence in the skill registry, advisor scoring tables, skill graphs, and READMEs creates routing edges and counts that no longer correspond to any executable skill, which would surface broken recommendations to operators.",
     "created_at": "2026-04-30T08:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.698Z",
+    "last_save_at": "2026-06-06T09:52:35.150Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

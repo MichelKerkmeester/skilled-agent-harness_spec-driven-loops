@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"
     last_updated_at: "2026-06-06T10:30:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Recorded research + remediation task breakdown"
-    next_safe_action: "Run the measurement experiments in research/measurement-backlog.md"
+    recent_action: "Added Phase 4: backlog item 4 (fan-out diversity) run + verified"
+    next_safe_action: "Run backlog item 5 (advisor calibration) or item 2 (cloud A/B)"
     blockers: []
     key_files:
       - "tasks.md"
@@ -66,10 +66,18 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Measurement Experiments (continuation)
+
+- [x] T8 [P1] Run backlog item 4 — fan-out lineage diversity (angles 31/35): 3 lanes × 2 runs over 5 fixed angles, serial dispatches, pre-registered thresholds, audit matrix. Verification: zero contamination citations across 6 reports; 3 contested cross-lane claims adjudicated against source; `research/experiments/fanout-diversity/analysis.md`.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-Research synthesized, four fixes shipped + live, measurement experiments tracked in research/measurement-backlog.md and handover.md.
+Research synthesized, four fixes shipped + live, measurement experiments tracked in research/measurement-backlog.md and handover.md (item 4 run 2026-06-06 — see Phase 4; items 1-3/5-7 remain tracked).
 <!-- /ANCHOR:completion -->
 
 ---

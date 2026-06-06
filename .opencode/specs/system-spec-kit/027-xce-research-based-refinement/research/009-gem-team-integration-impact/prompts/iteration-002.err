@@ -1,0 +1,35 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGrep "diagnose|root_cause|handoff|pre-mortem|premortem|contract|test"[90m in .opencode/agents · 117 matches[0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-code/SKILL.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGrep "diagnose|root_cause|handoff|pre-mortem|premortem|contract|test"[90m in .opencode/skills/sk-code · 547 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/templates/**/debug-delegation.md"[90m in . · 0 matches[0m
+[0m✗ [0mRead research/007-gem-team-adoption-matrix/sub-packet-proposals.md failed[90m [offset=1, limit=1200][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/research/007-gem-team-adoption-matrix/sub-packet-proposals.md
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "pre-mortem|premortem|failure modes|assumptions|risk"[90m in .opencode/agents · 56 matches[0m
+[0m✱ [0mGrep "boundary|contract|API|schema|integration"[90m in .opencode/skills/sk-code · 407 matches[0m
+[0m✱ [0mGrep "root_cause|debug-delegation|diagnostic summary|diagnosis|handoff"[90m in .opencode · 3647 matches[0m
+[0m✱ [0mGrep "debug-delegation"[90m in .opencode/skills/system-spec-kit/templates · 3 matches[0m
+[0m✱ [0mGrep "debug-delegation\.md\.tmpl|debug-delegation"[90m in .opencode/skills/system-spec-kit · 47 matches[0m
+[0m✱ [0mGlob "**/research/007-gem-team-adoption-matrix/sub-packet-proposals.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/sub-packet-proposals.md[90m [offset=1, limit=1200][0m
+[0m✱ [0mGrep "pre_implementation_check|mid_implementation_check|post_implementation_gate|Risk Profile|risk|pre-mortem|contract-first|boundary"[90m in .opencode/agents/code.md · 17 matches[0m
+[0m✱ [0mGrep "debug-delegation|@debug|failure_count|same error|stuck|tried everything|diagnostic summary"[90m in .opencode/commands · 106 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=50, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/templates/template_guide.md[90m [offset=620, limit=100][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=260, limit=240][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_implement_auto.yaml[90m [offset=245, limit=220][0m
+[0m→ [0mRead .opencode/commands/speckit/assets/speckit_complete_confirm.yaml[90m [offset=920, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/debug-delegation-scaffold-generator.md[90m [offset=20, limit=45][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "contract-first|contract first|acceptance check|API / schema|schema / integration|boundary contract"[90m in .opencode · 183 matches[0m
+[0m✱ [0mGrep "pre-mortem|premortem|top failure modes|failure modes"[90m in .opencode · 603 matches[0m
+[0m✱ [0mGrep "debugger_diagnosis|root_cause|fix_recommendations|target_files|confidence"[90m in .opencode · 8888 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh[90m [offset=261, limit=120][0m

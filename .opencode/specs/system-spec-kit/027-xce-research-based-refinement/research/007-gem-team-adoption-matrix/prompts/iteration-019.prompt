@@ -1,0 +1,30 @@
+ROLE: You are a READ-ONLY COMPLETENESS CRITIC for an adoption-research study. Your working dir (--dir) is the repo root. You MUST NOT write/edit/create any file or run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, return your ENTIRE analysis as TEXT only.
+
+CONTEXT: A 13-angle study compared the external "Gem Team" framework against this repo's spec-kit and produced ADOPT/ADAPT/REJECT verdicts, then adversarially verified the top candidates. The 13 angles were: orchestration, memory architecture, context envelope, knowledge layers, verification gates, diagnose-then-fix, auto-skills, task classification/fast-paths, token-efficiency, pre-mortem/resilience, standard output contract, CHANGELOG mine, distribution. Your job is CRITICAL COMPLETENESS REVIEW.
+
+IMPORTANT — an adversarial round (iterations 014-098) ALREADY DOWNGRADED all 9 top candidates from ADOPT/strong-ADAPT to NARROW ADAPT slices (it found existing spec-kit coverage the first pass under-weighted). Your job is to judge whether the NARROWED slices still justify 027 sub-packets, and what was missed.
+
+READ for context: the running summary at `specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/deep-research-strategy.md` (sections 3, 6 — questions + answered-questions verdicts). READ the adversarial verdicts + revised net-new value in `iterations/iteration-014.md`, `iteration-015.md`, `iteration-016.md`, `iteration-017.md`, `iteration-018.md` (these hold the narrowed slices). Optionally skim a few analysis iterations `iterations/iteration-08*.md` / `iteration-09*.md`. Also skim the gem-team surface: `external/gem-team-main/README.md`, `AGENTS.md`, and the agent list under `external/gem-team-main/.apm/agents/`.
+
+ANSWER these critic questions with evidence (cite file:line):
+1. COVERAGE GAPS: What concrete Gem Team mechanism, agent, or CHANGELOG signal did the 13 angles NOT examine that could carry adoption value? (e.g. specialized agents like gem-code-simplifier / gem-browser-tester / gem-designer; the PRD.yaml-as-living-spec idea; specific gem-planner DAG/risk fields; anything in `.apm/` config.)
+2. STRONGEST COUNTER-ARGUMENT: What is the single best argument AGAINST adopting ANY of this into the spec-kit? (over-engineering a mature system; gem-team is single-developer/early; the spec-kit's design philosophy differs; maintenance cost.)
+3. WEAKEST PROPOSED CANDIDATES: Of the surviving candidates (typed agent I/O contract; contract-first ordering; diagnose-then-fix gate; typed read-directives on Context Package; memory taxonomy + promotion thresholds; knowledge-source precedence; failure taxonomy; pre-mortem; auto-skills; OWASP standing scan; distribution), which 2-3 are WEAKEST / most likely already-covered or not worth the cost, and why?
+4. MISSING RISK: For the 2-3 STRONGEST candidates, what adoption risk or hidden cost was under-weighted?
+
+OUTPUT EXACTLY (NOTHING before "### COMPLETENESS REVIEW"):
+
+### COMPLETENESS REVIEW
+#### 1. Coverage gaps
+#### 2. Strongest counter-argument
+#### 3. Weakest candidates (drop or downgrade)
+#### 4. Under-weighted risks on the strongest candidates
+
+### NET RECOMMENDATION
+<2-4 sentences: which candidates are genuinely worth a 027 sub-packet, and which to drop>
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-C completeness critic

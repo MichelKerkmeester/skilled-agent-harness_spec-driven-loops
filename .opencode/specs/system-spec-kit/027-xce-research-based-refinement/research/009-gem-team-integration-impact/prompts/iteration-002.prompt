@@ -1,0 +1,25 @@
+ROLE: You are a senior systems analyst doing INTEGRATION + IMPACT analysis, READ-ONLY. Working dir (--dir) = repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3; return analysis as TEXT only.
+
+CONTEXT: A prior study recommended 3 small refinements for this repo's "spec-kit" AI-agent system — adapters/optional-modes over existing contracts, NOT replacements. The system is mature.
+
+THE PROPOSAL (iteration 002, P2 = proposed child `013-scoped-preexec-and-handoff-gates`): three SCOPED, optional-mode gates (each fires only in its narrow condition): (1) a typed **debug-handoff schema** (`root_cause`/`target_files`/`fix_recommendations`/`confidence`) required when a diagnosis crosses agents (debug→implement), validated by the receiver — a deliberately NARROWER version of an existing pattern; (2) a **boundary contract-first** check for API/schema/integration changes ONLY (not universal TDD); (3) a **pre-mortem field** (risk + top failure modes + assumptions) for MEDIUM/HIGH work only. Full proposal: `research/007-gem-team-adoption-matrix/sub-packet-proposals.md` §P2.
+
+YOUR JOB: (a) HOW to integrate P2, and (b) WHICH existing surfaces it impacts, with `file:line` evidence.
+
+READ (likely-impacted surfaces): `.opencode/agents/debug.md` (5-phase method + handoff), `.opencode/agents/orchestrate.md` (dispatch + verification), `.opencode/skills/sk-code/SKILL.md` (verification/test discipline), and look for the debug-delegation template under `.opencode/skills/system-spec-kit/templates/` (ls it; read `debug-delegation.md` if present). Grep "diagnose", "root_cause", "handoff", "pre-mortem", "premortem", "contract", "test" across `.opencode/agents` and `.opencode/skills/sk-code`.
+
+RULES: cite `file:line`; classify ADD/MODIFY/NONE; honest where coverage exists; scope must stay narrow (don't make any gate universal); flag backward-compat.
+
+OUTPUT EXACTLY (NOTHING before "### IMPACT"):
+### IMPACT
+| Existing surface (file:line) | Change (ADD/MODIFY/NONE) | What changes | Severity (LOW/MED/HIGH) | Backward-compat risk |
+(rows)
+### INTEGRATION
+<numbered steps, smallest-viable-first; exactly where each of the 3 gates lives + how it stays scoped>
+### BREAKS / WATCH-OUTS
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ2 P2 scoped-preexec-and-handoff-gates — integration & impact

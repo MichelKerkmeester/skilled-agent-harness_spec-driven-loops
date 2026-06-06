@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The memory daemon's `checkpoint_create` safety feature is broken on the production database: it serializes the entire DB into a single `JSON.stringify(snapshot)` call, which on the ~300 MB+ main DB expands past V8's ~512 MB single-string ceiling and throws `Invalid string length`. This packet adds a v2 file-based path that snapshots the database with SQLite `VACUUM INTO`, so full-DB create and restore work on the ~1 GB database with no string-size limit, while the existing scoped-checkpoint path stays on v1 untouched.",
     "created_at": "2026-06-01T16:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.965Z",
+    "last_save_at": "2026-06-06T10:16:04.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

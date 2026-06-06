@@ -1,0 +1,15 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"DEEP-RESEARCH Iteration 011 AC assertion-format gap prerequisite for T1. Read-only analysis of peck story template, spec-kit AC/checklist templates, and 002 self-check adoption outputs. Determine whether AC-format normalization is prerequisite for deferred T1 coverage gate.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-research"
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/templates/story.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates/spec.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates/implementation-summary.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=261, limit=420][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl[90m [offset=261, limit=320][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=681, limit=180][0m
+[0m✱ [0mGrep "SELF-CHECK|FAILURE MODES|self-check|failure-mode|failure modes|Acceptance Criteria"[90m in .opencode/skills/system-spec-kit/templates/manifest · 11 matches[0m
+[0m✱ [0mGrep "AC-coverage|coverage|T1|self-check|failure-modes|Acceptance Criteria|Given|How to verify"[90m in specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates · 55 matches[0m

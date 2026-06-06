@@ -1,0 +1,51 @@
+### FINDINGS
+
+| Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+| --- | --- | --- | --- | --- | --- |
+| Typed reusable-memory taxonomy for routing/pre-wave use | Memory stores routing hints, pre-wave guards, facts, patterns, gotchas, failure_modes, decisions, conventions; subagents return learnings and orchestrator persists high-confidence reusable entries. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:61] | Spec-kit stores `triggerPhrases`, `contextType`, `importanceTier`, and `causalLinks`, but the read evidence did not show first-class `gotcha` / `failure_mode` memory types in handlers/lib. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:396] | ADAPT | S | Concrete taxonomy value: add/normalize “gotcha” and “failure_mode” as retrieval/use labels, not a new memory store. |
+| Orchestrator-owned memory seeding into planner/envelope | Orchestrator reads durable memory and packages a `memory_seed` for planner; planner does not read memory directly. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:111] | Spec-kit already has L1 `memory_context`, `session_resume`, `session_bootstrap` plus L2 direct search/save/trigger tools, so central retrieval exists but is not strictly orchestrator-owned. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:40] | ADAPT | M | Useful as a multi-agent governance rule for deep-loop/orchestrated workflows, not as a replacement for MCP memory access. |
+| Deduped/self-validated persistence | Gem Team calls the cache self-validating and memory deduped before reuse/persistence. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md:102] | Spec-kit has a 3-layer save quality gate including structural validation, content quality, semantic dedup, plus SHA/content verification dedup. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:4] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:265] | REJECT | S | Already covered more rigorously. |
+| Continuous learning reducers/promotions | Gem Team merges learnings and promotes gotchas/patterns/failure modes by recurrence/confidence thresholds. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:131] | Spec-kit already measures pre/post learning deltas with `Learning Index`, captures gaps, and runs batch feedback learning with min-support and shadow-apply. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:546] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:401] | REJECT | S | We already have stronger learning reducers; only the labels in row 1 are worth refitting. |
+| Causal/lineage/tombstone handling | Gem Team stores facts/diagnoses/decisions and reuses them through memory/envelope. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md:123] | Spec-kit has typed causal relations, drift/why traversal, and temporal invalidation via `invalid_at`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:18] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts:31] | REJECT | S | Spec-kit is materially more mature. |
+
+- [F-002-01] Highest-value adoption is not Gem Team’s memory tool; it is the small taxonomy of `gotchas` and `failure_modes` used as pre-wave guards. Gem Team makes those categories operational in memory. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:61] Spec-kit has metadata and tiers, but not those explicit reusable-error labels in the cited save metadata. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:396]
+
+- [F-002-02] Gem Team’s orchestrator-owned memory rule is cleaner for multi-agent isolation, but Spec-kit already has mature L1/L2 memory routing and recovery tools. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:61] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:40] Verdict is ADAPT only as an orchestration policy.
+
+- [F-002-03] Dedup/self-validation should be rejected as net-new because Spec-kit’s quality gate and content-hash dedup are stronger and already enforce structural/content/semantic checks. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md:102] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:4]
+
+- [F-002-04] Gem Team’s continuous-learning promotion thresholds are simpler, but Spec-kit already has learning-index deltas and batch feedback learning; only its “gotcha/failure_mode as guard” usage adds concrete value. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:131] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:401]
+
+### NEGATIVE / RULED-OUT
+
+- Replacing Spec Kit Memory MCP with a Gem-style generic memory tool is not worth adopting. Spec-kit already provides context retrieval, search, save, checkpoint, health, indexing, and maintenance surfaces. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:409]
+
+- Adopting Gem Team’s dedup/self-validation as new architecture is ruled out. Spec-kit already has semantic dedup thresholding and content-hash duplicate detection with secondary content verification. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:101] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:330]
+
+- Adopting Gem Team’s decision/fact memory as lineage architecture is ruled out. Spec-kit already has typed causal edges and drift/why traversal. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:18] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:488]
+
+- Adopting Gem Team’s resumable context envelope wholesale is ruled out. Spec-kit already has a continuity ladder across `handover.md`, `_memory.continuity`, and canonical spec docs. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:613]
+
+### OPEN QUESTIONS
+
+- Should `gotcha` and `failure_mode` become canonical `contextType` values, frontmatter tags, or learned trigger labels?
+
+- Should orchestrated/deep-loop subagents be restricted to envelope-only memory while the orchestrator owns writes?
+
+### METRICS
+
+newInfoRatio: 0.28
+
+novelty: Gem Team adds a cleaner operational taxonomy and ownership policy, but not a superior memory backend.
+
+status: complete
+
+focus: RQ2 memory architecture
+/create:skill` packet proposal?
+
+### METRICS
+
+newInfoRatio: 0.24  
+novelty: Gem Team contributes a clearer operational-hazard taxonomy and skill-candidate thresholding, but most memory mechanics are already stronger in Spec Kit.  
+status: complete  
+focus: RQ2 memory architecture

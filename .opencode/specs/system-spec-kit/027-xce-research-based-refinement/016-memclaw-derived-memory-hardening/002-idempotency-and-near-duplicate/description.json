@@ -1,0 +1,17 @@
+{
+  "specFolder": "016-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
+  "description": "Phase 2: idempotency-and-near-duplicate",
+  "keywords": [
+    "phase",
+    "idempotency-and-near-duplicate"
+  ],
+  "lastUpdated": "2026-06-06T10:10:47.039Z",
+  "specId": "002",
+  "folderSlug": "idempotency-and-near-duplicate",
+  "parentChain": [
+    "016-memclaw-derived-memory-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

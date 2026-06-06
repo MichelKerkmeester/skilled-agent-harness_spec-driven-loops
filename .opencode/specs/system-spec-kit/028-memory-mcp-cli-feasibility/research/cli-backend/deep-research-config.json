@@ -1,0 +1,26 @@
+{
+  "topic": "Design the spec-memory CLI back-end that will live ALONGSIDE the existing mk-spec-memory MCP as a fallback (dual-stack: the MCP registration stays and remains primary for interactive agent sessions; the CLI is the resilience + universal surface for hooks, cron, CI, scripts, and MCP-transport-down recovery). PREMISE — do not relitigate: the run-1 verdict in ../research.md (and ../lineages/*/research.md) established GO for CLI-over-daemon with auto-spawn, zero feature loss, 37 tools with 0 MCP-only; READ those documents as input context. Three key questions, one per iteration: KQ1 CLI architecture — entrypoint + packaging location (where the binary/shim lives, e.g. .opencode/bin/ vs mcp_server/), the connect path over daemon-ipc.sock including auto-spawn-on-ENOENT/ECONNREFUSED reusing the existing launcher (mk-spec-memory-launcher.cjs) and launcher-ipc-bridge.cjs, the subcommand layer for all 37 tools (codegen from tool-schemas.ts vs handwritten argv mapping; reuse of the existing Zod schemas at the argv boundary), output contracts (--format json|text|jsonl), and the exit-code map including 75 EX_TEMPFAIL for retryable states; KQ2 dual-stack coexistence semantics — concurrent CLI + MCP clients against one daemon (write serialization, sessionId propagation so dedup/learning/working-memory treat CLI calls as part of the same session), env + dbDir resolution parity with the launcher (.env/.env.local precedence, SPECKIT_* vars), fallback ergonomics (how agents and runtime hooks detect MCP-transport-down and shell out to the CLI; the exact AGENTS.md/skill guidance text), and explicit non-goals (no MCP removal, no migration of the ~125 MCP references); KQ3 delivery plan — file-level implementation plan with module reuse (the existing mcp_server/cli.ts prior art, launcher-ipc-bridge.cjs, tool dispatch in tools/index.ts), test strategy (unit tests, live-daemon integration tests, dual-client MCP+CLI parallel test), Claude Code permission allowlist patterns for the new binary, packaging/install steps, and a risk register with effort estimate. Every claim must carry file:line evidence from this repository.",
+  "maxIterations": 3,
+  "convergenceThreshold": 0,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 180,
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "resource_map_present": false,
+  "resource_map": { "emit": false },
+  "createdAt": "2026-06-06T10:05:41Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "lineage": {
+    "sessionId": "dr-20260606T120541-cli-backend",
+    "parentSessionId": "dr-20260606T105055-fanout028",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout": {
+    "executors": [
+      { "kind": "cli-codex", "model": "gpt-5.5", "reasoningEffort": "xhigh", "serviceTier": "fast", "label": "gpt", "count": 1, "iterations": 3, "timeoutSeconds": 1500 }
+    ],
+    "concurrency": 1
+  }
+}

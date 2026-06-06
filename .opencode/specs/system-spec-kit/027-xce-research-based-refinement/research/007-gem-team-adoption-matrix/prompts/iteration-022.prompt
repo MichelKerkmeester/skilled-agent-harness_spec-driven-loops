@@ -1,0 +1,34 @@
+## Context
+Two AI agent frameworks share this repo (cwd = repo root = your --dir). SUBJECT A = "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`. SUBJECT B = this repo's "spec-kit" (`.opencode/skills/**`, `.opencode/agents/**`). Iteration 022 of a READ-ONLY adoption study (phase 007). Spec folder pre-approved — skip Gate-3; change nothing. The spec-kit is mature; bar for net-new is high.
+Focus: Gem Team's PLANNER intelligence (the 22KB `gem-planner.agent.md`) — DAG/wave scheduling, dependency + conflict detection, risk analysis, and especially the self-scoring fields `quality_score` and `reviewer_focus` that route review attention. Earlier angles under-mined the planner. The likely net-new slice is `quality_score`/`reviewer_focus` as a low-cost review-routing hint.
+
+## Objective
+Decide ADOPT / ADAPT / REJECT for the planner self-scoring + reviewer-focus + conflict/risk fields into the spec-kit's @orchestrate planning, with file:line evidence both sides.
+
+## Style
+precise, no preamble
+
+## Tone
+neutral, skeptical
+
+## Audience
+automated pipeline — parsed by a script. Preamble, prose wrapping, or writing to a file BREAKS parsing.
+
+## Response
+Return your whole analysis as your FINAL TEXT MESSAGE. Do NOT write/create/edit any file. Output EXACTLY this, nothing before "### FINDINGS":
+### FINDINGS
+| Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+(rows; then 2-4 bullets [F-022-01]..)
+### NEGATIVE / RULED-OUT
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-M3 planner intelligence (quality_score / reviewer_focus / risk / conflict)
+
+---
+Pre-plan (lean):
+1. Read `external/gem-team-main/.apm/agents/gem-planner.agent.md` (DAG/waves, risk, quality_score, reviewer_focus, conflicts_with) + `gem-orchestrator.agent.md` Phase 2.
+2. Check spec-kit: `.opencode/agents/orchestrate.md` (decomposition/dispatch/review routing), `.opencode/skills/deep-loop-runtime/SKILL.md`; grep "quality_score", "reviewer_focus", "risk", "wave", "conflict", "parallel".
+3. Verdict each field; prefer REJECT where @orchestrate/deep-loop already covers it; cite file:line both sides.

@@ -1,0 +1,60 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "deep-research"
+[0m
+[0m$ [0mls -R "external/peck-master/benchmarks/"
+AGENTS.md
+Justfile
+models.json
+revim-acceptance-reviewer
+revim-code-reviewer
+revim-planner
+revim-reviewer-lib.sh
+run-parallel.sh
+run.sh
+
+external/peck-master/benchmarks//revim-acceptance-reviewer:
+config.sh
+
+external/peck-master/benchmarks//revim-code-reviewer:
+config.sh
+
+external/peck-master/benchmarks//revim-planner:
+README.md
+config.sh
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/AGENTS.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/revim-planner/README.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/revim-code-reviewer/config.sh[90m [offset=1, limit=200][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/models.json[90m [offset=1, limit=200][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/revim-acceptance-reviewer/config.sh[90m [offset=1, limit=200][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/revim-planner/config.sh[90m [offset=1, limit=200][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/revim-reviewer-lib.sh[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/run.sh[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/run-parallel.sh[90m [offset=1, limit=220][0m
+[0m✱ [0mGlob ".opencode/commands/deep/*benchmark*"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/skills/deep-improvement/**/*benchmark*"[90m in . · 14 matches[0m
+[0m✱ [0mGlob ".claude/skills/deep-improvement/**/*benchmark*"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/commands/deep/start-skill-benchmark-loop.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/deep/start-model-benchmark-loop.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/references/model-benchmark/benchmark_operator_guide.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "expected|bug|verdict|oracle|ground|review"[90m in .opencode/skills/deep-improvement/scripts · 262 matches[0m
+[0m✱ [0mGrep "expected|bug|review|fixture|oracle|verdict|catch"[90m in .opencode/skills/deep-improvement · 935 matches[0m
+[0m✱ [0mGlob ".opencode/skills/deep-improvement/assets/skill-benchmark/**/*"[90m in . · 6 matches[0m
+[0m✱ [0mGlob ".opencode/skills/deep-improvement/assets/model-benchmark/**/*"[90m in . · 26 matches[0m
+[0m→ [0mRead .opencode/skills/deep-improvement/assets/model-benchmark/README.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs[90m [offset=260, limit=100][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/t3-bugfix-in-context.json[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/assets/skill-benchmark/fixtures/README.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md[90m [offset=31, limit=90][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md[90m [offset=690, limit=140][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs[90m [offset=188, limit=70][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs[90m [offset=430, limit=90][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs[90m [offset=261, limit=50][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [offset=360, limit=50][0m

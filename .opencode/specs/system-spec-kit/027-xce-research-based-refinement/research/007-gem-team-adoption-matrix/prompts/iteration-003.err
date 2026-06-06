@@ -1,0 +1,36 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=1, limit=320][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=1, limit=320][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-documentation-writer.agent.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/spec.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=1, limit=360][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=361, limit=220][0m
+[0m✱ [0mGrep "continuity|context_envelope|handover|_memory|context bundle|snapshot"[90m in .opencode/agents · 48 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=321, limit=100][0m
+[0m✱ [0mGrep "continuity|context_envelope|handover|_memory|context bundle|snapshot"[90m in .opencode/skills · 1658 matches[0m
+[0m✱ [0mGrep "continuity|context_envelope|handover|_memory|context bundle|snapshot"[90m in .opencode/skills/system-spec-kit/mcp_server · 2893 matches[0m
+[0m✱ [0mGrep "_memory\.continuity|handover.md|memory_context|Context Package|continuity ladder"[90m in .opencode/agents/context.md · 35 matches[0m
+[0m✱ [0mGrep "memory_context|handover.md|_memory\.continuity|continuity ladder|resource-map|context bundle|Context Package"[90m in .opencode/skills/system-spec-kit/references · 86 matches[0m
+[0m✱ [0mGrep "resource-map|Resource Map|file ledger|Context Package"[90m in .opencode/skills/system-spec-kit/templates · 3 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/scripts/**/generate-context.js"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "context_envelope|update_context_envelope|Context Envelope|context_envelope_snapshot"[90m in specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main · 42 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/scripts/**/*generate*context*"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/**/generate-context.*"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/references/memory/*.md"[90m in . · 7 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/memory/save_workflow.md[90m [offset=150, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/memory/save_workflow.md[90m [offset=300, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/memory/memory_system.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "runWorkflow|graph-metadata|filesystem lock|canonical save|metadata|reindex"[90m in .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts · 17 matches[0m
+[0m✱ [0mGrep "context_envelope_format_guide|context_envelope|research_digest|reuse_notes|safe_to_assume|verify_before_use|do_not_re_read"[90m in specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md · 16 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts[90m [offset=400, limit=110][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts[90m [offset=760, limit=70][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=148, limit=90][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=360, limit=40][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=610, limit=35][0m

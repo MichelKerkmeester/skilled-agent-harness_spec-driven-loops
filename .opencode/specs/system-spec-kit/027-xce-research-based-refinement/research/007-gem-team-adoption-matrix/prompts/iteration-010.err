@@ -1,0 +1,31 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "halt|escalate|confidence|risk|recovery|stuck|pre-mortem"[90m in .opencode/skills/deep-loop-runtime · 29 matches[0m
+[0m✱ [0mGrep "halt|escalate|confidence|risk|recovery|stuck|pre-mortem"[90m in .opencode/skills/deep-research · 370 matches[0m
+[0m✱ [0mGlob "**/CLAUDE.md"[90m in . · 1 match[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=260, limit=80][0m
+[0m→ [0mRead .claude/CLAUDE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md[90m [offset=260, limit=280][0m
+[0m→ [0mRead .opencode/skills/deep-research/references/convergence/convergence_recovery.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-research/references/convergence/convergence.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/README.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=180][0m
+[0m✱ [0mGrep "pre-mortem"[90m in .opencode/skills/deep-research · 0 matches[0m
+[0m→ [0mRead AGENTS.md[90m [offset=180, limit=160][0m
+[0m→ [0mRead AGENTS.md[90m [offset=340, limit=140][0m
+[0m✱ [0mGrep "risk"[90m in .opencode/skills/deep-research · 12 matches[0m
+[0m✱ [0mGrep "Failure Type|failure_type|needs_replan|test_bug|platform_specific|Retry Limit"[90m in .opencode · 4 matches[0m
+[0m→ [0mRead .opencode/skills/deep-research/SKILL.md[90m [offset=280, limit=40][0m
+[0m→ [0mRead .opencode/skills/deep-research/SKILL.md[90m [offset=400, limit=40][0m
+[0m→ [0mRead .opencode/skills/deep-research/feature_catalog/03--convergence/012-stuck-detection.md[90m [offset=18, limit=32][0m
+[0m→ [0mRead .opencode/skills/deep-research/references/protocol/loop_protocol.md[90m [offset=270, limit=35][0m
+[0m✱ [0mGrep "retry|retry_attempt|retry budget|attempt"[90m in .opencode/skills/deep-loop-runtime · 2 matches[0m
+[0m✱ [0mGrep "dispatch_failure|fallback|salvage|recovery"[90m in .opencode/skills/deep-loop-runtime · 109 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/feature_catalog/01--executor/003-fallback-router.md[90m [offset=20, limit=30][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/026-fanout-salvage.md[90m [offset=20, limit=45][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/README.md[90m [offset=145, limit=12][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=63, limit=28][0m

@@ -1,0 +1,20 @@
+### VERDICTS
+
+- **`[V-014-C1]` CONFIRMED** — `session_dedup.fingerprint` is validated for SYNTAX only and never recomputed against current in-scope files — evidence: `mcp_server/lib/validation/spec-doc-structure.ts:636-642` (regex `/^sha256:[a-f0-9]{64}$/` is the sole check), `mcp_server/handlers/memory-save.ts:1006-1014` (builds the hash at save time but no consumer recomputes it), `spec-doc-structure.ts:1072-1119` (the only content-vs-fingerprint compare requires an explicit `postSavePlan`; not run on completion). — 1-line reasoning: the validator accepts a well-formed sha256 string with no rebind to the file it is supposed to attest.
+
+- **`[V-014-C2]` CONFIRMED** — `CONTINUITY_FRESHNESS` checks only a timestamp lag, not content equality — evidence: `scripts/validation/continuity-freshness.ts:13` (single threshold `10*60*1000 ms`), `continuity-freshness.ts:216-248` (the entire decision is `deltaMs = graphMs - continuityMs; deltaMs > THRESHOLD`); no file read, no content hash, no fingerprint compare happens anywhere in the function. — 1-line reasoning: the rule names "freshness" but only ever compares two ISO timestamps extracted from metadata files.
+
+- **`[V-014-C3]` CONFIRMED** — completion (`validate.sh --strict` + checklist `[x]`) is NOT invalidated by later edits to in-scope files — evidence: `AGENTS.md:247-251` (the COMPLETION VERIFICATION RULE lists only `validate.sh --strict` exit code + checklist `[x]` evidence + metadata reconciliation; no HEAD or content-binding step), `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` (grep over the full file returns zero matches for `HEAD|fingerprint|git diff|working tree|clean tree` — only the literal string `checklist.md` for level detection, see line 303), `constitutional/verify-before-completion-claims.md:29-30` (the only HEAD-binding clause is gated to **commit/push** claims, not generic completion). — 1-line reasoning: nothing in the spec-kit completion path rebinds a green verdict to current in-scope content or git HEAD.
+
+### NEW_CONSIDERATIONS
+
+- **The fingerprint surface is genuinely close to reusable, not just structural.** `memory-save.ts:1006-1014` already implements `normalizeForFingerprint` + `buildContinuityFingerprint` (newline/trim normalization + sha256); adopting it for completion freshness is a "recompute at validation time" extension, not new infra — strengthens the prior F-002-04 ADAPT recommendation.
+- **`validate.sh` has no `--strict` HEAD or tree-state hook at all.** A targeted diff between `validate.sh` (a pure structural/metadata tool) and `verify-before-completion-claims.md:29-30` (the only HEAD-anchored rule, gated to commit/push) is the cleanest place to insert a freshness-binding extension — the surface is empty.
+- **Clock-skew path makes C2 even weaker than "lag only".** `continuity-freshness.ts:251-265` treats negative `deltaMs` (continuity newer than graph) as a benign `clock_drift` PASS — so two out-of-order saves can both report `fresh` indefinitely without any content check.
+
+### METRICS
+
+- agreement: **AGREE** (vs prior ADOPT verdict on F-002-01/02/04/06; PARTIAL/ADAPT on F-002-03 stands)
+- newInfoRatio: **0.18** (no new gap; the same three gaps verified from a different angle — `validate.sh` zero-HEAD-grep and `clock_drift` PASS path add minor weight, not new ground)
+- status: complete
+- sources: `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts:293-312, 636-642, 1072-1119`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1006-1014`; `.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:13, 216-265`; `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:303` (sole `checklist.md` reference); `.opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md:21, 29-30`; `AGENTS.md:247-258`; `specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/iterations/iteration-002.md:7-12`; `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/implementer.md:41, 53`

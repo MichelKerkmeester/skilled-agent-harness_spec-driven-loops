@@ -44,12 +44,12 @@
     "status": "implemented_—_scenarios_authored_and_wired_into_the_master_index",
     "key_files": [
       "manual_testing_playbook/manual_testing_playbook.md",
-      "manual_testing_playbook/05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md",
-      "manual_testing_playbook/04--maintenance/039-post-insert-enrichment-lifecycle-v30.md",
-      "manual_testing_playbook/04--maintenance/040-index-scan-phased-async-refinements.md",
-      "manual_testing_playbook/14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md",
-      "manual_testing_playbook/16--tooling-and-scripts/300-sk-git-worktree-convention.md",
-      "manual_testing_playbook/05--lifecycle/051-checkpoint-v2-needs-rebuild-self-heal.md",
+      "manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md",
+      "manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md",
+      "manual_testing_playbook/04--maintenance/index-scan-phased-async-refinements.md",
+      "manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md",
+      "manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md",
+      "manual_testing_playbook/05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md",
       "lib/storage/checkpoints.ts",
       "lib/search/vector-index-schema.ts",
       ".opencode/bin/lib/launcher-session-proxy.cjs",
@@ -72,39 +72,39 @@
         "source": "derived"
       },
       {
-        "name": "050-checkpoint-v2-file-snapshot-roundtrip.md",
+        "name": "checkpoint-v2-file-snapshot-roundtrip.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md",
+        "path": "manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md",
         "source": "derived"
       },
       {
-        "name": "039-post-insert-enrichment-lifecycle-v30.md",
+        "name": "post-insert-enrichment-lifecycle-v30.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/04--maintenance/039-post-insert-enrichment-lifecycle-v30.md",
+        "path": "manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md",
         "source": "derived"
       },
       {
-        "name": "040-index-scan-phased-async-refinements.md",
+        "name": "index-scan-phased-async-refinements.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/04--maintenance/040-index-scan-phased-async-refinements.md",
+        "path": "manual_testing_playbook/04--maintenance/index-scan-phased-async-refinements.md",
         "source": "derived"
       },
       {
-        "name": "258-front-proxy-reconnect-and-backend-only.md",
+        "name": "front-proxy-reconnect-and-backend-only.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md",
+        "path": "manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md",
         "source": "derived"
       },
       {
-        "name": "300-sk-git-worktree-convention.md",
+        "name": "sk-git-worktree-convention.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/16--tooling-and-scripts/300-sk-git-worktree-convention.md",
+        "path": "manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md",
         "source": "derived"
       },
       {
-        "name": "051-checkpoint-v2-needs-rebuild-self-heal.md",
+        "name": "checkpoint-v2-needs-rebuild-self-heal.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/05--lifecycle/051-checkpoint-v2-needs-rebuild-self-heal.md",
+        "path": "manual_testing_playbook/05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The Spec Kit Memory manual testing playbook stops at `EX-036` and predates the shipped 013 memory-index-scan roadmap. Operators have no human-run scenarios for checkpoint-v2 file snapshots, schema v30 post-insert enrichment, the index_scan phased-async refinements, the MCP front-proxy reconnect behavior, or the sk-git worktree convention. This packet adds new `EX-###` scenarios in the existing playbook format (one feature file per scenario plus a master-index entry), without restructuring the playbook. Each scenario traces every behavioral claim to a verified code anchor.",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.995Z",
+    "last_save_at": "2026-06-06T09:38:27.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

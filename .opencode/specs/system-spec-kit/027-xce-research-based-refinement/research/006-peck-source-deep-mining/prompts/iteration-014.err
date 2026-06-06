@@ -1,0 +1,19 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts[90m [offset=280, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts[90m [offset=600, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts[90m [offset=1040, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts[90m [offset=980, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/iterations/iteration-002.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/implementer.md
+[0m✱ [0mGrep "HEAD|content.*hash|fingerprint|git.*diff|working.*tree"[90m in .opencode/skills/system-spec-kit/scripts/spec/validate.sh · 0 matches[0m
+[0m✱ [0mGrep "CLAUDE.md|completion-verification|verify-before|HEAD|content.*bind|freshness|checklist|validate\.sh"[90m in .opencode/skills/system-spec-kit/CLAUDE.md · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/scripts/spec/validate*"[90m 1 match[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/CLAUDE.md"[90m 0 matches[0m
+[0m✱ [0mGrep "HEAD|content.*hash|fingerprint|git.*diff|working.*tree|checklist|clean.*tree"[90m in .opencode/skills/system-spec-kit/scripts/spec/validate.sh · 2 matches[0m
+[0m✱ [0mGrep "COMPLETION VERIFICATION|completion-verification|verify-before|HEAD.*bind|content.*bind|freshness.*bind|checklist.*\[x\]|checklist.*evidence"[90m in AGENTS.md · 5 matches[0m
+[0m→ [0mRead AGENTS.md[90m [offset=240, limit=25][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/spec/validate.sh[90m [offset=280, limit=40][0m

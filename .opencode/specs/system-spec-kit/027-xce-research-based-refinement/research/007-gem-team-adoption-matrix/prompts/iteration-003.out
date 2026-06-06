@@ -1,0 +1,42 @@
+### FINDINGS
+| Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+|---|---|---|---|---|---|
+| Single consolidated per-plan context object handed to subagents | Uniform args include `context_envelope_snapshot`; agents hydrate from `docs/plan/{plan_id}/context_envelope.json` [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:21] | Spec-kit has structured Context Packages and canonical continuity-first retrieval, but not a persisted per-task envelope handed to every subagent [SOURCE: .opencode/agents/context.md:34] [SOURCE: .opencode/agents/context.md:58] | ADAPT | M | Medium-high: use Context Package as dispatch snapshot without replacing packet docs |
+| Progressive after-wave enrichment | Orchestrator enriches envelope between waves through documentation writer [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:61] and writes after each wave [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:72] | Spec-kit save path updates packet docs and routes chunks to continuity/handover/research/task surfaces [SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:311] [SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:319] | ADAPT | M | Medium: add wave-level refresh discipline for orchestrated multi-agent work |
+| In-memory orchestrator cache plus post-wave write to avoid stale reads/races | Orchestrator reads disk once, maintains in-memory cache, writes after updates [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:72] | Spec-kit already serializes canonical saves with a filesystem lock and releases it after workflow completion [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:400] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:784] | REJECT | S | Low: equivalent race control exists; extra in-memory authority risks drift from canonical docs |
+| Read directives and file shortlist inside envelope | Documentation writer starts from snapshot, uses `research_digest.relevant_files`, and follows `reuse_notes` for safe/verify/skip rereads [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-documentation-writer.agent.md:41] [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-documentation-writer.agent.md:43] | Spec-kit resource-map gives a lean path ledger, and @context returns file map plus findings, but lacks typed reread directives [SOURCE: .opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl:24] [SOURCE: .opencode/agents/context.md:148] | ADAPT | M | Medium: typed `safe_to_assume` / `verify_before_use` / `do_not_re_read` would improve subagent efficiency |
+| Strict orchestrator-owned memory funnel | Planner never reads memory directly; other subagents get cross-session knowledge only via envelope [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:61] | Spec-kit intentionally routes exploration through @context but permits memory tools as supporting retrieval after packet docs [SOURCE: .opencode/agents/context.md:27] [SOURCE: .opencode/agents/context.md:162] | REJECT | S | Low: our `@context` centralization is enough without blocking valid direct memory recovery paths |
+
+- [F-003-01] The strongest adoption target is not Gem Team’s JSON file itself; it is the dispatch-time invariant that every subagent starts from the same curated snapshot. Gem Team makes that explicit with `context_envelope_snapshot` [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md:21], while Spec Kit currently synthesizes Context Packages but does not require all leaf agents to receive the same snapshot [SOURCE: .opencode/agents/context.md:230].
+- [F-003-02] Spec Kit already has a stronger durable continuity substrate than Gem Team: packet docs are canonical, recovery starts with `handover.md -> _memory.continuity -> spec docs` [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:16], and the active packet has `_memory.continuity` with recent action, next action, blockers, and key files [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/spec.md:21].
+- [F-003-03] Gem Team’s progressive enrichment is concrete and useful: the orchestrator merges learnings, promotes recurrent signals, and delegates envelope update [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:131]. Spec Kit equivalent is `/memory:save` / `generate-context.js`, which updates continuity surfaces and reindexes docs [SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:156].
+- [F-003-04] Do not adopt Gem Team’s envelope as a replacement source of truth. Spec Kit explicitly says packet docs outrank memory search for runtime truth [SOURCE: .opencode/agents/context.md:96], and `generate-context.js` refreshes graph metadata as part of canonical saves [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:84].
+- [F-003-05] Best adaptation: add an optional “context envelope snapshot” layer on top of existing Context Packages for multi-agent waves, populated from `handover.md`, `_memory.continuity`, spec docs, memory_context, and resource-map. That preserves Spec Kit’s file-distributed continuity [SOURCE: .opencode/agents/context.md:162] while borrowing Gem Team’s consistent subagent handoff [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md:94].
+
+### NEGATIVE / RULED-OUT
+Strict single JSON as the canonical continuity store is ruled out. Our equivalent is the canonical recovery ladder and packet-doc truth model: `handover.md`, `_memory.continuity`, then spec docs [SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:313] [SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:315].
+Strict “subagents never touch memory” is ruled out. Our equivalent is central exploration through @context plus scoped memory tools when packet-local continuity leaves gaps [SOURCE: .opencode/agents/context.md:34] [SOURCE: .opencode/agents/context.md:171].
+Separate race-control cache is ruled out. Our equivalent is canonical save locking plus atomic phase-parent metadata update [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:405] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:490].
+
+### OPEN QUESTIONS
+Should `@orchestrate` require a Context Package snapshot in every multi-agent wave dispatch?
+Should the snapshot be transient in the dispatch prompt only, or persisted as a packet-local generated support artifact?
+Should resource-map entries grow optional reread directives, or should those live only in the Context Package?
+
+### METRICS
+newInfoRatio: 0.64
+novelty: Gem Team adds a concrete per-wave shared snapshot discipline; Spec Kit already has stronger durable continuity but lacks the single dispatch envelope invariant.
+status: complete
+focus: RQ3 context envelope
+nuity then broader memory only when needed. [SOURCE: .opencode/agents/context.md:34] [SOURCE: .opencode/agents/code.md:74]
+
+### OPEN QUESTIONS
+- Should Spec Kit add a **derived, read-only `context_snapshot` field** to orchestrator dispatch prompts, generated from the continuity ladder plus `memory_context`, without writing a new canonical JSON file?
+- Should `@context` expose typed subsets for `code`, `review`, `debug`, `markdown`, and `ai-council`, analogous to Gem Team’s per-agent snapshot field lists?
+- Should per-wave/multi-agent workflows refresh one in-memory Context Package after each wave, while deferring durable persistence to `/memory:save`?
+
+### METRICS
+newInfoRatio: 0.42
+novelty: Gem Team adds a concrete per-dispatch shared context snapshot pattern; Spec Kit already has stronger durable continuity but less typed, per-agent snapshot delivery.
+status: complete
+focus: RQ3 context envelope

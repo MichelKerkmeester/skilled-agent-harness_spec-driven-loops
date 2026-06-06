@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`.
+
+MECHANISM TO EVALUATE (iteration 013, RQ13): **Distribution / packaging (APM)** — Gem Team is distributed via APM (`apm.yml` manifest + release-please automation), and APM auto-detects the user's tools and deploys the SAME agents to VS Code, Claude Code, Cursor, OpenCode, Codex CLI, Gemini CLI, Windsurf, GitHub Copilot — from one source. Evaluate whether the spec-kit should adopt any of: a single-source agent definition with per-harness deploy, a package manifest, or release automation.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: the spec-kit maintains PER-RUNTIME agent directories (`.opencode/agents/`, `.claude/agents/`, `.codex/agents/`) with a runtime-resolution rule (CLAUDE.md §5), and is NOT distributed as a package. Judge honestly whether gem-team's single-source multi-harness deploy + manifest + release automation is net-new value worth a sub-packet, or out-of-scope for an in-repo system. Be willing to REJECT the whole angle if it doesn't fit.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/README.md ("Quick Start" + "Installation" + "Compatible Tools" table), external/gem-team-main/apm.yml, external/gem-team-main/AGENTS.md ("Release")
+READ (spec-kit side): CLAUDE.md (§5 Runtime Agent Directory Resolution + the Multi-Repository Architecture note at top), and grep for: "agent directory", "runtime", ".claude/agents", ".codex/agents", "deploy", "sync" across CLAUDE.md and AGENTS.md
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-013-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ13 distribution / packaging (APM)

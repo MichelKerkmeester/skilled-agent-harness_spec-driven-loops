@@ -1,0 +1,27 @@
+ROLE: You are a skeptical READ-ONLY ADVERSARIAL VERIFIER. Your working dir (--dir) is the repo root. You MUST NOT write/edit/create any file or run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, return your ENTIRE analysis as TEXT only.
+
+CONTEXT: An earlier pass proposed adopting Gem Team's "resilience" model. TRY HARD TO REFUTE it. Default to "the gap is smaller than claimed". Be the hostile reviewer.
+
+CLAIM — "Typed failure taxonomy + pre-mortem" (verdict ADAPT, strong; ratio 0.74): Gem's orchestrator classifies every failure into a typed taxonomy (`transient`, `fixable`, `needs_replan`, `escalate`, `flaky`, `test_bug`, `regression`, `new_failure`, `platform_specific`, `needs_approval`) with PER-TYPE retry limits and actions [external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:277-289], and requires a `pre_mortem` (risk level + critical failure modes + assumptions) before MEDIUM/HIGH execution. The claim: spec-kit has only a PROSE halt/escalate/confidence model, no typed failure taxonomy with retry policy, and no pre-execution pre-mortem.
+
+YOUR JOB: DEEP-READ the real spec-kit files and decide: upheld / downgraded / refuted.
+DEEP-READ: CLAUDE.md §1 (Halt Conditions / Four Laws) + §4 (Confidence & Clarification / Logic-Sync / Escalation), .opencode/skills/deep-loop-runtime/SKILL.md (stuck/recovery/convergence), .opencode/skills/deep-research/references (recovery), and grep for: "failure", "retry", "stuck", "recovery", "escalate", "transient", "pre-mortem", "premortem", "risk", "halt" across .opencode/skills/deep-research and .opencode/skills/deep-loop-runtime and .opencode/agents. Check whether the deep-loop runtime ALREADY has a typed failure/recovery model (e.g. stuck recovery tiers, timeout handling, fallback routing) that substantially covers this.
+
+OUTPUT EXACTLY (NOTHING before "### VERDICTS"):
+
+### VERDICTS
+| Claim | Original verdict | Adversarial result (upheld/downgraded/refuted) | Revised verdict | Strongest counter-evidence (file:line) |
+|---|---|---|---|---|
+
+### EVIDENCE
+- [V-016-01] Typed failure taxonomy: <deep-read findings, file:line — does deep-loop/CLAUDE.md already type failures + retry?>
+- [V-016-02] Pre-mortem: <deep-read findings, file:line — does the spec-kit do pre-execution risk analysis?>
+
+### REVISED NET-NEW VALUE
+<honest narrowed value; what is genuinely sub-packet-worthy, and is it for the agent-runtime or the deep-loop runtime?>
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-V3 adversarial — resilience (typed failure taxonomy + pre-mortem)

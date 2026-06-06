@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "anobel.com/003-slider-refactor",
-  "description": "Rebrand testimonial slider to generic slider base, split into slider_testimonial.js (with image colour states) and slider_timeline.js (without). Scope per-variant collision constants.",
+  "description": "Rebrand testimonial slider to generic slider base, split into slider_testimonial.js and slider_timeline.js, scope variant wrappers for same-page coexistence, fix timeline-only underline styling, fix mobile pagination taps, and document Webflow Designer updates.",
   "keywords": [
     "slider",
     "carousel",
@@ -11,9 +11,12 @@
     "Motion.dev",
     "horizontalLoop",
     "minification",
-    "variant"
+    "variant",
+    "Webflow guide",
+    "mobile pagination",
+    "timeline underline"
   ],
-  "lastUpdated": "2026-05-31T00:00:00.000Z",
+  "lastUpdated": "2026-06-06T10:20:00.000Z",
   "specId": "003",
   "folderSlug": "slider-refactor",
   "parentChain": [

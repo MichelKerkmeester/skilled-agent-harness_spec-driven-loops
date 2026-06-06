@@ -1,0 +1,35 @@
+Reading the specified research/spec-kit sources and rollout surfaces read-only, then I’ll return only the requested rollout.
+### ROLLOUT_PLAN
+
+| phase | what ships | gate-to-next | backward-compat mechanism | flag + default |
+|---|---|---|---|---|
+| 0 | Land pending `001/002-self-check-templates` first, or freeze a single shared-template edit window, because it edits `spec.md.tmpl`/`checklist.md.tmpl` surfaces also needed by 011. `sub-packet-proposal.md:107-109`, `002-self-check-templates/spec.md:21-23`, `002-self-check-templates/spec.md:107-112` | Fresh scaffold passes strict validation. `001-peck-teachings-adoption/spec.md:121-123` | No AC rule yet; avoid parallel template churn. `sub-packet-proposal.md:73-74` | none |
+| 1 | Ship `010-reviewer-prompt-benchmark-substrate` first: reviewer fixtures with expected verdict oracle. `sub-packet-proposal.md:47-53`, `research.md:26-28` | Fixtures cover stale-verdict, softened-Fail, over-read, and AC coverage cases before rules ship. `sub-packet-proposal.md:43`, `sub-packet-proposal.md:51` | Automation only; no user-facing blocker. `sub-packet-proposal.md:53` | `SPECKIT_REVIEWER_BENCHMARKS=true` graduated ON; follows default-on flag convention. `ENV_REFERENCE.md:18-25` |
+| 2 | Ship `009-verification-discipline` in warn mode: freshness binding, escalation, anti-softening, read-budget, numeric calibration. `sub-packet-proposal.md:29-43` | 010 regressions green for freshness/softening/read-budget. `sub-packet-proposal.md:43` | Grandfather old completions: warn on missing/stale fingerprint unless a new completion claim updates checklist/implementation-summary after rollout. Freshness is medium risk and must ship warn-first. `sub-packet-proposal.md:36`, `sub-packet-proposal.md:43` | `SPECKIT_COMPLETION_FRESHNESS=true`; `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=false` |
+| 3 | Ship 011 phases 001-002: normalize AC format and add checklist AC traceability table. `sub-packet-proposal.md:61-65` | New scaffolds render assertion-shaped ACs and traceability table without strict validation regressions. `spec.md.tmpl:445-453`, `spec.md.tmpl:532-542`, `checklist.md.tmpl:212-219` | Existing folders without the new AC table are legacy: warn only, no ERROR. `sub-packet-proposal.md:70-74` | `SPECKIT_AC_TRACEABILITY_TEMPLATE=true` |
+| 4 | Ship `AC_COVERAGE` as WARNING only with floor `0.9` and manual-automation-infeasible escape hatch. `sub-packet-proposal.md:66-67` | Baseline report shows acceptable warning volume and no false ERRORs on existing folders. Severity model supports WARNING non-strict pass and strict-mode failure. `validation_rules.md:27-35` | Enforce only for L2+ once `checklist.md` exists and lifecycle is `implementation-summary.md` in-progress+; L1 remains exempt. `sub-packet-proposal.md:67`, `sub-packet-proposal.md:70-77` | `SPECKIT_AC_COVERAGE=true`; `SPECKIT_AC_COVERAGE_ENFORCE=false`; `SPECKIT_AC_COVERAGE_FLOOR=0.9` |
+| 5 | Promote `AC_COVERAGE` to ERROR after warn-only window. `sub-packet-proposal.md:68`, `sub-packet-proposal.md:77` | 14-day persisted warning window expires and 010 coverage fixtures stay green. `save-quality-gate.ts:15-20`, `save-quality-gate.ts:110-112`, `save-quality-gate.ts:245-258` | Legacy folders still exempt from ERROR unless they have the new AC table or are touched by an in-progress+ lifecycle completion flow. `sub-packet-proposal.md:73-77` | Flip `SPECKIT_AC_COVERAGE_ENFORCE=true`; keep rollback via `SPECKIT_AC_COVERAGE=false` |
+
+### PRECEDENT
+
+Copy `SPECKIT_SAVE_QUALITY_GATE`: it is default ON/graduated, can be disabled with `false`, starts with a 14-day warn-only period, logs would-reject decisions without blocking, and persists the activation timestamp so restart does not reset graduation. `ENV_REFERENCE.md:48-49`, `save-quality-gate.ts:12-20`, `save-quality-gate.ts:151-153`, `save-quality-gate.ts:269-272`
+
+### COORDINATION
+
+Land pending `001/002` first if possible; otherwise lock one shared-template edit window for `spec.md.tmpl` and `checklist.md.tmpl`. `sub-packet-proposal.md:107-109`, `002-self-check-templates/spec.md:93-112`
+
+Fold T14 into pending `001/003-current-state-discipline`, not a new packet. `sub-packet-proposal.md:83-86`, `003-current-state-discipline/spec.md:93-99`
+
+Fold T12(a,b) into pending `001/004-constitutional-rule-review`, not a new packet. `sub-packet-proposal.md:85-87`, `004-constitutional-rule-review/spec.md:92-100`
+
+Confirm dependency order: `010 → 009 → 011`; 010 has no structural dependency and is explicitly “land FIRST,” 009 depends on 010 for tests, and 011 depends on 010 plus pending-template coordination. `sub-packet-proposal.md:18-20`, `sub-packet-proposal.md:101-113`
+
+### METRICS
+
+newInfoRatio: 0.36
+
+novelty: Mostly integration synthesis; new value is the explicit warn→error/grandfathering flag choreography.
+
+status: complete
+
+sources: `sub-packet-proposal.md:18-20`, `sub-packet-proposal.md:36-43`, `sub-packet-proposal.md:47-53`, `sub-packet-proposal.md:61-77`, `sub-packet-proposal.md:81-87`, `sub-packet-proposal.md:101-113`, `research.md:24-30`, `research.md:98-103`, `001-peck-teachings-adoption/spec.md:121-133`, `002-self-check-templates/spec.md:93-112`, `003-current-state-discipline/spec.md:93-99`, `004-constitutional-rule-review/spec.md:92-100`, `ENV_REFERENCE.md:18-25`, `ENV_REFERENCE.md:48-49`, `validation_rules.md:27-35`, `validator-registry.json:275-281`, `save-quality-gate.ts:12-20`, `save-quality-gate.ts:110-112`, `save-quality-gate.ts:245-258`, `save-quality-gate.ts:269-272`, `spec.md.tmpl:445-453`, `spec.md.tmpl:532-542`, `checklist.md.tmpl:212-219`

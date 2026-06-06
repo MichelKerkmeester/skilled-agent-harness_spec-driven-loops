@@ -1,0 +1,37 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"READ-ONLY adversarial verification of spec-kit verification enforcement claims; deep-read sk-code, debug agent, orchestrate agent, templates, CLAUDE/AGENTS; no writes/git; return findings only.","options":{"topK":3,"includeAttribution":false,"includeAbstainReasons":true}}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY adversarial verifier for spec-kit verification enforcement claims: contract-first test ordering and diagnose-then-fix 4-level enforcement. Spec folder specs/system-spec-kit/027-xce-research-based-refinement pre-approved; no writes/git.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "sk-code-review"
+[0m✱ [0mGlob "**/CLAUDE.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/AGENTS.md"[90m in . · 3 matches[0m
+[0m✱ [0mGlob ".opencode/agents/*.md"[90m in . · 11 matches[0m
+[0m✱ [0mGlob "external/gem-team-main/{AGENTS.md,README.md}"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "external/gem-team-main/**"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/gem-team-main/**"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/sk-code/SKILL.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=1, limit=400][0m
+[0m✗ [0mRead .opencode/skills/system-spec-kit/templates/debug-delegation.md failed[90m [offset=1, limit=400][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/templates/debug-delegation.md
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .claude/CLAUDE.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=401, limit=250][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=501, limit=350][0m
+[0m✱ [0mGrep "test-first|TDD|contract|diagnose|root_cause|debug-delegation|before implementation"[90m in . · 31373 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/templates/**debug*"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "test-first|TDD|contract|diagnose|root_cause|debug-delegation|before implementation"[90m in .opencode/skills/sk-code · 81 matches[0m
+[0m✱ [0mGrep "test-first|TDD|contract|diagnose|root_cause|debug-delegation|before implementation"[90m in .opencode/agents · 61 matches[0m
+[0m✱ [0mGrep "test-first|TDD|contract|diagnose|root_cause|debug-delegation|before implementation"[90m in .opencode/skills/system-spec-kit/templates · 29 matches[0m
+[0m✱ [0mGrep "test-first|TDD|contract|diagnose|root_cause|debug-delegation|before implementation"[90m in . · 7 matches[0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=221, limit=300][0m
+[0m✱ [0mGlob "**/debug-delegation*"[90m in .opencode/skills/system-spec-kit/templates · 1 match[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl[90m [offset=1, limit=180][0m
+[0m✱ [0mGlob "**/external/gem-team-main/AGENTS.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/external/gem-team-main/README.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/gem-implementer.agent.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/gem-reviewer.agent.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/gem-team-main*"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement · 0 matches[0m
+[0m✱ [0mGrep "debugger_diagnosis|root_cause|fix_recommendations|target_files"[90m in .opencode · 75 matches[0m

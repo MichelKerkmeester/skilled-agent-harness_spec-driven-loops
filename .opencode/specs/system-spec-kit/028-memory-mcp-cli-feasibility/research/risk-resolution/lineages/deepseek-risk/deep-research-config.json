@@ -1,0 +1,21 @@
+{
+  "topic": "Run 3 — RISK RESOLUTION (deepseek-risk lane): classify all 11 seed RQs + discovered risks against the dual-stack CLI design. Premises: run-1 GO verdict, run-2 CLI design. Done = every question classified as RESOLVED/MITIGATED/ACCEPTED/DEFERRED.",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "resource_map_present": false,
+  "resource_map": { "emit": false },
+  "createdAt": "2026-06-06T10:29:41Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "lineage": {
+    "sessionId": "fanout-deepseek-risk-1780741781330-fuysmn",
+    "parentSessionId": "dr-20260606T122838-risk-resolution",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "deepseek-risk"
+  }
+}

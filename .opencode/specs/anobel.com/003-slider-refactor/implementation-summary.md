@@ -11,16 +11,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "anobel.com/003-slider-refactor"
-    last_updated_at: "2026-05-31T00:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "All work complete — both variants minified and verified"
-    next_safe_action: "Update Webflow Designer sections to use new data-slider attributes"
+    last_updated_at: "2026-06-06T10:20:00Z"
+    last_updated_by: "opencode"
+    recent_action: "All repo work complete — variant-safe wrappers, timeline-only underline styling, mobile pagination handling, minified outputs, and Webflow guides are verified"
+    next_safe_action: "No repo follow-on required; use webflow-update-guide.md for external Webflow Designer updates"
     blockers: []
     key_files:
-      - "a_nobel_en_zn/2_javascript/carousel/slider_testimonial.js"
-      - "a_nobel_en_zn/2_javascript/carousel/slider_timeline.js"
-      - "a_nobel_en_zn/2_javascript/z_minified/carousel/slider_testimonial.min.js"
-      - "a_nobel_en_zn/2_javascript/z_minified/carousel/slider_timeline.min.js"
+      - "a_nobel_en_zn/2_javascript/slider_testimonial.js"
+      - "a_nobel_en_zn/2_javascript/slider_timeline.js"
+      - "a_nobel_en_zn/2_javascript/z_minified/slider_testimonial.min.js"
+      - "a_nobel_en_zn/2_javascript/z_minified/slider_timeline.min.js"
+      - "a_nobel_en_zn/1_css/slider/slider_timeline.css"
+      - "specs/anobel.com/003-slider-refactor/webflow-update-guide.md"
+      - "specs/anobel.com/003-slider-refactor/testimonial-tab-update-guide.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-anobel.com/003-slider-refactor"
@@ -29,7 +32,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "Chose to scope STYLE_ID, DECORATED_FLAG, and INIT_FLAG per variant to allow safe same-page coexistence."
-      - "Image greyscale/colour state lives only in slider_testimonial.js — slider_timeline.js defers all tab visual state to static CSS."
+      - "Image greyscale/colour state lives only in slider_testimonial.js; timeline underline and active text styling is scoped to data-target=slider-timeline."
+      - "Variant wrappers are required: data-target=slider-testimonial and data-target=slider-timeline."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -44,8 +48,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Status** | Complete |
-| **Completed** | 2026-05-31 |
-| **Files modified** | 6 (2 new source, 2 new minified, 2 deleted stale minified) |
+| **Completed** | 2026-06-06 |
+| **Files modified** | 9 current repo artifacts plus stale artifact cleanup |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -64,7 +68,7 @@ Scoped constants:
 - `DECORATED_FLAG = 'sliderTestimonialDecorated'`
 - `INIT_FLAG = '__sliderTestimonialCdnInit'`
 
-`ensureStyles()` injects image filter CSS: greyscale by default, full colour on active/hover/focus tab. This is appropriate for logo-based tab navigation where colour signals the active state.
+`ensureStyles()` injects image filter CSS: greyscale by default, full colour on active/hover/focus tab. This is appropriate for logo-based tab navigation where colour signals the active state. The section selector is `data-target="slider-testimonial"` so it does not decorate timeline sections.
 
 **`slider_timeline.js`** — timeline variant, no image colour states
 
@@ -73,20 +77,32 @@ Scoped constants:
 - `DECORATED_FLAG = 'sliderTimelineDecorated'`
 - `INIT_FLAG = '__sliderTimelineCdnInit'`
 
-`ensureStyles()` contains only layout/cursor/transform rules. Tab visual differentiation is left entirely to static CSS and Webflow Designer classes.
+`ensureStyles()` contains only layout/cursor/transform rules. The section selector is `data-target="slider-timeline"`. Timeline tab visual differentiation comes from `slider_timeline.css`, scoped under that wrapper.
 
-### 3. Minification results
+### 3. Same-page coexistence and mobile controls
+
+Both variants can be loaded on the same page when Webflow wrappers use `data-target="slider-testimonial"` and `data-target="slider-timeline"`. Previous and next click handlers now prevent default link behavior and stop propagation before advancing the loop, which prevents mobile pagination taps from being hijacked by link defaults or parent slide handlers.
+
+### 4. Timeline-only underline styling
+
+`slider_timeline.css` scopes tab underline, hover, focus, active text colour, and active font weight under `data-target="slider-timeline"`. Testimonial tabs using `data-target="slider-testimonial"` no longer receive timeline underline styling.
+
+### 5. Minification results
 
 | File | Source | Output | Reduction |
 |------|--------|--------|-----------|
-| `slider_testimonial.min.js` | 32,391 B | 14,106 B | -56.5% |
-| `slider_timeline.min.js` | 31,147 B | 12,843 B | -58.8% |
+| `slider_testimonial.min.js` | 32,757 B | 14,173 B | -56.7% |
+| `slider_timeline.min.js` | 31,988 B | 13,390 B | -58.1% |
 
 All three verification stages passed for both files:
 - `verify-minification.mjs` — selectors, events, Webflow.push, Motion.animate preserved
 - `test-minified-runtime.mjs` — executes without errors, correct `INIT_FLAG` per variant
 
-### 4. Stale artifact cleanup
+### 6. Webflow guides
+
+Created `webflow-update-guide.md` and `testimonial-tab-update-guide.md` with the required external Webflow Designer actions: script embeds, variant section wrappers, shared child attributes, timeline-only underline placement, testimonial tab image setup, and mobile pagination validation.
+
+### 7. Stale artifact cleanup
 Deleted: `z_minified/carousel/testimonial.min.js`, `z_minified/carousel/slider.min.js`
 
 ---
@@ -97,10 +113,10 @@ Tab active states are split across two layers — unchanged by this work, docume
 
 | Layer | File | What it controls |
 |-------|------|-----------------|
-| Static CSS | `src/1_css/button/btn_tab_main.css` | Font weight, brand colour, border-bottom on `[data-tab][data-tab-active="true"]` / `.is--set` / `[aria-selected="true"]` |
+| Static CSS | `a_nobel_en_zn/1_css/slider/slider_timeline.css` | Timeline-only font weight, brand colour, hover/focus state, and underline under `data-target="slider-timeline"` |
 | Runtime CSS (testimonial only) | `ensureStyles()` in `slider_testimonial.js` | Image greyscale default; `filter: none` on active/hover/focus; `opacity: 1` on active tab element |
 
-`slider_timeline.js` relies entirely on the static CSS layer — no runtime image filter is injected.
+`slider_timeline.js` relies on the timeline static CSS layer — no runtime image filter is injected.
 
 ---
 
@@ -118,4 +134,4 @@ Tab active states are split across two layers — unchanged by this work, docume
 
 ## Follow-on Work Required
 
-- **Webflow Designer**: Update all sections that previously used `data-testimonial-slider="*"` attributes to the new `data-slider="*"` contract. See `handover.md` for the complete attribute mapping table.
+- No repo follow-on is required. External Webflow Designer edits may still be needed on live pages; follow `webflow-update-guide.md` and `testimonial-tab-update-guide.md` when applying those page-level changes.

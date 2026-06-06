@@ -1,0 +1,27 @@
+{
+  "topic": "Run 3 — RISK RESOLUTION before implementation of the spec-memory dual-stack CLI. PREMISE (settled, do not relitigate): run-1 GO verdict in ../research.md and the run-2 CLI design in ../cli-backend/lineages/gpt/research.md — READ BOTH as input. EXCLUSION: do not read anything under this run's sibling lineages directory (research/risk-resolution/lineages/ other than your own lane folder); findings derived from a sibling lane are void. MISSION: investigate EVERY risk and unknown below until each is classified RESOLVED (with file:line or measured evidence), MITIGATED (named design delta the implementation packet must absorb), ACCEPTED (explicit rationale), or DEFERRED (named blocker) — and ADD any newly discovered risks/unknowns as new key questions which must also reach a terminal classification. The loop is done only when every question is classified; read-only timing measurements via bash are allowed, file mutation is not. The seed register: RQ1 daemon-bypass enforcement — can the public CLI provably never open the database directly; inventory every admin direct-DB path; the unix-socket trust model (which local processes can connect; socket file permissions). RQ2 schema-drift mechanics — do all 37 tool arg shapes (nested objects, arrays, unions) round-trip via argv flags plus a --json escape hatch; is codegen from TOOL_DEFINITIONS feasible for every tool; enumerate the tools whose schemas do not map cleanly to flags. RQ3 lease/spawn races — CLI auto-spawn while an MCP session owns the daemon; two CLIs spawning simultaneously; lifetime and ownership of a CLI-spawned daemon when no MCP session exists (who reaps it, idle timeout, orphan risk — six orphaned mk-skill-advisor launchers were observed on this host today as a cautionary precedent). RQ4 retryable taxonomy — the complete error-to-exit-75 map: -32001, cold-start exhaustion, lease contention, SQLITE_BUSY; which daemon errors are genuinely retryable versus terminal (exit 69). RQ5 hook latency budget — the daemon-down cold path (auto-spawn plus 15-30s embedder warm) versus per-runtime hook timeout ceilings; is CLI shell-out viable from prompt-submit hooks or only from SessionStart/cron contexts. RQ6 per-call spawn overhead — MEASURE actual node process startup and socket round-trip latency on this host (read-only bash timing); validate or refute the 50-150ms estimate; assess impact on chatty flows. RQ7 session-identity semantics — verify in the actual code paths that sessionId propagation unifies dedup/learning/working-memory across MCP and CLI callers; what session id non-codex runtimes should pass. RQ8 build/activation drift — shim-to-dist staleness; does the launcher bootstrap-lock build cover the CLI handoff for free. RQ9 dual-client load — contention under simultaneous MCP plus CLI traffic; which existing stress tests prove safety and where the gaps are. RQ10 effort reconciliation — 8-12 days (run 2) versus 13-16 days versus 3-4 weeks (run 1): produce one defensible dual-stack estimate with stated scope. RQ11 platform/socket constraints — macOS 104-char sun_path handling in the shim; Windows as explicit non-goal or not. Every claim needs file:line or measured evidence from this repository.",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "resource_map_present": false,
+  "resource_map": { "emit": false },
+  "createdAt": "2026-06-06T10:28:38Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "lineage": {
+    "sessionId": "dr-20260606T122838-risk-resolution",
+    "parentSessionId": "dr-20260606T120541-cli-backend",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout": {
+    "executors": [
+      { "kind": "cli-opencode", "model": "deepseek/deepseek-v4-pro", "reasoningEffort": "high", "label": "deepseek-risk", "count": 1, "iterations": 20 },
+      { "kind": "cli-opencode", "model": "xiaomi-token-plan-ams/mimo-v2.5-pro", "reasoningEffort": "high", "label": "mimo-risk", "count": 1, "iterations": 20 }
+    ],
+    "concurrency": 2
+  }
+}

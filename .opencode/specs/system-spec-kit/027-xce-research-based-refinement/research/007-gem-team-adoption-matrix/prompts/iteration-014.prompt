@@ -1,0 +1,30 @@
+ROLE: You are a skeptical READ-ONLY ADVERSARIAL VERIFIER. Your working dir (--dir) is the repo root. You MUST NOT write/edit/create any file or run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, return your ENTIRE analysis as TEXT only.
+
+CONTEXT: An earlier adoption-research pass proposed adopting two "verification enforcement" mechanisms from the external Gem Team framework into our spec-kit. Your job is to TRY HARD TO REFUTE them — prove the spec-kit already covers them, or that adoption is not worth the cost. Default to "the gap is smaller than claimed" unless evidence is strong. Be the hostile reviewer.
+
+CLAIM 1 — "Contract-first test ordering" (verdict ADOPT): Gem requires contract tests written BEFORE implementation [external/gem-team-main/AGENTS.md:69, README.md:83-85]. The claim: spec-kit verifies before completion but does NOT mandate tests-first, so this is a genuine GAP.
+CLAIM 2 — "Diagnose-then-fix 4-level enforcement" (verdict ADAPT, strong): Gem enforces a machine-checked `debugger_diagnosis` contract at 4 levels (planner pairs debugger→implementer; orchestrator pre-wave schema gate for root_cause/target_files/fix_recommendations; implementer validates diagnosis; reviewer verifies pairing) [external/gem-team-main/AGENTS.md:64-68]. The claim: spec-kit has @debug 5-phase + debug-delegation.md but no machine-checked gate.
+
+YOUR JOB: DEEP-READ (not just grep) the real spec-kit files and decide for EACH claim: upheld / downgraded / refuted.
+DEEP-READ: .opencode/skills/sk-code/SKILL.md (verification + test discipline), .opencode/agents/debug.md (full), .opencode/skills/system-spec-kit/templates/debug-delegation.md (if present), .opencode/agents/orchestrate.md (verification/delegation sections), CLAUDE.md / AGENTS.md (Iron Law, COMPLETION VERIFICATION). Also grep for: "test-first", "TDD", "contract", "diagnose", "root_cause", "debug-delegation", "before implementation".
+
+For each claim, find the STRONGEST spec-kit evidence that already covers it (cite file:line) OR confirm the gap is genuine. Then give an honest revised net-new value (often narrower than the original claim).
+
+OUTPUT EXACTLY (NOTHING before "### VERDICTS"):
+
+### VERDICTS
+| Claim | Original verdict | Adversarial result (upheld/downgraded/refuted) | Revised verdict | Strongest counter-evidence (file:line) |
+|---|---|---|---|---|
+
+### EVIDENCE
+- [V-014-01] Claim 1 contract-first: <deep-read findings, file:line both sides, is the gap real?>
+- [V-014-02] Claim 2 diagnose-then-fix: <deep-read findings, file:line, does spec-kit already enforce a checked contract?>
+
+### REVISED NET-NEW VALUE
+<the honest, narrowed net-new value of each claim after scrutiny; what (if anything) is genuinely worth a sub-packet>
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-V1 adversarial — verification enforcement (contract-first + diagnose-then-fix)

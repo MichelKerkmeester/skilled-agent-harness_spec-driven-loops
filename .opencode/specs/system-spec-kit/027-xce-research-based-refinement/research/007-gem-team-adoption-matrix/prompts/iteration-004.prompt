@@ -1,0 +1,32 @@
+ROLE: You are a senior READ-ONLY research analyst comparing two AI agent frameworks. Your working dir (--dir) is the repo root. You MUST NOT write, edit, or create any file, and MUST NOT run git. The spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — SKIP Gate-3, make NO modifications, return your ENTIRE analysis as TEXT only.
+
+SUBJECT A (external): "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`.
+SUBJECT B (our system = adoption target): the "spec-kit" — `.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/**`.
+
+MECHANISM TO EVALUATE (iteration 004, RQ4): **Knowledge layers** — Gem Team's 5 typed knowledge layers (PRD `docs/PRD.yaml`, AGENTS.md, Memory, Skills `docs/skills/`, Derived Docs `docs/knowledge/`) and its strict KNOWLEDGE-PRIORITY order (PRD → codebase → AGENTS.md → Context7 → docs). Evaluate whether this taxonomy/priority ordering is worth adopting as an explicit spec-kit contract.
+
+DECIDE per sub-feature: ADOPT / ADAPT / REJECT (REJECT REQUIRES citing our equivalent).
+
+HARD RULES:
+- Cite [SOURCE: relative/path:line] on BOTH sides. No spec-kit-side citation ⇒ INVALID.
+- Our equivalents: the spec-folder doc levels (spec.md/plan.md/tasks.md/decision-record.md — see CLAUDE.md §3), skills as reusable procedures (.opencode/skills/), the memory MCP, and the root AGENTS.md/CLAUDE.md. Judge whether gem-team's explicit knowledge-source PRIORITY ORDER and the PRD-as-single-source-of-truth idea add anything we lack.
+- Bound reading to files below + greps; grep/skim the spec-kit side.
+
+READ (gem-team side): external/gem-team-main/README.md ("Knowledge Layers" table + "Knowledge-Driven"), external/gem-team-main/AGENTS.md (rule 1 "Knowledge priority"), external/gem-team-main/.apm/agents/gem-researcher.agent.md
+READ (spec-kit side): CLAUDE.md (§3 SPEC FOLDER DOCUMENTATION — doc levels), .opencode/skills/system-spec-kit/SKILL.md, and grep for: "PRD", "knowledge", "Derived Docs", "Context7", "source of truth", "decision-record"
+
+OUTPUT EXACTLY (NOTHING before "### FINDINGS"):
+
+### FINDINGS
+<table: Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value>
+<2-5 bullets [F-004-01].. both-side evidence>
+
+### NEGATIVE / RULED-OUT
+
+### OPEN QUESTIONS
+
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ4 knowledge layers

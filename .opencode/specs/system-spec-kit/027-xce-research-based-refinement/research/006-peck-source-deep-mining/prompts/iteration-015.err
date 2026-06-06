@@ -1,0 +1,132 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m$ [0mls .opencode/skills/system-spec-kit/templates/manifest/ .opencode/skills/system-spec-kit/references/validation/ .opencode/skills/system-spec-kit/deep-review/ 2>&1 | head -60
+ls: .opencode/skills/system-spec-kit/deep-review/: No such file or directory
+.opencode/skills/system-spec-kit/references/validation/:
+decision_format.md
+five_checks.md
+path_scoped_rules.md
+phase_checklists.md
+template_compliance_contract.md
+validation_rules.md
+
+.opencode/skills/system-spec-kit/templates/manifest/:
+EXTENSION_GUIDE.md
+MIGRATION.md
+README.md
+checklist.md.tmpl
+context-index.md.tmpl
+debug-delegation.md.tmpl
+decision-record.md.tmpl
+handover.md.tmpl
+implementation-summary.md.tmpl
+phase-parent.spec.md.tmpl
+plan.md.tmpl
+research.md.tmpl
+resource-map.md.tmpl
+spec-kit-docs.json
+spec.md.tmpl
+tasks.md.tmpl
+[0m
+[0m✱ [0mGlob "specs/system-spec-kit/027*/001-peck-teachings-adoption/002-self-check-templates/*"[90m 0 matches[0m
+[0m✱ [0mGlob "external/peck-master/src/assets/agents/acceptance-reviewer.md"[90m 0 matches[0m
+[0m✱ [0mGlob "external/peck-master/src/assets/templates/story.md"[90m 0 matches[0m
+[0m✱ [0mGlob "**/peck-teachings-adoption/**"[90m 0 matches[0m
+[0m✱ [0mGlob "**/peck-master/**/story.md"[90m 0 matches[0m
+[0m✱ [0mGlob "**/peck-master/**/acceptance-reviewer.md"[90m 0 matches[0m
+[0m✱ [0mGlob "**/iteration-008.md"[90m 7 matches[0m
+[0m✱ [0mGlob ".opencode/skills/**/deep-review/SKILL.md"[90m 1 match[0m
+[0m✱ [0mGlob "**/iteration-011.md"[90m 6 matches[0m
+[0m
+[0m$ [0mls -la .opencode/specs/system-spec-kit/027-xce-research-based-refinement/ 2>&1 | head -30
+total 80
+drwxr-xr-x  18 michelkerkmeester  staff    576 Jun  6 05:47 .
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  6 08:03 ..
+drwxr-xr-x@  8 michelkerkmeester  staff    256 May 16 10:23 000-release-cleanup
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  5 14:47 001-peck-teachings-adoption
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  6 05:15 002-memory-write-safety
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  5 23:41 003-incremental-index-foundation
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  6 05:47 004-causal-edge-tombstones
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  5 17:06 005-metadata-edge-promoter
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  5 23:41 006-write-path-reconciliation
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Jun  6 05:47 007-semantic-trigger-fallback
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Jun  6 05:47 008-learning-feedback-reducers
+-rw-r--r--@  1 michelkerkmeester  staff   3851 Jun  4 08:42 context-index.md
+-rw-r--r--@  1 michelkerkmeester  staff   1990 Jun  6 05:15 description.json
+drwxrwxr-x   6 michelkerkmeester  staff    192 Jun  6 07:49 external
+-rw-r--r--@  1 michelkerkmeester  staff   8346 Jun  6 05:47 graph-metadata.json
+drwxr-xr-x  11 michelkerkmeester  staff    352 Jun  6 08:51 research
+-rw-r--r--@  1 michelkerkmeester  staff   7436 Jun  6 05:15 resource-map.md
+-rw-r--r--@  1 michelkerkmeester  staff  12134 Jun  6 05:15 spec.md
+[0m
+[0m$ [0mls -la .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/ 2>&1 | head -30
+total 120
+drwxr-xr-x@ 13 michelkerkmeester  staff    416 Jun  6 08:52 .
+drwxr-xr-x  11 michelkerkmeester  staff    352 Jun  6 08:51 ..
+-rw-r--r--@  1 michelkerkmeester  staff   1506 Jun  6 08:23 README.md
+-rw-r--r--@  1 michelkerkmeester  staff   2865 Jun  6 08:22 deep-research-config.json
+-rw-r--r--@  1 michelkerkmeester  staff   2358 Jun  6 08:51 deep-research-dashboard.md
+-rw-r--r--@  1 michelkerkmeester  staff   5430 Jun  6 08:47 deep-research-state.jsonl
+-rw-r--r--@  1 michelkerkmeester  staff   8843 Jun  6 08:43 deep-research-strategy.md
+drwxr-xr-x@ 15 michelkerkmeester  staff    480 Jun  6 08:47 deltas
+-rw-r--r--@  1 michelkerkmeester  staff   4050 Jun  6 08:52 findings-registry.json
+drwxr-xr-x@ 15 michelkerkmeester  staff    480 Jun  6 08:47 iterations
+drwxr-xr-x@ 61 michelkerkmeester  staff   1952 Jun  6 09:01 prompts
+-rw-r--r--@  1 michelkerkmeester  staff  10514 Jun  6 08:49 research.md
+-rw-r--r--@  1 michelkerkmeester  staff   9846 Jun  6 08:50 sub-packet-proposal.md
+[0m
+[0m✱ [0mGlob "**/peck-teachings-adoption/**"[90m in .opencode/specs · 0 matches[0m
+[0m✱ [0mGlob "**/peck-master/**"[90m in . · 0 matches[0m
+[0m
+[0m$ [0mls -la .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/ 2>&1 | head -30
+total 32
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  5 14:47 .
+drwxr-xr-x  18 michelkerkmeester  staff   576 Jun  6 05:47 ..
+drwxr-xr-x@ 11 michelkerkmeester  staff   352 Jun  5 14:47 001-peck-teachings-for-spec-kit
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  5 14:47 002-self-check-templates
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  5 17:13 003-current-state-discipline
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jun  5 14:47 004-constitutional-rule-review
+-rw-r--r--@  1 michelkerkmeester  staff  1191 Jun  4 14:33 description.json
+-rw-r--r--@  1 michelkerkmeester  staff  3353 Jun  5 14:47 graph-metadata.json
+-rw-------@  1 michelkerkmeester  staff  7816 Jun  4 11:54 spec.md
+[0m
+[0m$ [0mls -la .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/ 2>&1 | head -30
+total 0
+drwxrwxr-x   6 michelkerkmeester  staff   192 Jun  6 07:49 .
+drwxr-xr-x  18 michelkerkmeester  staff   576 Jun  6 05:47 ..
+drwxrwxr-x  45 michelkerkmeester  staff  1440 Jun  5 08:28 caura-memclaw-main
+drwxrwxr-x  18 michelkerkmeester  staff   576 Jun  5 23:50 gem-team-main
+drwxrwxr-x  12 michelkerkmeester  staff   384 Jun  1 17:34 peck-master
+drwxr-xr-x   7 michelkerkmeester  staff   224 May 13 11:01 xce-mcp
+[0m
+[0m$ [0mls .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/ .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/templates/ 2>&1
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/:
+acceptance-reviewer.md
+code-reviewer.md
+implementer.md
+planner.md
+
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/templates/:
+product.md
+story.md
+[0m
+[0m$ [0mls .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates/ 2>&1
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+scratch
+spec.md
+tasks.md
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/validation_rules.md[90m [offset=380, limit=120][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=60, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=280, limit=120][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/templates/story.md
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates/spec.md
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates/implementation-summary.md
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/iterations/iteration-008.md
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/iterations/iteration-011.md

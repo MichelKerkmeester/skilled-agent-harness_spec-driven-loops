@@ -1,0 +1,59 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "deep-research"
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/sub-packet-proposal.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/research.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGlob ".opencode/commands/{speckit,deep}/**/*.md"[90m in . · 10 matches[0m
+[0m✱ [0mGlob ".opencode/commands/*code*review*.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".claude/agents/{review,context,debug,deep-review,deep-research,orchestrate}.md"[90m in . · 6 matches[0m
+[0m✱ [0mGlob ".opencode/agents/{review,context,debug,deep-review,deep-research,orchestrate}.md"[90m in . · 6 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/scripts/{rules,validation}/**/*"[90m in . · 32 matches[0m
+[0m✱ [0mGrep "root-cause|root cause|escalate|amend|contradict|3-strike|same symptom|debug|completion|verify|Fail|partial|conditional"[90m in .agents/skills/sk-code · 467 matches[0m
+[0m✱ [0mGrep "severity|riskScore|score|P0|P1|P2|review|verdict|confidence|calibration|numeric|blocking"[90m in .agents/skills/sk-code-review · 656 matches[0m
+[0m✱ [0mGrep "model-benchmark|benchmark|Lane B|Lane C|fixture|oracle|scorer|dispatch-model|reviewer|expected|verdict"[90m in .opencode/skills/deep-improvement · 3092 matches[0m
+[0m✱ [0mGrep "verdict|soften|truncat|read|budget|riskScore|severity|AC|acceptance|coverage|Pass|Fail|Block|review|fresh context|P0|P1|P2"[90m in .opencode/skills/deep-review · 3670 matches[0m
+[0m✱ [0mGrep "AC_COVERAGE|acceptance|Acceptance|Given|When|Then|How to verify|checklist|EVIDENCE_CITED|coverage|floor|severity|WARNING|ERROR"[90m in .opencode/skills/system-spec-kit · 4794 matches[0m
+[0m✱ [0mGrep "completion|complete|Completion|checklist|freshness|verdict|soften|anti|clean tree|git status|EVIDENCE_CITED|AC_COVERAGE|acceptance|Acceptance"[90m in .opencode/skills/system-spec-kit · 6459 matches[0m
+[0m→ [0mRead CLAUDE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/speckit/complete.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/commands/speckit/resume.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/commands/deep/start-review-loop.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/commands/deep/start-model-benchmark-loop.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-improvement/SKILL.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/validation/validation_rules.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl[90m [offset=360, limit=140][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl[90m [offset=220, limit=140][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts[90m [offset=1, limit=320][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/config/hook_system.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/agents/deep-review.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/agents/deep-research.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "name: review|name: context|name: deep-review|name: deep-research|Path Convention|READ-ONLY|LEAF|review-report|P0|P1|P2|allowed-tools|permission"[90m in .claude/agents · 158 matches[0m
+[0m✱ [0mGrep "Completion Verification|validate.sh|checklist.md|git|clean|done|Claim completion|VIOLATION|Logic-Sync|escalate|amend|root-cause"[90m in CLAUDE.md · 19 matches[0m
+[0m✱ [0mGrep "Completion Verification|validate.sh|checklist.md|git|clean|done|Claim completion|VIOLATION|Logic-Sync|escalate|amend|root-cause"[90m in AGENTS.md · 19 matches[0m
+[0m✱ [0mGrep "CONTINUITY_FRESHNESS|continuity-freshness|spec-doc-structure|strict|validate.sh|run_rule|validator-registry|registry|rules/|ts:"[90m in .opencode/skills/system-spec-kit/scripts · 1098 matches[0m
+[0m✱ [0mGrep "model-benchmark|benchmark-profiles|fixture|fixtures|expected|oracle|scorer|run-benchmark|dispatch-model|Lane B|target_model"[90m in .opencode/skills/deep-improvement · 1632 matches[0m
+[0m✱ [0mGrep "review-report|Final|synthesis|verdict|PASS|FAIL|soften|P0|P1|P2|riskScore|severity|newFindingsRatio|findingDetails|coverage|traceability"[90m in .opencode/skills/deep-review · 1690 matches[0m
+[0m→ [0mRead .agents/skills/sk-code-review/SKILL.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .agents/skills/sk-code/SKILL.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/cli-opencode/SKILL.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/SKILL.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-research/SKILL.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "current-state|current state|product.md|constitutional|recurrence|promotion|standing-guidance|cap|reconsolidation|reflection"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 999 matches[0m
+[0m✱ [0mGrep "review-report|review/deep-review|review verdict|PASS|FAIL|CONDITIONAL|P0|P1|P2|Final Synthesis|synthesis"[90m in .opencode/commands/deep/assets · 298 matches[0m
+[0m✱ [0mGrep "complete|validate.sh|checklist.md|git|tree|status|fresh|continuity-freshness|EVIDENCE_CITED|strict"[90m in .opencode/commands/speckit/assets · 366 matches[0m
+[0m✱ [0mGrep "model-benchmark|run-benchmark|fixture|fixtures|scorer|oracle|expected|verdict|profile|dispatch-model"[90m in .opencode/commands/deep/assets · 166 matches[0m
+[0m✱ [0mGrep "review_core|P0|P1|P2|riskScore|severity|numeric|score|PASS|FAIL|CONDITIONAL|downgrade|partial|evidence"[90m in .agents/skills/sk-code-review/references · 62 matches[0m
+[0m✱ [0mGrep "current-state|current state|product.md|constitutional|recurrence|promotion|standing-guidance|cap|reconsolidation|reflection"[90m in .opencode/skills/system-spec-kit · 1973 matches[0m

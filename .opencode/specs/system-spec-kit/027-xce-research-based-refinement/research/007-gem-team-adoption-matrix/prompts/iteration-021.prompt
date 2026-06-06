@@ -1,0 +1,34 @@
+## Context
+Two AI agent frameworks share this repo (cwd = repo root = your --dir). SUBJECT A = "Gem Team" at `specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/`. SUBJECT B = this repo's "spec-kit" (`.opencode/skills/**`, `.opencode/agents/**`, `CLAUDE.md`/`AGENTS.md`). Iteration 021 of a READ-ONLY adoption study (phase 007). Spec folder `specs/system-spec-kit/027-xce-research-based-refinement` is pre-approved — skip Gate-3; change nothing. The spec-kit is mature; bar for "net-new" is high.
+Focus: Gem Team's PRD.yaml as a LIVING operational spec — `docs/PRD.yaml` drives planning/implementation/verification, decisions are written BACK to the PRD during learning persistence, and the planner emits `prd_update_recommended` + acceptance-criteria fields. The candidate is NOT "adopt PRD" (spec-kit has richer spec folders) — it is an explicit REQUIREMENTS-DRIFT / update-recommended write-back signal from task/planner outputs.
+
+## Objective
+Decide ADOPT / ADAPT / REJECT for a spec-drift / update-recommended write-back field in the spec-kit, with file:line evidence both sides.
+
+## Style
+precise, no preamble
+
+## Tone
+neutral, skeptical
+
+## Audience
+automated pipeline — parsed by a script. Preamble, prose wrapping, or writing to a file BREAKS parsing.
+
+## Response
+Return your whole analysis as your FINAL TEXT MESSAGE. Do NOT write/create/edit any file. Output EXACTLY this, nothing before "### FINDINGS":
+### FINDINGS
+| Sub-feature | gem-team mechanism (file:line) | spec-kit equivalent or GAP (file:line) | Verdict | Effort(S/M/L) | Net-new value |
+(rows; then 2-4 bullets [F-021-01]..)
+### NEGATIVE / RULED-OUT
+### OPEN QUESTIONS
+### METRICS
+newInfoRatio: <0.00-1.00>
+novelty: <one sentence>
+status: complete
+focus: RQ-M2 PRD write-back / requirements-drift
+
+---
+Pre-plan (lean):
+1. Read `external/gem-team-main/README.md` ("Knowledge Layers" PRD row + Phase 4 decisions→PRD), `external/gem-team-main/.apm/agents/gem-planner.agent.md` (prd_update_recommended, acceptance criteria).
+2. Check spec-kit: `CLAUDE.md` (§3 spec docs), `.opencode/skills/system-spec-kit/SKILL.md` (continuity), spec-folder doc model; grep "drift", "requirements", "acceptance criteria", "update_recommended", "spec.md".
+3. Verdict with both-side file:line; is a drift write-back field net-new vs Logic-Sync + continuity?

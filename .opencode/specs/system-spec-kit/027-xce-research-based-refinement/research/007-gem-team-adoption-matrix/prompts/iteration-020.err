@@ -1,0 +1,18 @@
+[0m
+> build · mimo-v2.5-pro
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-code-simplifier.agent.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-browser-tester.agent.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-devops.agent.md
+[0m→ [0mRead .opencode/skills/sk-code/SKILL.md
+[0m→ [0mRead .opencode/skills/sk-code-review/SKILL.md
+[0m→ [0mRead .opencode/agents/review.md
+[0m→ [0mRead .opencode/agents/debug.md
+[0m✱ [0mGrep "simplif|dead.?code|cyclomatic|consolidate.?duplic"[90m in .opencode · 2368 matches[0m
+[0m✱ [0mGrep "e2e|browser.?test|visual.?regress|a11y|accessibility|console.?error|network.?fail"[90m in .opencode · 2117 matches[0m
+[0m✱ [0mGrep "deploy|health.?check|idempoten|approval.?gate|rollback|canary|blue.?green"[90m in .opencode · 13544 matches[0m
+[0m✱ [0mGrep "pre.?deploy|post.?deploy|production.?readiness|feature.?flag"[90m in .opencode · 2387 matches[0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/removal_plan.md
+[0m→ [0mRead .opencode/skills/sk-code-review/references/code_quality_checklist.md
+[0m✱ [0mGrep "simplif|dead.?code|cyclomatic|consolidat|naming|flatten|extract"[90m in .opencode/skills/sk-code-review · 13 matches[0m
+[0m✱ [0mGrep "behavior.?preserv|safe.?order|reverse.?dep|Chesterton|test.?after.?each|revert"[90m in .opencode/skills/sk-code · 5 matches[0m

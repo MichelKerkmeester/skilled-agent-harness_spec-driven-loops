@@ -1,8 +1,8 @@
 # Handover: Slider JS Refactor & Variant Split
 
-**Session date:** 2026-05-31
+**Session date:** 2026-06-06
 **Status:** Complete
-**Follow-on required:** Yes — Webflow Designer data-attribute updates (see §6)
+**Follow-on required:** No repo follow-on. External Webflow Designer updates are documented in `webflow-update-guide.md` and `testimonial-tab-update-guide.md`.
 
 ---
 
@@ -12,9 +12,9 @@ Two repos stay in sync via MEGA. **Always edit the canonical source; never edit 
 
 | Role | Path |
 |------|------|
-| Canonical source | `MEGA/Development/Code_Environment/Public/a_nobel_en_zn/2_javascript/carousel/` |
-| Mirror (build target) | `MEGA/Development/Websites/anobel.com/src/2_javascript/carousel/` |
-| Minified output | `anobel.com/src/2_javascript/z_minified/carousel/` |
+| Canonical source | `MEGA/Development/Code_Environment/Public/a_nobel_en_zn/2_javascript/` |
+| Mirror (build target) | `MEGA/Development/Websites/anobel.com/src/2_javascript/` |
+| Minified output | `anobel.com/src/2_javascript/z_minified/` |
 
 Changes written to the canonical source propagate to the mirror automatically within seconds. Minification is always run from the `anobel.com/` project root.
 
@@ -57,7 +57,7 @@ Every `testimonial`-specific string replaced with `slider`-prefixed equivalents:
 | Tab fallback label `Testimonial N` | `Slide N` |
 | Console prefix `[testimonial]` | `[slider]` |
 
-The result was saved as `carousel/slider.js` (a transitional name, quickly superseded).
+The result was saved as `slider.js` (a transitional name, quickly superseded).
 
 ### Step 3: Rename to `slider_testimonial.js`
 `slider.js` renamed to `slider_testimonial.js` in both repos via `mv`. MEGA sync propagated instantly.
@@ -120,7 +120,7 @@ The testimonial variant injects these at runtime (gated behind `data-slider-read
 }
 ```
 
-**All three blocks are absent from `slider_timeline.js`.** The timeline variant's `ensureStyles()` contains only layout/cursor/transform rules. Tab visual differentiation (colour, opacity, border, font weight) is left entirely to `btn_tab_main.css` and Webflow Designer classes.
+**All three blocks are absent from `slider_timeline.js`.** The timeline variant's `ensureStyles()` contains only layout/cursor/transform rules. Tab visual differentiation (colour, opacity, underline, and font weight) is scoped in `slider_timeline.css` under `data-target="slider-timeline"`.
 
 ### Step 6: Minification, verification, cleanup
 
@@ -154,22 +154,32 @@ The 21 vs 20 selector difference is expected: the removed colour-state blocks in
 - `z_minified/carousel/testimonial.min.js` — source was renamed
 - `z_minified/carousel/slider.min.js` — transitional name, superseded
 
+### Step 7: Final hardening before close
+
+- Testimonial sections now use `data-target="slider-testimonial"`.
+- Timeline sections now use `data-target="slider-timeline"`.
+- `data-slider="section"` is no longer used for slider wrappers.
+- Timeline tab underline, hover, focus, and active text styling is scoped under `data-target="slider-timeline"`.
+- Testimonial tabs no longer receive timeline underline styling when wrapped with `data-target="slider-testimonial"`.
+- Previous and next click handlers now prevent default link behavior and stop propagation before advancing the loop, which fixes mobile pagination taps that were affected by link defaults or parent handlers.
+- `slider_testimonial.min.js` and `slider_timeline.min.js` were regenerated and verified.
+- `webflow-update-guide.md` and `testimonial-tab-update-guide.md` document the external Webflow Designer actions.
+
 ---
 
 ## 4. Final File State
 
 ```
-carousel/
-  marquee_brands.js
-  marquee_clients.js
+2_javascript/
   slider_testimonial.js    ← full variant (image colour states in ensureStyles)
   slider_timeline.js       ← timeline variant (layout/cursor/transform only)
 
-z_minified/carousel/
-  marquee_brands.min.js
-  marquee_clients.min.js
+2_javascript/z_minified/
   slider_testimonial.min.js
   slider_timeline.min.js
+
+1_css/slider/
+  slider_timeline.css      ← timeline-only tab underline and active text styling
 ```
 
 ---
@@ -178,13 +188,13 @@ z_minified/carousel/
 
 Discovered during analysis. Not changed. Documented here for continuity.
 
-### Static layer — `src/1_css/button/btn_tab_main.css`
-Handles font weight, brand colour, and border-bottom on the active tab control.
+### Static layer — `src/1_css/slider/slider_timeline.css`
+Handles timeline-only font weight, brand colour, hover/focus state, and underline on the active tab control.
 Selectors it watches (written by `updateTabState()` in the JS on every slide change):
 - `[data-tab][data-tab-active="true"]`
 - `[data-tab].is--set`
 - `[data-tab][aria-selected="true"]`
 
-These apply to **both** slider variants.
+These apply only inside `data-target="slider-timeline"` sections.
 
 ### Runtime layer — `ensureStyles()` in `slider_testimonial.js` only

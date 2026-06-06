@@ -1,0 +1,11 @@
+{
+  "run_id": "1780741781330-fuysmn",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility/research/risk-resolution",
+  "total_cli_lineages": 2,
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false
+}

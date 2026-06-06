@@ -1,0 +1,18 @@
+[0m
+> build · mimo-v2.5-pro
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/research.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/sub-packet-proposals.md
+[0m→ [0mRead .opencode/agents/code.md
+[0m→ [0mRead .opencode/agents/context.md
+[0m→ [0mRead .opencode/agents/debug.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md
+[0m→ [0mRead .opencode/agents/review.md[90m [limit=50, offset=230][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [limit=50, offset=20][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [limit=15, offset=420][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [limit=20, offset=265][0m
+[0m✱ [0mGrep "Context Package"[90m in .opencode/agents/context.md · 21 matches[0m
+[0m→ [0mRead .opencode/agents/code.md[90m [limit=45, offset=270][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [limit=60, offset=230][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [limit=15, offset=267][0m

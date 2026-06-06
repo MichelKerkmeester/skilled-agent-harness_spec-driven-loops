@@ -1,0 +1,41 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Compare Gem Team orchestration and wave execution with spec-kit equivalents. Read-only research, no modifications. Focus RQ1 orchestration & wave execution.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m✱ [0mGlob "specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/{README.md,AGENTS.md,.apm/agents/gem-orchestrator.agent.md,.apm/agents/gem-planner.agent.md}"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/{agents/orchestrate.md,skills/deep-loop-runtime/SKILL.md,skills/system-spec-kit/SKILL.md}"[90m in . · 3 matches[0m
+[0m✱ [0mGrep "fanout|concurrency|wave|orchestrate|parallel"[90m in .opencode · 37492 matches[0m
+[0m✱ [0mGrep "fanout|concurrency|wave|orchestrate|parallel"[90m in .opencode/agents · 38 matches[0m
+[0m✱ [0mGrep "fanout|concurrency|wave|orchestrate|parallel"[90m in .opencode/skills/deep-loop-runtime · 177 matches[0m
+[0m✱ [0mGlob "**/gem-team-main/{README.md,AGENTS.md,.apm/agents/gem-orchestrator.agent.md,.apm/agents/gem-planner.agent.md}"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "fanout|concurrency|wave|orchestrate|parallel"[90m in .opencode/skills/system-spec-kit · 156 matches[0m
+[0m✱ [0mGlob "**/gem-orchestrator.agent.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/gem-team*"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "Gem Team|gem-orchestrator|ROUTING MATRIX|WAVE EXECUTION"[90m in . · 10 matches[0m
+[0m✱ [0mGlob "external/gem-team-main/{README.md,AGENTS.md,.apm/agents/gem-orchestrator.agent.md,.apm/agents/gem-planner.agent.md}"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement · 0 matches[0m
+[0m✱ [0mGlob "**/external/**"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement · 0 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/deep-research-strategy.md[90m [offset=120, limit=20][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/AGENTS.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=261, limit=40][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md[90m [offset=221, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=261, limit=150][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-planner.agent.md[90m [offset=441, limit=120][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=260, limit=100][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=640, limit=70][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/SKILL.md[90m [offset=130, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/changelog/v3.4.0.0.md[90m [offset=160, limit=35][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/changelog/v3.5.0.0.md[90m [offset=48, limit=12][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/024-fanout-pool-concurrency-cap.md[90m [offset=14, limit=35][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=450, limit=90][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=730, limit=80][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=90, limit=90][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=20, limit=70][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/agents/debug.md[90m [offset=1, limit=120][0m

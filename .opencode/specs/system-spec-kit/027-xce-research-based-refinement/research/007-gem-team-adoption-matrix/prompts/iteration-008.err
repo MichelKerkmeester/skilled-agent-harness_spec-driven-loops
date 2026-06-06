@@ -1,0 +1,28 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGlob "**/CLAUDE.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "AGENTS.md"[90m in . · 3 matches[0m
+[0m→ [0mRead .claude/CLAUDE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "Level 1|trivial|complexity|MICRO|FAST_TRACK|skip|exempt|Bypass"[90m in .claude/CLAUDE.md · 0 matches[0m
+[0m✱ [0mGrep "Level 1|trivial|complexity|MICRO|FAST_TRACK|skip|exempt|Bypass"[90m in . · 14 matches[0m
+[0m→ [0mRead AGENTS.md[90m [offset=261, limit=80][0m
+[0m→ [0mRead .claude/CLAUDE.md[90m [offset=1, limit=20][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/README.md[90m [offset=81, limit=20][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md[90m [offset=65, limit=67][0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/SKILL.md"[90m in . · 1 match[0m
+[0m✱ [0mGrep "Level 1|trivial|complexity|skip|exempt|Bypass|Documentation Levels|completion verification|Gate 3|read-only"[90m in .opencode/skills/system-spec-kit · 992 matches[0m
+[0m✱ [0mGrep "MICRO|FAST_TRACK|FAST|micro|fast path|fast-path|classification|task_type"[90m in .opencode · 4744 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=36, limit=30][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=430, limit=65][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=80, limit=40][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=60, limit=20][0m
+[0m→ [0mRead .opencode/agents/CONTEXT.md[90m [offset=1, limit=35][0m
+[0m→ [0mRead .opencode/agents/CONTEXT.md[90m [offset=87, limit=16][0m
+[0m→ [0mRead .opencode/agents/code.md[90m [offset=48, limit=18][0m
+[0m✱ [0mGrep "research|read-only|no file modifications|Single typo|Whitespace|Level 1 tasks skip|Gate 3|Read-only disqualifiers"[90m in AGENTS.md · 26 matches[0m
+[0m→ [0mRead .opencode/skills/sk-code/SKILL.md[90m [offset=1, limit=80][0m
+[0m✱ [0mGrep "Smart Routing|detects|verification|route|UNKNOWN|ambiguous|complexity|low"[90m in .opencode/skills/sk-code/SKILL.md · 59 matches[0m

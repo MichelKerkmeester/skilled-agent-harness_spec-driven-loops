@@ -52,11 +52,11 @@
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/description.json",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/graph-metadata.json",
       ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md"
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md"
     ],
     "entities": [
       {
@@ -120,33 +120,33 @@
         "source": "derived"
       },
       {
-        "name": "058-validator-warn-rollout.md",
+        "name": "validator-warn-rollout.md",
         "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md",
         "source": "derived"
       },
       {
-        "name": "059-validator-strict-v2.md",
+        "name": "validator-strict-v2.md",
         "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md",
         "source": "derived"
       },
       {
-        "name": "060-reducer-search-debt.md",
+        "name": "reducer-search-debt.md",
         "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md",
         "source": "derived"
       },
       {
-        "name": "061-stop-gate-candidate-coverage.md",
+        "name": "stop-gate-candidate-coverage.md",
         "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md",
         "source": "derived"
       },
       {
-        "name": "062-stop-gate-graphless-fallback.md",
+        "name": "stop-gate-graphless-fallback.md",
         "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary. Operators now need a compact manual playbook that exercises those shipped surfaces without changing production defaults prematurely.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.283Z",
+    "last_save_at": "2026-06-06T09:52:34.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

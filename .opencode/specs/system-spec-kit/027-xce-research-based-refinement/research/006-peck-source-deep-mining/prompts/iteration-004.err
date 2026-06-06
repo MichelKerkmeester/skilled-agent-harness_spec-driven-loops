@@ -1,0 +1,16 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/code-reviewer.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/agents/review.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/agents/context.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=1, limit=800][0m
+[0m→ [0mRead .opencode/skills/deep-research/SKILL.md[90m [offset=1, limit=800][0m
+[0m✱ [0mGrep "Before reading|newly added|diff alone|file read costs|specific reason|TCB|max 12|tool calls|Token discipline|Over-Reading"[90m in .opencode · 2328 matches[0m
+[0m→ [0mRead .opencode/agents/deep-review.md[90m [offset=150, limit=210][0m
+[0m→ [0mRead .opencode/agents/deep-research.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .claude/agents/deep-review.md[90m [offset=150, limit=45][0m
+[0m→ [0mRead .claude/agents/deep-research.md[90m [offset=162, limit=24][0m
+[0m→ [0mRead .claude/agents/context.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .claude/agents/review.md[90m [offset=1, limit=120][0m
