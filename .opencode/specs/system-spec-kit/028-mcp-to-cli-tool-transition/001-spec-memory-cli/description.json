@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "028-memory-mcp-cli-feasibility",
+  "specFolder": "specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
   "description": "Feasibility study: replace mk-spec-memory MCP (37 tools) with a CLI at zero feature loss; evaluate pure-CLI vs CLI-over-daemon-IPC vs hybrid auto-spaw",
   "keywords": [
     "feasibility",
@@ -24,13 +24,18 @@
     "deep",
     "research"
   ],
-  "lastUpdated": "2026-06-06T10:42:11.637Z",
-  "specId": "028",
-  "folderSlug": "memory-mcp-cli-feasibility",
-  "parentChain": [],
-  "memorySequence": 2,
+  "lastUpdated": "2026-06-06T12:30:00.000Z",
+  "specId": "001",
+  "folderSlug": "spec-memory-cli",
+  "parentChain": [
+    "specs",
+    "system-spec-kit",
+    "028-mcp-to-cli-tool-transition"
+  ],
+  "memorySequence": 3,
   "memoryNameHistory": [
     "06-06-26_10-38__new-028-phase-and-run-deep-research-with-deepseek.md",
-    "06-06-26_11-42__run-3-convergence-driven-2-lane-research-deepseek.md"
+    "06-06-26_11-42__run-3-convergence-driven-2-lane-research-deepseek.md",
+    "06-06-26_13-11__run-4-done-definition-was-made-stricter-than-run.md"
   ]
 }

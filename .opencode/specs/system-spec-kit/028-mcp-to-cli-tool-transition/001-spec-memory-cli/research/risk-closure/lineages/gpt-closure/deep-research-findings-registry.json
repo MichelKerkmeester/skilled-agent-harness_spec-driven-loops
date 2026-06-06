@@ -1,0 +1,84 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "RQ1",
+    "RQ2",
+    "RQ3",
+    "RQ4",
+    "RQ5",
+    "RQ6",
+    "RQ7",
+    "RQ8"
+  ],
+  "keyFindings": [
+    {
+      "id": "F-RQ1-SPAWN",
+      "question": "RQ1",
+      "status": "terminal_mitigated",
+      "finding": "Launcher triple-lock ownership, dead-socket respawn, heartbeat self-shutdown, and idle cleanup close double-spawn/orphan risk for dual-stack delivery; D1 and D7 are acceptance-test deltas."
+    },
+    {
+      "id": "F-RQ2-HOOKS",
+      "question": "RQ2",
+      "status": "terminal_mitigated",
+      "finding": "Warm Node/bridge process overhead measured under 50ms p95 on this host, fitting 3s hook ceilings when prompt-time hooks use warm-only timeout behavior."
+    },
+    {
+      "id": "F-RQ3-FRESHNESS",
+      "question": "RQ3",
+      "status": "terminal_mitigated",
+      "finding": "Current launcher readiness is existence-only, so DD-001 source/dist freshness checking is required for the CLI shim or entrypoint."
+    },
+    {
+      "id": "F-RQ4-SOCKET",
+      "question": "RQ4",
+      "status": "terminal_mitigated",
+      "finding": "The default macOS socket path is too long on this host, but current config pins /tmp/mk-spec-memory and bridge code supports TCP; D6 makes the CLI default and guard explicit."
+    },
+    {
+      "id": "F-RQ5-OPENCODE",
+      "question": "RQ5",
+      "status": "terminal_accepted",
+      "finding": "OpenCode 1.16.2 lacks a documented local shell subcommand tool gate; plugin/Bash/MCP dual-stack remains viable and first-class shell-tool gating is upstream-only."
+    },
+    {
+      "id": "F-RQ6-MIGRATION",
+      "question": "RQ6",
+      "status": "terminal_accepted",
+      "finding": "Scoped migration inventory found 93 unique files and 1041 references; full migration is a future packet, not a dual-stack blocker."
+    },
+    {
+      "id": "F-RQ7-DELTAS",
+      "question": "RQ7",
+      "status": "resolved",
+      "finding": "D1-D7 plus DD-001 cover the residual risk surface; no independent ninth delta is required."
+    },
+    {
+      "id": "F-RQ8-HEDGES",
+      "question": "RQ8",
+      "status": "resolved",
+      "finding": "All prior hedges have terminal classifications: methodology/artifact limitations accepted, estimates mitigated, OpenCode gate accepted upstream, migration/socket/latency risks bounded."
+    }
+  ],
+  "ruledOutDirections": [
+    "Pure per-invocation CLI",
+    "MCP removal during dual-stack delivery",
+    "Source-code implementation inside this research run"
+  ],
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 8,
+    "keyFindings": 8,
+    "convergenceScore": 0.97,
+    "coverageBySources": {
+      "launcher_code": 12,
+      "launcher_tests": 10,
+      "hook_config": 3,
+      "socket_config": 4,
+      "opencode_capability": 5,
+      "migration_inventory": 6,
+      "prior_synthesis": 8
+    }
+  }
+}

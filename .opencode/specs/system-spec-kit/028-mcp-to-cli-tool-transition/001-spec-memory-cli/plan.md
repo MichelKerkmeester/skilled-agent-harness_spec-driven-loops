@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Memory MCP to CLI Feasibility [system-spec-kit/028-memory-mcp-cli-feasibility/plan]"
+title: "Implementation Plan: Memory MCP to CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/plan]"
 description: "Single-execution research plan: one /deep:start-research-loop:auto fan-out invocation with three CLI lanes (DeepSeek-v4-pro, MiniMax-M3, MiMo-V2.5-Pro), 5 forced iterations each, concurrency 2."
 trigger_phrases:
   - "mcp cli feasibility plan"
@@ -9,15 +9,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-mcp-cli-feasibility"
-    last_updated_at: "2026-06-06T12:30:00Z"
+    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli"
+    last_updated_at: "2026-06-06T12:15:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the research run plan"
-    next_safe_action: "Launch the 3-lane deep-research fan-out loop"
+    recent_action: "All four research runs complete (feasibility, design, risk resolution, risk closure)"
+    next_safe_action: "Open the spec-memory CLI implementation packet via speckit:plan"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Memory MCP to CLI Feasibility [system-spec-kit/028-memory-mcp-cli-feasibility/spec]"
+title: "Feature Specification: Memory MCP to CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/spec]"
 description: "Deep-research feasibility study: can the mk-spec-memory MCP (37 tools) be replaced by a CLI tool with zero feature loss? Three candidate architectures evaluated by a 3-model fan-out."
 trigger_phrases:
   - "memory mcp cli feasibility"
@@ -11,10 +11,10 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-mcp-cli-feasibility"
-    last_updated_at: "2026-06-06T09:45:00Z"
+    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli"
+    last_updated_at: "2026-06-06T12:15:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Run-3 risk resolution cleared the CLI for implementation"
+    recent_action: "Run-4 total risk closure converged 4/20: zero unknowns remain in dual-stack scope"
     next_safe_action: "Open the spec-memory CLI implementation packet via speckit:plan"
     blockers: []
     key_files:
@@ -24,6 +24,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Zero loss achievable: YES iff the daemon stays; GO with CLI-over-daemon plus auto-spawn"
+      - "Run 4: all remaining items terminal (2 RESOLVED, 4 MITIGATED-terminal, 2 ACCEPTED); nothing unknown"
 ---
 # Feature Specification: Memory MCP to CLI Feasibility
 
@@ -41,7 +42,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-06-06 |
-| **Branch** | `028-memory-mcp-cli-feasibility` |
+| **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -136,6 +137,7 @@ A verdict-shaped deep-research report that settles feasibility: a complete featu
 
 - Which architecture survives the zero-feature-loss bar, and at what effort? — ANSWERED: (b) and (c) survive; (a) fails. Adjudicated pick: (b) + auto-spawn at ~3 weeks. See generated findings below.
 - Is strict zero loss achievable at all? — ANSWERED: YES, iff the daemon remains behind the CLI; only the MCP protocol layer is disposable. No tool is MCP-only.
+- Can every remaining MITIGATED/DEFERRED/hedged item be terminally classified so nothing about the dual-stack CLI is unknown? — ANSWERED: YES — run 4 converged at 4/20 with all 8 closure questions terminal (2 RESOLVED, 4 MITIGATED-terminal with verified mitigations, 2 ACCEPTED with rationale); zero unknowns remain in dual-stack scope. See `research/research.md` §14.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 _Source: `research/research.md` (merged 3-lane synthesis, 2026-06-06). Do not edit inside this fence._
@@ -147,5 +149,6 @@ _Source: `research/research.md` (merged 3-lane synthesis, 2026-06-06). Do not ed
 - **Lane verdicts**: deepseek GO-(b), minimax GO-(c), mimo GO-(b) (deepseek-informed, not independent); orchestrator adjudicated to (b)+auto-spawn on the 2026-06-06 incident-mode evidence (owner-exit leaves the daemon down until demand; auto-spawn closes exactly that gap).
 - **Run 2 (CLI back-end design, dual-stack)**: compiled `mcp_server/spec-memory-cli.ts` + `.opencode/bin/spec-memory.cjs` shim; subcommands GENERATED from `TOOL_DEFINITIONS` (37) with Zod at argv; auto-spawn via the existing launcher; exits 0/1/64/69/75; CLI = additional IPC client (multi-client bridge already test-proven); `--session-id` continuity; MCP stays registered; **8–12 day effort**. Full design: `research/cli-backend/lineages/gpt/research.md`.
 - **Run 3 (risk resolution — CLEARED FOR IMPLEMENTATION)**: convergence-driven 2-lane run stopped at 3/20 and 5/20 with all questions terminally classified: 7 RESOLVED, 4 MITIGATED, 0 unresolved; 2 DEFERRED out-of-scope (OpenCode `tools:` gate, ~125-ref migration); 8 design deltas (~2–2.5d) absorbed into a consolidated **10–13 day** estimate; per-call overhead MEASURED ~50ms warm / ~150ms cold; gpt-5.5 escalation gate not triggered. Matrix: `research/research.md` §13.
+- **Run 4 (total risk closure — NOTHING UNKNOWN)**: single gpt-5.5/xhigh lane converged at 4/20 (9.4 min, convergence 0.97); final posture **2 RESOLVED · 4 MITIGATED-terminal (mitigations specified + verified by code-trace/measurement) · 2 ACCEPTED · 0 UNRESOLVED · 0 unexamined hedges**. Both run-3 deferrals terminally classified: OpenCode `tools:` gate ACCEPTED (1.16.2 has no first-class shell gate; dual-stack doesn't need it), migration MEASURED at 93 files/1,041 refs (broad basis) and ACCEPTED as future packet. Corrections: warm hook overhead ~40–46ms p95 (not <1ms), default socket path 134B pre-pin. Deltas D1–D7+DD-001 re-derived bottom-up at 2.0–2.5d; **10–13d total confirmed**. Matrix: `research/research.md` §14.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->

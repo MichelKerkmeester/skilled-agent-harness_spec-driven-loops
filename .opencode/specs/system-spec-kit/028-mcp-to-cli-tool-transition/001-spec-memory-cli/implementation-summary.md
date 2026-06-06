@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Memory MCP to CLI Feasibility [system-spec-kit/028-memory-mcp-cli-feasibility/implementation-summary]"
+title: "Implementation Summary: Memory MCP to CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/implementation-summary]"
 description: "GO verdict shipped: the mk-spec-memory MCP can become a CLI with zero feature loss iff the daemon stays; 3-lane fan-out research (15 iterations) merged with full parity matrix and migration plan."
 trigger_phrases:
   - "mcp cli feasibility result"
@@ -9,10 +9,10 @@ importance_tier: "important"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-mcp-cli-feasibility"
-    last_updated_at: "2026-06-06T09:50:00Z"
+    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli"
+    last_updated_at: "2026-06-06T12:15:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Run-3 risk resolution cleared the CLI for implementation"
+    recent_action: "Run-4 total risk closure converged 4/20: zero unknowns remain in dual-stack scope"
     next_safe_action: "Open the spec-memory CLI implementation packet via speckit:plan"
     blockers: []
     key_files:
@@ -23,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Zero loss achievable: YES iff the daemon stays; GO with CLI-over-daemon plus auto-spawn"
+      - "Run 4: all remaining items terminal (2 RESOLVED, 4 MITIGATED-terminal, 2 ACCEPTED); nothing unknown"
 ---
 # Implementation Summary
 
@@ -37,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-mcp-cli-feasibility |
+| **Spec Folder** | 028-mcp-to-cli-tool-transition/001-spec-memory-cli |
 | **Completed** | 2026-06-06 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -65,13 +66,19 @@ A second forced-3-iteration run (cli-codex, gpt-5.5, reasoning xhigh, service ti
 
 Two lanes (deepseek-v4-pro + mimo-v2.5-pro @ high, convergence 0.05, cap 20) attacked an 11-item risk register with a strict done-definition. Both converged early — 3/20 and 5/20 iterations, every question terminally classified: 7 RESOLVED, 4 MITIGATED, 0 unresolved (the gpt-5.5 escalation gate never fired). Per-call overhead was measured on this host (~50ms warm / ~150ms cold, validating the design assumption), 8 design deltas were produced for the implementation packet, and the consolidated estimate landed at 10–13 engineering days. Verdict: **cleared for implementation**. Matrix in `research/research.md` §13.
 
+### Run 4: total risk closure (operator-directed — "nothing unknown")
+
+A single convergence-driven lane (cli-codex, gpt-5.5, reasoning xhigh, service tier fast; cap 20, threshold 0.05) attacked everything still non-terminal after run 3 under a stricter done-definition: DEFERRED stopped being legal for repo-answerable items, and MITIGATED counted only with a fully specified mitigation verified by code-trace or measurement. It converged at **4/20 in 9.4 minutes** (registry 8/8 terminal, score 0.97). Both run-3 deferrals went terminal: the OpenCode `tools:` gate is ACCEPTED upstream-only on installed-1.16.2 evidence (dual-stack does not need it), and the migration map is now MEASURED — 93 files / 1,041 references on a broad counting basis. The run also corrected two prior claims: warm hook-path overhead is ~40–46ms p95 (run 3's "<1ms" was IPC RTT alone), and the default socket path measures 134B pre-pin. Deltas D1–D7+DD-001 were re-derived bottom-up (2.0–2.5d) and the 10–13 day total held. Final posture: **2 RESOLVED · 4 MITIGATED-terminal · 2 ACCEPTED · 0 UNRESOLVED · 0 unexamined hedges**. Matrix: `research/research.md` §14; lane report: `research/risk-closure/lineages/gpt-closure/research.md`.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | research/** | Created | Run 1: 3 lane packets (15 iterations), merged registry, attribution, merged research.md |
 | research/cli-backend/** | Created | Run 2: codex lane (3 iterations), design synthesis, registry |
-| spec.md | Modified | Generated findings fence (runs 1+2) + answered questions + Complete status |
+| research/risk-resolution/** | Created | Run 3: 2 risk lanes (3+5 iterations), risk matrix, attribution |
+| research/risk-closure/** | Created | Run 4: closure lane (4 iterations), terminal classifications, registry |
+| spec.md | Modified | Generated findings fence (runs 1–4) + answered questions + Complete status |
 | tasks.md, plan.md, implementation-summary.md | Modified | Reconciliation with evidence |
 <!-- /ANCHOR:what-built -->
 
@@ -110,6 +117,7 @@ One `/deep:start-research-loop:auto` fan-out invocation (3 cli-opencode lanes, c
 | Post-writeback targeted strict validation | PASS (0 errors, 0 warnings) |
 | Run-2 lane outcome (`cli-backend/orchestration-summary.json`) | PASS — 1/1 succeeded, 3/3 forced iterations, correct topic adopted, design fully file:line-cited |
 | Run-3 lane outcomes (`risk-resolution/orchestration-summary.json`) | PASS — 2/2 succeeded; deepseek-risk all-questions-answered at 3/20, mimo-risk all-classified at 5/20 (one stdout salvage, content intact); 100% of register terminally classified |
+| Run-4 lane outcome (`risk-closure/orchestration-summary.json`) | PASS — 1/1 succeeded; converged at 4/20 (stopReason convergence, score 0.97); registry 8/8 terminal; post-writeback targeted strict validation PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,8 +125,8 @@ One `/deep:start-research-loop:auto` fan-out invocation (3 cli-opencode lanes, c
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **MiMo lane independence.** Sequential pooling let the mimo lane read the deepseek lineage; future fan-outs should exclude sibling `lineages/` paths in lane prompts when independence matters.
-2. **Registry coverage 1/3.** Only the minimax lane wrote a findings registry (under a non-canonical name, aliased before merge); deepseek/mimo embedded findings in research.md. The merged registry undercounts; the merged research.md is the canonical synthesis.
-3. **Effort estimates are research-grade.** 13–16 days (MiniMax) vs 3–4 weeks (DeepSeek/MiMo); treat ~3 weeks as the center until an implementation packet re-estimates.
-4. **The OpenCode `tools:` gate is unverified upstream.** The 1–3 week estimate and the 2–3 day shim are designs, not commitments.
+1. **MiMo lane independence.** Sequential pooling let the mimo lane read the deepseek lineage; future fan-outs should exclude sibling `lineages/` paths in lane prompts when independence matters. *Run-4 status: ACCEPTED as a methodology note — no implementation risk.*
+2. **Registry coverage 1/3 (run 1).** Only the minimax lane wrote a findings registry; deepseek/mimo embedded findings in research.md. The merged research.md is the canonical synthesis. *Run-4 status: ACCEPTED as an artifact note.* Related runner quirk: the fan-out salvage sweep writes small `iteration-N.md` placeholders alongside the canonical zero-padded `iteration-NNN.md` files even on clean runs (observed in runs 3 and 4) — the zero-padded set is canonical.
+3. **Effort estimates.** Run 4 re-derived the delta set bottom-up (D1–D7+DD-001 = 2.0–2.5d) and confirmed 10–13 days for dual-stack; routine re-estimation at implementation-packet planning still applies.
+4. **The OpenCode `tools:` gate.** Verified on installed OpenCode 1.16.2: no documented first-class shell-subcommand permission gate exists today. ACCEPTED as upstream-only — dual-stack delivery does not require it; it matters only for eventual full MCP removal.
 <!-- /ANCHOR:limitations -->

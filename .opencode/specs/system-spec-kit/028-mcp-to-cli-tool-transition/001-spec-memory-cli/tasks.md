@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Memory MCP to CLI Feasibility [system-spec-kit/028-memory-mcp-cli-feasibility/tasks]"
+title: "Tasks: Memory MCP to CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/tasks]"
 description: "Task breakdown for the 3-lane fan-out feasibility research: bootstrap, launch, monitor, reconcile."
 trigger_phrases:
   - "mcp cli feasibility tasks"
@@ -8,15 +8,15 @@ importance_tier: "normal"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-mcp-cli-feasibility"
-    last_updated_at: "2026-06-06T12:30:00Z"
+    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli"
+    last_updated_at: "2026-06-06T12:15:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "All tasks complete; research merged"
+    recent_action: "T009 run-4 total risk closure complete; all tasks done"
     next_safe_action: "Plan the CLI implementation packet via speckit:plan"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -74,6 +74,7 @@ _memory:
 
 - [x] T007 Run-2 deep research: cli-codex lane (gpt-5.5, reasoning xhigh, service tier fast), 3 forced iterations on the dual-stack CLI design — 1/1 succeeded, 3/3 KQs answered, design synthesized into research/research.md §12 and research/cli-backend/lineages/gpt/research.md
 - [x] T008 Run-3 risk-resolution research: deepseek-v4-pro + mimo-v2.5-pro lanes @ high, convergence 0.05, cap 20 each — lanes stopped at 3/20 and 5/20 with all questions terminally classified (7 RESOLVED, 4 MITIGATED, 0 unresolved, 2 deferred out-of-scope); escalation gate not triggered; Risk Resolution Matrix in research/research.md §13; verdict: cleared for implementation
+- [x] T009 Run-4 total-risk-closure research: cli-codex lane (gpt-5.5, reasoning xhigh, service tier fast), convergence 0.05, cap 20 — converged at 4/20 (9.4 min, registry 8/8 terminal, score 0.97); both run-3 deferrals terminally classified (OpenCode gate ACCEPTED on installed 1.16.2 evidence; migration MEASURED 93 files/1,041 refs); deltas D1–D7+DD-001 re-derived bottom-up (2.0–2.5d, 10–13d total confirmed); corrections: warm hook overhead ~40–46ms p95, socket path 134B pre-pin; final posture 2 RESOLVED / 4 MITIGATED-terminal / 2 ACCEPTED / 0 unknown (research/research.md §14)
 <!-- /ANCHOR:phase-4 -->
 
 ---

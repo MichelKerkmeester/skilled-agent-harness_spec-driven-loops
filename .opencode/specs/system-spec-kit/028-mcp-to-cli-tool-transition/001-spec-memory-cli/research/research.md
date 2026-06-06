@@ -177,6 +177,25 @@ Convergence-driven run (cap 20, threshold 0.05): deepseek-risk stopped at **3/20
 
 **Verdict: cleared for implementation.** Both lanes independently conclude no blockers remain for the dual-stack CLI.
 
+## 14. Run 4 — Total Risk Closure (2026-06-06): NOTHING UNKNOWN
+
+Operator-directed closure run: 1 lane (cli-codex, `gpt-5.5`, reasoning xhigh, service tier fast), convergence-driven (threshold 0.05, cap 20), **converged at 4/20 iterations** in 9.4 min; registry 8/8 questions terminal, convergence score 0.97. Done-definition was stricter than run 3: DEFERRED ceased to be a legal terminal state for repo-answerable items, and MITIGATED counts only when the mitigation is fully specified (file, mechanism, acceptance test) AND verified sufficient by code-trace or measurement. Full lane report: `risk-closure/lineages/gpt-closure/research.md`.
+
+| RQ | Item (run-3 state) | **Run-4 terminal state** |
+|---|---|---|
+| 1 | Spawn/lease races (MITIGATED) | **MITIGATED-terminal** — triple-lock + heartbeat revalidation + idle cleanup code-traced across the launcher (owner lease `wx` write, stale-reclaim re-read CAS, bootstrap lock dir, dead-socket respawn recheck); existing tests already cover concurrent owner selection and dead-socket takeover; D1/D7 are acceptance-test deltas for the new shim path only, fully specified |
+| 2 | Hook latency (MITIGATED) | **MITIGATED-terminal** — measured on this host: empty node p95 40.85ms, bridge-require p95 46.09ms; fits 3s prompt-time hook ceilings warm-only; cold spawn confined to SessionStart/prewarm/cron; D4 (`--timeout-ms` + spawn policy, timeout → exit 75) fully specified. **Corrects run 3's "<1ms warm path" wording** — that figure was IPC RTT alone, not process overhead |
+| 3 | Build/activation drift (MITIGATED) | **MITIGATED-terminal** — launcher readiness check confirmed existence-only by code-trace; DD-001 (source/dist freshness guard, exit 69 on stale unless dev-override) fully specified and confirmed REQUIRED |
+| 4 | Platform/socket (MITIGATED) | **MITIGATED-terminal** — default socket path **measured 134 bytes** (over Darwin's 104 sun_path cap; run 3 estimated ~105); existing config pins `SPECKIT_IPC_SOCKET_DIR=/tmp/mk-spec-memory` → 35-byte path (verified); bridge `tcp://` fallback confirmed in code; D6 bakes the short default into the shim; Windows non-goal ACCEPTED with rationale |
+| 5 | OpenCode `tools:` gate (DEFERRED) | **ACCEPTED** — installed OpenCode 1.16.2 inspected: no documented first-class shell-subcommand permission gate; dual-stack does NOT need it (plugin/Bash/MCP surfaces suffice); the gate is an upstream/product constraint relevant only to eventual full MCP removal — outside this packet by design |
+| 6 | ~125-ref migration (DEFERRED) | **ACCEPTED** — inventory MEASURED: **93 files / 1,041 references** across agents, commands, hooks/plugins, doctor, deep-loop allowlists, runtime config (broader counting basis than run 1's ~28-file/~125 executable-call-site estimate; many matches are prose or mirrored agent surfaces). Migration fully mapped; execution stays a future packet — dual-stack non-goal |
+| 7 | Delta completeness (new) | **RESOLVED** — D1–D7 + DD-001 audited as a set, each with file/mechanism/acceptance; bottom-up re-derivation: D1 0.35d, D2 0.30d, D3 0.30d, D4 0.25d, D5 0.15d, D6 0.25d, D7 0.25d, DD-001 0.35d + 0.30d buffer = **2.0–2.5d absorption**; consolidated **10–13d** estimate re-confirmed; no ninth delta required |
+| 8 | Residual hedge sweep (new) | **RESOLVED** — every hedged claim in runs 1–3 + packet Known Limitations terminally classified: MiMo independence → ACCEPTED methodology note; registry coverage 1/3 → ACCEPTED artifact note; effort uncertainty → MITIGATED via bottom-up derivation (implementation packet still re-estimates); warm-latency wording → corrected (see RQ2) |
+
+**Final risk posture: 2 RESOLVED · 4 MITIGATED-terminal (mitigations specified + verified) · 2 ACCEPTED · 0 UNRESOLVED · 0 unclassified-DEFERRED · 0 unexamined hedges.** Nothing inside the dual-stack scope is unknown. The implementation packet inherits: the 8 deltas (verbatim specs in the lane report §Required Deltas), the corrected latency/socket/migration numbers, and the standing non-goals (no MCP removal, no migration execution).
+
+Run-4 corrections to carry forward (supersede earlier wording): hook-path warm overhead is **~40–46ms p95** (not sub-millisecond); default socket path is **134B** pre-pin; migration surface is **93 files / 1,041 refs** on the broad basis. Artifact note: the fan-out salvage sweep writes 91-byte `iteration-N.md` placeholders alongside the real `iteration-NNN.md` files even on clean runs (also explains run 3's mimo stubs) — canonical content is the zero-padded set.
+
 <!-- ANCHOR:sources -->
 ## Sources
 
@@ -186,4 +205,5 @@ Convergence-driven run (cap 20, threshold 0.05): deepseek-risk stopped at **3/20
 - Orchestration: `orchestration-summary.json` (3/3 succeeded), `orchestration-status.log`.
 - Run 2 (CLI back-end design): `cli-backend/lineages/gpt/research.md` + `cli-backend/lineages/gpt/iterations/iteration-00{1..3}.md` + registry; orchestration: `cli-backend/orchestration-summary.json` (1/1 succeeded).
 - Run 3 (risk resolution): `risk-resolution/lineages/{deepseek-risk,mimo-risk}/research.md` + iterations; merged registry (15 findings, deepseek lane; mimo findings carried in research.md) + `risk-resolution/fanout-attribution.md`; orchestration: `risk-resolution/orchestration-summary.json` (2/2 succeeded). Host measurements: node startup 40–45ms, IPC RTT 0.48ms (darwin/arm64, 2026-06-06).
+- Run 4 (total risk closure): `risk-closure/lineages/gpt-closure/research.md` + `iterations/iteration-00{1..4}.md` + findings registry (8/8 terminal, convergence 0.97); orchestration: `risk-closure/orchestration-summary.json` (1/1 succeeded, 9.4 min). Host measurements: empty node p95 40.85ms, bridge-require p95 46.09ms, default socket path 134B vs 104B sun_path cap (darwin/arm64, 2026-06-06).
 <!-- /ANCHOR:sources -->

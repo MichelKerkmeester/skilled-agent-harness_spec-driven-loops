@@ -1,0 +1,11 @@
+{
+  "run_id": "1780747019655-imm3qh",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility/research/risk-closure",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}

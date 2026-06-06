@@ -1,0 +1,4 @@
+{"iteration":4,"type":"classification","question":"RQ7","status":"resolved","confidence":0.9,"summary":"D1-D7 plus DD-001 are complete for the dual-stack residual risk surface; no independent ninth delta is required."}
+{"iteration":4,"type":"classification","question":"RQ8","status":"resolved","confidence":0.88,"summary":"All prior hedges now have terminal classifications: methodology/artifact limitations accepted, estimates mitigated, OpenCode gate accepted upstream, migration roughness mitigated, socket/latency wording corrected."}
+{"iteration":4,"type":"estimate","status":"bounded","summary":"Delta hardening is about 2.0-2.5 days; full dual-stack implementation remains plausibly 10-13 days."}
+{"iteration":4,"type":"convergence","status":"reached","summary":"All eight research questions are terminally classified before maxIterations=20."}

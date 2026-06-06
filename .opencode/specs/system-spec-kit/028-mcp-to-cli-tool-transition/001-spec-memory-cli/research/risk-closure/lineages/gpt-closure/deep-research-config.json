@@ -1,0 +1,36 @@
+{
+  "topic": "Run 4 total risk closure for the spec-memory dual-stack CLI: terminally classify every remaining mitigated, deferred, and hedged item so nothing is unknown.",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility/research/risk-closure/lineages/gpt-closure",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-06-06T11:58:34Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "loopType": "research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5"
+  },
+  "lineage": {
+    "sessionId": "fanout-gpt-closure-1780747019655-imm3qh",
+    "parentSessionId": "dr-20260606T115515-risk-closure",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "gpt-closure"
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "research.md": "workflow-owned"
+  }
+}
