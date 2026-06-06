@@ -23,8 +23,8 @@
   },
   "scope_note": "Separate research packet (folder-local iterations 001-005), focused on integration/impact of 007's proposals. Not a new external-framework study.",
   "subject_proposals": {
-    "P1": "012-typed-agent-io-adapter — typed dispatch header + normalized output envelope (status/confidence/failure_type) as an adapter over @code/@review/@context",
-    "P2": "013-scoped-preexec-and-handoff-gates — debug-handoff schema + boundary contract-first + pre-mortem field",
-    "P3": "014-planner-review-focus-and-drift-hint — reviewer_focus hint + spec_drift/update_recommended write-back"
+    "P1": "001-typed-agent-io-adapter — typed dispatch header + normalized output envelope (status/confidence/failure_type) as an adapter over @code/@review/@context",
+    "P2": "002-scoped-preexec-and-handoff-gates — debug-handoff schema + boundary contract-first + pre-mortem field",
+    "P3": "003-planner-review-focus-and-drift-hint — reviewer_focus hint + spec_drift/update_recommended write-back"
   }
 }

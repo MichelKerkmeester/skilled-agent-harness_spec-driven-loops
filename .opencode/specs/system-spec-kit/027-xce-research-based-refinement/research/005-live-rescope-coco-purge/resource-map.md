@@ -90,20 +90,20 @@ description: "Auto-generated research resource map from convergence evidence."
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:80-90` | Cited | MISSING | Citations=1; Iterations=1 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md:82-91` | Cited | MISSING | Citations=1; Iterations=1 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:85-95` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:30` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:57` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:3` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:41-57` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:41` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:45-57` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:52` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:57` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:76` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:107` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/spec.md:61` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer/spec.md:60-61` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer/spec.md:59` | Cited | MISSING | Citations=1; Iterations=1 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:37-65` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:30` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:57` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:3` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:41-57` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:41` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:45-57` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:52` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:57` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:76` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:107` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:61` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:60-61` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:59` | Cited | MISSING | Citations=1; Iterations=1 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:37-65` | Cited | MISSING | Citations=1; Iterations=1 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:3` | Cited | MISSING | Citations=1; Iterations=1 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-state.jsonl:75-92` | Cited | MISSING | Citations=1; Iterations=1 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:19-50` | Cited | MISSING | Citations=1; Iterations=1 |
@@ -119,9 +119,9 @@ description: "Auto-generated research resource map from convergence evidence."
 | `005-env-tests-integration/description.json:17-23` | Cited | MISSING | Citations=1; Iterations=1 |
 | `005-env-tests-integration/graph-metadata.json:6-13` | Cited | MISSING | Citations=1; Iterations=1 |
 | `005-env-tests-integration/spec.md:38-150` | Cited | MISSING | Citations=1; Iterations=1 |
-| `008-learning-feedback-reducers/description.json:23-34` | Cited | MISSING | Citations=1; Iterations=1 |
-| `008-learning-feedback-reducers/graph-metadata.json:6-12` | Cited | MISSING | Citations=1; Iterations=1 |
-| `008-learning-feedback-reducers/spec.md:47-94` | Cited | MISSING | Citations=1; Iterations=1 |
+| `005-learning-feedback-reducers/description.json:23-34` | Cited | MISSING | Citations=1; Iterations=1 |
+| `005-learning-feedback-reducers/graph-metadata.json:6-12` | Cited | MISSING | Citations=1; Iterations=1 |
+| `005-learning-feedback-reducers/spec.md:47-94` | Cited | MISSING | Citations=1; Iterations=1 |
 | `027-xce-research-based-refinement/graph-metadata.json:6-16` | Cited | MISSING | Citations=1; Iterations=1 |
 | `specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64` | Cited | MISSING | Citations=1; Iterations=1 |
 | `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:7` | Cited | MISSING | Citations=1; Iterations=1 |
@@ -136,10 +136,10 @@ description: "Auto-generated research resource map from convergence evidence."
 | `specs/system-spec-kit/028-026-program-research/spec.md:20` | Cited | MISSING | Citations=1; Iterations=1 |
 | 002-memory-write-safety/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
 | 003-incremental-index-foundation/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
-| 008-learning-feedback-reducers/001-aggregator/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
-| 008-learning-feedback-reducers/002-coco-rerank-consumer/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
-| 008-learning-feedback-reducers/005-env-tests-integration/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
-| 008-learning-feedback-reducers/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
+| 005-learning-feedback-reducers/001-aggregator/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
+| 005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
+| 005-learning-feedback-reducers/005-env-tests-integration/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
+| 005-learning-feedback-reducers/spec.md | Cited | MISSING | Citations=1; Iterations=1 |
 | existence `.opencode/specs/system-spec-kit/028-026-program-research` | Cited | MISSING | Citations=1; Iterations=1 |
 | existence `specs/system-spec-kit/028-026-program-research` | Cited | MISSING | Citations=1; Iterations=1 |
 | exists `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts` | Cited | MISSING | Citations=1; Iterations=1 |

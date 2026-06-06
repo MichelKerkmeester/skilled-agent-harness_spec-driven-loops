@@ -19,18 +19,18 @@ Derived from the 19-iteration phase-007 study (13 analysis + 5 adversarial-verif
 | `009` | 006-peck | `009-peck-verification-discipline` |
 | `010` | 006-peck | `010-reviewer-prompt-benchmark-substrate` |
 | `011` | 006-peck | `011-acceptance-coverage-gate` |
-| `012` | **007-gem-team (this packet)** | `012-typed-agent-io-adapter` |
-| `013` | **007-gem-team (this packet)** | `013-scoped-preexec-and-handoff-gates` |
-| `014` | **007-gem-team (this packet)** | `014-planner-review-focus-and-drift-hint` |
-| `015` | 008-caura-memclaw | `015-memclaw-derived-memory-hardening` |
+| `012` | **007-gem-team (this packet)** | `001-typed-agent-io-adapter` |
+| `013` | **007-gem-team (this packet)** | `002-scoped-preexec-and-handoff-gates` |
+| `014` | **007-gem-team (this packet)** | `003-planner-review-focus-and-drift-hint` |
+| `010` | 008-caura-memclaw | `007-memclaw-derived-memory-hardening` |
 
-This packet's `012-014` are **final** (no longer tentative). **Scaffolded (2026-06-06) as a single phase-parent `027/012-gem-team-adoption/` with the three proposals as nested phases — `001-typed-agent-io-adapter` (was 012) / `002-scoped-preexec-and-handoff-gates` (was 013) / `003-planner-review-focus-and-drift-hint` (was 014)** — i.e. one phased spec, not three sibling children. (Sibling packets 006/008 still occupy `009-011` / `015-016` as separate top-level children.) These refine the **agent runtime** (agent I/O contracts, dispatch, gates) — a different subsystem from 027's memory-internal children `002-008`; the operator may alternatively place them on a dedicated agent-runtime track. **Note (updated 2026-06-06 by the research/009 cross-impact follow-up):** 006's `009-peck-verification-discipline` and this packet's P2 both edit `sk-code/SKILL.md`, but they are **distinct rules on different predicates — NOT a merge** (peck = root-cause/escalation gates; P2 = boundary contract-first on `change_class ∈ {api,schema,integration}`). Handling: **coordinate the shared `sk-code/SKILL.md` edit window** (whoever lands first records its line ranges; the second references them), and confirm peck's `CLAUDE.md` Logic-Sync edits don't change the semantics P3's `spec_drift` defers to. Everything else (memory phases 002-008, peck 010/011, caura 015-016, `generate-context.ts`) is orthogonal.
+This packet's `009` are **final** (no longer tentative). **Scaffolded (2026-06-06) as a single phase-parent `027/006-gem-team-adoption/` (renumbered from `012` on 2026-06-06 to free slot 009 for peck’s 009→001 merge) with the three proposals as nested phases — `001-typed-agent-io-adapter` (was 012) / `002-scoped-preexec-and-handoff-gates` (was 013) / `003-planner-review-focus-and-drift-hint` (was 014)** — i.e. one phased spec, not three sibling children. (Sibling packets 006/008 still occupy `001` / `010` as separate top-level children.) These refine the **agent runtime** (agent I/O contracts, dispatch, gates) — a different subsystem from 027's memory-internal children `002-008`; the operator may alternatively place them on a dedicated agent-runtime track. **Note (updated 2026-06-06 by the research/009 cross-impact follow-up):** 006's `009-peck-verification-discipline` and this packet's P2 both edit `sk-code/SKILL.md`, but they are **distinct rules on different predicates — NOT a merge** (peck = root-cause/escalation gates; P2 = boundary contract-first on `change_class ∈ {api,schema,integration}`). Handling: **coordinate the shared `sk-code/SKILL.md` edit window** (whoever lands first records its line ranges; the second references them), and confirm peck's `CLAUDE.md` Logic-Sync edits don't change the semantics P3's `spec_drift` defers to. Everything else (memory phases 002-008, peck 010/011, caura 010, `generate-context.ts`) is orthogonal.
 
 **Governing principle (from the critic's counter-argument).** The spec-kit is mature and markdown/governance-rich. Every item below is an **adapter, optional mode, or advisory field** — never a replacement for existing evidence-rich contracts. Reject anything that flattens agent outputs into brittle protocol compliance.
 
 ---
 
-## Proposal P1: `012-typed-agent-io-adapter` — Typed Dispatch + Output Envelope (Adapter)
+## Proposal P1: `001-typed-agent-io-adapter` — Typed Dispatch + Output Envelope (Adapter)
 
 **Scope summary.** Add a **typed agent-I/O adapter layer** over the existing agent contracts: (1) a normalized output envelope exposing machine-parseable `status` / `confidence` (numeric 0.0-1.0 *alongside* HIGH/MED/LOW) / `failure_type`, emitted as a small fenced block that **precedes or follows the existing rich markdown body** (never replacing it); (2) a typed **dispatch header** for sub-agent calls (stable `dispatch_id`, `task_definition` field set per agent type, and a lean `context_snapshot` header + read-directive buckets — `safe_to_assume` / `verify_before_use` / `do_not_re_read` — layered on the existing @context Context Package). Maps existing `@code` escalation classes (`UNKNOWN_STACK`/`SCOPE_CONFLICT`/`LOGIC_SYNC`/`VERIFY_FAIL`) and `@review` P0/P1/P2 into a normalized `failure_type` enum — does NOT import Gem's taxonomy wholesale.
 
@@ -56,7 +56,7 @@ This packet's `012-014` are **final** (no longer tentative). **Scaffolded (2026-
 
 ---
 
-## Proposal P2: `013-scoped-preexec-and-handoff-gates` — Debug-Handoff Schema + Boundary Contract-First + Pre-Mortem
+## Proposal P2: `002-scoped-preexec-and-handoff-gates` — Debug-Handoff Schema + Boundary Contract-First + Pre-Mortem
 
 **Scope summary.** Three **scoped, optional-mode** gates (each fires only in its narrow condition, to avoid universal ceremony):
 1. **Debug-handoff schema** — when a diagnosis crosses agents (debug → implement), require a typed handoff carrying `root_cause`, `target_files`, `fix_recommendations`, `confidence`; the receiving agent validates presence before fixing. Keeps @debug's 5-phase method as-is *(iter 006; iter 014 narrowed)*.
@@ -85,7 +85,7 @@ This packet's `012-014` are **final** (no longer tentative). **Scaffolded (2026-
 
 ---
 
-## Proposal P3: `014-planner-review-focus-and-drift-hint` — Reviewer-Focus + Requirements-Drift Write-Back (Lowest Cost)
+## Proposal P3: `003-planner-review-focus-and-drift-hint` — Reviewer-Focus + Requirements-Drift Write-Back (Lowest Cost)
 
 **Scope summary.** Two advisory planning/output fields (the completeness critic's net-new find, iter 019):
 1. **`reviewer_focus` / `quality_score` hint** — let a planning/decomposition step emit a short "where review attention should go" hint (high-risk files/areas + a self-assessed quality score), so @review/@orchestrate route attention without adding gates [gem-planner.agent.md:108-110; CHANGELOG.md:65-74].
@@ -127,4 +127,4 @@ Each was downgraded below sub-packet threshold by the adversarial round and/or t
 
 `P1` (the envelope is the substrate P2/P3 fields live in) → `P2` ‖ `P3` (independent once P1 lands). Each is independently shippable and L1-L2; none requires touching the memory MCP (027's 002-008 children). Total surface is small and low-risk by design — consistent with the run's core finding that the spec-kit needs **polish, not new subsystems**.
 
-**Next step:** cross-phase reconciliation of the 006/007/008 proposal sets into a unified 027 child sequence (007's tentative `012-014`, watch for P2 ↔ 006's `009-peck-verification-discipline` merge), then `/speckit:plan` on P1 (highest value, enables the others).
+**Next step:** cross-phase reconciliation of the 006/007/008 proposal sets into a unified 027 child sequence (007's tentative `009`, watch for P2 ↔ 006's `009-peck-verification-discipline` merge), then `/speckit:plan` on P1 (highest value, enables the others).

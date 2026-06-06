@@ -49,7 +49,7 @@
 | **First-timestamp tombstone + index split** | soft-delete must keep first timestamp (COALESCE); add active/purgeable partial indexes | `memory-crud-delete.ts`, `memory-bulk-delete.ts`, `vector-index-schema.ts`, `memory-retention-sweep.ts` | health-visible | delete handlers + sweep |
 | **Stale-exclusion audit** | read-only audit: is default recall silently dropping deprecated-but-relevant rows? | `memory-crud-health.ts`, `lib/search/hybrid-search.ts`, `doctor_memory.yaml` | diagnostic | startup health + `/doctor memory` |
 | **Reserve feedback types** | already 5 fixed types; just keep them server-only (no public feedback-write tool) | `lib/feedback/feedback-ledger.ts`, `schemas/tool-input-schemas.ts` | invisible | server-side only |
-| **008 active reducers** | **defer** — rescope the `008` active causal/retention reducer children to diagnostics-first | `008-learning-feedback-reducers/{spec,001,003,004,005}.md` | spec-only | n/a (planning) |
+| **008 active reducers** | **defer** — rescope the `008` active causal/retention reducer children to diagnostics-first | `005-learning-feedback-reducers/{spec,001,003,004,005}.md` | spec-only | n/a (planning) |
 | **Tool-ownership map** | generate/lint from `TOOL_DEFINITIONS`; don't hand-maintain | `mcp_server/tool-schemas.ts`, `tools/index.ts`, pre-commit, `/doctor skill-budget` | diagnostic | pre-commit + doctor |
 | **Advisory near-duplicate** | extend existing assistive-recommendation path; deterministic, never hard-reject | `save/reconsolidation-bridge.ts`, `save/response-builder.ts` | advisory hint | save-time when embeddings exist |
 

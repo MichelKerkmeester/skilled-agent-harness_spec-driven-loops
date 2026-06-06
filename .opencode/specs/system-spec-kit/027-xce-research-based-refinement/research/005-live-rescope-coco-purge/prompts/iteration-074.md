@@ -12,10 +12,10 @@ Spec folder: `specs/system-spec-kit/027-xce-research-based-refinement` (pre-appr
 
 ## FOCUS — answer only this
 Enumerate the structural/metadata edits the 002-coco deletion forces. Read:
-1. `008-learning-feedback-reducers/description.json` and `008-learning-feedback-reducers/graph-metadata.json` (child lists, counts, derived pointers, manual edges referencing 002).
-2. `008-learning-feedback-reducers/spec.md` PHASE MAP / handoff table / consumer counts ("three consumers").
-3. `008-learning-feedback-reducers/005-env-tests-integration/{description.json,graph-metadata.json}` (does it list 002 as a dependency/child?).
-4. `008-learning-feedback-reducers/001-aggregator/graph-metadata.json` (does it reference 002 as a downstream?).
+1. `005-learning-feedback-reducers/description.json` and `005-learning-feedback-reducers/graph-metadata.json` (child lists, counts, derived pointers, manual edges referencing 002).
+2. `005-learning-feedback-reducers/spec.md` PHASE MAP / handoff table / consumer counts ("three consumers").
+3. `005-learning-feedback-reducers/005-env-tests-integration/{description.json,graph-metadata.json}` (does it list 002 as a dependency/child?).
+4. `005-learning-feedback-reducers/001-aggregator/graph-metadata.json` (does it reference 002 as a downstream?).
 5. Check the 027 PARENT `graph-metadata.json` / `description.json` / `context-index.md` for any 002-coco child reference.
 
 ## DELIVER (plain text — orchestrator writes artifacts)

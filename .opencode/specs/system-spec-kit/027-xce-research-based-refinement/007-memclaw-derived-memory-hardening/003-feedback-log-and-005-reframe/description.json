@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
+  "description": "Feature Specification: Phase 3: feedback-log-and-008-reframe",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "feedback-log-and-008-reframe"
+  ],
+  "lastUpdated": "2026-06-06T14:41:15.758Z",
+  "specId": "003",
+  "folderSlug": "feedback-log-and-005-reframe",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "007-memclaw-derived-memory-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

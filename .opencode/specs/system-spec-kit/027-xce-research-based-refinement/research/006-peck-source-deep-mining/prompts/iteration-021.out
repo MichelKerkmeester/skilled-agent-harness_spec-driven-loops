@@ -1,5 +1,5 @@
 Reading the specified packet docs first, then tracing existing hooks, validators, CI scripts, and rollout flags without writing files.
-The proposal confirms packets 009-011 are planning-only and identifies the intended files; the root `research.md` path is a directory, so I’m reading the `006-peck-source-deep-mining/research.md` source next.
+The proposal confirms packets 001 are planning-only and identifies the intended files; the root `research.md` path is a directory, so I’m reading the `006-peck-source-deep-mining/research.md` source next.
 The source research makes completion-freshness, T1 coverage, and the 010 benchmark the automation-heavy items; I’m now mapping those to existing hook, registry, env, and CI surfaces rather than proposing new machinery.
 Existing validation already has a registry-plus-severity model and strict-mode warning promotion; that is the likely place for `AC_COVERAGE` and completion-freshness rather than a bespoke hook.
 The repo already has a blocking pre-commit extension pattern for prompt-knowledge drift and comment hygiene; reviewer-prompt benchmark wiring can follow that staged pattern plus CI only where prompt surfaces changed.

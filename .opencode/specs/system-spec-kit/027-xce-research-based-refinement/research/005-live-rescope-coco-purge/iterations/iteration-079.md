@@ -25,7 +25,7 @@
 
 5. Ship `003-incremental-index-foundation` in parallel with or immediately after `002`. Why: foundation remains unbuilt; build on existing self-maintaining scan/enrichment rather than redesigning it. Dependency: Phase 0.
 
-6. Rescope then ship `008-learning-feedback-reducers` after `002`. Why: reducer family can start once P0 write safety lands, but must be Coco-free and constants-correct. Dependency: Phase 0C + `002`; internal order `008/001 -> 008/{003,004} -> 008/005`.
+6. Rescope then ship `005-learning-feedback-reducers` after `002`. Why: reducer family can start once P0 write safety lands, but must be Coco-free and constants-correct. Dependency: Phase 0C + `002`; internal order `008/001 -> 008/{003,004} -> 008/005`.
 
 7. Rescope then ship `004-causal-edge-tombstones`. Why: tombstone scope is real but delete-site inventory and lifecycle naming are stale. Dependency: `003` plus Phase 0; use full 14-site inventory.
 
@@ -33,7 +33,7 @@
 
 9. Rescope then ship `006-write-path-reconciliation`. Why: needs correct split between sync durable row actions and async enrichment replay; avoid same-response graph writes. Dependency: `003 + 005`, and practically after `004`.
 
-10. Rescope then ship `007-semantic-trigger-fallback` last. Why: largest blast radius; schema/cache identity must target live `profile_key + input_kind` and Nomic-768 reality, not stale model assumptions. Dependency: all prior stabilization, especially `003/006/008` telemetry/backfill seams.
+10. Rescope then ship `004-semantic-trigger-fallback` last. Why: largest blast radius; schema/cache identity must target live `profile_key + input_kind` and Nomic-768 reality, not stale model assumptions. Dependency: all prior stabilization, especially `003/006/008` telemetry/backfill seams.
 
 11. Apply `001-peck-teachings-adoption` refinement as low-risk cleanup. Why: mostly already INFO-scoped; residual warning/obsolete parent fallback wording remains. Dependency: can be included in Phase 0 docs cleanup or before final synthesis.
 
@@ -45,8 +45,8 @@ phase | class | blocking prerequisite
 `004-causal-edge-tombstones` | RESCOPE-THEN-SHIP | Full 14 delete-site inventory; `003`; lifecycle rename
 `005-metadata-edge-promoter` | RESCOPE-THEN-SHIP | Narrow scope; fix REQ conflict; after `004`
 `006-write-path-reconciliation` | RESCOPE-THEN-SHIP | Sync/async split; after `003 + 005`
-`007-semantic-trigger-fallback` | RESCOPE-THEN-SHIP | Cache/schema identity rescope; ship last
-`008-learning-feedback-reducers` | RESCOPE-THEN-SHIP | Delete `008/002-coco`; constants/export fixes; after `002`
+`004-semantic-trigger-fallback` | RESCOPE-THEN-SHIP | Cache/schema identity rescope; ship last
+`005-learning-feedback-reducers` | RESCOPE-THEN-SHIP | Delete `008/002-coco`; constants/export fixes; after `002`
 `008/002-coco-rerank-consumer` | BLOCKED | Dead Coco scope; delete, do not ship
 
 ### TOP_RISKS

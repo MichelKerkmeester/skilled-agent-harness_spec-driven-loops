@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
+  "description": "Feature Specification: Phase 4: tombstones-and-edge-promotion",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "tombstones-and-edge-promotion"
+  ],
+  "lastUpdated": "2026-06-06T14:41:16.376Z",
+  "specId": "004",
+  "folderSlug": "tombstones-and-edge-promotion",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "007-memclaw-derived-memory-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

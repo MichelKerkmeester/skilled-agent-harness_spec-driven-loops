@@ -11,7 +11,7 @@
     "convergenceScore": 0.51,
     "newInfoRatioTrend": [0.18, 0.24, 0.42, 0.38, 0.64, 0.78, 0.64, 0.58, 0.31, 0.74, 0.83, 0.46, 0.72],
     "status": "complete",
-    "verdict": "validate-and-incrementally-refine; 3 sub-packets (tentative 012-014) + 6 deferred to tags/aliases"
+    "verdict": "validate-and-incrementally-refine; 3 sub-packets (tentative 009) + 6 deferred to tags/aliases"
   },
   "findings": [],
   "questions": [

@@ -27,7 +27,7 @@
     "stdinGuard": "</dev/null"
   },
   "integrationTarget": {
-    "what": "008 sub-packet-proposals.md (new child 015 P1-P3 + amendments to 002-008 + the 008 feedback reframe)",
+    "what": "008 sub-packet-proposals.md (new child 010 P1-P3 + amendments to 002-008 + the 008 feedback reframe)",
     "into": "Spec Kit Memory system under .opencode/skills/system-spec-kit/mcp_server/ + commands/{memory,speckit,doctor} + agents/ + hooks"
   },
   "lineage": {

@@ -30,12 +30,11 @@ _memory:
       - "spec.md"
       - "001-peck-teachings-adoption/spec.md"
       - "002-memory-write-safety/spec.md"
-      - "003-incremental-index-foundation/spec.md"
-      - "004-causal-edge-tombstones/spec.md"
-      - "005-metadata-edge-promoter/spec.md"
-      - "006-write-path-reconciliation/spec.md"
-      - "007-semantic-trigger-fallback/spec.md"
-      - "008-learning-feedback-reducers/spec.md"
+      - "003-memory-index-causal-lifecycle/spec.md"
+      - "004-semantic-trigger-fallback/spec.md"
+      - "005-learning-feedback-reducers/spec.md"
+      - "006-gem-team-adoption/spec.md"
+      - "007-memclaw-derived-memory-hardening/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-peck-phase-adoption"
@@ -110,12 +109,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |-----------|-------------|-------|-------------|
 | `templates/manifest/**`, validation docs, constitutional review surfaces | Modify/Create | 001 | Peck-derived documentation/process improvements |
 | `mcp_server/handlers/save/**` and memory docs | Modify | 002 | Memory write-safety and feedback correctness |
-| `mcp_server/lib/indexing/**` and memory index docs | Modify | 003 | Incremental indexing foundation |
-| `mcp_server/lib/causal/**` | Modify | 004 | Causal edge tombstones |
-| `description.json`, `graph-metadata.json`, edge promotion code | Modify | 005 | Deterministic metadata edge promotion |
-| Memory save/index reconciliation paths | Modify | 006 | Desired/prior statediff reconciliation |
-| Trigger matching and search fallback paths | Modify | 007 | Semantic trigger fallback |
-| Feedback reducer pipeline paths | Modify | 008 | Learning feedback reducers |
+| `mcp_server/lib/{indexing,causal}/**`, edge promotion + save/index reconciliation paths | Modify | 003 | Memory index & causal write lifecycle (phase parent; children 001-004) |
+| Trigger matching and search fallback paths | Modify | 004 | Semantic trigger fallback (phase parent; children 001-004) |
+| Feedback reducer pipeline paths | Modify | 005 | Learning feedback reducers |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -130,28 +126,25 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 000 | `000-release-cleanup/` | Placeholder release cleanup shell | Placeholder |
 | 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 (self-check/current-state/constitutional) + source-pass T5-T10 (reviewer-benchmark, verification-discipline, acceptance-coverage gate), as 7 nested phases (`001-007`) | Phase-parent |
 | 002 | `002-memory-write-safety/` | P0 feedback correctness fixes | Spec-scaffolded |
-| 003 | `003-incremental-index-foundation/` | Memoization, dependency DAG, chunk fingerprints | Draft |
-| 004 | `004-causal-edge-tombstones/` | Causal edge tombstone lifecycle | Draft |
-| 005 | `005-metadata-edge-promoter/` | Deterministic frontmatter causal edges | Draft |
-| 006 | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation | Draft |
-| 007 | `007-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching | Spec-scaffolded |
-| 008 | `008-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
-| 009 | `009-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
-| 010 | `010-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-008 | Phase-parent |
+| 003 | `003-memory-index-causal-lifecycle/` | Memory index & causal write lifecycle phase-parent — incremental index foundation, causal-edge tombstones, metadata-edge promoter, write-path reconciliation, as 4 nested phases (`001-004`) | Phase-parent |
+| 004 | `004-semantic-trigger-fallback/` | Hybrid lexical+semantic trigger matching phase-parent — schema+backfill, semantic matcher, hybrid handler, tests/goldens/shadow eval, as 4 nested phases (`001-004`) | Phase-parent |
+| 005 | `005-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
+| 006 | `006-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
+| 007 | `007-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-005 | Phase-parent |
 
-> `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `009` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `010` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All three programs are scaffolded and planned, not implemented.
+> `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `006` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `007` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All three programs are scaffolded and planned, not implemented.
 
 ### Continuation Research Planning Amendments
 
 - Iterations 040-042 are planning hygiene inputs: root `research/` is canonical, path/command naming must be explicit by surface, and XCE ideas remain evidence signals rather than direct requirements.
 - Iteration 043 is owned by `001-peck-teachings-adoption/`: keep T3, then T4, then T2; keep T1 deferred.
 - Iteration 044 is owned by `002-memory-write-safety/`: treat `auto-*` provenance, manual-edge overwrite protection, and tier/pin-aware retention as P0 safety gates.
-- Iteration 045 is owned by `003-incremental-index-foundation/`: add memo records, dependency edges, chunk fingerprints, chunk kinds, and chunk line spans before handler scan changes.
-- Iteration 046 is owned by `004-causal-edge-tombstones/`: all active causal-edge delete paths must tombstone before hard-delete.
-- Iteration 047 is owned by `005-metadata-edge-promoter/`: promote validated parent/child/parent-chain metadata and avoid duplicating already-wired manual metadata links.
-- Iteration 048 is owned by `006-write-path-reconciliation/`: statediff is an explicit action/subscriber aid, not an implicit source of truth.
-- Iterations 049 and 058 are planned together under `007-semantic-trigger-fallback/`: lexical-first remains primary; semantic expansion stays default-off with resumable backfill and shadow-to-union promotion evidence.
-- Iterations 050 and 059 are planned together under `008-learning-feedback-reducers/`: reducers stay default-off and shadow-first until ledger quality, replay, and consumer-specific gates pass.
+- Iteration 045 is owned by `003-memory-index-causal-lifecycle/001-incremental-index-foundation/`: add memo records, dependency edges, chunk fingerprints, chunk kinds, and chunk line spans before handler scan changes.
+- Iteration 046 is owned by `003-memory-index-causal-lifecycle/002-causal-edge-tombstones/`: all active causal-edge delete paths must tombstone before hard-delete.
+- Iteration 047 is owned by `003-memory-index-causal-lifecycle/003-metadata-edge-promoter/`: promote validated parent/child/parent-chain metadata and avoid duplicating already-wired manual metadata links.
+- Iteration 048 is owned by `003-memory-index-causal-lifecycle/004-write-path-reconciliation/`: statediff is an explicit action/subscriber aid, not an implicit source of truth.
+- Iterations 049 and 058 are planned together under `004-semantic-trigger-fallback/`: lexical-first remains primary; semantic expansion stays default-off with resumable backfill and shadow-to-union promotion evidence.
+- Iterations 050 and 059 are planned together under `005-learning-feedback-reducers/`: reducers stay default-off and shadow-first until ledger quality, replay, and consumer-specific gates pass.
 - Iterations 051-057 are cross-cutting planning rules for the child phases: prefer local packet context first, keep context bundles explicit, automate resource maps only with validation, keep reducer repairs idempotent, standardize `/speckit`, refuse stale impact analysis, and keep `memory_context` curation scoped to local memory-backend concerns.
 
 ### Phase Transition Rules
@@ -165,15 +158,14 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | From | To | Criteria | Verification |
 |------|----|----------|--------------|
-| 002-memory-write-safety | 008-learning-feedback-reducers | P0 feedback safety fixes landed before reducers learn from feedback. | 002 validation evidence and tests. |
-| 003-incremental-index-foundation | 004-causal-edge-tombstones | Incremental indexing foundation available before lifecycle expansion. | 003 implementation summary. |
-| 004-causal-edge-tombstones | 005-metadata-edge-promoter | Generated edge cleanup has tombstone support. | 004 validation evidence. |
-| 005-metadata-edge-promoter | 006-write-path-reconciliation | Generated edge sets are available as statediff target candidates. | 005 implementation summary. |
+| 002-memory-write-safety | 005-learning-feedback-reducers | P0 feedback safety fixes landed before reducers learn from feedback. | 002 validation evidence and tests. |
+| 002-memory-write-safety | 003-memory-index-causal-lifecycle/002-causal-edge-tombstones | Auto-provenance broadening (P0) lands before the tombstone child's session-trace insertions. | 002 validation evidence. |
+| 003-memory-index-causal-lifecycle | (internal 001→002→003→004) | The index/causal write lifecycle chain is internal to this parent; see its execution order. | Per-child validation evidence. |
 | 001-peck-teachings-adoption/001-peck-teachings-for-spec-kit | 001-peck-teachings-adoption/002-self-check-templates | Peck teachings analysis complete; T3/T4/T2 order and T1 deferral are documented. | 001/001 implementation summary and analysis report. |
 | 001-peck-teachings-adoption/002-self-check-templates | 001-peck-teachings-adoption/003-current-state-discipline | Template self-check guidance ships without breaking scaffold validation. | Fresh scaffold plus strict validation evidence. |
 | 001-peck-teachings-adoption/003-current-state-discipline | 001-peck-teachings-adoption/004-constitutional-rule-review | Advisory current-state rule is registered without adding strict-mode errors. | Sample validation evidence. |
-| 007-semantic-trigger-fallback shadow mode | 007-semantic-trigger-fallback union mode | Resumable backfill complete or explicitly failed; shadow false-positive, recall, latency, cost, and rollback evidence pass. | 007 promotion checklist evidence. |
-| 008-learning-feedback-reducers shadow consumers | 008-learning-feedback-reducers active mutation/ranking | Ledger quality, shadow replay, and consumer-specific promotion criteria pass for each consumer. | 008/005 integration gate evidence. |
+| 004-semantic-trigger-fallback shadow mode | 004-semantic-trigger-fallback union mode | Resumable backfill complete or explicitly failed; shadow false-positive, recall, latency, cost, and rollback evidence pass. | 004 promotion checklist evidence. |
+| 005-learning-feedback-reducers shadow consumers | 005-learning-feedback-reducers active mutation/ranking | Ledger quality, shadow replay, and consumer-specific promotion criteria pass for each consumer. | 005/005 integration gate evidence. |
 <!-- /ANCHOR:phase-map -->
 
 ---

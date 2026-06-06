@@ -7,7 +7,7 @@ status: "proposal (cross-model endorsed by MiniMax M3 at iter 018 — one must-f
 
 # Sub-packet proposal for 027 (from peck-source mining)
 
-Derived from the 13-iteration peck-source deep-research pass (`research.md`). This proposes **three new 027 child packets (009-011)**, **two coordination items** that extend the *already-pending* 001 children (do NOT create new packets for these), and a short **optional/deferred** list. Numbering, non-conflict, and sequencing were verified in iteration 013.
+Derived from the 13-iteration peck-source deep-research pass (`research.md`). This proposes **three new 027 child packets (001)**, **two coordination items** that extend the *already-pending* 001 children (do NOT create new packets for these), and a short **optional/deferred** list. Numbering, non-conflict, and sequencing were verified in iteration 013.
 
 > **Nothing here is implemented.** This is a planning artifact. New packets require a Gate-3 answer + `/speckit:plan :with-phases` per packet.
 

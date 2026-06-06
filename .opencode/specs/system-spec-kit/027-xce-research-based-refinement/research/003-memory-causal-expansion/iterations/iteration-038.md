@@ -23,8 +23,8 @@ The key conclusion is that **two phases can be merged** (004 into 003), and **on
 - `004-causal-edge-tombstones/spec.md` — Level 2, depends on causal-edges schema in place; 005 explicitly blocks on 004 (`004-causal-edge-tombstones/spec.md:43-47`; `005-metadata-edge-promoter/spec.md:blockers:- "004"`)
 - `005-metadata-edge-promoter/spec.md` — blocks on 004; incremental blast radius because it only writes `auto`-provenance edges and never overwrites manual ones (`005-metadata-edge-promoter/spec.md:REQ-007,REQ-008`)
 - `006-write-path-reconciliation/spec.md` — blocks on 003 for DAG action-plan; succeeds 005 in dependency chain (`006-write-path-reconciliation/spec.md:blockers:- "003"`)
-- `007-semantic-trigger-fallback/spec.md` — no hard blockers; LOC ~280-430 prod + 180-280 tests; false-positive risk is the primary concern (`007-semantic-trigger-fallback/spec.md:description,LOC budget`)
-- `008-learning-feedback-reducers/spec.md` — phase parent with 5 children; child 001-aggregator depends on 002; total family LOC ~70+370+265+385+100 = ~1190 (`008-learning-feedback-reducers/spec.md:57-63`)
+- `004-semantic-trigger-fallback/spec.md` — no hard blockers; LOC ~280-430 prod + 180-280 tests; false-positive risk is the primary concern (`004-semantic-trigger-fallback/spec.md:description,LOC budget`)
+- `005-learning-feedback-reducers/spec.md` — phase parent with 5 children; child 001-aggregator depends on 002; total family LOC ~70+370+265+385+100 = ~1190 (`005-learning-feedback-reducers/spec.md:57-63`)
 - `research/research.md` — merged synthesis; pt-04 per-phase verdicts and open questions (`research/research.md:25-45`)
 - `research/sub-packet-amendments.md` — pt-02 amendment: 002 P0 correctness fixes should not wait on eval; P0 ordering decision explicit (`research/sub-packet-amendments.md:Phase 004 amendments`)
 - `research/027-xce-research-pt-04/research.md` — Phase 002 KEEP_AS_IS; Phase 008 REVISE_SCOPE; Phase 009 (now 008-family) split recommended (`research/027-xce-research-pt-04/research.md:§2`)
@@ -39,7 +39,7 @@ The key conclusion is that **two phases can be merged** (004 into 003), and **on
 **Verdict**: ADOPT
 **Cite**: `002-memory-write-safety/spec.md:49` — "Ordering decision: '009 P0 fixes before reducers' and before all code_graph phases in the refreshed 027 sequence."
 **Cite**: `002-memory-write-safety/spec.md:59,65` — Priority P0, LOC ~50-80 prod + 60-100 tests, no blockers.
-**Cite**: `008-learning-feedback-reducers/spec.md:59` — 008/001-aggregator "Depends On: 027-xce-research-based-refinement/002-memory-write-safety".
+**Cite**: `005-learning-feedback-reducers/spec.md:59` — 008/001-aggregator "Depends On: 027-xce-research-based-refinement/002-memory-write-safety".
 
 The three P0 fixes (auto-provenance cap broadening, manual-edge overwrite guard, retention-sweep tier basement gap) are small and correctness-critical. Shipping them first unblocks the entire 008 learning-reducer family and prevents silent data corruption in the causal graph before any volume-increasing phases (005, 007) land. Blast radius is minimal — three surgical fixes to existing handlers with no schema changes. Acceptance criteria are fully specified.
 
@@ -93,12 +93,12 @@ Shipping it after 005 is validated means the auto-edge volume from 005 serves as
 ### F-038-005 — Phase 007 is the highest-value independent phase; can ship in parallel with 006 because it has no schema blockers from 003-005
 
 **Verdict**: ADOPT
-**Cite**: `007-semantic-trigger-fallback/spec.md:description` — "Lexical remains primary precision path; semantic adds paraphrase recall as feature-flagged UNION."
-**Cite**: `007-semantic-trigger-fallback/spec.md:blockers:[]` — no declared blockers.
-**Cite**: `007-semantic-trigger-fallback/spec.md:LOC budget` — ~280-430 production + ~180-280 tests.
+**Cite**: `004-semantic-trigger-fallback/spec.md:description` — "Lexical remains primary precision path; semantic adds paraphrase recall as feature-flagged UNION."
+**Cite**: `004-semantic-trigger-fallback/spec.md:blockers:[]` — no declared blockers.
+**Cite**: `004-semantic-trigger-fallback/spec.md:LOC budget` — ~280-430 production + ~180-280 tests.
 **Cite**: `research/deltas/iter-029.jsonl:f-iter010-003` — "cross-encoder.ts is already provider-generic enough to become a shared RerankClient consumed by memory and CocoIndex candidate adapters."
 
-Phase 007's semantic trigger matching reuses the existing Voyage-4 embedding cache and adds a new derived table (`memory_trigger_embeddings`) that is entirely read-alongside the existing lexical path. The feature is gated behind an ENV flag (default-off), which means production systems are unaffected until the shadow-eval period passes. The false-positive risk documented in the spec (`007-semantic-trigger-fallback/spec.md:221-226`) is mitigated by the lexical-first, semantic-UNION design and cognitive-activation guards.
+Phase 007's semantic trigger matching reuses the existing Voyage-4 embedding cache and adds a new derived table (`memory_trigger_embeddings`) that is entirely read-alongside the existing lexical path. The feature is gated behind an ENV flag (default-off), which means production systems are unaffected until the shadow-eval period passes. The false-positive risk documented in the spec (`004-semantic-trigger-fallback/spec.md:221-226`) is mitigated by the lexical-first, semantic-UNION design and cognitive-activation guards.
 
 Because 007 has no blockers on 003/004/005/006, it can be developed concurrently with 006 and shipped before or after depending on team capacity.
 
@@ -109,8 +109,8 @@ Because 007 has no blockers on 003/004/005/006, it can be developed concurrently
 ### F-038-006 — Phase 008 family should be sequenced as 002-dependency-first, then sub-phases in dependency order; the phase-parent shell is not an implementation target
 
 **Verdict**: ADAPT
-**Cite**: `008-learning-feedback-reducers/spec.md:57-63` — child table: 001-aggregator→{002-coco-rerank-consumer, 003-causal-reducer, 004-retention-reducer}→005-env-tests-integration.
-**Cite**: `008-learning-feedback-reducers/spec.md:39` — "P0 correctness fixes are owned by 012." [Note: renumbered to 002 in current scaffold.]
+**Cite**: `005-learning-feedback-reducers/spec.md:57-63` — child table: 001-aggregator→{002-coco-rerank-consumer, 003-causal-reducer, 004-retention-reducer}→005-env-tests-integration.
+**Cite**: `005-learning-feedback-reducers/spec.md:39` — "P0 correctness fixes are owned by 012." [Note: renumbered to 002 in current scaffold.]
 **Cite**: `research/027-xce-research-pt-04/research.md:Phase 009` — "split P0 correctness fixes from learning reducers" — already enacted as phase 002.
 
 The 008 family ships last because it depends on 002 (P0 fixes) and because its causal-reducer child (003-causal-reducer ~265 LOC) assumes the tombstone lifecycle from phase 004 is stable before session-trace-inferred edges are written at volume. The recommended delivery order for 008's children is: 001-aggregator → 003-causal-reducer → 004-retention-reducer → 002-coco-rerank-consumer → 005-env-tests-integration. The coco-rerank-consumer is last within the family because it crosses a language boundary (Python) and requires the most external coordination.

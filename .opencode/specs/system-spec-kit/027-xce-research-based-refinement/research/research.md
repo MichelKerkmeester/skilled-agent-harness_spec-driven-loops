@@ -19,8 +19,8 @@ This folder is organized by research phase. Each numbered folder contains the it
 ## Current Canonical Synthesis
 
 - **Memory re-plan (phases 002-008):** use `005-live-rescope-coco-purge/research.md` — the latest planning verdict; supersedes earlier XCE-adoption framing for 027 planning purposes.
-- **Verification discipline + T1 (proposed new children 009-011):** use `006-peck-source-deep-mining/research.md` + `006-peck-source-deep-mining/sub-packet-proposal.md` — a distinct peck-source axis, orthogonal to (and non-conflicting with) the memory re-plan.
-- **caura-memclaw memory hardening (proposed new child 015 + amendments to 002-008):** findings + proposal in `008-caura-memclaw-fleet-memory-teachings/{research.md, sub-packet-proposals.md}`; **integration + impact study** (how to integrate it; impact on skills/commands/agents/hooks; UX + automation first) in `008-caura-memclaw-fleet-memory-teachings/integration/{research.md, integration-plan.md}`. Mostly validates/sharpens the memory re-plan and reframes 008 (defer active reducers; most substrate already exists). Numbered 015 to avoid collision with peck (009-011) + gem-team (012-014).
+- **Verification discipline + T1 (proposed new children 001):** use `006-peck-source-deep-mining/research.md` + `006-peck-source-deep-mining/sub-packet-proposal.md` — a distinct peck-source axis, orthogonal to (and non-conflicting with) the memory re-plan.
+- **caura-memclaw memory hardening (proposed new child 010 + amendments to 002-008):** findings + proposal in `008-caura-memclaw-fleet-memory-teachings/{research.md, sub-packet-proposals.md}`; **integration + impact study** (how to integrate it; impact on skills/commands/agents/hooks; UX + automation first) in `008-caura-memclaw-fleet-memory-teachings/integration/{research.md, integration-plan.md}`. Mostly validates/sharpens the memory re-plan and reframes 008 (defer active reducers; most substrate already exists). Numbered 010 to avoid collision with peck (001) + gem-team (009).
 
 ## Future Research Runs
 

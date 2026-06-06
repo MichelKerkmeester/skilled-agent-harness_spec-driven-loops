@@ -55,7 +55,7 @@ Cross-cutting: **vocab NEEDS-FIX** (iter 075) · **XCE EXHAUSTED** (iter 076) ·
 **One DELETE + targeted REWRITEs.** No in-scope requirement/AC disappears (iter 062). Coco substrate (`cocoindex_code/`, `mcp-coco-index/`, `SPECKIT_COCOINDEX_FEEDBACK_RERANK`, coco-028 children) is gone.
 
 ### 3a. DELETE (whole sub-phase)
-- `008-learning-feedback-reducers/002-coco-rerank-consumer/` — structurally coco-dependent (Python reducer, coco feedback JSONL, coco-index rerank, soft-dep on coco-028). **Keep the numbering gap** (do NOT renumber 003/004/005; renames would cascade). *(iter 061, 074)*
+- `005-learning-feedback-reducers/002-coco-rerank-consumer/` — structurally coco-dependent (Python reducer, coco feedback JSONL, coco-index rerank, soft-dep on coco-028). **Keep the numbering gap** (do NOT renumber 003/004/005; renames would cascade). *(iter 061, 074)*
 
 ### 3b. REWRITE (strip coco, keep the local requirement)
 | Area | Action |
@@ -92,7 +92,7 @@ Live `lib/` truth: `lib/causal/` **exists** (`relation-backfill.ts`), `lib/stora
 |---|---|
 | 027 `spec.md:86` says 026 "In Progress" | 026 is **Complete** (005 deferred). *(iter 073)* |
 | `resource-map.md`/`graph-metadata.json` self-cite `.opencode/specs/...` but packet is `specs/...` | Align root. *(iter 073)* |
-| `002/spec.md:64` references nonexistent `027/009-feedback-reducers` | → `008-learning-feedback-reducers`. *(iter 073)* |
+| `002/spec.md:64` references nonexistent `027/009-feedback-reducers` | → `005-learning-feedback-reducers`. *(iter 073)* |
 | 3-way continuity conflict (frontmatter next-action vs resource-map vs `last_active_child_id=002`) | Reconcile to one pointer. *(iter 073)* |
 | `000-release-cleanup` in spec+graph-metadata but not description.json children | Make consistent. *(iter 073)* |
 | **All `028/*` refs stale** — number reused by `028-026-program-research` | coco-028 (`005-cocoindex-fork`, `006-coco-intent-steering`, `008-coco-memory-context-extras`) → **REMOVE**; code-graph-028 (`001-004`) → REPOINT to `z_future/code-graph-and-cocoindex/` or evidence-gate; `028/004-adoption-eval` → "equivalent shadow/promotion evidence". **Nothing blocks.** *(iter 078)* |

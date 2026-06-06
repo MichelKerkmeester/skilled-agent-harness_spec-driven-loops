@@ -3,11 +3,11 @@ title: "caura-memclaw (MemClaw) — Sub-Packet Proposal for 027"
 packet: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement"
 researchPhase: "research/008-caura-memclaw-fleet-memory-teachings"
 newChildProposed: 1
-newChildNumber: "015-memclaw-derived-memory-hardening"
+newChildNumber: "007-memclaw-derived-memory-hardening"
 amendmentsProposed: 7
 created: "2026-06-06T09:15:00Z"
 status: "proposal — not yet scaffolded (operator chose proposal-doc-only)"
-concurrencyNote: "Reconciled across the concurrent 006-peck (children 009-011) and 007-gem-team (children 012-014) runs; this proposal uses 015 for its new child."
+concurrencyNote: "Reconciled across the concurrent 006-peck (children 001) and 007-gem-team (children 009) runs; this proposal uses 010 for its new child."
 ---
 
 # caura-memclaw — Sub-Packet Proposal for 027
@@ -17,10 +17,10 @@ Derived from the 20-iteration, adversarially-verified deep-research pass in `res
 **The honest headline:** caura-memclaw is built for the *opposite* deployment shape (multi-tenant fleet memory). After adversarial verification, the bulk of its transferable signal **validates 027's existing children (002-006)** and supplies a short list of **hardening-grade sharpenings**. Its marquee feature — cross-agent self-improving memory — is **negative knowledge** for a single-user store, and its **direct, asymmetric feedback mutation is an anti-pattern that confirms 027/008's default-off, shadow-first stance is correct**. Only a small set of genuinely-new, cross-cutting items justify a new child.
 
 This proposal therefore has two parts:
-- **Part A — one new Level-2 child `015-memclaw-derived-memory-hardening`** for the cross-cutting items that do not fit an existing child's frozen scope.
+- **Part A — one new Level-2 child `007-memclaw-derived-memory-hardening`** for the cross-cutting items that do not fit an existing child's frozen scope.
 - **Part B — seven amendments** to existing children (the larger share of the value).
 
-> **⚠ Reconciliation with concurrent research (read first).** A concurrent run, `research/006-peck-source-deep-mining/`, proposes new children **009-peck-verification-discipline, 010-reviewer-prompt-benchmark-substrate, 011-acceptance-coverage-gate** (its `sub-packet-proposal.md`). To avoid a numbering collision, this proposal's new child is **`015-`** (reconciled: the next free slot after peck's `009-011` and the concurrent gem-team/007 proposals `012-014`; existing implementation children run `000`-`008`). If the operator does not adopt all of peck's 009-011, the new child can be compacted to the next actually-free slot at scaffold time (per the no-delete+recreate naming convention). (This research packet is folder-scoped with its own iteration sequence `001-020`, independent of the concurrent 006 run.)
+> **⚠ Reconciliation with concurrent research (read first).** A concurrent run, `research/006-peck-source-deep-mining/`, proposes new children **009-peck-verification-discipline, 010-reviewer-prompt-benchmark-substrate, 011-acceptance-coverage-gate** (its `sub-packet-proposal.md`). This proposal's new child was scaffolded as **`007-memclaw-derived-memory-hardening`** per operator direction. (The concurrent peck and gem-team proposals were later consolidated into 027 children `001` and `009`, which freed `010`.) This research packet is folder-scoped with its own iteration sequence `001-020`, independent of the concurrent 006 run.
 
 ---
 
@@ -28,9 +28,9 @@ This proposal therefore has two parts:
 
 | Recommendation | Type | Target | Verdict basis |
 |---|---|---|---|
-| Idempotency receipts for retryable memory writes | NEW | 015 (P1) | T1 ADAPT |
-| MCP tool-ownership map (37-tool surface) | NEW | 015 (P2) | T12 ADAPT |
-| Default-recall stale/status hard-exclusion audit | NEW | 015 (P3) | T13 ADAPT |
+| Idempotency receipts for retryable memory writes | NEW | 010 (P1) | T1 ADAPT |
+| MCP tool-ownership map (37-tool surface) | NEW | 010 (P2) | T12 ADAPT |
+| Default-recall stale/status hard-exclusion audit | NEW | 010 (P3) | T13 ADAPT |
 | `source_kind` provenance + auto-cannot-overwrite-manual | AMEND | 002 | T2 validate+sharpen |
 | Advisory near-duplicate (deterministic, no LLM judge) | AMEND | 002 | T3 ADAPT |
 | First-timestamp-idempotent tombstone + active/purgeable index split + entity≠causal boundary | AMEND | 004 | T7/T8/T10 |
@@ -43,7 +43,7 @@ This proposal therefore has two parts:
 
 ## PART A — Proposed new child
 
-## Proposal 015: `015-memclaw-derived-memory-hardening` — Operational write/surface hardening
+## Proposal 010: `007-memclaw-derived-memory-hardening` — Operational write/surface hardening
 
 **Scope summary**: Three cohesive, single-user-grounded hardening additions that cross-cut or fall outside existing children's frozen scope, each directly evidenced in MemClaw and surviving adversarial verification.
 
@@ -56,7 +56,7 @@ This proposal therefore has two parts:
 
 **Dependencies**:
 - Requires: existing memory write path + SQLite index.
-- Coordinates with: 002 (provenance), 006 (reconciliation/idempotency overlap), 008 (reserved-type provenance). **Independent of** the concurrent peck proposals 009-011.
+- Coordinates with: 002 (provenance), 006 (reconciliation/idempotency overlap), 008 (reserved-type provenance). **Independent of** the concurrent peck proposals 001.
 
 **Out of scope (negative knowledge guardrails)**: no multi-tenant scoping, no LLM-judge dedup, no HTTP idempotency middleware, no op-dispatch tool consolidation, no SemVer/release-please governance.
 
@@ -83,10 +83,10 @@ This proposal therefore has two parts:
 - **T9 natural-key idempotent promotion + provenance** — make generated-edge promotion idempotent via a natural-key unique constraint, tag provenance, and skip already-wired manual links. MemClaw's entity `Relation` does exactly this (`uq_relations_natural_key`, migration `001_initial_schema.py:163-165`; `postgres_service.py:2983-3048`) — direct validation of 005's planned "avoid duplicating manual metadata links."
 
 ### Amendment to 006 (write-path-reconciliation)
-- **T1 cross-reference** — the idempotency receipt (Proposal 015/P1) is the reconciliation primitive for retry-safe writes; 006's async post-insert-enrichment model is **validated** by MemClaw's decoupled embed/enrich (the *pattern*, not the Pub/Sub infra).
+- **T1 cross-reference** — the idempotency receipt (Proposal 010/P1) is the reconciliation primitive for retry-safe writes; 006's async post-insert-enrichment model is **validated** by MemClaw's decoupled embed/enrich (the *pattern*, not the Pub/Sub infra).
 
 ### Amendment to 007 (semantic-trigger-fallback)
-- **T13 cross-reference** — the stale/status hard-exclusion audit (Proposal 015/P3) protects the lexical-first fallback from silently dropping deprecated-but-relevant matches.
+- **T13 cross-reference** — the stale/status hard-exclusion audit (Proposal 010/P3) protects the lexical-first fallback from silently dropping deprecated-but-relevant matches.
 
 ### Amendment to 008 (learning-feedback-reducers) — the central reframe
 MemClaw's `evolve`→`insights` loop is the closest analog to 008 and the most important lesson. After verification it is a **cautionary anti-pattern**, not a model:
@@ -104,11 +104,11 @@ Recommended amendments (all *consistent with* 008's existing default-off/shadow-
 
 1. **008 amendment first (documentation/scoping)** — record the scope-down + symmetric-damping/constitutional-immunity invariants before any 008 implementation work begins (cheapest, highest-leverage, prevents building the anti-pattern).
 2. **002 amendments** — `source_kind` + automated-mutation audit are P0 provenance gates that 008's event log also depends on.
-3. **015/P1 idempotency receipts** — small, isolated, validates 006.
+3. **010/P1 idempotency receipts** — small, isolated, validates 006.
 4. **004/005 amendments** — fold into those children when next planned.
-5. **015/P2 tool-ownership map + 015/P3 stale audit** — low-risk, independent, can land anytime.
+5. **010/P2 tool-ownership map + 010/P3 stale audit** — low-risk, independent, can land anytime.
 
-> Cross-run sequencing: this proposal is **orthogonal to** and **non-conflicting with** the concurrent peck proposals (009-011) — peck addresses verification discipline / reviewer-prompt benchmarking / acceptance-coverage; this addresses memory-store write/surface hardening + the 008 feedback reframe. They can be adopted independently.
+> Cross-run sequencing: this proposal is **orthogonal to** and **non-conflicting with** the concurrent peck proposals (001) — peck addresses verification discipline / reviewer-prompt benchmarking / acceptance-coverage; this addresses memory-store write/surface hardening + the 008 feedback reframe. They can be adopted independently.
 
 ## Provenance
 

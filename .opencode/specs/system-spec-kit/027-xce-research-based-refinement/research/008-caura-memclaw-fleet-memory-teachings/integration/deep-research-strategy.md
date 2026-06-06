@@ -8,7 +8,7 @@ description: "5-iteration folder-scoped run (001-005) on HOW to integrate the 00
 **Executor:** cli-opencode `openai/gpt-5.5-fast --variant high` / read-only / orchestrator-driven parallel fan-out (width 5)
 **Packet:** `research/008-caura-memclaw-fleet-memory-teachings/integration/` (folder-scoped iterations 001-005)
 **Session:** `2026-06-06-008-integration-ux-automation`
-**Integrating:** the 008 proposal (`../sub-packet-proposals.md`: new child 015 P1-P3 + amendments to 002-008 + the 008 feedback reframe)
+**Integrating:** the 008 proposal (`../sub-packet-proposals.md`: new child 010 P1-P3 + amendments to 002-008 + the 008 feedback reframe)
 **Into:** Spec Kit Memory — `.opencode/skills/system-spec-kit/mcp_server/` + `commands/{memory,speckit,doctor}` + `agents/` + hooks.
 
 **TOP PRIORITIES (operator-set):** UX and AUTOMATION. Every recommendation must say (a) how to make it fully automatic / invisible, and (b) how to make the UX zero-friction. Default-on automation + good defaults beat flags and manual steps.

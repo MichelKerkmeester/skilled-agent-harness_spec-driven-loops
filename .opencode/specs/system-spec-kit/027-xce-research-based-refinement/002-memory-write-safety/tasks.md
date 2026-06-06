@@ -90,7 +90,7 @@ _memory:
 - [ ] All P0 requirements in `spec.md` are implemented.
 - [ ] Tests prove all three bug classes are closed.
 - [ ] No files outside the three production surfaces and focused tests changed.
-- [ ] 008-learning-feedback-reducers can record this packet as its completed hard dependency.
+- [ ] 005-learning-feedback-reducers can record this packet as its completed hard dependency.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -102,5 +102,5 @@ _memory:
 - **Plan**: `plan.md`
 - **Checklist**: `checklist.md`
 - **Source Audit**: `../research/027-xce-research-pt-04/research.md`
-- **Downstream Dependency**: `../008-learning-feedback-reducers/spec.md`
+- **Downstream Dependency**: `../005-learning-feedback-reducers/spec.md`
 <!-- /ANCHOR:cross-refs -->

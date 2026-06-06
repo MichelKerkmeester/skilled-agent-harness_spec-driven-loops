@@ -1,7 +1,7 @@
 ---
 iteration: 035
 rq: RQ-N6
-phase_target: 007-semantic-trigger-fallback
+phase_target: 004-semantic-trigger-fallback
 newInfoRatio: 0.62
 verdict: ADAPT
 ---
@@ -89,7 +89,7 @@ This table stores per-phrase embeddings separately from the main `embedding_cach
 **Evidence:**
 - `memory-summaries.ts:29-56`: `cosineSimilarity(a, b)` is already implemented and exported, handles dimension mismatch gracefully.
 - `memory-triggers.ts:368-372`: Lexical matches receive `workingMemory.setAttentionScore(sessionId, match.memoryId, 1.0)` — full attention.
-- `007-semantic-trigger-fallback/spec.md:43` (executive summary): "semantic-only hits activate at reduced attention (`min(0.85, semanticScore)`) so they cannot masquerade as exact triggers."
+- `004-semantic-trigger-fallback/spec.md:43` (executive summary): "semantic-only hits activate at reduced attention (`min(0.85, semanticScore)`) so they cannot masquerade as exact triggers."
 
 **Pseudocode for `semanticTriggerFallback`:**
 ```typescript
@@ -160,7 +160,7 @@ The `importanceWeight: Math.min(0.85, maxScore)` is the cognitive activation gua
 
 **Evidence:**
 - `trigger-matcher.ts:876-883`: `matchTriggerPhrasesWithStats` already emits a `stats` object with `signals`, `matchCount`, `totalMatchedPhrases`, and `degraded` fields. Adding a `semanticShadow` field here is consistent with the existing stats contract.
-- `007-semantic-trigger-fallback/spec.md:42`: "Default-off behind `SPECKIT_SEMANTIC_TRIGGERS=false` + sub-flag `SPECKIT_SEMANTIC_TRIGGERS_MODE=shadow|union` (shadow first)."
+- `004-semantic-trigger-fallback/spec.md:42`: "Default-off behind `SPECKIT_SEMANTIC_TRIGGERS=false` + sub-flag `SPECKIT_SEMANTIC_TRIGGERS_MODE=shadow|union` (shadow first)."
 
 **Shadow telemetry record shape** (appended to `TriggerMatchStats`):
 ```typescript
@@ -187,7 +187,7 @@ This allows offline analysis of shadow logs to compute paraphrase recall without
 **Structural prior application:**
 
 When a memory M is matched (lexically or semantically), its `specFolder` path can be looked up in the hierarchy tree to identify:
-1. **Parent scope memories** — memories in ancestor folders (e.g., if `M` is in `system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback`, then `system-spec-kit/027-xce-research-based-refinement` is a relevant parent scope).
+1. **Parent scope memories** — memories in ancestor folders (e.g., if `M` is in `system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback`, then `system-spec-kit/027-xce-research-based-refinement` is a relevant parent scope).
 2. **Sibling scope memories** — memories in sibling phase folders (e.g., `006-write-path-reconciliation`) that the model should be aware of when working in this packet.
 
 This is co-activation via hierarchy rather than via embedding graph — it is cheap (tree traversal, no embedding call) and orthogonal to the semantic fallback. The co-activation module (`co-activation.ts`) already handles memory-to-memory activation spreading, but it operates on the embedding graph. The hierarchy prior provides a structural fallback when the embedding graph has sparse edges for new packets.

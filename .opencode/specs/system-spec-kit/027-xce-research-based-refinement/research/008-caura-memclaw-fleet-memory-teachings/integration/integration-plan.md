@@ -20,8 +20,8 @@ Split the write path into three phases and put each invariant in the right one:
 ## Phases
 
 ### Phase 0 — Docs & scoping (no code)
-- **Do:** adopt this plan; record that child `008` is **event-capture + diagnostics first** and its active causal/retention reducer children are **deferred**; reconcile the proposal's new-child number to the current free slot (`015` at time of writing — re-check at scaffold time, the concurrent peck/gem-team runs are still moving numbers).
-- **Files:** `008-learning-feedback-reducers/spec.md` (+ children `001/003/004/005`), this packet's docs.
+- **Do:** adopt this plan; record that child `008` is **event-capture + diagnostics first** and its active causal/retention reducer children are **deferred**; the proposal's new child is scaffolded as `007-memclaw-derived-memory-hardening` (operator direction; the concurrent peck/gem-team proposals were consolidated into 027 children `001`/`009`, freeing `010`).
+- **Files:** `005-learning-feedback-reducers/spec.md` (+ children `001/003/004/005`), this packet's docs.
 - **Automation/UX:** n/a (planning). **Exit:** 008 active reducers marked deferred; one roadmap exists.
 
 ### Phase 1 — Provenance + audit *(highest leverage)*
@@ -55,7 +55,7 @@ Split the write path into three phases and put each invariant in the right one:
 - **Exit:** default exclusions audited automatically; 37-tool ownership stays derived + in sync; no manual checklist.
 
 ## Mapping to 027 children (how this lands)
-- New child **(re-check number; was `012`, now `015`)** = idempotency receipts (Phase 2) + tool-ownership map (Phase 5) + stale-exclusion audit (Phase 5).
+- New child **`007-memclaw-derived-memory-hardening`** = idempotency receipts (Phase 2) + tool-ownership map (Phase 5) + stale-exclusion audit (Phase 5).
 - Amendments: **002** ← Phase 1 (source_kind + audit) + Phase 2 near-dup; **003** ← confirm (Phase 2 marker); **004** ← Phase 4; **005** ← Phase 4 edge skip-manual; **006** ← Phase 2 receipts as the retry primitive; **007** ← Phase 5 stale audit; **008** ← Phase 0 scope-down + Phase 3 reserve types + constitutional immunity.
 
 ## Top risks + mitigations

@@ -17,7 +17,7 @@ Spec folder: `specs/system-spec-kit/027-xce-research-based-refinement` (pre-appr
 Read/grep:
 - `grep -rn "aggregateEvents\|weightedScore\|batch-learning\|feedback_events" .opencode/skills/system-spec-kit/mcp_server/lib/`
 - `grep -rn "STATE_LIMITS\|__testables" .opencode/skills/system-spec-kit/mcp_server/lib/`
-- `008-learning-feedback-reducers/001-aggregator/spec.md` and `008-learning-feedback-reducers/004-retention-reducer/spec.md`
+- `005-learning-feedback-reducers/001-aggregator/spec.md` and `005-learning-feedback-reducers/004-retention-reducer/spec.md`
 
 ## DELIVER (plain text — orchestrator writes artifacts)
 ### FINDINGS

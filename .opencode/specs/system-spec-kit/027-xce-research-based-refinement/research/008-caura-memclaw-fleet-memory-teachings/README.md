@@ -2,7 +2,7 @@
 
 Deep-research pass mining the vendored `external/caura-memclaw-main` ("MemClaw — fleet memory for AI agents") for design teachings transferable to the **local, single-user Spec Kit Memory system**, mapped to 027 children 002-008, ending in a sub-packet proposal for 027.
 
-> **Numbering note:** Research-folder `008-` per operator direction. As a **separate research packet it owns its own iteration sequence `001-020`** (research-folder `007` is unused; `006-peck-source-deep-mining/` is a separate concurrent run). The new child this run proposes is numbered `015-` (the next free slot after the concurrent `006-peck` proposals `009-011` and `007-gem-team` proposals `012-014`; re-check at scaffold time — see `sub-packet-proposals.md`).
+> **Numbering note:** Research-folder `008-` per operator direction. As a **separate research packet it owns its own iteration sequence `001-020`** (research-folder `007` is unused; `006-peck-source-deep-mining/` is a separate concurrent run). The new child was scaffolded as `007-memclaw-derived-memory-hardening` per operator direction (the concurrent peck and gem-team proposals were consolidated into 027 children `001` and `009`, which freed `010`; see `sub-packet-proposals.md`).
 
 ## Contents
 

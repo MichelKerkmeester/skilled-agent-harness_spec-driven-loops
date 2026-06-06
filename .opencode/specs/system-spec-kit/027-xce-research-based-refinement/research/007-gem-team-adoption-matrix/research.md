@@ -15,7 +15,7 @@ depth: "Exhaustive (operator-selected)"
 
 ---
 
-> **Separate-packet note + cross-phase reconciliation.** Phase 007 (gem-team) is a **self-contained research packet, numbered 001-024**, independent of the other 027 research phases (it does not continue any global iteration counter). It ran alongside two operator-launched sibling packets — `006-peck-source-deep-mining` (peck-master) and `008-caura-memclaw-fleet-memory-teachings` (MemClaw, still running at synthesis time) — which study other external frameworks. The only cross-phase coupling is the **proposed new 027 child numbers**, now **reconciled collision-free**: `009-011` ← 006-peck, `012-014` ← 007-gem-team (this packet, **final**), `015` ← 008-caura-memclaw. See `sub-packet-proposals.md` §Placement for the full table.
+> **Separate-packet note + cross-phase reconciliation.** Phase 007 (gem-team) is a **self-contained research packet, numbered 001-024**, independent of the other 027 research phases (it does not continue any global iteration counter). It ran alongside two operator-launched sibling packets — `006-peck-source-deep-mining` (peck-master) and `008-caura-memclaw-fleet-memory-teachings` (MemClaw, still running at synthesis time) — which study other external frameworks. The only cross-phase coupling is the **proposed new 027 child numbers**, now **reconciled collision-free**: `001` ← 006-peck, `009` ← 007-gem-team (this packet, **final**), `015` ← 008-caura-memclaw. See `sub-packet-proposals.md` §Placement for the full table.
 
 ## 1. Executive Summary
 

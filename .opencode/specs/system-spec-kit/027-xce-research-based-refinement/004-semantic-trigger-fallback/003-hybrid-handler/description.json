@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/003-hybrid-handler",
+  "description": "Feature Specification: 003 — Hybrid Handler Integration",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "hybrid",
+    "handler",
+    "integration"
+  ],
+  "lastUpdated": "2026-06-06T14:41:13.825Z",
+  "specId": "003",
+  "folderSlug": "hybrid-handler",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-semantic-trigger-fallback"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

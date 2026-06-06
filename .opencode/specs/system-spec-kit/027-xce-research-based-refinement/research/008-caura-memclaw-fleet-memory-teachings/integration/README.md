@@ -2,7 +2,7 @@
 
 5-iteration deep-research run on **how to integrate the 008 memory-hardening proposal** and **what existing skills / commands / agents / hooks it impacts** — with **UX and automation as the explicit top design priorities**.
 
-- **Integrates:** `../sub-packet-proposals.md` (new child 015 P1-P3 + amendments to 002-008 + the 008 feedback reframe).
+- **Integrates:** `../sub-packet-proposals.md` (new child 010 P1-P3 + amendments to 002-008 + the 008 feedback reframe).
 - **Into:** Spec Kit Memory (`.opencode/skills/system-spec-kit/mcp_server/`, `commands/{memory,speckit,doctor}`, `agents/`, hooks).
 - **Method:** orchestrator-driven parallel fan-out; read-only `cli-opencode openai/gpt-5.5-fast --variant high`; folder-scoped iterations `001-005`.
 

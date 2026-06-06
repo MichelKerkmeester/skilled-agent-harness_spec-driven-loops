@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
+  "description": "Feature Specification: Phase 2: idempotency-and-near-duplicate",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "idempotency-and-near-duplicate"
+  ],
+  "lastUpdated": "2026-06-06T14:41:16.222Z",
+  "specId": "002",
+  "folderSlug": "idempotency-and-near-duplicate",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "007-memclaw-derived-memory-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

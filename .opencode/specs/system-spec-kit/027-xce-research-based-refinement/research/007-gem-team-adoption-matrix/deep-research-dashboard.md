@@ -27,10 +27,10 @@ Trend: high throughout (no convergence-to-zero); convergence achieved via the ad
 ## OUTCOME
 - **Verdict: validate-and-incrementally-refine.** The spec-kit is mature; Gem Team mostly confirms it. No transformative adoption.
 - All 9 top candidates adversarially **downgraded** (ADOPT→ADAPT, strong→narrow) — existing spec-kit coverage found each time (Context Package, escalation classifiers, @debug 5-phase, security checklist, Logic-Sync, evaluator-first skill creation).
-- **3 sub-packets proposed** (tentative #s): P1 `012-typed-agent-io-adapter` · P2 `013-scoped-preexec-and-handoff-gates` · P3 `014-planner-review-focus-and-drift-hint` + 6 items deferred to tags/aliases/notes.
+- **3 sub-packets proposed** (tentative #s): P1 `001-typed-agent-io-adapter` · P2 `002-scoped-preexec-and-handoff-gates` · P3 `003-planner-review-focus-and-drift-hint` + 6 items deferred to tags/aliases/notes.
 
 ## CROSS-PHASE (reconciliation needed)
-- This is a **self-contained packet (iterations 001-024)**. Operator-launched sibling packets — **006-peck-source-deep-mining** and **008-caura-memclaw-fleet-memory-teachings** — study other frameworks. Proposed new 027 children are now **RECONCILED (collision-free): 006→`009-011`, 007→`012-014` (final), 008→`015`**. Only open item: 006's `009-peck-verification-discipline` overlaps this packet's P2 — check for a merge when planning.
+- This is a **self-contained packet (iterations 001-024)**. Operator-launched sibling packets — **006-peck-source-deep-mining** and **008-caura-memclaw-fleet-memory-teachings** — study other frameworks. Proposed new 027 children are now **RECONCILED (collision-free): 006→`001`, 007→`009` (final), 008→`010`**. Only open item: 006's `009-peck-verification-discipline` overlaps this packet's P2 — check for a merge when planning.
 
 ## DELIVERABLES
 `research.md` · `sub-packet-proposals.md` · `deep-research-strategy.md` · `deep-research-state.jsonl` (28 lines: config + started + 24 iterations + 2 completion events) · `findings-registry.json` · `iterations/` (24) · `deltas/` (24) · `prompts/` (prompt+out+err per iter)

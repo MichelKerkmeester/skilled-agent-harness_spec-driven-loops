@@ -1,6 +1,6 @@
 ROLE: Senior product/UX + systems analyst. READ-ONLY analysis — do NOT write/edit/create files or run code. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement (pre-approved; skip Gate 3).
 
-WHAT WE ARE INTEGRATING (read FIRST): the proposal at .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/sub-packet-proposals.md — new child 015 (idempotency receipts, MCP tool-ownership map, stale-exclusion audit) + amendments to 002-008 (source_kind provenance + auto-cannot-overwrite-manual; advisory near-duplicate; automated-mutation audit; tombstone delete; the 008 feedback reframe = event-capture/diagnostics only).
+WHAT WE ARE INTEGRATING (read FIRST): the proposal at .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/sub-packet-proposals.md — new child 010 (idempotency receipts, MCP tool-ownership map, stale-exclusion audit) + amendments to 002-008 (source_kind provenance + auto-cannot-overwrite-manual; advisory near-duplicate; automated-mutation audit; tombstone delete; the 008 feedback reframe = event-capture/diagnostics only).
 
 WHAT WE INTEGRATE INTO: Spec Kit Memory — a LOCAL single-user store driven through MCP tools and slash commands by an AI coding agent on behalf of ONE developer.
 

@@ -2,7 +2,7 @@ ROLE: You are a senior systems analyst doing INTEGRATION + IMPACT analysis, READ
 
 CONTEXT: A prior study recommended 3 small refinements for this repo's "spec-kit" AI-agent system — adapters/optional-modes/advisory-fields over existing contracts, NOT replacements. The system is mature.
 
-THE PROPOSAL (iteration 003, P3 = proposed child `014-planner-review-focus-and-drift-hint`, the lowest-cost one): two advisory fields — (1) a **`reviewer_focus`** hint (the planning/decomposition step names high-risk files/areas so @review/@orchestrate route attention there) + an optional self-assessed `quality_score`; (2) a **`spec_drift` / `update_recommended`** write-back field letting task agents flag when implementation reveals the spec/plan should change (surfaced into continuity, not silently diverging). Both are advisory; Logic-Sync stays the authority for hard contradictions. Full proposal: `research/007-gem-team-adoption-matrix/sub-packet-proposals.md` §P3.
+THE PROPOSAL (iteration 003, P3 = proposed child `003-planner-review-focus-and-drift-hint`, the lowest-cost one): two advisory fields — (1) a **`reviewer_focus`** hint (the planning/decomposition step names high-risk files/areas so @review/@orchestrate route attention there) + an optional self-assessed `quality_score`; (2) a **`spec_drift` / `update_recommended`** write-back field letting task agents flag when implementation reveals the spec/plan should change (surfaced into continuity, not silently diverging). Both are advisory; Logic-Sync stays the authority for hard contradictions. Full proposal: `research/007-gem-team-adoption-matrix/sub-packet-proposals.md` §P3.
 
 YOUR JOB: (a) HOW to integrate P3, and (b) WHICH existing surfaces it impacts, with `file:line` evidence.
 

@@ -19,7 +19,7 @@ Resolve the vocabulary alignment questions against live code:
 Greps:
 - `grep -rn "RELATION_TYPES\|DEFAULT_RELATION_TARGETS" .opencode/skills/system-spec-kit/mcp_server/lib/`
 - `grep -rn "ENABLED\|enabled\|derived_from\|produced\|cited_by" .opencode/skills/system-spec-kit/mcp_server/lib/causal/ .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | head`
-- `008-learning-feedback-reducers/003-causal-reducer/spec.md`
+- `005-learning-feedback-reducers/003-causal-reducer/spec.md`
 
 ## DELIVER (plain text — orchestrator writes artifacts)
 ### FINDINGS

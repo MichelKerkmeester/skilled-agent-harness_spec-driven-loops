@@ -5,11 +5,11 @@
 
 ### FINDINGS
 
-[F-074-01] `008` parent child lists still include deleted `002-coco-rerank-consumer`: `description.json` `manual.children` and `graph-metadata.json` `children_ids` must remove that child. `008-learning-feedback-reducers/description.json:23-29`, `008-learning-feedback-reducers/graph-metadata.json:6-12`
+[F-074-01] `008` parent child lists still include deleted `002-coco-rerank-consumer`: `description.json` `manual.children` and `graph-metadata.json` `children_ids` must remove that child. `005-learning-feedback-reducers/description.json:23-29`, `005-learning-feedback-reducers/graph-metadata.json:6-12`
 
-[F-074-02] `008/spec.md` still encodes the deleted phase in the phase map, execution order, and counts: remove the `002` row, change `005` dependency from `001,002,003,004` to `001,003,004`, and rewrite five-child / three-consumer language to four-child / two-consumer topology. `008-learning-feedback-reducers/spec.md:47-49`, `008-learning-feedback-reducers/spec.md:57-65`, `008-learning-feedback-reducers/spec.md:73-78`, `008-learning-feedback-reducers/spec.md:86-94`
+[F-074-02] `008/spec.md` still encodes the deleted phase in the phase map, execution order, and counts: remove the `002` row, change `005` dependency from `001,002,003,004` to `001,003,004`, and rewrite five-child / three-consumer language to four-child / two-consumer topology. `005-learning-feedback-reducers/spec.md:47-49`, `005-learning-feedback-reducers/spec.md:57-65`, `005-learning-feedback-reducers/spec.md:73-78`, `005-learning-feedback-reducers/spec.md:86-94`
 
-[F-074-03] Coco-only soft dependency remains at the `008` parent level and should be removed with the deleted coco child: `028/006-coco-intent-steering` in metadata/spec soft deps. `008-learning-feedback-reducers/description.json:31-34`, `008-learning-feedback-reducers/spec.md:38`
+[F-074-03] Coco-only soft dependency remains at the `008` parent level and should be removed with the deleted coco child: `028/006-coco-intent-steering` in metadata/spec soft deps. `005-learning-feedback-reducers/description.json:31-34`, `005-learning-feedback-reducers/spec.md:38`
 
 [F-074-04] `005-env-tests-integration/description.json` has a real manual dependency edge to deleted `002`; `005` graph metadata has no manual dependency/child edge, but its derived metadata is stale and should regenerate after docs edits. `005-env-tests-integration/description.json:17-23`, `005-env-tests-integration/graph-metadata.json:6-13`, `005-env-tests-integration/graph-metadata.json:141-144`, `005-env-tests-integration/graph-metadata.json:171`
 
@@ -21,13 +21,13 @@
 
 | file | what to change | class |
 |---|---|---|
-| `008-learning-feedback-reducers/description.json:23-29` | Remove `.../002-coco-rerank-consumer` from `manual.children`; leave `001,003,004,005`. | remove edge / no renumber |
-| `008-learning-feedback-reducers/description.json:31-34` | Remove coco-only `028/006-coco-intent-steering` soft dependency. | remove edge |
-| `008-learning-feedback-reducers/graph-metadata.json:6-12` | Remove `.../002-coco-rerank-consumer` from `children_ids`. | remove edge / no renumber |
-| `008-learning-feedback-reducers/graph-metadata.json:91-99` | Regenerate/update derived summary/counts so it no longer says five child packets. | fix count |
-| `008-learning-feedback-reducers/spec.md:47-49` | Change “five child packets” / “three consumers” to four children / two consumers. | fix count |
-| `008-learning-feedback-reducers/spec.md:57-65` | Delete `002-coco-rerank-consumer` row; change `005` dependency to `001,003,004`. | remove phase row / fix dependency |
-| `008-learning-feedback-reducers/spec.md:73-78` | Execution order becomes `001 -> {003,004} -> 005`; remove `002`. | fix handoff |
+| `005-learning-feedback-reducers/description.json:23-29` | Remove `.../002-coco-rerank-consumer` from `manual.children`; leave `001,003,004,005`. | remove edge / no renumber |
+| `005-learning-feedback-reducers/description.json:31-34` | Remove coco-only `028/006-coco-intent-steering` soft dependency. | remove edge |
+| `005-learning-feedback-reducers/graph-metadata.json:6-12` | Remove `.../002-coco-rerank-consumer` from `children_ids`. | remove edge / no renumber |
+| `005-learning-feedback-reducers/graph-metadata.json:91-99` | Regenerate/update derived summary/counts so it no longer says five child packets. | fix count |
+| `005-learning-feedback-reducers/spec.md:47-49` | Change “five child packets” / “three consumers” to four children / two consumers. | fix count |
+| `005-learning-feedback-reducers/spec.md:57-65` | Delete `002-coco-rerank-consumer` row; change `005` dependency to `001,003,004`. | remove phase row / fix dependency |
+| `005-learning-feedback-reducers/spec.md:73-78` | Execution order becomes `001 -> {003,004} -> 005`; remove `002`. | fix handoff |
 | `005-env-tests-integration/description.json:17-23` | Remove `.../002-coco-rerank-consumer` from `manual.depends_on`. | remove edge |
 | `005-env-tests-integration/graph-metadata.json:6-13` | No direct child/dependency edge to remove. | no edit |
 | `005-env-tests-integration/graph-metadata.json:141-144,171` | Regenerate stale derived coco/three-consumer metadata after source docs are rewritten. | fix count / regenerate |
@@ -55,4 +55,4 @@ Renumbering `003/004/005 -> 002/003/004` is not forced for validator or graph tr
 newInfoRatio: 0.46  
 novelty: Identifies exact metadata edges and confirms gap-preserving deletion is structurally sufficient.  
 status: complete  
-sources: `008-learning-feedback-reducers/description.json:23-34`, `008-learning-feedback-reducers/graph-metadata.json:6-12`, `008-learning-feedback-reducers/spec.md:47-94`, `005-env-tests-integration/description.json:17-23`, `005-env-tests-integration/graph-metadata.json:6-13`, `005-env-tests-integration/spec.md:38-150`, `001-aggregator/graph-metadata.json:6-13`, `027-xce-research-based-refinement/graph-metadata.json:6-16`, `027-xce-research-based-refinement/description.json:27-36`, `027-xce-research-based-refinement/context-index.md:35-40`, `.opencode/skills/system-spec-kit/constitutional/spec-folder-naming.md:31-33`
+sources: `005-learning-feedback-reducers/description.json:23-34`, `005-learning-feedback-reducers/graph-metadata.json:6-12`, `005-learning-feedback-reducers/spec.md:47-94`, `005-env-tests-integration/description.json:17-23`, `005-env-tests-integration/graph-metadata.json:6-13`, `005-env-tests-integration/spec.md:38-150`, `001-aggregator/graph-metadata.json:6-13`, `027-xce-research-based-refinement/graph-metadata.json:6-16`, `027-xce-research-based-refinement/description.json:27-36`, `027-xce-research-based-refinement/context-index.md:35-40`, `.opencode/skills/system-spec-kit/constitutional/spec-folder-naming.md:31-33`

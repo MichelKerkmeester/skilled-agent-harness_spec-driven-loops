@@ -38,9 +38,9 @@ Evidence: pt-04 audit found high scope-drift with 103's `:auto` contract (`103/i
 
 **Resolution: YES — split P0 correctness fixes from learning reducers as a separate correctness-first packet.**
 
-Evidence: pt-04 noted that Phase 009 (`008-learning-feedback-reducers` in the renamed spec) has P0 risk items at `009-feedback-reducers/spec.md:L53-L58`, `L263-L271` that should not wait on Phase-005 evaluation evidence. The `ccc_feedback` append-only JSONL path (`ccc-feedback.ts:L29-L60`) and the `relation-coverage.ts` causal health primitives (`relation-coverage.ts:L36-L45`) are already present; P0 correctness fixes there do not need the full learning-reducer machinery (shared aggregation, weighted hit counts, etc.) to land safely.
+Evidence: pt-04 noted that Phase 009 (`005-learning-feedback-reducers` in the renamed spec) has P0 risk items at `009-feedback-reducers/spec.md:L53-L58`, `L263-L271` that should not wait on Phase-005 evaluation evidence. The `ccc_feedback` append-only JSONL path (`ccc-feedback.ts:L29-L60`) and the `relation-coverage.ts` causal health primitives (`relation-coverage.ts:L36-L45`) are already present; P0 correctness fixes there do not need the full learning-reducer machinery (shared aggregation, weighted hit counts, etc.) to land safely.
 
-**Phase impact:** `008-learning-feedback-reducers` should expose its own P0 sub-phase (e.g., `008a-feedback-p0`) scoped to fixing the append-only correctness gap. The learning-reducer work (RQ-B3 causal inference, RQ-B4 retention decay, RQ-B5 `RerankClient` extraction) can follow as `008b`–`008d` or remain in the phase-parent spec with clear ordering.
+**Phase impact:** `005-learning-feedback-reducers` should expose its own P0 sub-phase (e.g., `008a-feedback-p0`) scoped to fixing the append-only correctness gap. The learning-reducer work (RQ-B3 causal inference, RQ-B4 retention decay, RQ-B5 `RerankClient` extraction) can follow as `008b`–`008d` or remain in the phase-parent spec with clear ordering.
 
 ### OQ-4: Is Phase 006 meant to measure XCE-like productivity, or only validate default-on readiness?
 
@@ -56,7 +56,7 @@ Evidence: pt-03 synthesis at `research/027-xce-research-pt-03/research.md:L133-L
 
 Evidence: The `010-coco-memory-context-extras` scaffold in pt-03 (`research/027-xce-research-pt-03/research.md:L123-L124`) bundles both. But after the 027/028 split (`spec.md:L64-L67`), 028 owns all coco-facing phases. The memory curator (RQ-B2) is a 027 memory-backend concern: it attaches `data.curatedContext` to the retrieval output (`research/027-xce-research-pt-03/research.md:L86-L94`) and does not touch coco-index ranking paths. The few-shot exemplar bank (RQ-A4) feeds coco's rerank loop and depends on coco Phase-001 (`research/027-xce-research-pt-03/research.md:L107-L109`).
 
-**Phase impact:** 027 should create a standalone `009-memory-context-curator` phase (or incorporate it into `008-learning-feedback-reducers`) scoped to RQ-B2 shadow mode only. Coco exemplars move to 028 as a new child phase.
+**Phase impact:** 027 should create a standalone `009-memory-context-curator` phase (or incorporate it into `005-learning-feedback-reducers`) scoped to RQ-B2 shadow mode only. Coco exemplars move to 028 as a new child phase.
 
 ---
 
@@ -70,8 +70,8 @@ Evidence: The `010-coco-memory-context-extras` scaffold in pt-03 (`research/027-
 | **004-causal-edge-tombstones** | KEEP_AS_IS (via code-graph audit) | KEEP_AS_IS with guard fix | RQ-B3 surfaced the auto-provenance cap bypass: `causal-edges.ts:L269-L288` must extend `isAutoEdgeCreator()` before session-trace reducer ships. |
 | **005-metadata-edge-promoter** | KEEP_AS_IS | KEEP_AS_IS | Self-contained; depends only on 004. No new findings. |
 | **006-write-path-reconciliation** | KEEP_AS_IS | KEEP_AS_IS | Depends on 003 + 005; no research finding alters scope. `spec.md:L60`. |
-| **007-semantic-trigger-fallback** | REVISE_SCOPE | ADAPT (paths repaired) | Live path is `tools/memory-tools.ts:L63-L75` + `tool-input-schemas.ts:L820-L825`, not the planned `mcp_server/lib/memory/` path. Design: 2-stage lexical+semantic pipeline with `memory_trigger_embeddings` derived table; `SPECKIT_SEMANTIC_TRIGGERS=false` flag family. LOC ~280-430 prod + ~180-280 tests. |
-| **008-learning-feedback-reducers** | REVISE_SCOPE | ADAPT + split P0 sub-phase | Split P0 correctness (immediate) from learning reducers (shadow-gated). Three reducer lanes: session-trace causal (RQ-B3), retention/decay (RQ-B4), rerank client extraction (RQ-B5). Each lane flag-gated. |
+| **004-semantic-trigger-fallback** | REVISE_SCOPE | ADAPT (paths repaired) | Live path is `tools/memory-tools.ts:L63-L75` + `tool-input-schemas.ts:L820-L825`, not the planned `mcp_server/lib/memory/` path. Design: 2-stage lexical+semantic pipeline with `memory_trigger_embeddings` derived table; `SPECKIT_SEMANTIC_TRIGGERS=false` flag family. LOC ~280-430 prod + ~180-280 tests. |
+| **005-learning-feedback-reducers** | REVISE_SCOPE | ADAPT + split P0 sub-phase | Split P0 correctness (immediate) from learning reducers (shadow-gated). Three reducer lanes: session-trace causal (RQ-B3), retention/decay (RQ-B4), rerank client extraction (RQ-B5). Each lane flag-gated. |
 
 ---
 
@@ -115,17 +115,17 @@ The shared `RerankClient<T>` must NOT carry memory pipeline stages (MMR over `ve
 Action: replace `createdBy === 'auto'` guard with `isAutoEdgeCreator(createdBy)` helper that returns `true` for `'auto'` and any `createdBy.startsWith('auto-')` value. Add corresponding test fixtures for `'auto-session'`, `'auto-reducer'`, and `'manual'` edge creators. This is a correctness blocker for the session-trace reducer in phase 008.
 
 ### NS-2: Repair retention sweep tier-awareness
-**Phase target:** 008-learning-feedback-reducers (P0 sub-phase)
+**Phase target:** 005-learning-feedback-reducers (P0 sub-phase)
 **Entry point:** `.opencode/skills/system-spec-kit/mcp_server/lib/memory/memory-retention-sweep.ts:L52-L68`
 Action: extend `RetentionExpiredRow` to include `importance_tier`, `decay_half_life_days`, `is_pinned`, `access_count`, `last_accessed`. Add `RetentionDecision` discriminant (`'delete' | 'extend' | 'protect'`). Emit telemetry per decision. Add unit tests for constitutional and critical tier rows that currently pass through the sweep unprotected.
 
 ### NS-3: Build 2-stage semantic trigger pipeline in shadow mode
-**Phase target:** 007-semantic-trigger-fallback
+**Phase target:** 004-semantic-trigger-fallback
 **Entry point:** `.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:L63-L75`
 Action: add `memory_trigger_embeddings` derived table migration; wire save-time embedding pipeline (`embedding-pipeline.ts:L143-L169`) to backfill trigger phrases; add `SPECKIT_SEMANTIC_TRIGGERS=false` / `_MODE=shadow|union` / `_THRESHOLD=0.84` flag family; implement 2-stage matcher (lexical primary, semantic UNION fallback); tag semantic-only hits with `matchSource: 'semantic'` + reduced activation `min(0.85, semanticScore)`. LOC budget ~280-430 prod.
 
 ### NS-4: Extract RerankClient from cross-encoder.ts
-**Phase target:** 008-learning-feedback-reducers (RQ-B5 lane)
+**Phase target:** 005-learning-feedback-reducers (RQ-B5 lane)
 **Entry point:** `.opencode/skills/system-spec-kit/mcp_server/lib/memory/cross-encoder.ts:L35-L60`
 Action: define `RerankClient<T>` interface with `rerank(input: { query, candidates, toDocument, limit, scope })` contract; adapt current cross-encoder as the memory implementation; make it importable without memory-pipeline stage dependencies (no MMR, no MPAB, no vec_memories). LOC budget ~140-240 prod + ~80-140 tests.
 
@@ -139,7 +139,7 @@ Action: produce a structured diff of the current fork (`0.2.3+spec-kit-fork.0.2.
 ## 6. Remaining Open Questions (Implementation-Time)
 
 **IOQ-1: Session boundary for session-trace causal reducer**
-The reducer fires at "session close / consolidation cycle / explicit maintenance command" (`research/027-xce-research-pt-03/research.md:L105`). The exact trigger event (MCP lifecycle hook, periodic cron, or user-invoked `/memory:manage`) is not specified. This needs a concrete wiring decision before `008-learning-feedback-reducers` phase ships.
+The reducer fires at "session close / consolidation cycle / explicit maintenance command" (`research/027-xce-research-pt-03/research.md:L105`). The exact trigger event (MCP lifecycle hook, periodic cron, or user-invoked `/memory:manage`) is not specified. This needs a concrete wiring decision before `005-learning-feedback-reducers` phase ships.
 
 **IOQ-2: `memory_trigger_embeddings` backfill strategy for large indexes**
 The derived table requires embedding all existing trigger phrases. Large indexes (>1000 entries) may require a batched backfill with progress tracking and resume capability. The spec for phase 007 does not yet address the migration plan for existing trigger phrases.

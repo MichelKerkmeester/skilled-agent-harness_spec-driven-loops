@@ -3,7 +3,7 @@ title: "027/006 — Integration & Impact Plan (peck adoptions 009/010/011 + coor
 parts: [integration-019-023]
 iterations: "019-023 (5, gpt-5.5-fast --variant high, read-only; orchestrator-written)"
 session: "2026-06-06-027-peck-source-deep-mining"
-status: "integration synthesis — feeds the scaffolded packets 009/010/011 (peck); cross-refs 015 (caura) + 012-014 (gem-team)"
+status: "integration synthesis — feeds the scaffolded packets 009/010/011 (peck); cross-refs 010 (caura) + 009 (gem-team)"
 priorities: "UX and automation are the system's #1 priorities (operator directive)"
 ---
 
@@ -85,7 +85,7 @@ Grouped; **UX** = user-facing, **AUTO** = background.
 - **010-reviewer-prompt-benchmark-substrate** (L2-3): the reviewer-fixture type + scorer in Lane B. **Land first.**
 - **011-acceptance-coverage-gate** (L3): AC-format norm + AC table + `AC_COVERAGE` (warn→error) + deep-review binding + lifecycle opt-in. Carries opportunity #3. Depends on 010 + the pending-002 shared-template window.
 - **Coordination (NOT new packets):** T12 cap+recurrence → pending **003/004** notes; T14 current-state/narrative → pending **003** notes.
-- **Cross-run:** orthogonal to caura **015** (memory-store hardening) and gem-team **012-014** (already Spec-Scaffolded).
+- **Cross-run:** orthogonal to caura **010** (memory-store hardening) and gem-team **009** (already Spec-Scaffolded).
 
 ## 8. References
 - Per-iteration evidence: `iterations/iteration-019.md` … `023.md` (+ raw `prompts/iteration-0NN.out`).

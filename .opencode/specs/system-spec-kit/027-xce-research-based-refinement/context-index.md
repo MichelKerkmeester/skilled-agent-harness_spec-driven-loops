@@ -36,5 +36,5 @@ On 2026-06-04, the same peck-derived phase was renumbered again to the first act
 | `003-causal-edge-tombstones/` | `004-causal-edge-tombstones/` | Causal edge tombstone lifecycle |
 | `004-metadata-edge-promoter/` | `005-metadata-edge-promoter/` | Deterministic metadata edge promotion |
 | `005-write-path-reconciliation/` | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation |
-| `006-semantic-trigger-fallback/` | `007-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching |
-| `007-learning-feedback-reducers/` | `008-learning-feedback-reducers/` | Learning feedback reducers |
+| `006-semantic-trigger-fallback/` | `004-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching |
+| `007-learning-feedback-reducers/` | `005-learning-feedback-reducers/` | Learning feedback reducers |

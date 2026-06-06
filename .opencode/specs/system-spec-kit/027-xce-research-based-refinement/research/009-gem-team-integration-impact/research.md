@@ -128,7 +128,7 @@ Every consumer degrades gracefully *(iters 004, 005)*:
 
 ## 7. Smallest-viable-first-step
 
-**Ship Wave 1, P1-only, advisory:** (1) `agent-io-contract.md`; (2) optional dispatch-header + result-envelope sections appended to the 5 agents; (3) `/speckit:plan` Step 5 emits the header on its `@context` dispatches. Zero gates, zero governance/validator edits, fully backward-compatible — and it makes orchestration decisions machine-parseable where they're first knowable (planning fan-out). This maps to child **`012-typed-agent-io-adapter`** as an L1/L2 first slice; P2 (`013`) and P3 (`014`) build on the same contract afterward.
+**Ship Wave 1, P1-only, advisory:** (1) `agent-io-contract.md`; (2) optional dispatch-header + result-envelope sections appended to the 5 agents; (3) `/speckit:plan` Step 5 emits the header on its `@context` dispatches. Zero gates, zero governance/validator edits, fully backward-compatible — and it makes orchestration decisions machine-parseable where they're first knowable (planning fan-out). This maps to child **`001-typed-agent-io-adapter`** as an L1/L2 first slice; P2 (`013`) and P3 (`014`) build on the same contract afterward.
 
 ---
 

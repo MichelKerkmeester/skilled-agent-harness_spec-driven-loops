@@ -10,7 +10,7 @@ Evaluate whether the `memory_context` curator should become a new 027 phase for 
 2. The original RQ-B2 verdict is ADAPT shadow-first: add an optional post-retrieval curator, default it off, keep deterministic packaging as fallback, and treat LLM output as a package plan rather than ranking authority. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:5-8]
 3. The curator needs a budget split that is not currently captured by the external `limit`: prior findings call for separate `retrievalCandidateLimit` or `curationCandidateLimit`, `presentationLimit`, and `curationTokenBudget`. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:37-49] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-039.md:147-148]
 4. The strongest safe integration point is presentation packaging after deterministic retrieval, not scoring: prior findings say the curator must not mutate scores or retrieval ordering and should attach `data.curatedContext` or affect presentation output only. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:22-35]
-5. Folding the curator into existing Phase 008 would blur concerns: Phase 008 already owns learning-feedback reducers and shadow-first retention/reducer paths, while the curator is a response-packaging feature with its own LLM cache, schema, timeout, telemetry, and eval questions. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:61-86] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:82-108]
+5. Folding the curator into existing Phase 008 would blur concerns: Phase 008 already owns learning-feedback reducers and shadow-first retention/reducer paths, while the curator is a response-packaging feature with its own LLM cache, schema, timeout, telemetry, and eval questions. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:61-86] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:82-108]
 
 ## Negative Knowledge / Ruled Out Directions
 
@@ -28,7 +28,7 @@ Add a standalone 027 phase, tentatively `009-memory-context-curator`, scoped to 
 - .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:5-8
 - .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:22-49
 - .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:82-108
-- .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:61-86
+- .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:61-86
 
 ## Assessment
 

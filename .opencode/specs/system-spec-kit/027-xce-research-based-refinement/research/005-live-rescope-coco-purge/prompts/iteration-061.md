@@ -12,15 +12,15 @@ Spec folder: `specs/system-spec-kit/027-xce-research-based-refinement` (pre-appr
 - This run complements the 2026-06-05 relevance-audit (which predates the coco deprecation). Go DEEPER than that audit.
 
 ## FOCUS — answer only this
-Enumerate every CocoIndex reference across the **008-learning-feedback-reducers** phase family and decide its fate.
+Enumerate every CocoIndex reference across the **005-learning-feedback-reducers** phase family and decide its fate.
 
 Read in this order (repo root = `specs/system-spec-kit/027-xce-research-based-refinement/`):
-1. `008-learning-feedback-reducers/spec.md`
-2. `008-learning-feedback-reducers/002-coco-rerank-consumer/{spec.md,plan.md,tasks.md,checklist.md}`
-3. `008-learning-feedback-reducers/001-aggregator/spec.md`
-4. `008-learning-feedback-reducers/003-causal-reducer/spec.md`
-5. `008-learning-feedback-reducers/004-retention-reducer/spec.md`
-6. `008-learning-feedback-reducers/005-env-tests-integration/spec.md`
+1. `005-learning-feedback-reducers/spec.md`
+2. `005-learning-feedback-reducers/002-coco-rerank-consumer/{spec.md,plan.md,tasks.md,checklist.md}`
+3. `005-learning-feedback-reducers/001-aggregator/spec.md`
+4. `005-learning-feedback-reducers/003-causal-reducer/spec.md`
+5. `005-learning-feedback-reducers/004-retention-reducer/spec.md`
+6. `005-learning-feedback-reducers/005-env-tests-integration/spec.md`
 
 ## DELIVER (return as plain text — the orchestrator writes the artifacts)
 Return EXACTLY these sections:

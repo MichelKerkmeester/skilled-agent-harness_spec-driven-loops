@@ -61,7 +61,7 @@ Source context:
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/027-xce-research-pt-04/research.md`; original scope in `../009-feedback-reducers/spec.md` Sub-Phase 1 |
 | **Depends on** | None |
-| **Ships before** | the learning reducers in `027/008-learning-feedback-reducers` (hard dependency). Independent of the code-graph adoption work formerly numbered `028/*` (now under `z_future/code-graph-and-cocoindex`). |
+| **Ships before** | the learning reducers in `027/005-learning-feedback-reducers` (hard dependency). Independent of the code-graph adoption work formerly numbered `028/*` (now under `z_future/code-graph-and-cocoindex`). |
 | **LOC budget** | ~50-80 production + ~60-100 tests |
 | **Branch** | `main` |
 | **Created** | 2026-05-11 |
@@ -180,7 +180,7 @@ createdBy === "auto" || createdBy.startsWith("auto-")
 - **SC-003**: Expired constitutional and critical memory rows are skipped or protected by retention sweep rather than deleted.
 - **SC-004**: Existing retention deletion behavior still deletes unprotected expired rows.
 - **SC-005**: Focused causal and retention tests pass, plus the repo's OpenCode verification command selected during implementation.
-- **SC-006**: `027/008-learning-feedback-reducers` can safely depend on this packet for its P0 safety preconditions.
+- **SC-006**: `027/005-learning-feedback-reducers` can safely depend on this packet for its P0 safety preconditions.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -259,3 +259,9 @@ createdBy === "auto" || createdBy.startsWith("auto-")
 
 - None blocking. The pt-04 user decision already selected split-and-ship-first ordering.
 <!-- /ANCHOR:questions -->
+
+---
+
+## Amendment — caura-memclaw Research (010)
+
+Fold in three caura-memclaw teachings without expanding the P0 split: add an explicit `source_kind` enum (`human|agent|system|import|feedback`) and enforce auto-cannot-overwrite-manual/constitutional at WRITE INGRESS; add deterministic advisory near-duplicate metadata (always advisory, never hard-reject, no LLM judge); and standardize automated-mutation audit through the existing `mutation_ledger`. Planned in 010/001 (provenance+audit) and 010/002 (near-duplicate). Source: research/008-caura-memclaw-fleet-memory-teachings/sub-packet-proposals.md; planned in 010/001 and 010/002.
