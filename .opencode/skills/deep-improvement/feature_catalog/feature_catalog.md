@@ -52,7 +52,7 @@ The shipped workflow only supports fresh `new` sessions. Both YAML workflows cre
 
 #### Source Files
 
-See [`01--evaluation-loop/001-initialization.md`](01--evaluation-loop/001-initialization.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/initialization.md`](01--evaluation-loop/initialization.md) for full implementation and validation file listings.
 
 ---
 
@@ -68,7 +68,7 @@ Candidate generation is delegated to the `deep-improvement` subagent. That agent
 
 #### Source Files
 
-See [`01--evaluation-loop/002-candidate-generation.md`](01--evaluation-loop/002-candidate-generation.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/candidate-generation.md`](01--evaluation-loop/candidate-generation.md) for full implementation and validation file listings.
 
 ---
 
@@ -84,7 +84,7 @@ The loop dispatches `score-candidate.cjs`, records mutation coverage, writes jou
 
 #### Source Files
 
-See [`01--evaluation-loop/003-scoring-dispatch.md`](01--evaluation-loop/003-scoring-dispatch.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/scoring-dispatch.md`](01--evaluation-loop/scoring-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -100,7 +100,7 @@ The policy surface requires explicit approval, benchmark pass, repeatability pas
 
 #### Source Files
 
-See [`01--evaluation-loop/004-promotion-gates.md`](01--evaluation-loop/004-promotion-gates.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/promotion-gates.md`](01--evaluation-loop/promotion-gates.md) for full implementation and validation file listings.
 
 ---
 
@@ -116,7 +116,7 @@ Rollback is a separate helper, not an implicit part of promotion. The shipped ro
 
 #### Source Files
 
-See [`01--evaluation-loop/005-rollback.md`](01--evaluation-loop/005-rollback.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/rollback.md`](01--evaluation-loop/rollback.md) for full implementation and validation file listings.
 
 ---
 
@@ -132,7 +132,7 @@ Two stop models are live. `reduce-state.cjs` can stop when all tracked dimension
 
 #### Source Files
 
-See [`01--evaluation-loop/006-plateau-detection.md`](01--evaluation-loop/006-plateau-detection.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/plateau-detection.md`](01--evaluation-loop/plateau-detection.md) for full implementation and validation file listings.
 
 ---
 
@@ -154,7 +154,7 @@ Builds the inventory of files and references that define an agent beyond its can
 
 #### Source Files
 
-See [`02--integration-scanning/007-surface-discovery.md`](02--integration-scanning/007-surface-discovery.md) for full implementation and validation file listings.
+See [`02--integration-scanning/surface-discovery.md`](02--integration-scanning/surface-discovery.md) for full implementation and validation file listings.
 
 ---
 
@@ -170,7 +170,7 @@ Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter
 
 #### Source Files
 
-See [`02--integration-scanning/008-runtime-mirrors.md`](02--integration-scanning/008-runtime-mirrors.md) for full implementation and validation file listings.
+See [`02--integration-scanning/runtime-mirrors.md`](02--integration-scanning/runtime-mirrors.md) for full implementation and validation file listings.
 
 ---
 
@@ -186,7 +186,7 @@ The `/deep:start-agent-improvement-loop` command collects setup inputs, selects 
 
 #### Source Files
 
-See [`02--integration-scanning/009-command-dispatch.md`](02--integration-scanning/009-command-dispatch.md) for full implementation and validation file listings.
+See [`02--integration-scanning/command-dispatch.md`](02--integration-scanning/command-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -208,7 +208,7 @@ Dynamic scoring uses five weighted dimensions: structural integrity, rule cohere
 
 #### Source Files
 
-See [`03--scoring-system/010-five-dimension-rubric.md`](03--scoring-system/010-five-dimension-rubric.md) for full implementation and validation file listings.
+See [`03--scoring-system/five-dimension-rubric.md`](03--scoring-system/five-dimension-rubric.md) for full implementation and validation file listings.
 
 ---
 
@@ -224,7 +224,7 @@ No static evaluation profiles ship in the current release. `generate-profile.cjs
 
 #### Source Files
 
-See [`03--scoring-system/011-dynamic-profiling.md`](03--scoring-system/011-dynamic-profiling.md) for full implementation and validation file listings.
+See [`03--scoring-system/dynamic-profiling.md`](03--scoring-system/dynamic-profiling.md) for full implementation and validation file listings.
 
 ---
 
@@ -240,7 +240,7 @@ Produces the score and benchmark evidence that later gates consume.
 
 #### Source Files
 
-See [`03--scoring-system/012-deterministic-scoring.md`](03--scoring-system/012-deterministic-scoring.md) for full implementation and validation file listings.
+See [`03--scoring-system/deterministic-scoring.md`](03--scoring-system/deterministic-scoring.md) for full implementation and validation file listings.
 
 ---
 
@@ -256,7 +256,7 @@ Reduces raw run records into trends, best-known state, and operator-facing stop 
 
 #### Source Files
 
-See [`03--scoring-system/013-dimensional-progress.md`](03--scoring-system/013-dimensional-progress.md) for full implementation and validation file listings.
+See [`03--scoring-system/dimensional-progress.md`](03--scoring-system/dimensional-progress.md) for full implementation and validation file listings.
 
 ---
 
@@ -278,7 +278,7 @@ Routes loop-host between the agent-improvement scorer and the model-benchmark ma
 
 #### Source Files
 
-See [`04--model-benchmark-mode/014-mode-switch.md`](04--model-benchmark-mode/014-mode-switch.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/mode-switch.md`](04--model-benchmark-mode/mode-switch.md) for full implementation and validation file listings.
 
 ---
 
@@ -294,7 +294,7 @@ Model-agnostic dispatcher that routes prompts across executor CLIs only on the m
 
 #### Source Files
 
-See [`04--model-benchmark-mode/015-model-dispatcher.md`](04--model-benchmark-mode/015-model-dispatcher.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/model-dispatcher.md`](04--model-benchmark-mode/model-dispatcher.md) for full implementation and validation file listings.
 
 ---
 
@@ -310,7 +310,7 @@ Selects the pattern matcher by default or the opt-in five-dimension scorer for m
 
 #### Source Files
 
-See [`04--model-benchmark-mode/016-opt-in-5dim-scorer.md`](04--model-benchmark-mode/016-opt-in-5dim-scorer.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/opt-in-5dim-scorer.md`](04--model-benchmark-mode/opt-in-5dim-scorer.md) for full implementation and validation file listings.
 
 ---
 
@@ -326,7 +326,7 @@ Every state record carries `mode: agent-improvement` or `mode: model-benchmark`,
 
 #### Source Files
 
-See [`04--model-benchmark-mode/017-mode-records-and-gates.md`](04--model-benchmark-mode/017-mode-records-and-gates.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/mode-records-and-gates.md`](04--model-benchmark-mode/mode-records-and-gates.md) for full implementation and validation file listings.
 
 ---
 
@@ -348,7 +348,7 @@ Routes loop-host to the skill-benchmark orchestrator with a single additive arm;
 
 #### Source Files
 
-See [`05--skill-benchmark/018-mode-wiring.md`](05--skill-benchmark/018-mode-wiring.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/mode-wiring.md`](05--skill-benchmark/mode-wiring.md) for full implementation and validation file listings.
 
 ### Hint-free fixtures and contamination gate
 
@@ -362,7 +362,7 @@ Per-skill public/private scenario fixtures keep the expected skill/intents/resou
 
 #### Source Files
 
-See [`05--skill-benchmark/019-contamination-gate-and-fixtures.md`](05--skill-benchmark/019-contamination-gate-and-fixtures.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/contamination-gate-and-fixtures.md`](05--skill-benchmark/contamination-gate-and-fixtures.md) for full implementation and validation file listings.
 
 ### Router-replay and advisor probe (Mode A)
 
@@ -376,7 +376,7 @@ Replays the target skill's own router for in-skill routing and discovery, and pr
 
 #### Source Files
 
-See [`05--skill-benchmark/020-router-replay-and-advisor-probe.md`](05--skill-benchmark/020-router-replay-and-advisor-probe.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/router-replay-and-advisor-probe.md`](05--skill-benchmark/router-replay-and-advisor-probe.md) for full implementation and validation file listings.
 
 ### D5 structural connectivity hard gate
 
@@ -390,7 +390,7 @@ A static scan runs before any dispatch and caps the verdict on structural failur
 
 #### Source Files
 
-See [`05--skill-benchmark/021-d5-connectivity-gate.md`](05--skill-benchmark/021-d5-connectivity-gate.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/d5-connectivity-gate.md`](05--skill-benchmark/d5-connectivity-gate.md) for full implementation and validation file listings.
 
 ### D1-D5 scoring and funnel
 
@@ -404,7 +404,7 @@ Computes the five dimensions with a funnel whose largest single-stage drop is th
 
 #### Source Files
 
-See [`05--skill-benchmark/022-scoring-and-funnel.md`](05--skill-benchmark/022-scoring-and-funnel.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/scoring-and-funnel.md`](05--skill-benchmark/scoring-and-funnel.md) for full implementation and validation file listings.
 
 ### Dual report and remediation taxonomy
 
@@ -418,4 +418,4 @@ Emits a machine report plus a human report rendered from it (anti-drift), with r
 
 #### Source Files
 
-See [`05--skill-benchmark/023-dual-report-and-remediation.md`](05--skill-benchmark/023-dual-report-and-remediation.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/dual-report-and-remediation.md`](05--skill-benchmark/dual-report-and-remediation.md) for full implementation and validation file listings.

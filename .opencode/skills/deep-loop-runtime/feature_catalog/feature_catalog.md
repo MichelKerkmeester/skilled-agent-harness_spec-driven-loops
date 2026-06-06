@@ -47,7 +47,7 @@ Schema, parsing, defaults, supported flags, sandbox and permission-mode normaliz
 
 #### Source Files
 
-See [`01--executor/001-executor-config.md`](01--executor/001-executor-config.md) for full implementation and validation file listings.
+See [`01--executor/executor-config.md`](01--executor/executor-config.md) for full implementation and validation file listings.
 
 ---
 
@@ -63,7 +63,7 @@ Recursion guard, executor audit record writing, dispatch-failure emission, and a
 
 #### Source Files
 
-See [`01--executor/002-executor-audit.md`](01--executor/002-executor-audit.md) for full implementation and validation file listings.
+See [`01--executor/executor-audit.md`](01--executor/executor-audit.md) for full implementation and validation file listings.
 
 ---
 
@@ -79,7 +79,7 @@ Model registry lookup, fallback target selection, disabled fallback, and fail-fa
 
 #### Source Files
 
-See [`01--executor/003-fallback-router.md`](01--executor/003-fallback-router.md) for full implementation and validation file listings.
+See [`01--executor/fallback-router.md`](01--executor/fallback-router.md) for full implementation and validation file listings.
 
 ---
 
@@ -99,7 +99,7 @@ Template token extraction, strict variable names, missing-token failures, and re
 
 #### Source Files
 
-See [`02--prompt-rendering/004-prompt-pack.md`](02--prompt-rendering/004-prompt-pack.md) for full implementation and validation file listings.
+See [`02--prompt-rendering/prompt-pack.md`](02--prompt-rendering/prompt-pack.md) for full implementation and validation file listings.
 
 ---
 
@@ -119,7 +119,7 @@ Iteration markdown, JSONL, delta validation, review-depth v2 enforcement, and ve
 
 #### Source Files
 
-See [`03--validation/005-post-dispatch-validate.md`](03--validation/005-post-dispatch-validate.md) for full implementation and validation file listings.
+See [`03--validation/post-dispatch-validate.md`](03--validation/post-dispatch-validate.md) for full implementation and validation file listings.
 
 ---
 
@@ -139,7 +139,7 @@ Atomic JSON serialization, temp-file writes, fsync, rename, and cleanup on failu
 
 #### Source Files
 
-See [`04--state-safety/006-atomic-state.md`](04--state-safety/006-atomic-state.md) for full implementation and validation file listings.
+See [`04--state-safety/atomic-state.md`](04--state-safety/atomic-state.md) for full implementation and validation file listings.
 
 ---
 
@@ -155,7 +155,7 @@ Valid-prefix detection, corrupt-tail truncation, byte accounting, and append-aft
 
 #### Source Files
 
-See [`04--state-safety/007-jsonl-repair.md`](04--state-safety/007-jsonl-repair.md) for full implementation and validation file listings.
+See [`04--state-safety/jsonl-repair.md`](04--state-safety/jsonl-repair.md) for full implementation and validation file listings.
 
 ---
 
@@ -171,7 +171,7 @@ Lock file schema, live-holder refusal, stale replacement, heartbeat refresh, and
 
 #### Source Files
 
-See [`04--state-safety/008-loop-lock.md`](04--state-safety/008-loop-lock.md) for full implementation and validation file listings.
+See [`04--state-safety/loop-lock.md`](04--state-safety/loop-lock.md) for full implementation and validation file listings.
 
 ---
 
@@ -187,7 +187,7 @@ Tool operation mapping, path resolution, glob specificity, default-deny, and all
 
 #### Source Files
 
-See [`04--state-safety/009-permissions-gate.md`](04--state-safety/009-permissions-gate.md) for full implementation and validation file listings.
+See [`04--state-safety/permissions-gate.md`](04--state-safety/permissions-gate.md) for full implementation and validation file listings.
 
 ---
 
@@ -207,7 +207,7 @@ Smoothed success scoring and demotion threshold checks.
 
 #### Source Files
 
-See [`05--scoring/010-bayesian-scorer.md`](05--scoring/010-bayesian-scorer.md) for full implementation and validation file listings.
+See [`05--scoring/bayesian-scorer.md`](05--scoring/bayesian-scorer.md) for full implementation and validation file listings.
 
 ---
 
@@ -227,7 +227,7 @@ Schema v2, node and edge CRUD, snapshots, stats, composite namespace keys, and D
 
 #### Source Files
 
-See [`06--coverage-graph/011-coverage-graph-db.md`](06--coverage-graph/011-coverage-graph-db.md) for full implementation and validation file listings.
+See [`06--coverage-graph/coverage-graph-db.md`](06--coverage-graph/coverage-graph-db.md) for full implementation and validation file listings.
 
 ---
 
@@ -243,7 +243,7 @@ Session-scoped query helpers for research and review coverage graph reads.
 
 #### Source Files
 
-See [`06--coverage-graph/012-coverage-graph-query.md`](06--coverage-graph/012-coverage-graph-query.md) for full implementation and validation file listings.
+See [`06--coverage-graph/coverage-graph-query.md`](06--coverage-graph/coverage-graph-query.md) for full implementation and validation file listings.
 
 ---
 
@@ -259,7 +259,7 @@ Node degree/depth, research signals, review signals, snapshots, and momentum.
 
 #### Source Files
 
-See [`06--coverage-graph/013-coverage-graph-signals.md`](06--coverage-graph/013-coverage-graph-signals.md) for full implementation and validation file listings.
+See [`06--coverage-graph/coverage-graph-signals.md`](06--coverage-graph/coverage-graph-signals.md) for full implementation and validation file listings.
 
 ---
 
@@ -279,7 +279,7 @@ Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindi
 
 #### Source Files
 
-See [`07--script-entry-points/014-convergence-script.md`](07--script-entry-points/014-convergence-script.md) for full implementation and validation file listings.
+See [`07--script-entry-points/convergence-script.md`](07--script-entry-points/convergence-script.md) for full implementation and validation file listings.
 
 ---
 
@@ -295,7 +295,7 @@ Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and
 
 #### Source Files
 
-See [`07--script-entry-points/015-upsert-script.md`](07--script-entry-points/015-upsert-script.md) for full implementation and validation file listings.
+See [`07--script-entry-points/upsert-script.md`](07--script-entry-points/upsert-script.md) for full implementation and validation file listings.
 
 ---
 
@@ -311,7 +311,7 @@ Direct replacement for `deep_loop_graph_query`; serves gaps, claims, contradicti
 
 #### Source Files
 
-See [`07--script-entry-points/016-query-script.md`](07--script-entry-points/016-query-script.md) for full implementation and validation file listings.
+See [`07--script-entry-points/query-script.md`](07--script-entry-points/query-script.md) for full implementation and validation file listings.
 
 ---
 
@@ -327,7 +327,7 @@ Direct replacement for `deep_loop_graph_status`; reports counts, schema, DB size
 
 #### Source Files
 
-See [`07--script-entry-points/017-status-script.md`](07--script-entry-points/017-status-script.md) for full implementation and validation file listings.
+See [`07--script-entry-points/status-script.md`](07--script-entry-points/status-script.md) for full implementation and validation file listings.
 
 ---
 
@@ -343,7 +343,7 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 
 #### Source Files
 
-See [`08--council/018-multi-seat-dispatch.md`](08--council/018-multi-seat-dispatch.md) for full implementation and validation file listings.
+See [`08--council/multi-seat-dispatch.md`](08--council/multi-seat-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -355,7 +355,7 @@ Appends per-round JSONL records with a lock-file single-writer guard; repairs co
 
 #### Source Files
 
-See [`08--council/019-round-state-jsonl.md`](08--council/019-round-state-jsonl.md) for full implementation and validation file listings.
+See [`08--council/round-state-jsonl.md`](08--council/round-state-jsonl.md) for full implementation and validation file listings.
 
 ---
 
@@ -367,7 +367,7 @@ Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for
 
 #### Source Files
 
-See [`08--council/020-adjudicator-verdict-scoring.md`](08--council/020-adjudicator-verdict-scoring.md) for full implementation and validation file listings.
+See [`08--council/adjudicator-verdict-scoring.md`](08--council/adjudicator-verdict-scoring.md) for full implementation and validation file listings.
 
 ---
 
@@ -379,7 +379,7 @@ Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_pe
 
 #### Source Files
 
-See [`08--council/021-cost-guards.md`](08--council/021-cost-guards.md) for full implementation and validation file listings.
+See [`08--council/cost-guards.md`](08--council/cost-guards.md) for full implementation and validation file listings.
 
 ---
 
@@ -391,7 +391,7 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 
 #### Source Files
 
-See [`08--council/022-session-state-hierarchy.md`](08--council/022-session-state-hierarchy.md) for full implementation and validation file listings.
+See [`08--council/session-state-hierarchy.md`](08--council/session-state-hierarchy.md) for full implementation and validation file listings.
 
 ---
 
@@ -411,7 +411,7 @@ on top of the existing single-executor config without modifying it.
 
 #### Source Files
 
-See [`09--fanout/023-fanout-config-schema.md`](09--fanout/023-fanout-config-schema.md) for full implementation and validation file listings.
+See [`09--fanout/fanout-config-schema.md`](09--fanout/fanout-config-schema.md) for full implementation and validation file listings.
 
 ---
 
@@ -424,7 +424,7 @@ ordered results, and a JSONL status ledger.
 
 #### Source Files
 
-See [`09--fanout/024-fanout-pool.md`](09--fanout/024-fanout-pool.md) for full implementation and validation file listings.
+See [`09--fanout/fanout-pool.md`](09--fanout/fanout-pool.md) for full implementation and validation file listings.
 
 ---
 
@@ -438,7 +438,7 @@ sub-packet, with per-kind state-dir isolation and a post-subprocess salvage swee
 
 #### Source Files
 
-See [`09--fanout/025-fanout-run.md`](09--fanout/025-fanout-run.md) for full implementation and validation file listings.
+See [`09--fanout/fanout-run.md`](09--fanout/fanout-run.md) for full implementation and validation file listings.
 
 ---
 
@@ -451,7 +451,7 @@ subprocess stdout (opencode `--format json` text parts or raw fallback).
 
 #### Source Files
 
-See [`09--fanout/026-fanout-salvage.md`](09--fanout/026-fanout-salvage.md) for full implementation and validation file listings.
+See [`09--fanout/fanout-salvage.md`](09--fanout/fanout-salvage.md) for full implementation and validation file listings.
 
 ---
 
@@ -465,6 +465,6 @@ Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) o
 
 #### Source Files
 
-See [`09--fanout/027-fanout-merge.md`](09--fanout/027-fanout-merge.md) for full implementation and validation file listings.
+See [`09--fanout/fanout-merge.md`](09--fanout/fanout-merge.md) for full implementation and validation file listings.
 
 ---

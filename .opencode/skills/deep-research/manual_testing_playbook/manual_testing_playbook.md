@@ -95,7 +95,7 @@ Prompt summary: As a manual-testing orchestrator, validate the autonomous entryp
 Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `research/research.md`.
 
 #### Test Execution
-> **Feature File:** [DR-001](01--entry-points-and-modes/001-auto-mode-deep-research-kickoff.md)
+> **Feature File:** [DR-001](01--entry-points-and-modes/auto-mode-deep-research-kickoff.md)
 
 ### DR-002 | Confirm mode checkpointed execution
 
@@ -108,7 +108,7 @@ Prompt summary: As a manual-testing orchestrator, validate the confirm-mode cont
 Expected signals: Confirm mode is interactive, approval-gated, and still routes through initialization, loop, synthesis, and save rather than a separate workflow.
 
 #### Test Execution
-> **Feature File:** [DR-002](01--entry-points-and-modes/002-confirm-mode-checkpointed-execution.md)
+> **Feature File:** [DR-002](01--entry-points-and-modes/confirm-mode-checkpointed-execution.md)
 
 ### DR-003 | Parameterized invocation with --max-iterations and --convergence
 
@@ -121,7 +121,7 @@ Prompt summary: As a manual-testing orchestrator, validate the setup-binding con
 Expected signals: The command explicitly names topic, spec folder, execution mode, max iterations, and convergence threshold; YAML preflight verifies them before file writes.
 
 #### Test Execution
-> **Feature File:** [DR-003](01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md)
+> **Feature File:** [DR-003](01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
 
 ---
 
@@ -140,7 +140,7 @@ Prompt summary: As a manual-testing orchestrator, validate the fresh-initializat
 Expected signals: The scratch directory is created, config and strategy come from the shipped assets, and the JSONL begins with a config record.
 
 #### Test Execution
-> **Feature File:** [DR-004](02--initialization-and-state-setup/004-fresh-initialization-creates-canonical-state-files.md)
+> **Feature File:** [DR-004](02--initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md)
 
 ### DR-005 | Resume classification from valid prior state
 
@@ -153,7 +153,7 @@ Prompt summary: As a manual-testing orchestrator, validate the resume-classifica
 Expected signals: A four-state classification model exists, resume skips init writes, and completed sessions route differently from active resumes.
 
 #### Test Execution
-> **Feature File:** [DR-005](02--initialization-and-state-setup/005-resume-classification-from-valid-prior-state.md)
+> **Feature File:** [DR-005](02--initialization-and-state-setup/resume-classification-from-valid-prior-state.md)
 
 ### DR-006 | Invalid or contradictory state halts for repair
 
@@ -166,7 +166,7 @@ Prompt summary: As a manual-testing orchestrator, validate the invalid-state hal
 Expected signals: Invalid-state is a named class, both YAML files halt with a repair message, and the docs do not promise silent guessing for contradictory state.
 
 #### Test Execution
-> **Feature File:** [DR-006](02--initialization-and-state-setup/006-invalid-or-contradictory-state-halts-for-repair.md)
+> **Feature File:** [DR-006](02--initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md)
 
 ### DR-027 | Research charter validated at init
 
@@ -179,7 +179,7 @@ Prompt summary: As a manual-testing orchestrator, validate the research charter 
 Expected signals: strategy.md has a "## 4. Non-Goals" section (may be empty but must exist); strategy.md has a "## 5. Stop Conditions" section (may be empty but must exist); if either section is missing, it is appended as an empty placeholder; in confirm mode, the charter (topic, key questions, non-goals, stop conditions) is presented for user review before proceeding.
 
 #### Test Execution
-> **Feature File:** [DR-027](02--initialization-and-state-setup/027-research-charter-validation.md)
+> **Feature File:** [DR-027](02--initialization-and-state-setup/research-charter-validation.md)
 
 ---
 
@@ -198,7 +198,7 @@ Prompt summary: As a manual-testing orchestrator, validate the read-state-first 
 Expected signals: Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
 
 #### Test Execution
-> **Feature File:** [DR-007](03--iteration-execution-and-state-discipline/007-iteration-reads-state-before-research.md)
+> **Feature File:** [DR-007](03--iteration-execution-and-state-discipline/iteration-reads-state-before-research.md)
 
 ### DR-008 | Iteration writes iteration-NNN.md, JSONL record, and reducer refresh
 
@@ -211,7 +211,7 @@ Prompt summary: As a manual-testing orchestrator, validate the iteration write-b
 Expected signals: Iteration file creation, JSONL append, and reducer refresh are all mandatory parts of the loop, not optional side effects.
 
 #### Test Execution
-> **Feature File:** [DR-008](03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md)
+> **Feature File:** [DR-008](03--iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md)
 
 ### DR-009 | Strategy “Next Focus” and exhausted-approach discipline
 
@@ -224,7 +224,7 @@ Prompt summary: As a manual-testing orchestrator, validate the strategy-discipli
 Expected signals: Next Focus is read explicitly, exhausted approaches are treated as do-not-retry, and recovery mode consults deferred ideas instead of repeating blocked tactics.
 
 #### Test Execution
-> **Feature File:** [DR-009](03--iteration-execution-and-state-discipline/009-strategy-next-focus-and-exhausted-approach-discipline.md)
+> **Feature File:** [DR-009](03--iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md)
 
 ### DR-010 | Progressive synthesis behavior for research/research.md
 
@@ -237,7 +237,7 @@ Prompt summary: As a manual-testing orchestrator, validate the progressive-synth
 Expected signals: The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
 
 #### Test Execution
-> **Feature File:** [DR-010](03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md)
+> **Feature File:** [DR-010](03--iteration-execution-and-state-discipline/progressive-synthesis-behavior-for-research-md.md)
 
 ### DR-024 | Dashboard generation after iteration
 
@@ -250,7 +250,7 @@ Prompt summary: As a manual-testing orchestrator, validate the dashboard generat
 Expected signals: `research/deep-research-dashboard.md` exists after at least one iteration completes, contains an iteration table, question status with X/Y answered, trend with last 3 newInfoRatio values, dead ends consolidated from ruledOut data, next focus from strategy.md, and active risks.
 
 #### Test Execution
-> **Feature File:** [DR-024](03--iteration-execution-and-state-discipline/024-dashboard-generation-after-iteration.md)
+> **Feature File:** [DR-024](03--iteration-execution-and-state-discipline/dashboard-generation-after-iteration.md)
 
 ### DR-025 | Novelty justification present in JSONL
 
@@ -263,7 +263,7 @@ Prompt summary: As a manual-testing orchestrator, validate the novelty justifica
 Expected signals: JSONL iteration records contain both `newInfoRatio` (number, 0.0-1.0) and `noveltyJustification` (string, human-readable sentence); the justification field is listed as required in v1.1.0 agent instructions; ALWAYS rule 11 mandates both fields.
 
 #### Test Execution
-> **Feature File:** [DR-025](03--iteration-execution-and-state-discipline/025-novelty-justification-in-jsonl.md)
+> **Feature File:** [DR-025](03--iteration-execution-and-state-discipline/novelty-justification-in-jsonl.md)
 
 ### DR-028 | Focus track labels in dashboard
 
@@ -276,7 +276,7 @@ Prompt summary: As a manual-testing orchestrator, validate the focusTrack label 
 Expected signals: JSONL iteration records with an optional focusTrack field, dashboard Progress table with a Track column.
 
 #### Test Execution
-> **Feature File:** [DR-028](03--iteration-execution-and-state-discipline/028-focus-track-labels-in-dashboard.md)
+> **Feature File:** [DR-028](03--iteration-execution-and-state-discipline/focus-track-labels-in-dashboard.md)
 
 ### DR-029 | Research iterations emit flat graphEvents
 
@@ -289,7 +289,7 @@ Prompt summary: As a manual-testing orchestrator, validate the flat graphEvents 
 Expected signals: `graphEvents` documented as iteration-record input for graph-aware convergence; the state-format example uses flat `type` values; active graph tests use `question`, `finding`, and `source` node types rather than `question_node` / `finding_node` wrappers.
 
 #### Test Execution
-> **Feature File:** [DR-029](03--iteration-execution-and-state-discipline/029-graph-events-emission.md)
+> **Feature File:** [DR-029](03--iteration-execution-and-state-discipline/graph-events-emission.md)
 
 ---
 
@@ -308,7 +308,7 @@ Prompt summary: As a manual-testing orchestrator, validate the max-iterations st
 Expected signals: Max iterations is checked first, the stop reason is named explicitly, and the parameter is exposed consistently in the docs.
 
 #### Test Execution
-> **Feature File:** [DR-011](04--convergence-and-recovery/011-stop-on-max-iterations.md)
+> **Feature File:** [DR-011](04--convergence-and-recovery/stop-on-max-iterations.md)
 
 ### DR-012 | Stop when all key questions are answered
 
@@ -321,7 +321,7 @@ Prompt summary: As a manual-testing orchestrator, validate the all-questions-ans
 Expected signals: Question completion is a named hard stop and is reflected in the convergence and usage docs.
 
 #### Test Execution
-> **Feature File:** [DR-012](04--convergence-and-recovery/012-stop-when-all-key-questions-are-answered.md)
+> **Feature File:** [DR-012](04--convergence-and-recovery/stop-when-all-key-questions-are-answered.md)
 
 ### DR-013 | Composite convergence stop behavior
 
@@ -334,7 +334,7 @@ Prompt summary: As a manual-testing orchestrator, validate the composite-converg
 Expected signals: Three named signals, weights of 0.30/0.35/0.35, graceful degradation with fewer iterations, and a stop threshold above 0.60.
 
 #### Test Execution
-> **Feature File:** [DR-013](04--convergence-and-recovery/013-composite-convergence-stop-behavior.md)
+> **Feature File:** [DR-013](04--convergence-and-recovery/composite-convergence-stop-behavior.md)
 
 ### DR-014 | Stuck recovery widens focus and continues
 
@@ -347,7 +347,7 @@ Prompt summary: As a manual-testing orchestrator, validate the stuck-recovery co
 Expected signals: Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery.
 
 #### Test Execution
-> **Feature File:** [DR-014](04--convergence-and-recovery/014-stuck-recovery-widens-focus-and-continues.md)
+> **Feature File:** [DR-014](04--convergence-and-recovery/stuck-recovery-widens-focus-and-continues.md)
 
 ### DR-020 | Quality Guard — Source Diversity
 
@@ -360,7 +360,7 @@ Prompt summary: As a manual-testing orchestrator, validate the source diversity 
 Expected signals: guard_violation event logged with guard="source_diversity", STOP decision overridden to CONTINUE, violated question targeted in next iteration focus.
 
 #### Test Execution
-> **Feature File:** [DR-020](04--convergence-and-recovery/020-quality-guard-source-diversity.md)
+> **Feature File:** [DR-020](04--convergence-and-recovery/quality-guard-source-diversity.md)
 
 ### DR-021 | Quality Guard — Focus Alignment
 
@@ -373,7 +373,7 @@ Prompt summary: As a manual-testing orchestrator, validate the focus alignment q
 Expected signals: guard_violation event logged with guard="focus_alignment", STOP decision overridden to CONTINUE, misaligned question flagged in violation detail.
 
 #### Test Execution
-> **Feature File:** [DR-021](04--convergence-and-recovery/021-quality-guard-focus-alignment.md)
+> **Feature File:** [DR-021](04--convergence-and-recovery/quality-guard-focus-alignment.md)
 
 ### DR-022 | Quality Guard — No Single-Weak-Source
 
@@ -386,7 +386,7 @@ Prompt summary: As a manual-testing orchestrator, validate the no-single-weak-so
 Expected signals: guard_violation event logged with guard="single_weak_source", STOP decision overridden to CONTINUE, violated question targeted for stronger sourcing in next iteration.
 
 #### Test Execution
-> **Feature File:** [DR-022](04--convergence-and-recovery/022-quality-guard-no-single-weak-source.md)
+> **Feature File:** [DR-022](04--convergence-and-recovery/quality-guard-no-single-weak-source.md)
 
 ### DR-023 | Composite Convergence Passes but Guard Fails → CONTINUE
 
@@ -399,7 +399,7 @@ Prompt summary: As a manual-testing orchestrator, validate the convergence-guard
 Expected signals: convergence_check with decision STOP and score >0.60, followed by guard_violation event, followed by decision override to CONTINUE and loop resumption.
 
 #### Test Execution
-> **Feature File:** [DR-023](04--convergence-and-recovery/023-convergence-passes-guard-fails-override.md)
+> **Feature File:** [DR-023](04--convergence-and-recovery/convergence-passes-guard-fails-override.md)
 
 ### DR-034 | Insight status prevents false stuck detection
 
@@ -412,7 +412,7 @@ Prompt summary: As a manual-testing orchestrator, validate the insight-status co
 Expected signals: Iteration with status="insight" and low newInfoRatio, stuck_count NOT incremented.
 
 #### Test Execution
-> **Feature File:** [DR-034](04--convergence-and-recovery/034-insight-status-prevents-false-stuck.md)
+> **Feature File:** [DR-034](04--convergence-and-recovery/insight-status-prevents-false-stuck.md)
 
 ### DR-030 | Thought status handling in convergence
 
@@ -425,7 +425,7 @@ Prompt summary: As a manual-testing orchestrator, validate the thought-status co
 Expected signals: Iteration with status="thought", convergence treats it appropriately (does not count as stuck, does not count toward rolling average).
 
 #### Test Execution
-> **Feature File:** [DR-030](04--convergence-and-recovery/030-thought-status-convergence-handling.md)
+> **Feature File:** [DR-030](04--convergence-and-recovery/thought-status-convergence-handling.md)
 
 ### DR-031 | Graph convergence signals act as STOP-blocking guards
 
@@ -438,7 +438,7 @@ Prompt summary: As a manual-testing orchestrator, validate the graph stop-blocki
 Expected signals: `SOURCE_DIVERSITY_THRESHOLD = 0.4`; `evaluateGraphGates()` fails `sourceDiversity` when below threshold; research convergence docs map failed legal-stop gates to `stopReason: "blockedStop"` and `blocked_stop` persistence.
 
 #### Test Execution
-> **Feature File:** [DR-031](04--convergence-and-recovery/031-graph-convergence-signals.md)
+> **Feature File:** [DR-031](04--convergence-and-recovery/graph-convergence-signals.md)
 
 ### DR-032 | Research reducer surfaces blocked-stop history across registry, dashboard, and next-focus
 
@@ -451,7 +451,7 @@ Prompt summary: As a manual-testing orchestrator, validate blocked-stop reducer 
 Expected signals: `blockedStopHistory` is non-empty; each entry exposes `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor includes the recovery hint from the latest blocked-stop event.
 
 #### Test Execution
-> **Feature File:** [DR-032](04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md)
+> **Feature File:** [DR-032](04--convergence-and-recovery/blocked-stop-reducer-surfacing.md)
 
 ### DR-033 | Research graph-aware stop gate surfaces convergence verdict and workflow hooks
 
@@ -464,7 +464,7 @@ Prompt summary: As a manual-testing orchestrator, validate graph-aware stop-gate
 Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` appear in the registry; `GRAPH CONVERGENCE` appears in the dashboard; YAML includes `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote.
 
 #### Test Execution
-> **Feature File:** [DR-033](04--convergence-and-recovery/033-graph-aware-stop-gate.md)
+> **Feature File:** [DR-033](04--convergence-and-recovery/graph-aware-stop-gate.md)
 
 ---
 
@@ -483,7 +483,7 @@ Prompt summary: As a manual-testing orchestrator, validate the pause-sentinel co
 Expected signals: The sentinel is checked before dispatch, a paused event is logged, and the loop halts rather than flowing into synthesis.
 
 #### Test Execution
-> **Feature File:** [DR-015](05--pause-resume-and-fault-tolerance/015-pause-sentinel-halts-between-iterations.md)
+> **Feature File:** [DR-015](05--pause-resume-and-fault-tolerance/pause-sentinel-halts-between-iterations.md)
 
 ### DR-016 | Resume after pause sentinel removal
 
@@ -496,7 +496,7 @@ Prompt summary: As a manual-testing orchestrator, validate the pause-resume cont
 Expected signals: The loop logs `resumed`, continues from state read, and does not recreate config/strategy files during a valid resume.
 
 #### Test Execution
-> **Feature File:** [DR-016](05--pause-resume-and-fault-tolerance/016-resume-after-pause-sentinel-removal.md)
+> **Feature File:** [DR-016](05--pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md)
 
 ### DR-017 | Malformed JSONL lines are skipped with defaults
 
@@ -509,7 +509,7 @@ Prompt summary: As a manual-testing orchestrator, validate the JSONL fault-toler
 Expected signals: Per-line parse protection exists, defaults are specified, skipped-line warnings are documented, and convergence operates on valid entries only.
 
 #### Test Execution
-> **Feature File:** [DR-017](05--pause-resume-and-fault-tolerance/017-malformed-jsonl-lines-are-skipped-with-defaults.md)
+> **Feature File:** [DR-017](05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md)
 
 ### DR-018 | JSONL reconstruction from iteration files
 
@@ -522,7 +522,7 @@ Prompt summary: As a manual-testing orchestrator, validate the state-reconstruct
 Expected signals: The reconstruction algorithm scans iteration files, extracts assessment data, writes reconstructed records, and logs a `state_reconstructed` event.
 
 #### Test Execution
-> **Feature File:** [DR-018](05--pause-resume-and-fault-tolerance/018-jsonl-reconstruction-from-iteration-files.md)
+> **Feature File:** [DR-018](05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-iteration-files.md)
 
 ---
 
@@ -541,7 +541,7 @@ Prompt summary: As a manual-testing orchestrator, validate the finalization and 
 Expected signals: Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
 
 #### Test Execution
-> **Feature File:** [DR-019](06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md)
+> **Feature File:** [DR-019](06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md)
 
 ### DR-026 | Ruled-out directions synthesized
 
@@ -554,7 +554,7 @@ Prompt summary: As a manual-testing orchestrator, validate the ruled-out directi
 Expected signals: research/research.md has a mandatory "Eliminated Alternatives" section formatted as a table (`| Approach | Reason Eliminated | Evidence | Iteration(s) |`); iteration files have `## Ruled Out` and `## Dead Ends` sections when negative knowledge is captured; strategy.md has a `## 10. Ruled Out Directions` section updated per iteration; ALWAYS rule 10 mandates documenting ruled-out directions.
 
 #### Test Execution
-> **Feature File:** [DR-026](06--synthesis-save-and-guardrails/026-ruled-out-directions-in-synthesis.md)
+> **Feature File:** [DR-026](06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md)
 
 ### DR-035 | Research resource-map emission
 
@@ -567,7 +567,7 @@ Prompt summary: As a manual-testing orchestrator, validate that synthesis emits 
 Expected signals: Default run produces `research/resource-map.md` with category sections matching the template; `--no-resource-map` run leaves the file absent while `research.md` still emits.
 
 #### Test Execution
-> **Feature File:** [DR-035](06--synthesis-save-and-guardrails/035-resource-map-emission.md)
+> **Feature File:** [DR-035](06--synthesis-save-and-guardrails/resource-map-emission.md)
 
 ---
 
@@ -581,7 +581,7 @@ This category covers 6 sandboxed command-flow scenarios (CP-046 through CP-051) 
 Validate that `/deep:start-research-loop:auto` resolves topic, spec folder, mode, max iterations, convergence, and artifact root before the YAML workflow starts, and that Call B leaves grep-checkable state evidence.
 
 #### Test Execution
-> **Feature File:** [CP-046](07--command-flow-stress-tests/046-setup-yaml-handoff.md)
+> **Feature File:** [CP-046](07--command-flow-stress-tests/setup-yaml-handoff.md)
 
 ### CP-047 | SPEC_FENCE_WRITEBACK bounded spec mutation
 
@@ -589,7 +589,7 @@ Validate that `/deep:start-research-loop:auto` resolves topic, spec folder, mode
 Validate that `/deep:start-research-loop` uses the lock, `spec_check_protocol` and generated findings fence rather than freeform `spec.md` mutation.
 
 #### Test Execution
-> **Feature File:** [CP-047](07--command-flow-stress-tests/047-spec-fence-writeback.md)
+> **Feature File:** [CP-047](07--command-flow-stress-tests/spec-fence-writeback.md)
 
 ### CP-048 | RESOURCE_MAP_TOGGLE no-resource-map fidelity
 
@@ -597,7 +597,7 @@ Validate that `/deep:start-research-loop` uses the lock, `spec_check_protocol` a
 Validate that `--no-resource-map` is parsed by the command and honored by config, state, synthesis, and artifact emission.
 
 #### Test Execution
-> **Feature File:** [CP-048](07--command-flow-stress-tests/048-resource-map-toggle.md)
+> **Feature File:** [CP-048](07--command-flow-stress-tests/resource-map-toggle.md)
 
 ### CP-049 | PAUSE_SENTINEL_HALT command lifecycle stop
 
@@ -605,7 +605,7 @@ Validate that `--no-resource-map` is parsed by the command and honored by config
 Validate that a packet-local `.deep-research-pause` sentinel halts the command between lifecycle turns and records `userPaused` without writing an iteration.
 
 #### Test Execution
-> **Feature File:** [CP-049](07--command-flow-stress-tests/049-pause-sentinel-halt.md)
+> **Feature File:** [CP-049](07--command-flow-stress-tests/pause-sentinel-halt.md)
 
 ### CP-050 | ITERATION_CITATION_JSONL leaf output contract
 
@@ -613,7 +613,7 @@ Validate that a packet-local `.deep-research-pause` sentinel halts the command b
 Validate that the command-dispatched `@deep-research` body writes a cited iteration file and exactly one schema-rich JSONL iteration record.
 
 #### Test Execution
-> **Feature File:** [CP-050](07--command-flow-stress-tests/050-iteration-citation-jsonl.md)
+> **Feature File:** [CP-050](07--command-flow-stress-tests/iteration-citation-jsonl.md)
 
 ### CP-051 | EXHAUSTED_APPROACH_RESPECT resume-state discipline
 
@@ -621,7 +621,7 @@ Validate that the command-dispatched `@deep-research` body writes a cited iterat
 Validate that command-dispatched `@deep-research` reads existing state and does not retry a BLOCKED exhausted approach.
 
 #### Test Execution
-> **Feature File:** [CP-051](07--command-flow-stress-tests/051-exhausted-approach-respect.md)
+> **Feature File:** [CP-051](07--command-flow-stress-tests/exhausted-approach-respect.md)
 
 ---
 
@@ -640,7 +640,7 @@ Prompt summary: As a manual-testing orchestrator, validate the CLI fan-out path 
 Expected signals: YAML steps present with `skip_when`; command docs show 2+ executors → `config.fanout`; 5/5 fanout-run tests pass.
 
 #### Test Execution
-> **Feature File:** [DR-052](08--fanout/052-fanout-cli-lineages-research.md)
+> **Feature File:** [DR-052](08--fanout/fanout-cli-lineages-research.md)
 
 ### DR-053 | Fan-out native sequential research dispatch
 
@@ -653,7 +653,7 @@ Prompt summary: Validate native fan-out for deep-research: confirm `step_fanout_
 Expected signals: `agent: deep-research` (not `deep-review`) in native dispatch block; `config.fanout_lineage_artifact_dir` in context; correct `skip_when`.
 
 #### Test Execution
-> **Feature File:** [DR-053](08--fanout/053-fanout-native-sequential-research.md)
+> **Feature File:** [DR-053](08--fanout/fanout-native-sequential-research.md)
 
 ### DR-054 | Fan-out single-executor parity for research loop
 
@@ -666,7 +666,7 @@ Prompt summary: Validate single-executor parity for deep-research: confirm the f
 Expected signals: `if_absent` command unchanged; both fan-out steps have `skip_when`; 197/197 vitest.
 
 #### Test Execution
-> **Feature File:** [DR-054](08--fanout/054-fanout-single-executor-parity-research.md)
+> **Feature File:** [DR-054](08--fanout/fanout-single-executor-parity-research.md)
 
 ---
 

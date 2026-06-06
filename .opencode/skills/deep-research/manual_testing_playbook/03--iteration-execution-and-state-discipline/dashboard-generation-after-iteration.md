@@ -1,0 +1,91 @@
+---
+title: "DR-024 -- Dashboard generation after iteration"
+description: "Verify dashboard.md is auto-generated after iteration evaluation with correct content."
+---
+
+# DR-024 -- Dashboard generation after iteration
+
+This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `DR-024`.
+
+---
+
+## 1. OVERVIEW
+
+This scenario validates dashboard generation after iteration evaluation for `DR-024`. The objective is to verify that `research/deep-research-dashboard.md` is auto-generated after each iteration with the correct content sections.
+
+### WHY THIS MATTERS
+
+The dashboard is the primary observability surface for long-running research sessions. If it is missing, stale, or incomplete, operators and users lose visibility into progress, convergence trends, and dead ends.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+Operators should run this as a real orchestrator-led check rather than a synthetic command-matrix exercise. The scenario is only complete when the operator can explain the behavior back to a user in plain language.
+
+- Objective: Verify dashboard.md is auto-generated after iteration evaluation with correct content.
+- Real user request: After an iteration completes, can I see a summary of where the research stands?
+- Prompt: `Validate the dashboard regenerates after each deep-research iteration with progress, question status, risks, and next focus.`
+- Expected execution process: Inspect the loop protocol for Step 4a, then the state format dashboard section, then the dashboard template asset, then the YAML workflow step.
+- Desired user-visible outcome: The user can open `research/deep-research-dashboard.md` after any iteration and see an up-to-date summary of the research session.
+- Expected signals: `research/deep-research-dashboard.md` exists after at least one iteration completes, contains an iteration table, question status with X/Y answered, trend with last 3 newInfoRatio values, dead ends consolidated from ruledOut data, next focus from strategy.md, and active risks.
+- Pass/fail posture: PASS if the dashboard file exists after iteration evaluation, contains all required sections, and is regenerated (not appended) each iteration; FAIL if the file is missing, sections are absent, or stale data persists from a prior iteration.
+
+---
+
+## 3. TEST EXECUTION
+
+### RECOMMENDED ORCHESTRATION PROCESS
+
+1. Restate the user request in plain language before inspecting implementation details.
+2. Follow the listed command sequence in order so higher-level docs are checked before lower-level workflow contracts.
+3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
+4. Return a short user-facing explanation, not just raw implementation notes.
+### Prompt
+Validate the dashboard regenerates after each deep-research iteration with progress, question status, risks, and next focus.
+### Commands
+1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
+2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .opencode/skills/deep-research/references/state/state_format.md`
+3. `bash: cat .opencode/skills/deep-research/assets/deep_research_dashboard.md`
+4. `bash: rg -n 'step_reduce_state\|step_generate_dashboard\|reduce-state.cjs' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
+5. `bash: rg -n 'renderDashboard\|dashboardPath' .opencode/skills/deep-research/scripts/reduce-state.cjs`
+### Expected
+`research/deep-research-dashboard.md` exists after iteration evaluation; contains iteration table, question status (X/Y answered), trend (last 3 ratios with direction), dead ends (from ruledOut), next focus (from strategy.md), and active risks; file is overwritten (not appended) each iteration; dashboard generation is reducer-owned and idempotent.
+### Evidence
+Capture the loop protocol Step 4a excerpt, the state format dashboard section, the template content, the YAML step definitions for both reducer and dashboard, and the reducer script's `renderDashboard` function.
+### Pass/Fail
+PASS if the dashboard file exists after iteration evaluation, contains all required sections, and is regenerated (not appended) each iteration; FAIL if the file is missing, sections are absent, or stale data persists from a prior iteration.
+### Failure Triage
+Privilege the loop protocol Step 4a for the generation contract, the reducer script for the live implementation, and the state format dashboard section for content requirements; use the template asset as the structural reference.
+---
+
+## 4. SOURCE FILES
+
+### PLAYBOOK SOURCES
+
+| File | Role |
+|---|---|
+| `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-research`; use the live docs below as the implementation contract |
+
+### IMPLEMENTATION AND RUNTIME ANCHORS
+
+| File | Role |
+|---|---|
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect Step 4a (Generate Dashboard) under `ANCHOR:phase-iteration-loop` |
+| `.opencode/skills/deep-research/references/state/state_format.md` | State format; inspect `ANCHOR:dashboard` for content sections, lifecycle, and file protection rules |
+| `.opencode/skills/deep-research/assets/deep_research_dashboard.md` | Dashboard template; structural reference for all required sections (Status, Progress, Questions, Trend, Dead Ends, Next Focus, Active Risks) |
+| `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer script; `renderDashboard` generates the dashboard content; `reduceResearchState` writes it to disk |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Automated verification; proves reducer idempotency and dashboard content correctness |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: ITERATION EXECUTION AND STATE DISCIPLINE
+- Playbook ID: DR-024
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `03--iteration-execution-and-state-discipline/dashboard-generation-after-iteration.md`
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-research/` as of 2026-03-24.

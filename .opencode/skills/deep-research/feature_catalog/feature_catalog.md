@@ -38,7 +38,7 @@ Initialization classifies the packet as fresh, resume, completed-session, or inv
 
 #### Source Files
 
-See [`01--loop-lifecycle/001-initialization.md`](01--loop-lifecycle/001-initialization.md) for full implementation and test file listings.
+See [`01--loop-lifecycle/initialization.md`](01--loop-lifecycle/initialization.md) for full implementation and test file listings.
 
 ---
 
@@ -54,7 +54,7 @@ The loop reads config, JSONL state, and strategy state, generates a compact stat
 
 #### Source Files
 
-See [`01--loop-lifecycle/002-iteration-dispatch.md`](01--loop-lifecycle/002-iteration-dispatch.md) for full implementation and test file listings.
+See [`01--loop-lifecycle/iteration-dispatch.md`](01--loop-lifecycle/iteration-dispatch.md) for full implementation and test file listings.
 
 ---
 
@@ -70,7 +70,7 @@ The loop first applies hard stops and the three-signal `shouldContinue()` vote, 
 
 #### Source Files
 
-See [`01--loop-lifecycle/003-convergence-check.md`](01--loop-lifecycle/003-convergence-check.md) for full implementation and test file listings.
+See [`01--loop-lifecycle/convergence-check.md`](01--loop-lifecycle/convergence-check.md) for full implementation and test file listings.
 
 ---
 
@@ -86,7 +86,7 @@ Synthesis owns the final `research/research.md` output. It reads all iteration f
 
 #### Source Files
 
-See [`01--loop-lifecycle/004-synthesis.md`](01--loop-lifecycle/004-synthesis.md) for full implementation and test file listings.
+See [`01--loop-lifecycle/synthesis.md`](01--loop-lifecycle/synthesis.md) for full implementation and test file listings.
 
 ---
 
@@ -102,7 +102,7 @@ The save phase calls `generate-context.js` with the spec folder payload and trea
 
 #### Source Files
 
-See [`01--loop-lifecycle/005-memory-save.md`](01--loop-lifecycle/005-memory-save.md) for full implementation and test file listings.
+See [`01--loop-lifecycle/memory-save.md`](01--loop-lifecycle/memory-save.md) for full implementation and test file listings.
 
 ---
 
@@ -126,7 +126,7 @@ before `step_compile_research` runs. Command flags: `--executor` (repeatable), `
 
 #### Source Files
 
-See [`01--loop-lifecycle/007-fanout-dispatch.md`](01--loop-lifecycle/007-fanout-dispatch.md) for full implementation and validation file listings.
+See [`01--loop-lifecycle/fanout-dispatch.md`](01--loop-lifecycle/fanout-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -146,7 +146,7 @@ Acts as the append-only ledger for config, iteration, and lifecycle events.
 
 #### Source Files
 
-See [`02--state-management/008-jsonl-state-log.md`](02--state-management/008-jsonl-state-log.md) for full implementation and test file listings.
+See [`02--state-management/jsonl-state-log.md`](02--state-management/jsonl-state-log.md) for full implementation and test file listings.
 
 ---
 
@@ -162,7 +162,7 @@ Keeps the persistent research brain and the synchronized reducer surfaces aligne
 
 #### Source Files
 
-See [`02--state-management/009-strategy-tracking.md`](02--state-management/009-strategy-tracking.md) for full implementation and test file listings.
+See [`02--state-management/strategy-tracking.md`](02--state-management/strategy-tracking.md) for full implementation and test file listings.
 
 ---
 
@@ -178,7 +178,7 @@ Defines the immutable loop contract, tunable thresholds, and runtime capability 
 
 #### Source Files
 
-See [`02--state-management/010-config-management.md`](02--state-management/010-config-management.md) for full implementation and test file listings.
+See [`02--state-management/config-management.md`](02--state-management/config-management.md) for full implementation and test file listings.
 
 ---
 
@@ -198,7 +198,7 @@ The live algorithm checks hard stops first, then computes a weighted vote from r
 
 #### Source Files
 
-See [`03--convergence/011-three-signal-model.md`](03--convergence/011-three-signal-model.md) for full implementation and test file listings.
+See [`03--convergence/three-signal-model.md`](03--convergence/three-signal-model.md) for full implementation and test file listings.
 
 ---
 
@@ -214,7 +214,7 @@ The loop increments `stuckCount` when evidence iterations fall below the configu
 
 #### Source Files
 
-See [`03--convergence/012-stuck-detection.md`](03--convergence/012-stuck-detection.md) for full implementation and test file listings.
+See [`03--convergence/stuck-detection.md`](03--convergence/stuck-detection.md) for full implementation and test file listings.
 
 ---
 
@@ -230,7 +230,7 @@ The legal-stop bundle checks coverage, evidence density, and research quality be
 
 #### Source Files
 
-See [`03--convergence/013-quality-guards.md`](03--convergence/013-quality-guards.md) for full implementation and test file listings.
+See [`03--convergence/quality-guards.md`](03--convergence/quality-guards.md) for full implementation and test file listings.
 
 ---
 
@@ -246,7 +246,7 @@ When `graphEvents` are present, the workflow calls the graph convergence tool, a
 
 #### Source Files
 
-See [`03--convergence/014-graph-convergence.md`](03--convergence/014-graph-convergence.md) for full implementation and test file listings.
+See [`03--convergence/graph-convergence.md`](03--convergence/graph-convergence.md) for full implementation and test file listings.
 
 ---
 
@@ -266,7 +266,7 @@ Keeps `research/research.md` live during the loop and reconciles it at the end.
 
 #### Source Files
 
-See [`04--research-output/015-progressive-synthesis.md`](04--research-output/015-progressive-synthesis.md) for full implementation and test file listings.
+See [`04--research-output/progressive-synthesis.md`](04--research-output/progressive-synthesis.md) for full implementation and test file listings.
 
 ---
 
@@ -282,4 +282,4 @@ Iteration files include `Ruled Out` and `Dead Ends` sections, JSONL records can 
 
 #### Source Files
 
-See [`04--research-output/016-negative-knowledge.md`](04--research-output/016-negative-knowledge.md) for full implementation and test file listings.
+See [`04--research-output/negative-knowledge.md`](04--research-output/negative-knowledge.md) for full implementation and test file listings.

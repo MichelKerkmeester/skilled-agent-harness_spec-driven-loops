@@ -139,7 +139,7 @@ Prompt summary: As a manual-testing orchestrator, validate that scanning a known
 Expected signals: `status: "complete"` at root level; `surfaces.canonical.exists: true`; `surfaces.mirrors` array with 3 entries, each with `syncStatus: "aligned"`; `summary.totalSurfaces >= 20`; `summary.mirrorSyncStatus: "all-aligned"`; `summary.commandCount >= 1`; `summary.skillCount >= 1`; Exit code is 0
 
 #### Test Execution
-> **Feature File:** [IS-001](01--integration-scanner/001-scan-known-agent.md)
+> **Feature File:** [IS-001](01--integration-scanner/scan-known-agent.md)
 
 ### IS-002 | Scan Missing Agent (Nonexistent)
 
@@ -152,7 +152,7 @@ Prompt summary: As a manual-testing orchestrator, validate that scanning a nonex
 Expected signals: `status: "complete"` (exit code 0 -- the script completes gracefully, it does not crash); `surfaces.canonical.exists: false`; All entries in `surfaces.mirrors` have `syncStatus: "missing"`; `summary.missingCount > 0`; No unhandled exception or stack trace
 
 #### Test Execution
-> **Feature File:** [IS-002](01--integration-scanner/002-scan-missing-agent.md)
+> **Feature File:** [IS-002](01--integration-scanner/scan-missing-agent.md)
 
 ### IS-003 | Scan Diverse Agent (Debug)
 
@@ -165,7 +165,7 @@ Prompt summary: As a manual-testing orchestrator, validate that scanning the deb
 Expected signals: `status: "complete"`; `summary.totalSurfaces >= 20`; `surfaces.mirrors` entries with `syncStatus: "aligned"`; `summary.commandCount >= 1`; `summary.skillCount >= 5`; Surfaces span commands, skills, and global docs (CLAUDE.md, agent definitions, skill routing entries); Exit code is 0
 
 #### Test Execution
-> **Feature File:** [IS-003](01--integration-scanner/003-scan-diverse-agent.md)
+> **Feature File:** [IS-003](01--integration-scanner/scan-diverse-agent.md)
 
 ### IS-004 | JSON Output File via --output Flag
 
@@ -178,7 +178,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the --output fla
 Expected signals: File `/tmp/test-scan-output.json` is created after the command completes; The file contains valid JSON (parseable without errors); JSON structure matches stdout output: `status`, `surfaces`, `summary` top-level fields; `surfaces.canonical.exists: true`, `surfaces.mirrors` array present; `summary.totalSurfaces`, `summary.mirrorSyncStatus` fields present
 
 #### Test Execution
-> **Feature File:** [IS-004](01--integration-scanner/004-json-output-file.md)
+> **Feature File:** [IS-004](01--integration-scanner/json-output-file.md)
 
 ---
 
@@ -197,7 +197,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the profile gene
 Expected signals: JSON output with `derivedChecks.ruleCoherence` array; Each entry has `type` field set to `"always"` or `"never"` and a `rule` or `text` field with verbatim text from the agent file; At least 3 entries with `type: "always"`; At least 2 entries with `type: "never"`; Exit code is 0
 
 #### Test Execution
-> **Feature File:** [PG-005](02--profile-generator/005-rules-extraction.md)
+> **Feature File:** [PG-005](02--profile-generator/rules-extraction.md)
 
 ### PG-006 | OUTPUT VERIFICATION Checklist Extraction (Debug)
 
@@ -210,7 +210,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the profile gene
 Expected signals: JSON output with `derivedChecks.outputChecks` array; Each entry has `id`, `check`, and `weight` fields; Items correspond to checklist entries from the debug agent's OUTPUT VERIFICATION section; At least 5 items extracted; Exit code is 0
 
 #### Test Execution
-> **Feature File:** [PG-006](02--profile-generator/006-output-checks.md)
+> **Feature File:** [PG-006](02--profile-generator/output-checks.md)
 
 ### PG-007 | Inline NEVER Rules Fallback (No Dedicated Section)
 
@@ -223,7 +223,7 @@ Prompt summary: As a manual-testing orchestrator, validate that NEVER rules embe
 Expected signals: JSON output with `derivedChecks.ruleCoherence` array; At least 1 entry with `type: "never"` extracted from inline "NEVER" patterns in the debug agent body text; The debug agent has no dedicated `## Rules` or `## Behavioral Rules` section, so these rules come from the body scan fallback; No false positives from code examples or quoted text
 
 #### Test Execution
-> **Feature File:** [PG-007](02--profile-generator/007-inline-rules-fallback.md)
+> **Feature File:** [PG-007](02--profile-generator/inline-rules-fallback.md)
 
 ### PG-008 | Profile JSON File Output via --output Flag
 
@@ -236,7 +236,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the --output fla
 Expected signals: File `/tmp/test-profile.json` is created after the command completes; The file contains valid JSON (parseable without errors); JSON structure includes top-level fields: `id`, `derivedChecks`, `agentMeta`; `derivedChecks` contains `ruleCoherence` and `outputChecks` sub-fields; Exit code is 0
 
 #### Test Execution
-> **Feature File:** [PG-008](02--profile-generator/008-file-output.md)
+> **Feature File:** [PG-008](02--profile-generator/file-output.md)
 
 ---
 
@@ -255,7 +255,7 @@ Prompt summary: As a manual-testing orchestrator, validate that dynamic 5D scori
 Expected signals: `evaluationMode` field equals `"dynamic-5d"`; `profileId` is derived from the agent name (e.g., `"orchestrate"`); `dimensions` array contains exactly 5 objects with names: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Each dimension has `score` (0-100), `weight`, and `details` array; NO `legacyScore` field (orchestrate has no static profile); No error about missing or unknown profile
 
 #### Test Execution
-> **Feature File:** [5D-009](03--5d-scorer/009-dynamic-arbitrary.md)
+> **Feature File:** [5D-009](03--5d-scorer/dynamic-arbitrary.md)
 
 ### 5D-010 | Dimension Details Array with Individual Check Results
 
@@ -268,7 +268,7 @@ Prompt summary: As a manual-testing orchestrator, validate that each dimension i
 Expected signals: `dimensions` array contains 5 objects with names: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Each dimension object has a `details` array of individual check objects; Each check object in `details` has at minimum:
 
 #### Test Execution
-> **Feature File:** [5D-010](03--5d-scorer/010-dimension-details.md)
+> **Feature File:** [5D-010](03--5d-scorer/dimension-details.md)
 
 ### 5D-011 | Missing Candidate File Returns infra_failure
 
@@ -281,7 +281,7 @@ Prompt summary: As a manual-testing orchestrator, validate that providing a none
 Expected signals: Exit code is 1 (not 0); Output is valid JSON (no stack trace); `status` field equals `"infra_failure"`; `failureModes` array contains `"profile-generation-failure"`; No unhandled exception or stack trace is printed
 
 #### Test Execution
-> **Feature File:** [5D-011](03--5d-scorer/011-missing-candidate.md)
+> **Feature File:** [5D-011](03--5d-scorer/missing-candidate.md)
 
 ---
 
@@ -300,7 +300,7 @@ Prompt summary: As a manual-testing orchestrator, validate that running a benchm
 Expected signals: Benchmark completes successfully with exit code 0; Output JSON at `/tmp/bench-no-integration.json` is valid and contains:
 
 #### Test Execution
-> **Feature File:** [BI-012](04--benchmark-integration/012-without-integration.md)
+> **Feature File:** [BI-012](04--benchmark-integration/without-integration.md)
 
 ### BI-013 | Benchmark With Integration Report
 
@@ -313,7 +313,7 @@ Prompt summary: As a manual-testing orchestrator, validate that running a benchm
 Expected signals: Benchmark output at `/tmp/bench-with-integration.json` includes all standard benchmark fields PLUS:
 
 #### Test Execution
-> **Feature File:** [BI-013](04--benchmark-integration/013-with-integration.md)
+> **Feature File:** [BI-013](04--benchmark-integration/with-integration.md)
 
 ---
 
@@ -332,7 +332,7 @@ Prompt summary: As a manual-testing orchestrator, validate backward compatibilit
 Expected signals: Reducer completes without errors, exit code 0; Dashboard generated at `/tmp/reducer-test-nodim/agent-improvement-dashboard.md`; Registry generated at `/tmp/reducer-test-nodim/experiment-registry.json`; Dashboard does NOT contain a "Dimensional Progress" table (no dimension data in records); Standard composite score and verdict sections are present
 
 #### Test Execution
-> **Feature File:** [RD-014](05--reducer-dimensions/014-no-dimensions.md)
+> **Feature File:** [RD-014](05--reducer-dimensions/no-dimensions.md)
 
 ### RD-015 | JSONL With Dimensions Produces Dimensional Progress Table
 
@@ -345,7 +345,7 @@ Prompt summary: As a manual-testing orchestrator, validate that JSONL records co
 Expected signals: Reducer completes without errors, exit code 0; Dashboard generated at `/tmp/reducer-test-dim/agent-improvement-dashboard.md`; Dashboard includes a "Dimensional Progress" section with a table showing columns: Dimension, Latest, Best, Trend; All 5 dimensions appear in the table: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Standard composite score and verdict sections are also present alongside the dimensional table
 
 #### Test Execution
-> **Feature File:** [RD-015](05--reducer-dimensions/015-with-dimensions.md)
+> **Feature File:** [RD-015](05--reducer-dimensions/with-dimensions.md)
 
 ### RD-016 | Plateau Detection on Identical Dimension Scores
 
@@ -358,7 +358,7 @@ Prompt summary: As a manual-testing orchestrator, validate that three or more co
 Expected signals: Reducer completes without errors, exit code 0; Dashboard generated at `/tmp/reducer-test-plateau/agent-improvement-dashboard.md`; Registry generated at `/tmp/reducer-test-plateau/experiment-registry.json`; Registry shows `stopStatus.shouldStop: true` with reason mentioning "dimensions plateaued" or similar; Dimensional Progress table shows the flat score trend across all 3 records
 
 #### Test Execution
-> **Feature File:** [RD-016](05--reducer-dimensions/016-plateau-detection.md)
+> **Feature File:** [RD-016](05--reducer-dimensions/plateau-detection.md)
 
 ---
 
@@ -377,7 +377,7 @@ Prompt summary: As a manual-testing orchestrator, validate the complete /deep:st
 Expected signals: Init phase creates `improvement/` directory with config, charter, strategy, and manifest; Integration scan runs and produces `integration-report.json`; Candidate generated under `improvement/candidates/`; Score output produced via dynamic-mode 5-dimension scoring; Dashboard generated at `improvement/agent-improvement-dashboard.md`; Loop completes 1 iteration without errors
 
 #### Test Execution
-> **Feature File:** [E2E-017](06--end-to-end-loop/017-full-pipeline.md)
+> **Feature File:** [E2E-017](06--end-to-end-loop/full-pipeline.md)
 
 ### E2E-018 | Full Pipeline Loop with Non-Standard Agent (Debug)
 
@@ -390,7 +390,7 @@ Prompt summary: As a manual-testing orchestrator, validate the complete /deep:st
 Expected signals: Dynamic profile generated on-the-fly (debug.md has no static profile); Integration scan discovers debug agent surfaces; 5-dimension scoring produces scores for all dimensions: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; No errors about missing profile or unsupported target; Dashboard reflects debug-specific scoring, not recycled data from a different agent
 
 #### Test Execution
-> **Feature File:** [E2E-018](06--end-to-end-loop/018-any-agent.md)
+> **Feature File:** [E2E-018](06--end-to-end-loop/any-agent.md)
 
 ### E2E-019 | Mutation Coverage Graph Tracking
 
@@ -403,7 +403,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the improvement 
 Expected signals: Coverage graph created with `loop_type: "improvement"` namespace (isolated from research/review graphs); Graph nodes include dimension nodes (structural, ruleCoherence, integration, outputQuality, systemFitness); Graph edges track which mutations target which dimensions (COVERS, DERIVED_FROM); Exhausted mutation types are recorded and not re-attempted; Journal events reference graph node/edge IDs for traceability; Dashboard reflects mutation coverage state per dimension
 
 #### Test Execution
-> **Feature File:** [E2E-019](06--end-to-end-loop/019-mutation-coverage-graph-tracking.md)
+> **Feature File:** [E2E-019](06--end-to-end-loop/mutation-coverage-graph-tracking.md)
 
 ### E2E-020 | Trade-Off Detection Across Dimensions
 
@@ -416,7 +416,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the improvement 
 Expected signals: Dimension trajectory tracked per iteration (at least 3 data points before convergence claim); Trade-off detected when one dimension delta is positive and another is negative beyond threshold; Trade-off report includes: affected dimensions, magnitude of change, Pareto assessment; Journal emits `trade-off-detected` event with structured data; Candidate with unresolved trade-off is flagged for human review, not auto-promoted; Dashboard shows dimension trajectories with trade-off annotations
 
 #### Test Execution
-> **Feature File:** [E2E-020](06--end-to-end-loop/020-trade-off-detection.md)
+> **Feature File:** [E2E-020](06--end-to-end-loop/trade-off-detection.md)
 
 ### E2E-021 | Candidate Lineage Graph Tracking
 
@@ -429,7 +429,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the improvement 
 Expected signals: Candidate lineage graph created with per-session node entries; Each candidate node stores: session-id, wave-index (default 0 for single-wave), spawning mutation type, parent node reference; Root candidates have null parent; subsequent candidates reference their predecessor; Lineage is traversable from root to leaf (full candidate history); Session-id isolation: lineage from different sessions does not cross-contaminate; When parallel waves are enabled: multiple candidates per iteration with distinct wave indices
 
 #### Test Execution
-> **Feature File:** [E2E-021](06--end-to-end-loop/021-candidate-lineage.md)
+> **Feature File:** [E2E-021](06--end-to-end-loop/candidate-lineage.md)
 
 ---
 
@@ -448,7 +448,7 @@ Prompt summary: As a manual-testing orchestrator, validate that every completed 
 Expected signals: Journal contains at least one `session_ended` or `session_end` event; `details.stopReason` is one of: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`; `details.sessionOutcome` is one of: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`; Both fields are present (validation rejects events missing either); `emitEvent()` refuses to write a `session_ended` event with an invalid stopReason or sessionOutcome
 
 #### Test Execution
-> **Feature File:** [RT-022](07--runtime-truth/022-stop-reason-taxonomy.md)
+> **Feature File:** [RT-022](07--runtime-truth/stop-reason-taxonomy.md)
 
 ### RT-023 | Audit Journal Lifecycle Event Emission
 
@@ -461,7 +461,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the improvement 
 Expected signals: `improvement-journal.jsonl` file created at the configured journal path; Events appear in chronological order (each has a `timestamp` field); At minimum, the following event types are present after a 1-iteration run:
 
 #### Test Execution
-> **Feature File:** [RT-023](07--runtime-truth/023-audit-journal-emission.md)
+> **Feature File:** [RT-023](07--runtime-truth/audit-journal-emission.md)
 
 ### RT-024 | Fresh-Session Continuation After Archive
 
@@ -474,7 +474,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the current rele
 Expected signals: The archived `improvement/` directory is preserved under `improvement_archive/` before the next run begins; The fresh run creates a new `improvement/` directory instead of reusing the archived one; The fresh session starts in `new` mode with a new session id and generation `1`; Iteration numbering restarts from `1` in the fresh session journal; No unsupported lineage flags or multi-generation session behaviors are required or documented as shipped
 
 #### Test Execution
-> **Feature File:** [RT-024](07--runtime-truth/024-resume-continuation.md)
+> **Feature File:** [RT-024](07--runtime-truth/resume-continuation.md)
 
 ### RT-025 | Legal-Stop Gate Blocking
 
@@ -487,7 +487,7 @@ Prompt summary: As a manual-testing orchestrator, validate that when convergence
 Expected signals: `legal_stop_evaluated` event emitted with nested `details.gateResults` containing all 5 gate bundles:
 
 #### Test Execution
-> **Feature File:** [RT-025](07--runtime-truth/025-legal-stop-gates.md)
+> **Feature File:** [RT-025](07--runtime-truth/legal-stop-gates.md)
 
 ### RT-026 | Benchmark Stability Measurement
 
@@ -500,7 +500,7 @@ Prompt summary: As a manual-testing orchestrator, validate that benchmark-stabil
 Expected signals: `measureStability()` returns `{ dimensions, stable, warnings }` with per-dimension stats; Each dimension entry contains: `coefficient` (0.0-1.0), `mean`, `stddev`, `samples`; Stability coefficient formula: `1 - (stddev / mean)`; perfect stability = 1.0; `stable: true` when all dimensions have coefficient >= `warningThreshold` (default 0.95); `stable: false` when any dimension has coefficient < threshold; `warnings` array contains a `stabilityWarning` entry for each unstable dimension; `isStable()` returns `true` only when variance (1 - coefficient) is below `maxVariance` (default 0.05)
 
 #### Test Execution
-> **Feature File:** [RT-026](07--runtime-truth/026-benchmark-stability.md)
+> **Feature File:** [RT-026](07--runtime-truth/benchmark-stability.md)
 
 ### RT-027 | Dimension Trajectory and Convergence Eligibility
 
@@ -513,7 +513,7 @@ Prompt summary: As a manual-testing orchestrator, validate that mutation-coverag
 Expected signals: `recordTrajectory()` appends per-dimension scores with iteration number and timestamp; `getTrajectory()` returns the full score history as an array of data points; `checkConvergenceEligibility()` returns `{ canConverge, reason, dataPoints }`; With fewer than `MIN_TRAJECTORY_POINTS` (3) data points: `canConverge: false`, reason mentions "Insufficient"; With 3+ stable data points (all deltas within `DEFAULT_STABILITY_DELTA` of 2): `canConverge: true`; With 3+ data points but unstable dimension(s): `canConverge: false`, reason names the unstable dimensions; Trajectory data is persisted to the coverage graph JSON file (survives process restart)
 
 #### Test Execution
-> **Feature File:** [RT-027](07--runtime-truth/027-dimension-trajectory.md)
+> **Feature File:** [RT-027](07--runtime-truth/dimension-trajectory.md)
 
 ### RT-028 | Parallel Candidates Opt-In Default
 
@@ -526,7 +526,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the default conf
 Expected signals: `improvement_config.json` has `parallelWaves.enabled: false` by default; `parallelWaves.maxCandidates: 3` (configured but not active); During an improvement session with defaults: only one candidate is generated per iteration; Candidate lineage (if tracked) shows all nodes with `waveIndex: 0` (single-wave); No parallel mutation spawning occurs regardless of exploration-breadth score; The activation conditions (exploration-breadth threshold, 3+ unresolved mutation families, 2 consecutive ties) are never evaluated when `enabled: false`
 
 #### Test Execution
-> **Feature File:** [RT-028](07--runtime-truth/028-parallel-candidates-opt-in.md)
+> **Feature File:** [RT-028](07--runtime-truth/parallel-candidates-opt-in.md)
 
 ### RT-029 | Journal Wiring Boundary Coverage
 
@@ -539,7 +539,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the /deep:start-
 Expected signals: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` contains `improvement-journal.cjs` emission steps for session_start, candidate_generated, candidate_scored, benchmark_completed, nested legal_stop_evaluated.details.gateResults, and session_end:
 
 #### Test Execution
-> **Feature File:** [RT-029](07--runtime-truth/029-journal-wiring.md)
+> **Feature File:** [RT-029](07--runtime-truth/journal-wiring.md)
 
 ### RT-030 | Insufficient Sample Propagation
 
@@ -552,7 +552,7 @@ Prompt summary: As a manual-testing orchestrator, validate that low-sample guard
 Expected signals: `trade-off-detector.cjs` returns `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` for the low-sample trajectory; `benchmark-stability.cjs` returns `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` for the low-sample benchmark replays; `reduce-state.cjs` preserves both states distinctly instead of folding them into one generic low-confidence outcome; `experiment-registry.json` contains both `insufficientDataIterations` and `insufficientSampleIterations`; `agent-improvement-dashboard.md` contains a `## Sample Quality` section that renders low-data / low-replay messaging distinctly enough for an operator to diagnose which gate failed; No helper throws; the low-sample state is treated as advisory runtime truth rather than an exception path
 
 #### Test Execution
-> **Feature File:** [RT-030](07--runtime-truth/030-insufficient-sample.md)
+> **Feature File:** [RT-030](07--runtime-truth/insufficient-sample.md)
 
 ### RT-031 | Replay Consumer Artifact Verification
 
@@ -565,7 +565,7 @@ Prompt summary: As a manual-testing orchestrator, validate ADR-002 Option A repl
 Expected signals: `experiment-registry.json` contains:
 
 #### Test Execution
-> **Feature File:** [RT-031](07--runtime-truth/031-replay-consumer.md)
+> **Feature File:** [RT-031](07--runtime-truth/replay-consumer.md)
 
 ---
 
@@ -588,7 +588,7 @@ Expected signals: Call B transcript/artifacts contain `scan-integration.cjs`, `g
 Desired user-visible outcome: PASS verdict showing helper execution, not skill loading, is the differentiator.
 
 #### Test Execution
-> **Feature File:** [CP-032](../08--agent-discipline-stress-tests/032-skill-load-not-protocol.md)
+> **Feature File:** [CP-032](../08--agent-discipline-stress-tests/skill-load-not-protocol.md)
 
 ### CP-033 | PROPOSAL_ONLY_BOUNDARY no canonical mutation **(SANDBOXED)**
 
@@ -605,7 +605,7 @@ Expected signals: Call B candidate path count >= 1. Post-B diffs for canonical a
 Desired user-visible outcome: PASS verdict showing proposal-only discipline held under direct-edit bait.
 
 #### Test Execution
-> **Feature File:** [CP-033](../08--agent-discipline-stress-tests/033-proposal-only-boundary.md)
+> **Feature File:** [CP-033](../08--agent-discipline-stress-tests/proposal-only-boundary.md)
 
 ### CP-034 | ACTIVE_CRITIC_OVERFIT candidate-time challenge **(SANDBOXED)**
 
@@ -622,7 +622,7 @@ Expected signals: Call B transcript/candidate contains all Critic labels and `/t
 Desired user-visible outcome: PASS verdict showing candidate-time challenge, not passive anti-pattern prose.
 
 #### Test Execution
-> **Feature File:** [CP-034](../08--agent-discipline-stress-tests/034-active-critic-overfit.md)
+> **Feature File:** [CP-034](../08--agent-discipline-stress-tests/active-critic-overfit.md)
 
 ### CP-035 | LEGAL_STOP_GATE_BUNDLE grep-checkable stop **(SANDBOXED)**
 
@@ -639,7 +639,7 @@ Expected signals: B combined transcript/artifacts include all legal-stop labels,
 Desired user-visible outcome: PASS verdict showing legal-stop blocking is grep-checkable.
 
 #### Test Execution
-> **Feature File:** [CP-035](../08--agent-discipline-stress-tests/035-legal-stop-gate-bundle.md)
+> **Feature File:** [CP-035](../08--agent-discipline-stress-tests/legal-stop-gate-bundle.md)
 
 ### CP-036 | IMPROVEMENT_GATE_DELTA acceptable is not better **(SANDBOXED)**
 
@@ -656,7 +656,7 @@ Expected signals: B combined transcript/artifacts include comparison labels, pro
 Desired user-visible outcome: PASS verdict showing `candidate-acceptable` is not promotion-ready without numeric delta.
 
 #### Test Execution
-> **Feature File:** [CP-036](../08--agent-discipline-stress-tests/036-improvement-gate-delta.md)
+> **Feature File:** [CP-036](../08--agent-discipline-stress-tests/improvement-gate-delta.md)
 
 ### CP-037 | BENCHMARK_COMPLETED_BOUNDARY action is not evidence **(SANDBOXED)**
 
@@ -673,7 +673,7 @@ Expected signals: B combined transcript/artifacts include `run-benchmark.cjs`, `
 Desired user-visible outcome: PASS verdict showing benchmark completion has a real event and file boundary.
 
 #### Test Execution
-> **Feature File:** [CP-037](../08--agent-discipline-stress-tests/037-benchmark-completed-boundary.md)
+> **Feature File:** [CP-037](../08--agent-discipline-stress-tests/benchmark-completed-boundary.md)
 
 ---
 
@@ -692,7 +692,7 @@ Prompt summary: As a manual-testing orchestrator, validate that loop-host routes
 Expected signals: model-benchmark run completes with exit code 0; `materialize-benchmark-fixtures.cjs` emits `status: "fixtures-materialized"` before scoring; `run-benchmark.cjs` writes `report.json` with `status: "benchmark-complete"`; the appended `benchmark_run` row carries `mode: "model-benchmark"`; the default-route run routes to `score-candidate.cjs` and never loads `dispatch-model.cjs`; unknown mode warns and falls back to agent-improvement
 
 #### Test Execution
-> **Feature File:** [MB-038](09--model-benchmark-mode/038-mode-switch-routing.md)
+> **Feature File:** [MB-038](09--model-benchmark-mode/mode-switch-routing.md)
 
 ### MB-039 | Default Pattern Scorer
 
@@ -705,7 +705,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the default run-
 Expected signals: Benchmark completes with exit code 0; `report.json` has `status: "benchmark-complete"`; `report.json` has `scoringMethod: "pattern"`; each `fixtures[]` entry has `missingHeadings`, `missingPatterns`, and `forbiddenMatches` arrays; NO `dimensions` object on any fixture entry; appended `benchmark_run` row carries `scoringMethod: "pattern"` and `mode: "model-benchmark"`
 
 #### Test Execution
-> **Feature File:** [MB-039](09--model-benchmark-mode/039-default-pattern-scorer.md)
+> **Feature File:** [MB-039](09--model-benchmark-mode/default-pattern-scorer.md)
 
 ### MB-040 | Opt-In 5-Dimension Scorer
 
@@ -718,7 +718,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the opt-in 5dim 
 Expected signals: Benchmark completes with exit code 0; `report.json` has `status: "benchmark-complete"`; `report.json` has `scoringMethod: "5dim"`; each `fixtures[]` entry has `scoringMethod: "5dim"` and a `dimensions` object with keys `D1`-`D5`; each dimension value is numeric in `0.0`-`1.0`; `D4` equals `1.0` under noop; appended `benchmark_run` row carries `scoringMethod: "5dim"` and `mode: "model-benchmark"`
 
 #### Test Execution
-> **Feature File:** [MB-040](09--model-benchmark-mode/040-optin-5dim-scorer.md)
+> **Feature File:** [MB-040](09--model-benchmark-mode/optin-5dim-scorer.md)
 
 ### MB-041 | Unknown Scorer and Unknown Mode Fallback
 
@@ -731,7 +731,7 @@ Prompt summary: As a manual-testing orchestrator, validate that unknown `--score
 Expected signals: Unknown-scorer run completes with exit code 0; stderr contains `unknown --scorer 'bogus', defaulting to 'pattern'`; the unknown-scorer `report.json` has `scoringMethod: "pattern"`; unknown-mode run does not crash; stderr contains `unknown mode 'bogus', defaulting to 'agent-improvement'`; the unknown-mode run routes to `score-candidate.cjs` and produces a score JSON, not a benchmark report
 
 #### Test Execution
-> **Feature File:** [MB-041](09--model-benchmark-mode/041-unknown-fallback.md)
+> **Feature File:** [MB-041](09--model-benchmark-mode/unknown-fallback.md)
 
 ### MB-042 | Criteria-Exec Hardening Gate
 
@@ -744,7 +744,7 @@ Prompt summary: As a manual-testing orchestrator, validate that `DEEP_AGENT_ALLO
 Expected signals: Default run (gate unset) executes the criterion: `per_criterion` entry `passed: true`, detail like `exit=0 expected=0`, `D1: 1.0`; gated run (`DEEP_AGENT_ALLOW_CRITERIA_EXEC=0`) skips the criterion: `per_criterion` entry `passed: false`, detail contains `criteria exec disabled (DEEP_AGENT_ALLOW_CRITERIA_EXEC=0)`, `D1: 0.0`; the scorer does not throw in either run; the gated run never spawns the criterion command
 
 #### Test Execution
-> **Feature File:** [MB-042](09--model-benchmark-mode/042-criteria-exec-gate.md)
+> **Feature File:** [MB-042](09--model-benchmark-mode/criteria-exec-gate.md)
 
 ---
 
@@ -763,7 +763,7 @@ Prompt summary: As a manual-testing orchestrator, validate that loop-host resolv
 Expected signals: the skill-benchmark run completes with exit code 0 and emits `skill-benchmark-report.json` plus the rendered `skill-benchmark-report.md`; `--mode=bogus` writes `unknown mode 'bogus', defaulting to 'agent-improvement'` to stderr; the default and model-benchmark routes are unchanged.
 
 #### Test Execution
-> **Feature File:** [SB-043](10--skill-benchmark/043-mode-wiring-routing.md)
+> **Feature File:** [SB-043](10--skill-benchmark/mode-wiring-routing.md)
 
 ### SB-044 | Contamination Gate
 
@@ -776,7 +776,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the contaminatio
 Expected signals: the leaking prompt run exits 1 with `passed: false` and reports the leaked terms; the clean prompt run exits 0 with `passed: true` and zero hard leaks; banned vocabulary is built from the target skill's own identity (name, triggers, router keywords, resource-path tokens), so a leak is treated as a fixture failure, not a skill failure.
 
 #### Test Execution
-> **Feature File:** [SB-044](10--skill-benchmark/044-contamination-gate.md)
+> **Feature File:** [SB-044](10--skill-benchmark/contamination-gate.md)
 
 ### SB-045 | Router-Replay (Mode A, Deterministic)
 
@@ -789,7 +789,7 @@ Prompt summary: As a manual-testing orchestrator, validate that router-replay pr
 Expected signals: two runs over the same task exit 0 and produce byte-identical JSON (deterministic); `parseable: true`; the resolved `intents` and `resources` reflect the task (e.g. a REVIEW task routes to the expected resources with no missing resources).
 
 #### Test Execution
-> **Feature File:** [SB-045](10--skill-benchmark/045-router-replay-mode-a.md)
+> **Feature File:** [SB-045](10--skill-benchmark/router-replay-mode-a.md)
 
 ### SB-046 | D5 Connectivity Hard Gate
 
@@ -802,7 +802,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the D5 scan hard
 Expected signals: a router-less skill exits 1 with `gateFailed: true`, `routerParseable: false`, a `router_unparseable` P0 finding, and `score` reduced by the P0 penalty (<= 60); a healthy router-bearing skill exits 0 with `gateFailed: false` and an empty `deadResourcePaths`.
 
 #### Test Execution
-> **Feature File:** [SB-046](10--skill-benchmark/046-d5-connectivity-hard-gate.md)
+> **Feature File:** [SB-046](10--skill-benchmark/d5-connectivity-hard-gate.md)
 
 ### SB-047 | Scoring Against the Private Gold
 
@@ -815,7 +815,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the skill-benchm
 Expected signals: the run exits 0 with `scoringMethod: "mode-a-router-replay"`; at least one scored scenario row carries `dims.d1intra`; the aggregate carries an `aggregateScore` and a verdict (`PASS`/`CONDITIONAL`/`FAIL`); `D4` is reported `unscored` (live-mode ablation) and `D5.hardGate` is present; under the default deterministic path `unscoredDimensions` includes `D1inter` (advisor probe off).
 
 #### Test Execution
-> **Feature File:** [SB-047](10--skill-benchmark/047-scoring-vs-private-gold.md)
+> **Feature File:** [SB-047](10--skill-benchmark/scoring-vs-private-gold.md)
 
 ### SB-048 | Dual Report and Remediation Taxonomy
 
@@ -828,7 +828,7 @@ Prompt summary: As a manual-testing orchestrator, validate that the run emits bo
 Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` and `.md`; re-rendering via `build-report.cjs --report <json>` reproduces the orchestrator markdown byte-for-byte (anti-drift); every bottleneck `class` is a member of `assets/skill-benchmark/remediation_taxonomy.json` (classes carry `severity`, `oneLineFix`, and `handoffLane`). Note: the taxonomy is a reference asset validated by test; the report code does not yet enrich bottlenecks with its fields.
 
 #### Test Execution
-> **Feature File:** [SB-048](10--skill-benchmark/048-dual-report-and-remediation.md)
+> **Feature File:** [SB-048](10--skill-benchmark/dual-report-and-remediation.md)
 
 ---
 
