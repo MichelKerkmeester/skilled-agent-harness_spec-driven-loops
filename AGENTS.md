@@ -294,6 +294,8 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Spec folder path:** `.opencode/specs/[track]/[###-short-name]/` for tracked OpenCode packets, with phase children such as `[001-phase]/` under phase parents. Legacy/root `specs/[###-short-name]/` may exist, but current packet-local docs and metadata live under `.opencode/specs/`. | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
+**Spec folder naming [convention — currently UNGUARDED at creation time]:** Phase children MUST match `^[0-9]{3}-[a-z0-9-]+$` (3-digit prefix, lowercase, hyphens only — no uppercase/underscores/spaces). Before creating a NEW top-level packet, check whether it belongs *inside* an existing packet: if its work is about/scoped to another packet, create it as a phase child under that parent, not a sibling at the track root. A top-level slug that embeds a second packet's number (e.g. `028-026-program-research`) is the canonical "should have been a phase child" smell — make it `026-.../NNN-program-research` instead. Avoid generic standalone slugs (`-remediation`, `-cleanup`, `phase-N`, `round-N`) at the track root; name for the concrete work. NOTE: `create.sh`/`validate.sh` enforce only *syntax* today, and most folders are created with the Write tool (which bypasses `create.sh`), so this is a prompt-time discipline, not an automated gate. A validate-time `SEMANTIC_NAMING` guard is a deferred follow-on (see `026-graph-and-context-optimization/006-operator-tooling/008-naming-guard-classifier-and-validate-rule`), to be built WARN-first only if the defect recurs.
+
 ---
 
 ## 4. 🧑‍🏫 CONFIDENCE & CLARIFICATION FRAMEWORK
