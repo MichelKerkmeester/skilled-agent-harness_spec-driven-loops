@@ -1186,8 +1186,8 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type
-- [skill_md_template.md](./skill_md_template.md) - If converting to skill
+- [skill_md_template.md](./skill/skill_md_template.md) - If converting to skill
 
 ### Standards
-- [core_standards.md](../../references/global/core_standards.md) - Document type rules
-- [validation.md](../../references/global/validation.md) - Quality scoring
+- [core_standards.md](../references/global/core_standards.md) - Document type rules
+- [validation.md](../references/global/validation.md) - Quality scoring

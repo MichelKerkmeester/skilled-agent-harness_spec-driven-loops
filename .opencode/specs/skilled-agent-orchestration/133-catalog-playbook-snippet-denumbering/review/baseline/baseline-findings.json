@@ -12,12 +12,12 @@
   "files_scanned": 3386,
   "refs_seen": 24673,
   "refs_checked": 24270,
-  "broken_total": 43,
+  "broken_total": 23,
   "broken_denumber_fixable": 0,
   "low_confidence_tickpath_total": 10363,
   "by_area": {
     "skill:sk": {
-      "total": 42,
+      "total": 22,
       "denumber_fixable": 0
     },
     "skill:system": {
@@ -116,142 +116,6 @@
     },
     {
       "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/changelog_template.md",
-      "kind": "mdlink",
-      "ref": "./readme_template.md",
-      "resolved": ".opencode/skills/sk-doc/assets/readme_template.md | readme_template.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/changelog_template.md",
-      "kind": "mdlink",
-      "ref": "./install_guide_template.md",
-      "resolved": ".opencode/skills/sk-doc/assets/install_guide_template.md | install_guide_template.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/changelog_template.md",
-      "kind": "mdlink",
-      "ref": "../../references/global/hvr_rules.md",
-      "resolved": ".opencode/skills/references/global/hvr_rules.md | ../../references/global/hvr_rules.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/changelog_template.md",
-      "kind": "mdlink",
-      "ref": "../../references/global/core_standards.md",
-      "resolved": ".opencode/skills/references/global/core_standards.md | ../../references/global/core_standards.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/changelog_template.md",
-      "kind": "mdlink",
-      "ref": "../../../../command/create/changelog.md",
-      "resolved": "command/create/changelog.md | ../../../../command/create/changelog.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/changelog_template.md",
-      "kind": "mdlink",
-      "ref": "../../../system-spec-kit/references/workflows/nested_changelog.md",
-      "resolved": ".opencode/system-spec-kit/references/workflows/nested_changelog.md | ../../../system-spec-kit/references/workflows/nested_changelog.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/command_template.md",
-      "kind": "mdlink",
-      "ref": "./skill_md_template.md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill_md_template.md | skill_md_template.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/command_template.md",
-      "kind": "mdlink",
-      "ref": "../../references/global/core_standards.md",
-      "resolved": ".opencode/skills/references/global/core_standards.md | ../../references/global/core_standards.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/command_template.md",
-      "kind": "mdlink",
-      "ref": "../../references/global/validation.md",
-      "resolved": ".opencode/skills/references/global/validation.md | ../../references/global/validation.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-      "kind": "mdlink",
-      "ref": "../skill/skill_md_template.md",
-      "resolved": ".opencode/skills/sk-doc/skill/skill_md_template.md | ../skill/skill_md_template.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-      "kind": "mdlink",
-      "ref": "../command_template.md",
-      "resolved": ".opencode/skills/sk-doc/command_template.md | ../command_template.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-      "kind": "mdlink",
-      "ref": "../../references/global/core_standards.md",
-      "resolved": ".opencode/skills/references/global/core_standards.md | ../../references/global/core_standards.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-      "kind": "mdlink",
-      "ref": "../../references/global/validation.md",
-      "resolved": ".opencode/skills/references/global/validation.md | ../../references/global/validation.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "../skill/skill_md_template.md",
-      "resolved": ".opencode/skills/sk-doc/skill/skill_md_template.md | ../skill/skill_md_template.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "../../references/global/core_standards.md",
-      "resolved": ".opencode/skills/references/global/core_standards.md | ../../references/global/core_standards.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
-      "kind": "mdlink",
-      "ref": "./frontmatter_templates.md",
-      "resolved": ".opencode/skills/sk-doc/assets/readme/frontmatter_templates.md | frontmatter_templates.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-      "kind": "mdlink",
-      "ref": "frontmatter_templates.md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/frontmatter_templates.md | frontmatter_templates.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
       "file": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
       "kind": "mdlink",
       "ref": "./references/workflow-details.md",
@@ -336,30 +200,6 @@
       "kind": "mdlink",
       "ref": "../assets/",
       "resolved": ".opencode/skills/sk-doc/assets/assets | ../assets",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-      "kind": "mdlink",
-      "ref": "../../template_rules.json",
-      "resolved": ".opencode/skills/sk-doc/template_rules.json | ../../template_rules.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-      "kind": "mdlink",
-      "ref": "../../../references/global/core_standards.md",
-      "resolved": ".opencode/skills/references/global/core_standards.md | ../../../references/global/core_standards.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-      "kind": "mdlink",
-      "ref": "../../../SKILL.md",
-      "resolved": ".opencode/skills/SKILL.md | ../../../SKILL.md",
       "denumber_fixable": false
     },
     {

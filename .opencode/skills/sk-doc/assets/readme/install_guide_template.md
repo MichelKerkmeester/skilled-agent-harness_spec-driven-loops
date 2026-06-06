@@ -970,7 +970,7 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 
 ### Templates
 - [skill_asset_template.md](../skill/skill_asset_template.md) - Pattern reference for this document
-- [frontmatter_templates.md](./frontmatter_templates.md) - YAML frontmatter examples
+- [frontmatter_templates.md](../frontmatter_templates.md) - YAML frontmatter examples
 
 ### Standards
 - [install_guide_creation.md](../../references/install_guide_creation.md) - Phase validation rules and creation workflow

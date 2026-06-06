@@ -95,7 +95,7 @@ version: 1.0.0
 - **description**: Third-person voice, single line, no `<>` brackets
 - **allowed-tools**: Use brackets `[...]`, not comma-separated string
 
-> **Complete Reference**: For validation rules, edge cases, array formats, and all document type frontmatter, see [frontmatter_templates.md](frontmatter_templates.md)
+> **Complete Reference**: For validation rules, edge cases, array formats, and all document type frontmatter, see [frontmatter_templates.md](../frontmatter_templates.md)
 
 ---
 

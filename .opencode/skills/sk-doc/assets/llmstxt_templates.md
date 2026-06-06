@@ -840,10 +840,10 @@ Add sections:
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type
-- [skill_md_template.md](../skill/skill_md_template.md) - SKILL.md file templates
+- [skill_md_template.md](./skill/skill_md_template.md) - SKILL.md file templates
 
 ### Standards
-- [core_standards.md](../../references/global/core_standards.md) - Document type rules
+- [core_standards.md](../references/global/core_standards.md) - Document type rules
 
 ### External
 - [llmstxt.org](https://llmstxt.org/) - Official specification

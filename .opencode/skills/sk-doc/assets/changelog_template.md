@@ -272,18 +272,18 @@ The global component versioning rules in this file do not apply to nested packet
 
 ### Templates
 
-- [readme_template.md](./readme_template.md) - README structure and quality rules
-- [install_guide_template.md](./install_guide_template.md) - Phased installation guides
+- [readme_template.md](./readme/readme_template.md) - README structure and quality rules
+- [install_guide_template.md](./readme/install_guide_template.md) - Phased installation guides
 - [llmstxt_templates.md](./llmstxt_templates.md) - llms.txt site-map files
 - [frontmatter_templates.md](./frontmatter_templates.md) - YAML frontmatter by document type
 
 ### Standards
 
 - `PUBLIC_RELEASE.md` Section 7 - Authoritative writing style for releases
-- [hvr_rules.md](../../references/global/hvr_rules.md) - Human Voice Rules (banned words, punctuation, structure)
-- [core_standards.md](../../references/global/core_standards.md) - Markdown structure and naming conventions
+- [hvr_rules.md](../references/global/hvr_rules.md) - Human Voice Rules (banned words, punctuation, structure)
+- [core_standards.md](../references/global/core_standards.md) - Markdown structure and naming conventions
 
 ### Workflows
 
-- [.opencode/commands/create/changelog.md](../../../../command/create/changelog.md) - The `/create:changelog` command surface
-- [nested_changelog.md](../../../system-spec-kit/references/workflows/nested_changelog.md) - Nested packet-local changelog workflow
+- [.opencode/commands/create/changelog.md](../../../commands/create/changelog.md) - The `/create:changelog` command surface
+- [nested_changelog.md](../../system-spec-kit/references/workflows/nested_changelog.md) - Nested packet-local changelog workflow
