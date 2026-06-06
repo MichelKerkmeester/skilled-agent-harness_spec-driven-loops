@@ -9,6 +9,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -42,23 +43,120 @@ function readOptionalJson(filePath) {
   return parseJson(content, null);
 }
 
-function writeUtf8(filePath, content) {
+// Atomic text write: temp + fsync + rename, so a reader always sees either the
+// previous complete file or the new one (a crash mid-write never leaves a
+// half-written registry or dashboard). Mirrors the runtime writeStateAtomic
+// contract for the markdown dashboard, which the JSON-only runtime helper cannot
+// serialize.
+function writeTextAtomic(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, content, 'utf8');
+  const tempPath = `${filePath}.tmp.${process.pid}.${crypto.randomBytes(6).toString('hex')}`;
+  let fd;
+  try {
+    fs.writeFileSync(tempPath, content, 'utf8');
+    fd = fs.openSync(tempPath, 'r');
+    fs.fsyncSync(fd);
+    fs.closeSync(fd);
+    fd = undefined;
+    fs.renameSync(tempPath, filePath);
+  } catch (error) {
+    if (typeof fd === 'number') { try { fs.closeSync(fd); } catch { /* already closed */ } }
+    if (fs.existsSync(tempPath)) { fs.rmSync(tempPath, { force: true }); }
+    throw error;
+  }
+}
+
+function writeStateAtomicInline(filePath, data) {
+  writeTextAtomic(filePath, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+// Truncate a corrupt JSONL tail in place: keep every complete valid line, drop
+// trailing garbage from a crash mid-append. Contract-equivalent to the runtime
+// repairJsonlTail, used as the fallback when the TS toolchain is unavailable.
+function repairJsonlTailInline(filePath) {
+  if (!fs.existsSync(filePath)) return { repaired: false, droppedBytes: 0 };
+  const content = fs.readFileSync(filePath, 'utf8');
+  if (content.length === 0) return { repaired: false, droppedBytes: 0 };
+  const originalBytes = Buffer.byteLength(content, 'utf8');
+  let cursor = 0;
+  let validEnd = 0;
+  const newlineRe = /\r?\n/g;
+  while (cursor < content.length) {
+    newlineRe.lastIndex = cursor;
+    const match = newlineRe.exec(content);
+    if (!match) break;
+    const lineEnd = match.index;
+    const rawLine = content.slice(cursor, lineEnd);
+    const nextCursor = lineEnd + match[0].length;
+    if (rawLine.trim() !== '') {
+      try { JSON.parse(rawLine); } catch { break; }
+    }
+    validEnd = nextCursor;
+    cursor = nextCursor;
+  }
+  const trailing = content.slice(cursor);
+  let keepBytes;
+  if (trailing.trim() === '') {
+    keepBytes = originalBytes;
+  } else {
+    try { JSON.parse(trailing); keepBytes = originalBytes; }
+    catch { keepBytes = Buffer.byteLength(content.slice(0, validEnd), 'utf8'); }
+  }
+  const droppedBytes = originalBytes - keepBytes;
+  if (droppedBytes <= 0) return { repaired: false, droppedBytes: 0 };
+  fs.truncateSync(filePath, keepBytes);
+  return { repaired: true, droppedBytes };
+}
+
+// Prefer the deep-loop-runtime state-safety helpers (single source of truth for
+// the atomic-write + jsonl-repair contracts) loaded in-process via the tsx CJS
+// register; fall back to the contract-equivalent inline implementations above so
+// the reducer stays runnable when the TS toolchain is absent.
+// Path depth from scripts/shared/ → three levels up reaches .opencode/skills/.
+const TSX_CJS_REGISTER = path.join(__dirname, '..', '..', '..', 'system-spec-kit', 'scripts', 'node_modules', 'tsx', 'dist', 'cjs', 'index.cjs');
+const RUNTIME_DEEP_LOOP = path.join(__dirname, '..', '..', '..', 'deep-loop-runtime', 'lib', 'deep-loop');
+
+let _stateSafety = null;
+function loadStateSafety() {
+  if (_stateSafety) return _stateSafety;
+  try {
+    require(TSX_CJS_REGISTER);
+    const atomic = require(path.join(RUNTIME_DEEP_LOOP, 'atomic-state.ts'));
+    const repair = require(path.join(RUNTIME_DEEP_LOOP, 'jsonl-repair.ts'));
+    if (typeof atomic.writeStateAtomic === 'function' && typeof repair.repairJsonlTail === 'function') {
+      _stateSafety = { writeStateAtomic: atomic.writeStateAtomic, repairJsonlTail: repair.repairJsonlTail, source: 'runtime' };
+      return _stateSafety;
+    }
+  } catch { /* fall through to inline contract-equivalents */ }
+  _stateSafety = { writeStateAtomic: writeStateAtomicInline, repairJsonlTail: repairJsonlTailInline, source: 'inline' };
+  return _stateSafety;
+}
+
+// Parse JSONL content into an array of records. Corrupt lines are reported, not
+// silently dropped, so a partial run surfaces rather than hides truncation.
+function parseJsonlDetailed(content) {
+  const records = [];
+  const corruptionWarnings = [];
+  let lineNumber = 0;
+  for (const rawLine of String(content || '').split('\n')) {
+    lineNumber += 1;
+    const line = rawLine.trim();
+    if (!line) continue;
+    try {
+      records.push(JSON.parse(line));
+    } catch (error) {
+      corruptionWarnings.push({
+        line: lineNumber,
+        raw: rawLine.length > 200 ? `${rawLine.slice(0, 200)}...` : rawLine,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+  return { records, corruptionWarnings };
 }
 
 function parseJsonl(content) {
-  return content
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .flatMap((line) => {
-      try {
-        return [JSON.parse(line)];
-      } catch (_error) {
-        return [];
-      }
-    });
+  return parseJsonlDetailed(content).records;
 }
 
 function isPlainObject(value) {
@@ -1184,7 +1282,13 @@ function main() {
   const candidateLineagePath = path.join(runtimeRoot, 'candidate-lineage.json');
   const mutationCoveragePath = path.join(runtimeRoot, 'mutation-coverage.json');
 
-  const records = parseJsonl(readUtf8(stateLogPath));
+  const stateSafety = loadStateSafety();
+  // Recover a crash-corrupted JSONL tail before reading, so a half-written
+  // final append from an interrupted run never aborts the reduce.
+  const stateLogRepair = stateSafety.repairJsonlTail(stateLogPath);
+  const stateLogContent = readUtf8(stateLogPath);
+  const { records, corruptionWarnings } = parseJsonlDetailed(stateLogContent);
+
   const registry = buildRegistry(records);
   registry.journalSummary = buildJournalSummary(journalPath);
   registry.candidateLineage = buildCandidateLineageSummary(candidateLineagePath);
@@ -1192,11 +1296,31 @@ function main() {
   const config = parseJson(readOptionalUtf8(configPath) || '{}', {});
   const mirrorDriftReport = readOptionalUtf8(mirrorDriftReportPath);
   registry.stopStatus = evaluateStopStatus(registry, config, mirrorDriftReport);
+  registry.stateLogRepair = stateLogRepair;
+  registry.corruptionWarnings = corruptionWarnings;
   const sampleQuality = summarizeSampleQuality(records, registry);
   const dashboard = renderDashboard(registry, sampleQuality);
 
-  writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
-  writeUtf8(dashboardPath, dashboard);
+  // Atomic writes: a crash mid-write leaves the prior complete file intact,
+  // never a half-written registry or dashboard for a downstream reader.
+  stateSafety.writeStateAtomic(registryPath, registry);
+  writeTextAtomic(dashboardPath, dashboard.endsWith('\n') ? dashboard : `${dashboard}\n`);
+
+  process.stdout.write(
+    `${JSON.stringify(
+      {
+        registryPath,
+        dashboardPath,
+        totalRecords: registry.globalMetrics.totalRecords,
+        corruptionCount: corruptionWarnings.length,
+        stateLogRepaired: stateLogRepair.repaired,
+        stateLogDroppedBytes: stateLogRepair.droppedBytes,
+        stateSafety: stateSafety.source,
+      },
+      null,
+      2,
+    )}\n`,
+  );
 }
 
 main();

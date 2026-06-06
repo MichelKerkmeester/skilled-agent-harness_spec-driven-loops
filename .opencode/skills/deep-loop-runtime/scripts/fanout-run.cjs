@@ -371,6 +371,7 @@ async function main() {
     resolveGeminiSandboxMode,
     resolveDevinPermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
+  const { buildExecutorDispatchEnv } = await import('../lib/deep-loop/executor-audit.ts');
 
   installSignalHandlers(() => {});
   maybeThrowTestFault();
@@ -442,12 +443,20 @@ async function main() {
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
       };
 
+      // Stamp the dispatch stack with this lineage's executor kind so a seat that
+      // tries to recursively launch the same kind is detectable by the runtime
+      // recursion guard (detectSameKindFromStack reads SPECKIT_CLI_DISPATCH_STACK).
+      // buildExecutorDispatchEnv filters the parent env to the per-kind allowlist,
+      // so the SPECKIT_* lineage/state-dir keys are applied AFTER the filter to
+      // preserve the per-replica lockfile isolation they provide.
+      const dispatchEnv = { ...buildExecutorDispatchEnv(lineage, process.env), ...extraEnv };
+
       const timeoutMs = computeLineageTimeoutMs(lineage);
 
       const result = await runLineageProcess(command, cmdArgs, {
         cwd: process.cwd(),
         timeoutMs,
-        env: { ...process.env, ...extraEnv },
+        env: dispatchEnv,
         maxBuffer: 20 * 1024 * 1024,
         ...(typeof input === 'string' ? { input } : {}),
       });

@@ -164,29 +164,64 @@ function emitEvent(journalPath, event) {
 }
 
 /**
- * Read all events from a journal file.
+ * Read all events from a journal file, surfacing corrupt lines as warnings.
  * Used for resume/replay semantics (REQ-AI-003).
  *
+ * Returns an array of parsed event objects. The array also carries a
+ * `corruptionWarnings` property (string[]) listing any lines that could not
+ * be parsed, so callers that need the full picture can inspect them.
+ * Existing callers that only iterate the array are unaffected.
+ *
  * @param {string} journalPath - Path to the improvement-journal.jsonl file
- * @returns {object[]} Array of parsed event objects
+ * @returns {object[] & { corruptionWarnings: string[] }} Valid event objects with attached warnings
  */
 function readJournal(journalPath) {
+  const corruptionWarnings = [];
+
+  let validRecords;
   try {
     const content = fs.readFileSync(journalPath, 'utf8');
-    return content
+    validRecords = content
       .split('\n')
       .map((line) => line.trim())
       .filter(Boolean)
-      .flatMap((line) => {
+      .flatMap((line, lineIndex) => {
         try {
           return [JSON.parse(line)];
-        } catch (_err) {
+        } catch (parseErr) {
+          const warning = `Line ${lineIndex + 1}: JSON parse error: ${parseErr.message} — raw: ${line.slice(0, 120)}`;
+          corruptionWarnings.push(warning);
+          process.stderr.write(`[improvement-journal] Corrupt line skipped. ${warning}\n`);
           return [];
         }
       });
-  } catch (_err) {
-    return [];
+  } catch (_fileErr) {
+    validRecords = [];
   }
+
+  // Attach warnings as a non-enumerable property so spread/JSON.stringify callers
+  // are unaffected, but explicit readers can inspect corruptionWarnings directly.
+  Object.defineProperty(validRecords, 'corruptionWarnings', {
+    value: corruptionWarnings,
+    writable: false,
+    enumerable: false,
+    configurable: false,
+  });
+
+  return validRecords;
+}
+
+/**
+ * Read all events from a journal file and return both valid records and
+ * corruption warnings as a plain object (dual-use-safe, matches the shape
+ * that reduce-state.cjs's parseJsonlDetailed uses for parity).
+ *
+ * @param {string} journalPath - Path to the improvement-journal.jsonl file
+ * @returns {{ records: object[], corruptionWarnings: string[] }}
+ */
+function readJournalDetailed(journalPath) {
+  const events = readJournal(journalPath);
+  return { records: events, corruptionWarnings: events.corruptionWarnings };
 }
 
 /**
@@ -240,6 +275,7 @@ module.exports = {
   validateEvent,
   emitEvent,
   readJournal,
+  readJournalDetailed,
   getLastIteration,
   getSessionResult,
 };

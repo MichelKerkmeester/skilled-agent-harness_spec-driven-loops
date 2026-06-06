@@ -95,6 +95,7 @@ state_paths:
   strategy: "{artifact_dir}/deep-review-strategy.md"
   dashboard: "{artifact_dir}/deep-review-dashboard.md"
   pause_sentinel: "{artifact_dir}/.deep-review-pause"
+  lock_file: "{artifact_dir}/.deep-review.lock"
   prompt_dir: "{artifact_dir}/prompts"
   iteration_dir: "{artifact_dir}/iterations"
   iteration_pattern: "{artifact_dir}/iterations/iteration-{NNN}.md"
@@ -231,6 +232,23 @@ workflow:
         on_legacy_detected: "Move only the review-specific whitelist, append a migration event to the canonical JSONL, and leave unrelated scratch files untouched."
         on_conflict: "If canonical review/ state and legacy scratch review state both exist but disagree, halt for operator repair instead of merging contradictory state."
         command: "mkdir -p {state_paths.iteration_dir} && if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}; [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}; if [ -e {state_paths.state_log} ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {state_paths.state_log}; fi; fi; find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; 2>/dev/null || true"
+
+      step_acquire_lock:
+        action: "Acquire the advisory lock defined by the spec_check_protocol before session classification"
+        command: "Open {state_paths.lock_file} with exclusive non-blocking advisory locking semantics; fail closed on contention."
+        note: "macOS/BSD locking here is advisory. Stale-lock override is confirm-only or explicit recovery-only."
+        # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
+        # Runtimes honoring step_acquire_lock are required to perform this cleanup before halting or pausing.
+        on_halt:
+          action: "Release {state_paths.lock_file} before any terminal halt branch returns control"
+          applies_to: ["step_classify_session.on_invalid_state", "step_classify_session.on_completed_session"]
+          command: "Remove or close-with-release {state_paths.lock_file}; failures here are logged but do not block the halt"
+        on_cancel:
+          action: "Release {state_paths.lock_file} on user cancel or pause-sentinel detection before sentinel processing"
+          command: "Remove or close-with-release {state_paths.lock_file}; cancel completes regardless of cleanup result"
+        on_workflow_exit:
+          action: "Release {state_paths.lock_file} as the final step of any workflow exit path (success or failure)"
+          command: "Remove or close-with-release {state_paths.lock_file}; idempotent — safe to invoke when already released"
 
       step_classify_session:
         action: "Classify the session before writing files"
@@ -1371,6 +1389,11 @@ workflow:
         action: "Verify canonical save routed content into the correct spec document"
         check: "Does {spec_folder}/implementation-summary.md, {spec_folder}/decision-record.md, or {spec_folder}/handover.md carry the new continuity update?"
         on_fail: "Log warning but do not block completion"
+
+      step_release_lock:
+        action: "Release the advisory lock after save, skip-save, or cancellation cleanup has resolved"
+        command: "Close or unlock {state_paths.lock_file} using advisory semantics only."
+        append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
 
   # ═══════════════════════════════════════════════════════════════
   # COMPLETION

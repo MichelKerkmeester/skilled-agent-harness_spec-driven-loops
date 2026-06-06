@@ -5,6 +5,7 @@ import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { runtimeRoot, spawnCjs } from '../helpers/spawn-cjs';
+import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
 
 const tempDirs: string[] = [];
 
@@ -415,5 +416,99 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
     const { stdout } = await runCodexEcho({ label: 'uncapped' }, 'research');
     expect(stdout).not.toContain('config.maxIterations');
     expect(stdout).toContain('(to convergence)');
+  });
+});
+
+describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATCH_STACK)', () => {
+  /**
+   * Write a stub that echoes the dispatch-stack env var (and the per-replica
+   * state-dir env) so the test can assert the spawned seat's environment.
+   */
+  function writeStackEchoStub(binDir: string, name: string): string {
+    const stubPath = join(binDir, name);
+    writeFileSync(
+      stubPath,
+      '#!/bin/sh\necho "DISPATCH_STACK=$SPECKIT_CLI_DISPATCH_STACK"\n'
+        + 'echo "STATE_DIR=$SPECKIT_CODEX_STATE_DIR"\n'
+        + 'echo "LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\nexit 0\n',
+      { mode: 0o755 },
+    );
+    return stubPath;
+  }
+
+  async function runCodexSeat(
+    parentStack: string | undefined,
+  ): Promise<string> {
+    const binDir = makeTempDir('fanout-run-stack-bin-');
+    writeStackEchoStub(binDir, 'codex');
+    const baseDir = makeTempDir('fanout-run-stack-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'seat-a', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+    });
+
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
+    };
+    if (parentStack === undefined) {
+      delete env['SPECKIT_CLI_DISPATCH_STACK'];
+    } else {
+      env['SPECKIT_CLI_DISPATCH_STACK'] = parentStack;
+    }
+
+    await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-stack',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      { env, timeoutMs: 15_000 },
+    );
+
+    return readFileSync(
+      join(baseDir, 'lineages', 'seat-a', 'logs', 'fanout-lineage.out'),
+      'utf8',
+    );
+  }
+
+  it('stamps the dispatched CLI seat env with its kind when the parent stack is empty', async () => {
+    const stdout = await runCodexSeat(undefined);
+    const stackLine = stdout.split('\n').find((l) => l.startsWith('DISPATCH_STACK=')) ?? '';
+    expect(stackLine).toBe('DISPATCH_STACK=cli-codex');
+  });
+
+  it('appends the kind onto an existing parent dispatch stack (cross-kind chain)', async () => {
+    const stdout = await runCodexSeat('cli-opencode');
+    const stackLine = stdout.split('\n').find((l) => l.startsWith('DISPATCH_STACK=')) ?? '';
+    expect(stackLine).toBe('DISPATCH_STACK=cli-opencode:cli-codex');
+  });
+
+  it('preserves per-replica state-dir + lineage-id env after the dispatch-env allowlist filter', async () => {
+    const stdout = await runCodexSeat(undefined);
+    const stateLine = stdout.split('\n').find((l) => l.startsWith('STATE_DIR=')) ?? '';
+    const lineageLine = stdout.split('\n').find((l) => l.startsWith('LINEAGE_ID=')) ?? '';
+    // buildExecutorDispatchEnv strips non-allowlisted keys; these SPECKIT_* keys
+    // are reapplied after the filter, so they must still reach the seat.
+    expect(stateLine).toMatch(/STATE_DIR=.+\.executor-state$/);
+    expect(lineageLine).toBe('LINEAGE_ID=seat-a');
+  });
+
+  it('demonstrates the guard end-to-end: the stamped kind is detected as same-kind recursion', async () => {
+    // The seat env carries SPECKIT_CLI_DISPATCH_STACK=cli-codex; a nested
+    // cli-codex dispatch from inside that seat would hit this exact check.
+    const stdout = await runCodexSeat(undefined);
+    const stackLine = stdout.split('\n').find((l) => l.startsWith('DISPATCH_STACK=')) ?? '';
+    const stack = stackLine.slice('DISPATCH_STACK='.length);
+
+    expect(detectSameKindFromStack(stack, 'cli-codex')).toBe(true);
+    expect(detectSameKindFromStack(stack, 'cli-opencode')).toBe(false);
   });
 });

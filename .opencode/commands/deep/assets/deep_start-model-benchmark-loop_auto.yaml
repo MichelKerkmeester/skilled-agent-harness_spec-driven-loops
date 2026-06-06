@@ -106,6 +106,7 @@ state_paths:
   journal: "{spec_folder}/improvement/improvement-journal.jsonl"
   benchmark_root: ".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}"
   benchmark_report: ".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json"
+  lock_file: "{spec_folder}/improvement/.deep-improvement.lock"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -121,6 +122,19 @@ workflow:
           - existing_runtime_must_be_archived: "If {spec_folder}/improvement already exists from a prior run, archive or replace it instead of resuming in place."
           - dormant_resume_fields_disallowed: "Do not populate continuedFromIteration, resumeMode, or carried-forward parentSessionId state."
         on_fail: "Halt with STATUS=FAIL and instruct the operator to archive the prior improvement packet before re-running."
+      step_acquire_lock:
+        action: "Acquire the advisory lock before any init writes to prevent cross-session races on the shared agent-improvement-state.jsonl"
+        command: "Open {state_paths.lock_file} with exclusive non-blocking advisory locking semantics; fail closed on contention."
+        note: "model-benchmark writes to the same agent-improvement-state.jsonl as the agent-improvement loop; the shared lock file prevents two concurrent runs from racing on that file. Sessions within the same orchestrator process are serialized by design."
+        on_halt:
+          action: "Release {state_paths.lock_file} before any terminal halt branch returns control"
+          command: "Remove or close-with-release {state_paths.lock_file}; failures here are logged but do not block the halt"
+        on_cancel:
+          action: "Release {state_paths.lock_file} on user cancel"
+          command: "Remove or close-with-release {state_paths.lock_file}; cancel completes regardless of cleanup result"
+        on_workflow_exit:
+          action: "Release {state_paths.lock_file} as the final step of any workflow exit path (success or failure)"
+          command: "Remove or close-with-release {state_paths.lock_file}; idempotent — safe to invoke when already released"
       step_resolve_profile:
         description: "Resolve the benchmark profile path or ID, defaulting to the bundled default profile"
         action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
@@ -178,6 +192,10 @@ workflow:
       step_report_status:
         description: "Report STATUS with the benchmark outcome and scoring method"
         action: "Report STATUS=benchmark-complete with scoringMethod={scoring_method}, grader={grader}, and the final aggregate score"
+      step_release_lock:
+        description: "Release the advisory lock as the final step of synthesis"
+        command: "Close or unlock {state_paths.lock_file} using advisory semantics only."
+        append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"synthesis","timestamp":"{ISO_8601_NOW}"}'
       step_emit_journal_event:
         description: "Emit session_end journal event after synthesis completes"
         outcome_binding: "Bind {session_outcome} to a canonical sessionOutcome enum value (keptBaseline | promoted | rolledBack | advisoryOnly). A benchmark run that did not promote a variant binds advisoryOnly. A promoted variant binds promoted."

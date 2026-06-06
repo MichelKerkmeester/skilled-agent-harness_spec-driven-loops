@@ -114,6 +114,7 @@ state_paths:
   registry: "{spec_folder}/improvement/experiment-registry.json"
   integration_report: "{spec_folder}/improvement/integration-report.json"
   benchmark_root: "{spec_folder}/improvement/benchmark-outputs"
+  lock_file: "{spec_folder}/improvement/.deep-improvement.lock"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -136,6 +137,10 @@ workflow:
           Options:
           A) Continue with a fresh session boundary
           B) Cancel
+      step_acquire_lock:
+        action: "Acquire the advisory lock before any init writes to prevent cross-session races on the shared JSONL"
+        command: "Open {state_paths.lock_file} with exclusive non-blocking advisory locking semantics; if locked, stop and present recovery choices."
+        note: "macOS/BSD locking here is advisory. Stale-lock override is confirm-only or explicit recovery-only. Sessions within the same orchestrator process are serialized by design; this guard targets separate terminal invocations racing on the same spec folder."
       step_create_directories:
         description: "Create improvement runtime directories"
         command: "mkdir -p {spec_folder}/improvement/candidates {spec_folder}/improvement/benchmark-runs/{target_profile}"
@@ -254,3 +259,7 @@ workflow:
       step_emit_journal_event:
         description: "Emit session_end journal event after synthesis completes"
         command: "node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+      step_release_lock:
+        description: "Release the advisory lock as the final step of synthesis"
+        command: "Close or unlock {state_paths.lock_file} using advisory semantics only."
+        append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"synthesis","timestamp":"{ISO_8601_NOW}"}'

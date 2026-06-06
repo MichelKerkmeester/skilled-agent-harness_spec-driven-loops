@@ -285,7 +285,7 @@ The host applies the deep-loop-runtime durability layer for every session:
 
 | Mechanism | What Happens |
 |-----------|-------------|
-| **Loop-lock** | A single-writer advisory lock is acquired via `scripts/loop-lock.cjs` (`step_acquire_lock`) at session start and released (`step_release_lock`) at exit, preventing concurrent sessions from racing the shared state files. |
+| **Loop-lock** | A single-writer advisory lock is acquired via `scripts/loop-lock.cjs` (`step_acquire_lock`) at session start and released (`step_release_lock`) at exit. Best-effort: because a host-driven loop has no single long-lived owner process, this advises against concurrent same-packet sessions (with stale-lock reclaim) rather than hard-enforcing mutual exclusion. |
 | **Atomic state writes** | The registry and dashboard are written crash-safe (temp file → fsync → rename) via the runtime `writeStateAtomic` helper in `reduce-state.cjs`. A partial write never corrupts the existing state. |
 | **JSONL repair** | Before each reduce pass, the runtime `repairJsonlTail` helper inspects `deep-context-state.jsonl` and truncates a corrupt trailing line, so a mid-write crash does not block subsequent iterations. |
 | **Post-dispatch seat-output validation** | Each seat's returned finding set is validated (known kind / path-or-symbol / numeric relevance) before it enters the merge. Invalid findings surface as `seatValidationWarnings` and are never silently merged. |
