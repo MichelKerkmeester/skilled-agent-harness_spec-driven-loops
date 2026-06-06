@@ -1,0 +1,72 @@
+---
+title: "234 -- Ops Self-Healing Runbooks"
+description: "This scenario validates ops self-healing runbooks for `234`. It focuses on confirming the runbook dispatcher, metadata surfaces, successful drills, and bounded escalation behavior."
+---
+
+# 234 -- Ops Self-Healing Runbooks
+
+## 1. OVERVIEW
+
+This scenario validates ops self-healing runbooks for `234`. It focuses on confirming the runbook dispatcher, metadata surfaces, successful drills, and bounded escalation behavior.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm runbook listing, metadata lookup, success drills, and escalation drills.
+- Real user request: `` Please validate Ops Self-Healing Runbooks against the documented validation surface and tell me whether the expected signals are present: `list` prints four classes; `show` prints trigger, owner, escalation, and drill command; supported success drills emit recovery payloads; degraded drills emit escalation payloads or non-zero aggregate status. ``
+- Prompt: `Validate Ops Self-Healing Runbooks against the documented validation surface and report cited pass/fail evidence.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: `list` prints four classes; `show` prints trigger, owner, escalation, and drill command; supported success drills emit recovery payloads; degraded drills emit escalation payloads or non-zero aggregate status
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if the dispatcher and metadata surface behave deterministically and the drill outcomes match the current degraded-versus-supported reality
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate Ops Self-Healing Runbooks against the documented validation surface and report cited pass/fail evidence.
+```
+
+### Commands
+
+1. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh list`
+2. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show index-drift`
+3. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill index-drift --scenario success --max-attempts 3`
+4. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill ledger-mismatch --scenario success --max-attempts 3`
+5. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill telemetry-drift --scenario escalate --max-attempts 2 || true`
+6. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill all --scenario success --max-attempts 2 || true`
+
+### Expected
+
+Four failure classes listed; `show` prints trigger, owner, escalation, and drill fields; supported drills emit `RECOVERY_COMPLETE`; degraded classes surface `ESCALATION` or non-zero aggregate drill status
+
+### Evidence
+
+Shell transcript for list/show/drill commands, including JSON-like recovery or escalation payloads and exit codes
+
+### Pass / Fail
+
+- **Pass**: listing, metadata lookup, supported recovery, and degraded escalation all align with the documented current reality
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Inspect `runbook.sh`, `ops-common.sh`, and the individual `heal-*.sh` runners if a class is missing, misrouted, or emits the wrong payload shape
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [16--tooling-and-scripts/223-ops-self-healing-runbooks.md](../../feature_catalog/16--tooling-and-scripts/223-ops-self-healing-runbooks.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Tooling and Scripts
+- Playbook ID: 234
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `16--tooling-and-scripts/ops-self-healing-runbooks.md`

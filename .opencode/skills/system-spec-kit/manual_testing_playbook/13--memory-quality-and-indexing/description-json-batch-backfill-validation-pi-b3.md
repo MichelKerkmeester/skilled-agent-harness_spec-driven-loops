@@ -1,0 +1,73 @@
+---
+title: "131 -- Description.json batch backfill validation (PI-B3)"
+description: "This scenario validates Description.json batch backfill validation (PI-B3) for `131`. It focuses on Confirm batch-generated folder descriptions exist and conform to schema."
+audited_post_018: true
+---
+
+# 131 -- Description.json batch backfill validation (PI-B3)
+
+## 1. OVERVIEW
+
+This scenario validates Description.json batch backfill validation (PI-B3) for `131`. It focuses on Confirm batch-generated folder descriptions exist and conform to schema.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm batch-generated folder descriptions exist and conform to schema.
+- Real user request: `` Please validate Description.json batch backfill validation (PI-B3) against specId and tell me whether the expected signals are present: Description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with `specId` string, `parentChain` array of strings, and `memorySequence` number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback. ``
+- Prompt: `Validate description.json batch backfill schema coverage.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with `specId` string, `parentChain` array of strings, and `memorySequence` number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if description.json coverage matches the active spec inventory, every description.json is valid JSON, C1 field-type checks pass, and per-folder generation is preferred over spec.md fallback
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate description.json batch backfill schema coverage.
+```
+
+### Commands
+
+1. Count spec folders with spec.md
+2. Count description.json files — expect parity with the current active spec inventory
+3. Validate JSON syntax of all files
+4. Run explicit C1 conformance checks: `specId` is string, `parentChain` is array of strings, and `memorySequence` is number
+5. Spot-check schema fields at depth 1, 3, 5+
+6. Run generateFolderDescriptions → verify per-folder files preferred over spec.md
+
+### Expected
+
+Description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with `specId` string, `parentChain` array of strings, and `memorySequence` number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback
+
+### Evidence
+
+Folder count comparison showing `spec.md`/`description.json` parity + JSON syntax validation results + explicit C1 schema checklist evidence + schema field spot-check evidence
+
+### Pass / Fail
+
+- **Pass**: description.json coverage matches the active spec inventory, every description.json is valid JSON, C1 field-type checks pass, and per-folder generation is preferred over spec.md fallback
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Verify generateFolderDescriptions covers the current spec inventory → Check JSON schema validation and C1 field-type rules → Inspect per-folder vs spec.md preference logic
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [13--memory-quality-and-indexing/137-spec-folder-description-discovery.md](../../feature_catalog/13--memory-quality-and-indexing/137-spec-folder-description-discovery.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Memory Quality and Indexing
+- Playbook ID: 131
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `13--memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md`

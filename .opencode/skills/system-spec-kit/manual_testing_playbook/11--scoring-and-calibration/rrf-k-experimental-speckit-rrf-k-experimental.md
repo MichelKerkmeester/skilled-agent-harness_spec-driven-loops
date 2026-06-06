@@ -1,0 +1,74 @@
+---
+title: "172 -- RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL)"
+description: "This scenario validates RRF K experimental tuning (SPECKIT_RRF_K_EXPERIMENTAL) for `172`. It focuses on the default-on graduated rollout and verifying per-intent K optimization selects the best K from a sweep grid."
+audited_post_018: true
+---
+
+# 172 -- RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL)
+
+## 1. OVERVIEW
+
+This scenario validates RRF K experimental tuning (SPECKIT_RRF_K_EXPERIMENTAL) for `172`. It focuses on the default-on graduated rollout and verifying per-intent K optimization selects the best K from a sweep grid.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Verify per-intent K optimization selects best K from sweep grid.
+- Real user request: `Please validate RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL) against SPECKIT_RRF_K_EXPERIMENTAL and tell me whether the expected signals are present: perIntentKSweep() groups queries by intent and sweeps JUDGED_K_SWEEP_VALUES; argmaxNdcg10() selects K maximizing NDCG@10 with ties broken by lower K; evalQueriesAtK() computes aggregate NDCG@10 and MRR@5; falls back to DEFAULT_K=60 when OFF.`
+- Prompt: `Validate RRF K experimental per-intent optimization across the sweep grid.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: perIntentKSweep() groups queries by intent and sweeps JUDGED_K_SWEEP_VALUES; argmaxNdcg10() selects K maximizing NDCG@10 with ties broken by lower K; evalQueriesAtK() computes aggregate NDCG@10 and MRR@5; falls back to DEFAULT_K=60 when OFF
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if per-intent K sweep runs with correct grid and selects best K by NDCG@10; FAIL if sweep does not execute, wrong grid values used, or K=60 applied when flag is ON
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate RRF K experimental per-intent optimization across the sweep grid.
+```
+
+### Commands
+
+1. Confirm `SPECKIT_RRF_K_EXPERIMENTAL` is unset or `true`
+2. Run perIntentKSweep() with judged query set
+3. Verify sweep evaluates all K values in {10,20,40,60,80,100,120}
+4. Confirm argmaxNdcg10() selects best K per intent
+5. Set flag to `false`, verify DEFAULT_K=60 used
+
+### Expected
+
+isKExperimentalEnabled() returns true; sweep grid = {10,20,40,60,80,100,120}; NDCG@10 and MRR@5 computed per K; ties broken by lower K; falls back to K=60 when OFF
+
+### Evidence
+
+perIntentKSweep() output + NDCG@10/MRR@5 metrics + selected K values + test transcript
+
+### Pass / Fail
+
+- **Pass**: per-intent sweep executes with correct grid and selects optimal K per intent
+- **Fail**: sweep skipped, grid values wrong, or K=60 used when flag ON
+
+### Failure Triage
+
+Verify isKExperimentalEnabled() → Confirm flag is not forced off → Check JUDGED_K_SWEEP_VALUES constant → Inspect argmaxNdcg10() tie-breaking logic → Verify evalQueriesAtK() metric computation → Check resolveRrfK() override path
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [11--scoring-and-calibration/121-rrf-k-experimental.md](../../feature_catalog/11--scoring-and-calibration/121-rrf-k-experimental.md)
+- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
+- Source file: `mcp_server/lib/eval/k-value-analysis.ts`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Scoring and calibration
+- Playbook ID: 172
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `11--scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md`

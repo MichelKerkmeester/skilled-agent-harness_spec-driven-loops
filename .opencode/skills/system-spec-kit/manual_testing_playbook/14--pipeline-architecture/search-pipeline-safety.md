@@ -1,0 +1,70 @@
+---
+title: "067 -- Search pipeline safety"
+description: "This scenario validates Search pipeline safety for `067`. It focuses on Confirm Sprint 8 pipeline safety fixes."
+audited_post_018: true
+---
+
+# 067 -- Search pipeline safety
+
+## 1. OVERVIEW
+
+This scenario validates Search pipeline safety for `067`. It focuses on Confirm Sprint 8 pipeline safety fixes.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm Sprint 8 pipeline safety fixes.
+- Real user request: `Please validate Search pipeline safety against the documented validation surface and tell me whether the expected signals are present: Pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions.`
+- Prompt: `Validate search pipeline safety against the documented validation surface and return pass/fail with cited evidence.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if pipeline safely handles summary/lexical heavy queries with correct filtering and tokenization
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate search pipeline safety against the documented validation surface and return pass/fail with cited evidence.
+```
+
+### Commands
+
+1. run summary/lexical heavy queries
+2. inspect filters/tokenization
+3. verify safety outcomes
+
+### Expected
+
+Pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions
+
+### Evidence
+
+Query output for heavy/edge-case inputs + filter inspection + tokenization output
+
+### Pass / Fail
+
+- **Pass**: pipeline safely handles summary/lexical heavy queries with correct filtering and tokenization
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Inspect error handling in pipeline stages; verify filter boundary conditions; check tokenizer for malformed input handling
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [14--pipeline-architecture/169-search-pipeline-safety.md](../../feature_catalog/14--pipeline-architecture/169-search-pipeline-safety.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Pipeline Architecture
+- Playbook ID: 067
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `14--pipeline-architecture/search-pipeline-safety.md`

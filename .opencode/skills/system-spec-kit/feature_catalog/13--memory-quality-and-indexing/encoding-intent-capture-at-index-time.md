@@ -1,0 +1,54 @@
+---
+title: "Encoding-intent capture at index time"
+description: "Encoding-intent capture classifies content as `document`, `code` or `structured_data` at index time using heuristic scoring."
+trigger_phrases:
+  - "encoding-intent capture at index time"
+  - "encoding_intent classification"
+  - "content type classification"
+  - "document code structured_data heuristic"
+  - "classify content at index time"
+---
+
+# Encoding-intent capture at index time
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Encoding-intent capture classifies content as `document`, `code` or `structured_data` at index time using heuristic scoring.
+
+When a spec-doc record is saved, the system labels it as regular text, code or structured data. Right now this label is stored but not used for search ranking. It is groundwork for the future: once the system knows what type of content it is looking at, it can treat a code snippet differently from a meeting note. Think of it as sorting your files into labeled folders before you need to search them.
+
+---
+
+## 2. HOW IT WORKS
+
+An `encoding_intent` field classifies content type at index time as `document`, `code` or `structured_data` using heuristic scoring. The code path scores fenced code blocks, import/export/function keyword density and programming punctuation density. The structured data path scores YAML frontmatter, pipe tables and key-value patterns. The classification threshold is 0.4. Anything below defaults to `document`.
+
+The classification is stored as read-only metadata on the `encoding_intent` column for both parent records and individual chunks. It has no retrieval-time scoring impact. The intent is to build a labeled dataset that future work can use for type-aware retrieval. Runs behind the `SPECKIT_ENCODING_INTENT` flag (default ON).
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp_server/lib/search/encoding-intent.ts` | Lib | Encoding intent classification |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/encoding-intent.vitest.ts` | Automated test | Encoding intent tests |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Memory Quality And Indexing
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `13--memory-quality-and-indexing/encoding-intent-capture-at-index-time.md`
+Related references:
+- [anchor-aware-chunk-thinning.md](anchor-aware-chunk-thinning.md) — Anchor-aware chunk thinning
+- [auto-entity-extraction.md](auto-entity-extraction.md) — Auto entity extraction

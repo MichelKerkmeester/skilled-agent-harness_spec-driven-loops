@@ -1,0 +1,73 @@
+---
+title: "177 -- Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)"
+description: "This scenario validates hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) for `177` with executable source checks and targeted Vitest coverage for the default-on no-decay policy."
+audited_post_018: true
+phase_018_change: "Remove rollout framing; keep the no-decay policy validation and source checks"
+---
+
+# 177 -- Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)
+
+## 1. OVERVIEW
+
+This scenario validates hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) for `177`. It focuses on the default-on no-decay policy and verifies the type-aware behavior for `decision`, `constitutional`, and `critical` context types with executable source checks and regression tests.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Verify type-aware no-decay FSRS policy for decision/constitutional/critical types.
+- Real user request: `` Please validate Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) against the documented validation surface and tell me whether the expected signals are present: `rg` finds `SPECKIT_HYBRID_DECAY_POLICY`, `HYBRID_NO_DECAY_CONTEXT_TYPES`, `classifyHybridDecay`, `getHybridDecayMultiplier`, `applyHybridDecayPolicy`, `calculateRetrievability`, and the central `isHybridDecayPolicyEnabled()` accessor; the Vitest run exits 0; the current baseline summary is `Test Files 2 passed (2)` and `Tests 30 passed (30)`. ``
+- Prompt: `Validate hybrid decay policy for no-decay memory types.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: `rg` finds `SPECKIT_HYBRID_DECAY_POLICY`, `HYBRID_NO_DECAY_CONTEXT_TYPES`, `classifyHybridDecay`, `getHybridDecayMultiplier`, `applyHybridDecayPolicy`, `calculateRetrievability`, and the central `isHybridDecayPolicyEnabled()` accessor; the Vitest run exits 0; the current baseline summary is `Test Files 2 passed (2)` and `Tests 30 passed (30)`
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if the expected symbols are present and the targeted Vitest run exits 0 with no failed tests. FAIL if any symbol is missing, protected types do not map to Infinity/no-decay, or the test run fails.
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate hybrid decay policy for no-decay memory types.
+```
+
+### Commands
+
+1. `rg -n "SPECKIT_HYBRID_DECAY_POLICY|SPECKIT_CLASSIFICATION_DECAY|HYBRID_NO_DECAY_CONTEXT_TYPES|classifyHybridDecay|getHybridDecayMultiplier|applyHybridDecayPolicy|calculateRetrievability|isHybridDecayPolicyEnabled" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`
+2. `cd .opencode/skills/system-spec-kit/mcp_server && node ./node_modules/vitest/vitest.mjs run tests/hybrid-decay-policy.vitest.ts tests/fsrs-hybrid-decay.vitest.ts`
+
+### Expected
+
+Source grep returns matches for the flag gate, no-decay set, classifier, multiplier, policy application, and FSRS retrievability helpers; Vitest reports both files passing and no `FAIL` lines; current baseline summary is `Test Files 2 passed (2)` and `Tests 30 passed (30)`
+
+### Evidence
+
+Saved `rg` output plus the final Vitest summary showing both files passed
+
+### Pass / Fail
+
+- **Pass**: the `rg` command returns all expected symbols and the Vitest command exits 0 with zero failed files/tests
+- **Fail**: any symbol is missing, the no-decay mapping is absent, or either target test file fails.
+
+### Failure Triage
+
+If the source grep misses a symbol, inspect `mcp_server/lib/cognitive/fsrs-scheduler.ts` or `mcp_server/lib/search/search-flags.ts`. If Vitest fails, use `hybrid-decay-policy.vitest.ts` for default-on flag behavior, type classification, Infinity stability, and TM-03 separation, and `fsrs-hybrid-decay.vitest.ts` for the lower-level no-decay multiplier and routing checks.
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [13--memory-quality-and-indexing/153-hybrid-decay-policy.md](../../feature_catalog/13--memory-quality-and-indexing/153-hybrid-decay-policy.md)
+- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
+- Source files: `mcp_server/lib/cognitive/fsrs-scheduler.ts`, `mcp_server/lib/search/search-flags.ts`
+- Regression tests: `mcp_server/tests/hybrid-decay-policy.vitest.ts`, `mcp_server/tests/fsrs-hybrid-decay.vitest.ts`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Memory quality and indexing
+- Playbook ID: 177
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `13--memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md`

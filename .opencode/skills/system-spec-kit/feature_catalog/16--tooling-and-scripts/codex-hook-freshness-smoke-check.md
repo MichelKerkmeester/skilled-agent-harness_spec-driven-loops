@@ -1,0 +1,60 @@
+---
+title: "Codex hook freshness smoke check"
+description: "Small Codex hook probe that checks whether cold-start context came from a ready code graph and reports freshness without blocking startup."
+trigger_phrases:
+  - "freshness-smoke-check"
+  - "Codex freshness smoke check"
+  - "cold-start context"
+  - "codex hook freshness"
+---
+
+# Codex hook freshness smoke check
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+---
+
+## 1. OVERVIEW
+
+The Codex freshness smoke check is a small diagnostic helper for hook startup surfaces. It checks whether the generated Codex startup context is populated and backed by a ready code graph.
+
+It is intentionally fail-closed: errors report stale/freshness failure without throwing through the hook path.
+
+---
+
+## 2. HOW IT WORKS
+
+`smokeCheckCodexColdStartContext()` calls `buildStartupBrief()`, verifies that `startupSurface` is non-empty and `graphState` is `ready`, and returns `fresh`, `lastUpdateAt`, and measured `latencyMs`. It accepts dependency injection for deterministic tests.
+
+If startup brief construction throws, the helper returns `fresh: false`, `lastUpdateAt: null`, and the measured latency. That keeps Codex startup diagnostics observable while preserving hook startup resilience.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `mcp_server/hooks/codex/lib/freshness-smoke-check.ts:10-21` | Hook lib | Defines result and dependency-injection contracts |
+| `mcp_server/hooks/codex/lib/freshness-smoke-check.ts:23-25` | Hook lib | Defines the ready-context predicate |
+| `mcp_server/hooks/codex/lib/freshness-smoke-check.ts:27-48` | Hook lib | Runs the smoke check, reports freshness metadata, and fails closed on startup-brief errors |
+| `.opencode/skills/system-code-graph/mcp_server/lib/startup-brief.ts` | Code graph lib | Builds the startup payload consumed by the smoke check |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/hooks-codex-freshness.vitest.ts` | Vitest | Covers fresh, stale, and failure-return behavior for the Codex smoke check |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Tooling And Scripts
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `16--tooling-and-scripts/codex-hook-freshness-smoke-check.md`
+
+- Packet source: `010-half-auto-upgrades`
+Related references:
+- [cli-matrix-adapter-runners.md](cli-matrix-adapter-runners.md) — CLI matrix adapter runners
+- [spec-folder-literal-naming-create-sh-fallback.md](spec-folder-literal-naming-create-sh-fallback.md) — Spec folder literal naming: create.sh fallback

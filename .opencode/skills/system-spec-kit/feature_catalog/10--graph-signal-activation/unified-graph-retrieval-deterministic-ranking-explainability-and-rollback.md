@@ -1,0 +1,77 @@
+---
+title: "Unified graph retrieval, deterministic ranking, explainability, and rollback"
+description: "Describes the Phase 3 unified graph retrieval path with deterministic ranking contracts, trace-based explainability and runtime rollback via the `SPECKIT_GRAPH_UNIFIED` gate."
+trigger_phrases:
+  - "unified graph retrieval deterministic ranking explainability and rollback"
+  - "SPECKIT_GRAPH_UNIFIED"
+  - "deterministic ranking contract"
+  - "retrieval trace explainability"
+  - "graph unified rollback gate"
+---
+
+# Unified graph retrieval, deterministic ranking, explainability, and rollback
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Describes the Phase 3 unified graph retrieval path with deterministic ranking contracts, trace-based explainability and runtime rollback via the `SPECKIT_GRAPH_UNIFIED` gate.
+
+This brings all the graph-based search features together into one reliable path. The same query will always return results in the same order, and you can see exactly why each result ranked where it did. If anything goes wrong with the graph features, a single switch turns them off and search falls back to working without them. Think of it as a well-labeled control panel with an emergency off switch.
+
+---
+
+## 2. HOW IT WORKS
+
+### Core Behavior
+
+Phase 3 finalized a unified graph retrieval path in the live pipeline. Stage 2 fusion and Stage 3 rerank now share a stable ranking contract so repeated identical queries keep deterministic ordering, including tie-break behavior.
+
+### Graph Traversal
+
+The graph FTS retrieval path now materializes matched `memory_fts` rowids once inside a CTE, then uses `UNION ALL` to fan those matches into source-side and target-side `causal_edges` lookups before SQL-side grouping collapses duplicate edge hits. This replaces the earlier OR-join shape and removes JavaScript-side dedup work from the hot path.
+
+### Edge Cases & Caveats
+
+Explainability is exposed through retrieval trace payloads: graph-side contributions are emitted as explicit trace metadata when graph participation is enabled. This keeps ranking rationale inspectable without changing the public search result contract. FTS-table availability is also cached per database instance, so the unified graph path no longer re-probes `sqlite_master` for `memory_fts` on every query.
+
+### Configuration
+
+Rollback is controlled by the runtime graph gate (`SPECKIT_GRAPH_UNIFIED`). Disabling the gate removes graph-side effects while preserving deterministic baseline ordering and trace safety for non-graph runs.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp_server/lib/search/pipeline/stage2-fusion.ts` | Lib | Unified graph contribution during Stage 2 fusion |
+| `mcp_server/lib/search/pipeline/stage3-rerank.ts` | Lib | Deterministic rerank and tie-break stabilization |
+| `mcp_server/lib/search/pipeline/ranking-contract.ts` | Lib | Shared ranking contract and score resolution invariants |
+| `mcp_server/lib/search/graph-search-fn.ts` | Lib | Graph FTS CTE retrieval, SQL-side edge deduplication, and per-DB FTS availability caching |
+| `mcp_server/lib/telemetry/retrieval-telemetry.ts` | Lib | Trace-safe explainability and retrieval telemetry metadata |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/graph-search-fn.vitest.ts` | Automated test | Graph FTS query behavior, fallback handling, and cache-aware retrieval path coverage |
+| `mcp_server/tests/graph-roadmap-finalization.vitest.ts` | Automated test | Unified graph behavior, deterministic ranking, explainability, and rollback switch behavior |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Graph Signal Activation
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `10--graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md`
+
+Related references:
+- [temporal-contiguity-layer.md](temporal-contiguity-layer.md) — Temporal contiguity layer
+- [graph-lifecycle-refresh.md](graph-lifecycle-refresh.md) — Graph lifecycle refresh
+
+---
+## 5. PLAYBOOK COVERAGE
+
+- Mapped to manual testing playbook scenario 120
