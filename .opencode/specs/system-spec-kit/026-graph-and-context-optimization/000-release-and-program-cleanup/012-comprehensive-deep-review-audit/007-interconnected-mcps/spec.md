@@ -49,7 +49,7 @@ Audit the interconnected MCP skills and the deep-loop runtime for correctness, i
 ### In Scope
 Review these skills and their key runtime modules:
 
-- `.opencode/skills/system-code-graph/SKILL.md` + its mcp_server/scripts entrypoints
+- `.opencode/skills/system-code-graph/SKILL.md` + its mcp_server handlers and core modules
 - `.opencode/skills/system-skill-advisor/SKILL.md` + its advisor/skill-graph scripts
 - `.opencode/skills/deep-loop-runtime/SKILL.md`
 - `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs`

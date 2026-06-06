@@ -651,11 +651,11 @@ Over time, `memory_index` rows can drift out of sync with the `vec_memories` vec
 
 #### How It Works
 
-`memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `mk-spec-memory` surface (spec 026, changelog 003-006, 2026-05-27). It operates in dry-run mode by default, so calling it without `dryRun: false` will report what it would change without touching the database.
+`memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `mk-spec-memory` surface (spec 026, changelog 003-006, 2026-05-27). It operates in dry-run mode by default, so calling it without `mode: "apply"` will report what it would change without touching the database.
 
 Two correction paths run inside one `BEGIN IMMEDIATE` transaction. The convergence path finds rows that claim `embedding_status = 'stale'` or `'success'` while a matching vector is already present in `vec_memories` and resets those rows to `success` without re-embedding. The retry-reset path finds rows whose vector is genuinely absent and whose `embedding_status` is stuck at a non-pending value and resets those to `pending` so the background retry manager can pick them up cleanly.
 
-The `BEGIN IMMEDIATE` lock prevents concurrent embedding writes from racing with the reconciliation pass. On completion the handler returns counts for rows examined, rows converged and rows reset to pending, plus a `dryRun` boolean confirming which mode ran.
+The `BEGIN IMMEDIATE` lock prevents concurrent embedding writes from racing with the reconciliation pass. On completion the handler returns counts for rows examined, rows converged and rows reset to pending, plus a `mode` field confirming which mode ran.
 
 #### Source Files
 
