@@ -106,7 +106,7 @@ Disallowed direction:
 | `memory/generate-context.ts` | Builds structured memory save output and metadata updates. |
 | `graph/backfill-graph-metadata.ts` | Refreshes graph metadata across spec folders. |
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
-| `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Complements the wikilink checker. |
+| `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |
 | `check-links.sh` | Wikilink (`[[...]]`) validator; delegates to `rules/check-links.sh` (opt-in via `SPECKIT_VALIDATE_LINKS`). |
 | `deploy-mcp.sh` | Rebuilds every MCP server `dist/` (mk-spec-memory + `@spec-kit/shared`, code-graph, advisor) after a source change; `--recycle` also transparently recycles the mk-spec-memory daemon. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
 | `scripts-registry.json` | Lists package scripts and known entrypoints. |
@@ -172,6 +172,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --
 # The legacy shared path /tmp/save-context-data.json is rejected (LEGACY_SHARED_DATA_FILE).
 node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --dry-run
 node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs   # markdown-link guard (exit 1 on broken)
+node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs --self-test  # guard inline-code self-test (6 cases)
 ```
 
 Use structured JSON input with `generate-context.js`. Do not pass free-form positional save text.

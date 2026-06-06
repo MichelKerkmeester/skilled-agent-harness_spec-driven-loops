@@ -4047,6 +4047,22 @@ See [`16--tooling-and-scripts/sk-git-worktree-convention.md`](16--tooling-and-sc
 
 ---
 
+### Markdown link integrity guard
+
+#### Description
+
+This guard checks that every markdown link in the skills, commands, and agents documentation points at a file that actually exists. It works like a link-checker for the docs: when a file is deleted or moved and something still links to the old location, the guard fails the pull request instead of letting the dead link slip through. It complements the wikilink checker, which covers `[[...]]` links.
+
+#### How It Works
+
+`check-markdown-links.cjs` walks the documentation roots, strips fenced and inline code (code is not link surface), extracts markdown links and reference definitions, and resolves each target against the source file's directory or the repository root. Archived, generated, changelog, and test-fixture paths are excluded, and a small `(file, ref)` allowlist covers intentional template placeholders. A `--self-test` mode asserts the inline-code handling, and `.github/workflows/markdown-link-integrity.yml` runs the guard on pull requests touching the doc trees. Exit 0 means clean; exit 1 lists each broken link.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/markdown-link-integrity-guard.md`](16--tooling-and-scripts/markdown-link-integrity-guard.md) for full implementation and verification listings.
+
+---
+
 ## 18. GOVERNANCE
 
 ### Feature flag governance
