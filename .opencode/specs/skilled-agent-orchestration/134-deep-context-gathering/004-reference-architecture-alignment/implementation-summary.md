@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-07T10:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped reference reorg + canonical router + citation sweep (e73ffe6610)"
-    next_safe_action: "None; phase complete. Optional: later test-pattern fix for 2 stale greps"
+    next_safe_action: "None; phase complete and all follow-ups resolved"
     blockers: []
     key_files:
       - ".opencode/skills/deep-context/SKILL.md"
@@ -122,7 +122,7 @@ The change was documentation-and-routing only: no `.cjs` script and no runtime h
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Two pre-existing manual_testing_playbook test-step greps return zero, flagged for a later test-pattern fix.** `02--by-model-parallel-sweep/cli-council-seats.md` (SWEEP-003 step 4) and `06--coverage-graph-schema/context-node-kinds-relations.md` (CG-002 step 3) each contain a grep step that returns zero hits. This is NOT move-induced: the same greps already returned zero against the old flat files before this phase. The target content now lives in `state/state_reducer_registry.md` and the agent file respectively. Non-blocking; record for a later test-pattern fix in the playbook. Does not affect the shipped reference layout or any consumer link.
+1. **Two pre-existing manual_testing_playbook test-step greps (RESOLVED).** `02--by-model-parallel-sweep/cli-council-seats.md` (SWEEP-003 step 4) and `06--coverage-graph-schema/context-node-kinds-relations.md` (CG-002 step 3) had grep steps that returned zero hits — pre-existing test-authoring inaccuracies (already zero against the old flat files, not move-induced). Each was re-pointed to the file that actually holds the content (SWEEP-003 step 4 → the auto YAML `step_sweep_cli_pool` cli_contract for the per-kind CLI flags; CG-002 step 3 → `state/state_reducer_registry.md` for the `KIND_TO_BUCKET` mapping), and both were verified to return a match.
 2. **deep-research-only references are intentionally out of scope.** deep-context does not adopt `convergence_reference_only.md`, `guides/capability_matrix.md`, or `protocol/spec_check_protocol.md`; those serve research-only needs, and the router lists only the eight references that exist plus the two moved ones.
 3. **The new references defer depth to the feature_catalog.** A reader who wants full implementation detail follows one cross-link to the matching `feature_catalog/0N` entry; the references hold only the contract-level summary a routing decision needs.
 <!-- /ANCHOR:limitations -->
