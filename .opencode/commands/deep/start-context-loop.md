@@ -10,20 +10,64 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **YOUR FIRST ACTION:**
-> 1. Run the unified setup phase in this Markdown entrypoint and resolve:
+> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
+> 1. Run Phase 0: @general agent self-verification (below)
+> 2. Run the Unified Setup Phase (BLOCKED gate) in this Markdown entrypoint and resolve:
 >    - `scope`
 >    - `spec_folder`
 >    - `execution_mode`
 >    - `maxIterations`
 >    - `convergenceThreshold`
->    - `executor_pool` (heterogeneous by-model-shared-scope pool)
-> 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
+>    - `executor_pool` (shared-scope pool; native-only by default)
+> 3. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
 >    - Auto: `deep_start-context-loop_auto.yaml`
 >    - Confirm: `deep_start-context-loop_confirm.yaml`
-> 3. Execute the YAML workflow step by step using those resolved values
+> 4. Execute the YAML workflow step by step using those resolved values
 >
+> This command is **general-agent based** — it orchestrates the deep-context loop. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) below are HARD BLOCKS; neither may be skipped.
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
+
+---
+
+# 🚨 PHASE 0: @GENERAL AGENT VERIFICATION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @general agent?
+│
+├─ INDICATORS that you ARE @general agent:
+│   ├─ You can orchestrate the deep-context loop (YAML workflow execution)
+│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
+│   ├─ You can load skill references and execute defined logic
+│
+├─ IF YES (all indicators present):
+│   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │                                                            │
+    │   │ This command orchestrates the deep-context loop and runs   │
+    │   │ general-agent based.                                       │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   /deep:start-context-loop [arguments]                     │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+```
+
+**Phase Output:**
+- `general_agent_verified = ________________`
+
+---
 
 ## CONSTRAINTS
 
@@ -77,7 +121,7 @@ PRE-BOUND SETUP ANSWERS:
   relevanceGate: 0.55  # decimal 0..1 — prune findings below this relevance
   agreementMin: 2  # positive integer — distinct executors required to confirm a finding
   concurrency: 4  # positive integer — CLI-pool concurrency cap
-  executors: '[{"kind":"native","label":"native-a"},{"kind":"native","label":"native-b"},{"kind":"cli-opencode","model":"xiaomi-token-plan-ams/mimo-v2.5-pro","reasoningEffort":"high","promptFramework":"costar","label":"mimo"},{"kind":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","label":"gpt"},{"kind":"cli-opencode","model":"opencode-go/deepseek-v4-pro","reasoningEffort":"high","promptFramework":"tidd-ec","label":"deepseek"}]'  # JSON array — the heterogeneous by-model-shared-scope pool
+  executors: '[{"kind":"native","label":"native-a"},{"kind":"native","label":"native-b"}]'  # JSON array — the executor pool (native-only by default; add cli-* seats for a heterogeneous pool)
 ```
 
 Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
@@ -87,18 +131,18 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 | Field | Required | Resolves Via | Default | Tier-2 Candidate |
 |-------|----------|--------------|---------|------------------|
 | `scope` | Y | `$ARGUMENTS` positional scope, or marker `scope` | none | N |
-| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or targeted choice among suggested existing/new/update-related/phase folder | none | Y, when scope is present but folder choice is ambiguous |
+| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a spec-folder path named in the positional scope (auto-bound + stripped, per `auto_mode_contract` §1 source 3), or targeted choice among suggested existing/new/update-related/phase folder | none | Y, ONLY when scope is present, names no resolvable spec folder, and the folder choice is ambiguous |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `8` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `relevanceGate` | N | flag `--relevance-gate`, marker `relevanceGate`, or default | `0.55` | N |
 | `agreementMin` | N | flag `--agreement-min`, marker `agreementMin`, or default | `2` | N |
-| `executor_pool` | N | repeatable `--executor=<type>` flags or `--executors=<json>`, marker `executors`, config file, or default pool; each `--executor` group accepts `--model`, `--reasoning-effort`, `--prompt-framework`, `--label` | default heterogeneous pool (see config) | N |
+| `executor_pool` | N | repeatable `--executor=<type>` flags or `--executors=<json>`, marker `executors`, config file, or default pool; each `--executor` group accepts `--model`, `--reasoning-effort`, `--prompt-framework`, `--label` | default native-only pool, 2 native (see config) | N |
 | `concurrency` | N | flag `--concurrency=N`, marker `concurrency`, or default | `4` | N |
 
-**Pool default policy (the key difference from research/review):** deep-context is **always a by-model-shared-scope pool** — there is no single-executor path. 0 `--executor` flags and no `--executors`/marker → the default heterogeneous pool from `.opencode/skills/deep-context/assets/deep_context_config.json` (2 native + MiMo + gpt + deepseek). Any explicit `--executor`/`--executors`/marker → that pool. A 1-seat pool is legal but defeats the purpose (no agreement signal); warn and continue. The pool is written to `config.fanout.executors` with `config.fanout.mode = "by-model-shared-scope"`.
+**Pool default policy (the key difference from research/review):** deep-context is **always a shared-scope pool** — there is no single-executor path. 0 `--executor` flags and no `--executors`/marker → the default **native-only pool** (2 `@deep-context` seats) from `.opencode/skills/deep-context/assets/deep_context_config.json`. Any explicit `--executor`/`--executors`/marker → that pool (native, CLI, or combined). A 1-seat pool is legal but defeats the purpose (no agreement signal); warn and continue. The pool is written to `config.fanout.executors` with `config.fanout.mode = "by-model-shared-scope"`.
 
-**STATUS: BLOCKED**
+**STATUS: ☐ BLOCKED**
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
@@ -126,7 +170,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --concurrency=N -> config.fanout.concurrency (default 4)
    |
    |   Pool resolution:
-   |   - No --executor / --executors / marker: use the default heterogeneous pool from
+   |   - No --executor / --executors / marker: use the default native-only pool (2 native) from
    |     .opencode/skills/deep-context/assets/deep_context_config.json
    |   - Any explicit seats: write config.fanout.executors from them
    |   - ALWAYS set config.fanout.mode = "by-model-shared-scope" (every seat sweeps the SAME focus)
@@ -145,8 +189,15 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - cli dispatch honors the cli-* contracts (cli-opencode: closed stdin `</dev/null`,
      NO top-level `--agent`; model id form per the executor skill).
 
-4. Search for related spec folders across alias roots:
-   $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
+4. Resolve spec_folder from the scope BEFORE asking (auto_mode_contract §1 source 3):
+   $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort
+   |-- If {scope} (raw $ARGUMENTS) contains a path token that canonicalizes (resolve the
+   |   specs/ -> .opencode/specs/ symlink) to one of these EXISTING spec folders:
+   |     -> spec_path = that folder; STRIP the path token from scope; omit Q1 (Tier-1 resolved).
+   |        Output lands at {spec_path}/context/ (root spec) or {spec_path}/context/{packet}/ (phase child).
+   |-- Else: keep the most-recent (tail -10) as suggestions for Q1.
+   +-- FAIL-CLOSED: do NOT offer or select the standalone run dir (Q1 option E) when a spec folder
+       was named in the scope or is derivable from it.
 
 5. Seed the frontier + load prior context (background, read-only):
    - code_graph_query on 2-5 word concept descriptions from {scope} -> ranked SLICE anchors
@@ -156,7 +207,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 6. ASK with SINGLE prompt (include only applicable questions):
    - Include Q-Pool only when no `--executor`/`--executors` is present and the scope text does
      NOT already name an executor pool. If Q-Pool is omitted and no pool is otherwise resolved,
-     default to the heterogeneous pool from deep_context_config.json.
+     default to the native-only pool from deep_context_config.json.
 
    Q0. Scope (if not in command): What feature/area should I gather codebase context for?
 
@@ -166,6 +217,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      C) Update related [if match found]
      D) Phase folder (e.g., `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias)
      E) None yet — use a standalone run dir and hand the report path to /speckit:plan
+        (offer E ONLY when no spec folder was named in the scope or is derivable from it. If step 4
+         bound a spec_folder, SKIP Q1 entirely and NEVER select E — standalone is fail-closed when a
+         folder is identifiable, per auto_mode_contract §1.)
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous -- all iterations without approval
@@ -174,10 +228,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q3. Max Iterations (if not set via flag):
      Default is 8. Change? [Enter number or press enter for default]
 
-   Q-Pool. Executor Pool (optional, press enter for default):
-     A) Default heterogeneous pool — 2 native @deep-context + MiMo (cli-opencode) + gpt (cli-codex) + deepseek (cli-opencode), all sweeping the SAME scope in parallel; agreement = confidence.
-     B) Native only — 2 @deep-context Task subagents (Opus) in a parallel batch. No CLI seats.
-     C) Custom — provide a pool via repeatable `--executor=...` flags or `--executors='<json>'`.
+   Q-Pool. Executor Pool (optional, press enter for default = Native only):
+     A) Native only — 2 @deep-context Task subagents (on the host runtime's model) in a parallel batch. No CLI seats.
+     B) Custom — Native, through CLI Skill, or Combined. Optionally provide a pool via repeatable `--executor=...` flags or `--executors='<json>'`.
 
    Reply format examples:
    - `"A, A"`
@@ -193,7 +246,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - maxIterations = [from Q3 or flag or default 8]
    - convergenceThreshold = [from flag or default 0.10]
-   - executor_pool = [CLI flags, --executors, compact reply, config file, or default heterogeneous pool;
+   - executor_pool = [CLI flags, --executors, compact reply, config file, or default native-only pool;
      ALWAYS written to config.fanout.executors with config.fanout.mode = "by-model-shared-scope"]
 
 9. SET STATUS: PASSED
@@ -369,12 +422,12 @@ Per-model prompt framing: `.opencode/skills/sk-prompt-small-model/`.
 ## 8. EXAMPLES
 
 ```
-# Default heterogeneous pool (2 native + MiMo + gpt + deepseek, all sweeping the same scope)
+# Default native-only pool (2 @deep-context seats sweeping the same scope)
 /deep:start-context-loop:auto "WebSocket reconnection in the realtime client"
 /deep:start-context-loop:confirm "notification template rendering pipeline"
 /deep:start-context-loop:auto "checkout cart merge logic" --max-iterations 6 --convergence 0.10
 
-# Native-only pool (two @deep-context Task subagents in a parallel batch)
+# Native-only pool, explicit (identical to the default)
 /deep:start-context-loop:auto "auth session refresh" \
   --executor=native --label=native-a \
   --executor=native --label=native-b \

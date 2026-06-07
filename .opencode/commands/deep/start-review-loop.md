@@ -11,8 +11,9 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 > Under `:auto`, setup follows the three-tier resolution contract in §0: resolve confidently, ask only targeted ambiguity questions, then fail fast if required inputs remain unresolved. Under `:confirm`, setup keeps the consolidated interactive question block.
 >
-> **YOUR FIRST ACTION:**
-> 1. Run the unified setup phase in this Markdown entrypoint and resolve:
+> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
+> 1. Run Phase 0: @general agent self-verification (below)
+> 2. Run the Unified Setup Phase (BLOCKED gate) in this Markdown entrypoint and resolve:
 >    - `review_target`
 >    - `review_target_type`
 >    - `review_dimensions`
@@ -20,12 +21,55 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `execution_mode`
 >    - `maxIterations`
 >    - `convergenceThreshold`
-> 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
+> 3. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
 >    - Auto: `deep_start-review-loop_auto.yaml`
 >    - Confirm: `deep_start-review-loop_confirm.yaml`
-> 3. Execute the YAML workflow step by step using those resolved values
+> 4. Execute the YAML workflow step by step using those resolved values
 >
+> This command is **general-agent based** — it orchestrates the deep-review loop. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) below are HARD BLOCKS; neither may be skipped.
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
+
+---
+
+# 🚨 PHASE 0: @GENERAL AGENT VERIFICATION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @general agent?
+│
+├─ INDICATORS that you ARE @general agent:
+│   ├─ You can orchestrate the deep-review loop (YAML workflow execution)
+│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
+│   ├─ You can load skill references and execute defined logic
+│
+├─ IF YES (all indicators present):
+│   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │                                                            │
+    │   │ This command orchestrates the deep-review loop and runs    │
+    │   │ general-agent based.                                       │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   /deep:start-review-loop [arguments]                      │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+```
+
+**Phase Output:**
+- `general_agent_verified = ________________`
+
+---
 
 ## CONSTRAINTS
 
@@ -100,7 +144,7 @@ Rules:
 | `review_target` | Y | `$ARGUMENTS` first positional target, or marker `review_target` | none | N |
 | `review_target_type` | Y | marker `review_target_type`, or auto-detect from `review_target` | inferred only | Y, when target is present but ambiguous |
 | `review_dimensions` | Y | flag `--dims` if supported by caller, marker `review_dimensions`, or default | `"all"` | N |
-| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or target path when target is a spec folder | none | Y, when target is not a spec folder |
+| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a target/scope path that resolves to an existing spec folder (auto-bound, per `auto_mode_contract` §1 source 3), or target path when target is a spec folder | none | Y, when target is not a spec folder |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
@@ -119,7 +163,7 @@ Rules:
 
 Use this block only when `execution_mode = "INTERACTIVE"` or when no suffix was supplied and Q2 must ask for the execution mode.
 
-**STATUS: BLOCKED**
+**STATUS: ☐ BLOCKED**
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:

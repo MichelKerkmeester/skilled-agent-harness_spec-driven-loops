@@ -51,7 +51,7 @@ user_inputs:
   spec_folder: "[SPEC_FOLDER] - Spec folder path (or standalone run dir). REQUIRED."
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 8."
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Per-iteration new-agreement-eligible-findings floor. Default: 0.10."
-  executor_pool: "[EXECUTOR_POOL] - Heterogeneous by-model-shared-scope pool (config.fanout.executors). Default: 2 native + MiMo + gpt + deepseek."
+  executor_pool: "[EXECUTOR_POOL] - Shared-scope pool (config.fanout.executors). Default: 2 native (native-only); CLI/combined via --executor/--executors."
   relevance_gate: "[RELEVANCE_GATE] - Min relevance to keep a finding (else lowConfidence). Default: 0.55 (deep_context_config.json)."
   agreement_min: "[AGREEMENT_MIN] - Min distinct executors for a finding to be agreement-eligible. Default: 2 (deep_context_config.json)."
   concurrency: "[CONCURRENCY] - Max parallel seats in the by-model sweep. Default: 4 (deep_context_config.json)."
@@ -158,7 +158,7 @@ workflow:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
           - required_values_present: [scope, spec_folder, max_iterations, convergence_threshold, executor_pool]
-          - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation), or a standalone run dir"
+          - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation). A standalone run dir is allowed ONLY when no spec folder was named in the scope or derivable from it; FAIL closed if a standalone target is bound while the scope named or derived a spec folder (auto_mode_contract §1 fallback guard)"
           - pool_non_empty: "config.fanout.executors has at least one seat (warn when exactly one — no agreement signal)"
           - pool_mode: "config.fanout.mode == 'by-model-shared-scope'"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
@@ -617,7 +617,7 @@ workflow:
           - "{state_paths.registry}"
         extract:
           - iteration_count: "Count lines where type === 'iteration'"
-          - executor_pool_summary: "Pool roster from config (e.g. native×2 + mimo + gpt + deepseek)"
+          - executor_pool_summary: "Pool roster from config (e.g. native×2; or native + cli seats for a custom pool)"
           - slice_coverage_final: "sliceCoverage from latest iteration record"
           - reuse_catalog_coverage_final: "reuseCatalogCoverage from latest iteration record"
           - agreement_rate_final: "agreementRate from latest iteration record"

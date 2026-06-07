@@ -7,11 +7,60 @@ skill: deep-improvement
 
 Lane C of the `deep-improvement` skill. Benchmarks whether a **skill** is well-structured, well-routed, efficient, and useful **in practice** — how AIs actually discover and use it — and emits a ranked Skill Benchmark Report with concrete, remediable findings. Distinct from `sk-doc`/`validate.sh` (doc shape) and manual testing playbooks (described behavior).
 
-## Phase 0 — self-verification
+> **EXECUTION PROTOCOL — READ FIRST**
+>
+> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
+> 1. Run Phase 0: @general agent self-verification (below)
+> 2. Run the Setup phase (BLOCKED gate) — resolve ALL inputs (in :confirm/no-suffix, present them and wait for confirmation; in :auto, resolve confidently or fail fast naming the missing inputs)
+> 3. Execute the Run step only after both gates pass
+>
+> This command is **general-agent based** — it orchestrates the deep-improvement skill in skill-benchmark mode (Lane C). Gate 1 (@general verification) and Gate 2 (the BLOCKED Setup phase) are HARD BLOCKS; neither may be skipped.
 
-Read `.opencode/skills/deep-improvement/SKILL.md` and `references/skill-benchmark/operator_guide.md` before dispatch.
+---
+
+# 🚨 PHASE 0: @GENERAL AGENT VERIFICATION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @general agent?
+│
+├─ INDICATORS that you ARE @general agent:
+│   ├─ You can orchestrate the deep-improvement skill-benchmark (Lane C) loop-host invocation
+│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
+│   ├─ You can load skill references and execute defined logic
+│
+├─ IF YES (all indicators present):
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-improvement/SKILL.md` and `references/skill-benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │                                                            │
+    │   │ This command orchestrates the deep-improvement skill in    │
+    │   │ skill-benchmark mode and runs general-agent based.         │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   /deep:start-skill-benchmark-loop [arguments]             │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+```
+
+**Phase Output:**
+- `general_agent_verified = ________________`
+
+---
 
 ## Setup
+
+**STATUS: ☐ BLOCKED** — resolve ALL inputs below before the Run step. In `:confirm`/no-suffix, present the resolved inputs and wait for confirmation; in `:auto`, resolve confidently from arguments/defaults or fail fast naming the missing inputs. Do NOT run the loop-host command until inputs are resolved.
 
 Resolve:
 - **target skill** — the skill id or root to benchmark (must have an `INTENT_SIGNALS` + `RESOURCE_MAP` smart router for Mode A; e.g. the `cli-*` skills).

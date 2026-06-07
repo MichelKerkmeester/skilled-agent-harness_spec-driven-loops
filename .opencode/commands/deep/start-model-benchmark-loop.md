@@ -44,8 +44,8 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates deep-improvement skill     │
-    │   │ invocation in model-benchmark mode and runs general-agent based. │
+    │   │ This command orchestrates the deep-improvement skill in    │
+    │   │ model-benchmark mode and runs general-agent based.         │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   /deep:start-model-benchmark-loop [arguments]             │

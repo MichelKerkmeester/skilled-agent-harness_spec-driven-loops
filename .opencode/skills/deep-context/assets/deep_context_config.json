@@ -14,10 +14,7 @@
     "concurrency": 4,
     "executors": [
       { "kind": "native", "label": "native-a" },
-      { "kind": "native", "label": "native-b" },
-      { "kind": "cli-opencode", "model": "xiaomi-token-plan-ams/mimo-v2.5-pro", "reasoningEffort": "high", "promptFramework": "costar", "label": "mimo" },
-      { "kind": "cli-codex", "model": "gpt-5.5", "reasoningEffort": "high", "label": "gpt" },
-      { "kind": "cli-opencode", "model": "opencode-go/deepseek-v4-pro", "reasoningEffort": "high", "promptFramework": "tidd-ec", "label": "deepseek" }
+      { "kind": "native", "label": "native-b" }
     ]
   },
   "report": {

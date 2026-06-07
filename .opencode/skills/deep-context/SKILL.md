@@ -1,6 +1,6 @@
 ---
 name: deep-context
-description: "Iterative codebase-context-gathering deep loop. Runs a heterogeneous pool of models in parallel over a shared scope and synthesizes a reuse-first Context Report for planning/implementation. Use before /speckit:plan or /speckit:implement to map existing code, integration points, and conventions."
+description: "Iterative codebase-context-gathering deep loop. Runs a configurable pool over a shared scope in parallel (native-only by default; optional heterogeneous CLI seats) and synthesizes a reuse-first Context Report for planning/implementation. Use before /speckit:plan or /speckit:implement to map existing code, integration points, and conventions."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0
 ---
@@ -266,13 +266,25 @@ STEP 5: Synthesize
 
 **Output**: a Context Report — REUSE catalog (verified `file:symbol` + signature + how-to-extend + confidence-by-agreement + freshness), integration points, touch list, conventions, pruned dependency subgraph, and gaps/unknowns. It ships **pointers, not source bodies** (the consumer pulls bodies just-in-time), which avoids context rot and stale-reference failure.
 
-**Heterogeneous pool example** (operator-composed): 2 native Claude agents + 1 MiMo-v2.5-pro (cli-opencode) + 1 gpt (cli-codex) + 1 deepseek-v4-pro (cli-opencode), all sweeping the same scope in parallel; a reuse candidate confirmed by 3 of 5 executors outranks a single-executor find.
+**Heterogeneous pool example** (opt-in Custom — NOT the default; the default pool is native-only, 2 seats): 2 native agents + 1 MiMo-v2.5-pro (cli-opencode) + 1 gpt (cli-codex) + 1 deepseek-v4-pro (cli-opencode), all sweeping the same scope in parallel; a reuse candidate confirmed by 3 of 5 executors outranks a single-executor find.
 
 **Script**: `scripts/reduce-state.cjs` — the agreement-weighted context reducer. Reads the host-written state log + per-seat findings and produces the `findings-registry.json` and human-readable dashboard. Run from the repository root:
 
 ```bash
 node .opencode/skills/deep-context/scripts/reduce-state.cjs <spec-folder>
 ```
+
+### Runtime Mirrors (native seat dispatch)
+
+The native `@deep-context` seat is dispatched **by name** (`agent: deep-context` in the loop YAML), resolved by each host runtime from its OWN `agents/` directory. It therefore lives as one canonical source plus two runtime mirrors that must stay in sync:
+
+| Runtime | File | Frontmatter |
+|---------|------|-------------|
+| OpenCode | `.opencode/agents/deep-context.md` | **canonical source** — `mode: subagent` + `permission:` block |
+| Claude Code | `.claude/agents/deep-context.md` | mirror — `tools:` allow-list (read-only), same body |
+| Codex | `.codex/agents/deep-context.toml` | mirror — `developer_instructions = '''…'''` + `# Converted from:` header + `sandbox_mode = "read-only"`, same body |
+
+The body is identical across all three; only the frontmatter format differs. The command and loop YAML are **shared** — the `.claude/` and `.codex/` `commands`/`prompts`/`skills` directories are symlinks to `.opencode/` — so they intentionally reference the canonical `.opencode/` paths and dispatch by name; do NOT fork them per runtime. If a mirror is missing for a runtime, the native seats silently fail to dispatch there (the CLI seats still run, but the cross-executor agreement signal degrades). When you edit the canonical agent, re-sync both mirrors in the same change.
 
 ---
 
@@ -287,6 +299,7 @@ node .opencode/skills/deep-context/scripts/reduce-state.cjs <spec-folder>
 5. **Honor the cli-* skill contracts for dispatch** (model id form, `</dev/null` for opencode, omit top-level `--agent`). Read the relevant `cli-X/SKILL.md` before composing any CLI prompt.
 6. **Ship pointers + signatures, not source bodies.** Context rot begins when full source is pasted into reports.
 7. **The host applies the deep-loop-runtime robustness layer** (shared with `deep-research` and `deep-review`): state writes are atomic (temp+fsync+rename via `writeStateAtomic`), the JSONL state log is repaired before each reduce (`repairJsonlTail`), each seat's output is validated before merge (`post-dispatch-validate`, surfacing `seatValidationWarnings`), a single-writer advisory loop-lock is held via `scripts/loop-lock.cjs` for the duration of the session, and CLI seats are dispatched with the runtime recursion-guard env so no seat can launch a nested deep-context loop.
+8. **Keep the native agent's runtime mirrors in sync** — when editing `.opencode/agents/deep-context.md` (canonical), update `.claude/agents/deep-context.md` and `.codex/agents/deep-context.toml` in the same change. The loop dispatches the native seat by name from each runtime's own `agents/` dir, so a missing mirror means native seats silently fail to dispatch in that runtime. See **Runtime Mirrors** in §3.
 
 ### NEVER
 
@@ -387,7 +400,7 @@ References are organized into subfolder families (`guides/ protocol/ convergence
 - `deep-context-dashboard.md` — auto-generated progress view (reducer-owned).
 - `context-report.md` + `context-report.json` — the deliverable.
 
-When no spec folder exists yet, the host uses a standalone run dir and hands the report path to `/speckit:plan`.
+If the user named a spec folder, or one is derivable from the scope (e.g. a spec-folder path inside the scope text), the packet MUST live at `{spec_folder}/context/`. A standalone run dir is used ONLY when no spec folder is named or derivable — fail-closed, never as a default when a folder is identifiable (see `auto_mode_contract` §1 source 3 + fallback guard). In the standalone case the host hands the report path to `/speckit:plan`.
 
 ---
 
@@ -401,7 +414,7 @@ When no spec folder exists yet, the host uses a standalone run dir and hands the
 | Node kinds | `SLICE, FILE, SYMBOL, PATTERN, REUSE_CANDIDATE, DEPENDENCY, CONSTRAINT, GAP` |
 | Convergence signals | `sliceCoverage`, `reuseCatalogCoverage`, `agreementRate` (guard), `relevanceFloor` (guard), `dependencyCompleteness` |
 | Packet | `{spec_folder}/context/` (config, state, iterations, `context-report.md`) |
-| Default pool | 2 native + MiMo (`cli-opencode`) + gpt (`cli-codex`) + deepseek (`cli-opencode`), all over the shared scope |
+| Default pool | 2 native `@deep-context` seats (native-only), over the shared scope; add `--executor` for CLI/heterogeneous |
 | `relevanceGate` | 0.55 (findings below route to `lowConfidence`) |
 | `agreementMin` | 2 distinct executors for agreement-eligibility |
 | `maxIterations` | 8 |

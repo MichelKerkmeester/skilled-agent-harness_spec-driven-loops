@@ -10,8 +10,9 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 > Under `:auto`, setup follows the three-tier resolution contract in Section 0: resolve confidently, ask only targeted ambiguity questions, then fail fast if required inputs remain unresolved. Under `:confirm`, setup keeps the consolidated interactive question block.
 >
-> **YOUR FIRST ACTION:**
-> 1. Run the unified setup phase in this Markdown entrypoint and resolve:
+> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
+> 1. Run Phase 0: @general agent self-verification (below)
+> 2. Run the Unified Setup Phase (BLOCKED gate) in this Markdown entrypoint and resolve:
 >    - `deliberation_topic` or `topics`
 >    - `max_rounds_per_topic`
 >    - `max_topics_per_session`
@@ -20,12 +21,55 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `executor.*`
 >    - `spec_folder`
 >    - `execution_mode`
-> 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
+> 3. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
 >    - Auto: `assets/deep_ask-ai-council_auto.yaml`
 >    - Confirm: `assets/deep_ask-ai-council_confirm.yaml`
-> 3. Execute the YAML workflow step by step using those resolved values.
+> 4. Execute the YAML workflow step by step using those resolved values.
 >
+> This command is **general-agent based** — it orchestrates the deep-ai-council session. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) below are HARD BLOCKS; neither may be skipped.
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
+
+---
+
+# 🚨 PHASE 0: @GENERAL AGENT VERIFICATION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @general agent?
+│
+├─ INDICATORS that you ARE @general agent:
+│   ├─ You can orchestrate the deep-ai-council session (YAML workflow execution)
+│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
+│   ├─ You can load skill references and execute defined logic
+│
+├─ IF YES (all indicators present):
+│   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │                                                            │
+    │   │ This command orchestrates the deep-ai-council session and  │
+    │   │ runs general-agent based.                                  │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   /deep:ask-ai-council [arguments]                         │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+```
+
+**Phase Output:**
+- `general_agent_verified = ________________`
+
+---
 
 ## CONSTRAINTS
 
@@ -129,7 +173,7 @@ Rules:
 
 Use this block only when `execution_mode = "INTERACTIVE"` or when no suffix was supplied and Q2 must ask for the execution mode.
 
-**STATUS: BLOCKED**
+**STATUS: ☐ BLOCKED**
 
 ```text
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:

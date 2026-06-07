@@ -10,19 +10,63 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_conte
 >
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **YOUR FIRST ACTION:**
-> 1. Run the unified setup phase in this Markdown entrypoint and resolve:
+> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
+> 1. Run Phase 0: @general agent self-verification (below)
+> 2. Run the Unified Setup Phase (BLOCKED gate) in this Markdown entrypoint and resolve:
 >    - `research_topic`
 >    - `spec_folder`
 >    - `execution_mode`
 >    - `maxIterations`
 >    - `convergenceThreshold`
-> 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
+> 3. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
 >    - Auto: `deep_start-research-loop_auto.yaml`
 >    - Confirm: `deep_start-research-loop_confirm.yaml`
-> 3. Execute the YAML workflow step by step using those resolved values
+> 4. Execute the YAML workflow step by step using those resolved values
 >
+> This command is **general-agent based** — it orchestrates the deep-research loop. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) below are HARD BLOCKS; neither may be skipped.
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
+
+---
+
+# 🚨 PHASE 0: @GENERAL AGENT VERIFICATION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @general agent?
+│
+├─ INDICATORS that you ARE @general agent:
+│   ├─ You can orchestrate the deep-research loop (YAML workflow execution)
+│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
+│   ├─ You can load skill references and execute defined logic
+│
+├─ IF YES (all indicators present):
+│   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │                                                            │
+    │   │ This command orchestrates the deep-research loop and runs  │
+    │   │ general-agent based.                                       │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   /deep:start-research-loop [arguments]                    │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+```
+
+**Phase Output:**
+- `general_agent_verified = ________________`
+
+---
 
 ## CONSTRAINTS
 
@@ -88,25 +132,25 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 
 ### Default Resolution Table
 
-| Field | Required | Resolves Via | Default | Tier-2 Candidate |
-|-------|----------|--------------|---------|------------------|
-| `research_topic` | Y | `$ARGUMENTS` positional topic, or marker `research_topic` | none | N |
-| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or targeted choice among suggested existing/new/update-related/phase folder | none | Y, when topic is present but folder choice is ambiguous |
-| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
-| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `10` | N |
-| `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.05` | N |
-| `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
-| `executor_model` | N | flag `--model`, marker `executor_model`, or executor-specific validation | none | N |
-| `executor_reasoning` | N | flag `--reasoning-effort`, marker `executor_reasoning`, or executor default | none | N |
-| `executor_service_tier` | N | flag `--service-tier`, marker `executor_service_tier`, or executor default | none | N |
-| `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
-| `resource_map_emit` | N | flag `--no-resource-map`, marker `resource_map_emit`, or default | `true` | N |
-| `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each `--executor` group accepts `--model`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N |
-| `fanout_concurrency` | N | flag `--concurrency=N` | `2` | N |
+| Field                   | Required | Resolves Via                                                                                                                                                                                           | Default                            | Tier-2 Candidate                                        |
+| -------------------------| ----------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------| ---------------------------------------------------------|
+| `research_topic`        | Y        | `$ARGUMENTS` positional topic, or marker `research_topic`                                                                                                                                              | none                               | N                                                       |
+| `spec_folder`           | Y        | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a spec-folder path named in the topic/`$ARGUMENTS` that resolves to an existing folder (auto-bound + stripped, per `auto_mode_contract` §1 source 3), or targeted choice among suggested existing/new/update-related/phase folder | none | Y, ONLY when topic is present, names no resolvable spec folder, and the folder choice is ambiguous |
+| `execution_mode`        | Y        | attached suffix `:auto` or marker `execution_mode`                                                                                                                                                     | `AUTONOMOUS` under `:auto`         | N                                                       |
+| `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
+| `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
+| `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
+| `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
+| `executor_reasoning`    | N        | flag `--reasoning-effort`, marker `executor_reasoning`, or executor default                                                                                                                            | none                               | N                                                       |
+| `executor_service_tier` | N        | flag `--service-tier`, marker `executor_service_tier`, or executor default                                                                                                                             | none                               | N                                                       |
+| `executor_timeout`      | N        | flag `--executor-timeout`, marker `executor_timeout`, or default                                                                                                                                       | `900`                              | N                                                       |
+| `resource_map_emit`     | N        | flag `--no-resource-map`, marker `resource_map_emit`, or default                                                                                                                                       | `true`                             | N                                                       |
+| `fanout_executors`      | N        | repeatable `--executor=<type>` flags or `--executors=<json>`; each `--executor` group accepts `--model`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N                                                       |
+| `fanout_concurrency`    | N        | flag `--concurrency=N`                                                                                                                                                                                 | `2`                                | N                                                       |
 
 **Fan-out default policy:** 0–1 `--executor` flags and no `--executors` → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, `--executors`, or any `--count > 1` → `config.fanout`. Native fan-out (count N for `native` executor) runs N sequential `@deep-research` agent dispatches with isolated dirs. CLI fan-out runs N headless subprocesses concurrently in the capped pool.
 
-**STATUS: BLOCKED**
+**STATUS: ☐ BLOCKED**
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:

@@ -32,7 +32,7 @@ Use this README for human orientation: command examples, packet layout, configur
 | Version | `1.0.0` |
 | Primary command | `/deep:start-context-loop` |
 | Runtime modes | `auto`, `confirm` |
-| Default executor pool | 2 native + MiMo + gpt + deepseek |
+| Default executor pool | 2 native `@deep-context` seats (native-only); add `--executor` for CLI/heterogeneous |
 | References | 2 (`loop_protocol.md`, `convergence.md`) |
 | Assets | 2 (`context_report_template.md`, `deep_context_config.json`) |
 | Scripts | 1 (`reduce-state.cjs`) |
