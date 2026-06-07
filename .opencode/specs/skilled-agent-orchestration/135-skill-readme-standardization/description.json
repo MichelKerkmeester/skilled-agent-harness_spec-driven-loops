@@ -16,7 +16,8 @@
   "created_at": "2026-06-07T08:58:31Z",
   "is_phase_parent": true,
   "children": [
-    "001-readme-template-and-standard"
+    "001-readme-template-and-standard",
+    "002-cli-claude-code-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
@@ -33,7 +34,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T09:00:00.000Z",
+  "lastUpdated": "2026-06-07T09:35:00.000Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [

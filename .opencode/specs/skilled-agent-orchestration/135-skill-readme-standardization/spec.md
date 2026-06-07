@@ -134,6 +134,7 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 | 023 | `023-system-spec-kit-readme/` | Rewrite `system-spec-kit` README (restyle, keep reference-manual depth) | Planned |
 | 024 | `024-skills-index-readme/` | Rewrite `.opencode/skills/README.md` index | Planned |
 
+| 2 | 002-cli-claude-code-readme/ | [Phase 2 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh --strict` independently before its README is committed.
@@ -147,6 +148,7 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 |------|-----|----------|--------------|
 | 001 | 002+ | Template + golden example shipped and conformant | sk-doc `extract_structure.py` and HVR pass, `validate.sh --strict` on 001 |
 | 002-023 | 024 | All 22 skill READMEs rewritten and committed | Per-phase `validate.sh --strict`, then spot-check headers across families |
+| 001-readme-template-and-standard | 002-cli-claude-code-readme | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

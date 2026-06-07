@@ -1,0 +1,17 @@
+{
+  "specFolder": "135-skill-readme-standardization/002-cli-claude-code-readme",
+  "description": "Phase 1: cli-claude-code-readme",
+  "keywords": [
+    "phase",
+    "cli-claude-code-readme"
+  ],
+  "lastUpdated": "2026-06-07T09:30:53.678Z",
+  "specId": "002",
+  "folderSlug": "cli-claude-code-readme",
+  "parentChain": [
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
