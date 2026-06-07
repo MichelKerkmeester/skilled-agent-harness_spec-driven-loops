@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/135-deep-loop-runtime-utilization"
+    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering/003-runtime-feature-utilization"
     last_updated_at: "2026-06-06T23:59:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored Level-3 plan for completed cross-skill optimization"

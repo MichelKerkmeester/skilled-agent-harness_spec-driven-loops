@@ -2,7 +2,7 @@
   "reviewTarget": "Session deep-context + deep-loop-runtime utilization work (commits 1d54e45..55fd158): 28 changed code/contract files",
   "reviewTargetType": "files",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/135-deep-loop-runtime-utilization",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/003-runtime-feature-utilization",
   "maxIterations": 10,
   "convergenceThreshold": 0.10,
   "executionMode": "auto",

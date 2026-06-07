@@ -17,7 +17,9 @@
   "is_phase_parent": true,
   "children": [
     "001-context-loop-foundation",
-    "002-runtime-robustness-parity"
+    "002-runtime-robustness-parity",
+    "003-runtime-feature-utilization",
+    "004-reference-architecture-alignment"
   ],
   "specFolder": "skilled-agent-orchestration/134-deep-context-gathering",
   "description": "Feature Specification: deep-context loop (Phase Parent)",

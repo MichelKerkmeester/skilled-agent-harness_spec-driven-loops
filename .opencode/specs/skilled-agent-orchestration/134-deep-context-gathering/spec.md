@@ -1,6 +1,6 @@
 ---
 title: "deep-context loop"
-description: "Phase-parent packet for the deep-context loop: the foundational build (001) and runtime-robustness parity with the mature deep loops (002)."
+description: "Phase-parent packet for the deep-context loop: foundational build (001), runtime-robustness parity (002), cross-skill runtime-feature utilization (003), and reference-architecture alignment with the mature deep loops (004)."
 trigger_phrases:
   - "deep-context"
   - "context gathering"
@@ -12,19 +12,21 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering"
-    last_updated_at: "2026-06-06T21:40:00Z"
+    last_updated_at: "2026-06-07T07:30:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "001 foundation shipped; 002 runtime-robustness-parity open for build"
-    next_safe_action: "Implement the 002 runtime-robustness-parity features in the loop"
+    recent_action: "001/002/003 shipped; 004 reference-architecture-alignment open"
+    next_safe_action: "Mirror sibling reference layout into the deep-context skill (004)"
     blockers: []
     key_files:
       - "spec.md"
       - "001-context-loop-foundation/spec.md"
       - "002-runtime-robustness-parity/spec.md"
-    completion_pct: 50
+      - "003-runtime-feature-utilization/spec.md"
+      - "004-reference-architecture-alignment/spec.md"
+    completion_pct: 75
     open_questions: []
     answered_questions:
-      - "001 shipped the deep-context loop; 002 wires the runtime durability and validation features it currently skips."
+      - "001 shipped the loop; 002 added runtime-robustness parity; 003 hardened cross-skill runtime-feature utilization; 004 aligns the skill's references to its mature siblings."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -50,7 +52,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-06-06 |
-| **Updated** | 2026-06-06 |
+| **Updated** | 2026-06-07 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
@@ -77,6 +79,8 @@ Deliver a `deep-context` deep loop that produces a relevance-gated, agreement-co
 
 - The deep-context loop itself: skill, `/deep:start-context-loop` command and workflows, `@deep-context` agent, the `loop_type='context'` coverage-graph and convergence extension, and the reuse-first Context Report (phase 001).
 - Runtime-robustness parity: wiring the `deep-loop-runtime` durability and validation features the loop currently skips (phase 002).
+- Cross-skill runtime-feature utilization: auditing and hardening how the deep loops auto-utilize the shared runtime robustness, and wiring deep-context's reducer into the loop (phase 003).
+- Reference-architecture alignment: mirroring the mature siblings' subfoldered reference layout + canonical smart-router in the deep-context skill (phase 004).
 
 ### Out of Scope
 
@@ -88,7 +92,9 @@ Deliver a `deep-context` deep loop that produces a relevance-gated, agreement-co
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `001-context-loop-foundation/**` | Complete | Foundational build, sk-doc package, advisor registration, playbook-gap fixes (done) |
-| `002-runtime-robustness-parity/**` | Open | Runtime durability/validation wiring for the deep-context loop |
+| `002-runtime-robustness-parity/**` | Complete | Runtime durability/validation wiring for the deep-context loop (done) |
+| `003-runtime-feature-utilization/**` | Complete | Cross-skill runtime-feature auto-utilization audit + hardening; reducer wired into the loop (done) |
+| `004-reference-architecture-alignment/**` | In Progress | Sibling-aligned subfoldered references + canonical smart-router for the deep-context skill |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -99,7 +105,9 @@ Deliver a `deep-context` deep loop that produces a relevance-gated, agreement-co
 | Phase | Folder | Status | Scope |
 |-------|--------|--------|-------|
 | 001 | `001-context-loop-foundation/` | Complete (shipped + verified) | The foundational deep-context build: the loop skill, `/deep:start-context-loop` command + auto/confirm workflows, the `@deep-context` LEAF agent, the `deep-loop-runtime` `loop_type='context'` coverage-graph + convergence extension, the reuse-first Context Report, the sk-doc documentation package, skill-advisor registration, and the closed manual-testing-playbook gaps. |
-| 002 | `002-runtime-robustness-parity/` | Open (build) | Bring the host-driven loop to durability and validation parity with `deep-research`/`deep-review`: wire `post-dispatch-validate` (seat-output validation before merge), `atomic-state` (crash-safe writes), `jsonl-repair` (corrupt-tail recovery before read), `executor-audit` (provenance + recursion guard on CLI seat dispatch), and the `loop-lock` runtime helper. |
+| 002 | `002-runtime-robustness-parity/` | Complete (shipped + verified) | Bring the host-driven loop to durability and validation parity with `deep-research`/`deep-review`: wire `post-dispatch-validate` (seat-output validation before merge), `atomic-state` (crash-safe writes), `jsonl-repair` (corrupt-tail recovery before read), `executor-audit` (provenance + recursion guard on CLI seat dispatch), and the `loop-lock` runtime helper. |
+| 003 | `003-runtime-feature-utilization/` | Complete (shipped + verified) | Cross-skill audit + targeted hardening of how the deep loops auto-utilize the shared `deep-loop-runtime` robustness features, plus wiring the deep-context reducer into the loop so its phase-002 features run every iteration. |
+| 004 | `004-reference-architecture-alignment/` | In Progress | Align the deep-context skill's reference layout + smart-router to its mature siblings (`deep-review`/`deep-research`/`deep-ai-council`): subfoldered references (`convergence/ protocol/ state/ guides/`), the missing references extracted from the loop YAML/scripts/runtime, the canonical router, and a full citation sweep. |
 
 ### Phase Transition Rules
 
