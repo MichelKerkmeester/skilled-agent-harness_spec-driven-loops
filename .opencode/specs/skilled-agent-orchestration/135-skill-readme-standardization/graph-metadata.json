@@ -18,7 +18,8 @@
     "skilled-agent-orchestration/135-skill-readme-standardization/012-mcp-chrome-devtools-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/013-mcp-click-up-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/014-mcp-code-mode-readme",
-    "skilled-agent-orchestration/135-skill-readme-standardization/015-sk-code-review-readme"
+    "skilled-agent-orchestration/135-skill-readme-standardization/015-sk-code-review-readme",
+    "skilled-agent-orchestration/135-skill-readme-standardization/016-sk-code-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -118,7 +119,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/015-sk-code-review-readme",
-    "last_active_at": "2026-06-07T13:52:39Z"
+    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/016-sk-code-readme",
+    "last_active_at": "2026-06-07T14:10:11Z"
   }
 }
