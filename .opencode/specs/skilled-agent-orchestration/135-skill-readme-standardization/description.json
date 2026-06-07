@@ -18,7 +18,8 @@
   "children": [
     "001-readme-template-and-standard",
     "002-cli-claude-code-readme",
-    "003-cli-codex-readme"
+    "003-cli-codex-readme",
+    "004-cli-devin-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
