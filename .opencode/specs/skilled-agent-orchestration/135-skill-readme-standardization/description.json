@@ -52,12 +52,14 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T19:05:00.000Z",
+  "lastUpdated": "2026-06-07T17:38:46.232Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "07-06-26_18-38__the-3-stale-nested-code-readmes-then-do-phase-024.md"
+  ]
 }

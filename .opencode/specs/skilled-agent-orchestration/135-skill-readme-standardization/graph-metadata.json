@@ -121,13 +121,13 @@
     ],
     "causal_summary": "The repo root `README.md` and the recent `system-spec-kit` changelogs read in one warm, human-centered narrative voice: a problem-first opener, an \"At a Glance\" table near the top, outcome-named section headers, sparse tables, honest trade-off notes, and a verification closer. The 22 skill READMEs do not. They are tabular reference cards with functional headers, a buried \"Key Statistics\" block instead of an At-a-Glance, no human-problem opener, and no verification section. They also drift in length (228 to 1084 lines) and structure, so a reader moving between skills re-learns the layout each time. New skills inherit the old shape because the sk-doc skill-README template still encodes it.",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-06-07T09:00:45.336Z",
+    "last_save_at": "2026-06-07T17:38:46.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/024-skills-index-readme",
-    "last_active_at": "2026-06-07T19:05:00Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-07T17:38:46.456Z"
   }
 }

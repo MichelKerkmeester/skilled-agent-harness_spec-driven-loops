@@ -1,5 +1,5 @@
 {
-  "specFolder": "137-deep-context-workflow-adoption",
+  "specFolder": "skilled-agent-orchestration/137-deep-context-workflow-adoption",
   "description": "Feature Specification: deep-context workflow adoption (root-cause fix)",
   "keywords": [
     "feature",
@@ -10,13 +10,10 @@
     "root-cause",
     "fix"
   ],
-  "lastUpdated": "2026-06-07T18:08:04.597Z",
+  "lastUpdated": "2026-06-07T19:01:48.507Z",
   "specId": "137",
   "folderSlug": "deep-context-workflow-adoption",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration"
   ],
   "memorySequence": 1,
