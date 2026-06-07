@@ -117,6 +117,7 @@ const durableWriteWarnings = new Set();
 
 function log(message) {
   process.stderr.write(`[mk-spec-memory-launcher] ${message}\n`);
+  persistLauncherLogLine(`${new Date().toISOString()} [pid ${process.pid}] ${message}\n`);
 }
 
 function isDurableWriteUnavailable(error) {
@@ -131,6 +132,53 @@ function logDurableWriteUnavailableOnce(operation, targetPath, error) {
   durableWriteWarnings.add(key);
   const detail = error instanceof Error ? error.message : String(error ?? code);
   log(`${operation} skipped for ${rel(targetPath)}: ${code} ${detail}`);
+}
+
+// Persistent launcher log: log() writes to stderr, which the MCP host captures inconsistently; it
+// ALSO appends here so an owner-disposal race or daemon flap is attributable after the fact from a
+// durable file. The append is best-effort and size-bounded — a logging failure must never affect the
+// launcher, and the file rotates to a single previous generation once it crosses the cap so it cannot
+// grow without bound.
+function launcherLogIsEnabled(env = process.env) {
+  return env.SPECKIT_LAUNCHER_LOG !== '0';
+}
+function launcherLogMaxBytes(env = process.env) {
+  return parsePositiveInteger(env.SPECKIT_LAUNCHER_LOG_MAX_BYTES, 1024 * 1024);
+}
+function resolveLauncherLogPath(env = process.env, baseDir = dbDir) {
+  const override = env.SPECKIT_LAUNCHER_LOG_PATH;
+  return typeof override === 'string' && override.trim()
+    ? override.trim()
+    : path.join(baseDir, '.mk-spec-memory-launcher.log');
+}
+function shouldRotateLauncherLog(currentSizeBytes, maxBytes) {
+  return Number.isFinite(currentSizeBytes) && Number.isFinite(maxBytes) && currentSizeBytes > maxBytes;
+}
+function persistLauncherLogLine(line) {
+  if (!launcherLogIsEnabled()) return;
+  let target;
+  try {
+    target = resolveLauncherLogPath();
+    try {
+      const { size } = fs.statSync(target);
+      if (shouldRotateLauncherLog(size, launcherLogMaxBytes())) {
+        try {
+          fs.renameSync(target, target.replace(/\.log$/, '.prev.log'));
+        } catch {
+          // Best-effort rotation: if the rename fails, keep appending to the current file.
+        }
+      }
+    } catch (statErr) {
+      if (statErr.code !== 'ENOENT') throw statErr;
+    }
+    fs.appendFileSync(target, line, { mode: 0o600 });
+  } catch (error) {
+    if (target && isDurableWriteUnavailable(error)) {
+      logDurableWriteUnavailableOnce('launcher-log-append', target, error);
+      return;
+    }
+    // Logging must never break the launcher.
+  }
 }
 
 function cleanupTmpFile(tmpPath) {
@@ -1460,7 +1508,12 @@ module.exports = {
   getWatchdogConfig,
   isRespawnLockStale,
   launchModelServer,
+  launcherLogIsEnabled,
+  launcherLogMaxBytes,
   modelServerRespawnLockPath,
+  persistLauncherLogLine,
+  resolveLauncherLogPath,
+  shouldRotateLauncherLog,
   normalizeWatchdogGraceMs,
   parseProcessRows,
   processLiveness,
