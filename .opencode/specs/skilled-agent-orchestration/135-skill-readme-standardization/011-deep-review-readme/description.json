@@ -1,0 +1,19 @@
+{
+  "specFolder": "011-deep-review-readme",
+  "description": "Rewrite deep-review skill README in the narrative voice",
+  "keywords": [
+    "rewrite",
+    "deep-review",
+    "skill",
+    "readme",
+    "narrative",
+    "voice"
+  ],
+  "lastUpdated": "2026-06-07T12:18:52.000Z",
+  "specId": "011",
+  "folderSlug": "deep-review-readme",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

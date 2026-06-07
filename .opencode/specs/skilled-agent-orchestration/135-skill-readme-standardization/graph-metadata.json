@@ -13,7 +13,8 @@
     "skilled-agent-orchestration/135-skill-readme-standardization/007-deep-context-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/008-deep-improvement-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/009-deep-loop-runtime-readme",
-    "skilled-agent-orchestration/135-skill-readme-standardization/010-deep-research-readme"
+    "skilled-agent-orchestration/135-skill-readme-standardization/010-deep-research-readme",
+    "skilled-agent-orchestration/135-skill-readme-standardization/011-deep-review-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -113,7 +114,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/010-deep-research-readme",
-    "last_active_at": "2026-06-07T11:59:05Z"
+    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/011-deep-review-readme",
+    "last_active_at": "2026-06-07T12:18:52Z"
   }
 }
