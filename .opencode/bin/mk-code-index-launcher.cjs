@@ -15,6 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
+const { createSessionProxy, createClassifyFrame } = require('./lib/launcher-session-proxy.cjs');
 
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
@@ -131,6 +132,42 @@ function loadBridgeModule() {
       },
     };
   }
+}
+
+// Code-index replayable / unsafe tool sets for the reconnecting session proxy. Read-only structural
+// queries are safe to replay across a backend reattach; a full scan or an apply mutates the graph and
+// must NOT be replayed (the client re-drives it on a retryable recycle error). The proxy machinery is
+// shared with mk-spec-memory; only this tool set differs.
+const CODE_INDEX_REPLAYABLE_TOOL_NAMES = new Set([
+  'code_graph_query',
+  'code_graph_context',
+  'code_graph_status',
+  'code_graph_classify_query_intent',
+  'code_graph_verify',
+  'detect_changes',
+]);
+const CODE_INDEX_UNSAFE_TOOL_NAMES = new Set([
+  'code_graph_scan',
+  'code_graph_apply',
+]);
+const classifyCodeIndexFrame = createClassifyFrame({
+  replayableToolNames: CODE_INDEX_REPLAYABLE_TOOL_NAMES,
+  unsafeToolNames: CODE_INDEX_UNSAFE_TOOL_NAMES,
+});
+
+// Bridge a secondary client through the reconnecting session proxy so a code-index owner death no
+// longer surfaces as a hard "Connection closed" — the proxy reattaches to the respawned backend and
+// replays in-flight read queries. Mirrors the mk-spec-memory wiring; the classifier is the only diff.
+function bridgeStdioThroughSessionProxy(socketPath, options = {}) {
+  const createProxy = options.createProxy ?? createSessionProxy;
+  const sessionProxy = createProxy({
+    socketPath,
+    stdin: options.stdin ?? process.stdin,
+    stdout: options.stdout ?? process.stdout,
+    log,
+    classify: classifyCodeIndexFrame,
+  });
+  return sessionProxy.start();
 }
 
 function refreshPaths() {
@@ -592,6 +629,7 @@ async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
     leaseResult,
     loggerPrefix: 'mk-code-index-launcher',
     dbDir: resolvedDbDir(),
+    bridge: bridgeStdioThroughSessionProxy,
   });
   if (decision && decision.action === 'respawn') {
     return await respawnAfterDeadSocket(leaseResult, decision, options);
@@ -832,7 +870,7 @@ function installSignalHandlers() {
   });
 }
 
-(async () => {
+async function launcherMain() {
   const started = now();
   const actions = [];
   let lockHeld = false;
@@ -962,4 +1000,17 @@ function installSignalHandlers() {
       fs.rmSync(lockDir, { recursive: true, force: true });
     }
   }
-})();
+}
+
+// Run only when invoked directly as the launcher script; stay inert (just export) when required by a
+// test, so the reconnecting-proxy wiring above can be unit-checked without spawning the daemon.
+if (require.main === module) {
+  void launcherMain();
+}
+
+module.exports = {
+  CODE_INDEX_REPLAYABLE_TOOL_NAMES,
+  CODE_INDEX_UNSAFE_TOOL_NAMES,
+  classifyCodeIndexFrame,
+  bridgeStdioThroughSessionProxy,
+};

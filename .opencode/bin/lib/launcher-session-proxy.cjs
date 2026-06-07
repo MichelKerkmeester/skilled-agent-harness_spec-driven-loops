@@ -120,30 +120,38 @@ function isResponseFrame(parsed) {
   return hasRequestId(parsed) && (hasOwn(parsed, 'result') || hasOwn(parsed, 'error'));
 }
 
-function classifyFrame(frame) {
-  const parsed = typeof frame === 'string' ? parseFrame(frame) : frame;
-  if (!parsed || typeof parsed.method !== 'string') return false;
-  if (parsed.method !== 'tools/call') {
-    return REPLAYABLE_PROTOCOL_METHODS.has(parsed.method) || parsed.method.startsWith('notifications/');
-  }
-
-  const toolName = parsed.params && typeof parsed.params === 'object'
-    ? parsed.params.name
-    : undefined;
-  if (typeof toolName !== 'string') return false;
-  if (UNSAFE_TOOL_NAMES.has(toolName)) return false;
-  // memory_save is replayable on a commit-then-die backend because its primary row is
-  // protected by content-hash dedup AND the v28 active-row partial unique index
-  // (idx_memory_logical_key_active_unique): an identical-content replay collapses to the
-  // same logical key and writes no new primary row. The KNOWN GAP is the secondary index —
-  // a commit-then-die that finished the primary insert but not the secondary-index write can,
-  // on replay, append duplicate secondary-index rows because that path is not yet keyed by an
-  // idempotency token. Closing it requires a request-id/dedup key threaded into the save
-  // handler (handlers/save/), which lives behind the daemon IPC and is out of scope for this
-  // proxy-layer frame classifier. Behavior is intentionally unchanged here; see flags.
-  if (REPLAYABLE_TOOL_NAMES.has(toolName)) return true;
-  return false;
+// Build a frame classifier for a given replayable/unsafe tool set. The protocol-method rules
+// (initialize/ping/notifications) and the parse/unsafe/replayable order are identical across MCP
+// servers; only the tools/call replayability set differs per server (memory tools vs code-graph
+// tools). Each launcher passes its own sets so the reattach/replay machinery stays one implementation.
+function createClassifyFrame(options = {}) {
+  const replayable = options.replayableToolNames instanceof Set ? options.replayableToolNames : REPLAYABLE_TOOL_NAMES;
+  const unsafe = options.unsafeToolNames instanceof Set ? options.unsafeToolNames : UNSAFE_TOOL_NAMES;
+  return function classify(frame) {
+    const parsed = typeof frame === 'string' ? parseFrame(frame) : frame;
+    if (!parsed || typeof parsed.method !== 'string') return false;
+    if (parsed.method !== 'tools/call') {
+      return REPLAYABLE_PROTOCOL_METHODS.has(parsed.method) || parsed.method.startsWith('notifications/');
+    }
+    const toolName = parsed.params && typeof parsed.params === 'object'
+      ? parsed.params.name
+      : undefined;
+    if (typeof toolName !== 'string') return false;
+    if (unsafe.has(toolName)) return false;
+    if (replayable.has(toolName)) return true;
+    return false;
+  };
 }
+
+// Default classifier uses the mk-spec-memory tool sets. memory_save is replayable on a
+// commit-then-die backend because its primary row is protected by content-hash dedup AND the v28
+// active-row partial unique index (idx_memory_logical_key_active_unique): an identical-content replay
+// collapses to the same logical key and writes no new primary row. The KNOWN GAP is the secondary
+// index — a commit-then-die that finished the primary insert but not the secondary-index write can,
+// on replay, append duplicate secondary-index rows because that path is not yet keyed by an
+// idempotency token. Closing it requires a request-id/dedup key threaded into the save handler, which
+// lives behind the daemon IPC and is out of scope for this proxy-layer frame classifier.
+const classifyFrame = createClassifyFrame();
 
 function createPendingRequestsTracker(classify = classifyFrame) {
   const pendingRequests = new Map();
@@ -802,9 +810,11 @@ function createSessionProxy(options) {
 }
 
 module.exports = {
+  createClassifyFrame,
   createSessionProxy,
   __testing: {
     classifyFrame,
+    createClassifyFrame,
     createFrameSplitter,
     createPendingRequestsTracker,
     parseFrame,
