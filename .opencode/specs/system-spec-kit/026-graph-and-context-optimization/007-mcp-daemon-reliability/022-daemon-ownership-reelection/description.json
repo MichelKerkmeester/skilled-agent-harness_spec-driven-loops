@@ -1,0 +1,36 @@
+{
+  "title": "RC-2 daemon ownership re-election (foundation)",
+  "trigger_phrases": [
+    "RC-2 daemon re-election",
+    "daemon outlives owner",
+    "daemon ownership re-election",
+    "SPECKIT_DAEMON_REELECTION",
+    "release daemon on shutdown"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
+  "status": "complete",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "importance_tier": "high",
+  "created_at": "2026-06-07T17:32:00Z",
+  "completed_at": "2026-06-07T17:32:00Z",
+  "is_phase_parent": false,
+  "children": [],
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
+  "description": "Flag-gated, default-off foundation for the complete RC-2 fix (daemon outlives its owner). Root cause: shutdownLauncherForSignal explicitly child.kill(signal)s the daemon, so it dies with the owner. When SPECKIT_DAEMON_REELECTION is on, the owner spawns the context-server detached (+unref) and, on shutdown, RELEASES it (reap only the model-server, keep the daemon lease/socket, drop only the owner lease, detach the exit handler so it doesn't wipe the daemon lease, exit without killing the daemon) for a live secondary to bridge to. Default off is byte-identical to phase 017 (spawn-io identity is unit-asserted). A gpt-5.5-fast HIGH adversarial diff review caught a blocking exit-handler lease-wipe bug, now fixed. Secondary OWNERSHIP adoption + the released daemon's terminal idle-death are runtime-validation-gated before enabling the flag; the phase-021 orphan sweeper bounds any released-daemon leak. Fifth and final deferred daemon-reliability hardening item from phase 017.",
+  "keywords": [
+    "rc-2",
+    "ownership-reelection",
+    "daemon-reliability",
+    "detached-spawn",
+    "release-on-shutdown",
+    "mk-spec-memory"
+  ],
+  "lastUpdated": "2026-06-07T17:32:00.000Z",
+  "specId": "022",
+  "folderSlug": "daemon-ownership-reelection",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

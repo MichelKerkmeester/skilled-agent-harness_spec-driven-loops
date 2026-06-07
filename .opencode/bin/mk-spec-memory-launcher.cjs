@@ -181,6 +181,24 @@ function persistLauncherLogLine(line) {
   }
 }
 
+// Daemon re-election (RC-2, EXPERIMENTAL, default OFF). When enabled the owner spawns the daemon
+// detached and, on its own shutdown, RELEASES the daemon (leaves it running for a live secondary to
+// bridge to) instead of killing it, so a session ending does not tear the shared backend out from
+// under other sessions. Default off collapses every path below to today's behavior (daemon tied to
+// the owner, killed on shutdown). Enabling needs runtime validation of secondary adoption + bounded
+// terminal death; a released daemon reparents to pid 1, so the orphan sweeper bounds any leak.
+function daemonReelectionEnabled(env = process.env) {
+  return env.SPECKIT_DAEMON_REELECTION === '1' || env.SPECKIT_DAEMON_REELECTION === 'on';
+}
+function contextServerSpawnIo(reelectionEnabled) {
+  return reelectionEnabled
+    ? { detached: true, stdio: ['ignore', 'ignore', 'ignore'] }
+    : { detached: false, stdio: ['ignore', 'ignore', 'inherit'] };
+}
+function shouldReleaseDaemonForReelection({ enabled, hasLiveDaemon } = {}) {
+  return Boolean(enabled) && Boolean(hasLiveDaemon);
+}
+
 function cleanupTmpFile(tmpPath) {
   try {
     fs.unlinkSync(tmpPath);
@@ -1263,14 +1281,19 @@ function launchServer() {
   }
   const server = path.join(kitDir, 'mcp_server', 'dist', 'context-server.js');
   const nodeArgs = getContextServerNodeArgs();
+  const reelectionEnabled = daemonReelectionEnabled();
+  const spawnIo = contextServerSpawnIo(reelectionEnabled);
   childProcess = spawn(process.execPath, [...nodeArgs, server], {
     cwd: root,
     env: {
       ...process.env,
       SPECKIT_BACKEND_ONLY: '1',
     },
-    stdio: ['ignore', 'ignore', 'inherit'],
+    stdio: spawnIo.stdio,
+    detached: spawnIo.detached,
   });
+  // Re-election only: let the launcher exit without keeping the detached daemon tethered to it.
+  if (reelectionEnabled) childProcess.unref();
   const childPid = childProcess.pid;
   const refreshed = refreshOwnerLeaseFile(process.pid);
   if (!refreshed) {
@@ -1335,6 +1358,25 @@ async function shutdownLauncherForSignal(signal) {
   clearOwnerLeaseHeartbeat();
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
+
+  // RC-2 re-election (default off): release the detached context-server for a live secondary to adopt
+  // instead of killing it. Reap only the non-adoptable model-server, KEEP the daemon lease (its socket
+  // stays findable for adoption), drop only OWNERSHIP, and exit without killing the daemon. When the
+  // flag is off this branch is skipped and the original kill path below runs unchanged.
+  if (shouldReleaseDaemonForReelection({ enabled: daemonReelectionEnabled(), hasLiveDaemon: isChildRunning(childProcess) })) {
+    const releasedModelServer = hfControl.getChild();
+    if (isChildRunning(releasedModelServer)) {
+      hfControl.reapProcessTree(releasedModelServer.pid);
+      releasedModelServer.kill(signal);
+    }
+    log('daemon re-election: releasing context-server for adoption (not killing); dropping ownership lease only');
+    // The process 'exit' handler clears BOTH leases; detach it first so the daemon lease (its socket
+    // path) survives for a secondary to adopt. Ownership is still dropped explicitly below.
+    process.removeListener('exit', clearAllLeaseFiles);
+    clearOwnerLeaseFile();
+    process.exit(0);
+    return;
+  }
 
   const children = [];
   if (isChildRunning(childProcess)) {
@@ -1502,7 +1544,9 @@ module.exports = {
   bridgeStdioThroughSessionProxy,
   buildLeaseObject,
   computeBackoffMs,
+  contextServerSpawnIo,
   createCrashLoopGuard,
+  daemonReelectionEnabled,
   createModelServerSupervisor,
   getModelServerWatchdogConfig,
   getWatchdogConfig,
@@ -1528,6 +1572,7 @@ module.exports = {
   resolveModelServerSocketPath,
   sampleProcessTreeRssMb,
   shouldAbortRelaunchOnFire,
+  shouldReleaseDaemonForReelection,
   shouldSkipLaunch,
   signalProcess,
   startModelServerDemandListener,

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+      "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [
+      "RC-2 daemon re-election",
+      "daemon outlives owner",
+      "SPECKIT_DAEMON_REELECTION"
+    ],
+    "key_topics": ["rc-2", "ownership-reelection", "daemon-reliability", "detached-spawn", "release-on-shutdown"],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [".opencode/bin/mk-spec-memory-launcher.cjs"],
+    "entities": ["daemonReelectionEnabled", "contextServerSpawnIo", "shouldReleaseDaemonForReelection", "shutdownLauncherForSignal"],
+    "causal_summary": "Flag-gated, default-off RC-2 foundation: spawn the shared daemon detached and release (not kill) it on owner shutdown so it can outlive the owner. Flag-off is byte-identical to phase 017; a gpt-5.5 adversarial review caught + fixed an exit-handler lease-wipe; secondary adoption + terminal death are runtime-validation-gated, leak bounded by the 021 sweeper.",
+    "created_at": "2026-06-07T17:32:00Z",
+    "last_save_at": "2026-06-07T17:32:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+  }
+}
