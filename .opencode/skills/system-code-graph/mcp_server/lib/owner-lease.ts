@@ -62,7 +62,7 @@ export interface OwnerClassificationOptions {
 const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
 const OWNER_LEASE_LOCK_FILE_NAME = `${OWNER_LEASE_FILE_NAME}.lock`;
 const DEFAULT_TTL_MS = CODE_GRAPH_DEFAULTS.ttlMs;
-// OR-3-01: a mutation lock is only ever held for a few synchronous fs ops, so any lock with an
+// A mutation lock is only ever held for a few synchronous fs ops, so any lock with an
 // UNPARSEABLE pid (empty/partial) older than this is treated as a wedged orphan from a pre-fix
 // binary or a hard crash between openSync and writeFileSync, and is self-healed once.
 const WEDGED_MUTATION_LOCK_MAX_AGE_MS = 30_000;
@@ -106,7 +106,7 @@ function readOwnerLeaseMutationLockPid(lockPath: string): number | null {
   }
 }
 
-// OR-3-01: age (ms) of the lock file, or null if it cannot be stat'd. Used to gate self-healing of
+// Age (ms) of the lock file, or null if it cannot be stat'd. Used to gate self-healing of
 // a wedged empty/partial lock whose pid is unparseable (so the live-pid stale check cannot apply).
 function ownerLeaseMutationLockAgeMs(lockPath: string, now: number): number | null {
   try {
@@ -127,7 +127,7 @@ function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMut
       return { fd, lockPath };
     } catch (error: unknown) {
       if (typeof fd === 'number') {
-        // OR-3-01: the openSync('wx') succeeded (we own the just-created lock), but the
+        // The openSync('wx') succeeded (we own the just-created lock), but the
         // subsequent writeFileSync/fsyncSync threw (e.g. ENOSPC/EIO). Close the fd AND unlink the
         // orphan lock before re-throwing — otherwise it lingers empty/partial with no parseable
         // pid, every later EEXIST acquirer reads a null pid, the stale-reclaim guard (which
@@ -153,7 +153,7 @@ function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMut
       const lockPid = readOwnerLeaseMutationLockPid(lockPath);
       if (attempt === 0 && lockPid !== null && getProcessLiveness(lockPid) === 'dead') {
         try {
-          // DR-002-03: identity-checked stale-lock removal. Re-read immediately before unlink; a
+          // Identity-checked stale-lock removal. Re-read immediately before unlink; a
           // successor may have replaced the dead lock between classification and removal, and
           // unlink-by-path would otherwise delete the successor's live lock. Only remove it if it
           // still holds the same dead PID we classified.
@@ -171,7 +171,7 @@ function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMut
         }
       }
 
-      // OR-3-01: self-heal a wedged lock whose pid is UNPARSEABLE (empty/partial) — the live-pid
+      // Self-heal a wedged lock whose pid is UNPARSEABLE (empty/partial) — the live-pid
       // check above can never clear it, so without this a pre-fix orphan (or one from a hard crash
       // between openSync and writeFileSync) would wedge tryAcquire -> refresh forever. Gate it on a
       // conservative mtime age (locks are held only for a few synchronous ops) and re-confirm the
@@ -517,7 +517,7 @@ export function refreshOwnerLease(
 export function releaseOwnerLease(dbDir: string, ownerPid: number): boolean {
   const canonicalDbDir = resolveCanonicalDbDir(dbDir);
   const leasePath = ownerLeasePath(canonicalDbDir);
-  // DR-001-03: release under the same mutation lock as acquire/refresh, and re-read the lease
+  // Release under the same mutation lock as acquire/refresh, and re-read the lease
   // while holding it. Without the lock, a concurrent reclaim that writes a successor lease
   // between the read and the unlink would have its lease deleted by path (split-brain).
   const lock = tryAcquireOwnerLeaseMutationLock(canonicalDbDir);

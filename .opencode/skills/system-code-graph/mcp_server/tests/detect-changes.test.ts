@@ -1,11 +1,11 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: detect_changes Handler Tests (012/002)
+// MODULE: detect_changes Handler Tests
 // ───────────────────────────────────────────────────────────────
 // Covers:
-//   - P1 safety invariant (RISK-03 / R-002-4): status='blocked' on
+//   - Safety invariant: status='blocked' on
 //     stale/empty/error readiness, NEVER empty `affectedSymbols`.
-//   - Output contract shape (R-002-5).
-//   - parse_error on malformed diff (R-002-6).
+//   - Output contract shape.
+//   - parse_error on malformed diff.
 //   - Symbol attribution via line-range overlap on a fresh graph.
 //   - Diff parser unit cases.
 
@@ -74,7 +74,7 @@ describe('detect_changes handler — P1 safety invariant', () => {
     expect(parsed.readiness.freshness).toBe('stale');
     expect(parsed.timestamp).toMatch(/\d{4}-\d{2}-\d{2}T/);
 
-    // R-002-4: NEVER queryOutline against a stale graph
+    // NEVER queryOutline against a stale graph.
     expect(mocks.queryOutline).not.toHaveBeenCalled();
     expect(mocks.ensureCodeGraphReady).toHaveBeenCalledWith(
       workspaceRoot,
@@ -470,7 +470,7 @@ describe('detect_changes handler — affected-symbol attribution', () => {
 
     const parsed = JSON.parse(result.content[0].text);
     // Status MUST stay 'ok' here — the graph IS fresh; the file just
-    // has no rows. R-002-4 only forbids empty results on stale state.
+    // has no rows. Empty results are only forbidden on stale state.
     expect(parsed.status).toBe('ok');
     expect(parsed.affectedSymbols).toEqual([]);
     expect(parsed.affectedFiles.length).toBe(1);
@@ -512,7 +512,7 @@ describe('detect_changes output contract shape (R-002-5)', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// Diff parser unit tests (R-002-6 standard unified diff coverage)
+// Diff parser unit tests with standard unified diff coverage
 // ───────────────────────────────────────────────────────────────
 
 describe('parseUnifiedDiff', () => {

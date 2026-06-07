@@ -1,18 +1,18 @@
 // ───────────────────────────────────────────────────────────────
-// HARNESS A: single-writer / no-orphan supervision cluster (031/009 Family 1+2)
+// HARNESS A: single-writer / no-orphan supervision cluster
 // ───────────────────────────────────────────────────────────────
 // Deterministic regression coverage for the coordinated single-writer / durability cluster,
 // Family 1 (respawn lock) + Family 2 (root reaping), all in model-server-supervision.cjs:
 //
-//   DR-005  isRespawnLockStale: a LIVE demand listener deliberately holds the respawn lock across its
+//   isRespawnLockStale: a LIVE demand listener deliberately holds the respawn lock across its
 //           whole bind + idle-listener window (> RESPAWN_LOCK_STALE_MS). The wall-clock branch must NOT
 //           expire the lock while the recorded owner pid is still alive — only age-out a dead/absent
 //           owner. (RED before: wall-clock alone marks an alive owner's lock stale.)
-//   DR-006  handleModelServerDemand: when launch() returns false (spawn produced no pid), the demand
+//   handleModelServerDemand: when launch() returns false (spawn produced no pid), the demand
 //           server was already torn down and the respawn lock released, so the launcher must RE-ARM the
 //           lazy demand listener — otherwise it is stranded (no listener, no resident, no relaunch).
 //           (RED before: no second listener handler is created after a failed launch.)
-//   DR-012  tickIdleMonitor: idle eviction must reap the model-server ROOT pid (not just descendants +
+//   tickIdleMonitor: idle eviction must reap the model-server ROOT pid (not just descendants +
 //           the lease) by routing through reapBeforeRespawn, the shared root-liveness authority.
 //           (RED before: only descendants are signalled; the root pid never receives SIGTERM/SIGKILL.)
 //
@@ -152,7 +152,7 @@ describe('single-writer / no-orphan supervision cluster (031/009 Family 1+2)', (
     return dir;
   }
 
-  // ── DR-005 ────────────────────────────────────────────────────────────────
+  // ── Respawn lock liveness ────────────────────────────────────────────────
   it('DR-005: does not age-out the respawn lock while the recorded owner pid is alive', () => {
     const ownerPid = 4321;
     // startedAt is far in the past — well beyond the stale cap — so the ONLY thing keeping this lock
@@ -192,7 +192,7 @@ describe('single-writer / no-orphan supervision cluster (031/009 Family 1+2)', (
     expect(freshAlive).toBe(false);
   });
 
-  // ── DR-006 ────────────────────────────────────────────────────────────────
+  // ── Demand listener re-arm ───────────────────────────────────────────────
   it('DR-006: re-arms the lazy demand listener when a demand-driven spawn produces no pid', async () => {
     const socketDir = tempDir('hf-sw-spawn-nopid-');
     const socketPath = join(socketDir, 'hf-embed.sock');
@@ -246,7 +246,7 @@ describe('single-writer / no-orphan supervision cluster (031/009 Family 1+2)', (
     await control.stopDemandListener();
   });
 
-  // ── DR-012 ────────────────────────────────────────────────────────────────
+  // ── Idle root reaping ────────────────────────────────────────────────────
   it('DR-012: idle eviction reaps the model-server ROOT pid via the root-liveness authority', async () => {
     const socketDir = tempDir('hf-sw-idle-root-reap-');
     const socketPath = join(socketDir, 'hf-embed.sock');

@@ -1,14 +1,14 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: reindex durability (DR-020) + cooperative cancel (DR-001-P1-002)
+// TEST: reindex durability + cooperative cancel
 // ───────────────────────────────────────────────────────────────
 //
 // Deterministic regression coverage for the C3 Family-4 durability fixes in
 // mcp_server/lib/embedders/reindex.ts:
 //
-//   DR-020          — a failed same-dim reindex must NOT partially overwrite the live
+//   A failed same-dim reindex must NOT partially overwrite the live
 //                     (active) vector shard; writes are staged and atomically swapped on
 //                     success only.
-//   DR-001-P1-002   — cancelJob() during a run must stop the worker before the next write,
+//   cancelJob() during a run must stop the worker before the next write,
 //                     and a per-batch progress write must NOT clobber a 'cancelled' status
 //                     back to 'running'/'completed'.
 //

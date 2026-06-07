@@ -245,7 +245,7 @@ function detectCommitType(subject: string): string {
    6. SPEC SCOPE RESOLUTION
 ------------------------------------------------------------------*/
 
-// RC-3: Paths excluded from git context to avoid self-referential pollution.
+// Paths excluded from git context to avoid self-referential pollution.
 // Uses path-segment-boundary matching to avoid over-matching (e.g., 'in-memory-cache.ts'
 // Should NOT match, but 'specs/foo/memory/file.md' should).
 const EXCLUDED_PATH_PATTERNS = [

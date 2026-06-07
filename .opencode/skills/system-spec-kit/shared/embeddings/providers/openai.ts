@@ -181,7 +181,7 @@ export class OpenAIProvider implements IEmbeddingProvider {
 
   /**
    * Make request with retry logic for transient errors.
-   * Three retries with backoff (1s, 2s, 4s), fail fast for 401/403.
+   * Three retries with backoff (1s, 2s, 4s), fail fast for HTTP 401 or HTTP 403.
    */
   async makeRequest(input: string): Promise<OpenAIEmbeddingResponse> {
     return retryWithBackoff<OpenAIEmbeddingResponse>(

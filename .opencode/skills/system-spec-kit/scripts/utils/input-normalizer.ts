@@ -1397,7 +1397,7 @@ function transformOpencodeCapture(
     };
   }
 
-  // RC-10: Normalize snake_case fields from ConversationCapture to camelCase OpencodeCapture.
+  // Normalize snake_case fields from ConversationCapture to camelCase OpencodeCapture.
   // ConversationCapture emits both forms; OpencodeCapture interface only declares camelCase.
   const raw = capture as unknown as Record<string, unknown>;
   const normalizedCapture: OpencodeCapture = {
@@ -1510,7 +1510,7 @@ function transformOpencodeCapture(
   }));
   let relevanceFallbackUsed = false;
 
-  // RC-2: Filter userPrompts by spec-folder relevance — prevents cross-spec
+  // Filter userPrompts by spec-folder relevance — prevents cross-spec
   // Content from leaking into unrelated memory files. When no keyword match
   // exists, keep only generic/current-spec prompts instead of re-including
   // obviously foreign-spec content.
@@ -1628,7 +1628,7 @@ function transformOpencodeCapture(
     observations.push(toolObs);
   }
 
-  // RC-2: Build recentContext from relevance-filtered exchanges to prevent
+  // Build recentContext from relevance-filtered exchanges to prevent
   // Foreign-spec content from propagating into SUMMARY via learning field.
   const relevantExchanges = (specFolderHint && relevanceKeywords.length > 0)
     ? exchanges.filter(ex => {

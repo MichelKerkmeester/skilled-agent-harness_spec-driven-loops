@@ -917,7 +917,7 @@ function reduceResearchState(specFolder, options = {}) {
     ? fs.readdirSync(iterationDir)
         .filter((fileName) => /^iteration-\d+\.md$/.test(fileName))
         .sort((a, b) => {
-          // DR-006: numeric sort on trailing iter number; default .sort() puts iteration-10.md between iteration-1.md and iteration-2.md.
+          // Numeric sort on trailing iter number; default .sort() puts iteration-10.md between iteration-1.md and iteration-2.md.
           const numA = parseInt(a.match(/iteration-(\d+)\.md$/)?.[1] ?? '0', 10);
           const numB = parseInt(b.match(/iteration-(\d+)\.md$/)?.[1] ?? '0', 10);
           return numA - numB;
@@ -942,7 +942,7 @@ function reduceResearchState(specFolder, options = {}) {
     status,
   });
   // Expose corruptionWarnings as a top-level registry field for parity with
-  // deep-review (REQ-015 research-side follow-up).
+  // deep-review.
   registry.corruptionWarnings = corruptionWarnings;
   registry.status = status;
   const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, records);
@@ -1041,7 +1041,7 @@ if (require.main === module) {
         2,
       )}\n`,
     );
-    // Fail-closed exit semantics matching deep-review (REQ-015 parity).
+    // Fail-closed exit semantics matching deep-review.
     if (result.hasCorruption && !lenient) {
       process.exit(2);
     }

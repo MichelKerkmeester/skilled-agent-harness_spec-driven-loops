@@ -306,7 +306,7 @@ describe('mk-code-index launcher lease', () => {
     expect(readLeasePid(workspace.pidFilePath)).toBe(run.child.pid);
   });
 
-  // OR-1-01: two concurrent launchers migrating a former-location DB into the same target must
+  // Two concurrent launchers migrating a former-location DB into the same target must
   // never clobber/truncate the live target. Exactly one launcher (the bootstrap-lock winner)
   // migrates, and the target byte-content stays stable. Fails against the un-fixed code, which
   // ran the migration before any lock with a plain copyFileSync (no COPYFILE_EXCL) — letting both
@@ -406,9 +406,9 @@ describe('mk-code-index launcher lease', () => {
     }
   });
 
-  // OR-2-01: two launchers reclaiming the SAME pre-existing stale-heartbeat owner lease at once.
+  // Two launchers reclaiming the SAME pre-existing stale-heartbeat owner lease at once.
   // Both read the identical stale lease and BOTH enter acquireOwnerLeaseFile's reclaim branch
-  // (the DR-002-01 re-read CAS, lines ~373-386) — the path the existing concurrent-launcher test
+  // (the acquire-time re-read CAS) — the path the existing concurrent-launcher test
   // never reaches, because it spawns from a FRESH workspace where both take the O_EXCL 'wx'
   // fresh-create path. This test seeds a stale-heartbeat owner lease owned by a LIVE helper pid
   // (so classifyOwnerLease returns 'stale-heartbeat-reclaim') and spawns two launchers at once so
@@ -420,7 +420,7 @@ describe('mk-code-index launcher lease', () => {
   // re-read is deleted. Measured against both the patched launcher and a launcher with ONLY the
   // acquire-time re-read removed, the spawned-process outcomes are statistically indistinguishable:
   // single-writer is independently enforced by the bootstrap lock (acquireBootstrapLock), the PID
-  // lease, and the DR-008-03 re-read-before-unlink guard in clearOwnerLeaseFile. The acquire-time
+  // lease, and the re-read-before-unlink guard in clearOwnerLeaseFile. The acquire-time
   // re-read only narrows a sub-syscall window already covered by those guards.
   //
   // Two further measured facts make stronger end-state assertions UNSOUND at this layer, so this
@@ -429,8 +429,8 @@ describe('mk-code-index launcher lease', () => {
   // daemon-parent, one bridged-and-waiting); and (2) when both launchers pass the owner-lease gate,
   // the downstream PID-lease write is last-writer-wins, so the recorded PID lease can legitimately
   // flip between the two launchers' pids (observed clobber on the patched launcher too). These are
-  // launcher-runtime characteristics outside the scope of OR-2-01 (a test-only finding) and the
-  // OR-1-01 migration-block edit.
+  // launcher-runtime characteristics outside this test's deterministic assertions and the
+  // migration-block scenario.
   //
   // What this test asserts is what IS deterministically true and valuable as regression coverage:
   // both concurrent launchers exercise the stale-heartbeat reclaim branch (new coverage — the

@@ -37,7 +37,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 
 # ───────────────────────────────────────────────────────────────
-# Description budget constants (packet 086)
+# Description budget constants
 # ───────────────────────────────────────────────────────────────
 # Soft targets are project conventions (warn, do not block).
 # Hard cap is the Claude Code internal limit on combined description+when_to_use.
@@ -170,7 +170,7 @@ def validate_skill(
         if 'TODO' in description.upper():
             warnings.append("Description contains TODO placeholder - please complete it")
 
-        # Packet 086: description-length budget check.
+        # Description-length budget check.
         # Run AFTER the multiline-block rejection above and AFTER quote-strip,
         # so we measure the user-visible length the harness will see.
         length_error, length_warning = check_description_length(

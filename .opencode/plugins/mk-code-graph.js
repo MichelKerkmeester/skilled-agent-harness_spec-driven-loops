@@ -6,7 +6,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. OVERVIEW
 // ─────────────────────────────────────────────────────────────────────────────
-// Thin OpenCode plugin hook layer for packet 030.
+// Thin OpenCode plugin hook layer.
 // Important runtime boundary: never import the MCP server bundle directly
 // inside the OpenCode host process because its native modules (better-sqlite3,
 // sqlite-vec) may be compiled for a different Node ABI than the host runtime.

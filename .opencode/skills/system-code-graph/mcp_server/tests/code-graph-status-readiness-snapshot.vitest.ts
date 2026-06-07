@@ -151,7 +151,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
     vi.clearAllMocks();
   });
 
-  // ── DR-001-01. Degraded envelope when the guarded readiness/scope read throws ──
+  // ── Degraded envelope when the guarded readiness/scope read throws ──
   it('DR-001-01: returns a readiness_unavailable degraded envelope when the scope read throws', async () => {
     installMocks({ freshness: 'fresh', action: 'none', reason: 'fresh' });
     // The scope read is inside the guarded region with the snapshot read; a throw

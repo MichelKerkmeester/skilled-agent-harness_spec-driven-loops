@@ -1,6 +1,6 @@
 // MODULE: Deep-Loop Coverage Graph Query — Unit Tests
 //
-// Closes DR-012 (zero unit coverage on lib/coverage-graph/coverage-graph-query.ts).
+// Adds unit coverage for lib/coverage-graph/coverage-graph-query.ts.
 // Smoke-tests the 5 public query functions against an empty + populated namespace.
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';

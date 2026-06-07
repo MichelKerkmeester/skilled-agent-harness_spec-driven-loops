@@ -71,11 +71,11 @@ describe('isSpecMemoryDaemonAlive', () => {
   });
 
   // ─────────────────────────────────────────────────────────────────
-  // DR-016: a stale-LOOKING launcher lease whose recorded childPid (the
+  // A stale-LOOKING launcher lease whose recorded childPid (the
   // real SQLite writer the launcher spawned) is still LIVE must NOT be
   // reclaimed. If it were reported not-alive, the standalone-save
   // Step-11.5 path would open a SECOND writer on context-index.sqlite
-  // (corruption-risk class 026/004/012).
+  // (corruption risk).
   //
   // Determinism: liveness is probed via the real process.kill(pid, 0).
   // process.pid is guaranteed LIVE (this test process). A guaranteed-DEAD
@@ -117,4 +117,3 @@ describe('isSpecMemoryDaemonAlive', () => {
     expect(isSpecMemoryDaemonAlive(leasePath)).toEqual({ alive: false });
   });
 });
-

@@ -247,9 +247,9 @@ function aggregateFailureModes(fixtures) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3b. 5-DIM SCORING (opt-in, --scorer=5dim) — 121/005
+// 3b. 5-DIM SCORING (opt-in, --scorer=5dim)
 // ─────────────────────────────────────────────────────────────────────────────
-// Routes the materialized fixture output through the ported 120/003 5-dim scorer
+// Routes the materialized fixture output through the ported 5-dim scorer
 // (deterministic checks + grader factory) instead of the default heading/pattern
 // matcher. Opt-in so the default `pattern` path stays byte-identical; the scorer
 // module is lazily required only on this path. graderKind defaults to 'noop'
@@ -386,8 +386,8 @@ async function main() {
   const profilesDir = args['profiles-dir'] || DEFAULT_PROFILES_DIR;
   const integrationReportPath = args['integration-report'] || null;
 
-  // 121/005: opt-in scorer selection. 'pattern' (default) keeps the byte-identical
-  // heading/pattern matcher; '5dim' routes through the ported 120/003 scorer.
+  // Opt-in scorer selection. 'pattern' (default) keeps the byte-identical
+  // heading/pattern matcher; '5dim' routes through the ported 5-dim scorer.
   const VALID_SCORERS = new Set(['pattern', '5dim']);
   let scorer = args.scorer || 'pattern';
   if (!VALID_SCORERS.has(scorer)) {

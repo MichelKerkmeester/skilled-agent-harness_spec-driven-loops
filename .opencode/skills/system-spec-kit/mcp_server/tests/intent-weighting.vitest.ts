@@ -476,7 +476,7 @@ describe('T017-G2: Normalization Method — RRF + Composite Score', () => {
     // Understand: similarity=0.5, importance=0.3, recency=0.2
     // Recency is now included in the score.
     // Single result with no timestamp defaults recency to 0.5.
-    // Score = (100/100) * 0.5 + 1.0 * 0.3 + 0.5 * 0.2 = 0.5 + 0.3 + 0.1 = 0.9
+    // Score = normalized relevance contribution + confidence contribution + default recency contribution = 0.9
     expect(score).toBeCloseTo(0.9, 2);
   });
 

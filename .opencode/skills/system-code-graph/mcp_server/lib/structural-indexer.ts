@@ -806,7 +806,7 @@ function parseBash(content: string): RawCapture[] {
       });
       continue;
     }
-    // F042: Match 'function foo { }' and 'function foo() { }' (function keyword form without prior match)
+    // Match 'function foo { }' and 'function foo() { }' (function keyword form without prior match)
     const funcKeywordMatch = line.match(/^function\s+(\w+)\s*(?:\(\s*\))?\s*\{?/);
     if (funcKeywordMatch) {
       captures.push({
@@ -2061,7 +2061,7 @@ export function finalizeIndexResults(
  * The flow is decomposed into typed phases declared with explicit
  * `inputs[]` / `output` so the phase-runner can topologically sort,
  * reject cycles/duplicates/missing-deps, and pass each phase ONLY
- * the outputs of phases it lists in `inputs` (R-002-1, R-002-2).
+ * the outputs of phases it lists in `inputs`.
  *
  * The decomposition mirrors the existing inline flow — it does not
  * change behavior, ordering, or persistence semantics:
@@ -2135,7 +2135,7 @@ function buildIndexPhases(
       let preParseSkippedCount = 0;
 
       for (const file of candidateFiles) {
-        // DR-010-01: cooperative cancellation INSIDE the parse phase. runPhases (BUG-06) only
+        // Cooperative cancellation runs inside the parse phase. runPhases only
         // checks the deadline signal BETWEEN phases, so a large parse-candidates loop would
         // otherwise run to completion after the caller's deadline aborts and discard the result.
         // Check per file so a timeout stops the parse promptly (one-file granularity).
@@ -2220,7 +2220,7 @@ export async function indexFiles(config: IndexerConfig, options: IndexFilesOptio
 
     // Preserve the array-with-preParseSkippedCount shape exported by the
     // historical inline flow so existing callers (handlers/scan.ts,
-    // ensure-ready.ts) keep working unchanged (R-002-3 backward compat).
+    // ensure-ready.ts) keep working unchanged for backward compatibility.
     const finalizedResults = emitOutput.finalizedResults as IndexFilesResult;
     finalizedResults.preParseSkippedCount = emitOutput.preParseSkippedCount;
     finalizedResults.warnings = emitOutput.warnings;

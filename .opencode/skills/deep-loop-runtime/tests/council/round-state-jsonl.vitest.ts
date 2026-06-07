@@ -61,7 +61,7 @@ describe('council round-state JSONL', () => {
     });
   });
 
-  // Closes DR-015 (weak coverage: was 2 tests / ~10 expects; expanded to 6 tests / 25+ expects).
+  // Coverage expanded from 2 tests / ~10 expects to 6 tests / 25+ expects.
 
   it('readRoundStateRecords returns empty array for non-existent path', () => {
     const records = readRoundStateRecords('/tmp/does-not-exist-' + Math.random() + '.jsonl');

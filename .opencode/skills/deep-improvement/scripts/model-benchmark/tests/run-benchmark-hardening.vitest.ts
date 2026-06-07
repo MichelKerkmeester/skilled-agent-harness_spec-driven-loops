@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: run-benchmark hardening (121/015 remediation of 014 findings)
-//   F-P1-9  fixture-id path traversal
-//   F-P1-13 report history snapshot
-//   F-P1-7  scorer/grader provenance on success + failure paths
+// MODULE: run-benchmark hardening remediation
+//   Fixture-id path traversal
+//   Report history snapshot
+//   Scorer/grader provenance on success + failure paths
 //   P2      profile/fixture provenance persisted
 //   P2      regex DoS guard (bounded pattern length)
 // ───────────────────────────────────────────────────────────────────

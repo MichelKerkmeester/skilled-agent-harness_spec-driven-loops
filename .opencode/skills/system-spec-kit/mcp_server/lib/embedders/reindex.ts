@@ -199,7 +199,7 @@ function setJobStatus(
   }
 
   if (typeof processed === 'number') {
-    // DR-001-P1-002: a per-batch progress write must NOT clobber a terminal status set
+    // A per-batch progress write must NOT clobber a terminal status set
     // by a concurrent cancelJob(). The only caller that passes processed without an error
     // is the in-loop 'running' progress update, which must only apply while the job is
     // still 'running' (or being re-affirmed as 'running'); never resurrect a 'cancelled'
@@ -413,7 +413,7 @@ function writeVectorsToShard(
 ): void {
   const databaseDir = requireDatabaseDir(db, 'vector shard write');
 
-  // DR-020: writes target a caller-supplied STAGING shard path (default: the live
+  // Writes target a caller-supplied STAGING shard path (default: the live
   // active shard for backward compatibility). runJob writes every batch to the staging
   // path and atomically renames staging -> active on success, so a mid-loop failure can
   // never leave the live (active) shard half-written.
@@ -508,7 +508,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
   const batchSize = getBatchSize();
   let processed = initialJob.processed;
 
-  // DR-020: stage every shard write into a per-job staging file, then atomically
+  // Stage every shard write into a per-job staging file, then atomically
   // rename it over the live active shard ONLY after the completion transaction commits.
   // A mid-loop throw (or cancel) leaves the live (active) shard untouched; the partial
   // staging artifact is unlinked in the catch/cancel paths. databaseDir is guaranteed
@@ -534,7 +534,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
 
     while (processed < initialJob.total) {
       jobDb = resolveJobDb();
-      // DR-001-P1-002: re-read the live cancel/status before each batch so cancelJob()
+      // Re-read the live cancel/status before each batch so cancelJob()
       // during a run stops the worker before the next write. Abort cleanly: drop the
       // staging artifact and leave the live shard + active pointer untouched.
       if (readJobStatus(jobDb, jobId) === 'cancelled') {
@@ -564,14 +564,14 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       });
     }
 
-    // DR-001-P1-002: final cancel checkpoint before the irreversible swap/commit.
+    // Final cancel checkpoint before the irreversible swap/commit.
     jobDb = resolveJobDb();
     if (readJobStatus(jobDb, jobId) === 'cancelled') {
       cleanupStaging();
       return;
     }
 
-    // DR-020: atomically swap the staged shard over the live active shard BEFORE the
+    // Atomically swap the staged shard over the live active shard BEFORE the
     // completion transaction flips the active-embedder pointer. rename(2) is atomic on
     // the same filesystem; the staging file always lives beside the active shard, so the
     // active shard either is the old file (failure) or the fully-staged new file (success),
@@ -638,7 +638,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       });
       return;
     }
-    // DR-020: a failed run must not leave a half-written shard anywhere. The live active
+    // A failed run must not leave a half-written shard anywhere. The live active
     // shard was never mutated (all writes went to staging); discard the partial staging
     // artifact so the next attempt starts clean and the active shard stays the last-good one.
     cleanupStaging();

@@ -1171,7 +1171,7 @@ async function detectSpecFolder(
       if (!isNotFoundFsError(error)) {
         // Before re-throwing non-ENOENT errors (e.g., isUnderApprovedSpecsRoots rejection),
         // try resolving via basename extraction when the arg contains a specs prefix path.
-        // This handles full paths like ".opencode/specs/02--cat/022-parent/003-child" where
+        // This handles category-prefixed full spec paths where
         // the prefix resolution produces a valid absolute path that fails root validation
         // due to category-prefixed intermediate segments.
         const baseName = path.basename(specArg);

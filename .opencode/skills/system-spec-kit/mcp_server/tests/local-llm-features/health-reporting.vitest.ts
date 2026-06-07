@@ -49,7 +49,7 @@ describe('local LLM health reporting', () => {
   });
 
   it('T2 healthCheck returns truthy when the model server reports ready', async () => {
-    // 029/003: hf-local is an HTTP client; health is the server's /api/health, not an in-process extractor.
+    // The hf-local provider is an HTTP client; health is the server's /api/health, not an in-process extractor.
     const provider = new HfLocalProvider({
       request: async (request) => {
         expect(request.path).toBe('/api/health');

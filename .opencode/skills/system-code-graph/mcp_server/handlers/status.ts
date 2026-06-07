@@ -201,7 +201,7 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
   // generic "Code graph not initialized" error and action-level readiness was
   // hidden. The snapshot helper is read-only, so calling it earlier never
   // causes side effects.
-  // DR-001-01: these reads were previously unguarded, so a corrupt/locked DB threw a generic
+  // These reads were previously unguarded, so a corrupt/locked DB threw a generic
   // error instead of a degraded envelope. Wrap them and surface the same degraded shape.
   let snapshot: ReturnType<typeof getGraphReadinessSnapshot>;
   let storedScope: ReturnType<typeof graphDb.getStoredCodeGraphScope>;

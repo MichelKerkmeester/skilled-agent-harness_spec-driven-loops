@@ -180,7 +180,7 @@ def run_tests(verbose: bool) -> int:
         if not assert_contains_substring("hard cap message", [msg], "hard cap", verbose):
             failed += 1
 
-    # Case 5 — REQ-007: helper contract (no file system)
+    # Case 5 — helper contract (no file system)
     print("Case 5: helper contract")
     err, warn = check_description_length("x" * 50, DESCRIPTION_SOFT_TARGET_SKILL)
     if not assert_eq("short → no error", err, None, verbose):

@@ -544,7 +544,7 @@ function launchServer() {
     void (async () => {
       await shutdownModelServerForLauncherExit();
       if (signal) {
-        // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
+        // Clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
         clearLeaseFile();
         process.kill(process.pid, signal);
         return;

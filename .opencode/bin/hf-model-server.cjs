@@ -148,7 +148,7 @@ function isLoopbackHost(host) {
   return LOOPBACK_BIND_HOSTS.includes(host.trim().toLowerCase());
 }
 
-// DR-002-P1-001: a tcp:// target takes its host verbatim from the operator URL. Binding a
+// A tcp:// target takes its host verbatim from the operator URL. Binding a
 // non-loopback host would expose model inference to the network. Refuse unless the operator
 // explicitly opts into a remote bind AND provides an auth token. Pure host/env check so it is
 // deterministically testable without opening a socket.
@@ -177,7 +177,7 @@ function assertLoopbackBindAllowed(target, options = {}) {
   throw error;
 }
 
-// DR-001-P2-001 (perimeter guard, part 1): assert the socket directory is owned by the current
+// Perimeter guard: assert the socket directory is owned by the current
 // uid and is not group/world-writable before we are willing to unlink a path inside it. Mirrors
 // the supervised path's assertSocketDirOwnership intent so the direct-startup unlink cannot be
 // tricked into deleting a file in an attacker-controlled directory.
@@ -220,7 +220,7 @@ function assertSocketDirOwnership(target, options = {}) {
   }
 }
 
-// DR-001-P2-001 (perimeter guard, part 2): probe whether a live process is still listening on the
+// Perimeter guard: probe whether a live process is still listening on the
 // UDS before unlinking it. If a peer accepts the connection the socket is live-resident and we MUST
 // NOT unlink it (that would orphan a healthy server and let two servers race the same path); we
 // re-surface EADDRINUSE instead. ECONNREFUSED/ENOENT means the socket is stale and safe to reclaim.
@@ -306,7 +306,7 @@ async function listenHttpServer(server, target, options = {}) {
     if (error.code !== 'EADDRINUSE' || target.startsWith('tcp://')) {
       throw error;
     }
-    // DR-001-P2-001: apply the same perimeter guard the supervised path uses before unlinking a
+    // Apply the same perimeter guard the supervised path uses before unlinking a
     // resident UDS on the direct-startup path. (1) the dir must be ours and not other-writable;
     // (2) if a live process still answers on the socket, refuse to unlink and re-surface the
     // address-in-use error rather than orphaning a healthy server.
@@ -571,7 +571,7 @@ function createHfModelServer(options = {}) {
   };
   const loadModel = options.loadModel || loadHfModel;
   const listenServer = options.listen || listenHttpServer;
-  // Perimeter/loopback guard injection points (DR-001-P2-001, DR-002-P1-001). Tests inject
+  // Perimeter/loopback guard injection points. Tests inject
   // connect/fs/getuid/env/probeTimeoutMs to exercise the guard deterministically without real
   // sockets or filesystem ownership. Production leaves these undefined => real net/fs/process/env.
   const listenGuardOptions = {
@@ -756,7 +756,7 @@ function createHfModelServer(options = {}) {
             await runExtractor(state.extractor, selfWarmInput);
           } catch (warmError) {
             // Self-warm is best-effort: the model loaded successfully, so a warm-up
-            // failure must NOT pin the server to 'error' (phase-004 probeModelServer
+            // failure must NOT pin the server to 'error' (probeModelServer
             // treats 'error' as dead and would reap a working server). Log + proceed.
             logger.warn?.(`[hf-model-server] self-warm failed (model still usable): ${getErrorMessage(warmError)}`);
           }

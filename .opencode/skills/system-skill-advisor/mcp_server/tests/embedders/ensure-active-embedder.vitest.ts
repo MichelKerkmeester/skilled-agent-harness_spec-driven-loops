@@ -72,7 +72,7 @@ describe('ensureActiveEmbedder', () => {
 
   it('runs the cascade when pointer references a manifest no longer in the registry', async () => {
     const db = memoryDb();
-    // Pre-phase-007 install: legacy gemma pointer still in vec_metadata.
+    // Legacy gemma pointer still in vec_metadata.
     setActiveEmbedder(db, 'embeddinggemma-300m', 768);
 
     const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));

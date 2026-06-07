@@ -31,7 +31,7 @@ export function resolveCanonicalDbDir(dir: string, workspaceRoot?: string): stri
       }
       canonicalWorkspace = realpathSync.native(resolvedWorkspace);
     }
-    // DR-003-02: resolve symlinks of the deepest EXISTING ancestor and reject an out-of-workspace
+    // Resolve symlinks of the deepest EXISTING ancestor and reject an out-of-workspace
     // escape BEFORE mkdir, so a symlink-escaping path never creates directories outside the
     // workspace. (The lexical pre-check above does not resolve symlinks; the post-mkdir check
     // below stays as defense-in-depth against a TOCTOU symlink swap.)

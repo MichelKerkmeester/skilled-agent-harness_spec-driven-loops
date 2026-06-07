@@ -1,11 +1,11 @@
 // ───────────────────────────────────────────────────────────────
-// DR-011 (DEEP-1) — Clean-shutdown marker durability on close
+// Clean-shutdown marker durability on close
 // ───────────────────────────────────────────────────────────────
 // Harness B (durability): assert close_db() deletes the clean-shutdown
 // marker ONLY after a confirmed-successful close. The marker semantic is
 // "present == dirty" — it is written on every open (initialize_db) and must
 // survive a thrown detach/close so the next open correctly treats the DB as
-// dirty. Regression for finding DR-011: previously the marker removal ran
+// dirty. Regression coverage: previously the marker removal ran
 // BEFORE detachActiveVectorShard() + db.close(), so a throwing close left the
 // marker deleted while the DB had NOT closed cleanly.
 //
@@ -93,7 +93,7 @@ describe('DR-011: clean-shutdown marker durability on close_db', () => {
     expect(fs.existsSync(marker)).toBe(true);
 
     // Inject a failing close on the live handle. close_db() runs the WAL
-    // checkpoints first (those succeed), then detach + close. With the DR-011
+    // checkpoints first (those succeed), then detach + close. With the durability
     // fix, marker removal is sequenced AFTER db.close(); a throwing close means
     // the removal line is never reached, so the marker survives.
     //

@@ -944,7 +944,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
           return matchesAlignmentTarget(fp, alignmentTargets);
         });
         const overlapRatio = relevantPaths.length / totalPaths;
-        // RC-4: Raised from 0.05 to 0.15 — 5% threshold let mostly-foreign content through
+        // Raised from 0.05 to 0.15 — 5% threshold let mostly-foreign content through
         if (overlapRatio < 0.15) {
           const alignMsg = `ALIGNMENT_BLOCK: Only ${(overlapRatio * 100).toFixed(0)}% of captured file paths relate to spec folder "${activeSpecFolderArg}". ` +
             `The active session appears to be working on a different task (alignment keywords: [${alignmentTargets.keywordTargets.join(', ')}], ` +
@@ -1152,7 +1152,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       collectedData = await enrichCapturedSessionData(collectedData, specFolder, CONFIG.PROJECT_ROOT);
       log('   Enrichment complete');
 
-      // RC-4: Post-enrichment alignment re-check — enrichment can introduce
+      // Post-enrichment alignment re-check — enrichment can introduce
       // New foreign content (e.g., git context from other spec folders).
       // Re-verify alignment at a lower threshold (10%) to catch this.
       // Uses resolved specFolder (not raw activeSpecFolderArg) for accurate keyword matching.
@@ -1577,7 +1577,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const writtenFiles: string[] = [];
   log('   Skipping legacy [spec]/memory/*.md writes');
 
-  // The legacy RC-6 stub hard-coded
+  // The legacy memory-file stub hard-coded
   // ctxFileWritten = false, which silently disabled the description.json
   // memorySequence + lastUpdated update block on every canonical save.
   // Post-v3.4.1.0 the legacy [spec]/memory/*.md artifact is intentionally not

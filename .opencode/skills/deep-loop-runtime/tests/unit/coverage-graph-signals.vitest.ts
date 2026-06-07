@@ -1,6 +1,6 @@
 // MODULE: Deep-Loop Coverage Graph Signals — Unit Tests
 //
-// Closes DR-013 (zero unit coverage on lib/coverage-graph/coverage-graph-signals.ts).
+// Adds unit coverage for lib/coverage-graph/coverage-graph-signals.ts.
 // Smoke-tests the public signal-computation functions against an empty + populated namespace.
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';

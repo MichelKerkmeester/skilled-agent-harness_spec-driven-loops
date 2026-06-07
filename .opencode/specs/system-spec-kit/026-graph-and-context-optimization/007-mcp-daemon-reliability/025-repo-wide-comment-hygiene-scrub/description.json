@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub",
+  "description": "Feature Specification: Repo-wide comment-hygiene scrub",
+  "keywords": [
+    "feature",
+    "specification",
+    "repo-wide",
+    "comment-hygiene",
+    "scrub"
+  ],
+  "lastUpdated": "2026-06-07T18:35:24.241Z",
+  "specId": "025",
+  "folderSlug": "repo-wide-comment-hygiene-scrub",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

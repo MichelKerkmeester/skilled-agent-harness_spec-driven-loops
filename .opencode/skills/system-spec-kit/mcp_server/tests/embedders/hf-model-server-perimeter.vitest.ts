@@ -1,9 +1,9 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ TEST: hf-model-server perimeter guards                                     ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Covers 031/009 Family-4 perimeter findings:                                ║
-// ║   DR-002-P1-001 — tcp:// bind must enforce loopback (or require auth).     ║
-// ║   DR-001-P2-001 — direct-startup EADDRINUSE unlink must assert socket-dir  ║
+// ║ Covers perimeter guard regressions:                                         ║
+// ║   tcp:// bind must enforce loopback (or require auth).                     ║
+// ║   Direct-startup EADDRINUSE unlink must assert socket-dir                  ║
 // ║                    ownership AND refuse to unlink a live-resident socket.  ║
 // ║                                                                            ║
 // ║ Deterministic: injects connect/fs/getuid/env + a fake http-like server.   ║
@@ -137,7 +137,7 @@ function refusedConnect() {
   };
 }
 
-// ── DR-002-P1-001: loopback enforcement on tcp:// bind ────────────────────────
+// ── Loopback enforcement on tcp:// bind ───────────────────────────────────────
 
 describe('DR-002-P1-001 tcp:// loopback bind enforcement', () => {
   it('treats 127.0.0.1 / ::1 / localhost as loopback and everything else as non-loopback', () => {
@@ -188,7 +188,7 @@ describe('DR-002-P1-001 tcp:// loopback bind enforcement', () => {
   });
 });
 
-// ── DR-001-P2-001: socket-dir ownership assertion ─────────────────────────────
+// ── Socket-dir ownership assertion ────────────────────────────────────────────
 
 describe('DR-001-P2-001 socket-dir ownership assertion', () => {
   const target = '/var/run/speckit/hf-embed.sock';
@@ -235,7 +235,7 @@ describe('DR-001-P2-001 socket-dir ownership assertion', () => {
   });
 });
 
-// ── DR-001-P2-001: live-resident probe ────────────────────────────────────────
+// ── Live-resident socket probe ────────────────────────────────────────────────
 
 describe('DR-001-P2-001 live-resident socket probe', () => {
   const target = '/var/run/speckit/hf-embed.sock';
@@ -271,7 +271,7 @@ describe('DR-001-P2-001 live-resident socket probe', () => {
   });
 });
 
-// ── DR-001-P2-001: integrated listenHttpServer guard on the direct-startup path ─
+// ── Integrated listenHttpServer guard on the direct-startup path ──────────────
 
 describe('DR-001-P2-001 listenHttpServer refuses to unlink a live-resident UDS', () => {
   it('REFUSES to unlink and re-surfaces EADDRINUSE when the socket is live-resident', async () => {

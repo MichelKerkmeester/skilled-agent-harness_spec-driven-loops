@@ -358,7 +358,7 @@ function wait_for_image_load(img) {
  * PREFERRED over wait_for_image_load when images may 404 or hang.
  * Uses Promise.race to guarantee resolution within the timeout period.
  *
- * From ADR-001 (Spec 031): Hero image promises could wait forever if an image
+ * Hero image promises could wait forever if an image
  * failed to load or the error event didn't fire. Wrapping in Promise.race
  * with a 2s timeout guarantees page reveal.
  *
@@ -545,7 +545,7 @@ function wait_for_library(global_name, options = {}) {
  * pattern instead of polling. Requires global.html to dispatch the event after
  * importing Motion.dev.
  *
- * From ADR-002 (Spec 031): Replaces 17 parallel polling loops with a single
+ * Replaces parallel polling loops with a single
  * event-driven listener, eliminating CPU waste and race conditions.
  *
  * @param {Object} options - Configuration options
@@ -595,7 +595,7 @@ function wait_for_motion(options = {}) {
 
     window.addEventListener('motion:ready', handler, { once: true });
 
-    // Timeout fallback (1s default per ADR-001)
+    // Timeout fallback (1s default)
     timeout_id = setTimeout(() => {
       cleanup(handler);
       reject(new Error(`Motion.dev not loaded after ${timeout}ms`));

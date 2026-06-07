@@ -1212,7 +1212,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const fieldWarnings = validateReviewRecordFields(iterationRecords);
   const status = deriveDashboardStatus(config, iterationRecords, terminalStop);
 
-  // Part C REQ-018: split repeatedFindings into two semantically distinct buckets
+  // Split repeatedFindings into two semantically distinct buckets
   // so persistent-same-severity findings and severity-churn findings don't collapse.
   const persistentSameSeverity = openFindings.filter((finding) => {
     if (finding.lastSeen - finding.firstSeen < 1) return false;
@@ -1398,7 +1398,7 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
     || '[All dimensions covered]';
 
-  // Part C REQ-014 / P1-03 closure: prefer the latest blocked-stop
+  // Prefer the latest blocked-stop
   // recovery only when blocked-stop is genuinely the most recent loop event.
   // The earlier implementation read timestamps from the markdown iteration
   // files, but parseIterationFile() never captures timestamps, so
@@ -1601,8 +1601,8 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     '<!-- ANCHOR:active-risks -->',
     '## 12. ACTIVE RISKS',
     ...(function buildActiveRisks() {
-      // REQ-034 (042 closing audit, F015): surface non-P0 release-readiness
-      // debt alongside P0s so the dashboard cannot hide P1 debt behind a
+      // Surface non-P0 release-readiness debt alongside P0s so the dashboard
+      // cannot hide P1 debt behind a
       // "None active" summary when activeP0 == 0. Gate debt on the latest
       // `blocked_stop` and `claim_adjudication` events so operators see
       // claim-adjudication and legal-stop gate failures, not just severity.

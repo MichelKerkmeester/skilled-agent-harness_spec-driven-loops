@@ -32,9 +32,9 @@ export function resolveVoyageBaseUrl(baseUrl?: string): string {
 /** Defines model dimensions. */
 export const MODEL_DIMENSIONS: ModelDimensions = {
   // Voyage 4 family (Shared embedding space)
-  'voyage-4-large': 1024, // Supports 256/512/1024/2048 - default to 1024 for compat
-  'voyage-4': 1024,       // Supports 256/512/1024/2048
-  'voyage-4-lite': 1024,  // Supports 256/512/1024/2048
+  'voyage-4-large': 1024, // Supports 256, 512, 1024, or 2048 dimensions - default to 1024 for compat
+  'voyage-4': 1024,       // Supports 256, 512, 1024, or 2048 dimensions
+  'voyage-4-lite': 1024,  // Supports 256, 512, 1024, or 2048 dimensions
 
   // Voyage 3 family
   'voyage-3.5': 1024,
@@ -212,7 +212,7 @@ export class VoyageProvider implements IEmbeddingProvider {
 
   /**
    * Make request with retry logic for transient errors.
-   * Three retries with backoff (1s, 2s, 4s), fail fast for 401/403.
+   * Three retries with backoff (1s, 2s, 4s), fail fast for HTTP 401 or HTTP 403.
    */
   async makeRequest(input: string | string[], inputType: string | null = null): Promise<VoyageEmbeddingResponse> {
     return retryWithBackoff<VoyageEmbeddingResponse>(

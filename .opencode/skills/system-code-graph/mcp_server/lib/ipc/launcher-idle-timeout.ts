@@ -114,7 +114,7 @@ function createLauncherIdleMonitor(options: LauncherIdleMonitorOptions): Launche
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       log(`[${options.serviceName}] launcher idle shutdown failed: ${message}`);
-      // DR-008-04: a failed idle shutdown previously left stopped=true with the timer cleared,
+      // A failed idle shutdown previously left stopped=true with the timer cleared,
       // permanently disabling the watchdog. Re-arm so the shutdown is retried next interval.
       stopped = false;
       lastActivityAt = now();

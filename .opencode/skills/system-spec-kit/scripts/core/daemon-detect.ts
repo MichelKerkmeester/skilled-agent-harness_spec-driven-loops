@@ -22,7 +22,7 @@ export interface SpecMemoryDaemonStatus {
 interface LauncherLease {
   readonly pid?: unknown;
   readonly ownerPid?: unknown;
-  // DR-016: the launcher records the spawned daemon (the real SQLite writer) as `childPid`.
+  // The launcher records the spawned daemon (the real SQLite writer) as `childPid`.
   // A stale-LOOKING lease (dead launcher pid) whose childPid is still LIVE must NOT be treated
   // as reclaimable — the writer is still up. Mirrors the launcher's own liveness rule.
   readonly childPid?: unknown;
@@ -120,7 +120,7 @@ export function isSpecMemoryDaemonAlive(
 ): SpecMemoryDaemonStatus {
   const { primaryPid, childPid } = readLeasePids(leasePath);
 
-  // DR-016: the lease is reclaimable only when NEITHER the launcher pid NOR its recorded
+  // The lease is reclaimable only when NEITHER the launcher pid NOR its recorded
   // childPid (the real writer) is live. Probe the primary first so status.pid stays the
   // launcher pid on the common path; if the launcher pid is dead/absent but the recorded
   // childPid is still LIVE, the daemon is up — report alive (pinned to childPid) so the
@@ -133,4 +133,3 @@ export function isSpecMemoryDaemonAlive(
   }
   return { alive: false };
 }
-

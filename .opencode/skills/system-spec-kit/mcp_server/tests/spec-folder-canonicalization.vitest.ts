@@ -21,14 +21,14 @@ beforeAll(() => {
   tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'canon-test-'));
 
   // Create real directory structure:
-  // <tmpRoot>/.opencode/specs/010-test/memory/session.md
+  // Temporary spec memory file: session.md
   realSpecsDir = path.join(tmpRoot, '.opencode', 'specs');
   const memoryDir = path.join(realSpecsDir, '010-test', 'memory');
   fs.mkdirSync(memoryDir, { recursive: true });
   fs.writeFileSync(path.join(memoryDir, 'session.md'), '---\ntitle: test\n---\nContent');
 
   // Create nested spec:
-  // <tmpRoot>/.opencode/specs/02--domain/010-test/memory/nested.md
+  // Nested domain spec memory file: nested.md
   const nestedMemoryDir = path.join(realSpecsDir, '02--domain', '010-test', 'memory');
   fs.mkdirSync(nestedMemoryDir, { recursive: true });
   fs.writeFileSync(path.join(nestedMemoryDir, 'nested.md'), '---\ntitle: nested\n---\nNested');
