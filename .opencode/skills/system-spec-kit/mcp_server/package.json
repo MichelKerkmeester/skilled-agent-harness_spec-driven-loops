@@ -1,7 +1,7 @@
 {
   "name": "@spec-kit/mcp-server",
   "version": "1.8.0",
-  "description": "Semantic Memory MCP Server - provides 36 tools for semantic search, memory management, validation, embedder control, checkpoints, causal graphs, session learning, and auto-indexing",
+  "description": "Semantic Memory MCP Server - provides 37 tools for semantic search, memory management, validation, embedder control, checkpoints, causal graphs, session learning, and auto-indexing",
   "type": "module",
   "main": "dist/api/index.js",
   "exports": {
@@ -12,7 +12,8 @@
   },
   "bin": {
     "context-server": "./dist/context-server.js",
-    "spec-kit-cli": "./dist/cli.js"
+    "spec-kit-cli": "./dist/cli.js",
+    "spec-memory": "./dist/spec-memory-cli.js"
   },
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",

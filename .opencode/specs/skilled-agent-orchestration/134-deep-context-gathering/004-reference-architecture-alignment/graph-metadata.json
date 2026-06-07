@@ -15,33 +15,202 @@
       "reference architecture alignment",
       "smart router alignment",
       "reference subfolders",
-      "sibling reference parity"
+      "sibling reference parity",
+      "reference alignment plan",
+      "smart router rewrite plan",
+      "reference subfolder move",
+      "citation sweep plan",
+      "sibling layout parity",
+      "reference alignment tasks",
+      "smart router rewrite tasks"
     ],
     "key_topics": [
       "deep-context",
       "references",
-      "reference-architecture",
+      "reference",
+      "architecture",
       "alignment",
-      "smart-router",
-      "convergence",
-      "protocol",
-      "state",
-      "guides"
+      "smart",
+      "router",
+      "subfolders",
+      "sibling",
+      "parity",
+      "plan",
+      "rewrite"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/deep-context/references/convergence/convergence.md",
+      ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+      ".opencode/skills/deep-context/references/convergence/convergence_signals.md",
+      ".opencode/skills/deep-context/references/convergence/convergence_recovery.md",
+      ".opencode/skills/deep-context/references/convergence/convergence_graph.md",
+      ".opencode/skills/deep-context/references/state/state_format.md",
+      ".opencode/skills/deep-context/references/state/state_jsonl.md",
+      ".opencode/skills/deep-context/references/state/state_outputs.md",
+      ".opencode/skills/deep-context/references/state/state_reducer_registry.md",
+      ".opencode/skills/deep-context/references/guides/quick_reference.md",
+      ".opencode/skills/deep-context/SKILL.md",
+      ".opencode/skills/deep-context/README.md",
+      ".opencode/commands/deep/start-context-loop.md",
+      ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml",
+      ".opencode/agents/deep-context.md",
+      ".opencode/skills/deep-context/graph-metadata.json",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "decision-record.md"
     ],
-    "entities": [],
-    "causal_summary": "Aligns the deep-context skill's reference layout and smart-router to its mature siblings (deep-review, deep-research, deep-ai-council): decomposes the two flat references into the canonical convergence/ protocol/ state/ guides/ subfolders, authors the missing references by extracting from the loop YAML, scripts, and runtime, rewrites the smart-router to the canonical pattern, and sweeps all citations to the new paths.",
+    "entities": [
+      {
+        "name": "convergence.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence_signals.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence_signals.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence_recovery.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence_recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence_graph.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence_graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_jsonl.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_jsonl.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_outputs.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_outputs.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_reducer_registry.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_reducer_registry.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/guides/quick_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-context-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-context-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-context-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-context-loop_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-context/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-context skill is the fourth deep loop, but its reference layer never matured to match `deep-research`, `deep-review`, and `deep-ai-council`. It ships only two flat reference files (`references/convergence.md`, `references/loop_protocol.md`) and a smart-router whose `INTENT_SIGNALS` use a bare keyword list rather than the canonical `{weight, keywords}` shape, with `ALWAYS` pinned to `loop_protocol.md` instead of an operator quick-reference. This phase aligns deep-context to the canonical sibling pattern: it moves the two flat files into subfolders, authors eight new lean references mirroring deep-research's `convergence/ guides/ protocol/ state/` layout, rewrites `SKILL.md` §2 SMART ROUTING to the canonical pattern, trims §3 to pointers, and sweeps roughly 62 citations of the old flat paths to the new subfolder paths.",
     "created_at": "2026-06-07T07:05:28Z",
-    "last_save_at": "2026-06-07T10:30:00Z",
+    "last_save_at": "2026-06-07T09:00:45.333Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -49,7 +218,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

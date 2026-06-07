@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 001 is complete. It researched the current `deep-ai-council` single-round surface, compared it with deep-review/deep-research runtime patterns, selected a hybrid runtime boundary, and produced ADR-001 through ADR-005 for phases 002-006.",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-06-05T12:47:32.250Z",
+    "last_save_at": "2026-06-07T09:00:45.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

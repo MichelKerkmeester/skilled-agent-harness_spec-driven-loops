@@ -1,0 +1,244 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "program-topology",
+      "kind": "reuse_candidate",
+      "signature": "8-track phase-parent coordination surface with validate.sh handoff contract",
+      "reuse": "extend",
+      "evidence": "spec.md:95-123",
+      "relevance": 0.95,
+      "notes": "The 8-track decomposition (000-008) and phase transition rules are the canonical program structure. Any future program-packet can adopt this topology. Phase handoff criteria at spec.md:117-123 define cross-track dependency contracts."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "005-graph-impact-and-affordance",
+      "kind": "gap",
+      "signature": "Deferred adoption-uplift track (phase runner, edge explanation, affordance evidence, causal-trust display)",
+      "reuse": "extend",
+      "evidence": "spec.md:102",
+      "relevance": 0.85,
+      "notes": "005 is the only deferred top-level track (5% complete). Its children (001-phase-runner, 002-edge-explanation, 003-affordance-evidence, 004-causal-trust-display) are all deferred. Two children (005-deep-review-findings, 006-deep-research-review) are abandoned. This is the primary gap in the 026 program."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/context-index.md",
+      "symbol": "wave-4-migration-bridge",
+      "kind": "convention",
+      "signature": "Migration bridge resolving 17 top-level phases to 7 themed parents with old-path resolution tables",
+      "reuse": "compose",
+      "evidence": "context-index.md:129-195",
+      "relevance": 0.9,
+      "notes": "Old phase paths (000-016) are NOT rewritten; resolve via bridge tables. Any new code or docs referencing old paths must consult this file. Wave 8 (2026-06-03) relocated 6 skilled-agent-orchestration packets into 026 tracks."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "v2-master-synthesis",
+      "kind": "reuse_candidate",
+      "signature": "Level 3 research coordination root: 88 findings, 10 ranked recommendations, trust-axis separation, honest measurement contract",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:31-35",
+      "relevance": 0.9,
+      "notes": "Key research outputs: research/research.md (canonical synthesis), research/recommendations.md (ranked decision surface), research/findings-registry.json (88 findings). The trust-axis separation (provenance, evidence status, freshness as separate fields) is a durable architectural decision (ADR R10 replacement)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "honest-measurement-contract",
+      "kind": "convention",
+      "signature": "Publish provisional honest measurement contract before any multiplier claims",
+      "reuse": "extend",
+      "evidence": "001-research-and-baseline/spec.md:33",
+      "relevance": 0.85,
+      "notes": "Decision: no performance claims without the measurement contract. This gates downstream packaging work (including 005 deferred track)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/spec.md",
+      "symbol": "skill-advisor-system",
+      "kind": "reuse_candidate",
+      "signature": "Skill-advisor graph, scoring engine, routing engine with playbook-run remediation",
+      "reuse": "extend",
+      "evidence": "002-spec-kit-internals/spec.md:90",
+      "relevance": 0.88,
+      "notes": "002-skill-advisor is in-progress. The advisor graph, scoring, and routing are live. Depends on 002 (internals) being stable before 006 (operator tooling) can reference it per phase handoff rules."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/spec.md",
+      "symbol": "004-literal-spec-folder-names",
+      "kind": "gap",
+      "signature": "Concrete-token spec-folder naming policy — deferred at 0%",
+      "reuse": "extend",
+      "evidence": "002-spec-kit-internals/spec.md:92",
+      "relevance": 0.6,
+      "notes": "Deferred child: naming policy for spec folders. No work started. May matter if future program packets need consistent naming."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "memory-continuity-substrate",
+      "kind": "reuse_candidate",
+      "signature": "Memory quality, continuity gates, memory-save rewrite, runtime hardening, indexer invariants",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:89",
+      "relevance": 0.92,
+      "notes": "001-continuity-memory-runtime is complete. The memory-save rewrite and continuity gates are the live subsystem. Cross-links to code-graph (distinct structural surface, not a shared store)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "causal-graph-channel-routing",
+      "kind": "reuse_candidate",
+      "signature": "Causal-graph channel routing MVP — 85% complete",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:90",
+      "relevance": 0.85,
+      "notes": "002-causal-graph-channel-routing in-progress at 85%. The causal-graph channel is a distinct routing surface in the memory search pipeline."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "embedding-architecture",
+      "kind": "dependency",
+      "signature": "Local-embedding foundation with ollama/bge promotion and rerank-sidecar — 75% complete",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:91",
+      "relevance": 0.8,
+      "notes": "003-embedder-testing-and-architecture at 75%. Embedding consolidation (010-embedding-consolidation-hf-local-server) and stack hardening (011-embedding-stack-hardening) are in-progress children. The local-first resolveProvider() cascade (ADR-014) is the key decision."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/spec.md",
+      "symbol": "code-graph-structural-indexing",
+      "kind": "reuse_candidate",
+      "signature": "Standalone code-graph package with CocoIndex decoupled, 10 sub-themes, 90% complete",
+      "reuse": "extend",
+      "evidence": "004-code-graph/spec.md:88-98",
+      "relevance": 0.95,
+      "notes": "The most complete track. Key surfaces: runtime-and-scan (004), resilience-and-advisor (005), extraction-and-isolation (006), docs-and-readmes (007), playbook-validation (010). Code graph is a structural surface distinct from memory store. CocoIndex decoupled at 95% (002-deprecate-coco-index)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/spec.md",
+      "symbol": "three-way-isolation",
+      "kind": "convention",
+      "signature": "Three-way isolation: system-code-graph extraction as standalone MCP, distinct from spec-kit-memory and spec-kit-shared",
+      "reuse": "import",
+      "evidence": "004-code-graph/spec.md:94",
+      "relevance": 0.88,
+      "notes": "006-extraction-and-isolation completed the standalone-MCP pivot. The three-way isolation (memory / code-graph / shared) is an architectural boundary to respect."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "runtime-hook-parity",
+      "kind": "reuse_candidate",
+      "signature": "Runtime hook parity across Claude, Codex, Copilot, OpenCode — 85% complete",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:89",
+      "relevance": 0.8,
+      "notes": "001-hook-parity at 85%. Cross-runtime hook schema and wiring is the deliverable. Depends on 002-spec-kit-internals (advisor + template) being stable first."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "doctor-command-surface",
+      "kind": "reuse_candidate",
+      "signature": "Doctor command surface with dependency-safe rebuild orchestration — 90% complete",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:90",
+      "relevance": 0.82,
+      "notes": "002-doctor-update-orchestrator at 90%. The /doctor surface is the operator diagnostic entry point. Relocated doctor-install-alignment from skilled-agent-orchestration (context-index.md wave 8)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "003-install-scripts-doctor-realignment",
+      "kind": "gap",
+      "signature": "Install guides/scripts + doctor realignment for post-CocoIndex world — deferred",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:91",
+      "relevance": 0.6,
+      "notes": "Deferred at 0%. Post-CocoIndex install scripts not yet updated. Blocked by CocoIndex decoupling (004-code-graph/002) being finalized."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md",
+      "symbol": "daemon-lifecycle-reliability",
+      "kind": "reuse_candidate",
+      "signature": "MCP daemon lifecycle: IPC socket canonicalization, WAL checkpoint, graceful shutdown, provider dispose, watchdog, bridge liveness",
+      "reuse": "extend",
+      "evidence": "007-mcp-daemon-reliability/spec.md:109-117",
+      "relevance": 0.88,
+      "notes": "7 sub-phases. Phases 1,3,4 complete (socket dir, research, nondestructive build). Phases 5-7 planned (provider dispose, watchdog, bridge liveness). The daemon-reliability research (003) produced a ranked, adversarially-verified fix roadmap."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md",
+      "symbol": "daemon-RC-map",
+      "kind": "convention",
+      "signature": "Root-cause map: RC-1 OOM/embedding RSS, RC-2 no watchdog, RC-3 dead-socket bridge, RC-4 build wipes dist, RC-5 /tmp socket dir",
+      "reuse": "import",
+      "evidence": "007-mcp-daemon-reliability/spec.md:67,93-99",
+      "relevance": 0.85,
+      "notes": "The RC taxonomy from the daemon-reliability research is the canonical failure-mode reference. Phases 5-7 map to RC-1 through RC-3. Phase 4 fixed RC-4. Phase 1 fixed RC-5."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes/spec.md",
+      "symbol": "bridge-dual-writer-hazard",
+      "kind": "convention",
+      "signature": "mk-code-graph bridge restore REVERTED due to dual-writer hazard on memory DB; fix deferred to IPC-backed transport in 028",
+      "reuse": "import",
+      "evidence": "008-runtime-defect-fixes/spec.md:64,78",
+      "relevance": 0.9,
+      "notes": "Critical safety decision: the bridge import fix was attempted and reverted because the bridge's startup path calls initializeDb()+sessionManager.init() against the memory DB the daemon owns — the incident the 028 research forbids. Proper fix is IPC-backed transport (028 code-index phase 3)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes/spec.md",
+      "symbol": "codex-hook-rewiring",
+      "kind": "reuse_candidate",
+      "signature": "Codex hooks rewired from Claude scripts to purpose-built Codex adapters; PreCompact removed as unsupported",
+      "reuse": "import",
+      "evidence": "008-runtime-defect-fixes/spec.md:65-66,79",
+      "relevance": 0.8,
+      "notes": "Codex hooks now emit Codex-shaped envelopes. PreCompact hook removed — the hook_system.md contract lists Codex compaction as unsupported. Applied and smoke-verified."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec.md",
+      "symbol": "scouted-bugfix-train",
+      "kind": "reuse_candidate",
+      "signature": "Verify-first scouted bugfix batches (3 completed) with release-readiness deep-review train",
+      "reuse": "extend",
+      "evidence": "000-release-and-program-cleanup/spec.md:89-96",
+      "relevance": 0.75,
+      "notes": "The scouted-bugfix-train pattern (010-scouted-bugfix-train/ with batches 001-003) is a reusable verify-first remediation approach. Wave 8 relocated batches 1-3 from skilled-agent-orchestration. Batch-4 is the next slot."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec.md",
+      "symbol": "007-clean-room-license-audit",
+      "kind": "gap",
+      "signature": "Clean-room license audit for external-project adoption — deferred",
+      "reuse": "extend",
+      "evidence": "000-release-and-program-cleanup/spec.md:95",
+      "relevance": 0.5,
+      "notes": "Deferred child. Blocks safe external-project adoption licensing. Low urgency until adoption track (005) is prioritized."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "embedding-provider-local-first",
+      "kind": "reuse_candidate",
+      "signature": "Local-first resolveProvider() cascade (ADR-014) relocated from skilled-agent-orchestration",
+      "reuse": "import",
+      "evidence": "context-index.md:57",
+      "relevance": 0.8,
+      "notes": "016-embedding-provider-local-first implements ADR-014. Sits with the embedding cluster (008/009/010/011). Key decision: local-first embedding provider cascade to avoid external dependency."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "memory-code-graph-separation",
+      "kind": "convention",
+      "signature": "Memory store and code graph are distinct structural surfaces that cross-link, not a shared store",
+      "reuse": "import",
+      "evidence": "spec.md:120",
+      "relevance": 0.95,
+      "notes": "Architectural boundary: memory (003) and code-graph (004) are separate subsystems. Phase handoff rule spec.md:120 states 'code-graph is a distinct structural surface that cross-links to memory, not a shared store'. Any future work must respect this split."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "split-topology-preservation",
+      "kind": "convention",
+      "signature": "Public preserves its split semantic/structural/continuity topology; seam-hardening contracts precede packaging",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:31,188",
+      "relevance": 0.9,
+      "notes": "The v2 headline decision: do NOT replace Public's split topology with a monolithic facade. Front-load trust and freshness contracts before any packaging work. This is NFR-T01 (topology preservation)."
+    }
+  ]
+}

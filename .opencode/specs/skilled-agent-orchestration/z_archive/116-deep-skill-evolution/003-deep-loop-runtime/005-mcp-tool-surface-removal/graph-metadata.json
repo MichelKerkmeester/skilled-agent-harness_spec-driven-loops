@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 004 deletes the entire MCP tool surface for the four `deep_loop_graph_*` tools after phase 003 ships the `.cjs` script shims that consumers now invoke directly. The deletion removes five handler files under `mcp_server/handlers/coverage-graph/`, four entries in `tool-schemas.ts`, four entries in `schemas/tool-input-schemas.ts`, and four registration calls in the tools index. No aliases, wrappers, or transition layers remain; the MCP server still starts, and the four tool IDs are absent from `mcp tools list`.",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-06-05T12:47:32.298Z",
+    "last_save_at": "2026-06-07T09:00:45.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

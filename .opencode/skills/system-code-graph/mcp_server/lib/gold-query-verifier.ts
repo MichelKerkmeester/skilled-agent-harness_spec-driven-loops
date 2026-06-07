@@ -120,10 +120,14 @@ export interface VerifyResult {
   probes: ProbeResult[];
 }
 
-interface OutlineProbe {
+export interface GoldQueryOutlineProbe {
   operation: 'outline';
   subject: string;
   limit: number;
+}
+
+export interface GoldQueryOutlineArgs extends GoldQueryOutlineProbe {
+  verificationGateBypass: 'gold-query-verifier';
 }
 
 interface BatteryExecutionOptions {
@@ -272,7 +276,7 @@ function normalizeSymbol(value: string): string {
 
 function buildProbeResult(
   goldQuery: GoldQuery,
-  probe: OutlineProbe,
+  probe: GoldQueryOutlineProbe,
   matchedSymbols: string[],
   missingSymbols: string[],
   status: ProbeResult['status'],
@@ -306,7 +310,7 @@ function buildProbeResult(
 
 export async function executeBattery(
   battery: GoldBattery,
-  query: (args: OutlineProbe) => Promise<CodeGraphQueryResponse>,
+  query: (args: GoldQueryOutlineArgs) => Promise<CodeGraphQueryResponse>,
   opts?: BatteryExecutionOptions,
 ): Promise<VerifyResult> {
   const failFast = opts?.failFast ?? false;
@@ -321,10 +325,14 @@ export async function executeBattery(
   let edgeFocusTotalCount = 0;
 
   for (const goldQuery of battery.queries) {
-    const probe: OutlineProbe = {
+    const probe: GoldQueryOutlineProbe = {
       operation: 'outline',
       subject: goldQuery.source_file,
       limit: 200,
+    };
+    const queryArgs: GoldQueryOutlineArgs = {
+      ...probe,
+      verificationGateBypass: 'gold-query-verifier',
     };
 
     const categoryCounter = categoryTotals.get(goldQuery.category) ?? { total: 0, passed: 0 };
@@ -336,7 +344,7 @@ export async function executeBattery(
     }
 
     try {
-      const rawResponse = await query(probe);
+      const rawResponse = await query(queryArgs);
       const parsed = parseOutlineQueryResult(rawResponse);
 
       if (parsed.status !== 'ok') {

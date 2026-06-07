@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation",
-  "spec_folder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation",
-  "parent_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality",
+  "packet_id": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/007-cross-model-validation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/007-cross-model-validation",
+  "parent_id": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,9 +43,6 @@
     "key_files": [
       "state/cross-model-results.jsonl",
       "scripts/analyze-only.cjs",
-      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
-      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/analysis.md",
-      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -65,24 +62,6 @@
         "name": "analyze-only.cjs",
         "kind": "file",
         "path": "scripts/analyze-only.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cross-model-confirm.cjs",
-        "kind": "file",
-        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "analysis.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/analysis.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -110,9 +89,21 @@
         "source": "derived"
       },
       {
+        "name": "cross-model-confirm.cjs",
+        "kind": "file",
+        "path": "scripts/cross-model-confirm.cjs",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 113/007 plans a 70-dispatch cross-model confirmation run for the 113/003 eval-loop findings that were not propagated in packet 113/006. It reuses the existing SWE 1.6 fixtures, prompt variants, scoring pipeline, and extraction logic while routing both target models through cli-opencode.",
     "created_at": "2026-05-17T12:18:35Z",
-    "last_save_at": "2026-06-05T12:47:32.155Z",
+    "last_save_at": "2026-06-07T09:00:45.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

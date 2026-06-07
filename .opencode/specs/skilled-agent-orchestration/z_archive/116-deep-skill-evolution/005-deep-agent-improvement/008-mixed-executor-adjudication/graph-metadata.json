@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,63 +48,43 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/plan.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/checklist.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/decision-record.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/implementation-summary.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/description.json",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/graph-metadata.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/graph-metadata.json",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,11 +182,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 128 brings the methodology patterns proven in arc 119 (deep-research uplift) into deep-agent-improvement: mixed-executor dispatch (cli-devin SWE-1.6 breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter. The 119 research demonstrated a 90%+ false-positive rate on adversarial passes without adjudication, and the mixed-executor pattern (8+2 split) provided better breadth/synthesis balance than single-executor approaches. This packet documents these patterns as recommended methodology for DAI multi-iter sweeps and adds DAI-004 audit logging for dynamic profiling.",
     "created_at": "2026-05-23T08:30:00.000Z",
-    "last_save_at": "2026-05-30T19:40:10.338Z",
+    "last_save_at": "2026-06-07T09:00:45.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

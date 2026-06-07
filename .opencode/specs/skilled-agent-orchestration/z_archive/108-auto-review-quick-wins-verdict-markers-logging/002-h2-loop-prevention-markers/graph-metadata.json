@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
-  "spec_folder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
-  "parent_id": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging",
+  "packet_id": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
+  "spec_folder": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
+  "parent_id": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Our review/research skills (sk-code-review, deep-review, deep-research) lack a runtime guard against review-of-review recursion. If a malformed iteration ever causes `deep-review` to dispatch another `deep-review` (e.g. via a shell command misconfiguration), or `sk-code-review` to be invoked on its own output, the result is wasted compute and potentially infinite loops. Current defense is contract-only (\"this skill is LEAF\") — no runtime check.",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.106Z",
+    "last_save_at": "2026-06-07T09:00:45.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

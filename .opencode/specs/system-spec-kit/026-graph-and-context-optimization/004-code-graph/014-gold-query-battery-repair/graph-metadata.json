@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph gold query battery repair",
+      "verificationGate fail",
+      "system-code-graph extraction battery",
+      "026 004 014 gold query",
+      "gold query battery plan",
+      "code graph verify repair plan",
+      "verificationGate fail plan",
+      "gold query battery tasks",
+      "code graph verify repair tasks",
+      "gold query battery checklist",
+      "code graph verify checklist",
+      "gold query battery implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "gold",
+      "query",
+      "battery",
+      "repair",
+      "verificationgate",
+      "fail",
+      "system-code-graph",
+      "extraction",
+      "026",
+      "004"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/exclude-rule-confidence.json",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/gold-battery-runner.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
+      "specs/system-spec-kit/026-graph-and-context-optimization/timeline.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "code-graph-gold-queries.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json",
+        "source": "derived"
+      },
+      {
+        "name": "exclude-rule-confidence.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/exclude-rule-confidence.json",
+        "source": "derived"
+      },
+      {
+        "name": "query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gold-query-verifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gold-battery-runner.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/gold-battery-runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-verify.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "timeline.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/timeline.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Gold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Battery Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 14 repaired stale Code Graph gold-query and confidence-fixture expectations after extraction, added a narrow verifier-only recovery path for failed persisted baselines, and verified a real 28-query passing battery while preserving public structural-read fail-closed behavior.",
+    "created_at": "2026-06-07T09:30:00Z",
+    "last_save_at": "2026-06-07T10:45:04.958Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

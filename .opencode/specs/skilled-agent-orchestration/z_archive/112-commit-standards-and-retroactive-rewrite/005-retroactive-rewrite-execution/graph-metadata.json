@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
-  "spec_folder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
-  "parent_id": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
+  "packet_id": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
+  "spec_folder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
+  "parent_id": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "This is the final phase of the 112 packet. Runs the cli-devin loop authored in Phase 004, synthesizes the rewrite mapping, applies it via `git filter-repo`, and verifies the result against the Phase 001 baseline.",
     "created_at": "2026-05-16T09:42:35Z",
-    "last_save_at": "2026-06-05T12:47:32.137Z",
+    "last_save_at": "2026-06-07T09:00:45.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

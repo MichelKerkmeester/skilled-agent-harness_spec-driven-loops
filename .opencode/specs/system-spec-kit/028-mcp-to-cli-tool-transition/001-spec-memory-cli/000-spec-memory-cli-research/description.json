@@ -1,22 +1,19 @@
 {
   "level": "1",
-  "specFolder": "specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
-  "description": "Dual-stack spec-memory CLI implementation: daemon-backed CLI alongside the MCP registration",
+  "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
+  "description": "Feature Specification: Memory MCP to CLI Feasibility",
   "keywords": [
-    "dual-stack",
-    "spec-memory",
-    "cli",
-    "implementation",
-    "daemon-backed",
-    "alongside",
+    "feature",
+    "specification",
+    "memory",
     "mcp",
-    "registration"
+    "cli",
+    "feasibility"
   ],
-  "lastUpdated": "2026-06-06T13:05:00.000Z",
+  "lastUpdated": "2026-06-07T14:08:18.213Z",
   "specId": "000",
   "folderSlug": "spec-memory-cli-research",
   "parentChain": [
-    "specs",
     "system-spec-kit",
     "028-mcp-to-cli-tool-transition",
     "001-spec-memory-cli"

@@ -12,10 +12,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli"
-    last_updated_at: "2026-06-06T13:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Research nested as phase 000; implementation phases 001-003 scaffolded"
-    next_safe_action: "Run speckit:plan on 001-cli-core to open implementation"
+    last_updated_at: "2026-06-07T12:45:00Z"
+    last_updated_by: "gpt-5.5"
+    recent_action: "Phase 001 CLI core delivered with daemon-backed spec-memory shim"
+    next_safe_action: "Run phase 002 hardening/parity suites, then phase 003 runtime integration"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       - "001-cli-core/spec.md"
       - "002-hardening-and-tests/spec.md"
       - "003-runtime-integration/spec.md"
-    completion_pct: 0
+    completion_pct: 35
     open_questions: []
     answered_questions:
       - "Research settled GO with zero unknowns (phase 000); implementation proceeds as phases 001-003."
@@ -52,7 +52,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-06-06 |
-| **Updated** | 2026-06-06 |
+| **Updated** | 2026-06-07 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
@@ -102,7 +102,7 @@ Deliver the `spec-memory` CLI as a second IPC client over the unchanged daemon �
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | 000-spec-memory-cli-research/ | Research record: four deep-research runs ending in GO + zero unknowns (2 RESOLVED, 4 MITIGATED-terminal, 2 ACCEPTED); 8 delta specs; corrected measurements; 10–13d estimate | Complete |
-| 1 | 001-cli-core/ | spec-memory CLI binary: 37 subcommands codegen'd from TOOL_DEFINITIONS, Zod at argv, IPC connect + auto-spawn, exits 0/1/64/69/75, shim guards (~5–6d) | Pending |
+| 1 | 001-cli-core/ | spec-memory CLI binary: 37 subcommands generated from TOOL_DEFINITIONS, Zod at argv, IPC connect + auto-spawn, exits 0/1/64/69/75, shim guards | Core delivered |
 | 2 | 002-hardening-and-tests/ | Regression-lock the guarantees: D1 dual-spawn, D2 dual-client, D7 lifecycle suites + all-37 parity + D5 exit-69 docs (~3–4d) | Pending |
 | 3 | 003-runtime-integration/ | Adoption surfaces: runtime allowlists, hook pairing for Claude/Codex/Devin (CLI-backed warm-only path in the existing adapters), NEW OpenCode plugin for spec-memory, packaging, transport-down fallback, dual-stack window (~2–3d, re-estimate with plugin scope) | Pending |
 
@@ -118,7 +118,7 @@ Deliver the `spec-memory` CLI as a second IPC client over the unchanged daemon �
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 000-spec-memory-cli-research | 001-cli-core | Research terminal: zero unknowns; delta specs pinned | `000-spec-memory-cli-research/research/research.md` §14 |
-| 001-cli-core | 002-hardening-and-tests | All 37 subcommands invocable against a live daemon; exit-code contract implemented; auto-spawn works from a dead socket | Manual invocation matrix + warm-path timing sample |
+| 001-cli-core | 002-hardening-and-tests | CLI core exists; hardening now regression-locks all-37 invocation, dual-spawn, dual-client parity, and timing | Targeted CLI tests + live `memory_stats` smoke; full matrix in phase 002 |
 | 002-hardening-and-tests | 003-runtime-integration | D1/D2/D7 + parity suites green; zero orphaned daemons post-suite | Full vitest run + process-table assertion |
 <!-- /ANCHOR:phase-map -->
 

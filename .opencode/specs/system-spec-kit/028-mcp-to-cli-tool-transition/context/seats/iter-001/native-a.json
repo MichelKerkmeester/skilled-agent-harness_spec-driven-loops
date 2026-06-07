@@ -1,0 +1,105 @@
+{
+  "seatLabel": "native-a",
+  "findings": [
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "CODE_GRAPH_TOOL_SCHEMAS",
+      "kind": "reuse_candidate",
+      "signature": "export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:186",
+      "relevance": 0.98,
+      "notes": "Canonical Code Graph tool registry; preserve the eight stable tool IDs as CLI command/subcommand inputs."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
+      "symbol": "handleTool",
+      "kind": "integration_point",
+      "signature": "handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null>",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:62",
+      "relevance": 0.95,
+      "notes": "Existing dispatcher validates published schemas and required fields before routing to handlers."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "symbol": "shouldBlockReadPath",
+      "kind": "integration_point",
+      "signature": "shouldBlockReadPath(readiness: ReadyResult): boolean",
+      "reuse": "preserve",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:865",
+      "relevance": 0.97,
+      "notes": "CLI reads must keep false-safe blocking on non-fresh graphs or failed verification gates."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+      "symbol": "callCodeGraphTool",
+      "kind": "dependency",
+      "signature": "callCodeGraphTool(name: string, args: Record<string, unknown>, timeoutMs?: number): Promise<Record<string, unknown>>",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts:269",
+      "relevance": 0.94,
+      "notes": "Spec Kit already crosses the Code Graph process boundary by stable tool name through the mk-code-index launcher."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "symbol": "TOOL_DEFINITIONS",
+      "kind": "integration_point",
+      "signature": "export const TOOL_DEFINITIONS: ToolDefinition[]",
+      "reuse": "preserve",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:645",
+      "relevance": 0.93,
+      "notes": "Spec Kit documents Code Graph schema ownership as moved out while tool IDs stay unchanged."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/tools/index.ts",
+      "symbol": "TOOL_DEFINITIONS",
+      "kind": "reuse_candidate",
+      "signature": "export const TOOL_DEFINITIONS: ToolDefinition[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/tools/index.ts:37",
+      "relevance": 0.96,
+      "notes": "Canonical Skill Advisor plus Skill Graph tool registry for CLI parity."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+      "symbol": "callAdvisorTool",
+      "kind": "convention",
+      "signature": "callAdvisorTool(name, args, workspaceRoot)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs:234",
+      "relevance": 0.9,
+      "notes": "Safe bridge precedent: subprocess boundary, timeout, MCP envelope parsing, best-effort cleanup."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+      "symbol": "AdvisorRecommendInputSchema",
+      "kind": "integration_point",
+      "signature": "AdvisorRecommendInputSchema = z.object(...).strict()",
+      "reuse": "preserve",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts:135",
+      "relevance": 0.91,
+      "notes": "CLI parsing should preserve strict public input schema and avoid exposing internal affordance scoring."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      "symbol": "buildSkillGraphTopologySummary",
+      "kind": "gap",
+      "signature": "buildSkillGraphTopologySummary(): Promise<SkillGraphTopologySummary>",
+      "reuse": "avoid",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:221",
+      "relevance": 0.88,
+      "notes": "Bootstrap no longer proxies skill graph topology through mk-spec-memory; route topology to mk_skill_advisor."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
+      "symbol": "ensureRuntimeReady",
+      "kind": "gap",
+      "signature": "ensureRuntimeReady()",
+      "reuse": "avoid",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs:33",
+      "relevance": 0.93,
+      "notes": "Do not reuse this direct-import bridge as the CLI pattern; it initializes runtime internals directly."
+    }
+  ]
+}

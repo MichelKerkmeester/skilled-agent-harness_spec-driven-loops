@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This placeholder phase consumes ADR-002 and ADR-005 from 129/001 and will be filled by the Wave 6 implementation agent. The scope is intentionally narrow so the architecture decisions are implemented in order.",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-05-30T10:12:00.983Z",
+    "last_save_at": "2026-06-07T09:00:45.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

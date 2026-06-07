@@ -1,0 +1,84 @@
+{
+  "findings": [
+    {
+      "path": "000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings/decision-record.md",
+      "symbol": "tier-gamma-conservative-defaults",
+      "kind": "convention",
+      "signature": "Eight specific defaults chosen for remaining P1 remediation: auto modes remove waits, /memory:* stays markdown-only, /memory:save plan-only-by-default, embedding-cache rows deleted on retention delete, memory_save planner inputs internal-only, governed-ingest validation extends to ingest paths, args validated before pre-dispatch logic, legacy strict-warning packet grandfathered",
+      "reuse": "These defaults are release-gate constraints that any future planner must honor; they shape the memory_save MCP schema, /memory:* command architecture, and ingest governance contract.",
+      "evidence": "000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings/decision-record.md:39-49",
+      "relevance": 0.85,
+      "notes": "A /speckit:plan author touching memory_save, /memory:*, or ingest governance needs these defaults to avoid re-litigating decisions already made under release-readiness pressure."
+    },
+    {
+      "path": "000-release-and-program-cleanup/007-clean-room-license-audit/spec.md",
+      "symbol": "clean-room-license-audit-p0-gate",
+      "kind": "convention",
+      "signature": "PolyForm Noncommercial 1.0.0 is the controlling license for external-project patterns; the actual shipped mitigation was an upstream-project name scrub (commit bdd3c831d) not a verbatim license quote; P0 governance gate blocking all 012 code sub-phases; .gitignore excludes external/ so worktrees lack the LICENSE file",
+      "reuse": "Any future code touching external-project patterns must honor the clean-room allow-list and name-scrub posture documented in the ADR; verbatim-code reuse remains forbidden.",
+      "evidence": "000-release-and-program-cleanup/007-clean-room-license-audit/spec.md:33-43, decision-record.md:24-41",
+      "relevance": 0.9,
+      "notes": "The spec's status-note documents a material change in mitigation strategy (name scrub vs verbatim quote) that the decision-record ADR captures. A planner must know the current posture, not the historical one."
+    },
+    {
+      "path": "000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md",
+      "symbol": "changelog-scaffold-then-enrich-pipeline",
+      "kind": "convention",
+      "signature": "Two-step pipeline: generator scaffolds structure and output path, Sonnet agent rewrites Summary/Added/Changed/Fixed/Files-Changed/Prune-FollowUps using a written contract; 441 phases need HVR-voice changelogs; fabrication guard plus adversarial verify; flat-per-track layout with 696 final files (624 leaf + 72 rollups + 2 indexes)",
+      "reuse": "The changelog generator at scripts/changelog/ and the enrichment contract are reusable infrastructure for any future packet-local changelog generation.",
+      "evidence": "000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md:38-101, audit-report.md:21",
+      "relevance": 0.75,
+      "notes": "Operationally important: the root rollup index files in tracks 002/006/007 were NOT refreshed after the flat-per-track flatten (review-changelog-completeness/review-report.md:95). They still link to old nested directory shapes and under-report. A regeneration pass is needed."
+    },
+    {
+      "path": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-019.md",
+      "symbol": "concurrent-session-sigterm-compound-failure",
+      "kind": "convention",
+      "signature": "Divergent signal-handler stacks (context-server.ts:1681-1692 exit 0 vs shutdown-hooks.ts:129-148 exit 143/130) race under concurrent-session SIGTERM; if shutdown-hooks stack wins it skips fatalShutdown ordered drain, coupling unfenced ingest worker dirty-WAL with non-re--entrant socket server; operationally reachable with 2 Claude + 4 codex sessions sharing one repo",
+      "reuse": "This compound failure analysis is the justification for the single-ordered-teardown fix in 017-last-50-commits-review-remediation; any future shutdown-path change must preserve the ordering.",
+      "evidence": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-019.md:59-69, decision-record.md:52",
+      "relevance": 0.88,
+      "notes": "The 017 remediation landed a single ordered teardown, but the compound-failure analysis documents exactly which code paths interact and why ordering matters. A planner modifying shutdown hooks must read this."
+    },
+    {
+      "path": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-005.md",
+      "symbol": "changelog-root-rollup-index-drift",
+      "kind": "gap",
+      "signature": "Per-track ROOT ROLLUP index files not refreshed after 026 changelog tree was flattened to one-subdir-level / flat-files-per-track; they still link to old nested directory shapes and stop at pre-flatten dates, under-reporting and mis-linking the (complete, present) leaf changelogs",
+      "reuse": "A single regeneration pass over the *-root.md rollups in tracks 002/006/007 would clear this drift.",
+      "evidence": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review-changelog-completeness/review-report.md:95",
+      "relevance": 0.7,
+      "notes": "Concrete documentation gap: the leaf layer is healthy but the index layer drifted. An operator reading the root rollups sees incomplete coverage."
+    },
+    {
+      "path": "004-code-graph/011-source-bug-and-misalignment-audit/review-report.md",
+      "symbol": "code-graph-read-only-write-violation",
+      "kind": "gap",
+      "signature": "getGraphReadinessSnapshot and getGraphFreshness are documented/contractual read-only but call detectState which writes last_git_head to DB, violating ADR-003 single-writer discipline; function docstrings and status.ts inline comment claim no side effects; P1 idempotent non-corrupting",
+      "reuse": "Fix: move setLastGitHead out of detectState into ensureCodeGraphReady only, or pass mutate:false. The proposed fix is sound and documented.",
+      "evidence": "004-code-graph/011-source-bug-and-misalignment-audit/review-report.md:229-234",
+      "relevance": 0.82,
+      "notes": "A /speckit:plan author touching code-graph status/readiness must know this contract violation exists. The write is idempotent (SQLite serializes, same value) so it's non-corrupting, but it makes the read-only promise false."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain/spec.md",
+      "symbol": "daemon-recycle-stress-test-model-fidelity",
+      "kind": "gap",
+      "signature": "daemon-recycle-transparency-stress.vitest.ts uses a local replay loop copy rather than the production replaySnapshot() closure in launcher-session-proxy.cjs:595; cannot catch drift in the production closure",
+      "reuse": "The stress test should drive an exported production replay helper or a real proxy recycle path; currently it validates the classifyFrame logic but not the production closure.",
+      "evidence": "003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/review/iterations/iteration-014.md:49",
+      "relevance": 0.65,
+      "notes": "P1 test-fidelity finding from the 014 deep review. Downgrade only if the test drives an exported production replay helper."
+    },
+    {
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "code-graph-plugin-bridge-inert-pending-028",
+      "kind": "gap",
+      "signature": "OpenCode code-graph plugin bridge (mk-code-graph-bridge.mjs) is non-functional by deliberate choice; import fix was attempted, smoke-verified, then REVERTED because the runnable bridge calls initializeDb()/sessionManager.init() directly against daemon-owned memory DB (dual-writer hazard); root fix deferred to IPC-backed transport in 028 code-index runtime-integration phase",
+      "reuse": "The bridge stays inert; the README documents the non-functional state. Any planner must know the OpenCode code-graph integration path requires 028 to ship first.",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:48,103",
+      "relevance": 0.78,
+      "notes": "This is a genuine open gap: the OpenCode code-graph integration is blocked on 028's IPC-backed transport. The bridge's dual-writer hazard was caught by fresh-model review after mechanical verification passed."
+    }
+  ]
+}

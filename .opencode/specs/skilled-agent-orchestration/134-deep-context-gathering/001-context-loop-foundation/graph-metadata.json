@@ -15,7 +15,14 @@
       "context gathering",
       "context report",
       "reuse catalog",
-      "deep loop"
+      "deep loop",
+      "deep-context plan",
+      "context loop plan",
+      "coverage graph context",
+      "heterogeneous parallel sweep",
+      "reuse catalog report",
+      "deep-context tasks",
+      "context loop tasks"
     ],
     "key_topics": [
       "deep-context",
@@ -26,31 +33,44 @@
       "catalog",
       "deep",
       "loop",
-      "convergence-gated",
-      "coverage-graph",
-      "by-model-parallel"
+      "plan",
+      "coverage",
+      "graph",
+      "heterogeneous"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "implementation-summary.md",
+      "decision-record.md",
+      "scripts/README.md",
       "research/research.md",
-      ".opencode/skills/deep-context/SKILL.md",
+      "spec.md",
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs"
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/commands/deep/start-context-loop.md",
+      ".opencode/agents/deep-context.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/deep-context/SKILL.md",
+      ".opencode/skills/deep-context/README.md",
+      ".opencode/skills/deep-context/scripts/reduce-state.cjs",
+      ".opencode/agents/context.md",
+      "research/deep-research-state.jsonl",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -60,9 +80,21 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "coverage-graph-db.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
         "source": "derived"
       },
       {
@@ -70,15 +102,121 @@
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
         "source": "derived"
+      },
+      {
+        "name": "start-context-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-context-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-context/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement There",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Foundational build of the deep-context loop: the skill, the /deep:start-context-loop command with auto and confirm workflows, the @deep-context LEAF agent, the deep-loop-runtime loop_type='context' coverage-graph and convergence extension, the reuse-first Context Report, the sk-doc documentation package, skill-advisor registration, and the closed manual-testing-playbook gaps. Shipped and verified.",
+    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase. `/speckit:plan` discovers context ad-hoc (4 one-shot exploration agents in Step 5) and `/speckit:implement` relies on whatever the plan captured, so reusable code is missed (violating the \"reuse, avoid new code\" principle), context-rot and stale references creep in, and there is no saturation signal for \"enough context gathered.\"",
     "created_at": "2026-06-06T14:09:09.974Z",
-    "last_save_at": "2026-06-06T21:40:00.000Z",
+    "last_save_at": "2026-06-07T09:00:45.323Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],

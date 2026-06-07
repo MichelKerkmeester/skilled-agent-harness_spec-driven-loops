@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
+  "description": "Feature Specification: Code Graph Gold-Query Battery Repair",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "gold-query",
+    "battery",
+    "repair",
+    "verification"
+  ],
+  "lastUpdated": "2026-06-07T10:45:04.958Z",
+  "specId": "014",
+  "folderSlug": "gold-query-battery-repair",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "07-06-26_11-45__review-findings-were-fixed-in-the-active-phase.md"
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 1: CLI Core [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core/tasks]"
-description: "Planned task breakdown for CLI Core; rows expand at speckit:plan time."
+description: "Implemented task breakdown for CLI Core: daemon-backed spec-memory CLI, shim, runtime command generation from TOOL_DEFINITIONS, Zod argv validation, targeted tests, and live smoke evidence."
 trigger_phrases:
   - "spec-memory cli core tasks"
   - "cli subcommand codegen tasks"
@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core"
-    last_updated_at: "2026-06-06T12:50:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-07T12:45:00Z"
+    last_updated_by: "gpt-5.5"
+    recent_action: "Delivered daemon-backed spec-memory CLI core and shim"
+    next_safe_action: "Run phase 002 hardening/parity suites and phase 003 runtime integration"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
+- [x] T000 Verify predecessor handoff criteria and execute this Level 1 phase from the existing plan/research authority
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,12 +54,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 Generate subcommand manifest from TOOL_DEFINITIONS (mcp_server)
-- [ ] T002 Implement CLI entrypoint with Zod argv boundary and --json escape hatch (mcp_server/spec-memory-cli.ts)
-- [ ] T003 Implement connect-falls-back-to-spawn over the launcher; wire --session-id and --timeout-ms (mcp_server/spec-memory-cli.ts)
-- [ ] T004 Implement exit-code contract incl. 75 retryable and 69 fail-closed (mcp_server/spec-memory-cli.ts)
-- [ ] T005 Author shim with dist-freshness guard and short-socket-dir default (.opencode/bin/spec-memory.cjs)
-- [ ] T006 Wire package bin + smoke-invoke all 37 subcommands against a live daemon
+- [x] T001 Generate runtime subcommand map from `TOOL_DEFINITIONS` (`mcp_server/spec-memory-cli.ts`)
+- [x] T002 Implement CLI entrypoint with Zod argv boundary and `--json` escape hatch (`mcp_server/spec-memory-cli.ts`)
+- [x] T003 Implement connect-falls-back-to-spawn over the launcher; wire `--session-id` and `--timeout-ms` (`mcp_server/spec-memory-cli.ts`)
+- [x] T004 Implement exit-code contract incl. 75 retryable and 69 fail-closed (`mcp_server/spec-memory-cli.ts`, targeted vitest)
+- [x] T005 Author shim with dist-freshness guard and short-socket-dir default (`.opencode/bin/spec-memory.cjs`)
+- [x] T006 Wire package bin and smoke-invoke live daemon via `memory_stats`; full destructive-safe 37-tool invocation matrix remains phase 002
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,7 +67,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx Manual invocation matrix across the 37 subcommands; exit-code spot checks for retryable vs terminal classes; warm-path timing sample vs the ~50ms p95 baseline.
+- [x] T900 CLI tests: `npx vitest run tests/cli.vitest.ts tests/spec-memory-cli.vitest.ts` -> 11 passed
+- [x] T901 Typecheck/build: `npm run typecheck`; `npm run build`
+- [x] T902 Live smoke: `node .opencode/bin/spec-memory.cjs memory_stats --format json --timeout-ms 5000`
+- [ ] T9xx Full 37-subcommand invocation matrix, dual-spawn race tests, and warm-path p95 sample are owned by phase 002 hardening
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -75,9 +78,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] P0 requirements in spec.md verified with evidence
+- [x] All phase-001-owned tasks marked `[x]`; successor-owned hardening row intentionally remains open
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 requirements in spec.md implemented with targeted evidence
 <!-- /ANCHOR:completion -->
 
 ---

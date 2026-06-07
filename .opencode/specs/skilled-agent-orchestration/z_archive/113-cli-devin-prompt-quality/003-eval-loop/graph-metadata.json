@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality/003-eval-loop",
-  "spec_folder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/003-eval-loop",
-  "parent_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality",
+  "packet_id": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/003-eval-loop",
+  "spec_folder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/003-eval-loop",
+  "parent_id": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Run the bespoke deep-loop. Each iteration picks a council-seeded variant or mutates the current best along one axis, dispatches cli-devin against SWE 1.6 for each fixture (parallel wave of 3), scores via the 002 rig (deterministic + grader, cached), aggregates a variant score, then evaluates convergence via 3-signal weighted vote. Loop legal-stops when stopScore > 0.60 AND coverage + quality + budget gates pass. Min 6 iterations. Synthesis ranks variants with confidence scores and key insights. Output is `synthesis.md` — the binding handoff for 004 to apply winners.",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-06-05T12:47:32.146Z",
+    "last_save_at": "2026-06-07T09:00:45.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

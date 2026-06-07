@@ -40,6 +40,7 @@
     "importance_tier": "important",
     "status": "phase_parent",
     "key_files": [
+      "000-skill-advisor-cli-research/research/research.md",
       "000-skill-advisor-cli-research/spec.md",
       "spec.md"
     ],
@@ -89,7 +90,7 @@
     ],
     "causal_summary": "The mk_skill_advisor MCP server (9 tools: 4 advisor + 5 skill_graph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has the same transport fragility class as the other servers - and this system already shipped a partial answer: skill_advisor.py (3,642 lines) is the documented Gate-2 fallback covering advisor_recommend via a DIVERGENT Python scorer with a native-bridge probe, while advisor_rebuild and 4 of 5 skill_graph tools have no CLI at all. Six orphaned mk-skill-advisor launchers were observed on this host - the lifecycle question is live here.",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-06-06T15:05:00.000Z",
+    "last_save_at": "2026-06-07T09:00:47.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

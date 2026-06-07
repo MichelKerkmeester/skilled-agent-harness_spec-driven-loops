@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution",
   "children_ids": [
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/003-lib-runtime-migration",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/008-test-migration",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
-    "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/011-migration-closeout-cli-verification"
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/003-lib-runtime-migration",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/008-test-migration",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/011-migration-closeout-cli-verification"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -46,8 +46,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/spec.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -95,7 +94,7 @@
     ],
     "causal_summary": "This cluster groups 9 sub-phases that share a single thematic focus. Before restructuring, these existed as flat siblings at the root of `116-deep-skill-evolution/`. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-06-05T12:47:32.286Z",
+    "last_save_at": "2026-06-07T09:00:45.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

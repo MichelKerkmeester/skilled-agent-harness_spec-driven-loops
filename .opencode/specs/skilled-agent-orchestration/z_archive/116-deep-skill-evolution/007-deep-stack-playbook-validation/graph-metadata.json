@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution",
   "children_ids": [
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
+    "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
   ],
   "manual": {
     "depends_on": [],
@@ -98,7 +98,7 @@
     ],
     "causal_summary": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (37) — ship manual testing playbooks totalling **177 scenarios**. Each playbook's Execution Policy requires scenarios to be \"executed for real, not mocked.\" There is no captured, dated operator run on record across these five skills, so release readiness for the deep-loop family cannot be asserted.",
     "created_at": "2026-05-27T07:08:08.383Z",
-    "last_save_at": "2026-06-05T12:47:32.349Z",
+    "last_save_at": "2026-06-07T09:00:45.927Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

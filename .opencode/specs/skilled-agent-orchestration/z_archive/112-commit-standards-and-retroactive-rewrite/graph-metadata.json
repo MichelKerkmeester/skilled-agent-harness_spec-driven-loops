@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
-  "spec_folder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
+  "packet_id": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite",
+  "spec_folder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
-    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
-    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
-    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
-    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution"
+    "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+    "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
+    "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+    "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+    "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -133,7 +133,7 @@
     ],
     "causal_summary": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` §3 and `assets/commit_message_template.md`, but the git log itself does not follow them. A 30-commit sample of recent HEAD shows 100% of commits prefixed with internal packet IDs (`111 W3.C:`, `111 W3.D-A:`), no message bodies, no Co-Authored-By trailers on the most recent activity (older history carries 3,498 Claude trailers in various forms), and free-form subjects that violate the imperative-mood + length rules. The standards exist on paper but nothing enforces them at commit time, and no retroactive normalization has been performed.",
     "created_at": "2026-05-16T09:42:32Z",
-    "last_save_at": "2026-06-05T12:47:32.127Z",
+    "last_save_at": "2026-06-07T09:00:45.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

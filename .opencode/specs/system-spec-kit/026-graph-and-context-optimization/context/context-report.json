@@ -1,0 +1,1700 @@
+{
+  "scope": "All work done in system-spec-kit/026-graph-and-context-optimization — BOTH the documentation narrative (what each of the 9 phases / 110 sub-phases delivered) AND the underlying code subsystems the program produced/modified (system-code-graph MCP, mk-spec-memory memory+embedder runtime, deep-loop-runtime fan-out/dispatch, daemon launchers + IPC bridge, runtime hooks, doctor surface, template system, skill-advisor).",
+  "source_root": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization",
+  "executorPool": [
+    {
+      "label": "mimo",
+      "model": "xiaomi/mimo-v2.5-pro",
+      "framework": "costar"
+    }
+  ],
+  "iterations": 5,
+  "stopReason": "converged",
+  "counts": {
+    "total": 118,
+    "agreementEligible": 117,
+    "reuseCandidates": 53,
+    "integrationPoints": 16,
+    "conventions": 37,
+    "dependencies": 3,
+    "gaps": 8,
+    "contradictions": 0
+  },
+  "convergence": {
+    "sliceCoverage": 0.95,
+    "reuseCatalogCoverage": 1,
+    "agreementRate": 1,
+    "relevanceFloor": 1,
+    "dependencyCompleteness": 1,
+    "score": 0.99,
+    "saturationRatio": 0.068,
+    "threshold": 0.1,
+    "relevanceGate": 0.55,
+    "agreementMin": 1
+  },
+  "reuseCandidates": [
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      "symbol": "runCappedPool",
+      "signature": "function runCappedPool({ items, concurrency, worker, now?, onEvent? }): Promise<{ results, summary }>",
+      "reuse": "Concurrency-capped parallel pool primitive with never-throw settlement and ordered results. Generalizes council dispatchSeats with K-in-flight cap. Inject worker pattern.",
+      "evidence": "fanout-pool.cjs:138",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Pure pool primitive — worker is injected. The `xargs -P K` shape. settleItem never throws; mirrors council settleSeat."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "buildLineageCommand",
+      "signature": "function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission): { command, args, input?, env }",
+      "reuse": "",
+      "evidence": "fanout-run.cjs:259",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Each executor kind has its own CLI flag shape. codex uses stdin (- prompt), gemini uses argv, claude uses -p, opencode uses run + prompt arg, devin uses --print + stdin. This is the per-executor command builder a new loop type would need to extend."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "symbol": "handleCodeGraphQuery",
+      "signature": "async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1198",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Handles outline/calls_from/calls_to/imports_from/imports_to/blast_radius. Calls ensureCodeGraphReady before read. Reuse: call directly for programmatic graph queries without MCP transport."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "ensureCodeGraphReady",
+      "signature": "async function ensureCodeGraphReady(rootDir: string, options?: EnsureReadyOptions): Promise<ReadyResult>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:624",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Auto-triggers selective/full reindex before reads. Returns ReadyResult with freshness/action/reason. Every read handler calls this. Reuse: gate any code-graph-dependent operation."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/spec.md",
+      "symbol": "code-graph-structural-indexing",
+      "signature": "Standalone code-graph package with CocoIndex decoupled, 10 sub-themes, 90% complete",
+      "reuse": "extend",
+      "evidence": "004-code-graph/spec.md:88-98",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "The most complete track. Key surfaces: runtime-and-scan (004), resilience-and-advisor (005), extraction-and-isolation (006), docs-and-readmes (007), playbook-validation (010). Code graph is a structural surface distinct from memory store. CocoIndex decoupled at 95% (002-deprecate-coco-index)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "program-topology",
+      "signature": "8-track phase-parent coordination surface with validate.sh handoff contract",
+      "reuse": "extend",
+      "evidence": "spec.md:95-123",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "The 8-track decomposition (000-008) and phase transition rules are the canonical program structure. Any future program-packet can adopt this topology. Phase handoff criteria at spec.md:117-123 define cross-track dependency contracts."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "memory-continuity-substrate",
+      "signature": "Memory quality, continuity gates, memory-save rewrite, runtime hardening, indexer invariants",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:89",
+      "relevance": 0.92,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "001-continuity-memory-runtime is complete. The memory-save rewrite and continuity gates are the live subsystem. Cross-links to code-graph (distinct structural surface, not a shared store)."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/convergence.cjs",
+      "symbol": "evaluateCouncilConvergence",
+      "signature": "async function evaluateCouncilConvergence(ns, options?): convergenceResult",
+      "reuse": "",
+      "evidence": "convergence.cjs:147",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Thresholds: agreementRatio≥0.67, dissentDensity≤0.25, evidenceDepth≥1.0, unresolvedCritical=0, decisionConfidence≥0.65. bridgePayload() flattens to standard graph_decision/graph_signals shape."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+      "symbol": "dispatchCouncilSeats",
+      "signature": "async function dispatchCouncilSeats({ roundId, seats, dispatchSeat, context?, now? }): Promise<{ round_id, started_at_iso, completed_at_iso, results[], summary }>",
+      "reuse": "",
+      "evidence": "multi-seat-dispatch.cjs:129",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "settleSeat never throws (mirrors settleItem pattern). Seats are normalized to {id, input}. Now/settleSeat are injectable for testing. Summary: total/succeeded/failed/all_failed."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateContext",
+      "signature": "function evaluateContext(signals, gaps, contradictions): { blockers, trace }",
+      "reuse": "Convergence evaluator for context loops. Five signals (sliceCoverage, reuseCatalogCoverage, agreementRate, relevanceFloor, dependencyCompleteness). Three blocking guards.",
+      "evidence": "convergence.cjs:262",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Reuse catalog coverage is weighted highest (0.30) per reuse-first principle. Slice coverage, relevance floor, and agreement rate are blocking guards."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateResearch",
+      "signature": "function evaluateResearch(signals, gaps, contradictions, unverified): { blockers, trace }",
+      "reuse": "Convergence evaluator for research loops. Five signals (questionCoverage, claimVerificationRate, contradictionDensity, sourceDiversity, evidenceDepth) with blocking guards and weighted thresholds.",
+      "evidence": "convergence.cjs:200",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Blocking guards for source_diversity and evidence_depth; weighted signals for question coverage and claim verification. Returns blockers[] + trace[]."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateReview",
+      "signature": "function evaluateReview(signals, gaps, contradictions): { blockers, trace }",
+      "reuse": "Convergence evaluator for review loops. Five signals (dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation). P0 resolution rate is blocking_guard.",
+      "evidence": "convergence.cjs:234",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Dimension coverage and P0 resolution are blocking guards; finding stability and evidence density are weighted."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "runLineageProcess",
+      "signature": "function runLineageProcess(command, cmdArgs, opts): Promise<{ status, signal, stdout, error? }>",
+      "reuse": "",
+      "evidence": "fanout-run.cjs:188",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Key design: returns Promise so the pool's K-in-flight cap actually overlaps. Drains stderr so child never blocks on full pipe. SIGTERM on timeout; signal field preserves timeout-as-failure signal."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/context.ts",
+      "symbol": "handleCodeGraphContext",
+      "signature": "async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/context.ts:170",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "LLM-oriented graph neighborhoods. Delegates to buildContext() from code-graph-context.ts. Blocked-read path with canonical readiness vocabulary."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      "symbol": "handleCodeGraphScan",
+      "signature": "async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:312",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Full/incremental scan: indexFiles → persistIndexedFileResult → cross-file edge resolution → dangling prune. Scope-change and zero-node guards. Reuse: trigger programmatic reindex."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryEdgesFrom",
+      "signature": "function queryEdgesFrom(symbolId: string, edgeType?: string): CodeEdgeTargetResult[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:993",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Outbound edges with optional edge-type filter. Returns {edge, targetNode}. Core building block for call-graph and import queries."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryOutline",
+      "signature": "function queryOutline(filePath: string): CodeNode[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:909",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Returns all code_nodes for a file. Used by query handler outline op and detect_changes. Direct DB query — no MCP wrapper needed."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "CODE_GRAPH_TOOL_SCHEMAS",
+      "signature": "const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:186",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Array of 8 MCP tool definitions (scan/query/status/context/classify/verify/apply/detect_changes). Published to ListTools. Reuse: import to register same tools on a different server surface."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "getEmbedderAdapter",
+      "signature": "function getEmbedderAdapter(provider: string, model: string, dimensionsOverride?: number): ExecutionRouterAdapter",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:262",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Returns cached or new ExecutionRouterAdapter for provider:model. Handles ollama delegation and factory-backed providers (openai/voyage/hf-local). Credential cache invalidation on adapter rotation."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "startReindex",
+      "signature": "function startReindex(options: StartReindexOptions, runtimeOptions?: ReindexRuntimeOptions): string",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:662",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Queues embedder reindex job: reads memory_index rows, embeds via adapter, writes vectors to staging shard, atomic rename on completion. Returns job ID."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "v2-master-synthesis",
+      "signature": "Level 3 research coordination root: 88 findings, 10 ranked recommendations, trust-axis separation, honest measurement contract",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:31-35",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Key research outputs: research/research.md (canonical synthesis), research/recommendations.md (ranked decision surface), research/findings-registry.json (88 findings). The trust-axis separation (provenance, evidence status, freshness as separate fields) is a durable architectural decision (ADR R10 replacement)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/spec.md",
+      "symbol": "skill-advisor-system",
+      "signature": "Skill-advisor graph, scoring engine, routing engine with playbook-run remediation",
+      "reuse": "extend",
+      "evidence": "002-spec-kit-internals/spec.md:90",
+      "relevance": 0.88,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "002-skill-advisor is in-progress. The advisor graph, scoring, and routing are live. Depends on 002 (internals) being stable before 006 (operator tooling) can reference it per phase handoff rules."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md",
+      "symbol": "daemon-lifecycle-reliability",
+      "signature": "MCP daemon lifecycle: IPC socket canonicalization, WAL checkpoint, graceful shutdown, provider dispose, watchdog, bridge liveness",
+      "reuse": "extend",
+      "evidence": "007-mcp-daemon-reliability/spec.md:109-117",
+      "relevance": 0.88,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "7 sub-phases. Phases 1,3,4 complete (socket dir, research, nondestructive build). Phases 5-7 planned (provider dispose, watchdog, bridge liveness). The daemon-reliability research (003) produced a ranked, adversarially-verified fix roadmap."
+    },
+    {
+      "path": ".opencode/bin/lib/model-server-supervision.cjs",
+      "symbol": "createModelServerSupervisor",
+      "signature": "function createModelServerSupervisor(options?): ModelServerSupervisor",
+      "reuse": "",
+      "evidence": "model-server-supervision.cjs:1",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Extracted to shared lib so both mk-spec-memory-launcher and mk-skill-advisor-launcher reuse it. Configurable via env: HF_MODEL_SERVER_*, WATCHDOG_*, CRASH_LOOP_*. The launcher-local factory pre-seeds writeLease/shouldExitLauncher/onRssBreach defaults."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "computeCompositeScore",
+      "signature": "function computeCompositeScore(signals, loopType): number",
+      "reuse": "Weighted composite convergence score computation. Different weight profiles for research (5 signals), review (5 signals), and context (5 signals). Returns 0-1 rounded to 3 decimals.",
+      "evidence": "convergence.cjs:116",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Loop-type-specific weight tables; context weights reuseCatalog highest at 0.30. Used by convergence entrypoint to surface score alongside blockers."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "symbol": "mergeResearchRegistries",
+      "signature": "function mergeResearchRegistries(lineageData): mergedRegistry",
+      "reuse": "",
+      "evidence": "fanout-merge.cjs:91",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Cross-model attribution via lineage labels. Computes avg convergence score across lineages. Exported for unit testing."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "symbol": "mergeReviewRegistries",
+      "signature": "function mergeReviewRegistries(lineageData): mergedRegistry",
+      "reuse": "",
+      "evidence": "fanout-merge.cjs:183",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "SEVERITY_RANK: P0=3, P1=2, P2=1. Cross-lineage P0 wins. Verdict: FAIL if any P0, CONDITIONAL if any P1, else PASS. Exported for unit testing."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      "symbol": "appendStatusLedger",
+      "signature": "function appendStatusLedger(ledgerPath, entry): void",
+      "reuse": "JSONL orchestration-status.log ledger appender. One line per lifecycle event (started/completed/failed/salvaged/converged).",
+      "evidence": "fanout-pool.cjs:235",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Simple fs.appendFileSync; follows the proven orchestration ledger pattern used across fan-out runs."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+      "symbol": "runSalvageSweep",
+      "signature": "function runSalvageSweep(lineageDir, loopType, savedStdout): { salvaged, failed }",
+      "reuse": "",
+      "evidence": "fanout-salvage.cjs:69",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Runs before the failure throw so iteration recovery is never lost. extractTextFromOpencodeJson parses opencode --format json text parts from stdout."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts",
+      "symbol": "handleDetectChanges",
+      "signature": "async function handleDetectChanges(args: DetectChangesArgs): Promise<MCPResponse>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:212",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Read-only preflight: maps unified-diff to structural symbols via line-range overlap. Blocks on stale graph. Reuse: integrate into CI/PR pipelines for impact analysis."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "getStats",
+      "signature": "function getStats(): { totalFiles, totalNodes, totalEdges, lastScanTimestamp, lastGitHead, dbFileSize, schemaVersion, nodesByKind, edgesByType, ... }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:1131",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Comprehensive graph health stats. Used by status handler. Returns DB file size, schema version, node/edge breakdowns, parse health summary."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      "symbol": "startIpcSocketServer",
+      "signature": "async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<IpcSocketServerHandle>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:44",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Multi-client IPC bridge over Unix socket. Each client gets its own MCP Server instance. Shared by memory/code-index/skill-advisor daemons. Reuse for new daemon service."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts",
+      "symbol": "buildReadinessBlock",
+      "signature": "function buildReadinessBlock(ready: ReadyResult): CodeGraphReadinessBlock",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts:47",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Maps ReadyResult to CodeGraphReadinessBlock with canonicalReadiness + trustState. All 4 handlers emit this. Reuse: consistent readiness envelope for any new handler."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "validateToolArgs",
+      "signature": "function validateToolArgs(toolName: string, rawInput: Record<string, unknown>): Record<string, unknown>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:213",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Validates MCP input against published schema: additionalProperties:false, enum, minLength. Throws field-specific Error. Reuse in any MCP dispatch layer."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+      "symbol": "getActiveEmbedder",
+      "signature": "function getActiveEmbedder(db: Database.Database): ActiveEmbedder",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:21",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Reads active embedder name/dim/provider from vec_metadata table. Returns DEFAULT_ACTIVE_EMBEDDER when unset. Used by reindex and reconcile."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "generateDocumentEmbedding",
+      "signature": "async function generateDocumentEmbedding(text: string): Promise<Float32Array | null>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:663",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Generates document embedding via lazy singleton provider. Circuit breaker: returns null on consecutive failures. LRU cache. Rate limiting. Primary embedding entry point for indexing."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "generateQueryEmbedding",
+      "signature": "async function generateQueryEmbedding(query: string): Promise<Float32Array | null>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:718",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Query embedding with lower cache priority than documents. Circuit breaker. Use for search query vectorization."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "causal-graph-channel-routing",
+      "signature": "Causal-graph channel routing MVP — 85% complete",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:90",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "002-causal-graph-channel-routing in-progress at 85%. The causal-graph channel is a distinct routing surface in the memory search pipeline."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "doctor-command-surface",
+      "signature": "Doctor command surface with dependency-safe rebuild orchestration — 90% complete",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:90",
+      "relevance": 0.82,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "002-doctor-update-orchestrator at 90%. The /doctor surface is the operator diagnostic entry point. Relocated doctor-install-alignment from skilled-agent-orchestration (context-index.md wave 8)."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "persistIndexedFileResult",
+      "signature": "function persistIndexedFileResult(result: ParseResult, opts?: { deferDanglingTargetPrune?: boolean }): void",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:583",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Atomic per-file persistence: upsertFile → replaceNodes → replaceEdges. Transactional. Used by scan handler loop."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "resolveDimensions",
+      "signature": "function resolveDimensions(provider: string, model: string, dimensions?: number): number",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:74",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Resolves embedding dimensions: explicit override > startup profile match > default. Used by getEmbedderAdapter and reindex. Import for consistent dim resolution."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+      "symbol": "ensureVecTableForDim",
+      "signature": "function ensureVecTableForDim(db: Database.Database, dim: number): string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:62",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Creates vec_<dim> table if missing. Returns table name. Used by reindex before writing vectors. Idempotent."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "invalidateProviderSingleton",
+      "signature": "function invalidateProviderSingleton(): void",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:445",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Drops cached provider singleton so next getProvider() re-resolves. Call after active-embedder pointer changes (e.g. completed reindex). Prevents stale model/dim usage."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "embedding-provider-local-first",
+      "signature": "Local-first resolveProvider() cascade (ADR-014) relocated from skilled-agent-orchestration",
+      "reuse": "import",
+      "evidence": "context-index.md:57",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "016-embedding-provider-local-first implements ADR-014. Sits with the embedding cluster (008/009/010/011). Key decision: local-first embedding provider cascade to avoid external dependency."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "runtime-hook-parity",
+      "signature": "Runtime hook parity across Claude, Codex, Copilot, OpenCode — 85% complete",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:89",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "001-hook-parity at 85%. Cross-runtime hook schema and wiring is the deliverable. Depends on 002-spec-kit-internals (advisor + template) being stable first."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes/spec.md",
+      "symbol": "codex-hook-rewiring",
+      "signature": "Codex hooks rewired from Claude scripts to purpose-built Codex adapters; PreCompact removed as unsupported",
+      "reuse": "import",
+      "evidence": "008-runtime-defect-fixes/spec.md:65-66,79",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Codex hooks now emit Codex-shaped envelopes. PreCompact hook removed — the hook_system.md contract lists Codex compaction as unsupported. Applied and smoke-verified."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      "symbol": "resolveIpcSocketPath",
+      "signature": "function resolveIpcSocketPath(dbDir: string): string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:16",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Resolves daemon-ipc.sock path under the DB dir. Convention: <dbDir>/daemon-ipc.sock. Import for consistent socket path resolution."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "teardownEmbedderAfterSwap",
+      "signature": "async function teardownEmbedderAfterSwap(provider: string, model: string): Promise<void>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:291",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Disposes cached direct adapter after active-embedder swap. Called by reindex completion. Ensures stale provider resources are released."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "cancelJob",
+      "signature": "function cancelJob(jobId: string, db?: Database.Database): ReindexJob | null",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:712",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Sets job status to 'cancelled'. Worker checks status before each batch and aborts cleanly. Staging shard is cleaned up."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec.md",
+      "symbol": "scouted-bugfix-train",
+      "signature": "Verify-first scouted bugfix batches (3 completed) with release-readiness deep-review train",
+      "reuse": "extend",
+      "evidence": "000-release-and-program-cleanup/spec.md:89-96",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "The scouted-bugfix-train pattern (010-scouted-bugfix-train/ with batches 001-003) is a reusable verify-first remediation approach. Wave 8 relocated batches 1-3 from skilled-agent-orchestration. Batch-4 is the next slot."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+      "symbol": "BoundedMap",
+      "signature": "class BoundedMap<K, V> extends Map<K, V> { readonly maxSize: number }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts:26",
+      "relevance": 0.7,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "LRU-evicting Map with maxSize cap. Access promotes entry to most-recent. Reuse for any bounded in-memory cache."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+      "symbol": "TtlMap",
+      "signature": "class TtlMap<K, V> { set(key, value, ttlMs?), get(key), pruneExpired() }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts:67",
+      "relevance": 0.7,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "TTL + LRU bounded cache. BoundedMap-backed. Auto-prunes expired entries on access. Reuse for time-sensitive caches."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts",
+      "symbol": "rotateIfNeeded",
+      "signature": "function rotateIfNeeded(auditPath: string, maxBytes: number, maxFiles: number, now?: Date): boolean",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts:12",
+      "relevance": 0.65,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Rotates audit log when exceeding maxBytes, enforces maxFiles cap. Reuse for any log rotation need."
+    }
+  ],
+  "integrationPoints": [
+    {
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "maybeBridgeLeaseHolder",
+      "signature": "async function maybeBridgeLeaseHolder({ serviceName, leaseResult, loggerPrefix, dbDir, legacyReport?, probeTimeoutMs?, connect?, bridge? }): { action, reason, socketPath? }",
+      "reuse": "",
+      "evidence": "launcher-ipc-bridge.cjs:311",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "deepProbe=true detects hung daemon (accepts connection but never responds). Prefers stored lease socketPath over recomputation. Speckit IPC supports both UDS and tcp:// endpoints. Used by all 3 launcher types."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "symbol": "createSessionProxy",
+      "signature": "function createSessionProxy({ socketPath, stdin?, stdout?, probe?, connect?, log?, classify?, maxReattachAttempts?, maxColdStartAttempts?, keepaliveIntervalMs? }): { start, stop }",
+      "reuse": "",
+      "evidence": "launcher-session-proxy.cjs:338",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Three states: REATTACHING → CONNECTED → CLOSED. Deep-probe wait with backoff ladder [100,250,500,1000,1500]ms. Pending request tracker distinguishes replayable (memory_search, session_resume, etc) from unsafe (memory_delete, checkpoint_restore). Keepalive pings every 10s with 5s timeout. Protocol version mismatch is terminal (non-retryable -32002)."
+    },
+    {
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "acquireOwnerLeaseFile",
+      "signature": "function acquireOwnerLeaseFile(): { acquired, lease?, holder?, classification, reclaimed? }",
+      "reuse": "",
+      "evidence": "mk-spec-memory-launcher.cjs:365",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Heartbeat TTL: 60s, refreshed at TTL/2 interval. Re-read after atomic rename confirms surviving owner. classifyOwnerLease checks liveness + ppid + heartbeat. writeOwnerLeaseFileExclusive uses wx+fsync for crash durability."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "getDb",
+      "signature": "function getDb(): Database.Database",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:295",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Returns singleton better-sqlite3 handle for code-graph.sqlite. All DB operations flow through this. Lazy-init via initDb(). Central seam for DB access."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
+      "symbol": "handleTool",
+      "signature": "async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:62",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Central dispatch: validates args via validateToolArgs(), routes to 8 handler functions. Returns null for unknown tools. Composable — wrap or extend for new tool surfaces."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      "symbol": "scoreAdvisorPrompt",
+      "signature": "function scoreAdvisorPrompt(prompt, options): { recommendations, ambiguous, unknown }",
+      "reuse": "",
+      "evidence": "fusion.ts:1",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Lane weights overridable via SPECKIT_ADVISOR_LANE_WEIGHTS_JSON env. Class C breadth-build and multi-concern abstention gates prevent routing broad greenfield builds to single skills. Shadow scoring with learned weights runs alongside live scoring for delta telemetry."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "getIpcSocketPath",
+      "signature": "function getIpcSocketPath(serviceName, options?): string",
+      "reuse": "",
+      "evidence": "launcher-ipc-bridge.cjs:59",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Three service names with distinct default DB dirs. tcp:// endpoints bypass file-existence checks. Socket file name: daemon-ipc.sock. Used by all launcher types for bridge socket resolution."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "probeDaemon",
+      "signature": "function probeDaemon(socketPath, options?): Promise<{ status, reason }>",
+      "reuse": "",
+      "evidence": "launcher-ipc-bridge.cjs:124",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Uses StringDecoder for multibyte UTF-8 safety across chunk boundaries. Bounded probe timeout (default 5s, max 6999ms). The reap/bridge decision always passes deepProbe:true."
+    },
+    {
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "recycleDaemonInPlace",
+      "signature": "async function recycleDaemonInPlace(graceMs, deps?): Promise<void>",
+      "reuse": "",
+      "evidence": "mk-spec-memory-launcher.cjs:1053",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Deps are injectable for testing (getContextChild, hfControl, isChildRunning, etc). Key design: lease is NOT cleared during recycle — launcher process stays alive, replacement daemon respawns via backoff. rssBreachSelfExitInProgress flag prevents re-entrant recycle."
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
+      "symbol": "/doctor:update orchestrator",
+      "signature": "YAML workflow: flock → probe → migrate → snapshot → dashboard → dependency.order → validation → state.log",
+      "reuse": "",
+      "evidence": "doctor_update.yaml:24",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "SIGINT follows ADR-001/ADR-007: set cancel, ~5s SQLite settle window, restore in-flight snapshot, log, exit 130. Every abort path must rm -f .doctor-update.flock before exit. State log at mcp_server/database/.doctor-update.last-run.json."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      "symbol": "batchUpsert",
+      "signature": "db.batchUpsert(nodes, edges): { insertedNodes, insertedEdges, rejectedEdges }",
+      "reuse": "",
+      "evidence": "upsert.cjs:241",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Writer lock path: .deep-loop-graph-writer.lock or .council-graph-writer.lock. Events input (--events) filters into nodes/edges by type field. VALID_KINDS and VALID_RELATIONS are per-loop-type whitelists from the DB module."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      "symbol": "createCodeIndexMcpServer",
+      "signature": "function createCodeIndexMcpServer(): Server",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/index.ts:74",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Creates MCP Server with ListTools + CallTool handlers dispatching via codeGraphTools.dispatch(). IPC bridge + idle monitor + owner-lease lifecycle wired here. A new daemon service copies this pattern."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
+      "symbol": "handleAdvisorRecommend",
+      "signature": "async function handleAdvisorRecommend(args: unknown): Promise<{ content: [{ type: string, text: string }] }>",
+      "reuse": "",
+      "evidence": "advisor-recommend.ts:320",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Prompt-safe: never persists raw prompt text. Cache key includes sourceSignature (freshness:generation:lastGenerationBump). SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 returns disabledOutput. Default thresholds: 0.8 confidence, 0.35 uncertainty."
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor_memory.yaml",
+      "symbol": "/doctor:memory diagnostic",
+      "signature": "YAML workflow: Discovery → gate → analysis → gate → drift classification → recommendation → state log",
+      "reuse": "",
+      "evidence": "doctor_memory.yaml:4",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Mutation boundaries explicitly listed: allowed_targets are provider-keyed sqlite DBs only. Forbidden: spec docs, skill files, code-graph DBs, deep-loop DBs. Rebuilds owned by /doctor:update."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+      "symbol": "DATABASE_DIR",
+      "signature": "const DATABASE_DIR: string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/core/config.ts:47",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Resolved code-graph DB directory. Skill-local: .opencode/skills/system-code-graph/mcp_server/database. Overridable via SPECKIT_CODE_GRAPH_DB_DIR. All DB paths derive from this."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/index.ts",
+      "symbol": "dispatch",
+      "signature": "async function dispatch(name: string, args: Record<string, unknown>): Promise<MCPResponse>",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/index.ts:9",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 3,
+      "notes": "Thin wrapper over handleTool with unknown-tool error fallback. Called by index.ts CallToolRequestSchema handler."
+    }
+  ],
+  "conventions": [
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "symbol": "validateNamespaceValue",
+      "signature": "function validateNamespaceValue(value, key, makeInputError): string",
+      "reuse": "",
+      "evidence": "cli-guards.cjs:69",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "findRepoRoot walks up looking for .git marker. isInsideRepo checks relative path doesn't escape. Defense-in-depth against path traversal in namespace-scoped values."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "memory-code-graph-separation",
+      "signature": "Memory store and code graph are distinct structural surfaces that cross-link, not a shared store",
+      "reuse": "import",
+      "evidence": "spec.md:120",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Architectural boundary: memory (003) and code-graph (004) are separate subsystems. Phase handoff rule spec.md:120 states 'code-graph is a distinct structural surface that cross-links to memory, not a shared store'. Any future work must respect this split."
+    },
+    {
+      "path": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md",
+      "symbol": "ADR-005-level-vocabulary-invariance",
+      "signature": "Level 1/2/3/3+ is the SOLE public/AI-facing vocabulary; preset/capability/kind are STRICTLY private",
+      "reuse": "import",
+      "evidence": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md:223-242",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "AI behavior + user conversation flow must remain byte-identical. Workflow-invariance CI test greps public surfaces for banned vocabulary. Internal vocabulary lives ONLY in manifest + resolver + shell wrapper. Any new feature that would require exposing preset/capability to users must add a new Level instead."
+    },
+    {
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "dual-writer-hazard-revert",
+      "signature": "Bridge fix reverted: runnable bridge initializes memory DB directly in second process — exact corruption class the single-writer lease prevents",
+      "reuse": "wrap",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:48-49",
+      "relevance": 0.95,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Broken-and-inert is safer than working-and-racy. The bridge stays inert until 028 code-index phase delivers IPC-backed transport. Any future code that touches the memory DB from outside the daemon lease MUST go through IPC, never direct init."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "symbol": "classifyFrame",
+      "signature": "function classifyFrame(frame): boolean",
+      "reuse": "",
+      "evidence": "launcher-session-proxy.cjs:123",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "initialize and ping are always replayable. notifications/ methods are replayable. tools/call checks tool name against two sets. memory_save is replayable due to content-hash dedup."
+    },
+    {
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "writeAtomicJsonFile",
+      "signature": "function writeAtomicJsonFile(targetPath, payload, operation): boolean",
+      "reuse": "",
+      "evidence": "mk-spec-memory-launcher.cjs:140",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Convention across launcher subsystem: write tmp → rename atomic. Durable-write failures are logged once and return false (best-effort) rather than crashing. Used for lease files, pid files, state files."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      "symbol": "acquireWriterLock",
+      "signature": "function acquireWriterLock(lockPath): () => void (release)",
+      "reuse": "",
+      "evidence": "cli-guards.cjs:176",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Retry interval defaults 25ms, max wait 1s, configurable via DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS env. Atomics.wait-based sleepSync for contention backoff."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "split-topology-preservation",
+      "signature": "Public preserves its split semantic/structural/continuity topology; seam-hardening contracts precede packaging",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:31,188",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "The v2 headline decision: do NOT replace Public's split topology with a monolithic facade. Front-load trust and freshness contracts before any packaging work. This is NFR-T01 (topology preservation)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes/spec.md",
+      "symbol": "bridge-dual-writer-hazard",
+      "signature": "mk-code-graph bridge restore REVERTED due to dual-writer hazard on memory DB; fix deferred to IPC-backed transport in 028",
+      "reuse": "import",
+      "evidence": "008-runtime-defect-fixes/spec.md:64,78",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Critical safety decision: the bridge import fix was attempted and reverted because the bridge's startup path calls initializeDb()+sessionManager.init() against the memory DB the daemon owns — the incident the 028 research forbids. Proper fix is IPC-backed transport (028 code-index phase 3)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/context-index.md",
+      "symbol": "wave-4-migration-bridge",
+      "signature": "Migration bridge resolving 17 top-level phases to 7 themed parents with old-path resolution tables",
+      "reuse": "compose",
+      "evidence": "context-index.md:129-195",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Old phase paths (000-016) are NOT rewritten; resolve via bridge tables. Any new code or docs referencing old paths must consult this file. Wave 8 (2026-06-03) relocated 6 skilled-agent-orchestration packets into 026 tracks."
+    },
+    {
+      "path": "000-release-and-program-cleanup/007-clean-room-license-audit/spec.md",
+      "symbol": "clean-room-license-audit-p0-gate",
+      "signature": "PolyForm Noncommercial 1.0.0 is the controlling license for external-project patterns; the actual shipped mitigation was an upstream-project name scrub (commit bdd3c831d) not a verbatim license quote; P0 governance gate blocking all 012 code sub-phases; .gitignore excludes external/ so worktrees lack the LICENSE file",
+      "reuse": "Any future code touching external-project patterns must honor the clean-room allow-list and name-scrub posture documented in the ADR; verbatim-code reuse remains forbidden.",
+      "evidence": "000-release-and-program-cleanup/007-clean-room-license-audit/spec.md:33-43, decision-record.md:24-41",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "The spec's status-note documents a material change in mitigation strategy (name scrub vs verbatim quote) that the decision-record ADR captures. A planner must know the current posture, not the historical one."
+    },
+    {
+      "path": "001-research-and-baseline/spec.md",
+      "symbol": "R10-trust-axis-separation",
+      "signature": "Old structural-artifact bundle replaced by trust-axis separation: provenance, evidence status, freshness authority as separate fields",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:33",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Contract before packaging: any downstream reader trying to treat cached startup, dashboard, or structural artifacts as ready-made defaults must be pointed back to trust-axis and freshness prerequisites first. R10 replacement is explicit in spec and ADRs."
+    },
+    {
+      "path": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md",
+      "symbol": "ADR-001-CF-hybrid-manifest",
+      "signature": "C+F hybrid manifest-driven greenfield: 86→15 source files; levels eliminated internally; single manifest drives scaffold+validator",
+      "reuse": "import",
+      "evidence": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md:69",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Three orthogonal axes replace level scalar: kind + capabilities + presets. Single manifest (spec-kit-docs.json) drives scaffolder AND validator — drift structurally impossible. Inline section gates preserve markdown authoring. Follow-on packet implements this; 026 only designs it."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-003-shared-index-scope-ssot",
+      "signature": "Single index-scope.ts is the canonical source for memory/code-graph path exclusions; spec-doc filters are additive overlays only",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:134",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Changing EXCLUDED_FOR_MEMORY automatically changes spec-doc classification and discovery. z_archive is intentionally NOT excluded (ARCHIVE_MULTIPLIERS 0.1 decay handles deprioritization). Any new exclusion must land in index-scope.ts, not scattered walkers."
+    },
+    {
+      "path": "004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in/decision-record.md",
+      "symbol": "ADR-001-end-user-scope-default",
+      "signature": "Code graph excludes .opencode/skills/** by default; 97% files/98.3% nodes were skill internals",
+      "reuse": "import",
+      "evidence": "004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in/decision-record.md:68-81",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Env SPECKIT_CODE_GRAPH_INDEX_SKILLS=true or per-call includeSkills:true for opt-in. Per-call overrides env (ADR-002). Scope fingerprint stored in code_graph_metadata; requires full scan when stored and active scope differ. Any scan-default change must update the fingerprint and require explicit full scan."
+    },
+    {
+      "path": "004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md",
+      "symbol": "ADR-002-standalone-mcp-topology",
+      "signature": "Standalone system_code_graph MCP registration; ADR-001 Q3 (co-resident) explicitly superseded",
+      "reuse": "import",
+      "evidence": "004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md:57-63",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Namespace changes from mcp__mk_spec_memory__code_graph_* to mcp__system_code_graph__*. Tool IDs remain stable. Path-flattening canonical: no mcp_server/code_graph/ intermediate. Any new MCP server follows this standalone topology pattern."
+    },
+    {
+      "path": "007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md",
+      "symbol": "ADR-001-pid-start-time-identity",
+      "signature": "Lease PID accepted as owner only if alive AND real start time matches lease-recorded start time within 2s",
+      "reuse": "import",
+      "evidence": "007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md:63",
+      "relevance": 0.9,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Closes PID-recycling false-SKIP that masks crashes as healthy. Uses `ps -o lstart=`; falls back to liveness-only on unreadable start time. Any daemon lease validation must include start-time identity check."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/spec.md",
+      "symbol": "three-way-isolation",
+      "signature": "Three-way isolation: system-code-graph extraction as standalone MCP, distinct from spec-kit-memory and spec-kit-shared",
+      "reuse": "import",
+      "evidence": "004-code-graph/spec.md:94",
+      "relevance": 0.88,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "006-extraction-and-isolation completed the standalone-MCP pivot. The three-way isolation (memory / code-graph / shared) is an architectural boundary to respect."
+    },
+    {
+      "path": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-019.md",
+      "symbol": "concurrent-session-sigterm-compound-failure",
+      "signature": "Divergent signal-handler stacks (context-server.ts:1681-1692 exit 0 vs shutdown-hooks.ts:129-148 exit 143/130) race under concurrent-session SIGTERM; if shutdown-hooks stack wins it skips fatalShutdown ordered drain, coupling unfenced ingest worker dirty-WAL with non-re--entrant socket server; operationally reachable with 2 Claude + 4 codex sessions sharing one repo",
+      "reuse": "This compound failure analysis is the justification for the single-ordered-teardown fix in 017-last-50-commits-review-remediation; any future shutdown-path change must preserve the ordering.",
+      "evidence": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-019.md:59-69, decision-record.md:52",
+      "relevance": 0.88,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "The 017 remediation landed a single ordered teardown, but the compound-failure analysis documents exactly which code paths interact and why ordering matters. A planner modifying shutdown hooks must read this."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "symbol": "classifyExitCode",
+      "signature": "function classifyExitCode(err): number",
+      "reuse": "",
+      "evidence": "cli-guards.cjs:111",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "Convention: 0=ok, 1=script error, 2=DB error, 3=input validation error. Every CLI entrypoint follows this contract."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+      "symbol": "SCORER_LANE_REGISTRY",
+      "signature": "const SCORER_LANE_REGISTRY: readonly { id, weight, shadowWeight, live, damping? }[]",
+      "reuse": "",
+      "evidence": "lane-registry.ts:65",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 4,
+      "notes": "isLiveScorerLane() gate excludes non-live lanes from scoring. Shadow weights mirror live weights for A/B telemetry. DEFAULT_SCORER_LANE_WEIGHTS exported for shadow-only scoring paths."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "honest-measurement-contract",
+      "signature": "Publish provisional honest measurement contract before any multiplier claims",
+      "reuse": "extend",
+      "evidence": "001-research-and-baseline/spec.md:33",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Decision: no performance claims without the measurement contract. This gates downstream packaging work (including 005 deferred track)."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md",
+      "symbol": "daemon-RC-map",
+      "signature": "Root-cause map: RC-1 OOM/embedding RSS, RC-2 no watchdog, RC-3 dead-socket bridge, RC-4 build wipes dist, RC-5 /tmp socket dir",
+      "reuse": "import",
+      "evidence": "007-mcp-daemon-reliability/spec.md:67,93-99",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "The RC taxonomy from the daemon-reliability research is the canonical failure-mode reference. Phases 5-7 map to RC-1 through RC-3. Phase 4 fixed RC-4. Phase 1 fixed RC-5."
+    },
+    {
+      "path": "000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings/decision-record.md",
+      "symbol": "tier-gamma-conservative-defaults",
+      "signature": "Eight specific defaults chosen for remaining P1 remediation: auto modes remove waits, /memory:* stays markdown-only, /memory:save plan-only-by-default, embedding-cache rows deleted on retention delete, memory_save planner inputs internal-only, governed-ingest validation extends to ingest paths, args validated before pre-dispatch logic, legacy strict-warning packet grandfathered",
+      "reuse": "These defaults are release-gate constraints that any future planner must honor; they shape the memory_save MCP schema, /memory:* command architecture, and ingest governance contract.",
+      "evidence": "000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings/decision-record.md:39-49",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "A /speckit:plan author touching memory_save, /memory:*, or ingest governance needs these defaults to avoid re-litigating decisions already made under release-readiness pressure."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
+      "symbol": "ADR-002-planner-first-default",
+      "signature": "/memory:save defaults to planner-first output (non-mutating); full-auto is explicit fallback only",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md:107",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Default path returns structured planner output instead of mutating. Reconsolidation-on-save (ADR-003) and post-insert enrichment (ADR-004) are opt-in only. Quality-loop auto-fix (ADR-006) removed from default path. Hard legality checks remain as blockers."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-004-delete-not-downgrade-z-future",
+      "signature": "Delete all z_future rows regardless of tier rather than downgrading; z_future must never be indexed",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:172",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "The invariant is 'z_future must never be indexed' — not 'lower priority'. Downgrading leaves forbidden rows searchable. Constitutional auto-surface was dominated by z_future research chunks before cleanup."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-005-constitutional-tier-downgrade",
+      "signature": "Invalid constitutional saves downgraded to important with governance_audit row; path must contain /constitutional/",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:204",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Constitutional tier is path-gated: only files under /constitutional/ can be constitutional. Enforced at SQL write layer (ADR-007), not just handler layer. Any mutation surface (save, update, checkpoint restore, post-insert) must enforce this guard."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-007-sql-layer-tier-guards",
+      "signature": "Constitutional-tier guard enforced at SQL write layer; checkpoint restore validates rows inside transaction barrier",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:279-284",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Handler-only checks leave blind spots for internal callers and restore paths. Restore rejection is all-or-nothing (atomic). Audit uses action='tier_downgrade_non_constitutional_path'. Any new mutation surface must go through the SQL-layer guard."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-010-realpath-hardening",
+      "signature": "resolveCanonicalPath() prefers fs.realpathSync() to prevent symlinks from bypassing invariant enforcement",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:375",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Symlinked files can bypass path-based exclusion checks if only path.resolve() is used. Falls back to caller-supplied path for missing/broken targets so atomic save flows still work."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/decision-record.md",
+      "symbol": "ADR-001-prefix-registry",
+      "signature": "Model-keyed PREFIX_REGISTRY + env-var override replacing hardcoded Nomic prefix; empty string = no prefix",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/decision-record.md:69-84",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Two registries to keep in sync (TS HfLocalProvider + Python cocoindex). Legacy TASK_PREFIX export retained for back-compat. Empty string is a valid override (explicitly no prefix); undefined means fall through to registry. Wrong prefix silently degrades retrieval ~5-8%."
+    },
+    {
+      "path": "000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md",
+      "symbol": "changelog-scaffold-then-enrich-pipeline",
+      "signature": "Two-step pipeline: generator scaffolds structure and output path, Sonnet agent rewrites Summary/Added/Changed/Fixed/Files-Changed/Prune-FollowUps using a written contract; 441 phases need HVR-voice changelogs; fabrication guard plus adversarial verify; flat-per-track layout with 696 final files (624 leaf + 72 rollups + 2 indexes)",
+      "reuse": "The changelog generator at scripts/changelog/ and the enrichment contract are reusable infrastructure for any future packet-local changelog generation.",
+      "evidence": "000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md:38-101, audit-report.md:21",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "Operationally important: the root rollup index files in tracks 002/006/007 were NOT refreshed after the flat-per-track flatten (review-changelog-completeness/review-report.md:95). They still link to old nested directory shapes and under-report. A regeneration pass is needed."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-011-cleanup-transaction-snapshot",
+      "signature": "Cleanup apply rebuilds its plan inside the transaction instead of trusting pre-transaction snapshot",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:404",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Concurrent writes between plan generation and apply could leave violating rows behind. Dry-run output remains informative but the authoritative plan for mutation lives inside the transaction. Any cleanup/repair CLI must rebuild its plan inside the apply transaction."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
+      "symbol": "ADR-002-graph-channel-preservation-parsing",
+      "signature": "SPECKIT_GRAPH_CHANNEL_PRESERVATION parsed as permissive boolean; '0'/'no'/'off'/'' now correctly disable",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md:75-79",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "BREAKING for users setting =0 (they now actually get disabled). Default-ON preserved. Aligns with how every other SPECKIT_* flag is parsed. Any new SPECKIT_* env flag must use the same permissive boolean parser."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md",
+      "symbol": "ADR-001-onnx-rejection",
+      "signature": "ONNX Runtime backend rejected: 5x slower on Apple Silicon at parity-preserving settings; sbert remains default",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md:68",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Neural Engine barely active for Gemma (23% ops, 77% CPU). Static-pad128 is fast but breaks parity (mean cosine 0.869). At parity-preserving settings ONNX is 3.5x slower. The ONNX code path is removed; rejected-experiment record preserved in packet."
+    },
+    {
+      "path": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md",
+      "symbol": "ADR-001-source-framing",
+      "signature": "Reddit post treated as primary-source field report with appropriate skepticism; findings passage-anchored",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md:60",
+      "relevance": 0.7,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Every finding anchors to specific paragraph. Recommendation labels reflect evidence quality, not assumed validity. Structural conclusions stand independently of exact percentages. Any future research phase must preserve this source-framing discipline."
+    },
+    {
+      "path": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md",
+      "symbol": "ADR-002-discrepancy-preservation",
+      "signature": "926-vs-858 sessions and 18903-vs-11357 turns discrepancies preserved explicitly, never normalized",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md:163-165",
+      "relevance": 0.7,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Smoothing introduces artificial precision the source doesn't support. NFR-D01 in spec.md makes preservation a non-functional requirement. Downstream planning can bound precision correctly. Any document referencing these counts must show both numbers."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
+      "symbol": "ADR-007-scoped-content-router-exception",
+      "signature": "content-router.ts has documented scoped preservation exception for Tier 3 default-disable guard",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md:346",
+      "relevance": 0.7,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Eight-category switch, Tier 1 logic, Tier 2 matching, and target selection are preserved. The documented exception is the Tier 3 default-disable and manual-review guard. Changelog and release notes must reflect this honestly."
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
+      "symbol": "ADR-001-entity-density-cache-invalidation",
+      "signature": "invalidateEntityDensityCache() wired into post-commit branch of memory_save and memory_bulk_delete handlers",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md:31",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Call AFTER commit, not before — failed saves must NOT invalidate cache. Per-call overhead ~µs (in-process Map clear). Burst writes now propagate to entity-density signal immediately. Any handler that mutates memory_index rows must invalidate the cache post-commit."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "embedding-architecture",
+      "signature": "Local-embedding foundation with ollama/bge promotion and rerank-sidecar — 75% complete",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:91",
+      "relevance": 0.8,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "003-embedder-testing-and-architecture at 75%. Embedding consolidation (010-embedding-consolidation-hf-local-server) and stack hardening (011-embedding-stack-hardening) are in-progress children. The local-first resolveProvider() cascade (ADR-014) is the key decision."
+    },
+    {
+      "path": "004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades/decision-record.md",
+      "symbol": "ADR-001-depend-on-011",
+      "signature": "Code graph upgrades depend on packet 011 (validator owner) as hard predecessor; additive enrichment only",
+      "reuse": "compose",
+      "evidence": "004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades/decision-record.md:57",
+      "relevance": 0.75,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "011 owns fail-closed trust validation. 014 adds edge evidence classes, confidence backfill, detector provenance only after 011 stabilizes. Routing facade, Leiden clustering, GraphML/Cypher exports are prototype-later (ADR-003). Any graph enrichment must not compete with 011's trust-axis ownership."
+    }
+  ],
+  "gaps": [
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "005-graph-impact-and-affordance",
+      "signature": "Deferred adoption-uplift track (phase runner, edge explanation, affordance evidence, causal-trust display)",
+      "reuse": "extend",
+      "evidence": "spec.md:102",
+      "relevance": 0.85,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "005 is the only deferred top-level track (5% complete). Its children (001-phase-runner, 002-edge-explanation, 003-affordance-evidence, 004-causal-trust-display) are all deferred. Two children (005-deep-review-findings, 006-deep-research-review) are abandoned. This is the primary gap in the 026 program."
+    },
+    {
+      "path": "004-code-graph/011-source-bug-and-misalignment-audit/review-report.md",
+      "symbol": "code-graph-read-only-write-violation",
+      "signature": "getGraphReadinessSnapshot and getGraphFreshness are documented/contractual read-only but call detectState which writes last_git_head to DB, violating ADR-003 single-writer discipline; function docstrings and status.ts inline comment claim no side effects; P1 idempotent non-corrupting",
+      "reuse": "Fix: move setLastGitHead out of detectState into ensureCodeGraphReady only, or pass mutate:false. The proposed fix is sound and documented.",
+      "evidence": "004-code-graph/011-source-bug-and-misalignment-audit/review-report.md:229-234",
+      "relevance": 0.82,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "A /speckit:plan author touching code-graph status/readiness must know this contract violation exists. The write is idempotent (SQLite serializes, same value) so it's non-corrupting, but it makes the read-only promise false."
+    },
+    {
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "code-graph-plugin-bridge-inert-pending-028",
+      "signature": "OpenCode code-graph plugin bridge (mk-code-graph-bridge.mjs) is non-functional by deliberate choice; import fix was attempted, smoke-verified, then REVERTED because the runnable bridge calls initializeDb()/sessionManager.init() directly against daemon-owned memory DB (dual-writer hazard); root fix deferred to IPC-backed transport in 028 code-index runtime-integration phase",
+      "reuse": "The bridge stays inert; the README documents the non-functional state. Any planner must know the OpenCode code-graph integration path requires 028 to ship first.",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:48,103",
+      "relevance": 0.78,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "This is a genuine open gap: the OpenCode code-graph integration is blocked on 028's IPC-backed transport. The bridge's dual-writer hazard was caught by fresh-model review after mechanical verification passed."
+    },
+    {
+      "path": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-005.md",
+      "symbol": "changelog-root-rollup-index-drift",
+      "signature": "Per-track ROOT ROLLUP index files not refreshed after 026 changelog tree was flattened to one-subdir-level / flat-files-per-track; they still link to old nested directory shapes and stop at pre-flatten dates, under-reporting and mis-linking the (complete, present) leaf changelogs",
+      "reuse": "A single regeneration pass over the *-root.md rollups in tracks 002/006/007 would clear this drift.",
+      "evidence": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review-changelog-completeness/review-report.md:95",
+      "relevance": 0.7,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "Concrete documentation gap: the leaf layer is healthy but the index layer drifted. An operator reading the root rollups sees incomplete coverage."
+    },
+    {
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "orphan-launcher-sweep-noop",
+      "signature": "Orphan launcher sweep was verified no-op: all 9 launcher parents are live sessions; launcher-lifecycle fix deferred to 028",
+      "reuse": "wrap",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:50",
+      "relevance": 0.7,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 2,
+      "notes": "Launchers ARE those sessions' MCP transports — killing them breaks working sessions. The real launcher-lifecycle fix for true owner-exit orphans stays with 028 skill-advisor workstream. Do not attempt to kill old launchers without parent-process classification."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain/spec.md",
+      "symbol": "daemon-recycle-stress-test-model-fidelity",
+      "signature": "daemon-recycle-transparency-stress.vitest.ts uses a local replay loop copy rather than the production replaySnapshot() closure in launcher-session-proxy.cjs:595; cannot catch drift in the production closure",
+      "reuse": "The stress test should drive an exported production replay helper or a real proxy recycle path; currently it validates the classifyFrame logic but not the production closure.",
+      "evidence": "003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/review/iterations/iteration-014.md:49",
+      "relevance": 0.65,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 5,
+      "notes": "P1 test-fidelity finding from the 014 deep review. Downgrade only if the test drives an exported production replay helper."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/spec.md",
+      "symbol": "004-literal-spec-folder-names",
+      "signature": "Concrete-token spec-folder naming policy — deferred at 0%",
+      "reuse": "extend",
+      "evidence": "002-spec-kit-internals/spec.md:92",
+      "relevance": 0.6,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Deferred child: naming policy for spec folders. No work started. May matter if future program packets need consistent naming."
+    },
+    {
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "003-install-scripts-doctor-realignment",
+      "signature": "Install guides/scripts + doctor realignment for post-CocoIndex world — deferred",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:91",
+      "relevance": 0.6,
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "firstIteration": 1,
+      "notes": "Deferred at 0%. Post-CocoIndex install scripts not yet updated. Blocked by CocoIndex decoupling (004-code-graph/002) being finalized."
+    }
+  ],
+  "methodology": {
+    "seats": 1,
+    "lens": "mimo (xiaomi/mimo-v2.5-pro)",
+    "hostWritesState": true,
+    "readOnlyAnalyzer": true,
+    "agreementInformative": false,
+    "robustness": {
+      "seatValidationWarnings": 0,
+      "stateLogRepaired": false,
+      "stateSafety": "runtime"
+    },
+    "verification": {
+      "pathExistsOnDisk": "86/117",
+      "caveat": "Code Graph MCP unavailable; symbol resolution not graph-verified; docs decision-records use packet-relative paths"
+    }
+  },
+  "generatedAt": "2026-06-07T09:00:14.000Z"
+}

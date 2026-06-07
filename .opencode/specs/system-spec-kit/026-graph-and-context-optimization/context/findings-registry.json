@@ -1,0 +1,2085 @@
+{
+  "reuseCandidates": [
+    {
+      "unit_id": "514cd1ba2c173fe1d9da2d297ed27e5b36e9ff85571d290219b750092b05fde7",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      "symbol": "runCappedPool",
+      "kind": "reuse_candidate",
+      "signature": "function runCappedPool({ items, concurrency, worker, now?, onEvent? }): Promise<{ results, summary }>",
+      "reuse": "Concurrency-capped parallel pool primitive with never-throw settlement and ordered results. Generalizes council dispatchSeats with K-in-flight cap. Inject worker pattern.",
+      "evidence": "fanout-pool.cjs:138",
+      "notes": "Pure pool primitive — worker is injected. The `xargs -P K` shape. settleItem never throws; mirrors council settleSeat.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "a49a14045957bc1e15d2e7e485c43f224f2a5f4093964c2063d65b9faca6d367",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "buildLineageCommand",
+      "kind": "reuse_candidate",
+      "signature": "function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission): { command, args, input?, env }",
+      "reuse": "",
+      "evidence": "fanout-run.cjs:259",
+      "notes": "Each executor kind has its own CLI flag shape. codex uses stdin (- prompt), gemini uses argv, claude uses -p, opencode uses run + prompt arg, devin uses --print + stdin. This is the per-executor command builder a new loop type would need to extend.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "8bcc2236bf8b1db95bc7228d35b64183292d3262bdb43b1d861f1842db0e99c8",
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "symbol": "handleCodeGraphQuery",
+      "kind": "reuse_candidate",
+      "signature": "async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1198",
+      "notes": "Handles outline/calls_from/calls_to/imports_from/imports_to/blast_radius. Calls ensureCodeGraphReady before read. Reuse: call directly for programmatic graph queries without MCP transport.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "fa8b4d8e07e718a0b44cc7e8cc9deba223f3ccfe406b3ba304c3a78a935f1c6c",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "ensureCodeGraphReady",
+      "kind": "reuse_candidate",
+      "signature": "async function ensureCodeGraphReady(rootDir: string, options?: EnsureReadyOptions): Promise<ReadyResult>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:624",
+      "notes": "Auto-triggers selective/full reindex before reads. Returns ReadyResult with freshness/action/reason. Every read handler calls this. Reuse: gate any code-graph-dependent operation.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "89481741d69a333a267895275203d4bf68d81ce6a7d5519180baa945ffbdc56a",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/spec.md",
+      "symbol": "code-graph-structural-indexing",
+      "kind": "reuse_candidate",
+      "signature": "Standalone code-graph package with CocoIndex decoupled, 10 sub-themes, 90% complete",
+      "reuse": "extend",
+      "evidence": "004-code-graph/spec.md:88-98",
+      "notes": "The most complete track. Key surfaces: runtime-and-scan (004), resilience-and-advisor (005), extraction-and-isolation (006), docs-and-readmes (007), playbook-validation (010). Code graph is a structural surface distinct from memory store. CocoIndex decoupled at 95% (002-deprecate-coco-index).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "aa80622ad2debe74ab31aa3022541b14eae1a4039892b5d2ae44fbaa25952077",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "program-topology",
+      "kind": "reuse_candidate",
+      "signature": "8-track phase-parent coordination surface with validate.sh handoff contract",
+      "reuse": "extend",
+      "evidence": "spec.md:95-123",
+      "notes": "The 8-track decomposition (000-008) and phase transition rules are the canonical program structure. Any future program-packet can adopt this topology. Phase handoff criteria at spec.md:117-123 define cross-track dependency contracts.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "72c00b897c222f5bff33263e076e0c8160efe0954b46d4a59951fd86dde0c8aa",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "memory-continuity-substrate",
+      "kind": "reuse_candidate",
+      "signature": "Memory quality, continuity gates, memory-save rewrite, runtime hardening, indexer invariants",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:89",
+      "notes": "001-continuity-memory-runtime is complete. The memory-save rewrite and continuity gates are the live subsystem. Cross-links to code-graph (distinct structural surface, not a shared store).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.92,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "d72885034bb5e08f0657f79285d0871ecce29a6f65ff539c6718b123a73e0a43",
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/convergence.cjs",
+      "symbol": "evaluateCouncilConvergence",
+      "kind": "reuse_candidate",
+      "signature": "async function evaluateCouncilConvergence(ns, options?): convergenceResult",
+      "reuse": "",
+      "evidence": "convergence.cjs:147",
+      "notes": "Thresholds: agreementRatio≥0.67, dissentDensity≤0.25, evidenceDepth≥1.0, unresolvedCritical=0, decisionConfidence≥0.65. bridgePayload() flattens to standard graph_decision/graph_signals shape.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "abc2b4c1fd93b84f0044c60812eb9ecaa995eda91f0bde7c80d4d157f24064eb",
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+      "symbol": "dispatchCouncilSeats",
+      "kind": "reuse_candidate",
+      "signature": "async function dispatchCouncilSeats({ roundId, seats, dispatchSeat, context?, now? }): Promise<{ round_id, started_at_iso, completed_at_iso, results[], summary }>",
+      "reuse": "",
+      "evidence": "multi-seat-dispatch.cjs:129",
+      "notes": "settleSeat never throws (mirrors settleItem pattern). Seats are normalized to {id, input}. Now/settleSeat are injectable for testing. Summary: total/succeeded/failed/all_failed.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "a8ba1b26acdff842fbdad017e50e8eaa582f81499e5f76a7c91f7b1be26991a8",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateContext",
+      "kind": "reuse_candidate",
+      "signature": "function evaluateContext(signals, gaps, contradictions): { blockers, trace }",
+      "reuse": "Convergence evaluator for context loops. Five signals (sliceCoverage, reuseCatalogCoverage, agreementRate, relevanceFloor, dependencyCompleteness). Three blocking guards.",
+      "evidence": "convergence.cjs:262",
+      "notes": "Reuse catalog coverage is weighted highest (0.30) per reuse-first principle. Slice coverage, relevance floor, and agreement rate are blocking guards.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "7f504b71043988409069825150d52c5b276fa438dbd9b682ddd79fea941597b2",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateResearch",
+      "kind": "reuse_candidate",
+      "signature": "function evaluateResearch(signals, gaps, contradictions, unverified): { blockers, trace }",
+      "reuse": "Convergence evaluator for research loops. Five signals (questionCoverage, claimVerificationRate, contradictionDensity, sourceDiversity, evidenceDepth) with blocking guards and weighted thresholds.",
+      "evidence": "convergence.cjs:200",
+      "notes": "Blocking guards for source_diversity and evidence_depth; weighted signals for question coverage and claim verification. Returns blockers[] + trace[].",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "307a58d6c7461f0017d37dee7e0f83e4e4b7bd901064b2b35aed021bb90c65ea",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateReview",
+      "kind": "reuse_candidate",
+      "signature": "function evaluateReview(signals, gaps, contradictions): { blockers, trace }",
+      "reuse": "Convergence evaluator for review loops. Five signals (dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation). P0 resolution rate is blocking_guard.",
+      "evidence": "convergence.cjs:234",
+      "notes": "Dimension coverage and P0 resolution are blocking guards; finding stability and evidence density are weighted.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "3d083591549d226bf9a50fb99fe0d7392569f225a11d9fd1f50a2796b8a0455c",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "runLineageProcess",
+      "kind": "reuse_candidate",
+      "signature": "function runLineageProcess(command, cmdArgs, opts): Promise<{ status, signal, stdout, error? }>",
+      "reuse": "",
+      "evidence": "fanout-run.cjs:188",
+      "notes": "Key design: returns Promise so the pool's K-in-flight cap actually overlaps. Drains stderr so child never blocks on full pipe. SIGTERM on timeout; signal field preserves timeout-as-failure signal.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "8bfaf7611bb3fd356ed0943cb75c09751543e109791290b28fa2035baa6917b5",
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/context.ts",
+      "symbol": "handleCodeGraphContext",
+      "kind": "reuse_candidate",
+      "signature": "async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/context.ts:170",
+      "notes": "LLM-oriented graph neighborhoods. Delegates to buildContext() from code-graph-context.ts. Blocked-read path with canonical readiness vocabulary.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "2063c40beaf42846633b1eb3896c7d0421a9db048d7ffb10c88f4013803118d7",
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      "symbol": "handleCodeGraphScan",
+      "kind": "reuse_candidate",
+      "signature": "async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:312",
+      "notes": "Full/incremental scan: indexFiles → persistIndexedFileResult → cross-file edge resolution → dangling prune. Scope-change and zero-node guards. Reuse: trigger programmatic reindex.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "c90158b961e5f8a1ffa2d120c44fd39b58fe0ee548f8cb8869ab89ebd0ffa725",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryEdgesFrom",
+      "kind": "reuse_candidate",
+      "signature": "function queryEdgesFrom(symbolId: string, edgeType?: string): CodeEdgeTargetResult[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:993",
+      "notes": "Outbound edges with optional edge-type filter. Returns {edge, targetNode}. Core building block for call-graph and import queries.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "1d3bfacb22cb5975009a499c1636a9cf015ff1cc1d08e132578f2e60ff9cc9c9",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryOutline",
+      "kind": "reuse_candidate",
+      "signature": "function queryOutline(filePath: string): CodeNode[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:909",
+      "notes": "Returns all code_nodes for a file. Used by query handler outline op and detect_changes. Direct DB query — no MCP wrapper needed.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "457e4b62d03d61688014d28f4b155d1ccf0b95cc767a83ed8c9b06774f41df0e",
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "CODE_GRAPH_TOOL_SCHEMAS",
+      "kind": "reuse_candidate",
+      "signature": "const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:186",
+      "notes": "Array of 8 MCP tool definitions (scan/query/status/context/classify/verify/apply/detect_changes). Published to ListTools. Reuse: import to register same tools on a different server surface.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "d0f26c2ac212ec5cf57c2b9ed40a72789013502eee23df3909a34c6f388983f4",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "getEmbedderAdapter",
+      "kind": "reuse_candidate",
+      "signature": "function getEmbedderAdapter(provider: string, model: string, dimensionsOverride?: number): ExecutionRouterAdapter",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:262",
+      "notes": "Returns cached or new ExecutionRouterAdapter for provider:model. Handles ollama delegation and factory-backed providers (openai/voyage/hf-local). Credential cache invalidation on adapter rotation.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "d7157150ae3fb87d52d182a3cf18e88d82c683096d7b7c3d7bb08303bd91f2ed",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "startReindex",
+      "kind": "reuse_candidate",
+      "signature": "function startReindex(options: StartReindexOptions, runtimeOptions?: ReindexRuntimeOptions): string",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:662",
+      "notes": "Queues embedder reindex job: reads memory_index rows, embeds via adapter, writes vectors to staging shard, atomic rename on completion. Returns job ID.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "2cbce52914f308a9e278d90a9dbe0d85467db2df69384caa6139a5d36ab830e7",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "v2-master-synthesis",
+      "kind": "reuse_candidate",
+      "signature": "Level 3 research coordination root: 88 findings, 10 ranked recommendations, trust-axis separation, honest measurement contract",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:31-35",
+      "notes": "Key research outputs: research/research.md (canonical synthesis), research/recommendations.md (ranked decision surface), research/findings-registry.json (88 findings). The trust-axis separation (provenance, evidence status, freshness as separate fields) is a durable architectural decision (ADR R10 replacement).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "8d8dea0b30caa3508dd025be25789a2ebcdce139801d17691b45b47be3f5a80c",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/spec.md",
+      "symbol": "skill-advisor-system",
+      "kind": "reuse_candidate",
+      "signature": "Skill-advisor graph, scoring engine, routing engine with playbook-run remediation",
+      "reuse": "extend",
+      "evidence": "002-spec-kit-internals/spec.md:90",
+      "notes": "002-skill-advisor is in-progress. The advisor graph, scoring, and routing are live. Depends on 002 (internals) being stable before 006 (operator tooling) can reference it per phase handoff rules.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.88,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "cee4f8e839739bb626a89f2fb389592aca1a3c71524c2b82a8dc1449794f2b02",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md",
+      "symbol": "daemon-lifecycle-reliability",
+      "kind": "reuse_candidate",
+      "signature": "MCP daemon lifecycle: IPC socket canonicalization, WAL checkpoint, graceful shutdown, provider dispose, watchdog, bridge liveness",
+      "reuse": "extend",
+      "evidence": "007-mcp-daemon-reliability/spec.md:109-117",
+      "notes": "7 sub-phases. Phases 1,3,4 complete (socket dir, research, nondestructive build). Phases 5-7 planned (provider dispose, watchdog, bridge liveness). The daemon-reliability research (003) produced a ranked, adversarially-verified fix roadmap.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.88,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "d3cc3c986df454b57b04623f9fd143373fa96c4962727809c0a6af4c1dca3c76",
+      "path": ".opencode/bin/lib/model-server-supervision.cjs",
+      "symbol": "createModelServerSupervisor",
+      "kind": "reuse_candidate",
+      "signature": "function createModelServerSupervisor(options?): ModelServerSupervisor",
+      "reuse": "",
+      "evidence": "model-server-supervision.cjs:1",
+      "notes": "Extracted to shared lib so both mk-spec-memory-launcher and mk-skill-advisor-launcher reuse it. Configurable via env: HF_MODEL_SERVER_*, WATCHDOG_*, CRASH_LOOP_*. The launcher-local factory pre-seeds writeLease/shouldExitLauncher/onRssBreach defaults.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "f9d5db1b024eeb3284cd9bca031dc224a6ed15ffdaa76a11338d6a5f76fed500",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "computeCompositeScore",
+      "kind": "reuse_candidate",
+      "signature": "function computeCompositeScore(signals, loopType): number",
+      "reuse": "Weighted composite convergence score computation. Different weight profiles for research (5 signals), review (5 signals), and context (5 signals). Returns 0-1 rounded to 3 decimals.",
+      "evidence": "convergence.cjs:116",
+      "notes": "Loop-type-specific weight tables; context weights reuseCatalog highest at 0.30. Used by convergence entrypoint to surface score alongside blockers.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "918a7240a341f986aee09f695a77da4d1518c16b3425d5cc314b74301135237b",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "symbol": "mergeResearchRegistries",
+      "kind": "reuse_candidate",
+      "signature": "function mergeResearchRegistries(lineageData): mergedRegistry",
+      "reuse": "",
+      "evidence": "fanout-merge.cjs:91",
+      "notes": "Cross-model attribution via lineage labels. Computes avg convergence score across lineages. Exported for unit testing.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "6496a8f4fdc92f2931d982eb270788177299fead09844756a6df27294ac6a069",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "symbol": "mergeReviewRegistries",
+      "kind": "reuse_candidate",
+      "signature": "function mergeReviewRegistries(lineageData): mergedRegistry",
+      "reuse": "",
+      "evidence": "fanout-merge.cjs:183",
+      "notes": "SEVERITY_RANK: P0=3, P1=2, P2=1. Cross-lineage P0 wins. Verdict: FAIL if any P0, CONDITIONAL if any P1, else PASS. Exported for unit testing.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "7ad5069b7c5b1c2645eb27ae0d8ce7ffe483c9ce007f7d5d25e98491010866dc",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      "symbol": "appendStatusLedger",
+      "kind": "reuse_candidate",
+      "signature": "function appendStatusLedger(ledgerPath, entry): void",
+      "reuse": "JSONL orchestration-status.log ledger appender. One line per lifecycle event (started/completed/failed/salvaged/converged).",
+      "evidence": "fanout-pool.cjs:235",
+      "notes": "Simple fs.appendFileSync; follows the proven orchestration ledger pattern used across fan-out runs.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "45523b581001e3175619c7bc61c593449c6aaf89ec51601a0715012a9bcb52e7",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+      "symbol": "runSalvageSweep",
+      "kind": "reuse_candidate",
+      "signature": "function runSalvageSweep(lineageDir, loopType, savedStdout): { salvaged, failed }",
+      "reuse": "",
+      "evidence": "fanout-salvage.cjs:69",
+      "notes": "Runs before the failure throw so iteration recovery is never lost. extractTextFromOpencodeJson parses opencode --format json text parts from stdout.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "c7ab82deaf093bb3907af502301e7b9b7c014346d87ebc111140aca99bebb46f",
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts",
+      "symbol": "handleDetectChanges",
+      "kind": "reuse_candidate",
+      "signature": "async function handleDetectChanges(args: DetectChangesArgs): Promise<MCPResponse>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:212",
+      "notes": "Read-only preflight: maps unified-diff to structural symbols via line-range overlap. Blocks on stale graph. Reuse: integrate into CI/PR pipelines for impact analysis.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "f250b527360c0b6abdc7b8d58b50d0012706043039f19442afb4aef5be39fc94",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "getStats",
+      "kind": "reuse_candidate",
+      "signature": "function getStats(): { totalFiles, totalNodes, totalEdges, lastScanTimestamp, lastGitHead, dbFileSize, schemaVersion, nodesByKind, edgesByType, ... }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:1131",
+      "notes": "Comprehensive graph health stats. Used by status handler. Returns DB file size, schema version, node/edge breakdowns, parse health summary.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "6ea3ffd941708a9c661be2bd4601a4708a83d37cfb7779067e712dcda774e9da",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      "symbol": "startIpcSocketServer",
+      "kind": "reuse_candidate",
+      "signature": "async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<IpcSocketServerHandle>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:44",
+      "notes": "Multi-client IPC bridge over Unix socket. Each client gets its own MCP Server instance. Shared by memory/code-index/skill-advisor daemons. Reuse for new daemon service.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "a3c45a79aa3493ba511484271c72e0a9e1a90a81301fba0cd8b44461527a8b5a",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts",
+      "symbol": "buildReadinessBlock",
+      "kind": "reuse_candidate",
+      "signature": "function buildReadinessBlock(ready: ReadyResult): CodeGraphReadinessBlock",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts:47",
+      "notes": "Maps ReadyResult to CodeGraphReadinessBlock with canonicalReadiness + trustState. All 4 handlers emit this. Reuse: consistent readiness envelope for any new handler.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "4d0d01c544c6767dedfb74f7a641c62efcb76c74fbc782372994f6744268fd34",
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "validateToolArgs",
+      "kind": "reuse_candidate",
+      "signature": "function validateToolArgs(toolName: string, rawInput: Record<string, unknown>): Record<string, unknown>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:213",
+      "notes": "Validates MCP input against published schema: additionalProperties:false, enum, minLength. Throws field-specific Error. Reuse in any MCP dispatch layer.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "4294a2567e1d824227008b031adf3a8b2d2e552649777e7508878f9e8e9f6be5",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+      "symbol": "getActiveEmbedder",
+      "kind": "reuse_candidate",
+      "signature": "function getActiveEmbedder(db: Database.Database): ActiveEmbedder",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:21",
+      "notes": "Reads active embedder name/dim/provider from vec_metadata table. Returns DEFAULT_ACTIVE_EMBEDDER when unset. Used by reindex and reconcile.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "ca0d6171aad568f0576f2798cd37e520fe06a0784328278dd4b0cae2e589bd7d",
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "generateDocumentEmbedding",
+      "kind": "reuse_candidate",
+      "signature": "async function generateDocumentEmbedding(text: string): Promise<Float32Array | null>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:663",
+      "notes": "Generates document embedding via lazy singleton provider. Circuit breaker: returns null on consecutive failures. LRU cache. Rate limiting. Primary embedding entry point for indexing.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "4e2468a5ff43c8f6c43bb475dc56db2ead3642d80d1093db7b5c6a5a0830960c",
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "generateQueryEmbedding",
+      "kind": "reuse_candidate",
+      "signature": "async function generateQueryEmbedding(query: string): Promise<Float32Array | null>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:718",
+      "notes": "Query embedding with lower cache priority than documents. Circuit breaker. Use for search query vectorization.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "243a6320a327a28979d94e9009fd08834e541edd181bf324dc16d18ff13e5417",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "causal-graph-channel-routing",
+      "kind": "reuse_candidate",
+      "signature": "Causal-graph channel routing MVP — 85% complete",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:90",
+      "notes": "002-causal-graph-channel-routing in-progress at 85%. The causal-graph channel is a distinct routing surface in the memory search pipeline.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "e8ec1be89ad0d3a46065e5b4fb30baba8360b60175c28f58735f8d374b29a039",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "doctor-command-surface",
+      "kind": "reuse_candidate",
+      "signature": "Doctor command surface with dependency-safe rebuild orchestration — 90% complete",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:90",
+      "notes": "002-doctor-update-orchestrator at 90%. The /doctor surface is the operator diagnostic entry point. Relocated doctor-install-alignment from skilled-agent-orchestration (context-index.md wave 8).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.82,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "2f7950d706f6f53cf8b5e5b4897bef8924a9c2718de12ad6eedb6d2bdcfbafbf",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "persistIndexedFileResult",
+      "kind": "reuse_candidate",
+      "signature": "function persistIndexedFileResult(result: ParseResult, opts?: { deferDanglingTargetPrune?: boolean }): void",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:583",
+      "notes": "Atomic per-file persistence: upsertFile → replaceNodes → replaceEdges. Transactional. Used by scan handler loop.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "cbd2eed5914e316ac3d6f12d063852761bbbc470557eb84da86bf4c1430b93e9",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "resolveDimensions",
+      "kind": "reuse_candidate",
+      "signature": "function resolveDimensions(provider: string, model: string, dimensions?: number): number",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:74",
+      "notes": "Resolves embedding dimensions: explicit override > startup profile match > default. Used by getEmbedderAdapter and reindex. Import for consistent dim resolution.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "fbcfc42d37999bc7816058778f27f457f4ce66fff12c96ab5c5c2ff6193b4209",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+      "symbol": "ensureVecTableForDim",
+      "kind": "reuse_candidate",
+      "signature": "function ensureVecTableForDim(db: Database.Database, dim: number): string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:62",
+      "notes": "Creates vec_<dim> table if missing. Returns table name. Used by reindex before writing vectors. Idempotent.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "d2bc6f046d62945bf79a26e0f2efc44c13d1a967451c0f32bc00e565a0f33323",
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "invalidateProviderSingleton",
+      "kind": "reuse_candidate",
+      "signature": "function invalidateProviderSingleton(): void",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:445",
+      "notes": "Drops cached provider singleton so next getProvider() re-resolves. Call after active-embedder pointer changes (e.g. completed reindex). Prevents stale model/dim usage.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "60eddfb4571a1c43ddd0840f5488d79510986ac8835097071e655ac0f3fd04a0",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "embedding-provider-local-first",
+      "kind": "reuse_candidate",
+      "signature": "Local-first resolveProvider() cascade (ADR-014) relocated from skilled-agent-orchestration",
+      "reuse": "import",
+      "evidence": "context-index.md:57",
+      "notes": "016-embedding-provider-local-first implements ADR-014. Sits with the embedding cluster (008/009/010/011). Key decision: local-first embedding provider cascade to avoid external dependency.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "d34272e6d00c45c1f9767c83d7daa01fc4d8cff224cd8ddc5af8914a5fd3bcd7",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "runtime-hook-parity",
+      "kind": "reuse_candidate",
+      "signature": "Runtime hook parity across Claude, Codex, Copilot, OpenCode — 85% complete",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:89",
+      "notes": "001-hook-parity at 85%. Cross-runtime hook schema and wiring is the deliverable. Depends on 002-spec-kit-internals (advisor + template) being stable first.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "a3107d22a303af1389bdba0b277872bd22db90a0cbd47ee355fee4ac40cb69c3",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes/spec.md",
+      "symbol": "codex-hook-rewiring",
+      "kind": "reuse_candidate",
+      "signature": "Codex hooks rewired from Claude scripts to purpose-built Codex adapters; PreCompact removed as unsupported",
+      "reuse": "import",
+      "evidence": "008-runtime-defect-fixes/spec.md:65-66,79",
+      "notes": "Codex hooks now emit Codex-shaped envelopes. PreCompact hook removed — the hook_system.md contract lists Codex compaction as unsupported. Applied and smoke-verified.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "0a8b7848ee675de57e96da38a766ac02c5d66caf333e5aab0ea75bf30913da42",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      "symbol": "resolveIpcSocketPath",
+      "kind": "reuse_candidate",
+      "signature": "function resolveIpcSocketPath(dbDir: string): string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:16",
+      "notes": "Resolves daemon-ipc.sock path under the DB dir. Convention: <dbDir>/daemon-ipc.sock. Import for consistent socket path resolution.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "d27fa0960cae3b613af17deb4ea35e5f4b2306670f91280511e27ec9b69e4a0e",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "teardownEmbedderAfterSwap",
+      "kind": "reuse_candidate",
+      "signature": "async function teardownEmbedderAfterSwap(provider: string, model: string): Promise<void>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:291",
+      "notes": "Disposes cached direct adapter after active-embedder swap. Called by reindex completion. Ensures stale provider resources are released.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "26b977f21923b091d110bf1b1fc05c8641829042a253e6bb8c6ff52cda5d5d9d",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "cancelJob",
+      "kind": "reuse_candidate",
+      "signature": "function cancelJob(jobId: string, db?: Database.Database): ReindexJob | null",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:712",
+      "notes": "Sets job status to 'cancelled'. Worker checks status before each batch and aborts cleanly. Staging shard is cleaned up.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "a8ed449df6e66f4c94b0cc07854b9dd7abcb2e759bc05c9a34b3a772e3311843",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec.md",
+      "symbol": "scouted-bugfix-train",
+      "kind": "reuse_candidate",
+      "signature": "Verify-first scouted bugfix batches (3 completed) with release-readiness deep-review train",
+      "reuse": "extend",
+      "evidence": "000-release-and-program-cleanup/spec.md:89-96",
+      "notes": "The scouted-bugfix-train pattern (010-scouted-bugfix-train/ with batches 001-003) is a reusable verify-first remediation approach. Wave 8 relocated batches 1-3 from skilled-agent-orchestration. Batch-4 is the next slot.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "fd00c59d27abcd6697e5465f7a9eba67d3aeb7774ba2ac3ed379810f917c267a",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+      "symbol": "BoundedMap",
+      "kind": "reuse_candidate",
+      "signature": "class BoundedMap<K, V> extends Map<K, V> { readonly maxSize: number }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts:26",
+      "notes": "LRU-evicting Map with maxSize cap. Access promotes entry to most-recent. Reuse for any bounded in-memory cache.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.7,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "845f9144df82f7c0917042e5a59520bb3eddea5b0d657c9836eceb55a3d99b7a",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+      "symbol": "TtlMap",
+      "kind": "reuse_candidate",
+      "signature": "class TtlMap<K, V> { set(key, value, ttlMs?), get(key), pruneExpired() }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts:67",
+      "notes": "TTL + LRU bounded cache. BoundedMap-backed. Auto-prunes expired entries on access. Reuse for time-sensitive caches.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.7,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "7592fffa81b6f856788909862317c93aeb8ed6d6606614176cf15b46daaf1840",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts",
+      "symbol": "rotateIfNeeded",
+      "kind": "reuse_candidate",
+      "signature": "function rotateIfNeeded(auditPath: string, maxBytes: number, maxFiles: number, now?: Date): boolean",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts:12",
+      "notes": "Rotates audit log when exceeding maxBytes, enforces maxFiles cap. Reuse for any log rotation need.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.65,
+      "firstIteration": 3
+    }
+  ],
+  "integrationPoints": [
+    {
+      "unit_id": "44dd1361cba857548c508272b14fd11d6cc2db190bf5dc173c36f9e39031a3ac",
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "maybeBridgeLeaseHolder",
+      "kind": "integration_point",
+      "signature": "async function maybeBridgeLeaseHolder({ serviceName, leaseResult, loggerPrefix, dbDir, legacyReport?, probeTimeoutMs?, connect?, bridge? }): { action, reason, socketPath? }",
+      "reuse": "",
+      "evidence": "launcher-ipc-bridge.cjs:311",
+      "notes": "deepProbe=true detects hung daemon (accepts connection but never responds). Prefers stored lease socketPath over recomputation. Speckit IPC supports both UDS and tcp:// endpoints. Used by all 3 launcher types.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "ca1dc61b2ea015800418272477817d9edc42eb2ed65f8a941046669061262e85",
+      "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "symbol": "createSessionProxy",
+      "kind": "integration_point",
+      "signature": "function createSessionProxy({ socketPath, stdin?, stdout?, probe?, connect?, log?, classify?, maxReattachAttempts?, maxColdStartAttempts?, keepaliveIntervalMs? }): { start, stop }",
+      "reuse": "",
+      "evidence": "launcher-session-proxy.cjs:338",
+      "notes": "Three states: REATTACHING → CONNECTED → CLOSED. Deep-probe wait with backoff ladder [100,250,500,1000,1500]ms. Pending request tracker distinguishes replayable (memory_search, session_resume, etc) from unsafe (memory_delete, checkpoint_restore). Keepalive pings every 10s with 5s timeout. Protocol version mismatch is terminal (non-retryable -32002).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "1510886702adca5539c286f7c53cfbd2eb5b0ab07d2e933847b01f7ab71186ba",
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "acquireOwnerLeaseFile",
+      "kind": "integration_point",
+      "signature": "function acquireOwnerLeaseFile(): { acquired, lease?, holder?, classification, reclaimed? }",
+      "reuse": "",
+      "evidence": "mk-spec-memory-launcher.cjs:365",
+      "notes": "Heartbeat TTL: 60s, refreshed at TTL/2 interval. Re-read after atomic rename confirms surviving owner. classifyOwnerLease checks liveness + ppid + heartbeat. writeOwnerLeaseFileExclusive uses wx+fsync for crash durability.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "71da727bfe290c9310d67995d940e09e172c12569734d19ee45d2e7c93dcd542",
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "getDb",
+      "kind": "integration_point",
+      "signature": "function getDb(): Database.Database",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:295",
+      "notes": "Returns singleton better-sqlite3 handle for code-graph.sqlite. All DB operations flow through this. Lazy-init via initDb(). Central seam for DB access.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "ebc2385cbcc4e6ae62f981499618952a9d4cb3d71a5f5880ce3dfbafabe26573",
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
+      "symbol": "handleTool",
+      "kind": "integration_point",
+      "signature": "async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:62",
+      "notes": "Central dispatch: validates args via validateToolArgs(), routes to 8 handler functions. Returns null for unknown tools. Composable — wrap or extend for new tool surfaces.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "0888a4043555a373e24daedc9d000b3d0abdc0b40f40b5e2e23ee47b7641e5b3",
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      "symbol": "scoreAdvisorPrompt",
+      "kind": "integration_point",
+      "signature": "function scoreAdvisorPrompt(prompt, options): { recommendations, ambiguous, unknown }",
+      "reuse": "",
+      "evidence": "fusion.ts:1",
+      "notes": "Lane weights overridable via SPECKIT_ADVISOR_LANE_WEIGHTS_JSON env. Class C breadth-build and multi-concern abstention gates prevent routing broad greenfield builds to single skills. Shadow scoring with learned weights runs alongside live scoring for delta telemetry.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "63543e8324bf166b55f18e168896946eba39fb80b65be585c950264fe0a4f424",
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "getIpcSocketPath",
+      "kind": "integration_point",
+      "signature": "function getIpcSocketPath(serviceName, options?): string",
+      "reuse": "",
+      "evidence": "launcher-ipc-bridge.cjs:59",
+      "notes": "Three service names with distinct default DB dirs. tcp:// endpoints bypass file-existence checks. Socket file name: daemon-ipc.sock. Used by all launcher types for bridge socket resolution.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "d00cfcb9eea6920590030f366d78692fe40c11109b029f9afe9ea9a01f14f6c8",
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "probeDaemon",
+      "kind": "integration_point",
+      "signature": "function probeDaemon(socketPath, options?): Promise<{ status, reason }>",
+      "reuse": "",
+      "evidence": "launcher-ipc-bridge.cjs:124",
+      "notes": "Uses StringDecoder for multibyte UTF-8 safety across chunk boundaries. Bounded probe timeout (default 5s, max 6999ms). The reap/bridge decision always passes deepProbe:true.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "f983c5adf085e8d4f08c8f78bbef88c48eb6eef37dd8ed949e774fae60f77baf",
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "recycleDaemonInPlace",
+      "kind": "integration_point",
+      "signature": "async function recycleDaemonInPlace(graceMs, deps?): Promise<void>",
+      "reuse": "",
+      "evidence": "mk-spec-memory-launcher.cjs:1053",
+      "notes": "Deps are injectable for testing (getContextChild, hfControl, isChildRunning, etc). Key design: lease is NOT cleared during recycle — launcher process stays alive, replacement daemon respawns via backoff. rssBreachSelfExitInProgress flag prevents re-entrant recycle.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "6e127ec3b43ba64fc4b90c4716ac0c6def35addf63d6e7c37236effc11e5af04",
+      "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
+      "symbol": "/doctor:update orchestrator",
+      "kind": "integration_point",
+      "signature": "YAML workflow: flock → probe → migrate → snapshot → dashboard → dependency.order → validation → state.log",
+      "reuse": "",
+      "evidence": "doctor_update.yaml:24",
+      "notes": "SIGINT follows ADR-001/ADR-007: set cancel, ~5s SQLite settle window, restore in-flight snapshot, log, exit 130. Every abort path must rm -f .doctor-update.flock before exit. State log at mcp_server/database/.doctor-update.last-run.json.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "116a75034b7ce5b61f544a0c2aa9d8f5b9c9a6583bf0a17b4f7bb08d9daf874a",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      "symbol": "batchUpsert",
+      "kind": "integration_point",
+      "signature": "db.batchUpsert(nodes, edges): { insertedNodes, insertedEdges, rejectedEdges }",
+      "reuse": "",
+      "evidence": "upsert.cjs:241",
+      "notes": "Writer lock path: .deep-loop-graph-writer.lock or .council-graph-writer.lock. Events input (--events) filters into nodes/edges by type field. VALID_KINDS and VALID_RELATIONS are per-loop-type whitelists from the DB module.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "ead3f6b13eec6a22473eb8206a4a7d0d68f309e1b6c9701eb63eef4d69b1de79",
+      "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      "symbol": "createCodeIndexMcpServer",
+      "kind": "integration_point",
+      "signature": "function createCodeIndexMcpServer(): Server",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/index.ts:74",
+      "notes": "Creates MCP Server with ListTools + CallTool handlers dispatching via codeGraphTools.dispatch(). IPC bridge + idle monitor + owner-lease lifecycle wired here. A new daemon service copies this pattern.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "0015c674f97c40b5c95ab1d7a3a63bc4a4749aefc2b1687f236320b7c0f6aec1",
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
+      "symbol": "handleAdvisorRecommend",
+      "kind": "integration_point",
+      "signature": "async function handleAdvisorRecommend(args: unknown): Promise<{ content: [{ type: string, text: string }] }>",
+      "reuse": "",
+      "evidence": "advisor-recommend.ts:320",
+      "notes": "Prompt-safe: never persists raw prompt text. Cache key includes sourceSignature (freshness:generation:lastGenerationBump). SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 returns disabledOutput. Default thresholds: 0.8 confidence, 0.35 uncertainty.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "60e2e9fcd5eb85c02162136577285f55be6392fba5d7aeae9e0d85af15008cdb",
+      "path": ".opencode/commands/doctor/assets/doctor_memory.yaml",
+      "symbol": "/doctor:memory diagnostic",
+      "kind": "integration_point",
+      "signature": "YAML workflow: Discovery → gate → analysis → gate → drift classification → recommendation → state log",
+      "reuse": "",
+      "evidence": "doctor_memory.yaml:4",
+      "notes": "Mutation boundaries explicitly listed: allowed_targets are provider-keyed sqlite DBs only. Forbidden: spec docs, skill files, code-graph DBs, deep-loop DBs. Rebuilds owned by /doctor:update.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "471c9309c22904dd4b89d96bf79efd7525dfac6cde0bf5b5fabe4b98873ace3d",
+      "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+      "symbol": "DATABASE_DIR",
+      "kind": "integration_point",
+      "signature": "const DATABASE_DIR: string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/core/config.ts:47",
+      "notes": "Resolved code-graph DB directory. Skill-local: .opencode/skills/system-code-graph/mcp_server/database. Overridable via SPECKIT_CODE_GRAPH_DB_DIR. All DB paths derive from this.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    },
+    {
+      "unit_id": "2669e0de52493a409442187b764b56d2203f42c7616c462b13748ca21d7ad60b",
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/index.ts",
+      "symbol": "dispatch",
+      "kind": "integration_point",
+      "signature": "async function dispatch(name: string, args: Record<string, unknown>): Promise<MCPResponse>",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/index.ts:9",
+      "notes": "Thin wrapper over handleTool with unknown-tool error fallback. Called by index.ts CallToolRequestSchema handler.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 3
+    }
+  ],
+  "conventions": [
+    {
+      "unit_id": "376944773c1cb03ab879320b2ffbd8455890f5b14e1dbbeff7e40d53aa7d10fc",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "symbol": "validateNamespaceValue",
+      "kind": "convention",
+      "signature": "function validateNamespaceValue(value, key, makeInputError): string",
+      "reuse": "",
+      "evidence": "cli-guards.cjs:69",
+      "notes": "findRepoRoot walks up looking for .git marker. isInsideRepo checks relative path doesn't escape. Defense-in-depth against path traversal in namespace-scoped values.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "55de73defc641d5268c1d1644f6ff671fb0898b920e40f079a360bc8e71453c8",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "memory-code-graph-separation",
+      "kind": "convention",
+      "signature": "Memory store and code graph are distinct structural surfaces that cross-link, not a shared store",
+      "reuse": "import",
+      "evidence": "spec.md:120",
+      "notes": "Architectural boundary: memory (003) and code-graph (004) are separate subsystems. Phase handoff rule spec.md:120 states 'code-graph is a distinct structural surface that cross-links to memory, not a shared store'. Any future work must respect this split.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "da80e7787b53549a5b9af3d94ea0b9c9ab185a84220a6300bba35939215893d7",
+      "path": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md",
+      "symbol": "ADR-005-level-vocabulary-invariance",
+      "kind": "convention",
+      "signature": "Level 1/2/3/3+ is the SOLE public/AI-facing vocabulary; preset/capability/kind are STRICTLY private",
+      "reuse": "import",
+      "evidence": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md:223-242",
+      "notes": "AI behavior + user conversation flow must remain byte-identical. Workflow-invariance CI test greps public surfaces for banned vocabulary. Internal vocabulary lives ONLY in manifest + resolver + shell wrapper. Any new feature that would require exposing preset/capability to users must add a new Level instead.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "8fbd12e3dd47e1bb85fef383a0516a716dfdf69133447438ae61dbbd3baac5be",
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "dual-writer-hazard-revert",
+      "kind": "convention",
+      "signature": "Bridge fix reverted: runnable bridge initializes memory DB directly in second process — exact corruption class the single-writer lease prevents",
+      "reuse": "wrap",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:48-49",
+      "notes": "Broken-and-inert is safer than working-and-racy. The bridge stays inert until 028 code-index phase delivers IPC-backed transport. Any future code that touches the memory DB from outside the daemon lease MUST go through IPC, never direct init.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "93a9e401ac21c5f57286d960819295376a644d44b2929ce2e491ebee58d29208",
+      "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "symbol": "classifyFrame",
+      "kind": "convention",
+      "signature": "function classifyFrame(frame): boolean",
+      "reuse": "",
+      "evidence": "launcher-session-proxy.cjs:123",
+      "notes": "initialize and ping are always replayable. notifications/ methods are replayable. tools/call checks tool name against two sets. memory_save is replayable due to content-hash dedup.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "54880b170f194c7a1bd12b5d84cb1ed94d83e54f0d19dec0b1da8630eca03999",
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "writeAtomicJsonFile",
+      "kind": "convention",
+      "signature": "function writeAtomicJsonFile(targetPath, payload, operation): boolean",
+      "reuse": "",
+      "evidence": "mk-spec-memory-launcher.cjs:140",
+      "notes": "Convention across launcher subsystem: write tmp → rename atomic. Durable-write failures are logged once and return false (best-effort) rather than crashing. Used for lease files, pid files, state files.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "be97444ad72aa7040034a707fe248d690dfe7f4c1dd92708d142ab872feef574",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      "symbol": "acquireWriterLock",
+      "kind": "convention",
+      "signature": "function acquireWriterLock(lockPath): () => void (release)",
+      "reuse": "",
+      "evidence": "cli-guards.cjs:176",
+      "notes": "Retry interval defaults 25ms, max wait 1s, configurable via DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS env. Atomics.wait-based sleepSync for contention backoff.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "6e335f999a415a22f7146f6e7b6f66d75d32171caebc6c6055aa654eb2b6a4db",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "split-topology-preservation",
+      "kind": "convention",
+      "signature": "Public preserves its split semantic/structural/continuity topology; seam-hardening contracts precede packaging",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:31,188",
+      "notes": "The v2 headline decision: do NOT replace Public's split topology with a monolithic facade. Front-load trust and freshness contracts before any packaging work. This is NFR-T01 (topology preservation).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "8e48a72dbd5abbf607d91966c49b515d041f3d08aef6b59757aebba656a6f4ad",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes/spec.md",
+      "symbol": "bridge-dual-writer-hazard",
+      "kind": "convention",
+      "signature": "mk-code-graph bridge restore REVERTED due to dual-writer hazard on memory DB; fix deferred to IPC-backed transport in 028",
+      "reuse": "import",
+      "evidence": "008-runtime-defect-fixes/spec.md:64,78",
+      "notes": "Critical safety decision: the bridge import fix was attempted and reverted because the bridge's startup path calls initializeDb()+sessionManager.init() against the memory DB the daemon owns — the incident the 028 research forbids. Proper fix is IPC-backed transport (028 code-index phase 3).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "85da7cc02df923185f8f00079c8b564f2969f71039ac903a07a94b9977ab2829",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/context-index.md",
+      "symbol": "wave-4-migration-bridge",
+      "kind": "convention",
+      "signature": "Migration bridge resolving 17 top-level phases to 7 themed parents with old-path resolution tables",
+      "reuse": "compose",
+      "evidence": "context-index.md:129-195",
+      "notes": "Old phase paths (000-016) are NOT rewritten; resolve via bridge tables. Any new code or docs referencing old paths must consult this file. Wave 8 (2026-06-03) relocated 6 skilled-agent-orchestration packets into 026 tracks.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "2eff7ef4f40cf897745a44a17e246e8fcf7737449b8a14986fde4af31d65e4c7",
+      "path": "000-release-and-program-cleanup/007-clean-room-license-audit/spec.md",
+      "symbol": "clean-room-license-audit-p0-gate",
+      "kind": "convention",
+      "signature": "PolyForm Noncommercial 1.0.0 is the controlling license for external-project patterns; the actual shipped mitigation was an upstream-project name scrub (commit bdd3c831d) not a verbatim license quote; P0 governance gate blocking all 012 code sub-phases; .gitignore excludes external/ so worktrees lack the LICENSE file",
+      "reuse": "Any future code touching external-project patterns must honor the clean-room allow-list and name-scrub posture documented in the ADR; verbatim-code reuse remains forbidden.",
+      "evidence": "000-release-and-program-cleanup/007-clean-room-license-audit/spec.md:33-43, decision-record.md:24-41",
+      "notes": "The spec's status-note documents a material change in mitigation strategy (name scrub vs verbatim quote) that the decision-record ADR captures. A planner must know the current posture, not the historical one.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "f05c07bd58d62bd7312501e02fde6a7263b500932779b1be87cae99622fb6b24",
+      "path": "001-research-and-baseline/spec.md",
+      "symbol": "R10-trust-axis-separation",
+      "kind": "convention",
+      "signature": "Old structural-artifact bundle replaced by trust-axis separation: provenance, evidence status, freshness authority as separate fields",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:33",
+      "notes": "Contract before packaging: any downstream reader trying to treat cached startup, dashboard, or structural artifacts as ready-made defaults must be pointed back to trust-axis and freshness prerequisites first. R10 replacement is explicit in spec and ADRs.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "f6759102ccf4768e4f5cd26012632ede568cb38b42b850fb6a4518d2eeef91e1",
+      "path": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md",
+      "symbol": "ADR-001-CF-hybrid-manifest",
+      "kind": "convention",
+      "signature": "C+F hybrid manifest-driven greenfield: 86→15 source files; levels eliminated internally; single manifest drives scaffold+validator",
+      "reuse": "import",
+      "evidence": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md:69",
+      "notes": "Three orthogonal axes replace level scalar: kind + capabilities + presets. Single manifest (spec-kit-docs.json) drives scaffolder AND validator — drift structurally impossible. Inline section gates preserve markdown authoring. Follow-on packet implements this; 026 only designs it.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "337128d27feb5951a61f11cd82f4b44d103c6fac7df76ac92dcccb9d7e53a86d",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-003-shared-index-scope-ssot",
+      "kind": "convention",
+      "signature": "Single index-scope.ts is the canonical source for memory/code-graph path exclusions; spec-doc filters are additive overlays only",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:134",
+      "notes": "Changing EXCLUDED_FOR_MEMORY automatically changes spec-doc classification and discovery. z_archive is intentionally NOT excluded (ARCHIVE_MULTIPLIERS 0.1 decay handles deprioritization). Any new exclusion must land in index-scope.ts, not scattered walkers.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "c9468911b7310e66bc948b0c5a3d58e6c844a263cd059c5adcebc99bbe4c26c8",
+      "path": "004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in/decision-record.md",
+      "symbol": "ADR-001-end-user-scope-default",
+      "kind": "convention",
+      "signature": "Code graph excludes .opencode/skills/** by default; 97% files/98.3% nodes were skill internals",
+      "reuse": "import",
+      "evidence": "004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in/decision-record.md:68-81",
+      "notes": "Env SPECKIT_CODE_GRAPH_INDEX_SKILLS=true or per-call includeSkills:true for opt-in. Per-call overrides env (ADR-002). Scope fingerprint stored in code_graph_metadata; requires full scan when stored and active scope differ. Any scan-default change must update the fingerprint and require explicit full scan.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "c6db0360ad20e66753e541cb7a652118776e9fa16e320bc29cb78746979c74b5",
+      "path": "004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md",
+      "symbol": "ADR-002-standalone-mcp-topology",
+      "kind": "convention",
+      "signature": "Standalone system_code_graph MCP registration; ADR-001 Q3 (co-resident) explicitly superseded",
+      "reuse": "import",
+      "evidence": "004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md:57-63",
+      "notes": "Namespace changes from mcp__mk_spec_memory__code_graph_* to mcp__system_code_graph__*. Tool IDs remain stable. Path-flattening canonical: no mcp_server/code_graph/ intermediate. Any new MCP server follows this standalone topology pattern.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "d6a003e1004999fa0cb3a744223729871d5ce68762bc1aae1c2ae0655c16dacc",
+      "path": "007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md",
+      "symbol": "ADR-001-pid-start-time-identity",
+      "kind": "convention",
+      "signature": "Lease PID accepted as owner only if alive AND real start time matches lease-recorded start time within 2s",
+      "reuse": "import",
+      "evidence": "007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md:63",
+      "notes": "Closes PID-recycling false-SKIP that masks crashes as healthy. Uses `ps -o lstart=`; falls back to liveness-only on unreadable start time. Any daemon lease validation must include start-time identity check.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.9,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "c0489716939054649a7a4a1a08273c9ca99f4c980c8f1de19da1c98ff09a3ee1",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/spec.md",
+      "symbol": "three-way-isolation",
+      "kind": "convention",
+      "signature": "Three-way isolation: system-code-graph extraction as standalone MCP, distinct from spec-kit-memory and spec-kit-shared",
+      "reuse": "import",
+      "evidence": "004-code-graph/spec.md:94",
+      "notes": "006-extraction-and-isolation completed the standalone-MCP pivot. The three-way isolation (memory / code-graph / shared) is an architectural boundary to respect.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.88,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "70c6259ec4d07933210fd3bea2f1233416f077a1c0a243529fa187b6f84b9543",
+      "path": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-019.md",
+      "symbol": "concurrent-session-sigterm-compound-failure",
+      "kind": "convention",
+      "signature": "Divergent signal-handler stacks (context-server.ts:1681-1692 exit 0 vs shutdown-hooks.ts:129-148 exit 143/130) race under concurrent-session SIGTERM; if shutdown-hooks stack wins it skips fatalShutdown ordered drain, coupling unfenced ingest worker dirty-WAL with non-re--entrant socket server; operationally reachable with 2 Claude + 4 codex sessions sharing one repo",
+      "reuse": "This compound failure analysis is the justification for the single-ordered-teardown fix in 017-last-50-commits-review-remediation; any future shutdown-path change must preserve the ordering.",
+      "evidence": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-019.md:59-69, decision-record.md:52",
+      "notes": "The 017 remediation landed a single ordered teardown, but the compound-failure analysis documents exactly which code paths interact and why ordering matters. A planner modifying shutdown hooks must read this.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.88,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "5a0674e67222d7769fc98425caf084c77de75506bb205378977c4a546c26e11f",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "symbol": "classifyExitCode",
+      "kind": "convention",
+      "signature": "function classifyExitCode(err): number",
+      "reuse": "",
+      "evidence": "cli-guards.cjs:111",
+      "notes": "Convention: 0=ok, 1=script error, 2=DB error, 3=input validation error. Every CLI entrypoint follows this contract.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "0a8916de7fe3073f99321bd648028d57f4496c5b7dbce99dd237e4a67a114f11",
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+      "symbol": "SCORER_LANE_REGISTRY",
+      "kind": "convention",
+      "signature": "const SCORER_LANE_REGISTRY: readonly { id, weight, shadowWeight, live, damping? }[]",
+      "reuse": "",
+      "evidence": "lane-registry.ts:65",
+      "notes": "isLiveScorerLane() gate excludes non-live lanes from scoring. Shadow weights mirror live weights for A/B telemetry. DEFAULT_SCORER_LANE_WEIGHTS exported for shadow-only scoring paths.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 4
+    },
+    {
+      "unit_id": "d4f86db089c69a660117c5a4590715f992cc6524c1c03f55e470e9dd82d74f17",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md",
+      "symbol": "honest-measurement-contract",
+      "kind": "convention",
+      "signature": "Publish provisional honest measurement contract before any multiplier claims",
+      "reuse": "extend",
+      "evidence": "001-research-and-baseline/spec.md:33",
+      "notes": "Decision: no performance claims without the measurement contract. This gates downstream packaging work (including 005 deferred track).",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "10ce0ee015b19b07a7e9b9d44b65d684425d34aee0beed62d73b42e04986798c",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md",
+      "symbol": "daemon-RC-map",
+      "kind": "convention",
+      "signature": "Root-cause map: RC-1 OOM/embedding RSS, RC-2 no watchdog, RC-3 dead-socket bridge, RC-4 build wipes dist, RC-5 /tmp socket dir",
+      "reuse": "import",
+      "evidence": "007-mcp-daemon-reliability/spec.md:67,93-99",
+      "notes": "The RC taxonomy from the daemon-reliability research is the canonical failure-mode reference. Phases 5-7 map to RC-1 through RC-3. Phase 4 fixed RC-4. Phase 1 fixed RC-5.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "4bd7f794cdbced6f0c8ec5ab6c1cba4cff0f2128ecd72846c8c4229d9bfea630",
+      "path": "000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings/decision-record.md",
+      "symbol": "tier-gamma-conservative-defaults",
+      "kind": "convention",
+      "signature": "Eight specific defaults chosen for remaining P1 remediation: auto modes remove waits, /memory:* stays markdown-only, /memory:save plan-only-by-default, embedding-cache rows deleted on retention delete, memory_save planner inputs internal-only, governed-ingest validation extends to ingest paths, args validated before pre-dispatch logic, legacy strict-warning packet grandfathered",
+      "reuse": "These defaults are release-gate constraints that any future planner must honor; they shape the memory_save MCP schema, /memory:* command architecture, and ingest governance contract.",
+      "evidence": "000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings/decision-record.md:39-49",
+      "notes": "A /speckit:plan author touching memory_save, /memory:*, or ingest governance needs these defaults to avoid re-litigating decisions already made under release-readiness pressure.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "5466bb33ba170c6be12915a7a3bce0175a8989444768aaafd2f9cf1550d8985c",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
+      "symbol": "ADR-002-planner-first-default",
+      "kind": "convention",
+      "signature": "/memory:save defaults to planner-first output (non-mutating); full-auto is explicit fallback only",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md:107",
+      "notes": "Default path returns structured planner output instead of mutating. Reconsolidation-on-save (ADR-003) and post-insert enrichment (ADR-004) are opt-in only. Quality-loop auto-fix (ADR-006) removed from default path. Hard legality checks remain as blockers.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "84729ecf4e1b9c34327f5a9fad3efef1b304053f7e8b74123e8b8882884c9576",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-004-delete-not-downgrade-z-future",
+      "kind": "convention",
+      "signature": "Delete all z_future rows regardless of tier rather than downgrading; z_future must never be indexed",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:172",
+      "notes": "The invariant is 'z_future must never be indexed' — not 'lower priority'. Downgrading leaves forbidden rows searchable. Constitutional auto-surface was dominated by z_future research chunks before cleanup.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "d625b5bfff49ec629da5e7c051835ce3a54393a554bb3023d560d39b9147b8fc",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-005-constitutional-tier-downgrade",
+      "kind": "convention",
+      "signature": "Invalid constitutional saves downgraded to important with governance_audit row; path must contain /constitutional/",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:204",
+      "notes": "Constitutional tier is path-gated: only files under /constitutional/ can be constitutional. Enforced at SQL write layer (ADR-007), not just handler layer. Any mutation surface (save, update, checkpoint restore, post-insert) must enforce this guard.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "a27b3f3684b75aca948a62a018fb4d2d7cdffbde6b993e02f2c7bb77028bae74",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-007-sql-layer-tier-guards",
+      "kind": "convention",
+      "signature": "Constitutional-tier guard enforced at SQL write layer; checkpoint restore validates rows inside transaction barrier",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:279-284",
+      "notes": "Handler-only checks leave blind spots for internal callers and restore paths. Restore rejection is all-or-nothing (atomic). Audit uses action='tier_downgrade_non_constitutional_path'. Any new mutation surface must go through the SQL-layer guard.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "71975fbe3906e3cb9a025b88106ca69dc594b56e6d8ee452ad1b1988d6215727",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-010-realpath-hardening",
+      "kind": "convention",
+      "signature": "resolveCanonicalPath() prefers fs.realpathSync() to prevent symlinks from bypassing invariant enforcement",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:375",
+      "notes": "Symlinked files can bypass path-based exclusion checks if only path.resolve() is used. Falls back to caller-supplied path for missing/broken targets so atomic save flows still work.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "9f0764c902f01fe70e128f9c7092d99120fad2c2f423864b801fa09608add73d",
+      "path": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/decision-record.md",
+      "symbol": "ADR-001-prefix-registry",
+      "kind": "convention",
+      "signature": "Model-keyed PREFIX_REGISTRY + env-var override replacing hardcoded Nomic prefix; empty string = no prefix",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/decision-record.md:69-84",
+      "notes": "Two registries to keep in sync (TS HfLocalProvider + Python cocoindex). Legacy TASK_PREFIX export retained for back-compat. Empty string is a valid override (explicitly no prefix); undefined means fall through to registry. Wrong prefix silently degrades retrieval ~5-8%.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "d0bb058b0bbfc1b489705df4e1a7392a935256ce5fee5dce29a5ebfa0df7b172",
+      "path": "000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md",
+      "symbol": "changelog-scaffold-then-enrich-pipeline",
+      "kind": "convention",
+      "signature": "Two-step pipeline: generator scaffolds structure and output path, Sonnet agent rewrites Summary/Added/Changed/Fixed/Files-Changed/Prune-FollowUps using a written contract; 441 phases need HVR-voice changelogs; fabrication guard plus adversarial verify; flat-per-track layout with 696 final files (624 leaf + 72 rollups + 2 indexes)",
+      "reuse": "The changelog generator at scripts/changelog/ and the enrichment contract are reusable infrastructure for any future packet-local changelog generation.",
+      "evidence": "000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md:38-101, audit-report.md:21",
+      "notes": "Operationally important: the root rollup index files in tracks 002/006/007 were NOT refreshed after the flat-per-track flatten (review-changelog-completeness/review-report.md:95). They still link to old nested directory shapes and under-report. A regeneration pass is needed.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "ee19db6e43080e154e7f7981c00881e0230b9280268881267e641df91cf81f96",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-011-cleanup-transaction-snapshot",
+      "kind": "convention",
+      "signature": "Cleanup apply rebuilds its plan inside the transaction instead of trusting pre-transaction snapshot",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:404",
+      "notes": "Concurrent writes between plan generation and apply could leave violating rows behind. Dry-run output remains informative but the authoritative plan for mutation lives inside the transaction. Any cleanup/repair CLI must rebuild its plan inside the apply transaction.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "93a092ef1f46b7d1e97abf2b391ad8853f8cfa17586674f64dd903e171ebdadd",
+      "path": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
+      "symbol": "ADR-002-graph-channel-preservation-parsing",
+      "kind": "convention",
+      "signature": "SPECKIT_GRAPH_CHANNEL_PRESERVATION parsed as permissive boolean; '0'/'no'/'off'/'' now correctly disable",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md:75-79",
+      "notes": "BREAKING for users setting =0 (they now actually get disabled). Default-ON preserved. Aligns with how every other SPECKIT_* flag is parsed. Any new SPECKIT_* env flag must use the same permissive boolean parser.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "02fa578c3da9699c29bb2d86a0a043e40c20da79bf79ab6b97c8c06f75996a17",
+      "path": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md",
+      "symbol": "ADR-001-onnx-rejection",
+      "kind": "convention",
+      "signature": "ONNX Runtime backend rejected: 5x slower on Apple Silicon at parity-preserving settings; sbert remains default",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md:68",
+      "notes": "Neural Engine barely active for Gemma (23% ops, 77% CPU). Static-pad128 is fast but breaks parity (mean cosine 0.869). At parity-preserving settings ONNX is 3.5x slower. The ONNX code path is removed; rejected-experiment record preserved in packet.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "376edd3b6c812abc4b14aa03a12e215c994b1142835023e8e0d452cd462f3529",
+      "path": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md",
+      "symbol": "ADR-001-source-framing",
+      "kind": "convention",
+      "signature": "Reddit post treated as primary-source field report with appropriate skepticism; findings passage-anchored",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md:60",
+      "notes": "Every finding anchors to specific paragraph. Recommendation labels reflect evidence quality, not assumed validity. Structural conclusions stand independently of exact percentages. Any future research phase must preserve this source-framing discipline.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.7,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "e441b75d0be694780fc8e11677a4cb63e80f26211c3709c58b380448b48006de",
+      "path": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md",
+      "symbol": "ADR-002-discrepancy-preservation",
+      "kind": "convention",
+      "signature": "926-vs-858 sessions and 18903-vs-11357 turns discrepancies preserved explicitly, never normalized",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md:163-165",
+      "notes": "Smoothing introduces artificial precision the source doesn't support. NFR-D01 in spec.md makes preservation a non-functional requirement. Downstream planning can bound precision correctly. Any document referencing these counts must show both numbers.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.7,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "7f55eb50f3a5d8f983c81a96629ef81ac8a13f7ed118c3d09483877fd18011a7",
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
+      "symbol": "ADR-007-scoped-content-router-exception",
+      "kind": "convention",
+      "signature": "content-router.ts has documented scoped preservation exception for Tier 3 default-disable guard",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md:346",
+      "notes": "Eight-category switch, Tier 1 logic, Tier 2 matching, and target selection are preserved. The documented exception is the Tier 3 default-disable and manual-review guard. Changelog and release notes must reflect this honestly.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.7,
+      "firstIteration": 2
+    }
+  ],
+  "dependencies": [
+    {
+      "unit_id": "b742ae2eba013dbbc0ffc9577912dee2366d0cd208c53d5dce830cd7a30f0ade",
+      "path": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
+      "symbol": "ADR-001-entity-density-cache-invalidation",
+      "kind": "dependency",
+      "signature": "invalidateEntityDensityCache() wired into post-commit branch of memory_save and memory_bulk_delete handlers",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md:31",
+      "notes": "Call AFTER commit, not before — failed saves must NOT invalidate cache. Per-call overhead ~µs (in-process Map clear). Burst writes now propagate to entity-density signal immediately. Any handler that mutates memory_index rows must invalidate the cache post-commit.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "4ccd8c8f5d262f9d5b051b9a7fb26933b88feb7f4ee60d2c0f6722d27ae1918d",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/spec.md",
+      "symbol": "embedding-architecture",
+      "kind": "dependency",
+      "signature": "Local-embedding foundation with ollama/bge promotion and rerank-sidecar — 75% complete",
+      "reuse": "extend",
+      "evidence": "003-memory-and-causal-runtime/spec.md:91",
+      "notes": "003-embedder-testing-and-architecture at 75%. Embedding consolidation (010-embedding-consolidation-hf-local-server) and stack hardening (011-embedding-stack-hardening) are in-progress children. The local-first resolveProvider() cascade (ADR-014) is the key decision.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.8,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "5c68c66c44e5a5b4f1025d7d3b50244f012aa34c41084b0db433f7f68487a122",
+      "path": "004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades/decision-record.md",
+      "symbol": "ADR-001-depend-on-011",
+      "kind": "dependency",
+      "signature": "Code graph upgrades depend on packet 011 (validator owner) as hard predecessor; additive enrichment only",
+      "reuse": "compose",
+      "evidence": "004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades/decision-record.md:57",
+      "notes": "011 owns fail-closed trust validation. 014 adds edge evidence classes, confidence backfill, detector provenance only after 011 stabilizes. Routing facade, Leiden clustering, GraphML/Cypher exports are prototype-later (ADR-003). Any graph enrichment must not compete with 011's trust-axis ownership.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.75,
+      "firstIteration": 2
+    }
+  ],
+  "gaps": [
+    {
+      "unit_id": "b83904f010271f84fda34d50bd18ec6cecf1202f852e7433d2468850f835654b",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      "symbol": "005-graph-impact-and-affordance",
+      "kind": "gap",
+      "signature": "Deferred adoption-uplift track (phase runner, edge explanation, affordance evidence, causal-trust display)",
+      "reuse": "extend",
+      "evidence": "spec.md:102",
+      "notes": "005 is the only deferred top-level track (5% complete). Its children (001-phase-runner, 002-edge-explanation, 003-affordance-evidence, 004-causal-trust-display) are all deferred. Two children (005-deep-review-findings, 006-deep-research-review) are abandoned. This is the primary gap in the 026 program.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.85,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "4fedeead9215bf172cf000f6dccb662238ed40e187d6afe41ef461a5b46806ce",
+      "path": "004-code-graph/011-source-bug-and-misalignment-audit/review-report.md",
+      "symbol": "code-graph-read-only-write-violation",
+      "kind": "gap",
+      "signature": "getGraphReadinessSnapshot and getGraphFreshness are documented/contractual read-only but call detectState which writes last_git_head to DB, violating ADR-003 single-writer discipline; function docstrings and status.ts inline comment claim no side effects; P1 idempotent non-corrupting",
+      "reuse": "Fix: move setLastGitHead out of detectState into ensureCodeGraphReady only, or pass mutate:false. The proposed fix is sound and documented.",
+      "evidence": "004-code-graph/011-source-bug-and-misalignment-audit/review-report.md:229-234",
+      "notes": "A /speckit:plan author touching code-graph status/readiness must know this contract violation exists. The write is idempotent (SQLite serializes, same value) so it's non-corrupting, but it makes the read-only promise false.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.82,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "98f8973c9e87bb5298142be75d956271cb8c7fad7b92a34f3ac8648bb98e6f68",
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "code-graph-plugin-bridge-inert-pending-028",
+      "kind": "gap",
+      "signature": "OpenCode code-graph plugin bridge (mk-code-graph-bridge.mjs) is non-functional by deliberate choice; import fix was attempted, smoke-verified, then REVERTED because the runnable bridge calls initializeDb()/sessionManager.init() directly against daemon-owned memory DB (dual-writer hazard); root fix deferred to IPC-backed transport in 028 code-index runtime-integration phase",
+      "reuse": "The bridge stays inert; the README documents the non-functional state. Any planner must know the OpenCode code-graph integration path requires 028 to ship first.",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:48,103",
+      "notes": "This is a genuine open gap: the OpenCode code-graph integration is blocked on 028's IPC-backed transport. The bridge's dual-writer hazard was caught by fresh-model review after mechanical verification passed.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.78,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "36d2a050b072e3dfe26e5e3f17d3a7eabeca6127cb0b4015c0511be747216555",
+      "path": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review/iterations/iteration-005.md",
+      "symbol": "changelog-root-rollup-index-drift",
+      "kind": "gap",
+      "signature": "Per-track ROOT ROLLUP index files not refreshed after 026 changelog tree was flattened to one-subdir-level / flat-files-per-track; they still link to old nested directory shapes and stop at pre-flatten dates, under-reporting and mis-linking the (complete, present) leaf changelogs",
+      "reuse": "A single regeneration pass over the *-root.md rollups in tracks 002/006/007 would clear this drift.",
+      "evidence": "000-release-and-program-cleanup/016-last-50-commits-deep-review/review-changelog-completeness/review-report.md:95",
+      "notes": "Concrete documentation gap: the leaf layer is healthy but the index layer drifted. An operator reading the root rollups sees incomplete coverage.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.7,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "425012d2627a85a9ad8a9febc14940f46ad3213e696fcfecba9559b17aef2a64",
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "orphan-launcher-sweep-noop",
+      "kind": "gap",
+      "signature": "Orphan launcher sweep was verified no-op: all 9 launcher parents are live sessions; launcher-lifecycle fix deferred to 028",
+      "reuse": "wrap",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:50",
+      "notes": "Launchers ARE those sessions' MCP transports — killing them breaks working sessions. The real launcher-lifecycle fix for true owner-exit orphans stays with 028 skill-advisor workstream. Do not attempt to kill old launchers without parent-process classification.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.7,
+      "firstIteration": 2
+    },
+    {
+      "unit_id": "413ae129ebe4716cef83adcf479653890396d6825eafe96571673ca99c348a14",
+      "path": "003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain/spec.md",
+      "symbol": "daemon-recycle-stress-test-model-fidelity",
+      "kind": "gap",
+      "signature": "daemon-recycle-transparency-stress.vitest.ts uses a local replay loop copy rather than the production replaySnapshot() closure in launcher-session-proxy.cjs:595; cannot catch drift in the production closure",
+      "reuse": "The stress test should drive an exported production replay helper or a real proxy recycle path; currently it validates the classifyFrame logic but not the production closure.",
+      "evidence": "003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/review/iterations/iteration-014.md:49",
+      "notes": "P1 test-fidelity finding from the 014 deep review. Downgrade only if the test drives an exported production replay helper.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.65,
+      "firstIteration": 5
+    },
+    {
+      "unit_id": "52c27094213e00a49db5c236cacf1eacdad5652745bc595faf2da08776c6b183",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/spec.md",
+      "symbol": "004-literal-spec-folder-names",
+      "kind": "gap",
+      "signature": "Concrete-token spec-folder naming policy — deferred at 0%",
+      "reuse": "extend",
+      "evidence": "002-spec-kit-internals/spec.md:92",
+      "notes": "Deferred child: naming policy for spec folders. No work started. May matter if future program packets need consistent naming.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.6,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "87b2b0faed7c3133d9ed55af6b5ee09b8f0b700a9a888430312d8b6077c9d916",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/spec.md",
+      "symbol": "003-install-scripts-doctor-realignment",
+      "kind": "gap",
+      "signature": "Install guides/scripts + doctor realignment for post-CocoIndex world — deferred",
+      "reuse": "extend",
+      "evidence": "006-operator-tooling/spec.md:91",
+      "notes": "Deferred at 0%. Post-CocoIndex install scripts not yet updated. Blocked by CocoIndex decoupling (004-code-graph/002) being finalized.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.6,
+      "firstIteration": 1
+    }
+  ],
+  "lowConfidence": [
+    {
+      "unit_id": "ffec9576d175556c7d0f8b2e6abcb70a3b46d6df0a4acce8a395cab22da73f7e",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec.md",
+      "symbol": "007-clean-room-license-audit",
+      "kind": "gap",
+      "signature": "Clean-room license audit for external-project adoption — deferred",
+      "reuse": "extend",
+      "evidence": "000-release-and-program-cleanup/spec.md:95",
+      "notes": "Deferred child. Blocks safe external-project adoption licensing. Low urgency until adoption track (005) is prioritized.",
+      "producedBy": [
+        "mimo"
+      ],
+      "agreement": 1,
+      "agreementEligible": true,
+      "relevance": 0.5,
+      "firstIteration": 1,
+      "droppedBelowGate": 0.55
+    }
+  ],
+  "contradictions": [],
+  "metrics": {
+    "findings": 118,
+    "gatedFindings": 117,
+    "lowConfidenceFindings": 1,
+    "agreementEligible": 117,
+    "contradictions": 0,
+    "agreementRate": 1,
+    "relevanceFloor": 0.992,
+    "reuseCandidates": 53,
+    "integrationPoints": 16,
+    "conventions": 37,
+    "dependencies": 3,
+    "gaps": 8
+  },
+  "sessionId": "ctx-026-1780821288",
+  "lineageMode": "new",
+  "generation": 1,
+  "status": "COMPLETE",
+  "relevanceGate": 0.55,
+  "agreementMin": 1,
+  "executorPool": [
+    "mimo"
+  ],
+  "iterationsCompleted": 5,
+  "seatsByIteration": {
+    "1": {
+      "succeeded": [
+        "mimo"
+      ],
+      "failed": []
+    },
+    "2": {
+      "succeeded": [
+        "mimo"
+      ],
+      "failed": []
+    },
+    "3": {
+      "succeeded": [
+        "mimo"
+      ],
+      "failed": []
+    },
+    "4": {
+      "succeeded": [
+        "mimo"
+      ],
+      "failed": []
+    },
+    "5": {
+      "succeeded": [
+        "mimo"
+      ],
+      "failed": []
+    }
+  },
+  "graphDecision": "STOP_ALLOWED",
+  "corruptionWarnings": [],
+  "seatValidationWarnings": [],
+  "stateLogRepair": {
+    "repaired": false,
+    "droppedBytes": 0
+  }
+}

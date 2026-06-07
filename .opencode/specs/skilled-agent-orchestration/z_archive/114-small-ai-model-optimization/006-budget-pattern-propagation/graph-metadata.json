@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation",
-  "spec_folder": "skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation",
-  "parent_id": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "packet_id": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/006-budget-pattern-propagation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/006-budget-pattern-propagation",
+  "parent_id": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,10 +38,6 @@
     "key_files": [
       ".opencode/skills/cli-opencode/references/context-budget.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
-      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/checklist.md",
-      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -65,31 +61,31 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "Phase E of 114 roadmap. Propagate the context-budget patterns from cli-devin Phase C to cli-opencode (eviction support for larger-context models like DeepSeek-v4-pro / Kimi-k2.6) and sk-prompt (budget-awareness composition guidance in cli_prompt_quality_card.md). 2-stage tool routing port from smallcode is deferred or dropped per research iter-011 verdict (overlaps mcp-code-mode). Effort: ~6-12 hours.",
     "created_at": "2026-05-18T12:42:58.569Z",
-    "last_save_at": "2026-06-05T12:47:32.175Z",
+    "last_save_at": "2026-06-07T09:00:45.775Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

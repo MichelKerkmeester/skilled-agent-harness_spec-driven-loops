@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation",
-  "spec_folder": "skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation",
-  "parent_id": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "packet_id": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/002-sentinel-skill-foundation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/002-sentinel-skill-foundation",
+  "parent_id": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase A of the 114 follow-on roadmap. Create a thin sentinel `sk-small-model` skill that holds only philosophy + pattern index pointing at the real patterns living in `cli-devin/references/` and `cli-opencode/references/`. Wire enhances edges from cli-devin, cli-opencode, sk-prompt, and sk-code into the sentinel so the skill-advisor co-surfaces small-model guidance on any small-model dispatch. Add the \"Small-model dispatch rule\" to AGENTS.md as a sibling to the existing CLI dispatch rule. This phase is the FOUNDATION — every downstream phase (003–006) depends on this routing being in place. Effort: ~6 hours across 2 packets internal to this phase.",
     "created_at": "2026-05-18T12:27:06.089Z",
-    "last_save_at": "2026-06-05T12:47:32.165Z",
+    "last_save_at": "2026-06-07T09:00:45.767Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

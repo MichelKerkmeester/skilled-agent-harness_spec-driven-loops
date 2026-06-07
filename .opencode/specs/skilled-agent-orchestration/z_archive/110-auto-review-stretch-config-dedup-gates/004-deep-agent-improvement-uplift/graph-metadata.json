@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift",
-  "spec_folder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift",
-  "parent_id": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates",
+  "packet_id": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift",
+  "spec_folder": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift",
+  "parent_id": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 H-7) but applied to mutation signatures: `sha256(dimension + mutationType + targetSection + normalized_body_64chars)`. **Authoritative storage: `mutation-coverage.json`** (where the existing `mutations` + `exhausted` arrays live per council §6 evidence at `mutation-coverage.cjs:59-67` and `:80-92`). The reducer at `reduce-state.cjs` MUST be updated to handle the new signature field; `manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` MUST be updated to verify the replay consumer respects signatures.",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.123Z",
+    "last_save_at": "2026-06-07T09:00:45.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

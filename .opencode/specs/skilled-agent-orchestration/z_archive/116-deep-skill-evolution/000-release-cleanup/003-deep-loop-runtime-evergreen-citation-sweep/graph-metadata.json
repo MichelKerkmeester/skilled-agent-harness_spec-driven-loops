@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The 009 cross-skill sweep fixed two incidental citations and surfaced ~63 more transient packet/arc/phase/spec-path references across the five deep-* skills. The evergreen rule (and the sk-doc \"skill docs state desired logic only, no phase/test references\" rule) says runtime docs, feature catalogs, playbooks, and code comments must not cite mutable spec/phase/packet numbers — changelogs are the only legitimate home for those.",
     "created_at": "2026-05-24T05:20:07.210Z",
-    "last_save_at": "2026-06-05T12:47:32.199Z",
+    "last_save_at": "2026-06-07T09:00:45.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

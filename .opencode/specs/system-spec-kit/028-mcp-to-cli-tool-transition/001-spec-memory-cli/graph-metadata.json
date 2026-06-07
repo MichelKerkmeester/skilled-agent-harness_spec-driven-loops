@@ -89,13 +89,13 @@
     ],
     "causal_summary": "The mk-spec-memory daemon's only client surface is the MCP protocol layer: mid-session transport disconnects permanently remove the tools, every session pays schema token overhead, and hooks/cron/CI have no sanctioned path to the daemon at all.",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-06-06T14:09:11.243Z",
+    "last_save_at": "2026-06-07T12:45:00.000Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "last_active_child_id": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
-    "last_active_at": "2026-06-06T13:05:00.000Z"
+    "last_active_at": "2026-06-07T12:45:00.000Z"
   }
 }

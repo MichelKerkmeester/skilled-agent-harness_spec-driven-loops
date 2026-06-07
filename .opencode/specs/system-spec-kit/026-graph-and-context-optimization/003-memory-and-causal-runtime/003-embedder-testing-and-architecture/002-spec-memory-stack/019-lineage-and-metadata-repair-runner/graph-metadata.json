@@ -42,25 +42,25 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-graph-metadata.mjs",
-      ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/109-subphase-recatalog-and-archive/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/111-base-files-renumbering-name-cleanup/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution/graph-metadata.json",
       ".opencode/specs/skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/graph-metadata.json",
       ".opencode/specs/skilled-agent-orchestration/z_archive/048-cli-testing-playbooks/graph-metadata.json",
       ".opencode/specs/skilled-agent-orchestration/z_archive/049-mcp-testing-playbooks/graph-metadata.json",
       ".opencode/specs/skilled-agent-orchestration/z_archive/051-cli-opencode-providers/graph-metadata.json",
       ".opencode/specs/skilled-agent-orchestration/z_archive/053-cli-skill-removal-mcp-clickup/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-code-merger/graph-metadata.json"
+      ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-code-merger/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/056-sk-code-fullstack-branch/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/059-agent-implement-code/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/003-followup-research/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/001-agent-context/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/002-agent-debug/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/004-agent-review/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/005-agent-orchestrate/graph-metadata.json"
     ],
     "entities": [
       {
@@ -72,7 +72,7 @@
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/graph-metadata.json",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This is **Phase 19** of the spec memory stack. It handles the metadata cleanup class left after the sufficiency-gate investigation: stale lineage identities, stale graph metadata schemas, invalid importance tiers, and graph metadata that fails V8 because archived relationship fields still point at foreign packets.",
     "created_at": "2026-05-19T19:41:49Z",
-    "last_save_at": "2026-05-30T10:12:02.226Z",
+    "last_save_at": "2026-06-07T09:00:46.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

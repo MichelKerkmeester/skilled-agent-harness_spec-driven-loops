@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
   "description": "Feature Specification: deep-review gate-model reconciliation",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "gate-model",
     "reconciliation"
   ],
-  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "lastUpdated": "2026-06-07T14:08:18.061Z",
   "specId": "008",
   "folderSlug": "deep-review-gate-model-reconciliation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "000-release-cleanup"
   ],

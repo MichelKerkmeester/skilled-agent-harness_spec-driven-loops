@@ -18,21 +18,30 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/008-deep-loop-folder-binding",
-  "description": "Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone guard across the /deep:* command family, so a context run pointed at an identifiable folder no longer misroutes to a standalone dir. (Relocated from system-spec-kit/029; was meant to be phase 8 of 134-deep-context-gathering.)",
+  "description": "Feature Specification: Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone ",
   "keywords": [
+    "feature",
+    "specification",
+    "fix",
     "deep-loop",
     "spec-folder",
     "binding",
+    "extract",
+    "named",
+    "path",
+    "positional",
+    "scope",
+    "add",
     "fail-closed",
-    "standalone-guard",
-    "deep-command",
-    "folder-binding",
-    "positional-scope"
+    "standalone"
   ],
-  "lastUpdated": "2026-06-07T12:21:00.000Z",
+  "lastUpdated": "2026-06-07T14:08:17.989Z",
   "specId": "008",
   "folderSlug": "deep-loop-folder-binding",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-deep-context-gathering"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

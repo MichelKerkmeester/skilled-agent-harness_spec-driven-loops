@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/119-comment-ref-hygiene",
-  "spec_folder": "skilled-agent-orchestration/119-comment-ref-hygiene",
+  "packet_id": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene",
+  "spec_folder": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/119-comment-ref-hygiene/001-rule-and-cleanup",
-    "skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer"
+    "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/001-rule-and-cleanup",
+    "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer"
   ],
   "manual": {
     "depends_on": [],
@@ -168,7 +168,7 @@
     ],
     "causal_summary": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and task/checklist ids — directly into inline code comments. Those artifacts get renamed, renumbered, or archived while the code lives on, so the comment rots into a dangling, misleading pointer. Phase 001 added a text rule to sk-code. Despite the rule, 27 files required cleanup 100 commits later — text rules alone are insufficient.",
     "created_at": "2026-05-27T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:32.377Z",
+    "last_save_at": "2026-06-07T09:00:45.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

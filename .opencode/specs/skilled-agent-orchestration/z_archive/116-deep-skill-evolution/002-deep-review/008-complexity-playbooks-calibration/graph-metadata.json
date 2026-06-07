@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,49 +44,49 @@
       "implementation-summary.md",
       ".opencode/skills/deep-review/SKILL.md",
       ".opencode/skills/deep-review/assets/deep_review_config.json",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/plan.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/checklist.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/implementation-summary.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/description.json",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/graph-metadata.json",
       ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
       ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md",
       ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md",
       ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md",
       ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md"
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md",
+      ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+      "resource-map.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -99,18 +99,6 @@
         "name": "deep_review_config.json",
         "kind": "config",
         "path": ".opencode/skills/deep-review/assets/deep_review_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -150,6 +138,48 @@
         "source": "derived"
       },
       {
+        "name": "graph-vocabulary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-validator.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-convergence.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-graph.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -172,41 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Primary Constraint",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary. Operators now need a compact manual playbook that exercises those shipped surfaces without changing production defaults prematurely.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-06-06T09:52:34.889Z",
+    "last_save_at": "2026-06-07T09:00:45.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

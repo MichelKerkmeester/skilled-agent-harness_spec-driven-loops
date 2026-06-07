@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Execute all 22 `deep-loop-runtime` scenarios via `cli-devin` SWE-1.6 (deterministic `rg`/`sed`/`node`/Vitest inspection), record a verdict + evidence per scenario, and gate the council-dependent categories (06/07/08) so a downstream false-green is not recorded in phase 002.",
     "created_at": "2026-05-27T07:08:08.391Z",
-    "last_save_at": "2026-06-05T12:47:32.351Z",
+    "last_save_at": "2026-06-07T09:00:45.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

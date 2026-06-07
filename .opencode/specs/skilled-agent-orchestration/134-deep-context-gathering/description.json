@@ -24,18 +24,14 @@
   "specFolder": "skilled-agent-orchestration/134-deep-context-gathering",
   "description": "Feature Specification: deep-context loop (Phase Parent)",
   "keywords": [
+    "feature",
+    "specification",
     "deep-context",
-    "context",
-    "gathering",
-    "reuse",
-    "catalog",
     "loop",
-    "runtime",
-    "robustness",
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-06T21:40:00.000Z",
+  "lastUpdated": "2026-06-07T14:08:17.976Z",
   "specId": "134",
   "folderSlug": "deep-context-gathering",
   "parentChain": [

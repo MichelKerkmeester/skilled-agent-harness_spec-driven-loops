@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Execute all 45 `deep-review` scenarios via `cli-devin` SWE-1.6 (deterministic `rg`/`sed` inspection for most categories; sandboxed stress tests for 07), record a verdict + evidence per scenario, and keep the sandboxed command-flow category isolated so a stress-test side effect does not corrupt the validation packet or surrounding state.",
     "created_at": "2026-05-27T07:08:08.394Z",
-    "last_save_at": "2026-06-05T12:47:32.354Z",
+    "last_save_at": "2026-06-07T09:00:45.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

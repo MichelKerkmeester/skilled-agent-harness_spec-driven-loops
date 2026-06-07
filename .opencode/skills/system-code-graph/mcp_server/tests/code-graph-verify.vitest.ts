@@ -457,6 +457,9 @@ describe('code-graph verify', () => {
         allowInlineIndex: false,
         allowInlineFullScan: false,
       });
+      expect(mocks.handleCodeGraphQuery).toHaveBeenCalledWith(expect.objectContaining({
+        verificationGateBypass: 'gold-query-verifier',
+      }));
     });
 
     it('persists the last gold verification when persistBaseline is true', async () => {

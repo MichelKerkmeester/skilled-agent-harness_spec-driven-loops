@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The deep-review and deep-research skills depend on **18 production files** that live inside `.opencode/skills/system-spec-kit/mcp_server/lib/{deep-loop,coverage-graph}/` and `mcp_server/handlers/coverage-graph/`. A dependency survey shows those files are **100% consumed by deep-* skills only** — zero callers in other MCP handler families, zero non-deep callers anywhere in spec-kit. No ADR justifies the current placement; it appears to be accumulated drift from early MCP server scaffolding.",
     "created_at": "2026-05-22T17:50:00Z",
-    "last_save_at": "2026-06-05T12:47:32.287Z",
+    "last_save_at": "2026-06-07T09:00:45.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

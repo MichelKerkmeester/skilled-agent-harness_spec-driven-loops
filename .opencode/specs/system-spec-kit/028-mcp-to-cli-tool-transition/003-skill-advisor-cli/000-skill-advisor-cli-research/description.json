@@ -1,21 +1,18 @@
 {
   "level": "1",
-  "specFolder": "specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
-  "description": "Feasibility study: dual-stack CLI fallback for mk_skill_advisor (9 tools) at zero feature loss, leveraging the settled spec-memory record",
+  "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
+  "description": "Feature Specification: Skill-Advisor CLI Feasibility",
   "keywords": [
-    "feasibility",
-    "skill",
+    "feature",
+    "specification",
+    "skill-advisor",
     "cli",
-    "fallback",
-    "mk_skill_advisor",
-    "dual-stack",
-    "research"
+    "feasibility"
   ],
-  "lastUpdated": "2026-06-06T14:11:09.629Z",
+  "lastUpdated": "2026-06-07T14:08:18.252Z",
   "specId": "000",
   "folderSlug": "skill-advisor-cli-research",
   "parentChain": [
-    "specs",
     "system-spec-kit",
     "028-mcp-to-cli-tool-transition",
     "003-skill-advisor-cli"

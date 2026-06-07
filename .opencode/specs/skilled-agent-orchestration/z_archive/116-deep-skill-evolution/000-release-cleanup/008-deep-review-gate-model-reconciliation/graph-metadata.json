@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The deep-review legal-stop gate model has drifted across documentation surfaces. The `003-deep-review` phase-5 deep-research loop surfaced a 4-gap cluster (LG-0013, LG-0016, LG-0031, LG-0032) plus a deeper finding during this packet's investigation: the AUTHORITATIVE producer (both `deep_start-review-loop_{auto,confirm}.yaml` workflows) emits **9 gates** with the `Gate` suffix at the `step_emit_blocked_stop` append_jsonl step, but every documentation surface describes a different, incomplete model:",
     "created_at": "2026-05-23T18:38:12.948Z",
-    "last_save_at": "2026-06-06T09:52:34.856Z",
+    "last_save_at": "2026-06-07T09:00:45.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

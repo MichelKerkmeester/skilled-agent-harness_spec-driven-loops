@@ -1,0 +1,324 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      "symbol": "createCodeIndexMcpServer",
+      "kind": "integration_point",
+      "signature": "function createCodeIndexMcpServer(): Server",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/index.ts:74",
+      "relevance": 0.9,
+      "notes": "Creates MCP Server with ListTools + CallTool handlers dispatching via codeGraphTools.dispatch(). IPC bridge + idle monitor + owner-lease lifecycle wired here. A new daemon service copies this pattern."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
+      "symbol": "handleTool",
+      "kind": "integration_point",
+      "signature": "async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:62",
+      "relevance": 0.95,
+      "notes": "Central dispatch: validates args via validateToolArgs(), routes to 8 handler functions. Returns null for unknown tools. Composable — wrap or extend for new tool surfaces."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/index.ts",
+      "symbol": "dispatch",
+      "kind": "integration_point",
+      "signature": "async function dispatch(name: string, args: Record<string, unknown>): Promise<MCPResponse>",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/index.ts:9",
+      "relevance": 0.85,
+      "notes": "Thin wrapper over handleTool with unknown-tool error fallback. Called by index.ts CallToolRequestSchema handler."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "CODE_GRAPH_TOOL_SCHEMAS",
+      "kind": "reuse_candidate",
+      "signature": "const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:186",
+      "relevance": 0.9,
+      "notes": "Array of 8 MCP tool definitions (scan/query/status/context/classify/verify/apply/detect_changes). Published to ListTools. Reuse: import to register same tools on a different server surface."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "validateToolArgs",
+      "kind": "reuse_candidate",
+      "signature": "function validateToolArgs(toolName: string, rawInput: Record<string, unknown>): Record<string, unknown>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:213",
+      "relevance": 0.85,
+      "notes": "Validates MCP input against published schema: additionalProperties:false, enum, minLength. Throws field-specific Error. Reuse in any MCP dispatch layer."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "symbol": "handleCodeGraphQuery",
+      "kind": "reuse_candidate",
+      "signature": "async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1198",
+      "relevance": 0.95,
+      "notes": "Handles outline/calls_from/calls_to/imports_from/imports_to/blast_radius. Calls ensureCodeGraphReady before read. Reuse: call directly for programmatic graph queries without MCP transport."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/context.ts",
+      "symbol": "handleCodeGraphContext",
+      "kind": "reuse_candidate",
+      "signature": "async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/context.ts:170",
+      "relevance": 0.9,
+      "notes": "LLM-oriented graph neighborhoods. Delegates to buildContext() from code-graph-context.ts. Blocked-read path with canonical readiness vocabulary."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      "symbol": "handleCodeGraphScan",
+      "kind": "reuse_candidate",
+      "signature": "async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Array<{ type: string; text: string }> }>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:312",
+      "relevance": 0.9,
+      "notes": "Full/incremental scan: indexFiles → persistIndexedFileResult → cross-file edge resolution → dangling prune. Scope-change and zero-node guards. Reuse: trigger programmatic reindex."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts",
+      "symbol": "handleDetectChanges",
+      "kind": "reuse_candidate",
+      "signature": "async function handleDetectChanges(args: DetectChangesArgs): Promise<MCPResponse>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:212",
+      "relevance": 0.85,
+      "notes": "Read-only preflight: maps unified-diff to structural symbols via line-range overlap. Blocks on stale graph. Reuse: integrate into CI/PR pipelines for impact analysis."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "getDb",
+      "kind": "integration_point",
+      "signature": "function getDb(): Database.Database",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:295",
+      "relevance": 0.95,
+      "notes": "Returns singleton better-sqlite3 handle for code-graph.sqlite. All DB operations flow through this. Lazy-init via initDb(). Central seam for DB access."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryOutline",
+      "kind": "reuse_candidate",
+      "signature": "function queryOutline(filePath: string): CodeNode[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:909",
+      "relevance": 0.9,
+      "notes": "Returns all code_nodes for a file. Used by query handler outline op and detect_changes. Direct DB query — no MCP wrapper needed."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryEdgesFrom",
+      "kind": "reuse_candidate",
+      "signature": "function queryEdgesFrom(symbolId: string, edgeType?: string): CodeEdgeTargetResult[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:993",
+      "relevance": 0.9,
+      "notes": "Outbound edges with optional edge-type filter. Returns {edge, targetNode}. Core building block for call-graph and import queries."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "getStats",
+      "kind": "reuse_candidate",
+      "signature": "function getStats(): { totalFiles, totalNodes, totalEdges, lastScanTimestamp, lastGitHead, dbFileSize, schemaVersion, nodesByKind, edgesByType, ... }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:1131",
+      "relevance": 0.85,
+      "notes": "Comprehensive graph health stats. Used by status handler. Returns DB file size, schema version, node/edge breakdowns, parse health summary."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "ensureCodeGraphReady",
+      "kind": "reuse_candidate",
+      "signature": "async function ensureCodeGraphReady(rootDir: string, options?: EnsureReadyOptions): Promise<ReadyResult>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:624",
+      "relevance": 0.95,
+      "notes": "Auto-triggers selective/full reindex before reads. Returns ReadyResult with freshness/action/reason. Every read handler calls this. Reuse: gate any code-graph-dependent operation."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "persistIndexedFileResult",
+      "kind": "reuse_candidate",
+      "signature": "function persistIndexedFileResult(result: ParseResult, opts?: { deferDanglingTargetPrune?: boolean }): void",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:583",
+      "relevance": 0.8,
+      "notes": "Atomic per-file persistence: upsertFile → replaceNodes → replaceEdges. Transactional. Used by scan handler loop."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts",
+      "symbol": "buildReadinessBlock",
+      "kind": "reuse_candidate",
+      "signature": "function buildReadinessBlock(ready: ReadyResult): CodeGraphReadinessBlock",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts:47",
+      "relevance": 0.85,
+      "notes": "Maps ReadyResult to CodeGraphReadinessBlock with canonicalReadiness + trustState. All 4 handlers emit this. Reuse: consistent readiness envelope for any new handler."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      "symbol": "startIpcSocketServer",
+      "kind": "reuse_candidate",
+      "signature": "async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<IpcSocketServerHandle>",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:44",
+      "relevance": 0.85,
+      "notes": "Multi-client IPC bridge over Unix socket. Each client gets its own MCP Server instance. Shared by memory/code-index/skill-advisor daemons. Reuse for new daemon service."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      "symbol": "resolveIpcSocketPath",
+      "kind": "reuse_candidate",
+      "signature": "function resolveIpcSocketPath(dbDir: string): string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:16",
+      "relevance": 0.75,
+      "notes": "Resolves daemon-ipc.sock path under the DB dir. Convention: <dbDir>/daemon-ipc.sock. Import for consistent socket path resolution."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+      "symbol": "DATABASE_DIR",
+      "kind": "integration_point",
+      "signature": "const DATABASE_DIR: string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/core/config.ts:47",
+      "relevance": 0.85,
+      "notes": "Resolved code-graph DB directory. Skill-local: .opencode/skills/system-code-graph/mcp_server/database. Overridable via SPECKIT_CODE_GRAPH_DB_DIR. All DB paths derive from this."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "getEmbedderAdapter",
+      "kind": "reuse_candidate",
+      "signature": "function getEmbedderAdapter(provider: string, model: string, dimensionsOverride?: number): ExecutionRouterAdapter",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:262",
+      "relevance": 0.9,
+      "notes": "Returns cached or new ExecutionRouterAdapter for provider:model. Handles ollama delegation and factory-backed providers (openai/voyage/hf-local). Credential cache invalidation on adapter rotation."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "resolveDimensions",
+      "kind": "reuse_candidate",
+      "signature": "function resolveDimensions(provider: string, model: string, dimensions?: number): number",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:74",
+      "relevance": 0.8,
+      "notes": "Resolves embedding dimensions: explicit override > startup profile match > default. Used by getEmbedderAdapter and reindex. Import for consistent dim resolution."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "symbol": "teardownEmbedderAfterSwap",
+      "kind": "reuse_candidate",
+      "signature": "async function teardownEmbedderAfterSwap(provider: string, model: string): Promise<void>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:291",
+      "relevance": 0.75,
+      "notes": "Disposes cached direct adapter after active-embedder swap. Called by reindex completion. Ensures stale provider resources are released."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+      "symbol": "getActiveEmbedder",
+      "kind": "reuse_candidate",
+      "signature": "function getActiveEmbedder(db: Database.Database): ActiveEmbedder",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:21",
+      "relevance": 0.85,
+      "notes": "Reads active embedder name/dim/provider from vec_metadata table. Returns DEFAULT_ACTIVE_EMBEDDER when unset. Used by reindex and reconcile."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+      "symbol": "ensureVecTableForDim",
+      "kind": "reuse_candidate",
+      "signature": "function ensureVecTableForDim(db: Database.Database, dim: number): string",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:62",
+      "relevance": 0.8,
+      "notes": "Creates vec_<dim> table if missing. Returns table name. Used by reindex before writing vectors. Idempotent."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "startReindex",
+      "kind": "reuse_candidate",
+      "signature": "function startReindex(options: StartReindexOptions, runtimeOptions?: ReindexRuntimeOptions): string",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:662",
+      "relevance": 0.9,
+      "notes": "Queues embedder reindex job: reads memory_index rows, embeds via adapter, writes vectors to staging shard, atomic rename on completion. Returns job ID."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "cancelJob",
+      "kind": "reuse_candidate",
+      "signature": "function cancelJob(jobId: string, db?: Database.Database): ReindexJob | null",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:712",
+      "relevance": 0.75,
+      "notes": "Sets job status to 'cancelled'. Worker checks status before each batch and aborts cleanly. Staging shard is cleaned up."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "generateDocumentEmbedding",
+      "kind": "reuse_candidate",
+      "signature": "async function generateDocumentEmbedding(text: string): Promise<Float32Array | null>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:663",
+      "relevance": 0.85,
+      "notes": "Generates document embedding via lazy singleton provider. Circuit breaker: returns null on consecutive failures. LRU cache. Rate limiting. Primary embedding entry point for indexing."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "generateQueryEmbedding",
+      "kind": "reuse_candidate",
+      "signature": "async function generateQueryEmbedding(query: string): Promise<Float32Array | null>",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:718",
+      "relevance": 0.85,
+      "notes": "Query embedding with lower cache priority than documents. Circuit breaker. Use for search query vectorization."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "symbol": "invalidateProviderSingleton",
+      "kind": "reuse_candidate",
+      "signature": "function invalidateProviderSingleton(): void",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/shared/embeddings.ts:445",
+      "relevance": 0.8,
+      "notes": "Drops cached provider singleton so next getProvider() re-resolves. Call after active-embedder pointer changes (e.g. completed reindex). Prevents stale model/dim usage."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+      "symbol": "BoundedMap",
+      "kind": "reuse_candidate",
+      "signature": "class BoundedMap<K, V> extends Map<K, V> { readonly maxSize: number }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts:26",
+      "relevance": 0.7,
+      "notes": "LRU-evicting Map with maxSize cap. Access promotes entry to most-recent. Reuse for any bounded in-memory cache."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+      "symbol": "TtlMap",
+      "kind": "reuse_candidate",
+      "signature": "class TtlMap<K, V> { set(key, value, ttlMs?), get(key), pruneExpired() }",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts:67",
+      "relevance": 0.7,
+      "notes": "TTL + LRU bounded cache. BoundedMap-backed. Auto-prunes expired entries on access. Reuse for time-sensitive caches."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts",
+      "symbol": "rotateIfNeeded",
+      "kind": "reuse_candidate",
+      "signature": "function rotateIfNeeded(auditPath: string, maxBytes: number, maxFiles: number, now?: Date): boolean",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts:12",
+      "relevance": 0.65,
+      "notes": "Rotates audit log when exceeding maxBytes, enforces maxFiles cap. Reuse for any log rotation need."
+    }
+  ]
+}

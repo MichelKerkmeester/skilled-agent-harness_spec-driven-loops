@@ -96,7 +96,10 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 | 008 | `008-real-world-usefulness-test-planning/` | Real-world usefulness test planning (nested phase parent) | complete |
 | 009 | `009-system-code-graph-uplift-phase-parent/` | system-code-graph uplift (nested phase parent) | complete |
 | 010 | `010-playbook-validation-and-hardening/` | Code-graph manual-testing playbook validation (22 scenarios) + remediation/hardening | complete |
-
+| 011 | `011-source-bug-and-misalignment-audit/` | Source bug and documentation misalignment audit for system-code-graph | complete (remediation pending) |
+| 012 | `012-empty-graph-first-time-auto-scan/` | Empty-graph first-time auto-establish under default scope | complete |
+| 013 | `013-owner-lease-election-race/` | Owner-lease single-writer election race investigation | investigated (fix deferred) |
+| 014 | `014-gold-query-battery-repair/` | Repair stale Code Graph gold-query battery after extraction | complete |
 ### Phase Transition Rules
 
 - Each child MUST pass `validate.sh` independently.
@@ -110,6 +113,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | `001-mcp-shared-dependency-startup-fix` | `009-system-code-graph-uplift-phase-parent` | Earlier children stable before later children build on them | Each child validates independently |
+| `013-owner-lease-election-race` | `014-gold-query-battery-repair` | Deferred race investigation does not block fixture repair | Repaired battery passes `code_graph_verify` |
 <!-- /ANCHOR:phase-map -->
 
 ---

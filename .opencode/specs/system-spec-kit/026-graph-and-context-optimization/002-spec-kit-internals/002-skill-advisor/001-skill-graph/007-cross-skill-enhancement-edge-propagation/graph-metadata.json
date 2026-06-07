@@ -53,7 +53,6 @@
       ".opencode/skills/system-skill-advisor/graph-metadata.json",
       "review/review-report.md",
       ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
-      ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/cross-skill-auto-propagation-research-codex-2026-05-15.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -134,12 +133,6 @@
         "source": "derived"
       },
       {
-        "name": "cross-skill-auto-propagation-research-codex-2026-05-15.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/104-cli-devin-creation/evidence/cross-skill-auto-propagation-research-codex-2026-05-15.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When a new skill ships, system-skill-advisor's daemon + indexer correctly auto-discover the new skill's own outbound edges. But the architecture has no mechanism to update OTHER skills' `edges.enhances[]` lists to include the new arrival. The cli-devin v1.0.2.0 work (commits 269ad9d75 and 99a606000) had to manually backfill this pattern TWICE in the same day — once for cli-devin (which prompted the audit) and once for cli-opencode (which had silently lacked the same edges since it shipped). The audit-by-coincidence model is brittle: cli-opencode's gap could have remained unnoticed indefinitely.",
     "created_at": "2026-05-15T15:30:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.346Z",
+    "last_save_at": "2026-06-07T09:00:46.328Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

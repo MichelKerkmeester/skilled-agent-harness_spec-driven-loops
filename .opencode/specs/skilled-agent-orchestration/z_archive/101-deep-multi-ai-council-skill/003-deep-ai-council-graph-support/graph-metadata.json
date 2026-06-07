@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
-  "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
-  "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
+  "packet_id": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "spec_folder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "parent_id": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phase 003 implements dedicated derived graph support for Deep AI Council deliberation. The graph adds bounded MCP query and convergence context without making graph rows authoritative over packet-local council artifacts.",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-05-30T10:12:00.836Z",
+    "last_save_at": "2026-06-07T09:00:45.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

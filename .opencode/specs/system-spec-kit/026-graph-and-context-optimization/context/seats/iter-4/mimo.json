@@ -1,0 +1,314 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      "symbol": "runCappedPool",
+      "kind": "reuse_candidate",
+      "signature": "function runCappedPool({ items, concurrency, worker, now?, onEvent? }): Promise<{ results, summary }>",
+      "reuse": "Concurrency-capped parallel pool primitive with never-throw settlement and ordered results. Generalizes council dispatchSeats with K-in-flight cap. Inject worker pattern.",
+      "evidence": "fanout-pool.cjs:138",
+      "relevance": 0.95,
+      "notes": "Pure pool primitive — worker is injected. The `xargs -P K` shape. settleItem never throws; mirrors council settleSeat."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      "symbol": "appendStatusLedger",
+      "kind": "reuse_candidate",
+      "signature": "function appendStatusLedger(ledgerPath, entry): void",
+      "reuse": "JSONL orchestration-status.log ledger appender. One line per lifecycle event (started/completed/failed/salvaged/converged).",
+      "evidence": "fanout-pool.cjs:235",
+      "relevance": 0.85,
+      "notes": "Simple fs.appendFileSync; follows the proven orchestration ledger pattern used across fan-out runs."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateResearch",
+      "kind": "reuse_candidate",
+      "signature": "function evaluateResearch(signals, gaps, contradictions, unverified): { blockers, trace }",
+      "reuse": "Convergence evaluator for research loops. Five signals (questionCoverage, claimVerificationRate, contradictionDensity, sourceDiversity, evidenceDepth) with blocking guards and weighted thresholds.",
+      "evidence": "convergence.cjs:200",
+      "relevance": 0.9,
+      "notes": "Blocking guards for source_diversity and evidence_depth; weighted signals for question coverage and claim verification. Returns blockers[] + trace[]."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateReview",
+      "kind": "reuse_candidate",
+      "signature": "function evaluateReview(signals, gaps, contradictions): { blockers, trace }",
+      "reuse": "Convergence evaluator for review loops. Five signals (dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation). P0 resolution rate is blocking_guard.",
+      "evidence": "convergence.cjs:234",
+      "relevance": 0.9,
+      "notes": "Dimension coverage and P0 resolution are blocking guards; finding stability and evidence density are weighted."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "evaluateContext",
+      "kind": "reuse_candidate",
+      "signature": "function evaluateContext(signals, gaps, contradictions): { blockers, trace }",
+      "reuse": "Convergence evaluator for context loops. Five signals (sliceCoverage, reuseCatalogCoverage, agreementRate, relevanceFloor, dependencyCompleteness). Three blocking guards.",
+      "evidence": "convergence.cjs:262",
+      "relevance": 0.9,
+      "notes": "Reuse catalog coverage is weighted highest (0.30) per reuse-first principle. Slice coverage, relevance floor, and agreement rate are blocking guards."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "symbol": "computeCompositeScore",
+      "kind": "reuse_candidate",
+      "signature": "function computeCompositeScore(signals, loopType): number",
+      "reuse": "Weighted composite convergence score computation. Different weight profiles for research (5 signals), review (5 signals), and context (5 signals). Returns 0-1 rounded to 3 decimals.",
+      "evidence": "convergence.cjs:116",
+      "relevance": 0.85,
+      "notes": "Loop-type-specific weight tables; context weights reuseCatalog highest at 0.30. Used by convergence entrypoint to surface score alongside blockers."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      "symbol": "acquireWriterLock",
+      "kind": "convention",
+      "signature": "function acquireWriterLock(lockPath): () => void (release)",
+      "use": "Exclusive `wx` file-open writer lock with retry-on-contention. Returns release function. Used by upsert.cjs to serialize coverage-graph writes.",
+      "evidence": "cli-guards.cjs:176",
+      "relevance": 0.9,
+      "notes": "Retry interval defaults 25ms, max wait 1s, configurable via DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS env. Atomics.wait-based sleepSync for contention backoff."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "symbol": "validateNamespaceValue",
+      "kind": "convention",
+      "signature": "function validateNamespaceValue(value, key, makeInputError): string",
+      "use": "Rejects null bytes, '..' traversal, and absolute paths outside repo root. Used by all deep-loop CLI scripts to validate specFolder and sessionId.",
+      "evidence": "cli-guards.cjs:69",
+      "relevance": 0.95,
+      "notes": "findRepoRoot walks up looking for .git marker. isInsideRepo checks relative path doesn't escape. Defense-in-depth against path traversal in namespace-scoped values."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "symbol": "classifyExitCode",
+      "kind": "convention",
+      "signature": "function classifyExitCode(err): number",
+      "use": "Maps error.code to exit code: INPUT_VALIDATION→3, DB/SQLITE/EACCES→2, default→1. Used by all deep-loop CLI scripts for structured exit codes.",
+      "evidence": "cli-guards.cjs:111",
+      "relevance": 0.85,
+      "notes": "Convention: 0=ok, 1=script error, 2=DB error, 3=input validation error. Every CLI entrypoint follows this contract."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "buildLineageCommand",
+      "kind": "reuse_candidate",
+      "signature": "function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission): { command, args, input?, env }",
+      "use": "Builds the CLI subprocess command for a fan-out lineage. Supports 5 executor kinds: cli-codex, cli-gemini, cli-claude-code, cli-opencode, cli-devin.",
+      "evidence": "fanout-run.cjs:259",
+      "relevance": 0.95,
+      "notes": "Each executor kind has its own CLI flag shape. codex uses stdin (- prompt), gemini uses argv, claude uses -p, opencode uses run + prompt arg, devin uses --print + stdin. This is the per-executor command builder a new loop type would need to extend."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "runLineageProcess",
+      "kind": "reuse_candidate",
+      "signature": "function runLineageProcess(command, cmdArgs, opts): Promise<{ status, signal, stdout, error? }>",
+      "use": "Non-blocking async spawn for lineage subprocesses. Replaces spawnSync so K lineages actually overlap under the concurrency cap. Timeout via SIGTERM; maxBuffer cap at 20MB.",
+      "evidence": "fanout-run.cjs:188",
+      "relevance": 0.9,
+      "notes": "Key design: returns Promise so the pool's K-in-flight cap actually overlaps. Drains stderr so child never blocks on full pipe. SIGTERM on timeout; signal field preserves timeout-as-failure signal."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+      "symbol": "runSalvageSweep",
+      "kind": "reuse_candidate",
+      "signature": "function runSalvageSweep(lineageDir, loopType, savedStdout): { salvaged, failed }",
+      "use": "Recovers missing iteration files from captured subprocess stdout after a CLI executor fails to write outputs. Writes salvaged_from_stdout events to state log.",
+      "evidence": "fanout-salvage.cjs:69",
+      "relevance": 0.85,
+      "notes": "Runs before the failure throw so iteration recovery is never lost. extractTextFromOpencodeJson parses opencode --format json text parts from stdout."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "symbol": "mergeResearchRegistries",
+      "kind": "reuse_candidate",
+      "signature": "function mergeResearchRegistries(lineageData): mergedRegistry",
+      "use": "Deduplicates research findings by findingId across lineages; merges open/resolved questions and ruled-out directions with _lineages attribution.",
+      "evidence": "fanout-merge.cjs:91",
+      "relevance": 0.85,
+      "notes": "Cross-model attribution via lineage labels. Computes avg convergence score across lineages. Exported for unit testing."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "symbol": "mergeReviewRegistries",
+      "kind": "reuse_candidate",
+      "signature": "function mergeReviewRegistries(lineageData): mergedRegistry",
+      "use": "Strongest-restriction severity rollup for review findings. Any lineage with active P0 → merged FAIL. Deduplicates by findingId; escalates severity across lineages.",
+      "evidence": "fanout-merge.cjs:183",
+      "relevance": 0.85,
+      "notes": "SEVERITY_RANK: P0=3, P1=2, P2=1. Cross-lineage P0 wins. Verdict: FAIL if any P0, CONDITIONAL if any P1, else PASS. Exported for unit testing."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+      "symbol": "dispatchCouncilSeats",
+      "kind": "reuse_candidate",
+      "signature": "async function dispatchCouncilSeats({ roundId, seats, dispatchSeat, context?, now? }): Promise<{ round_id, started_at_iso, completed_at_iso, results[], summary }>",
+      "use": "Parallel council seat dispatcher. Normalizes seat descriptors, dispatches all seats concurrently via Promise.all, captures per-seat timing/status/errors.",
+      "evidence": "multi-seat-dispatch.cjs:129",
+      "relevance": 0.9,
+      "notes": "settleSeat never throws (mirrors settleItem pattern). Seats are normalized to {id, input}. Now/settleSeat are injectable for testing. Summary: total/succeeded/failed/all_failed."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/convergence.cjs",
+      "symbol": "evaluateCouncilConvergence",
+      "kind": "reuse_candidate",
+      "signature": "async function evaluateCouncilConvergence(ns, options?): convergenceResult",
+      "use": "Council graph convergence evaluator. Computes agreementRatio, dissentDensity, evidenceDepth, unresolvedCriticalDisagreements, decisionConfidence from council graph nodes/edges.",
+      "evidence": "convergence.cjs:147",
+      "relevance": 0.9,
+      "notes": "Thresholds: agreementRatio≥0.67, dissentDensity≤0.25, evidenceDepth≥1.0, unresolvedCritical=0, decisionConfidence≥0.65. bridgePayload() flattens to standard graph_decision/graph_signals shape."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "maybeBridgeLeaseHolder",
+      "kind": "integration_point",
+      "signature": "async function maybeBridgeLeaseHolder({ serviceName, leaseResult, loggerPrefix, dbDir, legacyReport?, probeTimeoutMs?, connect?, bridge? }): { action, reason, socketPath? }",
+      "use": "Core bridge decision for launcher lease holders. Probes daemon socket (deepProbe=true requires JSON-RPC reply), bridges stdio to socket if alive, returns respawn decision if dead.",
+      "evidence": "launcher-ipc-bridge.cjs:311",
+      "relevance": 0.95,
+      "notes": "deepProbe=true detects hung daemon (accepts connection but never responds). Prefers stored lease socketPath over recomputation. Speckit IPC supports both UDS and tcp:// endpoints. Used by all 3 launcher types."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "probeDaemon",
+      "kind": "integration_point",
+      "signature": "function probeDaemon(socketPath, options?): Promise<{ status, reason }>",
+      "use": "Liveness probe for MCP daemon sockets. Sends JSON-RPC initialize request when deepProbe=true. Returns 'alive' or 'dead' with reason (timeout, socket-error, json-rpc-reply, etc).",
+      "evidence": "launcher-ipc-bridge.cjs:124",
+      "relevance": 0.9,
+      "notes": "Uses StringDecoder for multibyte UTF-8 safety across chunk boundaries. Bounded probe timeout (default 5s, max 6999ms). The reap/bridge decision always passes deepProbe:true."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "symbol": "createSessionProxy",
+      "kind": "integration_point",
+      "signature": "function createSessionProxy({ socketPath, stdin?, stdout?, probe?, connect?, log?, classify?, maxReattachAttempts?, maxColdStartAttempts?, keepaliveIntervalMs? }): { start, stop }",
+      "use": "Reconnecting MCP session proxy. Survives daemon recycles transparently by re-attaching to fresh sockets and replaying pending requests. Classifies frames as replayable vs unsafe.",
+      "evidence": "launcher-session-proxy.cjs:338",
+      "relevance": 0.95,
+      "notes": "Three states: REATTACHING → CONNECTED → CLOSED. Deep-probe wait with backoff ladder [100,250,500,1000,1500]ms. Pending request tracker distinguishes replayable (memory_search, session_resume, etc) from unsafe (memory_delete, checkpoint_restore). Keepalive pings every 10s with 5s timeout. Protocol version mismatch is terminal (non-retryable -32002)."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "symbol": "classifyFrame",
+      "kind": "convention",
+      "signature": "function classifyFrame(frame): boolean",
+      "use": "Determines if a JSON-RPC frame is safe to replay after daemon recycle. REPLAYABLE_TOOL_NAMES (memory_search, session_resume, etc) return true; UNSAFE_TOOL_NAMES (memory_delete, checkpoint_restore) return false.",
+      "evidence": "launcher-session-proxy.cjs:123",
+      "relevance": 0.9,
+      "notes": "initialize and ping are always replayable. notifications/ methods are replayable. tools/call checks tool name against two sets. memory_save is replayable due to content-hash dedup."
+    },
+    {
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "acquireOwnerLeaseFile",
+      "kind": "integration_point",
+      "signature": "function acquireOwnerLeaseFile(): { acquired, lease?, holder?, classification, reclaimed? }",
+      "use": "Single-writer ownership via exclusive fs.openSync('wx') on owner lease file. Classifies existing lease: stale-pid, ppid-1-orphan, stale-heartbeat-reclaim, live-owner, unknown-eperm.",
+      "evidence": "mk-spec-memory-launcher.cjs:365",
+      "relevance": 0.95,
+      "notes": "Heartbeat TTL: 60s, refreshed at TTL/2 interval. Re-read after atomic rename confirms surviving owner. classifyOwnerLease checks liveness + ppid + heartbeat. writeOwnerLeaseFileExclusive uses wx+fsync for crash durability."
+    },
+    {
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "recycleDaemonInPlace",
+      "kind": "integration_point",
+      "signature": "async function recycleDaemonInPlace(graceMs, deps?): Promise<void>",
+      "use": "RSS-breach-triggered in-place daemon recycle. Sends SIGTERM then SIGKILL to model-server and context-server, but keeps the launcher lease held across recycle so replacement daemon is respawned by child exit handler.",
+      "evidence": "mk-spec-memory-launcher.cjs:1053",
+      "relevance": 0.9,
+      "notes": "Deps are injectable for testing (getContextChild, hfControl, isChildRunning, etc). Key design: lease is NOT cleared during recycle — launcher process stays alive, replacement daemon respawns via backoff. rssBreachSelfExitInProgress flag prevents re-entrant recycle."
+    },
+    {
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "symbol": "writeAtomicJsonFile",
+      "kind": "convention",
+      "signature": "function writeAtomicJsonFile(targetPath, payload, operation): boolean",
+      "use": "Atomic JSON file write via tmp+rename pattern. PID-suffixed temp file, 0o600 mode. Handles durable-write-unavailable codes (ENOSPC, EDQUOT, EEROFS) gracefully.",
+      "evidence": "mk-spec-memory-launcher.cjs:140",
+      "relevance": 0.9,
+      "notes": "Convention across launcher subsystem: write tmp → rename atomic. Durable-write failures are logged once and return false (best-effort) rather than crashing. Used for lease files, pid files, state files."
+    },
+    {
+      "path": ".opencode/bin/lib/model-server-supervision.cjs",
+      "symbol": "createModelServerSupervisor",
+      "kind": "reuse_candidate",
+      "signature": "function createModelServerSupervisor(options?): ModelServerSupervisor",
+      "use": "Shared hf-model-server launcher supervision. Handles launch, RSS watchdog, crash-loop guard, demand listener, process-tree reaping, idle eviction.",
+      "evidence": "model-server-supervision.cjs:1",
+      "relevance": 0.85,
+      "notes": "Extracted to shared lib so both mk-spec-memory-launcher and mk-skill-advisor-launcher reuse it. Configurable via env: HF_MODEL_SERVER_*, WATCHDOG_*, CRASH_LOOP_*. The launcher-local factory pre-seeds writeLease/shouldExitLauncher/onRssBreach defaults."
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
+      "symbol": "/doctor:update orchestrator",
+      "kind": "integration_point",
+      "signature": "YAML workflow: flock → probe → migrate → snapshot → dashboard → dependency.order → validation → state.log",
+      "use": "Single-instance, flock-protected database rebuild chain. Executes dependency DAG in order. Snapshots every in-scope DB before mutation. Restores failed+downstream DBs on retry exhaustion.",
+      "evidence": "doctor_update.yaml:24",
+      "relevance": 0.9,
+      "notes": "SIGINT follows ADR-001/ADR-007: set cancel, ~5s SQLite settle window, restore in-flight snapshot, log, exit 130. Every abort path must rm -f .doctor-update.flock before exit. State log at mcp_server/database/.doctor-update.last-run.json."
+    },
+    {
+      "path": ".opencode/commands/doctor/assets/doctor_memory.yaml",
+      "symbol": "/doctor:memory diagnostic",
+      "kind": "integration_point",
+      "signature": "YAML workflow: Discovery → gate → analysis → gate → drift classification → recommendation → state log",
+      "use": "Read-only memory health check + drift detection. Reads memory_health + memory_stats → classifies drift signals → emits recommendations. Never mutates spec docs or skill files.",
+      "evidence": "doctor_memory.yaml:4",
+      "relevance": 0.85,
+      "notes": "Mutation boundaries explicitly listed: allowed_targets are provider-keyed sqlite DBs only. Forbidden: spec docs, skill files, code-graph DBs, deep-loop DBs. Rebuilds owned by /doctor:update."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      "symbol": "scoreAdvisorPrompt",
+      "kind": "integration_point",
+      "signature": "function scoreAdvisorPrompt(prompt, options): { recommendations, ambiguous, unknown }",
+      "use": "5-lane fusion scorer for skill advisor recommendations. Lanes: explicit_author (0.42), lexical (0.28), graph_causal (0.13), derived_generated (0.12), semantic_shadow (0.05). Applies ambiguity detection, breadth/multi-concern abstention gates.",
+      "evidence": "fusion.ts:1",
+      "relevance": 0.95,
+      "notes": "Lane weights overridable via SPECKIT_ADVISOR_LANE_WEIGHTS_JSON env. Class C breadth-build and multi-concern abstention gates prevent routing broad greenfield builds to single skills. Shadow scoring with learned weights runs alongside live scoring for delta telemetry."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+      "symbol": "SCORER_LANE_REGISTRY",
+      "kind": "convention",
+      "signature": "const SCORER_LANE_REGISTRY: readonly { id, weight, shadowWeight, live, damping? }[]",
+      "use": "Canonical lane definitions with live/shadow weights. 5 lanes: explicit_author, lexical, graph_causal, derived_generated, semantic_shadow. Overridable via env.",
+      "evidence": "lane-registry.ts:65",
+      "relevance": 0.85,
+      "notes": "isLiveScorerLane() gate excludes non-live lanes from scoring. Shadow weights mirror live weights for A/B telemetry. DEFAULT_SCORER_LANE_WEIGHTS exported for shadow-only scoring paths."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
+      "symbol": "handleAdvisorRecommend",
+      "kind": "integration_point",
+      "signature": "async function handleAdvisorRecommend(args: unknown): Promise<{ content: [{ type: string, text: string }] }>",
+      "use": "MCP handler for advisor_recommend tool. Validates input via Zod schema, canonicalizes workspaceRoot via realpath, checks cache, scores via 5-lane fusion, records shadow deltas, caches result.",
+      "evidence": "advisor-recommend.ts:320",
+      "relevance": 0.9,
+      "notes": "Prompt-safe: never persists raw prompt text. Cache key includes sourceSignature (freshness:generation:lastGenerationBump). SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 returns disabledOutput. Default thresholds: 0.8 confidence, 0.35 uncertainty."
+    },
+    {
+      "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "symbol": "getIpcSocketPath",
+      "kind": "integration_point",
+      "signature": "function getIpcSocketPath(serviceName, options?): string",
+      "use": "Resolves IPC socket path for MCP services. Supports UDS and tcp:// endpoints. SPECKIT_IPC_SOCKET_DIR env override. Service-specific defaults for mk-spec-memory, mk-code-index, mk-skill-advisor.",
+      "evidence": "launcher-ipc-bridge.cjs:59",
+      "relevance": 0.9,
+      "notes": "Three service names with distinct default DB dirs. tcp:// endpoints bypass file-existence checks. Socket file name: daemon-ipc.sock. Used by all launcher types for bridge socket resolution."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      "symbol": "batchUpsert",
+      "kind": "integration_point",
+      "signature": "db.batchUpsert(nodes, edges): { insertedNodes, insertedEdges, rejectedEdges }",
+      "use": "Coverage-graph and council-graph batch upsert. Validates node kinds and edge relations per loop type. Rejects self-loops. Acquires writer lock before write.",
+      "evidence": "upsert.cjs:241",
+      "relevance": 0.9,
+      "notes": "Writer lock path: .deep-loop-graph-writer.lock or .council-graph-writer.lock. Events input (--events) filters into nodes/edges by type field. VALID_KINDS and VALID_RELATIONS are per-loop-type whitelists from the DB module."
+    }
+  ]
+}

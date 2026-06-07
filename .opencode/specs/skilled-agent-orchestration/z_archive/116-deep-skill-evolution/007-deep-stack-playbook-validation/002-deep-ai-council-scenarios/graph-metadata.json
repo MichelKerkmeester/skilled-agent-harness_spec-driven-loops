@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Execute all 32 `deep-ai-council` scenarios — the deterministic majority via `cli-devin` SWE-1.6 (`rg`/`sed` inspection) and the six graph-value A/B reasoning scenarios via `cli-codex` GPT-5.5 medium-fast — record a verdict + evidence per scenario, and hold the council-graph-dependent categories (08/09) behind phase 001's `06--coverage-graph` / `07--script-entry-points` / `08--council` gate so a downstream false-green is not recorded.",
     "created_at": "2026-05-27T07:08:08.393Z",
-    "last_save_at": "2026-06-05T12:47:32.352Z",
+    "last_save_at": "2026-06-07T09:00:45.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

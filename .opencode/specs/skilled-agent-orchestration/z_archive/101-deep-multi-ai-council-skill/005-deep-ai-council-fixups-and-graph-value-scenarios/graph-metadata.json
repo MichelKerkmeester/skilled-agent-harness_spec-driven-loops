@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
-  "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
-  "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
+  "packet_id": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "spec_folder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "parent_id": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,8 +48,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
       ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/graph-metadata.json",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
@@ -83,12 +81,6 @@
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -198,11 +190,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When 101/004's playbook run validated all 26 scenarios, two pre-existing vitest failures surfaced:",
     "created_at": "2026-05-11T08:10:00Z",
-    "last_save_at": "2026-06-05T12:47:32.039Z",
+    "last_save_at": "2026-06-07T09:00:45.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

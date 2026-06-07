@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger. Without (a) a single documented dispatch methodology and (b) a cross-skill rollup, the run cannot be executed consistently or assert release readiness for the deep-loop family.",
     "created_at": "2026-05-27T07:08:08.399Z",
-    "last_save_at": "2026-06-05T12:47:32.360Z",
+    "last_save_at": "2026-06-07T09:00:45.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

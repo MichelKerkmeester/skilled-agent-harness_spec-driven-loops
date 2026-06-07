@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer",
-  "spec_folder": "skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer",
-  "parent_id": "skilled-agent-orchestration/119-comment-ref-hygiene",
+  "packet_id": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer",
+  "spec_folder": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer",
+  "parent_id": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -215,7 +215,7 @@
     ],
     "causal_summary": "Packet 119 added the canonical \"no ephemeral-artifact pointers\" rule to `sk-code §4`. Despite that rule, 27 files in the ~100 commits that followed still required cleanup (commit `5040eac9ef`, 2026-05-29). The pattern is consistent: AIs start sessions knowing the rule, then drift into adding spec-folder/packet/phase/ADR/task ids as traceability anchors during long implementation runs. Text rules alone cannot fix attention drift.",
     "created_at": "2026-05-29T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:32.382Z",
+    "last_save_at": "2026-06-07T09:00:45.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

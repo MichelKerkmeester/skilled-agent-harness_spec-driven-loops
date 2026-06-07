@@ -1,17 +1,21 @@
 {
-  "specFolder": "135-skill-readme-standardization/001-readme-template-and-standard",
-  "description": "Phase 1: readme-template-and-standard",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/001-readme-template-and-standard",
+  "description": "Feature Specification: README template and standard",
   "keywords": [
-    "phase",
-    "readme-template-and-standard"
+    "feature",
+    "specification",
+    "readme",
+    "template",
+    "standard"
   ],
-  "lastUpdated": "2026-06-07T08:58:32.587Z",
+  "lastUpdated": "2026-06-07T14:08:17.997Z",
   "specId": "001",
   "folderSlug": "readme-template-and-standard",
   "parentChain": [
+    "skilled-agent-orchestration",
     "135-skill-readme-standardization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

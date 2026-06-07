@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging",
-  "spec_folder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging",
+  "packet_id": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging",
+  "spec_folder": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/001-h1-final-line-contract",
-    "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
-    "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/003-h3-async-iife-h6-lazy-mkdir",
-    "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/004-stretch-goals"
+    "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/001-h1-final-line-contract",
+    "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
+    "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/003-h3-async-iife-h6-lazy-mkdir",
+    "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/004-stretch-goals"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,7 +44,6 @@
     "key_files": [
       "ai-council/council-report.md",
       ".opencode/skills/sk-code-review/SKILL.md",
-      "skilled-agent-orchestration/106-opencode-auto-review-teachings-research/research/review-report.md",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
       "spec.md"
     ],
@@ -59,12 +58,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code-review/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "skilled-agent-orchestration/106-opencode-auto-review-teachings-research/research/review-report.md",
         "source": "derived"
       },
       {
@@ -118,7 +111,7 @@
     ],
     "causal_summary": "Packet 106 identified 9 HIGH-impact + 6 MEDIUM-impact reusable patterns from the upstream `dzianisv/opencode-plugins` `auto-review` package. The 5 quick-win teachings (H-1 through H-6, all LOW-cost) can be adopted in 5-8 hours total to deliver CI gate integration, recursion defense, and measurable hook performance improvements across our review skills (sk-code-review, deep-review, deep-research) and OpenCode plugin ecosystem (skill-advisor hooks, code-graph feedback handler). Without adoption, we leave proven mechanisms on the table while our review infrastructure remains weaker than necessary.",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.102Z",
+    "last_save_at": "2026-06-07T09:00:45.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

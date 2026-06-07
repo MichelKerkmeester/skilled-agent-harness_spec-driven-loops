@@ -41,12 +41,14 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned_(not_implemented)",
+    "status": "implemented_core_delivered_successor_hardening_remains",
     "key_files": [
       "spec.md",
       "tasks.md",
       "plan.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
+      ".opencode/bin/spec-memory.cjs"
     ],
     "entities": [
       {
@@ -194,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the Dual-stack spec-memory CLI implementation: daemon-backed CLI alongside the MCP registration specification.",
+    "causal_summary": "Phase 1 delivered the daemon-backed spec-memory CLI core: runtime command generation from TOOL_DEFINITIONS, Zod argv validation, IPC calls to the existing daemon, launcher auto-spawn, exit-code mapping, and a stable shim. Full hardening and runtime integration remain in successor phases.",
     "created_at": "2026-06-06T14:09:11.246Z",
-    "last_save_at": "2026-06-06T14:09:11.246Z",
+    "last_save_at": "2026-06-07T12:45:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

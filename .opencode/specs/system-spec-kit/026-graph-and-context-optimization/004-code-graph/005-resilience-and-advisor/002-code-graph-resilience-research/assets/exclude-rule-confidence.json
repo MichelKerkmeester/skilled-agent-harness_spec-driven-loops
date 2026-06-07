@@ -129,9 +129,9 @@
   },
   "evidence": {
     "local_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-48",
-      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1178-1268",
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts:132-154",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:41-47",
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts:1178-1268",
       ".gitignore:23-126",
       "research/iterations/iteration-004.md:3-8",
       "research/iterations/iteration-005.md:11-43"

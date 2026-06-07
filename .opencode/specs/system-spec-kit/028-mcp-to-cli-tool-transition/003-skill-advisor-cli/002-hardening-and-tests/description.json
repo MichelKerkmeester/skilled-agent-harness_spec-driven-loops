@@ -1,17 +1,22 @@
 {
-  "specFolder": "003-skill-advisor-cli/002-hardening-and-tests",
-  "description": "Phase 2: hardening-and-tests",
+  "level": "1",
+  "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
+  "description": "Feature Specification: Phase 2: Hardening and Tests",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "hardening-and-tests"
+    "hardening",
+    "tests"
   ],
-  "lastUpdated": "2026-06-06T14:45:18.100Z",
+  "lastUpdated": "2026-06-07T14:08:18.260Z",
   "specId": "002",
   "folderSlug": "hardening-and-tests",
   "parentChain": [
+    "system-spec-kit",
+    "028-mcp-to-cli-tool-transition",
     "003-skill-advisor-cli"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

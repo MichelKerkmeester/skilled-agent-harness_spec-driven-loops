@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 005 makes Phase D validator output survivable and visible. The reducer registry now carries `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`; the dashboard shows search debt before active risks; and review-report compiler instructions include an always-visible Search Ledger section before the audit appendix.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:00.995Z",
+    "last_save_at": "2026-06-07T09:00:45.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

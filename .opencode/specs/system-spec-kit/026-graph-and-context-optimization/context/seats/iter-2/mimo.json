@@ -1,0 +1,234 @@
+{
+  "findings": [
+    {
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "dual-writer-hazard-revert",
+      "kind": "convention",
+      "signature": "Bridge fix reverted: runnable bridge initializes memory DB directly in second process — exact corruption class the single-writer lease prevents",
+      "reuse": "wrap",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:48-49",
+      "relevance": 0.95,
+      "notes": "Broken-and-inert is safer than working-and-racy. The bridge stays inert until 028 code-index phase delivers IPC-backed transport. Any future code that touches the memory DB from outside the daemon lease MUST go through IPC, never direct init."
+    },
+    {
+      "path": "007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md",
+      "symbol": "ADR-001-pid-start-time-identity",
+      "kind": "convention",
+      "signature": "Lease PID accepted as owner only if alive AND real start time matches lease-recorded start time within 2s",
+      "reuse": "import",
+      "evidence": "007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md:63",
+      "relevance": 0.9,
+      "notes": "Closes PID-recycling false-SKIP that masks crashes as healthy. Uses `ps -o lstart=`; falls back to liveness-only on unreadable start time. Any daemon lease validation must include start-time identity check."
+    },
+    {
+      "path": "004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md",
+      "symbol": "ADR-002-standalone-mcp-topology",
+      "kind": "convention",
+      "signature": "Standalone system_code_graph MCP registration; ADR-001 Q3 (co-resident) explicitly superseded",
+      "reuse": "import",
+      "evidence": "004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md:57-63",
+      "relevance": 0.9,
+      "notes": "Namespace changes from mcp__mk_spec_memory__code_graph_* to mcp__system_code_graph__*. Tool IDs remain stable. Path-flattening canonical: no mcp_server/code_graph/ intermediate. Any new MCP server follows this standalone topology pattern."
+    },
+    {
+      "path": "004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in/decision-record.md",
+      "symbol": "ADR-001-end-user-scope-default",
+      "kind": "convention",
+      "signature": "Code graph excludes .opencode/skills/** by default; 97% files/98.3% nodes were skill internals",
+      "reuse": "import",
+      "evidence": "004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in/decision-record.md:68-81",
+      "relevance": 0.9,
+      "notes": "Env SPECKIT_CODE_GRAPH_INDEX_SKILLS=true or per-call includeSkills:true for opt-in. Per-call overrides env (ADR-002). Scope fingerprint stored in code_graph_metadata; requires full scan when stored and active scope differ. Any scan-default change must update the fingerprint and require explicit full scan."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-003-shared-index-scope-ssot",
+      "kind": "convention",
+      "signature": "Single index-scope.ts is the canonical source for memory/code-graph path exclusions; spec-doc filters are additive overlays only",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:134",
+      "relevance": 0.9,
+      "notes": "Changing EXCLUDED_FOR_MEMORY automatically changes spec-doc classification and discovery. z_archive is intentionally NOT excluded (ARCHIVE_MULTIPLIERS 0.1 decay handles deprioritization). Any new exclusion must land in index-scope.ts, not scattered walkers."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-004-delete-not-downgrade-z-future",
+      "kind": "convention",
+      "signature": "Delete all z_future rows regardless of tier rather than downgrading; z_future must never be indexed",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:172",
+      "relevance": 0.85,
+      "notes": "The invariant is 'z_future must never be indexed' — not 'lower priority'. Downgrading leaves forbidden rows searchable. Constitutional auto-surface was dominated by z_future research chunks before cleanup."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-005-constitutional-tier-downgrade",
+      "kind": "convention",
+      "signature": "Invalid constitutional saves downgraded to important with governance_audit row; path must contain /constitutional/",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:204",
+      "relevance": 0.85,
+      "notes": "Constitutional tier is path-gated: only files under /constitutional/ can be constitutional. Enforced at SQL write layer (ADR-007), not just handler layer. Any mutation surface (save, update, checkpoint restore, post-insert) must enforce this guard."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-010-realpath-hardening",
+      "kind": "convention",
+      "signature": "resolveCanonicalPath() prefers fs.realpathSync() to prevent symlinks from bypassing invariant enforcement",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:375",
+      "relevance": 0.8,
+      "notes": "Symlinked files can bypass path-based exclusion checks if only path.resolve() is used. Falls back to caller-supplied path for missing/broken targets so atomic save flows still work."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
+      "symbol": "ADR-002-planner-first-default",
+      "kind": "convention",
+      "signature": "/memory:save defaults to planner-first output (non-mutating); full-auto is explicit fallback only",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md:107",
+      "relevance": 0.85,
+      "notes": "Default path returns structured planner output instead of mutating. Reconsolidation-on-save (ADR-003) and post-insert enrichment (ADR-004) are opt-in only. Quality-loop auto-fix (ADR-006) removed from default path. Hard legality checks remain as blockers."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/decision-record.md",
+      "symbol": "ADR-001-prefix-registry",
+      "kind": "convention",
+      "signature": "Model-keyed PREFIX_REGISTRY + env-var override replacing hardcoded Nomic prefix; empty string = no prefix",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/decision-record.md:69-84",
+      "relevance": 0.8,
+      "notes": "Two registries to keep in sync (TS HfLocalProvider + Python cocoindex). Legacy TASK_PREFIX export retained for back-compat. Empty string is a valid override (explicitly no prefix); undefined means fall through to registry. Wrong prefix silently degrades retrieval ~5-8%."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md",
+      "symbol": "ADR-001-onnx-rejection",
+      "kind": "convention",
+      "signature": "ONNX Runtime backend rejected: 5x slower on Apple Silicon at parity-preserving settings; sbert remains default",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md:68",
+      "relevance": 0.75,
+      "notes": "Neural Engine barely active for Gemma (23% ops, 77% CPU). Static-pad128 is fast but breaks parity (mean cosine 0.869). At parity-preserving settings ONNX is 3.5x slower. The ONNX code path is removed; rejected-experiment record preserved in packet."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
+      "symbol": "ADR-001-entity-density-cache-invalidation",
+      "kind": "dependency",
+      "signature": "invalidateEntityDensityCache() wired into post-commit branch of memory_save and memory_bulk_delete handlers",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md:31",
+      "relevance": 0.85,
+      "notes": "Call AFTER commit, not before — failed saves must NOT invalidate cache. Per-call overhead ~µs (in-process Map clear). Burst writes now propagate to entity-density signal immediately. Any handler that mutates memory_index rows must invalidate the cache post-commit."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
+      "symbol": "ADR-002-graph-channel-preservation-parsing",
+      "kind": "convention",
+      "signature": "SPECKIT_GRAPH_CHANNEL_PRESERVATION parsed as permissive boolean; '0'/'no'/'off'/'' now correctly disable",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md:75-79",
+      "relevance": 0.75,
+      "notes": "BREAKING for users setting =0 (they now actually get disabled). Default-ON preserved. Aligns with how every other SPECKIT_* flag is parsed. Any new SPECKIT_* env flag must use the same permissive boolean parser."
+    },
+    {
+      "path": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md",
+      "symbol": "ADR-001-CF-hybrid-manifest",
+      "kind": "convention",
+      "signature": "C+F hybrid manifest-driven greenfield: 86→15 source files; levels eliminated internally; single manifest drives scaffold+validator",
+      "reuse": "import",
+      "evidence": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md:69",
+      "relevance": 0.9,
+      "notes": "Three orthogonal axes replace level scalar: kind + capabilities + presets. Single manifest (spec-kit-docs.json) drives scaffolder AND validator — drift structurally impossible. Inline section gates preserve markdown authoring. Follow-on packet implements this; 026 only designs it."
+    },
+    {
+      "path": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md",
+      "symbol": "ADR-005-level-vocabulary-invariance",
+      "kind": "convention",
+      "signature": "Level 1/2/3/3+ is the SOLE public/AI-facing vocabulary; preset/capability/kind are STRICTLY private",
+      "reuse": "import",
+      "evidence": "002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design/decision-record.md:223-242",
+      "relevance": 0.95,
+      "notes": "AI behavior + user conversation flow must remain byte-identical. Workflow-invariance CI test greps public surfaces for banned vocabulary. Internal vocabulary lives ONLY in manifest + resolver + shell wrapper. Any new feature that would require exposing preset/capability to users must add a new Level instead."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
+      "symbol": "ADR-007-scoped-content-router-exception",
+      "kind": "convention",
+      "signature": "content-router.ts has documented scoped preservation exception for Tier 3 default-disable guard",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md:346",
+      "relevance": 0.7,
+      "notes": "Eight-category switch, Tier 1 logic, Tier 2 matching, and target selection are preserved. The documented exception is the Tier 3 default-disable and manual-review guard. Changelog and release notes must reflect this honestly."
+    },
+    {
+      "path": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md",
+      "symbol": "ADR-001-source-framing",
+      "kind": "convention",
+      "signature": "Reddit post treated as primary-source field report with appropriate skepticism; findings passage-anchored",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md:60",
+      "relevance": 0.7,
+      "notes": "Every finding anchors to specific paragraph. Recommendation labels reflect evidence quality, not assumed validity. Structural conclusions stand independently of exact percentages. Any future research phase must preserve this source-framing discipline."
+    },
+    {
+      "path": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md",
+      "symbol": "ADR-002-discrepancy-preservation",
+      "kind": "convention",
+      "signature": "926-vs-858 sessions and 18903-vs-11357 turns discrepancies preserved explicitly, never normalized",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/001-claude-optimization-settings/decision-record.md:163-165",
+      "relevance": 0.7,
+      "notes": "Smoothing introduces artificial precision the source doesn't support. NFR-D01 in spec.md makes preservation a non-functional requirement. Downstream planning can bound precision correctly. Any document referencing these counts must show both numbers."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-007-sql-layer-tier-guards",
+      "kind": "convention",
+      "signature": "Constitutional-tier guard enforced at SQL write layer; checkpoint restore validates rows inside transaction barrier",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:279-284",
+      "relevance": 0.85,
+      "notes": "Handler-only checks leave blind spots for internal callers and restore paths. Restore rejection is all-or-nothing (atomic). Audit uses action='tier_downgrade_non_constitutional_path'. Any new mutation surface must go through the SQL-layer guard."
+    },
+    {
+      "path": "004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades/decision-record.md",
+      "symbol": "ADR-001-depend-on-011",
+      "kind": "dependency",
+      "signature": "Code graph upgrades depend on packet 011 (validator owner) as hard predecessor; additive enrichment only",
+      "reuse": "compose",
+      "evidence": "004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades/decision-record.md:57",
+      "relevance": 0.75,
+      "notes": "011 owns fail-closed trust validation. 014 adds edge evidence classes, confidence backfill, detector provenance only after 011 stabilizes. Routing facade, Leiden clustering, GraphML/Cypher exports are prototype-later (ADR-003). Any graph enrichment must not compete with 011's trust-axis ownership."
+    },
+    {
+      "path": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+      "symbol": "ADR-011-cleanup-transaction-snapshot",
+      "kind": "convention",
+      "signature": "Cleanup apply rebuilds its plan inside the transaction instead of trusting pre-transaction snapshot",
+      "reuse": "import",
+      "evidence": "003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md:404",
+      "relevance": 0.75,
+      "notes": "Concurrent writes between plan generation and apply could leave violating rows behind. Dry-run output remains informative but the authoritative plan for mutation lives inside the transaction. Any cleanup/repair CLI must rebuild its plan inside the apply transaction."
+    },
+    {
+      "path": "008-runtime-defect-fixes/implementation-summary.md",
+      "symbol": "orphan-launcher-sweep-noop",
+      "kind": "gap",
+      "signature": "Orphan launcher sweep was verified no-op: all 9 launcher parents are live sessions; launcher-lifecycle fix deferred to 028",
+      "reuse": "wrap",
+      "evidence": "008-runtime-defect-fixes/implementation-summary.md:50",
+      "relevance": 0.7,
+      "notes": "Launchers ARE those sessions' MCP transports — killing them breaks working sessions. The real launcher-lifecycle fix for true owner-exit orphans stays with 028 skill-advisor workstream. Do not attempt to kill old launchers without parent-process classification."
+    },
+    {
+      "path": "001-research-and-baseline/spec.md",
+      "symbol": "R10-trust-axis-separation",
+      "kind": "convention",
+      "signature": "Old structural-artifact bundle replaced by trust-axis separation: provenance, evidence status, freshness authority as separate fields",
+      "reuse": "import",
+      "evidence": "001-research-and-baseline/spec.md:33",
+      "relevance": 0.9,
+      "notes": "Contract before packaging: any downstream reader trying to treat cached startup, dashboard, or structural artifacts as ready-made defaults must be pointed back to trust-axis and freshness prerequisites first. R10 replacement is explicit in spec and ADRs."
+    }
+  ]
+}

@@ -1,30 +1,22 @@
 {
   "level": "3",
-  "specFolder": "132-cli-gemini-deprecation",
-  "description": "Deprecate project .gemini runtime surface and remove active non-spec mentions across the public repo while preserving all specs as historic records",
+  "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation",
+  "description": "Feature Specification: Deprecate project .gemini runtime surface",
   "keywords": [
+    "feature",
+    "specification",
     "deprecate",
     "project",
     "gemini",
     "runtime",
-    "surface",
-    "remove",
-    "active",
-    "non-spec",
-    "mentions",
-    "across",
-    "public",
-    "repo",
-    "while",
-    "preserving",
-    "specs",
-    "historic",
-    "records"
+    "surface"
   ],
-  "lastUpdated": "2026-06-05T07:40:49.644Z",
+  "lastUpdated": "2026-06-07T14:08:17.971Z",
   "specId": "132",
   "folderSlug": "cli-gemini-deprecation",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "05-06-26_08-40__deleted-checked-in-project-gemini-runtime-files.md"

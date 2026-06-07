@@ -26,23 +26,25 @@
       "deep-context",
       "context",
       "gathering",
+      "loop",
       "reuse",
       "catalog",
-      "loop",
-      "runtime",
-      "robustness",
-      "parity",
-      "convergence",
-      "coverage-graph"
+      "deep",
+      "convergence-gated",
+      "assembles",
+      "implementation-ready",
+      "existing",
+      "codebase"
     ],
     "importance_tier": "high",
     "status": "phase_parent",
     "key_files": [
-      "spec.md",
       "001-context-loop-foundation/spec.md",
       "002-runtime-robustness-parity/spec.md",
       "003-runtime-feature-utilization/spec.md",
-      "004-reference-architecture-alignment/spec.md"
+      "004-reference-architecture-alignment/spec.md",
+      "001-context-loop-foundation/research/research.md",
+      "spec.md"
     ],
     "entities": [
       {
@@ -52,7 +54,7 @@
         "source": "derived"
       },
       {
-        "name": "deep-context loop",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -62,11 +64,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement There",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The deep-context loop assembles implementation-ready, reuse-first context from the existing codebase before planning. Phase 001 shipped the loop (skill, command, agent, loop_type='context' coverage-graph and convergence, Context Report, advisor registration); phase 002 brought it to durability and validation parity with deep-research and deep-review on the shared deep-loop-runtime; phase 003 (formerly packet 135) hardened cross-skill runtime-feature auto-utilization; phase 004 aligns the skill's reference layout and smart-router to its mature siblings.",
+    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase. `/speckit:plan` discovers context ad-hoc and `/speckit:implement` relies on whatever the plan captured, so reusable code is missed, stale references and context-rot creep in, and there is no saturation signal for \"enough context gathered.\" A first build closed that gap, but it landed as a host-driven loop that does not yet use the shared runtime's durability and validation layer as fully as the mature deep loops do.",
     "created_at": "2026-06-06T14:09:09.974Z",
-    "last_save_at": "2026-06-06T20:12:18.970Z",
+    "last_save_at": "2026-06-07T09:00:45.322Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

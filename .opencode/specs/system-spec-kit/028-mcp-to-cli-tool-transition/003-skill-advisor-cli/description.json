@@ -20,23 +20,24 @@
     "002-hardening-and-tests",
     "003-runtime-integration"
   ],
-  "specFolder": "003-skill-advisor-cli",
-  "description": "Dual-stack CLI implementation for 003-skill-advisor-cli paired with runtime hooks and OpenCode plugin",
+  "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+  "description": "Feature Specification: Skill-Advisor CLI Workstream (Phase Parent)",
   "keywords": [
-    "dual-stack",
+    "feature",
+    "specification",
+    "skill-advisor",
     "cli",
-    "implementation",
-    "003-skill-advisor-cli",
-    "paired",
-    "runtime",
-    "hooks",
-    "opencode",
-    "plugin"
+    "workstream",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-06-06T15:05:00.000Z",
+  "lastUpdated": "2026-06-07T14:08:18.248Z",
   "specId": "003",
   "folderSlug": "skill-advisor-cli",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "028-mcp-to-cli-tool-transition"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

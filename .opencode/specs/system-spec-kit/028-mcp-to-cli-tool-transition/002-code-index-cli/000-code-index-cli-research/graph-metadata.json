@@ -46,6 +46,7 @@
       "research/research.md",
       "research/lineages/gpt/research.md",
       "research/orchestration-summary.json",
+      "research/gap-audit/lineages/gpt-gap/research.md",
       "research/orchestration-status.log",
       "spec.md",
       "plan.md",
@@ -203,7 +204,7 @@
     ],
     "causal_summary": "The mk_code_index MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path. The daemon architecture (launcher + IPC socket + owner lease, shared launcher-ipc-bridge.cjs) mirrors mk-spec-memory, whose CLI feasibility is already settled.",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-06-06T14:11:08.284Z",
+    "last_save_at": "2026-06-07T09:00:47.229Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

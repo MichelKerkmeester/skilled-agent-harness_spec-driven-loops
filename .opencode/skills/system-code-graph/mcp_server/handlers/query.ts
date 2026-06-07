@@ -34,6 +34,7 @@ export interface QueryArgs {
   maxDepth?: number;
   unionMode?: 'single' | 'multi';
   minConfidence?: number;
+  verificationGateBypass?: 'gold-query-verifier';
 }
 
 const SUPPORTED_EDGE_TYPES = [
@@ -862,7 +863,7 @@ function summarizeWeakestGraphEdgeEnrichment(
   return weakest;
 }
 
-function shouldBlockReadPath(readiness: ReadyResult): boolean {
+function shouldBlockReadPath(readiness: ReadyResult, verificationGateBypassed = false): boolean {
   // False-safe contract (BUG-01 fix): answer ONLY on a fresh graph. Any
   // non-fresh state must block rather than return a possibly-wrong structural
   // answer with status:'ok'. The previous predicate keyed only on
@@ -872,7 +873,8 @@ function shouldBlockReadPath(readiness: ReadyResult): boolean {
   // inlineIndexPerformed:false`). Both returned ok over a stale graph. We now
   // gate on freshness directly and also refuse a failed gold-verification gate,
   // matching `detect_changes` readinessRequiresBlock for a single contract.
-  return readiness.freshness !== 'fresh' || readiness.verificationGate === 'fail';
+  return readiness.freshness !== 'fresh'
+    || (!verificationGateBypassed && readiness.verificationGate === 'fail');
 }
 
 function buildFallbackDecision(readiness: ReadyResult): FallbackDecision | null {
@@ -1260,7 +1262,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     };
   }
 
-  if (shouldBlockReadPath(readiness)) {
+  if (shouldBlockReadPath(readiness, args.verificationGateBypass === 'gold-query-verifier')) {
     return {
       content: [{
         type: 'text',

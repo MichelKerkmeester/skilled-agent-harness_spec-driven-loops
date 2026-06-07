@@ -1,0 +1,268 @@
+{
+  "reuseCandidates": [
+    {
+      "unit_id": "457e4b62d03d61688014d28f4b155d1ccf0b95cc767a83ed8c9b06774f41df0e",
+      "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "symbol": "CODE_GRAPH_TOOL_SCHEMAS",
+      "kind": "reuse_candidate",
+      "signature": "export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:186",
+      "notes": "Canonical Code Graph tool registry; preserve the eight stable tool IDs as CLI command/subcommand inputs.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.98,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "3a181f9777114dd750aa3ed3407008b423c35b2b9decda8ca6ecf878bba4f6fe",
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/tools/index.ts",
+      "symbol": "TOOL_DEFINITIONS",
+      "kind": "reuse_candidate",
+      "signature": "export const TOOL_DEFINITIONS: ToolDefinition[]",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/tools/index.ts:37",
+      "notes": "Canonical Skill Advisor plus Skill Graph tool registry for CLI parity.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.97,
+      "firstIteration": 1
+    }
+  ],
+  "integrationPoints": [
+    {
+      "unit_id": "d0cab1dcf3d152771a86c5d084bf0533f91eb4577b66718302188e4f43a349ca",
+      "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "symbol": "shouldBlockReadPath",
+      "kind": "integration_point",
+      "signature": "shouldBlockReadPath(readiness: ReadyResult): boolean",
+      "reuse": "preserve",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:865",
+      "notes": "CLI reads must keep false-safe blocking on non-fresh graphs or failed verification gates.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.99,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "ebc2385cbcc4e6ae62f981499618952a9d4cb3d71a5f5880ce3dfbafabe26573",
+      "path": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
+      "symbol": "handleTool",
+      "kind": "integration_point",
+      "signature": "handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null>",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:62",
+      "notes": "Existing dispatcher validates published schemas and required fields before routing to handlers.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.96,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "7731c3c1ca214386f2a6a952adcbc66147b1cc0fc03011826496b739fb886cb4",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "symbol": "TOOL_DEFINITIONS",
+      "kind": "integration_point",
+      "signature": "export const TOOL_DEFINITIONS: ToolDefinition[]",
+      "reuse": "preserve",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:645",
+      "notes": "Spec Kit documents Code Graph schema ownership as moved out while tool IDs stay unchanged.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.94,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "f21c0385bb3b38fbad14c6c63ade7105a0c6cef132b8d96875f5ddffe8ff69a1",
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+      "symbol": "AdvisorRecommendInputSchema",
+      "kind": "integration_point",
+      "signature": "AdvisorRecommendInputSchema = z.object(...).strict()",
+      "reuse": "preserve",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts:135",
+      "notes": "CLI parsing should preserve strict public input schema and avoid exposing internal affordance scoring.",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevance": 0.91,
+      "firstIteration": 1
+    }
+  ],
+  "conventions": [
+    {
+      "unit_id": "3a6cd72e3e84f34d4489d5640cd6943c1e9901d4365de13785b42a99c00e3bec",
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+      "symbol": "callAdvisorTool",
+      "kind": "convention",
+      "signature": "callAdvisorTool(name, args, workspaceRoot)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs:234",
+      "notes": "Safe bridge precedent: subprocess boundary, timeout, MCP envelope parsing, best-effort cleanup.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.91,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "fa74bfac78054ff55aa89b8839f8b4d846b28c914bf9526d4effe015b86ed037",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      "symbol": "Claude User Prompt Submit Shim",
+      "kind": "convention",
+      "signature": "process-boundary shim -> system-skill-advisor dist hook",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:5",
+      "notes": "Runtime settings can stay stable while implementation moves to the owning skill package.",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevance": 0.86,
+      "firstIteration": 1
+    }
+  ],
+  "dependencies": [
+    {
+      "unit_id": "410eb8820492d422261cf6c7f78499fff4603f47430d7c473752a7ee4171cd9e",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+      "symbol": "callCodeGraphTool",
+      "kind": "dependency",
+      "signature": "callCodeGraphTool(name: string, args: Record<string, unknown>, timeoutMs?: number): Promise<Record<string, unknown>>",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts:269",
+      "notes": "Spec Kit already crosses the Code Graph process boundary by stable tool name through the mk-code-index launcher.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.95,
+      "firstIteration": 1
+    }
+  ],
+  "gaps": [
+    {
+      "unit_id": "c1f101878d7e405d65b0dd82ba2df4db5bb275ed71c92e891c4fb2d5f1e634eb",
+      "path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
+      "symbol": "ensureRuntimeReady",
+      "kind": "gap",
+      "signature": "ensureRuntimeReady()",
+      "reuse": "avoid",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs:33",
+      "notes": "Do not reuse this direct-import bridge as the CLI pattern; it initializes runtime internals directly.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.93,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "8ccf10952ce8e29503d506cd1ebeae51eeb1df724812adee64147f7054c3a5ed",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      "symbol": "buildSkillGraphTopologySummary",
+      "kind": "gap",
+      "signature": "buildSkillGraphTopologySummary(): Promise<SkillGraphTopologySummary>",
+      "reuse": "avoid",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:221",
+      "notes": "Bootstrap no longer proxies skill graph topology through mk-spec-memory; route topology to mk_skill_advisor.",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevance": 0.88,
+      "firstIteration": 1
+    },
+    {
+      "unit_id": "fd4a1f4bf48141c90920abfe802b82650703d1735a81ecbc934bf1c84092a02c",
+      "path": ".opencode/skills/system-spec-kit/changelog/v3.5.0.1.md",
+      "symbol": "OpenCode code-graph plugin bridge",
+      "kind": "gap",
+      "signature": "working direct-import bridge reverted",
+      "reuse": "avoid",
+      "evidence": ".opencode/skills/system-spec-kit/changelog/v3.5.0.1.md:35",
+      "notes": "Historical evidence says the runnable direct-import bridge was reverted because it bypassed the daemon single-writer lease.",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevance": 0.92,
+      "firstIteration": 1
+    }
+  ],
+  "lowConfidence": [],
+  "contradictions": [],
+  "metrics": {
+    "findings": 12,
+    "gatedFindings": 12,
+    "lowConfidenceFindings": 0,
+    "agreementEligible": 9,
+    "contradictions": 0,
+    "agreementRate": 0.75,
+    "relevanceFloor": 1,
+    "reuseCandidates": 2,
+    "integrationPoints": 4,
+    "conventions": 2,
+    "dependencies": 1,
+    "gaps": 3
+  },
+  "sessionId": "dc-2026-06-07T08-30-00Z-028",
+  "lineageMode": "new",
+  "generation": 1,
+  "status": "COMPLETE",
+  "relevanceGate": 0.55,
+  "agreementMin": 2,
+  "executorPool": [
+    "native-a",
+    "native-b"
+  ],
+  "iterationsCompleted": 1,
+  "seatsByIteration": {
+    "1": {
+      "succeeded": [
+        "native-a",
+        "native-b"
+      ],
+      "failed": []
+    }
+  },
+  "graphDecision": "STOP_ALLOWED",
+  "corruptionWarnings": [],
+  "seatValidationWarnings": [],
+  "stateLogRepair": {
+    "repaired": false,
+    "droppedBytes": 0
+  }
+}

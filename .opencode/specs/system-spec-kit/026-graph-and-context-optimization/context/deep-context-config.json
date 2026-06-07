@@ -1,0 +1,46 @@
+{
+  "scope": "All work done in system-spec-kit/026-graph-and-context-optimization — BOTH the documentation narrative (what each of the 9 phases / 110 sub-phases delivered) AND the underlying code subsystems the program produced/modified (system-code-graph MCP, mk-spec-memory memory+embedder runtime, deep-loop-runtime fan-out/dispatch, daemon launchers + IPC bridge, runtime hooks, doctor surface, template system, skill-advisor).",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization",
+  "loopType": "context",
+  "executionMode": "auto",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxToolCallsPerIteration": 12,
+  "relevanceGate": 0.55,
+  "agreementMin": 1,
+  "fanout": {
+    "mode": "by-model-shared-scope",
+    "concurrency": 1,
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "model": "xiaomi/mimo-v2.5-pro",
+        "reasoningEffort": "high",
+        "promptFramework": "costar",
+        "label": "mimo",
+        "note": "MiMo 2.5 Pro via Xiaomi Direct API (pay-per-token); Token Plan route xiaomi-token-plan-ams not authenticated this host. Single-seat: agreement is self-confirmation, agreementMin lowered to 1 to keep convergence coherent."
+      }
+    ]
+  },
+  "report": {
+    "path": "context/context-report.md",
+    "jsonPath": "context/context-report.json"
+  },
+  "reducer": {
+    "enabled": true,
+    "registryFile": "context/findings-registry.json",
+    "dashboardFile": "context/deep-context-dashboard.md"
+  },
+  "createdAt": "2026-06-07T08:34:48.000Z",
+  "status": "complete",
+  "lineage": {
+    "sessionId": "ctx-026-1780821288",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "completedAt": "2026-06-07T09:00:14.000Z",
+  "relocatedFrom": ".opencode/deep-context-runs/026-graph-and-context-synthesis"
+}

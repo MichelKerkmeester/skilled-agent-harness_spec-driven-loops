@@ -22,7 +22,7 @@
     "key_topics": [
       "027",
       "phase",
-      "009",
+      "006",
       "001",
       "typed",
       "agent",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 001 is the substrate child of the Gem Team adoption work in 027. The phase-007 study (19 iterations) and the phase-009 integration synthesis (5 iterations) converged on one finding: the spec-kit's agents already carry rich, evidence-first contracts, but the orchestration-relevant facts (status, confidence, failure class, dispatch intent) are expressed in scattered prose and are not machine-parseable. This packet adds a typed, OPTIONAL adapter layer over the existing contracts — never replacing the rich-markdown bodies.",
     "created_at": "2026-06-06T10:11:05.143Z",
-    "last_save_at": "2026-06-06T10:42:09.947Z",
+    "last_save_at": "2026-06-07T09:00:47.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

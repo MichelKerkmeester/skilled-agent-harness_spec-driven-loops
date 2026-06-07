@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
-  "spec_folder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
-  "parent_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality",
+  "packet_id": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
+  "parent_id": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 113/006 records completed cross-CLI propagation of the 113/003 eval-loop finding that medium-density pre-planning beats dense pre-planning on SWE 1.6. The work updates the sk-prompt master CLI prompt quality card, mirrors the same guidance into four sibling CLI prompt quality cards, bumps sibling skill frontmatter versions, and adds sibling changelog entries.",
     "created_at": "2026-05-17T12:18:18Z",
-    "last_save_at": "2026-06-05T12:47:32.153Z",
+    "last_save_at": "2026-06-07T09:00:45.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

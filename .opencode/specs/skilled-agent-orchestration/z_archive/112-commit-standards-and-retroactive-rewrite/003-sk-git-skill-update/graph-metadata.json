@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
-  "spec_folder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
-  "parent_id": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
+  "packet_id": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+  "spec_folder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+  "parent_id": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 3** of the 112 packet. Phase 002 produces `commit-standards.md`, `derivation-heuristics.md`, and 7 Accepted ADRs. This phase is the mechanical step that takes those outputs and applies them to the `sk-git` skill content.",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-06-05T12:47:32.133Z",
+    "last_save_at": "2026-06-07T09:00:45.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -48,6 +48,7 @@
     "tools/**/*.ts",
     "utils/**/*.ts",
     "cli.ts",
+    "spec-memory-cli.ts",
     "context-server.ts",
     "startup-checks.ts",
     "tool-schemas.ts",

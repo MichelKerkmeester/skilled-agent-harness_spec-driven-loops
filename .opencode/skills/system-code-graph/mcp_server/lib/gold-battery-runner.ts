@@ -7,20 +7,15 @@ import {
   DEFAULT_GOLD_BATTERY_PATH,
   executeBattery,
   loadGoldBattery,
+  type GoldQueryOutlineArgs,
   type VerifyResult,
 } from './gold-query-verifier.js';
 import type { CodeGraphQueryResponse } from './query-result-adapter.js';
 import { handleCodeGraphQuery } from '../handlers/query.js';
 
-interface OutlineProbe {
-  operation: 'outline';
-  subject: string;
-  limit: number;
-}
-
 export interface GoldBatteryRunnerOptions {
   batteryPath?: string;
-  query?: (args: OutlineProbe) => Promise<CodeGraphQueryResponse>;
+  query?: (args: GoldQueryOutlineArgs) => Promise<CodeGraphQueryResponse>;
   failFast?: boolean;
   includeDetails?: boolean;
   env?: NodeJS.ProcessEnv;

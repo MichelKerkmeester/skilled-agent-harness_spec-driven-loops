@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/104-cli-devin-creation",
-  "spec_folder": "skilled-agent-orchestration/104-cli-devin-creation",
+  "packet_id": "skilled-agent-orchestration/z_archive/104-cli-devin-creation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/104-cli-devin-creation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The repo's CLI-executor skill family (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) lets any one CLI delegate tasks to any other CLI as a peer. Cognition AI's \"Devin for Terminal\" (the official `devin` Rust CLI) is now a viable peer — it brings a unique local-to-cloud handoff capability no other family member has — but there is no `cli-devin` skill to route to it. Today, cross-AI dispatches to Devin require ad-hoc Bash, with no self-invocation guard, no auth pre-flight, no agent-routing surface, and no documented prompt contract.",
     "created_at": "2026-05-15T07:01:57.575Z",
-    "last_save_at": "2026-06-05T12:47:32.094Z",
+    "last_save_at": "2026-06-07T09:00:45.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
