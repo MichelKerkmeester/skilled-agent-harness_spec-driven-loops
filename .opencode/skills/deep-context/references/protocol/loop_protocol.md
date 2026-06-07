@@ -47,7 +47,7 @@ Load this reference when:
 | `context-report.md` + `.json` | Host (synthesis) | The deliverable |
 | `seats/{label}/iter-NNN/*.json` | Per-seat | Raw per-seat structured findings |
 
-When no spec folder exists yet, the host uses a standalone run dir and hands the report path to `/speckit:plan`.
+If the user named a spec folder, or one is derivable from the scope (a spec-folder path inside the scope text), the packet MUST live at `{spec_folder}/context/`. A standalone run dir is used ONLY when no spec folder is named or derivable — fail-closed, never a default when a folder is identifiable (see `auto_mode_contract` §1 source 3 + fallback guard). In the standalone case the host hands the report path to `/speckit:plan`.
 
 ---
 

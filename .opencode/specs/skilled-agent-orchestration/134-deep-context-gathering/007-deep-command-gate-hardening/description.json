@@ -9,15 +9,15 @@
   ],
   "level": 2,
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/136-deep-command-gate-hardening",
+  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening",
   "status": "complete",
-  "parent_id": "skilled-agent-orchestration",
+  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
   "importance_tier": "normal",
   "created_at": "2026-06-07T11:59:30Z",
   "completed_at": "2026-06-07T12:00:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "skilled-agent-orchestration/136-deep-command-gate-hardening",
+  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening",
   "description": "Add two un-skippable markdown HARD-BLOCK gates to all 7 deep commands: Gate 1 Phase 0 @general-agent verification (added to the 5 that lacked it: context, research, review, ask-ai-council, skill-benchmark) and Gate 2 the BLOCKED unified setup phase (STOP/wait in :confirm, fail-fast in :auto), ordered before any YAML/Run step. Standardizes the 2 existing commands (fixes the broken model-benchmark display box, normalizes setup STATUS markers). No YAML dispatch logic or skill behavior changed.",
   "keywords": [
     "deep-command",
@@ -30,11 +30,9 @@
     "command-gating"
   ],
   "lastUpdated": "2026-06-07T12:00:00.000Z",
-  "specId": "136",
+  "specId": "007",
   "folderSlug": "deep-command-gate-hardening",
-  "parentChain": [
-    "skilled-agent-orchestration"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

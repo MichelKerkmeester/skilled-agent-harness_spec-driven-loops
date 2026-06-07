@@ -79,7 +79,7 @@ SELF-CHECK: Are you operating as the @general agent?
 
 > **Canonical mode syntax:** use attached command suffixes (`/deep:start-context-loop:auto`, `/deep:start-context-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
-> **Note:** This loop is **inward** (the codebase, not the web). Every iteration is one **parallel heterogeneous sweep** of a **shared** focus; cross-executor **agreement** is the confidence signal. Seats are READ-ONLY analyzers; the host writes all merged state (Gate-3-safe). Full loop design lives in `.opencode/skills/deep-context/references/protocol/loop_protocol.md` and `convergence/convergence.md` (authoritative).
+> **Note:** This loop is **inward** (the codebase, not the web). Every iteration is one **parallel sweep** of a **shared** focus (native-only by default; CLI seats opt-in for a heterogeneous sweep); cross-executor **agreement** is the confidence signal. Seats are READ-ONLY analyzers; the host writes all merged state (Gate-3-safe). Full loop design lives in `.opencode/skills/deep-context/references/protocol/loop_protocol.md` and `convergence/convergence.md` (authoritative).
 
 # SINGLE CONSOLIDATED SETUP PROMPT
 
@@ -267,7 +267,7 @@ NEVER split questions into multiple prompts
 
 # Deep Context
 
-Gather autonomous, iterative, **multi-model** codebase context with convergence detection. Each iteration is ONE parallel heterogeneous sweep: every executor in the pool analyzes the **same** current focus, the host merges their findings by `file:symbol`, and **cross-executor agreement** drives confidence. The deliverable is a reuse-first **Context Report** for `/speckit:plan` and `/speckit:implement`.
+Gather autonomous, iterative codebase context with convergence detection. Each iteration is ONE parallel sweep: every seat in the pool analyzes the **same** current focus, the host merges their findings by `file:symbol`, and **cross-executor agreement** drives confidence. The default pool is **native-only** (2 `@deep-context` seats); add CLI seats with `--executor` for a multi-model/heterogeneous sweep. The deliverable is a reuse-first **Context Report** for `/speckit:plan` and `/speckit:implement`.
 
 For outward/web knowledge discovery, see `/deep:start-research-loop`. For code audit / defect finding, see `/deep:start-review-loop`.
 
@@ -361,7 +361,7 @@ After setup phase passes, load and execute the appropriate YAML prompt based on 
 - **AUTONOMOUS**: `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml`
 - **INTERACTIVE**: `.opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml`
 
-The YAML contains the full loop workflow: initialization, per-iteration parallel heterogeneous sweep + merge + convergence, synthesis, and memory save.
+The YAML contains the full loop workflow: initialization, per-iteration parallel sweep + merge + convergence, synthesis, and memory save.
 
 ---
 

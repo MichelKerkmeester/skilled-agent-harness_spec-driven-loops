@@ -1,0 +1,12 @@
+Act as a deep-review analyzer. READ-ONLY: do not write, edit, or create any file; return findings ONLY.
+
+Context: reviewing recently-committed work (git commit 531dd53028) across three spec packets in this repo: (005) deep-context native agent runtime mirrors, (006) native-only default executor pool, (007) Phase-0 @general + un-skippable setup hard-blocker gates on all 7 deep commands. The work is mostly markdown command/skill docs, agent definition files (.md / .toml), and a JSON config — so weight correctness, internal consistency, stale/contradictory wording, wrong tool/flag/model references, broken cross-references, and read-only-contract/security issues over classic runtime code bugs.
+
+Your slice — review ONLY these paths: .opencode/commands/deep/start-context-loop.md
+Focus: start-context-loop.md native-default pool: Q-Pool A) Native only (default) / B) Custom wording, default-policy prose (no stale heterogeneous-as-default), PRE-BOUND marker + examples consistency, flag plumbing for --executor/--executors
+
+Read the listed files (and only what you must to verify a claim). Report REAL issues only; if the slice is clean, say so honestly — do NOT invent findings to fill a quota.
+
+Return ONLY a single JSON object, no prose before or after, of exactly this shape:
+{"slice":"context-pool","filesReviewed":["..."],"findings":[{"severity":"P0|P1|P2","title":"...","dimension":"correctness|consistency|security|completeness|maintainability|traceability","file":"path:line","evidence":"what you observed","recommendation":"the fix","findingClass":"instance-only|class-of-bug|cross-consumer|algorithmic|matrix/evidence|test-isolation","scopeProof":"how you bounded it","affectedSurfaceHints":["..."]}],"cleanNote":"present only if findings is empty"}
+Severity: P0 = breaks a runtime/contract or a security/read-only-boundary violation; P1 = real correctness/consistency defect that should be fixed; P2 = minor/advisory.

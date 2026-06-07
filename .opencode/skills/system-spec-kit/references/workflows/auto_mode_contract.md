@@ -23,9 +23,12 @@ When `execution_mode = AUTONOMOUS` (from `:auto` suffix), the command's §0 MUST
 
 1. **`$ARGUMENTS` flags** — explicit user-passed flags (e.g. `--max-iterations=10`, `--spec-folder=PATH`, command-specific flags)
 2. **`PRE-BOUND SETUP ANSWERS:` block in the prompt body** — see §2 for grammar. Caller's explicit prompt-body binding wins over `$ARGUMENTS` when both are present
-3. **Documented per-field defaults** — see the command's own Default Resolution Table (§3) for which fields carry sensible defaults
+3. **Positional-scope spec-folder extraction** — for any `spec_folder`-class field: if the positional scope / `$ARGUMENTS` contains a path token that canonicalizes (alias roots resolved) to an EXISTING spec folder under `specs/` or `.opencode/specs/`, bind the field to that folder and STRIP the token from the scope. Match against the folder discovery the command already runs (e.g. `find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d`). A spec folder named inline is a CONFIDENT resolution — NOT a Tier-2 ambiguity and NOT a Tier-3 absence. An explicit `--spec-folder` flag or marker (sources 1–2) still wins over an inline path.
+4. **Documented per-field defaults** — see the command's own Default Resolution Table (§3) for which fields carry sensible defaults
 
 After resolution: if every required field has a value, persist the resolved map to the command's working-config file (e.g. `deep-review-config.json`, `plan-config.json`), set `STATUS: PASSED`, load the paired YAML workflow. Do NOT emit any setup question. End §0.
+
+**Standalone / no-folder fallback guard (fail-closed):** when a command offers a standalone (no-spec-folder) output mode, that mode is valid ONLY when no spec folder was named in the scope or otherwise derivable. If source 3 (or an interactive choice) identified a spec folder, the standalone mode MUST NOT be selected — bind the identified folder and write the packet under `{spec_folder}/`. Preflight MUST fail closed if a standalone target is bound while a spec folder was identifiable from the scope.
 
 ### Tier 2 — Targeted Ask
 
@@ -84,7 +87,7 @@ Column meanings:
 
 - **Field**: the field name (matches the schema in §2 and the question label in the legacy consolidated Q-block).
 - **Required**: `Y` (must be resolved before YAML load) or `N` (optional).
-- **Resolves Via**: ordered list of resolution sources, e.g. `flag → $ARGUMENTS` / `marker → PRE-BOUND` / `default → "<value>"` / `auto-detect from <other field>` / `requires-ask`.
+- **Resolves Via**: ordered list of resolution sources, e.g. `flag → $ARGUMENTS` / `marker → PRE-BOUND` / `scope-extract → spec-folder path named in scope (§1 source 3)` / `default → "<value>"` / `auto-detect from <other field>` / `requires-ask`. Any `spec_folder`-class field MUST list `scope-extract` so a folder named inline binds at Tier 1.
 - **Default**: the documented default value when no flag, marker, or auto-detection applies. May be `none` (no default — Tier 2 or Tier 3 candidate).
 - **Tier-2 Candidate**: `Y` if a missing value can be resolved by ONE targeted question (per §1); `N` if absence triggers fail-fast (Tier 3).
 

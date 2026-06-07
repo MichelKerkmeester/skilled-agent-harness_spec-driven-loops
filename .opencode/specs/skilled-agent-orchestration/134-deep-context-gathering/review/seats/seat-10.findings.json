@@ -1,0 +1,93 @@
+{
+  "slice": "specdoc-accuracy",
+  "filesReviewed": [
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/implementation-summary.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/description.json",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/graph-metadata.json",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/tasks.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/implementation-summary.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/description.json",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/graph-metadata.json",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/tasks.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/implementation-summary.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/description.json",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/graph-metadata.json",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/tasks.md",
+    ".opencode/skills/deep-context/assets/deep_context_config.json",
+    ".codex/agents/deep-context.toml",
+    ".opencode/commands/deep/start-context-loop.md",
+    ".opencode/commands/deep/start-research-loop.md",
+    ".opencode/commands/deep/start-review-loop.md",
+    ".opencode/commands/deep/ask-ai-council.md",
+    ".opencode/commands/deep/start-skill-benchmark-loop.md",
+    ".opencode/commands/deep/start-model-benchmark-loop.md",
+    ".opencode/commands/deep/start-agent-improvement-loop.md",
+    ".opencode/skills/deep-context/feature_catalog/01--frontier-seeding/config-shape-and-default-pool.md",
+    ".opencode/skills/deep-context/manual_testing_playbook/01--frontier-seeding/config-shape-and-default-pool.md",
+    ".opencode/skills/deep-context/manual_testing_playbook/manual_testing_playbook.md"
+  ],
+  "findings": [
+    {
+      "severity": "P1",
+      "title": "007 packet metadata points to a different spec folder than the reviewed packet path",
+      "dimension": "traceability",
+      "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/description.json:12",
+      "evidence": "The reviewed 007 folder lives under `134-deep-context-gathering/007-deep-command-gate-hardening`, but `description.json` sets `packet_id` to `skilled-agent-orchestration/136-deep-command-gate-hardening`; `graph-metadata.json:3-5`, `spec.md:14`, `implementation-summary.md:13`, `plan.md:13`, `tasks.md:13`, and `checklist.md:13` repeat the 136 pointer. `git ls-files` also shows tracked files under `.opencode/specs/skilled-agent-orchestration/136-deep-command-gate-hardening` while the reviewed 134/007 folder is untracked in the current tree.",
+      "recommendation": "Choose one canonical location, then align `packet_id`, `spec_folder`, `parent_id`, `specFolder`, `specId`, and all `_memory.continuity.packet_pointer` values with that location before considering 007 complete.",
+      "findingClass": "cross-consumer",
+      "scopeProof": "Bounded to the requested 007 spec folder and git path metadata needed to verify whether the path mismatch was real.",
+      "affectedSurfaceHints": [
+        "Spec graph traversal",
+        "memory search/resume",
+        "completion metadata",
+        "commit traceability"
+      ],
+      "_seat": "10",
+      "_slice": "specdoc-accuracy"
+    },
+    {
+      "severity": "P1",
+      "title": "006 completion docs overclaim default-pool stale-reference cleanup",
+      "dimension": "consistency",
+      "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/implementation-summary.md:116",
+      "evidence": "The implementation summary marks `Het list only under Custom/example` as PASS and says no `default = het` text remains, but deep-context docs still state the opposite: `.opencode/skills/deep-context/feature_catalog/01--frontier-seeding/config-shape-and-default-pool.md:47` says the default heterogeneous pool is used, `.opencode/skills/deep-context/manual_testing_playbook/01--frontier-seeding/config-shape-and-default-pool.md:14` and `:28-30` require `2 native + MiMo + gpt + deepseek`, and `.opencode/skills/deep-context/manual_testing_playbook/manual_testing_playbook.md:197-204` still describes the default heterogeneous executor pool.",
+      "recommendation": "Update the stale feature-catalog and manual-testing-playbook default-pool references to 2 native seats, or narrow the 006 completion claim to the exact surfaces that were actually cleaned.",
+      "findingClass": "class-of-bug",
+      "scopeProof": "Checked the 006 spec docs, the actual default config, and targeted deep-context documentation containing explicit default-pool references.",
+      "affectedSurfaceHints": [
+        "deep-context manual tests",
+        "deep-context feature catalog",
+        "operator documentation",
+        "future verification prompts"
+      ],
+      "_seat": "10",
+      "_slice": "specdoc-accuracy"
+    },
+    {
+      "severity": "P2",
+      "title": "Completed packets still carry stale pre-completion next actions",
+      "dimension": "maintainability",
+      "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/spec.md:18",
+      "evidence": "The 005 spec is `Status: Complete` and `implementation-summary.md:115` says `validate.sh --strict` passed, but frontmatter still says `next_safe_action: Run validate.sh --strict and reconcile completion metadata`. The same stale pattern appears in 006 `spec.md:18` and 007 `spec.md:18`, while their description/graph metadata mark `status` complete.",
+      "recommendation": "Refresh stale `_memory.continuity.next_safe_action` fields to post-completion follow-ups, or remove pre-completion actions from non-canonical continuity surfaces so resume output does not contradict complete status.",
+      "findingClass": "matrix/evidence",
+      "scopeProof": "Bounded to completion/status fields in the requested spec docs and their implementation-summary verification claims.",
+      "affectedSurfaceHints": [
+        "session resume",
+        "memory continuity",
+        "completion reporting"
+      ],
+      "_seat": "10",
+      "_slice": "specdoc-accuracy"
+    }
+  ]
+}

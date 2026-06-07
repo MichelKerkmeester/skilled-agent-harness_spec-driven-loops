@@ -89,7 +89,7 @@ SELF-CHECK: Are you operating as the @general agent?
 - **GRAPH BOUNDARY**: derived council graph replay uses `deep-loop-runtime` CLI scripts with `--loop-type council`; `ai-council/**` artifacts remain authoritative.
 - **ONE CLI PER ROUND**: all seats in a round use one executor boundary. Different CLIs are separate rounds, not mixed seats.
 
-> **Canonical mode syntax:** use attached command suffixes (`/speckit:deep-council:auto`, `/speckit:deep-council:confirm`) and keep AGENTS, skills, command references, and runtime mirrors synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:ask-ai-council:auto`, `/deep:ask-ai-council:confirm`) and keep AGENTS, skills, command references, and runtime mirrors synchronized to this entrypoint.
 
 # SINGLE CONSOLIDATED SETUP PROMPT
 
@@ -111,7 +111,7 @@ Under `execution_mode = AUTONOMOUS` from the `:auto` suffix, follow the three-ti
 
 1. **Tier 1 - Resolve confidently**: parse `$ARGUMENTS` flags, the `PRE-BOUND SETUP ANSWERS:` block, and the Default Resolution Table below. When every required field is resolved, persist to `{spec_folder}/ai-council/council-session.json` or the YAML-designated setup artifact, bind runtime YAML placeholders, set `STATUS: PASSED`, and load `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`. End Section 0.
 2. **Tier 2 - Targeted ask**: when one or two required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2 fields: `spec_folder` and `topics` when the prompt contains multiple plausible topic lists. Missing `deliberation_topic` is absence, not ambiguity - go to Tier 3.
-3. **Tier 3 - Fail fast**: emit the named-missing-inputs error format with `/speckit:deep-council:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 - Fail fast**: emit the named-missing-inputs error format with `/deep:ask-ai-council:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged - see the Consolidated Setup Prompt section below.
 
@@ -337,9 +337,9 @@ Use this when a planning problem needs more than one council topic, more than on
 
 | Mode | Invocation | Behavior |
 |------|------------|----------|
-| `:auto` | `/speckit:deep-council:auto "topic"` | Runs setup, loop, synthesis, and save without approval gates after Tier-1 setup succeeds |
-| `:confirm` | `/speckit:deep-council:confirm "topic"` | Prompts once for setup, then gates setup, loop, synthesis, and save |
-| (default) | `/speckit:deep-council "topic"` | Ask user to choose mode during setup |
+| `:auto` | `/deep:ask-ai-council:auto "topic"` | Runs setup, loop, synthesis, and save without approval gates after Tier-1 setup succeeds |
+| `:confirm` | `/deep:ask-ai-council:confirm "topic"` | Prompts once for setup, then gates setup, loop, synthesis, and save |
+| (default) | `/deep:ask-ai-council "topic"` | Ask user to choose mode during setup |
 
 ---
 

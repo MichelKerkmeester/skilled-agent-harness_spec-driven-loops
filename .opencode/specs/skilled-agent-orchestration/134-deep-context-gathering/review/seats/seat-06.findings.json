@@ -1,0 +1,9 @@
+{
+  "slice": "research-review-gates",
+  "filesReviewed": [
+    ".opencode/commands/deep/start-research-loop.md",
+    ".opencode/commands/deep/start-review-loop.md"
+  ],
+  "findings": [],
+  "cleanNote": "Slice is clean: both files use the correct per-command Phase 0 skill/restart wording, setup gates include BLOCKED status with STOP/wait and fail-fast language, and first-action steps are correctly renumbered."
+}

@@ -100,6 +100,11 @@ let rssBreachSelfExitInProgress = false;
 let rssWatchdogTimer = null;
 let crashLoopGuard = null;
 let supervisorRelaunchTimer = null;
+// The MCP host (Claude Code / OpenCode) spawns this launcher directly, so the host is the
+// launcher's parent. When the host disposes its session the launcher is orphaned and its
+// ppid changes (reparents to 1 / a subreaper). Captured once at startup so the relaunch
+// path can tell "owning runtime went away" apart from a genuine daemon crash.
+const LAUNCHER_INITIAL_PPID = process.ppid;
 let ownerLeaseHeartbeatTimer = null;
 let ownerLeaseRequired = true;
 // Last-known descendant pids of the daemon child (excluding the child itself), refreshed by the
@@ -1240,7 +1245,20 @@ function launchServer() {
         exit: (exitCode) => process.exit(exitCode),
         scheduleRelaunch: (backoffMs) => {
           log(`context-server child exited code=${code ?? 'null'} signal=${signal ?? 'null'}; relaunching in ${backoffMs}ms`);
-          supervisorRelaunchTimer = setTimeout(() => launchServer(), backoffMs);
+          supervisorRelaunchTimer = setTimeout(() => {
+            // Owner-disposal race guard: by the time the backoff fires, re-check that this
+            // launcher is still live AND its owning runtime is still present. Respawning the
+            // daemon under a disposing session is what produced the SIGTERM/relaunch flap that
+            // dropped every bridged session's transport. Crash-recovery and RSS-recycle are
+            // unaffected — both run with the owning runtime alive and no shutdown in progress.
+            if (launcherShutdownInProgress || process.ppid !== LAUNCHER_INITIAL_PPID || process.ppid === 1) {
+              log('relaunch aborted: launcher shutting down or owning runtime gone; releasing lease and exiting');
+              clearAllLeaseFiles();
+              process.exit(0);
+              return;
+            }
+            launchServer();
+          }, backoffMs);
           supervisorRelaunchTimer.unref?.();
         },
       },

@@ -1,0 +1,716 @@
+{
+  "sessionId": "rvw-2026-06-07-dc134",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "S01-001",
+      "severity": "P0",
+      "title": "Claude mirror grants all Spec Memory MCP tools despite read-only contract",
+      "file": ".claude/agents/deep-context.md",
+      "line": 4,
+      "description": "Claude mirror grants all Spec Memory MCP tools despite read-only contract",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the two requested files: checked Claude frontmatter, canonical OpenCode permission block, and the shared body read-only contract only.",
+      "affectedSurfaceHints": [
+        "Claude Code @deep-context agent",
+        "Spec Kit Memory MCP allowlist",
+        "LEAF read-only boundary"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S02-001",
+      "severity": "P1",
+      "title": "Codex mirror pins a stale model id",
+      "file": ".codex/agents/deep-context.toml",
+      "line": 10,
+      "description": "Codex mirror pins a stale model id",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Reviewed only the requested Codex mirror and its declared canonical source; TOML parsed successfully and the issue is limited to the explicit model field in the requested mirror.",
+      "affectedSurfaceHints": [
+        "Codex deep-context native agent dispatch"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S04-001",
+      "severity": "P1",
+      "title": "Default path still described as heterogeneous/multi-model",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "line": 270,
+      "description": "Default path still described as heterogeneous/multi-model",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to start-context-loop.md; consulted the referenced default config only to confirm the stated native-only default.",
+      "affectedSurfaceHints": [
+        "command help",
+        "default setup policy",
+        "deep-context execution overview"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S04-002",
+      "severity": "P1",
+      "title": "Reply example includes a convergence value that setup never asks for or parses",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "line": 238,
+      "description": "Reply example includes a convergence value that setup never asks for or parses",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Checked the setup prompt, reply examples, and parse/store bullets within start-context-loop.md.",
+      "affectedSurfaceHints": [
+        "interactive setup prompt",
+        "compact reply parsing",
+        "Q-Pool answer binding"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S05-001",
+      "severity": "P1",
+      "title": "Phase 0 recovery restart command drops the attached mode suffix",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "line": 60,
+      "description": "Phase 0 recovery restart command drops the attached mode suffix",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the requested file; verified the Phase 0 restart block against the same file's canonical mode syntax and execution-mode table.",
+      "affectedSurfaceHints": [
+        "Phase 0 @general hard block",
+        "restart recovery text",
+        "mode suffix handling"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S05-002",
+      "severity": "P1",
+      "title": "`:restart` is advertised without setup or mode-routing support",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "line": 333,
+      "description": "`:restart` is advertised without setup or mode-routing support",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the requested file; searched for `:restart`, `:auto`, and `:confirm` occurrences and found only the single restart promise with no matching routing branch.",
+      "affectedSurfaceHints": [
+        "restart line",
+        "Unified Setup Phase",
+        "execution-mode routing"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S07-001",
+      "severity": "P1",
+      "title": "Phase 0 restart instruction only names the non-canonical council command",
+      "file": ".opencode/commands/deep/ask-ai-council.md",
+      "line": 62,
+      "description": "Phase 0 restart instruction only names the non-canonical council command",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the Phase 0 failure message and command-name references inside the reviewed ask-ai-council entrypoint.",
+      "affectedSurfaceHints": [
+        "Phase 0 general-agent hard block",
+        "deep council command aliasing",
+        "restart guidance"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S08-001",
+      "severity": "P1",
+      "title": "Setup gate cannot collect required run_label in confirm mode",
+      "file": ".opencode/commands/deep/start-model-benchmark-loop.md",
+      "line": 167,
+      "description": "Setup gate cannot collect required run_label in confirm mode",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the model-benchmark setup gate in the reviewed file; the other two reviewed commands do not require `run_label`.",
+      "affectedSurfaceHints": [
+        "/deep:start-model-benchmark-loop:confirm",
+        "/deep:start-model-benchmark-loop without --run-label"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S08-002",
+      "severity": "P1",
+      "title": "Context setup hard-block omits executor_pool from YAML start condition",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "line": 77,
+      "description": "Context setup hard-block omits executor_pool from YAML start condition",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the start-context-loop gate sections in the reviewed file; model-benchmark and agent-improvement do not use an executor pool field.",
+      "affectedSurfaceHints": [
+        "/deep:start-context-loop:auto",
+        "/deep:start-context-loop:confirm",
+        "deep-context native-only default pool"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S09-001",
+      "severity": "P1",
+      "title": "YAML comments contradict the read-only seat contract",
+      "file": ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      "line": 348,
+      "description": "YAML comments contradict the read-only seat contract",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the two reviewed context-loop YAML files and cross-checked only against their own host-writes-state and dispatch wording.",
+      "affectedSurfaceHints": [
+        ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+        ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S09-002",
+      "severity": "P1",
+      "title": "README documents the per-seat artifact path in the wrong order",
+      "file": ".opencode/skills/deep-context/README.md",
+      "line": 171,
+      "description": "README documents the per-seat artifact path in the wrong order",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Compared README layout only against the two reviewed YAML `state_paths.seat_pattern` entries.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/deep-context/README.md",
+        ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+        ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S09-003",
+      "severity": "P1",
+      "title": "deep-loop-runtime still describes only deep-review and deep-research as supported consumers",
+      "file": ".opencode/skills/deep-loop-runtime/SKILL.md",
+      "line": 10,
+      "description": "deep-loop-runtime still describes only deep-review and deep-research as supported consumers",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the reviewed deep-loop-runtime SKILL and the reviewed deep-context SKILL consumer statement.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/deep-loop-runtime/SKILL.md",
+        ".opencode/skills/deep-context/SKILL.md"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S10-001",
+      "severity": "P1",
+      "title": "007 packet metadata points to a different spec folder than the reviewed packet path",
+      "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/description.json",
+      "line": 12,
+      "description": "007 packet metadata points to a different spec folder than the reviewed packet path",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the requested 007 spec folder and git path metadata needed to verify whether the path mismatch was real.",
+      "affectedSurfaceHints": [
+        "Spec graph traversal",
+        "memory search/resume",
+        "completion metadata",
+        "commit traceability"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S10-002",
+      "severity": "P1",
+      "title": "006 completion docs overclaim default-pool stale-reference cleanup",
+      "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/implementation-summary.md",
+      "line": 116,
+      "description": "006 completion docs overclaim default-pool stale-reference cleanup",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Checked the 006 spec docs, the actual default config, and targeted deep-context documentation containing explicit default-pool references.",
+      "affectedSurfaceHints": [
+        "deep-context manual tests",
+        "deep-context feature catalog",
+        "operator documentation",
+        "future verification prompts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S03-001",
+      "severity": "P2",
+      "title": "Opening agent summary still describes the default pool as heterogeneous",
+      "file": ".opencode/agents/deep-context.md",
+      "line": 27,
+      "description": "Opening agent summary still describes the default pool as heterogeneous",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the two requested files; checked the agent wording against the native-only fanout config and the later same-file default-pool clarification.",
+      "affectedSurfaceHints": [
+        "deep-context native agent docs",
+        "native-only default executor pool"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S04-003",
+      "severity": "P2",
+      "title": "Argument hint omits supported --reasoning-effort flag",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "line": 3,
+      "description": "Argument hint omits supported --reasoning-effort flag",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Compared only the frontmatter hint, parser contract, and local examples in start-context-loop.md.",
+      "affectedSurfaceHints": [
+        "slash-command help",
+        "custom CLI executor seats"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S04-004",
+      "severity": "P2",
+      "title": "PRE-BOUND concurrency label still says CLI-pool-only",
+      "file": ".opencode/commands/deep/start-context-loop.md",
+      "line": 123,
+      "description": "PRE-BOUND concurrency label still says CLI-pool-only",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Checked the PRE-BOUND marker and default-pool policy in start-context-loop.md; no support-file findings were filed.",
+      "affectedSurfaceHints": [
+        "PRE-BOUND SETUP ANSWERS",
+        "non-interactive auto dispatch"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S08-003",
+      "severity": "P2",
+      "title": "Model-benchmark setup display box still overflows on default profile line",
+      "file": ".opencode/commands/deep/start-model-benchmark-loop.md",
+      "line": 164,
+      "description": "Model-benchmark setup display box still overflows on default profile line",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to the start-model-benchmark-loop setup display box; the reviewed Phase 0 restart boxes name their own commands.",
+      "affectedSurfaceHints": [
+        "/deep:start-model-benchmark-loop setup prompt"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S09-004",
+      "severity": "P2",
+      "title": "deep-context README still names the loop as heterogeneous by default-facing metadata",
+      "file": ".opencode/skills/deep-context/README.md",
+      "line": 2,
+      "description": "deep-context README still names the loop as heterogeneous by default-facing metadata",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Reviewed only the README default-facing metadata/overview against its own default executor pool line and the de-named focus for this slice.",
+      "affectedSurfaceHints": [
+        ".opencode/skills/deep-context/README.md"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "S10-003",
+      "severity": "P2",
+      "title": "Completed packets still carry stale pre-completion next actions",
+      "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/spec.md",
+      "line": 18,
+      "description": "Completed packets still carry stale pre-completion next actions",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Bounded to completion/status fields in the requested spec docs and their implementation-summary verification claims.",
+      "affectedSurfaceHints": [
+        "session resume",
+        "memory continuity",
+        "completion reporting"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 13,
+    "P2": 6
+  },
+  "openFindingsCount": 20,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.5,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

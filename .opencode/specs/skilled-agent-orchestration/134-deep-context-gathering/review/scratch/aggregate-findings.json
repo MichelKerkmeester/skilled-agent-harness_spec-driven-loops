@@ -1,0 +1,332 @@
+[
+  {
+    "severity": "P0",
+    "title": "Claude mirror grants all Spec Memory MCP tools despite read-only contract",
+    "dimension": "security",
+    "file": ".claude/agents/deep-context.md:4",
+    "evidence": "The Claude frontmatter allows `mcp__mk_spec_memory__*`, which grants the whole Spec Kit Memory MCP surface rather than the read-only memory tools named in the body (`memory_search` / `memory_context`) and mirrored by the canonical OpenCode permissions. The same file states the agent is LEAF-only/read-only and must never mutate files or state at lines 24-31.",
+    "recommendation": "Replace the wildcard with explicit read-only MCP tool ids needed by this agent, such as `mcp__mk_spec_memory__memory_search`, `mcp__mk_spec_memory__memory_context`, and any other audited read-only retrieval ids; do not grant mutating Spec Memory tools.",
+    "findingClass": "cross-consumer",
+    "scopeProof": "Bounded to the two requested files: checked Claude frontmatter, canonical OpenCode permission block, and the shared body read-only contract only.",
+    "affectedSurfaceHints": [
+      "Claude Code @deep-context agent",
+      "Spec Kit Memory MCP allowlist",
+      "LEAF read-only boundary"
+    ],
+    "_seat": "01",
+    "_slice": "claude-mirror"
+  },
+  {
+    "severity": "P1",
+    "title": "Codex mirror pins a stale model id",
+    "dimension": "correctness",
+    "file": ".codex/agents/deep-context.toml:10",
+    "evidence": "The Codex agent mirror sets `model = \"gpt-5.4\"`; the current runtime/model contract identifies the active model as gpt-5.5, so this mirror can dispatch the deep-context seat with the wrong or unavailable model.",
+    "recommendation": "Update the Codex mirror model id to the intended current Codex model, e.g. `gpt-5.5` or the provider-qualified id if that is what Codex CLI expects.",
+    "findingClass": "instance-only",
+    "scopeProof": "Reviewed only the requested Codex mirror and its declared canonical source; TOML parsed successfully and the issue is limited to the explicit model field in the requested mirror.",
+    "affectedSurfaceHints": [
+      "Codex deep-context native agent dispatch"
+    ],
+    "_seat": "02",
+    "_slice": "codex-mirror"
+  },
+  {
+    "severity": "P2",
+    "title": "Opening agent summary still describes the default pool as heterogeneous",
+    "dimension": "consistency",
+    "file": ".opencode/agents/deep-context.md:27",
+    "evidence": "Line 27 says the seat executes within a heterogeneous parallel pool, but the same file clarifies on line 34 that the default pool is native-only with 2 seats and CLI seats join only when explicitly configured. The JSON config also defaults to two native executors with agreementMin 2.",
+    "recommendation": "Soften line 27 to describe a parallel pool generally, or say it may be heterogeneous only when configured.",
+    "findingClass": "instance-only",
+    "scopeProof": "Bounded to the two requested files; checked the agent wording against the native-only fanout config and the later same-file default-pool clarification.",
+    "affectedSurfaceHints": [
+      "deep-context native agent docs",
+      "native-only default executor pool"
+    ],
+    "_seat": "03",
+    "_slice": "canonical-and-config"
+  },
+  {
+    "severity": "P1",
+    "title": "Default path still described as heterogeneous/multi-model",
+    "dimension": "consistency",
+    "file": ".opencode/commands/deep/start-context-loop.md:270",
+    "evidence": "The setup policy says no explicit pool defaults to the native-only pool of 2 @deep-context seats at line 143, but the command still says it gathers \"multi-model\" context and that each iteration is a \"parallel heterogeneous sweep\" at line 270; the same stale default framing also appears in the frontmatter description at line 2 and purpose text at line 302.",
+    "recommendation": "Rephrase global/default prose to \"shared-scope parallel pool, native-only by default\" and reserve \"heterogeneous\"/\"multi-model\" wording for explicit custom CLI or combined pools.",
+    "findingClass": "cross-consumer",
+    "scopeProof": "Bounded to start-context-loop.md; consulted the referenced default config only to confirm the stated native-only default.",
+    "affectedSurfaceHints": [
+      "command help",
+      "default setup policy",
+      "deep-context execution overview"
+    ],
+    "_seat": "04",
+    "_slice": "context-pool"
+  },
+  {
+    "severity": "P1",
+    "title": "Reply example includes a convergence value that setup never asks for or parses",
+    "dimension": "correctness",
+    "file": ".opencode/commands/deep/start-context-loop.md:238",
+    "evidence": "The compact reply example includes `0.10` before the pool choice (`\"realtime client reconnection, B, A, 8, 0.10, A\"`), but the prompt only asks Q3 for max iterations and Q-Pool for the executor pool, while the parse step says `convergenceThreshold` comes only from a flag or the default at line 248.",
+    "recommendation": "Either remove `0.10` from the compact reply example or add an explicit convergence-threshold question and parse rule before Q-Pool.",
+    "findingClass": "instance-only",
+    "scopeProof": "Checked the setup prompt, reply examples, and parse/store bullets within start-context-loop.md.",
+    "affectedSurfaceHints": [
+      "interactive setup prompt",
+      "compact reply parsing",
+      "Q-Pool answer binding"
+    ],
+    "_seat": "04",
+    "_slice": "context-pool"
+  },
+  {
+    "severity": "P2",
+    "title": "Argument hint omits supported --reasoning-effort flag",
+    "dimension": "completeness",
+    "file": ".opencode/commands/deep/start-context-loop.md:3",
+    "evidence": "The command argument hint lists `--model`, `--prompt-framework`, and `--label` for `--executor`, but the parser contract at line 166 supports `--reasoning-effort` and the custom heterogeneous example uses `--reasoning-effort=high` at line 440.",
+    "recommendation": "Add `[--reasoning-effort=Y]` to the frontmatter argument-hint executor group.",
+    "findingClass": "instance-only",
+    "scopeProof": "Compared only the frontmatter hint, parser contract, and local examples in start-context-loop.md.",
+    "affectedSurfaceHints": [
+      "slash-command help",
+      "custom CLI executor seats"
+    ],
+    "_seat": "04",
+    "_slice": "context-pool"
+  },
+  {
+    "severity": "P2",
+    "title": "PRE-BOUND concurrency label still says CLI-pool-only",
+    "dimension": "consistency",
+    "file": ".opencode/commands/deep/start-context-loop.md:123",
+    "evidence": "The PRE-BOUND schema labels `concurrency` as a `CLI-pool concurrency cap`, but the default pool is native-only and the setup table/policy apply concurrency to the shared executor pool generally.",
+    "recommendation": "Rename the comment to `executor-pool concurrency cap` or `max parallel seats in the shared-scope pool`.",
+    "findingClass": "instance-only",
+    "scopeProof": "Checked the PRE-BOUND marker and default-pool policy in start-context-loop.md; no support-file findings were filed.",
+    "affectedSurfaceHints": [
+      "PRE-BOUND SETUP ANSWERS",
+      "non-interactive auto dispatch"
+    ],
+    "_seat": "04",
+    "_slice": "context-pool"
+  },
+  {
+    "severity": "P1",
+    "title": "Phase 0 recovery restart command drops the attached mode suffix",
+    "dimension": "correctness",
+    "file": ".opencode/commands/deep/start-context-loop.md:60",
+    "evidence": "The Phase 0 failure block tells users to restart with `/deep:start-context-loop [arguments]`, but this file defines canonical mode syntax as attached suffixes (`/deep:start-context-loop:auto`, `/deep:start-context-loop:confirm`) at line 80 and uses those forms in the execution-mode table. Restarting an `:auto` or `:confirm` invocation with the shown command can change setup behavior or force mode re-selection.",
+    "recommendation": "Change the recovery text to preserve the original attached command form, for example `/deep:start-context-loop[:auto|:confirm] [original arguments]`, or explicitly tell the user to rerun the exact original command under @general.",
+    "findingClass": "instance-only",
+    "scopeProof": "Bounded to the requested file; verified the Phase 0 restart block against the same file's canonical mode syntax and execution-mode table.",
+    "affectedSurfaceHints": [
+      "Phase 0 @general hard block",
+      "restart recovery text",
+      "mode suffix handling"
+    ],
+    "_seat": "05",
+    "_slice": "context-gates"
+  },
+  {
+    "severity": "P1",
+    "title": "`:restart` is advertised without setup or mode-routing support",
+    "dimension": "consistency",
+    "file": ".opencode/commands/deep/start-context-loop.md:333",
+    "evidence": "Line 333 says a `:restart` request archives the current packet and starts a new lineage segment, but the command metadata and setup flow only recognize `:auto`, `:confirm`, or no suffix: description/argument hint at lines 2-3, setup mode switch at lines 150-153, and execution-mode table at lines 349-353. There is no documented first-action/setup branch for `:restart`.",
+    "recommendation": "Either remove the `:restart` sentence or add `:restart` consistently to the argument hint, setup mode detection, required input binding, and YAML execution path.",
+    "findingClass": "instance-only",
+    "scopeProof": "Bounded to the requested file; searched for `:restart`, `:auto`, and `:confirm` occurrences and found only the single restart promise with no matching routing branch.",
+    "affectedSurfaceHints": [
+      "restart line",
+      "Unified Setup Phase",
+      "execution-mode routing"
+    ],
+    "_seat": "05",
+    "_slice": "context-gates"
+  },
+  {
+    "severity": "P1",
+    "title": "Phase 0 restart instruction only names the non-canonical council command",
+    "dimension": "consistency",
+    "file": ".opencode/commands/deep/ask-ai-council.md:62",
+    "evidence": "The Phase 0 hard-block message tells users to restart with `/deep:ask-ai-council [arguments]`, while the same entrypoint declares canonical attached mode syntax as `/speckit:deep-council:auto` and `/speckit:deep-council:confirm` at line 92 and uses `/speckit:deep-council` in the execution-mode table at lines 340-342.",
+    "recommendation": "Update the restart block to use the canonical `/speckit:deep-council[:auto|:confirm] [arguments]` form, or explicitly list both supported aliases while preserving the mode suffix semantics.",
+    "findingClass": "instance-only",
+    "scopeProof": "Bounded to the Phase 0 failure message and command-name references inside the reviewed ask-ai-council entrypoint.",
+    "affectedSurfaceHints": [
+      "Phase 0 general-agent hard block",
+      "deep council command aliasing",
+      "restart guidance"
+    ],
+    "_seat": "07",
+    "_slice": "aicouncil-skillbench-gates"
+  },
+  {
+    "severity": "P1",
+    "title": "Setup gate cannot collect required run_label in confirm mode",
+    "dimension": "completeness",
+    "file": ".opencode/commands/deep/start-model-benchmark-loop.md:167",
+    "evidence": "The Default Resolution Table marks `run_label` required and line 200 stores it from `--run-label or Q1b`, but the consolidated prompt only asks Q0 profile, Q1 spec folder, Q2 mode, Q3 scorer, Q4 grader, and Q5 executor/model. There is no visible run-label question, and the frontmatter argument hint also omits `--run-label`.",
+    "recommendation": "Add an explicit run-label setup question and include `--run-label=LABEL` in the argument hint, or fold run-label clearly into Q1 with parse instructions that match the prompt text.",
+    "findingClass": "instance-only",
+    "scopeProof": "Bounded to the model-benchmark setup gate in the reviewed file; the other two reviewed commands do not require `run_label`.",
+    "affectedSurfaceHints": [
+      "/deep:start-model-benchmark-loop:confirm",
+      "/deep:start-model-benchmark-loop without --run-label"
+    ],
+    "_seat": "08",
+    "_slice": "crosscommand-uniformity"
+  },
+  {
+    "severity": "P1",
+    "title": "Context setup hard-block omits executor_pool from YAML start condition",
+    "dimension": "consistency",
+    "file": ".opencode/commands/deep/start-context-loop.md:77",
+    "evidence": "The FIRST ACTION block requires the Unified Setup Phase to resolve `executor_pool`, and the setup parser later stores `executor_pool`; however the `YAML START CONDITION` list says YAML may not load until `scope`, `spec_folder`, `execution_mode`, `maxIterations`, and `convergenceThreshold` are bound, omitting `executor_pool`.",
+    "recommendation": "Add `executor_pool` to the YAML start-condition required-input list so the native-only default or explicit pool is bound before YAML loads.",
+    "findingClass": "instance-only",
+    "scopeProof": "Bounded to the start-context-loop gate sections in the reviewed file; model-benchmark and agent-improvement do not use an executor pool field.",
+    "affectedSurfaceHints": [
+      "/deep:start-context-loop:auto",
+      "/deep:start-context-loop:confirm",
+      "deep-context native-only default pool"
+    ],
+    "_seat": "08",
+    "_slice": "crosscommand-uniformity"
+  },
+  {
+    "severity": "P2",
+    "title": "Model-benchmark setup display box still overflows on default profile line",
+    "dimension": "maintainability",
+    "file": ".opencode/commands/deep/start-model-benchmark-loop.md:164",
+    "evidence": "The setup prompt box uses fixed-width padded rows, but the `A) Default - assets/model-benchmark/benchmark-profiles/default.json` row is longer than the surrounding box rows and pushes the closing border out of alignment.",
+    "recommendation": "Wrap or shorten the default profile path inside the box, or move the full path outside the boxed prompt, so all rows share the same width.",
+    "findingClass": "instance-only",
+    "scopeProof": "Bounded to the start-model-benchmark-loop setup display box; the reviewed Phase 0 restart boxes name their own commands.",
+    "affectedSurfaceHints": [
+      "/deep:start-model-benchmark-loop setup prompt"
+    ],
+    "_seat": "08",
+    "_slice": "crosscommand-uniformity"
+  },
+  {
+    "severity": "P1",
+    "title": "YAML comments contradict the read-only seat contract",
+    "dimension": "security",
+    "file": ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml:348",
+    "evidence": "The sweep comment says seats are READ-ONLY but also says they \"write only their own seats/iter-NNN/{label}.json\". The same file's host-writes-state contract says the HOST is the ONLY writer, and the dispatch step later says the host writes each seat return. The confirm YAML repeats the same contradiction at lines 376-379.",
+    "recommendation": "Change both sweep comments to say seats return structured findings and the host writes `seats/iter-NNN/{label}.json`; remove any wording that grants seats write authority.",
+    "findingClass": "cross-consumer",
+    "scopeProof": "Bounded to the two reviewed context-loop YAML files and cross-checked only against their own host-writes-state and dispatch wording.",
+    "affectedSurfaceHints": [
+      ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml"
+    ],
+    "_seat": "09",
+    "_slice": "yaml-skill-readme"
+  },
+  {
+    "severity": "P1",
+    "title": "README documents the per-seat artifact path in the wrong order",
+    "dimension": "consistency",
+    "file": ".opencode/skills/deep-context/README.md:171",
+    "evidence": "README packet layout shows `seats/{label}/iter-NNN/`, but both YAML assets define `seat_pattern: \"{artifact_dir}/seats/iter-{NNN}/{label}.json\"`. The documented layout is reversed relative to the workflow contract.",
+    "recommendation": "Update the README packet layout to `seats/iter-NNN/{label}.json` or equivalent wording matching the YAML state_paths.",
+    "findingClass": "cross-consumer",
+    "scopeProof": "Compared README layout only against the two reviewed YAML `state_paths.seat_pattern` entries.",
+    "affectedSurfaceHints": [
+      ".opencode/skills/deep-context/README.md",
+      ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml"
+    ],
+    "_seat": "09",
+    "_slice": "yaml-skill-readme"
+  },
+  {
+    "severity": "P1",
+    "title": "deep-loop-runtime still describes only deep-review and deep-research as supported consumers",
+    "dimension": "completeness",
+    "file": ".opencode/skills/deep-loop-runtime/SKILL.md:10",
+    "evidence": "The runtime intro and usage sections say the runtime is for deep-review and deep-research workflows, while the same file's mirror note later lists deep-context and other deep-loop native agents as consumers. The reviewed deep-context SKILL also states deep-context is a consumer of deep-loop-runtime.",
+    "recommendation": "Generalize the consumer wording or explicitly include deep-context and the other supported deep-loop consumers wherever the runtime scope, activation triggers, and escalation rules name consumers.",
+    "findingClass": "cross-consumer",
+    "scopeProof": "Bounded to the reviewed deep-loop-runtime SKILL and the reviewed deep-context SKILL consumer statement.",
+    "affectedSurfaceHints": [
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/deep-context/SKILL.md"
+    ],
+    "_seat": "09",
+    "_slice": "yaml-skill-readme"
+  },
+  {
+    "severity": "P2",
+    "title": "deep-context README still names the loop as heterogeneous by default-facing metadata",
+    "dimension": "consistency",
+    "file": ".opencode/skills/deep-context/README.md:2",
+    "evidence": "The README title is `deep-context: Heterogeneous Codebase Context Loop`, and the overview says it runs a heterogeneous pool. The same README lists the default executor pool as `2 native @deep-context seats (native-only); add --executor for CLI/heterogeneous`. This leaves heterogeneous wording in default-facing title/overview rather than only in custom/optional examples.",
+    "recommendation": "Rename default-facing README title/overview wording to native/default-neutral language, and keep heterogeneous wording only where describing opt-in CLI/custom pools.",
+    "findingClass": "instance-only",
+    "scopeProof": "Reviewed only the README default-facing metadata/overview against its own default executor pool line and the de-named focus for this slice.",
+    "affectedSurfaceHints": [
+      ".opencode/skills/deep-context/README.md"
+    ],
+    "_seat": "09",
+    "_slice": "yaml-skill-readme"
+  },
+  {
+    "severity": "P1",
+    "title": "007 packet metadata points to a different spec folder than the reviewed packet path",
+    "dimension": "traceability",
+    "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening/description.json:12",
+    "evidence": "The reviewed 007 folder lives under `134-deep-context-gathering/007-deep-command-gate-hardening`, but `description.json` sets `packet_id` to `skilled-agent-orchestration/136-deep-command-gate-hardening`; `graph-metadata.json:3-5`, `spec.md:14`, `implementation-summary.md:13`, `plan.md:13`, `tasks.md:13`, and `checklist.md:13` repeat the 136 pointer. `git ls-files` also shows tracked files under `.opencode/specs/skilled-agent-orchestration/136-deep-command-gate-hardening` while the reviewed 134/007 folder is untracked in the current tree.",
+    "recommendation": "Choose one canonical location, then align `packet_id`, `spec_folder`, `parent_id`, `specFolder`, `specId`, and all `_memory.continuity.packet_pointer` values with that location before considering 007 complete.",
+    "findingClass": "cross-consumer",
+    "scopeProof": "Bounded to the requested 007 spec folder and git path metadata needed to verify whether the path mismatch was real.",
+    "affectedSurfaceHints": [
+      "Spec graph traversal",
+      "memory search/resume",
+      "completion metadata",
+      "commit traceability"
+    ],
+    "_seat": "10",
+    "_slice": "specdoc-accuracy"
+  },
+  {
+    "severity": "P1",
+    "title": "006 completion docs overclaim default-pool stale-reference cleanup",
+    "dimension": "consistency",
+    "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool/implementation-summary.md:116",
+    "evidence": "The implementation summary marks `Het list only under Custom/example` as PASS and says no `default = het` text remains, but deep-context docs still state the opposite: `.opencode/skills/deep-context/feature_catalog/01--frontier-seeding/config-shape-and-default-pool.md:47` says the default heterogeneous pool is used, `.opencode/skills/deep-context/manual_testing_playbook/01--frontier-seeding/config-shape-and-default-pool.md:14` and `:28-30` require `2 native + MiMo + gpt + deepseek`, and `.opencode/skills/deep-context/manual_testing_playbook/manual_testing_playbook.md:197-204` still describes the default heterogeneous executor pool.",
+    "recommendation": "Update the stale feature-catalog and manual-testing-playbook default-pool references to 2 native seats, or narrow the 006 completion claim to the exact surfaces that were actually cleaned.",
+    "findingClass": "class-of-bug",
+    "scopeProof": "Checked the 006 spec docs, the actual default config, and targeted deep-context documentation containing explicit default-pool references.",
+    "affectedSurfaceHints": [
+      "deep-context manual tests",
+      "deep-context feature catalog",
+      "operator documentation",
+      "future verification prompts"
+    ],
+    "_seat": "10",
+    "_slice": "specdoc-accuracy"
+  },
+  {
+    "severity": "P2",
+    "title": "Completed packets still carry stale pre-completion next actions",
+    "dimension": "maintainability",
+    "file": ".opencode/specs/skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity/spec.md:18",
+    "evidence": "The 005 spec is `Status: Complete` and `implementation-summary.md:115` says `validate.sh --strict` passed, but frontmatter still says `next_safe_action: Run validate.sh --strict and reconcile completion metadata`. The same stale pattern appears in 006 `spec.md:18` and 007 `spec.md:18`, while their description/graph metadata mark `status` complete.",
+    "recommendation": "Refresh stale `_memory.continuity.next_safe_action` fields to post-completion follow-ups, or remove pre-completion actions from non-canonical continuity surfaces so resume output does not contradict complete status.",
+    "findingClass": "matrix/evidence",
+    "scopeProof": "Bounded to completion/status fields in the requested spec docs and their implementation-summary verification claims.",
+    "affectedSurfaceHints": [
+      "session resume",
+      "memory continuity",
+      "completion reporting"
+    ],
+    "_seat": "10",
+    "_slice": "specdoc-accuracy"
+  }
+]

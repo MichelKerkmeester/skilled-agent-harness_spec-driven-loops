@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/136-deep-command-gate-hardening"
+    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening"
     last_updated_at: "2026-06-07T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added Phase 0 + BLOCKED setup gates to all 7 deep commands"
@@ -25,7 +25,7 @@ _memory:
       - ".opencode/commands/deep/start-skill-benchmark-loop.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "spec-136-deep-command-gate-hardening"
+      session_id: "spec-007-deep-command-gate-hardening"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

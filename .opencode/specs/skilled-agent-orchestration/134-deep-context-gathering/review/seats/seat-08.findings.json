@@ -1,0 +1,58 @@
+{
+  "slice": "crosscommand-uniformity",
+  "filesReviewed": [
+    ".opencode/commands/deep/start-model-benchmark-loop.md",
+    ".opencode/commands/deep/start-agent-improvement-loop.md",
+    ".opencode/commands/deep/start-context-loop.md"
+  ],
+  "findings": [
+    {
+      "severity": "P1",
+      "title": "Setup gate cannot collect required run_label in confirm mode",
+      "dimension": "completeness",
+      "file": ".opencode/commands/deep/start-model-benchmark-loop.md:167",
+      "evidence": "The Default Resolution Table marks `run_label` required and line 200 stores it from `--run-label or Q1b`, but the consolidated prompt only asks Q0 profile, Q1 spec folder, Q2 mode, Q3 scorer, Q4 grader, and Q5 executor/model. There is no visible run-label question, and the frontmatter argument hint also omits `--run-label`.",
+      "recommendation": "Add an explicit run-label setup question and include `--run-label=LABEL` in the argument hint, or fold run-label clearly into Q1 with parse instructions that match the prompt text.",
+      "findingClass": "instance-only",
+      "scopeProof": "Bounded to the model-benchmark setup gate in the reviewed file; the other two reviewed commands do not require `run_label`.",
+      "affectedSurfaceHints": [
+        "/deep:start-model-benchmark-loop:confirm",
+        "/deep:start-model-benchmark-loop without --run-label"
+      ],
+      "_seat": "08",
+      "_slice": "crosscommand-uniformity"
+    },
+    {
+      "severity": "P1",
+      "title": "Context setup hard-block omits executor_pool from YAML start condition",
+      "dimension": "consistency",
+      "file": ".opencode/commands/deep/start-context-loop.md:77",
+      "evidence": "The FIRST ACTION block requires the Unified Setup Phase to resolve `executor_pool`, and the setup parser later stores `executor_pool`; however the `YAML START CONDITION` list says YAML may not load until `scope`, `spec_folder`, `execution_mode`, `maxIterations`, and `convergenceThreshold` are bound, omitting `executor_pool`.",
+      "recommendation": "Add `executor_pool` to the YAML start-condition required-input list so the native-only default or explicit pool is bound before YAML loads.",
+      "findingClass": "instance-only",
+      "scopeProof": "Bounded to the start-context-loop gate sections in the reviewed file; model-benchmark and agent-improvement do not use an executor pool field.",
+      "affectedSurfaceHints": [
+        "/deep:start-context-loop:auto",
+        "/deep:start-context-loop:confirm",
+        "deep-context native-only default pool"
+      ],
+      "_seat": "08",
+      "_slice": "crosscommand-uniformity"
+    },
+    {
+      "severity": "P2",
+      "title": "Model-benchmark setup display box still overflows on default profile line",
+      "dimension": "maintainability",
+      "file": ".opencode/commands/deep/start-model-benchmark-loop.md:164",
+      "evidence": "The setup prompt box uses fixed-width padded rows, but the `A) Default - assets/model-benchmark/benchmark-profiles/default.json` row is longer than the surrounding box rows and pushes the closing border out of alignment.",
+      "recommendation": "Wrap or shorten the default profile path inside the box, or move the full path outside the boxed prompt, so all rows share the same width.",
+      "findingClass": "instance-only",
+      "scopeProof": "Bounded to the start-model-benchmark-loop setup display box; the reviewed Phase 0 restart boxes name their own commands.",
+      "affectedSurfaceHints": [
+        "/deep:start-model-benchmark-loop setup prompt"
+      ],
+      "_seat": "08",
+      "_slice": "crosscommand-uniformity"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 name: deep-context
 description: LEAF read-only deep-context analyzer seat: one parallel sweep of a slice, returns a reuse-first finding set.
-tools: Read, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
+tools: Read, Grep, Glob, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
 ---
 
 # The Deep Context Analyzer: Read-Only Seat

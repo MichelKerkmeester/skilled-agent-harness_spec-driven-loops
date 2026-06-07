@@ -1,0 +1,25 @@
+{
+  "slice": "canonical-and-config",
+  "filesReviewed": [
+    ".opencode/agents/deep-context.md",
+    ".opencode/skills/deep-context/assets/deep_context_config.json"
+  ],
+  "findings": [
+    {
+      "severity": "P2",
+      "title": "Opening agent summary still describes the default pool as heterogeneous",
+      "dimension": "consistency",
+      "file": ".opencode/agents/deep-context.md:27",
+      "evidence": "Line 27 says the seat executes within a heterogeneous parallel pool, but the same file clarifies on line 34 that the default pool is native-only with 2 seats and CLI seats join only when explicitly configured. The JSON config also defaults to two native executors with agreementMin 2.",
+      "recommendation": "Soften line 27 to describe a parallel pool generally, or say it may be heterogeneous only when configured.",
+      "findingClass": "instance-only",
+      "scopeProof": "Bounded to the two requested files; checked the agent wording against the native-only fanout config and the later same-file default-pool clarification.",
+      "affectedSurfaceHints": [
+        "deep-context native agent docs",
+        "native-only default executor pool"
+      ],
+      "_seat": "03",
+      "_slice": "canonical-and-config"
+    }
+  ]
+}

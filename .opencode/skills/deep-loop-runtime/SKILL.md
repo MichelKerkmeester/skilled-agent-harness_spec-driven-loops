@@ -7,13 +7,13 @@ allowed-tools: [Bash, Read, Glob, Grep]
 
 # Deep Loop Runtime
 
-Shared runtime infrastructure for the deep-review and deep-research loop workflows. The FULL_ISOLATE_NO_MCP consolidation moved the shared runtime libraries, coverage-graph ownership, script entry points, SQLite storage, and runtime tests into this peer skill.
+Shared runtime infrastructure for the deep-review, deep-research, and deep-context loop workflows (and deep-ai-council via the council-scoped modules). The FULL_ISOLATE_NO_MCP consolidation moved the shared runtime libraries, coverage-graph ownership, script entry points, SQLite storage, and runtime tests into this peer skill.
 
 ---
 
 ## 1. WHEN TO USE
 
-This skill is consumed by deep-review and deep-research workflow YAML and script paths, not invoked directly as a user-facing workflow.
+This skill is consumed by the deep-review, deep-research, and deep-context workflow YAML and script paths (and the deep-ai-council council modules), not invoked directly as a user-facing workflow.
 
 Use it when a deep-loop workflow needs shared runtime support for:
 

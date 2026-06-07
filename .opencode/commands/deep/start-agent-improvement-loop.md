@@ -43,7 +43,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates deep-improvement skill     │
+    │   │ This command orchestrates deep-improvement skill           │
     │   │ invocation and runs general-agent based.                   │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
