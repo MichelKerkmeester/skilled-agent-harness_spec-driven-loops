@@ -14,18 +14,18 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization"
     last_updated_at: "2026-06-07T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped phases 001 (template) and 002 (cli-claude-code README)"
-    next_safe_action: "Phase 003: rewrite cli-codex README via the full recipe"
+    recent_action: "Shipped phases 001-003 (template, cli-claude-code, cli-codex)"
+    next_safe_action: "Phase 004: rewrite cli-devin README via the full recipe"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-readme-template-and-standard/spec.md"
       - "002-cli-claude-code-readme/spec.md"
+      - "003-cli-codex-readme/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-bootstrap"
       parent_session_id: null
-    completion_pct: 8
+    completion_pct: 12
     open_questions: []
     answered_questions:
       - "Model role: dual-draft + merge (DeepSeek v4 Pro max and MiMo v2.5 Pro high gather as deep-context seats AND each drafts, orchestrator merges)"
@@ -112,7 +112,7 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 |-------|--------|-------|--------|
 | 001 | `001-readme-template-and-standard/` | Rewrite the sk-doc skill-README template to the narrative voice; ship the sk-git golden-example README as the concrete exemplar | Complete |
 | 002 | `002-cli-claude-code-readme/` | Rewrite `cli-claude-code` README | Complete |
-| 003 | `003-cli-codex-readme/` | Rewrite `cli-codex` README | Planned |
+| 003 | `003-cli-codex-readme/` | Rewrite `cli-codex` README | Complete |
 | 004 | `004-cli-devin-readme/` | Rewrite `cli-devin` README | Planned |
 | 005 | `005-cli-opencode-readme/` | Rewrite `cli-opencode` README | Planned |
 | 006 | `006-deep-ai-council-readme/` | Rewrite `deep-ai-council` README | Planned |

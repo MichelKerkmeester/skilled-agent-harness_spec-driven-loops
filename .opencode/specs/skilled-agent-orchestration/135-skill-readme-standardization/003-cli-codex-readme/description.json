@@ -1,0 +1,19 @@
+{
+  "specFolder": "003-cli-codex-readme",
+  "description": "Rewrite cli-codex skill README in the narrative voice",
+  "keywords": [
+    "rewrite",
+    "cli-codex",
+    "skill",
+    "readme",
+    "narrative",
+    "voice"
+  ],
+  "lastUpdated": "2026-06-07T10:12:41.963Z",
+  "specId": "003",
+  "folderSlug": "cli-codex-readme",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
