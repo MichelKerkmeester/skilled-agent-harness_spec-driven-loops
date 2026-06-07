@@ -798,22 +798,13 @@ The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispa
 ```
 
 &nbsp;
-#### deep-loop-runtime (the shared foundation)
+#### Deep Loop Runtime (the shared foundation)
 
 One engine under every loop, so they all work the same way and you learn the workflow once.
 - **Consistent across loops:** context, research, review, council and improvement all dispatch, track and stop the same way
 - **Pause and resume anytime:** progress is saved outside the chat, so a loop survives crashes, new sessions and long runs
 - **Trustworthy stops:** a loop ends only when the work has actually converged and passed its quality checks, never because an agent says it is done
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
-
-&nbsp;
-#### Deep Context
-
-Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:start-context-loop` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
-- **Reuse first:** the top of every Context Report is a catalog of existing `file:symbol` pointers to extend, compose or wrap
-- **Many models, one scope:** a heterogeneous pool (native agents plus cli models) sweeps the same code in parallel, and agreement across models drives confidence
-- **Pointers, not dumps:** it ships verified references instead of pasted source, so planning context stays sharp rather than bloated
-- **Knows when it's done:** stops on relevance-gated coverage saturation, with cross-model agreement and relevance as blocking guards
 
 &nbsp;
 #### Deep Research
@@ -834,7 +825,16 @@ Audits your code in passes and never edits it. `/deep:start-review-loop` runs `@
 - **Clear verdict:** a `review-report.md` that ends in PASS, CONDITIONAL or FAIL
 
 &nbsp;
-#### AI Council
+#### Deep Context
+
+Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:start-context-loop` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
+- **Reuse first:** the top of every Context Report is a catalog of existing `file:symbol` pointers to extend, compose or wrap
+- **Many models, one scope:** a heterogeneous pool (native agents plus cli models) sweeps the same code in parallel, and agreement across models drives confidence
+- **Pointers, not dumps:** it ships verified references instead of pasted source, so planning context stays sharp rather than bloated
+- **Knows when it's done:** stops on relevance-gated coverage saturation, with cross-model agreement and relevance as blocking guards
+
+&nbsp;
+#### Multi AI Council
 
 Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/deep:ask-ai-council` handles multi-topic sessions.
 - **More than one opinion:** different AI seats reason from different angles, then critique each other
@@ -912,7 +912,7 @@ The shared runtime plus the five loop skills behind the autonomous loops. See th
 - Autonomous code-review loop: P0/P1/P2 findings across 4 dimensions, a PASS/CONDITIONAL/FAIL verdict, adversarial P0 self-check. Dispatched by `/deep:start-review-loop`. See [Deep Loop](#deep-loop).
 
 **deep-context**
-- Autonomous codebase-context loop: heterogeneous-parallel by-model sweep over a shared scope, cross-executor-agreement convergence, reuse-first Context Report of verified `file:symbol` pointers. Dispatched by `/deep:start-context-loop`; optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. See [Deep Loop](#deep-loop).
+- Autonomous codebase-context loop: scans your existing code with multiple AI models in parallel, finds agreement on what's already there, and produces a Context Report of verified `file:symbol` pointers to reuse. Dispatched by `/deep:start-context-loop`; optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. See [Deep Loop](#deep-loop).
 
 **deep-ai-council**
 - Multi-seat planning council: diverse AI seats, cross-seat critique, convergence to evidence-backed recommendations, packet-local `ai-council/**` artifacts. Planning-only. See [Deep Loop](#deep-loop).
