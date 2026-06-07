@@ -29,7 +29,7 @@ Full multi-session secondary adoption of a released daemon is still under live o
 
 ### Upgrade
 
-Mostly no-ops by default. The re-election config change activates when a launcher starts on a fresh session, so a running daemon keeps its old behavior until then. No rebuild is required; the launchers are committed `.cjs`.
+Mostly no-ops by default. The re-election config change activates when a launcher starts on a fresh session, so a running daemon keeps its old behavior until then. No rebuild is required. The launchers are committed `.cjs`.
 
 ### Full details
 
