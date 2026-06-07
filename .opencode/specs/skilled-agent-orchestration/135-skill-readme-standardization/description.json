@@ -31,7 +31,8 @@
     "013-mcp-click-up-readme",
     "014-mcp-code-mode-readme",
     "015-sk-code-review-readme",
-    "016-sk-code-readme"
+    "016-sk-code-readme",
+    "017-sk-doc-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
@@ -44,7 +45,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T14:10:11.000Z",
+  "lastUpdated": "2026-06-07T14:27:04.000Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [

@@ -12,20 +12,20 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization"
-    last_updated_at: "2026-06-07T14:10:11Z"
+    last_updated_at: "2026-06-07T14:27:04Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped phases 001-016 (Batch D through sk-code)"
-    next_safe_action: "Phase 017: rewrite sk-doc README"
+    recent_action: "Shipped phases 001-017 (Batch D through sk-doc)"
+    next_safe_action: "Phase 018: rewrite sk-git README"
     blockers: []
     key_files:
       - "spec.md"
-      - "015-sk-code-review-readme/spec.md"
       - "016-sk-code-readme/spec.md"
+      - "017-sk-doc-readme/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-bootstrap"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 71
     open_questions: []
     answered_questions:
       - "Model role: dual-draft + merge (DeepSeek v4 Pro max and MiMo v2.5 Pro high gather as deep-context seats AND each drafts, orchestrator merges)"
@@ -126,7 +126,7 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 | 014 | `014-mcp-code-mode-readme/` | Rewrite `mcp-code-mode` README | Complete |
 | 015 | `015-sk-code-review-readme/` | Rewrite `sk-code-review` README | Complete |
 | 016 | `016-sk-code-readme/` | Rewrite `sk-code` README | Complete |
-| 017 | `017-sk-doc-readme/` | Rewrite `sk-doc` README | Planned |
+| 017 | `017-sk-doc-readme/` | Rewrite `sk-doc` README | Complete |
 | 018 | `018-sk-git-readme/` | Finalize `sk-git` README (golden example authored in 001) | Planned |
 | 019 | `019-sk-prompt-small-model-readme/` | Rewrite `sk-prompt-small-model` README | Planned |
 | 020 | `020-sk-prompt-readme/` | Rewrite `sk-prompt` README | Planned |

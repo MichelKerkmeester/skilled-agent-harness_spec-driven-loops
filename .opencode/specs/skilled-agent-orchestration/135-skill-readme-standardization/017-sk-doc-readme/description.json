@@ -1,0 +1,19 @@
+{
+  "specFolder": "017-sk-doc-readme",
+  "description": "Rewrite sk-doc skill README in the narrative voice",
+  "keywords": [
+    "rewrite",
+    "sk-doc",
+    "skill",
+    "readme",
+    "narrative",
+    "voice"
+  ],
+  "lastUpdated": "2026-06-07T14:25:14.000Z",
+  "specId": "017",
+  "folderSlug": "sk-doc-readme",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
