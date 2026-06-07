@@ -14,11 +14,13 @@ const path = require('node:path');
 const MODE_CONFIG_FILE = {
   research: 'deep-research-config.json',
   review: 'deep-review-config.json',
+  context: 'deep-context-config.json',
 };
 
 const MODE_STATE_FILE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
+  context: 'deep-context-state.jsonl',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -188,7 +190,7 @@ function findExistingPacket(rootDir, specFolder, mode) {
  *   - child phase same-target continuation → reuses prior flat or pt-NN
  *
  * @param {string} specFolder - Absolute or relative path to the target spec folder
- * @param {'review'|'research'} [mode='review'] - Which artifact type to resolve
+ * @param {'review'|'research'|'context'} [mode='review'] - Which artifact type to resolve
  *
  * @returns {{
  *   rootDir: string,

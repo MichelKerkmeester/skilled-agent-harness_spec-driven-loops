@@ -1,0 +1,5 @@
+{"type":"finding","round":8,"id":"R8-1","severity":"P1","verdict":"confirmed","file":"feature_catalog/07--runtime-robustness/loop-lock.md","line":22,"issue":"heartbeat/refresh + cross-session prevention over-claimed"}
+{"type":"finding","round":8,"id":"R8-2","severity":"P1","verdict":"confirmed","file":"feature_catalog/07--runtime-robustness/executor-audit.md","line":3,"issue":"auto-wire for each CLI seat over-claimed"}
+{"type":"finding","round":8,"id":"R8-3","severity":"P1","verdict":"confirmed","file":"feature_catalog/06--coverage-graph-schema/context-node-kinds-relations.md","line":52,"issue":"COVERED_BY/CONFIRMS reference non-existent node kinds"}
+{"type":"finding","round":8,"id":"R8-4","severity":"P1","verdict":"confirmed","file":"feature_catalog/06--coverage-graph-schema/context-convergence-signals.md","line":46,"issue":"four convergence-signal formulas mis-describe code"}
+{"type":"finding","round":8,"id":"R8-5","severity":"P1","verdict":"confirmed","file":"references/convergence.md","line":92,"issue":"thresholds documented configurable but hardcoded in evaluateContext"}

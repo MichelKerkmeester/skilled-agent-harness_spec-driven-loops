@@ -1,0 +1,10 @@
+{"type":"iteration","round":1,"dimension":"correctness","findings":2,"p0":1,"p1":1,"p2":0,"status":"complete"}
+{"type":"iteration","round":2,"dimension":"correctness","findings":2,"p0":0,"p1":1,"p2":1,"status":"complete"}
+{"type":"iteration","round":3,"dimension":"correctness","findings":2,"p0":0,"p1":1,"p2":1,"status":"complete"}
+{"type":"iteration","round":4,"dimension":"security","findings":6,"p0":0,"p1":2,"p2":4,"status":"complete"}
+{"type":"iteration","round":5,"dimension":"traceability","findings":11,"p0":0,"p1":9,"p2":2,"status":"complete"}
+{"type":"iteration","round":6,"dimension":"maintainability","findings":5,"p0":0,"p1":2,"p2":3,"status":"complete"}
+{"type":"iteration","round":7,"dimension":"correctness","findings":8,"confirmed_p1":2,"refuted":2,"downgraded":3,"status":"complete"}
+{"type":"iteration","round":8,"dimension":"docs-vs-code","findings":11,"confirmed_p1":7,"p2":1,"status":"complete"}
+{"type":"iteration","round":9,"dimension":"adversarial-verify","confirmed":14,"refuted":5,"status":"complete"}
+{"type":"iteration","round":10,"dimension":"synthesis","verdict":"FAIL","status":"complete"}

@@ -15,7 +15,7 @@ const path = require('node:path');
 
 /**
  * Stop reasons explain WHY a session terminated.
- * Research finding (P0): do not overload stopReason with outcome semantics.
+ * Do not overload stopReason with outcome semantics — keep it orthogonal to sessionOutcome.
  * @type {Readonly<Record<string, string>>}
  */
 const STOP_REASONS = Object.freeze({
@@ -29,7 +29,7 @@ const STOP_REASONS = Object.freeze({
 
 /**
  * Session outcomes explain WHAT happened to the candidate.
- * Separate from stopReason per research finding (P0).
+ * Kept separate from stopReason: stopReason is WHY a session ended, this is WHAT happened to the candidate.
  * @type {Readonly<Record<string, string>>}
  */
 const SESSION_OUTCOMES = Object.freeze({
@@ -156,7 +156,7 @@ function emitEvent(journalPath, event) {
   const dir = path.dirname(journalPath);
   fs.mkdirSync(dir, { recursive: true });
 
-  // Append-only: use 'a' flag (NFR-R01: survives process restart, no in-memory buffering)
+  // Append-only 'a' flag: survives process restart, no in-memory buffering to lose on crash.
   const line = JSON.stringify(enrichedEvent) + '\n';
   fs.appendFileSync(journalPath, line, 'utf8');
 
@@ -165,7 +165,7 @@ function emitEvent(journalPath, event) {
 
 /**
  * Read all events from a journal file, surfacing corrupt lines as warnings.
- * Used for resume/replay semantics (REQ-AI-003).
+ * Used for resume/replay semantics.
  *
  * Returns an array of parsed event objects. The array also carries a
  * `corruptionWarnings` property (string[]) listing any lines that could not

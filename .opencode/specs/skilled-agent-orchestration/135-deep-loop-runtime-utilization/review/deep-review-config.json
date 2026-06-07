@@ -1,0 +1,20 @@
+{
+  "reviewTarget": "Session deep-context + deep-loop-runtime utilization work (commits 1d54e45..55fd158): 28 changed code/contract files",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/135-deep-loop-runtime-utilization",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "loopType": "review",
+  "config": {
+    "executor": {
+      "kind": "cli-opencode",
+      "model": "openai/gpt-5.5-fast",
+      "reasoningEffort": "xhigh",
+      "timeoutSeconds": 1200
+    }
+  },
+  "status": "running",
+  "createdAt": "2026-06-07T00:00:00Z"
+}

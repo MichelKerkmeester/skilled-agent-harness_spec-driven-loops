@@ -413,7 +413,7 @@ function buildMutationCoverageKey(entry) {
     return null;
   }
 
-  // M-3: prefer signature when available for richer dedup
+  // Prefer signature when available for richer dedup
   if (typeof entry.signature === 'string' && entry.signature.trim()) {
     return entry.signature;
   }
@@ -709,8 +709,8 @@ function buildRegistry(records) {
     const bucket = profiles[profileId];
     bucket.latestRecord = record;
     bucket.metrics.totalRecords += 1;
-    // P2 (DOCUMENT-ACCEPT, from F-P2-5): a missing or unknown record.mode is
-    // deliberately attributed to agent-improvement. Lane A is the legacy default
+    // A missing or unknown record.mode is deliberately attributed to
+    // agent-improvement. Lane A is the legacy default
     // because pre-mode-switch records predate the model-benchmark lane and carry no
     // mode field; treating them as agent-improvement keeps historical ledgers stable.
     // Only the exact 'model-benchmark' string routes to Lane B; everything else,
@@ -897,7 +897,7 @@ function evaluateStopStatus(registry, config, mirrorDriftReport) {
     }
   }
 
-  // F-P1-5: Lane B benchmark aggregate plateau. The model-benchmark YAML promises a
+  // Lane B benchmark aggregate plateau. The model-benchmark YAML promises a
   // stop on "benchmark scores plateau (3+ identical aggregate scores)", but the
   // dimension-plateau block above only inspects bucket.dimensionScores (Lane A). Lane B
   // aggregate scores live in bucket.benchmarkRuns and were never checked. This block
@@ -1323,4 +1323,18 @@ function main() {
   );
 }
 
-main();
+module.exports = {
+  parseJsonl,
+  parseJsonlDetailed,
+  buildRegistry,
+  renderDashboard,
+  evaluateStopStatus,
+  loadStateSafety,
+  writeTextAtomic,
+  writeStateAtomicInline,
+  repairJsonlTailInline,
+};
+
+if (require.main === module) {
+  main();
+}

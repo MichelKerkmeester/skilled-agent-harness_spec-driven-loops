@@ -18,7 +18,7 @@ trigger_phrases:
 
 Documents the `ContextConvergenceSignals` interface exported by `coverage-graph-signals.ts` and how `evaluateContext` computes each signal from the graph state.
 
-`coverage-graph-signals.ts` is the TypeScript module that bridges the raw SQLite graph data and the convergence decision. It exports type-safe signal interfaces and per-loop-type evaluation functions. For `deep-context`, `evaluateContext(ns)` queries the database and returns the five context signals plus a blended score.
+`coverage-graph-signals.ts` is the TypeScript module that bridges the raw SQLite graph data and the convergence decision. It exports type-safe signal interfaces and per-loop-type signal functions. For `deep-context`, `computeContextSignals(ns)` reads the graph nodes/edges and returns the five context signals; `convergence.cjs` then blends them into a composite score and runs its own `evaluateContext(...)` to decide CONTINUE | STOP_ALLOWED | STOP_BLOCKED.
 
 ---
 
@@ -38,19 +38,19 @@ export interface ContextConvergenceSignals {
 
 ### Computation Queries
 
-`evaluateContext(ns: Namespace)` runs scoped SQL queries against the `coverage_nodes` and `coverage_edges` tables to derive each signal:
+`computeContextSignalsFromData(nodes, edges)` is a pure function over the fetched graph nodes/edges (`computeContextSignals(ns)` fetches them first). "Finding nodes" are the kinds `REUSE_CANDIDATE`, `PATTERN`, `CONSTRAINT`. Each signal vacuous-passes (1.0) when its node kind is absent. The relevance gate is `0.55` (`CONTEXT_RELEVANCE_GATE`) and the agreement minimum is `2` (`CONTEXT_AGREEMENT_MIN`):
 
-| Signal | SQL Pattern |
+| Signal | Computation |
 |---|---|
-| `sliceCoverage` | `SELECT COUNT(DISTINCT source_id) FROM coverage_edges WHERE relation='COVERED_BY'` / total SLICE nodes |
-| `reuseCatalogCoverage` | REUSE_CANDIDATE nodes with ≥2 CONFIRMS edges / total REUSE_CANDIDATE nodes |
-| `agreementRate` | Units with `agreement >= agreementMin` / all relevance-gated units |
-| `relevanceFloor` | `MIN(metadata->relevance)` across all surviving units |
-| `dependencyCompleteness` | Resolved DEPENDS_ON + IMPORTS edges / expected edges (from strategy frontier) |
+| `sliceCoverage` | SLICE nodes that are the source of a `COVERED_BY` edge / total SLICE nodes |
+| `reuseCatalogCoverage` | REUSE_CANDIDATE nodes with agreement ≥ 1 (a CONFIRMS edge or `metadata.confirmations`) OR `metadata.verified === true` / total REUSE_CANDIDATE nodes |
+| `agreementRate` | Finding nodes with agreement ≥ 2 / all finding nodes |
+| `relevanceFloor` | Fraction of finding nodes with `metadata.relevance` ≥ 0.55 |
+| `dependencyCompleteness` | DEPENDENCY nodes that are the target of a `DEPENDS_ON` edge / total DEPENDENCY nodes |
 
 ### Blended Score
 
-A `blendedScore` is computed from a weighted combination of the five signals (weights reuse-first, per `CONTEXT_WEIGHTS`). This score becomes `graph_convergence_score` in the JSONL `graph_convergence` event and is used for trend analysis.
+`convergence.cjs#computeCompositeScore` blends the five signals with reuse-first weights (reuseCatalogCoverage 0.30, agreementRate 0.25, sliceCoverage 0.20, relevanceFloor 0.15, dependencyCompleteness 0.10) into a `score`. It surfaces as `graph_convergence_score` in the JSONL `graph_convergence` event and is telemetry for trend analysis — the STOP decision itself is gated by `evaluateContext`'s per-signal thresholds, not by this composite score.
 
 ### Snapshots
 
@@ -64,7 +64,7 @@ A `blendedScore` is computed from a weighted combination of the five signals (we
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Shared | `ContextConvergenceSignals` interface, `evaluateContext` function, `createSnapshot`, `getLatestSnapshot`, `getStats` |
+| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Shared | `ContextConvergenceSignals` interface, `computeContextSignals` / `computeContextSignalsFromData`, `createSnapshot`, `getLatestSnapshot`, `getStats` |
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` | Shared | `CoverageSnapshot` interface, `getDb`, `getNodes`, `getEdges` — called by evaluateContext |
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts` | Shared | `getContradictions`, `getHotNodes`, `getProvenancePath` — query helpers used by evaluateContext for diagnostics |
 

@@ -19,9 +19,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Provides single-writer advisory locking for the context loop so that two concurrent sessions targeting the same spec folder cannot both run `phase_loop` simultaneously. The lock is acquired at the start of the YAML workflow, refreshed via heartbeat while the loop runs, and released at the end.
+Provides best-effort single-writer advisory locking for the context loop: a second session targeting the same spec folder should find the lock held and fail closed at acquire. It is advisory, not a hard mutex — the host-driven loop runs as discrete `node` invocations rather than one long-lived process, so the owner PID is short-lived and a later run can reclaim a lock that stale-detection judges dead. The lock is acquired at the start of the YAML workflow and released on every exit path (synthesis, halt, cancel, workflow-exit).
 
-`loop-lock.cjs` is a thin host-facing CLI wrapper over the runtime `loop-lock.ts` helper, loaded in-process via the tsx CJS register. The runtime provides stale-lock detection (owner-PID check + heartbeat TTL), atomic lock writes, and clean owner-scoped release.
+`loop-lock.cjs` is a thin host-facing CLI wrapper over the runtime `loop-lock.ts` helper, loaded in-process via the tsx CJS register. The runtime provides stale-lock detection (owner-PID check + TTL), atomic lock writes, and clean owner-scoped release. It also exposes `refreshLoopLock` for heartbeat renewal, but the context loop does not call it per-iteration, so staleness is governed by the TTL rather than an active heartbeat.
 
 ---
 

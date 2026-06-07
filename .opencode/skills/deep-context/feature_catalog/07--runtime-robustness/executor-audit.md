@@ -1,6 +1,6 @@
 ---
 title: "Executor Audit"
-description: "The YAML cli_contract sets SPECKIT_CLI_DISPATCH_STACK via the runtime buildExecutorDispatchEnv for each CLI seat, preventing recursive deep-context launches. The runtime executor-audit.ts module provides the recursion-guard and provenance-logging contract."
+description: "fanout-run.cjs stamps SPECKIT_CLI_DISPATCH_STACK via the runtime buildExecutorDispatchEnv for each spawned CLI seat and fails closed on a same-kind recursive spawn (detectSameKindFromStack), preventing recursive deep-context launches. The runtime executor-audit.ts module provides the recursion-guard and provenance-logging contract."
 trigger_phrases:
   - "executor audit"
   - "SPECKIT_CLI_DISPATCH_STACK"
@@ -18,9 +18,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Prevents a CLI seat from recursively launching another `deep-context` loop by stamping `SPECKIT_CLI_DISPATCH_STACK` into each seat's environment before dispatch. The dispatch stack is a colon-delimited string of executor kinds; when the same kind already appears, `validateExecutorDispatchAllowed` blocks the dispatch.
+Prevents a CLI seat from recursively launching another `deep-context` loop by stamping `SPECKIT_CLI_DISPATCH_STACK` into each spawned seat's environment before dispatch. The dispatch stack is a colon-delimited string of executor kinds; when the same kind already appears on the inherited stack, the dispatch is refused.
 
-The runtime `executor-audit.ts` module provides the complete recursion-guard (four layers: stack, ancestry, runtime-env, lockfile) and executor provenance logging. The YAML `cli_contract` requirement wires it into each deep-context seat dispatch.
+Enforcement lives at the actual subprocess spawn site, `fanout-run.cjs`: it both stamps the stack via `buildExecutorDispatchEnv` and, before spawning, fails closed via `detectSameKindFromStack` when this kind is already on the inherited stack. The runtime `executor-audit.ts` module also provides a complete four-layer guard (`validateExecutorDispatchAllowed`: stack, ancestry, runtime-env, lockfile) used by the in-process dispatch helpers that already know they are a dispatched seat. `fanout-run.cjs` deliberately checks only the **stack** layer, because the orchestrator legitimately runs inside one of these runtimes — so the runtime-env (e.g. `OPENCODE_SESSION_ID`) and ancestry layers would false-positive on the first-level dispatch. The YAML `cli_contract` documents the requirement.
 
 ---
 

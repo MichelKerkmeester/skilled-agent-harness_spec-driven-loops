@@ -618,10 +618,13 @@ export function computeContextSignalsFromData(
       confirmCountById.set(edge.targetId, (confirmCountById.get(edge.targetId) ?? 0) + 1);
     }
   }
+  // DEPENDS_ON is SYMBOL -> DEPENDENCY (the DEPENDENCY node is the edge TARGET), so a
+  // dependency is "resolved" when it is the target of a DEPENDS_ON edge. IMPORTS is
+  // FILE -> FILE and never has a DEPENDENCY endpoint, so it is excluded here.
   const resolvedDependencyIds = new Set(
     edges
-      .filter((edge) => edge.relation === 'DEPENDS_ON' || edge.relation === 'IMPORTS')
-      .map((edge) => edge.sourceId),
+      .filter((edge) => edge.relation === 'DEPENDS_ON')
+      .map((edge) => edge.targetId),
   );
 
   const sliceCoverage = sliceNodes.length > 0

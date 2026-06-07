@@ -48,7 +48,7 @@ relevanceFloor         × 0.15
 dependencyCompleteness × 0.10
 ```
 
-The composite score is used for saturation detection. It must exceed the host's per-iteration saturation threshold before `STOP_ALLOWED` is considered.
+The composite score is telemetry (surfaced as `graph_convergence_score`) for trend analysis — it is not a stop gate. `STOP_ALLOWED` is decided by the per-signal thresholds in §4 combined with the host's per-iteration saturation check; the composite score is not compared against any threshold.
 
 ---
 
@@ -89,4 +89,4 @@ By-model shared scope means N executors sweep the **same** code. Without the agr
 | `reuseCatalogCoverage` stop | 0.60 | Minimum reuse candidate confirmation rate |
 | `dependencyCompleteness` stop | 0.70 | Minimum dependency resolution rate |
 
-All thresholds are configurable in `assets/deep_context_config.json` and overridable in the command's runtime config.
+`relevanceGate`, `agreementMin`, and `convergenceThreshold` are configurable in `assets/deep_context_config.json` (and overridable in the command's runtime config). The graph STOP thresholds (`sliceCoverage` 0.70, `relevanceFloor` 0.50, `agreementRate` 0.50, `reuseCatalogCoverage` 0.60, `dependencyCompleteness` 0.70) are currently hardcoded in `convergence.cjs#evaluateContext` and are NOT read from config — changing them requires editing that function.

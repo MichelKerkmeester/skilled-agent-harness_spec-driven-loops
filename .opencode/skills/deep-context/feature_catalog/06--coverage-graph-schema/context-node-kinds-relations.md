@@ -49,9 +49,11 @@ Understanding the node kind and relation semantics is essential for diagnosing b
 | `EXPOSES` | FILE → SYMBOL | File exposes a public symbol |
 | `REUSES` | Host-written after merge | A code path reuses a confirmed reuse candidate |
 | `CONSTRAINS` | CONSTRAINT → SYMBOL | A constraint bounds what this symbol may do |
-| `COVERED_BY` | SLICE → iteration | Slice has been swept in at least one iteration |
-| `CONFIRMS` | executor seat → SYMBOL or REUSE_CANDIDATE | Executor confirmed this unit; agreement = count of CONFIRMS edges |
+| `COVERED_BY` | SLICE → covered node | Slice has been swept; the source is the SLICE and the target is an existing coverage node found while sweeping it. `sliceCoverage` counts SLICE nodes that are the source of a COVERED_BY edge |
+| `CONFIRMS` | coverage node → SYMBOL or REUSE_CANDIDATE | Cross-executor confirmation of a unit. Agreement is usually recorded via the unit's `metadata.confirmations`; when a CONFIRMS edge is used both endpoints are real nodes. Agreement = max(`metadata.confirmations`, count of CONFIRMS in-edges) |
 | `CONTRADICTS` | SYMBOL → SYMBOL (same unit_id) | Two seats assert incompatible contracts for the same unit |
+
+> **FK constraint**: `coverage_edges` enforces foreign keys on BOTH `source_id` and `target_id` (each must reference an existing `coverage_nodes` row) and the DB opens with `PRAGMA foreign_keys = ON`. There is no `ITERATION` or `EXECUTOR`/`SEAT` node kind, so an iteration marker or a confirming seat must be modeled via node/edge **metadata** (e.g. `metadata.confirmations`, `metadata.iteration`), never as an edge endpoint — otherwise the upsert fails the FK check.
 
 ---
 

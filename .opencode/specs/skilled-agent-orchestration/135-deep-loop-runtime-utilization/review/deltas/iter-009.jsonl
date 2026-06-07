@@ -1,0 +1,4 @@
+{"type":"verify","round":9,"target":"P0-1","verdict":"confirmed","evidence":"reproduced ERR_INVALID_ARG_TYPE on child phase"}
+{"type":"verify","round":9,"target":"P1-1","verdict":"confirmed","evidence":"rg: reduce-state.cjs invoked only in docs/own-file, never in loop YAML"}
+{"type":"verify","round":9,"target":"P1-4","verdict":"confirmed","evidence":"feature_catalog/06 documents DEPENDS_ON: SYMBOL->DEPENDENCY (target)"}
+{"type":"verify","round":9,"target":"R7-false-positives","verdict":"refuted","evidence":"deep-research uses identical host-bound vars + native opus"}
