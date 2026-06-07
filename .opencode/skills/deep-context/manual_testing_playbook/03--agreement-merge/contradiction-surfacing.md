@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `MERGE-003` and confirm 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MERGE-003 | Contradiction Surfacing | Verify contradiction detection and dashboard rendering without auto-resolution | `Verify that when two executor seats disagree on a function's contract, the contradiction is visible in the registry and dashboard rather than silently resolved.` | 1. `rg "detectContradictions" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 2. `rg "signatureByProducer\|reuseByProducer\|contradictions" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 3. `rg "CONTRADICTIONS\|contradictions" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 4. `rg "never.*resolv\|not.*resolv\|silently" .opencode/skills/deep-context/references/loop_protocol.md` | Step 1: detectContradictions found; Step 2: per-producer fields and contradictions array found; Step 3: dashboard section heading found; Step 4: "never silently resolved" invariant found | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if detectContradictions is missing or contradictions array is absent | 1. Confirm detectContradictions is in module.exports. 2. Check renderDashboard for the exact contradiction section heading. 3. Search loop_protocol.md for "CONTRADICTS" edge documentation. |
+| MERGE-003 | Contradiction Surfacing | Verify contradiction detection and dashboard rendering without auto-resolution | `Verify that when two executor seats disagree on a function's contract, the contradiction is visible in the registry and dashboard rather than silently resolved.` | 1. `rg "detectContradictions" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 2. `rg "signatureByProducer\|reuseByProducer\|contradictions" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 3. `rg "CONTRADICTIONS\|contradictions" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 4. `rg "never.*resolv\|not.*resolv\|silently" .opencode/skills/deep-context/references/protocol/loop_protocol.md` | Step 1: detectContradictions found; Step 2: per-producer fields and contradictions array found; Step 3: dashboard section heading found; Step 4: "never silently resolved" invariant found | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if detectContradictions is missing or contradictions array is absent | 1. Confirm detectContradictions is in module.exports. 2. Check renderDashboard for the exact contradiction section heading. 3. Search loop_protocol.md for "CONTRADICTS" edge documentation. |
 
 ### Optional Supplemental Checks
 
@@ -71,7 +71,7 @@ rg "module\.exports" .opencode/skills/deep-context/scripts/reduce-state.cjs
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-context/scripts/reduce-state.cjs` | `detectContradictions`, `signatureByProducer`, `reuseByProducer`, `renderDashboard` contradiction section |
-| `.opencode/skills/deep-context/references/loop_protocol.md` | §6: contradiction surfacing rule and CONTRADICTS edge documentation |
+| `.opencode/skills/deep-context/references/protocol/loop_protocol.md` | §6: contradiction surfacing rule and CONTRADICTS edge documentation |
 
 ---
 

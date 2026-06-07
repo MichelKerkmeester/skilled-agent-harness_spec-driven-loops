@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `MERGE-002` and confirm 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MERGE-002 | Cross-Executor Agreement | Verify relevance gate routes below-threshold findings to lowConfidence bucket | `Verify that the relevance gate correctly separates high-confidence findings from noise and near-misses in the deep-context registry.` | 1. `rg "DEFAULT_RELEVANCE_GATE" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 2. `rg "lowConfidence\|low_confidence\|droppedBelowGate" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 3. `rg "marginal\|0\.40\|0\.55\|Gaps" .opencode/skills/deep-context/references/loop_protocol.md` -> 4. `rg "new_agreement_eligible\|agreementEligible\|saturation" .opencode/skills/deep-context/scripts/reduce-state.cjs .opencode/skills/deep-context/references/convergence.md` | Step 1: constant = 0.55 found; Step 2: lowConfidence bucket and droppedBelowGate found; Step 3: marginal range documented; Step 4: saturation signal found | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if lowConfidence bucket or relevance gate constant is absent | 1. Confirm DEFAULT_RELEVANCE_GATE spelling in reduce-state.cjs. 2. Check convergence.md for alternative saturation-check wording. 3. Search loop_protocol.md for "near-miss" or "[0.4" pattern. |
+| MERGE-002 | Cross-Executor Agreement | Verify relevance gate routes below-threshold findings to lowConfidence bucket | `Verify that the relevance gate correctly separates high-confidence findings from noise and near-misses in the deep-context registry.` | 1. `rg "DEFAULT_RELEVANCE_GATE" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 2. `rg "lowConfidence\|low_confidence\|droppedBelowGate" .opencode/skills/deep-context/scripts/reduce-state.cjs` -> 3. `rg "marginal\|0\.40\|0\.55\|Gaps" .opencode/skills/deep-context/references/protocol/loop_protocol.md` -> 4. `rg "new_agreement_eligible\|agreementEligible\|saturation" .opencode/skills/deep-context/scripts/reduce-state.cjs .opencode/skills/deep-context/references/convergence/convergence.md` | Step 1: constant = 0.55 found; Step 2: lowConfidence bucket and droppedBelowGate found; Step 3: marginal range documented; Step 4: saturation signal found | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if lowConfidence bucket or relevance gate constant is absent | 1. Confirm DEFAULT_RELEVANCE_GATE spelling in reduce-state.cjs. 2. Check convergence.md for alternative saturation-check wording. 3. Search loop_protocol.md for "near-miss" or "[0.4" pattern. |
 
 ---
 
@@ -63,8 +63,8 @@ Operators run the exact prompt and command sequence for `MERGE-002` and confirm 
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-context/scripts/reduce-state.cjs` | `DEFAULT_RELEVANCE_GATE`, `lowConfidence` bucket assignment, `agreementEligible` flag |
-| `.opencode/skills/deep-context/references/loop_protocol.md` | §6: relevance gate, marginal range, Gaps routing |
-| `.opencode/skills/deep-context/references/convergence.md` | §6: threshold reference table including `relevanceGate = 0.55` |
+| `.opencode/skills/deep-context/references/protocol/loop_protocol.md` | §6: relevance gate, marginal range, Gaps routing |
+| `.opencode/skills/deep-context/references/convergence/convergence_signals.md` | §5: threshold reference table including `relevanceGate = 0.55` |
 
 ---
 

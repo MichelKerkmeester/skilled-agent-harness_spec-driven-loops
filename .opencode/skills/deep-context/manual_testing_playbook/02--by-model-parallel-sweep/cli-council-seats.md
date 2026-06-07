@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `SWEEP-003` and confirm 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SWEEP-003 | CLI Council Seats | Verify CLI seats use per-kind flags and council scaffold | `Verify that CLI seats are dispatched with the correct flags and through the council scaffold.` | 1. `rg "step_sweep_cli_pool\|multi-seat-dispatch" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml .opencode/skills/deep-context/references/loop_protocol.md` -> 2. `rg "dispatchCouncilSeats" .opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs` -> 3. `rg "</dev/null\|dev/null\|closed.*stdin" .opencode/skills/deep-context/SKILL.md .opencode/skills/deep-context/references/loop_protocol.md` -> 4. `rg "sandbox.*read.only\|permission.mode.*plan" .opencode/skills/deep-context/SKILL.md .opencode/skills/deep-context/references/loop_protocol.md` | Step 1: step name and scaffold referenced; Step 2: export found; Step 3: closed-stdin rule found; Step 4: per-kind sandbox flags found | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if dispatchCouncilSeats or closed-stdin rule is absent | 1. Confirm multi-seat-dispatch.cjs path in deep-loop-runtime. 2. Check for alternative export naming (dispatchSeats, dispatchPool). 3. Verify SKILL.md ALWAYS rule numbering. |
+| SWEEP-003 | CLI Council Seats | Verify CLI seats use per-kind flags and council scaffold | `Verify that CLI seats are dispatched with the correct flags and through the council scaffold.` | 1. `rg "step_sweep_cli_pool\|multi-seat-dispatch" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml .opencode/skills/deep-context/references/protocol/loop_protocol.md` -> 2. `rg "dispatchCouncilSeats" .opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs` -> 3. `rg "</dev/null\|dev/null\|closed.*stdin" .opencode/skills/deep-context/SKILL.md .opencode/skills/deep-context/references/protocol/loop_protocol.md` -> 4. `rg "sandbox.*read.only\|permission.mode.*plan" .opencode/skills/deep-context/SKILL.md .opencode/skills/deep-context/references/protocol/loop_protocol.md` | Step 1: step name and scaffold referenced; Step 2: export found; Step 3: closed-stdin rule found; Step 4: per-kind sandbox flags found | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if dispatchCouncilSeats or closed-stdin rule is absent | 1. Confirm multi-seat-dispatch.cjs path in deep-loop-runtime. 2. Check for alternative export naming (dispatchSeats, dispatchPool). 3. Verify SKILL.md ALWAYS rule numbering. |
 
 ### Optional Supplemental Checks
 
@@ -72,7 +72,7 @@ node --check .opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | `step_sweep_cli_pool`: CLI fan-out step in the loop phase |
 | `.opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs` | `dispatchCouncilSeats` export and CLI per-kind spawn logic |
-| `.opencode/skills/deep-context/references/loop_protocol.md` | §5: CLI seat dispatch requirements and per-kind flag documentation |
+| `.opencode/skills/deep-context/references/protocol/loop_protocol.md` | §5: CLI seat dispatch requirements and per-kind flag documentation |
 | `.opencode/skills/deep-context/SKILL.md` | §4 ALWAYS rule 5: cli-* contract compliance including closed stdin |
 
 ---

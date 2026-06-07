@@ -95,8 +95,10 @@
     "key_files": [
       ".opencode/skills/deep-context/SKILL.md",
       ".opencode/skills/deep-context/README.md",
-      ".opencode/skills/deep-context/references/loop_protocol.md",
-      ".opencode/skills/deep-context/references/convergence.md",
+      ".opencode/skills/deep-context/references/guides/quick_reference.md",
+      ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+      ".opencode/skills/deep-context/references/convergence/convergence.md",
+      ".opencode/skills/deep-context/references/state/state_reducer_registry.md",
       ".opencode/skills/deep-context/assets/context_report_template.md",
       ".opencode/skills/deep-context/assets/deep_context_config.json",
       ".opencode/skills/deep-context/scripts/reduce-state.cjs",
@@ -118,13 +120,13 @@
       {
         "name": "loop_protocol",
         "kind": "reference",
-        "path": ".opencode/skills/deep-context/references/loop_protocol.md",
+        "path": ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "convergence",
         "kind": "reference",
-        "path": ".opencode/skills/deep-context/references/convergence.md",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence.md",
         "source": "derived"
       },
       {
@@ -156,8 +158,8 @@
     "source_docs": [
       "SKILL.md",
       "README.md",
-      "references/loop_protocol.md",
-      "references/convergence.md",
+      "references/protocol/loop_protocol.md",
+      "references/convergence/convergence.md",
       "assets/context_report_template.md"
     ],
     "created_at": "2026-06-06T00:00:00Z",

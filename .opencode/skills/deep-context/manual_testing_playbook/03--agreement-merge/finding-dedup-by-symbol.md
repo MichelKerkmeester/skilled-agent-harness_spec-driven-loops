@@ -71,7 +71,7 @@ rg "unit_id.*trim\|explicit.*unit_id\|trust.*unit_id" .opencode/skills/deep-cont
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-context/scripts/reduce-state.cjs` | Primary: `unitId`, `dedupByUnit`, `DEFAULT_AGREEMENT_MIN`, `buildRegistry` |
-| `.opencode/skills/deep-context/references/loop_protocol.md` | §6: merge rules including unit_id key and producedBy union |
+| `.opencode/skills/deep-context/references/protocol/loop_protocol.md` | §6: merge rules including unit_id key and producedBy union |
 | `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | `step_merge_findings`: in-loop equivalent of the reducer dedup pass |
 
 ---

@@ -71,7 +71,7 @@ rg "sliceNodes.length > 0\|sliceNodes\.length.*1\|vacuous" .opencode/skills/deep
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | `ContextConvergenceSignals` interface, `computeContextSignalsFromData`, `CONTEXT_RELEVANCE_GATE`, `CONTEXT_AGREEMENT_MIN` |
-| `.opencode/skills/deep-context/references/convergence.md` | §2: signal roles and meanings table |
+| `.opencode/skills/deep-context/references/convergence/convergence_signals.md` | §2: signal roles and meanings table |
 | `.opencode/skills/deep-context/SKILL.md` | §8 Quick Reference: signals listed with thresholds |
 
 ---

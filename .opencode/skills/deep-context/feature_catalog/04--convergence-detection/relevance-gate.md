@@ -56,7 +56,7 @@ When `iteration_count >= max_iterations`, the loop stops regardless of the graph
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | Workflow | `step_check_convergence`, `step_emit_blocked_stop`, `step_handle_convergence` — combined stop rule and blocked_stop lifecycle |
-| `.opencode/skills/deep-context/references/convergence.md` | Reference | Full signal table, composite weights, and the stop contract with blocker thresholds |
+| `.opencode/skills/deep-context/references/convergence/convergence_signals.md` | Reference | Full signal table, composite weights, and the stop contract with blocker thresholds |
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Shared | `evaluateContext` that returns CONTINUE / STOP_ALLOWED / STOP_BLOCKED with blockers |
 
 ### Validation And Tests

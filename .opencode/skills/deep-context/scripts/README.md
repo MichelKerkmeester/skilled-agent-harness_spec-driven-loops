@@ -140,6 +140,6 @@ console.log(JSON.stringify(r.registry.metrics, null, 2));
 |---|---|
 | [`deep-context/SKILL.md`](../SKILL.md) | Runtime instructions for the owning skill |
 | [`deep-context/README.md`](../README.md) | Human-facing skill overview |
-| [`deep-context/references/loop_protocol.md`](../references/loop_protocol.md) | Iteration lifecycle and host-writes-state invariant |
+| [`deep-context/references/protocol/loop_protocol.md`](../references/protocol/loop_protocol.md) | Iteration lifecycle and host-writes-state invariant |
 | [`sk-code/SKILL.md`](../../sk-code/SKILL.md) | OpenCode coding standards and verification routing |
 | [`sk-doc/assets/skill/skill_readme_template.md`](../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README |

@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `SWEEP-004` and confirm 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SWEEP-004 | Per-Model Prompt Framework | Verify per-seat prompt framing with mandatory lineage contract | `Verify that deep-context applies the correct prompt framework to each executor seat type before dispatch.` | 1. `rg "sk-prompt-small-model\|promptFramework" .opencode/skills/deep-context/SKILL.md` -> 2. `rg "COSTAR\|TIDD.EC\|MiMo\|mimo" .opencode/commands/deep/start-context-loop.md .opencode/skills/deep-context/SKILL.md` -> 3. `rg "gather-subject\|known-context\|output schema\|four.part" .opencode/skills/deep-context/references/loop_protocol.md` -> 4. `rg "step_render_seat_prompts\|promptFramework" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | Step 1: `sk-prompt-small-model` mandate found; Step 2: per-framework assignments found; Step 3: four-part contract documented; Step 4: render step present in YAML | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if sk-prompt-small-model mandate or four-part contract is absent | 1. Check SKILL.md §4 ALWAYS rules specifically. 2. Confirm loop_protocol.md §5 is the prompt-contract section. 3. Verify command's executor schema includes `promptFramework`. |
+| SWEEP-004 | Per-Model Prompt Framework | Verify per-seat prompt framing with mandatory lineage contract | `Verify that deep-context applies the correct prompt framework to each executor seat type before dispatch.` | 1. `rg "sk-prompt-small-model\|promptFramework" .opencode/skills/deep-context/SKILL.md` -> 2. `rg "COSTAR\|TIDD.EC\|MiMo\|mimo" .opencode/commands/deep/start-context-loop.md .opencode/skills/deep-context/SKILL.md` -> 3. `rg "gather-subject\|known-context\|output schema\|four.part" .opencode/skills/deep-context/references/protocol/loop_protocol.md` -> 4. `rg "step_render_seat_prompts\|promptFramework" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | Step 1: `sk-prompt-small-model` mandate found; Step 2: per-framework assignments found; Step 3: four-part contract documented; Step 4: render step present in YAML | Grep outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if sk-prompt-small-model mandate or four-part contract is absent | 1. Check SKILL.md §4 ALWAYS rules specifically. 2. Confirm loop_protocol.md §5 is the prompt-contract section. 3. Verify command's executor schema includes `promptFramework`. |
 
 ---
 
@@ -64,7 +64,7 @@ Operators run the exact prompt and command sequence for `SWEEP-004` and confirm 
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | `step_render_seat_prompts`: per-seat prompt rendering step |
 | `.opencode/skills/deep-context/SKILL.md` | §4 ALWAYS rule 3: `sk-prompt-small-model` mandate and per-framework assignments |
-| `.opencode/skills/deep-context/references/loop_protocol.md` | §5: four-part lineage contract (gather-subject, scope/slice, known-context, output schema) |
+| `.opencode/skills/deep-context/references/protocol/loop_protocol.md` | §5: four-part lineage contract (gather-subject, scope/slice, known-context, output schema) |
 | `.opencode/commands/deep/start-context-loop.md` | PRE-BOUND SETUP ANSWERS schema: `promptFramework` field per executor seat |
 
 ---

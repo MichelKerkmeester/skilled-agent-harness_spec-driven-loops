@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `SWEEP-001` and confirm 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SWEEP-001 | Heterogeneous Pool Dispatch | Verify concurrent dispatch with barrier-join before merge | `Verify that the deep-context loop dispatches native and CLI seats simultaneously each iteration.` | 1. `rg "step_parallel_sweep\|step_sweep_native_batch\|step_sweep_cli_pool" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` -> 2. `rg "barrier.join\|concurrent\|parallel.*batch\|barrier" .opencode/skills/deep-context/references/loop_protocol.md` -> 3. `rg "barrier.join\|barrier-join" .opencode/skills/deep-context/SKILL.md` | Step 1: all three step names found; Step 2: barrier-join concept documented in loop_protocol.md; Step 3: barrier-join mentioned in SKILL.md | Grep outputs from all three commands | PASS if steps 1-3 all return matches; FAIL if step names or barrier-join concept is absent | 1. Check YAML structure for alternative step naming. 2. Search SKILL.md §3 specifically for concurrent-dispatch wording. 3. Confirm loop_protocol.md §5 is the correct section. |
+| SWEEP-001 | Heterogeneous Pool Dispatch | Verify concurrent dispatch with barrier-join before merge | `Verify that the deep-context loop dispatches native and CLI seats simultaneously each iteration.` | 1. `rg "step_parallel_sweep\|step_sweep_native_batch\|step_sweep_cli_pool" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` -> 2. `rg "barrier.join\|concurrent\|parallel.*batch\|barrier" .opencode/skills/deep-context/references/protocol/loop_protocol.md` -> 3. `rg "barrier.join\|barrier-join" .opencode/skills/deep-context/SKILL.md` | Step 1: all three step names found; Step 2: barrier-join concept documented in loop_protocol.md; Step 3: barrier-join mentioned in SKILL.md | Grep outputs from all three commands | PASS if steps 1-3 all return matches; FAIL if step names or barrier-join concept is absent | 1. Check YAML structure for alternative step naming. 2. Search SKILL.md §3 specifically for concurrent-dispatch wording. 3. Confirm loop_protocol.md §5 is the correct section. |
 
 ---
 
@@ -63,7 +63,7 @@ Operators run the exact prompt and command sequence for `SWEEP-001` and confirm 
 | File | Role |
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | Primary: `step_parallel_sweep`, `step_sweep_native_batch`, `step_sweep_cli_pool` in the loop phase |
-| `.opencode/skills/deep-context/references/loop_protocol.md` | §5: concurrent dispatch, barrier-join, both seat groups |
+| `.opencode/skills/deep-context/references/protocol/loop_protocol.md` | §5: concurrent dispatch, barrier-join, both seat groups |
 | `.opencode/skills/deep-context/SKILL.md` | §3: by-model parallel sweep description with barrier-join |
 
 ---

@@ -52,7 +52,7 @@ After each iteration, `step_write_iteration` appends a JSONL iteration record th
 |---|---|---|
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Shared | `ContextConvergenceSignals` interface, `evaluateContext` function, `CONTEXT_AGREEMENT_MIN`, `CONTEXT_RELEVANCE_GATE` constants |
 | `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Script | CLI entrypoint that calls `evaluateContext` and returns CONTINUE / STOP_ALLOWED / STOP_BLOCKED |
-| `.opencode/skills/deep-context/references/convergence.md` | Reference | Full signal table, composite-score weights, and stop contract for the context loop |
+| `.opencode/skills/deep-context/references/convergence/convergence_signals.md` | Reference | Full signal table, composite-score weights, and stop contract for the context loop |
 
 ### Validation And Tests
 

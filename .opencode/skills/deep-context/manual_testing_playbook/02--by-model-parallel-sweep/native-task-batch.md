@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `SWEEP-002` and confirm 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SWEEP-002 | Native Task Batch | Verify parallel LEAF batch dispatch with read-only agent boundary | `Verify that native deep-context seats run as a concurrent batch and that the agent cannot write files or dispatch sub-agents.` | 1. `rg "step_sweep_native_batch\|agent.*deep-context" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` -> 2. `rg "task.*deny\|write.*deny" .opencode/agents/deep-context.md` -> 3. `rg "gather-subject\|known-context\|output schema\|lineage contract\|four.part" .opencode/skills/deep-context/references/loop_protocol.md` -> 4. `rg "LEAF\|leaf.*only\|no.*sub.agent" .opencode/agents/deep-context.md` | Step 1: step name and agent dispatch found; Step 2: deny permissions found; Step 3: four-part contract documented; Step 4: LEAF boundary described | Read outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if agent write or task permission is not denied | 1. Confirm `.opencode/agents/deep-context.md` is the correct agent path. 2. Check for alternative permission syntax in the agent frontmatter. 3. Search loop_protocol.md for "lineage contract" or "four fields". |
+| SWEEP-002 | Native Task Batch | Verify parallel LEAF batch dispatch with read-only agent boundary | `Verify that native deep-context seats run as a concurrent batch and that the agent cannot write files or dispatch sub-agents.` | 1. `rg "step_sweep_native_batch\|agent.*deep-context" .opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` -> 2. `rg "task.*deny\|write.*deny" .opencode/agents/deep-context.md` -> 3. `rg "gather-subject\|known-context\|output schema\|lineage contract\|four.part" .opencode/skills/deep-context/references/protocol/loop_protocol.md` -> 4. `rg "LEAF\|leaf.*only\|no.*sub.agent" .opencode/agents/deep-context.md` | Step 1: step name and agent dispatch found; Step 2: deny permissions found; Step 3: four-part contract documented; Step 4: LEAF boundary described | Read outputs from all four commands | PASS if steps 1-4 all return matches; FAIL if agent write or task permission is not denied | 1. Confirm `.opencode/agents/deep-context.md` is the correct agent path. 2. Check for alternative permission syntax in the agent frontmatter. 3. Search loop_protocol.md for "lineage contract" or "four fields". |
 
 ### Optional Supplemental Checks
 
@@ -72,7 +72,7 @@ rg "stdout\|writes nothing\|returns.*finding\|final message" .opencode/agents/de
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` | `step_sweep_native_batch`: parallel Task batch dispatch step |
 | `.opencode/agents/deep-context.md` | Agent definition: permission block, LEAF boundary, output schema |
-| `.opencode/skills/deep-context/references/loop_protocol.md` | §5: four-part lineage contract for native seat prompts |
+| `.opencode/skills/deep-context/references/protocol/loop_protocol.md` | §5: four-part lineage contract for native seat prompts |
 
 ---
 

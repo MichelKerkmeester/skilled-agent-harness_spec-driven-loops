@@ -80,7 +80,7 @@ rg "computeContextSignals\|computeSignals\|evaluateContext" .opencode/skills/dee
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` | `createSnapshot` with `ON CONFLICT DO UPDATE` for idempotent snapshot persistence |
 | `.opencode/skills/deep-context/scripts/reduce-state.cjs` | `DEFAULT_RELEVANCE_GATE = 0.55`, `DEFAULT_AGREEMENT_MIN = 2` — must match signals constants |
 | `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | `--loop-type context` dispatches to `computeContextSignals` which calls `computeContextSignalsFromData` |
-| `.opencode/skills/deep-context/references/convergence.md` | Composite score formula using all five signal fields with documented weights |
+| `.opencode/skills/deep-context/references/convergence/convergence_signals.md` | Composite score formula using all five signal fields with documented weights |
 
 ---
 

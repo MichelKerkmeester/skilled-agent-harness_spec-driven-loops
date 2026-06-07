@@ -73,8 +73,8 @@ skill_reference:
   skill: deep-context
   skill_md: .opencode/skills/deep-context/SKILL.md
   references:
-    loop_protocol: .opencode/skills/deep-context/references/loop_protocol.md
-    convergence: .opencode/skills/deep-context/references/convergence.md
+    loop_protocol: .opencode/skills/deep-context/references/protocol/loop_protocol.md
+    convergence: .opencode/skills/deep-context/references/convergence/convergence.md
   templates:
     config: .opencode/skills/deep-context/assets/deep_context_config.json
     report: .opencode/skills/deep-context/assets/context_report_template.md

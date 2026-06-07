@@ -2,7 +2,7 @@
 name: deep-context
 description: "Iterative codebase-context-gathering deep loop. Runs a heterogeneous pool of models in parallel over a shared scope and synthesizes a reuse-first Context Report for planning/implementation. Use before /speckit:plan or /speckit:implement to map existing code, integration points, and conventions."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.1.0
+version: 1.2.0
 ---
 
 <!-- Keywords: deep-context, context-gathering, codebase-context, reuse-catalog, by-model-parallel-sweep, agreement-merge, convergence-detection, coverage-graph, context-report, heterogeneous-executor-pool, pre-planning-context, relevance-gated-coverage -->
@@ -49,10 +49,11 @@ It is the fourth deep loop and the third consumer of `deep-loop-runtime` (alongs
 ```text
 Request contains "gather context" / "map the code" / "what existing code" / pre-plan understanding?
     |
-    +-- /deep:start-context-loop invoked?         → ALWAYS load loop_protocol + convergence
-    +-- "reuse" / "REUSE catalog" mentioned?      → load context_report_template
-    +-- "convergence" / "stop" / "saturation"?    → load convergence
-    +-- "config" / "executor pool" / "fanout"?    → load deep_context_config
+    +-- /deep:start-context-loop invoked?         → ALWAYS load guides/quick_reference
+    +-- "convergence" / "stop" / "saturation"?    → load convergence/* (signals, recovery, graph)
+    +-- "state" / "jsonl" / "registry" / resume?  → load state/* (format, jsonl, outputs, reducer)
+    +-- "reuse" / "REUSE catalog" / "report"?     → load state/state_outputs + context_report_template
+    +-- "sweep" / "executor pool" / "seat"?       → load protocol/loop_protocol
     +-- Low-confidence or scope not stated?       → UNKNOWN_FALLBACK_CHECKLIST
 ```
 
@@ -62,30 +63,32 @@ Request contains "gather context" / "map the code" / "what existing code" / pre-
 REQUEST
     |
     +- STEP 0: Detect scope (feature / spec folder / query provided?)
-    +- STEP 1: Score intents → frontier seeding, parallel sweep, agreement merge,
-               convergence tuning, or context report synthesis
+    +- STEP 1: Score intents → loop setup, sweep dispatch, merge/agreement,
+               convergence, state, coverage graph, or report synthesis
     +- STEP 2: Load intent-matched resources (guarded, existence-checked)
-    +- Phase 1: Frontier seeding + parallel sweep (loop_protocol)
-    +- Phase 2: Agreement merge + convergence (convergence)
-    +- Phase 3: Synthesis → Context Report (context_report_template)
+    +- Phase 1: Frontier seeding + parallel sweep (protocol/loop_protocol)
+    +- Phase 2: Agreement merge + convergence (state/state_reducer_registry, convergence/*)
+    +- Phase 3: Synthesis → Context Report (state/state_outputs, context_report_template)
 ```
 
 ### Resource Domains
 
-The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring from `INTENT_SIGNALS`.
+The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring from `INTENT_SIGNALS`. References are organized into the same subfolder families as the sibling deep loops:
 
-- `references/loop_protocol.md` — iteration lifecycle, parallel sweep, host-writes-state, merge.
-- `references/convergence.md` — coverage-saturation + relevance gate + agreement gate, thresholds.
+- `references/guides/` — operator cheat sheet (`quick_reference.md`); the ALWAYS baseline.
+- `references/protocol/` — `loop_protocol.md`: iteration lifecycle, parallel sweep, host-writes-state, merge.
+- `references/convergence/` — `convergence.md` (hub), `convergence_signals.md` (the 5 signals + weights + thresholds), `convergence_recovery.md` (blocked-stop / stuck recovery), `convergence_graph.md` (the `loop_type='context'` coverage-graph stop path).
+- `references/state/` — `state_format.md` (packet hub), `state_jsonl.md` (record types), `state_outputs.md` (dashboard / Context Report), `state_reducer_registry.md` (reduce-state.cjs ownership + robustness).
 - `assets/context_report_template.md` — Context Report schema (REUSE-catalog-first, pointers not bodies).
 - `assets/deep_context_config.json` — config shape (scope, executor pool, concurrency, thresholds).
 
 ### Resource Loading Levels
 
-| Level       | When to Load                             | Resources                                     |
-| ----------- | ---------------------------------------- | --------------------------------------------- |
-| ALWAYS      | Every skill invocation                   | `loop_protocol.md` baseline                   |
-| CONDITIONAL | Intent signals match                     | `convergence.md`, `context_report_template.md`|
-| ON_DEMAND   | Only on explicit request                 | `deep_context_config.json` full schema        |
+| Level       | When to Load                             | Resources                                          |
+| ----------- | ---------------------------------------- | -------------------------------------------------- |
+| ALWAYS      | Every skill invocation                   | `references/guides/quick_reference.md`             |
+| CONDITIONAL | Intent signals match                     | The intent-mapped `convergence/`, `protocol/`, `state/` refs + `context_report_template.md` |
+| ON_DEMAND   | Explicit deep-dive keyword (see `ON_DEMAND_KEYWORDS`) | The full reference set                  |
 
 ### Smart Router Pseudocode
 
@@ -94,56 +97,45 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/loop_protocol.md"
+DEFAULT_RESOURCE = "references/guides/quick_reference.md"
 
-# Deep-context intent signals and their routing weights.
+# Deep-context intent signals: a top-level weight + flat keyword list per intent
+# (canonical sibling shape — matches deep-research / deep-review).
 INTENT_SIGNALS = {
-    "FRONTIER_SEEDING": {
-        "keywords": [
-            ("gather context", 5), ("map the code", 5), ("seed", 4),
-            ("scope", 3), ("blast radius", 4), ("code graph", 3),
-        ],
-    },
-    "PARALLEL_SWEEP": {
-        "keywords": [
-            ("parallel sweep", 5), ("executor pool", 5), ("fanout", 4),
-            ("heterogeneous", 4), ("by-model", 4), ("multi-model", 3),
-        ],
-    },
-    "AGREEMENT_MERGE": {
-        "keywords": [
-            ("agreement", 5), ("confidence", 4), ("merge", 4),
-            ("dedup", 3), ("contradiction", 4), ("attribution", 3),
-        ],
-    },
-    "CONVERGENCE": {
-        "keywords": [
-            ("convergence", 5), ("stop", 4), ("saturation", 4),
-            ("relevance gate", 4), ("agreement rate", 4), ("STOP_ALLOWED", 5),
-        ],
-    },
-    "CONTEXT_REPORT": {
-        "keywords": [
-            ("context report", 5), ("reuse catalog", 5), ("REUSE", 4),
-            ("integration point", 4), ("touch list", 3), ("synthesis", 4),
-        ],
-    },
+    "LOOP_SETUP":       {"weight": 4, "keywords": ["deep context", "context loop", "gather context", "map the code", "pre-plan context", "frontier", "seed", "setup", "init"]},
+    "SWEEP_DISPATCH":   {"weight": 4, "keywords": ["parallel sweep", "executor pool", "by-model", "heterogeneous", "seat", "fanout", "dispatch", "council seats", "multi-model"]},
+    "MERGE_AGREEMENT":  {"weight": 4, "keywords": ["agreement", "merge", "dedup", "contradiction", "attribution", "confidence", "unit_id", "reducer", "registry"]},
+    "CONVERGENCE":      {"weight": 4, "keywords": ["convergence", "stop", "saturation", "relevance gate", "agreement rate", "blocked stop", "STOP_ALLOWED", "recovery", "stuck"]},
+    "STATE":            {"weight": 4, "keywords": ["state file", "jsonl", "dashboard", "packet", "findings-registry", "resume", "state log"]},
+    "COVERAGE_GRAPH":   {"weight": 3, "keywords": ["coverage graph", "loop_type", "node kinds", "covered_by", "confirms", "graph signals", "upsert"]},
+    "REPORT_SYNTHESIS": {"weight": 4, "keywords": ["context report", "reuse catalog", "reuse", "integration point", "touch list", "synthesis", "report"]},
 }
 
 RESOURCE_MAP = {
-    "FRONTIER_SEEDING": ["references/loop_protocol.md"],
-    "PARALLEL_SWEEP":   ["references/loop_protocol.md"],
-    "AGREEMENT_MERGE":  ["references/loop_protocol.md", "references/convergence.md"],
-    "CONVERGENCE":      ["references/convergence.md"],
-    "CONTEXT_REPORT":   ["assets/context_report_template.md"],
+    "LOOP_SETUP":       ["references/protocol/loop_protocol.md", "references/state/state_format.md"],
+    "SWEEP_DISPATCH":   ["references/protocol/loop_protocol.md", "references/guides/quick_reference.md"],
+    "MERGE_AGREEMENT":  ["references/state/state_reducer_registry.md", "references/convergence/convergence_signals.md"],
+    "CONVERGENCE":      ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/convergence/convergence_recovery.md", "references/convergence/convergence_graph.md"],
+    "STATE":            ["references/state/state_format.md", "references/state/state_jsonl.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md"],
+    "COVERAGE_GRAPH":   ["references/convergence/convergence_graph.md"],
+    "REPORT_SYNTHESIS": ["references/state/state_outputs.md", "assets/context_report_template.md"],
 }
 
 LOADING_LEVELS = {
-    "FRONTIER_SEEDING": "ALWAYS",
-    "PARALLEL_SWEEP":   "ALWAYS",
-    "AGREEMENT_MERGE":  "CONDITIONAL",
-    "CONVERGENCE":      "CONDITIONAL",
-    "CONTEXT_REPORT":   "CONDITIONAL",
+    "ALWAYS": ["references/guides/quick_reference.md"],
+    "ON_DEMAND_KEYWORDS": ["full protocol", "all references", "complete reference", "resume deep context", "state log", "context/iterations", "blocked stop", "coverage graph", "reduce-state", "config schema"],
+    "ON_DEMAND": [
+        "references/protocol/loop_protocol.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/convergence/convergence_recovery.md",
+        "references/convergence/convergence_graph.md",
+        "references/state/state_format.md",
+        "references/state/state_jsonl.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+        "assets/context_report_template.md",
+    ],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -184,7 +176,8 @@ def score_intents(user_request: str) -> dict[str, int]:
     text = (user_request or "").lower()
     scores = {intent: 0 for intent in INTENT_SIGNALS}
     for intent, cfg in INTENT_SIGNALS.items():
-        for keyword, weight in cfg["keywords"]:
+        weight = cfg["weight"]
+        for keyword in cfg["keywords"]:
             if keyword in text:
                 scores[intent] += weight
     return scores
@@ -194,7 +187,7 @@ def select_intents(scores: dict[str, int]) -> tuple[str, str | None]:
     ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
     primary, primary_score = ranked[0]
     if primary_score == 0:
-        return ("FRONTIER_SEEDING", None)
+        return ("LOOP_SETUP", None)
     secondary, secondary_score = ranked[1]
     if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
         return (primary, secondary)
@@ -210,9 +203,12 @@ def route_deep_context_resources(user_request: str, task=None):
     loaded = []
     seen = set()
 
-    # Low-confidence → UNKNOWN_FALLBACK
-    if max(scores.values() or [0]) < 3:
-        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+    # ALWAYS baseline (the operator cheat sheet)
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path, inventory, loaded, seen)
+
+    # No signal → return the baseline plus the disambiguation checklist
+    if max(scores.values() or [0]) <= 0:
         return {
             "intents": intents,
             "intent_scores": scores,
@@ -222,19 +218,16 @@ def route_deep_context_resources(user_request: str, task=None):
             "resources": loaded,
         }
 
-    # Load ALWAYS baseline
-    load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
-
-    # Load intent-mapped resources
+    # CONDITIONAL: load intent-mapped resources
     for intent in intents:
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path, inventory, loaded, seen)
 
-    # Load all keyed refs/assets for any intent prefix
-    for intent in intents:
-        prefix = f"references/{intent.lower()}/"
-        for path in sorted(p for p in inventory if p.startswith(prefix)):
-            load_if_available(path, inventory, loaded, seen)
+    # ON_DEMAND: explicit deep-dive keywords pull the full reference set
+    text = (user_request or "").lower()
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path, inventory, loaded, seen)
 
     return {"intents": intents, "intent_scores": scores, "resources": loaded}
 ```
@@ -242,6 +235,8 @@ def route_deep_context_resources(user_request: str, task=None):
 ---
 
 ## 3. HOW IT WORKS
+
+> Depth lives in the references: [protocol/loop_protocol.md](references/protocol/loop_protocol.md) (full lifecycle), the [convergence/](references/convergence/convergence.md) family (stop contract, signals, recovery, graph), and the [state/](references/state/state_format.md) family (packet, JSONL, outputs, reducer). This section is the quick map.
 
 **Process** (host-driven loop; the host = the orchestrating command/agent):
 
@@ -310,12 +305,37 @@ node .opencode/skills/deep-context/scripts/reduce-state.cjs <spec-folder>
 
 ## 5. REFERENCES
 
-### Core References
+References are organized into subfolder families (`guides/ protocol/ convergence/ state/`), matching the sibling deep loops.
+
+### Guides
 
 | Document | Purpose |
 |----------|---------|
-| [loop_protocol.md](references/loop_protocol.md) | Iteration lifecycle, parallel dispatch, merge, and host-writes-state invariant |
-| [convergence.md](references/convergence.md) | Stop contract: relevance-gated coverage saturation, agreement gate, signal weights |
+| [guides/quick_reference.md](references/guides/quick_reference.md) | One-page operator cheat sheet (commands, params, state files, convergence tree). ALWAYS baseline. |
+
+### Protocol
+
+| Document | Purpose |
+|----------|---------|
+| [protocol/loop_protocol.md](references/protocol/loop_protocol.md) | Iteration lifecycle, parallel dispatch, merge, and host-writes-state invariant |
+
+### Convergence
+
+| Document | Purpose |
+|----------|---------|
+| [convergence/convergence.md](references/convergence/convergence.md) | Stop-contract hub: CONTINUE / STOP_ALLOWED / STOP_BLOCKED + why agreement + relevance are guards |
+| [convergence/convergence_signals.md](references/convergence/convergence_signals.md) | The 5 signals, composite-score weights, and the threshold reference table |
+| [convergence/convergence_recovery.md](references/convergence/convergence_recovery.md) | Blocked-stop recovery foci and stuck-recovery frontier widening |
+| [convergence/convergence_graph.md](references/convergence/convergence_graph.md) | The `loop_type='context'` coverage-graph stop path (nodes/edges → signals) |
+
+### State
+
+| Document | Purpose |
+|----------|---------|
+| [state/state_format.md](references/state/state_format.md) | The `context/` packet-file hub: owners, mutability, routing |
+| [state/state_jsonl.md](references/state/state_jsonl.md) | `deep-context-state.jsonl` append-only record types |
+| [state/state_outputs.md](references/state/state_outputs.md) | Dashboard, iteration files, deltas, and the Context Report outputs |
+| [state/state_reducer_registry.md](references/state/state_reducer_registry.md) | `reduce-state.cjs` ownership: registry schema, dedup/agreement, runtime robustness |
 
 ### Templates and Assets
 
@@ -326,8 +346,8 @@ node .opencode/skills/deep-context/scripts/reduce-state.cjs <spec-folder>
 
 ### Reference Loading Notes
 
-- Load `references/loop_protocol.md` on every invocation (ALWAYS baseline).
-- Load `references/convergence.md` when tuning stop behavior or diagnosing a blocked stop.
+- Load `references/guides/quick_reference.md` on every invocation (ALWAYS baseline).
+- Load the `convergence/` family when tuning stop behavior or diagnosing a blocked stop; the `state/` family when working with the packet, JSONL, or reducer.
 - Load `assets/context_report_template.md` when synthesizing or verifying the deliverable.
 - Keep Smart Routing as the single routing authority; do not duplicate routing logic here.
 
@@ -394,7 +414,7 @@ When no spec folder exists yet, the host uses a standalone run dir and hands the
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/loop_protocol.md`, `assets/context_report_template.md`, and the convergence reference, then load intent-specific resources according to Section 2.
+The router discovers reference, asset, and script docs dynamically. Start with `references/guides/quick_reference.md` (the ALWAYS baseline) and `references/protocol/loop_protocol.md`, then load intent-specific `convergence/` and `state/` resources according to Section 2.
 
 Scripts: `scripts/reduce-state.cjs` — the agreement-weighted context reducer; run it from the repository root with a spec-folder argument.
 

@@ -109,10 +109,10 @@ A seat that fails (provider unavailable, timeout) does not block the other seats
 
 | Feature | Inputs | Output | Primary Resource |
 |---|---|---|---|
-| Frontier seeding | Feature query, code graph | Ranked SLICE nodes | `references/loop_protocol.md` §3 |
-| Parallel sweep | SLICE frontier, executor pool | Per-seat structured findings | `references/loop_protocol.md` §5 |
+| Frontier seeding | Feature query, code graph | Ranked SLICE nodes | `references/protocol/loop_protocol.md` §3 |
+| Parallel sweep | SLICE frontier, executor pool | Per-seat structured findings | `references/protocol/loop_protocol.md` §5 |
 | Agreement merge | Raw per-seat findings | `findings-registry.json` | `scripts/reduce-state.cjs` |
-| Convergence | Coverage-graph signals | CONTINUE / STOP_ALLOWED / STOP_BLOCKED | `references/convergence.md` |
+| Convergence | Coverage-graph signals | CONTINUE / STOP_ALLOWED / STOP_BLOCKED | `references/convergence/convergence.md` |
 | Context Report | `findings-registry.json` | `context-report.md` + `.json` | `assets/context_report_template.md` |
 
 ---
@@ -124,8 +124,20 @@ deep-context/
 +-- SKILL.md                          # Runtime instructions and smart router
 +-- README.md                         # Human-facing overview (this file)
 +-- references/
-|   +-- loop_protocol.md              # Iteration lifecycle, parallel dispatch, merge
-|   +-- convergence.md                # Stop contract, signal weights, guard thresholds
+|   +-- guides/
+|   |   +-- quick_reference.md        # Operator cheat sheet (ALWAYS baseline)
+|   +-- protocol/
+|   |   +-- loop_protocol.md          # Iteration lifecycle, parallel dispatch, merge
+|   +-- convergence/
+|   |   +-- convergence.md            # Stop-contract hub
+|   |   +-- convergence_signals.md    # 5 signals + composite weights + thresholds
+|   |   +-- convergence_recovery.md   # Blocked-stop / stuck recovery
+|   |   +-- convergence_graph.md      # loop_type='context' coverage-graph stop path
+|   +-- state/
+|   |   +-- state_format.md           # Packet-file hub (owners, mutability)
+|   |   +-- state_jsonl.md            # deep-context-state.jsonl record types
+|   |   +-- state_outputs.md          # Dashboard / Context Report / iteration outputs
+|   |   +-- state_reducer_registry.md # reduce-state.cjs ownership + robustness
 +-- assets/
 |   +-- context_report_template.md   # Context Report schema (REUSE-catalog-first)
 |   +-- deep_context_config.json     # Run config template; copied to packet at init
@@ -137,8 +149,10 @@ deep-context/
 | Path | Purpose |
 |---|---|
 | `SKILL.md` | Runtime routing, rules, and smart router pseudocode |
-| `references/loop_protocol.md` | Iteration lifecycle, roles, packet layout, merge rules, reliability invariants |
-| `references/convergence.md` | Stop contract, composite score formula, guard thresholds, threshold reference table |
+| `references/guides/quick_reference.md` | One-page operator cheat sheet (commands, params, state files, convergence tree) — ALWAYS baseline |
+| `references/protocol/loop_protocol.md` | Iteration lifecycle, roles, packet layout, merge rules, reliability invariants |
+| `references/convergence/` | Stop-contract hub + `convergence_signals` (5 signals + weights + thresholds), `convergence_recovery`, `convergence_graph` |
+| `references/state/` | `state_format` (packet hub), `state_jsonl` (records), `state_outputs` (dashboard/report), `state_reducer_registry` (reducer ownership + robustness) |
 | `assets/context_report_template.md` | Schema for `context-report.md`; sections ordered by value-per-token |
 | `assets/deep_context_config.json` | Default run config; populated and written to `{spec_folder}/context/deep-context-config.json` at init |
 | `scripts/reduce-state.cjs` | Reads state log + per-seat findings; writes `findings-registry.json` and dashboard |
@@ -256,8 +270,11 @@ A: Lower it (e.g. to 0.05) when you want the loop to run more iterations before 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, smart router, rules |
-| [`references/loop_protocol.md`](./references/loop_protocol.md) | Iteration lifecycle, roles, packet layout, merge rules |
-| [`references/convergence.md`](./references/convergence.md) | Stop contract, composite score, guard thresholds |
+| [`references/protocol/loop_protocol.md`](./references/protocol/loop_protocol.md) | Iteration lifecycle, roles, packet layout, merge rules |
+| [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop contract, why agreement + relevance are guards (hub) |
+| [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | The 5 signals, composite weights, threshold reference |
+| [`references/state/`](./references/state/state_format.md) | Packet format, JSONL records, outputs, reducer ownership |
+| [`references/guides/quick_reference.md`](./references/guides/quick_reference.md) | One-page operator cheat sheet |
 | [`assets/context_report_template.md`](./assets/context_report_template.md) | Context Report schema and field guide |
 | [`assets/deep_context_config.json`](./assets/deep_context_config.json) | Default run config template |
 | [`scripts/README.md`](./scripts/README.md) | scripts/ folder orientation |

@@ -35,7 +35,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 
 > **Canonical mode syntax:** use attached command suffixes (`/deep:start-context-loop:auto`, `/deep:start-context-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
-> **Note:** This loop is **inward** (the codebase, not the web). Every iteration is one **parallel heterogeneous sweep** of a **shared** focus; cross-executor **agreement** is the confidence signal. Seats are READ-ONLY analyzers; the host writes all merged state (Gate-3-safe). Full loop design lives in `.opencode/skills/deep-context/references/loop_protocol.md` and `convergence.md` (authoritative).
+> **Note:** This loop is **inward** (the codebase, not the web). Every iteration is one **parallel heterogeneous sweep** of a **shared** focus; cross-executor **agreement** is the confidence signal. Seats are READ-ONLY analyzers; the host writes all merged state (Gate-3-safe). Full loop design lives in `.opencode/skills/deep-context/references/protocol/loop_protocol.md` and `convergence/convergence.md` (authoritative).
 
 # SINGLE CONSOLIDATED SETUP PROMPT
 
@@ -229,7 +229,7 @@ For outward/web knowledge discovery, see `/deep:start-research-loop`. For code a
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-context` (this) uses 0.10 default on relevance-gated coverage saturation, with **agreement** and **relevance** as blocking guards
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See `.opencode/skills/deep-context/references/convergence.md` for the full signal table, composite-score weights, and the stop contract.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See `.opencode/skills/deep-context/references/convergence/convergence_signals.md` for the full signal table, composite-score weights, and the stop contract.
 
 ```yaml
 role: Deep Context Loop Manager
@@ -356,8 +356,8 @@ STATUS=FAIL ERROR="[message]"
 Full protocol documentation: `.opencode/skills/deep-context/SKILL.md`
 
 Key references:
-- Loop protocol: `deep-context/references/loop_protocol.md`
-- Convergence: `deep-context/references/convergence.md`
+- Loop protocol: `deep-context/references/protocol/loop_protocol.md`
+- Convergence: `deep-context/references/convergence/convergence.md`
 - Context Report template: `deep-context/assets/context_report_template.md`
 - Config shape + default pool: `deep-context/assets/deep_context_config.json`
 
