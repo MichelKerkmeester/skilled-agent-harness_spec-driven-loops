@@ -52,14 +52,15 @@ describe('createClassifyFrame (generic replay classifier factory)', () => {
 
 describe('mk-code-index reconnecting-proxy classifier', () => {
   it('replays read-only structural queries', () => {
-    for (const name of ['code_graph_query', 'code_graph_context', 'code_graph_status', 'code_graph_classify_query_intent', 'code_graph_verify', 'detect_changes']) {
+    for (const name of ['code_graph_query', 'code_graph_context', 'code_graph_status', 'code_graph_classify_query_intent', 'detect_changes']) {
       expect(codeIndex.classifyCodeIndexFrame(toolCall(name))).toBe(true);
     }
   });
 
-  it('never replays graph-mutating tools', () => {
-    // A full scan or an apply mutates the graph; the client must re-drive these on a recycle, not the proxy.
-    for (const name of ['code_graph_scan', 'code_graph_apply']) {
+  it('never replays graph-mutating tools (including verify, which persists a baseline)', () => {
+    // scan/apply mutate the graph; code_graph_verify mutates when persistBaseline=true. The client
+    // must re-drive any of these on a recycle, not the proxy.
+    for (const name of ['code_graph_scan', 'code_graph_apply', 'code_graph_verify']) {
       expect(codeIndex.classifyCodeIndexFrame(toolCall(name))).toBe(false);
     }
   });

@@ -97,6 +97,7 @@ The change is additive behind the single `log()` sink, so the stderr output stay
 | `launcher-watchdog.vitest.ts` (no regression) | PASS (20/20) |
 | stderr format unchanged | PASS (byte-identical line) |
 | comment-hygiene (durable WHY, no ids/paths) | PASS |
+| cross-validation (claude2 + cli-opencode + cli-codex) | found a non-`.log` custom-path rotation no-op -> FIXED (rotate appends `.prev` for any suffix) + regression test |
 | `validate.sh --strict` (this packet) | PASS |
 <!-- /ANCHOR:verification -->
 

@@ -102,6 +102,7 @@ The port needed no change to the proxy's reattach/replay core: `createSessionPro
 | `launcher-session-proxy.vitest.ts` (default classifier regression) | PASS |
 | launcher suite (watchdog/reap/persistent-log) | PASS (no regression) |
 | comment-hygiene (durable WHY, no ids/paths) | PASS |
+| cross-validation (claude2 + cli-opencode + cli-codex) | cli-opencode found `code_graph_verify` mutates on `persistBaseline=true` -> moved from replayable to the UNSAFE set + test updated |
 | `validate.sh --strict` (this packet) | PASS |
 <!-- /ANCHOR:verification -->
 

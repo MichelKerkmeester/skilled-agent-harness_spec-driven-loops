@@ -95,6 +95,19 @@ describe('launcher persistent log — append + rotation behavior', () => {
     expect(readFileSync(p.replace(/\.log$/, '.prev.log'), 'utf8')).toBe('aaaaaaaaaa\n');
   });
 
+  it('rotates a custom non-.log path by appending .prev (never renames the file onto itself)', () => {
+    // A SPECKIT_LAUNCHER_LOG_PATH without a .log suffix must still rotate to a DISTINCT sibling;
+    // otherwise the rename is a no-op and the file grows past the cap without bound.
+    tmpDir = mkdtempSync(join(tmpdir(), 'launcher-log-'));
+    const p = join(tmpDir, 'custom-launcher-log');
+    setEnv('SPECKIT_LAUNCHER_LOG_PATH', p);
+    setEnv('SPECKIT_LAUNCHER_LOG_MAX_BYTES', '8');
+    launcher.persistLauncherLogLine('aaaaaaaaaa\n');
+    launcher.persistLauncherLogLine('bbbb\n');
+    expect(readFileSync(p, 'utf8')).toBe('bbbb\n');
+    expect(readFileSync(`${p}.prev`, 'utf8')).toBe('aaaaaaaaaa\n');
+  });
+
   it('never throws when the target directory is unwritable', () => {
     // A logging failure must never propagate into the launcher's control flow.
     setEnv('SPECKIT_LAUNCHER_LOG_PATH', '/nonexistent-launcher-log-dir-xyz/deep/p.log');

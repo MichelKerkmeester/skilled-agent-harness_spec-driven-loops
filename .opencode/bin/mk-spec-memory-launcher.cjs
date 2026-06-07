@@ -163,7 +163,11 @@ function persistLauncherLogLine(line) {
       const { size } = fs.statSync(target);
       if (shouldRotateLauncherLog(size, launcherLogMaxBytes())) {
         try {
-          fs.renameSync(target, target.replace(/\.log$/, '.prev.log'));
+          // Rotate to a DISTINCT sibling. A `.log` path keeps a `.prev.log` (still matched by the
+          // *.log gitignore); any other operator-overridden path appends `.prev` so a non-`.log`
+          // suffix still rotates instead of renaming the file onto itself and growing without bound.
+          const rotated = target.endsWith('.log') ? target.replace(/\.log$/, '.prev.log') : `${target}.prev`;
+          fs.renameSync(target, rotated);
         } catch {
           // Best-effort rotation: if the rename fails, keep appending to the current file.
         }

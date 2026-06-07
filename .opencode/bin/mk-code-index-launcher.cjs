@@ -143,12 +143,14 @@ const CODE_INDEX_REPLAYABLE_TOOL_NAMES = new Set([
   'code_graph_context',
   'code_graph_status',
   'code_graph_classify_query_intent',
-  'code_graph_verify',
   'detect_changes',
 ]);
 const CODE_INDEX_UNSAFE_TOOL_NAMES = new Set([
   'code_graph_scan',
   'code_graph_apply',
+  // code_graph_verify is read-mostly but MUTATES when persistBaseline=true (it persists the gold
+  // verification baseline), so it must NOT be replayed across a reconnect — the client re-drives it.
+  'code_graph_verify',
 ]);
 const classifyCodeIndexFrame = createClassifyFrame({
   replayableToolNames: CODE_INDEX_REPLAYABLE_TOOL_NAMES,
