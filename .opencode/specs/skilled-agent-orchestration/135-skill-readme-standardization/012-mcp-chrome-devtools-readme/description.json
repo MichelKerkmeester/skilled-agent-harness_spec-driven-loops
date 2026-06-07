@@ -1,0 +1,19 @@
+{
+  "specFolder": "012-mcp-chrome-devtools-readme",
+  "description": "Rewrite mcp-chrome-devtools skill README in the narrative voice",
+  "keywords": [
+    "rewrite",
+    "mcp-chrome-devtools",
+    "skill",
+    "readme",
+    "narrative",
+    "voice"
+  ],
+  "lastUpdated": "2026-06-07T12:35:00.000Z",
+  "specId": "012",
+  "folderSlug": "mcp-chrome-devtools-readme",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

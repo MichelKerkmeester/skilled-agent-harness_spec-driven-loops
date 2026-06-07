@@ -26,7 +26,8 @@
     "008-deep-improvement-readme",
     "009-deep-loop-runtime-readme",
     "010-deep-research-readme",
-    "011-deep-review-readme"
+    "011-deep-review-readme",
+    "012-mcp-chrome-devtools-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
@@ -43,7 +44,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T12:18:52.000Z",
+  "lastUpdated": "2026-06-07T12:35:00.000Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [
