@@ -14,6 +14,8 @@
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory",
+        "SPECKIT_DAEMON_REELECTION": "1",
+        "_NOTE_DAEMON_REELECTION": "Daemon survives its owning session: on disposal the launcher releases the shared daemon for a live secondary to adopt instead of killing it, so concurrent sessions keep MCP transport. An unadopted released daemon is bounded by SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN. Set 0 to restore kill-on-disposal. See ENV_REFERENCE.md.",
         "HF_EMBED_SERVER_URL": "unix:///tmp/mk-hf-embed/hf-embed.sock",
         "SPECKIT_RETRY_QUEUE_MAX_PENDING": "300000",
         "SPECKIT_RETRY_BATCH_SIZE": "100",
