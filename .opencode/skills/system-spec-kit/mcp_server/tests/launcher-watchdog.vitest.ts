@@ -19,6 +19,7 @@ const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
   isRespawnLockStale: (raw: string, options?: { liveness?: (pid: number) => string; nowMs?: number; staleMs?: number }) => boolean;
   refreshDescendantSnapshot: (childPid: number, runner?: ProcessRowsRunner) => number[];
   sampleProcessTreeRssMb: (childPid: number, runner?: ProcessRowsRunner) => number | null;
+  shouldAbortRelaunchOnFire: (args: { shuttingDown: boolean; currentPpid: number; initialPpid: number }) => boolean;
   shouldSkipLaunch: (child: { exitCode: number | null; signalCode: string | null } | null) => boolean;
   signalProcess: (pid: number, sig: number | string) => boolean;
   superviseChildExit: (
@@ -285,5 +286,48 @@ describe('launcher watchdog helpers', () => {
     // unparseable / empty -> stale
     expect(launcher.isRespawnLockStale('not json', { liveness, nowMs: now })).toBe(true);
     expect(launcher.isRespawnLockStale('', { liveness, nowMs: now })).toBe(true);
+  });
+});
+
+describe('launcher disposal relaunch gate', () => {
+  const INITIAL_PPID = 4242;
+
+  it('relaunches when the owner is alive and no shutdown is in progress', () => {
+    // Normal case: the owning runtime still holds the same parent pid, so a delayed relaunch
+    // is still the right move.
+    expect(
+      launcher.shouldAbortRelaunchOnFire({ shuttingDown: false, currentPpid: INITIAL_PPID, initialPpid: INITIAL_PPID }),
+    ).toBe(false);
+  });
+
+  it('aborts when the launcher has begun shutting down', () => {
+    // A shutdown that started after the backoff was scheduled must win: reviving the daemon
+    // now would only flap it back down.
+    expect(
+      launcher.shouldAbortRelaunchOnFire({ shuttingDown: true, currentPpid: INITIAL_PPID, initialPpid: INITIAL_PPID }),
+    ).toBe(true);
+  });
+
+  it('aborts when the owning runtime is gone (parent pid changed)', () => {
+    // The MCP host is the launcher's parent; a changed ppid means that host exited, so a
+    // respawn would drop every bridged transport under a dying session.
+    expect(
+      launcher.shouldAbortRelaunchOnFire({ shuttingDown: false, currentPpid: 5001, initialPpid: INITIAL_PPID }),
+    ).toBe(true);
+  });
+
+  it('aborts when the launcher has been reparented to pid 1 (orphaned)', () => {
+    // Reparenting to the init/subreaper pid is the clearest orphan signal.
+    expect(
+      launcher.shouldAbortRelaunchOnFire({ shuttingDown: false, currentPpid: 1, initialPpid: INITIAL_PPID }),
+    ).toBe(true);
+  });
+
+  it('still relaunches a crash or recycle under a live owner (gate is additive)', () => {
+    // Crash-recovery and RSS-recycle fire with the owner alive and a matching ppid, so the
+    // gate must stay a no-op for them.
+    expect(
+      launcher.shouldAbortRelaunchOnFire({ shuttingDown: false, currentPpid: 7777, initialPpid: 7777 }),
+    ).toBe(false);
   });
 });

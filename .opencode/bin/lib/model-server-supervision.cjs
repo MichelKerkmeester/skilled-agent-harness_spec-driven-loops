@@ -310,6 +310,16 @@ function shouldSkipLaunch(child) {
   return Boolean(child && isChildRunning(child));
 }
 
+// A scheduled daemon relaunch must be ABORTED when its backoff fires under a dying owner.
+// The MCP host spawns the launcher directly, so a parent pid that no longer matches the value
+// captured at startup (or has reparented to the init/subreaper pid 1) means the owning session
+// disposed; respawning then would only flap the daemon under a runtime that is going away and
+// drop every bridged transport. Crash-recovery and RSS-recycle fire with the owner alive and a
+// matching ppid, so this stays a no-op for them.
+function shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid } = {}) {
+  return Boolean(shuttingDown) || currentPpid !== initialPpid || currentPpid === 1;
+}
+
 function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner, options = {}) {
   const snapshot = Array.isArray(options.snapshotPids) ? options.snapshotPids : [];
   const rows = resolveProcessTreeRows(childPid, runner);
@@ -1393,6 +1403,7 @@ module.exports = {
   resolveModelServerSocketPath,
   resolveProcessTreeRows,
   sampleProcessTreeRssMb,
+  shouldAbortRelaunchOnFire,
   shouldSkipLaunch,
   signalProcess,
   startRssWatchdog,

@@ -3426,6 +3426,24 @@ See [`14--pipeline-architecture/mcp-launcher-front-proxy.md`](14--pipeline-archi
 
 ---
 
+### MCP launcher owner-disposal relaunch gate
+
+#### Description
+
+The launcher owns the shared mk-spec-memory daemon for the MCP host that spawned it. When that host disposed its session, the launcher's child-exit supervisor respawned the daemon on a short backoff under the disposing runtime, so the fresh daemon was killed again about a second later and every bridged session lost its MCP transport. The owner-disposal relaunch gate aborts that respawn when the owner is gone.
+
+#### How It Works
+
+The launcher captures `LAUNCHER_INITIAL_PPID` at module load (the MCP host is its direct parent). When the `scheduleRelaunch` backoff fires, it evaluates the pure `shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid })` predicate; if the launcher is shutting down or its parent pid changed or reparented to 1, it releases the lease via `clearAllLeaseFiles` and exits instead of respawning. Crash-recovery and `recycleDaemonInPlace` run with the owner alive, so the predicate returns false and relaunch proceeds through `launchServer`.
+
+#### Source Files
+
+See [`14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md`](14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md) for full implementation and test file listings.
+
+> **Playbook:** [421](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
 ## 16. RETRIEVAL ENHANCEMENTS
 
 ### Dual-scope memory auto-surface

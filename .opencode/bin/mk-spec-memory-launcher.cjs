@@ -35,6 +35,7 @@ const {
   processLiveness,
   releaseRespawnLockFile,
   sampleProcessTreeRssMb,
+  shouldAbortRelaunchOnFire,
   shouldSkipLaunch,
   signalProcess,
   superviseChildExit,
@@ -1251,7 +1252,7 @@ function launchServer() {
             // daemon under a disposing session is what produced the SIGTERM/relaunch flap that
             // dropped every bridged session's transport. Crash-recovery and RSS-recycle are
             // unaffected — both run with the owning runtime alive and no shutdown in progress.
-            if (launcherShutdownInProgress || process.ppid !== LAUNCHER_INITIAL_PPID || process.ppid === 1) {
+            if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) {
               log('relaunch aborted: launcher shutting down or owning runtime gone; releasing lease and exiting');
               clearAllLeaseFiles();
               process.exit(0);
@@ -1473,6 +1474,7 @@ module.exports = {
   recycleDaemonInPlace,
   resolveModelServerSocketPath,
   sampleProcessTreeRssMb,
+  shouldAbortRelaunchOnFire,
   shouldSkipLaunch,
   signalProcess,
   startModelServerDemandListener,

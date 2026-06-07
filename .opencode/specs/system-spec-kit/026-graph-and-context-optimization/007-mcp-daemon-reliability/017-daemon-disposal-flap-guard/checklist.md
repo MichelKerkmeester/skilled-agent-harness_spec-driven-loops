@@ -70,8 +70,8 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met — guard added; recycle/crash preserved; node --check + tests pass
-- [x] CHK-021 [P0] Manual testing complete (in-session) — 54 launcher unit tests pass; logic traced for recycle/crash/disposal
-- [ ] CHK-022 [P1] Edge cases tested at RUNTIME — DEFERRED: `.cjs` activates on a fresh launcher, so observing the flap actually stop is owed to the next fresh session (documented in tasks T008)
+- [x] CHK-021 [P0] Manual testing complete (in-session) — 59 launcher unit tests pass (watchdog now 20/20 incl. 5 disposal-gate cases); logic traced for recycle/crash/disposal
+- [ ] CHK-022 [P1] Edge cases tested at RUNTIME — gate predicate edge cases (shutdown / changed-ppid / orphan-to-1 / crash-recycle) are now UNIT-tested; only the live end-to-end flap-stop stays DEFERRED to a fresh launcher (T008)
 - [x] CHK-023 [P1] Error scenarios validated — orphan-exit releases lease; wrapper-persisted-parent miss falls back to prior behavior (no regression)
 <!-- /ANCHOR:testing -->
 
@@ -106,7 +106,7 @@ _memory:
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized — all reflect the same one-file change + deferred scope
 - [x] CHK-041 [P1] Code comments adequate — durable WHY in the guard comment; no ADR/REQ/CHK/spec-path ids (comment-hygiene clean)
-- [x] CHK-042 [P2] README updated — N/A; launcher-internal change
+- [x] CHK-042 [P2] Docs updated — feature-catalog entry + playbook scenario 421 added (14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md), both indexes registered
 <!-- /ANCHOR:docs -->
 
 ---

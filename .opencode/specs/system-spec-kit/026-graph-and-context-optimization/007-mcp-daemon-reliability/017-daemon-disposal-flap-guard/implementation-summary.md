@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard"
-    last_updated_at: "2026-06-07T13:00:00Z"
+    last_updated_at: "2026-06-07T15:45:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Shipped the fire-time orphan/shutdown relaunch gate (node --check + 54 launcher tests pass)"
-    next_safe_action: "Runtime-verify on a fresh session; then the deferred RC-2 ownership re-election"
+    recent_action: "Added disposal-gate unit test + catalog/playbook 421 (20/20 launcher tests pass)"
+    next_safe_action: "Runtime-verify flap-stop on a fresh session; then RC-2 ownership re-election"
     blockers: []
     key_files:
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
@@ -64,7 +64,15 @@ This stops the dominant flap with a small, additive, reversible change. It does 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Modified | `LAUNCHER_INITIAL_PPID` const + fire-time orphan/shutdown gate in the `scheduleRelaunch` callback (~15 LOC) |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Modified | `LAUNCHER_INITIAL_PPID` const + fire-time gate in the `scheduleRelaunch` callback; the gate now calls (and re-exports) the extracted predicate |
+| `.opencode/bin/lib/model-server-supervision.cjs` | Modified | Extracted the pure `shouldAbortRelaunchOnFire` predicate next to `shouldSkipLaunch` / `superviseChildExit` so the gate is unit-testable |
+| `mcp_server/tests/launcher-watchdog.vitest.ts` | Modified | Five `shouldAbortRelaunchOnFire` unit cases: owner-alive, shutdown, changed-ppid, orphan-to-1, crash/recycle |
+| `feature_catalog/14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md` (+ `feature_catalog.md`) | Added | Feature catalog entry + index registration |
+| `manual_testing_playbook/14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md` (+ `manual_testing_playbook.md`) | Added | Playbook scenario 421 + index table row + count reconciliation (385->386 scenario / 319->320 catalog) |
+
+### Test, catalog, and playbook coverage
+
+The fix shipped as an inline conditional, which left the fire-time gate logic untested. To close that, the predicate was extracted into a pure helper in the supervision library (matching the existing `shouldSkipLaunch` / `superviseChildExit` pattern) and re-exported from the launcher, so the watchdog suite now asserts all five branches without spawning a process. A feature-catalog entry and playbook scenario 421 document the behavior and its verification commands; the playbook's deterministic file-count self-check was reconciled to 386 (it had drifted to an asserted 384 while the committed tree already held 385).
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -96,11 +104,12 @@ The investigators' cited lines were verified against the real launcher first —
 
 | Check | Result |
 |-------|--------|
-| `node --check` launcher | PASS |
-| launcher-watchdog vitest | PASS (15/15) |
+| `node --check` launcher + supervision lib | PASS |
+| launcher-watchdog vitest (incl. 5 new disposal-gate cases) | PASS (20/20) |
 | clean-close + reap + session-proxy + ipc-probe vitest | PASS (39/39) |
 | recycle/crash-recovery preserved (logic + tests) | PASS |
 | comment-hygiene (durable WHY, no ids/paths) | PASS |
+| feature-catalog + playbook entries link-resolve + count self-check (386) | PASS |
 | `validate.sh --strict` (this packet) | PASS |
 | Runtime flap-stop on fresh session | DEFERRED (`.cjs` activates on a fresh launcher) |
 <!-- /ANCHOR:verification -->
@@ -110,7 +119,7 @@ The investigators' cited lines were verified against the real launcher first —
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Runtime-unverified this session.** The launcher change activates only on a fresh launcher process, so the flap-stop is confirmed by syntax + unit tests + code logic, not by live observation yet.
+1. **Runtime-unverified this session.** The gate predicate is now unit-tested across all five branches, but the launcher change activates only on a fresh launcher process, so the end-to-end flap-stop is confirmed by syntax + unit tests + code logic, not by live observation yet.
 2. **Orphan detection assumes the parent dies.** If a disposal leaves a persistent wrapper as the launcher's parent, the ppid won't change and the gate falls back to prior behavior (no regression, but no help in that case). The complete fix is RC-2.
 3. **Partial vs the full report.** Only the dominant flap is fixed. Deferred to follow-up phases: RC-2 (daemon outlives owner via ownership re-election), the `mk-code-index` reconnecting proxy, dead-socket reap requiring N probe failures, `CLAUDE_SESSION_PID` flow / `orphan-mcp-sweeper` schedule (the Stop-hook is currently a no-op and orphans accumulate), and a persistent launcher log for attributable future incidents.
 <!-- /ANCHOR:limitations -->

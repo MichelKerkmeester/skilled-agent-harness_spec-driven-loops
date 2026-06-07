@@ -73,6 +73,10 @@ _memory:
 - [x] T006 Run launcher vitest suite (watchdog 15/15; clean-close + reap + session-proxy + ipc-probe 39/39 = 54 pass, no regression)
 - [x] T007 `validate.sh --strict` for this packet; document deferred RC-2 (ownership re-election), mk-code-index proxy, reap hardening, CLAUDE_SESSION_PID, persistent log
 - [ ] T008 [B] Runtime-verify the flap stops on a FRESH session (`.cjs` activates on a fresh launcher) — owed to the next dev session
+- [x] T009 Extract the gate predicate into pure `shouldAbortRelaunchOnFire` (`lib/model-server-supervision.cjs`); re-export + call it from the launcher (behavior-identical)
+- [x] T010 Add 5 disposal-gate unit cases to `mcp_server/tests/launcher-watchdog.vitest.ts` (owner-alive / shutdown / changed-ppid / orphan-to-1 / crash-recycle); 20/20 pass
+- [x] T011 Add feature-catalog entry + `feature_catalog.md` registration
+- [x] T012 Add playbook scenario 421 + `manual_testing_playbook.md` table row + file-count reconciliation (386 scenario / 320 catalog)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -137,7 +137,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 384 scenario files while the feature catalog contains 318 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 386 scenario files while the feature catalog contains 320 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count is zero (every scenario file is linked in Section 12).
 
@@ -163,14 +163,14 @@ count += sum(
 print(count)
 PY
 )
-if [ "$TOTAL_FEATURES" -ne 384 ]; then
-  echo "Expected 384 scenario files, found $TOTAL_FEATURES" >&2
+if [ "$TOTAL_FEATURES" -ne 386 ]; then
+  echo "Expected 386 scenario files, found $TOTAL_FEATURES" >&2
   exit 1
 fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-04, the deterministic file count is 384. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-07, the deterministic file count is 386. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup; scenario 421 is the launcher owner-disposal relaunch gate. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -3834,3 +3834,4 @@ This split playbook keeps automated coverage references in three places:
 | 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) | [13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md](../feature_catalog/13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) |
 | 419 | Features | Orphan MCP runtime lifecycle guardrails | [419](16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | [16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../feature_catalog/16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md), [19--feature-flag-reference/launcher-idle-timeout.md](../feature_catalog/19--feature-flag-reference/launcher-idle-timeout.md) |
 | 420 | Tooling And Scripts | Markdown link integrity guard | [420](16--tooling-and-scripts/markdown-link-integrity-guard.md) | [16--tooling-and-scripts/markdown-link-integrity-guard.md](../feature_catalog/16--tooling-and-scripts/markdown-link-integrity-guard.md) |
+| 421 | Pipeline Architecture | MCP launcher owner-disposal relaunch gate | [421](14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md) | [14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md](../feature_catalog/14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md) |
