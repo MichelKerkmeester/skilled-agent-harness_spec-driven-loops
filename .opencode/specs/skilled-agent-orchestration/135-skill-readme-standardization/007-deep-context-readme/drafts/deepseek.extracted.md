@@ -21,7 +21,7 @@ trigger_phrases:
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Mapping existing code before `/speckit:plan` or `/speckit:implement`, returning verified reuse candidates, integration points and conventions from a multi-model parallel sweep |
-| **Invoke with** | `/deep:start-context-loop:auto "scope"` (autonomous) or `:confirm` (gated). Keyword triggers include "gather context", "map the code for X" and "what can I reuse" |
+| **Invoke with** | `/deep:start-context-loop:auto "scope"` (autonomous) or `:confirm` (gated); keyword triggers include "gather context", "map the code for X" and "what can I reuse" |
 | **Works on** | A target scope in your codebase, swept by a configurable pool of read-only executor seats all analyzing the same focus in parallel |
 | **Produces** | A reuse-first Context Report with verified `file:symbol` pointers, plus a findings registry, convergence dashboard and iteration audit trail under `{spec_folder}/context/` |
 
@@ -45,10 +45,10 @@ Before you plan or implement a feature, discovery is expensive and ad-hoc. You n
 
 ```bash
 # Autonomous (no gates)
-/deep:start-context-loop:auto "WebSocket reconnection, map the existing transport layer"
+/deep:start-context-loop:auto "WebSocket reconnection — map existing transport layer"
 
 # Approval-gated
-/deep:start-context-loop:confirm "auth middleware, what can I reuse before planning"
+/deep:start-context-loop:confirm "auth middleware — what can I reuse before planning"
 ```
 
 The default pool runs 2 native `@deep-context` seats. Add CLI seats with `--executor` for a heterogeneous sweep.
@@ -85,7 +85,7 @@ The host extracts anchors from your scope query, then expands them through `code
 
 ### The Parallel By-Model Sweep
 
-All seats sweep the same scope at once. Native `@deep-context` agents run as a parallel Task batch. Optional heterogeneous CLI seats (MiMo, gpt, deepseek, claude) dispatch through the deep-loop-runtime multi-seat pool. Both groups start together and barrier-join before the host merges anything. A seat that fails does not block the others, and the agreement count reflects only the seats that returned. Seats are read-only analyzers. The host writes all merged state, which keeps the loop Gate-3-safe.
+All seats sweep the same scope at once. Native `@deep-context` agents run as a parallel Task batch. Optional heterogeneous CLI seats (MiMo, gpt, deepseek, claude) dispatch through the deep-loop-runtime multi-seat pool. Both groups start together and barrier-join before the host merges anything. A seat that fails does not block the others. The agreement count reflects only the seats that returned. Seats are read-only analyzers. The host writes all merged state, which keeps the loop Gate-3-safe.
 
 ### Agreement Merge
 
@@ -93,7 +93,7 @@ After each sweep the host deduplicates findings by `unit_id = sha256(path:symbol
 
 ### Five Convergence Signals
 
-Five signals decide when the loop has gathered enough context. Three are blocking guards: `sliceCoverage` (0.70), `agreementRate` (0.50) and `relevanceFloor` (0.50). If any guard fails, the decision is STOP_BLOCKED and the loop continues with a recovery focus. Two are weighted contributors: `reuseCatalogCoverage` (weight 0.30, the highest) and `dependencyCompleteness` (weight 0.10). The host also runs a saturation check: new agreement-eligible findings per iteration must fall below the convergence threshold (default 0.10) for two consecutive sweeps before the loop is allowed to stop. A high composite score cannot buy past a failed blocking guard.
+Five signals decide when the loop has gathered enough context. Three are blocking guards: `sliceCoverage` (0.70), `agreementRate` (0.50) and `relevanceFloor` (0.50). If any guard fails, the decision is STOP_BLOCKED and the loop continues with a recovery focus. Two are weighted contributors: `reuseCatalogCoverage` (weight 0.30, the highest) and `dependencyCompleteness` (weight 0.10). The host also runs a saturation check. New agreement-eligible findings per iteration must fall below the convergence threshold (default 0.10) for two consecutive sweeps before the loop is allowed to stop. A high composite score cannot buy past a failed blocking guard.
 
 When all guards pass and saturation is reached, the host emits STOP_ALLOWED and synthesizes the Context Report.
 
@@ -105,7 +105,7 @@ When all guards pass and saturation is reached, the host emits STOP_ALLOWED and 
 
 Run `deep-context` before `/speckit:plan` or `/speckit:implement` when a feature spans multiple modules or the blast radius is unclear. Run it when you want diverse model lenses on the same code with agreement-weighted confidence. Run it when a reuse catalog saves you from writing code that already exists.
 
-Skip it for a single-pass lookup, where the `@context` agent is faster. Skip it for outward web research (use `deep-research`), code audits (`deep-review`) or strategy comparison (`deep-ai-council`).
+Skip it for a single-pass lookup, where the `@context` agent is faster. Skip it for outward web research (`deep-research`), code audits (`deep-review`) or strategy comparison (`deep-ai-council`).
 
 ### Sibling Deep Loops
 
@@ -130,7 +130,7 @@ Skip it for a single-pass lookup, where the `@context` agent is faster. Skip it 
 | `STOP_BLOCKED: sliceCoverage < 0.70` | Frontier has SLICE nodes no seat has covered | Narrow the scope or raise `--max-iterations` to match the budget |
 | `STOP_BLOCKED: relevanceFloor < 0.50` | Seats are collecting tangential files | Tighten the scope query. Raise `--relevance-gate` to 0.65. |
 | Seats produce contradictory findings | Normal. Two executors found the same symbol but disagree on contract. | Read the CONTRADICTS section in the report. The host never auto-resolves. |
-| Reducer exits with an error | Corrupt JSONL state log | The reducer auto-repairs a trailing corrupt line. If the error persists, inspect the file for mid-line corruption. |
+| Reducer exits with error | Corrupt JSONL state log | The reducer auto-repairs a trailing corrupt line. If the error persists, inspect the file for mid-line corruption. |
 | CLI seat times out | Provider is slow or the scope slice is too broad | Narrow the scope per seat. Increase the per-seat timeout or reduce `--concurrency`. |
 | Reports cite stale code-graph references | The code graph was not refreshed before the sweep | Re-index the code graph and re-run. The report labels unverified refs. |
 
@@ -173,11 +173,11 @@ The skill ships two validation packages.
 
 ### Feature Catalog
 
-The `feature_catalog/` covers every capability across its categories: frontier seeding, the by-model parallel sweep, agreement merge, convergence detection, context report synthesis, coverage-graph schema and runtime robustness. Each category documents inputs, outputs, the owning resource and acceptance criteria.
+Seven categories under `feature_catalog/` cover every capability: frontier seeding, the by-model parallel sweep, agreement merge, convergence detection, context report synthesis, coverage-graph schema and runtime robustness. Each category documents inputs, outputs, the owning resource and acceptance criteria.
 
 ### Manual Testing Playbook
 
-Deterministic scenarios under `manual_testing_playbook/` across the same categories. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
+Twenty-five deterministic scenarios across the same seven categories under `manual_testing_playbook/`. Preconditions, expected signals and pass/fail/partial verdict rules are defined in the root playbook. Wave planning guidance splits the scenarios into four execution waves. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
 
 ---
 
@@ -185,18 +185,19 @@ Deterministic scenarios under `manual_testing_playbook/` across the same categor
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the rules and the full operating contract |
-| [`references/guides/quick_reference.md`](./references/guides/quick_reference.md) | One-page operator cheat sheet with commands, parameters, state files and the convergence tree |
-| [`references/protocol/loop_protocol.md`](./references/protocol/loop_protocol.md) | Iteration lifecycle, parallel dispatch, merge rules and the host-writes-state invariant |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, smart router, rules and the full operating contract |
+| [`references/guides/quick_reference.md`](./references/guides/quick_reference.md) | One-page operator cheat sheet with commands, parameters, state files and convergence tree |
+| [`references/protocol/loop_protocol.md`](./references/protocol/loop_protocol.md) | Iteration lifecycle, parallel dispatch, merge rules and host-writes-state invariant |
 | [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop-contract hub and decision tree |
 | [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | The five signals, composite weights and threshold reference table |
 | [`references/convergence/convergence_recovery.md`](./references/convergence/convergence_recovery.md) | Blocked-stop and stuck-recovery procedures |
-| [`references/convergence/convergence_graph.md`](./references/convergence/convergence_graph.md) | The coverage-graph stop path for `loop_type='context'` |
+| [`references/convergence/convergence_graph.md`](./references/convergence/convergence_graph.md) | Coverage-graph stop path for `loop_type='context'` |
 | [`references/state/state_format.md`](./references/state/state_format.md) | Packet-file hub: owners, mutability and routing |
 | [`references/state/state_jsonl.md`](./references/state/state_jsonl.md) | Append-only JSONL record types |
 | [`references/state/state_outputs.md`](./references/state/state_outputs.md) | Dashboard, iteration files and Context Report outputs |
-| [`references/state/state_reducer_registry.md`](./references/state/state_reducer_registry.md) | Reducer ownership, dedup and agreement and runtime robustness |
-| [`assets/context_report_template.md`](./assets/context_report_template.md) | The Context Report schema consumed by `/speckit:plan` and `/speckit:implement` |
-| [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The agreement-weighted findings reducer and dashboard generator |
+| [`references/state/state_reducer_registry.md`](./references/state/state_reducer_registry.md) | Reducer ownership, dedup/agreement and runtime robustness |
+| [`assets/context_report_template.md`](./assets/context_report_template.md) | Context Report schema consumed by `/speckit:plan` and `/speckit:implement` |
+| [`assets/deep_context_config.json`](./assets/deep_context_config.json) | Run config shape copied to `{spec_folder}/context/` at init |
+| [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | Agreement-weighted findings reducer and dashboard generator |
 | [`feature_catalog/`](./feature_catalog/) | Feature inventory across frontier seeding, parallel sweep, agreement merge, convergence, report synthesis, coverage-graph schema and runtime robustness |
-| [`manual_testing_playbook/`](./manual_testing_playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
+| [`manual_testing_playbook/`](./manual_testing_playbook/) | Twenty-five deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
