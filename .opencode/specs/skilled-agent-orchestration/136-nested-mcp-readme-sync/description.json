@@ -1,0 +1,12 @@
+{
+  "specFolder": "136-nested-mcp-readme-sync",
+  "description": "Sync three nested mcp_server READMEs with their real tool sets (135 QA follow-up)",
+  "keywords": ["nested", "mcp", "readme", "sync", "tool-set", "freshness"],
+  "lastUpdated": "2026-06-07T18:40:00.000Z",
+  "specId": "136",
+  "folderSlug": "nested-mcp-readme-sync",
+  "parentChain": ["skilled-agent-orchestration"],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

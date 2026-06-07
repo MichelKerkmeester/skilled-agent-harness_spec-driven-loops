@@ -23,7 +23,7 @@ Current state:
 - `advisor_status` reports freshness, trust state and daemon availability.
 - `advisor_rebuild` rebuilds checked-in skill metadata when status is stale or absent.
 - `advisor_validate` runs the heavier advisor validation bundle after explicit confirmation.
-- `skill_graph_scan`, `skill_graph_query`, `skill_graph_status` and `skill_graph_validate` expose the advisor-owned skill graph MCP surface.
+- `skill_graph_scan`, `skill_graph_query`, `skill_graph_status` and `skill_graph_validate` expose the advisor-owned skill graph MCP surface, and `skill_graph_propagate_enhances` proposes missing inbound `enhances` edges under a trusted-caller gate.
 
 ---
 
@@ -54,7 +54,7 @@ tools/
 | `advisor-rebuild.ts` | Defines the explicit rebuild descriptor and optional `force` flag. |
 | `advisor-validate.ts` | Defines the heavy validation descriptor with `confirmHeavyRun: true`. |
 | `advisor-contract-keys.ts` | Keeps selected descriptor property keys aligned with schema consumers. |
-| `skill-graph-tools.ts` | Defines `skill_graph_scan`, `skill_graph_query`, `skill_graph_status` and `skill_graph_validate`. |
+| `skill-graph-tools.ts` | Defines `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` and `skill_graph_propagate_enhances`. |
 | `types.ts` | Defines the local `ToolDefinition` contract. |
 
 ---
@@ -96,6 +96,7 @@ Advisor handler validates input and runs logic
 | `skillGraphQueryTool` | Descriptor | Registers `skill_graph_query`. |
 | `skillGraphStatusTool` | Descriptor | Registers `skill_graph_status`. |
 | `skillGraphValidateTool` | Descriptor | Registers `skill_graph_validate`. |
+| `skillGraphPropagateEnhancesTool` | Descriptor | Registers `skill_graph_propagate_enhances` (trusted-caller gated). |
 
 ---
 

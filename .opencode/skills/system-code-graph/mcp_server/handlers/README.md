@@ -149,6 +149,7 @@ MCP client calls code_graph_* or detect_changes
 | `code_graph_context` | MCP tool | Builds compact graph context from seeds. |
 | `code_graph_verify` | MCP tool | Runs graph verification checks. |
 | `code_graph_apply` | MCP tool | Runs guarded graph recovery operations. |
+| `code_graph_classify_query_intent` | MCP tool | Classifies a query as structural, semantic or hybrid. |
 | `detect_changes` | MCP tool | Maps a unified diff to affected graph symbols. |
 
 ---

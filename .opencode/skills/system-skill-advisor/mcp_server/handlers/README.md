@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor Handlers: MCP Tool Entrypoints"
-description: "MCP handler modules for advisor recommendation, status, rebuild and validation tools."
+description: "MCP handler modules for advisor recommendation, status, rebuild and validation tools plus the skill-graph tool handlers."
 trigger_phrases:
   - "skill advisor handlers"
   - "advisor recommend handler"
@@ -15,11 +15,12 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill_advisor/handlers/` contains MCP tool handlers for advisor operations. The handlers are thin entrypoints that delegate recommendation, status, rebuild and validation behavior to library modules.
+`skill_advisor/handlers/` contains MCP tool handlers for advisor operations plus the skill-graph handlers under `skill-graph/`. The handlers are thin entrypoints that delegate recommendation, status, rebuild, validation and skill-graph behavior to library modules.
 
 Current state:
 
 - Exposes recommendation, status, rebuild and validation handlers.
+- Exposes the skill-graph handlers (`scan`, `query`, `status`, `validate`, `propagate-enhances`) under the `skill-graph/` subdirectory.
 - Uses `index.ts` as the local handler export surface.
 - Keeps request orchestration separate from scorer and freshness internals.
 
@@ -33,6 +34,14 @@ handlers/
 +-- advisor-recommend.ts   # Recommendation handler
 +-- advisor-status.ts      # Status handler
 +-- advisor-validate.ts    # Validation handler
++-- skill-graph/           # Skill-graph tool handlers
+|   +-- scan.ts                # skill_graph_scan handler
+|   +-- query.ts               # skill_graph_query handler
+|   +-- status.ts              # skill_graph_status handler
+|   +-- validate.ts            # skill_graph_validate handler
+|   +-- propagate-enhances.ts  # skill_graph_propagate_enhances handler
+|   +-- response-envelope.ts   # Shared skill-graph response envelope
+|   `-- index.ts               # Skill-graph handler exports
 +-- index.ts               # Handler exports
 `-- README.md
 ```
@@ -47,6 +56,7 @@ handlers/
 | `advisor-status.ts` | Handles advisor status tool calls. |
 | `advisor-rebuild.ts` | Handles advisor rebuild tool calls. |
 | `advisor-validate.ts` | Handles advisor validation tool calls. |
+| `skill-graph/` | Handlers for the skill-graph tools: scan, query, status, validate and propagate-enhances. |
 | `index.ts` | Re-exports handler modules for registration. |
 
 ---
@@ -78,6 +88,7 @@ MCP tool request
 | `advisor-status.ts` | Handler | Status endpoint. |
 | `advisor-rebuild.ts` | Handler | Rebuild endpoint. |
 | `advisor-validate.ts` | Handler | Validation endpoint. |
+| `skill-graph/` | Handler group | Skill-graph tool endpoints: scan, query, status, validate and propagate-enhances. |
 | `index.ts` | Barrel module | Local handler exports. |
 
 ---
