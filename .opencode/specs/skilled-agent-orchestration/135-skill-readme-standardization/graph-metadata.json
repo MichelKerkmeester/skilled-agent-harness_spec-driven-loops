@@ -16,7 +16,8 @@
     "skilled-agent-orchestration/135-skill-readme-standardization/010-deep-research-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/011-deep-review-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/012-mcp-chrome-devtools-readme",
-    "skilled-agent-orchestration/135-skill-readme-standardization/013-mcp-click-up-readme"
+    "skilled-agent-orchestration/135-skill-readme-standardization/013-mcp-click-up-readme",
+    "skilled-agent-orchestration/135-skill-readme-standardization/014-mcp-code-mode-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -116,7 +117,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/013-mcp-click-up-readme",
-    "last_active_at": "2026-06-07T12:50:50Z"
+    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/014-mcp-code-mode-readme",
+    "last_active_at": "2026-06-07T13:05:42Z"
   }
 }
