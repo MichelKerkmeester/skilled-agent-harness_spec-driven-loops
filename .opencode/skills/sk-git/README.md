@@ -1,6 +1,6 @@
 ---
 title: sk-git
-description: Git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish sub-skills.
+description: Git workflow orchestrator that runs workspace setup, clean commits and work completion across the git-worktrees, git-commit and git-finish workflows.
 trigger_phrases:
   - "git workflow orchestrator"
   - "conventional commits worktree"
@@ -11,386 +11,159 @@ trigger_phrases:
 
 # sk-git
 
-> Git workflow orchestrator that guides developers through all three phases of a git development cycle: workspace setup, clean commits, and work completion.
+> Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch cleanup handled at each step.
 
 ---
 
-## 1. OVERVIEW
+## 1. AT A GLANCE
 
-### What This Skill Does
-
-`sk-git` is the unified orchestrator for all git-based development work. It manages three sequential phases: workspace isolation (git worktrees or current branch), commit hygiene (Conventional Commits with artifact filtering), and work completion (PR creation, merging, and branch cleanup). A smart router loads only the references relevant to the current phase, so the agent receives focused guidance rather than the full reference library on every invocation.
-
-The skill enforces a critical behavioral rule: the AI must never autonomously decide whether to create a new branch or work on the current one. Every session that involves new work requires an explicit workspace choice from the user before any git commands run. When a new branch is needed, it must be created only through `git worktree add -b ...`, never through `git branch`, `git checkout -b`, or `git switch -c`. This prevents silent workspace decisions that cause branch pollution or lost work.
-
-Commit messages follow a deterministic Conventional Commits format with a first-match type and scope inference algorithm. The same diff and metadata always produce the same commit subject. Artifact filtering runs before staging to exclude build files, coverage reports, and other non-public outputs. Quality gates block progression at pre-commit, pre-merge, and pre-PR checkpoints, with a post-merge cleanup step to remove worktrees and branches.
-
-When a git workflow needs packet context, `/speckit:resume` is still the canonical recovery surface. The continuity source remains `handover.md`, then `_memory.continuity`, then the remaining spec docs, with generated memory artifacts kept as support only.
-
-### Key Statistics
-
-- Version: 1.1.2.0
-- Phases: 3 (Workspace Setup, Work and Commit, Complete and Integrate)
-- Sub-skills: 3 (git-worktrees, git-commit, git-finish)
-- Reference documents: 6 (worktree, commit, finish, shared patterns, quick reference, GitHub MCP)
-- Asset templates: 3 (worktree checklist, commit message template, PR template)
-- Quality gates: 4 (pre-commit, pre-merge, pre-PR, post-merge)
-- Commit type options: 8 (merge, release, docs, fix, feat, refactor, test, chore)
-- Allowed tools: Read, Bash, mcp__code_mode__call_tool_chain
-
-### How This Compares
-
-- AI autonomously picks branch strategy, often wrong → User explicitly confirms worktree vs. current branch before any git command runs
-- Inconsistent commit messages across sessions → Deterministic first-match type/scope logic produces identical subjects for identical diffs
-- Build artifacts and coverage reports end up committed → Artifact filtering runs before staging, excluding non-public outputs
-- No gate between development and integration → Pre-merge test gate blocks integration until tests pass
-- Branches and worktrees accumulate indefinitely → Post-merge cleanup step removes local and remote feature branches and worktree directories
-- GitHub operations require manual CLI assembly → GitHub MCP integration provides programmatic PR, issue, and CI/CD access
-
-### Key Features
-
-- 3-phase lifecycle: Workspace Setup, Work and Commit, Complete and Integrate with clear phase transitions
-- Workspace choice enforcement: Always asks the user before choosing git worktree or current branch
-- Worktree-only branch creation: New branches created only via `git worktree add -b ...`, never directly
-- Deterministic commit logic: First-match type and scope inference. Same diff produces the same subject every time.
-- Artifact filtering: Excludes build files, coverage, and non-public outputs before staging
-- 4 quality gates: Pre-commit, pre-merge, pre-PR, and post-merge checkpoints
-- GitHub MCP integration: Programmatic access to PRs, issues, and CI/CD via Code Mode
-- Parallel work support: Multiple worktrees for simultaneous feature development
-- Session persistence: Remembers workspace preference for the duration of the session
-- Smart routing: Loads only the references relevant to the detected phase
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Worktrees, Conventional Commits and finishing work into a PR or merge |
+| **Invoke with** | "worktree", "commit", "finish work", "pull request" or auto-routing on git keywords |
+| **Works on** | Local git plus GitHub remotes (PRs, issues and CI status) through the GitHub MCP |
+| **Produces** | An isolated workspace, a clean commit history and an integrated, cleaned-up branch |
 
 ---
 
-## 2. QUICK START
+## 2. OVERVIEW
 
-**Step 1: Invoke the skill.** Gate 2 routing triggers automatically on keyword detection. You can also invoke it directly by reading SKILL.md.
+### Why This Skill Exists
+
+Git mistakes stay quiet until they get expensive. An AI picks a branch strategy you never wanted. Build artifacts slip into a commit. A feature branch lingers for weeks after its PR merged. Commit subjects drift until the history reads like five different people wrote it. None of these stop you in the moment, so they pile up. sk-git takes the guesswork out: it asks before it touches your workspace, writes commits in one deterministic format and cleans up once the work lands.
+
+### What It Does
+
+sk-git is the single orchestrator for git work. It runs three phases in order: workspace setup (an isolated worktree or the current branch), commit hygiene (Conventional Commits with artifact filtering) and completion (PR, merge or discard, then cleanup). A smart router loads only the reference for the phase you are in, so the agent reads focused guidance instead of the whole library.
+
+It does not write code or manage spec folders. `sk-code` owns the code that gets committed, and `system-spec-kit` owns spec folders, memory and continuity. sk-git commits and integrates that work without claiming it.
+
+---
+
+## 3. QUICK START
+
+**Step 1: Invoke it.** Gate 2 routing fires on git keywords, or you read the skill directly.
 
 ```bash
-# Gate 2 auto-routing (preferred)
+# Auto-routing through the skill advisor
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "commit my changes" --threshold 0.8
 
-# Direct invocation
+# Or read the runtime instructions
 Read(".opencode/skills/sk-git/SKILL.md")
 ```
 
-**Step 2: Identify your phase.** The skill routes to the appropriate sub-workflow based on your current state.
+**Step 2: Pick your phase.** New work starts at setup, staged changes go to commit, finished work goes to integration.
 
-- Starting new work: Phase 1 (Workspace Setup, git-worktrees)
-- Ready to commit staged changes: Phase 2 (Work and Commit, git-commit)
-- Work complete, ready to integrate: Phase 3 (Complete and Integrate, git-finish)
-
-**Step 3: Confirm workspace choice (Phase 1 only).** The AI will ask you to choose explicitly before creating anything.
-
-- Option A: Create a git worktree (isolated workspace for parallel or complex work)
-- Option B: Work on current branch (quick fixes and simple exploration)
-
-**Step 4: Follow the phase workflow.** Each phase has a documented step sequence. The skill loads the relevant reference document for your phase (worktree, commit, or finish workflow).
-
----
-
-## 3. FEATURES
-
-### 3.1 FEATURE HIGHLIGHTS
-
-The central design decision in `sk-git` is enforced workspace choice. Most AI assistants will silently pick a branch strategy, often opting for a new branch when that adds unnecessary overhead, or staying on the current branch when isolation is clearly needed. This skill refuses to make that call. Every session that involves new work triggers an explicit user prompt before any git command runs. The choice persists for the duration of the session.
-
-Branch creation follows a single permitted path: `git worktree add -b branch-name`. The three direct branch creation commands (`git branch`, `git checkout -b`, and `git switch -c`) are never used. This means branch creation and worktree setup happen atomically. There is no state where a branch exists but no worktree has been set up for it.
-
-The commit message algorithm is deterministic by design. Given the same diff and file metadata, it always produces the same commit subject. Type inference uses first-match ordering: merge commits, release tags, docs-only changes, bug fixes, new features, refactoring, tests, and chores, in that order. Scope inference maps file paths to logical scopes using the same first-match approach, resolving to the skill name, agent directory, command directory, or top-level path. The result is a commit history that reads consistently regardless of which session or AI instance produced it.
-
-Artifact filtering runs as a pre-staging check. Before committing, the skill identifies and excludes build outputs, coverage reports, and other generated files that should never appear in the public commit history. This is structural, not advisory. Those files do not get staged.
-
-The finish phase integrates a test gate. Work cannot be merged or submitted as a PR if tests are failing. After successful integration, the cleanup step removes the worktree directory, the local feature branch, and the remote tracking branch. No branch accumulation occurs over time.
-
-GitHub MCP integration covers the full remote workflow without requiring the user to assemble CLI commands. PR creation, issue linking, review requests, and CI/CD status checks all happen through Code Mode's GitHub MCP provider.
-
-### 3.2 FEATURE REFERENCE
-
-**Phase routing**
-
-| Phase | Intent Keywords | Primary Reference |
-|-------|----------------|------------------|
-| Workspace Setup (Phase 1) | worktree, workspace, parallel work, isolated, new feature | `references/worktree_workflows.md` |
-| Work and Commit (Phase 2) | commit, staged, message, conventional commit | `references/commit_workflows.md` |
-| Complete and Integrate (Phase 3) | finish, merge, pr, pull request, integrate, ship | `references/finish_workflows.md` |
-| Shared Patterns | convention, pattern, reference, branch naming | `references/shared_patterns.md` |
-
-**Workspace options**
-
-| Option | Command | Best For |
-|--------|---------|----------|
-| A: Git worktree | `git worktree add -b wt/{NNNN}-{name} .worktrees/{NNNN}-{name} main` | Parallel work, complex features, long-running tasks |
-| B: Current branch | (no command, work in place) | Quick fixes, exploration, single-task sessions |
-
-**Commit type selection (first match wins)**
-
-| Type | Triggers |
-|------|----------|
-| `merge` | Merge commits |
-| `release` | Version strings (vX.Y.Z), release subjects |
-| `docs` | Docs-only changes, README or CHANGELOG focus |
-| `fix` | Bug, security, hotfix, error correction |
-| `feat` | New behavior, support, or capability |
-| `refactor` | Internal restructuring without behavior change |
-| `test` | Test-only updates |
-| `chore` | Fallback for operational or mixed maintenance work |
-
-**Commit scope selection (first match wins)**
-
-| Path Pattern | Scope |
-|-------------|-------|
-| `.opencode/skills/<name>/...` | `<name>` (the skill's own name) |
-| `AGENTS.md` | `agents` |
-| `README.md` only | `readme` |
-| `opencode.json` or `.utcp_config.json` | `config` |
-| `.opencode/agents/...` | `agents` |
-| `.opencode/commands/...` | `commands` |
-| Docs-only set | `docs` |
-| Fallback | Dominant top-level path or `repo` |
-
-**Quality gates**
-
-| Gate | Criteria | Blocking |
-|------|----------|---------|
-| Pre-commit | Artifacts excluded, message formatted correctly | Yes |
-| Pre-merge | Tests pass, branch up-to-date with base | Yes |
-| Pre-PR | Description complete, CI passing | Yes |
-| Post-merge | Worktree removed, local and remote branches deleted | No |
-
----
-
-## 4. STRUCTURE
-
-```
-.opencode/skills/sk-git/
-  SKILL.md                              # Entry point with 8-section protocol and routing logic
-  README.md                             # This file
-  changelog/
-    CHANGELOG.md                        # Skill change history
-  references/
-    worktree_workflows.md               # 7-step workspace creation workflow
-    commit_workflows.md                 # 6-step commit workflow with artifact filtering
-    finish_workflows.md                 # 5-step completion flow (merge, PR, cleanup)
-    shared_patterns.md                  # Reusable git patterns and error recovery
-    quick_reference.md                  # One-page cheat sheet for common operations
-    github_mcp_integration.md           # GitHub MCP remote operations via Code Mode
-  assets/
-    worktree_checklist.md               # Pre-flight checklist for worktree creation
-    commit_message_template.md          # Conventional Commits format guide
-    pr_template.md                      # PR description template
-```
-
-**Key files**
-
-| File | Purpose | When to read |
-|------|---------|-------------|
-| `SKILL.md` | Full protocol, routing logic, rules | Always (entry point) |
-| `references/worktree_workflows.md` | 7-step workspace creation | Phase 1: new work or parallel features |
-| `references/commit_workflows.md` | 6-step commit with artifact filtering | Phase 2: staging and committing |
-| `references/finish_workflows.md` | 5-step completion flow | Phase 3: merge, PR, or discard |
-| `references/shared_patterns.md` | Error recovery, conflict resolution | When stuck or encountering edge cases |
-| `references/github_mcp_integration.md` | GitHub MCP tool usage | When working with remote PRs, issues, or CI |
-| `assets/pr_template.md` | PR description structure | Before submitting any pull request |
-
----
-
-## 5. CONFIGURATION
-
-### Allowed Tools
-
-| Tool | Purpose |
-|------|---------|
-| `Read` | Load skill references and asset templates |
-| `Bash` | All local git operations (commit, diff, status, log, worktree) |
-| `mcp__code_mode__call_tool_chain` | GitHub MCP operations (PRs, issues, CI/CD) |
-
-### Tool Selection by Operation
-
-| Operation | Tool |
-|-----------|------|
-| `git commit`, `git diff`, `git status`, `git log` | Local `git` via Bash |
-| Worktree creation and management | Local `git` via Bash |
-| Create or list pull requests | `gh` CLI or GitHub MCP via Code Mode |
-| PR reviews, issue CRUD, CI/CD status | GitHub MCP via Code Mode |
-
-### GitHub MCP Prerequisites
-
-A personal access token (PAT) must be configured in `.utcp_config.json` with these scopes:
-
-- `repo` (read and write repository content)
-- `issues` (read and write issues)
-- `pull_requests` (create and manage PRs)
-- `workflow` (read CI/CD status)
-
-### Branch Naming Convention
-
-All named feature worktrees use one unified, numbered namespace: `wt/{NNNN}-{name}`,
-where `{NNNN}` is a 4-digit zero-padded global counter and `{name}` is a short kebab
-description. The `wt/` prefix groups every feature-worktree branch under a single folder
-in Git UIs.
-
-| Branch | Example |
-|--------|---------|
-| `wt/{NNNN}-{name}` | `wt/0001-add-oauth2-login` |
-| `wt/{NNNN}-{name}` | `wt/0002-handle-null-user-response` |
-| `wt/{NNNN}-{name}` | `wt/0003-update-install-guide` |
-
-> The Conventional Commits `type(scope):` format still governs **commit messages** (see
-> Section 4). Branch names use the `wt/{NNNN}-{name}` namespace, not a `type/` prefix.
-
-### Worktree Directory Convention
-
-Named feature worktrees are created under `.worktrees/` in the repository root — the
-repo-local, already-gitignored worktree home. Each worktree is a numbered subdirectory
-matching its branch: `.worktrees/{NNNN}-{name}` (e.g. `.worktrees/0001-add-oauth2-login`).
-
-Compute the global `{NNNN}` as `max(existing NNNN under .worktrees/) + 1` (first is `0001`):
+**Step 3: Confirm the workspace (setup only).** The skill asks before it creates anything. Choose an isolated worktree for parallel or long-running work, or stay on the current branch for a quick fix.
 
 ```bash
+# Worktree path: compute the next global number, then create branch + directory together
 n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
-git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
+git worktree add -b "wt/${n}-add-oauth-login" ".worktrees/${n}-add-oauth-login" main
 ```
 
-**Two distinct lanes.** The numbered `wt/{NNNN}-{name}` convention above is for *named
-feature worktrees a human creates*. The per-session **ephemeral** worktrees allocated by
-the launch wrapper `.opencode/bin/worktree-session.sh` are a separate lane: they keep their
-own auto-managed namespace — branch `work/{runtime}/{slug}`, directory
-`.worktrees/{runtime}-{slug}` — and are auto-reaped by `worktree-reaper.sh` (which keys on
-the `.worktrees/` directory, not the branch prefix). Ephemeral session worktrees are
-intentionally **not** numbered.
+A worktree leaves you in an isolated directory on a `wt/{NNNN}-{name}` branch, ready to code.
 
 ---
 
-## 6. USAGE EXAMPLES
+## 4. HOW IT WORKS
 
-### Example 1: Full Workflow for a New Feature
+### The Three Phases
 
-Starting from scratch on a new feature, using an isolated worktree for parallel development.
+Work flows through setup, commit and finish, and the router pulls the matching reference at each step.
 
-```bash
-# Phase 1: Create isolated workspace (compute the global {NNNN}, e.g. 0001)
-n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
-git worktree add -b "wt/${n}-add-oauth2-login" ".worktrees/${n}-add-oauth2-login" main
+| Phase | What happens | Reference |
+|---|---|---|
+| Workspace setup | Isolate the work in a worktree, or stay on the current branch | `references/worktree_workflows.md` |
+| Work and commit | Filter artifacts, then write a Conventional Commit | `references/commit_workflows.md` |
+| Complete and integrate | Open a PR or merge, run the test gate, then clean up | `references/finish_workflows.md` |
 
-# Confirm workspace in terminal and begin coding
-cd ".worktrees/${n}-add-oauth2-login"
+A large rename or reorg follows a stricter runbook: do the file moves in a worktree but run the spec-kit toolchain and any memory reindex on `main` after merge, because a bare worktree is missing the gitignored dependencies. That path lives in `references/large_reorg_playbook.md`.
 
-# Phase 2: Commit changes with Conventional Commits format
-git add src/auth/oauth2.ts src/auth/types.ts
-git commit -m "feat(auth): add OAuth2 login flow"
+### Workspace Choice Is Always Yours
 
-# Phase 3: Create PR and integrate
-git push -u origin "wt/${n}-add-oauth2-login"
-gh pr create --title "feat(auth): add OAuth2 login flow" --body "$(cat .opencode/skills/sk-git/assets/pr_template.md)"
+The skill never decides your branch strategy on its own. Every session that starts new work asks you to choose an isolated worktree or the current branch, and it holds that choice for the rest of the session. New branches are created one way only, through `git worktree add -b ...`. The direct commands `git branch`, `git checkout -b` and `git switch -c` are off the table, so a branch never exists without a worktree set up for it.
 
-# After merge: cleanup
-git worktree remove ".worktrees/${n}-add-oauth2-login"
-git branch -d "wt/${n}-add-oauth2-login"
-git push origin --delete "wt/${n}-add-oauth2-login"
-```
+### Deterministic Commit Messages
 
-### Example 2: Quick Hotfix on Current Branch
+The same diff and metadata always produce the same commit subject. Type inference takes the first match in a fixed order (merge, release, docs, fix, feat, refactor, test, chore). Scope inference maps file paths the same way, resolving to the skill name, then the agent or command directory, then the dominant top-level path. The history reads consistently no matter which session or model produced it.
 
-A targeted bug fix that does not require an isolated workspace.
+### Cleanup Is Part Of Finishing
 
-```bash
-# Phase 2: Stage and commit the fix
-git add src/api/user.ts
-git commit -m "fix(api): handle null user response in getUser()"
-
-# Phase 3: Create PR with issue link
-gh pr create --title "fix(api): handle null user response" --body "Closes #123"
-```
-
-### Example 3: Parallel Features Across Two Worktrees
-
-Two features in development simultaneously in separate terminals.
-
-```bash
-# Terminal A: Feature A workspace (first worktree -> 0001)
-git worktree add -b wt/0001-stripe-checkout .worktrees/0001-stripe-checkout main
-cd .worktrees/0001-stripe-checkout
-# ... code feature A ...
-git commit -m "feat(payments): add stripe checkout integration"
-
-# Terminal B: Feature B workspace (next number -> 0002)
-git worktree add -b wt/0002-order-email .worktrees/0002-order-email main
-cd .worktrees/0002-order-email
-# ... code feature B ...
-git commit -m "feat(notifications): add email on order complete"
-
-# Finish both sequentially after tests pass
-git push -u origin wt/0001-stripe-checkout && gh pr create --title "feat(payments): add stripe checkout"
-git push -u origin wt/0002-order-email && gh pr create --title "feat(notifications): add email on order"
-```
+Finishing is not done when the PR merges. The completion flow removes the worktree directory, deletes the local feature branch and drops the remote tracking branch, so branches and worktrees do not accumulate. A test gate blocks the merge or PR while tests fail.
 
 ---
 
-## 7. TROUBLESHOOTING
+## 5. INTEGRATION & NAVIGATION
 
-| What you see | Common causes | Fix |
-|-------------|---------------|-----|
-| Merge conflicts the AI cannot resolve | Overlapping changes in both branches require a human decision on which version to keep | Escalate to the user. Do not attempt auto-resolution on semantic conflicts. |
-| GitHub MCP returns 401 or 403 | PAT expired or missing required scopes | Regenerate PAT in GitHub settings and update `.utcp_config.json` with `repo`, `issues`, `pull_requests`, and `workflow` scopes |
-| Worktree directory is locked or shows "already exists" | Previous worktree was not cleanly removed | Run `git worktree prune` then retry creation |
-| CI/CD pipeline fails repeatedly on the same check | Infrastructure issue unrelated to the code change | Investigate the CI runner logs. Do not retry the commit. |
-| Branch divergence exceeds 50 commits from base | Long-running branch has fallen too far behind main | Rebase or merge base branch incrementally before submitting a PR |
-| Submodule conflicts appear during merge | Submodule pointer changed in both branches | Escalate. Submodule conflicts require coordinated decisions across repositories. |
-| Commit subject is not deterministic across runs | Type or scope inference matched different conditions in different sessions | Review the type and scope tables in SKILL.md Section 4 and apply the first-match rule explicitly |
+### When To Use This Skill
+
+Reach for sk-git when you start new git-based work, when you are about to commit and when you are ready to open a PR or merge. Reach for it too when you want the house rules on branch naming and commit format. Skip it for a bare `git status` or `git log`, where Bash is faster.
+
+One rule worth knowing up front: on a protected branch, when you hold bypass rights and explicitly ask for a direct push, sk-git does the direct push instead of forcing a PR detour. It still scopes the commit to your intended files and reports that the push bypassed protection.
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `system-spec-kit` | Owns spec folders, memory and continuity. sk-git references the spec folder in the commit body and commits the work. |
+| `sk-code` | Owns code standards and tests. sk-git commits and integrates what sk-code produces. |
 
 ---
 
-## 8. FAQ
+## 6. TROUBLESHOOTING
 
-**Q: Why does the skill always ask before creating a branch?**
-A: Workspace strategy has real consequences. Creating an unnecessary worktree adds overhead. Staying on the current branch when parallel work is planned causes branch conflicts. The skill cannot know from context alone which is correct, so it requires explicit confirmation every time.
+| What you see | Why | Fix |
+|---|---|---|
+| Merge conflicts the AI will not resolve | Overlapping edits need a human call on which version wins | Escalate. The skill does not auto-resolve semantic conflicts. |
+| GitHub MCP returns 401 or 403 | PAT expired or missing scopes | Regenerate the PAT and update `.utcp_config.json` with `repo`, `issues`, `pull_requests` and `workflow` |
+| Worktree shows "already exists" or is locked | A previous worktree was not removed cleanly | Run `git worktree prune`, then retry |
+| Branch divergence over 50 commits from base | A long-running branch fell behind main | Merge or rebase the base in incrementally before opening a PR |
+| A bare worktree's strict-validate looks green on zero files | The worktree lacks gitignored deps so the run is a silent no-op | Re-run the toolchain on `main` after merge (see `large_reorg_playbook.md`) |
 
-**Q: Why can I not use `git checkout -b` or `git switch -c` to create branches?**
-A: Those commands create a branch in the current workspace without worktree isolation. This skill enforces worktree-only branch creation via `git worktree add -b ...` to keep workspace setup and branch creation atomic. If you need a branch in the current workspace only, use option B (work on current branch) and skip Phase 1 entirely.
+---
 
-**Q: What gets excluded by artifact filtering?**
-A: Build outputs (`dist/`, `build/`, `out/`), coverage reports (`coverage/`, `*.lcov`), compiled assets, and any file matching common generated-output patterns. The exact list is in `references/commit_workflows.md`. If a legitimate file is being excluded, add it explicitly with `git add -f` and document the exception in the commit body.
+## 7. FAQ
 
-**Q: When should I use the GitHub MCP vs. the `gh` CLI?**
-A: Use `gh` CLI for simple PR creation and listing. Use GitHub MCP for operations that need structured data back (reading PR reviews, querying issue fields, checking CI run details) or for bulk operations across multiple PRs or issues.
+**Q: Why does it always ask before creating a branch?**
 
-**Q: How do I handle a PR that was merged but the worktree cleanup was skipped?**
-A: Run `git worktree list` to see all active worktrees. Remove the stale one with `git worktree remove .worktrees/{NNNN}-{name}`. Then delete the local branch with `git branch -d wt/{NNNN}-{name}` and the remote tracking branch with `git push origin --delete wt/{NNNN}-{name}`. Run `git worktree prune` to clean up any metadata.
+A: Workspace strategy has real consequences. An unnecessary worktree adds overhead, and staying in place when parallel work is planned causes conflicts. Context alone does not say which is right, so the skill asks every time.
+
+**Q: Why can I not use `git checkout -b` or `git switch -c`?**
+
+A: Those create a branch with no worktree isolation. sk-git keeps branch creation and workspace setup atomic through `git worktree add -b ...`. For an in-place branch, choose the current-branch option and skip setup.
+
+**Q: When do I use the `gh` CLI versus the GitHub MCP?**
+
+A: Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need structured data back (PR reviews, issue fields, CI run details) or bulk operations across many PRs or issues.
+
+**Q: A PR merged but the worktree was never cleaned up. Now what?**
+
+A: Run `git worktree list` to find the stale one, remove it with `git worktree remove .worktrees/{NNNN}-{name}`, delete the local branch with `git branch -d wt/{NNNN}-{name}` and the remote with `git push origin --delete wt/{NNNN}-{name}`, then `git worktree prune`.
+
+---
+
+## 8. VERIFICATION
+
+The skill ships a manual testing playbook with per-feature scenarios for worktree, commit and finish behavior.
+
+| Check | How to run it |
+|---|---|
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/README.md --type readme` reports zero issues |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md` |
+| Behavior | Run the playbook scenarios under `manual_testing_playbook/<NN>--<topic>/` in a live session |
 
 ---
 
 ## 9. RELATED DOCUMENTS
 
-### Skill References
-
-| Document | Path | Purpose |
-|----------|------|---------|
-| Worktree workflows | `.opencode/skills/sk-git/references/worktree_workflows.md` | 7-step workspace creation with directory and branch strategies |
-| Commit workflows | `.opencode/skills/sk-git/references/commit_workflows.md` | 6-step commit with artifact filtering and Conventional Commits |
-| Finish workflows | `.opencode/skills/sk-git/references/finish_workflows.md` | 5-step completion: merge, PR, or discard |
-| Shared patterns | `.opencode/skills/sk-git/references/shared_patterns.md` | Error recovery, conflict resolution, reusable commands |
-| Quick reference | `.opencode/skills/sk-git/references/quick_reference.md` | One-page cheat sheet for common git operations |
-| GitHub MCP integration | `.opencode/skills/sk-git/references/github_mcp_integration.md` | Programmatic GitHub operations via Code Mode |
-
-### Asset Templates
-
-| Template | Path | When to Use |
-|----------|------|------------|
-| Worktree checklist | `.opencode/skills/sk-git/assets/worktree_checklist.md` | Pre-flight verification before creating a worktree |
-| Commit message template | `.opencode/skills/sk-git/assets/commit_message_template.md` | Reference for Conventional Commits format |
-| PR template | `.opencode/skills/sk-git/assets/pr_template.md` | Structure for all pull request descriptions |
-
-### Related Skills
-
-| Skill | Relationship |
-|-------|-------------|
-| `system-spec-kit` | Spec folder creation pairs with git commit workflow. Reference spec folder in commit body. |
-| `sk-code` | surface-aware code standards that define what should and should not be committed |
-
-### Framework Reference
-
-| Resource | Purpose |
-|----------|---------|
-| `AGENTS.md` (or `CLAUDE.md`) | Gate 2 (skill routing) and Gate 3 (file modification) behavioral framework |
-| Spec Kit Memory MCP | Context preservation with `memory_search()` for recovering prior git session context |
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`references/worktree_workflows.md`](./references/worktree_workflows.md) | Workspace creation, directory and branch strategy |
+| [`references/commit_workflows.md`](./references/commit_workflows.md) | Commit flow with artifact filtering and scoped staging |
+| [`references/finish_workflows.md`](./references/finish_workflows.md) | Completion: PR, merge, cleanup and release-note handling |
+| [`references/large_reorg_playbook.md`](./references/large_reorg_playbook.md) | Worktree-only renames with toolchain on main after merge |
+| [`references/shared_patterns.md`](./references/shared_patterns.md) | Error recovery, conflict resolution and merge verification |
+| [`references/github_mcp_integration.md`](./references/github_mcp_integration.md) | Remote PR, issue and CI operations through Code Mode |
+| [`assets/pr_template.md`](./assets/pr_template.md) | The structure every PR description follows |

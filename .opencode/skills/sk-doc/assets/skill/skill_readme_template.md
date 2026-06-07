@@ -1,11 +1,11 @@
 ---
 title: Skill README Template
-description: Template for human-facing skill README files that explain purpose, routing, resources, usage, validation and related documents.
+description: Template for human-facing skill README files in the narrative voice used by the repo root README and the changelogs, covering the human pitch, at-a-glance table, problem-first overview, quick start, navigation and verification.
 ---
 
 # Skill README Template
 
-Use this template for `.opencode/skills/[skill-name]/README.md`. It narrows the generic README structure to OpenCode skill packages.
+Use this template for `.opencode/skills/[skill-name]/README.md`. It writes a skill README in the same narrative voice the repo root `README.md` and the changelogs use: a one-line human pitch, an at-a-glance table near the top, a problem-first overview, then quick start, navigation and a verification close.
 
 ---
 
@@ -13,133 +13,108 @@ Use this template for `.opencode/skills/[skill-name]/README.md`. It narrows the 
 
 ### Purpose
 
-Provide a human-facing README scaffold for OpenCode skill packages without duplicating runtime instructions from `SKILL.md`.
+Give a human a fast, honest orientation to a skill before they open `SKILL.md`. The README answers what problem the skill solves, when to reach for it and how to navigate its files. `SKILL.md` stays the runtime instruction surface. The README is the front door a person reads.
 
 ### Usage
 
-Copy the fillable scaffold into `.opencode/skills/[skill-name]/README.md`, replace placeholders with current skill behavior, then remove sections that do not fit.
+Copy the fillable scaffold in Section 4 into `.opencode/skills/[skill-name]/README.md`, then replace every placeholder with current behavior taken from the skill's real files. Keep the numbered ALL-CAPS section headers (the validator and the house style both require them). Drop any section that does not earn its place and renumber the rest.
 
-### Location & Naming
+### What Changed From The Old Style
 
-| Item | Convention |
-|---|---|
-| Target path | `.opencode/skills/[skill-name]/README.md` |
-| File name | `README.md` with uppercase README preserved |
-| Source template | `assets/readme/readme_template.md` |
-| Related runtime file | `SKILL.md` |
+The previous skill READMEs read as tabular reference cards: a feature inventory, a structure tree and a settings table, with no human entry point. This template keeps the facts but leads with the reader. The differences:
 
-### When To Create A Skill README
+- A one-line pitch in a blockquote right after the H1, stating the outcome in plain words.
+- An `AT A GLANCE` table as the first section, not a buried "Key Statistics" block.
+- An `OVERVIEW` that opens with the problem the skill solves before listing what it does.
+- Prose carries the explanation. Tables appear only for genuine lookups (4 or more parallel items).
+- A `VERIFICATION` close for skills that ship test playbooks or validation commands.
 
-Use this asset when:
+### When To Write A Skill README
 
-- The skill has multiple operating modes, references, assets or scripts.
-- Operators need quick-start commands or validation steps.
-- The skill participates in skill graph navigation or runtime routing.
-- The skill has troubleshooting, FAQ or usage examples worth preserving outside `SKILL.md`.
-
-Keep the content in `SKILL.md` when the skill is tiny and runtime instructions already give complete human orientation.
+Write one when the skill has multiple modes, references, assets or scripts, when operators need quick-start or validation commands or when the skill takes part in skill-graph routing. Keep orientation inside `SKILL.md` only when the skill is tiny and its runtime instructions already orient a human.
 
 ---
 
-## 2. SKILL README MODEL
+## 2. SECTION MODEL
 
-Existing skill READMEs in this workspace commonly use this structure:
+A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between them. The default order:
 
-| Section | Purpose | Include When |
-|---|---|---|
-| Frontmatter | Search and routing metadata | Usually, for discoverable skills |
-| H1 and tagline | Fast human orientation | Always |
-| Overview | Purpose, audience and operating model | Always |
-| Key Statistics | Counts, version and scope facts | Skill has measurable resources |
-| How This Compares | Boundary with nearby skills | Readers may confuse responsibilities |
-| Quick Start | Fast operator path | Skill has commands, scripts or workflows |
-| Features | Current capabilities | Skill has multiple modes or behaviors |
-| Structure | File tree and important resources | Skill has references, assets or scripts |
-| Configuration | Required flags, env vars or invariants | Any settings or runtime constraints exist |
-| Usage Examples | Real operator scenarios | Skill has repeatable workflows |
-| Troubleshooting | Known failure modes | Operators can hit predictable issues |
-| FAQ | Repeated questions | 3 to 6 high-value answers exist |
-| Related Documents | Stable navigation links | Always when links exist |
+| # | Section | Purpose | Keep When |
+|---|---------|---------|-----------|
+| 1 | AT A GLANCE | Four-row table a reader scans in five seconds | Always |
+| 2 | OVERVIEW | Problem-first "why", then "what it does" | Always (required by the validator) |
+| 3 | QUICK START | The fastest path to a first result | Skill has commands, scripts or a workflow |
+| 4 | HOW IT WORKS | The lifecycle or main workflow, in prose | Skill has non-obvious behavior worth narrating |
+| 5 | INTEGRATION & NAVIGATION | When to use it, and how it hands off to sibling skills | Readers can confuse it with a neighbor |
+| 6 | TROUBLESHOOTING | The failure modes operators actually hit | Predictable issues exist |
+| 7 | FAQ | The two to five questions readers keep asking | High-value answers exist |
+| 8 | VERIFICATION | How you know the skill works | Skill ships a playbook or validation command |
+| 9 | RELATED DOCUMENTS | Stable links out, `SKILL.md` first | Always when links exist |
 
-Do not copy spec packet history into a skill README. Document current behavior with stable paths and commands.
-
-This structure is derived from `assets/readme/readme_template.md` and aligned with the asset-file overview pattern in `skill_asset_template.md`.
+`OVERVIEW` is the one required section, and its normalized name must appear as a numbered header so the validator finds it. Every other section is optional. A small utility skill might run four sections (AT A GLANCE, OVERVIEW, QUICK START, RELATED DOCUMENTS). A large orchestrator might run all nine. Match the count to the skill, and never pad to hit a number.
 
 ---
 
 ## 3. WRITING RULES
 
-- Explain what the skill does before listing internals.
-- Keep `SKILL.md` as the runtime instruction surface and README as the human orientation surface.
-- Use `README.md` to explain why and how to navigate, not to duplicate long reference files.
-- Link to real files under `references/`, `assets/`, `scripts/`, `feature_catalog/` or `manual_testing_playbook/`.
-- Use tables for resource inventories, comparisons and feature references.
-- Use repo-root commands in code blocks when operators can run them.
-- State expected output for verification commands.
-- Remove unused sections instead of leaving placeholders.
-- Follow Human Voice Rules: no em dashes, no semicolons, no setup phrases and no banned words.
+- Lead with the reader. The pitch and the OVERVIEW state the problem the skill solves before any feature list.
+- Carry the explanation in prose. Reach for a table only when 4 or more parallel items need a lookup grid (skill relationships, CLI flags, a comparison).
+- Put the AT A GLANCE table first. Four rows, one line each, no prose cells.
+- Name the canonical command or entry point in OVERVIEW or QUICK START so a reader knows where to start.
+- Link to real files under `references/`, `assets/`, `scripts/`, `feature_catalog/` or `manual_testing_playbook/`. Verify each path resolves.
+- State the expected output for every command you show, so a reader can tell success from failure.
+- Be honest about boundaries and trade-offs. If the skill does not own something, say which skill does.
+- Keep `SKILL.md` as the runtime surface. The README explains why and how to navigate, and does not restate long reference files.
+- Follow the Human Voice Rules: no em dashes, no semicolons, no Oxford commas, no banned words, no setup phrases. Vary subsection counts rather than defaulting to three.
+- Do not paste spec packet history into a README. Document current behavior with stable paths and commands.
 
 ---
 
 ## 4. FILLABLE SCAFFOLD
 
-Copy this scaffold into `.opencode/skills/[skill-name]/README.md`, then remove sections that do not fit the skill.
+Copy this into `.opencode/skills/[skill-name]/README.md`, fill every placeholder from the skill's real files, then remove sections that do not fit and renumber.
 
 ````markdown
 ---
-title: "[Skill Name]: [Human-Facing Description]"
-description: "[One-sentence current responsibility.]"
+title: "[skill-name]"
+description: "[One sentence: what the skill does and who reaches for it.]"
 trigger_phrases:
   - "[primary routing phrase]"
   - "[secondary routing phrase]"
 ---
 
-# [Skill Name]
+# [skill-name]
 
-[One-sentence statement of what this skill helps operators do.]
-
----
-
-## 1. OVERVIEW
-
-### Purpose
-
-[Explain why this README exists, what the skill helps readers do, when to use the skill and the nearest boundary. Do not repeat the one-sentence intro verbatim.]
-
-### Usage
-
-[Explain how to use this README to navigate the skill, run workflows, find resources and verify outcomes.]
-
-### Key Statistics
-
-| Metric | Value |
-|---|---|
-| Version | [version] |
-| Operating modes | [count or list] |
-| References | [count or folders] |
-| Assets | [count or folders] |
-| Scripts | [count or none] |
-
-### How This Compares
-
-| Capability | This Skill | Related Skill |
-|---|---|---|
-| [Capability] | [Current behavior] | [Boundary or difference] |
-
-### Key Features
-
-| Feature | What It Does |
-|---|---|
-| [Feature] | [Current behavior] |
-
+> [One line. The outcome the skill delivers, in plain words a person would say out loud.]
 
 ---
 
-## 2. QUICK START
+## 1. AT A GLANCE
 
-**Step 1: Invoke the skill.**
+| Aspect | What you get |
+|---|---|
+| **Use it for** | [The problem it solves, one line.] |
+| **Invoke with** | [Trigger keywords, command or routing path.] |
+| **Works on** | [Inputs, surfaces or scope.] |
+| **Produces** | [The artifacts or decisions it returns.] |
 
-[Describe automatic routing or manual read path.]
+---
+
+## 2. OVERVIEW
+
+### Why This Skill Exists
+
+[Two to four sentences, problem-first. Describe the situation a reader is in and what goes wrong without this skill. State the problem before the solution. No feature list here.]
+
+### What It Does
+
+[Two to four sentences. The core capability in plain language, naming the canonical command or entry point. If a sibling skill is easy to confuse with this one, name the boundary in a sentence.]
+
+---
+
+## 3. QUICK START
+
+**Step 1: Invoke it.** [Automatic routing, a slash command or the manual read path.]
 
 **Step 2: Run the primary workflow.**
 
@@ -147,95 +122,65 @@ trigger_phrases:
 [command]
 ```
 
-Expected result: [what success looks like].
+[What success looks like in one line.]
 
-**Step 3: Verify before delivery.**
+**Step 3: Verify before you rely on it.**
 
 ```bash
 [verification-command]
 ```
 
-Expected result: [exit code or output].
-
-
----
-
-## 3. FEATURES
-
-### 3.1 FEATURE HIGHLIGHTS
-
-[Explain the main operating modes or capabilities in plain language.]
-
-### 3.2 FEATURE REFERENCE
-
-| Feature | Inputs | Output | Primary Resource |
-|---|---|---|---|
-| [Feature] | [Inputs] | [Output] | `[path]` |
-
+[Expected exit code or output.]
 
 ---
 
-## 4. STRUCTURE
+## 4. HOW IT WORKS
 
-```text
-[skill-name]/
-+-- SKILL.md                    # Runtime instructions and smart router
-+-- README.md                   # Human-facing overview
-+-- references/                 # Loaded guidance and standards
-+-- assets/                     # Templates and reusable output material
-`-- scripts/                    # Optional deterministic helpers
-```
+[Narrate the lifecycle or main workflow as prose: the sequence of steps, the decision points and the outputs. A reader should finish this section understanding the shape of the skill. Add one small table or flowchart only if it makes the flow clearer than prose can.]
 
-| Path | Purpose |
+### [Key Concept]
+
+[Explain one behavior that is not obvious from the name, with a concrete example.]
+
+---
+
+## 5. INTEGRATION & NAVIGATION
+
+### When To Use This Skill
+
+[Two to four real scenarios. Where the boundary with an adjacent skill is fuzzy, say which skill owns what so a reader does not misroute.]
+
+### Related Skills
+
+| Skill | Relationship |
 |---|---|
-| `SKILL.md` | [Runtime role] |
-| `references/[name].md` | [When loaded] |
-| `assets/[name].md` | [How used] |
-| `scripts/[name]` | [What it automates] |
-
+| `[skill]` | [How the two hand off.] |
 
 ---
 
-## 5. CONFIGURATION
+## 6. TROUBLESHOOTING
 
-| Setting | Default | Purpose |
+| What you see | Why | Fix |
 |---|---|---|
-| `[setting]` | `[value]` | [What it controls] |
-
-If no configuration is required, state that clearly and list non-configurable invariants such as required validation commands.
-
+| [Symptom] | [Cause] | [Action] |
 
 ---
 
-## 6. USAGE EXAMPLES
+## 7. FAQ
 
-**[Scenario name]**
+**Q: [The question a reader actually asks, including "why this instead of X".]**
 
-```text
-User request: [realistic prompt]
-Skill routing: [intent or mode]
-Resources loaded: [paths]
-Expected output: [summary]
-```
-
+A: [A short, direct answer. Link a stable file when it helps.]
 
 ---
 
-## 7. TROUBLESHOOTING
+## 8. VERIFICATION
 
-| What You See | Cause | Fix |
-|---|---|---|
-| [Symptom] | [Likely cause] | [Action] |
+[For skills that ship a manual testing playbook or validation commands. List the checks that prove the skill works, or the one command that runs them. Remove this section for a small skill.]
 
-
----
-
-## 8. FAQ
-
-**Q: [Question readers ask often]?**
-
-A: [Short answer with a stable link when useful.]
-
+| Check | Result |
+|---|---|
+| [Test or gate] | [How to run it, and what a pass looks like.] |
 
 ---
 
@@ -246,31 +191,30 @@ A: [Short answer with a stable link when useful.]
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic |
 | [`references/[name].md`](./references/[name].md) | [Why it matters] |
 | [`assets/[name].md`](./assets/[name].md) | [How it is used] |
-
 ````
 
 ---
 
 ## 5. VALIDATION CHECKLIST
 
-- [ ] README explains the skill's current purpose before internals.
-- [ ] README and `SKILL.md` responsibilities are distinct.
-- [ ] Intro after H1 is one short sentence and the detailed purpose lives in OVERVIEW.
-- [ ] OVERVIEW includes Purpose and Usage subsections when the README is more than a short navigation page.
-- [ ] Trigger phrases and related-document links are stable.
-- [ ] Structure section lists only real files or clearly marked template placeholders.
-- [ ] Commands are tested or marked as examples.
-- [ ] Related resources point to existing files.
-- [ ] Optional sections without content were removed.
-- [ ] HVR passes: no em dashes, semicolons, banned words or setup phrases.
+- [ ] H1 is followed by a one-line blockquote pitch stating the outcome.
+- [ ] `AT A GLANCE` is the first section and its table is four rows of one-line cells.
+- [ ] A numbered `OVERVIEW` section exists and opens problem-first, before any feature list.
+- [ ] H2 sections are numbered, ALL CAPS and separated by `---` dividers.
+- [ ] Prose carries the explanation. Tables appear only for genuine 4-plus-item lookups.
+- [ ] Every command shows its expected output, and every linked path resolves.
+- [ ] Boundaries with sibling skills are stated where confusion is likely.
+- [ ] `SKILL.md` and the README do not duplicate each other.
+- [ ] Optional sections without real content were removed and the rest renumbered.
+- [ ] HVR passes: no em dashes, semicolons, Oxford commas, banned words or setup phrases, and no forced three-item groups.
+- [ ] `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues.
 
 ---
 
 ## 6. RELATED RESOURCES
 
-- [`readme_template.md`](../readme/readme_template.md) - Source template this skill-specific asset narrows.
+- [`readme_template.md`](../readme/readme_template.md) - General README scaffold this skill template narrows.
 - [`skill_creation.md`](../../references/skill_creation.md) - Skill creation workflow and lifecycle guidance.
 - [`skill_md_template.md`](./skill_md_template.md) - Runtime `SKILL.md` scaffold.
 - [`skill_reference_template.md`](./skill_reference_template.md) - Reference-file scaffold.
-- [`skill_asset_template.md`](./skill_asset_template.md) - Asset-file scaffold.
-- [`hvr_rules.md`](../../references/global/hvr_rules.md) - Human Voice Rules.
+- [`hvr_rules.md`](../../references/global/hvr_rules.md) - Human Voice Rules, the voice this template writes in.

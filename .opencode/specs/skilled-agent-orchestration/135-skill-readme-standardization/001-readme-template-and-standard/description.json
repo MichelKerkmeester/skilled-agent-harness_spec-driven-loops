@@ -1,0 +1,17 @@
+{
+  "specFolder": "135-skill-readme-standardization/001-readme-template-and-standard",
+  "description": "Phase 1: readme-template-and-standard",
+  "keywords": [
+    "phase",
+    "readme-template-and-standard"
+  ],
+  "lastUpdated": "2026-06-07T08:58:32.587Z",
+  "specId": "001",
+  "folderSlug": "readme-template-and-standard",
+  "parentChain": [
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
