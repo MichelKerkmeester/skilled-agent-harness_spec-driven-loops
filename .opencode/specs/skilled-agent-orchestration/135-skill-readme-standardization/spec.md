@@ -12,20 +12,20 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization"
-    last_updated_at: "2026-06-07T12:35:00Z"
+    last_updated_at: "2026-06-07T12:50:50Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped phases 001-012 (Batch C started with mcp-chrome-devtools)"
-    next_safe_action: "Phase 013: rewrite mcp-click-up README"
+    recent_action: "Shipped phases 001-013 (Batch C 2 of 3 mcp skills)"
+    next_safe_action: "Phase 014: rewrite mcp-code-mode README"
     blockers: []
     key_files:
       - "spec.md"
-      - "011-deep-review-readme/spec.md"
       - "012-mcp-chrome-devtools-readme/spec.md"
+      - "013-mcp-click-up-readme/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-bootstrap"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 54
     open_questions: []
     answered_questions:
       - "Model role: dual-draft + merge (DeepSeek v4 Pro max and MiMo v2.5 Pro high gather as deep-context seats AND each drafts, orchestrator merges)"
@@ -122,7 +122,7 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 | 010 | `010-deep-research-readme/` | Rewrite `deep-research` README | Complete |
 | 011 | `011-deep-review-readme/` | Rewrite `deep-review` README | Complete |
 | 012 | `012-mcp-chrome-devtools-readme/` | Rewrite `mcp-chrome-devtools` README | Complete |
-| 013 | `013-mcp-click-up-readme/` | Rewrite `mcp-click-up` README | Planned |
+| 013 | `013-mcp-click-up-readme/` | Rewrite `mcp-click-up` README | Complete |
 | 014 | `014-mcp-code-mode-readme/` | Rewrite `mcp-code-mode` README | Planned |
 | 015 | `015-sk-code-review-readme/` | Rewrite `sk-code-review` README | Planned |
 | 016 | `016-sk-code-readme/` | Rewrite `sk-code` README | Planned |
