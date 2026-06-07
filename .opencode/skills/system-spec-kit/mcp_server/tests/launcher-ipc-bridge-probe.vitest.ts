@@ -109,6 +109,7 @@ function createModelHealthConnect(body: Record<string, unknown>): () => FakeSock
 describe('launcher IPC bridge liveness probe', () => {
   afterEach(() => {
     process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+    delete process.env.SPECKIT_LEASE_PROBE_RETRIES;
     vi.useRealTimers();
     vi.restoreAllMocks();
   });
@@ -245,6 +246,9 @@ describe('launcher IPC bridge liveness probe', () => {
 
   it('returns a respawn verdict when the liveness probe is dead', async () => {
     vi.useFakeTimers();
+    // Single-probe respawn verdict: the consecutive-failure retry has its own coverage in
+    // launcher-reap-hardening.vitest.ts, so pin retries off to keep this timing assertion focused.
+    process.env.SPECKIT_LEASE_PROBE_RETRIES = '0';
     process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
     const bridge = vi.fn();
 

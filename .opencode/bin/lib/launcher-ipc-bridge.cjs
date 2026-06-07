@@ -33,6 +33,27 @@ function resolveProbeTimeoutMs(options = {}) {
   ));
 }
 
+function parseNonNegativeInteger(value, fallback) {
+  if (value === undefined || value === null || String(value).trim() === '') return fallback;
+  const parsed = Number.parseInt(String(value).trim(), 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+// A single transient probe miss must NOT make a sibling reap the lease owner and respawn a second
+// daemon: a busy owner (e.g. mid-FTS-merge) can momentarily exceed the probe window. Require N
+// consecutive deep-probe failures before declaring the owner dead. Defaults keep the first probe at
+// its tuned full timeout and add one short retry plus a small backoff so the worst case stays inside
+// the probe grace ceiling — a genuinely dead socket fails fast, so only a hung daemon pays the retry.
+function resolveLeaseProbeAttempts(env = process.env) {
+  return 1 + parseNonNegativeInteger(env.SPECKIT_LEASE_PROBE_RETRIES, 1);
+}
+function resolveLeaseProbeRetryTimeoutMs(env = process.env) {
+  return clampProbeTimeoutMs(parsePositiveInteger(env.SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS, 1500));
+}
+function resolveLeaseProbeRetryBackoffMs(env = process.env) {
+  return parsePositiveInteger(env.SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS, 250);
+}
+
 function repoRoot() {
   return path.resolve(__dirname, '..', '..', '..');
 }
@@ -308,6 +329,34 @@ function probeModelServer(socketPath, options = {}) {
   });
 }
 
+// Run the deep liveness probe up to `attempts` times; any 'alive' short-circuits to a bridge, and
+// only an all-failures run returns the final (dead) result so the caller respawns. The probe fn and
+// sleep are injectable so the retry decision is unit-testable without real sockets or timers.
+async function probeLeaseHolderWithRetries(socketPath, options = {}) {
+  const {
+    probe = probeDaemon,
+    firstTimeoutMs,
+    retryTimeoutMs = resolveLeaseProbeRetryTimeoutMs(),
+    retryBackoffMs = resolveLeaseProbeRetryBackoffMs(),
+    attempts = resolveLeaseProbeAttempts(),
+    connect,
+    sleepFn = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); }),
+    onRetry,
+  } = options;
+  const totalAttempts = Math.max(1, attempts);
+  let result = { status: 'dead', reason: 'no-probe-attempted' };
+  for (let attempt = 1; attempt <= totalAttempts; attempt += 1) {
+    const timeoutMs = attempt === 1 ? firstTimeoutMs : retryTimeoutMs;
+    result = await probe(socketPath, { timeoutMs, connect, deepProbe: true });
+    if (result.status === 'alive') return result;
+    if (attempt < totalAttempts) {
+      if (typeof onRetry === 'function') onRetry(attempt, totalAttempts, result);
+      await sleepFn(retryBackoffMs);
+    }
+  }
+  return result;
+}
+
 async function maybeBridgeLeaseHolder(options) {
   const {
     serviceName,
@@ -359,9 +408,18 @@ async function maybeBridgeLeaseHolder(options) {
   // hang it forever, never respawning. The raised probe timeout (default 5000ms, < the 7000ms launcher
   // grace) already prevents false-reaping a busy-but-responsive daemon mid-FTS-merge, so deep probing
   // does not regress that.
-  const probe = await probeDaemon(socketPath, { timeoutMs: probeTimeoutMs, connect, deepProbe: true });
+  // Require N consecutive failures (not one transient miss) before reaping a sibling's owner.
+  const probeAttempts = resolveLeaseProbeAttempts();
+  const probe = await probeLeaseHolderWithRetries(socketPath, {
+    firstTimeoutMs: probeTimeoutMs,
+    attempts: probeAttempts,
+    connect,
+    onRetry: (attempt, total, result) => process.stderr.write(
+      `[${loggerPrefix}] lease holder pid=${ownerPid} probe ${attempt}/${total} not alive (${result.reason}); retrying\n`,
+    ),
+  });
   if (probe.status !== 'alive') {
-    process.stderr.write(`[${loggerPrefix}] lease holder pid=${ownerPid} socket=${socketPath} failed liveness probe: ${probe.reason}\n`);
+    process.stderr.write(`[${loggerPrefix}] lease holder pid=${ownerPid} socket=${socketPath} failed ${probeAttempts} consecutive liveness probes: ${probe.reason}\n`);
     return { action: 'respawn', reason: probe.reason, socketPath };
   }
 
@@ -384,6 +442,10 @@ module.exports = {
   getIpcSocketPath,
   maybeBridgeLeaseHolder,
   probeDaemon,
+  probeLeaseHolderWithRetries,
   probeModelServer,
+  resolveLeaseProbeAttempts,
+  resolveLeaseProbeRetryBackoffMs,
+  resolveLeaseProbeRetryTimeoutMs,
   toConnectionOptions,
 };
