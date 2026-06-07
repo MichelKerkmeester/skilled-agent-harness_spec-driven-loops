@@ -25,7 +25,8 @@
     "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/020-sk-prompt-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/021-system-code-graph-readme",
-    "skilled-agent-orchestration/135-skill-readme-standardization/022-system-skill-advisor-readme"
+    "skilled-agent-orchestration/135-skill-readme-standardization/022-system-skill-advisor-readme",
+    "skilled-agent-orchestration/135-skill-readme-standardization/023-system-spec-kit-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -125,7 +126,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/022-system-skill-advisor-readme",
-    "last_active_at": "2026-06-07T16:45:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/023-system-spec-kit-readme",
+    "last_active_at": "2026-06-07T17:55:00Z"
   }
 }
