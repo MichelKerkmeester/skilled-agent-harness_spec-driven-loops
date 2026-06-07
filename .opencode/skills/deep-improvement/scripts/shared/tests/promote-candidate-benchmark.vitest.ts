@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: promote-candidate benchmark-mode promotion (121/018, F017-P1-04)
+// MODULE: promote-candidate benchmark-mode promotion
 //   Lane B (model-benchmark) produces report.json with status=benchmark-complete
 //   and never a scored agent file. promote-candidate.cjs must promote on benchmark
 //   evidence alone when --score is omitted, and refuse a non-passing report.

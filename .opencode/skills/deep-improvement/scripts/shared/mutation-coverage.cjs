@@ -22,7 +22,7 @@ const crypto = require('node:crypto');
 const LOOP_TYPE = 'improvement';
 
 /**
- * Minimum data points required before convergence can be claimed (REQ-AI-007).
+ * Minimum data points required before convergence can be claimed.
  * Research finding: at least 3 scored evidence iterations.
  * @type {number}
  */
@@ -36,7 +36,7 @@ const MIN_TRAJECTORY_POINTS = 3;
 const DEFAULT_STABILITY_DELTA = 2;
 
 /**
- * Env var to bypass mutation signature dedup (M-3).
+ * Env var to bypass mutation signature dedup.
  * Set to "1" to force re-evaluation of previously seen signatures.
  * @type {boolean}
  */
@@ -68,7 +68,7 @@ function writeJson(filePath, data) {
 }
 
 /**
- * Compute mutation signature for dedup (M-3).
+ * Compute mutation signature for dedup.
  * Signature: sha256(dimension + "\u001f" + mutationType + "\u001f" + targetSection + "\u001f" + normalizedBody64)
  * where normalizedBody64 = whitespace-collapsed, lowercased, first 64 chars of mutation body.
  *
@@ -122,7 +122,7 @@ function createCoverageGraph() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Record a mutation attempt in the coverage graph (REQ-AI-006).
+ * Record a mutation attempt in the coverage graph.
  *
  * @param {string} coveragePath - Path to the coverage graph JSON file
  * @param {object} mutation - Mutation record: { dimension, mutationType, candidateId, iteration, outcome? }
@@ -147,7 +147,7 @@ function recordMutation(coveragePath, mutation) {
 }
 
 /**
- * Get mutations already tried, to prevent redundant exploration (REQ-AI-009).
+ * Get mutations already tried, to prevent redundant exploration.
  *
  * @param {string} coveragePath - Path to the coverage graph JSON file
  * @returns {object[]} Array of exhausted mutation records
@@ -161,7 +161,7 @@ function getExhaustedMutations(coveragePath) {
 }
 
 /**
- * Mark a mutation type as exhausted for a given dimension (REQ-AI-009).
+ * Mark a mutation type as exhausted for a given dimension.
  *
  * @param {string} coveragePath - Path to the coverage graph JSON file
  * @param {string} dimension - Dimension name
@@ -198,7 +198,7 @@ function markExhausted(coveragePath, dimension, mutationType, options = {}) {
 
 /**
  * Check if a mutation signature is already present in mutations[]
- * or exhausted[] arrays (M-3 dedup).
+ * or exhausted[] arrays (dedup).
  *
  * Respects DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1 bypass.
  *
@@ -234,8 +234,7 @@ function isSignatureSeen(coveragePath, signature) {
 }
 
 /**
- * Get coverage statistics per dimension (REQ-AI-006).
- * Get coverage statistics per dimension (REQ-AI-006).
+ * Get coverage statistics per dimension.
  *
  * @param {string} coveragePath - Path to the coverage graph JSON file
  * @returns {object} Coverage stats: { dimensions: { [dim]: { tried: string[], exhausted: string[], triedCount, exhaustedCount } } }
@@ -283,7 +282,7 @@ function getMutationCoverage(coveragePath) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Record a trajectory data point with per-dimension scores (REQ-AI-007).
+ * Record a trajectory data point with per-dimension scores.
  *
  * @param {string} coveragePath - Path to the coverage graph JSON file
  * @param {object} dataPoint - { iteration, scores: { structural, ruleCoherence, integration, outputQuality, systemFitness }, weightedScore?, gateResults? }
@@ -318,7 +317,7 @@ function getTrajectory(coveragePath) {
 }
 
 /**
- * Check if convergence can be claimed based on trajectory data (REQ-AI-007).
+ * Check if convergence can be claimed based on trajectory data.
  * Research finding: "stable" = 3+ scored iterations with all dimension deltas within +/-2.
  *
  * @param {string} coveragePath - Path to the coverage graph JSON file

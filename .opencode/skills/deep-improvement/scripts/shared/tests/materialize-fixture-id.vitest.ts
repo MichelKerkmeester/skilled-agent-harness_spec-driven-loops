@@ -1,9 +1,9 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: materialize-benchmark-fixtures hardening (121/018 remediation)
-//   F017-P1-01  first-writer fixture-id path traversal
+// MODULE: materialize-benchmark-fixtures hardening
+//   first-writer fixture-id path traversal
 //
 // The materializer is the FIRST writer in the wired Lane B plan (loop-host
-// runs materialize before run-benchmark). The 015 F-P1-9 sanitizer was ported
+// runs materialize before run-benchmark). The basename-charset sanitizer was ported
 // to run-benchmark.cjs but not the materializer, so a hostile fixture id like
 // '../escaped' escaped outputsDir at materialization time. These tests pin the
 // ported guard: a hostile id exits non-zero and writes nothing.

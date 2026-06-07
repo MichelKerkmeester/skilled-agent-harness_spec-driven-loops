@@ -117,3 +117,28 @@ Per the operator's directive, the confirmed P0 + comment-hygiene + P1s were fixe
 - All §7 Tier-4 P2s (raw-line-prefix redaction ×3; agreementRate relevance-gating in code; shared CJS state-safety adapter; inline atomic dir-fsync; journal blank-line index; loop-lock `main()` guard; baseArtifactDir constraint; confirm:601 routing verify; preflight config binding; per-iter mkdir).
 - **Schema-vs-relations design follow-up (P1-grade, made safe-by-docs)**: `coverage_edges` enforces FK on both endpoints with `PRAGMA foreign_keys = ON`, but there is no ITERATION/SEAT node kind. COVERED_BY/CONFIRMS must therefore use real-node endpoints + metadata (now documented). A deliberate fix (add node kinds with a SCHEMA_VERSION bump, or move sliceCoverage to node metadata) is deferred — it is a design decision with migration implications, not a surgical defect.
 - **Pre-existing comment-hygiene (out of scope)**: `deep-improvement/scripts/shared/{materialize-benchmark-fixtures,promote-candidate,mutation-coverage}.cjs` + two vitest files carry forbidden-ID comments (`F017-*`, `REQ-AI-*`, `M-3`) from earlier packets (017/018/121). Not in this review's changeset; flagged for a separate hygiene-cleanup pass.
+
+<!-- ANCHOR:backlog-remediation -->
+## 10. Deferred-backlog remediation (second pass)
+
+On the operator's "fix deferred" directive, the backlog above was cleared except one design item.
+
+**Fixed + verified**
+- **Context-signals test coverage** (root cause of the shipped bugs — R2 found ZERO coverage): added 6 pure-function cases to `coverage-graph-signals.vitest.ts` (vacuous-pass, dependencyCompleteness direction, sliceCoverage, agreementRate relevance-gating, reuseCatalogCoverage threshold).
+- **agreementRate relevance-gating** (P2→fixed): denominator now excludes below-gate findings (`coverage-graph-signals.ts`); doc row aligned.
+- **Credential-leak redaction ×3** (security P2): corruption warnings now report `length` + a 12-char sha256 instead of raw line content (`deep-context/reduce-state.cjs`, `deep-improvement/reduce-state.cjs`, `improvement-journal.cjs`).
+- **Journal blank-line index** (P2): physical 1-based line number (counts blanks) in `improvement-journal.cjs`.
+- **Inline atomic dir-fsync ×2** (P2): both reducers' inline `writeTextAtomic` now fsync the parent directory after rename (best-effort), matching the runtime contract.
+- **loop-lock.cjs `main()` guard** (P2): deep-context wrapper guarded by `require.main` + exports.
+- **baseArtifactDir traversal guard** (security P2): `fanout-run.cjs` rejects `..` path segments.
+- **confirm:601 routing** (verified real): `if_stop` now `skip_to: phase_synthesis` (was `gate_pre_synthesis`, which bypassed `step_hydrate_summary_metrics`) — parity with auto.
+- **Config-input binding** (P2): `relevance_gate`/`agreement_min`/`concurrency` added to `user_inputs` in both context YAMLs (were referenced but unbound; defaults from `deep_context_config.json`).
+- **Per-iteration mkdir** (P2): `step_render_seat_prompts` ensures `iter-{current_iteration}` prompt/seat subdirs exist.
+- **Pre-existing comment-hygiene**: removed all forbidden-ID labels from `mutation-coverage.cjs` (10), `materialize-benchmark-fixtures.cjs` (4), `promote-candidate.cjs` (3), and 2 vitest headers.
+
+**Re-verification**: deep-loop-runtime vitest 295 pass + the 6 new context cases (1 unrelated cross-process loop-lock flake — passes 7/7 in isolation, runtime `loop-lock.ts` untouched); deep-improvement `shared/tests` 76/76; `node --check` all 8 changed `.cjs`; comment-hygiene grep clean across the touched trees; child-phase reducer end-to-end (`stateSafety: runtime`).
+
+**Deliberately NOT done (with rationale)**
+- **Shared CJS state-safety adapter** (extract the duplicated inline fallbacks): the duplication is ~30 lines of rarely-hit fallback code (only when the tsx toolchain is absent). Extracting a cross-skill shared module to dedup untestable fallback paths is higher risk than reward; the concrete robustness gap (dir-fsync) was instead fixed in both copies. Documented decision, not a silent skip.
+- **Schema-vs-relations deeper redesign** (add ITERATION/SEAT node kinds + `SCHEMA_VERSION` bump, or move sliceCoverage to node metadata): the doc fix already made the current FK-enforced schema correct and usable (COVERED_BY/CONFIRMS via real-node endpoints + metadata). The redesign is a migration-bearing design decision, not a defect — left for a deliberate, separately-scoped packet.
+- **`fanout-merge.cjs` "P0" comments**: `P0`/`P1`/`P2` there are severity-tier domain vocabulary describing the merge contract ("any lineage P0 finding → merged FAIL"), not perishable tracking IDs — a stable domain term (like CWE/RFC), left as-is. File is untouched and out of changeset.

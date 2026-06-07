@@ -44,7 +44,7 @@ export interface ContextConvergenceSignals {
 |---|---|
 | `sliceCoverage` | SLICE nodes that are the source of a `COVERED_BY` edge / total SLICE nodes |
 | `reuseCatalogCoverage` | REUSE_CANDIDATE nodes with agreement ≥ 1 (a CONFIRMS edge or `metadata.confirmations`) OR `metadata.verified === true` / total REUSE_CANDIDATE nodes |
-| `agreementRate` | Finding nodes with agreement ≥ 2 / all finding nodes |
+| `agreementRate` | Relevance-gated finding nodes with agreement ≥ 2 / relevance-gated finding nodes (relevance ≥ 0.55) |
 | `relevanceFloor` | Fraction of finding nodes with `metadata.relevance` ≥ 0.55 |
 | `dependencyCompleteness` | DEPENDENCY nodes that are the target of a `DEPENDS_ON` edge / total DEPENDENCY nodes |
 

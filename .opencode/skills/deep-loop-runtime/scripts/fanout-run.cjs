@@ -362,6 +362,11 @@ async function main() {
   }
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = ensureString(args, 'baseArtifactDir');
+  // Defense-in-depth: baseArtifactDir is host-provided, but reject path-traversal
+  // segments so a malformed value cannot relocate fanout artifacts outside its tree.
+  if (baseArtifactDir.split(/[\\/]/).includes('..')) {
+    throw inputError('baseArtifactDir must not contain ".." path segments');
+  }
 
   const {
     parseFanoutConfig,

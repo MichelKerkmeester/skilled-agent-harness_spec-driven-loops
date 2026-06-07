@@ -150,7 +150,7 @@ function main() {
   const archiveDir = args['archive-dir'];
   const approve = args.approve === true || args.approve === 'true';
 
-  // F017-P1-04 (017 review): Lane B (model-benchmark) produces report.json with
+  // Lane B (model-benchmark) produces report.json with
   // status=benchmark-complete and never a scored agent file. Promotion mode is
   // therefore selected by the presence of --score: when --score is supplied this
   // is the Lane A agent path (scored candidate + agent dimension gates, byte-
@@ -243,7 +243,7 @@ function main() {
     process.exit(1);
   }
 
-  // F017-P1-04 (017 review): the agent scored-file gates (candidate-better
+  // The agent scored-file gates (candidate-better
   // recommendation, weighted score gate, 5-dimension gates, score delta) only
   // apply to Lane A. Lane B has no scored agent file, so it promotes on the
   // benchmark report gates verified above (benchmark-complete + benchmark-pass +
@@ -322,7 +322,7 @@ function main() {
   fs.copyFileSync(target, backupPath);
   fs.copyFileSync(candidate, target);
 
-  // F017-P1-04 (017 review): Lane A output shape is unchanged (byte-behavior
+  // Lane A output shape is unchanged (byte-behavior
   // contract). Lane B emits mode=benchmark plus the benchmark aggregate/delta so
   // the promotion result is self-describing for the model-benchmark loop.
   const result = benchmarkMode

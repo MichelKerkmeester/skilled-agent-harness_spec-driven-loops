@@ -52,6 +52,9 @@ user_inputs:
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 8."
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Per-iteration new-agreement-eligible-findings floor. Default: 0.10."
   executor_pool: "[EXECUTOR_POOL] - Heterogeneous by-model-shared-scope pool (config.fanout.executors). Default: 2 native + MiMo + gpt + deepseek."
+  relevance_gate: "[RELEVANCE_GATE] - Min relevance to keep a finding (else lowConfidence). Default: 0.55 (deep_context_config.json)."
+  agreement_min: "[AGREEMENT_MIN] - Min distinct executors for a finding to be agreement-eligible. Default: 2 (deep_context_config.json)."
+  concurrency: "[CONCURRENCY] - Max parallel seats in the by-model sweep. Default: 4 (deep_context_config.json)."
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -348,6 +351,7 @@ workflow:
       # ───────────────────────────────────────────────────────────
       step_render_seat_prompts:
         action: "Render ONE prompt per seat for the SHARED current focus, carrying the full lineage contract"
+        ensure_dirs: "mkdir -p {state_paths.prompt_dir}/iter-{current_iteration} {state_paths.seat_dir}/iter-{current_iteration}"
         for_each: "seat in config.fanout.executors"
         contract_per_seat: |
           Every seat prompt MUST carry the four-part lineage contract (a seat told only "analyze"

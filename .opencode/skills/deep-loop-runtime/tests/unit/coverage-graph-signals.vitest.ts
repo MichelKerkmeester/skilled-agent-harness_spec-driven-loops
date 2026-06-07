@@ -131,4 +131,71 @@ describe('coverage-graph-signals', () => {
     ];
     expect(signalsModule.computeResearchClaimVerificationRateFromData(nodes)).toBe(0.5);
   });
+
+  // ───── Context signals (closes the zero-coverage gap on the deep-context path) ─────
+
+  it('computeContextSignalsFromData vacuous-passes all five signals on an empty graph', () => {
+    const s = signalsModule.computeContextSignalsFromData([], []);
+    expect(s).toEqual({
+      sliceCoverage: 1,
+      reuseCatalogCoverage: 1,
+      agreementRate: 1,
+      relevanceFloor: 1,
+      dependencyCompleteness: 1,
+    });
+  });
+
+  it('dependencyCompleteness counts a DEPENDENCY that is the TARGET of DEPENDS_ON (SYMBOL -> DEPENDENCY)', () => {
+    const nodes = [
+      { id: 'sym1', kind: 'SYMBOL', metadata: {} },
+      { id: 'dep1', kind: 'DEPENDENCY', metadata: {} },
+    ];
+    expect(
+      signalsModule.computeContextSignalsFromData(nodes, [
+        { relation: 'DEPENDS_ON', sourceId: 'sym1', targetId: 'dep1', weight: 1 },
+      ]).dependencyCompleteness,
+    ).toBe(1);
+    // No edge -> unresolved; IMPORTS (FILE->FILE) does not resolve a DEPENDENCY node.
+    expect(signalsModule.computeContextSignalsFromData(nodes, []).dependencyCompleteness).toBe(0);
+    expect(
+      signalsModule.computeContextSignalsFromData(nodes, [
+        { relation: 'IMPORTS', sourceId: 'sym1', targetId: 'dep1', weight: 1 },
+      ]).dependencyCompleteness,
+    ).toBe(0);
+  });
+
+  it('sliceCoverage counts a SLICE that is the SOURCE of a COVERED_BY edge', () => {
+    const nodes = [
+      { id: 'slice1', kind: 'SLICE', metadata: {} },
+      { id: 'file1', kind: 'FILE', metadata: {} },
+    ];
+    expect(
+      signalsModule.computeContextSignalsFromData(nodes, [
+        { relation: 'COVERED_BY', sourceId: 'slice1', targetId: 'file1', weight: 1 },
+      ]).sliceCoverage,
+    ).toBe(1);
+  });
+
+  it('agreementRate denominator excludes below-relevance-gate findings', () => {
+    const nodes = [
+      { id: 'r1', kind: 'REUSE_CANDIDATE', metadata: { relevance: 0.9, confirmations: 2 } },
+      { id: 'noise', kind: 'PATTERN', metadata: { relevance: 0.2, confirmations: 0 } },
+    ];
+    const s = signalsModule.computeContextSignalsFromData(nodes, []);
+    // Only r1 clears the gate and it is agreement-eligible -> 1/1 = 1 (noise excluded, not 1/2).
+    expect(s.agreementRate).toBe(1);
+    // relevanceFloor still sees the noise: 1 of 2 findings above the gate.
+    expect(s.relevanceFloor).toBe(0.5);
+  });
+
+  it('reuseCatalogCoverage accepts agreement >= 1 OR metadata.verified === true', () => {
+    const nodes = [
+      { id: 'a', kind: 'REUSE_CANDIDATE', metadata: { confirmations: 1 } },
+      { id: 'b', kind: 'REUSE_CANDIDATE', metadata: { verified: true } },
+      { id: 'c', kind: 'REUSE_CANDIDATE', metadata: { confirmations: 0 } },
+    ];
+    expect(
+      signalsModule.computeContextSignalsFromData(nodes, []).reuseCatalogCoverage,
+    ).toBeCloseTo(2 / 3, 5);
+  });
 });

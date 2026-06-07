@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS — Stop-Reason Taxonomy & Session Outcomes
@@ -181,20 +182,23 @@ function readJournal(journalPath) {
   let validRecords;
   try {
     const content = fs.readFileSync(journalPath, 'utf8');
-    validRecords = content
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .flatMap((line, lineIndex) => {
-        try {
-          return [JSON.parse(line)];
-        } catch (parseErr) {
-          const warning = `Line ${lineIndex + 1}: JSON parse error: ${parseErr.message} — raw: ${line.slice(0, 120)}`;
-          corruptionWarnings.push(warning);
-          process.stderr.write(`[improvement-journal] Corrupt line skipped. ${warning}\n`);
-          return [];
-        }
-      });
+    const rawLines = content.split('\n');
+    validRecords = [];
+    for (let i = 0; i < rawLines.length; i += 1) {
+      const line = rawLines[i].trim();
+      if (!line) continue;
+      try {
+        validRecords.push(JSON.parse(line));
+      } catch (parseErr) {
+        // Physical line number (1-based, counts blank lines so it points at the real
+        // file line); never echo raw content — a malformed record may carry secrets, so
+        // report length + a short content hash instead of the bytes.
+        const digest = crypto.createHash('sha256').update(line).digest('hex').slice(0, 12);
+        const warning = `Line ${i + 1}: JSON parse error: ${parseErr.message} (len=${line.length} sha256:${digest})`;
+        corruptionWarnings.push(warning);
+        process.stderr.write(`[improvement-journal] Corrupt line skipped. ${warning}\n`);
+      }
+    }
   } catch (_fileErr) {
     validRecords = [];
   }

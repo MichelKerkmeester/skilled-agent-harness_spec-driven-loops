@@ -634,8 +634,12 @@ export function computeContextSignalsFromData(
     ? reuseNodes.filter((node) => contextAgreement(node, confirmCountById) >= 1
         || (contextMeta(node) as { verified?: unknown }).verified === true).length / reuseNodes.length
     : 1;
-  const agreementRate = findingNodes.length > 0
-    ? findingNodes.filter((node) => contextAgreement(node, confirmCountById) >= CONTEXT_AGREEMENT_MIN).length / findingNodes.length
+  // agreementRate is measured over RELEVANCE-GATED findings only: below-gate noise
+  // is not real context and must not depress cross-executor agreement. relevanceFloor
+  // separately tracks how much of the catalog clears the gate.
+  const gatedFindingNodes = findingNodes.filter((node) => contextRelevance(node) >= CONTEXT_RELEVANCE_GATE);
+  const agreementRate = gatedFindingNodes.length > 0
+    ? gatedFindingNodes.filter((node) => contextAgreement(node, confirmCountById) >= CONTEXT_AGREEMENT_MIN).length / gatedFindingNodes.length
     : 1;
   const relevanceFloor = findingNodes.length > 0
     ? findingNodes.filter((node) => contextRelevance(node) >= CONTEXT_RELEVANCE_GATE).length / findingNodes.length

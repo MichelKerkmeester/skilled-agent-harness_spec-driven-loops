@@ -59,6 +59,13 @@ function writeTextAtomic(filePath, content) {
     fs.closeSync(fd);
     fd = undefined;
     fs.renameSync(tempPath, filePath);
+    // Best-effort parent-directory fsync so the rename itself is durable after a
+    // crash (mirrors the runtime writeStateAtomic; the inline fallback previously
+    // synced only the file, not the directory entry).
+    try {
+      const dirFd = fs.openSync(path.dirname(filePath), 'r');
+      try { fs.fsyncSync(dirFd); } finally { fs.closeSync(dirFd); }
+    } catch { /* best-effort: some platforms disallow directory fsync */ }
   } catch (error) {
     if (typeof fd === 'number') { try { fs.closeSync(fd); } catch { /* already closed */ } }
     if (fs.existsSync(tempPath)) { fs.rmSync(tempPath, { force: true }); }
@@ -147,7 +154,10 @@ function parseJsonlDetailed(content) {
     } catch (error) {
       corruptionWarnings.push({
         line: lineNumber,
-        raw: rawLine.length > 200 ? `${rawLine.slice(0, 200)}...` : rawLine,
+        // Never persist raw content — a malformed record may carry secrets. Report
+        // length + a short content hash so corruption is diagnosable without leakage.
+        length: line.length,
+        sha256: crypto.createHash('sha256').update(line).digest('hex').slice(0, 12),
         error: error instanceof Error ? error.message : String(error),
       });
     }
