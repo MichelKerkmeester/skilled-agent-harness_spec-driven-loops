@@ -22,7 +22,8 @@
     "004-cli-devin-readme",
     "005-cli-opencode-readme",
     "006-deep-ai-council-readme",
-    "007-deep-context-readme"
+    "007-deep-context-readme",
+    "008-deep-improvement-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",

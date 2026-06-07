@@ -6,7 +6,10 @@ trigger_phrases:
   - "agent improvement loop"
   - "bounded agent improvement"
   - "5-dimension scoring"
+  - "integration scanner"
+  - "dynamic profiling"
   - "model-benchmark mode"
+  - "benchmark a model or prompt framework"
   - "skill-benchmark mode"
 ---
 
@@ -49,7 +52,7 @@ Editing an agent prompt is normally guesswork. You reword a rule, the prompt rea
 /deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
 ```
 
-The integration scan maps every surface the agent touches. A packet-local candidate lands under `{spec_folder}/improvement/candidates/`. The five-dimension scorer reports `candidate-acceptable` or `needs-improvement`, and a refreshed dashboard shows dimensional progress.
+The integration scan maps every surface the agent touches. A packet-local candidate lands under `{spec_folder}/improvement/candidates/`. The five-dimension scorer reports `candidate-acceptable` or `needs-improvement`. A refreshed dashboard shows dimensional progress.
 
 **Step 3: Run a single script when you only need one signal.**
 
@@ -76,13 +79,13 @@ The loop never touches the canonical file until you tell it to. It copies the ta
 
 ### The Integration Scan
 
-An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition, three runtime mirrors (`.opencode/agents/`, `.claude/agents/`, `.codex/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise, and the score reflects the whole integration surface, not the prompt in isolation.
+An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition, three runtime mirrors (`.opencode/agents/`, `.claude/agents/`, `.codex/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise. The score reflects the whole integration surface, not the prompt in isolation.
 
 ### Five Scoring Dimensions (Lane A)
 
-Scoring is deterministic. Every check is a regex, string match or file-existence check. No model-as-judge step means a score always traces back to specific evidence.
+Scoring is deterministic. Every check is a regex, string match or file existence check. No model-as-judge step means a score always traces back to specific evidence.
 
-| Dimension | Weight | What it measures |
+| Dimension | Weight | What It Measures |
 |---|---|---|
 | Structural Integrity | 0.20 | Agent template compliance: required sections present |
 | Rule Coherence | 0.25 | ALWAYS/NEVER rules align with workflow steps |
@@ -100,13 +103,13 @@ A candidate becomes promotion-eligible only when five gates all pass: prompt sco
 
 All three lanes share the same candidate, dispatcher and scorer seams.
 
-| Lane | Command | What it tests |
+| Lane | Command | What It Tests |
 |---|---|---|
 | A: Agent-Improvement | `/deep:start-agent-improvement-loop` | A bounded agent `.md` file |
 | B: Model-Benchmark | `/deep:start-model-benchmark-loop` | A model or prompt framework against repeatable fixtures |
 | C: Skill-Benchmark | `/deep:start-skill-benchmark-loop` | A skill's routing, discovery, efficiency and usefulness |
 
-Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane A is the default path when no mode flag is set.
+Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. Lane C runs through `scripts/shared/loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane A is the default path when no mode flag is set.
 
 ---
 
@@ -116,7 +119,7 @@ Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and 
 
 Run `deep-improvement` when you want to prove an agent edit earned its place before you commit it. Run it when integration drift across runtime mirrors worries you and you need a scanner to find every surface. Run Lane B when a model or prompt framework needs benchmark comparison against repeatable fixtures. Run Lane C when a skill's routing accuracy or discoverability needs measurement.
 
-Skip it for open-ended prompt rewrites across many agent families at once. Skip it for direct canonical edits you already have confidence in. Skip it for general planning that belongs in `/speckit:plan`.
+Skip it for open-ended prompt rewrites across many agent families at once. Skip it for direct canonical edits you already have confidence in. Skip it for general planning that belongs in `/speckit:plan` or implementation that does not need an improvement loop.
 
 ### Sibling Deep Loops
 
@@ -129,7 +132,7 @@ Skip it for open-ended prompt rewrites across many agent families at once. Skip 
 | `deep-context` | Maps existing code for reuse before planning. Run it before you plan, not during improvement. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Feed it the Context Report, not an agent file. |
 
-`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the run. `deep-loop-runtime` provides the shared coverage graph and atomic-state layer. `sk-prompt-small-model` owns the benchmark output tree that Lane B writes into.
+`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the improvement run. `deep-loop-runtime` provides the shared coverage graph and atomic-state layer. `sk-prompt-small-model` owns the benchmark output tree that Lane B writes into.
 
 ---
 
@@ -140,9 +143,9 @@ Skip it for open-ended prompt rewrites across many agent families at once. Skip 
 | Candidate scores well but does not promote | A promotion gate is missing or the operator declined | Check the journal and the dashboard. All five gates must pass: scoring, benchmark, repeatability, boundary and approval. |
 | Integration scan flags drift | A runtime mirror is out of sync with the canonical agent | Run `scan-integration.cjs` again. It lists each surface and its parity status. |
 | Scorer returns 0 on all dimensions | Profile generation failed or the target is unreadable | Run `generate-profile.cjs` directly and check for parse errors. |
-| All dimensions plateaued | The current improvement hypothesis is exhausted | Update the strategy and re-run with a fresh hypothesis. |
+| All dimensions plateaued | The current improvement hypothesis is exhausted | Update the strategy in `improvement_strategy.md` and re-run with a fresh hypothesis. |
 | Benchmark scores drift across repeats | Fixtures are unstable | Treat the run as untrustworthy until repeatability is fixed. |
-| Promotion refused with a Pareto trade-off detected | A gain in one dimension caused a regression in a hard dimension | `trade-off-detector.cjs` blocks Pareto-dominated candidates. Rebalance the candidate. |
+| Promotion refused with Pareto trade-off detected | A gain in one dimension caused a regression in a hard dimension | The `trade-off-detector.cjs` blocks Pareto-dominated candidates. Rebalance the candidate. |
 | Reducer exits with an error | Corrupt JSONL state log | The reducer auto-repairs a trailing corrupt line. If the error persists, inspect the file for mid-line corruption. |
 
 ---
@@ -181,7 +184,7 @@ The `feature_catalog/` covers every capability across five categories: evaluatio
 
 ### Manual Testing Playbook
 
-`manual_testing_playbook/` carries deterministic scenarios across all feature categories. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and source anchors.
+`manual_testing_playbook/` carries deterministic scenarios across all feature categories. Preconditions, expected signals and pass/fail/partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and source anchors.
 
 | Check | How to run it |
 |---|---|
@@ -198,14 +201,20 @@ The `feature_catalog/` covers every capability across five categories: evaluatio
 | [`references/shared/quick_reference.md`](./references/shared/quick_reference.md) | One-page operator cheat sheet with commands, dimension weights and the runtime layout |
 | [`references/shared/loop_protocol.md`](./references/shared/loop_protocol.md) | End-to-end operator workflow across setup, proposal, scoring and stop |
 | [`references/shared/promotion_rules.md`](./references/shared/promotion_rules.md) | Keep, reject and promote decision rules |
-| [`references/shared/rollback_runbook.md`](./references/shared/rollback_runbook.md) | The promotion rollback procedure |
+| [`references/shared/rollback_runbook.md`](./references/shared/rollback_runbook.md) | Promotion rollback procedure |
 | [`references/agent-improvement/integration_scanning.md`](./references/agent-improvement/integration_scanning.md) | Integration scanner documentation and surface inventory |
 | [`references/agent-improvement/score_dimensions.md`](./references/agent-improvement/score_dimensions.md) | Per-dimension checker detail |
+| [`references/agent-improvement/target_onboarding.md`](./references/agent-improvement/target_onboarding.md) | Adding new bounded agent targets |
+| [`references/model-benchmark/evaluator_contract.md`](./references/model-benchmark/evaluator_contract.md) | Scoring and benchmark contract |
 | [`references/model-benchmark/benchmark_operator_guide.md`](./references/model-benchmark/benchmark_operator_guide.md) | Fixture benchmark execution |
+| [`references/model-benchmark/mixed_executor_methodology.md`](./references/model-benchmark/mixed_executor_methodology.md) | Mixed-executor and adjudication-iter guidance |
 | [`references/skill-benchmark/operator_guide.md`](./references/skill-benchmark/operator_guide.md) | Skill-benchmark operator workflow |
-| [`references/skill-benchmark/scoring_contract.md`](./references/skill-benchmark/scoring_contract.md) | Skill-benchmark scoring and funnel contract |
+| [`references/skill-benchmark/scoring_contract.md`](./references/skill-benchmark/scoring_contract.md) | Skill-benchmark D1-D5 scoring and funnel contract |
 | [`scripts/shared/loop-host.cjs`](./scripts/shared/loop-host.cjs) | Shared loop host entry point for Lanes B and C |
-| [`scripts/agent-improvement/score-candidate.cjs`](./scripts/agent-improvement/score-candidate.cjs) | The five-dimension candidate scorer |
+| [`scripts/agent-improvement/scan-integration.cjs`](./scripts/agent-improvement/scan-integration.cjs) | Integration surface scanner |
+| [`scripts/agent-improvement/score-candidate.cjs`](./scripts/agent-improvement/score-candidate.cjs) | Five-dimension candidate scorer |
 | [`scripts/shared/promote-candidate.cjs`](./scripts/shared/promote-candidate.cjs) | Guarded canonical promotion |
+| [`scripts/shared/reduce-state.cjs`](./scripts/shared/reduce-state.cjs) | Dashboard and registry reducer |
+| [`assets/agent-improvement/improvement_config.json`](./assets/agent-improvement/improvement_config.json) | Runtime config: weights, stop rules and feature flags |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Feature inventory with source anchors |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Deterministic scenarios with preconditions and expected signals |
