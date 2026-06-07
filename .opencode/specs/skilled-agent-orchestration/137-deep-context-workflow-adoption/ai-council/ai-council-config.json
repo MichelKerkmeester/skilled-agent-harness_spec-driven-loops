@@ -1,0 +1,10 @@
+{
+  "spec_folder": "skilled-agent-orchestration/137-deep-context-workflow-adoption",
+  "current_round": 1,
+  "max_rounds": 3,
+  "seats_per_round": 4,
+  "convergence_signal": "two-of-three-agree",
+  "created_at": "2026-06-07T20:10:00.000Z",
+  "updated_at": "2026-06-07T20:10:00.000Z",
+  "status": "complete"
+}

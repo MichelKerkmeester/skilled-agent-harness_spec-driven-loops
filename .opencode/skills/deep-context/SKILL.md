@@ -307,6 +307,7 @@ The body is identical across all three; only the frontmatter format differs. The
 2. **Never count "files visited" as progress.** Only relevance-gated, agreement-eligible findings advance coverage.
 3. **Never let a seat write outside its own artifact dir** or mutate `spec.md` (that is `/speckit:plan`'s job).
 4. **Never register new MCP tools.** The runtime is MCP-free by design.
+5. **Never hand-roll the gather as a manual `cli-opencode` background dispatch** instead of running this loop. `/deep:start-context-loop` already uses read-only seats with host-written state (Gate-3-safe) and accepts `cli-*` executor seats via `--executors`, so a manual substitute discards convergence detection and the cross-executor agreement signal for no safety gain. If the command genuinely cannot run, flag the deviation; do not silently substitute.
 
 ### ESCALATE IF
 

@@ -1,0 +1,26 @@
+{
+  "specFolder": "137-deep-context-workflow-adoption",
+  "description": "Feature Specification: deep-context workflow adoption (root-cause fix)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-context",
+    "workflow",
+    "adoption",
+    "root-cause",
+    "fix"
+  ],
+  "lastUpdated": "2026-06-07T18:08:04.597Z",
+  "specId": "137",
+  "folderSlug": "deep-context-workflow-adoption",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "07-06-26_19-08__fix-the-root-cause-that-made-you-not-use-the.md"
+  ]
+}

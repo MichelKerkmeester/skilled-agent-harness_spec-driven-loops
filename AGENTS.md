@@ -25,6 +25,16 @@ w# AI Assistant Framework (Universal Template)
 3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
 4. **HALT** — Stop immediately if uncertain, if line numbers don't match, or if tests fail.
 
+#### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
+
+When an approved plan names a specific workflow, command, agent or skill (for example `/deep:start-context-loop`, `@ai-council`, `sk-code`), that named workflow is **FROZEN like scope**. Before substituting a manual or alternative approach:
+
+1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test any friction you believe it has. A remembered manual pattern is NOT evidence the proper tool carries the limitation you recall.
+2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
+3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow, and never repeat such a substitution across steps once chosen.
+
+Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
+
 #### Halt Conditions — Stop and Report
 
 - Target file does not exist or line numbers don't match.
