@@ -83,7 +83,7 @@ Host dedups findings by `unit_id = sha256(path:symbol:kind)`; unions per-executo
 
 ## 7. PERSIST + CONVERGE
 
-Host appends the iteration record, upserts coverage-graph nodes/edges (`loop_type='context'`), then runs `scripts/convergence.cjs --loop-type context` → CONTINUE / STOP_ALLOWED / STOP_BLOCKED. See [convergence.md](./convergence.md).
+Host appends the iteration record, upserts coverage-graph nodes/edges (`loop_type='context'`), then runs `scripts/convergence.cjs --loop-type context` → CONTINUE / STOP_ALLOWED / STOP_BLOCKED. See [convergence.md](../convergence/convergence.md).
 
 ---
 
@@ -92,7 +92,7 @@ Host appends the iteration record, upserts coverage-graph nodes/edges (`loop_typ
 At stop, the reducer (`scripts/reduce-state.cjs`) compiles:
 - `context/findings-registry.json` — agreement-weighted, sorted by agreement desc → relevance desc → path.
 - `context/deep-context-dashboard.md` — status, progress, metrics, top reuse candidates, contradictions, graph convergence signals.
-- `context/context-report.md` from the [Context Report template](../assets/context_report_template.md) — reuse-catalog first, pointers not bodies, agreement + freshness per finding.
+- `context/context-report.md` from the [Context Report template](../../assets/context_report_template.md) — reuse-catalog first, pointers not bodies, agreement + freshness per finding.
 
 ---
 
