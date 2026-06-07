@@ -81,5 +81,5 @@ Expected result: exit code `0`.
 
 ## 7. RELATED
 
-- [`../skill-advisor/README.md`](../skill-advisor/README.md)
+- [`../skill-advisor/README.md`](../../../../system-skill-advisor/mcp_server/stress_test/skill-advisor/README.md)
 - [`../search-quality/README.md`](../search-quality/README.md)

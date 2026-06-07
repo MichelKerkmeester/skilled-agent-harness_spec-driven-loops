@@ -65,7 +65,7 @@ Verify argument routing logic in Section 4 of manage.md → Check mode parsing i
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Feature catalog: [16--tooling-and-scripts/constitutional-memory-manager-command.md](../../feature_catalog/16--tooling-and-scripts/constitutional-memory-manager-command.md)
-- Command file: [.opencode/commands/memory/manage.md](../../../../command/memory/manage.md)
+- Command file: [.opencode/commands/memory/manage.md](../../../../commands/memory/manage.md)
 
 ---
 

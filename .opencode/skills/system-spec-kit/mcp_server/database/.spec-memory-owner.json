@@ -1,9 +1,0 @@
-{
-  "ownerPid": 26891,
-  "ppid": 26680,
-  "executablePath": "/opt/homebrew/Cellar/node/25.6.1/bin/node",
-  "startedAtIso": "2026-06-06T10:04:58.942Z",
-  "lastHeartbeatIso": "2026-06-06T10:46:59.050Z",
-  "ttlMs": 60000,
-  "canonicalDbDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database"
-}

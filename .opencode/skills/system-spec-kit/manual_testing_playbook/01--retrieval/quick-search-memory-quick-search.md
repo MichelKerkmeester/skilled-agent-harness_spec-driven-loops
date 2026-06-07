@@ -59,7 +59,7 @@ Verify `memory_quick_search` tool is listed in search.md allowed-tools → Check
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Feature catalog: [01--retrieval/fast-delegated-search-memory-quick-search.md](../../feature_catalog/01--retrieval/fast-delegated-search-memory-quick-search.md)
-- Command file: [.opencode/commands/memory/search.md](../../../../command/memory/search.md)
+- Command file: [.opencode/commands/memory/search.md](../../../../commands/memory/search.md)
 
 ---
 

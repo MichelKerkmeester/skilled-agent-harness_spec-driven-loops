@@ -31,7 +31,7 @@ Defensive code prevents runtime errors. Quality patterns ensure reliability.
 - Section 2 - CDN-safe initialization pattern (MANDATORY for all components)
 - Sections 3-8 - Safety and error handling patterns
 - Sections 10-13 - Cleanup, shared listeners, and WeakMap caching patterns
-- [animation_workflows.md](animation_workflows.md) - Complete animation implementation guide
+- [animation_workflows.md](../implementation/animation_workflows.md) - Complete animation implementation guide
 - [./style_guide.md](./style_guide.md) - Naming conventions, file structure, commenting rules
 
 ### When to Use
@@ -486,8 +486,8 @@ Need animation?
 ### Complete Animation Guide
 
 **For implementation, debugging, and testing:**
-- **Decision tree and patterns:** [animation_workflows.md](animation_workflows.md)
-- **Complete reference:** [animation_workflows.md](animation_workflows.md) contains all animation policy, rationale, and implementation details
+- **Decision tree and patterns:** [animation_workflows.md](../implementation/animation_workflows.md)
+- **Complete reference:** [animation_workflows.md](../implementation/animation_workflows.md) contains all animation policy, rationale, and implementation details
 
 ---
 

@@ -476,13 +476,13 @@ and feeds it to generate-context.js.
 
 ## 15. TEMPLATE 14 — MINIMAX (TOKEN PLAN; EMPIRICAL DEFAULT: TIDD-EC + DENSE PRE-PLAN)
 
-**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed` (fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`; pay-per-token alternative `minimax/MiniMax-M2.7` via the Direct API). The 120/003 benchmark (real MiniMax M2.7 runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework + **dense** pre-planning wins (RCAF + medium is the fallback) — carry this contract forward to M3 until re-benchmarked. `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
+**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The 120/003 benchmark (real MiniMax M2.7 runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework + **dense** pre-planning wins (RCAF + medium is the fallback) — carry this contract forward to M3 until re-benchmarked. `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
 
 **Invocation**:
 
 ```bash
 opencode run \
-  --model minimax-coding-plan/MiniMax-M3-highspeed \
+  --model minimax-coding-plan/MiniMax-M3 \
   --dir "$REPO_ROOT" \
   "$(cat prompt.md)" \
   </dev/null
@@ -521,11 +521,11 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 
 ---
 
-## 16. TEMPLATE 15 — MiMo (XIAOMI TOKEN PLAN, EUROPE; COSTAR + LEAN)
+## 16. TEMPLATE 15 — MiMo (XIAOMI TOKEN PLAN + DIRECT API; COSTAR + LEAN)
 
-**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe) — primary slug `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback); use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format + brevity, **not** guardrails — TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`** — opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13); high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). For cheap iteration / probing, the free gateway path `opencode/mimo-v2.5-free` (opencode-go credit pool; v2.5, not -pro tier) is available. Confirm live model ids with `opencode models xiaomi-token-plan-ams`.
+**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe) — primary slug `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`) — or via the Xiaomi Direct API — slug `xiaomi/mimo-v2.5-pro` (provider `xiaomi`, pay-per-token). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback); use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format + brevity, **not** guardrails — TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`** — opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13); high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). For cheap iteration / probing, the free gateway path `opencode/mimo-v2.5-free` (opencode-go credit pool; v2.5, not -pro tier) is available. Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
 
-**Invocation**:
+**Invocation (Token Plan)**:
 
 ```bash
 opencode run \
@@ -537,9 +537,21 @@ opencode run \
   </dev/null
 ```
 
+**Invocation (Direct API — pay-per-token)**:
+
+```bash
+opencode run \
+  --model xiaomi/mimo-v2.5-pro \
+  --variant high \
+  --format json \
+  --dir "$REPO_ROOT" \
+  "<prompt>" \
+  </dev/null
+```
+
 **Prompt scaffold (COSTAR — empirical winner)**: Context (task + repo facts) → Objective (the single concrete deliverable) → Style (`precise, no preamble`) → Tone (neutral) → Audience (`an automated/downstream consumer that parses your output`) → Response (exact output shape, e.g. "return ONLY the function body"). Keep pre-planning lean-to-medium. **RACE** (Role/Action/Context/Expectation) is the equally-valid fallback. Do NOT use TIDD-EC or dense guardrail framing — it ranked last for MiMo (inflated output ~2.4× and leaked explanatory prose that broke the code-only contract).
 
-**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe); the default skill model stays `opencode-go/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 126/004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/126-004-mimo-prompt-framework/eval/synthesis.md`.
+**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe) and the Xiaomi Direct API; the default skill model stays `opencode-go/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 126/004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/126-004-mimo-prompt-framework/eval/synthesis.md`.
 
 ---
 

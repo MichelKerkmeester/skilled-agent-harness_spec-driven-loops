@@ -92,6 +92,36 @@ if (Hls.isSupported()) {
 - [ ] Fonts: Subset and preload critical fonts (<50KB)
 - [ ] CSS: Critical CSS inline, defer non-critical
 
+### `content-visibility` and Overflow-Visible Sections
+
+`content-visibility:auto` is useful for long below-fold sections, but it adds skipped-paint behavior. On iOS WebKit browsers, including iOS Chrome, that can briefly expose the page background during scroll or viewport-bar changes when the section is also expected to paint overflow.
+
+**Rule:** Never combine `content-visibility:auto` with Webflow sections that need visible overflow, sticky/overlapping descendants, or animated reveal content.
+
+```html
+<!-- GOOD: overflow-sensitive section uses the containment-only variant -->
+<section class="section u--overflow-visible" data-render-content="overflow">
+  ...
+</section>
+
+<!-- BAD: skipped-paint behavior can blank the section on iOS WebKit -->
+<section class="section u--overflow-visible" data-render-content="large">
+  ...
+</section>
+```
+
+Keep the CSS guard in the global performance stylesheet so Designer mistakes fail safe:
+
+```css
+.u--overflow-visible[data-render-content] {
+  content-visibility: visible;
+  contain: layout style;
+  contain-intrinsic-size: none;
+}
+```
+
+**Verification:** On mobile Safari or iOS Chrome, scroll through the affected section and confirm it never flashes to the page background. In DevTools, the section should compute `content-visibility: visible`, not `auto`.
+
 ### Animation Performance (Motion.dev & CSS)
 
 **GPU-Accelerated Properties:**
@@ -298,7 +328,7 @@ document.addEventListener('visibilitychange', () => {
 });
 ```
 
-See [performance_patterns.js](../../assets/patterns/performance_patterns.js) for production-ready throttle/debounce utilities with cancel methods.
+See [performance_patterns.js](../../../assets/webflow/patterns/performance_patterns.js) for production-ready throttle/debounce utilities with cancel methods.
 
 **Lazy Loading with IntersectionObserver:**
 ```javascript

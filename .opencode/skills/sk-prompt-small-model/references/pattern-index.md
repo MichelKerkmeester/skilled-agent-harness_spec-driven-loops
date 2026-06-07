@@ -101,4 +101,4 @@ There is no automated CI check for staleness. Rely on PR review when modifying a
 - [`../SKILL.md`](../SKILL.md) — Hub skill runtime instructions + the model-keyed router
 - [`../README.md`](../README.md) — Human-facing overview + quick start
 - [`../graph-metadata.json`](../graph-metadata.json) — `enhances` edges + trigger phrases
-- [`../models/_index.md`](../models/_index.md) — Per-model profile index
+- [`../models/_index.md`](models/_index.md) — Per-model profile index
