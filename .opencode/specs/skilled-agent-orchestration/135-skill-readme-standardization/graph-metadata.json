@@ -8,7 +8,8 @@
     "skilled-agent-orchestration/135-skill-readme-standardization/002-cli-claude-code-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/003-cli-codex-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/004-cli-devin-readme",
-    "skilled-agent-orchestration/135-skill-readme-standardization/005-cli-opencode-readme"
+    "skilled-agent-orchestration/135-skill-readme-standardization/005-cli-opencode-readme",
+    "skilled-agent-orchestration/135-skill-readme-standardization/006-deep-ai-council-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -108,7 +109,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/005-cli-opencode-readme",
-    "last_active_at": "2026-06-07T11:30:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/006-deep-ai-council-readme",
+    "last_active_at": "2026-06-07T12:00:00Z"
   }
 }

@@ -7,7 +7,9 @@ trigger_phrases:
   - "council deliberation"
   - "multi-seat planning"
   - "planning council"
+  - "council artifacts"
   - "council convergence"
+  - "packet-local ai-council"
 ---
 
 # deep-ai-council
@@ -129,7 +131,7 @@ The council shares the `deep-loop-runtime` with three sibling skills. Each owns 
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates evidence and answers research questions. The council uses research seats to gather evidence but does not run deep-research loops itself. |
-| `deep-review` | Audits code for bugs, security gaps and quality issues. The council recommends a plan, and a review checks the result after implementation. |
+| `deep-review` | Audits code for bugs, security gaps and quality issues. The council recommends a plan. A review checks the result after implementation. |
 | `deep-context` | Maps existing code, conventions and integration points before planning begins. Run it before the council so seats start from shared facts. |
 
 ### Related Skills
@@ -150,7 +152,7 @@ The council shares the `deep-loop-runtime` with three sibling skills. Each owns 
 | Per-seat files are absent from a persisted run | The report used a composition-table fallback instead of per-seat headings | Confirm the report uses valid per-seat headings or a composition table the parser accepts. |
 | Seats produce nearly identical proposals | Seat diversity was too low and the council repeated the same reasoning path | Assign distinct lenses per seat. Check the task-type-to-lens mapping in `references/patterns/seat_diversity_patterns.md` and re-run with more divergent seats. |
 | `advise-council-completion.cjs` reports no `council_complete` event | The final event was never appended to the state log | Re-open the council context and append the completion event, or re-persist from a completed report. |
-| Advisor does not route "ai council" prompts | Stale or missing skill graph | Rebuild the skill-advisor graph, then retry the routing query. |
+| Advisor does not route "ai council" prompts | Stale or missing skill graph | Run `mk_skill_advisor_advisor_rebuild` with `force: true`, then retry the routing query. |
 
 ---
 
@@ -170,7 +172,7 @@ A: Two of three seats must agree on the material plan direction, and the critiqu
 
 **Q: Where does the audit trail live?**
 
-A: Inside your packet folder under `ai-council/`. The append-only `ai-council-state.jsonl` records every event. Per-seat proposals live under `seats/round-NNN/`. Deliberations and critiques live in their own folders. Failed rounds move under `failed/`. Nothing is deleted, and nothing is rewritten.
+A: Inside your packet folder under `ai-council/`. The append-only `ai-council-state.jsonl` records every event. Per-seat proposals live under `seats/round-NNN/`. Deliberations and critiques live in their own folders. Failed rounds move under `failed/`. Nothing is deleted. Nothing is rewritten.
 
 **Q: Can I run a council with seats from different AI providers in the same round?**
 
@@ -188,7 +190,7 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/README.md --type readme` reports zero issues |
 | Skill package structure | `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-ai-council` exits 0 |
-| Playbook scenarios | Run the scenarios under `manual_testing_playbook/` across its nine categories: runtime routing, council deliberation, artifact persistence, convergence and rollback, scope boundaries, depth and failure handling, the writer-library contract, council-graph integration and council-graph value comparison |
+| Playbook scenarios | Run the 32 scenarios under `manual_testing_playbook/` across the 9 categories: routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration and council-graph value comparison |
 
 ---
 
@@ -203,9 +205,19 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 | [`references/scoring/scoring_rubric.md`](./references/scoring/scoring_rubric.md) | Five-dimension scoring and the Hunter, Skeptic and Referee critique roles |
 | [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | Convergence rules, the two-of-three signal and escape hatches |
 | [`references/convergence/depth_dispatch.md`](./references/convergence/depth_dispatch.md) | Depth 0 parallel dispatch, Depth 1 sequential dispatch and deep-mode session hierarchy |
+| [`references/convergence/failure_handling.md`](./references/convergence/failure_handling.md) | Timeout, all-seat failure, contradiction and rollback guidance |
 | [`references/patterns/seat_diversity_patterns.md`](./references/patterns/seat_diversity_patterns.md) | The six strategy lenses and task-type-to-lens recommendations |
+| [`references/patterns/anti_patterns.md`](./references/patterns/anti_patterns.md) | Convergence sycophancy, fake consensus and other quality failure modes |
 | [`references/structure/folder_layout.md`](./references/structure/folder_layout.md) | Packet-local artifact tree shape and writer ownership |
 | [`references/structure/state_format.md`](./references/structure/state_format.md) | Append-only JSONL event semantics |
+| [`references/integration/graph_support.md`](./references/integration/graph_support.md) | Derived council graph and deep-loop-runtime CLI boundary |
+| [`references/scoring/findings_registry.md`](./references/scoring/findings_registry.md) | Cross-topic findings registry, fingerprint dedup and filesystem locking |
+| [`references/convergence/deep_mode.md`](./references/convergence/deep_mode.md) | Deep-mode session, topic and round state hierarchy with cost guards |
+| [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json) | Council run-config template |
 | [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Round strategy template for seat setup and disagreement tracking |
-| [`feature_catalog/FEATURE_CATALOG.md`](./feature_catalog/FEATURE_CATALOG.md) | Full feature inventory across the nine categories |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation package with per-feature scenarios |
+| [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md) | Status dashboard template for active and persisted runs |
+| [`assets/prompt_pack_round.md`](./assets/prompt_pack_round.md) | Per-seat prompt-pack template |
+| [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json) | Runtime parity and validation matrix |
+| [`feature_catalog/FEATURE_CATALOG.md`](./feature_catalog/FEATURE_CATALOG.md) | Full 32-feature inventory across 9 categories |
+| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation package with 32 scenarios |
+| [`changelog/`](./changelog/) | Per-release notes |
