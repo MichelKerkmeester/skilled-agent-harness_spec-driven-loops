@@ -1,0 +1,19 @@
+{
+  "specFolder": "005-cli-opencode-readme",
+  "description": "Rewrite cli-opencode skill README in the narrative voice",
+  "keywords": [
+    "rewrite",
+    "cli-opencode",
+    "skill",
+    "readme",
+    "narrative",
+    "voice"
+  ],
+  "lastUpdated": "2026-06-07T10:45:56.827Z",
+  "specId": "005",
+  "folderSlug": "cli-opencode-readme",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
