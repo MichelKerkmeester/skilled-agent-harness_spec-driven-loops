@@ -1,0 +1,12 @@
+{
+  "specFolder": "024-skills-index-readme",
+  "description": "Rewrite the .opencode/skills/README.md index in the narrative voice with a family catalog of all 22 skills",
+  "keywords": ["rewrite", "skills", "index", "readme", "narrative", "catalog", "families"],
+  "lastUpdated": "2026-06-07T19:05:00.000Z",
+  "specId": "024",
+  "folderSlug": "skills-index-readme",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

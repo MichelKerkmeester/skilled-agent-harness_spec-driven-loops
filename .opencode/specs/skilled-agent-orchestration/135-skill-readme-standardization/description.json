@@ -38,7 +38,8 @@
     "020-sk-prompt-readme",
     "021-system-code-graph-readme",
     "022-system-skill-advisor-readme",
-    "023-system-spec-kit-readme"
+    "023-system-spec-kit-readme",
+    "024-skills-index-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
@@ -51,7 +52,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T17:55:00.000Z",
+  "lastUpdated": "2026-06-07T19:05:00.000Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [
