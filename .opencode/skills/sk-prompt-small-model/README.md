@@ -34,7 +34,7 @@ The boundary is sharp. This hub owns prompt-CRAFT (which framework, what scaffol
 |---|---|
 | Version | 0.7.0.0 |
 | Operating mode | Model-keyed prompt-craft hub |
-| Active model profiles | 8 (swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, mimo-v2.5-pro) |
+| Active model profiles | 7 (swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, mimo-v2.5-pro) |
 | References | `models/` (profiles + `_index.md`), `pattern-index.md` |
 | Assets | `model-profiles.json` (registry), `cli_prompt_quality_card.md` (canonical card) |
 | Scripts | None (intentional) |

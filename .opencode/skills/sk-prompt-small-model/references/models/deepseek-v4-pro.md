@@ -168,5 +168,5 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 - [`../../../cli-devin/SKILL.md`](../../../cli-devin/SKILL.md) — Executor card for cognition-pro path; non-TTY rules, timeout flags, `--agent` semantics
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for deepseek-api + opencode-go paths; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
 - **Sibling profiles (same RCAF/medium convention):** [`swe-1.6.md`](./swe-1.6.md), [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md), [`glm-5.1.md`](./glm-5.1.md)
-- **Empirical contrast:** [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium) and [`minimax-2.7.md`](./minimax-2.7.md) (TIDD-EC + dense — benchmark 003)
+- **Empirical contrast:** [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium) and [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)
 - **Executor quality cards (card↔profile round-trip):** [`../../../cli-devin/assets/prompt_quality_card.md`](../../../cli-devin/assets/prompt_quality_card.md) · [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection tables link to this profile; this closes the navigability round-trip.

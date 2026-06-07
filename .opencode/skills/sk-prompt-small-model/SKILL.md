@@ -1,11 +1,11 @@
 ---
 name: sk-prompt-small-model
-description: Per-model prompt-craft hub for small-model dispatch (SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3/M2.7 + MiMo-V2.5-Pro across cli-devin and cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-devin/cli-opencode. Advisor co-surfaces it with those executors.
+description: Per-model prompt-craft hub for small-model dispatch (SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3 + MiMo-V2.5-Pro across cli-devin and cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-devin/cli-opencode. Advisor co-surfaces it with those executors.
 allowed-tools: []
 version: 0.7.2.0
 ---
 
-<!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
+<!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
 
 # Small-Model Prompt-Craft Hub
 
@@ -21,7 +21,7 @@ The model-knowledge hub for small-model dispatch: per-model prompt-craft profile
 - SWE-1.6 (via `cli-devin`)
 - DeepSeek-v4-pro, Kimi-k2.6, GLM-5.1 (via `cli-devin` or `cli-opencode`)
 - Qwen3.6 (via `cli-opencode`)
-- MiniMax-M3 / MiniMax-2.7 (via `cli-opencode`)
+- MiniMax-M3 (via `cli-opencode`)
 - MiMo-V2.5-Pro (via `cli-opencode`)
 - Optional future target: Claude Haiku
 - Asking "what framework / scaffold does small-model X want?" or "where is the small-model X pattern?"
@@ -30,8 +30,8 @@ The exact provider, quota pool, and dispatch flags for each path live in the §3
 
 **Keyword Triggers**:
 - `small model`, `small-model dispatch`
-- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4-pro`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`, `haiku`
-- Provider names: `opencode-go`, `deepseek-api`, `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe), `cognition pro`, `cognition free`
+- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4-pro`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `mimo-v2.5-pro`, `haiku`
+- Provider names: `opencode-go`, `deepseek-api`, `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe) / `xiaomi` (Xiaomi Direct API), `cognition pro`, `cognition free`
 - Pattern names: `context budget`, `output verification`, `model profile`, `structured permissions`, `quota fallback`, `tool scoring`
 
 ### Use Cases
@@ -69,8 +69,7 @@ MODEL_ALIASES = {
     "kimi": "kimi-k2.6", "kimi-k2.6": "kimi-k2.6",
     "qwen": "qwen3.6", "qwen3.6": "qwen3.6",
     "glm": "glm-5.1", "glm-5.1": "glm-5.1",
-    "minimax-m3": "minimax-m3", "minimax m3": "minimax-m3", "minimax": "minimax-m3",
-    "minimax-2.7": "minimax-2.7", "minimax m2.7": "minimax-2.7",
+    "minimax-m3": "minimax-m3", "minimax m3": "minimax-m3", "minimax": "minimax-m3", "minimax-2.7": "minimax-m3", "minimax m2.7": "minimax-m3",
     "mimo": "mimo-v2.5-pro", "mimo-v2.5-pro": "mimo-v2.5-pro", "mimo pro": "mimo-v2.5-pro",
 }
 ```
@@ -206,9 +205,8 @@ invocation loads the right profile.
 | Kimi-k2.6 | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
 | Qwen3.6 | `cli-opencode` → opencode-go (opencode-go) | active (single path) |
 | GLM-5.1 | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
-| MiniMax-M3 (default) | `cli-opencode` → minimax-coding-plan (minimax-token-plan) | active — MiniMax Token Plan; `MiniMax-M3-highspeed`; fallback → minimax-2.7 |
-| MiniMax-M2.7 | `cli-opencode` → minimax-coding-plan (minimax-token-plan) · `cli-opencode` → minimax (minimax-api) | active (2 paths: Token Plan highspeed fallback + pay-per-token Direct API) |
-| MiMo-V2.5-Pro | `cli-opencode` → xiaomi-token-plan-ams (xiaomi-token-plan) | active — Xiaomi Token Plan Europe; `mimo-v2.5-pro`; free `opencode/mimo-v2.5-free` sibling |
+| MiniMax-M3 | `cli-opencode` → minimax-coding-plan (minimax-token-plan) · `cli-opencode` → minimax (minimax-api) | active — Token Plan (default) + Direct API (pay-per-token) |
+| MiMo-V2.5-Pro | `cli-opencode` → xiaomi-token-plan-ams (xiaomi-token-plan) · `cli-opencode` → xiaomi (xiaomi-direct-api) | active — Token Plan (default) + Direct API (pay-per-token) |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
 
 Canonical source: `sk-prompt-small-model/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above).
@@ -231,13 +229,13 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt-small-model/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when models ship or move.** `_index.md` and `pattern-index.md` are contracts; broken links and missing rows erode trust.
-5. **Honor the in-scope model set** — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3/M2.7, MiMo-V2.5-Pro active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
+5. **Honor the in-scope model set** — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3, MiMo-V2.5-Pro active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 
 ### NEVER
 
 1. **Never duplicate EXECUTOR MECHANICS here** — binary flags, invocation wrappers, budgets, and permissions stay in `cli-devin`/`cli-opencode`. A profile points at them via `pattern-index.md`; it does not restate them.
 2. **Never copy generic framework definitions here** — the closed 7-framework set (RCAF / COSTAR / RACE / CIDI / TIDD-EC / CRISPE / CRAFT) is defined once in `sk-prompt`. Profiles link to those definitions and only record the per-model choice + rationale. STAR/BUILD are **cli-devin task-shapes**, NOT sk-prompt frameworks — keep them cli-devin-local; never present them as canonical frameworks or as a registry `fallback`.
-3. **Never present carried-forward evidence as fresh.** When a profile's frameworks are inherited (e.g. MiniMax-M3 `status: carried` from MiniMax-2.7), label it carried and name the source benchmark — do not imply a fresh M3 run.
+3. **Never present carried-forward evidence as fresh.** When a profile's frameworks are inherited (e.g. MiniMax-M3's TIDD-EC contract from benchmark 003, originally run on M2.7), label it carried and name the source benchmark — do not imply a fresh M3 run.
 4. **Never add runtime logic here** — no shell commands, no scripts, no agent-config recipes.
 
 ### ESCALATE IF

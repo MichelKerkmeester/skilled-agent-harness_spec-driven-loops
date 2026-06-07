@@ -172,5 +172,5 @@ Source of truth for the capability fields below: `model-profiles.json#mimo-v2.5-
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.
 - [`../../../cli-opencode/assets/prompt_templates.md` §TEMPLATE 15](../../../cli-opencode/assets/prompt_templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
 - [`../../../cli-opencode/assets/prompt_quality_card.md` §Per-model override — MiMo](../../../cli-opencode/assets/prompt_quality_card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.
-- Sibling profiles (same hub): [`minimax-2.7.md`](./minimax-2.7.md), [`minimax-m3.md`](./minimax-m3.md) — The MiniMax profiles are the counter-example: TIDD-EC + dense wins there, the opposite of MiMo.
+- Sibling profiles (same hub): [`minimax-m3.md`](./minimax-m3.md) — The MiniMax profile is the counter-example: TIDD-EC + dense wins there, the opposite of MiMo.
 - [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix.

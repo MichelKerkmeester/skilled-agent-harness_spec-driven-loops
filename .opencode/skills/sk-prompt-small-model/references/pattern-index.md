@@ -44,7 +44,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | Structured permissions reference (schema fields + 3 examples + RM-8 walkthrough) | `cli-opencode` | [`../../cli-opencode/references/permissions-matrix.md`](../../cli-opencode/references/permissions-matrix.md) | shipped |
 | Permissions gate runtime (pre-tool-call enforcer) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts`](../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts) | shipped |
 | cli-opencode budget propagation (sentinel mirror of cli-devin canonical) | `cli-opencode` | [`../../cli-opencode/references/context-budget.md`](../../cli-opencode/references/context-budget.md) | shipped |
-| MiniMax prompt-framework guidance (M2.7: TIDD-EC + dense pre-plan; M3: see profile) | `sk-prompt-small-model` | [`./models/minimax-2.7.md`](./models/minimax-2.7.md) + [`./models/minimax-m3.md`](./models/minimax-m3.md) | shipped (benchmark 003) |
+| MiniMax-M3 prompt-framework guidance (TIDD-EC + dense pre-plan; benchmark 003) | `sk-prompt-small-model` | [`./models/minimax-m3.md`](./models/minimax-m3.md) | shipped (benchmark 003, run on M2.7) |
 | MiMo-V2.5-Pro prompt-framework guidance (empirical winner: **COSTAR + lean**; RACE fallback — frame for format/brevity, NOT guardrails; TIDD-EC ranked last) | `sk-prompt-small-model` | [`./models/mimo-v2.5-pro.md`](./models/mimo-v2.5-pro.md) | shipped (benchmark 004) |
 
 ---
@@ -54,7 +54,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | Executor / Skill | Owns | Surface |
 | --- | --- | --- |
 | `cli-devin` | SWE-1.6 (free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 via Cognition Pro | Budget engine, output verification, confidence rubric, per-model budgets, quota fallback |
-| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax via the Token Plan (`minimax-coding-plan`, default — M3-highspeed/M2.7-highspeed) and Direct API (`minimax`, pay-per-token) + MiMo-V2.5-Pro via the Xiaomi Token Plan (`xiaomi-token-plan-ams`, `mimo-v2.5-pro`; free `opencode/mimo-v2.5-free` sibling) | Permissions matrix, budget propagation mirror. Prompt-CRAFT (framework selection, pre-planning density, per-model guidance) now lives in the hub profiles at `sk-prompt-small-model/references/models/`; cli-opencode owns only invocation MECHANICS (binary flags, provider id, quota pool). |
+| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax-M3 via the Token Plan (`minimax-coding-plan`) and Direct API (`minimax`, pay-per-token) + MiMo-V2.5-Pro via the Xiaomi Token Plan (`xiaomi-token-plan-ams`) and Xiaomi Direct API (`xiaomi`) | Permissions matrix, budget propagation mirror. Prompt-CRAFT (framework selection, pre-planning density, per-model guidance) now lives in the hub profiles at `sk-prompt-small-model/references/models/`; cli-opencode owns only invocation MECHANICS (binary flags, provider id, quota pool). |
 | `sk-prompt` | Cross-CLI prompt quality + generic framework definitions | cli_prompt_quality_card.md |
 | `sk-prompt-small-model` (this skill) | Model registry + prompt-craft profiles + indexes | `assets/model-profiles.json` (each entry has `executors` array), `references/models/`, this file, SKILL.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
