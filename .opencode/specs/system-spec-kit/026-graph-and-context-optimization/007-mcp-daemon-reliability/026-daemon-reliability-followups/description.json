@@ -1,0 +1,23 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups",
+  "description": "Feature Specification: Daemon-reliability follow-ups",
+  "keywords": [
+    "feature",
+    "specification",
+    "daemon-reliability",
+    "follow-ups"
+  ],
+  "lastUpdated": "2026-06-07T19:47:00.731Z",
+  "specId": "026",
+  "folderSlug": "daemon-reliability-followups",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  Orphan MCP sweeper LaunchAgent - TEMPLATE ONLY.
+
+	  This file is NOT installed or loaded by default. It lives in-repo as a
+	  reviewable template. To activate (operator-approved rollout only, AFTER
+	  reviewing dry-run output on this machine):
+
+	    cp .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist \
+	       ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist
+	    launchctl load ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist
+
+	  This template runs the sweeper in --dry-run mode, so loading it as-is is
+	  non-destructive: it logs the kill/remove decisions it WOULD make without
+	  killing any PID or deleting any /tmp file. To make it actually reap, an
+	  operator must remove the <string>--dry-run</string> entry below.
+
+	  Edit the absolute paths below if your repo root or home directory differs:
+	  launchd requires absolute paths (no ~ or $HOME expansion in plists).
+	-->
+
+	<key>Label</key>
+	<string>com.michelkerkmeester.orphan-sweep</string>
+
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/orphan-mcp-sweeper.sh</string>
+		<string>--dry-run</string>
+		<string>--verbose</string>
+		<string>--log-path</string>
+		<string>/Users/michelkerkmeester/.local/share/orphan-sweeper.log</string>
+	</array>
+
+	<key>WorkingDirectory</key>
+	<string>/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public</string>
+
+	<!-- Run every 600 seconds, matching the documented template cadence. -->
+	<key>StartInterval</key>
+	<integer>600</integer>
+
+	<!-- Template posture: do not fire on load; operator activates deliberately. -->
+	<key>RunAtLoad</key>
+	<false/>
+
+	<key>StandardOutPath</key>
+	<string>/Users/michelkerkmeester/.local/share/orphan-sweeper.launchd.out.log</string>
+
+	<key>StandardErrorPath</key>
+	<string>/Users/michelkerkmeester/.local/share/orphan-sweeper.launchd.err.log</string>
+
+	<!-- Low-impact background scheduling for a periodic maintenance sweep. -->
+	<key>ProcessType</key>
+	<string>Background</string>
+
+	<key>LowPriorityIO</key>
+	<true/>
+
+	<key>Nice</key>
+	<integer>5</integer>
+</dict>
+</plist>

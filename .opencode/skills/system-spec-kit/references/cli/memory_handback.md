@@ -38,6 +38,8 @@ Canonical 7-step Memory Handback procedure shared across the four cli-* sibling 
 
 **Structured JSON only**: Direct spec-folder-only invocation is no longer supported. Always call `generate-context.js` with `--stdin`, `--json`, or a JSON temp file.
 
+**MCP session scoping**: A dispatched cli sub-session that calls Spec Kit Memory tools (`memory_context`, `memory_search`, `memory_save` and the rest) must OMIT `sessionId`. A sub-session cannot corroborate a parent or foreign session id, so passing one returns `E_SESSION_SCOPE` ("not bound to a corroborated server identity"). Omit `sessionId` so the server generates one, then reuse the `effectiveSessionId` the server returns for the remaining calls in that dispatched session.
+
 **Explicit target precedence**: If you pass `[spec-folder]` on the CLI, that explicit target wins over any `specFolder` value inside the payload.
 
 **Explicit JSON mode failures**: If the explicit data file cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture in that case; surface the error and stop.
