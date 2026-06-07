@@ -29,7 +29,7 @@
       "guides"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -41,7 +41,7 @@
     "entities": [],
     "causal_summary": "Aligns the deep-context skill's reference layout and smart-router to its mature siblings (deep-review, deep-research, deep-ai-council): decomposes the two flat references into the canonical convergence/ protocol/ state/ guides/ subfolders, authors the missing references by extracting from the loop YAML, scripts, and runtime, rewrites the smart-router to the canonical pattern, and sweeps all citations to the new paths.",
     "created_at": "2026-06-07T07:05:28Z",
-    "last_save_at": "2026-06-07T07:05:28Z",
+    "last_save_at": "2026-06-07T10:30:00Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
