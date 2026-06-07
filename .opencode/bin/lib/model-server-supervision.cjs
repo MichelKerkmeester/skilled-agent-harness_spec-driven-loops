@@ -611,7 +611,7 @@ function isRespawnLockStale(raw, options = {}) {
   const pid = parsed && parsed.pid;
   const hasPid = Number.isInteger(pid) && pid > 0;
   if (hasPid && liveness(pid) === 'dead') return true;
-  // DR-005: a live demand listener deliberately holds this lock across its whole bind + idle-listener
+  // A live demand listener deliberately holds this lock across its whole bind + idle-listener
   // window, which can exceed RESPAWN_LOCK_STALE_MS. Bound staleness to listener liveness: only let the
   // wall-clock age expire the lock when the recorded owner is NOT confirmably alive (absent/invalid pid,
   // or an EPERM-opaque pid we cannot prove is ours). If the owner pid is alive, it still owns the lock —
@@ -1078,7 +1078,7 @@ function createModelServerControl(deps = {}) {
 
       const supervisor = getSupervisor();
       supervisor.clearTimers();
-      // DR-012: reapProcessTree() reaps DESCENDANTS only (reapProcessTreeGroups filters pid !== childPid),
+      // reapProcessTree() reaps DESCENDANTS only (reapProcessTreeGroups filters pid !== childPid),
       // so the model-server ROOT process survived idle eviction — the lease was cleared but the resident
       // was orphaned. Route the root reap through reapBeforeRespawn(): the single root-liveness authority
       // that signals the root pid (SIGTERM -> reap tree -> grace -> SIGKILL) exactly like the respawn path.
@@ -1182,7 +1182,7 @@ function createModelServerControl(deps = {}) {
     // The respawn lock is intentionally held across the bind + idle-listener window (released only on
     // demand-driven spawn, shutdown, or listen failure) so a second launcher sharing this socket loses
     // cleanly with 'model-server-respawn-lock-held' instead of racing the bind. (Lock LIFETIME differs
-    // from the phase-004 single-launcher path by design; the wx-open + UDS-bind primitives are unchanged.)
+    // from the single-launcher path by design; the wx-open + UDS-bind primitives are unchanged.)
     const lock = acquireDemandRespawnLock(socketPath);
     if (!lock.acquired) return { shouldListen: false, reason: respawnLockBlockedReason(lock), lockPath: lock.path };
     let reapResult;
@@ -1240,7 +1240,7 @@ function createModelServerControl(deps = {}) {
     const launched = getSupervisor().launch();
     releaseDemandRespawnLock();
     if (!launched) {
-      // DR-006: launch() returned false (spawn produced no pid, or a child is already running). The
+      // launch() returned false (spawn produced no pid, or a child is already running). The
       // demand server was already torn down above and the respawn lock released, so without re-arming
       // the launcher is stranded — no listener, no resident, and no scheduled relaunch (the child
       // 'exit' handler is never wired when there is no valid child). Re-arm the lazy demand listener so

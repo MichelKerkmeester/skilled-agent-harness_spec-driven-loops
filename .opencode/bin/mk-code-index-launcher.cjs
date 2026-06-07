@@ -63,35 +63,38 @@ function isStrictModeDisabled(value) {
   const v = String(value).trim().toLowerCase();
   return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
 }
-for (const fname of ['.env.local', '.env']) {
-  const p = path.join(root, fname);
-  if (fs.existsSync(p)) {
-    const n = loadEnvFile(p);
-    if (n > 0) process.stderr.write(`[mk-code-index-launcher] loaded ${n} env(s) from ${fname}\n`);
-  }
-}
 
-// Maintainer-mode override: when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true is set in
-// .env.local (gitignored maintainer-only file), force all 5 INDEX_* flags to "true"
-// regardless of what the runtime's MCP config injected. Committed configs ship "false"
-// defaults (end-user safe); the maintainer flips this one flag locally to enable
-// indexing of .opencode/{skills,agents,commands,specs,plugins} on their machine only.
-// Per-call code_graph_scan args (includeSkills, etc.) still override env for fine-grained
-// control. See ENV_REFERENCE.md § GRAPH.
-if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
-  const INDEX_KEYS = [
-    'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
-    'SPECKIT_CODE_GRAPH_INDEX_AGENTS',
-    'SPECKIT_CODE_GRAPH_INDEX_COMMANDS',
-    'SPECKIT_CODE_GRAPH_INDEX_SPECS',
-    'SPECKIT_CODE_GRAPH_INDEX_PLUGINS',
-  ]
-  for (const key of INDEX_KEYS) {
-    process.env[key] = 'true';
+function bootstrapLauncherEnv() {
+  for (const fname of ['.env.local', '.env']) {
+    const p = path.join(root, fname);
+    if (fs.existsSync(p)) {
+      const n = loadEnvFile(p);
+      if (n > 0) process.stderr.write(`[mk-code-index-launcher] loaded ${n} env(s) from ${fname}\n`);
+    }
   }
-  process.stderr.write(
-    '[mk-code-index-launcher] MAINTAINER_MODE=true: forcing all 5 INDEX_* to "true"\n'
-  );
+
+  // Maintainer-mode override: when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true is set in
+  // .env.local (gitignored maintainer-only file), force all 5 INDEX_* flags to "true"
+  // regardless of what the runtime's MCP config injected. Committed configs ship "false"
+  // defaults (end-user safe); the maintainer flips this one flag locally to enable
+  // indexing of .opencode/{skills,agents,commands,specs,plugins} on their machine only.
+  // Per-call code_graph_scan args (includeSkills, etc.) still override env for fine-grained
+  // control. See ENV_REFERENCE.md § GRAPH.
+  if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
+    const INDEX_KEYS = [
+      'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
+      'SPECKIT_CODE_GRAPH_INDEX_AGENTS',
+      'SPECKIT_CODE_GRAPH_INDEX_COMMANDS',
+      'SPECKIT_CODE_GRAPH_INDEX_SPECS',
+      'SPECKIT_CODE_GRAPH_INDEX_PLUGINS',
+    ];
+    for (const key of INDEX_KEYS) {
+      process.env[key] = 'true';
+    }
+    process.stderr.write(
+      '[mk-code-index-launcher] MAINTAINER_MODE=true: forcing all 5 INDEX_* to "true"\n'
+    );
+  }
 }
 
 let skillsDir = path.join(opencodeDir, 'skills');
@@ -827,7 +830,7 @@ function launchServer() {
 
   childProcess.on('exit', (code, signal) => {
     if (signal) {
-      // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
+      // Clear the lease before mirroring the signal; process.on('exit') does not fire on SIGKILL.
       clearAllLeaseFiles();
       process.kill(process.pid, signal);
       return;
@@ -1007,6 +1010,7 @@ async function launcherMain() {
 // Run only when invoked directly as the launcher script; stay inert (just export) when required by a
 // test, so the reconnecting-proxy wiring above can be unit-checked without spawning the daemon.
 if (require.main === module) {
+  bootstrapLauncherEnv();
   void launcherMain();
 }
 

@@ -59,13 +59,88 @@ def main():
         print(f"WARNING: cannot read {filepath}: {e}", file=sys.stderr)
         sys.exit(0)
 
-    # --- Comment line detection ---
+    # --- Comment detection ---
+    def find_unquoted_js_line_comment(line: str) -> int:
+        in_string = False
+        quote = ""
+        escaping = False
+
+        index = 0
+        while index < len(line):
+            char = line[index]
+            next_char = line[index + 1] if index + 1 < len(line) else ""
+
+            if in_string:
+                if escaping:
+                    escaping = False
+                elif char == "\\":
+                    escaping = True
+                elif char == quote:
+                    in_string = False
+                index += 1
+                continue
+
+            if char in ("'", '"', "`"):
+                in_string = True
+                quote = char
+                index += 1
+                continue
+
+            if char == "/" and next_char == "/":
+                return index
+
+            index += 1
+
+        return -1
+
+    def find_unquoted_hash_comment(line: str) -> int:
+        in_string = False
+        quote = ""
+        escaping = False
+
+        for index, char in enumerate(line):
+            if in_string:
+                if escaping:
+                    escaping = False
+                elif char == "\\" and quote != "'":
+                    escaping = True
+                elif char == quote:
+                    in_string = False
+                continue
+
+            if char in ("'", '"'):
+                in_string = True
+                quote = char
+                continue
+
+            if char == "#" and (index == 0 or line[index - 1].isspace()):
+                return index
+
+        return -1
+
     def is_comment_line(stripped: str, lang: str) -> bool:
         if lang in ("js", "jsonc"):
             return stripped.startswith("//") or stripped.startswith("*") or stripped.startswith("/*")
         elif lang in ("py", "sh"):
             return stripped.startswith("#")
         return False
+
+    def extract_comment_text(raw_line: str, lang: str) -> str:
+        stripped = raw_line.strip()
+        if is_comment_line(stripped, lang):
+            return stripped
+
+        if lang in ("js", "jsonc"):
+            comment_index = find_unquoted_js_line_comment(raw_line)
+            if comment_index >= 0:
+                return raw_line[comment_index:].strip()
+
+        if lang in ("py", "sh"):
+            comment_index = find_unquoted_hash_comment(raw_line)
+            if comment_index >= 0:
+                return raw_line[comment_index:].strip()
+
+        return ""
 
     # --- Allowed-class patterns (these suppress violation detection) ---
     # Order: check these BEFORE violation patterns.
@@ -82,17 +157,21 @@ def main():
 
     # --- Violation patterns ---
     # Each is (pattern, description) for clear reporting.
+    # F-notation is intentionally excluded: repo comments use it heavily for function keys,
+    # figures, and field references, so genuine finding labels stay review-owned.
     VIOLATION_PATTERNS = [
         (re.compile(r'\b\d{3}/\d{3}\b'),                            "packet/phase reference"),
+        (re.compile(r'\bRC-\d+\b'),                                  "RC reference"),
         (re.compile(r'\bADR-\d+\b'),                                "ADR reference"),
         (re.compile(r'\bREQ-\d+\b'),                                "REQ reference"),
         (re.compile(r'\bCHK-\d+\b'),                                "CHK reference"),
         (re.compile(r'\bT\d{3,4}\b'),                               "task ID reference"),
         (re.compile(r'\bpacket\s+\d+\b', re.IGNORECASE),            "packet number reference"),
-        (re.compile(r'\bphase\s+\d{3}\b', re.IGNORECASE),           "3-digit phase reference"),
+        (re.compile(r'\bphase[\s-]\d{3}\b', re.IGNORECASE),          "3-digit phase reference"),
         (re.compile(r'specs/[a-z0-9]+-[a-z0-9-]*/'),               "spec path reference"),
         (re.compile(r'\bWS-\d+-\d+\b'),                             "worktree session reference"),
-        (re.compile(r'\bDR-\d+-\d+\b'),                             "deep review reference"),
+        (re.compile(r'\bDR-\d+(?:-\d+)?\b'),                        "deep review reference"),
+        (re.compile(r'\bP\d+-Seat\d+\b'),                           "council seat reference"),
         (re.compile(r'\breview\s+finding\b', re.IGNORECASE),        "review finding reference"),
         (re.compile(r'\bchecklist\s+item\s+\d+\b', re.IGNORECASE), "checklist item reference"),
         (re.compile(r'\b[Pp]\d-finding[-\s]\d+\b'),                 "finding id reference"),
@@ -102,23 +181,22 @@ def main():
     violations = []
 
     for lineno, raw_line in enumerate(lines, start=1):
-        stripped = raw_line.strip()
+        comment_text = extract_comment_text(raw_line, lang)
 
-        # Must be a comment line
-        if not is_comment_line(stripped, lang):
+        if not comment_text:
             continue
 
         # Hygiene-ok escape: skip this line entirely
-        if "hygiene-ok" in raw_line:
+        if "hygiene-ok" in comment_text:
             continue
 
         # Check allowed-class patterns first — if any match, skip violation check
-        if any(pat.search(raw_line) for pat in ALLOWED_PATTERNS):
+        if any(pat.search(comment_text) for pat in ALLOWED_PATTERNS):
             continue
 
         # Check violation patterns
         for vpat, _desc in VIOLATION_PATTERNS:
-            m = vpat.search(raw_line)
+            m = vpat.search(comment_text)
             if m:
                 excerpt = raw_line.rstrip()
                 violations.append(f"{filepath}:{lineno}: {excerpt}")

@@ -1109,7 +1109,7 @@ function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner) 
   });
 }
 
-// Reap an orphaned sidecar on crash-loop give-up. The dominant RC-1 RSS lives in a
+// Reap an orphaned sidecar on crash-loop give-up. The dominant RSS risk lives in a
 // forked-detached sidecar GRANDCHILD; on hard daemon death it re-parents to pid 1, so a fresh walk
 // anchored on the (now-dead, ps-absent) childPid finds nothing. We therefore reap the UNION of any
 // still-live childPid subtree (the not-yet-reparented case) and the before-death snapshot
@@ -1199,7 +1199,7 @@ function startRssWatchdog(childPid, options = {}) {
 // Launcher-local factory that pre-seeds the launcher-aware defaults (writeLease/shouldExitLauncher/
 // onRssBreach) the shared lib intentionally leaves as generic no-ops. Keeps the launcher's exported
 // createModelServerSupervisor + launchModelServer(options) seam byte-equivalent to pre-extraction HEAD.
-// Explicit caller options still win via the trailing spread (the 004 test injects its own writeLease).
+// Explicit caller options still win via the trailing spread for targeted writeLease injection.
 function createModelServerSupervisor(options = {}) {
   return baseCreateModelServerSupervisor({
     writeLease: () => writeLeaseFile(),

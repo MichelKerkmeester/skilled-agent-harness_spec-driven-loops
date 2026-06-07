@@ -252,7 +252,7 @@ describe('launcher watchdog helpers', () => {
     expect(() => launcher.signalProcess(4242, 'SIGKILL')).toThrow('boom');
   });
 
-  // Regression: the F3 duplicate-spawn guard must NOT permanently disable F1's crash-loop relaunch.
+  // Regression: the duplicate-spawn guard must NOT permanently disable crash-loop relaunch.
   // A one-shot "ever launched" flag blocked scheduleRelaunch->launchServer after a child exited;
   // the correct guard blocks only while a child is CURRENTLY running.
   it('shouldSkipLaunch blocks only a currently-running child, allowing relaunch after exit (REQ-004 / F1 relaunch)', () => {
