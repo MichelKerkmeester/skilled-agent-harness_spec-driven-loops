@@ -24,7 +24,8 @@
     "006-deep-ai-council-readme",
     "007-deep-context-readme",
     "008-deep-improvement-readme",
-    "009-deep-loop-runtime-readme"
+    "009-deep-loop-runtime-readme",
+    "010-deep-research-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
@@ -41,7 +42,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T09:35:00.000Z",
+  "lastUpdated": "2026-06-07T11:59:05.000Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [

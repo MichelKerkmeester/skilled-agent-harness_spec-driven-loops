@@ -12,20 +12,20 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization"
-    last_updated_at: "2026-06-07T00:00:00Z"
+    last_updated_at: "2026-06-07T11:59:05Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped phases 001-009 (Batch A + deep-ai-council, deep-context, deep-improvement, deep-loop-runtime)"
-    next_safe_action: "Phase 010: rewrite deep-research README"
+    recent_action: "Shipped phases 001-010 (Batch A complete, Batch B through deep-research)"
+    next_safe_action: "Phase 011: rewrite deep-review README"
     blockers: []
     key_files:
       - "spec.md"
-      - "008-deep-improvement-readme/spec.md"
       - "009-deep-loop-runtime-readme/spec.md"
+      - "010-deep-research-readme/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-bootstrap"
       parent_session_id: null
-    completion_pct: 37
+    completion_pct: 42
     open_questions: []
     answered_questions:
       - "Model role: dual-draft + merge (DeepSeek v4 Pro max and MiMo v2.5 Pro high gather as deep-context seats AND each drafts, orchestrator merges)"
@@ -119,7 +119,7 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 | 007 | `007-deep-context-readme/` | Rewrite `deep-context` README | Complete |
 | 008 | `008-deep-improvement-readme/` | Rewrite `deep-improvement` README | Complete |
 | 009 | `009-deep-loop-runtime-readme/` | Rewrite `deep-loop-runtime` README | Complete |
-| 010 | `010-deep-research-readme/` | Rewrite `deep-research` README | Planned |
+| 010 | `010-deep-research-readme/` | Rewrite `deep-research` README | Complete |
 | 011 | `011-deep-review-readme/` | Rewrite `deep-review` README | Planned |
 | 012 | `012-mcp-chrome-devtools-readme/` | Rewrite `mcp-chrome-devtools` README | Planned |
 | 013 | `013-mcp-click-up-readme/` | Rewrite `mcp-click-up` README | Planned |
