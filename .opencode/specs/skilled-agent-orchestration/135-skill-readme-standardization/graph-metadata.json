@@ -11,7 +11,8 @@
     "skilled-agent-orchestration/135-skill-readme-standardization/005-cli-opencode-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/006-deep-ai-council-readme",
     "skilled-agent-orchestration/135-skill-readme-standardization/007-deep-context-readme",
-    "skilled-agent-orchestration/135-skill-readme-standardization/008-deep-improvement-readme"
+    "skilled-agent-orchestration/135-skill-readme-standardization/008-deep-improvement-readme",
+    "skilled-agent-orchestration/135-skill-readme-standardization/009-deep-loop-runtime-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -111,7 +112,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/008-deep-improvement-readme",
-    "last_active_at": "2026-06-07T13:00:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/135-skill-readme-standardization/009-deep-loop-runtime-readme",
+    "last_active_at": "2026-06-07T13:30:00Z"
   }
 }

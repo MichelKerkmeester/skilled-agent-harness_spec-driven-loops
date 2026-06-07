@@ -1,327 +1,67 @@
 ---
-title: "Deep Loop Runtime"
-description: "Shared peer-runtime infrastructure for deep-review and deep-research loops. Houses executor config, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions gating, Bayesian scoring, fallback routing, coverage-graph schema and queries, four direct-invocation script entry points, runtime-owned SQLite storage and 27 vitest files."
+title: "deep-loop-runtime"
+description: "Shared runtime library the five deep-loop skills ride: executor dispatch, prompt-pack rendering, atomic state, coverage-graph storage, Bayesian convergence scoring and council durability, consumed through TypeScript imports and direct .cjs script calls."
 trigger_phrases:
   - "deep-loop runtime"
-  - "deep-loop-runtime skill"
+  - "deep-loop-runtime"
   - "executor config"
-  - "prompt-pack rendering"
-  - "post-dispatch validate"
-  - "atomic state"
-  - "jsonl repair"
-  - "loop lock"
+  - "prompt pack"
+  - "coverage graph"
   - "bayesian scorer"
   - "fallback router"
-  - "coverage graph"
-  - "deep_loop_graph"
-  - "convergence script"
-  - "deep-loop runtime scripts"
-importance_tier: "important"
-contextType: "general"
+  - "jsonl repair"
+  - "loop lock"
 ---
 
-# Deep Loop Runtime
+# deep-loop-runtime
 
-> Shared peer-runtime home for everything two deep-loop skills should never own twice. Executor config, atomic state writes, Bayesian convergence, coverage-graph storage. All in one place. Consumed by deep-review and deep-research workflows through direct `.cjs` script calls.
+> The shared foundation every deep loop rides. Not a loop you invoke directly, but the runtime library your loop's YAML, scripts and tests import.
 
 ---
 
-## 1. OVERVIEW
+## 1. AT A GLANCE
 
-### What Deep Loop Runtime Does
-
-Two skills, `deep-review` and `deep-research`, both run autonomous iteration loops. Both need atomic state-log writes. Both need single-writer locking. Both need a coverage graph that survives session crashes. Both need executor config parsing and Bayesian convergence scoring. Before this skill existed, all of that lived inside `system-spec-kit/mcp_server/` and got reached through four `mcp__mk_spec_memory__deep_loop_graph_*` MCP tools. Two consumer skills depended on the internals of a third, and every workflow YAML call paid the marshalling cost of MCP dispatch plus JSON parse.
-
-The FULL_ISOLATE_NO_MCP consolidation (a user-directive override of an earlier AI Council SPLIT ruling) consolidated all of that into this peer skill. The four MCP tools are gone. The replacement is direct `.cjs` script invocation through `bash:` blocks in workflow YAMLs. Workflow calls became one step instead of two.
-
-### How It Compares
-
-| Before (pre-consolidation) | After (this skill) |
-|----------------------|--------------------|
-| Runtime lib under `system-spec-kit/mcp_server/lib/` | Runtime lib under `.opencode/skills/deep-loop-runtime/lib/` |
-| Coverage-graph SQLite owned by MCP server | SQLite owned by this skill at `database/deep-loop-graph.sqlite` |
-| 4 MCP tools (`deep_loop_graph_*`) marshal calls | 4 direct `.cjs` scripts with `--flag value` argv contracts |
-| Tests scattered across `mcp_server/tests/deep-loop/` | Tests live here under `tests/` (unit + integration + lifecycle) |
-| Two consumer skills depended on MCP-server internals | Two consumer skills call a peer skill through a stable script interface |
-
-### Key Features at a Glance
-
-| Surface | What it does | Where it lives |
-|---------|-------------|----------------|
-| 🔁 Loop infrastructure | Executor config, prompt-pack rendering, post-dispatch validation, fallback routing | `lib/deep-loop/` (10 TS modules) |
-| 🛡️ State safety | Atomic state writes, JSONL repair, single-writer locking, permissions gating | `lib/deep-loop/` (atomic-state, jsonl-repair, loop-lock, permissions-gate) |
-| 📊 Convergence | Bayesian scorer interprets per-iteration signals into CONTINUE / STOP decisions | `lib/deep-loop/bayesian-scorer.ts` |
-| 🗺️ Coverage graph | SQLite schema, query builders, signal extraction for evidence graphs | `lib/coverage-graph/` (3 TS modules) |
-| 🏛️ Council primitives | Multi-seat dispatch, round-state JSONL, adjudicator verdict scoring, cost guards, session-state hierarchy | `lib/council/` (5 cjs modules) |
-| ⚙️ Script entry points | `convergence`, `upsert`, `query`, `status` direct-invocation scripts | `scripts/*.cjs` |
-| 💾 Runtime storage | Session-scoped SQLite at `database/deep-loop-graph.sqlite` | `database/` |
-| 🧪 Runtime tests | 27 vitest files covering unit (14), integration (7), lifecycle (1), council (5) | `tests/` |
-
-> Multiple emoji shown above are a single decorative cluster, not a per-row emoji ban violation.
-
-### Requirements
-
-- Node.js 18 or higher (TS modules + `.cjs` scripts run on the active workspace node).
-- SQLite available through `better-sqlite3` (installed at the workspace root via `pnpm`).
-- Vitest configured in the consuming workspace (`system-spec-kit/mcp_server/vitest.config.ts` globs this skill's `tests/`).
-- Workflow YAMLs that call this skill use `bash:` blocks. No MCP tool dependency.
+| Aspect | What you get |
+|---|---|
+| **Use it for** | The runtime infrastructure every deep loop needs: executor dispatch, atomic state, coverage-graph storage, Bayesian convergence scoring and council durability |
+| **Invoke with** | `import` from `lib/` in TypeScript, or `node scripts/<name>.cjs` in a workflow YAML block. No MCP tools, no slash commands. |
+| **Works on** | The five deep-loop consumer skills that import it: `deep-research`, `deep-review`, `deep-context`, `deep-ai-council` and `deep-improvement` |
+| **Produces** | Typed convergence decisions, JSONL state logs, session-scoped coverage graphs, multi-seat dispatch outcomes and scored adjudicator verdicts |
 
 ---
 
-## 2. QUICK START
+## 2. OVERVIEW
 
-### Invoke from a workflow YAML (the canonical path)
+### Why This Skill Exists
 
-```yaml
-- name: Compute deep-research convergence
-  bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{session_id}"'
-  outputs:
-    - graph_decision
-    - graph_signals_json
-    - graph_blockers_json
-    - graph_blockers_csv
-    - graph_stop_blocked
-```
+Two deep-loop skills shared the same runtime code. Both needed executor config parsing. Both needed atomic state-log writes and single-writer locking. Both needed a coverage graph that survives a session crash. Both needed Bayesian convergence scoring. Before this skill existed, all of that lived inside `system-spec-kit/mcp_server/` and got reached through MCP tools. Two consumer skills depended on the internals of a third package, every workflow call paid the MCP marshalling and JSON-parse round-trip, and each loop would otherwise duplicate executor config, atomic-state writes, JSONL repair, single-writer locking, coverage-graph ownership, Bayesian scoring and fallback routing.
 
-### Invoke a script directly (operator)
+The consolidation moved the shared runtime into this peer skill. The MCP tools are gone, and direct script invocation replaced them. One step instead of two, one hardened implementation every loop shares.
+
+### What It Does
+
+`deep-loop-runtime` provides three component families through TypeScript imports under `lib/` and `.cjs` script entry points under `scripts/`. The deep-loop family owns executor config, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions gating, Bayesian scoring and fallback routing. The coverage-graph family owns the SQLite schema, query builders and convergence-signal extraction. The council family owns multi-seat dispatch, round-state JSONL, adjudicator-verdict scoring, cost guards, session-state hierarchy and the council graph. Consumer skills import what they need. No consumer invokes this skill directly. It is the foundation they ride.
+
+---
+
+## 3. QUICK START
+
+**Step 1: Call a script from your workflow YAML.** The `.cjs` entry points accept `--spec-folder`, `--loop-type` and `--session-id`. They write JSON to stdout and exit with a uniform code.
 
 ```bash
-node .opencode/skills/deep-loop-runtime/scripts/status.cjs \
-  --spec-folder "<spec-folder>" \
-  --loop-type review \
-  --session-id smoke-check
+node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs \
+  --spec-folder "specs/my-feature" \
+  --loop-type research \
+  --session-id "abc123"
 ```
 
-Stdout is JSON. Exit codes: `0` ok, `1` script error, `2` DB error, `3` input validation error.
+Expected output: a JSON object with `decision` ("CONTINUE", "STOP_ALLOWED" or "STOP_BLOCKED"), `signals`, `blockers` and `stopBlocked`. Exit code `0` means the decision was computed. Exit code `2` means the database was unreachable.
 
-### Import a runtime library (TypeScript)
+**Step 2: Import a runtime module from your TypeScript loop code.**
 
 ```typescript
 import { acquireLoopLock, releaseLoopLock } from '../../deep-loop-runtime/lib/deep-loop/loop-lock.js';
 import { renderPromptPack } from '../../deep-loop-runtime/lib/deep-loop/prompt-pack.js';
-```
-
-### Run the runtime tests
-
-```bash
-# From the workspace root (uses the system-spec-kit vitest config that globs these tests)
-pnpm --dir .opencode/skills/system-spec-kit/mcp_server exec vitest run ../../deep-loop-runtime/tests
-```
-
-The `system-spec-kit/mcp_server/vitest.config.ts` glob picks these up alongside the spec-kit suite.
-
----
-
-## 3. FEATURES
-
-This section catalogues the runtime surface. Each subsection lists the modules in that domain, what each module does and which consumer skill relies on it.
-
-### 3.1 EXECUTOR AND PROMPT
-
-How a deep-loop iteration gets configured, dispatched and rendered.
-
-| Module | What it does | Why it matters |
-|--------|-------------|----------------|
-| `lib/deep-loop/executor-config.ts` | Schema and parsing for per-iteration executor settings | Both consumer skills share one config shape, so a CLI executor name or sandbox mode means the same thing in deep-review and deep-research |
-| `lib/deep-loop/executor-audit.ts` | Appends an `executor` provenance block to each iteration JSONL | Post-hoc reviewers can tell which model and CLI produced each iteration without scraping the prompt |
-| `lib/deep-loop/prompt-pack.ts` | Renders the iteration prompt template | The same prompt-template substitution code powers both loops, so changes propagate once |
-| `lib/deep-loop/post-dispatch-validate.ts` | Validates iteration outputs (markdown, JSONL, delta) | Catches malformed iteration writes before they corrupt state-log atomicity |
-
-Consumed by both `deep-review` and `deep-research` workflow YAMLs through TS imports.
-
-### 3.2 STATE SAFETY
-
-Crash-resistant state writes for long-running autonomous loops.
-
-| Module | What it does |
-|--------|--------------|
-| `lib/deep-loop/atomic-state.ts` | Atomic state-log writes (tmpfile plus rename, never partial-write) |
-| `lib/deep-loop/jsonl-repair.ts` | Recovers corrupt trailing JSONL lines before append |
-| `lib/deep-loop/loop-lock.ts` | Single-writer lockfile around state mutations |
-| `lib/deep-loop/permissions-gate.ts` | Permission scope checks before mutating sensitive paths |
-
-A 10-iteration loop that gets interrupted halfway should resume cleanly. These four modules are why that happens.
-
-### 3.3 SCORING AND ROUTING
-
-Convergence detection plus fallback executor selection.
-
-| Module | What it does |
-|--------|--------------|
-| `lib/deep-loop/bayesian-scorer.ts` | Interprets per-iteration novelty signals into CONTINUE, STOP_ALLOWED or STOP_BLOCKED decisions |
-| `lib/deep-loop/fallback-router.ts` | Executor fallback decision matrix when a primary executor times out or returns malformed output |
-
-Used by `scripts/convergence.cjs` (consumer path: deep-review and deep-research convergence checks).
-
-### 3.4 COVERAGE GRAPH
-
-Session-scoped evidence graph backing both loop types.
-
-| Module | What it does |
-|--------|--------------|
-| `lib/coverage-graph/coverage-graph-db.ts` | SQLite schema (v2), node-kind allow-list, connection lifecycle. Single owner of the DB connection per the script-interface invariant. |
-| `lib/coverage-graph/coverage-graph-query.ts` | Query builders for uncovered questions, unverified claims, contradictions, evidence chains |
-| `lib/coverage-graph/coverage-graph-signals.ts` | Convergence signal extraction (novelty rate, claim-support ratio, contradiction count) |
-
-Schema details live in `references/coverage_graph_schema.md`. The deep-research loop adds research nodes (`QUESTION`, `FINDING`, `CLAIM`, `SOURCE`). The deep-review loop adds review nodes (`DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, `REMEDIATION`, `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, `TEST`).
-
-### 3.5 COUNCIL PRIMITIVES
-
-The Runtime Boundary Decision (ADR-001) extended this skill with council-compatible runtime primitives. Operator-facing semantics live in `deep-ai-council`. This skill owns the durability primitives only.
-
-| Module | What it does |
-|--------|--------------|
-| `lib/council/multi-seat-dispatch.cjs` | Runs seat executors in parallel for one council round, preserves seat order, returns fulfilled or rejected outcomes plus round summary counts |
-| `lib/council/round-state-jsonl.cjs` | Per-round JSONL records with lock-file single-writer guard, JSONL repair before append, fsync on write |
-| `lib/council/adjudicator-verdict-scoring.cjs` | Scores Round-N to Round-N+1 verdict deltas using ADR-003 weights (option change, confidence delta, material-risk Jaccard delta, axis flip rate, blocking-disagreement delta) |
-| `lib/council/cost-guards.cjs` | Enforces ADR-004 defaults for `max_rounds_per_topic`, `max_topics_per_session`, `saturation_threshold`, `seats_per_round` |
-| `lib/council/session-state-hierarchy.cjs` | Creates and validates the ADR-002 session to topic to round state shape, with stable `topic-NNN-slug` and `round-NNN` ids |
-
-The council modules mirror the deep-loop durability contract (`atomic-state`, `jsonl-repair`, `loop-lock`) in a council-scoped CJS surface, so downstream `deep-ai-council` phases consume them without modifying deep-review or deep-research behavior.
-
-### 3.6 SCRIPT ENTRY POINTS
-
-Four `.cjs` scripts replace the four deleted MCP tools. Each parses argv, opens SQLite inside a `try`, calls the relevant lib function, writes JSON to stdout, closes the DB in a `finally`, exits with the standardized code.
-
-| Script | Replaces (deleted MCP tool) | Purpose |
-|--------|------------------------------|---------|
-| `scripts/convergence.cjs` | `deep_loop_graph_convergence` | Computes typed CONTINUE / STOP_ALLOWED / STOP_BLOCKED decisions |
-| `scripts/upsert.cjs` | `deep_loop_graph_upsert` | Stores nodes and edges from iteration `graphEvents` |
-| `scripts/query.cjs` | `deep_loop_graph_query` | Inspects uncovered questions, unverified claims, contradictions |
-| `scripts/status.cjs` | `deep_loop_graph_status` | Session-scoped health report |
-
-Exit codes are uniform across all four: `0` ok, `1` script error, `2` DB error, `3` input validation error.
-
-Common argv (`--spec-folder`, `--loop-type review|research`, `--session-id`) plus per-script extensions are normalized through `scripts/lib/cli-guards.cjs`.
-
-### 3.7 STORAGE
-
-Runtime-owned SQLite database at `database/deep-loop-graph.sqlite`. Schema version 2. Owned exclusively by `lib/coverage-graph/coverage-graph-db.ts` (per the ALWAYS rule in SKILL.md §4 RULES). No other module opens this connection.
-
-The database is session-scoped through node and edge tagging, not through per-session files. One database holds graphs for every active session.
-
----
-
-## 4. STRUCTURE
-
-```text
-.opencode/skills/deep-loop-runtime/
-├── SKILL.md                              # Operational contract (when to use, smart routing, rules)
-├── README.md                             # This file
-├── changelog/
-│   ├── v1.0.0.0.md                       # Initial shipped release
-│   ├── v1.1.0.0.md                       # Phase-1-3 release-cleanup pass
-│   ├── v1.2.0.0.md                       # Phase-5 audit backlog closure (doc + council + tests)
-│   ├── v1.3.0.0.md                       # Structural cleanup (storage/ to database/, test READMEs)
-│   └── v1.4.0.0.md                       # sk-doc conformance pass (health-check + consumer/test docs)
-├── lib/
-│   ├── README.md
-│   ├── deep-loop/                        # 10 TS modules (executor, prompt, state, scoring, routing)
-│   ├── coverage-graph/                   # 3 TS modules (DB, query, signals)
-│   └── council/                          # 5 cjs modules (council durability primitives)
-├── scripts/                              # 4 .cjs entry points + cli-guards lib
-│   ├── convergence.cjs
-│   ├── upsert.cjs
-│   ├── query.cjs
-│   ├── status.cjs
-│   ├── lib/cli-guards.cjs                # Shared input validation
-│   └── README.md
-├── database/
-│   ├── deep-loop-graph.sqlite            # Runtime-owned SQLite
-│   └── README.md
-├── feature_catalog/                      # 23 sk-doc feature entries across 8 domains (+08--council)
-├── manual_testing_playbook/              # 23 operator-facing manual-test scenarios (+08--council)
-├── references/                           # 4 deep-dive reference docs
-│   ├── coverage_graph_schema.md
-│   ├── integration_points.md
-│   ├── script_interface_contract.md
-│   └── state_format.md
-└── tests/
-    ├── unit/                             # 13 per-module tests
-    ├── integration/                      # 7 script + review-depth tests
-    ├── lifecycle/                        # 1 DB lifecycle test
-    ├── council/                          # 5 council-module tests
-    └── helpers/spawn-cjs.ts              # Shared spawn helper
-```
-
-Total: 79 files, 15,645 lines across runtime + tests + docs.
-
----
-
-## 5. CONFIGURATION
-
-### Environment variables
-
-| Variable | Purpose | Default |
-|----------|---------|---------|
-| `DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` | Writer-lock acquisition wait before a DB_ERROR timeout | `1000` |
-| `DEEP_LOOP_WRITER_LOCK_RETRY_INTERVAL_MS` | Poll interval while waiting on a contended writer lock | `25` |
-| `DEEP_LOOP_SCRIPT_LOCK_HOLD_MS` | Artificial hold after acquiring the writer lock (testing only) | `0` |
-
-### Executor config schema
-
-Defined by `lib/deep-loop/executor-config.ts`. Workflow YAMLs reference the schema through TS imports. The schema covers executor name, sandbox mode, permission scope, model selection and per-iteration timeout.
-
-Example consumer (deep-research workflow):
-
-```typescript
-import { parseExecutorConfig } from '.../deep-loop-runtime/lib/deep-loop/executor-config.js';
-
-const cfg = parseExecutorConfig({
-  executor: 'cli-devin',
-  model: 'swe-1.6',
-  sandboxMode: 'workspace-write',
-  permissionScope: 'spec-folder-only',
-  iterationTimeoutMs: 900_000
-});
-```
-
-### Coverage-graph node-kind allow-list
-
-The SQLite schema enforces an allow-list of node kinds. Adding a new kind requires editing `lib/coverage-graph/coverage-graph-db.ts` plus a follow-on migration packet. The current research and review node kinds are documented in `references/coverage_graph_schema.md`.
-
-### Where there is no config knob
-
-Atomic-state semantics, loop-lock behavior, permissions-gate checks and Bayesian-scorer weights are not user-configurable through env vars. They are runtime invariants. Changing them requires a new packet with an ADR.
-
----
-
-## 6. USAGE EXAMPLES
-
-### Workflow YAML call (deep-review convergence check)
-
-```yaml
-- name: Check deep-review convergence
-  bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --iteration "{iter_count}"'
-  outputs:
-    - graph_decision         # "CONTINUE" | "STOP_ALLOWED" | "STOP_BLOCKED"
-    - graph_signals_json     # raw novelty + support + contradiction signal
-    - graph_blockers_json    # JSON array of remaining blockers
-    - graph_blockers_csv     # human-readable comma-separated blockers
-    - graph_stop_blocked     # boolean, true when STOP_BLOCKED
-```
-
-### Workflow YAML call (deep-research upsert)
-
-```yaml
-- name: Upsert iteration graph events
-  bash: 'node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{session_id}" --events "{iteration_dir}/graph-events.json"'
-```
-
-### Operator invocation (one-off status check)
-
-```bash
-node .opencode/skills/deep-loop-runtime/scripts/status.cjs \
-  --spec-folder "<spec-folder>" \
-  --loop-type review \
-  --session-id smoke-check
-```
-
-### TS import from a workflow script
-
-```typescript
-import { renderPromptPack } from '../../deep-loop-runtime/lib/deep-loop/prompt-pack.js';
-import { acquireLoopLock, releaseLoopLock } from '../../deep-loop-runtime/lib/deep-loop/loop-lock.js';
 import { validateIterationOutputs } from '../../deep-loop-runtime/lib/deep-loop/post-dispatch-validate.js';
 
 const lock = await acquireLoopLock(specFolder);
@@ -334,99 +74,127 @@ try {
 }
 ```
 
----
+**Step 3: Run the runtime tests to confirm your environment works.**
 
-## 7. TROUBLESHOOTING
+```bash
+pnpm --dir .opencode/skills/system-spec-kit/mcp_server exec vitest run ../../deep-loop-runtime/tests
+```
 
-### Script exits with code 2 (DB error)
-
-The SQLite database is missing, corrupt or locked by another writer. Check `database/deep-loop-graph.sqlite` exists and is writable. If the hidden dot-file lock at `database/.deep-loop-graph-writer.lock` is stale (process holding it died without releasing), delete it after confirming no live writer exists (`ps aux | grep convergence.cjs`).
-
-### Script exits with code 3 (input validation error)
-
-Argv parsing rejected the input. Re-read the script's argv contract in `references/script_interface_contract.md`. Common causes: missing `--spec-folder`, `--loop-type` not in `{review, research}`, `--session-id` containing path-traversal characters.
-
-### Bayesian scorer keeps returning CONTINUE past iteration 10
-
-The novelty signal is not dropping. Check `lib/deep-loop/bayesian-scorer.ts` for the active weight matrix. Possible causes: iteration outputs are corrupt and contribute fake novelty (`jsonl-repair.ts` should catch this), or the loop is genuinely surfacing new evidence and the hard cap at iter 10 is the correct stop.
-
-### Loop-lock acquisition times out
-
-`DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` default is 1 second (poll interval `DEEP_LOOP_WRITER_LOCK_RETRY_INTERVAL_MS`, default 25 ms). If a long-running upsert is in flight, raise the max wait. If a stale lock survived a crash, the hidden dot-file lock at `database/.deep-loop-graph-writer.lock` (research/review) or `database/.council-graph-writer.lock` (council) may need manual removal after confirming no live writer.
-
-### Tests fail with "table coverage_nodes not found"
-
-The runtime test runner expects a fresh per-test SQLite database. Confirm the test imports `coverage-graph-db.ts` and calls the init helper before asserting on tables, pointing it at a per-test tmp database directory rather than a real one.
+Expected output: the vitest runner discovers the unit, integration and lifecycle tests through the cross-package glob in `system-spec-kit/mcp_server/vitest.config.ts`. A green run confirms the runtime is wired correctly.
 
 ---
 
-## 8. FAQ
+## 4. HOW IT WORKS
 
-**Q: Does this skill expose MCP tools?**
+### The Three Component Families
 
-No. The isolation ADR explicitly removed the four `mcp__mk_spec_memory__deep_loop_graph_*` tools. Reintroducing MCP surface here defeats the FULL_ISOLATE direction. Operators and workflows call the four `.cjs` scripts directly.
+`lib/deep-loop/` holds the loop infrastructure. `executor-config` parses per-iteration executor settings from a shared schema so every consumer calls the same executor shape. `executor-audit` appends a provenance block to each iteration JSONL so you can tell which model and CLI produced each iteration. `prompt-pack` renders the iteration prompt template. `post-dispatch-validate` checks that an iteration produced valid markdown, JSONL and delta outputs before the state log accepts them. `atomic-state` writes state logs through a tmpfile-plus-rename pattern so a crash never leaves a partial line. `jsonl-repair` recovers a corrupt trailing line before append. `loop-lock` enforces single-writer access around state mutations. `permissions-gate` checks permission scope before touching sensitive paths. `bayesian-scorer` interprets per-iteration novelty signals into typed convergence decisions with Laplace smoothing. `fallback-router` picks a replacement executor when the primary one times out.
 
-**Q: Who owns the SQLite connection?**
+`lib/coverage-graph/` owns the session-scoped evidence graph. `coverage-graph-db` is the sole owner of the SQLite connection at `database/deep-loop-graph.sqlite`, and no other module opens that database. `coverage-graph-query` builds queries for uncovered questions, unverified claims, contradictions and evidence chains. `coverage-graph-signals` extracts the convergence signals (novelty rate, claim-support ratio, contradiction count) the Bayesian scorer consumes.
 
-Only `lib/coverage-graph/coverage-graph-db.ts` opens and closes the database. Every other module receives a connection handle and uses it within a try-finally. This is the ALWAYS rule documented in SKILL.md §4.
+`lib/council/` provides council durability primitives. `multi-seat-dispatch` runs seat executors in parallel for one council round and returns fulfilled or rejected per-seat outcomes. `round-state-jsonl` appends per-round JSONL with the same lock-file single-writer guard the deep-loop family uses. `adjudicator-verdict-scoring` scores round-to-round verdict deltas across five weighted axes. `cost-guards` enforces session and topic budgets. `session-state-hierarchy` creates the stable session-to-topic-to-round state shape. A separate `council-graph-db` and `council-graph-query` pair owns the council-specific graph schema, and a council-layer convergence script drives council stop decisions. The council modules mirror the deep-loop durability contract in a council-scoped surface so `deep-ai-council` can consume them without touching review or research behavior.
 
-**Q: Can I add a new consumer skill (beyond deep-review and deep-research)?**
+### Script Entry Points and the Fan-Out Pool
 
-Not without a new ownership ADR. The ESCALATE clause in SKILL.md §4 routes a new consumer through a new ownership ADR so the runtime-to-consumer contract stays explicit.
+The `.cjs` scripts under `scripts/` handle every runtime call. The core scripts replace the deleted MCP tools: `convergence.cjs` computes the stop decision, `upsert.cjs` stores nodes and edges from an iteration's graph events, `query.cjs` inspects uncovered questions, unverified claims and contradictions, and `status.cjs` returns a session-scoped health report. Each parses argv, opens the SQLite database inside a `try`, calls the matching lib function, writes JSON to stdout, closes the database in a `finally` and exits with the standardized code (0 ok, 1 script error, 2 DB error, 3 input validation error).
 
-**Q: How do I add a new node kind to the coverage graph?**
+The fan-out scripts orchestrate multi-executor runs. `fanout-run.cjs` spawns headless CLI subprocesses into isolated `lineages/{label}/` directories. `fanout-pool.cjs` provides a concurrency-capped worker pool with a status ledger. `fanout-salvage.cjs` recovers missing iteration files from captured subprocess stdout. `fanout-merge.cjs` deduplicates findings across lineages into a consolidated registry. Each lineage gets its own session id so coverage-graph writes never collide. A shared CLI guard at `scripts/lib/cli-guards.cjs` normalizes argv validation across every entry point.
 
-Edit `lib/coverage-graph/coverage-graph-db.ts` to extend the allow-list, then write a migration. Both edits require a packet plus an ADR. The schema version increments (currently `2`). Existing databases need the migration applied.
+---
+
+## 5. INTEGRATION & NAVIGATION
+
+### When A Consumer Reaches For This Runtime
+
+Your loop skill needs executor dispatch, atomic state writes, a coverage graph or Bayesian scoring. Import `lib/deep-loop/`, call `scripts/convergence.cjs` from your workflow YAML, or open the coverage graph through the lib modules. The runtime provides the infrastructure. Your skill owns the loop policy and the user-facing surface.
+
+Skip this runtime when you are writing a loop's own UX, convergence policy or domain logic. Those live in the consumer skill. The runtime offers primitive contracts, not opinions about how many iterations constitute convergence or what a research finding looks like.
+
+### The Five Consumers
+
+`deep-loop-runtime` is the foundation. The five loop skills are the buildings.
+
+| Skill | How it consumes the runtime |
+|---|---|
+| `deep-research` | Calls `convergence.cjs`, `upsert.cjs`, `query.cjs` and `status.cjs` from its workflow YAML. Imports `lib/deep-loop/` for prompt-pack rendering, atomic state and executor audit. |
+| `deep-review` | Mirrors deep-research's script calls. Imports `lib/coverage-graph/` for its reducer and uses the Bayesian scorer and coverage signals to decide when a review has converged. |
+| `deep-context` | Runs the fan-out pool to sweep the codebase in parallel. Imports the coverage-graph store and the convergence script, and the agreement merge reads coverage-graph signals. |
+| `deep-ai-council` | Consumes `lib/council/` for multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards and session-state hierarchy. The operator-facing council semantics stay in `deep-ai-council`. |
+| `deep-improvement` | Imports the deep-loop executor config and the council cost guards. Its evaluator-first pipeline rides the same executor dispatch path the other loops use. |
+
+`system-spec-kit` owns the spec folder, validation and memory continuity. `sk-code` owns code standards and test verification. This runtime owns the infrastructure the loops ride and nothing else.
+
+---
+
+## 6. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| Script exits with code 2 (DB error) | The SQLite database is missing, corrupt or locked by another writer | Confirm `database/deep-loop-graph.sqlite` exists and is writable. If a stale `database/.deep-loop-graph-writer.lock` survived a crash, remove it after confirming no live writer (`ps aux | grep convergence.cjs`). |
+| Script exits with code 3 (input validation) | Argv parsing rejected the input | Check `--spec-folder` is present, `--loop-type` is `review` or `research` and `--session-id` has no path-traversal characters. The full contract is in `references/script_interface_contract.md`. |
+| Bayesian scorer returns CONTINUE past a high iteration count | The novelty signal is not dropping | Check the iteration outputs for corrupt data that injects fake novelty. If outputs are valid, the loop is genuinely surfacing new evidence and the hard cap is the correct stop. |
+| Loop-lock acquisition times out | A long-running upsert holds the lock, or a stale lock survived a crash | Raise `DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` for contended workloads. For a stale lock, remove the writer lockfile after confirming no live writer. |
+| A state log is corrupt mid-line | The crash happened during a write, not at a line boundary | `jsonl-repair` recovers only trailing corruption. For mid-line corruption, inspect the file and delete the broken line. The loop resumes from the last intact record. |
+| Two writers raced the state log | The loop-lock was not acquired before the mutation | Every consumer that mutates state must call `acquireLoopLock` first, in a try-finally with `releaseLoopLock`. |
+
+---
+
+## 7. FAQ
+
+**Q: Why does a shared runtime exist instead of each loop duplicating the infrastructure?**
+
+A: Before the consolidation, executor config, atomic state, coverage-graph storage and Bayesian scoring were scattered across the MCP server and duplicated per loop. A bug fix to the JSONL repair module needed the same change in multiple places. The consolidation moved every shared contract into one peer skill, so one fix now propagates to every consumer.
+
+**Q: Which skills consume this runtime?**
+
+A: Five: `deep-research`, `deep-review`, `deep-context`, `deep-ai-council` and `deep-improvement`. Each imports the modules it needs and calls the `.cjs` scripts from its workflow YAML. The runtime itself has no user-facing command and registers no MCP tools.
+
+**Q: What does the coverage graph provide?**
+
+A: A session-scoped SQLite graph that tracks research nodes (questions, findings, claims, sources) and review nodes (dimensions, files, findings, evidence, bugs, invariants). Query builders surface uncovered questions, unverified claims and contradictions. Signal extractors feed the Bayesian scorer with novelty rate, claim-support ratio and contradiction counts.
+
+**Q: What does the Bayesian scorer do?**
+
+A: It reads per-iteration novelty signals from the coverage graph and returns a typed decision: CONTINUE, STOP_ALLOWED or STOP_BLOCKED. It uses Laplace smoothing and a configurable weight matrix, and each consumer sets its own convergence thresholds on top of the shared scorer.
 
 **Q: Why are council primitives here rather than in `deep-ai-council`?**
 
-The Runtime Boundary Decision (ADR-001) decided that durability primitives (multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards, session-state hierarchy) belong with the other deep-loop durability primitives. Operator-facing and domain semantics stay in `deep-ai-council`. The split keeps `deep-ai-council` free to change its UX without touching durability contracts.
+A: Multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards and session-state hierarchy are durability contracts, not UX. They belong with the other deep-loop durability primitives. `deep-ai-council` owns the operator-facing council semantics, and the split keeps it free to change its UX without touching the durability layer.
 
-**Q: Where are the deleted MCP tool tests?**
+**Q: Does this skill expose MCP tools?**
 
-Removed. The only retained test in the old location is `mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts` because it tests `deep-review/scripts/reduce-state.cjs`, which lives in the consumer skill rather than here.
+A: No. The isolation removed the deep-loop-graph MCP tools. Every runtime call goes through a direct `.cjs` script invocation or a TypeScript import.
 
-**Q: Why does the SKILL.md exist alongside this README?**
+---
 
-The SKILL.md is the operational contract loaded by AI agents at routing time (smart routing, rules, runtime architecture). This README is the human-facing introduction. The two are complementary, not duplicative. SKILL.md §1 redirects readers here for layout and history.
+## 8. VERIFICATION
+
+The skill ships a feature catalog and a manual testing playbook that together cover every runtime surface.
+
+### Feature Catalog
+
+`feature_catalog/` documents each capability across its domains: executor config, prompt rendering, validation, state safety, scoring, the coverage graph, the script entry points, council primitives and the fan-out pool. Every entry names inputs, outputs, the owning resource and acceptance criteria.
+
+### Manual Testing Playbook
+
+`manual_testing_playbook/` provides deterministic scenarios across the same domains. The root playbook defines preconditions, expected signals and pass, fail or partial verdict rules. Each scenario maps to a dedicated feature file with the canonical invocation and live source anchors.
+
+```bash
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-loop-runtime/README.md --type readme
+```
+
+Expected output: zero issues reported.
 
 ---
 
 ## 9. RELATED DOCUMENTS
 
-### Within this skill
-
 | Document | Purpose |
-|----------|---------|
-| [`SKILL.md`](SKILL.md) | Operational contract: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES (ALWAYS / NEVER / ESCALATE IF) |
-| [`changelog/v1.0.0.0.md`](changelog/v1.0.0.0.md) | Initial shipped release notes |
-| [`changelog/v1.1.0.0.md`](changelog/v1.1.0.0.md) | Phase-1-3 release-cleanup pass (README rewrite + 4 surgical SKILL.md edits) |
-| [`changelog/v1.2.0.0.md`](changelog/v1.2.0.0.md) | Phase-5 deep-research audit backlog closure (doc alignment + council surface + test coverage) |
-| [`changelog/v1.3.0.0.md`](changelog/v1.3.0.0.md) | Structural cleanup (storage/ to database/ rename, gitignore runtime sqlite, test-subfolder READMEs) |
-| [`changelog/v1.4.0.0.md`](changelog/v1.4.0.0.md) | sk-doc conformance pass (health-check + consumer/test documentation) |
-| [`feature_catalog/feature_catalog.md`](feature_catalog/feature_catalog.md) | Per-feature canonical inventory across 7 domains |
-| [`manual_testing_playbook/manual_testing_playbook.md`](manual_testing_playbook/manual_testing_playbook.md) | Operator-facing manual-test scenarios (17 scenarios + 1 index) |
-| [`references/coverage_graph_schema.md`](references/coverage_graph_schema.md) | SQLite schema, node kinds, relation kinds, indexes |
-| [`references/integration_points.md`](references/integration_points.md) | Consumer surface map (deep-review, deep-research, `/doctor`, others) |
-| [`references/script_interface_contract.md`](references/script_interface_contract.md) | 4-script CLI argv contract + exit codes |
-| [`references/state_format.md`](references/state_format.md) | Runtime state JSONL shape |
-
-### Consumer skills
-
-| Skill | Integration |
-|-------|-------------|
-| [`deep-review`](../deep-review/SKILL.md) | Consumes `convergence.cjs`, `upsert.cjs`, `query.cjs`, `status.cjs` through `bash:` calls in `deep_start-review-loop_{auto,confirm}.yaml`. TS imports from `lib/coverage-graph/` for `reduce-state.cjs`. |
-| [`deep-research`](../deep-research/SKILL.md) | Mirror script invocations in `deep_start-research-loop_{auto,confirm}.yaml`. Same TS-import pattern. |
-| [`deep-ai-council`](../deep-ai-council/SKILL.md) | Consumes `lib/council/` primitives. Operator-facing semantics live in deep-ai-council. |
-
-### History
-
-Release history and the consolidation rationale (including the superseded AI Council SPLIT ruling) live in the [changelog](changelog/).
-
-### Cross-system anchors
-
-| Document | Purpose |
-|----------|---------|
-| [`.opencode/skills/README.md`](../README.md) | Skills library index (deep-loop-runtime listed as peer in the deep-loop-skills family) |
-| [`.opencode/skills/system-spec-kit/README.md`](../system-spec-kit/README.md) | System spec-kit (consumes deep-loop-runtime through cross-package vitest glob) |
-| [`Public/README.md`](../../../README.md) | Project root README (tone anchor for skill READMEs) |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the ALWAYS / NEVER / ESCALATE rules and the full operating contract |
+| [`references/script_interface_contract.md`](./references/script_interface_contract.md) | The `.cjs` argv contract, exit-code matrix and stdout JSON shape every script honors |
+| [`references/coverage_graph_schema.md`](./references/coverage_graph_schema.md) | SQLite schema, node-kind allow-list, relation kinds and indexes |
+| [`references/integration_points.md`](./references/integration_points.md) | Consumer surface map: which skill calls which script and imports which module |
+| [`references/state_format.md`](./references/state_format.md) | Runtime state JSONL record types and the tmpfile-plus-rename write contract |
+| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Per-feature canonical inventory across the runtime domains |
+| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator-facing deterministic scenarios with preconditions and expected signals |
