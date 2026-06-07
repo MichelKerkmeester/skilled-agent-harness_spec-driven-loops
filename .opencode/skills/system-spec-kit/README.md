@@ -581,7 +581,7 @@ The **memory system** is the librarian. When a session ends, `generate-context.j
 
 The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:start-research-loop` anchors research to `spec.md` through [spec_check_protocol.md](../deep-research/references/protocol/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
 
-The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair, `/deep:start-research-loop` can enrich that packet under the bounded `spec_check_protocol.md` rules, and `/speckit:plan` or `/speckit:complete` continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
+The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair. `/deep:start-research-loop` can enrich that packet under the bounded `spec_check_protocol.md` rules. `/speckit:plan` or `/speckit:complete` then continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
 
 ```text
 Session starts
@@ -631,7 +631,7 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (listed default: `nomic-ai/nomic-embed-text-v1.5`, unlisted local models derive dimension at runtime) |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | No | Preferred database-directory override. Runtime derives the sqlite filename from the active embedding profile |
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |
-| `SPEC_KIT_LOG_LEVEL` | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |
+| `LOG_LEVEL`          | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |
 | `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | No | Set `1` to enable the launcher RSS-ceiling watchdog. When the mk-spec-memory process tree breaches `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB`, the launcher sends SIGTERM and exits with crash-loop backoff. Default off. |
 | `SPECKIT_BACKEND_ONLY` | No | Backend-only stdio gate read at server boot (`mcp_server/context-server.ts`). Set `1` so the process runs purely as the recyclable backend behind the MCP front-proxy and skips front-facing stdio wiring. The launcher's `bridgeStdioThroughSessionProxy` then owns the client-facing transport. Default off (direct stdio). |
 
