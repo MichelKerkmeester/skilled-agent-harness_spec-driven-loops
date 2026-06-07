@@ -16,6 +16,14 @@ LOG_PATH="${CLAUDE_SESSION_CLEANUP_LOG_PATH:-${HOME:-/tmp}/.local/share/claude-s
 EXIT_CODE=0
 descendants=()
 
+# Orphan-sweep fallback for the no-session-pid case. Default off. "dry-run" logs candidate reaps
+# without mutating; "1"/"on"/"live" reaps. It delegates to the ORPHAN-ONLY sweeper, which reaps only
+# ownerless (reparented) MCP processes and so can never touch a live sibling session — unlike a PPID
+# guess, which this script deliberately refuses (see header). The sweeper path is overridable for tests.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ORPHAN_SWEEP_MODE="${SPECKIT_STOP_HOOK_ORPHAN_SWEEP:-off}"
+ORPHAN_SWEEPER_BIN="${SPECKIT_ORPHAN_SWEEPER_BIN:-$SCRIPT_DIR/orphan-mcp-sweeper.sh}"
+
 emit() {
   local line
   line="$(date '+%Y-%m-%dT%H:%M:%S%z') $*"
@@ -92,8 +100,26 @@ is_descendant_of_session() {
   return 1
 }
 
+# Without a session pid the session-scoped kill below is impossible, and guessing is unsafe. Fall
+# back to the orphan-only sweeper when explicitly enabled; otherwise keep the historical no-op.
+run_orphan_sweep_fallback() {
+  case "$ORPHAN_SWEEP_MODE" in
+    1|on|live)
+      emit "action=orphan-sweep mode=live reason=no-session-pid"
+      bash "$ORPHAN_SWEEPER_BIN" || true
+      ;;
+    dry-run|dryrun|dry)
+      emit "action=orphan-sweep mode=dry-run reason=no-session-pid"
+      bash "$ORPHAN_SWEEPER_BIN" --dry-run || true
+      ;;
+    *)
+      emit "action=skip reason=no-session-pid"
+      ;;
+  esac
+}
+
 if [ -z "$SESSION_PID" ]; then
-  emit "action=skip reason=no-session-pid"
+  run_orphan_sweep_fallback
   exit 0
 fi
 if ! kill -0 "$SESSION_PID" 2>/dev/null; then
