@@ -41,15 +41,15 @@ A socket that is already dead fails its probe immediately, so the retry loop doe
 
 ### Implementation
 
-| File | Role |
-|------|------|
-| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Defines `probeLeaseHolderWithRetries` and `resolveLeaseProbeAttempts`, drives them from `maybeBridgeLeaseHolder`, and reads `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS`, and `SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS` against the 6999ms probe ceiling |
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Shared | Defines `probeLeaseHolderWithRetries` and `resolveLeaseProbeAttempts`, drives them from `maybeBridgeLeaseHolder` and reads `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS` and `SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS` against the 6999ms probe ceiling |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/launcher-reap-hardening.vitest.ts` | Automated test | Unit-tests consecutive-failure reaping, alive-result short-circuit, the configurable retry budget, and dead-socket fast-fail |
+| `mcp_server/tests/launcher-reap-hardening.vitest.ts` | Automated test | Unit-tests consecutive-failure reaping, alive-result short-circuit, the configurable retry budget and dead-socket fast-fail |
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

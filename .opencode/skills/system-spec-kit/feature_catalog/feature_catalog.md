@@ -3434,7 +3434,7 @@ The launcher owns the shared mk-spec-memory daemon for the MCP host that spawned
 
 #### How It Works
 
-The launcher captures `LAUNCHER_INITIAL_PPID` at module load (the MCP host is its direct parent). When the `scheduleRelaunch` backoff fires, it evaluates the pure `shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid })` predicate; if the launcher is shutting down or its parent pid changed or reparented to 1, it releases the lease via `clearAllLeaseFiles` and exits instead of respawning. Crash-recovery and `recycleDaemonInPlace` run with the owner alive, so the predicate returns false and relaunch proceeds through `launchServer`.
+The launcher captures `LAUNCHER_INITIAL_PPID` at module load (the MCP host is its direct parent). When the `scheduleRelaunch` backoff fires, it evaluates the pure `shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid })` predicate. If the launcher is shutting down or its parent pid changed or reparented to 1, it releases the lease via `clearAllLeaseFiles` and exits instead of respawning. Crash-recovery and `recycleDaemonInPlace` run with the owner alive, so the predicate returns false and relaunch proceeds through `launchServer`.
 
 #### Source Files
 
@@ -3452,7 +3452,7 @@ The mk-spec-memory launcher's `log()` writes to stderr, which the MCP host captu
 
 #### How It Works
 
-`persistLauncherLogLine` appends each line; the file rotates to a single previous generation once it crosses `SPECKIT_LAUNCHER_LOG_MAX_BYTES` (default 1 MiB). Default-on, disablable with `SPECKIT_LAUNCHER_LOG=0`, path-overridable with `SPECKIT_LAUNCHER_LOG_PATH`. A logging failure never affects the launcher.
+`persistLauncherLogLine` appends each line. The file rotates to a single previous generation once it crosses `SPECKIT_LAUNCHER_LOG_MAX_BYTES` (default 1 MiB). Default-on, disablable with `SPECKIT_LAUNCHER_LOG=0`, path-overridable with `SPECKIT_LAUNCHER_LOG_PATH`. A logging failure never affects the launcher.
 
 #### Source Files
 
@@ -3470,7 +3470,7 @@ A single transient deep-probe miss used to make a sibling launcher reap the leas
 
 #### How It Works
 
-`maybeBridgeLeaseHolder` calls `probeLeaseHolderWithRetries`: the first probe keeps its tuned timeout, then up to `SPECKIT_LEASE_PROBE_RETRIES` (default 1) short retries with a backoff; any 'alive' short-circuits to a bridge, and only an all-failures run respawns. The default budget stays under the 6999 ms probe ceiling; dead sockets fail fast.
+`maybeBridgeLeaseHolder` calls `probeLeaseHolderWithRetries`: the first probe keeps its tuned timeout, then up to `SPECKIT_LEASE_PROBE_RETRIES` (default 1) short retries with a backoff. Any 'alive' short-circuits to a bridge, and only an all-failures run respawns. The default budget stays under the 6999 ms probe ceiling. Dead sockets fail fast.
 
 #### Source Files
 
@@ -3488,7 +3488,7 @@ mk-code-index bridged clients through a raw socket with no reconnect, so an owne
 
 #### How It Works
 
-A generic `createClassifyFrame({replayableToolNames, unsafeToolNames})` factory lets each server pass its own replay set (the default mk-spec-memory classifier is unchanged). mk-code-index replays read-only structural tools (`code_graph_query`/`context`/`status`/`classify_query_intent`/`detect_changes`) and never replays `code_graph_scan`, `code_graph_apply`, or `code_graph_verify` (verify mutates when `persistBaseline=true`).
+A generic `createClassifyFrame({replayableToolNames, unsafeToolNames})` factory lets each server pass its own replay set (the default mk-spec-memory classifier is unchanged). mk-code-index replays read-only structural tools (`code_graph_query`/`context`/`status`/`classify_query_intent`/`detect_changes`) and never replays `code_graph_scan`, `code_graph_apply` or `code_graph_verify` (verify mutates when `persistBaseline=true`).
 
 #### Source Files
 
@@ -3506,7 +3506,7 @@ The shared daemon dies with its owner because the owner explicitly kills it on s
 
 #### How It Works
 
-When `SPECKIT_DAEMON_REELECTION` is on, the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) for a live secondary to adopt. Default-off is byte-identical to prior behavior. Secondary ownership adoption and the released daemon's terminal idle-death are runtime-validation-gated; a released daemon reparents to pid 1, so the orphan sweeper bounds any leak.
+When `SPECKIT_DAEMON_REELECTION` is on, the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) for a live secondary to adopt. Default-off is byte-identical to prior behavior. Secondary ownership adoption and the released daemon's terminal idle-death are runtime-validation-gated. A released daemon reparents to pid 1, so the orphan sweeper bounds any leak.
 
 #### Source Files
 

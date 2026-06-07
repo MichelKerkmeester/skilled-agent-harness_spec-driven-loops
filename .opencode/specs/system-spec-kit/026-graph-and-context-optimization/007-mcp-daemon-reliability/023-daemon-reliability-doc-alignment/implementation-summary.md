@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment"
-    last_updated_at: "2026-06-07T18:10:00Z"
+    last_updated_at: "2026-06-07T19:15:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Aligned all operator-facing docs with 018-022; counts + links verified"
-    next_safe_action: "v3.5.0.3 changelog + a fresh sk-code/sk-doc alignment cross-check"
+    recent_action: "Remediated sk-doc/sk-code audit findings across daemon-reliability docs"
+    next_safe_action: "Commit + push the remediation, then packet is complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
@@ -80,7 +80,13 @@ A gpt-5.5 (cli-codex) audit produced the feature x surface matrix. Two `@markdow
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The alignment was driven by a gpt-5.5 audit and verified mechanically: the playbook's own deterministic file-count self-check passes at 391, the catalog count prose matches at 325, and the repo-wide markdown link checker reports 0 broken across 3081 files. Every catalog SOURCE FILES path, named symbol, and env flag was grep-confirmed by the authoring agents. `validate.sh --strict` passes for this packet. No code was touched.
+The alignment was driven by a gpt-5.5 audit and verified mechanically: the playbook's own deterministic file-count self-check passes at 391, the catalog count prose matches at 325, and the repo-wide markdown link checker reports 0 broken across 3081 files. Every catalog SOURCE FILES path, named symbol, and env flag was grep-confirmed by the authoring agents. `validate.sh --strict` passes for this packet. The alignment itself touched no code.
+
+### Post-merge audit remediation
+
+After merge, a two-track gpt-5.5 HIGH cross-check ran as the declared next step. An sk-code pass over the 017-022 code came back green on syntax and the 53-test launcher suite and flagged only comment hygiene. An sk-doc pass over these docs found template-contract drift, HVR voice violations, evergreen packet-ID leaks and two stale code-folder READMEs.
+
+The remediation converted all six catalog SOURCE FILES tables to the snippet's File-Layer-Role contract. It converted all six playbook SOURCE FILES sections to the Playbook-Sources and Implementation-And-Test-Anchors tables, which also removed the spec-packet links that broke the evergreen rule. It stripped packet-history labels from the eight ENV_REFERENCE rows and the playbook root index. It cleared semicolons and list Oxford commas from the entries, the catalog root sections and the v3.5.0.4 changelog. It refreshed `bin/lib/README.md` for the reconnecting session proxy and the lease-retry helpers, `scripts/README.md` for the stale PPID-fallback claim that is now a no-PPID-guess with an opt-in orphan-sweep fallback, and the root README reliability list that now includes 017 and 021. Two perishable comment labels in the launcher were rewritten to durable intent. The 421 owner-disposal pair was remediated alongside 422-426 even though the audit sampled only 422-426.
 <!-- /ANCHOR:how-delivered -->
 
 ---

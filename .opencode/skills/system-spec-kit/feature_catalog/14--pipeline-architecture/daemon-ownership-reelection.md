@@ -41,15 +41,15 @@ A released daemon whose owner has exited reparents to pid 1. If no live secondar
 
 ### Implementation
 
-| File | Role |
-|------|------|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Defines `daemonReelectionEnabled` over `SPECKIT_DAEMON_REELECTION`, spawns the daemon detached via `contextServerSpawnIo`, and releases rather than kills the daemon through `shouldReleaseDaemonForReelection` inside `shutdownLauncherForSignal` |
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Defines `daemonReelectionEnabled` over `SPECKIT_DAEMON_REELECTION`, spawns the daemon detached via `contextServerSpawnIo` and releases rather than kills the daemon through `shouldReleaseDaemonForReelection` inside `shutdownLauncherForSignal` |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/launcher-daemon-reelection.vitest.ts` | Automated test | Unit-tests the default-off no-change path, the detached spawn under the flag, the release-instead-of-kill shutdown decision, and lease handling |
+| `mcp_server/tests/launcher-daemon-reelection.vitest.ts` | Automated test | Unit-tests the default-off no-change path, the detached spawn under the flag, the release-instead-of-kill shutdown decision and lease handling |
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

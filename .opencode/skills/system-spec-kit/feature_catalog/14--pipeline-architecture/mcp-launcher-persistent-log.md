@@ -27,7 +27,7 @@ The persistent log makes the launcher's `log()` also append the same line to a d
 
 ### Enablement gate
 
-`launcherLogIsEnabled` reads `SPECKIT_LAUNCHER_LOG`. The feature is on by default; setting the variable to `0` disables the durable append entirely while leaving stderr logging intact.
+`launcherLogIsEnabled` reads `SPECKIT_LAUNCHER_LOG`. The feature is on by default. Setting the variable to `0` disables the durable append entirely while leaving stderr logging intact.
 
 ### Path resolution
 
@@ -41,15 +41,15 @@ The persistent log makes the launcher's `log()` also append the same line to a d
 
 ### Implementation
 
-| File | Role |
-|------|------|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Defines `persistLauncherLogLine`, `launcherLogIsEnabled`, `resolveLauncherLogPath`, and `shouldRotateLauncherLog`; reads `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LAUNCHER_LOG_PATH`, and `SPECKIT_LAUNCHER_LOG_MAX_BYTES`; and calls the durable append from the launcher `log()` path |
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Defines `persistLauncherLogLine`, `launcherLogIsEnabled`, `resolveLauncherLogPath` and `shouldRotateLauncherLog`. Reads `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LAUNCHER_LOG_PATH` and `SPECKIT_LAUNCHER_LOG_MAX_BYTES`. Calls the durable append from the launcher `log()` path |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/launcher-persistent-log.vitest.ts` | Automated test | Unit-tests enablement, path resolution, the durable append, and single-generation rotation at the size cap |
+| `mcp_server/tests/launcher-persistent-log.vitest.ts` | Automated test | Unit-tests enablement, path resolution, the durable append and single-generation rotation at the size cap |
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

@@ -17,7 +17,7 @@ The check is automated-test-backed. A human runs the bridge syntax check, the re
 - Real user request: `My daemon keeps getting killed when the machine is busy, even though it was fine. Does the launcher retry the lease check before deciding the socket is dead?`
 - Prompt: `Validate the launcher lease-probe retry hardening and confirm reap only fires after the configured number of consecutive probe failures.`
 - Expected execution process: Run the IPC bridge syntax check, run the reap-hardening unit tests, and grep for the retrying probe and attempt-count resolver to confirm they are defined and drive the reap decision.
-- Expected signals: `node --check` exits cleanly for the bridge; `launcher-reap-hardening.vitest.ts` passes including the retry-then-succeed and retry-then-reap cases; `probeLeaseHolderWithRetries` and `resolveLeaseProbeAttempts` appear at their definitions and at the reap-path call site.
+- Expected signals: `node --check` exits cleanly for the bridge. `launcher-reap-hardening.vitest.ts` passes including the retry-then-succeed and retry-then-reap cases. `probeLeaseHolderWithRetries` and `resolveLeaseProbeAttempts` appear at their definitions and at the reap-path call site.
 - Desired user-visible outcome: A momentarily slow or busy lease holder survives transient probe failures, and only a genuinely dead socket is reaped.
 - Pass/fail: PASS only when syntax, unit tests, and probe-retry wiring all match expectations.
 
@@ -56,9 +56,19 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 
 ## 4. SOURCE FILES
 
-- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/lease-probe-retry-reap-hardening.md](../../feature_catalog/14--pipeline-architecture/lease-probe-retry-reap-hardening.md)
-- Spec packet: [../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening/implementation-summary.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening/implementation-summary.md)
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../feature_catalog/14--pipeline-architecture/lease-probe-retry-reap-hardening.md` | Feature-catalog source describing the implementation contract |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Primary implementation anchor |
+| `mcp_server/tests/launcher-reap-hardening.vitest.ts` | Regression or validation anchor |
 
 ## 5. SOURCE METADATA
 

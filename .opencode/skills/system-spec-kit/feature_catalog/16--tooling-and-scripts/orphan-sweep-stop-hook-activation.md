@@ -41,16 +41,16 @@ The branch delegates to `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP 
 
 ### Implementation
 
-| File | Role |
-|------|------|
-| `.opencode/scripts/session-cleanup.sh` | Reads `CLAUDE_SESSION_PID`, refuses PPID guessing, and in the no-session-pid branch delegates to the orphan sweeper based on `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (off / dry-run / live) with the path override `SPECKIT_ORPHAN_SWEEPER_BIN` |
-| `.opencode/scripts/orphan-mcp-sweeper.sh` | Reaps only ownerless reparented MCP daemons, supporting a dry-run mode that logs candidates without mutating |
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/scripts/session-cleanup.sh` | Script | Reads `CLAUDE_SESSION_PID`, refuses PPID guessing and in the no-session-pid branch delegates to the orphan sweeper based on `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (off / dry-run / live) with the path override `SPECKIT_ORPHAN_SWEEPER_BIN` |
+| `.opencode/scripts/orphan-mcp-sweeper.sh` | Script | Reaps only ownerless reparented MCP daemons, supporting a dry-run mode that logs candidates without mutating |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Automated test | Unit-tests the default-off no-op, dry-run and live mode gating, delegation to the orphan-only sweeper, and the test-override sweeper path |
+| `mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Automated test | Unit-tests the default-off no-op, dry-run and live mode gating, delegation to the orphan-only sweeper and the test-override sweeper path |
 
 ## 4. SOURCE METADATA
 - Group: Tooling and Scripts

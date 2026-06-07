@@ -1,6 +1,6 @@
 ---
 title: "Repo Scripts Runbook"
-description: "Operator-facing runbook for repository-level maintenance scripts, including dry-run orphan MCP cleanup and Claude session cleanup."
+description: "Operator-facing runbook for repository-level maintenance scripts, including dry-run orphan MCP cleanup and session cleanup with an opt-in orphan-sweep fallback."
 trigger_phrases:
   - "repo scripts"
   - "orphan mcp sweeper"
@@ -17,7 +17,7 @@ importance_tier: "important"
 
 - [1. OVERVIEW](#1--overview)
 - [2. ORPHAN MCP SWEEPER](#2--orphan-mcp-sweeper)
-- [3. CLAUDE SESSION CLEANUP](#3--claude-session-cleanup)
+- [3. SESSION CLEANUP](#3--session-cleanup)
 - [4. VALIDATION](#4--validation)
 - [5. RELATED](#5--related)
 
@@ -33,7 +33,7 @@ This folder holds small repository-level operational scripts. The orphan MCP lea
 | File | Purpose | Rollout state |
 |---|---|---|
 | `orphan-mcp-sweeper.sh` | Scans stale MCP helper processes and stale `/tmp` dispatch artifacts. | Implemented, dry-run reviewed. |
-| `claude-session-cleanup.sh` | Kills only MCP helper descendants of the current Claude Code session. | Wired through repo-local `.claude/settings.local.json`. |
+| `session-cleanup.sh` | Kills only MCP helper descendants of the current session, resolved from `CLAUDE_SESSION_PID`. The old `claude-session-cleanup.sh` name still resolves through a back-compat shim. | Wired through repo-local `.claude/settings.local.json`. |
 
 The canonical implementation packet is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/`.
 
@@ -85,10 +85,10 @@ Real mode sends SIGTERM to selected PIDs, waits 5 seconds, then sends SIGKILL to
 
 ---
 
-<!-- ANCHOR:claude-session-cleanup -->
-## 3. CLAUDE SESSION CLEANUP
+<!-- ANCHOR:session-cleanup -->
+## 3. SESSION CLEANUP
 
-`claude-session-cleanup.sh` is session-scoped. It starts from `CLAUDE_SESSION_PID` when set, otherwise from the hook process `PPID`, walks descendants, and sends SIGTERM only to matching MCP helpers.
+`session-cleanup.sh` is session-scoped. It resolves the session from `CLAUDE_SESSION_PID`, walks descendants, and sends SIGTERM only to matching MCP helpers. There is deliberately no `PPID` fallback: under a shared terminal that ancestor can be common to many live sessions, so a missing session pid means the session-scoped kill does nothing rather than risk reaping a sibling session's helpers. The old `claude-session-cleanup.sh` name still resolves through a back-compat shim.
 
 The script logs to:
 
@@ -99,12 +99,16 @@ The script logs to:
 Override the log path with:
 
 ```bash
-CLAUDE_SESSION_CLEANUP_LOG_PATH=/tmp/claude-stop-hook.log bash .opencode/scripts/claude-session-cleanup.sh
+CLAUDE_SESSION_CLEANUP_LOG_PATH=/tmp/claude-stop-hook.log bash .opencode/scripts/session-cleanup.sh
 ```
+
+### Orphan-sweep fallback (no session pid)
+
+When no `CLAUDE_SESSION_PID` is present, an opt-in fallback can still reap leftover daemons without guessing the session. `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` controls it: `off` (the default) keeps the historical no-op, `dry-run` logs the candidate reaps without mutating, and `1`/`on`/`live` reaps. It delegates only to the orphan-only `orphan-mcp-sweeper.sh`, which reaps ownerless reparented processes and so can never touch a live session. `SPECKIT_ORPHAN_SWEEPER_BIN` overrides the sweeper path for tests.
 
 The repo-local `.claude/settings.local.json` chains this script after the canonical `session-stop.js` command inside the existing single nested `Stop` hook. It should not be duplicated as a second parallel `Stop` hook entry.
 
-<!-- /ANCHOR:claude-session-cleanup -->
+<!-- /ANCHOR:session-cleanup -->
 
 ---
 
@@ -115,7 +119,7 @@ Run from the repository root:
 
 ```bash
 bash -n .opencode/scripts/orphan-mcp-sweeper.sh
-bash -n .opencode/scripts/claude-session-cleanup.sh
+bash -n .opencode/scripts/session-cleanup.sh
 bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log
 ```
 

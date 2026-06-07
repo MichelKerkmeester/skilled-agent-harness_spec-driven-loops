@@ -11,7 +11,7 @@ This scenario verifies the experimental daemon-ownership reelection path in the 
 
 The check is automated-test-backed. A human runs the launcher syntax check, the reelection unit suite, and a grep that proves the flag resolver, the spawn-io selector, and the release predicate are defined and wired. Together they confirm the default-off identity holds and the release only happens when reelection is explicitly enabled.
 
-This feature is experimental and default-off. The default-off identity is the contract under test; the enabled path is opt-in and not the baseline behavior.
+This feature is experimental and default-off. The default-off identity is the contract under test. The enabled path is opt-in and not the baseline behavior.
 
 ## 2. SCENARIO CONTRACT
 
@@ -19,8 +19,8 @@ This feature is experimental and default-off. The default-off identity is the co
 - Real user request: `Is there a way for another live session to take over the shared daemon instead of relaunching it, and is that behavior safely off by default so nothing changes unless I turn it on?`
 - Prompt: `Validate the experimental daemon-ownership reelection path and confirm it is flag-gated and default-off.`
 - Expected execution process: Run the launcher syntax check, run the reelection unit tests, and grep for the flag resolver, the spawn-io selector, and the release predicate to confirm they are defined and that the default resolves to disabled.
-- Expected signals: `node --check` exits cleanly for the launcher; `launcher-daemon-reelection.vitest.ts` passes including the default-off identity case and the enabled-release case; `daemonReelectionEnabled`, `shouldReleaseDaemonForReelection`, and `contextServerSpawnIo` appear at their definitions and at the call sites that resolve the flag, select spawn io, and decide whether to release.
-- Desired user-visible outcome: With the flag unset, ownership behavior is unchanged; only an operator who opts in sees the daemon released for reelection.
+- Expected signals: `node --check` exits cleanly for the launcher. `launcher-daemon-reelection.vitest.ts` passes including the default-off identity case and the enabled-release case. `daemonReelectionEnabled`, `shouldReleaseDaemonForReelection` and `contextServerSpawnIo` appear at their definitions and at the call sites that resolve the flag, select spawn io and decide whether to release.
+- Desired user-visible outcome: With the flag unset, ownership behavior is unchanged. Only an operator who opts in sees the daemon released for reelection.
 - Pass/fail: PASS only when syntax, unit tests, and flag-gated default-off wiring all match expectations.
 
 ## 3. TEST EXECUTION
@@ -58,9 +58,19 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 
 ## 4. SOURCE FILES
 
-- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/daemon-ownership-reelection.md](../../feature_catalog/14--pipeline-architecture/daemon-ownership-reelection.md)
-- Spec packet: [../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection/implementation-summary.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection/implementation-summary.md)
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../feature_catalog/14--pipeline-architecture/daemon-ownership-reelection.md` | Feature-catalog source describing the implementation contract |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
+| `mcp_server/tests/launcher-daemon-reelection.vitest.ts` | Regression or validation anchor |
 
 ## 5. SOURCE METADATA
 

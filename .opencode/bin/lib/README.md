@@ -11,12 +11,13 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`bin/lib/` holds the shared CommonJS helpers that the MCP launchers in `bin/` require. It supervises the lifetime of the hf-model-server, bridges launcher stdio to a running daemon socket, and constrains the environment passed to the embedding sidecar.
+`bin/lib/` holds the shared CommonJS helpers that the MCP launchers in `bin/` require. It supervises the lifetime of the hf-model-server, bridges launcher stdio to a running daemon socket, reconnects that bridge transparently across daemon recycles, and constrains the environment passed to the embedding sidecar.
 
 Current state:
 
 - `model-server-supervision.cjs` owns crash-loop guarding, RSS watchdog, respawn-lock liveness, listener re-arm, and reaping the process tree (including the root) when the model server is idle-evicted.
-- `launcher-ipc-bridge.cjs` resolves per-service socket paths, probes daemon and model-server health, and bridges stdin/stdout to the live socket so a second launcher hands off to the lease holder.
+- `launcher-ipc-bridge.cjs` resolves per-service socket paths, probes daemon and model-server health (retrying the lease-holder probe a configurable number of times before reaping a slow-but-alive owner), and bridges stdin/stdout to the live socket so a second launcher hands off to the lease holder.
+- `launcher-session-proxy.cjs` fronts the daemon with a reconnecting stdin/stdout bridge that reattaches and replays in-flight read frames across a daemon recycle, and exposes the `createClassifyFrame` factory each launcher uses to declare its own replayable and unsafe tool sets.
 - `sidecar-env-allowlist.cjs` is a tiny frozen allowlist that decides which env keys may cross into the embedding sidecar process.
 
 ---
@@ -56,7 +57,8 @@ Current state:
 ```text
 lib/
 +-- model-server-supervision.cjs   # hf-model-server lifecycle: spawn, watchdog, respawn, reap
-+-- launcher-ipc-bridge.cjs        # Socket path resolution, health probes, stdio bridging
++-- launcher-ipc-bridge.cjs        # Socket path resolution, health probes, lease-probe retry, stdio bridging
++-- launcher-session-proxy.cjs     # Reconnecting stdio-to-daemon proxy: replay + createClassifyFrame factory
 +-- sidecar-env-allowlist.cjs      # Frozen env-key allowlist for the embedding sidecar
 `-- README.md
 ```
@@ -68,7 +70,8 @@ lib/
 | File | Responsibility |
 |---|---|
 | `model-server-supervision.cjs` | Builds the model-server supervisor: process-tree RSS sampling, crash-loop backoff, RSS watchdog, respawn-lock liveness, descendant snapshotting, give-up cooldown, socket-dir ownership and SUN_PATH limit assertions, and reaping the process tree root on idle eviction. |
-| `launcher-ipc-bridge.cjs` | Resolves the per-service IPC socket path, probes daemon and model-server health over JSON-RPC and HTTP, and bridges launcher stdio to the socket so a non-owning launcher defers to the lease holder. |
+| `launcher-ipc-bridge.cjs` | Resolves the per-service IPC socket path, probes daemon and model-server health over JSON-RPC and HTTP, retries the lease-holder probe (`probeLeaseHolderWithRetries` / `resolveLeaseProbeAttempts`) so a slow-but-alive owner is not false-reaped, and bridges launcher stdio to the socket so a non-owning launcher defers to the lease holder. |
+| `launcher-session-proxy.cjs` | Fronts the daemon with a reconnecting stdin/stdout bridge that reattaches across a daemon recycle and replays in-flight read frames, and exports the `createClassifyFrame({ replayableToolNames, unsafeToolNames })` factory each launcher passes its own replay set to. |
 | `sidecar-env-allowlist.cjs` | Exports `SIDECAR_ENV_ALLOWLIST` and `isAllowedSidecarEnvKey`; only exact keys (`HOME`, `LANG`, `PATH`, `PYTORCH_ENABLE_MPS_FALLBACK`, `TEMP`, `TMP`, `TMPDIR`, `TRANSFORMERS_OFFLINE`) and prefixes (`HF_`, `LC_`, `SPECKIT_`) cross into the sidecar. |
 
 ---
@@ -124,6 +127,9 @@ Main flow (supervision):
 | `startRssWatchdog` | Function | Sample the child process tree RSS and act on sustained breaches. |
 | `reapProcessTreeGroups` | Function | Terminate the model-server process tree, including the root, on shutdown or idle eviction. |
 | `maybeBridgeLeaseHolder` | Function | Bridge launcher stdio to an existing lease holder instead of spawning a duplicate. |
+| `probeLeaseHolderWithRetries` | Function | Probe the lease holder with bounded retries so a slow-but-alive owner is not false-reaped before a sibling respawns. |
+| `createSessionProxy` | Function | Build the reconnecting stdin/stdout proxy that reattaches and replays in-flight read frames across a daemon recycle. |
+| `createClassifyFrame` | Function | Build a per-server frame classifier from a replayable and unsafe tool set, deciding which frames are safe to replay. |
 | `probeDaemon` / `probeModelServer` | Function | Health-check the MCP daemon socket and the model server endpoint. |
 | `isAllowedSidecarEnvKey` | Function | Decide whether an env key may pass into the embedding sidecar. |
 
@@ -136,6 +142,7 @@ Run from the repository root.
 ```bash
 node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
 node -e "require('./.opencode/bin/lib/launcher-ipc-bridge.cjs')"
+node -e "require('./.opencode/bin/lib/launcher-session-proxy.cjs')"
 node -e "require('./.opencode/bin/lib/sidecar-env-allowlist.cjs')"
 ```
 

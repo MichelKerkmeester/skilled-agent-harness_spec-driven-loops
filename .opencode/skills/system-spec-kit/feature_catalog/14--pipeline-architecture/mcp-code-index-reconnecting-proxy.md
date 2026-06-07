@@ -41,16 +41,16 @@ The code-index replay set covers the read tools `code_graph_query`, `code_graph_
 
 ### Implementation
 
-| File | Role |
-|------|------|
-| `.opencode/bin/mk-code-index-launcher.cjs` | Bridges secondary clients through the reconnecting session proxy, declares the code-graph replayable read set and the never-replay scan/apply/verify set, and builds the code-index classify frame |
-| `.opencode/bin/lib/launcher-session-proxy.cjs` | Defines the generic `createClassifyFrame({ replayableToolNames, unsafeToolNames })` factory that drives per-server replay classification for both mk-code-index and mk-spec-memory |
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/bin/mk-code-index-launcher.cjs` | Script | Bridges secondary clients through the reconnecting session proxy, declares the code-graph replayable read set and the never-replay scan/apply/verify set and builds the code-index classify frame |
+| `.opencode/bin/lib/launcher-session-proxy.cjs` | Shared | Defines the generic `createClassifyFrame({ replayableToolNames, unsafeToolNames })` factory that drives per-server replay classification for both mk-code-index and mk-spec-memory |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/launcher-code-index-proxy.vitest.ts` | Automated test | Unit-tests the code-index reattach-and-replay path, the read-tool replay set, and the never-replay classification of scan, apply, and verify |
+| `mcp_server/tests/launcher-code-index-proxy.vitest.ts` | Automated test | Unit-tests the code-index reattach-and-replay path, the read-tool replay set and the never-replay classification of scan, apply and verify |
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

@@ -185,7 +185,7 @@ function persistLauncherLogLine(line) {
   }
 }
 
-// Daemon re-election (RC-2, EXPERIMENTAL, default OFF). When enabled the owner spawns the daemon
+// Daemon re-election (experimental, default off). When enabled the owner spawns the daemon
 // detached and, on its own shutdown, RELEASES the daemon (leaves it running for a live secondary to
 // bridge to) instead of killing it, so a session ending does not tear the shared backend out from
 // under other sessions. Default off collapses every path below to today's behavior (daemon tied to
@@ -1363,7 +1363,7 @@ async function shutdownLauncherForSignal(signal) {
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
 
-  // RC-2 re-election (default off): release the detached context-server for a live secondary to adopt
+  // Re-election release path (default off): release the detached context-server for a live secondary to adopt
   // instead of killing it. Reap only the non-adoptable model-server, KEEP the daemon lease (its socket
   // stays findable for adoption), drop only OWNERSHIP, and exit without killing the daemon. When the
   // flag is off this branch is skipped and the original kill path below runs unchanged.

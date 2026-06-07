@@ -17,7 +17,7 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 - Real user request: `I keep losing the launcher logs when a session ends, so I can't tell why the daemon flapped. Is the launcher writing a real log file now, and does it stay a sane size?`
 - Prompt: `Validate the mk-spec-memory launcher persistent log path and confirm log lines persist and rotation triggers past the size cap.`
 - Expected execution process: Run the launcher syntax check, run the persistent-log unit tests, and grep for the persist and rotation helpers to confirm they are defined and called on the logging path.
-- Expected signals: `node --check` exits cleanly for the launcher; `launcher-persistent-log.vitest.ts` passes including the append and rotation cases; `persistLauncherLogLine` and `shouldRotateLauncherLog` appear at their definitions and at the logging call site.
+- Expected signals: `node --check` exits cleanly for the launcher. `launcher-persistent-log.vitest.ts` passes including the append and rotation cases. `persistLauncherLogLine` and `shouldRotateLauncherLog` appear at their definitions and at the logging call site.
 - Desired user-visible outcome: Launcher activity survives session end in a bounded, durable log that an operator can read to explain relaunch and disposal behavior.
 - Pass/fail: PASS only when syntax, unit tests, and helper wiring all match expectations.
 
@@ -56,9 +56,19 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 
 ## 4. SOURCE FILES
 
-- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/mcp-launcher-persistent-log.md](../../feature_catalog/14--pipeline-architecture/mcp-launcher-persistent-log.md)
-- Spec packet: [../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log/implementation-summary.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log/implementation-summary.md)
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../feature_catalog/14--pipeline-architecture/mcp-launcher-persistent-log.md` | Feature-catalog source describing the implementation contract |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
+| `mcp_server/tests/launcher-persistent-log.vitest.ts` | Regression or validation anchor |
 
 ## 5. SOURCE METADATA
 

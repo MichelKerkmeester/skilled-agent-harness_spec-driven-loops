@@ -17,7 +17,7 @@ The check is automated-test-backed. A human runs the shell syntax check, the Sto
 - Real user request: `Stray launcher processes pile up after sessions end. Is there an opt-in cleanup on the Stop hook, and is it safely off by default so it doesn't kill a live session?`
 - Prompt: `Validate the Stop-hook orphan-sweep fallback and confirm it is default-off and only activates when the environment flag is set.`
 - Expected execution process: Run the shell syntax check, run the Stop-hook orphan-sweep unit tests, and grep for the fallback function and the controlling flag to confirm they are defined and the flag defaults to off.
-- Expected signals: `bash -n` exits cleanly for the cleanup script; `launcher-stop-hook-orphan-sweep.vitest.ts` passes including the default-off and flag-enabled cases; `run_orphan_sweep_fallback` and `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` appear at the function definition, the default-off assignment, and the activation guard.
+- Expected signals: `bash -n` exits cleanly for the cleanup script. `launcher-stop-hook-orphan-sweep.vitest.ts` passes including the default-off and flag-enabled cases. `run_orphan_sweep_fallback` and `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` appear at the function definition, the default-off assignment and the activation guard.
 - Desired user-visible outcome: Operators can opt into reaping leftover launcher processes on session end, while the default behavior leaves live sessions untouched.
 - Pass/fail: PASS only when syntax, unit tests, and flag-gated wiring all match expectations.
 
@@ -56,9 +56,20 @@ If the syntax check fails, inspect the function placement and the shell quoting 
 
 ## 4. SOURCE FILES
 
-- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md](../../feature_catalog/16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md)
-- Spec packet: [../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation/implementation-summary.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation/implementation-summary.md)
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../feature_catalog/16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md` | Feature-catalog source describing the implementation contract |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `.opencode/scripts/session-cleanup.sh` | Primary implementation anchor |
+| `.opencode/scripts/orphan-mcp-sweeper.sh` | Orphan-only sweeper anchor |
+| `mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Regression or validation anchor |
 
 ## 5. SOURCE METADATA
 

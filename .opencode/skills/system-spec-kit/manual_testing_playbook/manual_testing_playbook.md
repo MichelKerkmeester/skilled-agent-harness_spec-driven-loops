@@ -170,7 +170,7 @@ fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-07, the deterministic file count is 391. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup; scenarios 421-426 are the daemon-reliability hardening entries (specs 017-022). Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-07, the deterministic file count is 391. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 

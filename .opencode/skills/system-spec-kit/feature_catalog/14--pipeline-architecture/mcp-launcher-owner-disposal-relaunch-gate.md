@@ -27,7 +27,7 @@ The launcher captures `LAUNCHER_INITIAL_PPID` once at module load. The MCP host 
 
 ### Fire-time relaunch gate
 
-`scheduleRelaunch` still schedules the normal child-exit backoff. When the timer fires it evaluates `shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid })`. When that returns true the launcher logs the abort, calls `clearAllLeaseFiles`, and exits 0; otherwise it calls `launchServer` and the daemon respawns.
+`scheduleRelaunch` still schedules the normal child-exit backoff. When the timer fires it evaluates `shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid })`. When that returns true the launcher logs the abort, calls `clearAllLeaseFiles` and exits 0. Otherwise it calls `launchServer` and the daemon respawns.
 
 ### Pure, testable predicate
 
@@ -41,16 +41,16 @@ The gate is additive. Crash-recovery and the in-place RSS-recycle (`recycleDaemo
 
 ### Implementation
 
-| File | Role |
-|------|------|
-| `.opencode/bin/lib/model-server-supervision.cjs` | Defines and exports the pure `shouldAbortRelaunchOnFire` predicate alongside `shouldSkipLaunch` and `superviseChildExit` |
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Captures `LAUNCHER_INITIAL_PPID`, calls `shouldAbortRelaunchOnFire` inside the `scheduleRelaunch` timer, releases leases via `clearAllLeaseFiles`, and re-exports the predicate; the crash and `recycleDaemonInPlace` paths still reach `launchServer` |
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/bin/lib/model-server-supervision.cjs` | Shared | Defines and exports the pure `shouldAbortRelaunchOnFire` predicate alongside `shouldSkipLaunch` and `superviseChildExit` |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Captures `LAUNCHER_INITIAL_PPID`, calls `shouldAbortRelaunchOnFire` inside the `scheduleRelaunch` timer, releases leases via `clearAllLeaseFiles` and re-exports the predicate. The crash and `recycleDaemonInPlace` paths still reach `launchServer` |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/launcher-watchdog.vitest.ts` | Automated test | Unit-tests `shouldAbortRelaunchOnFire` across owner-alive, shutdown, changed-ppid, orphan-to-1, and crash/recycle cases alongside the watchdog helpers |
+| `mcp_server/tests/launcher-watchdog.vitest.ts` | Automated test | Unit-tests `shouldAbortRelaunchOnFire` across owner-alive, shutdown, changed-ppid, orphan-to-1 and crash/recycle cases alongside the watchdog helpers |
 | `mcp_server/stress_test/durability/daemon-recycle-transparency-stress.vitest.ts` | Automated test | Daemon-recycle transparency under load, where bridged clients survive an in-place recycle |
 
 ## 4. SOURCE METADATA
