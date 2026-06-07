@@ -18,6 +18,7 @@ Current state:
 - Each launcher loads project-local `.env.local` / `.env`, ensures the server's `dist/` artifacts are built and current, serializes concurrent starts with a filesystem bootstrap lock, then spawns the MCP child and bridges stdio to the running daemon.
 - `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`.
+- Launcher reliability knobs — persistent log, lease-probe reap hardening, the mk-code-index reconnecting proxy, the Stop-hook orphan-sweep fallback, and an experimental default-off daemon re-election — are operator-tunable via `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION`; see the MCP server's [`ENV_REFERENCE.md`](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
 ---
 

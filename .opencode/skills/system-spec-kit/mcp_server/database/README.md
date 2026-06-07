@@ -24,6 +24,7 @@ Current responsibilities:
 - Hold reserved space for future per-server schema migrations under `migrations/`.
 - Store structural code graph and evaluation databases when the default path is active.
 - Provide marker files used by runtime state checks.
+- Hold launcher runtime files: the owner lease, and (when `SPECKIT_LAUNCHER_LOG` is enabled, the default) the persistent launcher log `.mk-spec-memory-launcher.log` plus its rotated `.prev.log` generation. These are gitignored runtime artifacts, not source.
 
 The default path is resolved through shared path and config helpers. Runtime variables such as `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` and `SPECKIT_DB_DIR` can point storage elsewhere.
 

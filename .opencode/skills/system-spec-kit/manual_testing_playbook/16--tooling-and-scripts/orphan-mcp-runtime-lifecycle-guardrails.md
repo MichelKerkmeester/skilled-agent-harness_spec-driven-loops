@@ -9,6 +9,8 @@ description: "Manual validation for dry-run orphan MCP cleanup, preservation rul
 
 This scenario validates the operator-facing lifecycle guardrails added for orphan MCP leak prevention. It focuses on proving that the sweeper can be reviewed safely in dry-run mode, that preserve decisions are visible, that the LaunchAgent template is only a valid template, and that the shared idle-timeout knob is discoverable from runtime docs.
 
+The flag-gated Stop-hook orphan-sweep fallback (`SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, default off) that wires this same orphan-only sweeper into `session-cleanup.sh`'s no-session-pid branch is validated separately in scenario 425. Claude session cleanup itself remains session-scoped (it still refuses to guess the pid); the scenario-425 fallback only reaps ownerless processes.
+
 ---
 
 ## 2. SCENARIO CONTRACT

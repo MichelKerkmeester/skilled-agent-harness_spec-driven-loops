@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log",
+      "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening",
+      "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy",
+      "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation",
+      "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [
+      "daemon reliability doc alignment",
+      "018-022 feature catalog playbook",
+      "ENV_REFERENCE launcher flags"
+    ],
+    "key_topics": ["doc-alignment", "feature-catalog", "playbook", "env-reference", "daemon-reliability"],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
+    ],
+    "entities": ["feature_catalog", "manual_testing_playbook", "ENV_REFERENCE", "SPECKIT_LAUNCHER_LOG", "SPECKIT_DAEMON_REELECTION"],
+    "causal_summary": "Align the operator-facing docs (ENV_REFERENCE flags, 5 feature_catalog entries, 5 playbook scenarios 422-426, README lifecycle rows, SKILL pointers) with the 018-022 daemon-reliability features, which a gpt-5.5 audit found entirely undocumented; counts + links verified.",
+    "created_at": "2026-06-07T18:10:00Z",
+    "last_save_at": "2026-06-07T18:10:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+  }
+}

@@ -3444,6 +3444,78 @@ See [`14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md`](1
 
 ---
 
+### MCP launcher persistent log
+
+#### Description
+
+The mk-spec-memory launcher's `log()` writes to stderr, which the MCP host captures inconsistently. It now also appends a timestamped, pid-stamped line to a bounded, best-effort durable file, so a daemon flap or owner-disposal race is attributable from disk after the fact.
+
+#### How It Works
+
+`persistLauncherLogLine` appends each line; the file rotates to a single previous generation once it crosses `SPECKIT_LAUNCHER_LOG_MAX_BYTES` (default 1 MiB). Default-on, disablable with `SPECKIT_LAUNCHER_LOG=0`, path-overridable with `SPECKIT_LAUNCHER_LOG_PATH`. A logging failure never affects the launcher.
+
+#### Source Files
+
+See [`14--pipeline-architecture/mcp-launcher-persistent-log.md`](14--pipeline-architecture/mcp-launcher-persistent-log.md) for full implementation and test file listings.
+
+> **Playbook:** [422](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Lease-probe retry reap hardening
+
+#### Description
+
+A single transient deep-probe miss used to make a sibling launcher reap the lease owner and spawn a duplicate daemon. Reaping now requires N consecutive probe failures, so a busy-but-alive owner (mid-FTS-merge) is no longer false-reaped.
+
+#### How It Works
+
+`maybeBridgeLeaseHolder` calls `probeLeaseHolderWithRetries`: the first probe keeps its tuned timeout, then up to `SPECKIT_LEASE_PROBE_RETRIES` (default 1) short retries with a backoff; any 'alive' short-circuits to a bridge, and only an all-failures run respawns. The default budget stays under the 6999 ms probe ceiling; dead sockets fail fast.
+
+#### Source Files
+
+See [`14--pipeline-architecture/lease-probe-retry-reap-hardening.md`](14--pipeline-architecture/lease-probe-retry-reap-hardening.md) for full implementation and test file listings.
+
+> **Playbook:** [423](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### MCP code-index reconnecting proxy
+
+#### Description
+
+mk-code-index bridged clients through a raw socket with no reconnect, so an owner death surfaced as a hard `Connection closed`. It now fronts its daemon with the same reconnecting session proxy as mk-spec-memory, so a code-index client reattaches to the respawned backend and replays in-flight read queries.
+
+#### How It Works
+
+A generic `createClassifyFrame({replayableToolNames, unsafeToolNames})` factory lets each server pass its own replay set (the default mk-spec-memory classifier is unchanged). mk-code-index replays read-only structural tools (`code_graph_query`/`context`/`status`/`classify_query_intent`/`detect_changes`) and never replays `code_graph_scan`, `code_graph_apply`, or `code_graph_verify` (verify mutates when `persistBaseline=true`).
+
+#### Source Files
+
+See [`14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md`](14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md) for full implementation and test file listings.
+
+> **Playbook:** [424](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Daemon ownership re-election (experimental, default-off)
+
+#### Description
+
+The shared daemon dies with its owner because the owner explicitly kills it on shutdown. This is the flag-gated, default-off foundation for the daemon to outlive its owner so secondary sessions do not lose the backend.
+
+#### How It Works
+
+When `SPECKIT_DAEMON_REELECTION` is on, the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) for a live secondary to adopt. Default-off is byte-identical to prior behavior. Secondary ownership adoption and the released daemon's terminal idle-death are runtime-validation-gated; a released daemon reparents to pid 1, so the orphan sweeper bounds any leak.
+
+#### Source Files
+
+See [`14--pipeline-architecture/daemon-ownership-reelection.md`](14--pipeline-architecture/daemon-ownership-reelection.md) for full implementation and test file listings.
+
+> **Playbook:** [426](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
 ## 16. RETRIEVAL ENHANCEMENTS
 
 ### Dual-scope memory auto-surface
@@ -4046,6 +4118,24 @@ Each session gets its own SQLite database, code-graph index and IPC socket direc
 See [`16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md`](16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md) for full implementation and validation listings.
 
 > **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md)
+
+---
+
+### Orphan-sweep Stop-hook activation
+
+#### Description
+
+The Stop hook's `session-cleanup.sh` reaps a session's MCP processes only when `CLAUDE_SESSION_PID` is set, but the harness never sets it, so orphaned daemons accumulate. It deliberately refuses to guess the pid (a PPID guess would kill live sibling sessions). When enabled, its no-session-pid branch delegates to the orphan-only sweeper, which reaps only ownerless processes and so can never touch a live session.
+
+#### How It Works
+
+`SPECKIT_STOP_HOOK_ORPHAN_SWEEP` gates the fallback: `off` (default) keeps the historical no-op, `dry-run` invokes `orphan-mcp-sweeper.sh --dry-run` (log only), and `1`/`on`/`live` reaps. A sweeper failure is swallowed so it can never break the hook.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md`](16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md) for full implementation and validation listings.
+
+> **Playbook:** [425](../manual_testing_playbook/16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md)
 
 ---
 
