@@ -903,7 +903,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 The shared runtime plus the five loop skills behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
 
 **deep-loop-runtime**
-- Shared runtime under all four deep loops: executor config, state safety, scoring, fallback routing, coverage-graph scripts, `storage/deep-loop-graph.sqlite`. See [Deep Loop](#deep-loop).
+- Shared runtime under all five deep loops: executor config, state safety, scoring, fallback routing, coverage-graph scripts, `storage/deep-loop-graph.sqlite`. See [Deep Loop](#deep-loop).
 
 **deep-research**
 - Autonomous research loop: iterative LEAF cycles, fresh context per pass, externalized JSONL state, 3-signal convergence. Dispatched by `/deep:start-research-loop`. See [Deep Loop](#deep-loop).
@@ -1143,7 +1143,10 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 &nbsp;
 #### DEEP
 
-The four autonomous loops. See the [Deep Loop](#deep-loop) section for how they run.
+The five autonomous loops. See the [Deep Loop](#deep-loop) section for how they run.
+
+**Deep Context** (`/deep:start-context-loop`)
+- Maps the existing codebase before you plan: a heterogeneous by-model parallel sweep over a shared scope, cross-executor-agreement convergence, and a reuse-first Context Report of verified `file:symbol` pointers. Optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. Modes: `:auto`, `:confirm`
 
 **AI Council** (`/deep:ask-ai-council`)
 - Multi-seat planning for complex decisions. Produces packet-local `ai-council/**` artifacts and convergence evidence, planning-only. Modes: `:auto`, `:confirm`
@@ -1279,7 +1282,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-code-review`                                    | ✅ Codebase-agnostic baseline               | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts.                                                                                                          |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
-| `deep-loop-runtime` / `deep-research` / `deep-review` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
+| `deep-loop-runtime` / `deep-context` / `deep-research` / `deep-review` / `deep-ai-council` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
 | `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt, agent improvement, and model benchmarking frameworks. Work for any project.                                                                                                                                             |
 | `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
