@@ -34,7 +34,8 @@
     "016-sk-code-readme",
     "017-sk-doc-readme",
     "018-sk-git-readme",
-    "019-sk-prompt-small-model-readme"
+    "019-sk-prompt-small-model-readme",
+    "020-sk-prompt-readme"
   ],
   "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
@@ -47,7 +48,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T14:44:28.000Z",
+  "lastUpdated": "2026-06-07T14:59:32.000Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [
