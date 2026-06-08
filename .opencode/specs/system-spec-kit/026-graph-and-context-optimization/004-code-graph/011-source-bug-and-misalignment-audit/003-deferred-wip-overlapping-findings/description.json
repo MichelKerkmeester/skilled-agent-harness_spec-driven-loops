@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
   "description": "Feature Specification: Deferred WIP-Overlapping Findings",
   "keywords": [
     "feature",

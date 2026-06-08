@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-source-bug-audit-findings"
     last_updated_at: "2026-05-29T08:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified checklist against the audit"

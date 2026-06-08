@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
   "children_ids": [],
   "migrated": true,
@@ -13,61 +13,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code graph db location skill-local",
-      "fix 1 spec-kit relocation"
+      "code graph remediation deferred-wip-overlapping-findings",
+      "system-code-graph fix deferred wip-overlapping findings"
     ],
     "key_topics": [
       "code",
       "graph",
-      "location",
-      "skill-local",
+      "remediation",
+      "deferred-wip-overlapping-findings",
+      "system-code-graph",
       "fix",
-      "spec-kit",
-      "relocation",
-      "code-graph",
-      "sqlite",
-      "sidecars",
-      "lease",
-      "readiness"
+      "deferred",
+      "wip-overlapping",
+      "findings",
+      "subset",
+      "safely",
+      "auto-fixed"
     ],
     "importance_tier": "important",
-    "status": "complete_(live_on_main,_commit_69e7bf12)",
+    "status": "complete",
     "key_files": [
-      "mcp_server/core/config.ts",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      "lib/ipc/socket-server.ts",
-      "mcp_server/tests/launcher-lease.vitest.ts",
-      "core/config.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "mcp_server/core/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": "lib/ipc/socket-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-lease.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/launcher-lease.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -99,19 +70,19 @@
         "source": "derived"
       },
       {
-        "name": "Location Skill",
+        "name": "Overlapping Findings",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Move",
+        "name": "Purpose Track",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -135,25 +106,25 @@
         "source": "derived"
       },
       {
+        "name": "reasons",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
+        "name": "RM-8",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
@@ -187,11 +158,35 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph SQLite DB + sidecars + lease + readiness marker were created at the workspace-root `.opencode/.spec-kit/code-graph/database/`. The operator wants them inside the skill folder. The prior consolidation (ADR-002/004/005) justified `.spec-kit` by cross-runtime sharing, but that rationale was wrong: every runtime symlinks `.opencode/skills` to one physical dir, so a skill-local DB is equally shared.",
-    "created_at": "2026-05-29T09:55:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.201Z",
+    "causal_summary": "A subset of findings could not be safely auto-fixed: they edit files under active in-tree WIP, or their correct fix requires reconciling behavioral semantics (freshness sourcing, recovery no-op-vs-error) that interact with that WIP.",
+    "created_at": "2026-05-29T08:30:00.000Z",
+    "last_save_at": "2026-05-30T10:12:02.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

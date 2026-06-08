@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
   "description": "DB Location Skill-Local (fix #1)",
   "keywords": [
     "code",

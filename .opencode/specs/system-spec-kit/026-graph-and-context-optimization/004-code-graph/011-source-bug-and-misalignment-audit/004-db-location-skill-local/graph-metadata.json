@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
   "children_ids": [],
   "migrated": true,
@@ -13,32 +13,61 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code graph remediation applied-source-and-doc-fixes",
-      "system-code-graph fix applied source & doc fixes"
+      "code graph db location skill-local",
+      "fix 1 spec-kit relocation"
     ],
     "key_topics": [
       "code",
       "graph",
-      "remediation",
-      "applied-source-and-doc-fixes",
-      "system-code-graph",
+      "location",
+      "skill-local",
       "fix",
-      "applied",
-      "source",
-      "doc",
-      "fixes",
-      "011",
-      "audit"
+      "spec-kit",
+      "relocation",
+      "code-graph",
+      "sqlite",
+      "sidecars",
+      "lease",
+      "readiness"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(live_on_main,_commit_69e7bf12)",
     "key_files": [
+      "mcp_server/core/config.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "lib/ipc/socket-server.ts",
+      "mcp_server/tests/launcher-lease.vitest.ts",
+      "core/config.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "mcp_server/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,13 +99,7 @@
         "source": "derived"
       },
       {
-        "name": "Applied Source",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Doc Fixes",
+        "name": "Location Skill",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -88,7 +111,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Land",
+        "name": "Purpose Move",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -100,14 +123,14 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
@@ -118,8 +141,20 @@
         "source": "derived"
       },
       {
-        "name": "RM-8",
-        "kind": "key_phrase",
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
@@ -142,33 +177,21 @@
         "source": "derived"
       },
       {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server. The clean, non-WIP-overlapping subset needed remediation without disturbing the operator's in-flight BUG-04/BUG-06 work.",
-    "created_at": "2026-05-29T08:30:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.649Z",
+    "causal_summary": "The code-graph SQLite DB + sidecars + lease + readiness marker were created at the workspace-root `.opencode/.spec-kit/code-graph/database/`. The operator wants them inside the skill folder. The prior consolidation (ADR-002/004/005) justified `.spec-kit` by cross-runtime sharing, but that rationale was wrong: every runtime symlinks `.opencode/skills` to one physical dir, so a skill-local DB is equally shared.",
+    "created_at": "2026-05-29T09:55:00.000Z",
+    "last_save_at": "2026-06-05T12:47:34.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-source-bug-audit-findings",
   "description": "Feature Specification: Code Graph Source Bug & Misalignment Audit",
   "keywords": [
     "feature",
@@ -11,13 +11,14 @@
     "misalignment",
     "audit"
   ],
-  "lastUpdated": "2026-06-08T11:46:06.004Z",
-  "specId": "011",
-  "folderSlug": "source-bug-and-misalignment-audit",
+  "lastUpdated": "2026-06-08T11:45:12.059Z",
+  "specId": "001",
+  "folderSlug": "source-bug-audit-findings",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "004-code-graph"
+    "004-code-graph",
+    "011-source-bug-and-misalignment-audit"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

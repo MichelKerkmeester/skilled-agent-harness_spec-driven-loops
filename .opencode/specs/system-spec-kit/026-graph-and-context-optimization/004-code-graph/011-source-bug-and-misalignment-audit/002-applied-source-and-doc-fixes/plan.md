@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Applied Source & Doc Fixes [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes/implementation-plan]"
+title: "Implementation Plan: Applied Source & Doc Fixes [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes/implementation-plan]"
 description: "31 of 38 audit findings fixed on the cg-remediation branch via cli-opencode gpt-5.5-fast --variant high in an isolated worktree. Typecheck clean; full suite shows zero regressions vs the pre-existing BUG-06 WIP baseline."
 trigger_phrases:
   - "code graph remediation applied-source-and-doc-fixes"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes"
     last_updated_at: "2026-05-29T08:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Landed 31 fixes on cg-remediation; verified typecheck + zero test regressions"

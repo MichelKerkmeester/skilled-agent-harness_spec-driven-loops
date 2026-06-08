@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Applied Source & Doc Fixes [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes/feature-specification]"
+title: "Implementation Summary: Applied Source & Doc Fixes [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes/implementation-summary]"
 description: "31 of 38 audit findings fixed on the cg-remediation branch via cli-opencode gpt-5.5-fast --variant high in an isolated worktree. Typecheck clean; full suite shows zero regressions vs the pre-existing BUG-06 WIP baseline."
 trigger_phrases:
   - "code graph remediation applied-source-and-doc-fixes"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes"
     last_updated_at: "2026-05-29T08:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Landed 31 fixes on cg-remediation; verified typecheck + zero test regressions"
@@ -20,47 +20,30 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Feature Specification: Applied Source & Doc Fixes
+# Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
 <!-- ANCHOR:metadata -->
-## 1. METADATA
+## Metadata
 
 | Field | Value |
 |-------|-------|
+| **Spec Folder** | `002-applied-source-and-doc-fixes` |
+| **Completed** | 2026-05-29 |
 | **Level** | 1 |
-| **Priority** | P1 |
-| **Status** | Complete |
-| **Created** | 2026-05-29 |
-| **Branch** | `cg-remediation` |
 <!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
-## 2. PROBLEM & PURPOSE
+<!-- ANCHOR:what-built -->
+## What Was Built
 
-### Problem Statement
-The 011 audit recorded 37+1 findings in the system-code-graph MCP server. The clean, non-WIP-overlapping subset needed remediation without disturbing the operator's in-flight BUG-04/BUG-06 work.
-
-### Purpose
-Land the safe, verifiable fixes on a reviewable branch the operator can merge when their WIP settles.
-<!-- /ANCHOR:problem -->
-
----
-
-<!-- ANCHOR:scope -->
-## 3. SCOPE
-
-### In Scope
-- The findings listed in §4, sourced from the parent audit `../review-report.md`.
-
-### Out of Scope
-- Merging into `main` (operator-gated; the live tree has active BUG-04/BUG-06 WIP).
+31 of 38 audit findings fixed on the cg-remediation branch via cli-opencode gpt-5.5-fast --variant high in an isolated worktree. Typecheck clean; full suite shows zero regressions vs the pre-existing BUG-06 WIP baseline.
 
 ### Findings
 
@@ -85,48 +68,43 @@ Land the safe, verifiable fixes on a reviewable branch the operator can merge wh
 | CG-035 | scan getCurrentGitHead given a 5s timeout |
 | CG-036 | playbook 023 stale apply-mode path corrected |
 | CG-038 | database_path_policy rationale corrected (symlinks already share skill dir) |
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:what-built -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
 
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Changes scoped + verified | Typecheck clean; full suite shows zero regressions vs B0 baseline |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | Each finding traceable to parent review-report | CG-IDs map to `../review-report.md` |
-<!-- /ANCHOR:requirements -->
+`cli-opencode openai/gpt-5.5-fast --variant high` applied the edits across file-disjoint batches in an isolated worktree seeded with the operator's WIP. Each test delta was re-examined as a possible regression before keeping or reverting.
+<!-- /ANCHOR:how-delivered -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+<!-- ANCHOR:decisions -->
+## Key Decisions
 
-- **SC-001**: Outcome recorded per finding (§4) with evidence on branch `cg-remediation`.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | operator BUG-04/BUG-06 WIP | overlaps these files | branch isolation; merge when WIP settles |
-<!-- /ANCHOR:risks -->
+| Decision | Why |
+|----------|-----|
+| Deliver on branch, not main | The live tree has incomplete overlapping BUG-04/BUG-06 WIP |
+| Revert over-broad fixes | Re-examination showed some fixes changed semantics the tests/recovery rely on |
+<!-- /ANCHOR:decisions -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+<!-- ANCHOR:verification -->
+## Verification
 
-- None.
-<!-- /ANCHOR:questions -->
+| Check | Result |
+|-------|--------|
+| `npm run typecheck` | PASS (0 errors) |
+| Full vitest suite | Failing set identical to B0 baseline (24 pre-existing WIP failures); zero new |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Not merged.** Lives on branch `cg-remediation`; operator merges when BUG-04/BUG-06 WIP settles.
+2. **Baseline not green.** The repo's own BUG-06 WIP fails 24 tests independently of this work.
+<!-- /ANCHOR:limitations -->

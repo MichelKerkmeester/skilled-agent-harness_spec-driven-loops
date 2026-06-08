@@ -1,36 +1,45 @@
 ---
-title: "Feature Specification: Code Graph Source Bug & Misalignment Audit [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/spec]"
-description: "Read-only audit of the system-code-graph mk-code-index MCP server (~17.5k LOC) for code bugs and doc/code misalignments. 37 confirmed findings (10 P1, 27 P2) produced by a gpt-5.5 dispatch + Claude direct verification + a 43-agent adversarial-verification workflow."
+title: "Feature Specification: Code Graph Source Bug & Misalignment Audit"
+description: "Phase parent for the system-code-graph correctness and doc-alignment audit: the audit findings, the applied source and doc fixes, the deferred overlapping work, and the skill-local DB relocation."
 trigger_phrases:
-  - "code graph source audit"
-  - "system-code-graph bug audit"
-  - "mk-code-index misalignments"
+  - "code graph source bug audit phase parent"
+  - "mk-code-index correctness audit"
+  - "code graph misalignment audit"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit"
-    last_updated_at: "2026-05-29T08:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Recorded 37 audit findings in review-report.md"
-    next_safe_action: "Schedule P1 remediation fix packets"
+    last_updated_at: "2026-06-08T13:05:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Restructured to phase parent; audit docs moved to phase 001"
+    next_safe_action: "Resume the applied-fixes or deferred-findings phases"
     blockers: []
-    key_files:
-      - "review-report.md"
-      - "plan.md"
-      - "tasks.md"
-    completion_pct: 100
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000011"
+      session_id: "026-004-011-source-bug-and-misalignment-audit-parent"
+      parent_session_id: null
+    completion_pct: 65
     open_questions: []
     answered_questions:
-      - "Placement? New phase child 011 under 004-code-graph (009 is docs-only, 010 is playbook-only)."
-      - "Findings home? review-report.md is the evidence record; spec/plan/tasks frame the remediation."
+      - "Execution order: audit findings (001) then applied fixes (002), deferred WIP (003), DB relocation (004)"
 ---
-# Feature Specification: Code Graph Source Bug & Misalignment Audit
-
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
----
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: Code Graph Source Bug & Misalignment Audit
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -39,9 +48,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete (audit phase); remediation pending |
+| **Status** | In Progress |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/004-code-graph |
+| **Predecessor** | None |
+| **Successor** | None |
+| **Handoff Criteria** | Audit findings recorded; applied fixes land and verify; deferred overlapping work tracked; the DB relocation completes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,10 +64,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `system-code-graph` skill ships a ~17.5k-LOC standalone `mk-code-index` MCP server (tree-sitter parsing, better-sqlite3 storage, IPC launcher, owner-lease election, readiness contracts). No recent end-to-end correctness audit existed, and several documentation surfaces (feature catalog, playbooks, references, install guide) had drifted from the implementation. The operator requested a bug + misalignment sweep, dispatched via `cli-opencode` using `gpt-5.5 xhigh`.
+The `system-code-graph` skill ships a ~17.5k-LOC standalone `mk-code-index` MCP server (tree-sitter parsing, better-sqlite3 storage, IPC launcher, owner-lease election, readiness contracts) that had no recent end-to-end correctness audit, and several documentation surfaces had drifted from the implementation.
 
 ### Purpose
-Produce a verified, evidence-backed catalog of code bugs and doc/code misalignments in the skill, with concrete fixes, so remediation can be scheduled without re-deriving the analysis.
+Run a bug and misalignment sweep over the code-graph implementation and its docs, then apply the verifiable fixes, track the overlapping work that belongs elsewhere, and relocate the DB to a skill-local path. The findings and each remediation live in the child phases.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All findings, plans, tasks, checklists, and decisions live in the child phase folders.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -62,118 +78,53 @@ Produce a verified, evidence-backed catalog of code bugs and doc/code misalignme
 ## 3. SCOPE
 
 ### In Scope
-- Read-only audit of `.opencode/skills/system-code-graph/mcp_server/**` TypeScript source.
-- Doc/code alignment check across `feature_catalog/**`, `manual_testing_playbook/**`, `references/**`, `ARCHITECTURE.md`, `README.md`, `INSTALL_GUIDE.md`, `SKILL.md`, `ENV_REFERENCE.md`.
-- Recording 37 confirmed findings with exact file:line evidence in `review-report.md`.
+- Root purpose and the child-phase manifest for the audit and its remediations.
+- Per-phase findings, fixes, and verification (in the child folders).
 
 ### Out of Scope
-- Applying fixes — this packet documents findings only; fixes are scheduled as follow-on work.
-- `node_modules/` and `mcp_server/dist/` build artefacts — not reviewed.
-- Runtime scan/apply/verify execution — none performed (read-only).
-- Reversing the `.opencode/.spec-kit` DB-location policy (ADR-002 / consolidation) — out of scope; the audit treats the documented workspace-root location as correct.
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `review-report.md` | Create | Full evidence catalog of 37 findings |
-| `plan.md` / `tasks.md` / `checklist.md` / `implementation-summary.md` | Create | Audit framing + remediation plan |
-| `.opencode/skills/system-code-graph/**` | (Deferred) | Source/doc fixes tracked here, applied in follow-on packets |
+- The broader code-graph program work tracked by the parent packet.
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Every reported finding cites real file:line evidence | Each `review-report.md` entry's quote matches the source at the cited line |
-| REQ-002 | Findings adversarially verified, false positives excluded | Verifier verdict recorded; 4 refuted candidates excluded |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-source-bug-audit-findings/ | The end-to-end correctness and doc-alignment sweep findings (dispatched via cli-opencode gpt-5.5 xhigh) | Complete |
+| 2 | 002-applied-source-and-doc-fixes/ | The verifiable source and documentation fixes applied from the findings | In Progress |
+| 3 | 003-deferred-wip-overlapping-findings/ | Findings that overlap in-flight work and were deferred to their owning packets | Pending |
+| 4 | 004-db-location-skill-local/ | Relocate the code-graph DB to a skill-local path | Pending |
 
-### P1 - Required (complete OR user-approved deferral)
+### Phase Transition Rules
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-003 | Findings prioritised P1/P2 with concrete fixes | Each finding has severity + one-line fix |
-| REQ-004 | Remediation tasks enumerated for P1 findings | `tasks.md` lists one task per P1 finding |
-<!-- /ANCHOR:requirements -->
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- Parent spec tracks aggregate progress via this map.
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
 
----
+### Phase Handoff Criteria
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: `review-report.md` records all 37 confirmed findings (10 P1, 27 P2) with evidence, why, and fix.
-- **SC-002**: `validate.sh --strict` passes for this phase folder.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Risk | Some P1 candidates downgraded to P2 due to dead-code / launcher guards | Med | Verification notes record exact production-impact reasoning per finding |
-| Risk | Doc-count findings (8-vs-11 tools) share a root cause | Low | Grouped in review-report; single source-of-truth fix recommended |
-| Dependency | Fixes touch a live MCP server | Med | Remediation deferred to scoped follow-on packets with their own verification |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-source-bug-audit-findings | 002-applied-source-and-doc-fixes | Findings triaged into applied vs deferred | findings list complete |
+| 002-applied-source-and-doc-fixes | 003-deferred-wip-overlapping-findings | Applied fixes land and verify | fix tests green |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
 
----
-
-<!-- ANCHOR:nfr -->
-## L2: NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: Audit must not mutate the code-graph DB or run scans (read-only guarantee held).
-
-### Security
-- **NFR-S01**: No secrets included in the dispatched prompt or findings.
-
-### Reliability
-- **NFR-R01**: Findings reproducible — every claim re-checkable at the cited file:line.
-<!-- /ANCHOR:nfr -->
-
----
-
-<!-- ANCHOR:edge-cases -->
-## L2: EDGE CASES
-
-### Data Boundaries
-- Empty/ambiguous contract: lower-confidence leads were dropped rather than reported.
-- Duplicate findings (two finders, same issue): deduped (playbook-023 apply-mode reference).
-
-### Error Scenarios
-- Refuted candidates (quote mismatch or guard prevents issue): excluded, count recorded.
-
-### State Transitions
-- Audit complete → remediation pending: status reflected in continuity + implementation-summary.
-<!-- /ANCHOR:edge-cases -->
-
----
-
-<!-- ANCHOR:complexity -->
-## L2: COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Notes |
-|-----------|-------|-------|
-| Scope | 18/25 | ~17.5k LOC reviewed; 37 findings across 7 clusters |
-| Risk | 10/25 | Read-only audit; fixes deferred |
-| Research | 12/20 | Multi-pass dispatch + 43-agent verification workflow |
-| **Total** | **40/70** | **Level 2** |
-<!-- /ANCHOR:complexity -->
-
----
-
-## 10. OPEN QUESTIONS
-
-- Should the 8-vs-11 tool-count doc drift (CG-023..CG-028 family) be fixed via a single source-of-truth pass rather than per-file edits?
-- Are the dead-code owner-lease functions (`acquireOwnerLease`) intended to stay exported, or be removed?
+- Should the deferred overlapping findings (003) be re-homed into their owning packets now, or tracked here until those packets resume?
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
+- **Parent Spec**: See `../spec.md` (004-code-graph).
+- **Graph Metadata**: See `graph-metadata.json` for the `derived.last_active_child_id` pointer.

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Deferred WIP-Overlapping Findings [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings/implementation-summary]"
+title: "Feature Specification: Deferred WIP-Overlapping Findings [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings/feature-specification]"
 description: "7 audit findings deferred during remediation: each either overlaps the operator's active BUG-04/BUG-06 WIP or needs deeper design than a fast-agent pass produced. Reverted from the branch; remain open as documented findings."
 trigger_phrases:
   - "code graph remediation deferred-wip-overlapping-findings"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings"
     last_updated_at: "2026-05-29T08:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded 7 deferred findings with reasons"
@@ -20,30 +20,47 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Summary
+# Feature Specification: Deferred WIP-Overlapping Findings
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `002-deferred-wip-overlapping-findings` |
-| **Completed** | 2026-05-29 |
 | **Level** | 1 |
+| **Priority** | P1 |
+| **Status** | Complete |
+| **Created** | 2026-05-29 |
+| **Branch** | `cg-remediation` |
 <!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:what-built -->
-## What Was Built
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-7 audit findings deferred during remediation: each either overlaps the operator's active BUG-04/BUG-06 WIP or needs deeper design than a fast-agent pass produced. Reverted from the branch; remain open as documented findings.
+### Problem Statement
+A subset of findings could not be safely auto-fixed: they edit files under active in-tree WIP, or their correct fix requires reconciling behavioral semantics (freshness sourcing, recovery no-op-vs-error) that interact with that WIP.
+
+### Purpose
+Track the deferred findings with the exact reason each was held back, so they can be re-done deliberately against a settled tree.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- The findings listed in §4, sourced from the parent audit `../review-report.md`.
+
+### Out of Scope
+- Merging into `main` (operator-gated; the live tree has active BUG-04/BUG-06 WIP).
 
 ### Findings
 
@@ -56,43 +73,48 @@ _memory:
 | CG-009 | Recovery confirm-gate; bundled in apply-orchestrator with CG-010, reverted together. |
 | CG-010 | rollback-failed status is OVER-BROAD: recovery-procedures returns status:ok with restored:false for the genuine no-op case (nothing to restore), and status:failed only when a restore was attempted and errored. The original fix's `restored !== true` check was too broad — it flagged the status:ok/restored:false no-op as a failure. Correct fix needs recovery-procedures to distinguish the no-op (status ok, restored false) from an errored rollback (status failed) — which is why it remains deferred. |
 | CG-037 | apply dry-run rollback target; bundled with apply-orchestrator revert. |
-<!-- /ANCHOR:what-built -->
+<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
 
-`cli-opencode openai/gpt-5.5-fast --variant high` applied the edits across file-disjoint batches in an isolated worktree seeded with the operator's WIP. Each test delta was re-examined as a possible regression before keeping or reverting.
-<!-- /ANCHOR:how-delivered -->
+### P0 - Blockers (MUST complete)
 
----
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Changes scoped + verified | Typecheck clean; full suite shows zero regressions vs B0 baseline |
 
-<!-- ANCHOR:decisions -->
-## Key Decisions
+### P1 - Required (complete OR user-approved deferral)
 
-| Decision | Why |
-|----------|-----|
-| Deliver on branch, not main | The live tree has incomplete overlapping BUG-04/BUG-06 WIP |
-| Revert over-broad fixes | Re-examination showed some fixes changed semantics the tests/recovery rely on |
-<!-- /ANCHOR:decisions -->
-
----
-
-<!-- ANCHOR:verification -->
-## Verification
-
-| Check | Result |
-|-------|--------|
-| `npm run typecheck` | PASS (0 errors) |
-| Full vitest suite | Failing set identical to B0 baseline (24 pre-existing WIP failures); zero new |
-<!-- /ANCHOR:verification -->
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-002 | Each finding traceable to parent review-report | CG-IDs map to `../review-report.md` |
+<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:limitations -->
-## Known Limitations
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
 
-1. **Not merged.** Lives on branch `cg-remediation`; operator merges when BUG-04/BUG-06 WIP settles.
-2. **Baseline not green.** The repo's own BUG-06 WIP fails 24 tests independently of this work.
-<!-- /ANCHOR:limitations -->
+- **SC-001**: Outcome recorded per finding (§4) with evidence on branch `cg-remediation`.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | operator BUG-04/BUG-06 WIP | overlaps these files | branch isolation; merge when WIP settles |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- None.
+<!-- /ANCHOR:questions -->

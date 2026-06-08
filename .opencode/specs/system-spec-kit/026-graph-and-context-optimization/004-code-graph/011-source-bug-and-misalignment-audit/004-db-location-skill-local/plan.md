@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: DB Location Skill-Local (fix #1) [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local/implementation-plan]"
+title: "Implementation Plan: DB Location Skill-Local (fix #1) [system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local/implementation-plan]"
 description: "Relocate the code-graph SQLite DB out of workspace-root .opencode/.spec-kit/code-graph/database back to the skill folder mcp_server/database (operator fix #1). Reverses ADR-002/004/005; every runtime already shares the skill via the .opencode/skills symlink."
 trigger_phrases:
   - "code graph db location skill-local"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local"
     last_updated_at: "2026-05-29T09:55:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Relocated DB to skill-local; .spec-kit removed; committed 69e7bf12"
