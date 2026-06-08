@@ -155,7 +155,7 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
 
   it('returns a prompt-safe silent fail-open for the shared disabled flag', async () => {
     // Disabled mode now silently fails open (brief is null), aligning
-    // OpenCode with every other runtime (Codex, Claude, Copilot, Gemini). Callers
+    // OpenCode with every other runtime (Codex, Claude, Copilot). Callers
     // still detect the disabled state via metadata.route === 'disabled'. Privacy
     // guard preserved: prompt content must not leak to stdout.
     const bridge = await loadBridge();

@@ -1193,8 +1193,8 @@ SYNONYM_MAP = {
     "toolchain": ["call_tool_chain", "code_mode", "utcp", "mcp"],
     "conflict": ["merge", "rebase", "resolution", "branch", "diverge"],
 
-    # Gemini CLI & cross-AI
-    "gemini": ["gemini-cli", "google-ai", "cross-ai", "second-opinion", "delegate"],
+    # Cross-AI
+    "cross-ai": ["second-opinion", "delegate", "handoff", "dispatch"],
 
     # Autoresearch
     "autoresearch": ["research", "loop", "iterative", "deep", "autonomous", "convergence"],

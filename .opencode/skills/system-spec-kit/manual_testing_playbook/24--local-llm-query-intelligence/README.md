@@ -15,10 +15,10 @@ This playbook fills that gap. The local LLM (BGE local fallback via ollama) is t
 - **Query intelligence** — does a paraphrased query find the right memory?
 - **Causal graph quality** — does the embedding give the edge builder enough signal to connect related memories without false-linking unrelated ones?
 - **Drift detection** — does `memory_drift_why` correctly identify contradictory memories about the same concept?
-- **Cross-AI handoff** — when Claude stores something, can Codex/Gemini find it later in a separate CLI session?
+- **Cross-AI handoff** — when Claude stores something, can Codex find it later in a separate CLI session?
 - **Concurrent safety** — when two AIs interleave save + search against the same DB, does the substrate stay coherent?
 
-Each scenario fires a realistic AI-to-CLI handoff prompt that mimics the actual production pattern: one AI (the orchestrator) dispatching another AI (an external CLI like cli-codex / cli-gemini / cli-claude-code) to exercise the Memory MCP through its own MCP client. The pattern reflects how the Memory MCP is actually used — never by humans typing directly, always by AI assistants invoking each other.
+Each scenario fires a realistic AI-to-CLI handoff prompt that mimics the actual production pattern: one AI (the orchestrator) dispatching another AI (an external CLI like cli-codex / cli-claude-code) to exercise the Memory MCP through its own MCP client. The pattern reflects how the Memory MCP is actually used — never by humans typing directly, always by AI assistants invoking each other.
 
 ## Prompt convention: AI-to-CLI handoff
 
@@ -34,7 +34,7 @@ I need you to:
 3. Return JSON with: <required fields>
 ```
 
-The orchestrating AI invokes the external CLI through `codex exec`, `gemini ...`, or `claude -p ...`. The external CLI opens its own MCP session against the same Memory MCP DB. The cross-AI nature is the point — every scenario tests behavior that depends on the substrate working consistently across AI consumers.
+The orchestrating AI invokes the external CLI through `codex exec` or `claude -p ...`. The external CLI opens its own MCP session against the same Memory MCP DB. The cross-AI nature is the point — every scenario tests behavior that depends on the substrate working consistently across AI consumers.
 
 ## Pre-flight (run once before the suite)
 
@@ -51,7 +51,6 @@ ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite 
 
 # Confirm at least 2 external CLIs are installed for cross-AI scenarios:
 which codex && codex --version
-which gemini && gemini --version
 which claude && claude --version
 ```
 

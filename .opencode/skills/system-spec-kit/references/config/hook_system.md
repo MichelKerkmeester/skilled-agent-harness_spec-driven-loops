@@ -48,26 +48,26 @@ Codex registration is owned by the user/workspace Codex runtime config, not by t
 
 Use support names first, then map to the runtime-local surface below when wiring or validating a specific runtime:
 
-| Support | Claude / Codex / Copilot | Gemini | OpenCode | Trigger / fallback |
-| --- | --- | --- | --- | --- |
-| Prompt-time advisor | `UserPromptSubmit` | `BeforeAgent` | `experimental.chat.system.transform` | Runtime prompt hook; Copilot is NEXT-PROMPT freshness, so current prompt sees PRIOR turn's brief; fallback is explicit `skill_advisor.py` or advisor MCP tooling |
-| Session priming | `SessionStart` | `SessionStart` | `event` startup handlers | Runtime startup hook; fallback is `/spec_kit:resume` or `session_bootstrap()` |
-| Compaction | `PreCompact` | `PreCompress` plus `BeforeAgent` injection | `event` compact handlers / compact plugin | Runtime compaction event; fallback is resume ladder |
-| Session cleanup | `Stop` | `SessionEnd` | `event` cleanup handlers | Runtime session-end event where supported; fallback is `/memory:save` |
+| Support | Claude / Codex / Copilot | OpenCode | Trigger / fallback |
+| --- | --- | --- | --- |
+| Prompt-time advisor | `UserPromptSubmit` | `experimental.chat.system.transform` | Runtime prompt hook; Copilot is NEXT-PROMPT freshness, so current prompt sees PRIOR turn's brief; fallback is explicit `skill_advisor.py` or advisor MCP tooling |
+| Session priming | `SessionStart` | `event` startup handlers | Runtime startup hook; fallback is `/spec_kit:resume` or `session_bootstrap()` |
+| Compaction | `PreCompact` | `event` compact handlers / compact plugin | Runtime compaction event; fallback is resume ladder |
+| Session cleanup | `Stop` | `event` cleanup handlers | Runtime session-end event where supported; fallback is `/memory:save` |
 
 ---
 
 ## 4. HOOK LIFECYCLE
 
-1. **Prompt-time advisor** — `UserPromptSubmit` in Claude, Codex, and Copilot; `BeforeAgent` in Gemini; `experimental.chat.system.transform` in OpenCode. Claude, Gemini, Codex, and OpenCode can inject runtime-visible advisor context in-turn. Copilot uses the same logical surface to refresh managed custom instructions and returns `{}`; this is NEXT-PROMPT freshness, so the current prompt sees the PRIOR turn's brief.
-2. **Compaction** — `PreCompact` in Claude, `PreCompress` plus `BeforeAgent` reinjection in Gemini, compact `event` handlers in OpenCode, and limited wrapper-only parity in Copilot. Stdout is not injected on the precompute phase.
+1. **Prompt-time advisor** — `UserPromptSubmit` in Claude, Codex, and Copilot; `experimental.chat.system.transform` in OpenCode. Claude, Codex, and OpenCode can inject runtime-visible advisor context in-turn. Copilot uses the same logical surface to refresh managed custom instructions and returns `{}`; this is NEXT-PROMPT freshness, so the current prompt sees the PRIOR turn's brief.
+2. **Compaction** — `PreCompact` in Claude, compact `event` handlers in OpenCode, and limited wrapper-only parity in Copilot. Stdout is not injected on the precompute phase.
 3. **SessionStart** — Fires on session start. Routes by source:
    - `compact`: Reads cached PreCompact payload, injects via stdout
    - `startup`: Primes with Spec Kit Memory overview
    - `resume`: Loads prior session state — respects the phase-parent pointer redirect documented in `references/hooks/skill_advisor_hook.md`. When the resume target is a phase parent and `derived.last_active_child_id` is fresh (<24h), priming surfaces the active child rather than the parent's listing
    - `clear`: Minimal output
-   Gemini and Copilot keep runtime-specific transport output, but both can forward the same session and spec-folder startup scope used by Claude when that input is available. Codex only reports live native-hook readiness when `[features].codex_hooks = true` is enabled in `~/.codex/config.toml` or equivalent launch flags and a user/workspace `hooks.json` is wired. Repo `.codex/settings.json` is a template/example, not the live readiness predicate.
-4. **Session cleanup** — `Stop` in Claude, `SessionEnd` in Gemini, and cleanup `event` handlers in OpenCode. Parses transcript JSONL for token usage, calculates cost estimates, and stores snapshots when the runtime supports it.
+   Copilot keeps runtime-specific transport output, but can forward the same session and spec-folder startup scope used by Claude when that input is available. Codex only reports live native-hook readiness when `[features].codex_hooks = true` is enabled in `~/.codex/config.toml` or equivalent launch flags and a user/workspace `hooks.json` is wired. Repo `.codex/settings.json` is a template/example, not the live readiness predicate.
+4. **Session cleanup** — `Stop` in Claude and cleanup `event` handlers in OpenCode. Parses transcript JSONL for token usage, calculates cost estimates, and stores snapshots when the runtime supports it.
 
 ---
 
@@ -103,7 +103,6 @@ Prompt hooks and lifecycle hooks are separate support. A runtime can support pro
 | Claude | yes (`UserPromptSubmit`) | yes (`SessionStart`) | yes (`PreCompact`) | yes (`Stop`) | `.claude/settings.local.json` hook events | `/spec_kit:resume`, `/memory:save`, direct MCP tools |
 | Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, live only when `codex_hooks` and `hooks.json` are both present) | no | no Spec Kit cleanup hook | `[features].codex_hooks = true` plus user/workspace `hooks.json`; `.codex/settings.json` is template-only | `/spec_kit:resume`, `session_bootstrap()`, prompt-wrapper fallback |
 | Copilot | yes (file-based custom instructions; NEXT-PROMPT freshness; current prompt sees PRIOR turn's brief) | yes (`SessionStart` writer) | limited cache/writer path; no model-visible precompute injection | n/a | Copilot-supported writer scripts; see `mcp_server/hooks/copilot/README.md` | Managed instructions file or `/spec_kit:resume` |
-| Gemini | no checked-in project hook | no checked-in project hook | no checked-in project hook | no checked-in project hook | External CLI only | `/spec_kit:resume`, `/memory:save` |
 | OpenCode | yes (`experimental.chat.system.transform`) | yes (`event` startup handlers) | yes (`event` compact handlers / compact plugin) | yes (`event` cleanup handlers) | Plugin bridge and event handlers | `/spec_kit:resume`, direct MCP tools |
 
 ### Codex Timeout Fallback Semantics
@@ -114,7 +113,7 @@ Codex `UserPromptSubmit` uses `SPECKIT_CODEX_HOOK_TIMEOUT_MS` (default `3000`) f
 
 ## 9. CROSS-RUNTIME FALLBACK
 
-Claude Code uses native `UserPromptSubmit`, `SessionStart`, `PreCompact`, and `Stop` hooks. Gemini CLI uses native `BeforeAgent`, `SessionStart`, `PreCompress`, and `SessionEnd` hooks. Copilot CLI uses Copilot-supported writer scripts that refresh the Spec Kit managed block in `$HOME/.copilot/copilot-instructions.md`; hook output remains `{}` with NEXT-PROMPT freshness semantics, so the current prompt sees the PRIOR turn's brief, and the registration contract is documented in `mcp_server/hooks/copilot/README.md`. Do not use the stale merged `.claude/settings.local.json` wrapper shape for Copilot. OpenCode uses plugin-based transport rather than shell wrappers: `.opencode/plugins/mk-skill-advisor.js` delivers prompt-time advisor briefs through `experimental.chat.system.transform`, while `.opencode/plugins/mk-code-graph.js` and plugin `event` handlers cover startup, compaction, readiness, and session cleanup. Codex CLI only reports live native-hook readiness when `[features].codex_hooks = true` is enabled in `~/.codex/config.toml` or equivalent launch flags and user/workspace `hooks.json` is wired; on `UserPromptSubmit` timeout, Codex returns a stale fallback marker (`stale:true`, `reason:"timeout-fallback"`) and logs a structured warning instead of silently serving cold-start context. Use `/spec_kit:resume` when hooks are unavailable or disabled. If automatic hook delivery is unavailable in any runtime, or the advisor hook path is intentionally disabled (`SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`), fall back to the canonical operator path: start with `/spec_kit:resume`, rebuild packet continuity from `handover.md -> _memory.continuity -> spec docs`, then use `session_bootstrap()` or `session_resume()` only when you need lower-level structural health or merged recovery detail.
+Claude Code uses native `UserPromptSubmit`, `SessionStart`, `PreCompact`, and `Stop` hooks. Copilot CLI uses Copilot-supported writer scripts that refresh the Spec Kit managed block in `$HOME/.copilot/copilot-instructions.md`; hook output remains `{}` with NEXT-PROMPT freshness semantics, so the current prompt sees the PRIOR turn's brief, and the registration contract is documented in `mcp_server/hooks/copilot/README.md`. Do not use the stale merged `.claude/settings.local.json` wrapper shape for Copilot. OpenCode uses plugin-based transport rather than shell wrappers: `.opencode/plugins/mk-skill-advisor.js` delivers prompt-time advisor briefs through `experimental.chat.system.transform`, while `.opencode/plugins/mk-code-graph.js` and plugin `event` handlers cover startup, compaction, readiness, and session cleanup. Codex CLI only reports live native-hook readiness when `[features].codex_hooks = true` is enabled in `~/.codex/config.toml` or equivalent launch flags and user/workspace `hooks.json` is wired; on `UserPromptSubmit` timeout, Codex returns a stale fallback marker (`stale:true`, `reason:"timeout-fallback"`) and logs a structured warning instead of silently serving cold-start context. Use `/spec_kit:resume` when hooks are unavailable or disabled. If automatic hook delivery is unavailable in any runtime, or the advisor hook path is intentionally disabled (`SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`), fall back to the canonical operator path: start with `/spec_kit:resume`, rebuild packet continuity from `handover.md -> _memory.continuity -> spec docs`, then use `session_bootstrap()` or `session_resume()` only when you need lower-level structural health or merged recovery detail.
 
 ---
 
@@ -125,7 +124,6 @@ All four supported runtimes transport the same compact startup shared-payload th
 | Runtime | Startup entrypoint | Transport | Trigger |
 | --- | --- | --- | --- |
 | Claude | `hooks/claude/session-prime.ts` | stdout context injection | Claude `SessionStart` |
-| Gemini | `hooks/gemini/session-prime.ts` | SessionStart injection | Gemini `SessionStart` |
 | Copilot | `hooks/copilot/session-prime.ts` | refreshes managed block in `$HOME/.copilot/copilot-instructions.md` | Copilot-supported writer script; next prompt observes the block |
 | Codex | `hooks/codex/session-start.ts` | native `SessionStart` hook | `[features].codex_hooks = true` plus user/workspace `hooks.json` |
 

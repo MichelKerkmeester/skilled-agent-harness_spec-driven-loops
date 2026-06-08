@@ -7,7 +7,7 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `codex exec` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: This playbook validates the `cli-codex` skill from a non-Codex runtime (Claude Code, OpenCode, Copilot, Gemini or shell). Operators MUST NOT execute these scenarios from inside Codex CLI itself. The skill refuses to load when Codex env vars or process ancestry are detected. See SKILL.md §2 Self-Invocation Guard.
+> **SELF-INVOCATION GUARD**: This playbook validates the `cli-codex` skill from a non-Codex runtime (Claude Code, OpenCode, Copilot or shell). Operators MUST NOT execute these scenarios from inside Codex CLI itself. The skill refuses to load when Codex env vars or process ancestry are detected. See SKILL.md §2 Self-Invocation Guard.
 
 This document combines the full manual-validation contract for the `cli-codex` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.
 
@@ -37,7 +37,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` +
 
 ### Realistic Test Model
 
-1. A realistic user request is given to an orchestrator running on a non-Codex runtime (Claude Code, OpenCode, Copilot, Gemini or shell).
+1. A realistic user request is given to an orchestrator running on a non-Codex runtime (Claude Code, OpenCode, Copilot or shell).
 2. The orchestrator decides whether to delegate to Codex CLI via the `cli-codex` skill, picks the right profile/sandbox/reasoning-effort and uses the canonical prompt for the scenario: natural-human by default, RCAF only when the actor is an AI orchestrator.
 3. The operator captures both the dispatch command and the user-visible outcome.
 4. The scenario passes only when the dispatch is sound, the Codex output matches the expected signals and the returned result would satisfy a real user.

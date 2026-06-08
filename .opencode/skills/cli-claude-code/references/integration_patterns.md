@@ -5,7 +5,7 @@ description: "Proven patterns for orchestrating Claude Code CLI from external AI
 
 # Cross-AI Orchestration Patterns: External AI + Claude Code CLI
 
-Proven patterns for orchestrating Claude Code CLI from external AI sessions (Gemini, Codex, Copilot, etc.).
+Proven patterns for orchestrating Claude Code CLI from external AI sessions (Codex, Copilot, etc.).
 
 ---
 
@@ -315,9 +315,6 @@ claude -p "Analyze @src/feature.ts and suggest comprehensive test cases. Identif
 CLAUDE_REVIEW=$(claude -p "Review @/tmp/feature.ts for bugs and security issues" \
   --permission-mode plan --output-format text 2>&1)
 
-# Gemini CLI reviews (if available)
-GEMINI_REVIEW=$(gemini -p "Review the code in /tmp/feature.ts for bugs and security issues" 2>&1)
-
 # Codex CLI reviews (if available)
 CODEX_REVIEW=$(codex exec "Review @/tmp/feature.ts for bugs and security issues" \
   --sandbox read-only --model gpt-5.3-codex 2>&1)
@@ -336,7 +333,7 @@ CODEX_REVIEW=$(codex exec "Review @/tmp/feature.ts for bugs and security issues"
 
 - Cross-validation is expensive (3x cost) — reserve for critical code
 - Focus on disagreements between AIs as areas needing human review
-- Weight each AI's strengths: Claude for reasoning, Gemini for web context, Codex for sandbox safety
+- Weight each AI's strengths: Claude for reasoning, Codex for sandbox safety and web context
 
 ---
 

@@ -17,6 +17,5 @@
 # `git show HEAD:opencode.json` shows "false" (what the remote sees).
 opencode.json filter=maintainer-flags
 .claude/mcp.json filter=maintainer-flags
-.gemini/settings.json filter=maintainer-flags
 .vscode/mcp.json filter=maintainer-flags
 .codex/config.toml filter=maintainer-flags

@@ -44,8 +44,8 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 │                                                                 │
 │  ┌──────────────────┐     ┌──────────────────────┐              │
 │  │   CLI Runtimes   │     │      AI Agents       │              │
-│  │ Claude / Gemini  │────▶│  (Structural queries)│              │
-│  │ Codex / OpenCode │     │                      │              │
+│  │ Claude / Codex   │────▶│  (Structural queries)│              │
+│  │ OpenCode         │     │                      │              │
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │

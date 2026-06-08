@@ -8,7 +8,6 @@ import {
   parseExecutorConfig,
   resolveClaudePermissionMode,
   resolveCodexSandboxMode,
-  resolveGeminiSandboxMode,
   type ExecutorConfig,
 } from '../../lib/deep-loop/executor-config';
 import { runAuditedExecutorCommand } from '../../lib/deep-loop/executor-audit';
@@ -33,15 +32,6 @@ function buildDispatchCommand(
         '-c approval_policy=never',
         `--sandbox ${resolveCodexSandboxMode(config.sandboxMode)}`,
         `- < "${promptPath}"`,
-      ].join(' ');
-    case 'cli-gemini':
-      return [
-        'gemini',
-        `"$(cat '${promptPath}')"`,
-        `-m "${config.model}"`,
-        `-s ${resolveGeminiSandboxMode(config.sandboxMode)}`,
-        '-y',
-        '-o text',
       ].join(' ');
     case 'cli-claude-code': {
       const effortFlag = config.reasoningEffort ? ` --effort ${config.reasoningEffort}` : '';
@@ -107,22 +97,6 @@ describe('cli-matrix dispatch command shape', () => {
     expect(cmd).toContain('service_tier="fast"');
     expect(cmd).toContain('--sandbox read-only');
     expect(cmd).toContain(`- < "${promptPath}"`);
-  });
-
-  it('cli-gemini produces positional prompt with whitelisted model', () => {
-    const config = parseExecutorConfig({
-      kind: 'cli-gemini',
-      model: 'gemini-3.1-pro-preview',
-      sandboxMode: 'workspace-write',
-    });
-    const cmd = buildDispatchCommand(config, promptPath);
-    expect(cmd).toContain('gemini');
-    expect(cmd).toContain(`"$(cat '${promptPath}')"`);
-    expect(cmd).toContain('-m "gemini-3.1-pro-preview"');
-    expect(cmd).toContain('-s docker');
-    expect(cmd).toContain('-y');
-    expect(cmd).toContain('-o text');
-    expect(cmd).not.toContain('reasoning_effort');
   });
 
   it('cli-claude-code with reasoningEffort includes --effort flag', () => {

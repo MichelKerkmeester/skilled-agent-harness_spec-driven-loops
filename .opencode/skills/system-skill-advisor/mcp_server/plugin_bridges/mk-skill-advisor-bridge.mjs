@@ -474,7 +474,7 @@ async function buildBrief(input, dependencies = {}) {
   if (env[DISABLED_ENV] === '1') {
     // Silent fail-open in disabled mode. Previously this branch
     // returned a model-visible `Advisor: disabled by ...` brief, but every
-    // other runtime (Codex, Claude, Copilot, Gemini) fails open silently when
+    // other runtime (Codex, Claude, Copilot) fails open silently when
     // the disabled flag is set. Aligning OpenCode with the dominant pattern
     // removes the runtime-specific surface inconsistency. Callers can still
     // detect the disabled state via `metadata.route === 'disabled'`.

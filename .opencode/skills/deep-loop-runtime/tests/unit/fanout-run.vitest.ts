@@ -272,15 +272,15 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
 
   it('records exit 2 (some failed) when one of two lineages exits non-zero', async () => {
     const binDir = makeTempDir('fanout-run-mixed-bin-');
-    // codex stub fails; gemini stub succeeds.
+    // codex stub fails; claude stub succeeds.
     writeFailingStubBinary(binDir, 'codex', 5);
-    writeStubBinary(binDir, 'gemini');
+    writeStubBinary(binDir, 'claude');
     const baseDir = makeTempDir('fanout-run-mixed-base-');
 
     const fanoutConfig = JSON.stringify({
       executors: [
         { label: 'fails', kind: 'cli-codex', model: 'o4-mini', count: 1 },
-        { label: 'passes', kind: 'cli-gemini', model: 'gemini-3.1-pro-preview', count: 1 },
+        { label: 'passes', kind: 'cli-claude-code', model: 'claude-opus-4-8', count: 1 },
       ],
       concurrency: 2,
     });

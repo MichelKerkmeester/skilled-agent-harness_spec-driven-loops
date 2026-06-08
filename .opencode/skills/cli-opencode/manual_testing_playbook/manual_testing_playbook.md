@@ -7,7 +7,7 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `opencode run` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Codex, Copilot, Gemini, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration_patterns.md §5).
+> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Codex, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration_patterns.md §5).
 
 This document combines the full manual-validation contract for the `cli-opencode` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.
 
@@ -37,7 +37,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 
 ### Realistic Test Model
 
-1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, Codex, Copilot, Gemini or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
+1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, Codex, Copilot or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
 2. The orchestrator decides whether to delegate to OpenCode CLI via cli-opencode, picks the right model + agent + variant + format + dir and constructs a Role -> Context -> Action -> Format prompt per the prompt quality card.
 3. The operator captures both the dispatch command and the user-visible outcome (JSON event stream parsed, tool.calls surfaced, session.completed summary).
 4. The scenario passes only when the dispatch is sound, the OpenCode output matches the expected signals and the returned result would satisfy a real user.
@@ -153,7 +153,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### Operational Rules
 
 1. Probe runtime capacity at start - confirm OpenCode CLI version, provider auth, MCP server registration and budget headroom.
-2. Reserve one external-AI conductor (Claude Code, Codex, Copilot, Gemini or raw shell) for use cases 1 and 3. Never use OpenCode itself as the conductor for those.
+2. Reserve one external-AI conductor (Claude Code, Codex, Copilot or raw shell) for use cases 1 and 3. Never use OpenCode itself as the conductor for those.
 3. Saturate remaining worker slots only when scenarios are non-destructive AND independent.
 4. Pre-assign explicit scenario IDs and matching per-feature files to each wave before execution.
 5. Run parallel detached scenarios (CO-026, CO-027, CO-028) in a dedicated wave with isolated port range (e.g., 4096-4299) to avoid port collisions with other workloads.
@@ -627,7 +627,7 @@ Verify the small-model dispatch matrix surfaces both `sk-prompt-small-model` and
 
 #### Scenario Contract
 
-Prompt: `Consult sk-prompt-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode opencode-go path (vs cli-devin Cognition Pro or cli-opencode DeepSeek API direct). Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model opencode-go/deepseek-v4-pro --variant high and capture the output.`
+Prompt: `Consult sk-prompt-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode opencode-go path (vs cli-opencode DeepSeek API direct). Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model opencode-go/deepseek-v4-pro --variant high and capture the output.`
 
 Expected signals: Advisor returns `sk-prompt-small-model` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model opencode-go/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
 
@@ -641,13 +641,13 @@ Desired user-visible outcome: A working implementation plus the dispatch-matrix 
 
 #### Description
 
-Verify the dispatch matrix for Kimi-k2.6 (two paths: cli-devin Cognition Pro + cli-opencode opencode-go), that the operator consciously picks the opencode-go path for long-context work, that `sk-prompt` composes with a large-context framework (Kimi's strength), and that `cli-opencode --model opencode-go/kimi-k2.6` runs. Mirrors DV-029 but on the opencode-go side.
+Verify the dispatch matrix for Kimi-k2.6 via the opencode-go path, that the operator consciously picks opencode-go for long-context work, that `sk-prompt` composes with a large-context framework (Kimi's strength), and that `cli-opencode --model opencode-go/kimi-k2.6` runs.
 
 #### Scenario Contract
 
 Prompt: `Consult sk-prompt-small-model for the Kimi-k2.6 dispatch matrix and pick the cli-opencode opencode-go path. Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model opencode-go/kimi-k2.6 --variant high.`
 
-Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model-profiles.json kimi-k2.6 entry shows 2 executors, primary_quota_pool=cognition-pro (operator overrides to opencode-go). `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
+Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model-profiles.json kimi-k2.6 entry shows the opencode-go path. `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
 
 Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi-k2.6's large-context advantage, dispatched via the opencode-go pool with the matrix-consultation evidence trail.
 

@@ -14,7 +14,7 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-`matrix_runners/` turns the F1-F14 x CLI-executor matrix into executable cells for `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`.
+`matrix_runners/` turns the F1-F14 x CLI-executor matrix into executable cells for `cli-codex`, `cli-claude-code`, and `cli-opencode`.
 
 Current state:
 
@@ -40,8 +40,8 @@ Current state:
          │                            ▼                           ▼
          │                 ┌────────────────────┐       ┌────────────────────┐
          └──────────────▶  │ matrix-manifest    │ ───▶  │ CLI adapters       │
-                           │ feature x executor │       │ codex, copilot,    │
-                           │ cells              │       │ gemini, claude, oc │
+                           │ feature x executor │       │ codex, claude,     │
+                           │ cells              │       │ opencode           │
                            └─────────┬──────────┘       └─────────┬──────────┘
                                      │                            │
                                      ▼                            ▼
@@ -60,13 +60,11 @@ Dependency direction: runner ───▶ manifest and templates ───▶ ad
 ```text
 mcp_server/matrix_runners/
 ├── run-matrix.ts                   # Main runner for filter, spawn, and aggregation
-├── matrix-manifest.json            # Frozen F1-F14 x 5 executor cell list
-├── adapter-base.ts                 # Shared adapter logic and status mapping
-├── codex-adapter.ts                # Codex CLI adapter
-├── copilot-adapter.ts              # Copilot CLI adapter
-├── gemini-adapter.ts               # Gemini CLI adapter
-├── claude-code-adapter.ts          # Claude Code adapter
-├── opencode-adapter.ts             # OpenCode adapter
+├── matrix-manifest.json            # Frozen F1-F14 x 3 executor cell list
+├── adapter-common.ts               # Shared adapter logic and status mapping
+├── adapter-cli-codex.ts            # Codex CLI adapter
+├── adapter-cli-claude-code.ts      # Claude Code adapter
+├── adapter-cli-opencode.ts         # OpenCode adapter
 ├── templates/                      # Prompt templates per cell
 └── README.md
 ```
@@ -145,7 +143,7 @@ cd .opencode/skills/system-spec-kit
 npx tsx mcp_server/matrix_runners/run-matrix.ts \
   --output /tmp/spec-kit-matrix \
   --filter F1,F3 \
-  --executors cli-gemini,cli-claude-code
+  --executors cli-codex,cli-claude-code
 ```
 
 ---

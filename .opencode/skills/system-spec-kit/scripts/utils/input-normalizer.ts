@@ -28,7 +28,6 @@ export type DataSource =
   | 'claude-code-capture'
   | 'codex-cli-capture'
   | 'copilot-cli-capture'
-  | 'gemini-cli-capture'
   | 'simulation';
 
 export type CaptureDataSource = Exclude<DataSource, 'file' | 'simulation'>;

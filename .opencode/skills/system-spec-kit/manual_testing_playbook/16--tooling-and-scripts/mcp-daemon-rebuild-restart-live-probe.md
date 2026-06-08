@@ -37,7 +37,7 @@ Validate the canonical MCP daemon rebuild + restart + live-probe contract agains
 1. `git diff mcp_server/ > /tmp/278-source-diff.txt && wc -l /tmp/278-source-diff.txt` — confirm source diff non-empty and on expected paths
 2. `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run <suite> 2>&1 | tee /tmp/278-vitest.txt` — confirm exit 0
 3. `cd .opencode/skills/system-spec-kit/mcp_server && npm run build && grep -l "<new-marker>" dist/<file>.js && stat -f "%m" dist/<file>.js src/<file>.ts` — confirm marker present and dist mtime > source mtime
-4. Restart the MCP-owning runtime per `references/mcp-rebuild-restart-protocol.md` (OpenCode: reload tools; Claude Code: restart binary; Codex/Gemini CLI: restart binary)
+4. Restart the MCP-owning runtime per `references/mcp-rebuild-restart-protocol.md` (OpenCode: reload tools; Claude Code: restart binary; Codex CLI: restart binary)
 5. Issue the live MCP probe per `references/live-probe-template.md` for the affected subsystem (`memory_context`, `memory_search`, `code_graph_query`, or `memory_causal_stats`) and assert the post-fix contract field is present
 
 ### Expected

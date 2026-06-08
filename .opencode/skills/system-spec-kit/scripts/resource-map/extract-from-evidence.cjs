@@ -59,7 +59,7 @@ const CATEGORY_ORDER = [
   {
     key: 'Meta',
     heading: '## 10. Meta',
-    description: '> Repository-wide governance artifacts such as `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `GEMINI.md`, `LICENSE`, and root `README.md`.',
+    description: '> Repository-wide governance artifacts such as `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `LICENSE`, and root `README.md`.',
   },
 ];
 
@@ -69,7 +69,6 @@ const META_BASENAMES = new Set([
   'AGENTS.md',
   'CLAUDE.md',
   'CODEX.md',
-  'GEMINI.md',
   'LICENSE',
   'LICENSE.md',
   'CHANGELOG.md',

@@ -237,7 +237,7 @@ Run with `--verbose` to see the details behind each rule or `--recursive` to val
 
 The indexed-continuity store lives in an MCP server that gives AI assistants persistent memory across sessions, models and tools. It stores context in a local SQLite database and retrieves exactly what is relevant when a new session starts.
 
-Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT to Gemini and back. The spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
+Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT and back. The spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
 
 For full architecture details, the 37-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
 
@@ -657,7 +657,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
 }
 ```
 
-OpenCode, Claude Code, Codex, Gemini and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
+OpenCode, Claude Code, Codex and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
 
 ### Feature Flags
 

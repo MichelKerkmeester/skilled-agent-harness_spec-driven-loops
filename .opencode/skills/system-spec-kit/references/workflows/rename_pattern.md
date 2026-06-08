@@ -54,8 +54,8 @@ Every rename touches some subset of these categories. Map each before starting.
 2. Classify every hit into live vs historical using the surface taxonomy above. Write `scratch/resource-map.md` + `scratch/rename-plan.json` (the contract — disjoint phase scopes).
 3. Read the cli-X SKILL.md file before composing any cli-X dispatch (per AGENTS.md CLI dispatch rule).
 
-### Phase B — Optional cli-devin SWE-1.6 verification
-Dispatch 2-4 parallel SWE-1.6 jobs (read-only) to verify the rename plan against each surface group. Each job follows cli-devin/SKILL.md contract (RCAF, medium pre-planning, bundle-gate "standard"). Apply bundle gate per [[feedback_cli_devin_bundle_verification]] + [[feedback_bundle_gate_smoke_run]]. Aggregate verified bundles.
+### Phase B — Optional CLI verification
+Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-codex or cli-opencode) to verify the rename plan against each surface group. Read the chosen executor's SKILL.md before composing the dispatch (per AGENTS.md CLI dispatch rule). Apply bundle gate per [[feedback_bundle_gate_smoke_run]]. Aggregate verified bundles.
 
 ### Phase C — Execute renames (parallel-eligible across disjoint surface groups)
 1. `git mv` dir/file renames (preserves rename history; `git log --follow` traces back).

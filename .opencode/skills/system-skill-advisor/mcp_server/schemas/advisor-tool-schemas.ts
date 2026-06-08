@@ -243,7 +243,7 @@ export const AdvisorValidateInputSchema = z.object({
   workspaceRoot: BoundedWorkspaceRootSchema.optional(),
   skillSlug: z.string().min(1).nullable().optional(),
   outcomeEvents: z.array(z.object({
-    runtime: z.enum(['claude', 'gemini', 'copilot', 'codex']),
+    runtime: z.enum(['claude', 'copilot', 'codex']),
     outcome: z.enum(['accepted', 'corrected', 'ignored']),
     skillId: z.string().min(1),
     correctedSkillId: z.string().min(1).optional(),

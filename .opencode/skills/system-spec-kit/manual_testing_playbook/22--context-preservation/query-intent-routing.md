@@ -117,7 +117,7 @@ Check hybrid scoring threshold and merge logic
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate the canonical IntentTelemetry envelope shape across runtimes against memory_context({ input:"any structural-keyword query" }). Verify the response carries IntentTelemetry { intent, confidence, matchedKeywords, classifierVersion, runtimeId } at the documented response path. Aggregate runtimeId across cli-codex, cli-claude-code, cli-gemini calls and confirm shape parity for cross-CLI aggregation. Return a concise pass/fail verdict.
+As a context-and-code-graph validation operator, validate the canonical IntentTelemetry envelope shape across runtimes against memory_context({ input:"any structural-keyword query" }). Verify the response carries IntentTelemetry { intent, confidence, matchedKeywords, classifierVersion, runtimeId } at the documented response path. Aggregate runtimeId across cli-codex, cli-claude-code calls and confirm shape parity for cross-CLI aggregation. Return a concise pass/fail verdict.
 ```
 
 ### Commands

@@ -43,7 +43,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 ### Realistic Test Model
 
 1. A realistic user request is given to an orchestrator that has the sk-code skill registered.
-2. The orchestrator (Claude Code, OpenCode, Codex, Gemini, or Copilot) consults the skill advisor and decides whether to invoke sk-code, route to another skill, or ask for disambiguation.
+2. The orchestrator (Claude Code, OpenCode, Codex, or Copilot) consults the skill advisor and decides whether to invoke sk-code, route to another skill, or ask for disambiguation.
 3. The operator captures: which skill won the advisor vote, which surface sk-code detected, which references/assets the AI loaded, which agent (if any) was dispatched, and what the AI's response actually was.
 4. The scenario passes only when the routing is correct, the resource-loading is exact (matches expected paths), and the user-visible outcome is sound.
 

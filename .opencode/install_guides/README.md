@@ -113,7 +113,7 @@ I need to install OpenCode components. Please guide me using .opencode/install_g
 
 My environment:
 - Platform: [macOS / Linux / Windows WSL]
-- LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini]
+- LLM Provider: [Claude / GitHub Copilot / OpenAI]
 - Install Mode: [Full / Minimal / Missing only / Custom]
 - Components (if custom): [Code Mode, Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
 
@@ -182,7 +182,6 @@ Answer these questions to configure your installation:
 - **Claude (Anthropic)** → Requires `ANTHROPIC_API_KEY`
 - **GitHub Copilot** → Requires GitHub authentication
 - **OpenAI / Codex** → Requires `OPENAI_API_KEY`
-- **Gemini (Google)** → Requires `GEMINI_API_KEY`
 > **Note:** Spec Kit Memory embeddings use a local-first `auto` cascade: Ollama (default, local daemon when reachable), HF Local (pure-Node local fallback), Voyage (cloud, opt-in via `VOYAGE_API_KEY`), and OpenAI (cloud, opt-in via `OPENAI_API_KEY`). The default `auto` cascade works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
 
 ### Windows-Specific Configuration
@@ -360,7 +359,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    └───────────────────────────────────┘
 
    NATIVE SKILLS: auto-discovered from .opencode/skills/*/SKILL.md
-   OPTIONAL: Chrome DevTools CLI (bdg), Gemini CLI, Auth Plugins
+   OPTIONAL: Chrome DevTools CLI (bdg), Auth Plugins
 ```
 
 ### 7.3 Installation Bundles
@@ -1514,7 +1513,7 @@ Instead of manual troubleshooting, use the built-in diagnostic commands that che
 /doctor:mcp install --server mk-spec-memory
 ```
 
-The doctor commands read the install guides, check system reality, and offer guided repair. Available across OpenCode, Claude Code, Codex CLI, and Gemini CLI.
+The doctor commands read the install guides, check system reality, and offer guided repair. Available across OpenCode, Claude Code, and Codex CLI.
 
 Shell script (for direct use outside AI clients):
 ```bash

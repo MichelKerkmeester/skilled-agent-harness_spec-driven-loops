@@ -648,7 +648,6 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /t
 
 2. MODEL SELECTION (MANDATORY)
    ├── Claude - Anthropic (Sonnet/Opus)
-   ├── Gemini - Google (Pro/Ultra)
    ├── Codex - OpenAI (GPT-4/o1)
    └── Other - User specified
 
@@ -688,7 +687,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /t
 | Architectural problems | Claude |
 | Complex state management | Claude |
 | Logic puzzles, algorithms | Codex |
-| Large codebase context | Gemini |
+| Large codebase context | Claude |
 
 **Example Usage:**
 
@@ -1010,8 +1009,8 @@ specs/122-skill-standardization/
     changes_summary.md  # Changes needed
     validation_report.md # Post-change validation
 
-  cli-gemini-alignment/
-    README.md           # Purpose: Align cli-gemini skill with standards
+  cli-opencode-alignment/
+    README.md           # Purpose: Align cli-opencode skill with standards
     analysis.md
     changes_summary.md
     validation_report.md

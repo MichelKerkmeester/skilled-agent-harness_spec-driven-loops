@@ -102,7 +102,7 @@ if (jsonMatch) {
 
 ### Output Notes
 
-Unlike Gemini CLI (which has a native `--output json` wrapper), Codex outputs plain text to stdout. When requesting JSON:
+Codex has no native JSON output wrapper — it outputs plain text to stdout. When requesting JSON:
 
 - The model may wrap JSON in a markdown code block (` ```json ... ``` `)
 - Strip the code fence before parsing with `jq` or `JSON.parse`

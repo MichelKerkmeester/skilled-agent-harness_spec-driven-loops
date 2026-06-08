@@ -78,7 +78,7 @@ function isAgentDefinitionTarget(target) {
   const normalized = (path.isAbsolute(target) ? path.relative(process.cwd(), target) : target)
     .split(path.sep)
     .join('/');
-  return /^(\.\/)?\.(opencode|claude|gemini)\/agents\/[^/]+\.md$/.test(normalized)
+  return /^(\.\/)?\.(opencode|claude)\/agents\/[^/]+\.md$/.test(normalized)
     || /^(\.\/)?\.codex\/agents\/[^/]+\.toml$/.test(normalized);
 }
 

@@ -1,12 +1,12 @@
 ---
 title: "Executor Selection Contract"
-description: "Resolves which executor runs each review iteration (native agent or one of three CLIs) and enforces per-kind flag compatibility before dispatch."
+description: "Resolves which executor runs each review iteration (native agent or one of two CLIs) and enforces per-kind flag compatibility before dispatch."
 trigger_phrases:
   - "executor selection contract"
   - "parseExecutorConfig"
   - "select review executor"
   - "per-kind flag compatibility"
-  - "native cli-codex cli-gemini dispatch"
+  - "native cli-codex dispatch"
 ---
 
 # Executor Selection Contract
@@ -23,13 +23,12 @@ The contract lets the same review loop run on different model backends without c
 
 ### Entry Point & Routing
 
-Before each dispatch, the workflow resolves the executor via `parseExecutorConfig` from `deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects one of four dispatch branches:
+Before each dispatch, the workflow resolves the executor via `parseExecutorConfig` from `deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects one of three dispatch branches:
 
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
 | `cli-codex` | rendered prompt piped via stdin to `codex exec` with reasoning-effort, service-tier, and `--sandbox workspace-write` |
-| `cli-gemini` | positional prompt to `gemini`, model whitelist enforced, no reasoning-effort or service-tier flags |
 | `cli-claude-code` | `claude -p` with `--permission-mode acceptEdits` (overriding the read-only `plan` default so iteration writes succeed) |
 
 ### Core Behavior

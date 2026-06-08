@@ -1,6 +1,6 @@
 ---
 title: "CLI matrix adapter runners"
-description: "Definition-driven F1-F14 matrix runner package for cli-codex, cli-gemini, cli-claude-code, and cli-opencode executor cells."
+description: "Definition-driven F1-F14 matrix runner package for cli-codex, cli-claude-code, and cli-opencode executor cells."
 trigger_phrases:
   - "matrix_runners"
   - "CLI matrix adapters"
@@ -40,11 +40,10 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 | `mcp_server/matrix_runners/README.md:31-45` | Docs | Documents matrix definition fields and applicability rules |
 | `mcp_server/matrix_runners/README.md:54-71` | Docs | Documents adapter status vocabulary and smoke verification command |
 | `mcp_server/matrix_runners/run-matrix.ts:21-45` | Meta-runner | Defines executor, matrix definition, and CLI option contracts |
-| `mcp_server/matrix_runners/run-matrix.ts:63-73` | Meta-runner | Registers the five supported CLI executors |
+| `mcp_server/matrix_runners/run-matrix.ts:63-73` | Meta-runner | Registers the three supported CLI executors |
 | `mcp_server/matrix_runners/run-matrix.ts:134-147` | Meta-runner | Routes each executor to its adapter |
 | `mcp_server/matrix_runners/run-matrix.ts:172-190` | Meta-runner | Writes JSONL cell records and TSV summary rows |
 | `mcp_server/matrix_runners/adapter-cli-codex.ts:13-37` | Adapter | Runs a matrix cell through Codex CLI with model, reasoning effort, service tier, and workspace-write sandbox |
-| `mcp_server/matrix_runners/adapter-cli-gemini.ts:11-28` | Adapter | Runs a matrix cell through Gemini CLI |
 | `mcp_server/matrix_runners/adapter-cli-claude-code.ts:11-28` | Adapter | Runs a matrix cell through Claude Code CLI |
 | `mcp_server/matrix_runners/adapter-cli-opencode.ts:13-36` | Adapter | Runs a matrix cell through OpenCode CLI |
 
@@ -53,8 +52,6 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 | File | Type | Role |
 |---|---|---|
 | `mcp_server/tests/matrix-adapter-codex.vitest.ts` | Vitest | Mocked adapter coverage for Codex CLI cells |
-| `mcp_server/tests/matrix-adapter-copilot.vitest.ts` | Vitest | Mocked adapter coverage for Copilot CLI cells |
-| `mcp_server/tests/matrix-adapter-gemini.vitest.ts` | Vitest | Mocked adapter coverage for Gemini CLI cells |
 | `mcp_server/tests/matrix-adapter-claude-code.vitest.ts` | Vitest | Mocked adapter coverage for Claude Code CLI cells |
 | `mcp_server/tests/matrix-adapter-opencode.vitest.ts` | Vitest | Mocked adapter coverage for OpenCode CLI cells |
 

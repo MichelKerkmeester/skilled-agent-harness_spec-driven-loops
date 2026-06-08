@@ -1,24 +1,18 @@
 {
-  "level": "3",
   "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation",
-  "description": "Feature Specification: Deprecate project .gemini runtime surface",
+  "description": "Feature Specification: Gemini Deprecation",
   "keywords": [
     "feature",
     "specification",
-    "deprecate",
-    "project",
     "gemini",
-    "runtime",
-    "surface"
+    "deprecation"
   ],
-  "lastUpdated": "2026-06-07T14:08:17.971Z",
+  "lastUpdated": "2026-06-08T16:10:42.489Z",
   "specId": "132",
   "folderSlug": "cli-gemini-deprecation",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 1,
-  "memoryNameHistory": [
-    "05-06-26_08-40__deleted-checked-in-project-gemini-runtime-files.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

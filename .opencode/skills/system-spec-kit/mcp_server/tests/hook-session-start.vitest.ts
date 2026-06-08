@@ -157,48 +157,6 @@ describe('session-prime hook', () => {
       expect(parsed.pendingCompactPrime).toBeNull();
     });
 
-    it('gemini compact handling preserves cached provenance markers', async () => {
-      const now = new Date().toISOString();
-      const state: HookState = {
-        claudeSessionId: testSessionId,
-        speckitSessionId: null,
-        lastSpecFolder: null,
-        sessionSummary: null,
-        pendingCompactPrime: {
-          payload: '## Active Files\n- /test.ts',
-          cachedAt: now,
-          payloadContract: {
-            kind: 'compaction',
-            summary: 'Recovered compact brief',
-            sections: [],
-            provenance: {
-              producer: 'hook_cache',
-              sourceSurface: 'gemini-compact-cache',
-              trustState: 'cached',
-              generatedAt: now,
-              lastUpdated: null,
-              sourceRefs: ['gemini-compact-cache', 'hook-state'],
-              sanitizerVersion: CANONICAL_FOLD_VERSION,
-              runtimeFingerprint: getUnicodeRuntimeFingerprint(),
-            },
-          },
-        },
-        producerMetadata: null,
-        metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
-        createdAt: now,
-        updatedAt: now,
-      };
-      saveState(testSessionId, state);
-
-      const { handleCompact: handleGeminiCompact } = await import('../hooks/gemini/session-prime.js');
-      const sections = handleGeminiCompact(testSessionId);
-
-      expect(sections[0]?.title).toBe('Recovered Context (Post-Compression)');
-      expect(sections[0]?.content).toContain(
-        '[PROVENANCE: producer=hook_cache; trustState=cached; sourceSurface=gemini-compact-cache; sanitizerVersion=',
-      );
-      expect(sections[0]?.content).toContain('## Active Files');
-    });
   });
 
   describe('output formatting', () => {
@@ -318,39 +276,8 @@ describe('session-prime hook', () => {
       expect(sections.map((section) => section.title)).not.toContain('Session Continuity');
     });
 
-    it.skip('gemini startup emits startup payload contract through additionalContext', () => {
-      // TODO: subprocess test needs hook-state seeded with lastSpecFolder OR a code_graph_scan
-      // to populate sharedPayloadTransport. In-process mock-based test in this file already
-      // covers contract emission via vi.doMock injection.
-      const workspaceRoot = resolve(import.meta.dirname, '../../../../..');
-      const hookPath = join(workspaceRoot, '.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js');
-      const result = spawnSync(process.execPath, [hookPath], {
-        cwd: workspaceRoot,
-        input: JSON.stringify({
-          session_id: testSessionId,
-          hook_event_name: 'SessionStart',
-          source: 'startup',
-          cwd: workspaceRoot,
-          specFolder: 'specs/015-demo',
-        }),
-        encoding: 'utf8',
-        timeout: 10000,
-        maxBuffer: 1024 * 1024,
-      });
-
-      expect(result.status).toBe(0);
-      const parsed = JSON.parse(result.stdout) as {
-        hookSpecificOutput?: {
-          additionalContext?: string;
-        };
-      };
-      expect(parsed.hookSpecificOutput?.additionalContext).toContain('## Session Context');
-      expect(parsed.hookSpecificOutput?.additionalContext).toContain('## Startup Payload Contract');
-      expect(parsed.hookSpecificOutput?.additionalContext).toContain('"producer": "startup_brief"');
-    });
-
     it.skip('copilot startup banner includes the startup payload contract', () => {
-      // TODO: same as gemini — needs seeded continuity/graph state for sharedPayloadTransport
+      // TODO: needs seeded continuity/graph state for sharedPayloadTransport
       // to populate. In-process mock-based test already covers the contract.
       const workspaceRoot = resolve(import.meta.dirname, '../../../../..');
       const hookPath = join(workspaceRoot, '.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js');

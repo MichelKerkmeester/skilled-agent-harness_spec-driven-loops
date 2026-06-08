@@ -128,7 +128,7 @@ Dispatches all CLI executor seats as one-shot read-only analysis passes over the
 
 #### Current Reality
 
-`step_sweep_cli_pool` uses `multi-seat-dispatch.cjs#dispatchCouncilSeats` to fan CLI seats out with `Promise.all` and aggregate per-seat results. Each seat issues exactly one read-only CLI call (`opencode run` / `codex exec` / `claude -p` / `devin --print`) carrying the four-part lineage contract. cli-opencode seats require closed stdin (`</dev/null`) and no top-level `--agent`; cli-codex seats use `--sandbox read-only`; cli-claude-code seats use `--permission-mode plan`. An optional `autonomous-lineage` mode exists but is operator-opt-in only and never the default per-iteration path.
+`step_sweep_cli_pool` uses `multi-seat-dispatch.cjs#dispatchCouncilSeats` to fan CLI seats out with `Promise.all` and aggregate per-seat results. Each seat issues exactly one read-only CLI call (`opencode run` / `codex exec` / `claude -p`) carrying the four-part lineage contract. cli-opencode seats require closed stdin (`</dev/null`) and no top-level `--agent`; cli-codex seats use `--sandbox read-only`; cli-claude-code seats use `--permission-mode plan`. An optional `autonomous-lineage` mode exists but is operator-opt-in only and never the default per-iteration path.
 
 #### Source Files
 

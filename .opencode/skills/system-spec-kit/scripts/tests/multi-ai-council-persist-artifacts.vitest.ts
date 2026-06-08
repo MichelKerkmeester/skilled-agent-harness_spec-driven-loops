@@ -67,7 +67,7 @@ describe('ai-council persist-artifacts helper', () => {
       'ai-council/ai-council-state.jsonl',
       'ai-council/seats/round-001/seat-001-cli-codex.md',
       'ai-council/seats/round-001/seat-002-cli-claude-code.md',
-      'ai-council/seats/round-001/seat-003-cli-gemini.md',
+      'ai-council/seats/round-001/seat-003-cli-opencode.md',
       'ai-council/deliberations/round-001.md',
       'ai-council/council-report.md',
     ];

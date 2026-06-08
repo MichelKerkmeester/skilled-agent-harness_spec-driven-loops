@@ -117,7 +117,7 @@ Use `memory_search` only for spec docs, saved decisions, and memory context. It 
 
 ### Startup & Resume Recovery
 
-Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
+Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
 
 **Recovery flow when hooks are unavailable or fail:**
 

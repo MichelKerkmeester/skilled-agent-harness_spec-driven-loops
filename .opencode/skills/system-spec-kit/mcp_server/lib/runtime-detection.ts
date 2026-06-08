@@ -8,7 +8,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { detectCodexHookPolicy } from './codex-hook-policy.js';
 
-export type RuntimeId = 'claude-code' | 'codex-cli' | 'copilot-cli' | 'gemini-cli' | 'unknown';
+export type RuntimeId = 'claude-code' | 'codex-cli' | 'copilot-cli' | 'unknown';
 export type HookPolicy = 'enabled' | 'disabled_by_scope' | 'live' | 'partial' | 'unavailable' | 'unknown';
 
 export interface RuntimeInfo {
@@ -30,9 +30,6 @@ export function detectRuntime(): RuntimeInfo {
   ) {
     const hookPolicy = detectCodexHookPolicy().hooks;
     return { runtime: 'codex-cli', hookPolicy };
-  }
-  if (env.GEMINI_CLI === '1' || env.GEMINI_SESSION_ID || env.GOOGLE_GENAI_USE_VERTEXAI) {
-    return { runtime: 'gemini-cli', hookPolicy: detectGeminiHookPolicy() };
   }
   if (env.COPILOT_CLI === '1' || env.GITHUB_COPILOT_CLI === '1') {
     return { runtime: 'copilot-cli', hookPolicy: detectCopilotHookPolicy() };
@@ -59,10 +56,6 @@ function detectCopilotHookPolicy(): HookPolicy {
   } catch {
     return 'unavailable';
   }
-}
-
-function detectGeminiHookPolicy(): HookPolicy {
-  return 'unavailable';
 }
 
 function hasCopilotWrapper(hooks: unknown, eventName: string, commandNeedles: string[]): boolean {

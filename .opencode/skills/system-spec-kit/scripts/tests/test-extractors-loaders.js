@@ -1323,7 +1323,7 @@ async function testOpencodeCapture() {
 
 async function testAdditionalCliCaptures() {
   log('\n=== ADDITIONAL CLI CAPTURES (REMOVED — recovery mode deprecated) ===');
-  skip('EXT-CLI: Modules removed', 'Recovery mode fully deprecated — codex/copilot/gemini captures deleted');
+  skip('EXT-CLI: Modules removed', 'Recovery mode fully deprecated — codex/copilot captures deleted');
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -1397,7 +1397,7 @@ async function testExtractorsIndex() {
     // Capture module re-exports removed (recovery mode deprecated)
     skip('EXT-IDX-011: captureCodexConversation', 'Recovery mode deprecated');
     skip('EXT-IDX-012: captureCopilotConversation', 'Recovery mode deprecated');
-    skip('EXT-IDX-013: captureGeminiConversation', 'Recovery mode deprecated');
+    skip('EXT-IDX-012b: copilot/codex captures removed', 'Recovery mode deprecated');
 
   } catch (error) {
     fail('EXT-IDX: Module load/test', error.message);

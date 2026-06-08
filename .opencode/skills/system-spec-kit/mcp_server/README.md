@@ -22,7 +22,7 @@ importance_tier: "important"
 
 Spec Kit's memory is not a feature flag. It is a running MCP server that you can stop, restart, swap out, or roll back without touching the rest of the framework. That server lives here.
 
-Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/speckit:resume` reads from the same store and rebuilds your last session's context. Every prompt-submit hook in Claude, Codex, Gemini, OpenCode, and Copilot calls into this package for its startup brief.
+Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/speckit:resume` reads from the same store and rebuilds your last session's context. Every prompt-submit hook in Claude, Codex, OpenCode, and Copilot calls into this package for its startup brief.
 
 The package is local-first by design. No cloud round-trip. No vendor lock-in. The database, the indexes, the migration state, and the hook payloads all live inside the repository so they travel with the code.
 

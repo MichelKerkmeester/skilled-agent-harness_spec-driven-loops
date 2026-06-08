@@ -1,62 +1,62 @@
 ---
-title: "Feature Specification: Deprecate project .gemini runtime surface"
-description: "Delete the checked-in project .gemini runtime surface and remove active non-spec references to that project surface while preserving all spec records as historical context."
+title: "Feature Specification: Gemini Deprecation"
+description: "Phase parent for removing the deprecated Gemini surface end-to-end: the checked-in runtime and skill, the command layer, the executor wiring, and the Gemini host-runtime + model surface across the framework."
 trigger_phrases:
   - "gemini deprecation"
-  - "project .gemini"
-  - "runtime surface cleanup"
+  - "remove gemini surface"
+  - "cli-gemini cleanup"
 importance_tier: "important"
-contextType: "spec"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-cli-gemini-deprecation"
-    last_updated_at: "2026-06-05T06:55:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Completed .gemini deletion"
-    next_safe_action: "None"
+    last_updated_at: "2026-06-08T18:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Gemini eradicated (runtime+model) across phases 001-004"
+    next_safe_action: "Concurrent session finishes 2 deferred skill-advisor files"
     blockers: []
-    key_files:
-      - ".gemini/**"
-      - "AGENTS.md"
-      - "README.md"
-      - ".opencode/commands/**"
-      - ".opencode/skills/**"
+    key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "gemini-deprecation-2026-06-05"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000132"
+      session_id: "132-cli-gemini-deprecation-parent"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 98
     open_questions: []
     answered_questions:
-      - "Delete the project .gemini directory."
-      - "Treat all specs as historical and do not sweep them for reference removal."
+      - "Execution order: runtime/skill deletion (001), command-layer cleanup (002), executor-wiring purge (003), runtime+model eradication (004)"
+      - "Scope: purge Gemini everywhere outside specs/** incl. host-runtime, model, and changelogs"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Deprecate project .gemini runtime surface
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
 
----
+# Feature Specification: Gemini Deprecation
 
-## EXECUTIVE SUMMARY
-
-The repository still ships a project-level `.gemini/` runtime mirror even though the current workflow is OpenCode-centered and the user has requested that surface be deleted. This packet removes the checked-in project `.gemini` directory and updates active, non-spec references so the repo no longer directs maintainers or tooling to project `.gemini` files.
-
-**Key Decisions**: delete the project `.gemini` surface, preserve Gemini CLI user-home documentation such as `~/.gemini` and `.geminiignore`, and preserve all spec folders as historical records.
-
-**Critical Dependencies**: active source, docs, and tests must agree that Gemini CLI remains an external executor without a checked-in project `.gemini` mirror.
-
----
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 3 |
-| **Priority** | P0 |
+| **Level** | 2 |
+| **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-06-05 |
-| **Branch** | current working tree |
+| **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | skilled-agent-orchestration |
+| **Predecessor** | None |
+| **Successor** | None |
+| **Handoff Criteria** | Gemini removed everywhere outside `specs/**` — `cli-gemini` executor/skill, command layer, executor wiring, AND the host-runtime + model surface; affected test suites green. Residual: 2 `system-skill-advisor` files are being finished by a concurrent session; user-home `~/.gemini` / `.geminiignore` left by design. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -65,12 +65,12 @@ The repository still ships a project-level `.gemini/` runtime mirror even though
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-
-The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability manifests, and MCP setup guidance. Keeping it in the public repo causes future command and agent workflows to keep maintaining a runtime mirror that the user wants removed.
+The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and skill, and the command-layer YAMLs that still carry Gemini executor branches and references. As long as either remains, docs, tests, and command workflows keep pointing at a surface the project has dropped.
 
 ### Purpose
+Remove Gemini from the project end-to-end so no active tooling, docs, or command workflows depend on it. Phase 001 deletes the checked-in runtime and skill and aligns active non-spec references; phase 002 removes the orphaned command-layer branches and references (YAML assets + command docs); phase 003 purges the remaining `cli-gemini` executor wiring across skill source, tests, manifests, feature-catalogs, testing playbooks, and changelogs; phase 004 eradicates Gemini as a host runtime (runtime-detection enums, the `hooks/gemini/**` subsystems, the GEMINI.md root-doc convention) and as a model (`gemini-flash`, `gemini-3.1-pro`) across every remaining surface. Only external-binary user-home state (`~/.gemini`, `.geminiignore`) and historical spec records stay, by design.
 
-Remove the project `.gemini` surface and align active non-spec repo references so maintainers use the remaining supported project runtime surfaces instead.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -79,173 +79,56 @@ Remove the project `.gemini` surface and align active non-spec repo references s
 ## 3. SCOPE
 
 ### In Scope
-- Delete the tracked project `.gemini/**` directory and its checked-in files or symlinks.
-- Delete the checked-in `.opencode/skills/cli-gemini/**` skill directory completely.
-- Update active non-spec references that point to project `.gemini/settings.json`, `.gemini/agents`, `.gemini/commands`, `.gemini/workflows`, `.gemini/scripts`, `.gemini/skills`, `.gemini/specs`, `.gemini/changelog`, `.gemini/GEMINI.md`, or `.gemini/.utcp_config.json`.
-- Update runtime capability manifests, mirror/parity checks, command authoring guidance, doctor MCP config lists, skill-advisor routing, and top-level docs so they do not require the project `.gemini` surface or advertise a deleted `cli-gemini` skill.
-- Keep only non-skill Gemini CLI references that describe external binary behavior, user-home state such as `~/.gemini`, or historical records.
-- Preserve all `specs/**` and `.opencode/specs/**` historical records during the reference cleanup sweep.
+- Root purpose and the child-phase manifest for the Gemini deprecation effort.
+- Per-phase runtime/skill deletion, active-reference alignment, and command-YAML cleanup (in the child folders).
 
 ### Out of Scope
-- Removing user-home Gemini CLI documentation, including `~/.gemini` and `.geminiignore`, because those are not the project runtime directory being deleted.
-- Removing every mention of Gemini as a provider, binary, or historical executor where it does not advertise the deleted skill.
-- Editing historical specs outside this active packet.
-- Reworking unrelated runtime surfaces such as `.claude`, `.codex`, `.devin`, `.vscode`, or `opencode.json` except where a line explicitly lists project `.gemini` as a peer.
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `.gemini/**` | Delete | Remove the checked-in Gemini project runtime surface. |
-| `.opencode/skills/cli-gemini/**` | Delete | Remove the checked-in Gemini CLI skill completely. |
-| `AGENTS.md` | Modify | Remove the project `.gemini/agents` runtime-directory entry. |
-| `README.md` | Modify | Remove project `.gemini` setup and mirror instructions. |
-| `scripts/setup-maintainer-filters.sh` | Modify | Drop project `.gemini` from maintainer filters if present. |
-| `.opencode/commands/**` | Modify | Remove generated-command and doctor references to project `.gemini` paths. |
-| `.opencode/skills/**` | Modify | Update active source, manifests, tests, and docs that require project `.gemini` paths. |
-| `.opencode/specs/skilled-agent-orchestration/132-cli-gemini-deprecation/**` | Modify | Maintain this packet's SpecKit artifacts. |
+- External Gemini CLI binary references, user-home state such as `~/.gemini`, and the `.geminiignore` ignore file.
+- Historical spec records that mention Gemini.
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Delete the project `.gemini` runtime surface. | `git ls-files ".gemini/**"` returns no tracked project `.gemini` files after deletion is staged in the working tree. |
-| REQ-002 | Remove active non-spec project `.gemini` references. | Targeted search for project `.gemini` paths outside `specs/**`, `.opencode/specs/**`, and allowed user-home docs returns no actionable references. |
-| REQ-003 | Preserve historical specs. | No reference-removal edits are made under `specs/**` or `.opencode/specs/**` except this active packet. |
-| REQ-004 | Delete the `cli-gemini` skill and active registrations. | `.opencode/skills/cli-gemini/**` is absent, skill catalogs and advisor fallback routing no longer advertise it, and the skill graph no longer has a live `cli-gemini` node. |
-| REQ-005 | Update tests and manifests that encode mirror parity. | Runtime capability and parity tests no longer require `.gemini/agents` or `.gemini/settings.json`. |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-runtime-surface-and-skill-deletion/ | Delete the checked-in project `.gemini/` runtime and `.opencode/skills/cli-gemini/` skill, and align active non-spec references | Complete |
+| 2 | 002-command-yaml-gemini-cleanup/ | Remove the orphaned `cli-gemini` executor branches and Gemini references across the command layer (deep-loop + doctor YAML assets and the deep command docs) | Complete |
+| 3 | 003-cli-gemini-full-purge/ | Purge the remaining `cli-gemini` executor wiring across skill source, tests, manifests, feature-catalogs, testing playbooks, and changelogs (all surfaces outside `specs/**`) | Complete |
+| 4 | 004-gemini-runtime-and-model-eradication/ | Eradicate Gemini as a host runtime (runtime-detection, `hooks/gemini/**`, GEMINI.md convention) and as a model (`gemini-flash`, `gemini-3.1-pro`) across all remaining surfaces | Complete |
 
-### P1 - Required (complete OR user-approved deferral)
+### Phase Transition Rules
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-006 | Update public docs and install guides. | README, AGENTS, doctor docs, and relevant skill docs no longer tell users to edit project `.gemini` files. |
-| REQ-007 | Preserve verification coverage. | Existing targeted tests are updated or replaced so removed project `.gemini` assumptions do not create false failures. |
-<!-- /ANCHOR:requirements -->
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- Parent spec tracks aggregate progress via this map.
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
 
----
+### Phase Handoff Criteria
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: The working tree deletes all tracked files under project `.gemini/**`.
-- **SC-002**: Active non-spec repo docs, tests, scripts, and manifests no longer reference project `.gemini` runtime paths or advertise `cli-gemini` as an installed skill.
-- **SC-003**: Specs remain untouched as historical records, except for this packet's own SpecKit files.
-- **SC-004**: Targeted verification passes for changed scripts/tests/docs, plus strict SpecKit validation for this packet.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Risk | Removing `.gemini` can break tests that expect mirror parity | High | Update parity expectations and run targeted tests. |
-| Risk | Over-broad search could remove `~/.gemini` or `.geminiignore` docs | Medium | Treat user-home docs as out of scope and verify with targeted patterns. |
-| Risk | Stale skill-advisor metadata could still route to the deleted skill | High | Rescan the skill graph and rebuild advisor metadata after deletion. |
-| Risk | Historical records under specs still contain `.gemini` paths | Low | User explicitly classified all specs as historical. Exclude specs from cleanup searches. |
-| Dependency | Checked-in generated dist files may mirror source runtime detection | Medium | Update source and tracked generated artifacts when present. |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-runtime-surface-and-skill-deletion | 002-command-yaml-gemini-cleanup | Runtime and skill deleted; active non-spec references aligned | deletion staged and targeted searches clean |
+| 002-command-yaml-gemini-cleanup | 003-cli-gemini-full-purge | Command layer (YAML assets + command docs) carries no Gemini references | `grep -rniE "gemini" .opencode/commands` returns 0 |
+| 003-cli-gemini-full-purge | 004-gemini-runtime-and-model-eradication | No `cli-gemini` reference outside `specs/**`; affected test suites green | global `rg "cli-gemini"` excl specs = 0; deep-loop 213/214, matrix 13/13, remediation 25/25 |
+| 004-gemini-runtime-and-model-eradication | (done) | No Gemini (runtime/model/convention) outside `specs/**` except 2 deferred skill-advisor files; suites green | `rg "gemini"` excl specs = only 2 deferred files; hooks 59, code-graph 14, fallback 8, scripts 8+267 green |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
 
-## 7. NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: No runtime performance change is expected; this is repository-surface cleanup.
-
-### Security
-- **NFR-S01**: No secrets are introduced or exposed while deleting configuration files.
-
-### Reliability
-- **NFR-R01**: Runtime detection must fail closed or report unavailable when Gemini project config is absent, rather than requiring deleted files.
-
----
-
-## 8. EDGE CASES
-
-### Data Boundaries
-- User-home Gemini state: keep `~/.gemini` references when they describe operator-local authentication and memory, not the project directory or deleted skill.
-- Gemini ignore file: keep `.geminiignore` references because it is a Gemini CLI ignore file, not the deleted project `.gemini` directory.
-
-### Error Scenarios
-- If a test fixture intentionally creates a temporary `.gemini` folder, keep or update it only when the fixture models user-home or temp runtime behavior.
-- If a historical changelog mentions `.gemini`, decide case-by-case whether it is active guidance or historical release narrative.
-
----
-
-## 9. COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Triggers |
-|-----------|-------|----------|
-| Scope | 20/25 | Runtime directory deletion plus docs, commands, skills, tests, and manifests. |
-| Risk | 18/25 | Breaking mirror parity and runtime detection assumptions is possible. |
-| Research | 14/20 | Requires repository-wide exact search and targeted file review. |
-| Multi-Agent | 0/15 | User constrained this run to no autonomous agent dispatch. |
-| Coordination | 10/15 | Cross-surface docs and test expectations must stay synchronized. |
-| **Total** | **62/100** | **Level 3 selected for runtime-surface decision record despite Level 2 numeric recommendation.** |
-
----
-
-## 10. RISK MATRIX
-
-| Risk ID | Description | Impact | Likelihood | Mitigation |
-|---------|-------------|--------|------------|------------|
-| R-001 | Build or tests reference deleted `.gemini` files. | H | H | Update tests and manifests before verification. |
-| R-002 | Docs still direct maintainers to project `.gemini`. | M | H | Run targeted active-doc search after edits. |
-| R-003 | Cleanup removes Gemini CLI user-home instructions. | M | M | Keep `~/.gemini` and `.geminiignore` references unless they claim project mirror support. |
-| R-004 | Generated dist remains stale after source edit. | M | M | Run build or patch tracked dist when build pipeline requires checked-in output. |
-
----
-
-## 11. USER STORIES
-
-### US-001: Project runtime surface removed (Priority: P0)
-
-**As a** maintainer, **I want** the project `.gemini` directory deleted, **so that** the repo no longer carries a deprecated Gemini project runtime mirror.
-
-**Acceptance Criteria**:
-1. Given the repository working tree, When tracked files are listed, Then no tracked file remains under `.gemini/**`.
-
----
-
-### US-002: Active references aligned (Priority: P0)
-
-**As a** maintainer, **I want** active docs, scripts, tests, and manifests to stop pointing at project `.gemini`, **so that** future work does not recreate or depend on the deleted surface.
-
-**Acceptance Criteria**:
-1. Given active non-spec files, When targeted project `.gemini` path search runs, Then no actionable active reference remains.
-
----
-
-### US-003: Deleted skill no longer routes (Priority: P1)
-
-**As a** maintainer, **I want** the deleted `cli-gemini` skill removed from catalogs and advisor routing, **so that** no future assistant tries to load a missing skill.
-
-**Acceptance Criteria**:
-1. Given active skill catalogs and advisor metadata, When routing is refreshed, Then `cli-gemini` is not returned as an available skill.
-
----
-
-## 12. OPEN QUESTIONS
-
-- None. The user clarified deletion semantics and historical spec scope.
+- None. Gemini is fully eradicated (executor/skill, command layer, executor wiring, host-runtime, and model) outside `specs/**`. Residual: 2 `system-skill-advisor` files (a pro-eradication negative test assertion + a historical deferred-decisions record) are being finished by a concurrent session that is also removing `devin`; touching them here would race that session.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Implementation Plan**: See `plan.md`
-- **Task Breakdown**: See `tasks.md`
-- **Verification Checklist**: See `checklist.md`
-- **Decision Records**: See `decision-record.md`
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
+- **Parent Spec**: See `../spec.md`.
+- **Graph Metadata**: See `graph-metadata.json` for the `derived.last_active_child_id` pointer.

@@ -2,11 +2,11 @@
 /**
  * OpenCode Plugin: session MCP cleanup
  *
- * OpenCode has no JSON SessionEnd hook (unlike Claude's Stop and Gemini's
- * SessionEnd), so the dispose lifecycle event is its session-end equivalent.
+ * OpenCode has no JSON SessionEnd hook (unlike Claude's Stop hook), so the
+ * dispose lifecycle event is its session-end equivalent.
  * On teardown this runs the runtime-agnostic session-cleanup.sh to reclaim the
- * session's MCP helper descendants — the OpenCode parity of the Claude Stop /
- * Gemini SessionEnd cleanup wiring.
+ * session's MCP helper descendants — the OpenCode parity of the Claude Stop
+ * cleanup wiring.
  *
  * Best-effort and bounded: it never blocks or fails teardown.
  *

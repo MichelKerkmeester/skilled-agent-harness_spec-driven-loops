@@ -8,7 +8,7 @@ import { resolve } from 'node:path';
 import { detectCodexHookPolicy } from './shared/codex-hook-policy.js';
 
 /** Supported runtime identifiers */
-export type RuntimeId = 'claude-code' | 'codex-cli' | 'copilot-cli' | 'gemini-cli' | 'unknown';
+export type RuntimeId = 'claude-code' | 'codex-cli' | 'copilot-cli' | 'unknown';
 
 /** Hook policy for the detected runtime */
 export type HookPolicy = 'enabled' | 'disabled_by_scope' | 'live' | 'partial' | 'unavailable' | 'unknown';
@@ -46,21 +46,7 @@ export function detectRuntime(): RuntimeInfo {
     return { runtime: 'copilot-cli', hookPolicy };
   }
 
-  // Gemini CLI: sets specific env patterns. This repo does not ship project-level Gemini hooks.
-  if (env.GEMINI_CLI === '1' || env.GOOGLE_GENAI_USE_VERTEXAI) {
-    const hookPolicy = detectGeminiHookPolicy();
-    return { runtime: 'gemini-cli', hookPolicy };
-  }
-
   return { runtime: 'unknown', hookPolicy: 'unknown' };
-}
-
-/**
- * Detect whether Gemini CLI has Spec Kit hook surfaces configured.
- * Accepts both Gemini-native names and the normalized aliases used in docs/tests.
- */
-function detectGeminiHookPolicy(): HookPolicy {
-  return 'unavailable';
 }
 
 /**

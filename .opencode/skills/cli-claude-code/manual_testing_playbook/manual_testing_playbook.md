@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 This playbook provides 27 deterministic scenarios across 8 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference.
 
-Coverage note (2026-04-26): all categories validate the orchestrator-led cross-AI delegation contract where an external AI (Gemini, Codex, Copilot, OpenCode) acts as conductor and dispatches the `claude` binary for supplementary tasks. Scenarios CC-006 (acceptEdits permission mode) and CC-007 (bypassPermissions) are destructive and MUST run only against rebuildable, non-production scratch files.
+Coverage note (2026-04-26): all categories validate the orchestrator-led cross-AI delegation contract where an external AI (Codex, Copilot, OpenCode) acts as conductor and dispatches the `claude` binary for supplementary tasks. Scenarios CC-006 (acceptEdits permission mode) and CC-007 (bypassPermissions) are destructive and MUST run only against rebuildable, non-production scratch files.
 
 ### Realistic Test Model
 
@@ -142,7 +142,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### Operational Rules
 
 1. Probe runtime capacity at start - confirm Claude Code CLI version, model availability and budget headroom.
-2. Reserve one external-AI conductor (Gemini, Codex, Copilot or OpenCode) - never use Claude Code itself as the conductor.
+2. Reserve one external-AI conductor (Codex, Copilot or OpenCode) - never use Claude Code itself as the conductor.
 3. Saturate remaining worker slots only when scenarios are non-destructive AND independent.
 4. Pre-assign explicit scenario IDs and matching per-feature files to each wave before execution.
 5. Run destructive scenarios (CC-006 acceptEdits, CC-007 bypassPermissions) in a dedicated sandbox-only wave with isolated `/tmp/cli-claude-code-playbook/` scratch directory.

@@ -1,11 +1,11 @@
 ---
 title: "Claude Code CLI Built-in Tools Reference"
-description: "Reference for Claude Code CLI unique capabilities including extended thinking, Edit tool, Agent tool, structured output, permission modes, and 3-way comparison with Gemini CLI and Codex CLI."
+description: "Reference for Claude Code CLI unique capabilities including extended thinking, Edit tool, Agent tool, structured output, permission modes, and comparison with Codex CLI."
 ---
 
 # Claude Code CLI Built-in Tools Reference
 
-Reference for all Claude Code CLI capabilities, highlighting unique features and comparison with Gemini CLI and Codex CLI.
+Reference for all Claude Code CLI capabilities, highlighting unique features and comparison with Codex CLI.
 
 ---
 
@@ -17,7 +17,7 @@ Delegate to Claude Code CLI for capabilities other AIs lack natively — especia
 
 ### Purpose
 
-Covers all built-in capabilities of Claude Code CLI, highlights what is unique compared to other CLIs, and provides a 3-way comparison table for task routing decisions.
+Covers all built-in capabilities of Claude Code CLI, highlights what is unique compared to other CLIs, and provides a comparison table for task routing decisions.
 
 ### When to Use
 
@@ -59,7 +59,7 @@ claude -p "Analyze the trade-offs of our current caching strategy" \
 - Algorithm design requiring correctness proofs or edge case analysis
 - Technical decisions that will be hard to reverse
 
-**Compared to other CLIs:** Gemini CLI and Codex CLI have reasoning capabilities, but Claude's extended thinking produces explicit, visible chain-of-thought that is especially strong for multi-dimensional trade-off analysis.
+**Compared to other CLIs:** Codex CLI has reasoning capabilities, but Claude's extended thinking produces explicit, visible chain-of-thought that is especially strong for multi-dimensional trade-off analysis.
 
 ---
 
@@ -85,7 +85,7 @@ claude -p "Analyze the trade-offs of our current caching strategy" \
 - Bug fixes that require changing specific lines without touching others
 - Multi-file changes where files have interdependencies
 
-**Compared to other CLIs:** Codex CLI has workspace-write sandbox but operates at file level. Gemini CLI uses code execution for modifications. Claude Code's Edit tool is the most precise for surgical changes.
+**Compared to other CLIs:** Codex CLI has workspace-write sandbox but operates at file level. Claude Code's Edit tool is the most precise for surgical changes.
 
 ---
 
@@ -138,7 +138,7 @@ claude -p "Audit @src/auth.ts for security issues" \
 - Data extraction tasks that feed into automated workflows
 - API response analysis with consistent output format
 
-**Compared to other CLIs:** Codex CLI requests JSON via prompt instructions (no schema validation). Gemini CLI has `--output_format json` but no schema validation. Claude Code's `--json-schema` provides the strongest structural guarantee.
+**Compared to other CLIs:** Codex CLI requests JSON via prompt instructions (no schema validation). Claude Code's `--json-schema` provides the strongest structural guarantee.
 
 ---
 
@@ -169,7 +169,7 @@ claude -p "Review @src/auth.ts for security issues" \
 - Review and audit tasks where file modification would be inappropriate
 - Exploration tasks before committing to implementation approach
 
-**Compared to other CLIs:** Codex CLI has `--sandbox read-only` (similar concept). Gemini CLI has no equivalent read-only enforcement.
+**Compared to other CLIs:** Codex CLI has `--sandbox read-only` (similar concept).
 
 ---
 
@@ -193,7 +193,7 @@ claude -p "Full security audit of the entire src/ directory" \
 - Experimentation without runaway spend
 - CI/CD pipelines with cost budgets
 
-**Compared to other CLIs:** Codex CLI and Gemini CLI have no built-in budget cap mechanism.
+**Compared to other CLIs:** Codex CLI has no built-in budget cap mechanism.
 
 ---
 
@@ -221,30 +221,30 @@ claude -p "Full security audit of the entire src/ directory" \
 
 ---
 
-## 3. THREE-WAY COMPARISON TABLE
+## 3. COMPARISON TABLE
 
-### Claude Code vs Gemini CLI vs Codex CLI
+### Claude Code vs Codex CLI
 
-| Capability | Claude Code | Gemini CLI | Codex CLI |
-|------------|-------------|------------|-----------|
-| **Deep Reasoning** | Extended thinking (`--effort high`) | Thinking mode (built-in) | `xhigh` reasoning effort |
-| **Code Editing** | Edit tool (surgical diff-based) | Code execution | Workspace-write sandbox |
-| **Structured Output** | `--json-schema` (validated) | `--output_format json` | Prompt-based JSON |
-| **Read-Only Mode** | `--permission-mode plan` | N/A | `--sandbox read-only` |
-| **Web Search** | N/A (use Gemini/Codex) | Google Search grounding | `--search` flag |
-| **Cost Control** | `--max-budget-usd` | N/A | N/A |
-| **Agent System** | 9 agents via `--agent` | explicit role prompts | 9 agents via `-p` profiles |
-| **Session Continuity** | `--continue`, `--resume` | `--session` | `resume`, `fork` |
-| **Image Input** | N/A | `--image` | `--image` / `-i` |
-| **Memory System** | Spec Kit Memory MCP | N/A | N/A |
-| **Hooks** | Pre/post tool hooks | N/A | N/A |
-| **Model Count** | 3 (opus, sonnet, haiku) | 1 (gemini-3.1-pro-preview) | 1 (gpt-5.3-codex) |
-| **Auth Methods** | API key, OAuth, setup-token | API key, OAuth | API key, OAuth |
-| **Nesting Guard** | `$CLAUDECODE` env var | N/A | N/A |
-| **Non-Interactive** | `-p "prompt"` | `-p "prompt"` | `exec "prompt"` |
-| **Review Workflow** | Via `--agent review` | Via agent definition | `/review` command (TUI) |
-| **Background Exec** | `& 2>&1` (shell) | `& 2>&1` (shell) | `& 2>&1` (shell) |
-| **MCP Support** | Built-in | `--mcp_tools` | `codex mcp` |
+| Capability | Claude Code | Codex CLI |
+|------------|-------------|-----------|
+| **Deep Reasoning** | Extended thinking (`--effort high`) | `xhigh` reasoning effort |
+| **Code Editing** | Edit tool (surgical diff-based) | Workspace-write sandbox |
+| **Structured Output** | `--json-schema` (validated) | Prompt-based JSON |
+| **Read-Only Mode** | `--permission-mode plan` | `--sandbox read-only` |
+| **Web Search** | N/A (use Codex) | `--search` flag |
+| **Cost Control** | `--max-budget-usd` | N/A |
+| **Agent System** | 9 agents via `--agent` | 9 agents via `-p` profiles |
+| **Session Continuity** | `--continue`, `--resume` | `resume`, `fork` |
+| **Image Input** | N/A | `--image` / `-i` |
+| **Memory System** | Spec Kit Memory MCP | N/A |
+| **Hooks** | Pre/post tool hooks | N/A |
+| **Model Count** | 3 (opus, sonnet, haiku) | 1 (gpt-5.3-codex) |
+| **Auth Methods** | API key, OAuth, setup-token | API key, OAuth |
+| **Nesting Guard** | `$CLAUDECODE` env var | N/A |
+| **Non-Interactive** | `-p "prompt"` | `exec "prompt"` |
+| **Review Workflow** | Via `--agent review` | `/review` command (TUI) |
+| **Background Exec** | `& 2>&1` (shell) | `& 2>&1` (shell) |
+| **MCP Support** | Built-in | `codex mcp` |
 
 ### When to Choose Each
 
@@ -254,12 +254,11 @@ claude -p "Full security audit of the entire src/ directory" \
 | Surgical code edits | **Claude Code** | Edit tool operates at diff level |
 | Schema-validated JSON | **Claude Code** | `--json-schema` guarantees structure |
 | Read-only exploration | **Claude Code** or **Codex** | Both have enforced read-only modes |
-| Live web search | **Gemini** or **Codex** | Claude Code lacks web search |
+| Live web search | **Codex** | `--search` flag; Claude Code lacks web search |
 | Cost-controlled batch ops | **Claude Code** | `--max-budget-usd` built-in |
 | Diff-aware code review | **Codex** | `/review` command is diff-native |
-| Google Search grounding | **Gemini** | Native Google Search integration |
 | Multi-model flexibility | **Claude Code** | 3 tiers (opus/sonnet/haiku) |
-| Visual input (screenshots) | **Gemini** or **Codex** | Both support `--image` |
+| Visual input (screenshots) | **Codex** | Supports `--image` |
 | Persistent project memory | **Claude Code** | Spec Kit Memory MCP |
 
 ---
@@ -271,7 +270,7 @@ claude -p "Full security audit of the entire src/ directory" \
 External AIs can leverage multiple CLIs in a single workflow:
 
 ```text
-1. Gemini CLI: Web research (Google Search grounding)
+1. Codex CLI: Web research (--search flag)
    → Gather current information about a library or vulnerability
 
 2. Claude Code: Deep reasoning (extended thinking)

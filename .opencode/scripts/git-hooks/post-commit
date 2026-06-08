@@ -6,7 +6,7 @@
 # full scan. Without this, drift accumulates silently (the launcher only
 # detects drift at boot; multiple commits without a launcher restart can
 # leave the graph weeks out of date). Runtime-agnostic: the launcher boots
-# under any AI CLI runtime (Claude Code, OpenCode, Codex, Gemini), so this
+# under any AI CLI runtime (Claude Code, OpenCode, Codex), so this
 # applies to whichever runtime starts the next session.
 #
 # Default threshold: 100 files changed (post-commit). Tunable via

@@ -653,21 +653,6 @@ workflow:
             - "copilot has no stdin support; prompt is positional"
             - "Size check uses 16KB threshold; above that uses @PROMPT_PATH wrapper prompt"
             - "Large-prompt path relies on copilot honoring @path references within its prompt string"
-        if_cli_gemini:
-          command: |
-            gemini \
-              "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
-              -m "{config.executor.model}" \
-              -s none \
-              -y \
-              -o text
-          working_directory: "{repo_root}"
-          timeout_seconds: "{config.executor.timeoutSeconds}"
-          wait_for_completion: true
-          notes:
-            - "gemini accepts positional prompt or stdin; we use positional via command substitution"
-            - "gemini has no reasoningEffort or serviceTier flags; model is the only lever"
-            - "gemini model whitelist enforced at config parse (currently only gemini-3.1-pro-preview)"
         if_cli_claude_code:
           command: |
             claude \
@@ -709,7 +694,7 @@ workflow:
             - "opencode run takes a positional message; prompt is fed via command substitution"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
-            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/Gemini/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"

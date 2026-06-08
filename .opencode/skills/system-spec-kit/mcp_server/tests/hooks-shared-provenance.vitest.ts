@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // Verifies that the 3 provenance helpers behave identically after
 // extraction from hooks/claude/shared.ts into hooks/shared-provenance.ts.
-// Also verifies that Claude and Gemini re-exports resolve to the same
+// Also verifies that Claude re-exports resolve to the same
 // function references (no accidental duplication).
 import { describe, it, expect } from 'vitest';
 import {
@@ -14,7 +14,6 @@ import {
   RECOVERED_TRANSCRIPT_STRIP_PATTERNS,
 } from '../hooks/shared-provenance.js';
 import * as claudeShared from '../hooks/claude/shared.js';
-import * as geminiShared from '../hooks/gemini/shared.js';
 
 const ASCII_ONLY_PATTERN = /^[\x00-\x7F]+$/;
 const ADVERSARIAL_MATCHING_CASES = [
@@ -254,17 +253,11 @@ describe('hooks/shared-provenance', () => {
     });
   });
 
-  describe('claude/shared.ts and gemini/shared.ts re-exports', () => {
+  describe('claude/shared.ts re-exports', () => {
     it('Claude shared re-exports point to the same functions as shared-provenance', () => {
       expect(claudeShared.escapeProvenanceField).toBe(escapeProvenanceField);
       expect(claudeShared.sanitizeRecoveredPayload).toBe(sanitizeRecoveredPayload);
       expect(claudeShared.wrapRecoveredCompactPayload).toBe(wrapRecoveredCompactPayload);
-    });
-
-    it('Gemini shared re-exports point to the same functions as shared-provenance', () => {
-      expect(geminiShared.escapeProvenanceField).toBe(escapeProvenanceField);
-      expect(geminiShared.sanitizeRecoveredPayload).toBe(sanitizeRecoveredPayload);
-      expect(geminiShared.wrapRecoveredCompactPayload).toBe(wrapRecoveredCompactPayload);
     });
   });
 });

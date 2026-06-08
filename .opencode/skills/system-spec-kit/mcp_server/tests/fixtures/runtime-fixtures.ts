@@ -7,7 +7,7 @@ import { detectCodexHookPolicy } from '../../lib/codex-hook-policy.js';
 
 /** Runtime fixture describing a specific runtime's hook capabilities */
 export interface RuntimeFixture {
-  runtime: 'claude-code' | 'codex-cli' | 'copilot-cli' | 'gemini-cli';
+  runtime: 'claude-code' | 'codex-cli' | 'copilot-cli';
   hookPolicy: 'enabled' | 'disabled_by_scope' | 'live' | 'partial' | 'unavailable';
   supports: {
     sessionStartHook: boolean;
@@ -55,17 +55,6 @@ export function createRuntimeFixture(runtime: RuntimeFixture['runtime']): Runtim
           toolFallback: true,
         },
       };
-    case 'gemini-cli':
-      return {
-        runtime: 'gemini-cli',
-        hookPolicy: 'unavailable',
-        supports: {
-          sessionStartHook: false,
-          preCompactHook: false,
-          stopHook: false,
-          toolFallback: true,
-        },
-      };
   }
 }
 
@@ -82,8 +71,6 @@ export function setRuntimeEnv(runtime: RuntimeFixture['runtime']): void {
   delete process.env.CODEX_TUI_SESSION_LOG_PATH;
   delete process.env.COPILOT_CLI;
   delete process.env.GITHUB_COPILOT_TOKEN;
-  delete process.env.GEMINI_CLI;
-  delete process.env.GOOGLE_GENAI_USE_VERTEXAI;
 
   switch (runtime) {
     case 'claude-code':
@@ -95,9 +82,6 @@ export function setRuntimeEnv(runtime: RuntimeFixture['runtime']): void {
       break;
     case 'copilot-cli':
       process.env.COPILOT_CLI = '1';
-      break;
-    case 'gemini-cli':
-      process.env.GEMINI_CLI = '1';
       break;
   }
 }
@@ -114,6 +98,4 @@ export function clearRuntimeEnv(): void {
   delete process.env.CODEX_TUI_SESSION_LOG_PATH;
   delete process.env.COPILOT_CLI;
   delete process.env.GITHUB_COPILOT_TOKEN;
-  delete process.env.GEMINI_CLI;
-  delete process.env.GOOGLE_GENAI_USE_VERTEXAI;
 }

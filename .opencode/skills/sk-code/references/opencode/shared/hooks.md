@@ -1,11 +1,11 @@
 ---
 title: Runtime Hooks - Spec Kit MCP Hook Entrypoints
-description: Reference for the system-spec-kit runtime hook entrypoints (Claude, Codex, Gemini, Copilot), the dynamic-load registration pattern, and maintenance rules for editing or adding hooks.
+description: Reference for the system-spec-kit runtime hook entrypoints (Claude, Codex, Copilot), the dynamic-load registration pattern, and maintenance rules for editing or adding hooks.
 ---
 
 # Runtime Hooks - Spec Kit MCP Hook Entrypoints
 
-Reference for the four runtime hook surfaces that wire `mcp_server/hooks/` entrypoints into Claude, Codex, Gemini, and Copilot via runtime settings files.
+Reference for the three runtime hook surfaces that wire `mcp_server/hooks/` entrypoints into Claude, Codex, and Copilot via runtime settings files.
 
 ---
 
@@ -25,7 +25,7 @@ This reference documents the runtime hook entrypoints under `.opencode/skills/sy
 - Adding a new hook to one or more runtimes
 - Removing a hook (must update both source and settings.json)
 - Triaging a static analysis report flagging hook code as dead
-- Reviewing parity across the four runtimes
+- Reviewing parity across the three runtimes
 
 ### Key Sources (Evidence)
 
@@ -129,40 +129,7 @@ Codex hook stdin JSON wins over argv JSON when both are present (per advisor hoo
 
 ---
 
-## 5. GEMINI HOOKS
-
-`mcp_server/hooks/gemini/` contains retained adapter entrypoints and shared helpers for operators who wire Gemini CLI hooks outside this repository. This repo no longer ships project-level Gemini hook registration.
-
-Helper module: `shared.ts`.
-
-### Wiring Shape
-
-```jsonc
-"BeforeAgent": [
-  {
-    "hooks": [
-      {
-        "name": "speckit-compact-inject",
-        "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/compact-inject.js'",
-        "timeout": 3000
-      },
-      {
-        "name": "speckit-user-prompt-advisor",
-        "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js'",
-        "timeout": 3000
-      }
-    ]
-  }
-]
-```
-
-Gemini accepts a `name` field on each hook entry - Claude and Codex do not.
-
----
-
-## 6. COPILOT HOOKS
+## 5. COPILOT HOOKS
 
 `mcp_server/hooks/copilot/` - managed custom-instructions writer pattern, NOT a native hook contract.
 
@@ -191,7 +158,7 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 
 ---
 
-## 7. MAINTENANCE CHECKLIST
+## 6. MAINTENANCE CHECKLIST
 
 ### Editing an Existing Hook
 
@@ -206,10 +173,10 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 
 ```
 □ Author the TypeScript source under `mcp_server/hooks/<runtime>/<name>.ts`
-□ Register the wiring entry in the matching settings.json (Claude/Codex/Gemini) or document in the Copilot README
+□ Register the wiring entry in the matching settings.json (Claude/Codex) or document in the Copilot README
 □ Build to confirm the dist artifact emits: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
 □ Smoke-test with the runtime's documented invocation form (advisor hook ref §4 has examples)
-□ Consider parity: if the feature applies to other runtimes, register there too (see §8)
+□ Consider parity: if the feature applies to other runtimes, register there too (see §7)
 ```
 
 ### Removing a Hook
@@ -224,22 +191,22 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 
 ### Cross-Runtime Parity
 
-Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add it to Codex/Gemini/Copilot. Each runtime has different events (Claude uses `PreCompact`, Gemini uses `PreCompress` + `BeforeAgent`, Codex uses `PreToolUse`, Copilot has no native compact contract). Parity decisions are explicit:
+Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add it to Codex/Copilot. Each runtime has different events (Claude uses `PreCompact`, Codex uses `PreToolUse`, Copilot has no native compact contract). Parity decisions are explicit:
 
 | Question | Action |
 |---|---|
-| Does the feature need session-start priming? | Add to Claude (`session-prime`), Gemini (`session-prime`), Codex (`session-start`), Copilot (`session-prime`) |
-| Does the feature run per-prompt? | Add to Claude/Codex/Gemini `user-prompt-submit` and Copilot's writer |
-| Does the feature run on compaction? | Map runtime-specific event names: Claude `PreCompact`, Gemini `PreCompress`/`BeforeAgent`, Codex no native event, Copilot via cache helper |
+| Does the feature need session-start priming? | Add to Claude (`session-prime`), Codex (`session-start`), Copilot (`session-prime`) |
+| Does the feature run per-prompt? | Add to Claude/Codex `user-prompt-submit` and Copilot's writer |
+| Does the feature run on compaction? | Map runtime-specific event names: Claude `PreCompact`, Codex no native event, Copilot via cache helper |
 
 ---
 
-## 8. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Canonical Evidence
 
 - Dead-code audit (003): `<spec-folder>` - 15 hook entrypoints classified `dynamic-only-reference`, KEEP
-- Per-runtime hook directories: `mcp_server/hooks/{claude,codex,gemini,copilot}/README.md`
+- Per-runtime hook directories: `mcp_server/hooks/{claude,codex,copilot}/README.md`
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 

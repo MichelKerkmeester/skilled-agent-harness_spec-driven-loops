@@ -44,5 +44,4 @@ mcp_server/lib/session/context-metrics.ts
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `22--context-preservation/context-preservation-metrics.md`
 Related references:
-- [gemini-cli-hooks.md](gemini-cli-hooks.md) — Gemini CLI hooks
 - [tool-routing-enforcement.md](tool-routing-enforcement.md) — Tool routing enforcement

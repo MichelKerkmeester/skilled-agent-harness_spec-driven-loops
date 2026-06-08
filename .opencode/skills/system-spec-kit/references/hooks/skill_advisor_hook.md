@@ -1,6 +1,6 @@
 ---
 title: Skill Advisor Hook Reference
-description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Gemini CLI, Codex CLI, and the OpenCode plugin bridge.
+description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Codex CLI, and the OpenCode plugin bridge.
 ---
 
 # Skill Advisor Hook Reference
@@ -13,7 +13,7 @@ This reference describes the current prompt-time Skill Advisor integrations. The
 
 ### Purpose
 
-Define the prompt-time Skill Advisor hook contract across Claude Code, Copilot CLI, Gemini CLI, Codex CLI, and the OpenCode plugin bridge.
+Define the prompt-time Skill Advisor hook contract across Claude Code, Copilot CLI, Codex CLI, and the OpenCode plugin bridge.
 
 ### When to Use
 
@@ -55,7 +55,6 @@ Native tool baseline:
 | Runtime | Source Hook | Output Shape | Notes |
 | --- | --- | --- | --- |
 | Claude Code | `mcp_server/hooks/claude/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt` and `cwd`. |
-| Gemini CLI | `mcp_server/hooks/gemini/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt`, `userPrompt`, or `request.prompt`. |
 | Codex CLI | `mcp_server/hooks/codex/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Stdin JSON is canonical and wins over argv JSON. |
 | Codex fallback | `mcp_server/hooks/codex/prompt-wrapper.ts` | `promptWrapper` and `wrappedPrompt` | Runs only when Codex hook policy reports hooks unavailable. |
 | OpenCode | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js`, applies the same effective threshold on native and fallback paths, then falls back to the Python-backed brief path only when native is unavailable. |
@@ -98,15 +97,6 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_
 ```
 
 Expected: `{}` or `hookSpecificOutput.additionalContext` beginning with `Advisor:`.
-
-### Gemini CLI
-
-```bash
-printf '%s' '{"request":{"prompt":"create a flowchart for the auth process","cwd":"'"$PWD"'"}}' | \
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js
-```
-
-Expected: `{}` or `hookSpecificOutput.additionalContext`.
 
 ### Codex CLI
 

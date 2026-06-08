@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 This playbook provides 18 deterministic scenarios across 6 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-05-07): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, and external CLI handbacks through cli-codex, cli-opencode, and cli-gemini. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, and `.opencode/agents/` on disk.
+Coverage note (2026-05-07): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, and external CLI handbacks through cli-codex and cli-opencode. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, and `.opencode/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -79,7 +79,6 @@ Coverage note (2026-05-07): the playbook covers single-pass review flow, securit
 - Deep-review references shown as `agent: @deep-review <single-iteration context>` only when a scenario inspects deep-review behavior; this root playbook does not run the deep-review loop.
 - Codex CLI dispatches shown as `cli-codex: <prompt>`.
 - OpenCode CLI dispatches shown as `cli-opencode: <prompt>`.
-- Gemini CLI dispatches shown as `cli-gemini: <prompt>`.
 - `->` separates sequential steps inside one deterministic command sequence.
 - External CLI handbacks are review-only. Any implementation, file edit, or branch mutation is contradictory evidence.
 
@@ -143,7 +142,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 |---|---|---|
 | Scenario ID | Yes | One of CR-001..CR-018 |
 | Feature file | Yes | Relative path under this playbook root |
-| Runtime | Yes | Native, @review, cli-codex, cli-opencode, cli-gemini, or skipped surface |
+| Runtime | Yes | Native, @review, cli-codex, cli-opencode, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
 | Exact prompt hash | Yes | Hash or pasted prompt proving canonical prompt equality |
 | Evidence path | Yes | Transcript, report path, or captured output location |
@@ -525,7 +524,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 > **Feature File:** [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md)
 
-### CR-018 | cli-opencode and cli-gemini handback
+### CR-018 | cli-opencode and cli-codex handback
 
 #### Description
 
@@ -533,13 +532,13 @@ Alternate-CLI handback comparison that keeps unsupported claims out of blockers.
 
 #### Scenario Contract
 
-Prompt: `As an external conductor, cross-check a review through cli-opencode and cli-gemini against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.`
+Prompt: `As an external conductor, cross-check a review through cli-opencode and cli-codex against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.`
 
 Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
 
 #### Test Execution
 
-> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-gemini-handback.md)
+> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-codex-handback.md)
 
 ---
 
@@ -578,4 +577,4 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-015 | AI-generated suspect quality | RE-REVIEW AND STALE CONTEXT | [CR-015](05--re-review-and-stale-context/ai-generated-code-suspect-quality.md) |
 | CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md) |
 | CR-017 | cli-codex delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md) |
-| CR-018 | cli-opencode and cli-gemini handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-gemini-handback.md) |
+| CR-018 | cli-opencode and cli-codex handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-codex-handback.md) |

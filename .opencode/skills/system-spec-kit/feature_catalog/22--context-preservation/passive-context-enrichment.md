@@ -45,4 +45,3 @@ mcp_server/hooks/memory-surface.ts, mcp_server/hooks/response-hints.ts
 - Feature file path: `22--context-preservation/passive-context-enrichment.md`
 Related references:
 - [query-intent-routing.md](query-intent-routing.md) — Query-intent routing
-- [gemini-cli-hooks.md](gemini-cli-hooks.md) — Gemini CLI hooks

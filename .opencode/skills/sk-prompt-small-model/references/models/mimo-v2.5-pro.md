@@ -41,7 +41,7 @@ MiMo-V2.5-Pro wins on COSTAR plus lean pre-planning — frame for output format,
 | Executor path | `cli-opencode` → provider `xiaomi-token-plan-ams` |
 | Free cheap-iteration sibling | `opencode/mimo-v2.5-free` (opencode-go gateway, v2.5 tier, separate pool) |
 | SWE-bench Pro | 57.2 (strongly agentic; sustains 1000+ sequential tool calls) |
-| Token efficiency | 40–60% fewer tokens/trajectory vs frontier models (Opus 4.6 / Gemini 3.1 Pro / GPT-5.4) |
+| Token efficiency | 40–60% fewer tokens/trajectory vs frontier models (Opus 4.6 / GPT-5.4) |
 
 MiMo-V2.5-Pro is the **largest-context model in the small-model rotation** and the most token-efficient. It lives on its own subscription quota pool (`xiaomi-token-plan`), isolated from `opencode-go`, `cognition-pro`, and `minimax-token-plan`. Billing via the Token Plan shows cost 0/0 in opencode — no pay-per-token burn on the primary path.
 

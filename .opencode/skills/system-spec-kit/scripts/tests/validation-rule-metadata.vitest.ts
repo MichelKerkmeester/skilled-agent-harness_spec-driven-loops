@@ -115,6 +115,5 @@ describe('source capabilities', () => {
     expect(getSourceCapabilities('opencode-capture').toolTitleWithPathExpected).toBe(false);
     expect(getSourceCapabilities('codex-cli-capture').toolTitleWithPathExpected).toBe(false);
     expect(getSourceCapabilities('copilot-cli-capture').toolTitleWithPathExpected).toBe(true); // O4-13: Copilot CLI uses Claude models that produce tool titles
-    expect(getSourceCapabilities('gemini-cli-capture').toolTitleWithPathExpected).toBe(false);
   });
 });

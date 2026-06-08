@@ -373,8 +373,7 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `2.1.4.x` | 2.1.4.0   | HVR integration across documentation templates                                                                                  |
 | `2.2.0.x` | 2.2.0.0-2 | System Spec Kit verification hardening + release-doc refresh (deferred-suite activation, CHK-336 closure, README/metadata sync) |
 | `2.2.1.x` | 2.2.1.0   | Context overload prevention for orchestrator agents                                                                             |
-| `2.2.2.x` | 2.2.2.0   | Gemini CLI agent fleet + TOML commands + MCP server config                                                                      |
-| `2.3.0.x` | 2.3.0.0   | Gemini CLI full provider integration (4th runtime: agents, commands, skills, MCP)                                               |
+| `2.2.2.x` | 2.2.2.0   | TOML commands + MCP server config                                                                                              |
 | `2.4.0.x` | 2.4.0.0-3 | SpecKit/Review/Agents consolidation + @ultra-think agent + sk-git commit logic                                                  |
 | `3.0.0.x` | 3.0.0.0-4 | Hybrid RAG Fusion platform release: 5-channel retrieval, review mode, 23 README rewrites, 4 CLI skills, 57 component releases   |
 | `3.1.0.x` | 3.1.0.0   | Plain-English release notes style, freshness audit, spec folder pass-through rule                                               |

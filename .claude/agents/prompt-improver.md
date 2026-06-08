@@ -45,7 +45,7 @@ Use these IDs when a recommendation depends on an integration point.
 | `INT-CMD-PROMPT-IMPROVER` | `/prompt` via `.opencode/commands/prompt.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
 | `INT-SKILL-PROMPT-IMPROVER` | `.opencode/skills/sk-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
-| `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, `copilot`, or `gemini` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
+| `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, or `copilot` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
 | `INT-MCP-CALLER-SUPPLIED` | `mcp_tools` field | Caller-supplied downstream MCP tool constraints only; include or warn about them without inventing or invoking tools |
 | `INT-RUNTIME-MIRRORS` | `.claude/agents`, `.codex/agents` | Downstream packaging surfaces only; never use them as canonical prompt authority |
 
@@ -207,7 +207,7 @@ Expected caller payload:
 ```text
 raw_task: <required task or draft prompt>
 task_type: <generation|review|research|edit|analyze>   # optional
-target_cli: <claude-code|codex|copilot|gemini>         # optional
+target_cli: <claude-code|codex|copilot>         # optional
 complexity_hint: <1-10>                                # optional
 constraints: <policy, output, or audience constraints> # optional
 caller_agent: <@general|other caller>           # optional

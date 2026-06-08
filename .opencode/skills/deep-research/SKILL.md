@@ -128,7 +128,7 @@ INTENT_SIGNALS = {
     "RECOVERY": {"weight": 4, "keywords": ["stuck", "recovery", "timeout", "reconstruct", "blocked stop", "blocked_stop"]},
     "STATE": {"weight": 4, "keywords": ["state file", "jsonl", "strategy", "dashboard", "registry", "lineage"]},
     "SPEC_ANCHORING": {"weight": 3, "keywords": ["spec.md", "generated fence", "folder_state", "lock", "spec anchoring"]},
-    "RUNTIME_PARITY": {"weight": 3, "keywords": ["runtime", "capability", "parity", "codex", "claude", "gemini"]},
+    "RUNTIME_PARITY": {"weight": 3, "keywords": ["runtime", "capability", "parity", "codex", "claude"]},
     "RESOURCE_MAP": {"weight": 3, "keywords": ["resource map", "resource-map", "inventory", "coverage gate"]},
 }
 
@@ -467,7 +467,7 @@ Every completed loop produces a convergence report:
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md, AGENTS.md, CODEX.md, or GEMINI.md).
+This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md, AGENTS.md, or CODEX.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: autoresearch, deep research)

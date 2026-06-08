@@ -134,5 +134,5 @@ Reference snippet showing what a rendered review dashboard looks like after iter
 
 ## 9. ACTIVE RISKS
 - 1 P0 in test-coverage dimension -- review cannot terminate PASS until resolved
-- agent_cross_runtime protocol partial: Gemini runtime path still unverified
+- agent_cross_runtime protocol partial: Codex runtime path still unverified
 ```

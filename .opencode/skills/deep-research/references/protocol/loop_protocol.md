@@ -229,7 +229,6 @@ Before dispatching, the YAML resolves the executor via `parseExecutorConfig` fro
 
 - `native` (spec 018): dispatch `@deep-research` agent with model Opus.
 - `cli-codex` (spec 018): pipe rendered prompt via stdin to `codex exec --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
-- `cli-gemini` (spec 019): positional prompt to `gemini "$(cat prompt)" -m X -s none -y -o text`. Model whitelist enforced (`gemini-3.1-pro-preview` only). No reasoning-effort or service-tier flags.
 - `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only); we override to `acceptEdits` so iteration writes succeed.
 
 All branches share:

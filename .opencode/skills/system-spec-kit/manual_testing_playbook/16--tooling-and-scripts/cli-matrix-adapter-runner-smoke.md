@@ -14,11 +14,11 @@ This scenario validates the matrix runner surface. It exercises one cell through
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Run a single matrix cell through `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`, then verify per-cell JSONL and timeout behavior.
-- Real user request: `` Please validate CLI matrix adapter runner smoke against the documented validation surface and tell me whether the expected signals are present: Step 1 writes five files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-gemini`, `F5-cli-claude-code`, and `F5-cli-opencode`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite. ``
+- Objective: Run a single matrix cell through `cli-codex`, `cli-claude-code`, and `cli-opencode`, then verify per-cell JSONL and timeout behavior.
+- Real user request: `` Please validate CLI matrix adapter runner smoke against the documented validation surface and tell me whether the expected signals are present: Step 1 writes three files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-claude-code`, and `F5-cli-opencode`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite. ``
 - Prompt: `Validate CLI matrix adapter runner smoke against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: Step 1 writes five files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-gemini`, `F5-cli-claude-code`, and `F5-cli-opencode`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite
+- Expected signals: Step 1 writes three files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-claude-code`, and `F5-cli-opencode`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if the expected signals are present without contradicting evidence; FAIL if required signals are missing or execution cannot complete.
 
@@ -42,7 +42,7 @@ cd .opencode/skills/system-spec-kit
 ./scripts/node_modules/.bin/tsx mcp_server/matrix_runners/run-matrix.ts \
   --output "$OUT" \
   --filter F5 \
-  --executors cli-codex,cli-gemini,cli-claude-code,cli-opencode \
+  --executors cli-codex,cli-claude-code,cli-opencode \
   --working-dir "$(pwd)/../../.."
 ```
 
@@ -79,8 +79,6 @@ cat "$OUT/summary.tsv"
 cd .opencode/skills/system-spec-kit/mcp_server
 npx vitest run \
   tests/matrix-adapter-codex.vitest.ts \
-  tests/matrix-adapter-copilot.vitest.ts \
-  tests/matrix-adapter-gemini.vitest.ts \
   tests/matrix-adapter-claude-code.vitest.ts \
   tests/matrix-adapter-opencode.vitest.ts \
   --testNamePattern 'TIMEOUT_CELL'
@@ -88,7 +86,7 @@ npx vitest run \
 
 ### Expected Output / Verification
 
-- Step 1 writes five files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-gemini`, `F5-cli-claude-code`, and `F5-cli-opencode`.
+- Step 1 writes three files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-claude-code`, and `F5-cli-opencode`.
 - Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.
 - Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.
 - `summary.tsv` contains per-feature and per-executor aggregate rows.
@@ -102,7 +100,7 @@ rm -rf "$OUT"
 
 ### Variant Scenarios
 
-- Run F11 with all executors and verify `F11-cli-gemini` records `NA` from the matrix definition applicability rule.
+- Run F11 with all executors and verify the applicable cells record `NA` from the matrix definition applicability rule where the rule excludes the executor.
 - Run `--filter F5,F6` to prove multiple code-graph cells produce separate JSONL records.
 - Run with one missing CLI binary and verify the adapter records `BLOCKED` rather than crashing the meta-runner.
 

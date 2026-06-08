@@ -15,7 +15,7 @@ This scenario validates External dispatch from Codex into OpenCode (use case 1) 
 
 ### Why This Matters
 
-Use case 1 is documented as supporting all non-OpenCode runtimes. Claude Code, Codex, Copilot, Gemini, raw shell. Per `references/integration_patterns.md` §2. The smart router decision tree in §5 of integration_patterns.md routes non-Anthropic callers to use case 1 when no project-specific subsystem is named in the prompt. If this path silently regresses (e.g., the smart router incorrectly always picks use case 3 for non-Anthropic callers), the general "Codex needs the OpenCode runtime" workflow breaks. This test proves use case 1 selection works correctly when the caller is non-Anthropic AND the prompt does NOT name a spec-kit subsystem.
+Use case 1 is documented as supporting all non-OpenCode runtimes. Claude Code, Codex, Copilot, raw shell. Per `references/integration_patterns.md` §2. The smart router decision tree in §5 of integration_patterns.md routes non-Anthropic callers to use case 1 when no project-specific subsystem is named in the prompt. If this path silently regresses (e.g., the smart router incorrectly always picks use case 3 for non-Anthropic callers), the general "Codex needs the OpenCode runtime" workflow breaks. This test proves use case 1 selection works correctly when the caller is non-Anthropic AND the prompt does NOT name a spec-kit subsystem.
 
 ---
 

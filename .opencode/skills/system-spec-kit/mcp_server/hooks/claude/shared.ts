@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Shared Hook Utilities
 // ───────────────────────────────────────────────────────────────
-// Keep the provenance re-exports in lockstep with hooks/gemini/shared.ts.
 // Copilot imports these helpers straight from ../shared-provenance.js, so
 // drift in any one runtime silently forks the recovered-payload contract.
 
@@ -102,7 +101,7 @@ export function truncateToTokenBudget(text: string, maxTokens: number): string {
 
 // Provenance helpers (escapeProvenanceField, sanitizeRecoveredPayload,
 // wrapRecoveredCompactPayload) live in ../shared-provenance.ts so they
-// can be consumed by Claude, Gemini, and Copilot runtimes without
+// can be consumed by Claude and Copilot runtimes without
 // transitive coupling to this Claude-specific module (T-W1-HOK-02).
 export {
   escapeProvenanceField,

@@ -40,8 +40,6 @@ describe('runtime-detection / detectRuntime', () => {
         || key.startsWith('CODEX_')
         || key === 'COPILOT_CLI'
         || key === 'GITHUB_COPILOT_TOKEN'
-        || key.startsWith('GEMINI_')
-        || key.startsWith('GOOGLE_')
         || key === 'OPENAI_API_KEY'
         || key === 'MCP_SERVER_NAME'
       ) {
@@ -111,22 +109,6 @@ describe('runtime-detection / detectRuntime', () => {
     expect(info.hookPolicy).toBe('disabled_by_scope');
   });
 
-  it('detects Gemini CLI via GEMINI_CLI=1', () => {
-    process.env.GEMINI_CLI = '1';
-    mocks.existsSync.mockReturnValue(false);
-    const info = detectRuntime();
-    expect(info.runtime).toBe('gemini-cli');
-    expect(info.hookPolicy).toBe('unavailable');
-  });
-
-  it('detects Gemini CLI via GOOGLE_GENAI_USE_VERTEXAI', () => {
-    process.env.GOOGLE_GENAI_USE_VERTEXAI = '1';
-    mocks.existsSync.mockReturnValue(false);
-    const info = detectRuntime();
-    expect(info.runtime).toBe('gemini-cli');
-    expect(info.hookPolicy).toBe('unavailable');
-  });
-
   it('returns unknown when no runtime env vars are set', () => {
     const info = detectRuntime();
     expect(info.runtime).toBe('unknown');
@@ -169,8 +151,6 @@ describe('runtime-detection / areHooksAvailable', () => {
         || key.startsWith('CODEX_')
         || key === 'COPILOT_CLI'
         || key === 'GITHUB_COPILOT_TOKEN'
-        || key.startsWith('GEMINI_')
-        || key.startsWith('GOOGLE_')
         || key === 'OPENAI_API_KEY'
         || key === 'MCP_SERVER_NAME'
       ) {
@@ -209,8 +189,6 @@ describe('runtime-detection / getRecoveryApproach', () => {
         || key.startsWith('CODEX_')
         || key === 'COPILOT_CLI'
         || key === 'GITHUB_COPILOT_TOKEN'
-        || key.startsWith('GEMINI_')
-        || key.startsWith('GOOGLE_')
         || key === 'OPENAI_API_KEY'
         || key === 'MCP_SERVER_NAME'
       ) {

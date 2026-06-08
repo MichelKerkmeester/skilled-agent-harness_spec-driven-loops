@@ -127,7 +127,6 @@ One known work-intent prompt: `implement a TypeScript hook`
 | Runtime | Smoke |
 |---------|-------|
 | Claude | Start a prompt with the hook registered and confirm an advisor brief or documented no-op path |
-| Gemini | Trigger `BeforeAgent` and confirm JSON `additionalContext` |
 | Copilot | Trigger `userPromptSubmitted` with `SPECKIT_COPILOT_INSTRUCTIONS_PATH` pointed at a temp file; confirm stdout is `{}` and the file contains the managed advisor block |
 | Codex | Use native `UserPromptSubmit` (enable `[features].codex_hooks` + `~/.codex/hooks.json`) or the documented prompt-wrapper fallback, then confirm `additionalContext` |
 
@@ -244,7 +243,7 @@ Advisor hook validation evidence:
 - advisor_validate contract: PASS — workspaceRoot + thresholdSemantics + accepted/corrected/ignored totals present
 - durable JSONL diagnostics: PASS — bounded sinks, read back by advisor_validate across processes
 - opencode bridge smoke: PASS — shared renderAdvisorBrief path, 0.8 / 0.35 threshold contract
-- cross-runtime smoke: PASS or documented no-op for Claude, Gemini, Copilot, Codex
+- cross-runtime smoke: PASS or documented no-op for Claude, Copilot, Codex
 - disable flag: PASS — producer not called, no JSONL lines written
 - cross-consistency grep: PASS — no drift to legacy formatters
 - observability: PASS — metric labels closed, no prompt-bearing fields

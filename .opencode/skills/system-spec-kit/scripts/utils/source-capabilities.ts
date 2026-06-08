@@ -45,12 +45,6 @@ const SOURCE_CAPABILITIES: Record<DataSource, SourceCapabilities> = {
     toolTitleWithPathExpected: true,
     prefersStructuredSave: true, // NOTE: aspirational — most sources still rely on runtime capture. See O4-12.
   },
-  'gemini-cli-capture': {
-    source: 'gemini-cli-capture',
-    inputMode: 'captured',
-    toolTitleWithPathExpected: false,
-    prefersStructuredSave: true,
-  },
   simulation: {
     source: 'simulation',
     inputMode: 'structured',

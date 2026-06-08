@@ -15,7 +15,7 @@ This scenario validates Structured output with json-schema for `CC-018`. It focu
 
 ### Why This Matters
 
-`--json-schema` is the cli-claude-code skill's strongest pipeline-integration mechanism. The Claude Tools Reference (`references/claude_tools.md`) explicitly contrasts this against Codex CLI's prompt-based JSON requests and Gemini CLI's `--output_format json` (no schema validation), positioning Claude Code's schema validation as the strongest structural guarantee. If responses do not conform to the supplied schema, every downstream pipeline that consumes Claude Code output (CC-013 review pipelines, CC-019 template-driven dispatches) becomes brittle.
+`--json-schema` is the cli-claude-code skill's strongest pipeline-integration mechanism. The Claude Tools Reference (`references/claude_tools.md`) explicitly contrasts this against Codex CLI's prompt-based JSON requests (no schema validation), positioning Claude Code's schema validation as the strongest structural guarantee. If responses do not conform to the supplied schema, every downstream pipeline that consumes Claude Code output (CC-013 review pipelines, CC-019 template-driven dispatches) becomes brittle.
 
 ---
 

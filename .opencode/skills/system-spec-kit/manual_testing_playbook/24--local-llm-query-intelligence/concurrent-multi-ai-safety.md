@@ -55,7 +55,7 @@ Orchestrating AI stores 5 baseline memories. For each i in 1..5:
 
 ### Phase 2 — Launch concurrent reader
 
-External CLI-A (use cli-codex or cli-gemini):
+External CLI-A (use cli-codex):
 
 ```bash
 codex exec --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write - <<'PROMPT'

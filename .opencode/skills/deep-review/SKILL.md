@@ -47,7 +47,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command.
 
 **NEVER:**
 - Write a custom bash/shell dispatcher to parallelize iterations (ad-hoc shell fan-out)
-- Invoke cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
+- Invoke cli-codex / cli-claude-code directly in a loop to simulate iterations
 - Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
 - Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF, a single iteration, and MUST be driven by the command's workflow)
 - Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`
@@ -469,7 +469,7 @@ The release-readiness handoff is valid when:
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md, AGENTS.md, CODEX.md, or GEMINI.md).
+This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md, AGENTS.md, or CODEX.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, code audit, iterative review)

@@ -13,13 +13,13 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-> **Scope note:** This page documents the Claude-specific SessionStart priming path. All four supported runtimes (Claude, Gemini, Copilot, Codex) now transport the same compact startup shared-payload (including `graphQualitySummary`) through their runtime-specific hooks — see `../18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md` and `references/config/hook_system.md` (Shared Startup Payload Parity section) for the cross-runtime matrix.
+> **Scope note:** This page documents the Claude-specific SessionStart priming path. All three supported runtimes (Claude, Copilot, Codex) now transport the same compact startup shared-payload (including `graphQualitySummary`) through their runtime-specific hooks — see `../18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md` and `references/config/hook_system.md` (Shared Startup Payload Parity section) for the cross-runtime matrix.
 
 ## 1. OVERVIEW
 
 SessionStart priming injects context via stdout on Claude Code SessionStart based on source routing (compact/startup/resume/clear).
 
-This hook handles four session start scenarios: after compaction it reads the cached PreCompact payload, on fresh startup it surfaces a Spec Kit Memory overview plus the shared startup payload (`graphQualitySummary`, `sharedPayloadTransport`), on resume it loads prior session state, and after /clear it provides minimal context. The output is written to stdout for Claude Code to inject into the conversation. The same payload shape is transported by `hooks/gemini/session-prime.ts`, `hooks/copilot/session-prime.ts`, and `hooks/codex/session-start.ts`.
+This hook handles four session start scenarios: after compaction it reads the cached PreCompact payload, on fresh startup it surfaces a Spec Kit Memory overview plus the shared startup payload (`graphQualitySummary`, `sharedPayloadTransport`), on resume it loads prior session state, and after /clear it provides minimal context. The output is written to stdout for Claude Code to inject into the conversation. The same payload shape is transported by `hooks/copilot/session-prime.ts` and `hooks/codex/session-start.ts`.
 
 ---
 

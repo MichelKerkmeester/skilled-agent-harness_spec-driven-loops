@@ -18,7 +18,7 @@ I want to install Spec Kit Memory MCP server from .opencode/skills/system-spec-k
 Please help me:
 1. Verify I have Node.js >=20.11.0 and npm installed
 2. Install dependencies and build the MCP server
-3. Configure for my environment (I'm using: [OpenCode / Claude Code / Codex / Gemini / Copilot / Claude Desktop])
+3. Configure for my environment (I'm using: [OpenCode / Claude Code / Codex / Copilot / Claude Desktop])
 4. Verify the installation with a test search query
 5. Handle any native module rebuild issues if they occur
 
@@ -51,7 +51,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│        AI Clients (OpenCode, Claude Code, Codex, Gemini, Copilot) │
+│        AI Clients (OpenCode, Claude Code, Codex, Copilot)         │
 └─────────────────────────────────┬───────────────────────────────┘
                                   │ MCP stdio
                                   ▼
@@ -176,7 +176,7 @@ Phase 1 verifies the required software on your machine.
    # Must show a version number
    ```
 
-3. **MCP client**: OpenCode, Claude Code, Codex CLI, Gemini CLI, or Copilot MCP/VS Code integration
+3. **MCP client**: OpenCode, Claude Code, Codex CLI, or Copilot MCP/VS Code integration
 
 `Claude Desktop` is also shown below as a generic MCP configuration example.
 

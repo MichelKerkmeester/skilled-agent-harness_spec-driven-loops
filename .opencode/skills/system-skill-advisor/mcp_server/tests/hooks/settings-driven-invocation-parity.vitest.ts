@@ -44,7 +44,7 @@
 // ALWAYS-ON JSON SHAPE
 // --------------------
 // The JSON shape contract is runtime-independent: CI and autonomous runs on
-// Codex / Copilot / Gemini must still assert the production
+// Codex / Copilot must still assert the production
 // `.claude/settings.local.json` contents. Only true Claude interpreter behavior
 // belongs behind a Claude runtime guard; this suite intentionally stays at the
 // checked-in JSON boundary.
@@ -175,12 +175,11 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
           expect((hook?.command ?? '').length).toBeGreaterThan(0);
         });
 
-        it('command points at the claude/ adapter, NOT copilot/codex/gemini', () => {
+        it('command points at the claude/ adapter, NOT copilot/codex', () => {
           const cmd = getHook()?.command ?? '';
           expect(cmd).toContain(EXPECTED_HANDLER_FRAGMENTS[event]);
           expect(cmd).not.toContain('hooks/copilot/');
           expect(cmd).not.toContain('hooks/codex/');
-          expect(cmd).not.toContain('hooks/gemini/');
         });
 
         it('command is anchored to the canonical repo root and pinned node binary', () => {

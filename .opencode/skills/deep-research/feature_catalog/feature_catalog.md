@@ -174,7 +174,7 @@ Defines the immutable loop contract, tunable thresholds, and runtime capability 
 
 #### How It Works
 
-`deep-research-config.json` is written at initialization and treated as read-only after that point. It records iteration budgets, convergence and stuck thresholds, lineage metadata, file protection rules, pause sentinel and reducer paths, and the runtime capability matrix paths that let the same skill describe OpenCode, Claude, Codex, and Gemini mirrors without changing the packet contract.
+`deep-research-config.json` is written at initialization and treated as read-only after that point. It records iteration budgets, convergence and stuck thresholds, lineage metadata, file protection rules, pause sentinel and reducer paths, and the runtime capability matrix paths that let the same skill describe OpenCode, Claude, and Codex mirrors without changing the packet contract.
 
 #### Source Files
 

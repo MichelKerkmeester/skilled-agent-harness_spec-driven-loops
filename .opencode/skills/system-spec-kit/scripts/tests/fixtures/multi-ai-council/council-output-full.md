@@ -3,7 +3,7 @@
 ## Task Classification
 
 - **Type**: Architecture / implementation planning
-- **Council Seats Dispatched**: 3: Analytical / cli-codex, Critical / cli-claude-code, Pragmatic / cli-gemini
+- **Council Seats Dispatched**: 3: Analytical / cli-codex, Critical / cli-claude-code, Pragmatic / cli-opencode
 - **Dispatch Mode**: Sequential Depth 1
 - **Vantage Integrity**: Simulated external vantage lenses, labeled
 
@@ -13,7 +13,7 @@
 | --- | --- | --- | --- | --- |
 | seat-001 | Analytical | cli-codex | Verify parser and artifact shape against packet scope | 86 |
 | seat-002 | Critical | cli-claude-code | Attack path-scoping, idempotency, and missing-section behavior | 88 |
-| seat-003 | Pragmatic | cli-gemini | Keep the helper small enough for maintenance | 82 |
+| seat-003 | Pragmatic | cli-opencode | Keep the helper small enough for maintenance | 82 |
 
 ### Seat 001 - Analytical / cli-codex
 
@@ -69,7 +69,7 @@ Letting the LEAF self-persist was rejected because the agent keeps `write: deny`
 
 88: the safety boundary is straightforward and testable.
 
-### Seat 003 - Pragmatic / cli-gemini
+### Seat 003 - Pragmatic / cli-opencode
 
 #### Proposed Plan
 

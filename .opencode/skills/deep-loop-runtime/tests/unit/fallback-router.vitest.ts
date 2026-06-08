@@ -15,7 +15,6 @@ const requiredProfiles: readonly ModelProfile[] = [
 
 const optionalProfiles: readonly ModelProfile[] = [
   { id: 'haiku', quota_pool: 'anthropic', fallback_target: null },
-  { id: 'gemini-flash', quota_pool: 'google', fallback_target: null },
 ] as const;
 
 /**
@@ -73,14 +72,6 @@ describe('fallback-router', () => {
     });
   });
 
-  it('routes SWE-1.6 to Gemini Flash when the optional separate-pool target is populated', () => {
-    expect(resolveFallback('swe-1.6', registryWithFallback('swe-1.6', 'gemini-flash'))).toEqual({
-      action: 'fallback',
-      target: 'gemini-flash',
-      reason: 'cognition-free pool exhausted, routing swe-1.6 to separate google pool target gemini-flash',
-    });
-  });
-
   it('rejects same-pool Cognition Pro sibling fallback', () => {
     expect(resolveFallback('kimi-k2.6', registryWithFallback('kimi-k2.6', 'qwen3.6'))).toEqual({
       action: 'fail-fast',
@@ -88,11 +79,11 @@ describe('fallback-router', () => {
     });
   });
 
-  it('routes an Anthropic source to a Google target when populated', () => {
-    expect(resolveFallback('haiku', registryWithFallback('haiku', 'gemini-flash'))).toEqual({
+  it('routes an Anthropic source to a separate-pool target when populated', () => {
+    expect(resolveFallback('haiku', registryWithFallback('haiku', 'swe-1.6'))).toEqual({
       action: 'fallback',
-      target: 'gemini-flash',
-      reason: 'anthropic pool exhausted, routing haiku to separate google pool target gemini-flash',
+      target: 'swe-1.6',
+      reason: 'anthropic pool exhausted, routing haiku to separate cognition-free pool target swe-1.6',
     });
   });
 

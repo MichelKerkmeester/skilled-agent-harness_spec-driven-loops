@@ -23,7 +23,7 @@ This category documents the hybrid context injection system that preserves criti
 
 ## 2. HOW IT WORKS
 
-The shipped surface now includes hook scripts, code graph modules, MCP tools, budget allocator, tree-sitter parser with regex fallback, query-intent routing, auto-trigger, session health/resume/bootstrap tools, the structural ready/stale/missing contract, Gemini hooks, and startup-brief follow-ons. Recovery treats `/spec_kit:resume` as the canonical surface and follows `handover.md -> _memory.continuity -> spec docs` before widening to broader memory artifacts.
+The shipped surface now includes hook scripts, code graph modules, MCP tools, budget allocator, tree-sitter parser with regex fallback, query-intent routing, auto-trigger, session health/resume/bootstrap tools, the structural ready/stale/missing contract, and startup-brief follow-ons. Recovery treats `/spec_kit:resume` as the canonical surface and follows `handover.md -> _memory.continuity -> spec docs` before widening to broader memory artifacts.
 
 For runtime-package code-graph details, see `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`.
 
@@ -48,7 +48,6 @@ Phase 005 split code-graph-owned category-22 docs into the sibling skill. For th
 | `mcp_server/handlers/session-resume.ts` | Handler | Composite resume (memory + graph + Code Graph) |
 | `mcp_server/handlers/session-bootstrap.ts` | Handler | Canonical first-call bootstrap (resume + health + structural contract) |
 | `mcp_server/lib/session/session-snapshot.ts` | Lib | Shared ready/stale/missing structural context contract |
-| `mcp_server/hooks/gemini/` | Hook | 5 Gemini CLI lifecycle hook scripts |
 | `mcp_server/lib/session/context-metrics.ts` | Lib | Session quality scoring and event tracking |
 
 ---

@@ -86,7 +86,7 @@ arguments:
   runtime_filter:
     flag: "--runtime"
     value: "<name>"
-    valid_values: [opencode, claude, codex, gemini, vscode]
+    valid_values: [opencode, claude, codex, vscode]
     default: null
     effect: "Only configure for the specified runtime"
 

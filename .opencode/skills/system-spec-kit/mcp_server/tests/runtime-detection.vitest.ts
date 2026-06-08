@@ -20,8 +20,6 @@ function clearRuntimeEnv(): void {
   delete process.env.OPENAI_API_KEY;
   delete process.env.COPILOT_CLI;
   delete process.env.GITHUB_COPILOT_TOKEN;
-  delete process.env.GEMINI_CLI;
-  delete process.env.GOOGLE_GENAI_USE_VERTEXAI;
 }
 
 describe('runtime detection', () => {
@@ -127,25 +125,8 @@ describe('runtime detection', () => {
       delete process.env.CODEX_TUI_RECORD_SESSION;
       delete process.env.CODEX_TUI_SESSION_LOG_PATH;
       delete process.env.COPILOT_CLI;
-      delete process.env.GEMINI_CLI;
       const result = detectRuntime();
       expect(result.runtime).toBe('unknown');
-    });
-
-    it('uses tool fallback for gemini-cli without project hooks', () => {
-      delete process.env.CLAUDE_CODE;
-      delete process.env.CLAUDE_SESSION_ID;
-      delete process.env.MCP_SERVER_NAME;
-      delete process.env.CODEX_CLI;
-      delete process.env.CODEX_THREAD_ID;
-      delete process.env.CODEX_TUI_RECORD_SESSION;
-      delete process.env.CODEX_TUI_SESSION_LOG_PATH;
-      delete process.env.COPILOT_CLI;
-      process.env.GEMINI_CLI = '1';
-
-      const result = detectRuntime();
-      expect(result.runtime).toBe('gemini-cli');
-      expect(result.hookPolicy).toBe('unavailable');
     });
   });
 

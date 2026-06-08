@@ -3,7 +3,12 @@
   "packet_id": "skilled-agent-orchestration/132-cli-gemini-deprecation",
   "spec_folder": "skilled-agent-orchestration/132-cli-gemini-deprecation",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "skilled-agent-orchestration/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+    "skilled-agent-orchestration/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+    "skilled-agent-orchestration/132-cli-gemini-deprecation/003-cli-gemini-full-purge",
+    "skilled-agent-orchestration/132-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,169 +17,33 @@
   "derived": {
     "trigger_phrases": [
       "gemini deprecation",
-      "project .gemini",
-      "runtime surface cleanup",
-      "gemini deprecation plan",
-      "project .gemini cleanup",
-      "gemini deprecation tasks",
-      "gemini deprecation checklist",
-      "gemini deprecation decision",
-      "gemini deprecation implementation",
-      "resource map",
-      "path catalog",
-      "files touched"
+      "remove gemini surface",
+      "cli-gemini cleanup"
     ],
     "key_topics": [
       "gemini",
       "deprecation",
-      "project",
-      "runtime",
+      "remove",
       "surface",
+      "cli-gemini",
       "cleanup",
-      "plan",
-      "tasks",
-      "checklist",
-      "decision",
-      "implementation",
-      "resource"
+      "project",
+      "longer",
+      "supports",
+      "active",
+      "tooling",
+      "still"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scripts/setup-maintainer-filters.sh",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "spec.md",
-      ".claude/mcp.json",
-      ".codex/config.toml",
-      ".devin/config.json",
-      ".opencode/agents/README.txt",
-      ".opencode/agents/deep-improvement.md",
-      ".opencode/agents/deep-review.md",
-      ".opencode/agents/orchestrate.md",
-      ".opencode/agents/prompt-improver.md",
-      ".opencode/commands/create/README.txt",
-      ".opencode/commands/create/agent.md",
-      ".opencode/commands/create/folder_readme.md",
-      ".opencode/commands/create/sk-skill.md",
-      ".opencode/commands/create/skill.md",
-      ".opencode/commands/create/assets/create_agent_auto.yaml"
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "setup-maintainer-filters.sh",
-        "kind": "script",
-        "path": "scripts/setup-maintainer-filters.sh",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "config.json",
-        "kind": "config",
-        "path": ".devin/config.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/agents/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-improvement.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-improver.md",
-        "kind": "doc",
-        "path": ".opencode/agents/prompt-improver.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "folder_readme.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/folder_readme.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-skill.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/sk-skill.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/skill.md",
-        "source": "derived"
-      },
-      {
-        "name": "create_agent_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
         "source": "derived"
       },
       {
@@ -184,13 +53,25 @@
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Gemini Deprecation",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Critical Dependencies",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,27 +81,15 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Remove",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The repository still ships a project-level `.gemini/` runtime mirror even though the current workflow is OpenCode-centered and the user has requested that surface be deleted. This packet removes the checked-in project `.gemini` directory and updates active, non-spec references so the repo no longer directs maintainers or tooling to project `.gemini` files.",
-    "created_at": "2026-06-05T06:49:52Z",
-    "last_save_at": "2026-06-05T12:47:32.533Z",
-    "save_lineage": "same_pass",
+    "causal_summary": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and skill, and the command-layer YAMLs that still carry Gemini executor branches and references. As long as either remains, docs, tests, and command workflows keep pointing at a surface the project has dropped.",
+    "created_at": "2026-06-08T16:11:50.603Z",
+    "last_save_at": "2026-06-08T17:32:20.106Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "resource-map.md"
+      "spec.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

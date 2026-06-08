@@ -5,8 +5,8 @@
 // ───────────────────────────────────────────────────────────────
 // 1. CLI CAPTURE SHARED HELPERS
 // ───────────────────────────────────────────────────────────────
-// Shared utility functions extracted from the 4 CLI capture modules
-// (claude-code, codex-cli, copilot-cli, gemini-cli) to eliminate
+// Shared utility functions extracted from the CLI capture modules
+// (claude-code, codex-cli, copilot-cli) to eliminate
 // duplication and prevent behavioral drift.
 //
 // Created as part of CODEX2-006 deduplication.
@@ -38,7 +38,7 @@ export type PendingPrompt = {
  * Parses an ISO-8601 (or similar) timestamp string into epoch ms.
  * Returns 0 for falsy, unparseable, or non-finite values.
  *
- * Identical implementation in: claude-code, codex-cli, copilot-cli, gemini-cli.
+ * Identical implementation in: claude-code, codex-cli, copilot-cli.
  */
 export function transcriptTimestamp(value?: string): number {
   if (!value) {
@@ -58,7 +58,6 @@ export function transcriptTimestamp(value?: string): number {
  * Silently skips malformed lines and returns [] on read failure.
  *
  * Identical implementation in: claude-code, codex-cli, copilot-cli.
- * (gemini-cli uses JSON session files instead of JSONL.)
  */
 export async function readJsonl(filePath: string): Promise<unknown[]> {
   try {
@@ -88,7 +87,7 @@ export async function readJsonl(filePath: string): Promise<unknown[]> {
  * Normalizes a raw tool name to lowercase. Returns 'unknown' for
  * non-string inputs.
  *
- * Identical implementation in: claude-code, codex-cli, copilot-cli, gemini-cli.
+ * Identical implementation in: claude-code, codex-cli, copilot-cli.
  */
 export function normalizeToolName(rawName: unknown): string {
   return typeof rawName === 'string' ? rawName.toLowerCase() : 'unknown';
@@ -103,7 +102,7 @@ export function normalizeToolName(rawName: unknown): string {
  * Strings are trimmed, nullish values become '', objects are
  * JSON-stringified, and fallback uses String().
  *
- * Identical implementation in: codex-cli, copilot-cli, gemini-cli.
+ * Identical implementation in: codex-cli, copilot-cli.
  * (claude-code uses extractToolResultText instead.)
  */
 export function stringifyPreview(value: unknown): string {
@@ -134,10 +133,9 @@ export function stringifyPreview(value: unknown): string {
  * This is the superset implementation covering all CLI formats:
  * - claude-code: checks block.type === 'text' && block.text
  * - codex-cli: checks block.text directly (no type guard)
- * - gemini-cli: checks block.text directly (no type guard)
  *
  * The unified version handles both patterns: blocks with a `text`
- * property (codex/gemini style) and blocks with type='text' + text
+ * property (codex style) and blocks with type='text' + text
  * property (claude style) are both extracted.
  */
 export function extractTextContent(content: unknown): string {
@@ -161,7 +159,7 @@ export function extractTextContent(content: unknown): string {
 
       const block = item as Record<string, unknown>;
       // Superset: accept any block with a text string property.
-      // Claude-style blocks have type='text', codex/gemini blocks
+      // Claude-style blocks have type='text', codex blocks
       // may omit the type field. Both are handled.
       if (typeof block.text === 'string') {
         return block.text;
@@ -183,7 +181,7 @@ export function extractTextContent(content: unknown): string {
  * user prompt, truncated to 80 chars. Falls back to a generic
  * label using the CLI name and session ID prefix.
  *
- * Identical logic in: claude-code, codex-cli, copilot-cli, gemini-cli
+ * Identical logic in: claude-code, codex-cli, copilot-cli
  * (each uses a different fallback label).
  *
  * @param exchanges - Sorted capture exchanges
@@ -212,7 +210,7 @@ export function buildSessionTitle(
  * into a plain record. Returns {} on failure.
  *
  * Canonical implementation from: codex-cli.
- * Also useful for copilot-cli and gemini-cli when arguments arrive
+ * Also useful for copilot-cli when arguments arrive
  * as serialized strings.
  */
 export function parseToolArguments(rawArguments: unknown): Record<string, unknown> {
@@ -244,7 +242,7 @@ export function parseToolArguments(rawArguments: unknown): Record<string, unknow
  * Sorts exchanges by timestamp and returns the most recent N.
  * Guarantees at least 1 exchange is returned (if input is non-empty).
  *
- * Identical pattern in: claude-code, codex-cli, copilot-cli, gemini-cli.
+ * Identical pattern in: claude-code, codex-cli, copilot-cli.
  *
  * @param exchanges - Unsorted capture exchanges
  * @param maxExchanges - Maximum number of exchanges to return
@@ -267,7 +265,7 @@ export function sortAndSliceExchanges(
  * assistant responses. Called at the end of transcript processing
  * to ensure no user input is lost.
  *
- * Identical pattern in: claude-code, codex-cli, copilot-cli, gemini-cli.
+ * Identical pattern in: claude-code, codex-cli, copilot-cli.
  */
 export function drainPendingPrompts(
   pendingPrompts: PendingPrompt[],
@@ -294,7 +292,7 @@ export function drainPendingPrompts(
 /**
  * Counts total responses (exchanges with non-empty assistant text).
  *
- * Identical pattern in: claude-code, codex-cli, copilot-cli, gemini-cli.
+ * Identical pattern in: claude-code, codex-cli, copilot-cli.
  */
 export function countResponses(exchanges: CaptureExchange[]): number {
   return exchanges.filter((exchange) => (exchange.assistantResponse || '').trim().length > 0).length;

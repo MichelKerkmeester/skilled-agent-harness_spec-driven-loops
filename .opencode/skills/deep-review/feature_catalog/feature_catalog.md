@@ -146,7 +146,7 @@ Resolves which executor runs each iteration and enforces per-kind flag compatibi
 
 #### How It Works
 
-`parseExecutorConfig` resolves `config.executor.kind` into one of four dispatch branches (`native`, `cli-codex`, `cli-gemini`, `cli-claude-code`). Unsupported flags throw `ExecutorConfigError` at parse time. All branches share prompt rendering, output validation, and executor audit append.
+`parseExecutorConfig` resolves `config.executor.kind` into one of three dispatch branches (`native`, `cli-codex`, `cli-claude-code`). Unsupported flags throw `ExecutorConfigError` at parse time. All branches share prompt rendering, output validation, and executor audit append.
 
 #### Source Files
 

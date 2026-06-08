@@ -13,7 +13,7 @@ Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-op
 
 ### Core Principle
 
-OpenCode is the framework that owns this repository. The same binary that hosts the operator's TUI session also accepts non-interactive invocations through `opencode run`. The cli-opencode skill calls `opencode run` from external runtimes (Claude Code, Codex, Copilot, Gemini, raw shell) so the calling AI can dispatch a task into a fresh OpenCode session that loads the full plugin, skill, MCP, and Spec Kit Memory runtime.
+OpenCode is the framework that owns this repository. The same binary that hosts the operator's TUI session also accepts non-interactive invocations through `opencode run`. The cli-opencode skill calls `opencode run` from external runtimes (Claude Code, Codex, Copilot, raw shell) so the calling AI can dispatch a task into a fresh OpenCode session that loads the full plugin, skill, MCP, and Spec Kit Memory runtime.
 
 ### Purpose
 

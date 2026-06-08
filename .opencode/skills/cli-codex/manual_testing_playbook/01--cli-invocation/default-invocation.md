@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CX-001` and confirm the
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain language: "Generate a tiny TypeScript fizzbuzz using the documented default."
-2. Confirm runtime is non-Codex (Claude Code, OpenCode, Copilot, Gemini or shell).
+2. Confirm runtime is non-Codex (Claude Code, OpenCode, Copilot or shell).
 3. Execute the dispatch verbatim with all three default flags.
 4. Inspect the captured stdout for valid TypeScript and fizzbuzz semantics.
 5. Return a one-paragraph PASS/FAIL verdict naming the model, effort and service tier observed.

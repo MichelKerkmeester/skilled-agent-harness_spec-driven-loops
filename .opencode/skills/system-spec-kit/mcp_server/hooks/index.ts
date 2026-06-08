@@ -17,7 +17,6 @@ export {
   getCodeGraphStatusSnapshot,
 } from './memory-surface.js';
 export { buildMutationHookFeedback } from './mutation-feedback.js';
-// Gemini hooks are standalone scripts invoked directly by Gemini CLI — not barrel-exported
 export {
   appendAutoSurfaceHints,
   syncEnvelopeTokenCount,

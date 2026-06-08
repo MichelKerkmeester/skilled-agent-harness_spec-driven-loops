@@ -201,7 +201,7 @@ const FILE_LIKE_SUFFIX = /\.(rs|ts|tsx|js|cjs|mjs|py|md|json|jsonc|ya?ml|sh|toml
 // window of the word "default" (e.g. `openai/gpt-5.5` beside "high reasoning default")
 // always false-positives. Embedding ids under the same orgs (openai/text-embedding-*,
 // google/embeddinggemma-*, cohere/rerank-*) are intentionally NOT matched here.
-const CHAT_MODEL_SKIP = /^(?:openai\/(?:gpt-|o\d|chatgpt-)|anthropic\/claude|google\/gemini|cohere\/command)/i;
+const CHAT_MODEL_SKIP = /^(?:openai\/(?:gpt-|o\d|chatgpt-)|anthropic\/claude|cohere\/command)/i;
 
 function getModelPattern(canonicalModels) {
   // Match specific legacy model names OR org/name pattern with model-like characteristics
