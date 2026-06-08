@@ -44,8 +44,6 @@
     "status": "blocked_on_global_verification",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md",
-      "hooks/gemini/README.md",
       "tests/context-server.vitest.ts",
       "implementation-summary.md",
       "spec.md",
@@ -59,12 +57,6 @@
         "name": "context-server.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md",
         "source": "derived"
       },
       {
@@ -198,11 +190,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets. These findings affect read-path operator diagnostics, guarded freshness recovery, verify scope evidence, hook documentation parity, advisor staleness repair, CocoIndex seed interop, and scope fingerprints for scan glob arguments.",
     "created_at": "2026-05-18T08:15:53.451Z",
-    "last_save_at": "2026-06-05T12:47:34.125Z",
+    "last_save_at": "2026-06-08T17:32:21.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

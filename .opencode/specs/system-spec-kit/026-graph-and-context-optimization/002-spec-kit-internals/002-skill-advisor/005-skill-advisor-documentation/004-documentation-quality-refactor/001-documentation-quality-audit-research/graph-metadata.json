@@ -42,9 +42,6 @@
       "research/iterations/iteration-001.md",
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
-      ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-      ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
-      ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -67,24 +64,6 @@
         "name": "deep-research-strategy.md",
         "kind": "doc",
         "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-deep-research-iter.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-synthesis.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-iter-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "correct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-skill-advisor docs need a coordinated audit before any rewrite/alignment work begins. A single-pass scan misses cross-cutting drift; 20 targeted iterations across all 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALL_GUIDE.md, references/*, feature_catalog/*, manual_testing_playbook/*) plus cross-cutting concerns (HVR compliance, cross-link integrity, source↔doc drift, hook-reference resolution) will produce a complete findings ledger.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.400Z",
+    "last_save_at": "2026-06-08T17:32:20.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

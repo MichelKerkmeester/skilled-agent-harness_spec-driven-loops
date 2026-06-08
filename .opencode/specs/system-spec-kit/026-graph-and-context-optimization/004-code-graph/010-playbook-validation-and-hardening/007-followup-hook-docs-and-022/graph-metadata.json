@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".devin/hooks.v1.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,12 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two non-blocking follow-ups remained after the 029 remediation. (1) Five active-guidance docs cite a SessionStart-hook compiled-artifact path that does not exist (`system-code-graph/dist/system-spec-kit/mcp_server/hooks/<runtime>/`); the real artifact is the flat `system-spec-kit/mcp_server/dist/hooks/<runtime>/session-start.js`. The documented \"migration to system-code-graph\" was never built. (2) Scenario 022 blast_radius was PARTIAL because the chosen subject had a single importer, so `transitive > nontransitive` could not be demonstrated.",
     "created_at": "2026-05-27T04:03:04.114Z",
-    "last_save_at": "2026-06-05T12:47:34.189Z",
+    "last_save_at": "2026-06-08T17:32:21.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

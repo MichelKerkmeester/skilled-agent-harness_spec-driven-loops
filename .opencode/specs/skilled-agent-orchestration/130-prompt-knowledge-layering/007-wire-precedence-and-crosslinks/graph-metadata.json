@@ -43,7 +43,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-devin/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-codex/SKILL.md",
@@ -58,7 +57,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-devin/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "This is **Phase 7** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
     "created_at": "2026-06-05T12:47:32.516Z",
-    "last_save_at": "2026-06-05T12:47:32.516Z",
+    "last_save_at": "2026-06-08T17:32:20.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

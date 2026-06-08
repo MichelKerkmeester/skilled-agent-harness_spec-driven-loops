@@ -11,7 +11,9 @@
     "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback",
     "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers",
     "system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption",
-    "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening"
+    "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening",
+    "system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability",
+    "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -221,7 +223,7 @@
     ],
     "causal_summary": "Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-06T14:09:11.202Z",
+    "last_save_at": "2026-06-08T15:25:38.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
@@ -229,7 +231,7 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
-    "last_active_at": "2026-06-05T15:00:26.759Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-08T15:25:38.312Z"
   }
 }

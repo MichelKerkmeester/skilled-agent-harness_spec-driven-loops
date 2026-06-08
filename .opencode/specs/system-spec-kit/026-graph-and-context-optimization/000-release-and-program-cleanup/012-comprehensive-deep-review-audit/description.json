@@ -1,22 +1,24 @@
 {
-  "specFolder": "012-comprehensive-deep-review-audit",
-  "description": "Comprehensive deep-review + research audit of system-spec-kit, 026, interconnected MCPs, and 027 launch",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "description": "Feature Specification: Comprehensive Deep-Review + Deep-Research Audit of system-spec-kit & 026",
   "keywords": [
+    "feature",
+    "specification",
     "comprehensive",
     "deep-review",
-    "research",
+    "deep-research",
     "audit",
     "system-spec-kit",
-    "026",
-    "interconnected",
-    "mcps",
-    "027",
-    "launch"
+    "026"
   ],
-  "lastUpdated": "2026-06-04T18:56:27.510Z",
+  "lastUpdated": "2026-06-08T14:44:10.938Z",
   "specId": "012",
   "folderSlug": "comprehensive-deep-review-audit",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "04-06-26_19-56__maximal-gpt-5-5-xhigh-audit-8-deep-review-slices.md"

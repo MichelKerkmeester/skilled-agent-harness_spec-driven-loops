@@ -1,7 +1,84 @@
 {
   "version": 1,
-  "generated": "2026-06-07T19:02:01.924Z",
+  "generated": "2026-06-08T15:11:05.679Z",
   "folders": [
+    {
+      "specFolder": "ai-systems/001-ai-system-architecture",
+      "description": "AI System Architecture — Barter Agent Ecosystem",
+      "keywords": [
+        "system",
+        "architecture",
+        "barter",
+        "agent",
+        "ecosystem"
+      ],
+      "lastUpdated": "2026-06-08T14:44:10.828Z"
+    },
+    {
+      "specFolder": "ai-systems/001-ai-system-architecture/001-two-runtime-packaging-design",
+      "description": "Two-Runtime Packaging — Architecture Design (Copywriter pilot)",
+      "keywords": [
+        "two-runtime",
+        "packaging",
+        "architecture",
+        "design",
+        "copywriter",
+        "pilot"
+      ],
+      "lastUpdated": "2026-06-08T14:44:10.834Z"
+    },
+    {
+      "specFolder": "ai-systems/001-ai-system-architecture/002-copywriter-projects-build",
+      "description": "Copywriter — Build the Claude Projects Packaging",
+      "keywords": [
+        "copywriter",
+        "build",
+        "claude",
+        "projects",
+        "packaging"
+      ],
+      "lastUpdated": "2026-06-08T14:44:10.839Z"
+    },
+    {
+      "specFolder": "ai-systems/001-ai-system-architecture/003-copywriter-projects-validation",
+      "description": "Copywriter — Validate Projects/CLI Parity",
+      "keywords": [
+        "copywriter",
+        "validate",
+        "projects",
+        "cli",
+        "parity"
+      ],
+      "lastUpdated": "2026-06-08T14:44:10.844Z"
+    },
+    {
+      "specFolder": "ai-systems/001-ai-system-architecture/004-global-pack-and-template",
+      "description": "Planned phase: extract reuse assets from the Copywriter pilot — a canonical version-pinned Global Pack, a blank projects/ skeleton, a Custom Instructions kernel template, and a read-only drift-audit script",
+      "keywords": [
+        "global-pack",
+        "template",
+        "kernel-template",
+        "drift-audit",
+        "reuse",
+        "projects-skeleton",
+        "planned"
+      ],
+      "lastUpdated": "2026-06-08T11:04:33Z"
+    },
+    {
+      "specFolder": "ai-systems/001-ai-system-architecture/005-rollout-to-remaining-systems",
+      "description": "Planned phase: roll the dual-runtime pattern out to the remaining in-scope systems via the template + Global Pack, with a workspace-wide drift audit; MCP-agent systems need an explicit scope ruling before any build",
+      "keywords": [
+        "rollout",
+        "generalization",
+        "projects-packaging",
+        "drift-audit",
+        "mcp-agents-scope",
+        "workspace",
+        "planned"
+      ],
+      "lastUpdated": "2026-06-08T11:04:33Z"
+    },
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
       "description": "Feature Specification: Text Link Button Disabled State",
@@ -487,7 +564,7 @@
         "doc",
         "rebuild"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
@@ -1257,7 +1334,7 @@
       "lastUpdated": "2026-06-03T06:37:53.290Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation",
+      "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
       "description": "Feature Specification: Deprecate project .gemini runtime surface",
       "keywords": [
         "feature",
@@ -1859,6 +1936,62 @@
         "fix"
       ],
       "lastUpdated": "2026-06-07T19:01:48.507Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/138-portable-cross-machine",
+      "description": "Feature Specification: Portable cross-machine hook paths and Barter framework sync",
+      "keywords": [
+        "feature",
+        "specification",
+        "portable",
+        "cross-machine",
+        "hook",
+        "paths",
+        "barter",
+        "framework",
+        "sync"
+      ],
+      "lastUpdated": "2026-06-08T14:44:10.866Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/139-multi-model-deep",
+      "description": "Multi-model deep review of recent daemon-reliability and portability work",
+      "keywords": [
+        "multi-model",
+        "deep",
+        "review",
+        "recent",
+        "daemon-reliability",
+        "portability",
+        "work"
+      ],
+      "lastUpdated": "2026-06-08T06:54:24.045Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/140-deep-review-remediation",
+      "description": "Feature Specification: Deep-review remediation of the daemon-reliability and portability work",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-review",
+        "remediation",
+        "daemon-reliability",
+        "portability",
+        "work"
+      ],
+      "lastUpdated": "2026-06-08T09:05:09.577Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/141-spec-tree-structural-cleanup",
+      "description": "Feature Specification: Spec-tree structural cleanup",
+      "keywords": [
+        "feature",
+        "specification",
+        "spec-tree",
+        "structural",
+        "cleanup"
+      ],
+      "lastUpdated": "2026-06-08T11:56:49.296Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -2684,7 +2817,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -7340,7 +7473,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -7366,7 +7499,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -7678,10 +7811,24 @@
         "stress-test",
         "playbook"
       ],
-      "lastUpdated": "2026-05-26T17:28:12.732Z"
+      "lastUpdated": "2026-06-08T11:32:17.217Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-search-scenario-design",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation",
+      "description": "Feature Specification: Search Intelligence Stress-Test Playbook Foundation",
+      "keywords": [
+        "feature",
+        "specification",
+        "search",
+        "intelligence",
+        "stress-test",
+        "playbook",
+        "foundation"
+      ],
+      "lastUpdated": "2026-06-08T11:43:34.689Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-design",
       "description": "Feature Specification: Scenario Design Sub-Phase",
       "keywords": [
         "feature",
@@ -7690,10 +7837,10 @@
         "design",
         "sub-phase"
       ],
-      "lastUpdated": "2026-05-26T17:28:15.106Z"
+      "lastUpdated": "2026-06-08T14:44:10.920Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-execution",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution",
       "description": "Feature Specification: Scenario Execution Sub-Phase",
       "keywords": [
         "feature",
@@ -7702,7 +7849,7 @@
         "execution",
         "sub-phase"
       ],
-      "lastUpdated": "2026-05-26T17:28:23.907Z"
+      "lastUpdated": "2026-06-08T14:44:10.925Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research",
@@ -8414,7 +8561,7 @@
         "accuracy",
         "re-audit"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
@@ -8517,20 +8664,18 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
-      "description": "Comprehensive deep-review + research audit of system-spec-kit, 026, interconnected MCPs, and 027 launch",
+      "description": "Feature Specification: Comprehensive Deep-Review + Deep-Research Audit of system-spec-kit & 026",
       "keywords": [
+        "feature",
+        "specification",
         "comprehensive",
         "deep-review",
-        "research",
+        "deep-research",
         "audit",
         "system-spec-kit",
-        "026",
-        "interconnected",
-        "mcps",
-        "027",
-        "launch"
+        "026"
       ],
-      "lastUpdated": "2026-06-04T18:56:27.510Z"
+      "lastUpdated": "2026-06-08T14:44:10.938Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
@@ -8546,7 +8691,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
@@ -8560,7 +8705,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
@@ -8576,7 +8721,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
@@ -8590,7 +8735,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
@@ -8604,7 +8749,7 @@
         "verification",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
@@ -8619,7 +8764,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
@@ -8632,7 +8777,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
@@ -8645,7 +8790,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
@@ -8660,7 +8805,7 @@
         "deep-review",
         "audit"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
@@ -9465,7 +9610,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -9987,7 +10132,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -10967,7 +11112,7 @@
       "lastUpdated": "2026-05-26T17:26:42.710Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/030-post-027-findings-remediation",
       "description": "Feature Specification: Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correc",
       "keywords": [
         "feature",
@@ -10985,7 +11130,7 @@
         "fallback",
         "correc"
       ],
-      "lastUpdated": "2026-05-26T17:26:15.296Z"
+      "lastUpdated": "2026-06-08T11:11:03.320Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
@@ -11632,7 +11777,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -14356,7 +14501,7 @@
         "startup",
         "fix"
       ],
-      "lastUpdated": "2026-05-27T08:41:18.262Z"
+      "lastUpdated": "2026-06-08T14:44:10.991Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
@@ -14828,7 +14973,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -14926,10 +15071,22 @@
         "usefulness",
         "test"
       ],
-      "lastUpdated": "2026-05-26T17:27:16.495Z"
+      "lastUpdated": "2026-06-08T11:51:37.465Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-sandbox-usefulness-trials",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
+      "description": "Feature Specification: Real-World Usefulness Test",
+      "keywords": [
+        "feature",
+        "specification",
+        "real-world",
+        "usefulness",
+        "test"
+      ],
+      "lastUpdated": "2026-06-08T11:50:46.621Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials",
       "description": "Feature Specification: Real-World Usefulness Test Execution",
       "keywords": [
         "feature",
@@ -14939,10 +15096,10 @@
         "test",
         "execution"
       ],
-      "lastUpdated": "2026-05-26T17:27:33.812Z"
+      "lastUpdated": "2026-06-08T14:44:11.000Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-native-deferred-trial-rerun",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
       "description": "Feature Specification: Native Rerun of Deferred Usefulness Cells",
       "keywords": [
         "feature",
@@ -14953,10 +15110,10 @@
         "usefulness",
         "cells"
       ],
-      "lastUpdated": "2026-05-26T17:27:25.342Z"
+      "lastUpdated": "2026-06-08T14:44:11.004Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-code-graph-bug-surface-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
       "description": "Feature Specification: Deep Research Issues",
       "keywords": [
         "feature",
@@ -14965,10 +15122,10 @@
         "research",
         "issues"
       ],
-      "lastUpdated": "2026-05-26T17:27:20.245Z"
+      "lastUpdated": "2026-06-08T14:44:11.009Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues",
       "description": "Feature Specification: Code-Graph Bug Remediation",
       "keywords": [
         "feature",
@@ -14977,10 +15134,10 @@
         "bug",
         "remediation"
       ],
-      "lastUpdated": "2026-05-26T17:27:15.205Z"
+      "lastUpdated": "2026-06-08T14:44:11.013Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/005-scope-change-scan-guard",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-scope-change-scan-guard",
       "description": "Feature Specification: Scope-Change Guard",
       "keywords": [
         "feature",
@@ -14988,10 +15145,10 @@
         "scope-change",
         "guard"
       ],
-      "lastUpdated": "2026-05-26T17:27:13.027Z"
+      "lastUpdated": "2026-06-08T14:44:11.018Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish",
       "description": "Feature Specification: Code Graph + Advisor + Hooks Polish",
       "keywords": [
         "feature",
@@ -15002,10 +15159,10 @@
         "hooks",
         "polish"
       ],
-      "lastUpdated": "2026-05-26T17:27:29.887Z"
+      "lastUpdated": "2026-06-08T14:44:11.023Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
       "description": "Feature Specification: Tree-sitter parser resilience",
       "keywords": [
         "feature",
@@ -15014,7 +15171,7 @@
         "parser",
         "resilience"
       ],
-      "lastUpdated": "2026-05-26T17:27:09.202Z"
+      "lastUpdated": "2026-06-08T14:44:11.027Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
@@ -15206,26 +15363,38 @@
         "misalignment",
         "audit"
       ],
-      "lastUpdated": "2026-05-29T09:27:47.490Z"
+      "lastUpdated": "2026-06-08T11:46:06.004Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes",
-      "description": "Applied Source & Doc Fixes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-source-bug-audit-findings",
+      "description": "Feature Specification: Code Graph Source Bug & Misalignment Audit",
       "keywords": [
+        "feature",
+        "specification",
         "code",
         "graph",
-        "remediation",
-        "001",
+        "source",
+        "bug",
+        "misalignment",
+        "audit"
+      ],
+      "lastUpdated": "2026-06-08T11:45:12.059Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
+      "description": "Feature Specification: Applied Source & Doc Fixes",
+      "keywords": [
+        "feature",
+        "specification",
         "applied",
         "source",
-        "and",
         "doc",
         "fixes"
       ],
-      "lastUpdated": "2026-05-29T08:30:00.000Z"
+      "lastUpdated": "2026-06-08T14:44:11.033Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
       "description": "Feature Specification: Deferred WIP-Overlapping Findings",
       "keywords": [
         "feature",
@@ -15234,21 +15403,19 @@
         "wip-overlapping",
         "findings"
       ],
-      "lastUpdated": "2026-06-01T11:13:19.725Z"
+      "lastUpdated": "2026-06-08T14:44:11.037Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local",
-      "description": "DB Location Skill-Local (fix #1)",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+      "description": "Feature Specification: DB Location Skill-Local (fix #1)",
       "keywords": [
-        "code",
-        "graph",
-        "db",
+        "feature",
+        "specification",
         "location",
         "skill-local",
-        "spec-kit",
-        "relocation"
+        "fix"
       ],
-      "lastUpdated": "2026-05-29T09:55:00.000Z"
+      "lastUpdated": "2026-06-08T14:44:11.041Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan",
@@ -15551,6 +15718,21 @@
         "hard"
       ],
       "lastUpdated": "2026-05-26T17:25:50.635Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
+      "description": "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop",
+      "keywords": [
+        "feature",
+        "specification",
+        "fix",
+        "doctor",
+        "bootstrap",
+        "symlink",
+        "restart",
+        "loop"
+      ],
+      "lastUpdated": "2026-06-08T14:44:11.048Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment",
@@ -15904,10 +16086,25 @@
         "graph-metadata",
         "churn"
       ],
-      "lastUpdated": "2026-05-30T08:17:53.755Z"
+      "lastUpdated": "2026-06-08T11:23:28.883Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
+      "description": "Feature Specification: Infra investigations — memory-DB corruption + graph-metadata churn",
+      "keywords": [
+        "feature",
+        "specification",
+        "infra",
+        "investigations",
+        "memory-db",
+        "corruption",
+        "graph-metadata",
+        "churn"
+      ],
+      "lastUpdated": "2026-06-08T11:22:12.504Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
       "description": "Feature Specification: Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test)",
       "keywords": [
         "feature",
@@ -15921,7 +16118,7 @@
         "substrate",
         "test"
       ],
-      "lastUpdated": "2026-06-01T11:13:19.755Z"
+      "lastUpdated": "2026-06-08T14:44:11.056Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
@@ -16026,20 +16223,6 @@
         "chain"
       ],
       "lastUpdated": "2026-06-01T11:13:19.785Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping",
-      "description": "Cross-session kill scoping for session-cleanup + post-crash integrity gate + live index salvage",
-      "keywords": [
-        "session",
-        "cleanup",
-        "kill",
-        "scoping",
-        "integrity",
-        "quick_check",
-        "salvage"
-      ],
-      "lastUpdated": "2026-06-06T16:59:22.786Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening",
@@ -16171,6 +16354,59 @@
         "scrub"
       ],
       "lastUpdated": "2026-06-07T18:35:24.241Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups",
+      "description": "Feature Specification: Daemon-reliability follow-ups",
+      "keywords": [
+        "feature",
+        "specification",
+        "daemon-reliability",
+        "follow-ups"
+      ],
+      "lastUpdated": "2026-06-07T19:47:00.731Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout",
+      "description": "Feature Specification: Re-election default-on rollout",
+      "keywords": [
+        "feature",
+        "specification",
+        "re-election",
+        "default-on",
+        "rollout"
+      ],
+      "lastUpdated": "2026-06-08T14:44:11.064Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation",
+      "description": "Feature Specification: Live two-session daemon re-election adoption test",
+      "keywords": [
+        "feature",
+        "specification",
+        "live",
+        "two-session",
+        "daemon",
+        "re-election",
+        "adoption",
+        "test"
+      ],
+      "lastUpdated": "2026-06-08T05:35:22.353Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
+      "description": "Feature Specification: Cross-Session Kill Scoping + Post-Crash Integrity Gate",
+      "keywords": [
+        "feature",
+        "specification",
+        "cross-session",
+        "kill",
+        "scoping",
+        "post-crash",
+        "integrity",
+        "gate"
+      ],
+      "lastUpdated": "2026-06-08T11:11:03.505Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes",
@@ -16605,7 +16841,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -16645,22 +16881,18 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-      "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
+      "description": "OpenLTM retrieval & memory observability",
       "keywords": [
-        "feature",
-        "specification",
-        "xce-derived",
-        "spec",
-        "kit",
-        "refinement",
-        "phase",
-        "parent"
+        "openltm",
+        "retrieval",
+        "memory",
+        "observability"
       ],
-      "lastUpdated": "2026-06-06T14:42:45.993Z"
+      "lastUpdated": "2026-06-08T15:10:29.096Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
@@ -16777,7 +17009,7 @@
         "write",
         "safety"
       ],
-      "lastUpdated": "2026-06-07T14:08:18.184Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle",
@@ -16794,7 +17026,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-07T14:08:18.188Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/001-incremental-index-foundation",
@@ -16926,7 +17158,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-06T14:41:14.131Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator",
@@ -17101,6 +17333,17 @@
         "stale-audit-and-tool-ownership"
       ],
       "lastUpdated": "2026-06-06T14:41:16.066Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability",
+      "description": "Feature Specification: Phase 1: openltm-retrieval-observability",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "openltm-retrieval-observability"
+      ],
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     },
     {
       "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition",
@@ -21696,7 +21939,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-06-07T19:02:01.924Z"
+      "lastUpdated": "2026-06-08T15:11:05.679Z"
     }
   ]
 }

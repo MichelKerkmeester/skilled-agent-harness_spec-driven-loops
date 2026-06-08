@@ -25,8 +25,8 @@
     "hooks",
     "polish"
   ],
-  "lastUpdated": "2026-05-26T17:27:29.887Z",
-  "specId": "006",
+  "lastUpdated": "2026-06-08T14:44:11.023Z",
+  "specId": "007",
   "folderSlug": "readiness-hooks-advisor-polish",
   "parentChain": [
     "system-spec-kit",

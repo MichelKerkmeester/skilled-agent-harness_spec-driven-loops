@@ -37,11 +37,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".devin/hooks.v1.json",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/devin/README.md",
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
@@ -49,12 +46,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -192,11 +183,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Execute F4 (Devin hooks migration), F6 (OLD location deprecation banners), F37 (catalog/playbook cross-reference table). Leave F35 and F36 as status-quo per their recommendations.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.413Z",
+    "last_save_at": "2026-06-08T17:32:20.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

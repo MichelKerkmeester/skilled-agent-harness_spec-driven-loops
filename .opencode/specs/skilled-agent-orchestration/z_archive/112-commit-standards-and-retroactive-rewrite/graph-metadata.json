@@ -46,9 +46,6 @@
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/assets/commit_message_template.md",
       ".opencode/skills/sk-git/references/commit_workflows.md",
-      ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
-      ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-      ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
       "spec.md"
     ],
     "entities": [
@@ -68,24 +65,6 @@
         "name": "commit_workflows.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/references/commit_workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-iter-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-deep-research-iter.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-iter-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
         "source": "derived"
       },
       {
@@ -133,7 +112,7 @@
     ],
     "causal_summary": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` §3 and `assets/commit_message_template.md`, but the git log itself does not follow them. A 30-commit sample of recent HEAD shows 100% of commits prefixed with internal packet IDs (`111 W3.C:`, `111 W3.D-A:`), no message bodies, no Co-Authored-By trailers on the most recent activity (older history carries 3,498 Claude trailers in various forms), and free-form subjects that violate the imperative-mood + length rules. The standards exist on paper but nothing enforces them at commit time, and no retroactive normalization has been performed.",
     "created_at": "2026-05-16T09:42:32Z",
-    "last_save_at": "2026-06-07T09:00:45.738Z",
+    "last_save_at": "2026-06-08T17:32:20.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

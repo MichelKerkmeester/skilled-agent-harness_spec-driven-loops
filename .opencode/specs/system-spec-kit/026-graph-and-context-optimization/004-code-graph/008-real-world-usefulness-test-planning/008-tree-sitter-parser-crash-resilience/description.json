@@ -25,8 +25,8 @@
     "parser",
     "resilience"
   ],
-  "lastUpdated": "2026-05-26T17:27:09.202Z",
-  "specId": "007",
+  "lastUpdated": "2026-06-08T14:44:11.027Z",
+  "specId": "008",
   "folderSlug": "tree-sitter-parser-crash-resilience",
   "parentChain": [
     "system-spec-kit",

@@ -44,20 +44,13 @@
       ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
-      ".opencode/skills/cli-devin/SKILL.md",
-      ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
-      ".opencode/skills/cli-devin/references/agent-config-recipes.md",
-      ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
-      ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-      ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
-      ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
       "research/gpt-5.5-review.md",
       "research/gpt-5.5-phase4-review.md",
       "plan.md",
       "tasks.md",
       "resource-map.md",
       "spec.md",
-      ".opencode/skills/cli-devin/references/cli_reference.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -97,48 +90,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-iter-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-recipes.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/references/agent-config-recipes.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-iter-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-deep-research-iter.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-deep-review-iter.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-synthesis.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
-        "source": "derived"
-      },
-      {
         "name": "gpt-5.5-review.md",
         "kind": "doc",
         "path": "research/gpt-5.5-review.md",
@@ -175,9 +126,9 @@
         "source": "derived"
       },
       {
-        "name": "cli_reference.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-devin/references/cli_reference.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,11 +154,53 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iter Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Iter Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 056 + 058 dispatched ~40 cli-devin SWE 1.6 iter via custom orchestration because:",
     "created_at": "2026-05-15T19:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.614Z",
+    "last_save_at": "2026-06-08T17:32:20.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

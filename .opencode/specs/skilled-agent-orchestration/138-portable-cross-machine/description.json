@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/138-portable-cross-machine",
+  "specFolder": "skilled-agent-orchestration/138-portable-cross-machine",
   "description": "Feature Specification: Portable cross-machine hook paths and Barter framework sync",
   "keywords": [
     "feature",
@@ -13,12 +13,10 @@
     "framework",
     "sync"
   ],
-  "lastUpdated": "2026-06-08T05:57:57.484Z",
+  "lastUpdated": "2026-06-08T14:44:10.866Z",
   "specId": "138",
   "folderSlug": "portable-cross-machine",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,

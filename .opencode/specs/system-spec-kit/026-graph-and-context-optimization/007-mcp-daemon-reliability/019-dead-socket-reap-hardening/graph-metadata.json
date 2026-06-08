@@ -4,27 +4,219 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard"],
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "dead-socket reap hardening",
       "consecutive liveness probe failures",
-      "false-dead owner reap"
+      "false-dead owner reap",
+      "lease probe retry",
+      "SPECKIT_LEASE_PROBE_RETRIES",
+      "dead-socket reap hardening plan",
+      "lease probe retry plan",
+      "dead-socket reap hardening tasks",
+      "lease probe retry tasks",
+      "dead-socket reap hardening checklist",
+      "lease probe retry verification",
+      "dead-socket reap hardening done"
     ],
-    "key_topics": ["reap-hardening", "liveness-probe", "daemon-reliability", "false-dead"],
+    "key_topics": [
+      "dead-socket",
+      "reap",
+      "hardening",
+      "consecutive",
+      "liveness",
+      "probe",
+      "failures",
+      "false-dead",
+      "owner",
+      "lease",
+      "retry",
+      "plan"
+    ],
     "importance_tier": "high",
     "status": "complete",
-    "key_files": [".opencode/bin/lib/launcher-ipc-bridge.cjs"],
-    "entities": ["maybeBridgeLeaseHolder", "probeLeaseHolderWithRetries", "resolveLeaseProbeAttempts", "probeDaemon"],
-    "causal_summary": "Require N consecutive deep-probe failures before a sibling reaps the lease owner and respawns, so a transient miss on a busy-but-alive daemon no longer causes a duplicate daemon; bounded within the probe grace ceiling.",
+    "key_files": [
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "mcp_server/tests/launcher-reap-hardening.vitest.ts",
+      "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-reap-hardening.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-reap-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge-probe.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The owner is declared dead only after N consecutive deep-probe failures, so a single transient miss no longer triggers a cross-session reap and duplicate respawn, while the retry budget stays inside the probe grace ceiling.",
     "created_at": "2026-06-07T16:45:00Z",
-    "last_save_at": "2026-06-07T16:45:00Z",
+    "last_save_at": "2026-06-08T17:32:21.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

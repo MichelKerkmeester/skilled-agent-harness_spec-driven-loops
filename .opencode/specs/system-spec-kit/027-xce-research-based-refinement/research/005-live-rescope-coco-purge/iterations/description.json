@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/iterations",
+  "description": "Research iteration artifacts for 005-live-rescope-coco-purge.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "005-live-rescope-coco-purge",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-06-08T15:25:36.992Z",
+  "specId": "005",
+  "folderSlug": "live-rescope-coco-purge-iterations",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "research",
+    "005-live-rescope-coco-purge"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

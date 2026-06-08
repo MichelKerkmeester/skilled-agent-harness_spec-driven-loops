@@ -4,23 +4,217 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["import purity hardening","comment hygiene checker coverage","mk-code-index require side effect","RC DR phase label gap"],
-    "key_topics": ["import-purity","comment-hygiene","linter-coverage","require-side-effects","daemon-reliability"],
-    "importance_tier": "important",
-    "status": "complete",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","implementation-summary.md",".opencode/bin/mk-code-index-launcher.cjs",".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"],
-    "entities": ["mk-code-index-launcher.cjs","bootstrapLauncherEnv","check-comment-hygiene.sh","model-server-supervision.cjs","launcher-watchdog.vitest.ts"],
-    "causal_summary": "Defer the code-index launcher env loading behind the entrypoint guard, and extend the comment-hygiene checker for RC/DR/phase/seat labels plus inline comments, scrubbing the daemon-reliability backlog",
+  "derived": {
+    "trigger_phrases": [
+      "import purity hardening",
+      "comment hygiene checker coverage",
+      "mk-code-index require side effect",
+      "RC DR phase label gap",
+      "import purity plan",
+      "comment hygiene checker plan",
+      "import purity tasks",
+      "comment hygiene checker tasks",
+      "verification",
+      "checklist",
+      "name",
+      "template"
+    ],
+    "key_topics": [
+      "import",
+      "purity",
+      "hardening",
+      "comment",
+      "hygiene",
+      "checker",
+      "coverage",
+      "mk-code-index",
+      "require",
+      "side",
+      "effect",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-code-index-import-purity.vitest.ts",
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.test.sh",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-watchdog.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-code-index-import-purity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-code-index-import-purity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.test.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-watchdog.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-watchdog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The post-merge gpt-5.5 cross-check of the daemon-reliability work surfaced two follow-ups. First, `mk-code-index-launcher.cjs` runs env side effects at require time (dotenv loading, stderr writes, and a `process.env` mutation under maintainer mode), because the `require.main === module` guard sits below them and gates only the bridge startup. Any module that imports the launcher's helpers inherits those side effects. Second, the comment-hygiene checker catches `ADR-`, `REQ-`, `CHK-`, and spec-path labels but misses `RC-N`, single-number `DR-N`, hyphen `phase-NNN`, and council `P#-Seat#`, and it only scans full-line comments, so those perishable labels reach the tree.",
     "created_at": "2026-06-07T17:55:39Z",
-    "last_save_at": "2026-06-07T20:05:00Z",
+    "last_save_at": "2026-06-08T17:32:21.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

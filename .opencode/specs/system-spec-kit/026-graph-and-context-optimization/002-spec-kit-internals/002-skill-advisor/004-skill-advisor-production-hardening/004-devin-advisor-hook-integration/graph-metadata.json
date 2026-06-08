@@ -41,10 +41,7 @@
     "importance_tier": "important",
     "status": "planning_complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/hooks/devin/user-prompt-submit.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/devin/user-prompt-submit.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
-      ".devin/hooks.v1.json",
       "research/research.md",
       ".devin/config.json",
       "decision-record.md",
@@ -60,25 +57,16 @@
       "research/findings.json",
       ".opencode/plugins/README.md",
       "mcp_server/plugin_bridges/README.md",
-      "handover.md"
+      "handover.md",
+      "research/iterations/iteration-02.md",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "research/iterations/iteration-03.md"
     ],
     "entities": [
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/hooks/devin/user-prompt-submit.ts",
-        "source": "derived"
-      },
       {
         "name": "mk-skill-advisor-bridge.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
         "source": "derived"
       },
       {
@@ -172,6 +160,24 @@
         "source": "derived"
       },
       {
+        "name": "iteration-02.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-02.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-03.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-03.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase A research converged on a scoped Phase C implementation for the advisor packet. The advisor will gain an explicit Devin `UserPromptSubmit` hook variant under the skill-owned hook tree while retaining Devin's `read_config_from.claude=true` inheritance as a safety net, because Devin's documented Claude compatibility does not explicitly prove `hookSpecificOutput.additionalContext` injection for this event (F001/Q1, `research/iterations/iteration-01.md`).",
     "created_at": "2026-05-15T13:05:18.133Z",
-    "last_save_at": "2026-06-05T12:47:33.387Z",
+    "last_save_at": "2026-06-08T17:32:20.845Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

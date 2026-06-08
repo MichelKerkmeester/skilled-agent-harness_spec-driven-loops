@@ -1,5 +1,6 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout",
   "description": "Feature Specification: Re-election default-on rollout",
   "keywords": [
     "feature",
@@ -8,17 +9,14 @@
     "default-on",
     "rollout"
   ],
-  "lastUpdated": "2026-06-07T20:04:00.154Z",
+  "lastUpdated": "2026-06-08T14:44:11.064Z",
   "specId": "027",
   "folderSlug": "reelection-default-on-rollout",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

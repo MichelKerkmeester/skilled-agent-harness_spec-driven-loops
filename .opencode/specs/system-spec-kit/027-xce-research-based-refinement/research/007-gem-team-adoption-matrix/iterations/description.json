@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/iterations",
+  "description": "Research iteration artifacts for 007-gem-team-adoption-matrix.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "007-gem-team-adoption-matrix",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-06-08T15:25:37.001Z",
+  "specId": "007",
+  "folderSlug": "gem-team-adoption-matrix-iterations",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "research",
+    "007-gem-team-adoption-matrix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -21,10 +21,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-06T00:00:00Z"
+    last_updated_at: "2026-06-08T15:25:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Continuation-22 research + CocoIndex purge + Phase-0 drift/vocab reconcile"
-    next_safe_action: "002-memory-write-safety"
+    recent_action: "Added OpenLTM phases 008/009 + amended 002/003/005 from research 010"
+    next_safe_action: "Plan 008/009 or implement 002 secret-redaction amendment"
     blockers: []
     key_files:
       - "spec.md"
@@ -35,6 +35,8 @@ _memory:
       - "005-learning-feedback-reducers/spec.md"
       - "006-gem-team-adoption/spec.md"
       - "007-memclaw-derived-memory-hardening/spec.md"
+      - "008-openltm-retrieval-observability/spec.md"
+      - "009-openltm-continuity-resilience/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-peck-phase-adoption"
@@ -131,6 +133,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 005 | `005-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
 | 006 | `006-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
 | 007 | `007-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-005 | Phase-parent |
+| 008 | `008-openltm-retrieval-observability/` | OpenLTM-derived retrieval & memory observability — doc-anchor `why_ranked`, inline contradiction/supersession warnings, degraded-vector signal, maintenance counters (`research/010`) | Spec-scaffolded |
+| 009 | `009-openltm-continuity-resilience/` | OpenLTM-derived continuity/session resilience — bounded restore panel, authored-continuity PreCompact snapshot, goal/decision/progress/gotcha facets (`research/010`) | Spec-scaffolded |
 
 > `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `006` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `007` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All three programs are scaffolded and planned, not implemented.
 
@@ -146,6 +150,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 - Iterations 049 and 058 are planned together under `004-semantic-trigger-fallback/`: lexical-first remains primary; semantic expansion stays default-off with resumable backfill and shadow-to-union promotion evidence.
 - Iterations 050 and 059 are planned together under `005-learning-feedback-reducers/`: reducers stay default-off and shadow-first until ledger quality, replay, and consumer-specific gates pass.
 - Iterations 051-057 are cross-cutting planning rules for the child phases: prefer local packet context first, keep context bundles explicit, automate resource maps only with validation, keep reducer repairs idempotent, standardize `/speckit`, refuse stale impact analysis, and keep `memory_context` curation scoped to local memory-backend concerns.
+- Phases 008-009 are owned by the OpenLTM study (`research/010-openltm-memory-architecture-teachings`): `008` adopts retrieval/memory observability and `009` adopts continuity/session resilience — both filtered through the spec-documentation-based vs row-based architecture (research §8). Secret redaction, content-fingerprint indexing, and reshaped opt-in capture from the same study are folded as amendments into `002`, `003`, and `005` respectively. Row-coupled mechanics (`learn/reinforce`, per-row provenance/audit, row dedup) are rejected as negative knowledge.
 
 ### Phase Transition Rules
 
@@ -166,6 +171,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 001-peck-teachings-adoption/003-current-state-discipline | 001-peck-teachings-adoption/004-constitutional-rule-review | Advisory current-state rule is registered without adding strict-mode errors. | Sample validation evidence. |
 | 004-semantic-trigger-fallback shadow mode | 004-semantic-trigger-fallback union mode | Resumable backfill complete or explicitly failed; shadow false-positive, recall, latency, cost, and rollback evidence pass. | 004 promotion checklist evidence. |
 | 005-learning-feedback-reducers shadow consumers | 005-learning-feedback-reducers active mutation/ranking | Ledger quality, shadow replay, and consumer-specific promotion criteria pass for each consumer. | 005/005 integration gate evidence. |
+| 007-memclaw-derived-memory-hardening | 008-openltm-retrieval-observability | OpenLTM research phase 010 complete; observability surfaces are additive and read-only to ranking. | `research/010` deliverables (research.md §8) + per-phase strict validation. |
+| 008-openltm-retrieval-observability | 009-openltm-continuity-resilience | Observability surfaces planned; continuity surfaces complement (never replace) the ladder. | Per-phase strict validation evidence. |
 <!-- /ANCHOR:phase-map -->
 
 ---

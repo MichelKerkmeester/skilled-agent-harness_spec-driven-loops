@@ -56,8 +56,6 @@
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts",
       "spec.md",
       "research/research.md",
       "resource-map.md"
@@ -103,12 +101,6 @@
         "name": "session-prime.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts",
         "source": "derived"
       },
       {
@@ -206,11 +198,17 @@
         "kind": "proper_noun",
         "path": "resource-map.md",
         "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader. Each runtime had its own schema, wrapper wiring, and remediation backlog, and those fixes were scattered across packets that also bundled unrelated advisor and code-graph work.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-06-05T12:47:34.224Z",
+    "last_save_at": "2026-06-08T17:32:21.288Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

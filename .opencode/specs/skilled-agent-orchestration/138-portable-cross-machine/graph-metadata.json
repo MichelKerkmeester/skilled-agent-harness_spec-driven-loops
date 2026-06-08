@@ -39,7 +39,6 @@
     "status": "complete",
     "key_files": [
       ".codex/hooks.json",
-      ".devin/hooks.v1.json",
       ".claude/settings.local.json",
       "spec.md",
       "plan.md",
@@ -52,12 +51,6 @@
         "name": "hooks.json",
         "kind": "config",
         "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A team member running the Barter mirror hit a startup-hook failure: the hook `cd`-ed into a hardcoded absolute path that does not exist on his machine, and every hook ran `/opt/homebrew/bin/node`, which does not exist on Linux. A prior fix attempt also corrupted Barter's node path to a broken `n/bin/node`. The same hardcoding lives in the Public source configs.",
     "created_at": "2026-06-08T05:50:45Z",
-    "last_save_at": "2026-06-08T08:50:25.404Z",
+    "last_save_at": "2026-06-08T17:32:20.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

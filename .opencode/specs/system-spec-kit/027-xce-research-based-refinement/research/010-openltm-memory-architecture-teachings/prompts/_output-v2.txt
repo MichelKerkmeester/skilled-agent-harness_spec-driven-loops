@@ -1,0 +1,16 @@
+# OUTPUT (markdown, concise, ~600–900 words max)
+## Mechanism
+How OpenLTM implements this, with `path:line` evidence for every non-trivial claim. Be explicit about whether the mechanism depends on the row-write model or not. UNKNOWN if you cannot verify.
+
+## Storage-fit teachings for system-spec-kit (doc-based)
+3–6 bullets. Each bullet EXACTLY this one-line shape:
+- **Claim** · <one-sentence idea> · **Evidence** · `path:line`[, `path:line`] · **Storage-fit** · TRANSFERS|DOC-ANALOG|ROW-COUPLED · **Maps-to** · <system-spec-kit surface (spec docs / continuity ladder / index / MCP), or "none — row-coupled"> · **Verdict** · ADOPT|ADAPT|REJECT|DEFER · **Risk** · LOW|MED|HIGH · **Confidence** · 0.00–1.00 · **Re-shaping needed (if DOC-ANALOG)** · <how to fit it to authored docs, or "n/a">
+
+## Row-coupled findings (negative knowledge)
+Mechanisms that look appealing but are intrinsically row-write-coupled and should NOT be ported to a doc-based store — each with a one-line reason.
+
+## Open questions
+Anything unresolved for the corrected synthesis.
+
+# CONSTRAINTS
+No code copying (OpenLTM is MIT — design inspiration only). Every Mechanism claim needs real `path:line` evidence; UNKNOWN when unsure. Be decisive about storage-fit — that is the whole point of this pass. Output only the markdown.

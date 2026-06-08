@@ -109,3 +109,9 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 
 Run the same command for each direct child folder before claiming the phase-parent scaffold is valid.
 <!-- /ANCHOR:validation -->
+
+---
+
+## Amendment — OpenLTM Research (research phase 010)
+
+Sharpen the **incremental index foundation** (child `001-incremental-index-foundation`) with OpenLTM's index-freshness discipline, re-shaped for an authored-document corpus — our memories are *edited documents*, not inserted rows, which is the load-bearing difference. Adopt **per-document content fingerprints** so a scan can prove what changed: skip re-embedding / re-indexing unchanged spec docs and force re-index + re-embed only when a doc's content hash changes (`packages/openltm-core/src/janitor/embeddings.ts`, `dao/embeddings.ts`, `migrations/010_memory_embeddings_split.sql`). Keep the lexical (FTS) index trigger-synced to the derived index rows, treating filesystem scanning as a separate doc-freshness step, with explicit FTS-rebuild migrations that repopulate from the base table and recreate triggers (`schema.sql` FTS triggers; `migrations/020_fts_coverage.sql`). Storage-fit = DOC-ANALOG: fingerprint per doc path/anchor; **never** bump confidence or importance merely because a document was re-saved (that is OpenLTM's row-coupled `confirm_count` behavior, rejected for us). This aligns with the child's existing canonical-input memoization + chunk-fingerprint goals; it adds the content-hash skip/force-refresh decision explicitly. Source: `research/010-openltm-memory-architecture-teachings/sub-packet-proposals.md` (corrected Priority 2) + `research.md` §8; planned in child `001-incremental-index-foundation`.

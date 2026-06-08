@@ -59,7 +59,6 @@
       "schemas/iteration-output.schema.json",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/cli-devin/SKILL.md",
       ".opencode/skills/sk-prompt-small-model/SKILL.md"
     ],
     "entities": [
@@ -156,7 +155,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-devin/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
         "source": "derived"
       },
       {
@@ -210,7 +209,7 @@
     ],
     "causal_summary": "The `deep-agent-improvement` skill (v1.6.0.0) is mature but pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before the broader `116-deep-skill-evolution` arc consumes it, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
     "created_at": "2026-05-23T20:01:44.783Z",
-    "last_save_at": "2026-06-07T09:00:45.822Z",
+    "last_save_at": "2026-06-08T17:32:20.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

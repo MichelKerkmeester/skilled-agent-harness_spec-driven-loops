@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/009-gem-team-integration-impact/iterations",
+  "description": "Research iteration artifacts for 009-gem-team-integration-impact.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "009-gem-team-integration-impact",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-06-08T15:25:37.008Z",
+  "specId": "009",
+  "folderSlug": "gem-team-integration-impact-iterations",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "research",
+    "009-gem-team-integration-impact"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

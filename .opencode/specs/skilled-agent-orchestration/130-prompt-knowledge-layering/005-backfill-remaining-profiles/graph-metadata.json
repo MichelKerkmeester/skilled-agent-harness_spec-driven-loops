@@ -44,7 +44,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
-      ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
       ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
       ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
       ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
@@ -59,12 +58,6 @@
         "name": "minimax-2.7.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
-        "source": "derived"
-      },
-      {
-        "name": "swe-1.6.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 5** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
     "created_at": "2026-06-05T12:47:32.512Z",
-    "last_save_at": "2026-06-05T12:47:32.512Z",
+    "last_save_at": "2026-06-08T17:32:20.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

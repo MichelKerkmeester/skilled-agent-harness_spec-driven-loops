@@ -28,37 +28,33 @@
     "000-release-cleanup",
     "001-peck-teachings-adoption",
     "002-memory-write-safety",
-    "003-incremental-index-foundation",
-    "004-causal-edge-tombstones",
-    "005-metadata-edge-promoter",
-    "006-write-path-reconciliation",
+    "003-memory-index-causal-lifecycle",
     "004-semantic-trigger-fallback",
-    "005-learning-feedback-reducers"
+    "005-learning-feedback-reducers",
+    "006-gem-team-adoption",
+    "007-memclaw-derived-memory-hardening",
+    "008-openltm-retrieval-observability",
+    "009-openltm-continuity-resilience"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
+  "specFolder": "027-xce-research-based-refinement",
+  "description": "OpenLTM continuity and session resilience",
   "keywords": [
-    "feature",
-    "specification",
-    "xce-derived",
-    "spec",
-    "kit",
-    "refinement",
-    "phase",
-    "parent"
+    "openltm",
+    "continuity",
+    "session",
+    "resilience"
   ],
-  "lastUpdated": "2026-06-06T14:42:45.993Z",
+  "lastUpdated": "2026-06-08T15:25:36.955Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
-  "parentChain": [
-    "system-spec-kit"
-  ],
-  "memorySequence": 4,
+  "parentChain": [],
+  "memorySequence": 5,
   "memoryNameHistory": [
     "08-05-26_16-41__2nd-pass-cross-validation-deep-research-run-via.md",
     "08-05-26_17-39__applied-24-blocking-finding-amendments-from-pt-02.md",
     "09-05-26_10-11__pt-03-scope-expansion-coco-index-memory-backend.md",
     "09-05-26_11-30__scaffolded-5-l3-phase-children-006-010.md",
-    "10-05-26__phase-001-cocoindex-complete-fork-plan.md"
+    "10-05-26__phase-001-cocoindex-complete-fork-plan.md",
+    "08-06-26_16-25__ran-a-15-iteration-deep-research-study-gpt-5-5.md"
   ]
 }

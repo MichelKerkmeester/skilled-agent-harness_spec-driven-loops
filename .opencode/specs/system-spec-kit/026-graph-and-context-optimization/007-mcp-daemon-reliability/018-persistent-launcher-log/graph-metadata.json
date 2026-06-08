@@ -4,27 +4,218 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard"],
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "persistent launcher log",
       "mk-spec-memory launcher log file",
-      "attributable daemon flap"
+      "attributable daemon flap",
+      "launcher stderr durable trace",
+      "SPECKIT_LAUNCHER_LOG",
+      "persistent launcher log plan",
+      "launcher log rotation plan",
+      "durable launcher trace plan",
+      "persistent launcher log tasks",
+      "launcher log rotation tasks",
+      "persistent launcher log checklist",
+      "launcher log verification"
     ],
-    "key_topics": ["launcher-log", "observability", "daemon-reliability", "rotation"],
+    "key_topics": [
+      "persistent",
+      "launcher",
+      "log",
+      "mk-spec-memory",
+      "file",
+      "attributable",
+      "daemon",
+      "flap",
+      "stderr",
+      "durable",
+      "trace",
+      "plan"
+    ],
     "importance_tier": "high",
     "status": "complete",
-    "key_files": [".opencode/bin/mk-spec-memory-launcher.cjs"],
-    "entities": ["mk-spec-memory-launcher", "persistLauncherLogLine", "shouldRotateLauncherLog", "log"],
-    "causal_summary": "Add a bounded, best-effort durable launcher log behind log() so owner-disposal races and daemon flaps are attributable after the fact; first deferred-hardening item from phase 017.",
+    "key_files": [
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "mcp_server/tests/launcher-persistent-log.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-persistent-log.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-persistent-log.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The launcher's `log()` writes only to `process.stderr`. The MCP host (Claude Code / OpenCode) captures that stream inconsistently, so when the daemon flaps or an owner-disposal race fires there is no durable record to attribute it from afterward. Phase 017 deferred this as the first foundational item: without a log, every later reliability change is hard to validate from real incidents.",
     "created_at": "2026-06-07T16:30:00Z",
-    "last_save_at": "2026-06-07T16:30:00Z",
+    "last_save_at": "2026-06-08T17:32:21.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

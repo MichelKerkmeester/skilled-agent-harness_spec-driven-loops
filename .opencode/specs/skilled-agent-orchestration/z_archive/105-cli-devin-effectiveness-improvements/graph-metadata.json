@@ -40,13 +40,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/cli-devin/SKILL.md",
-      ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-      ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
-      ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
-      ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
-      ".opencode/skills/cli-devin/references/agent-config-recipes.md",
-      ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
       ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
       ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       "research/retrospective.md",
@@ -56,48 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-deep-research-iter.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-deep-review-iter.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-synthesis.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-iter-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-config-recipes.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/references/agent-config-recipes.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-iter-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
-        "source": "derived"
-      },
       {
         "name": "deep_start-research-loop_auto.yaml",
         "kind": "config",
@@ -199,11 +150,53 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "actuals",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 40-iter cli-devin SWE-1.6 run for packet 999 surfaced clear improvement targets:",
     "created_at": "2026-05-16T05:50:00Z",
-    "last_save_at": "2026-06-07T09:00:45.717Z",
+    "last_save_at": "2026-06-08T17:32:20.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

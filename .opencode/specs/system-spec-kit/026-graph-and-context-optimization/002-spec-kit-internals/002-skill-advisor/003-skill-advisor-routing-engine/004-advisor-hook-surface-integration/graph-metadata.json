@@ -46,7 +46,6 @@
       "lib/context/shared-payload.ts",
       "hooks/claude/user-prompt-submit.ts",
       ".claude/settings.local.json",
-      "hooks/gemini/user-prompt-submit.ts",
       "lib/codex-hook-policy.ts",
       "hooks/codex/user-prompt-submit.ts",
       "hooks/codex/pre-tool-use.ts",
@@ -57,12 +56,13 @@
       "implementation-summary.md",
       ".codex/settings.json",
       "mcp_server/hooks/claude/session-prime.ts",
-      "mcp_server/hooks/gemini/session-prime.ts",
       "mcp_server/hooks/claude/user-prompt-submit.ts",
-      "mcp_server/hooks/gemini/user-prompt-submit.ts",
       "mcp_server/hooks/claude/hook-state.ts",
       "plan.md",
-      "spec.md"
+      "spec.md",
+      "tasks.md",
+      ".github/hooks/scripts/user-prompt-submitted.sh",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs"
     ],
     "entities": [
       {
@@ -156,6 +156,24 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submitted.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/user-prompt-submitted.sh",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,29 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Runtimes Targeted",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Today's skill-advisor (Gate 2) runs **only** when the AI explicitly invokes `skill_advisor.py` in a shell command. That limits its impact to three ways: (1) the AI remembering to call it, (2) a Claude Code harness running it before turns, (3) manual developer invocation. Codex, Gemini, and Copilot runtimes don't benefit from proactive routing at all — even when they're perfectly positioned to use the same skill catalog. Meanwhile the advisor's full JSON output is verbose (often 200-400 tokens with multiple candidates, uncertainty fields, graph-boost explanations). If it ran on every prompt and dumped full output, context would balloon quickly.",
     "created_at": "2026-04-19T05:20:26.002Z",
-    "last_save_at": "2026-06-05T12:47:33.375Z",
+    "last_save_at": "2026-06-08T17:32:20.838Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

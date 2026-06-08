@@ -49,14 +49,14 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-claude-code.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts"
     ],
     "entities": [
       {
@@ -126,12 +126,6 @@
         "source": "derived"
       },
       {
-        "name": "adapter-cli-gemini.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
-        "source": "derived"
-      },
-      {
         "name": "adapter-cli-opencode.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
@@ -174,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "matrix-adapter-opencode.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code. The new and modified code needed a standards pass against sk-code-opencode before the larger 037 quality phase could continue.",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.632Z",
+    "last_save_at": "2026-06-08T17:32:20.650Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

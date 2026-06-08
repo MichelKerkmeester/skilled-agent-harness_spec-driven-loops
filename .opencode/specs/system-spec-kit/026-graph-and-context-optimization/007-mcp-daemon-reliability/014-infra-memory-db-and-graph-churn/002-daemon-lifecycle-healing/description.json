@@ -15,8 +15,8 @@
     "substrate",
     "test"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.755Z",
-  "specId": "001",
+  "lastUpdated": "2026-06-08T14:44:11.056Z",
+  "specId": "002",
   "folderSlug": "daemon-lifecycle-healing",
   "parentChain": [
     "system-spec-kit",

@@ -1,17 +1,15 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
-  "description": "DB Location Skill-Local (fix #1)",
+  "description": "Feature Specification: DB Location Skill-Local (fix #1)",
   "keywords": [
-    "code",
-    "graph",
-    "db",
+    "feature",
+    "specification",
     "location",
     "skill-local",
-    "spec-kit",
-    "relocation"
+    "fix"
   ],
-  "lastUpdated": "2026-05-29T09:55:00.000Z",
-  "specId": "003",
+  "lastUpdated": "2026-06-08T14:44:11.041Z",
+  "specId": "004",
   "folderSlug": "db-location-skill-local",
   "parentChain": [
     "system-spec-kit",

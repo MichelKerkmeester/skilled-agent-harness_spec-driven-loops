@@ -45,7 +45,6 @@
     "key_files": [
       "plan.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts",
@@ -62,7 +61,8 @@
       ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -180,6 +180,12 @@
         "source": "derived"
       },
       {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,17 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package). Recent cross-phase synthesis (`026/research/cross-phase-synthesis.md`) flagged code-graph and runtime-hook concerns among its top P0 items (CF-002, CF-009, CF-010, CF-014). Those specific findings are now closed in `007/006-integrity-parity-closure/`. The open question: **beyond those findings, where else can the code-graph system and its hook wiring improve?**",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-05-30T10:12:02.566Z",
+    "last_save_at": "2026-06-08T17:32:21.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

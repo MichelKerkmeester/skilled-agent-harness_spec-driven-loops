@@ -8,8 +8,8 @@
     "wip-overlapping",
     "findings"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.725Z",
-  "specId": "002",
+  "lastUpdated": "2026-06-08T14:44:11.037Z",
+  "specId": "003",
   "folderSlug": "deferred-wip-overlapping-findings",
   "parentChain": [
     "system-spec-kit",

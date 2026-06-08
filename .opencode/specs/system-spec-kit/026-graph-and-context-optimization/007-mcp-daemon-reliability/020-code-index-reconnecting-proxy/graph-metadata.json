@@ -4,27 +4,219 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard"],
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "code-index reconnecting proxy",
       "mk-code-index connection closed",
-      "code-graph daemon reconnect"
+      "code-graph daemon reconnect",
+      "code-index session proxy",
+      "createClassifyFrame code-index",
+      "code-index reconnecting proxy plan",
+      "code-graph replay classifier plan",
+      "code-index reconnecting proxy tasks",
+      "code-index reconnecting proxy checklist",
+      "code-index reconnecting proxy done",
+      "code-index connection closed fix",
+      "code-graph reconnect summary"
     ],
-    "key_topics": ["code-index", "session-proxy", "reconnect", "daemon-reliability", "replay-classifier"],
+    "key_topics": [
+      "code-index",
+      "reconnecting",
+      "proxy",
+      "mk-code-index",
+      "connection",
+      "closed",
+      "code-graph",
+      "daemon",
+      "reconnect",
+      "session",
+      "createclassifyframe",
+      "plan"
+    ],
     "importance_tier": "high",
     "status": "complete",
-    "key_files": [".opencode/bin/mk-code-index-launcher.cjs", ".opencode/bin/lib/launcher-session-proxy.cjs"],
-    "entities": ["createClassifyFrame", "classifyCodeIndexFrame", "bridgeStdioThroughSessionProxy", "createSessionProxy"],
-    "causal_summary": "Port the reconnecting session proxy to mk-code-index via a createClassifyFrame factory + a code-graph replayable tool set, so a code-index owner death reattaches and replays read queries instead of a hard Connection closed; mk-spec-memory behavior unchanged.",
+    "key_files": [
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "mcp_server/tests/launcher-code-index-proxy.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-code-index-proxy.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-code-index-proxy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "mk-code-index bridged clients through a raw socket with no reconnect, so an owner death surfaced as a hard Connection closed. This packet ports the mk-spec-memory reconnecting session proxy to mk-code-index with a code-graph replayable tool set.",
     "created_at": "2026-06-07T17:00:00Z",
-    "last_save_at": "2026-06-07T17:00:00Z",
+    "last_save_at": "2026-06-08T17:32:21.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

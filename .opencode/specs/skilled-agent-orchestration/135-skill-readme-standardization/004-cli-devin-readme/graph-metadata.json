@@ -35,19 +35,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-devin/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-devin/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 4** of the skill README standardization, the third cli-* skill rewritten.",
     "created_at": "2026-06-07T11:00:00Z",
-    "last_save_at": "2026-06-08T08:50:25.370Z",
+    "last_save_at": "2026-06-08T17:32:20.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

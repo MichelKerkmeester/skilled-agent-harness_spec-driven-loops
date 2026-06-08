@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/010-openltm-memory-architecture-teachings/iterations",
+  "description": "Research iteration artifacts for 010-openltm-memory-architecture-teachings.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "010-openltm-memory-architecture-teachings",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-06-08T15:25:37.013Z",
+  "specId": "010",
+  "folderSlug": "openltm-memory-architecture-teachings-iterations",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "research",
+    "010-openltm-memory-architecture-teachings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

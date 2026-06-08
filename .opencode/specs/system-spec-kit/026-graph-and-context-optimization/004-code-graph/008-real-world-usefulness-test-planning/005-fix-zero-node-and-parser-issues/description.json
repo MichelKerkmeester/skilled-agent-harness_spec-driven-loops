@@ -23,8 +23,8 @@
     "bug",
     "remediation"
   ],
-  "lastUpdated": "2026-05-26T17:27:15.205Z",
-  "specId": "004",
+  "lastUpdated": "2026-06-08T14:44:11.013Z",
+  "specId": "005",
   "folderSlug": "fix-zero-node-and-parser-issues",
   "parentChain": [
     "system-spec-kit",

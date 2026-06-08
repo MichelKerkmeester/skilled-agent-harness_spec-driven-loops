@@ -40,15 +40,15 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-| Field | Value |
-|-------|-------|
-| **Level** | 2 |
-| **Priority** | P1 |
-| **Status** | Complete |
-| **Created** | 2026-05-16 |
-| **Branch** | `main` |
-| **Parent Packet** | `system-spec-kit/026-graph-and-context-optimization` |
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix` |
+| Field             | Value                                                                                                      |
+| -------------------| ------------------------------------------------------------------------------------------------------------|
+| **Level**         | 2                                                                                                          |
+| **Priority**      | P1                                                                                                         |
+| **Status**        | Complete                                                                                                   |
+| **Created**       | 2026-05-16                                                                                                 |
+| **Branch**        | `main`                                                                                                     |
+| **Parent Packet** | `system-spec-kit/026-graph-and-context-optimization`                                                       |
+| **Spec Folder**   | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix` |
 <!-- /ANCHOR:metadata -->
 
 ---

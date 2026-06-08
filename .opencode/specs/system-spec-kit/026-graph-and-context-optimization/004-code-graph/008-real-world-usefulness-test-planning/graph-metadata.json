@@ -22,78 +22,34 @@
   },
   "derived": {
     "trigger_phrases": [
-      "real-world usefulness test",
-      "code graph usefulness",
-      "hook usefulness validation",
-      "runtime integration usefulness",
-      "026/007/012",
-      "real-world usefulness plan",
-      "CLI matrix",
+      "real world usefulness test phase parent",
       "code graph usefulness campaign",
-      "hook usefulness campaign",
-      "real-world usefulness tasks",
-      "scenario runtime cells",
-      "026/007/012 tasks"
+      "usefulness test methodology trials"
     ],
     "key_topics": [
-      "real-world",
+      "real",
+      "world",
       "usefulness",
       "test",
+      "phase",
+      "parent",
       "code",
       "graph",
-      "hook",
-      "validation",
-      "runtime",
-      "integration",
-      "026",
-      "007",
-      "012"
+      "campaign",
+      "methodology",
+      "trials",
+      "earlier"
     ],
     "importance_tier": "important",
-    "status": "planning_scaffold_complete",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -109,7 +65,7 @@
         "source": "derived"
       },
       {
-        "name": "Planning Scaffold Complete",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,96 +83,19 @@
         "source": "derived"
       },
       {
-        "name": "Execution Mode",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scoring Rubric",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Create Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Major Scenario Tasks",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Matrix Cell Tasks",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces. That proves the systems can exist, but it does not prove they help an engineer move faster or make better decisions during normal coding work. The missing evidence is a real-world usefulness campaign with controls, repeated trials, and runtime-specific observations.",
+    "causal_summary": "Earlier code-graph phases shipped capability and resilience for the tooling, hooks, and runtime integration surfaces. That proves the systems can exist, but not that they help an engineer move faster or decide better during normal coding work. The missing evidence is a real-world usefulness campaign with controls, repeated trials, and runtime-specific observations.",
     "created_at": "2026-05-05T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.113Z",
+    "last_save_at": "2026-06-08T17:32:21.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

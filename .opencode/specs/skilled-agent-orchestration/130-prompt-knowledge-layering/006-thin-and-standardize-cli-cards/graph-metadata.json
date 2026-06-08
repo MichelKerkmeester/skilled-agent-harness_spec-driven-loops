@@ -46,7 +46,6 @@
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-devin/assets/prompt_quality_card.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -200,7 +199,7 @@
     ],
     "causal_summary": "This is **Phase 6** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
     "created_at": "2026-06-05T12:47:32.514Z",
-    "last_save_at": "2026-06-05T12:47:32.514Z",
+    "last_save_at": "2026-06-08T17:32:20.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

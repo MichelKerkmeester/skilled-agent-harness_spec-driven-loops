@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/004-continuation-revalidation/iterations",
+  "description": "Research iteration artifacts for 004-continuation-revalidation.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "004-continuation-revalidation",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-06-08T15:25:36.987Z",
+  "specId": "004",
+  "folderSlug": "continuation-revalidation-iterations",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "research",
+    "004-continuation-revalidation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
