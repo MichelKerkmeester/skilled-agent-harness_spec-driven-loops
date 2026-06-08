@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
             "timeout": 3
           }
         ]
@@ -47,7 +47,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
             "timeout": 3
           }
         ]
@@ -59,12 +59,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && bash .opencode/bin/worktree-guard.sh'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
             "timeout": 3
           }
         ]
@@ -76,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js ; stop_status=$? ; bash .opencode/scripts/session-cleanup.sh || true ; exit \"$stop_status\"'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js ; stop_status=$? ; bash .opencode/scripts/session-cleanup.sh || true ; exit \"$stop_status\"'",
             "timeout": 10,
             "async": true
           }
@@ -89,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && python3 .opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh'",
             "timeout": 10
           }
         ]

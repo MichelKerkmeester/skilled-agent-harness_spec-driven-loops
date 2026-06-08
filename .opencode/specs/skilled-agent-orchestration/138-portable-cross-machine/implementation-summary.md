@@ -55,7 +55,7 @@ Every hook command moved from `cd "<hardcoded abs path>" && /opt/homebrew/bin/no
 
 ### Applied across both repos
 
-An idempotent node fixer normalized every variant, including the corrupted `n/bin/node` and the Barter codex hook that wrongly `cd`-ed into the Public repo. It ran on the Public tracked source (`.codex/hooks.json`, `.devin/hooks.v1.json`) and on the three Barter hook configs. The Public Claude hooks live in a gitignored per-machine file and were left alone.
+An idempotent node fixer normalized every variant, including the corrupted `n/bin/node` and the Barter codex hook that wrongly `cd`-ed into the Public repo. It ran on the Public tracked source (`.codex/hooks.json`, `.devin/hooks.v1.json`, and `.claude/settings.local.json`) and on the three Barter hook configs. A fresh Opus and gpt-5.5 verification pass then caught two real gaps that were fixed in a follow-up: Public's `.claude/settings.local.json` is tracked (not gitignored), so its hardcoded path would ship to anyone cloning Public, and the Devin hooks in both repos lacked the `:-$PWD` fallback the other runtimes use. Both are now portable and uniform.
 
 ### Barter mirror brought current
 

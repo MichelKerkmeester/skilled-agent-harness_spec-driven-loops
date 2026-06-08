@@ -69,7 +69,6 @@ Make the Claude, Codex and Devin hook commands portable across machines and oper
 
 ### Out of Scope
 - Modifying Barter's runtime configs (opencode.json, .codex/config.toml, mcp.json) - preserved per the Barter mirror convention.
-- Public's `.claude/settings.local.json` - gitignored and per-machine; the owner's working copy is left alone.
 - The unrelated deep-review packet-init report in the same screenshot.
 
 ### Files to Change
@@ -77,7 +76,8 @@ Make the Claude, Codex and Devin hook commands portable across machines and oper
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.codex/hooks.json` | Modify | Portable cd + PATH node |
-| `.devin/hooks.v1.json` | Modify | PATH node (cd already portable) |
+| `.claude/settings.local.json` | Modify | Portable cd + PATH node (tracked, ships to cloners) |
+| `.devin/hooks.v1.json` | Modify | PATH node + `:-$PWD` fallback for uniformity |
 | Barter `.claude/settings.local.json` | Modify | Portable cd + PATH node (separate repo) |
 | Barter `.codex/hooks.json` | Modify | Portable cd + PATH node (separate repo) |
 | Barter `.devin/hooks.v1.json` | Modify | PATH node (separate repo) |

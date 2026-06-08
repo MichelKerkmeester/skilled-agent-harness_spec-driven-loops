@@ -5,7 +5,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR}\" && node .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/devin/user-prompt-submit.js'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/devin/user-prompt-submit.js'",
           "timeout": 3
         }
       ]
@@ -17,7 +17,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js'",
           "timeout": 3
         }
       ]
