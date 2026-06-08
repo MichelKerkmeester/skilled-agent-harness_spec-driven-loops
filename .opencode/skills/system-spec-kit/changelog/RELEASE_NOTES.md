@@ -7,7 +7,7 @@ This is the latest release, rolling up everything landed since the `v3.5.0.2` ta
 ### Highlights
 
 - **The shared daemon survives a session ending.** Daemon re-election is now on by default for every user, so a disposing session releases the shared mk-spec-memory daemon for another live session to adopt instead of killing it. Set `SPECKIT_DAEMON_REELECTION=0` to opt out.
-- **A real test backs it.** A hermetic integration test drives the actual release-vs-kill decision and OS process semantics, proving flag-on releases the daemon and flag-off kills it, without touching the shared database or socket.
+- **A real test backs it.** A hermetic integration test drives the actual release-vs-kill decision, and a live durability test runs two real launchers against an isolated root to prove the full two-session behavior, neither touching the shared database or socket. That live test caught a fresh-session double-writer, now fixed by reaping the released daemon before respawn.
 - **The launcher got durable.** Disposal flap guard, a persistent launcher log, lease-probe reap hardening, an mk-code-index reconnecting proxy and an opt-in orphan-process sweeper all shipped.
 - **One voice for every skill README.** The 22 skill READMEs were rewritten into a single narrative voice and the template now starts there.
 - **The operator docs caught up.** ENV_REFERENCE, the feature catalog, the manual testing playbook, the runbooks and the README all reflect the new behavior, and the repo-wide perishable-comment-label backlog was scrubbed from the live code.
@@ -15,14 +15,14 @@ This is the latest release, rolling up everything landed since the `v3.5.0.2` ta
 ### What's in each increment
 
 #### v3.5.0.4, The Deferred Lifecycle, Closed
-The daemon-reliability arc, now fully closed. A converged investigation found the real flap was the launcher killing the daemon child on a disposing runtime. Phase 017 stopped the dominant flap, and the deferred hardening shipped: persistent log, reap hardening, code-index reconnect, orphan-sweep activation and the re-election foundation, each flag-gated and default-safe where it changes lifecycle. The operator docs were aligned, the import-purity and comment-hygiene-checker follow-ups landed, and the repo-wide label backlog was scrubbed. Re-election is now on by default across the three aligned runtime configs, backed by a hermetic release-vs-kill integration test, with the orphan-sweep LaunchAgent template shipped (dry-run by default) and cli sub-session session scoping documented.
+The daemon-reliability arc, now fully closed. A converged investigation found the real flap was the launcher killing the daemon child on a disposing runtime. Phase 017 stopped the dominant flap, and the deferred hardening shipped: persistent log, reap hardening, code-index reconnect, orphan-sweep activation and the re-election foundation, each flag-gated and default-safe where it changes lifecycle. The operator docs were aligned, the import-purity and comment-hygiene-checker follow-ups landed, and the repo-wide label backlog was scrubbed. Re-election is now on by default across the three aligned runtime configs, backed by a hermetic release-vs-kill integration test and a live two-session durability test that runs real launchers in isolation. That live test caught a fresh-session double-writer, now fixed by reaping the released daemon before respawn, with the orphan-sweep LaunchAgent template shipped (dry-run by default) and cli sub-session session scoping documented.
 
 #### v3.5.0.3, One Voice for Every Skill README
 The skill READMEs were rebuilt into one narrative voice, grounded in each skill's real files by a two-model deep-context pass, with the sk-doc template updated so new skills start in that voice.
 
 ### Honest status
 
-Full multi-session secondary adoption of a released daemon is still under live observation rather than proven by a CI test, because a real launcher cannot be spawned in a test without touching the shared lease and database. The release-vs-kill decision is covered by the integration test, and an unadopted released daemon is bounded by the idle self-exit, so the worst case matches the prior behavior. The launcher's code default stays off, so the runtime configs are a one-character revert.
+Full multi-session behavior is now proven by a live durability test that spawns two real launchers against an isolated fake-root, not just observed. It confirms a connected secondary keeps transport through an owner disposal, the daemon dies when the flag is off and a fresh session after disposal reaps the released daemon to stay the single writer. The launcher's code default stays off, so the runtime configs are a one-character revert.
 
 ### Upgrade
 
@@ -30,4 +30,4 @@ Mostly no-ops by default. The re-election config change activates when a launche
 
 ### Full details
 
-Per-version changelogs: `v3.5.0.3.md` and `v3.5.0.4.md` in this directory. Daemon-reliability spec packets: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017` through `027`.
+Per-version changelogs: `v3.5.0.3.md` and `v3.5.0.4.md` in this directory. Daemon-reliability spec packets: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017` through `028`.

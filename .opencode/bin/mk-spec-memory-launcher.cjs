@@ -1479,6 +1479,24 @@ async function main() {
       }
       if (leaseResult.staleReclaimable) {
         log(`staleReclaimed: true${leaseResult.legacyPath ? ' (legacy path)' : ''}`);
+        // A re-election daemon released by a disposing owner stays alive under this stale
+        // (dead-owner) lease, which records the live daemon as childPid. Reap that child before
+        // spawning a replacement, or two daemons hold the same WAL database open until the
+        // orphan's idle timeout. The owner-lease O_EXCL acquisition above is the spawn mutex, so
+        // only the winning fresh launcher reaches here. Mirrors the dead-socket respawn reap.
+        const staleLease = readLeaseFile(leaseResult.legacyPath || leasePath());
+        const orphanChildPid = staleLease?.childPid;
+        if (Number.isInteger(orphanChildPid) && orphanChildPid > 0) {
+          const reap = await reapLeaseChildBeforeRespawn(orphanChildPid);
+          if (!reap.allowed) {
+            // Cannot confirm the released daemon is gone (e.g. EPERM); spawning now would create a
+            // second writer, so report the lease as held and let the host reconnect instead.
+            log(`stale-reclaim aborted: ${reap.reason} for childPid=${orphanChildPid}; reporting lease held`);
+            clearOwnerLeaseFile();
+            writeLeaseHeldJsonRpcError(leaseResult, reap.reason);
+            process.exit(0);
+          }
+        }
       }
     } else {
       log('MK_SPEC_MEMORY_STRICT_SINGLE_WRITER is disabled; skipping lease check');
