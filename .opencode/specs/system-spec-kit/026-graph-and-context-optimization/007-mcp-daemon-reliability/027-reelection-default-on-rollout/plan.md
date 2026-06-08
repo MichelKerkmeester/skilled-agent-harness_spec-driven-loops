@@ -59,9 +59,9 @@ Re-election is enabled by adding `SPECKIT_DAEMON_REELECTION=1` to the mk-spec-me
 - [x] Residual risk acknowledged
 
 ### Definition of Done
-- [ ] All three configs parse and set the flag
-- [ ] Docs and changelog reconciled
-- [ ] Packet validated, committed, pushed, release notes written
+- [x] All three configs parse and set the flag
+- [x] Docs and changelog reconciled
+- [x] Packet validated, committed, pushed, release notes written
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -114,8 +114,8 @@ Required inventories:
 
 ### Phase 3: Verification
 - [x] All three configs parse; alignment confirmed
-- [ ] Packet validated
-- [ ] Commit, push, release notes
+- [x] Packet validated
+- [x] Commit, push, release notes
 <!-- /ANCHOR:phases -->
 
 ---
@@ -190,7 +190,7 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 ### Pre-deployment Checklist
 - [x] Code default stays off so the configs are the single revert point
 - [x] Each config parse-checked
-- [ ] Packet validated before commit
+- [x] Packet validated before commit
 
 ### Rollback Procedure
 1. Set `SPECKIT_DAEMON_REELECTION` to `0` in the three configs, or `git revert` the packet commit.
