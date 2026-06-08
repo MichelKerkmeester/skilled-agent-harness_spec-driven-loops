@@ -1,12 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
-  "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing"
-  ],
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -191,8 +188,8 @@
       }
     ],
     "causal_summary": "Two live-infra issues degrade the spec-memory subsystem. (1) The spec-memory MCP throws `SQLITE_CONSTRAINT_PRIMARYKEY` on `memory_match_triggers`, `memory_index_scan`, and `memory_save`, blocking every memory write/index path — present since session start, caused by corrupted on-disk DB state after an unclean shutdown, not a logic defect. (2) The daemon (and any save path) rewrites ~634 `graph-metadata.json` `last_save_at` timestamps repo-wide — including `z_archive/` and `z_future/` — on essentially every save, burying real changes in working-tree noise and forcing wide manual git scoping on every commit.",
-    "created_at": "2026-05-30T08:17:54.064Z",
-    "last_save_at": "2026-06-05T12:47:34.295Z",
+    "created_at": "2026-06-08T11:22:12.712Z",
+    "last_save_at": "2026-06-08T11:22:12.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

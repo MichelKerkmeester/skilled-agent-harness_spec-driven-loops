@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings"
     last_updated_at: "2026-05-30T12:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Captured apply plan for both infra fixes"
@@ -16,7 +16,7 @@ _memory:
     key_files: [".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003202"
-      session_id: "032-infra-plan"
+      session_id: "001-infra-investigation-findings-plan"
       parent_session_id: null
     completion_pct: 50
     open_questions: []

@@ -1,41 +1,45 @@
 ---
 title: "Feature Specification: Infra investigations — memory-DB corruption + graph-metadata churn"
-description: "Root-cause findings + proposed fixes for two live-infra issues: (1) the spec-memory MCP throws SQLITE_CONSTRAINT_PRIMARYKEY on writes (corrupted FTS5 shadow after an unclean shutdown); (2) the daemon rewrites ~634 graph-metadata.json last_save_at timestamps repo-wide on every save. Fixes are documented but NOT yet applied (memory-DB is operator-gated; graph-churn code fix deferred under degraded tooling)."
+description: "Phase parent for the live-infra investigations into spec-memory: the documented root cause and safe fix for memory-DB FTS corruption and repo-wide graph-metadata churn, then the daemon-lifecycle healing that applies them."
 trigger_phrases:
-  - "memory db SQLITE_CONSTRAINT_PRIMARYKEY corruption"
-  - "graph-metadata last_save_at churn 634 files"
-  - "spec-memory MCP write failure investigation"
+  - "infra memory db and graph churn phase parent"
+  - "memory-db corruption graph-metadata churn"
+  - "daemon lifecycle healing parent"
 importance_tier: "important"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn"
-    last_updated_at: "2026-05-30T12:30:00Z"
+    last_updated_at: "2026-06-08T12:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Applied + verified graph-metadata fixes"
-    next_safe_action: "Run /doctor memory for the DB repair"
-    blockers:
-      - "Graph-churn code fix deferred (memory-DB resolved 2026-05-30)"
-    key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
+    recent_action: "Restructured to phase parent; root docs moved to phase 001"
+    next_safe_action: "Resume phase 002 or apply the deferred graph-churn code fix"
+    blockers: []
+    key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003201"
-      session_id: "032-infra-spec"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000014"
+      session_id: "026-007-014-infra-memory-db-and-graph-churn-parent"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 60
     open_questions: []
     answered_questions:
-      - "Memory-DB root cause: corrupted FTS5 shadow (memory_fts_data) after an unclean shutdown; the AFTER-INSERT trigger memory_fts_insert hits a duplicate shadow rowid -> SQLITE_CONSTRAINT_PRIMARYKEY, aborting every memory_index insert. Detect-only boot probe does not repair."
-      - "Graph-churn root cause: the save path invokes the graph-metadata refresh with the DEFAULT ROOT (whole .opencode/specs tree, incl z_archive/z_future) and writes last_save_at unconditionally, so every save rewrites ~634 packets' timestamps."
-      - "Graph-churn was ALSO compounded by Zod stripping last_active_child_id/last_active_at (never declared in graphMetadataDerivedSchema) and deriveStatus resetting lean phase parents to 'planned' — so each re-derive both churned AND silently corrupted curated metadata. Fixed: declare+preserve the fields, preserve existing status, and make the write idempotent (skip when only last_save_at would change)."
+      - "Execution order: investigation/findings (001) then daemon-lifecycle healing (002)"
 ---
-# Feature Specification: Infra investigations — memory-DB corruption + graph-metadata churn
-
-<!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
----
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: Infra investigations — memory-DB corruption + graph-metadata churn
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -44,98 +48,81 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Graph-metadata fixes applied + verified; memory-DB repair operator-gated |
+| **Status** | In Progress |
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
-| **Parent Spec** | (standalone infra packet) |
-| **Handoff Criteria** | Graph-churn fix applied (scope + idempotency) with the daemon no longer churning archived trees; memory-DB repaired via /doctor memory or the FTS runbook and memory_save/index_scan/match_triggers succeed. |
-
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability |
+| **Predecessor** | None |
+| **Successor** | None |
+| **Handoff Criteria** | Graph-churn fix scoped to the saved folder with archived trees excluded; memory-DB repaired via the operator-gated path; the daemon-lifecycle healing in phase 002 verified |
 <!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Two live-infra issues degrade the spec-memory subsystem. (1) The spec-memory MCP throws `SQLITE_CONSTRAINT_PRIMARYKEY` on `memory_match_triggers`, `memory_index_scan`, and `memory_save`, blocking every memory write/index path — present since session start, caused by corrupted on-disk DB state after an unclean shutdown, not a logic defect. (2) The daemon (and any save path) rewrites ~634 `graph-metadata.json` `last_save_at` timestamps repo-wide — including `z_archive/` and `z_future/` — on essentially every save, burying real changes in working-tree noise and forcing wide manual git scoping on every commit.
+Two live-infra issues degrade the spec-memory subsystem. The MCP throws `SQLITE_CONSTRAINT_PRIMARYKEY` on the memory write and index paths after an unclean shutdown corrupts on-disk FTS state, and the daemon rewrites hundreds of `graph-metadata.json` `last_save_at` timestamps repo-wide on nearly every save, burying real changes in working-tree noise.
 
 ### Purpose
-Record the verified root cause and a minimal, safe fix for each, so the graph-churn code fix can be applied cleanly when tooling is healthy and the memory-DB repair can be run through the operator-gated path.
+Record the verified root cause and a minimal safe fix for each issue, then apply the daemon-lifecycle healing that makes the substrate self-recover. Detailed findings, plan, and implementation live in the child phases below.
 
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed findings, plans, tasks, and implementation summaries live in the child phase folders listed in the Phase Documentation Map.
 <!-- /ANCHOR:problem -->
+
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- Documented root cause + proposed fix for both issues (this packet).
-- The graph-churn fix is a code change (scope the refresh to the saved folder + write `last_save_at` only on a real content delta + exclude archived trees from the global walker).
+- Root purpose and the child-phase manifest for the infra-investigation work.
+- Per-phase findings and implementation detail (in the child folders).
 
 ### Out of Scope
-- Applying the memory-DB repair here — it mutates a 1 GB live DB and is operator-gated (`/doctor memory` or the FTS runbook), with a DB-copy probe first to choose the branch.
-- Applying the graph-churn code fix in this session — deferred because the editing tooling (Read/shell) was degraded and the change touches operator-sensitive metadata-writing code; an investigation agent's attempted in-place edit to `graph-metadata-parser.ts` was reverted to known-good HEAD and preserved at `/tmp/graph-metadata-parser.AGENT-PROPOSED.ts` for review.
-
-### Files to Change (when applied)
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| mcp_server/lib/graph/graph-metadata-schema.ts | Modify (DONE) | Declare `last_active_child_id` + `last_active_at` (nullable optional) so Zod preserves them |
-| mcp_server/lib/graph/graph-metadata-parser.ts | Modify (DONE) | Idempotent `last_save_at` skip; preserve pointer fields + existing status across derive/merge; `graphMetadataEqualIgnoringVolatile` helper |
-| scripts/tests/graph-metadata-refresh.vitest.ts | Modify (DONE) | Round-trip + churn-kill + status-preservation regression tests |
-| scripts/graph/backfill-graph-metadata.ts (+ generate-context save path) | Modify (DEFERRED, T005) | Scope the save-time refresh to the touched folder; exclude `z_archive`/`z_future`; keep the global backfill as explicit opt-in |
-| mcp_server/database/context-index.sqlite | Repair (operator-gated) | FTS5 shadow rebuild via `/doctor memory` / runbook — NOT a normal edit |
-
+- Detailed per-phase plans at the parent level.
+- Applying the operator-gated memory-DB repair outside its runbook.
 <!-- /ANCHOR:scope -->
+
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete to resolve)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, decisions, continuity) live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Memory writes succeed again | `memory_save` / `memory_index_scan` / `memory_match_triggers` run without `SQLITE_CONSTRAINT_PRIMARYKEY` after the FTS5 shadow rebuild |
-| REQ-002 | Saves stop churning archived trees | A save rewrites only the touched packet's `graph-metadata.json`; `z_archive`/`z_future` are never touched |
-| REQ-003 | `last_save_at` is idempotent | A no-op save produces no `graph-metadata.json` diff — DONE (skip-if-unchanged in `refreshGraphMetadataForSpecFolder`) |
-| REQ-006 | Chronology pointer survives re-derive | `last_active_child_id` + `last_active_at` declared in the schema and preserved through derive/merge; a graph_only re-derive keeps them — DONE |
-| REQ-007 | Curated status survives re-derive | `deriveStatus` preserves an existing status for lean phase parents instead of resetting to `planned` — DONE |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-infra-investigation-findings/ | Root-cause + safe-fix findings for the memory-DB FTS corruption and the repo-wide graph-metadata churn, with the graph-churn code fix scoped and the schema/parser guards landed | Complete (findings) |
+| 2 | 002-daemon-lifecycle-healing/ | FTS auto-heal, clean-close barrier, and the substrate test that exercise the recovery path | In Progress |
 
-### P1 - Required
+### Phase Transition Rules
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-004 | Memory-DB repair done safely | DB copied to /tmp and probed first; the chosen branch (FTS rebuild vs id-dedupe) verified on the copy before any live change |
-| REQ-005 | Global backfill remains available | The repo-wide refresh is reachable via an explicit CLI flag, not the save-time default |
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- Parent spec tracks aggregate progress via this map.
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
 
-<!-- /ANCHOR:requirements -->
----
+### Phase Handoff Criteria
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-infra-investigation-findings | 002-daemon-lifecycle-healing | Root cause + scoped fix documented; schema/parser idempotency guards landed | findings + refresh tests green |
+<!-- /ANCHOR:phase-map -->
 
-- **SC-001**: Memory subsystem writes succeed; the boot integrity probe passes with no `.unclean-shutdown` marker left behind.
-- **SC-002**: A typical save touches one `graph-metadata.json`, not ~634; archived trees never churn.
-
-<!-- /ANCHOR:success-criteria -->
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Risk | Memory-DB is a 1 GB live file; wrong SQL = data loss | High | DB-copy probe first; prefer FTS rebuild (touches only the derived index); never `INSERT OR REPLACE` on `memory_index` |
-| Risk | graph-metadata-parser.ts is operator-sensitive; edited under degraded tooling | Corruption | Deferred; agent's in-place edit reverted; apply only when Read/shell are reliable and the build verifies |
-| Dependency | `/doctor memory` / FTS_CORRUPTION_RUNBOOK | Memory repair path | Operator-gated; documented in bug-report-memory-db-corruption.md |
-
-<!-- /ANCHOR:risks -->
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Should the save-time refresh be made idempotent + scoped in the same change, or split (idempotency in `graph-metadata-parser.ts` first, then scope the caller)?
-
+- Should the deferred graph-churn save-path fix (scope refresh to the touched folder, exclude archived trees) ship with phase 002 or as its own follow-on?
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
+- **Parent Spec**: See `../spec.md` (007-mcp-daemon-reliability).
+- **Graph Metadata**: See `graph-metadata.json` for the `derived.last_active_child_id` pointer.

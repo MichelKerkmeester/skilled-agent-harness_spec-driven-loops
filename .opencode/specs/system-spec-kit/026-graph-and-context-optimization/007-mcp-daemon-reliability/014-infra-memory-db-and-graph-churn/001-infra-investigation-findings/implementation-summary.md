@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings"
     last_updated_at: "2026-05-30T13:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Repaired the live memory DB via FTS5 shadow rebuild"
@@ -16,7 +16,7 @@ _memory:
     key_files: [".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003204"
-      session_id: "032-infra-impl"
+      session_id: "001-infra-investigation-findings-impl"
       parent_session_id: null
     completion_pct: 75
     open_questions: []
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 032-infra-memory-db-and-graph-churn |
+| **Spec Folder** | 001-infra-investigation-findings |
 | **Completed** | Investigation only (fixes pending) |
 | **Level** | 1 |
 
