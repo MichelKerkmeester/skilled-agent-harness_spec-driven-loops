@@ -167,6 +167,7 @@ def main():
         (re.compile(r'\bCHK-\d+\b'),                                "CHK reference"),
         (re.compile(r'\bT\d{3,4}\b'),                               "task ID reference"),
         (re.compile(r'\bpacket\s+\d+\b', re.IGNORECASE),            "packet number reference"),
+        (re.compile(r'\b\d{3}\s+packet\b', re.IGNORECASE),          "reversed packet number reference"),
         (re.compile(r'\bphase[\s-]\d{3}\b', re.IGNORECASE),          "3-digit phase reference"),
         (re.compile(r'specs/[a-z0-9]+-[a-z0-9-]*/'),               "spec path reference"),
         (re.compile(r'\bWS-\d+-\d+\b'),                             "worktree session reference"),

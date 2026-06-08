@@ -710,8 +710,15 @@ async function reapLeaseChildBeforeRespawn(childPid) {
   if (!exitedAfterTerm) {
     log(`context-server child pid ${childPid} exceeded ${RESPAWN_REAP_GRACE_MS}ms reap grace; sending SIGKILL`);
     signalProcess(childPid, 'SIGKILL');
-    await waitForPidExit(childPid, 1000);
+    const exitedAfterKill = await waitForPidExit(childPid, 1000);
     killed = true;
+    if (!exitedAfterKill) {
+      // The child outlived SIGKILL within the grace window (uninterruptible state, or a pid we can
+      // no longer confirm). Refuse to hand the database to a replacement while the recorded writer
+      // may still be alive, so a caller never spawns a second writer onto the same WAL.
+      log(`context-server child pid ${childPid} did not exit after SIGKILL within grace; refusing respawn`);
+      return { allowed: false, reason: 'child-kill-unconfirmed' };
+    }
   }
 
   // Clean-close barrier: verify the child closed the DB cleanly (marker removed) before handing the
@@ -1022,7 +1029,7 @@ function ensureLayout(actions) {
     return;
   }
 
-  // Compatibility symlink `.opencode/skill -> skills` removed: 096 packet cleaned
+  // Compatibility symlink `.opencode/skill -> skills` removed; a prior cleanup cleaned
   // up consumers of the singular path, so the bridge no longer needs to be
   // recreated on every MCP startup. Migration paths above (rename / move-aside)
   // still create the symlink when an actual legacy singular dir is present.
@@ -1444,6 +1451,7 @@ async function main() {
   const started = now();
   const actions = [];
   let lockHeld = false;
+  let staleRespawnLock = null;
 
   try {
     installSignalHandlers();
@@ -1483,17 +1491,30 @@ async function main() {
         log(`staleReclaimed: true${leaseResult.legacyPath ? ' (legacy path)' : ''}`);
         // A re-election daemon released by a disposing owner stays alive under this stale
         // (dead-owner) lease, which records the live daemon as childPid. Reap that child before
-        // spawning a replacement, or two daemons hold the same WAL database open until the
-        // orphan's idle timeout. The owner-lease O_EXCL acquisition above is the spawn mutex, so
-        // only the winning fresh launcher reaches here. Mirrors the dead-socket respawn reap.
+        // spawning a replacement, or two daemons hold the same WAL database open until the orphan's
+        // idle timeout. The owner-lease acquisition above is an exclusive mutex only when NO prior
+        // lease exists; reclaiming an existing STALE owner lease is a non-exclusive write, so two
+        // fresh launchers racing a crashed (not released) owner could both reach here. Take the
+        // exclusive respawn lock to serialize the reap and spawn, the same lock the dead-socket
+        // respawn path uses; the loser bails and reconnects.
+        staleRespawnLock = acquireRespawnLockFile();
+        if (!staleRespawnLock.acquired) {
+          log('stale-reclaim deferred: another launcher holds the respawn lock; reporting lease held');
+          clearOwnerLeaseFile();
+          writeLeaseHeldJsonRpcError(leaseResult, 'respawn-lock-held');
+          process.exit(0);
+        }
         const staleLease = readLeaseFile(leaseResult.legacyPath || leasePath());
         const orphanChildPid = staleLease?.childPid;
         if (Number.isInteger(orphanChildPid) && orphanChildPid > 0) {
           const reap = await reapLeaseChildBeforeRespawn(orphanChildPid);
           if (!reap.allowed) {
-            // Cannot confirm the released daemon is gone (e.g. EPERM); spawning now would create a
-            // second writer, so report the lease as held and let the host reconnect instead.
+            // Cannot confirm the released daemon is gone (EPERM, or it outlived SIGKILL); spawning
+            // now would create a second writer, so report the lease as held and let the host
+            // reconnect instead.
             log(`stale-reclaim aborted: ${reap.reason} for childPid=${orphanChildPid}; reporting lease held`);
+            releaseRespawnLockFile(staleRespawnLock);
+            staleRespawnLock = null;
             clearOwnerLeaseFile();
             writeLeaseHeldJsonRpcError(leaseResult, reap.reason);
             process.exit(0);
@@ -1528,6 +1549,11 @@ async function main() {
       process.exit(0);
     }
     const launched = launchServer();
+    // Reap + spawn critical section is over; let other respawn paths proceed.
+    if (staleRespawnLock) {
+      releaseRespawnLockFile(staleRespawnLock);
+      staleRespawnLock = null;
+    }
     if (!launched) return;
     if (launched) {
       const sessionProxy = createSessionProxy({
@@ -1559,6 +1585,10 @@ async function main() {
   } finally {
     if (lockHeld) {
       fs.rmSync(lockDir, { recursive: true, force: true });
+    }
+    if (staleRespawnLock) {
+      releaseRespawnLockFile(staleRespawnLock);
+      staleRespawnLock = null;
     }
   }
 }

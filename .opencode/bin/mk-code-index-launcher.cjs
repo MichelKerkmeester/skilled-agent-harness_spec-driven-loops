@@ -712,7 +712,7 @@ function ensureLayout(actions) {
     return;
   }
 
-  // Compatibility symlink `.opencode/skill -> skills` removed: 096 packet cleaned
+  // Compatibility symlink `.opencode/skill -> skills` removed; a prior cleanup cleaned
   // up consumers of the singular path, so the bridge no longer needs to be
   // recreated on every MCP startup. Migration paths above (rename / move-aside)
   // still create the symlink when an actual legacy singular dir is present.

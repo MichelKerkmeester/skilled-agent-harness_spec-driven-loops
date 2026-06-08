@@ -21,7 +21,7 @@
 // production lease, DB, or socket is read or written. Only processes this test
 // starts are signalled, tracked by pid, and force-reaped in teardown.
 
-import { spawn, execSync, type ChildProcess } from 'node:child_process';
+import { spawn, spawnSync, type ChildProcess } from 'node:child_process';
 import { cpSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -47,21 +47,31 @@ function isAlive(pid: number): boolean {
 }
 function delay(ms: number): Promise<void> { return new Promise((r) => setTimeout(r, ms)); }
 
+// spawnSync (no shell) so the temp-dir argument is never interpreted by a shell. pgrep exits
+// non-zero with empty stdout when nothing matches, which yields an empty list.
 function pgrepContains(needle: string): number[] {
-  try {
-    const out = execSync(`pgrep -f "${needle}" || true`).toString().trim();
-    return out ? out.split('\n').map(Number).filter(Boolean) : [];
-  } catch { return []; }
+  const res = spawnSync('pgrep', ['-f', needle], { encoding: 'utf8' });
+  const out = (res.stdout || '').trim();
+  return out ? out.split('\n').map(Number).filter(Boolean) : [];
 }
 
-// Distinct pids holding any *.sqlite* file open under dbDir. One = single writer.
+// Distinct pids holding any *.sqlite* file open under dbDir. One = single writer. spawnSync (no
+// shell) plus JS parsing, so dbDir is never interpolated into a shell command. We parse stdout
+// regardless of exit status because `lsof +D` often exits non-zero on benign warnings while still
+// listing the open files.
 function sqliteOpenerPids(dbDir: string): number[] {
-  try {
-    const out = execSync(
-      `lsof +D "${dbDir}" 2>/dev/null | awk 'NR>1 && ($9 ~ /\\.(db|sqlite|sqlite3)/) {print $2}' | sort -u`,
-    ).toString().trim();
-    return out ? out.split('\n').map(Number).filter(Boolean) : [];
-  } catch { return []; }
+  const res = spawnSync('lsof', ['+D', dbDir], { encoding: 'utf8' });
+  const out = res.stdout || '';
+  const pids = new Set<number>();
+  for (const line of out.split('\n').slice(1)) {
+    const cols = line.split(/\s+/);
+    const name = cols[8] || '';
+    if (/\.(db|sqlite|sqlite3)/.test(name)) {
+      const pid = Number(cols[1]);
+      if (Number.isInteger(pid) && pid > 0) pids.add(pid);
+    }
+  }
+  return [...pids];
 }
 
 // Build an isolated fake-root: real-copied launcher + daemon dist, symlinked deps,

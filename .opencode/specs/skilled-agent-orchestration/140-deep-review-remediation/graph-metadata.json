@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "packet_id": "140-deep-review-remediation",
+  "spec_folder": "140-deep-review-remediation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review remediation",
+      "stale reclaim mutex fix",
+      "reap respawn lock"
+    ],
+    "key_topics": [
+      "deep-review-remediation",
+      "stale-reclaim",
+      "respawn-lock",
+      "single-writer",
+      "comment-hygiene"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"
+    ],
+    "entities": [],
+    "causal_summary": "An 11-lineage multi-model deep review found a P1: the reap fix's O_EXCL spawn-mutex claim did not hold for the stale-owner-lease reclaim branch, so concurrent fresh launchers could both reap+respawn. Fixed by serializing the stale reclaim under the existing respawn lock, refusing respawn on unconfirmed SIGKILL, fixing two 096-packet comment-hygiene violations plus the checker reversed-ordering gap, and hardening the live test execSync helpers to spawnSync.",
+    "created_at": "2026-06-08T08:52:08Z",
+    "last_save_at": "2026-06-08T08:52:08Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ]
+  }
+}
