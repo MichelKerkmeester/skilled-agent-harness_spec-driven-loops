@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Re-election default-on rollout"
-description: "Daemon re-election is now on by default for all users across the three aligned runtime configs, the machine-local opt-in is gone, and the docs plus the v3.5.0.5 changelog record the posture and the residual adoption-validation risk."
+description: "Daemon re-election is now on by default for all users across the three aligned runtime configs, the machine-local opt-in is gone, and the docs plus the v3.5.0.4 changelog record the posture and the residual adoption-validation risk."
 trigger_phrases:
   - "re-election default-on done"
 importance_tier: "high"
@@ -56,7 +56,7 @@ Daemon re-election is now on by default for every user, not just on the one mach
 
 ### Docs reconciled, with the honest status
 
-ENV_REFERENCE now describes re-election as enabled by default in the runtime configs, names the off-value revert, and states that the launcher's code default stays off so the configs are the single on-switch. The root README reliability line moved from "experimental default-off" to on-by-default. The v3.5.0.5 changelog records why it is on, why it is safe, and the honest status that full multi-session secondary adoption is still under live observation rather than proven by a CI test.
+ENV_REFERENCE now describes re-election as enabled by default in the runtime configs, names the off-value revert, and states that the launcher's code default stays off so the configs are the single on-switch. The root README reliability line moved from "experimental default-off" to on-by-default. The v3.5.0.4 changelog records why it is on, why it is safe, and the honest status that full multi-session secondary adoption is still under live observation rather than proven by a CI test.
 
 ### Files Changed
 
@@ -67,7 +67,7 @@ ENV_REFERENCE now describes re-election as enabled by default in the runtime con
 | `.codex/config.toml` | Modified | Same flag + note (TOML) |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Re-election row to config-default-on |
 | `README.md` | Modified | Reliability line to on-by-default |
-| `.opencode/skills/system-spec-kit/changelog/v3.5.0.5.md` | Created | Release entry |
+| `.opencode/skills/system-spec-kit/changelog/v3.5.0.4.md` | Created | Release entry |
 <!-- /ANCHOR:what-built -->
 
 ---

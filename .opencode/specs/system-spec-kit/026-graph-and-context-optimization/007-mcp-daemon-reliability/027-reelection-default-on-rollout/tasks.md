@@ -63,7 +63,7 @@ _memory:
 - [x] T004 [P] Add the flag + note to opencode.json
 - [x] T005 [P] Add the flag + note to .codex/config.toml
 - [x] T006 Remove the redundant machine-local flag from .env.local
-- [x] T007 Reconcile ENV_REFERENCE + root README; add the v3.5.0.5 changelog
+- [x] T007 Reconcile ENV_REFERENCE + root README; add the v3.5.0.4 changelog
 <!-- /ANCHOR:phase-2 -->
 
 ---

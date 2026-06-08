@@ -67,7 +67,7 @@ Enable re-election by default for all users by setting it in all three committed
 - Set `SPECKIT_DAEMON_REELECTION=1` in the mk-spec-memory env of `.claude/mcp.json`, `opencode.json`, and `.codex/config.toml`, aligned, each with a discoverability note.
 - Remove the now-redundant machine-local flag from `.env.local`.
 - Update ENV_REFERENCE and the root README to the on-by-default posture with the honest bound.
-- Add the v3.5.0.5 changelog.
+- Add the v3.5.0.4 changelog.
 
 ### Out of Scope
 - Flipping the launcher code default - the runtime configs stay the single on-switch, so revert is one character.
@@ -83,7 +83,7 @@ Enable re-election by default for all users by setting it in all three committed
 | `.codex/config.toml` | Modify | Same flag + note (TOML) |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modify | Re-election row to config-default-on |
 | `README.md` | Modify | Reliability line to on-by-default |
-| `.opencode/skills/system-spec-kit/changelog/v3.5.0.5.md` | Create | Release entry |
+| `.opencode/skills/system-spec-kit/changelog/v3.5.0.4.md` | Create | Release entry |
 <!-- /ANCHOR:scope -->
 
 ---

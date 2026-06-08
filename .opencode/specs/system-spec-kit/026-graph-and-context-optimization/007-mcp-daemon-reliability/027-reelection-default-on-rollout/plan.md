@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Re-election default-on rollout"
-description: "Add the re-election flag to all three aligned runtime configs, remove the machine-local opt-in, reconcile ENV_REFERENCE and the README, and ship the v3.5.0.5 changelog."
+description: "Add the re-election flag to all three aligned runtime configs, remove the machine-local opt-in, reconcile ENV_REFERENCE and the README, and ship the v3.5.0.4 changelog."
 trigger_phrases:
   - "re-election default-on plan"
 importance_tier: "high"
@@ -74,7 +74,7 @@ Aligned per-runtime config flags as the single on-switch, with the code default 
 
 ### Key Components
 - **Runtime configs**: `.claude/mcp.json`, `opencode.json`, `.codex/config.toml`.
-- **Docs**: ENV_REFERENCE, root README, v3.5.0.5 changelog.
+- **Docs**: ENV_REFERENCE, root README, v3.5.0.4 changelog.
 
 ### Data Flow
 A launcher reads its runtime config env at startup; with the flag set, shutdown takes the release path instead of the kill path.
