@@ -62,6 +62,7 @@ mcp_server/stress_test/
 ├── skill-advisor/                  # Skill graph rebuild concurrency stress
 ├── code-graph/                     # Degraded readiness and large-input sweeps
 ├── session/                        # Session entry-limit and resume benchmarks
+├── durability/                     # Checkpoint, recycle, and daemon re-election durability gate
 ├── matrix/                         # Synthetic search routing and latency comparison
 ├── substrate/                      # Local substrate runner and pure-logic stress gate
 ├── vitest.stress.config.ts         # Stress-only Vitest config
@@ -131,6 +132,7 @@ Main flow:
 | `npm run stress:harness` | npm script | Runs the search-quality test-grid slice. |
 | `npm run stress:matrix` | npm script | Runs the matrix stress slice. |
 | `npm run stress:substrate` | npm script | Runs the substrate stress gate from `mcp_server/stress_test/substrate/`. |
+| `npm run stress:durability` | npm script | Runs the durability gate from `mcp_server/stress_test/durability/` (checkpoint, recycle, daemon re-election). |
 | `vitest.stress.config.ts` | Vitest config | Defines the stress-only test discovery boundary. |
 
 ---
@@ -144,6 +146,7 @@ npm run stress
 npm run stress:harness
 npm run stress:matrix
 npm run stress:substrate
+npm run stress:durability
 npx vitest run --config vitest.stress.config.ts stress_test/session/session-manager-stress.vitest.ts
 ```
 

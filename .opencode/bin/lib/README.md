@@ -15,7 +15,7 @@ trigger_phrases:
 
 Current state:
 
-- `model-server-supervision.cjs` owns crash-loop guarding, RSS watchdog, respawn-lock liveness, listener re-arm, and reaping the process tree (including the root) when the model server is idle-evicted.
+- `model-server-supervision.cjs` owns crash-loop guarding, RSS watchdog, respawn-lock liveness, listener re-arm, and reaping the process tree (including the root) when the model server is idle-evicted. The mk-spec-memory launcher also reuses its reap path to take down a still-live released daemon recorded in a stale lease before it respawns, so a fresh session after owner disposal cannot leave two writers on the database.
 - `launcher-ipc-bridge.cjs` resolves per-service socket paths, probes daemon and model-server health (retrying the lease-holder probe a configurable number of times before reaping a slow-but-alive owner), and bridges stdin/stdout to the live socket so a second launcher hands off to the lease holder.
 - `launcher-session-proxy.cjs` fronts the daemon with a reconnecting stdin/stdout bridge that reattaches and replays in-flight read frames across a daemon recycle, and exposes the `createClassifyFrame` factory each launcher uses to declare its own replayable and unsafe tool sets.
 - `sidecar-env-allowlist.cjs` is a tiny frozen allowlist that decides which env keys may cross into the embedding sidecar process.

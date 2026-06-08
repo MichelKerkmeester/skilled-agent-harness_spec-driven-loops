@@ -26,7 +26,7 @@ trigger_phrases:
 |---|---|---|
 | Socket bridge | Spec Kit Memory MCP | Bridges secondary clients to the active MCP server. |
 | Idle monitor | Shared launcher pattern, spec-memory copy | Tracks stdio and IPC activity through `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. |
-| Lease cleanup | Launcher process | Existing child-process exit handlers clear launcher lease files after server exit. |
+| Lease cleanup | Launcher process | Child-process exit handlers clear launcher lease files after server exit. With default-on re-election, owner disposal instead drops only the owner lease and keeps the daemon lease and socket so a live secondary keeps transport. A fresh session that finds the released daemon under that stale lease reaps the recorded child before respawn. |
 
 ---
 

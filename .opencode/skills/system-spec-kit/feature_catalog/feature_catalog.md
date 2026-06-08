@@ -3498,15 +3498,15 @@ See [`14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md`](14--pipel
 
 ---
 
-### Daemon ownership re-election (experimental, default-off)
+### Daemon ownership re-election (default-on)
 
 #### Description
 
-The shared daemon dies with its owner because the owner explicitly kills it on shutdown. This is the flag-gated, default-off foundation for the daemon to outlive its owner so secondary sessions do not lose the backend.
+The shared daemon used to die with its owner because the owner killed it on shutdown. Re-election lets the daemon outlive its owner so secondary sessions keep the backend. It is default-on in the committed runtime configs.
 
 #### How It Works
 
-When `SPECKIT_DAEMON_REELECTION` is on, the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) for a live secondary to adopt. Default-off is byte-identical to prior behavior. Secondary ownership adoption and the released daemon's terminal idle-death are runtime-validation-gated. A released daemon reparents to pid 1, so the orphan sweeper bounds any leak.
+When `SPECKIT_DAEMON_REELECTION` is on (the default in the runtime configs; the launcher code default stays off so the configs are the on-switch), the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) so a connected live secondary keeps MCP transport. A fresh session that finds the released daemon under the now-stale owner lease reaps the recorded child before respawn, so the database keeps a single writer and a cold restart matches the prior behavior. An unadopted released daemon is bounded by its idle self-exit. Validated by the hermetic release-vs-kill test and the live two-session adoption test `daemon-reelection-adoption-live.vitest.ts`.
 
 #### Source Files
 

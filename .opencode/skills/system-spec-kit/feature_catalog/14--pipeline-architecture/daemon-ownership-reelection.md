@@ -1,9 +1,9 @@
 ---
 title: "Daemon ownership re-election"
-description: "An experimental, flag-gated, default-off foundation that lets the shared mk-spec-memory daemon outlive its owner. When enabled, the owner spawns the daemon detached and on shutdown releases it for a live secondary to adopt instead of killing it. Default off is byte-identical to prior behavior, and a released daemon reparents to pid 1 so the orphan sweeper bounds any leak."
+description: "A default-on path that lets the shared mk-spec-memory daemon outlive its owner. The owner spawns the daemon detached and on shutdown releases it for a live secondary to keep instead of killing it. A fresh session that finds the released daemon under a stale lease reaps it before respawn, so the database keeps a single writer."
 trigger_phrases:
   - "daemon ownership re-election"
-  - "shared daemon outlive owner experimental"
+  - "shared daemon outlive owner"
   - "release daemon for secondary adoption"
   - "SPECKIT_DAEMON_REELECTION"
   - "daemonReelectionEnabled"
@@ -15,15 +15,15 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This feature is experimental and default-off. It is the flag-gated foundation for letting the shared mk-spec-memory daemon outlive the owner that spawned it, rather than dying when that owner's session ends.
+This feature is default-on in the committed runtime configs. It lets the shared mk-spec-memory daemon outlive the owner that spawned it, rather than dying when that owner's session ends, so concurrent sessions keep their MCP transport.
 
-When `SPECKIT_DAEMON_REELECTION` is enabled, the owner spawns the daemon detached, and on shutdown it releases the daemon instead of killing it: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so shutdown does not wipe the lease. A live secondary can then adopt the released daemon. With the flag off, behavior is byte-identical to before. Secondary ownership adoption and terminal idle-death of an unadopted daemon are still runtime-validation-gated, and a released daemon reparents to pid 1 so the orphan sweeper bounds any leak if no secondary adopts it.
+When `SPECKIT_DAEMON_REELECTION` is enabled, the owner spawns the daemon detached, and on shutdown it releases the daemon instead of killing it: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so shutdown does not wipe the lease. A connected live secondary keeps its transport across the owner's exit. A fresh session started after the owner is gone reaps the released daemon before it spawns a replacement, so the database is never left with two writers. The launcher's code default stays off, so the runtime configs are the single on-switch and `0` reverts.
 
 ## 2. HOW IT WORKS
 
-### Flag gate, default off
+### Flag gate, default on
 
-`daemonReelectionEnabled` reads `SPECKIT_DAEMON_REELECTION`, which is off by default and turns on with `1` or `on`. With the flag off the owner kills the daemon on shutdown exactly as before, so the default path is byte-identical to prior behavior and carries no new risk.
+`daemonReelectionEnabled` reads `SPECKIT_DAEMON_REELECTION`, which is set to `1` in the committed runtime configs and also accepts `on`. The launcher's own code default stays off, so the configs are the on-switch and a one-character edit reverts to the kill-on-disposal behavior.
 
 ### Detached spawn under the flag
 
@@ -31,11 +31,15 @@ When re-election is enabled, `contextServerSpawnIo` spawns the daemon detached s
 
 ### Release instead of kill on shutdown
 
-`shutdownLauncherForSignal` consults `shouldReleaseDaemonForReelection`. When that returns true, the owner releases the daemon: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so the normal shutdown teardown does not wipe the lease the secondary needs to adopt.
+`shutdownLauncherForSignal` consults `shouldReleaseDaemonForReelection`. When that returns true, the owner releases the daemon: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so the normal shutdown teardown does not wipe the lease a secondary still uses.
 
-### Bounded leak via reparenting
+### Reap before respawn on stale-lease reclaim
 
-A released daemon whose owner has exited reparents to pid 1. If no live secondary adopts it, the existing orphan sweeper can reap it as an ownerless process, so even the unadopted case has a bounded cleanup path. Secondary adoption and terminal idle-death remain runtime-validation-gated rather than on by default.
+A fresh session started after the owner has exited finds the daemon lease stale, because lease liveness keys on the owner pid. Before this path spawned a replacement directly, which left the still-live released daemon as a second writer on the same WAL database. The stale-lease reclaim branch now reaps the recorded daemon child before respawn, under the owner-lease exclusive acquisition, and bails to a lease-held report if it cannot confirm the child is gone. The result is a single writer, matching the pre-re-election cold-restart behavior.
+
+### Bounded leak via idle self-exit
+
+A released daemon that no live secondary keeps and no fresh session reaps is bounded by the daemon's own idle self-exit at `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. The orphan sweeper can also reap an ownerless daemon when enabled.
 
 ## 3. SOURCE FILES
 
@@ -43,13 +47,15 @@ A released daemon whose owner has exited reparents to pid 1. If no live secondar
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Defines `daemonReelectionEnabled` over `SPECKIT_DAEMON_REELECTION`, spawns the daemon detached via `contextServerSpawnIo` and releases rather than kills the daemon through `shouldReleaseDaemonForReelection` inside `shutdownLauncherForSignal` |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Defines `daemonReelectionEnabled` over `SPECKIT_DAEMON_REELECTION`, spawns the daemon detached via `contextServerSpawnIo`, releases rather than kills the daemon through `shouldReleaseDaemonForReelection` inside `shutdownLauncherForSignal`, and reaps the recorded child on stale-lease reclaim before respawn |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/launcher-daemon-reelection.vitest.ts` | Automated test | Unit-tests the default-off no-change path, the detached spawn under the flag, the release-instead-of-kill shutdown decision and lease handling |
+| `mcp_server/tests/launcher-daemon-reelection.vitest.ts` | Automated test | Unit-tests the flag-gating, the detached spawn, and the release-instead-of-kill shutdown decision and lease handling |
+| `mcp_server/stress_test/durability/daemon-reelection-release-integration.vitest.ts` | Automated test | Drives the real release-vs-kill decision functions and OS reparent semantics with a detached stand-in |
+| `mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts` | Automated test | Runs two real launchers in an isolated root: a live secondary keeps transport, the daemon dies with the flag off, and a fresh session after disposal reaps the released daemon to stay the single writer |
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture
