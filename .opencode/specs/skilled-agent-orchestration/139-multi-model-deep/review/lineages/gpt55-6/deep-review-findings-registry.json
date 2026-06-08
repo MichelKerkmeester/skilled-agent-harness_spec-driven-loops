@@ -1,0 +1,111 @@
+{
+  "sessionId": "fanout-gpt55-6-1780906361310-a9e1uj",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "dimension": "correctness",
+      "finding_class": "algorithmic",
+      "status": "active",
+      "title": "Stale owner-lease takeover is not an atomic claim",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "line": 469,
+      "evidenceRefs": [
+        ".opencode/bin/mk-spec-memory-launcher.cjs:359-374",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:443-480",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:1476-1502",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts:287-311"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:60b98f030411f00ef709d0b2f7e4da21176d6d3042f83971f790af69b03e830c",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "dimension": "correctness",
+      "finding_class": "algorithmic",
+      "status": "active",
+      "title": "Post-SIGKILL reap result is ignored before replacement spawn",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "line": 713,
+      "evidenceRefs": [
+        ".opencode/bin/mk-spec-memory-launcher.cjs:691-726",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:1491-1500",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/spec.md:143-145"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:d3a4fa84494fe8d65479d3f631140016206ae383adb3bf447eeb5a87b0f0e19e",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "security",
+      "dimension": "security",
+      "finding_class": "test-isolation",
+      "status": "active",
+      "title": "Live adoption test interpolates temp paths into shell commands",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+      "line": 52,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts:50-62",
+        ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts:69-88"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:db48f75c868a1cae441c70c871c96f3b40bd4a6778c0f03c5d25ebbf1646dd84",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

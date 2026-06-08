@@ -4,27 +4,219 @@
   "spec_folder": "skilled-agent-orchestration/134-deep-context-gathering/008-deep-loop-folder-binding",
   "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
-      "deep-loop spec-folder binding",
-      "named spec folder from scope",
-      "fail-closed standalone guard"
+      "deep loop folder binding",
+      "spec folder extraction",
+      "standalone guard",
+      "auto mode contract scope",
+      "deep context misroute",
+      "implementation plan",
+      "scope extract plan",
+      "plan core",
+      "tasks",
+      "template",
+      "tasks core",
+      "verification"
     ],
-    "key_topics": ["spec-folder-binding", "fail-closed-guard", "deep-command-setup", "positional-scope"],
-    "importance_tier": "important",
+    "key_topics": [
+      "deep",
+      "loop",
+      "folder",
+      "binding",
+      "spec",
+      "extraction",
+      "standalone",
+      "guard",
+      "auto",
+      "mode",
+      "contract",
+      "scope"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"],
-    "entities": ["deep-commands", "spec-folder", "standalone-guard", "positional-scope"],
-    "causal_summary": "Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone guard across the /deep:* command family. Relocated from system-spec-kit/029 to 134/008.",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
+      ".opencode/commands/deep/start-context-loop.md",
+      ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml",
+      ".opencode/skills/deep-context/SKILL.md",
+      ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+      ".opencode/commands/deep/start-research-loop.md",
+      ".opencode/commands/deep/start-review-loop.md",
+      ".opencode/agents/deep-context.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "auto_mode_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-context-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-context-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-context-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-context-loop_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-research-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-research-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-review-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-review-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared `:auto`/`:confirm` setup contract (`auto_mode_contract.md`) resolves `spec_folder` only from a `--spec-folder` flag, a `PRE-BOUND` marker, or an interactive choice — it never extracts a spec-folder path the user names **inline in the positional scope**. So an inline-named folder is invisible to setup and is treated as ambiguity/absence. `deep-context` compounds this: it offers a standalone-run-dir fallback (Q1 option E + a permissive preflight + the `resolveArtifactRoot` standalone branch) with **no guard** verifying a real folder wasn't identifiable. Net effect: `/deep:start-context-loop \"gather context on <…/026 path>\"` wrote its packet to a standalone `deep-context-runs/` dir instead of `026/context/`.",
     "created_at": "2026-06-07T10:12:50Z",
-    "last_save_at": "2026-06-07T12:21:00Z",
+    "last_save_at": "2026-06-08T08:50:25.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -187,6 +187,11 @@ tmp/
 .codex/specs/00--ai-systems
 .agents/specs/00--ai-systems
 
+.opencode/specs/ai-systems/
+.claude/specs/ai-systems/
+.codex/specs/ai-systems/
+.agents/specs/ai-systems/
+
 .opencode/specs/00--anobel.com
 .claude/specs/00--anobel.com
 .codex/specs/00--anobel.com

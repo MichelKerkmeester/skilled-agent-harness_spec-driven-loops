@@ -42,19 +42,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "changelog/v2.1.1.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "v2.1.1.0.md",
-        "kind": "doc",
-        "path": "changelog/v2.1.1.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 14 (cleanup) of spec 130. Two loose ends remained after the 010-013 alignment + relocation",
     "created_at": "2026-06-05T12:47:32.527Z",
-    "last_save_at": "2026-06-05T12:47:32.527Z",
+    "last_save_at": "2026-06-08T08:50:25.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

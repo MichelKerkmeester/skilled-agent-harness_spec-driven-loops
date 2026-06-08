@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "branch",
+      "fired",
+      "whenever",
+      "symlink",
+      "absent",
+      "compatibility",
+      "unnecessary",
+      "feature",
+      "specification",
+      "fix",
+      "doctor",
+      "bootstrap"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-bootstrap.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Doctor Bootstrap Symlink Restart Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Cause",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Problem",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Touched",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Low",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "P0 — Correctness",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "P1 — Quality",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "P2 — Hygiene",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "No such file or directory",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Before Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Branch 3 fired whenever the symlink was absent. The compatibility symlink is unnecessary:",
+    "created_at": "2026-06-08T08:50:27.196Z",
+    "last_save_at": "2026-06-08T11:05:50.275Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

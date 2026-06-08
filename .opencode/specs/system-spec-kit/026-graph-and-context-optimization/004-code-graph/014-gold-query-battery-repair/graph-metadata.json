@@ -9,9 +9,7 @@
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -57,6 +55,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
       "handover.md"
     ],
     "entities": [
@@ -133,6 +132,12 @@
         "source": "derived"
       },
       {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
@@ -199,10 +204,10 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 14 repaired stale Code Graph gold-query and confidence-fixture expectations after extraction, added a narrow verifier-only recovery path for failed persisted baselines, and verified a real 28-query passing battery while preserving public structural-read fail-closed behavior.",
+    "causal_summary": "This is **Phase 14** of the Code Graph workstream. It is a verification-recovery phase: the runtime graph is indexed, but structural read tools still block because the persisted gold-query battery references pre-extraction file paths and ownership boundaries.",
     "created_at": "2026-06-07T09:30:00Z",
-    "last_save_at": "2026-06-07T10:45:04.958Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-06-08T08:50:27.160Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

@@ -1,0 +1,35 @@
+{
+  "sessionId": "fanout-opus-1",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId": "F001", "severity": "P2", "category": "maintainability", "status": "active", "dimension": "maintainability", "title": "Sibling launcher stale-reclaim divergence is silent (parity/doc gap)", "file": ".opencode/bin/mk-code-index-launcher.cjs", "line": 916, "firstSeen": 1, "lastSeen": 1, "transitions": [{"iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery"}]},
+    {"findingId": "F002", "severity": "P2", "category": "traceability", "status": "active", "dimension": "traceability", "title": "Connected-secondary survival across fresh-session reap+respawn is untested", "file": ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts", "line": 210, "firstSeen": 1, "lastSeen": 1, "transitions": [{"iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery"}]},
+    {"findingId": "F003", "severity": "P2", "category": "correctness", "status": "active", "dimension": "correctness", "title": "Codex UserPromptSubmit hook group omits matcher present on every other group", "file": ".codex/hooks.json", "line": 15, "firstSeen": 1, "lastSeen": 1, "transitions": [{"iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery"}]},
+    {"findingId": "F004", "severity": "P2", "category": "maintainability", "status": "active", "dimension": "maintainability", "title": "Tracked settings.local.json ships machine/session-specific permission allow entries", "file": ".claude/settings.local.json", "line": 17, "firstSeen": 1, "lastSeen": 1, "transitions": [{"iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery"}]},
+    {"findingId": "F005", "severity": "P2", "category": "maintainability", "status": "active", "dimension": "maintainability", "title": "check-comment-hygiene.sh is a Python script with a .sh extension", "file": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh", "line": 1, "firstSeen": 1, "lastSeen": 1, "transitions": [{"iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery"}]}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

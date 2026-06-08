@@ -43,8 +43,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "changelog/v1.1.0.0.md",
-      "changelog/v1.2.0.0.md",
       ".opencode/skills/deep-loop-runtime/SKILL.md",
       ".opencode/skills/deep-loop-runtime/README.md",
       ".opencode/skills/deep-loop-runtime/changelog/v1.1.0.0.md",
@@ -62,21 +60,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-devin/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "v1.1.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v1.1.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.2.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v1.2.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -87,6 +75,18 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/changelog/v1.2.0.0.md",
         "source": "derived"
       },
       {
@@ -168,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,17 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent packet's Phase 5 deep-research loop surfaced 36 unique findings (0 P0 / 23 P1 / 13 P2) across 7 transverse patterns. Zero overlap with the 21 Phase-2 audit findings — these are factual content drift the audit-and-validate phases missed. Three of the highest-impact findings were introduced or propagated by the Phase 3 README rewrite itself (`code-surface` fabrication, `129/001 ADR-001` mis-citation echoed into the new changelog, 22-vs-27 vitest count drift).",
     "created_at": "2026-05-23T22:00:00Z",
-    "last_save_at": "2026-06-07T09:00:45.793Z",
+    "last_save_at": "2026-06-08T08:50:25.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

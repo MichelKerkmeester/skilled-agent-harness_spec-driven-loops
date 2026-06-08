@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/135-skill-readme-standardization/012-mcp-chrome-devtools-readme",
   "spec_folder": "skilled-agent-orchestration/135-skill-readme-standardization/012-mcp-chrome-devtools-readme",
-  "parent_id": null,
+  "parent_id": "skilled-agent-orchestration/135-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,17 +10,194 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+    "trigger_phrases": [
+      "mcp-chrome-devtools readme",
+      "mcp-chrome-devtools narrative rewrite",
+      "mcp-chrome-devtools readme plan",
+      "mcp-chrome-devtools readme tasks",
+      "mcp-chrome-devtools readme shipped"
+    ],
+    "key_topics": [
+      "mcp-chrome-devtools",
+      "readme",
+      "narrative",
+      "rewrite",
+      "plan",
+      "tasks",
+      "shipped",
+      "phase",
+      "first",
+      "skill",
+      "batch",
+      "mcp"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "mcp-chrome-devtools README narrative rewrite (opens Batch C)",
+    "key_files": [
+      ".opencode/skills/mcp-chrome-devtools/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-chrome-devtools/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gather",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Seats",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 12**, the first skill in Batch C (mcp-*).",
     "created_at": "2026-06-07T12:35:00Z",
-    "last_save_at": "2026-06-07T12:35:00Z",
+    "last_save_at": "2026-06-08T08:50:25.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

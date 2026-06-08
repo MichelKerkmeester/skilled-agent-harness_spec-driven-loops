@@ -39,7 +39,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "changelog/v1.1.0.0.md",
       "tests/council-helpers-smoke.vitest.ts",
       ".opencode/skills/deep-ai-council/SKILL.md",
       ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
@@ -55,12 +54,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "v1.1.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v1.1.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "council-helpers-smoke.vitest.ts",
         "kind": "test",
@@ -83,6 +76,12 @@
         "name": "optimization.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/references/global/optimization.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/changelog/v1.1.0.0.md",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007 (`CONTRIBUTING.md`, `feature_catalog/`, `scripts/replay-graph-from-artifacts.cjs`), so a fresh consumer reading the skill entry point wouldn't discover them; (2) the `changelog/` directory only carries `v1.0.0.0.md` covering 101/001 and 101/003 — there's no published changelog entry for the 101/001..007 series as a whole; (3) the replay helper and bash matrix runner have no automated regression tests, so JSONL-mapping or shell-command-shape regressions would slip through.",
     "created_at": "2026-05-11T11:35:00Z",
-    "last_save_at": "2026-06-07T09:00:45.697Z",
+    "last_save_at": "2026-06-08T08:50:25.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

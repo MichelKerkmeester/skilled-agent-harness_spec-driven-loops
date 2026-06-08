@@ -4,33 +4,215 @@
   "spec_folder": "skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool",
   "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "deep-context native default pool",
       "deep-context executor pool default",
-      "native only pool deep-context"
+      "native only pool deep-context",
+      "deep-context pool question",
+      "executor pool native default",
+      "deep-context native default plan",
+      "executor pool default plan",
+      "native only pool plan",
+      "deep-context pool restructure",
+      "deep-context native default tasks",
+      "executor pool default tasks",
+      "native only pool tasks"
     ],
-    "key_topics": ["executor-pool", "native-default", "pool-question", "config-default"],
-    "importance_tier": "important",
+    "key_topics": [
+      "deep-context",
+      "native",
+      "default",
+      "pool",
+      "executor",
+      "only",
+      "question",
+      "plan",
+      "restructure",
+      "tasks",
+      "native-only",
+      "seats"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-context/assets/deep_context_config.json",
       ".opencode/commands/deep/start-context-loop.md",
       ".opencode/skills/deep-context/SKILL.md",
       ".opencode/skills/deep-context/README.md",
-      ".opencode/agents/deep-context.md"
+      ".opencode/agents/deep-context.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "entities": ["deep-context", "fanout.executors", "deep_context_config.json"],
-    "causal_summary": "Made the deep-context executor pool native-only by default (2 @deep-context seats) and restructured the setup pool question to Native / Custom, de-naming the heterogeneous pool across command, YAMLs, skill, README, and agent mirrors.",
+    "entities": [
+      {
+        "name": "deep_context_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-context/assets/deep_context_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "start-context-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-context-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Setup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The default pool is native-only (2 `@deep-context` seats); the pool question offers exactly **A) Native only (default)** and **B) Custom** (native / CLI / combined via flags), with no model names in the options.",
     "created_at": "2026-06-07T09:45:27Z",
-    "last_save_at": "2026-06-07T11:30:00Z",
+    "last_save_at": "2026-06-08T08:50:25.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

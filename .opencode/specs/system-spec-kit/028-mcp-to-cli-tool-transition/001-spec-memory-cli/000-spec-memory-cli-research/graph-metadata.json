@@ -42,6 +42,8 @@
     "status": "complete",
     "key_files": [
       "research/research.md",
+      "mcp_server/spec-memory-cli.ts",
+      ".opencode/bin/spec-memory.cjs",
       "research/cli-backend/lineages/gpt/research.md",
       "research/risk-closure/lineages/gpt-closure/research.md",
       "research/orchestration-summary.json",
@@ -58,6 +60,18 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.ts",
+        "kind": "code",
+        "path": "mcp_server/spec-memory-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
         "source": "derived"
       },
       {
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "End Design",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Risk Resolution Matrix",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session disconnect on 2026-06-06 permanently removed 45 tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration. Whether a CLI tool could replace the MCP surface WITHOUT losing any feature is unknown.",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-06-07T09:00:47.221Z",
+    "last_save_at": "2026-06-08T08:50:27.390Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,38 @@
+{
+  "topic": "Multi-model deep review (opus-2 fanout lineage): daemon-reliability + reap + hook portability",
+  "mode": "review",
+  "sessionId": "fanout-opus-2",
+  "parentSessionId": "deep-review-139-multimodel",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "executor": { "kind": "native", "model": "opus", "reasoningEffort": null, "serviceTier": null, "sandboxMode": null, "timeoutSeconds": 900 },
+  "reviewTarget": ".opencode/bin/mk-spec-memory-launcher.cjs .opencode/bin/lib/model-server-supervision.cjs .opencode/bin/lib/launcher-ipc-bridge.cjs .opencode/bin/lib/launcher-session-proxy.cjs .opencode/bin/mk-code-index-launcher.cjs .opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts .opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-release-integration.vitest.ts .opencode/scripts/session-cleanup.sh .opencode/skills/sk-code/scripts/check-comment-hygiene.sh .claude/settings.local.json .codex/hooks.json .devin/hooks.v1.json",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "specFolder": "skilled-agent-orchestration/139-multi-model-deep",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/139-multi-model-deep/review/lineages/opus-2",
+  "createdAt": "2026-06-08T10:05:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  }
+}

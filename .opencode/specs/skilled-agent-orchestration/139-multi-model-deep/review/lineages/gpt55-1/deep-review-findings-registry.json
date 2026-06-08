@@ -1,0 +1,114 @@
+{
+  "sessionId": "fanout-gpt55-1-1780906361310-a9e1uj",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "dimension": "correctness",
+      "finding_class": "class-of-bug",
+      "title": "Stale-owner reclaim is not the spawn mutex the reap fix relies on",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "line": 468,
+      "lineRange": "468-481",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "6d719d51c682e2144ea60284ad644528c0e4cc25b5e26c0335e854d2dd7ab9e5",
+      "evidence": [
+        ".opencode/bin/mk-spec-memory-launcher.cjs:456-467",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:468-481",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:1482-1502",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:1522-1530"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery in gpt55-1 lineage"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "dimension": "correctness",
+      "finding_class": "instance-only",
+      "title": "Re-election release path does not await or escalate model-server shutdown",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "line": 1372,
+      "lineRange": "1372-1384",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "a3bd626b755be2e473a59470084aa1f71bb86bd32a39b3a901e93808b6f3bed0",
+      "evidence": [
+        ".opencode/bin/mk-spec-memory-launcher.cjs:1372-1384",
+        ".opencode/bin/lib/model-server-supervision.cjs:347-356",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:1402-1417"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery in gpt55-1 lineage"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "dimension": "traceability",
+      "finding_class": "matrix/evidence",
+      "title": "Live test misses secondary-connected fresh-reap composition",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+      "line": 210,
+      "lineRange": "183-243",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "8566e0b7375d9b929fd12a0bfcd27988bc2a6edce5cc912e9733dfb0a6d0a6b5",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts:183-208",
+        ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts:210-243"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery in gpt55-1 lineage"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 2
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

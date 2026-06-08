@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation",
   "description": "Feature Specification: Live two-session daemon re-election adoption test",
   "keywords": [
@@ -11,7 +12,7 @@
     "adoption",
     "test"
   ],
-  "lastUpdated": "2026-06-08T05:13:30.813Z",
+  "lastUpdated": "2026-06-08T05:35:22.353Z",
   "specId": "028",
   "folderSlug": "live-session-reelection-validation",
   "parentChain": [
@@ -21,7 +22,8 @@
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-06-26_06-35__next-steps.md"
+  ]
 }

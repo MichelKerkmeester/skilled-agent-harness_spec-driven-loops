@@ -1,0 +1,20 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "run": 1,
+  "sessionId": "fanout-gpt55-5-1780906361310-a9e1uj",
+  "findingsNew": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "newFindingsRatio": 1,
+  "findingRefs": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "stopReason": "maxIterationsReached",
+  "timestamp": "2026-06-08T08:37:14Z"
+}

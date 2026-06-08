@@ -1,26 +1,211 @@
 {
   "schema_version": 1,
-  "packet_id": "138-portable-cross-machine",
-  "spec_folder": "138-portable-cross-machine",
+  "packet_id": "skilled-agent-orchestration/138-portable-cross-machine",
+  "spec_folder": "skilled-agent-orchestration/138-portable-cross-machine",
   "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["portable hook paths","barter framework sync","opt homebrew node hardcoded linux"],
-    "key_topics": ["hook-portability","cross-machine","barter-sync","project-dir-env-var","path-node"],
-    "importance_tier": "important",
+  "derived": {
+    "trigger_phrases": [
+      "portable hook paths",
+      "barter framework sync",
+      "opt homebrew node hardcoded linux",
+      "portable hook paths plan",
+      "portable hook paths tasks",
+      "portable hook paths checklist",
+      "portable hook paths done"
+    ],
+    "key_topics": [
+      "portable",
+      "hook",
+      "paths",
+      "barter",
+      "framework",
+      "sync",
+      "opt",
+      "homebrew",
+      "node",
+      "hardcoded",
+      "linux",
+      "plan"
+    ],
+    "importance_tier": "high",
     "status": "complete",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","implementation-summary.md",".codex/hooks.json",".devin/hooks.v1.json"],
-    "entities": ["CLAUDE_PROJECT_DIR","CODEX_PROJECT_DIR","DEVIN_PROJECT_DIR",".codex/hooks.json",".devin/hooks.v1.json"],
-    "causal_summary": "Hook commands hardcoded the owner's abs path and macOS-only /opt/homebrew node (with a botched n/bin/node corruption in Barter), failing on other machines and Linux; rewrote them to cd to a runtime project-dir env var with a $PWD fallback plus PATH node across Public source and Barter, then surgically synced the last 100 commits of framework files into the Barter mirror with sk-code/sk-git preserved.",
+    "key_files": [
+      ".codex/hooks.json",
+      ".devin/hooks.v1.json",
+      ".claude/settings.local.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Modifying Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Barter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Public",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A team member running the Barter mirror hit a startup-hook failure: the hook `cd`-ed into a hardcoded absolute path that does not exist on his machine, and every hook ran `/opt/homebrew/bin/node`, which does not exist on Linux. A prior fix attempt also corrupted Barter's node path to a broken `n/bin/node`. The same hardcoding lives in the Public source configs.",
     "created_at": "2026-06-08T05:50:45Z",
-    "last_save_at": "2026-06-08T05:50:45Z",
+    "last_save_at": "2026-06-08T08:50:25.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

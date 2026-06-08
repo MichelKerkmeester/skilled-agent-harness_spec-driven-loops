@@ -1,0 +1,27 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
+  "description": "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop",
+  "keywords": [
+    "feature",
+    "specification",
+    "fix",
+    "doctor",
+    "bootstrap",
+    "symlink",
+    "restart",
+    "loop"
+  ],
+  "lastUpdated": "2026-06-08T08:50:01.449Z",
+  "specId": "005",
+  "folderSlug": "fix-bootstrap-symlink-restart-loop",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling",
+    "002-doctor-update-orchestrator"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

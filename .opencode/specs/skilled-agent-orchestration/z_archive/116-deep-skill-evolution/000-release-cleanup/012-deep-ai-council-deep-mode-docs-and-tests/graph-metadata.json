@@ -47,7 +47,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "changelog/v2.1.1.0.md",
       "spec.md"
     ],
     "entities": [
@@ -73,12 +72,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "v2.1.1.0.md",
-        "kind": "doc",
-        "path": "changelog/v2.1.1.0.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 004 deep-ai-council release-cleanup deep-research loop converged at iter 4 and deferred five follow-ons as net-new work beyond cleanup scope. This packet closes all five: two new references documenting deep mode and the findings registry, a cross-link from `graph_support.md` to the replay script, a narrative reconciliation of the DAC-001/002 rename entries, and vitest coverage for the five currently-untested scripts.",
     "created_at": "2026-05-24T06:00:00.000Z",
-    "last_save_at": "2026-06-07T09:00:45.820Z",
+    "last_save_at": "2026-06-08T08:50:25.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,28 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "iteration": 1,
+  "sessionId": "fanout-gpt55-4-1780906361310-a9e1uj",
+  "dimensions": [
+    "correctness",
+    "security"
+  ],
+  "filesReviewed": [
+    ".opencode/bin/mk-spec-memory-launcher.cjs",
+    ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+    ".codex/hooks.json",
+    ".devin/hooks.v1.json",
+    ".claude/settings.local.json"
+  ],
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "newFindingsRatio": 1.0,
+  "findingRefs": [
+    "F001",
+    "F002"
+  ],
+  "timestamp": "2026-06-08T08:27:51Z"
+}

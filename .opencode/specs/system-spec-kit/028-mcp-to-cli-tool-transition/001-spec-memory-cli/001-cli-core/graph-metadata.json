@@ -41,16 +41,60 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "implemented_core_delivered_successor_hardening_remains",
+    "status": "implemented_(core_delivered;_hardening/runtime_integration_remain_in_successor_phases)",
     "key_files": [
-      "spec.md",
-      "tasks.md",
-      "plan.md",
-      "implementation-summary.md",
+      "dist/spec-memory-cli.js",
       ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
-      ".opencode/bin/spec-memory.cjs"
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+      "mcp_server/spec-memory-cli.ts",
+      "mcp_server/tests/spec-memory-cli.vitest.ts",
+      "mcp_server/package.json",
+      "mcp_server/tsconfig.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec-memory-cli.js",
+        "kind": "code",
+        "path": "dist/spec-memory-cli.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -58,15 +102,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -124,7 +168,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Planned",
+        "name": "Overview Implemented",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -158,47 +202,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Zod",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Phase 1 delivered the daemon-backed spec-memory CLI core: runtime command generation from TOOL_DEFINITIONS, Zod argv validation, IPC calls to the existing daemon, launcher auto-spawn, exit-code mapping, and a stable shim. Full hardening and runtime integration remain in successor phases.",
+    "causal_summary": "This is **Phase 1** of the Dual-stack spec-memory CLI implementation: daemon-backed CLI alongside the MCP registration specification.",
     "created_at": "2026-06-06T14:09:11.246Z",
-    "last_save_at": "2026-06-07T12:45:00.000Z",
+    "last_save_at": "2026-06-08T08:50:27.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

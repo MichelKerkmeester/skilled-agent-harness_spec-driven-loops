@@ -1,0 +1,90 @@
+{
+  "sessionId": "fanout-opus-4",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Stale-owner-lease reclaim is not a true mutex; reap-before-respawn's O_EXCL claim does not hold for its branch",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "line": 1486,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "spec-memory leaseHeldFromFile lacks the foreign-uid legacy-lease guard its code-index sibling enforces",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "line": 556,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Re-election release path SIGTERMs then exits synchronously; SIGKILL escalation can never fire (model-server leak)",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "line": 1372,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "code-index launcher carries the same non-exclusive stale-owner reclaim + overstated comment",
+      "file": ".opencode/bin/mk-code-index-launcher.cjs",
+      "line": 415,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 3
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.85,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

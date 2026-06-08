@@ -42,7 +42,6 @@
       "mcp_server/lib/search/search-flags.ts",
       "mcp_server/lib/search/evidence-gap-detector.ts",
       "mcp_server/ENV_REFERENCE.md",
-      "changelog/v1.2.0.0.md",
       "changelog/v3.4.0.0.md",
       "shared/embeddings/factory.ts",
       "spec.md",
@@ -73,12 +72,6 @@
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
         "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.2.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v1.2.0.0.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two separate gates in the cross-encoder pipeline activated cloud reranking whenever `VOYAGE_API_KEY` or `COHERE_API_KEY` was present in the environment:",
     "created_at": "2026-05-23T21:00:00.000000Z",
-    "last_save_at": "2026-06-05T12:47:33.681Z",
+    "last_save_at": "2026-06-08T08:50:26.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
