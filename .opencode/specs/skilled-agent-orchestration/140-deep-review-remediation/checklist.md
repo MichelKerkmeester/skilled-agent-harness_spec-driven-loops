@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/140-deep-review-remediation"
-    last_updated_at: "2026-06-08T11:05:00Z"
+    last_updated_at: "2026-06-08T11:45:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Verified fixes and suites"
+    recent_action: "Deferrals F1b/F4/F5/F7 resolved and re-verified"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files:
@@ -56,9 +56,11 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] Both launchers parse (`node --check`)
-- [x] CHK-011 [P0] Comment hygiene clean (no perishable labels in the rewritten comments)
+- [x] CHK-011 [P0] Comment hygiene clean (no perishable labels in the rewritten comments; checker run via shebang, exit 0)
 - [x] CHK-012 [P1] Respawn lock released after spawn and in the finally
 - [x] CHK-013 [P1] Reap refuses respawn on unconfirmed SIGKILL
+- [x] CHK-014 [P1] F1b: stale-reclaim adopts a live bridgeable daemon (clears own lease, bridges) before any reap
+- [x] CHK-015 [P1] F5: release path awaits the grace window and escalates a non-exiting sidecar to SIGKILL
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -66,7 +68,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Durability adoption single-writer case green with the serialization change
+- [x] CHK-020 [P0] Durability adoption suite 3/3: orphan survives, newPid === orphanPid, single DB writer (F1b/F4)
 - [x] CHK-021 [P0] Full durability suite 18/18; launcher-lease 11/11
 - [x] CHK-022 [P1] Checker self-test green; reversed `NNN packet` now caught
 - [x] CHK-023 [P1] Test helpers use spawnSync (no shell interpolation)
@@ -103,7 +105,8 @@ _memory:
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] Code comments durable (no IDs/paths); overstated mutex comment corrected
-- [x] CHK-042 [P2] Deferred findings (F1b/F4-F9) documented with rationale
+- [x] CHK-042 [P1] Deferrals resolved: F1b/F4/F5 (launcher + test) and F7 (settings, Public + Barter); F6/F9 documented as decisions
+- [x] CHK-043 [P1] F7: `.claude/settings.local.json` untracked + gitignored in Public and Barter; portable `hooks` in tracked `settings.json`; both JSON valid
 <!-- /ANCHOR:docs -->
 
 ---
@@ -123,8 +126,8 @@ _memory:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 13/13 |
-| P2 Items | 1 | 1/1 |
+| P1 Items | 17 | 17/17 |
+| P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-06-08
 <!-- /ANCHOR:summary -->

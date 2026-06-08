@@ -217,7 +217,7 @@ describe('daemon re-election: live two-session adoption', () => {
     expect(await statsOk(secondary.client)).toBe(true);
   });
 
-  it('flag ON: a FRESH session after owner disposal reaps the released daemon (single writer)', async () => {
+  it('flag ON: a FRESH session after owner disposal ADOPTS the released daemon (single writer)', async () => {
     const paths = buildFakeRoot();
 
     const owner = await startSession(paths, true);
@@ -232,9 +232,9 @@ describe('daemon re-election: live two-session adoption', () => {
     await delay(1_200);
     expect(isAlive(orphanPid!)).toBe(true);
 
-    // A brand-new session starts AFTER disposal. Without the reap-before-respawn fix it
-    // reclaims the stale lease and spawns a SECOND daemon on the same DB (double writer);
-    // with the fix it reaps the orphan first, so exactly one daemon writes the DB.
+    // A brand-new session starts AFTER disposal. With true adoption it bridges to the still-live
+    // released daemon instead of reaping and respawning, so the warm daemon is reused and there is
+    // never a second writer.
     const fresh = await startSession(paths, true);
     expect(await statsOk(fresh.client)).toBe(true);
     const newPid = leaseDaemonPid(paths.base);
@@ -242,10 +242,9 @@ describe('daemon re-election: live two-session adoption', () => {
     track(newPid!);
     await delay(800);
 
-    // Single-writer invariant: the orphan is reaped and only the new daemon survives.
-    expect(isAlive(orphanPid!)).toBe(false);
-    expect(newPid).not.toBe(orphanPid);
-    expect(isAlive(newPid!)).toBe(true);
+    // Adoption invariant: the released daemon is reused (same pid, still alive), not respawned.
+    expect(isAlive(orphanPid!)).toBe(true);
+    expect(newPid).toBe(orphanPid);
 
     // Airtight co-residency check: exactly one pid holds the sqlite open under the DB dir.
     const dbWriters = sqliteOpenerPids(paths.dbDir);

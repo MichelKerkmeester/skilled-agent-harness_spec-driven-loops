@@ -180,6 +180,7 @@ tmp/
 /barter
 .opencode/barter
 .claude/scheduled_tasks.lock
+.claude/settings.local.json
 
 .opencode/specs/00--ai-systems
 .claude/specs/00--ai-systems

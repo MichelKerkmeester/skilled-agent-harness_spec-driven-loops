@@ -1381,6 +1381,12 @@ async function shutdownLauncherForSignal(signal) {
     if (isChildRunning(releasedModelServer)) {
       hfControl.reapProcessTree(releasedModelServer.pid);
       releasedModelServer.kill(signal);
+      // Escalate to SIGKILL if the non-adoptable model-server does not exit within the grace window,
+      // so the release path does not leave a wedged sidecar behind on its way out.
+      const exited = await waitForChildExit(releasedModelServer, RESPAWN_REAP_GRACE_MS);
+      if (!exited && isChildRunning(releasedModelServer)) {
+        releasedModelServer.kill('SIGKILL');
+      }
     }
     log('daemon re-election: releasing context-server for adoption (not killing); dropping ownership lease only');
     // The process 'exit' handler clears BOTH leases; detach it first so the daemon lease (its socket
@@ -1489,14 +1495,28 @@ async function main() {
       }
       if (leaseResult.staleReclaimable) {
         log(`staleReclaimed: true${leaseResult.legacyPath ? ' (legacy path)' : ''}`);
-        // A re-election daemon released by a disposing owner stays alive under this stale
-        // (dead-owner) lease, which records the live daemon as childPid. Reap that child before
-        // spawning a replacement, or two daemons hold the same WAL database open until the orphan's
-        // idle timeout. The owner-lease acquisition above is an exclusive mutex only when NO prior
-        // lease exists; reclaiming an existing STALE owner lease is a non-exclusive write, so two
-        // fresh launchers racing a crashed (not released) owner could both reach here. Take the
-        // exclusive respawn lock to serialize the reap and spawn, the same lock the dead-socket
-        // respawn path uses; the loser bails and reconnects.
+        // A re-election daemon released by a disposing owner (or orphaned by a crashed owner) stays
+        // alive under this stale lease, which records the live daemon as childPid. ADOPT it: if the
+        // daemon is still alive and its recorded socket is bridgeable, bridge to the live socket
+        // instead of reaping and respawning. This reuses the warm daemon and never tears down a
+        // daemon a live secondary may still be bridged to. The reap+respawn path below runs only
+        // when the daemon is genuinely gone.
+        const staleLease = readLeaseFile(leaseResult.legacyPath || leasePath());
+        const orphanChildPid = staleLease?.childPid;
+        if (Number.isInteger(orphanChildPid) && orphanChildPid > 0 && processLiveness(orphanChildPid) !== 'dead') {
+          const adoptResult = { ...leaseResult, socketPath: staleLease.socketPath || leaseResult.socketPath };
+          if (bridgeReadiness(adoptResult).ready) {
+            log(`stale-reclaim adopting live daemon pid ${orphanChildPid} via bridge instead of reaping`);
+            clearOwnerLeaseFile();
+            await bridgeOrReportLeaseHeldAndExit(adoptResult);
+            return;
+          }
+        }
+        // Daemon is dead or unbridgeable. Reclaiming an existing STALE owner lease is a
+        // non-exclusive write (the owner-lease O_EXCL above only covers the no-prior-lease case), so
+        // two fresh launchers racing a crashed owner could both reach the reap and spawn. Take the
+        // exclusive respawn lock to serialize it, the same lock the dead-socket respawn path uses;
+        // the loser bails and reconnects.
         staleRespawnLock = acquireRespawnLockFile();
         if (!staleRespawnLock.acquired) {
           log('stale-reclaim deferred: another launcher holds the respawn lock; reporting lease held');
@@ -1504,8 +1524,6 @@ async function main() {
           writeLeaseHeldJsonRpcError(leaseResult, 'respawn-lock-held');
           process.exit(0);
         }
-        const staleLease = readLeaseFile(leaseResult.legacyPath || leasePath());
-        const orphanChildPid = staleLease?.childPid;
         if (Number.isInteger(orphanChildPid) && orphanChildPid > 0) {
           const reap = await reapLeaseChildBeforeRespawn(orphanChildPid);
           if (!reap.allowed) {

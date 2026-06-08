@@ -9,5 +9,73 @@
     "type": "command",
     "command": "bash .claude/statusline-command.sh"
   },
-  "skillListingBudgetFraction": 0.02
+  "skillListingBudgetFraction": 0.02,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
+            "timeout": 3
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js ; stop_status=$? ; bash .opencode/scripts/session-cleanup.sh || true ; exit \"$stop_status\"'",
+            "timeout": 10,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh'",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
 }
