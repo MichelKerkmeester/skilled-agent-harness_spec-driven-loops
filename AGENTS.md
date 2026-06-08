@@ -1,4 +1,4 @@
-w# AI Assistant Framework (Universal Template)
+# AI Assistant Framework (Universal Template)
 
 > **Universal behavior framework** defining guardrails, standards, and decision protocols.
 
@@ -6,9 +6,7 @@ w# AI Assistant Framework (Universal Template)
 
 ### Multi-Repository Architecture
 
-**Universal Framework:** Code work behavior is handled automatically by the `sk-code` skill, which routes between code surfaces detected at dispatch time. The active set of detection markers and per-surface patterns lives inside `sk-code` — see `.opencode/skills/sk-code/SKILL.md` §2 Smart Routing for the current detection list and `references/<surface>/` for per-surface conventions.
-
-**How It Works:** `sk-code` detects the active code surface from CWD/target paths and library markers, loads patterns from `.opencode/skills/sk-code/references/<surface>/`, and selects surface-appropriate verification (see Quick Reference). Surfaces it does not recognize trigger a disambiguation question rather than guessing.
+**Universal Framework:** Code work is handled automatically by the `sk-code` skill. It detects the active code surface from CWD/target paths and library markers, loads patterns from `.opencode/skills/sk-code/references/<surface>/`, and selects surface-appropriate verification (see Quick Reference). Surfaces it does not recognize trigger a disambiguation question rather than guessing. The active detection markers and per-surface patterns live inside `sk-code` — see `.opencode/skills/sk-code/SKILL.md` §2 Smart Routing.
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
 
@@ -187,7 +185,7 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 | **Memory DB admin**                  | `/memory:manage` → stats, health, cleanup, retention, validate, checkpoint, ingest, routing diagnostics                                                                                                                                                                                                                                                    |
 | **Analysis/evaluation**              | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history; inspect `memory_health.data.routing` for graph/degree channel utilization                                                                                                                                                                                            |
 | **Constitutional memory**            | `/memory:learn` → create, list, edit, remove, budget                                                                                                                                                                                                                                                                                                     |
-| **Doctor command surface**           | `/doctor <target>` argv-positional router for subsystem diagnostics/repairs (memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget); `/doctor:mcp install\|debug` for MCP infra; `/doctor:update` for dependency-ordered cross-subsystem alignment with snapshot/validate/rollback/run log. Do not route to deleted legacy `/doctor:<name>` colon-form commands                                                                                                                                                                                           |
+| **Doctor command surface**           | `/doctor <target>` argv-router for subsystem diagnostics/repairs (memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget); `/doctor:mcp install\|debug` for MCP infra; `/doctor:update` for dependency-ordered alignment (snapshot/validate/rollback/run log). Don't route to deleted legacy `/doctor:<name>` colon-forms                                                                                                                                                                                           |
 
 ---
 
@@ -220,13 +218,11 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 - **Read-only disqualifiers:** `review`, `audit`, `inspect`, `analyze`, `explain` — suppress Gate 3 when they appear ALONE (e.g. "review the decomposition phase"). Do NOT suppress when a continuity-write trigger is also present.
 - **Note:** tokens `analyze`, `decompose`, `phase` are NOT positive triggers; they false-positive on read-only review prompts.
 - **Options:** A) Existing | B) New | C) Update related | D) Skip | E) Phase folder (e.g., `specs/NNN-name/001-phase/`)
-- **Router commands:** For router-style commands such as `/doctor`, evaluate Gate 3 per selected route. The route manifest/table must expose each target's location and mutation class (`read-only`, `add-only`, `mutates`) before asking or acting.
+- **Router commands:** For router-style commands such as `/doctor`, evaluate Gate 3 per selected route. The route manifest/table must expose each target's location and mutation class before asking or acting:
+  - `read-only` routes may inspect and report without a spec-folder write path.
+  - `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied.
+  - `mutates` routes require the same spec-folder discipline as any other file/database mutation.
 - **Ask first, then act.** No Read/Edit/Write/Bash (except Gate Actions) before answer. The answer applies for the ENTIRE session — re-ask ONLY when user says "new task" / "different feature" / names a different spec folder, or asks you to re-ask.
-
-Router command manifests must make the mutation boundary visible before execution:
-- `read-only` routes may inspect and report without a spec-folder write path.
-- `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied.
-- `mutates` routes require the same spec-folder discipline as any other file/database mutation.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
 Trigger-phrase routing ("deep-research", "deep-review", ":auto", "iterations", "convergence") and state-machine discipline (no manual `/tmp` state, no direct `@deep-research` / `@deep-review` Task dispatch, no skipping `deep-research-state.jsonl` / `deltas/` / `logs/`) are enforced by Gate 2 (Skill Advisor at ≥ 0.8) plus the `/deep:start-research-loop` and `/deep:start-review-loop` skill SKILL.md invariants. The two tiebreakers below are NOT covered there:
@@ -248,7 +244,6 @@ Trigger: "save context", "save memory", `/memory:save`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`.
   - Also refreshes `graph-metadata.json` and `description.json` for the spec folder.
 - **Quick continuity update:** AI may directly edit `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md` without running generate-context.js (per ADR-004). The resume ladder only reads continuity from `implementation-summary.md`.
-- **Memory mutation freshness:** Handlers that affect `memory_index` rows (`memory_save`, `memory_bulk_delete`) must invalidate the entity-density cache after commit so graph-channel routing sees fresh causal/entity state without waiting for the TTL.
 - **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
 - **Post-Save Review:** After `generate-context.js` completes, check the POST-SAVE QUALITY REVIEW output.
   - **HIGH** issues: MUST manually patch via Edit tool (fix title, trigger_phrases, importance_tier)
@@ -259,14 +254,12 @@ Trigger: "save context", "save memory", `/memory:save`
 Trigger: Claiming "done", "complete", "finished", "works"
 1. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (Exit 0 = pass, 1 = warnings, 2 = errors).
 2. Load `checklist.md` → verify ALL items → mark `[x]` with evidence.
-3. Reconcile completion metadata: update `spec.md` Status, plan/checklist evidence, handover completion fields, and implementation-summary continuity so packet docs do not claim conflicting completion states.
+3. Reconcile completion metadata so packet docs do not claim conflicting completion states — covers:
+   - `spec.md` status and shipped/current-state claims.
+   - `plan.md` / `tasks.md` / `checklist.md` evidence rows.
+   - `handover.md` or `_memory.continuity` fields when present.
+   - `implementation-summary.md` final state, validation evidence, and continuation notes.
 - Skip: Level 1 tasks (no checklist.md required).
-
-Completion metadata reconciliation covers:
-- `spec.md` status and shipped/current-state claims.
-- `plan.md` / `tasks.md` / `checklist.md` evidence rows.
-- `handover.md` or `_memory.continuity` fields when present.
-- `implementation-summary.md` final state, validation evidence, and continuation notes.
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]
 Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D/E) → WAIT
