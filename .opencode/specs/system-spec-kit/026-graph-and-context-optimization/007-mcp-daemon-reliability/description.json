@@ -1,26 +1,26 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
-  "description": "Feature Specification: MCP daemon reliability (socket-dir, lifecycle, build-safety, embedding-provider memory)",
+  "specFolder": "007-mcp-daemon-reliability",
+  "description": "Client-side MCP reconnect survival: instrument frontend disconnect, evaluate keepalive, document stdio no-auto-reconnect residual",
   "keywords": [
-    "feature",
-    "specification",
+    "client-side",
     "mcp",
-    "daemon",
-    "reliability",
-    "socket-dir",
-    "lifecycle",
-    "build-safety",
-    "embedding-provider",
-    "memory"
+    "reconnect",
+    "survival",
+    "instrument",
+    "frontend",
+    "disconnect",
+    "evaluate",
+    "keepalive",
+    "document",
+    "stdio",
+    "no-auto-reconnect",
+    "residual"
   ],
-  "lastUpdated": "2026-06-06T17:05:00.000Z",
+  "lastUpdated": "2026-06-08T15:19:03.714Z",
   "specId": "007",
   "folderSlug": "mcp-daemon-reliability",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

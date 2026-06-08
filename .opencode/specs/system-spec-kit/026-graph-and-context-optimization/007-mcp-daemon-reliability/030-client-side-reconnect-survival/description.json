@@ -1,0 +1,17 @@
+{
+  "specFolder": "007-mcp-daemon-reliability/030-client-side-reconnect-survival",
+  "description": "Phase 1: client-side-reconnect-survival",
+  "keywords": [
+    "phase",
+    "client-side-reconnect-survival"
+  ],
+  "lastUpdated": "2026-06-08T15:19:04.572Z",
+  "specId": "030",
+  "folderSlug": "client-side-reconnect-survival",
+  "parentChain": [
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

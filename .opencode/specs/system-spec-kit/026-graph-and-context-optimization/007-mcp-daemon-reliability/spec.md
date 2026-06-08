@@ -116,6 +116,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 6 | 006-graceful-exit-watchdog/ | Launcher RSS-ceiling watchdog + graceful-exit supervision (no transparent respawn) (RC-1/RC-2 / F1′) | Planned |
 | 7 | 007-bridge-liveness-reap/ | Liveness-probe-before-bridge + reap-aware respawn on a dead socket (RC-3 / F3′) | Planned |
 
+| 30 | 030-client-side-reconnect-survival/ | [Phase 30 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -130,6 +131,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 003-daemon-reliability-research | 005-provider-dispose | Hardened roadmap + required guards finalized | research.md §6 complete |
 | 005-provider-dispose | 006-graceful-exit-watchdog | Native-run-gate dispose lands so the watchdog's recycle can't trigger a use-after-free | dispose tests pass |
 | 006-graceful-exit-watchdog | 007-bridge-liveness-reap | Daemon child pid recorded in the lease (precondition for reap-aware bridge) | lease carries child pid |
+| 029-cross-session-kill-scoping | 030-client-side-reconnect-survival | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
