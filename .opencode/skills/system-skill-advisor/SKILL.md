@@ -115,7 +115,7 @@ INTENT_SIGNALS = {
     "GRAPH": {"weight": 4, "keywords": ["skill graph", "graph", "drift", "query", "enhances", "propagate"]},
     "RUNTIME": {"weight": 4, "keywords": ["mcp", "tool id", "bridge", "standalone", "freshness", "daemon", "lease"]},
     "CONFIG": {"weight": 3, "keywords": ["database", "sqlite", "db path", "skill-graph.sqlite"]},
-    "HOOKS": {"weight": 4, "keywords": ["hook", "prompt submit", "codex", "claude", "gemini", "devin", "opencode"]},
+    "HOOKS": {"weight": 4, "keywords": ["hook", "prompt submit", "codex", "claude", "opencode"]},
     "DECISIONS": {"weight": 3, "keywords": ["deferred", "decision", "tier d", "migration rationale"]},
     "FEATURES": {"weight": 3, "keywords": ["feature catalog", "capability", "current feature"]},
     "PLAYBOOK": {"weight": 3, "keywords": ["manual test", "playbook", "scenario", "evidence"]},
@@ -147,7 +147,6 @@ RESOURCE_MAP = {
     "HOOKS": [
         "references/hooks/skill_advisor_hook.md",
         "manual_testing_playbook/02--cli-hooks-and-plugin/opencode-plugin-bridge.md",
-        "manual_testing_playbook/02--cli-hooks-and-plugin/devin-user-prompt-submit.md",
     ],
     "DECISIONS": [
         "references/decisions/deferred_decisions.md",
@@ -347,7 +346,7 @@ Package references:
 - `references/runtime/daemon_lease_contract.md` — single-writer daemon lease behavior.
 - `references/config/db_path_policy.md` — package-local SQLite path policy.
 - `references/hooks/skill_advisor_hook.md` — prompt-time hook behavior.
-- `references/decisions/deferred_decisions.md` — Tier D decision records (F4 Devin hooks, F6 deprecation banners).
+- `references/decisions/deferred_decisions.md` — Tier D decision records (F6 deprecation banners).
 - `ARCHITECTURE.md`
 - `mcp_server/README.md`
 - `mcp_server/tools/README.md`
@@ -377,7 +376,7 @@ Current package state:
 
 Expected consumers:
 
-- Prompt-time hooks for Claude, Codex, Gemini and OpenCode.
+- Prompt-time hooks for Claude, Codex and OpenCode.
 - MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - Doctor workflows that validate advisor health and rebuild state.
 - Skill graph indexers and routing accuracy checks.

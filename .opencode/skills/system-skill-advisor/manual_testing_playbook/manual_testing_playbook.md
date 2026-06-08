@@ -29,11 +29,11 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 46 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 44 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `08--scorer-fusion` and `10--python-compat`. This mirrors the `feature_catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
-Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual_testing_playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 43 scenarios, but the source category tree contains 42 `NNN-*.md` scenario files plus no `CL-002`. This root playbook reflects the live file inventory.
+Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual_testing_playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios, but the source category tree contains 41 `NNN-*.md` scenario files plus no `CL-002`. This root playbook reflects the live file inventory.
 
 ### Realistic Test Model
 
@@ -126,7 +126,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 46 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 44 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -148,7 +148,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 ### Recommended Wave Plan
 
 - **Wave 1**: `NC-001..NC-009` native MCP behavior.
-- **Wave 2**: `CL-001`, `CL-003..CL-006` runtime hooks and plugin bridge (CL-006 covers the Devin CLI variant added in packet 004-cli-devin-skill-advisor-hook).
+- **Wave 2**: `CL-001`, `CL-004..CL-005` runtime hooks and plugin bridge.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
@@ -179,15 +179,13 @@ This category validates native mcp tools scenarios `NC-001..NC-009`.
 
 ## 8. CLI HOOKS AND PLUGIN
 
-This category validates cli hooks and plugin scenarios `CL-001..CL-006`.
+This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-005`.
 
 | ID | Scenario | File |
 |---|---|---|
 | CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](02--cli-hooks-and-plugin/claude-user-prompt-submit.md) |
-| CL-003 | Gemini CLI UserPromptSubmit Hook | [003-gemini-user-prompt-submit.md](02--cli-hooks-and-plugin/gemini-user-prompt-submit.md) |
 | CL-004 | Codex CLI Native Hooks And Wrapper Fallback | [004-codex-hook-and-wrapper.md](02--cli-hooks-and-plugin/codex-hook-and-wrapper.md) |
 | CL-005 | OpenCode Plugin Bridge | [005-opencode-plugin-bridge.md](02--cli-hooks-and-plugin/opencode-plugin-bridge.md) |
-| CL-006 | Devin CLI UserPromptSubmit Hook | [006-devin-user-prompt-submit.md](02--cli-hooks-and-plugin/devin-user-prompt-submit.md) |
 
 ---
 
@@ -288,7 +286,7 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
-The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 42-scenario package count.
+The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 41-scenario package count.
 
 | Area | Automated test anchors |
 |---|---|

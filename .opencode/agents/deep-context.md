@@ -28,7 +28,6 @@ Executes ONE read-only analysis sweep of an assigned code slice within a heterog
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-
 **CRITICAL**: This agent is a READ-ONLY analyzer SEAT, not the loop. It NEVER writes files. The host (`/deep:start-context-loop`) writes every iteration file, the coverage-graph, and the merged Context Report. This seat's entire deliverable is the structured finding set it returns in stdout.
 
 **IMPORTANT**: This agent is one member of a shared-scope agreement pool. Multiple seats (native, and optionally CLI, executors) sweep the SAME scope in parallel; the host dedups by `file:symbol` and boosts confidence by cross-executor agreement. The default pool is native-only (2 seats); CLI seats join only when the operator configures a heterogeneous pool. This seat owns only its own analysis of its assigned slice — it does not merge, persist, or reconcile against other seats.
@@ -201,7 +200,7 @@ WebFetch, Chrome DevTools, Write, Edit, Patch, Bash, and the Task tool are denie
 
 ### Sibling Seats
 
-This seat may share the pool with CLI analyzer seats (cli-opencode / cli-codex / cli-claude-code / cli-devin) when the operator configures a heterogeneous pool; the default pool is native-only. All seats are read-only, sweep the same scope, and return findings; only the host merges and writes. This seat does not dispatch, coordinate, or reconcile against sibling seats.
+This seat may share the pool with CLI analyzer seats (cli-opencode / cli-codex / cli-claude-code) when the operator configures a heterogeneous pool; the default pool is native-only. All seats are read-only, sweep the same scope, and return findings; only the host merges and writes. This seat does not dispatch, coordinate, or reconcile against sibling seats.
 
 ---
 

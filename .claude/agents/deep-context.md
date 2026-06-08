@@ -183,7 +183,7 @@ WebFetch, Chrome DevTools, Write, Edit, Patch, Bash, and the Task tool are denie
 
 ### Sibling Seats
 
-This seat may share the pool with CLI analyzer seats (cli-opencode / cli-codex / cli-claude-code / cli-devin) when the operator configures a heterogeneous pool; the default pool is native-only. All seats are read-only, sweep the same scope, and return findings; only the host merges and writes. This seat does not dispatch, coordinate, or reconcile against sibling seats.
+This seat may share the pool with CLI analyzer seats (cli-opencode / cli-codex / cli-claude-code) when the operator configures a heterogeneous pool; the default pool is native-only. All seats are read-only, sweep the same scope, and return findings; only the host merges and writes. This seat does not dispatch, coordinate, or reconcile against sibling seats.
 
 ---
 

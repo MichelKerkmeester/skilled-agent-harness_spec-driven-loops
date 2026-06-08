@@ -1,11 +1,10 @@
 ---
 title: "Mixed-Executor Methodology for Multi-Iter Evaluation Sweeps"
-description: "Guidance on using mixed-executor dispatch (cli-devin SWE-1.6 breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter for DAI multi-iter evaluation sweeps."
+description: "Guidance on using mixed-executor dispatch (breadth CLI executor breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter for DAI multi-iter evaluation sweeps."
 trigger_phrases:
   - "mixed-executor"
   - "adjudication"
   - "multi-iter"
-  - "cli-devin"
   - "cli-codex"
 ---
 
@@ -19,7 +18,7 @@ How to combine mixed-executor dispatch with an adjudication-iter false-positive 
 
 This reference documents the mixed-executor dispatch pattern and the adjudication-iter false-positive filter. Both are proven, recommended practices for DAI operators running multi-iter evaluation sweeps.
 
-The mixed-executor pattern combines breadth exploration (cli-devin SWE-1.6) with synthesis quality (cli-codex gpt-5.5) using an 8+2 split for 10-iter sweeps. The adjudication-iter pattern adds a false-positive filter pass (typically at iter-7-equivalent) to reduce noise before synthesis. Together, these patterns provide better breadth/synthesis balance and 90%+ false-positive reduction compared to single-executor approaches.
+The mixed-executor pattern combines breadth exploration (a breadth CLI executor, e.g. cli-opencode small-model) with synthesis quality (cli-codex gpt-5.5) using an 8+2 split for 10-iter sweeps. The adjudication-iter pattern adds a false-positive filter pass (typically at iter-7-equivalent) to reduce noise before synthesis. Together, these patterns provide better breadth/synthesis balance and 90%+ false-positive reduction compared to single-executor approaches.
 
 ## 2. When to Use the Mixed-Executor Pattern
 
@@ -27,11 +26,11 @@ Use the mixed-executor pattern when:
 - Running multi-iter evaluation sweeps (not single-shot scoring)
 - Breadth exploration and synthesis quality are both important
 - False-positive reduction is a priority
-- You want to balance cost (cli-devin SWE-1.6) with synthesis quality (cli-codex gpt-5.5)
+- You want to balance cost (breadth CLI executor) with synthesis quality (cli-codex gpt-5.5)
 
 Do NOT use the mixed-executor pattern when:
 - Running single-shot scoring (single executor is sufficient)
-- Breadth-only exploration is sufficient (cli-devin SWE-1.6 only)
+- Breadth-only exploration is sufficient (breadth CLI executor only)
 - Synthesis-only is sufficient (cli-codex gpt-5.5 only)
 
 ---
@@ -40,10 +39,10 @@ Do NOT use the mixed-executor pattern when:
 
 The mixed-executor pattern uses an 8+2 split for a 10-iter sweep:
 
-### Breadth Iters (1-N-2): cli-devin SWE-1.6
+### Breadth Iters (1-N-2): breadth CLI executor (e.g. cli-opencode small-model)
 
 - **Purpose**: Breadth exploration, finding candidates, surface-level analysis
-- **Executor**: cli-devin SWE-1.6
+- **Executor**: a breadth CLI executor (e.g. cli-opencode small-model)
 - **Characteristics**: Fast, cost-effective, good for breadth
 - **Example**: Iters 1-8 of a 10-iter sweep
 
@@ -57,16 +56,16 @@ The mixed-executor pattern uses an 8+2 split for a 10-iter sweep:
 ### Example: 10-Iter Sweep
 
 ```text
-Iter 1:  cli-devin SWE-1.6  (breadth)
-Iter 2:  cli-devin SWE-1.6  (breadth)
-Iter 3:  cli-devin SWE-1.6  (breadth)
-Iter 4:  cli-devin SWE-1.6  (breadth)
-Iter 5:  cli-devin SWE-1.6  (breadth)
-Iter 6:  cli-devin SWE-1.6  (breadth)
-Iter 7:  cli-devin SWE-1.6  (adjudication)
-Iter 8:  cli-devin SWE-1.6  (breadth)
-Iter 9:  cli-codex gpt-5.5  (synthesis)
-Iter 10: cli-codex gpt-5.5  (final validation)
+Iter 1:  breadth CLI executor  (breadth)
+Iter 2:  breadth CLI executor  (breadth)
+Iter 3:  breadth CLI executor  (breadth)
+Iter 4:  breadth CLI executor  (breadth)
+Iter 5:  breadth CLI executor  (breadth)
+Iter 6:  breadth CLI executor  (breadth)
+Iter 7:  breadth CLI executor  (adjudication)
+Iter 8:  breadth CLI executor  (breadth)
+Iter 9:  cli-codex gpt-5.5    (synthesis)
+Iter 10: cli-codex gpt-5.5    (final validation)
 ```
 
 ---
@@ -84,10 +83,10 @@ The adjudication-iter pattern is a false-positive filter pass that significantly
 ### Example: 10-Iter Sweep with Adjudication
 
 ```text
-Iter 1-6:  cli-devin SWE-1.6  (breadth)
-Iter 7:    cli-devin SWE-1.6  (adjudication pass)
-Iter 8:    cli-devin SWE-1.6  (breadth)
-Iter 9-10: cli-codex gpt-5.5  (synthesis on confirmed findings only)
+Iter 1-6:  breadth CLI executor  (breadth)
+Iter 7:    breadth CLI executor  (adjudication pass)
+Iter 8:    breadth CLI executor  (breadth)
+Iter 9-10: cli-codex gpt-5.5    (synthesis on confirmed findings only)
 ```
 
 ### Adjudication Mechanics
@@ -135,7 +134,7 @@ A future enhancement could auto-dispatch the mixed-executor pattern in the DAI Y
 ### Manual Implementation Today
 
 Operators can manually implement the mixed-executor pattern by:
-1. Running breadth iters with cli-devin SWE-1.6
+1. Running breadth iters with a breadth CLI executor (e.g. cli-opencode small-model)
 2. Running an adjudication pass to filter findings
 3. Running synthesis iters with cli-codex gpt-5.5 on confirmed findings only
 

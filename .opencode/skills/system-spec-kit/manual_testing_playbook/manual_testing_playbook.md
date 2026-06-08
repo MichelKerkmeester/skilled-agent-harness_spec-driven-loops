@@ -137,7 +137,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 391 scenario files while the feature catalog contains 325 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 387 scenario files while the feature catalog contains 324 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count is zero (every scenario file is linked in Section 12).
 
@@ -163,14 +163,14 @@ count += sum(
 print(count)
 PY
 )
-if [ "$TOTAL_FEATURES" -ne 391 ]; then
-  echo "Expected 391 scenario files, found $TOTAL_FEATURES" >&2
+if [ "$TOTAL_FEATURES" -ne 387 ]; then
+  echo "Expected 387 scenario files, found $TOTAL_FEATURES" >&2
   exit 1
 fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-07, the deterministic file count is 391. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-08, the deterministic file count is 387. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -194,7 +194,7 @@ Rule: keep global verdict logic in the root playbook. Put feature-specific accep
 
 ## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
 
-This section records coordinator/worker utilization guidance for assembling or reviewing playbook bundles. It is not a runtime support matrix and does not, by itself, prove Hydra feature parity for Codex, Gemini, or any other CLI.
+This section records coordinator/worker utilization guidance for assembling or reviewing playbook bundles. It is not a runtime support matrix and does not, by itself, prove Hydra feature parity for Codex or any other CLI.
 
 The wave plans here apply to the split playbook package: the root `manual_testing_playbook.md` acts as the directory, review surface, and orchestration guide, while the detailed scenario contracts live in the numbered category folders at the playbook root.
 
@@ -208,16 +208,6 @@ Observed orchestration:
 | Runtime | Reported/Observed Capacity | Workers Used | Coordinator | Wave Count | Saturation |
 |---|---:|---:|---:|---:|---:|
 | Codex 5.3 xhigh | 6 total | 5 | 1 | 2 | 100% while active |
-
-### Run B: Gemini 3.1 Pro Preview (Reported)
-
-Reported orchestration in output:
-- 1 coordinator + 14 workers
-- 2 waves, 100% stated saturation
-
-| Runtime | Reported/Observed Capacity | Workers Used | Coordinator | Wave Count | Saturation |
-|---|---:|---:|---:|---:|---:|
-| Gemini 3.1 Pro Preview | 15 total (reported) | 14 | 1 | 2 | 100% (reported) |
 
 ### Merged Operational Rule
 
@@ -3711,7 +3701,6 @@ This split playbook keeps automated coverage references in three places:
 | 181 | Features | Template Compliance Contract Enforcement | [181](16--tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md) | [16--tooling-and-scripts/template-compliance-contract-enforcement.md](../feature_catalog/16--tooling-and-scripts/template-compliance-contract-enforcement.md) |
 | M-009 | Dedicated Memory/Spec-Kit Scenarios | Runtime Family Count Census | [M-009](16--tooling-and-scripts/runtime-family-count-census.md) | *(test-only, no catalog entry)* |
 | M-010 | Dedicated Memory/Spec-Kit Scenarios | Runtime Lineage Naming Parity | [M-010](16--tooling-and-scripts/runtime-lineage-naming-parity.md) | *(test-only, no catalog entry)* |
-| M-011 | Dedicated Memory/Spec-Kit Scenarios | Gemini Runtime Path Resolution | [M-011](16--tooling-and-scripts/gemini-runtime-path-resolution.md) | *(test-only, no catalog entry)* |
 | 185 | Features | /memory:search command routing | [185](01--retrieval/memory-search-command-routing.md) | [feature_catalog.md#command-surface-contract](../feature_catalog/feature_catalog.md#command-surface-contract) |
 | 186 | Features | /memory:manage command routing | [186](16--tooling-and-scripts/memory-manage-command-routing.md) | [feature_catalog.md#command-surface-contract](../feature_catalog/feature_catalog.md#command-surface-contract) |
 | 187 | Features | Quick search (memory_quick_search) | [187](01--retrieval/quick-search-memory-quick-search.md) | [01--retrieval/fast-delegated-search-memory-quick-search.md](../feature_catalog/01--retrieval/fast-delegated-search-memory-quick-search.md) |
@@ -3795,7 +3784,6 @@ This split playbook keeps automated coverage references in three places:
 | 262 | Context Preservation | Session health ok/warning/stale status | [262](22--context-preservation/session-health.md) | [22--context-preservation/session-health-tool.md](../feature_catalog/22--context-preservation/session-health-tool.md) |
 | 263 | Context Preservation | Session resume merged result | [263](22--context-preservation/session-resume.md) | [22--context-preservation/session-resume-tool.md](../feature_catalog/22--context-preservation/session-resume-tool.md) |
 | 264 | Context Preservation | Query-intent routing in memory_context | [264](22--context-preservation/query-intent-routing.md) | [22--context-preservation/query-intent-routing.md](../feature_catalog/22--context-preservation/query-intent-routing.md) |
-| 265 | Context Preservation | Gemini CLI hooks session-prime | [265](22--context-preservation/gemini-cli-hooks.md) | [22--context-preservation/gemini-cli-hooks.md](../feature_catalog/22--context-preservation/gemini-cli-hooks.md) |
 | 266 | Context Preservation | Context preservation metrics quality score | [266](22--context-preservation/context-preservation-metrics.md) | [22--context-preservation/context-preservation-metrics.md](../feature_catalog/22--context-preservation/context-preservation-metrics.md) |
 | 267 | Context Preservation | Tool routing enforcement | [267](22--context-preservation/tool-routing-enforcement.md) | [22--context-preservation/tool-routing-enforcement.md](../feature_catalog/22--context-preservation/tool-routing-enforcement.md) |
 | 268 | Features | Post-insert retry budget | [268](05--lifecycle/post-insert-retry-budget.md) | [05--lifecycle/post-insert-retry-budget.md](../feature_catalog/05--lifecycle/post-insert-retry-budget.md) |

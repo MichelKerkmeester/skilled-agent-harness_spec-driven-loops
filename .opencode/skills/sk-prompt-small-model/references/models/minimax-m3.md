@@ -55,7 +55,7 @@ MiniMax wants guardrail-heavy TIDD-EC framing plus dense pre-planning — more s
 This mirrors `model-profiles.json` `recommended_frameworks` for `minimax-m3`:
 `primary: "tidd-ec"`, `fallback: "rcaf"`, `preplanning_density: "dense"`.
 
-**Counter-intuitive note:** MiniMax wants guardrail-heavy framing (TIDD-EC Do's/Don'ts) **plus** dense pre-planning — the **opposite** of the cross-model default (medium pre-planning, lighter framing). Most models plateau or regress with dense pre-plans; MiniMax actively uses the dense plan structure rather than being slowed by it. This is because TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope and format drift more effectively than RCAF's role anchor, and the dense pre-plan gives MiniMax a concrete decision scaffold it follows rather than ignoring. For all other models in the rotation (SWE-1.6, DeepSeek, Kimi, GLM, Qwen) the cross-model default applies (RCAF + medium); MiniMax is the explicit exception.
+**Counter-intuitive note:** MiniMax wants guardrail-heavy framing (TIDD-EC Do's/Don'ts) **plus** dense pre-planning — the **opposite** of the cross-model default (medium pre-planning, lighter framing). Most models plateau or regress with dense pre-plans; MiniMax actively uses the dense plan structure rather than being slowed by it. This is because TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope and format drift more effectively than RCAF's role anchor, and the dense pre-plan gives MiniMax a concrete decision scaffold it follows rather than ignoring. For all other models in the rotation (DeepSeek, Kimi, GLM, Qwen) the cross-model default applies (RCAF + medium); MiniMax is the explicit exception.
 
 ---
 

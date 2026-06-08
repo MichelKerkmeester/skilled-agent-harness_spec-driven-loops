@@ -15,7 +15,7 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-- Works with **Opencode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**
+- Works with **Opencode**, **Codex**, and **Claude Code**
 - Supports external CLI agent orchestration without unnecessary MCPs or proxies
 - Designed to be modular, readable, and easy to adapt to your own stack
 
@@ -145,7 +145,7 @@ The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) s
 
 Runtime lifecycle guardrails are part of the native MCP stack. The servers share `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` for idle self-exit, and the repo ships a dry-run-first orphan process sweeper plus a LaunchAgent template under `.opencode/scripts/`. The LaunchAgent is not installed or loaded by default; activation is a separate operator-approved rollout. See [Repo Scripts Runbook](.opencode/scripts/README.md) and the [022 orphan MCP leak prevention packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md).
 
-Operator tooling shipped in 026: `session-cleanup.sh` (renamed from `claude-session-cleanup.sh`; a back-compat shim keeps the old name working) now resolves PIDs across `claude`, `opencode`, `codex` and `gemini` runtimes. Worktree-per-session isolation scripts live under `.opencode/bin/` (`worktree-session.sh`, `worktree-reaper.sh`, `worktree-guard.sh`) and set per-session `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR` so parallel sessions never share a database.
+Operator tooling shipped in 026: `session-cleanup.sh` (renamed from `claude-session-cleanup.sh`; a back-compat shim keeps the old name working) now resolves PIDs across `claude`, `opencode` and `codex` runtimes. Worktree-per-session isolation scripts live under `.opencode/bin/` (`worktree-session.sh`, `worktree-reaper.sh`, `worktree-guard.sh`) and set per-session `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR` so parallel sessions never share a database.
 
 ### Set Up Embedding Provider
 
@@ -370,7 +370,7 @@ For the full spec folder workflow, Level contract template architecture, gate de
 
 The Memory Engine is a local-first cognitive memory system built as an MCP server. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. The MCP server indexes those packet-local sources with vector embeddings, BM25 and FTS5 full-text search. `memory_match_triggers()` can still surface relevant prior context automatically when deeper retrieval is needed.
 
-`/memory:save` refreshes packet metadata on every invocation. `session_resume` binds `args.sessionId` to transport caller context by default. Set `MCP_SESSION_RESUME_AUTH_MODE=permissive` for rollout canaries. Copilot, Claude and Gemini all share the same compact-cache provenance path.
+`/memory:save` refreshes packet metadata on every invocation. `session_resume` binds `args.sessionId` to transport caller context by default. Set `MCP_SESSION_RESUME_AUTH_MODE=permissive` for rollout canaries. Copilot and Claude share the same compact-cache provenance path.
 
 The memory engine works with session lifecycle surfaces and hybrid retrieval. Structural code indexing now lives in the standalone [`system-code-graph`](.opencode/skills/system-code-graph/) skill and MCP server.
 
@@ -595,7 +595,7 @@ Existing v1 scans trigger a blocked read with `requiredAction:"code_graph_scan"`
 
 The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered as the standalone `mk_code_index` MCP server. MCP callers use the `mcp__mk_code_index__*` namespace. Runtime config parity is mixed across clients during the rename transition, so docs use the canonical `mk_code_index` surface while follow-on config work handles remaining legacy bindings.
 
-**Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan and activates a file watcher. Three supported runtimes (Claude Code, Gemini CLI, Codex CLI) transport the same compact startup shared-payload through their runtime hooks (`session-prime.ts` on Claude/Gemini, `session-start.ts` on Codex). Codex requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions with a limited cache and writer path. It refreshes a managed block but does not inject model-visible context during the precompute phase. The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary) and the `sharedPayloadTransport` envelope so downstream consumers receive identical structural context regardless of runtime. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
+**Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan and activates a file watcher. Two supported runtimes (Claude Code, Codex CLI) transport the same compact startup shared-payload through their runtime hooks (`session-prime.ts` on Claude, `session-start.ts` on Codex). Codex requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions with a limited cache and writer path. It refreshes a managed block but does not inject model-visible context during the precompute phase. The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary) and the `sharedPayloadTransport` envelope so downstream consumers receive identical structural context regardless of runtime. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
 
 **Auto-indexing.** The graph stays current through three mechanisms:
 1. **Startup scan** - indexes on server boot (async, non-blocking)
@@ -741,7 +741,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 &nbsp;
 #### How Runtimes Talk To It
 
-- **Claude Code, Gemini CLI, Codex CLI**: call prompt-time hook adapters under `.opencode/skills/system-spec-kit/mcp_server/hooks/`. Codex CLI requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions for the startup-surface path only.
+- **Claude Code, Codex CLI**: call prompt-time hook adapters under `.opencode/skills/system-spec-kit/mcp_server/hooks/`. Codex CLI requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions for the startup-surface path only.
 - **OpenCode**: uses `.opencode/plugins/mk-skill-advisor.js` with `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts`.
 - **Codex cold starts**: the Codex prompt hook emits a prompt-safe stale advisory plus `{"stale":true,"reason":"timeout-fallback"}` when startup context times out. The smoke helper lives at [freshness-smoke-check.ts](.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts).
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
@@ -939,10 +939,6 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
 - Three providers: `github-copilot` (default, with `gpt-5.4` default + `claude-sonnet-4.6` alternative), `opencode-go` (DeepSeek + GLM/Kimi/Qwen via gateway), `deepseek` (direct DeepSeek API).
 
-**cli-devin**
-- Devin CLI orchestrator. Use it to dispatch Cognition AI's autonomous-agent binary `devin` from any sibling CLI session, with the family's only **local-to-cloud handoff** (the live session can migrate to a Cognition cloud VM that keeps working asynchronously and returns a PR).
-- Four-model preset: `swe-1.6` default for context gathering, tool use and simple-to-medium well-defined code tasks. `deepseek-v4` primary for complex tasks. `glm-5.1` and `kimi-k2.6` as complex-task fallbacks (agentic / large-context shape respectively).
-
 &nbsp;
 #### MCP INTEGRATION
 
@@ -971,7 +967,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **sk-prompt-small-model**
 - **Find the right small-model pattern fast.** A discovery anchor that points to executor-owned pattern files rather than hosting the logic itself
-- **Covers the active matrix:** SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6 and GLM-5.1 across `cli-devin` and `cli-opencode`
+- **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6 and GLM-5.1 via `cli-opencode`
 - **`references/pattern-index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
 - **Pool-aware quota fallback** routes to a different pool only, never same-pool retries. Frontier models (Opus, Sonnet, gpt-5.5) stay out of scope
 
@@ -1194,7 +1190,7 @@ The 10 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 #### UTILITY
 
 **Agent Router**
-- Routes requests to external AI systems (Gemini CLI, Codex CLI, Claude Code, Copilot CLI)
+- Routes requests to external AI systems (Codex CLI, Claude Code, Copilot CLI)
 - The receiving AI operates under its own system prompt - full identity adoption
 - Use for cross-AI delegation where the target AI needs to behave as itself
 
@@ -1284,7 +1280,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `deep-loop-runtime` / `deep-context` / `deep-research` / `deep-review` / `deep-ai-council` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
 | `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt, agent improvement, and model benchmarking frameworks. Work for any project.                                                                                                                                             |
-| `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
+| `cli-*` (codex/copilot/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
 
@@ -1433,7 +1429,7 @@ A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to
 &nbsp;
 **Q: Is this only for OpenCode or does it work with other runtimes?**
 
-A: It works with OpenCode, Codex CLI, Claude Code and Gemini CLI. The repo also includes Copilot CLI-oriented startup-surface integration. Agent definitions are mirrored in the checked-in Claude, Codex and Gemini runtime directories. OpenCode and Copilot CLI use runtime-specific MCP or startup integration rather than a dedicated agent mirror.
+A: It works with OpenCode, Codex CLI and Claude Code. The repo also includes Copilot CLI-oriented startup-surface integration. Agent definitions are mirrored in the checked-in Claude and Codex runtime directories. OpenCode and Copilot CLI use runtime-specific MCP or startup integration rather than a dedicated agent mirror.
 &nbsp;
 **Q: What happens if I do not use a spec folder?**
 

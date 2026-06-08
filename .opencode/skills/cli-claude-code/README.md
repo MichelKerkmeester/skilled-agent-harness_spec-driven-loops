@@ -22,7 +22,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Deep reasoning, code edits, structured JSON, code review and agent delegation through Anthropic's `claude` CLI |
 | **Invoke with** | "claude code", "delegate to claude", "extended thinking" or auto-routing on Anthropic keywords |
-| **Works on** | Any external runtime (Gemini CLI, Codex CLI, Copilot, raw shell) that needs to reach the `claude` binary |
+| **Works on** | Any external runtime (Codex CLI, Copilot, raw shell) that needs to reach the `claude` binary |
 | **Produces** | Text or JSON responses, diff-based edits, schema-validated output and agent-delegated analysis |
 
 ---
@@ -131,7 +131,7 @@ Before the first dispatch the skill checks whether `ANTHROPIC_API_KEY` is set or
 
 ### When To Use This Skill
 
-Reach for cli-claude-code when a task benefits from extended thinking, surgical diff-based edits, schema-validated JSON or agent delegation through Claude Code's built-in agents. Reach for it too when you want a second-AI opinion on code quality or architecture. Skip it for simple tasks the caller can answer directly, for interactive terminal work (use `claude` directly) and for real-time web search (Claude Code has no `--search` flag, so use Gemini or Codex).
+Reach for cli-claude-code when a task benefits from extended thinking, surgical diff-based edits, schema-validated JSON or agent delegation through Claude Code's built-in agents. Reach for it too when you want a second-AI opinion on code quality or architecture. Skip it for simple tasks the caller can answer directly, for interactive terminal work (use `claude` directly) and for real-time web search (Claude Code has no `--search` flag, so use Codex).
 
 ### Sibling Boundaries
 
@@ -142,7 +142,6 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
 | `cli-codex` | OpenAI | Sandboxed coding, repo analysis, PR review, web research |
 | `cli-opencode` | OpenCode | Full OpenCode runtime dispatch, in-OpenCode parallel sessions |
-| `cli-devin` | Cognition | Autonomous coding via Devin for Terminal |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 
@@ -173,7 +172,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 **Q: Why not just call `claude` directly from my shell?**
 
-A: You can. This skill exists for when an external AI assistant (Gemini, Codex, Copilot) needs to dispatch to Claude Code programmatically. It handles model selection, permission modes, auth pre-flight and the self-invocation guard so the calling AI does not have to.
+A: You can. This skill exists for when an external AI assistant (Codex, Copilot) needs to dispatch to Claude Code programmatically. It handles model selection, permission modes, auth pre-flight and the self-invocation guard so the calling AI does not have to.
 
 **Q: Sonnet or Opus?**
 
@@ -212,7 +211,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
 | [`references/cli_reference.md`](./references/cli_reference.md) | Complete CLI flags, commands, models and authentication |
 | [`references/integration_patterns.md`](./references/integration_patterns.md) | Cross-AI orchestration patterns, where the external AI conducts and Claude Code executes |
-| [`references/claude_tools.md`](./references/claude_tools.md) | Unique capabilities and a 3-way comparison with Gemini CLI and Codex CLI |
+| [`references/claude_tools.md`](./references/claude_tools.md) | Unique capabilities and a comparison with Codex CLI |
 | [`references/agent_delegation.md`](./references/agent_delegation.md) | The agent roster, routing table and invocation patterns |
 | [`assets/prompt_quality_card.md`](./assets/prompt_quality_card.md) | Fast-path prompt discipline, the framework table and CLEAR check |
 | [`assets/prompt_templates.md`](./assets/prompt_templates.md) | Copy-paste prompt templates per task |

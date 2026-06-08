@@ -45,34 +45,26 @@ type ExecutorDispatchGuardContext = {
 
 const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'codex',
-  'cli-gemini': 'gemini',
   'cli-claude-code': 'claude',
   'cli-opencode': 'opencode',
-  'cli-devin': 'devin',
 };
 
 const EXECUTOR_SESSION_ENV_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'CODEX_SESSION_ID',
-  'cli-gemini': 'GEMINI_SESSION_ID',
   'cli-claude-code': 'CLAUDE_CODE_SESSION_ID',
   'cli-opencode': 'OPENCODE_SESSION_ID',
-  'cli-devin': 'DEVIN_SESSION_ID',
 };
 
 const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   'cli-codex': ['SPECKIT_CODEX_STATE_DIR', 'CODEX_HOME'],
-  'cli-gemini': ['SPECKIT_GEMINI_STATE_DIR', 'GEMINI_HOME'],
   'cli-claude-code': ['SPECKIT_CLAUDE_CODE_STATE_DIR', 'CLAUDE_CODE_HOME', 'CLAUDE_HOME'],
   'cli-opencode': ['SPECKIT_OPENCODE_STATE_DIR', 'OPENCODE_HOME'],
-  'cli-devin': ['SPECKIT_DEVIN_STATE_DIR', 'DEVIN_HOME'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': '.codex',
-  'cli-gemini': '.gemini',
   'cli-claude-code': '.claude',
   'cli-opencode': '.opencode',
-  'cli-devin': '.devin',
 };
 
 const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
@@ -86,10 +78,8 @@ const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
 
 const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   'cli-codex': ['CODEX_', 'OPENAI_', 'AZURE_OPENAI_'],
-  'cli-gemini': ['GEMINI_', 'GOOGLE_'],
   'cli-claude-code': ['CLAUDE_', 'CLAUDE_CODE_', 'ANTHROPIC_'],
   'cli-opencode': ['OPENCODE_'],
-  'cli-devin': ['DEVIN_'],
 };
 
 type RunAuditedExecutorCommandInput = {

@@ -21,7 +21,7 @@ triggerPhrases:
 
 ## Rule
 
-**Run `/deep:start-review-loop` with cli-devin SWE-1.6 after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
+**Run `/deep:start-review-loop` after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
 
 ## What counts as "substantive implementation"
 
@@ -51,19 +51,15 @@ triggerPhrases:
 
 | Role | Executor | Why |
 |---|---|---|
-| **Loop-manager orchestrator** (manages iter sequencing, convergence, synthesis, commit) | **Native Anthropic Agent** (Agent tool with `subagent_type=claude` / `code` / `orchestrate`) | Per the "Native Opus preference for implementation work" mandate in AGENTS.md. Opus has the judgment for iter-by-iter adjudication + final synthesis. cli-codex is NOT used here. |
-| **Per-iter review worker** (one dimension/pass, P0/P1/P2 finding) | **cli-devin SWE-1.6** with `--agent-config .opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json` | Per operator directive ("Run more SWE 1.6 based deep review"). The recipe pins the read-only profile + sequential_thinking + RCAF prompt-quality contract. |
-
-Follow the cli-devin constitutional preload rule (`cli-dispatch-skill-preload.md`) — the loop manager MUST read cli-devin/SKILL.md §3 + prompt_templates.md §2 + deep-loop-iter-contract.md before composing per-iter prompts.
+| **Loop-manager orchestrator** (manages iter sequencing, convergence, synthesis, commit) | **Native Anthropic Agent** (Agent tool with `subagent_type=claude` / `code` / `orchestrate`) | Per the "Native Opus preference for implementation work" mandate in AGENTS.md. Opus has the judgment for iter-by-iter adjudication + final synthesis. |
+| **Per-iter review worker** (one dimension/pass, P0/P1/P2 finding) | **A CLI review executor of the operator's choice, e.g. `cli-codex` or `cli-opencode`** | Read the chosen executor's SKILL.md before composing per-iter prompts. Follow the cli-dispatch constitutional preload rule (`cli-dispatch-skill-preload.md`). |
 
 **Per-iter prompt contract** (the loop manager enforces this when authoring each iter prompt):
-- `Framework: RCAF` declared at top
 - Explicit ROLE + CONTEXT + ACTION + FORMAT sections
-- Medium-density pre-planning (3-4 ordered steps, NOT high-density)
+- Pre-planning block (3-4 ordered steps with per-step acceptance)
 - `<ref_file>` tags around every cited path
 - sequential_thinking mandate
 - Spec folder pre-approved (Gate 3 skip)
-- DO NOT pair BUILD framework with strict bundle-gate wording (pushes SWE-1.6 toward defensive output)
 
 ### Iteration count tiering
 
@@ -79,10 +75,6 @@ Default to **10 iter** for a typical post-implementation review unless the scope
 ### Convergence threshold
 
 Use the deep-review default (0.10) — early-stop if 3 consecutive iters yield no new P0/P1.
-
-### Iter recipe
-
-Pin via `--agent-config .opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json` per the deep-loop-iter-contract.
 
 ## Output
 
@@ -111,13 +103,12 @@ Don't create new top-level packets just for follow-up reviews. Keep them packet-
 
 ## Why
 
-SWE-1.6 is fast + coding-specialized. 10-iter reviews complete in ~25 min wall time with the iter-recipe pinned. The marginal cost is small; the marginal value is catching P0/P1 bugs while they're cheap to fix. Skipping reviews on substantive ships is the most common path to regressions that bite weeks later.
+A CLI review executor completes 10-iter reviews in ~25 min wall time. The marginal cost is small; the marginal value is catching P0/P1 bugs while they're cheap to fix. Skipping reviews on substantive ships is the most common path to regressions that bite weeks later.
 
 The 020 deep-review surfaced 3 confirmed P0 in code that had passed all unit tests and strict-validate. That was the proof — without the deep-review, those bugs would be in production.
 
 ## Cross-references
 
-- `cli-dispatch-skill-preload.md` — preload cli-devin SKILL.md first
-- `.opencode/skills/cli-devin/references/deep-loop-iter-contract.md` — iter recipe binding
+- `cli-dispatch-skill-preload.md` — preload the chosen CLI executor's SKILL.md first
 - `.opencode/commands/deep/start-review-loop.md` — workflow surface
 - AGENTS.md OPERATIONAL MANDATES — adjacent rule

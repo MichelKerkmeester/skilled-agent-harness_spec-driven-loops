@@ -1,0 +1,2772 @@
+{
+  "reuseCandidates": [],
+  "integrationPoints": [
+    {
+      "path": ".opencode/skills/cli-devin/SKILL.md",
+      "unit_id": "46007128056864a2",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": ".opencode/skills/cli-devin/SKILL.md:1-8",
+      "notes": "[native-a] v1.0.13.0; owns 2 permission modes, 4 model presets, --agent-config recipe contract. No unique contract survives; models also reachable via cli-opencode (except swe-1.6). | [native-b] Deletion target; no external skill depends_on cli-devin (edges.depends_on empty).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+      "unit_id": "32ec01268fdc0ddc",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:755-799",
+      "notes": "[native-a] Referenced by deep_start-research-loop_auto.yaml if_cli_devin block.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
+      "unit_id": "0408ee5fa8b4b3e2",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-review-loop_auto.yaml:918-961",
+      "notes": "[native-a] Referenced by deep_start-review-loop_auto.yaml if_cli_devin block.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
+      "unit_id": "080cd0f20df818c0",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:797",
+      "notes": "[native-a] Named in research+review YAML agent_config_recipe notes.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/references/agent-config-recipes.md",
+      "unit_id": "917e68dd9c916628",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:798",
+      "notes": "[native-a] Named in research+review YAML notes.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      "unit_id": "58012d14416300a0",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "if_cli_devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:753-809",
+      "notes": "[native-a] Remove entire if_cli_devin block (~57 lines) + executor enum mentions at ~123 and option F at ~236. | [native-b] [HARD] remove block + dead asset paths.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      "unit_id": "6524c73220a502a6",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "if_cli_devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "deep_start-review-loop_auto.yaml:916-972",
+      "notes": "[native-a] Remove entire if_cli_devin block + executor comment ~123 + option F ~262. | [native-b] [HARD] remove block + dead asset paths.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
+      "unit_id": "a3499476d8a20f67",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "if_cli_devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 0.95,
+      "evidence": "grep match",
+      "notes": "[native-a] Mirror if_cli_devin block; host verify line numbers. | [native-b] [HARD] mirror auto removal.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/start-research-loop.md",
+      "unit_id": "89f88c60213087d5",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "executor enum"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "start-research-loop.md:123,172,236",
+      "notes": "[native-a] Remove cli-devin from enum (123,172) + delete 'F) cli-devin' paragraph (236).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/start-review-loop.md",
+      "unit_id": "80188a064e166098",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "executor enum"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "start-review-loop.md:123,185,262",
+      "notes": "[native-a] Remove cli-devin from enum (123,185) + delete 'F) cli-devin' paragraph (262).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "unit_id": "7dcd4a71495e5187",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "EXECUTOR_KINDS/SUPPORTED_DIMENSIONS/guards",
+        "EXECUTOR_KINDS/DEVIN_SUPPORTED_MODELS/DevinPermissionMode"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "executor-config.ts:7,40,194,243",
+      "notes": "[native-a] Remove from EXECUTOR_KINDS(7), SUPPORTED_DIMENSIONS(40), model-required guard(194-197), model validation(243-254), DEVIN_SUPPORTED_MODELS const. | [native-b] [HARD] EXECUTOR_KINDS(7), FLAG_SUPPORT(40), DEVIN_SUPPORTED_MODELS(46), DevinSupportedModel type(47), DevinPermissionMode(48).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "unit_id": "e69e6e7c3cc323ef",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "6 lookup tables + 2 branches",
+        "BINARY_BY_KIND/SESSION_ENV_BY_KIND"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "executor-audit.ts:51,59,67,75,92,330,435",
+      "notes": "[native-a] Remove cli-devin from BINARY(51),SESSION_ENV(59),STATE_ENV(67),HOME_DIR(75),ENV_PREFIX(92); buildLineageCommand branch(~330); effectivePermission ternary(435). | [native-b] [HARD] BINARY 'devin'(47), SESSION_ENV 'DEVIN_SESSION_ID'(59); drives recursion-guard env detection.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "unit_id": "247c64e207979806",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "STATE_DIR_BY_KIND/buildLineageCommand",
+        "cli-devin branch"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "fanout-run.cjs:114,330",
+      "notes": "[native-a] Remove 'cli-devin':'SPECKIT_DEVIN_STATE_DIR'(114) + cli-devin dispatch branch(330). | [native-b] [HARD] runtime dispatcher; remove cli-devin case or fanout invokes non-existent skill.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": "AGENTS.md",
+      "unit_id": "a54ff182c7e8acf5",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "CLI + small-model dispatch rules",
+        "Small-model dispatch rule"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "AGENTS.md:56,57",
+      "notes": "[native-a] Remove 'devin /' from CLI dispatch rule(56) + 'cli-devin/' from small-model dispatch rule(57). | [native-b] Remove 'cli-devin/' (57) + 'devin /' (56).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/agents/deep-context.md",
+      "unit_id": "d8c7fb54b2c50a4b",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "Sibling Seats"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": ".opencode/agents/deep-context.md:203",
+      "notes": "[native-a] Remove '/ cli-devin' from sibling seat list; sync .claude + .codex mirrors. | [native-b] Remove cli-devin; sync .claude+.codex mirrors.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".claude/agents/deep-context.md",
+      "unit_id": "7212cb3a6cadda33",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "Sibling Seats"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": ".claude/agents/deep-context.md",
+      "notes": "[native-a] Runtime mirror — update in lockstep.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": "README.md",
+      "unit_id": "b335630551682c19",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin section + sk-prompt bullet",
+        "cli-devin section + sk-prompt para"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "README.md:942-944,974",
+      "notes": "[native-a] Remove cli-devin skill section(942-944) + 'cli-devin and' from line 974. | [native-b] Remove section + 'cli-devin and' on 974.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "unit_id": "f54aac46544bbdac",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "desc/when-to-use/matrix/boundary/resources",
+        "when-to-use/ownership/boundary/resources"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "sk-prompt-small-model/SKILL.md:3,12,21-22,51,103,132,186,203-207,237,258-262,274,281",
+      "notes": "[native-a] ~9 edit sites incl. dispatch matrix rows for swe-1.6/deepseek/kimi/glm; swe-1.6 loses its ONLY executor (gap). | [native-b] Multiple sites; dispatch matrix rows + boundary map + resource links.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "unit_id": "33c37bf99bc13202",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "4 executor entries"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "model-profiles.json:12,58,118,217",
+      "notes": "[native-a] Remove cli-devin executor from swe-1.6/deepseek-v4-pro/kimi-k2.6/glm-5.1; swe-1.6 becomes executor-less (decision needed). | [native-b] [HARD] remove cli-devin executor objs; swe-1.6 has NO remaining executor (cognition-exclusive).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      "unit_id": "c1a57e02e1b2618f",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin node+edges",
+        "cli-devin node"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "skill-graph.json",
+      "notes": "[native-a] Remove node + reciprocal sibling edges; rebuild skill-graph.sqlite. | [native-b] Remove node+edges.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/SKILL.md",
+      "unit_id": "a44661a6da95dcde",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "Pairs-with/sibling seats",
+        "Pairs-with"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "deep-context/SKILL.md:391",
+      "notes": "[native-a] Remove cli-devin from sibling seats list. | [native-b] Remove cli-devin from Pairs-with list.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/README.md",
+      "unit_id": "1d619ccba56e8f6d",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin entry"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "grep match",
+      "notes": "[native-a] Skills index entry; remove per 132 precedent.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/devin-user-prompt-submit.md",
+      "unit_id": "ffe17a919b3e05c0",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-a] Devin hook test case; remove + decrement playbook file-count self-check.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/specs/descriptions.json",
+      "unit_id": "83783942e97b7c55",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin entry"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-a] Live memory index — remove active skill entry (borderline: under specs/ but is a live index).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      "unit_id": "f1e6b5feea4e8147",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin seat notes"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.95,
+      "evidence": "deep_start-context-loop_auto.yaml:455-456",
+      "notes": "[native-b] [HARD] remove cli-devin seat invocation note(455) + update self-invocation guard note(456) to cli-opencode only.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml",
+      "unit_id": "1bea06657d2301ba",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin seat notes"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] [HARD] mirror auto removal.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    }
+  ],
+  "conventions": [],
+  "dependencies": [
+    {
+      "path": ".opencode/skills/cli-devin/graph-metadata.json",
+      "unit_id": "9a90fbb85f527923",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings/enhances",
+        "edges.siblings"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": ".opencode/skills/cli-devin/graph-metadata.json:6-34",
+      "notes": "[native-a] siblings=[cli-claude-code,cli-codex,cli-opencode], enhances=[sk-prompt-small-model]; reciprocal edges in those siblings must be pruned. | [native-b] depends_on empty; reciprocal edges in cli-opencode/cli-claude-code/cli-codex/sk-prompt-small-model.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/assets/per-model-budgets.json",
+      "unit_id": "f15a0f225bc9a212",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": ".opencode/skills/cli-devin/SKILL.md:250",
+      "notes": "[native-a] Pointer in sk-prompt-small-model SKILL.md §Related Resources (258-262) must be removed.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/cli/memory_handback.md",
+      "unit_id": "9c1aa681871ec18d",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-a] Shared cli-* doc; surgical edit not delete.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+      "unit_id": "0b926a7ca37b2fa5",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify+remove cli-devin from executor/sibling list.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/references/guides/quick_reference.md",
+      "unit_id": "58c275c7964da91a",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify+remove.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-opencode/README.md",
+      "unit_id": "e43840a349ece644",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.75,
+      "evidence": "grep match",
+      "notes": "[native-a] Sibling mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-codex/README.md",
+      "unit_id": "cba569323753dce2",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.7,
+      "evidence": "grep match",
+      "notes": "[native-a] Sibling mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-claude-code/README.md",
+      "unit_id": "426d5fadb5edbaab",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.7,
+      "evidence": "grep match",
+      "notes": "[native-a] Sibling mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt/README.md",
+      "unit_id": "45426de75a93d285",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.7,
+      "evidence": "grep match",
+      "notes": "[native-a] Executor mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/model-dispatcher.md",
+      "unit_id": "b360dc676ef59d23",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.75,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify active executor list.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/scripts/README.md",
+      "unit_id": "0b5863ad39bd3ab7",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.65,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify executor doc.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      "unit_id": "40e9e17ddad37988",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.enhances/related_to/causal_summary"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "sk-prompt-small-model/graph-metadata.json:10-13,27,128",
+      "notes": "[native-b] Remove cli-devin from enhances + related_to; update causal_summary(128).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-opencode/graph-metadata.json",
+      "unit_id": "0026d91866bcb104",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings/related_to"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "cli-opencode/graph-metadata.json:27-29,45",
+      "notes": "[native-b] Reciprocal sibling edge.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-claude-code/graph-metadata.json",
+      "unit_id": "17362c16b1e5b05a",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings/related_to"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "cli-claude-code/graph-metadata.json:21-23,38",
+      "notes": "[native-b] Reciprocal sibling edge.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-codex/graph-metadata.json",
+      "unit_id": "272fbf57537087be",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove sibling edge.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/graph-metadata.json",
+      "unit_id": "f7b127256bc33d60",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges→cli-devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove edges; rebuild sqlite.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json",
+      "unit_id": "2b2d540f5baf207b",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin node"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "database/skill-graph.json:1",
+      "notes": "[native-b] Remove node+edges; rebuild sqlite.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/agents/deep-research.md",
+      "unit_id": "5e93abc5943bfd91",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove; check .claude mirror.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/agents/deep-review.md",
+      "unit_id": "e25d06946b010ed5",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove; check .claude mirror.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".codex/agents/deep-context.toml",
+      "unit_id": "6fc4827a80c02107",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "Sibling Seats"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] Codex mirror; remove cli-devin.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "unit_id": "971f52efb4b1f1e9",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Update executor refs; swe-1.6 special.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "unit_id": "b437e13b05d078b6",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] swe-1.6 cognition-exclusive; remove or mark retired.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "unit_id": "9afb36b573573a4a",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove cli-devin path; keeps cli-opencode.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "unit_id": "6b43666463578a33",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove cli-devin path; keeps cli-opencode.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "unit_id": "1b73d15f1b12076f",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove cli-devin path; keeps cli-opencode.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "unit_id": "fafde0e3987e693f",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin links"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove dead cross-links to cli-devin/.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/feature_catalog/02--by-model-parallel-sweep/cli-council-seats.md",
+      "unit_id": "e5bd6b15e34e3160",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin seat"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove from council seats catalog.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md",
+      "unit_id": "433288cea4e5a0b0",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-X list"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove 'devin' from cli-X preload rule.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/cli/shared_smart_router.md",
+      "unit_id": "910405beb300ad65",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "routing table"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.8,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/SKILL.md",
+      "unit_id": "43cd7b4dbd41150e",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor options"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.75,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify active vs historical-benchmark context.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    }
+  ],
+  "gaps": [
+    {
+      "path": ".opencode/skills/cli-devin",
+      "unit_id": "92b46f2649aa605e",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "(whole directory, ~70 files)"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": ".opencode/skills/cli-devin/",
+      "notes": "[native-a] Full deletion surface: SKILL.md, README, graph-metadata.json, 7 references, 7 assets, 54 playbook files, 13 changelog. No symlinks out.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/specs/skilled-agent-orchestration/z_archive/104-cli-devin-creation",
+      "unit_id": "4248361838a363d2",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "leave",
+      "classification": "historical-record",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.6,
+      "evidence": "grep match",
+      "notes": "[native-a] Already archived; leave.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/specs/skilled-agent-orchestration/135-skill-readme-standardization/004-cli-devin-readme",
+      "unit_id": "e65b6d7e4a997d81",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "leave",
+      "classification": "historical-record",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.6,
+      "evidence": "grep match",
+      "notes": "[native-a] Historical spec packet; leave.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": "GAP:swe-1.6-executorless",
+      "unit_id": "03eef591159b17f1",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "swe-1.6"
+      ],
+      "reuse": "leave",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 0.95,
+      "evidence": "model-profiles.json:12",
+      "notes": "[native-a] CRITICAL: swe-1.6 has only cli-devin executor (cognition-free). Decision needed: remove model entirely or mark retired. | [native-b] CRITICAL: swe-1.6 cognition-exclusive; zero executors after removal. Decide: remove vs retire.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/changelog/v1.2.0.0.md",
+      "unit_id": "d08dcd0ea75725fd",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "leave",
+      "classification": "historical-record",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.6,
+      "evidence": "grep match",
+      "notes": "[native-b] Changelog; leave per 132 precedent.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    }
+  ],
+  "contradictions": [],
+  "metrics": {
+    "iterationsCompleted": 1,
+    "findings": 61,
+    "agreementEligible": 16,
+    "sliceCoverage": 0.143,
+    "reuseCatalogCoverage": 0.262,
+    "agreementRate": 0.262,
+    "relevanceFloor": 0.55,
+    "dependencyCompleteness": 0.25,
+    "convergenceScore": 0.348
+  },
+  "units": [
+    {
+      "path": ".opencode/skills/cli-devin",
+      "unit_id": "92b46f2649aa605e",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "(whole directory, ~70 files)"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": ".opencode/skills/cli-devin/",
+      "notes": "[native-a] Full deletion surface: SKILL.md, README, graph-metadata.json, 7 references, 7 assets, 54 playbook files, 13 changelog. No symlinks out.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/SKILL.md",
+      "unit_id": "46007128056864a2",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": ".opencode/skills/cli-devin/SKILL.md:1-8",
+      "notes": "[native-a] v1.0.13.0; owns 2 permission modes, 4 model presets, --agent-config recipe contract. No unique contract survives; models also reachable via cli-opencode (except swe-1.6). | [native-b] Deletion target; no external skill depends_on cli-devin (edges.depends_on empty).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/graph-metadata.json",
+      "unit_id": "9a90fbb85f527923",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings/enhances",
+        "edges.siblings"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": ".opencode/skills/cli-devin/graph-metadata.json:6-34",
+      "notes": "[native-a] siblings=[cli-claude-code,cli-codex,cli-opencode], enhances=[sk-prompt-small-model]; reciprocal edges in those siblings must be pruned. | [native-b] depends_on empty; reciprocal edges in cli-opencode/cli-claude-code/cli-codex/sk-prompt-small-model.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+      "unit_id": "32ec01268fdc0ddc",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:755-799",
+      "notes": "[native-a] Referenced by deep_start-research-loop_auto.yaml if_cli_devin block.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
+      "unit_id": "0408ee5fa8b4b3e2",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-review-loop_auto.yaml:918-961",
+      "notes": "[native-a] Referenced by deep_start-review-loop_auto.yaml if_cli_devin block.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/assets/per-model-budgets.json",
+      "unit_id": "f15a0f225bc9a212",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": ".opencode/skills/cli-devin/SKILL.md:250",
+      "notes": "[native-a] Pointer in sk-prompt-small-model SKILL.md §Related Resources (258-262) must be removed.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
+      "unit_id": "080cd0f20df818c0",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:797",
+      "notes": "[native-a] Named in research+review YAML agent_config_recipe notes.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-devin/references/agent-config-recipes.md",
+      "unit_id": "917e68dd9c916628",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "skill-internal",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:798",
+      "notes": "[native-a] Named in research+review YAML notes.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      "unit_id": "58012d14416300a0",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "if_cli_devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "deep_start-research-loop_auto.yaml:753-809",
+      "notes": "[native-a] Remove entire if_cli_devin block (~57 lines) + executor enum mentions at ~123 and option F at ~236. | [native-b] [HARD] remove block + dead asset paths.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      "unit_id": "6524c73220a502a6",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "if_cli_devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "deep_start-review-loop_auto.yaml:916-972",
+      "notes": "[native-a] Remove entire if_cli_devin block + executor comment ~123 + option F ~262. | [native-b] [HARD] remove block + dead asset paths.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
+      "unit_id": "a3499476d8a20f67",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "if_cli_devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 0.95,
+      "evidence": "grep match",
+      "notes": "[native-a] Mirror if_cli_devin block; host verify line numbers. | [native-b] [HARD] mirror auto removal.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/start-research-loop.md",
+      "unit_id": "89f88c60213087d5",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "executor enum"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "start-research-loop.md:123,172,236",
+      "notes": "[native-a] Remove cli-devin from enum (123,172) + delete 'F) cli-devin' paragraph (236).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/start-review-loop.md",
+      "unit_id": "80188a064e166098",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "executor enum"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "start-review-loop.md:123,185,262",
+      "notes": "[native-a] Remove cli-devin from enum (123,185) + delete 'F) cli-devin' paragraph (262).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "unit_id": "7dcd4a71495e5187",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "EXECUTOR_KINDS/SUPPORTED_DIMENSIONS/guards",
+        "EXECUTOR_KINDS/DEVIN_SUPPORTED_MODELS/DevinPermissionMode"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "executor-config.ts:7,40,194,243",
+      "notes": "[native-a] Remove from EXECUTOR_KINDS(7), SUPPORTED_DIMENSIONS(40), model-required guard(194-197), model validation(243-254), DEVIN_SUPPORTED_MODELS const. | [native-b] [HARD] EXECUTOR_KINDS(7), FLAG_SUPPORT(40), DEVIN_SUPPORTED_MODELS(46), DevinSupportedModel type(47), DevinPermissionMode(48).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "unit_id": "e69e6e7c3cc323ef",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "6 lookup tables + 2 branches",
+        "BINARY_BY_KIND/SESSION_ENV_BY_KIND"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "executor-audit.ts:51,59,67,75,92,330,435",
+      "notes": "[native-a] Remove cli-devin from BINARY(51),SESSION_ENV(59),STATE_ENV(67),HOME_DIR(75),ENV_PREFIX(92); buildLineageCommand branch(~330); effectivePermission ternary(435). | [native-b] [HARD] BINARY 'devin'(47), SESSION_ENV 'DEVIN_SESSION_ID'(59); drives recursion-guard env detection.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "unit_id": "247c64e207979806",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "STATE_DIR_BY_KIND/buildLineageCommand",
+        "cli-devin branch"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "fanout-run.cjs:114,330",
+      "notes": "[native-a] Remove 'cli-devin':'SPECKIT_DEVIN_STATE_DIR'(114) + cli-devin dispatch branch(330). | [native-b] [HARD] runtime dispatcher; remove cli-devin case or fanout invokes non-existent skill.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": "AGENTS.md",
+      "unit_id": "a54ff182c7e8acf5",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "CLI + small-model dispatch rules",
+        "Small-model dispatch rule"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "AGENTS.md:56,57",
+      "notes": "[native-a] Remove 'devin /' from CLI dispatch rule(56) + 'cli-devin/' from small-model dispatch rule(57). | [native-b] Remove 'cli-devin/' (57) + 'devin /' (56).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/agents/deep-context.md",
+      "unit_id": "d8c7fb54b2c50a4b",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "Sibling Seats"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": ".opencode/agents/deep-context.md:203",
+      "notes": "[native-a] Remove '/ cli-devin' from sibling seat list; sync .claude + .codex mirrors. | [native-b] Remove cli-devin; sync .claude+.codex mirrors.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".claude/agents/deep-context.md",
+      "unit_id": "7212cb3a6cadda33",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "Sibling Seats"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": ".claude/agents/deep-context.md",
+      "notes": "[native-a] Runtime mirror — update in lockstep.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": "README.md",
+      "unit_id": "b335630551682c19",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin section + sk-prompt bullet",
+        "cli-devin section + sk-prompt para"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "README.md:942-944,974",
+      "notes": "[native-a] Remove cli-devin skill section(942-944) + 'cli-devin and' from line 974. | [native-b] Remove section + 'cli-devin and' on 974.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "unit_id": "f54aac46544bbdac",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "desc/when-to-use/matrix/boundary/resources",
+        "when-to-use/ownership/boundary/resources"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "sk-prompt-small-model/SKILL.md:3,12,21-22,51,103,132,186,203-207,237,258-262,274,281",
+      "notes": "[native-a] ~9 edit sites incl. dispatch matrix rows for swe-1.6/deepseek/kimi/glm; swe-1.6 loses its ONLY executor (gap). | [native-b] Multiple sites; dispatch matrix rows + boundary map + resource links.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "unit_id": "33c37bf99bc13202",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "4 executor entries"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "model-profiles.json:12,58,118,217",
+      "notes": "[native-a] Remove cli-devin executor from swe-1.6/deepseek-v4-pro/kimi-k2.6/glm-5.1; swe-1.6 becomes executor-less (decision needed). | [native-b] [HARD] remove cli-devin executor objs; swe-1.6 has NO remaining executor (cognition-exclusive).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      "unit_id": "c1a57e02e1b2618f",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin node+edges",
+        "cli-devin node"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "skill-graph.json",
+      "notes": "[native-a] Remove node + reciprocal sibling edges; rebuild skill-graph.sqlite. | [native-b] Remove node+edges.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/cli/memory_handback.md",
+      "unit_id": "9c1aa681871ec18d",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-a] Shared cli-* doc; surgical edit not delete.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/SKILL.md",
+      "unit_id": "a44661a6da95dcde",
+      "kinds": [
+        "integration_point",
+        "dependency"
+      ],
+      "symbols": [
+        "Pairs-with/sibling seats",
+        "Pairs-with"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 1,
+      "evidence": "deep-context/SKILL.md:391",
+      "notes": "[native-a] Remove cli-devin from sibling seats list. | [native-b] Remove cli-devin from Pairs-with list.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+      "unit_id": "0b926a7ca37b2fa5",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify+remove cli-devin from executor/sibling list.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/references/guides/quick_reference.md",
+      "unit_id": "58c275c7964da91a",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify+remove.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-opencode/README.md",
+      "unit_id": "e43840a349ece644",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.75,
+      "evidence": "grep match",
+      "notes": "[native-a] Sibling mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-codex/README.md",
+      "unit_id": "cba569323753dce2",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.7,
+      "evidence": "grep match",
+      "notes": "[native-a] Sibling mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-claude-code/README.md",
+      "unit_id": "426d5fadb5edbaab",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.7,
+      "evidence": "grep match",
+      "notes": "[native-a] Sibling mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt/README.md",
+      "unit_id": "45426de75a93d285",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.7,
+      "evidence": "grep match",
+      "notes": "[native-a] Executor mention.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/README.md",
+      "unit_id": "1d619ccba56e8f6d",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin entry"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "grep match",
+      "notes": "[native-a] Skills index entry; remove per 132 precedent.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/model-dispatcher.md",
+      "unit_id": "b360dc676ef59d23",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.75,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify active executor list.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/devin-user-prompt-submit.md",
+      "unit_id": "ffe17a919b3e05c0",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-a] Devin hook test case; remove + decrement playbook file-count self-check.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/scripts/README.md",
+      "unit_id": "0b5863ad39bd3ab7",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.65,
+      "evidence": "grep match",
+      "notes": "[native-a] Verify executor doc.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/specs/descriptions.json",
+      "unit_id": "83783942e97b7c55",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin entry"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-a] Live memory index — remove active skill entry (borderline: under specs/ but is a live index).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/specs/skilled-agent-orchestration/z_archive/104-cli-devin-creation",
+      "unit_id": "4248361838a363d2",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "leave",
+      "classification": "historical-record",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.6,
+      "evidence": "grep match",
+      "notes": "[native-a] Already archived; leave.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/specs/skilled-agent-orchestration/135-skill-readme-standardization/004-cli-devin-readme",
+      "unit_id": "e65b6d7e4a997d81",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "leave",
+      "classification": "historical-record",
+      "producedBy": [
+        "native-a"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.6,
+      "evidence": "grep match",
+      "notes": "[native-a] Historical spec packet; leave.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": "GAP:swe-1.6-executorless",
+      "unit_id": "03eef591159b17f1",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "swe-1.6"
+      ],
+      "reuse": "leave",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-a",
+        "native-b"
+      ],
+      "agreement": 2,
+      "agreementEligible": true,
+      "relevanceMax": 0.95,
+      "evidence": "model-profiles.json:12",
+      "notes": "[native-a] CRITICAL: swe-1.6 has only cli-devin executor (cognition-free). Decision needed: remove model entirely or mark retired. | [native-b] CRITICAL: swe-1.6 cognition-exclusive; zero executors after removal. Decide: remove vs retire.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      "unit_id": "f1e6b5feea4e8147",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin seat notes"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.95,
+      "evidence": "deep_start-context-loop_auto.yaml:455-456",
+      "notes": "[native-b] [HARD] remove cli-devin seat invocation note(455) + update self-invocation guard note(456) to cli-opencode only.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml",
+      "unit_id": "1bea06657d2301ba",
+      "kinds": [
+        "integration_point"
+      ],
+      "symbols": [
+        "cli-devin seat notes"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] [HARD] mirror auto removal.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      "unit_id": "40e9e17ddad37988",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.enhances/related_to/causal_summary"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "sk-prompt-small-model/graph-metadata.json:10-13,27,128",
+      "notes": "[native-b] Remove cli-devin from enhances + related_to; update causal_summary(128).",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-opencode/graph-metadata.json",
+      "unit_id": "0026d91866bcb104",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings/related_to"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "cli-opencode/graph-metadata.json:27-29,45",
+      "notes": "[native-b] Reciprocal sibling edge.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-claude-code/graph-metadata.json",
+      "unit_id": "17362c16b1e5b05a",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings/related_to"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 1,
+      "evidence": "cli-claude-code/graph-metadata.json:21-23,38",
+      "notes": "[native-b] Reciprocal sibling edge.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/cli-codex/graph-metadata.json",
+      "unit_id": "272fbf57537087be",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges.siblings"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove sibling edge.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/graph-metadata.json",
+      "unit_id": "f7b127256bc33d60",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "edges→cli-devin"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove edges; rebuild sqlite.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json",
+      "unit_id": "2b2d540f5baf207b",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin node"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "database/skill-graph.json:1",
+      "notes": "[native-b] Remove node+edges; rebuild sqlite.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/agents/deep-research.md",
+      "unit_id": "5e93abc5943bfd91",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove; check .claude mirror.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/agents/deep-review.md",
+      "unit_id": "e25d06946b010ed5",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove; check .claude mirror.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".codex/agents/deep-context.toml",
+      "unit_id": "6fc4827a80c02107",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "Sibling Seats"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] Codex mirror; remove cli-devin.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "unit_id": "971f52efb4b1f1e9",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Update executor refs; swe-1.6 special.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "unit_id": "b437e13b05d078b6",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.9,
+      "evidence": "grep match",
+      "notes": "[native-b] swe-1.6 cognition-exclusive; remove or mark retired.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "unit_id": "9afb36b573573a4a",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove cli-devin path; keeps cli-opencode.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "unit_id": "6b43666463578a33",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove cli-devin path; keeps cli-opencode.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "unit_id": "1b73d15f1b12076f",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor mechanics"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove cli-devin path; keeps cli-opencode.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "unit_id": "fafde0e3987e693f",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin links"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove dead cross-links to cli-devin/.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-context/feature_catalog/02--by-model-parallel-sweep/cli-council-seats.md",
+      "unit_id": "e5bd6b15e34e3160",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-devin seat"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove from council seats catalog.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md",
+      "unit_id": "433288cea4e5a0b0",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "cli-X list"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.85,
+      "evidence": "grep match",
+      "notes": "[native-b] Remove 'devin' from cli-X preload rule.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/cli/shared_smart_router.md",
+      "unit_id": "910405beb300ad65",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "routing table"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.8,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify+remove.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/SKILL.md",
+      "unit_id": "43cd7b4dbd41150e",
+      "kinds": [
+        "dependency"
+      ],
+      "symbols": [
+        "executor options"
+      ],
+      "reuse": "remove",
+      "classification": "active-wiring",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.75,
+      "evidence": "grep match",
+      "notes": "[native-b] Verify active vs historical-benchmark context.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/changelog/v1.2.0.0.md",
+      "unit_id": "d08dcd0ea75725fd",
+      "kinds": [
+        "gap"
+      ],
+      "symbols": [
+        "-"
+      ],
+      "reuse": "leave",
+      "classification": "historical-record",
+      "producedBy": [
+        "native-b"
+      ],
+      "agreement": 1,
+      "agreementEligible": false,
+      "relevanceMax": 0.6,
+      "evidence": "grep match",
+      "notes": "[native-b] Changelog; leave per 132 precedent.",
+      "verified": false,
+      "freshness": "unverified(code-graph-down)"
+    }
+  ]
+}

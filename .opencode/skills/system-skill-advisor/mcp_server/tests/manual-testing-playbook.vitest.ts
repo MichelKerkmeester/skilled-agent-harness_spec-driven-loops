@@ -42,17 +42,17 @@ function actualScenarioFiles(): string[] {
 }
 
 describe('skill advisor manual testing playbook inventory', () => {
-  it('keeps the root playbook aligned with the live 46-scenario corpus', () => {
+  it('keeps the root playbook aligned with the live 44-scenario corpus', () => {
     const markdown = readFileSync(rootPlaybook, 'utf8');
     const rows = listedScenarioRows(markdown);
     const files = actualScenarioFiles();
 
-    expect(markdown).toContain('46 deterministic scenario files across 9 categories');
-    expect(markdown).toContain('all 46 scenario files are `PASS`');
+    expect(markdown).toContain('44 deterministic scenario files across 9 categories');
+    expect(markdown).toContain('all 44 scenario files are `PASS`');
     expect(markdown).not.toMatch(/\b24-scenario\b|\b24 scenarios\b/);
-    expect(rows).toHaveLength(46);
-    expect(new Set(rows.map((row) => row.id)).size).toBe(46);
-    expect(files).toHaveLength(46);
+    expect(rows).toHaveLength(44);
+    expect(new Set(rows.map((row) => row.id)).size).toBe(44);
+    expect(files).toHaveLength(44);
 
     for (const row of rows) {
       expect(existsSync(resolve(playbookRoot, row.relativePath))).toBe(true);

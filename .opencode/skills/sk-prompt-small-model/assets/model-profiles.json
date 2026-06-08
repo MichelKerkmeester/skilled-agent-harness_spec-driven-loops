@@ -1,66 +1,13 @@
 {
-  "version": "1.4",
-  "description": "Shared small-model profile registry for cli-devin and cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`; free opencode/mimo-v2.5-free sibling). Optional unverified separate-pool stub: Claude Haiku.",
+  "version": "1.5",
+  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`; free opencode/mimo-v2.5-free sibling). Optional unverified separate-pool stub: Claude Haiku.",
   "models": [
-    {
-      "id": "swe-1.6",
-      "context_length": 128000,
-      "tool_calling": "native",
-      "chat_template": "default",
-      "executors": [
-        {
-          "executor": "cli-devin",
-          "provider": "cognition",
-          "quota_pool": "cognition-free",
-          "status": "active",
-          "notes": "Cognition free tier; no Pro quota burn. Default executor for SWE-1.6."
-        }
-      ],
-      "primary_quota_pool": "cognition-free",
-      "fallback_target": null,
-      "free_tier": true,
-      "strengths": [
-        "fast",
-        "code-specialized",
-        "tool-use friendly",
-        "available during Cognition Pro exhaustion"
-      ],
-      "weaknesses": [
-        "limited reasoning depth versus larger models",
-        "needs explicit pre-planning",
-        "best with narrow acceptance criteria"
-      ],
-      "avg_iter_wall_clock_min": 7,
-      "status": "active",
-      "recommended_frameworks": {
-        "primary": "rcaf",
-        "fallback": null,
-        "avoid": [],
-        "preplanning_density": "medium",
-        "evidence": {
-          "benchmark": null,
-          "primary_score": null,
-          "fallback_score": null,
-          "sample": "contract: mandatory caller-side pre-planning",
-          "confidence": "low"
-        },
-        "profile_ref": "sk-prompt-small-model/references/models/swe-1.6.md",
-        "status": "default-unverified"
-      }
-    },
     {
       "id": "deepseek-v4-pro",
       "context_length": 64000,
       "tool_calling": "native",
       "chat_template": "default",
       "executors": [
-        {
-          "executor": "cli-devin",
-          "provider": "cognition",
-          "quota_pool": "cognition-pro",
-          "status": "active",
-          "notes": "DeepSeek-v4-pro through Devin's Cognition Pro plan."
-        },
         {
           "executor": "cli-opencode",
           "provider": "deepseek-api",
@@ -76,7 +23,7 @@
           "notes": "Through opencode-go provider credits (workspace-wide pool; 401 Insufficient balance when exhausted)."
         }
       ],
-      "primary_quota_pool": "cognition-pro",
+      "primary_quota_pool": "deepseek-api",
       "fallback_target": null,
       "free_tier": false,
       "strengths": [
@@ -86,7 +33,6 @@
         "architecture trade-off analysis"
       ],
       "weaknesses": [
-        "uses shared Cognition Pro pool",
         "slower on non-trivial fixtures",
         "needs timeout headroom"
       ],
@@ -115,21 +61,14 @@
       "chat_template": "default",
       "executors": [
         {
-          "executor": "cli-devin",
-          "provider": "cognition",
-          "quota_pool": "cognition-pro",
-          "status": "active",
-          "notes": "Kimi-k2.6 through Devin's Cognition Pro plan."
-        },
-        {
           "executor": "cli-opencode",
           "provider": "opencode-go",
           "quota_pool": "opencode-go",
           "status": "active",
-          "notes": "Through opencode-go provider credits. ~5–10% hang rate documented in cli-devin SKILL.md §3 (applies symmetrically here)."
+          "notes": "Through opencode-go provider credits. ~5–10% hang rate on complex fixtures (see cli-opencode SKILL.md §3)."
         }
       ],
-      "primary_quota_pool": "cognition-pro",
+      "primary_quota_pool": "opencode-go",
       "fallback_target": null,
       "free_tier": false,
       "strengths": [
@@ -139,7 +78,6 @@
         "multi-repo evidence gathering"
       ],
       "weaknesses": [
-        "uses shared Cognition Pro pool",
         "can hang on complex fixtures",
         "not the default for tight feedback loops"
       ],
@@ -172,7 +110,7 @@
           "provider": "opencode-go",
           "quota_pool": "opencode-go",
           "status": "active",
-          "notes": "Only available through opencode-go provider credits. No Devin/Cognition path."
+          "notes": "Only available through opencode-go provider credits."
         }
       ],
       "primary_quota_pool": "opencode-go",
@@ -214,13 +152,6 @@
       "chat_template": "default",
       "executors": [
         {
-          "executor": "cli-devin",
-          "provider": "cognition",
-          "quota_pool": "cognition-pro",
-          "status": "active",
-          "notes": "GLM-5.1 through Devin's Cognition Pro plan."
-        },
-        {
           "executor": "cli-opencode",
           "provider": "opencode-go",
           "quota_pool": "opencode-go",
@@ -228,7 +159,7 @@
           "notes": "Through opencode-go provider credits."
         }
       ],
-      "primary_quota_pool": "cognition-pro",
+      "primary_quota_pool": "opencode-go",
       "fallback_target": null,
       "free_tier": false,
       "strengths": [
@@ -237,8 +168,7 @@
         "broad multi-file synthesis"
       ],
       "weaknesses": [
-        "shared Cognition Pro pool when via cli-devin",
-        "shared opencode-go credit pool when via cli-opencode"
+        "shared opencode-go credit pool"
       ],
       "avg_iter_wall_clock_min": 16,
       "status": "active",
@@ -412,7 +342,7 @@
       "strengths": [
         "1,000,000-token context window (largest in the small-model rotation)",
         "strongly agentic — sustains 1000+ sequential tool calls (SWE-bench Pro 57.2)",
-        "token-efficient — 40-60% fewer tokens/trajectory vs frontier models (Opus 4.6 / Gemini 3.1 Pro / GPT-5.4)",
+        "token-efficient — 40-60% fewer tokens/trajectory vs frontier models (Opus 4.6 / GPT-5.4)",
         "Xiaomi Token Plan (Europe) subscription billing via provider xiaomi-token-plan-ams",
         "separate quota pool (xiaomi-token-plan) independent of opencode-go / minimax / cognition pools",
         "free cheap-iteration sibling available at opencode/mimo-v2.5-free"

@@ -18,7 +18,7 @@ This scenario routes a synthetic deep-review FAIL verdict through multiple exter
 - Objective: Confirm external CLI agents name remediation packets with both a source token (origin of findings) and a target token (component being fixed) when SKILL.md rule 20 is active.
 - Real user request: `An operator gives a CLI agent a deep-review FAIL verdict and asks for the remediation packet name. Verify the proposed slug references BOTH the source (deep-review findings) AND the target (the specific component being remediated), per system-spec-kit SKILL.md ALWAYS rule 20.`
 - Prompt: See the canonical test prompt in §3.
-- Expected execution process: Rotate the canonical prompt through at least 3 of the 5 supported CLIs; collect JSON responses; verify each proposed slug contains a source token and a target token per rule 20.
+- Expected execution process: Rotate the canonical prompt through at least 3 of the 4 supported CLIs; collect JSON responses; verify each proposed slug contains a source token and a target token per rule 20.
 - Expected signals: `proposed_slug` matches `NNN-(fix|remediate|address|resolve)-<source-marker>-(p0|p1|p2|findings|verdict)-...-(for|in|on)-<target-component>`; `source_token` is non-empty and names the origin event; `target_token` is non-empty and names the specific component; `rule_20_self_audit` cites both portions.
 - Desired user-visible outcome: A per-CLI verdict table with proposed slugs and PASS/PARTIAL/FAIL per CLI plus an aggregate verdict.
 - Pass/fail: PASS if the slug includes both source and target tokens and the self-audit confirms. PARTIAL if one token (source OR target) is present but not both. FAIL if the slug matches the bare stoplist or the self-audit is missing.
@@ -49,7 +49,7 @@ Expected: at least 1 match.
 
 ### Phase 2 -- Per-CLI invocations
 
-Rotate the canonical prompt through at least 3 of the 5 CLIs below. Record each raw response.
+Rotate the canonical prompt through at least 3 of the 4 CLIs below. Record each raw response.
 
 #### Canonical test prompt
 
@@ -111,12 +111,18 @@ Do NOT execute create.sh. Return only the JSON.
 PROMPT
 ```
 
-#### cli-devin
+#### cli-codex (alternate invocation)
 
-Write the prompt to a temp file, then dispatch:
+The `cli-codex` block above is the primary dispatch path. For a second seat or parallel confirmation, reuse the same codex invocation with a different reasoning effort:
 
 ```bash
-cat > /tmp/phase009-devin-prompt.txt <<'PROMPT'
+codex exec \
+  --model "gpt-5.5" \
+  -c model_reasoning_effort="medium" \
+  -c approval_policy=never \
+  -c service_tier="fast" \
+  --sandbox workspace-write \
+  - <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
 
   Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
@@ -130,7 +136,7 @@ Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose
 
 Return ONLY a JSON object:
 {
-  "cli_name": "cli-devin",
+  "cli_name": "cli-codex",
   "proposed_slug": "NNN-<descriptive-slug>",
   "source_token": "<the part of the slug naming the source>",
   "target_token": "<the part of the slug naming the target>",
@@ -139,11 +145,6 @@ Return ONLY a JSON object:
 
 Do NOT execute create.sh. Return only the JSON.
 PROMPT
-
-devin --prompt-file /tmp/phase009-devin-prompt.txt \
-  --model swe-1.6 \
-  --permission-mode auto \
-  -p
 ```
 
 #### cli-opencode
@@ -154,34 +155,6 @@ opencode run \
   --pure \
   --prompt "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet {example-arc}/{example-phase}/{example-leaf-packet}/. P0 findings: 3 (broken ANCHOR pair, missing handover.md fields, validate.sh --strict errors). P1 findings: 5 (HVR violations). Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/{example-track}/{example-arc}/{example-phase}/. Return ONLY JSON: { \"cli_name\": \"cli-opencode\", \"proposed_slug\": \"NNN-<slug>\", \"source_token\": \"<source>\", \"target_token\": \"<target>\", \"rule_20_self_audit\": \"<sentence>\" }. Do NOT execute create.sh." \
   </dev/null
-```
-
-#### cli-gemini
-
-Write the prompt to a temp file first, then dispatch with explicit stdin close (avoids the piped `$(cat)` wrapper race that hangs the dispatch):
-
-```bash
-PROMPT_FILE=/tmp/phase-009-gemini-prompt.md
-cat > "$PROMPT_FILE" <<'PROMPT'
-You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
-
-  Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
-  Active P0 findings: 3 (broken ANCHOR pair in spec.md, missing handover.md fields, validate.sh --strict reports 2 errors)
-  Active P1 findings: 5 (HVR violations across docs)
-
-The operator asks you to create a remediation packet under .opencode/specs/{example-track}/{example-arc}/{example-phase}/
-
-Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug.
-
-Return ONLY a JSON object on a single line:
-{"cli_name":"cli-gemini","proposed_slug":"NNN-<descriptive-slug>","source_token":"<the part of the slug naming the source>","target_token":"<the part of the slug naming the target>","rule_20_self_audit":"<one sentence proving the slug references both source AND target>"}
-
-Do NOT execute create.sh. Return only the JSON.
-PROMPT
-
-gemini -p "$(cat "$PROMPT_FILE")" \
-  --model "gemini-2.5-flash" \
-  -y </dev/null > /tmp/phase-009-gemini.log 2>&1
 ```
 
 #### cli-claude-code
@@ -228,8 +201,8 @@ Summary table across CLIs tested:
 | External CLI    | model            | proposed_slug                                                       | source_token              | target_token                          | verdict |
 |-----------------|------------------|---------------------------------------------------------------------|---------------------------|---------------------------------------|---------|
 | cli-codex       | gpt-5.5 high     | 005-fix-deep-review-p0-p1-for-skill-local-benchmarks-format         | deep-review-p0-p1         | for-skill-local-benchmarks-format     | PASS    |
-| cli-devin       | swe-1.6          | 005-remediate-verdict-fail-in-004-bench-format-spec-docs            | verdict-fail              | in-004-bench-format-spec-docs         | PASS    |
-| cli-gemini      | gemini-2.5-flash | ...                                                                 | ...                       | ...                                   | ...     |
+| cli-codex       | gpt-5.5 medium   | 005-remediate-verdict-fail-in-004-bench-format-spec-docs            | verdict-fail              | in-004-bench-format-spec-docs         | PASS    |
+| cli-opencode    | glm-5.1          | ...                                                                 | ...                       | ...                                   | ...     |
 ```
 
 Include verbatim JSON responses from each CLI in the test report.

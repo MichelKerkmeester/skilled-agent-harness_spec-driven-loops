@@ -70,13 +70,6 @@ describe('executor-config', () => {
   });
 
 
-  it('accepts a cli-gemini executor with a supported model', () => {
-    expect(parseExecutorConfig({ kind: 'cli-gemini', model: 'gemini-3.1-pro-preview' })).toMatchObject({
-      kind: 'cli-gemini',
-      model: 'gemini-3.1-pro-preview',
-    });
-  });
-
   it('accepts a cli-claude-code executor with a model', () => {
     expect(parseExecutorConfig({ kind: 'cli-claude-code', model: 'claude-opus-4-6' })).toMatchObject({
       kind: 'cli-claude-code',
@@ -120,14 +113,6 @@ describe('executor-config', () => {
     expect(parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4' }).timeoutSeconds).toBe(900);
   });
 
-  it('rejects serviceTier for cli-gemini because the kind does not support it', () => {
-    expect(() =>
-      parseExecutorConfig({ kind: 'cli-gemini', model: 'gemini-3.1-pro-preview', serviceTier: 'fast' }),
-    ).toThrowError(/serviceTier.*not supported by executor kind 'cli-gemini'/);
-  });
-
-
-
   it('rejects serviceTier for cli-claude-code because the kind does not support it', () => {
     expect(() =>
       parseExecutorConfig({ kind: 'cli-claude-code', model: 'claude-opus-4-6', serviceTier: 'fast' }),
@@ -138,19 +123,6 @@ describe('executor-config', () => {
     expect(() => parseExecutorConfig({ kind: 'native', model: 'foo' })).toThrowError(
       /model.*not supported by executor kind 'native'/,
     );
-  });
-
-  it('rejects unsupported cli-gemini models with the whitelist message', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-gemini', model: 'gemini-ultra-foo' })).toThrowError(
-      /model 'gemini-ultra-foo'.*Supported: gemini-3.1-pro-preview/,
-    );
-  });
-
-  it('accepts the whitelisted cli-gemini model as a sanity check', () => {
-    expect(parseExecutorConfig({ kind: 'cli-gemini', model: 'gemini-3.1-pro-preview' })).toMatchObject({
-      kind: 'cli-gemini',
-      model: 'gemini-3.1-pro-preview',
-    });
   });
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -239,9 +211,9 @@ describe('parseFanoutConfig', () => {
     expect(() => parseFanoutConfig({ executors: [{ kind: 'cli-codex', label: 'gpt' }] })).toThrow(ExecutorConfigError);
   });
 
-  it('reuses per-executor flag-support validation (cli-gemini rejects reasoningEffort)', () => {
+  it('reuses per-executor flag-support validation (cli-opencode rejects serviceTier)', () => {
     expect(() =>
-      parseFanoutConfig({ executors: [{ kind: 'cli-gemini', model: 'gemini-3.1-pro-preview', reasoningEffort: 'high', label: 'gem' }] }),
+      parseFanoutConfig({ executors: [{ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', serviceTier: 'fast', label: 'opencode' }] }),
     ).toThrow(ExecutorConfigError);
   });
 

@@ -2,7 +2,7 @@
 // MODULE: Runtime Parity Tests — Advisor brief shape across runtimes
 // ───────────────────────────────────────────────────────────────────
 // Asserts that buildSkillAdvisorBrief produces a consistent brief
-// shape regardless of the runtime tag (claude, gemini, codex, opencode, devin).
+// shape regardless of the runtime tag (claude, codex, opencode).
 // The brief is rendered via renderAdvisorBrief; the test verifies:
 //   - Brief is non-null and contains "Advisor:" marker
 //   - Brief contains the expected skill slug
@@ -22,10 +22,10 @@ function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
 }
 
-const RUNTIMES = ['claude', 'gemini', 'codex', 'opencode', 'devin'] as const;
+const RUNTIMES = ['claude', 'codex', 'opencode'] as const;
 
-describe('5-runtime advisor brief parity', () => {
-  it('produces byte-equivalent brief for a known passing fixture across all 5 runtimes', async () => {
+describe('3-runtime advisor brief parity', () => {
+  it('produces byte-equivalent brief for a known passing fixture across all 3 runtimes', async () => {
     const fixtureResult = fixture('livePassingSkill.json');
     const prompt = 'implement a TypeScript hook';
 
@@ -55,7 +55,7 @@ describe('5-runtime advisor brief parity', () => {
     }
   });
 
-  it('returns empty brief for skipped fixture across all 5 runtimes', async () => {
+  it('returns empty brief for skipped fixture across all 3 runtimes', async () => {
     const fixtureResult = fixture('skippedShortCasual.json');
     const prompt = 'hello';
 
@@ -72,7 +72,7 @@ describe('5-runtime advisor brief parity', () => {
     }
   });
 
-  it('fails open on parse failure across all 5 runtimes', async () => {
+  it('fails open on parse failure across all 3 runtimes', async () => {
     const buildBrief = vi.fn(async (): Promise<AdvisorHookResult> => ({
       status: 'fail_open',
       freshness: 'unavailable',
@@ -92,16 +92,6 @@ describe('5-runtime advisor brief parity', () => {
       expect(result.status, `runtime ${runtime} should fail open`).toBe('fail_open');
       expect(renderAdvisorBrief(result), `runtime ${runtime} fail_open brief`).toBeNull();
     }
-  });
-
-  it('accepts devin runtime tag in buildSkillAdvisorBrief options', async () => {
-    const prompt = 'implement OAuth login flow';
-    const result = await buildSkillAdvisorBrief(prompt, {
-      runtime: 'devin',
-      workspaceRoot: process.cwd(),
-    });
-    expect(result).toBeDefined();
-    expect(typeof result.status).toBe('string');
   });
 
   it('accepts opencode runtime tag in buildSkillAdvisorBrief options', async () => {

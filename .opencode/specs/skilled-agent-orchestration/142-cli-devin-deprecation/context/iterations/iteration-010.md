@@ -1,0 +1,16 @@
+# Iteration 010
+
+**Pool:** native-a + native-b (sonnet) · **Focus:** CLOSURE: deletion-safety SAFE + 5-phase plan + final tally; two-devin-surface scope
+
+## Findings (9)
+- `DELETION-SAFETY` — verdict (grep cli-devin/ in *.ts/*.cjs/*.js/*.json/hooks) → verdict — SAFE: no runtime import/require of cli-devin/ paths from retained code; no symlinks into cli-devin/. Delete after phases 1-4 land.
+- `SCOPE-DISTINCTION` — two-devin-surfaces (native-b) → decision — (1) cli-devin EXECUTOR SKILL (deprecation target). (2) Devin IDE RUNTIME hooks: .devin/hooks.v1.json + system-skill-advisor/hooks/devin/ + system-spec-kit/mcp_server/hooks/devin/session-start.ts(+test) + code-graph devin-session-start playbook + comment-hygiene-devin-precommit playbook + advisor-runtime-values 'devin' enum. (2) does NOT depend on (1). DECISION: cli-devin-only vs full-Devin-removal.
+- `.opencode/skills/deep-loop-runtime/SKILL.md` — fanout pool table 'devin' (166) → inline-edit — [RESIDUAL] remove devin from fanout pool list
+- `.opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md` — fanout pool desc 'devin' (436) → inline-edit — [RESIDUAL] remove devin from pool members
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/research/run_loop.sh` — AGENT_SRC cli-devin asset path (13) → update-or-tombstone — [RESIDUAL, under specs/] research one-off reads cli-devin/assets/agent-config-deep-research-iter.json; breaks if re-run; non-blocking (completed packet); tombstone/update
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/006-skill-readme-refinement-survey/research/prompts/render_remediation.sh` — RECIPE_SRC cli-devin asset path (10) → update-or-tombstone — [RESIDUAL, under specs/] same pattern; non-blocking
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/devin/session-start.ts` — Devin platform SessionStart hook (15,68,81) → scope-dependent — Devin IDE runtime hook (NOT cli-devin executor); no cli-devin/ import; only touched under full-Devin-removal scope. +test devin-session-start-hook.vitest.ts + code-graph playbook 10--devin-hooks/ + comment-hygiene-devin-precommit playbook
+- `PHASE-PLAN` — dependency-order (synthesized) → ordering — P1 CI-gate: patch check-prompt-quality-card-sync.sh + re-home prompt_quality_card path BEFORE delete. P2 re-home context-budget.md(+per-model-budgets) canonical + update pointers. P3 runtime code (executor-config/audit/fanout-run/dispatch-model/profile-validator/advisor-runtime-values) + tests + 5 YAMLs + 6 cmd docs + agents(3rt) + sk-prompt-small-model cluster + run-deep-review-arc.sh + residuals. P4 remove graph edges + rebuild skill-graph.sqlite. P5 rm -rf cli-devin/ + validate.
+- `FINAL-TALLY` — counts (fresh grep) → tally — ACTIVE ~45 cli-devin files + ~40 \bdevin\b (overlapping) = deprecation surface. HISTORICAL ~1760 left untouched (specs ~1700+, changelogs ~30, benchmarks/eval ~40). Residual gaps reconciled: 2 deep-loop-runtime docs + 2 specs research scripts + the Devin-platform-hooks scope set.
+
+See `../seats/iter-010/` for the full per-seat finding sets.

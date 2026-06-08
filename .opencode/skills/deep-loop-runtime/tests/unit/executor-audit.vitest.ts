@@ -366,14 +366,14 @@ describe('executor-audit', () => {
   });
 
   it('detectSameKindFromStack rejects same-runtime loops across two-hop stacks', () => {
-    expect(detectSameKindFromStack('cli-gemini:cli-codex', 'cli-codex')).toBe(true);
-    expect(detectSameKindFromStack('cli-gemini:cli-opencode', 'cli-codex')).toBe(false);
+    expect(detectSameKindFromStack('cli-opencode:cli-codex', 'cli-codex')).toBe(true);
+    expect(detectSameKindFromStack('cli-claude-code:cli-opencode', 'cli-codex')).toBe(false);
     expect(detectSameKindFromStack('cli-codex', 'native')).toBe(false);
   });
 
   it('detectFromAncestry matches the executor binary in ancestor command lines', () => {
     expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/codex exec'])).toBe(true);
-    expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/gemini'])).toBe(false);
+    expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/opencode'])).toBe(false);
   });
 
   it('detectFromRuntimeEnv matches the runtime-specific session variable only', () => {
@@ -390,7 +390,7 @@ describe('executor-audit', () => {
       writeFileSync(join(tempDir, 'locks', 'speckit-cli-dispatch-cli-codex.lock'), 'pid=123\n', 'utf8');
 
       expect(detectFromLockfile('cli-codex', [tempDir])).toBe(true);
-      expect(detectFromLockfile('cli-gemini', [tempDir])).toBe(false);
+      expect(detectFromLockfile('cli-opencode', [tempDir])).toBe(false);
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
@@ -399,7 +399,7 @@ describe('executor-audit', () => {
   it('validateExecutorDispatchAllowed reports stack guard rejections before spawn', () => {
     expect(
       validateExecutorDispatchAllowed(cliCodexExecutor(), {
-        env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini:cli-codex' },
+        env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode:cli-codex' },
         ancestryCmdlines: [],
         statePaths: [],
       }),
@@ -468,7 +468,7 @@ describe('executor-audit', () => {
       OPENAI_API_KEY: 'needed',
       GITHUB_TOKEN: 'unrelated-secret',
       ANTHROPIC_API_KEY: 'wrong-provider',
-      SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini',
+      SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode',
     };
 
     const nextEnv = buildExecutorDispatchEnv(cliCodexExecutor(), parentEnv);
@@ -477,11 +477,11 @@ describe('executor-audit', () => {
       PATH: '/usr/bin',
       HOME: '/tmp/home',
       OPENAI_API_KEY: 'needed',
-      SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini:cli-codex',
+      SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode:cli-codex',
     });
     expect(nextEnv.GITHUB_TOKEN).toBeUndefined();
     expect(nextEnv.ANTHROPIC_API_KEY).toBeUndefined();
-    expect(parentEnv.SPECKIT_CLI_DISPATCH_STACK).toBe('cli-gemini');
+    expect(parentEnv.SPECKIT_CLI_DISPATCH_STACK).toBe('cli-opencode');
   });
 
   it('runAuditedExecutorCommand emits a typed dispatch_failure when the guard rejects before spawn', () => {

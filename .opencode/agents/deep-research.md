@@ -326,24 +326,6 @@ The orchestrator generates the dashboard and findings registry after each iterat
 | `memory_search` | Find prior research in memory system |
 | `memory_context` | Load context for the research topic |
 
-### SWE-1.6 Iter Contract (cli-devin executor)
-
-When the orchestrator dispatches this agent under the cli-devin executor branch (`config.executor.kind === 'cli-devin'`), the per-iteration prompt and output handling MUST honor this contract. Forward reference: `.opencode/skills/cli-devin/references/deep-loop-iter-contract.md` (authored in packet 059 Phase 4).
-
-| Dimension | Required Behavior |
-|-----------|-------------------|
-| Permission mode | `--permission-mode auto`. Research iters are read-only. `dangerous` is never used for research. |
-| Model selection | `--model swe-1.6` for context-gathering iters (default). `--model deepseek-v4` for synthesis-heavy iters, multi-source contradiction adjudication or complex-reasoning focuses. GLM 5.1 and Kimi k2.6 are operator-selected fallbacks per cli-devin SKILL §3 model selection. |
-| Prompt quality | EVERY dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (STAR / RCAF / BUILD framework + CLEAR 5-check) AND include an explicit pre-planning block (ordered steps + per-step acceptance criteria + stop conditions). Reference: `.opencode/skills/cli-devin/assets/prompt_quality_card.md`. The orchestrator runs ONE sk-prompt pass upfront and reuses the resulting per-iter template across all N dispatches. |
-| Output capture | The agent writes plain stdout. NEVER wrap iteration output in ` ```markdown ` fences. Nested fences break awk extractors. The orchestrator prepends YAML frontmatter to the captured stdout before writing `research/iterations/iteration-NNN.md`. |
-| Completion sentinel | The LAST line of iteration stdout MUST be exactly: `ITER_{N}_COMPLETE: <findingsCount> findings, newInfoRatio={0.XX}`. This confirms iteration completion and provides the convergence signal that JSONL append cannot deliver alone. |
-| Numeric-count discipline | SWE-1.6 numeric counts ("N of X") are unreliable. The orchestrator MUST verify any numeric claim via `find/grep | wc -l` before consuming the count. This is the fourth check in the iter-output verification gate (imports grep + exports grep + validation_commands smoke-run + numeric-count smoke-run). |
-| Structured RQ format | Numeric-audit research questions MUST be structured as counted tables, not prose. Use rows of the form "Produce a table where each row has the cited `path:line`" to force enumeration. Prose RQ formats produce fabricated or partial counts under SWE-1.6. |
-| Cross-iter awareness | Each iter is independent. SWE-1.6 has no memory of prior iterations. Synthesis-style iters require prior-iter findings injected verbatim into the dispatch prompt. The orchestrator handles injection. The agent reads dispatch context and treats injected findings as primary evidence. |
-| Dispatch concurrency | 3-at-a-time parallel iter dispatches are safe for independent-iter research. Cross-iter-aware (synthesis) workflows MUST run sequentially. The orchestrator selects mode based on iter type. |
-
----
-
 ## 3. ITERATION PROTOCOL
 
 ### Focus Selection

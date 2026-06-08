@@ -29,7 +29,7 @@ Dry-run is the expected first operator path:
 bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log
 ```
 
-The sweeper preserves `devin --print`, Ollama, live Claude Code descendants, the freshest young instance per MCP class, active non-MCP TCP listeners, `/tmp/devin-*`, `/tmp/cli-devin-*`, `/tmp/codex-browser-use`, and cache-like paths. Real mode sends SIGTERM to selected PIDs, waits 5 seconds, then sends SIGKILL to survivors.
+The sweeper preserves Ollama, live Claude Code descendants, the freshest young instance per MCP class, active non-MCP TCP listeners, `/tmp/codex-browser-use`, and cache-like paths. Real mode sends SIGTERM to selected PIDs, waits 5 seconds, then sends SIGKILL to survivors.
 
 ### Edge Cases & Caveats
 

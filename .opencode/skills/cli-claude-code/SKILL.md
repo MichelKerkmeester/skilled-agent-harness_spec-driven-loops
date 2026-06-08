@@ -15,7 +15,7 @@ version: 1.1.13.0
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only** — never self-invocation.
 
-Orchestrate Anthropic's Claude Code CLI from external AI assistants (Gemini CLI, Codex CLI, Copilot, etc.) for tasks that benefit from deep extended thinking, surgical code editing, structured output with JSON schema validation, agent delegation, or persistent memory context.
+Orchestrate Anthropic's Claude Code CLI from external AI assistants (Codex CLI, Copilot, etc.) for tasks that benefit from deep extended thinking, surgical code editing, structured output with JSON schema validation, agent delegation, or persistent memory context.
 
 **Core Principle**: The calling AI stays the conductor. Delegate to Claude Code for what it does best — deep reasoning, precise code editing, and structured analysis. Validate and integrate the output.
 
@@ -39,7 +39,7 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (Gemini CLI,
 - Tasks requiring interactive terminal UI (use `claude` directly instead).
 - Context already loaded and understood by the calling AI.
 - Tasks where Claude Code CLI is not installed.
-- Real-time web search (Claude Code has no `--search` flag — use Gemini or Codex).
+- Real-time web search (Claude Code has no `--search` flag — use Codex).
 
 ---
 
@@ -352,7 +352,7 @@ claude -p "Now refactor the auth module based on the review" --continue --output
 
    Tag the framework in the Bash invocation comment and use the returned `ENHANCED_PROMPT`. Apply the CLEAR 5-question check from the canonical card via the local delegating card.
 9. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
-10. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-codex, cli-devin, cli-opencode, cli-claude-code). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL the dispatcher process + any orphan children (`pkill -9 -f "claude -p"` for this skill, plus `gtimeout` / `positional_scoring_fallback:app` cleanup). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration operator confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each as its work returns.
+10. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-codex, cli-opencode, cli-claude-code). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL the dispatcher process + any orphan children (`pkill -9 -f "claude -p"` for this skill, plus `gtimeout` / `positional_scoring_fallback:app` cleanup). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration operator confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each as its work returns.
 11. **Set `AI_SESSION_CHILD=1` in the dispatched child's env** when sessions may be launched through the per-session worktree wrapper (`.opencode/bin/worktree-session.sh`). A dispatched `claude -p` run is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 claude -p ...`. Harmless when the wrapper is not in use. See `.opencode/bin/README.md` → "Worktree session isolation".
 
 ### ❌ NEVER
@@ -388,7 +388,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 
 - [cli_reference.md](./references/cli_reference.md) - Complete CLI flags, commands, models, authentication, and configuration
 - [integration_patterns.md](./references/integration_patterns.md) - Cross-AI orchestration patterns (reversed: external AI conducts, Claude Code executes)
-- [claude_tools.md](./references/claude_tools.md) - Unique capabilities and 3-way comparison with Gemini CLI and Codex CLI
+- [claude_tools.md](./references/claude_tools.md) - Unique capabilities and comparison with Codex CLI
 - [agent_delegation.md](./references/agent_delegation.md) - 9 agent roster, routing table, and invocation patterns
 
 ### Templates and Assets

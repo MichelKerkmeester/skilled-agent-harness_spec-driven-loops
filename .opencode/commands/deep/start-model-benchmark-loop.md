@@ -94,7 +94,7 @@ PRE-BOUND SETUP ANSWERS:
   scoring_method: pattern  # pattern (default) or 5dim
   grader: noop  # noop (default) | mock | llm
   max_iterations: 5  # positive integer; default 5
-  executor: cli-codex  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-codex | cli-gemini | cli-devin
+  executor: cli-codex  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-codex
   model: gpt-5.5  # required only when grader = llm; model id for the chosen executor (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
 ```
 
@@ -184,8 +184,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q5. Executor + Model** (ONLY if Q4 = llm):                   │
    │    Which executor and model? e.g. "cli-codex, gpt-5.5"         │
-   │    Executors: cli-opencode | cli-claude-code | cli-codex |     │
-   │               cli-gemini | cli-devin                           │
+   │    Executors: cli-opencode | cli-claude-code | cli-codex       │
    │                                                                │
    │ Reply format: "A, A, A, A, A" or                               │
    │ "default, B, B, B, C, cli-codex gpt-5.5"                       │
@@ -354,7 +353,7 @@ $ARGUMENTS
 
 ### Executor Routing (only on `--grader llm`)
 
-`dispatch-model.cjs` is the executor router. It is loaded only on the model-benchmark path and only when `grader = llm`. Supported executors: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-devin`.
+`dispatch-model.cjs` is the executor router. It is loaded only on the model-benchmark path and only when `grader = llm`. Supported executors: `cli-opencode`, `cli-claude-code`, `cli-codex`.
 
 ### Hardening Env Gates
 

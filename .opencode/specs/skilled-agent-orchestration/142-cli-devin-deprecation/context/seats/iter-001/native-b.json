@@ -1,0 +1,384 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/cli-devin/SKILL.md",
+      "symbol": "-",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": ".opencode/skills/cli-devin/SKILL.md:1-42",
+      "relevance": 1,
+      "classification": "skill-internal",
+      "notes": "Deletion target; no external skill depends_on cli-devin (edges.depends_on empty)."
+    },
+    {
+      "path": ".opencode/skills/cli-devin/graph-metadata.json",
+      "symbol": "edges.siblings",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": ".opencode/skills/cli-devin/graph-metadata.json:6-47",
+      "relevance": 1,
+      "classification": "skill-internal",
+      "notes": "depends_on empty; reciprocal edges in cli-opencode/cli-claude-code/cli-codex/sk-prompt-small-model."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "EXECUTOR_KINDS/DEVIN_SUPPORTED_MODELS/DevinPermissionMode",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:7,40-48",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "[HARD] EXECUTOR_KINDS(7), FLAG_SUPPORT(40), DEVIN_SUPPORTED_MODELS(46), DevinSupportedModel type(47), DevinPermissionMode(48)."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "symbol": "BINARY_BY_KIND/SESSION_ENV_BY_KIND",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-audit.ts:46-59",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "[HARD] BINARY 'devin'(47), SESSION_ENV 'DEVIN_SESSION_ID'(59); drives recursion-guard env detection."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "cli-devin branch",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "fanout-run.cjs (grep)",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "[HARD] runtime dispatcher; remove cli-devin case or fanout invokes non-existent skill."
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      "symbol": "if_cli_devin",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "deep_start-research-loop_auto.yaml:753-809",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "[HARD] remove block + dead asset paths."
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      "symbol": "if_cli_devin",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "deep_start-review-loop_auto.yaml:916-972",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "[HARD] remove block + dead asset paths."
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml",
+      "symbol": "cli-devin seat notes",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "deep_start-context-loop_auto.yaml:455-456",
+      "relevance": 0.95,
+      "classification": "active-wiring",
+      "notes": "[HARD] remove cli-devin seat invocation note(455) + update self-invocation guard note(456) to cli-opencode only."
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
+      "symbol": "if_cli_devin",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "[HARD] mirror auto removal."
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml",
+      "symbol": "cli-devin seat notes",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "[HARD] mirror auto removal."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "symbol": "4 executor entries",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "model-profiles.json:12-14,58-60,118-120,217-219",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "[HARD] remove cli-devin executor objs; swe-1.6 has NO remaining executor (cognition-exclusive)."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "symbol": "when-to-use/ownership/boundary/resources",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "sk-prompt-small-model/SKILL.md:3,21-22,51,103-104,132,200-207,216,233,237,258-262,274,281",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "Multiple sites; dispatch matrix rows + boundary map + resource links."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      "symbol": "edges.enhances/related_to/causal_summary",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "sk-prompt-small-model/graph-metadata.json:10-13,27,128",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "Remove cli-devin from enhances + related_to; update causal_summary(128)."
+    },
+    {
+      "path": ".opencode/skills/cli-opencode/graph-metadata.json",
+      "symbol": "edges.siblings/related_to",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "cli-opencode/graph-metadata.json:27-29,45",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "Reciprocal sibling edge."
+    },
+    {
+      "path": ".opencode/skills/cli-claude-code/graph-metadata.json",
+      "symbol": "edges.siblings/related_to",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "cli-claude-code/graph-metadata.json:21-23,38",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "notes": "Reciprocal sibling edge."
+    },
+    {
+      "path": ".opencode/skills/cli-codex/graph-metadata.json",
+      "symbol": "edges.siblings",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "Verify+remove sibling edge."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/graph-metadata.json",
+      "symbol": "edges→cli-devin",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "Remove edges; rebuild sqlite."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      "symbol": "cli-devin node",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "skill-graph.json:1",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "Remove node+edges."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json",
+      "symbol": "cli-devin node",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "database/skill-graph.json:1",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "Remove node+edges; rebuild sqlite."
+    },
+    {
+      "path": ".opencode/skills/deep-context/SKILL.md",
+      "symbol": "Pairs-with",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "deep-context/SKILL.md:391",
+      "relevance": 0.95,
+      "classification": "active-wiring",
+      "notes": "Remove cli-devin from Pairs-with list."
+    },
+    {
+      "path": ".opencode/agents/deep-context.md",
+      "symbol": "Sibling Seats",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": ".opencode/agents/deep-context.md:203",
+      "relevance": 0.95,
+      "classification": "active-wiring",
+      "notes": "Remove cli-devin; sync .claude+.codex mirrors."
+    },
+    {
+      "path": ".opencode/agents/deep-research.md",
+      "symbol": "-",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Verify+remove; check .claude mirror."
+    },
+    {
+      "path": ".opencode/agents/deep-review.md",
+      "symbol": "-",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Verify+remove; check .claude mirror."
+    },
+    {
+      "path": ".codex/agents/deep-context.toml",
+      "symbol": "Sibling Seats",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "Codex mirror; remove cli-devin."
+    },
+    {
+      "path": "AGENTS.md",
+      "symbol": "Small-model dispatch rule",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "AGENTS.md:56,57",
+      "relevance": 0.95,
+      "classification": "active-wiring",
+      "notes": "Remove 'cli-devin/' (57) + 'devin /' (56)."
+    },
+    {
+      "path": "README.md",
+      "symbol": "cli-devin section + sk-prompt para",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "README.md:942-944,974",
+      "relevance": 0.95,
+      "classification": "active-wiring",
+      "notes": "Remove section + 'cli-devin and' on 974."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "symbol": "-",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Update executor refs; swe-1.6 special."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "symbol": "executor mechanics",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.9,
+      "classification": "active-wiring",
+      "notes": "swe-1.6 cognition-exclusive; remove or mark retired."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "symbol": "executor mechanics",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Remove cli-devin path; keeps cli-opencode."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "symbol": "executor mechanics",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Remove cli-devin path; keeps cli-opencode."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "symbol": "executor mechanics",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Remove cli-devin path; keeps cli-opencode."
+    },
+    {
+      "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "symbol": "cli-devin links",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Remove dead cross-links to cli-devin/."
+    },
+    {
+      "path": ".opencode/skills/deep-context/feature_catalog/02--by-model-parallel-sweep/cli-council-seats.md",
+      "symbol": "cli-devin seat",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Remove from council seats catalog."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md",
+      "symbol": "cli-X list",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.85,
+      "classification": "active-wiring",
+      "notes": "Remove 'devin' from cli-X preload rule."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/references/cli/shared_smart_router.md",
+      "symbol": "routing table",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.8,
+      "classification": "active-wiring",
+      "notes": "Verify+remove."
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/SKILL.md",
+      "symbol": "executor options",
+      "kind": "dependency",
+      "reuse": "remove",
+      "evidence": "grep match",
+      "relevance": 0.75,
+      "classification": "active-wiring",
+      "notes": "Verify active vs historical-benchmark context."
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/changelog/v1.2.0.0.md",
+      "symbol": "-",
+      "kind": "gap",
+      "reuse": "leave",
+      "evidence": "grep match",
+      "relevance": 0.6,
+      "classification": "historical-record",
+      "notes": "Changelog; leave per 132 precedent."
+    },
+    {
+      "path": "GAP:swe-1.6-executorless",
+      "symbol": "swe-1.6",
+      "kind": "gap",
+      "reuse": "leave",
+      "evidence": "model-profiles.json:12-14",
+      "relevance": 0.95,
+      "classification": "active-wiring",
+      "notes": "CRITICAL: swe-1.6 cognition-exclusive; zero executors after removal. Decide: remove vs retire."
+    }
+  ]
+}

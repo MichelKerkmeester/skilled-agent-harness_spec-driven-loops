@@ -4,7 +4,7 @@ import { z } from '../../../system-spec-kit/mcp_server/node_modules/zod/index.js
 
 // ───── TYPE DEFINITIONS ─────
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code', 'cli-opencode', 'cli-devin'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh'] as const;
@@ -15,7 +15,6 @@ export type ServiceTier = typeof SERVICE_TIERS[number];
 
 const SANDBOX_MODES = ['read-only', 'workspace-write', 'danger-full-access'] as const;
 export type SandboxMode = typeof SANDBOX_MODES[number];
-export type GeminiSandboxMode = 'docker' | 'none';
 export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
 
 // ───── CONSTANTS ─────
@@ -34,18 +33,9 @@ export type ExecutorConfig = z.infer<typeof executorConfigSchema>;
 export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof ExecutorConfig)[]> = {
   native: [],
   'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
-  'cli-gemini': ['model', 'sandboxMode', 'timeoutSeconds'],
   'cli-claude-code': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
   'cli-opencode': ['model', 'reasoningEffort', 'timeoutSeconds'],
-  'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds'],
 };
-
-export const GEMINI_SUPPORTED_MODELS = ['gemini-3.1-pro-preview'] as const;
-export type GeminiSupportedModel = typeof GEMINI_SUPPORTED_MODELS[number];
-
-export const DEVIN_SUPPORTED_MODELS = ['swe-1.6', 'deepseek-v4', 'glm-5.1', 'kimi-k2.6'] as const;
-export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
-export type DevinPermissionMode = 'auto' | 'dangerous';
 
 // ───── DOMAIN ERRORS ─────
 
@@ -55,9 +45,9 @@ type ExecutorConfigIssue = {
 };
 
 export class ExecutorNotWiredError extends Error {
-  kind: Extract<ExecutorKind, 'cli-gemini' | 'cli-claude-code'>;
+  kind: Extract<ExecutorKind, 'cli-claude-code'>;
 
-  constructor(kind: Extract<ExecutorKind, 'cli-gemini' | 'cli-claude-code'>) {
+  constructor(kind: Extract<ExecutorKind, 'cli-claude-code'>) {
     super(`Executor kind '${kind}' is reserved in the schema but not yet wired. Awaiting future spec for ${kind} integration.`);
     this.name = 'ExecutorNotWiredError';
     this.kind = kind;
@@ -131,16 +121,6 @@ export function resolveCodexSandboxMode(mode: SandboxMode | null | undefined): S
 }
 
 /**
- * Map a generic sandbox mode to the Gemini CLI sandbox mode.
- *
- * @param mode - Generic sandbox mode or undefined.
- * @returns 'docker' for workspace-write/read-only, 'none' for danger-full-access.
- */
-export function resolveGeminiSandboxMode(mode: SandboxMode | null | undefined): GeminiSandboxMode {
-  return normalizeSandboxMode(mode) === 'danger-full-access' ? 'none' : 'docker';
-}
-
-/**
  * Map a generic sandbox mode to the Claude Code permission mode.
  *
  * @param mode - Generic sandbox mode or undefined.
@@ -155,16 +135,6 @@ export function resolveClaudePermissionMode(mode: SandboxMode | null | undefined
     default:
       return 'acceptEdits';
   }
-}
-
-/**
- * Map a generic sandbox mode to the Devin CLI permission mode.
- *
- * @param mode - Generic sandbox mode or undefined.
- * @returns 'auto' for workspace-write/read-only, 'dangerous' for danger-full-access.
- */
-export function resolveDevinPermissionMode(mode: SandboxMode | null | undefined): DevinPermissionMode {
-  return normalizeSandboxMode(mode) === 'danger-full-access' ? 'dangerous' : 'auto';
 }
 
 /**
@@ -191,12 +161,6 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
       issues: [{ path: ['model'], message: 'model is required when kind is cli-codex' }],
     });
   }
-  if (config.kind === 'cli-devin' && config.model === null) {
-    throw new ExecutorConfigError({
-      issues: [{ path: ['model'], message: 'model is required when kind is cli-devin' }],
-    });
-  }
-
   const supportedFlags = EXECUTOR_KIND_FLAG_SUPPORT[config.kind];
   const unsupportedFields: string[] = [];
   const allOptionalFields: (keyof ExecutorConfig)[] = [
@@ -221,36 +185,6 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
           supportedFlags.length ? supportedFlags.join(', ') : 'none'
         }.`,
       })),
-    });
-  }
-
-  if (
-    config.kind === 'cli-gemini' &&
-    config.model !== null &&
-    !GEMINI_SUPPORTED_MODELS.some((model) => model === config.model)
-  ) {
-    throw new ExecutorConfigError({
-      issues: [
-        {
-          path: ['model'],
-          message: `model '${config.model}' is not a supported cli-gemini model. Supported: ${GEMINI_SUPPORTED_MODELS.join(', ')}.`,
-        },
-      ],
-    });
-  }
-
-  if (
-    config.kind === 'cli-devin' &&
-    config.model !== null &&
-    !DEVIN_SUPPORTED_MODELS.some((model) => model === config.model)
-  ) {
-    throw new ExecutorConfigError({
-      issues: [
-        {
-          path: ['model'],
-          message: `model '${config.model}' is not a supported cli-devin model. Supported: ${DEVIN_SUPPORTED_MODELS.join(', ')}.`,
-        },
-      ],
     });
   }
 
@@ -317,8 +251,8 @@ export type FanoutConfig = z.infer<typeof fanoutConfigSchema>;
  * Parse and validate a raw fan-out configuration.
  *
  * Each entry's executor subset is routed through {@link parseExecutorConfig} so
- * ALL existing kind/model/flag rules (cli-codex needs model, gemini/devin model
- * whitelists, per-kind flag support) apply per lineage with zero duplication.
+ * ALL existing kind/model/flag rules (cli-codex needs model, per-kind flag
+ * support) apply per lineage with zero duplication.
  * Labels must be unique and base-label (count>1) expansion must not collide.
  *
  * @param raw - Raw input to parse (JSON-parsed object).

@@ -1,0 +1,17 @@
+{
+  "specFolder": "142-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
+  "description": "Phase 3: registry-graph-and-skill-advisor-removal",
+  "keywords": [
+    "phase",
+    "registry-graph-and-skill-advisor-removal"
+  ],
+  "lastUpdated": "2026-06-08T16:10:30.066Z",
+  "specId": "003",
+  "folderSlug": "registry-graph-and-skill-advisor-removal",
+  "parentChain": [
+    "142-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

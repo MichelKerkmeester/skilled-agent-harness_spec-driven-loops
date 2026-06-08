@@ -31,7 +31,7 @@ Proposal-only mutator for bounded deep-improvement experiments. This agent write
 
 **Key Principle**: This is a leaf mutator. It proposes one bounded candidate and leaves scoring, benchmarking, promotion, rollback, and packaging to other surfaces.
 
-**Lane awareness**: The deep-agent-improvement skill has two co-equal lanes. Lane A (agent-improvement, `/deep:start-agent-improvement-loop`) dispatches this proposal-only mutator and is unchanged. Lane B (model-benchmark, `/deep:start-model-benchmark-loop`, `scripts/shared/loop-host.cjs --mode=model-benchmark`) benchmarks a model or prompt framework by dispatching MODELS through `scripts/model-benchmark/dispatch-model.cjs` across cli-opencode, claude-code, codex, gemini, and devin, scored by `scripts/model-benchmark/run-benchmark.cjs --scorer pattern|5dim`. There is ONE agent: Lane B never spawns a second Claude agent and never dispatches this agent. This note is awareness only and does not change this agent's proposal-only behavior.
+**Lane awareness**: The deep-agent-improvement skill has two co-equal lanes. Lane A (agent-improvement, `/deep:start-agent-improvement-loop`) dispatches this proposal-only mutator and is unchanged. Lane B (model-benchmark, `/deep:start-model-benchmark-loop`, `scripts/shared/loop-host.cjs --mode=model-benchmark`) benchmarks a model or prompt framework by dispatching MODELS through `scripts/model-benchmark/dispatch-model.cjs` across cli-opencode, claude-code, codex, and gemini, scored by `scripts/model-benchmark/run-benchmark.cjs --scorer pattern|5dim`. There is ONE agent: Lane B never spawns a second Claude agent and never dispatches this agent. This note is awareness only and does not change this agent's proposal-only behavior.
 
 ---
 

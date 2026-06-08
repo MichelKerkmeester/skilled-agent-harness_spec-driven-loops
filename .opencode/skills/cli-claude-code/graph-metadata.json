@@ -16,11 +16,6 @@
         "target": "cli-opencode",
         "weight": 0.5,
         "context": "CLI orchestrator peer"
-      },
-      {
-        "target": "cli-devin",
-        "weight": 0.5,
-        "context": "CLI orchestrator peer"
       }
     ],
     "conflicts_with": [],
@@ -34,8 +29,7 @@
       "cli-codex",
       "sk-code",
       "mcp-code-mode",
-      "system-spec-kit",
-      "cli-devin"
+      "system-spec-kit"
     ]
   },
   "domains": [
@@ -128,7 +122,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Claude Code CLI orchestrator enabling external AI assistants (Gemini, Codex, Copilot) to invoke Anthropic's Claude Code CLI for supplementary tasks including deep reasoning, code editing, structured output, code review, agent delegation, and extended thinking. It matters because it gives another assistant a reliable way to escalate difficult terminal work to Claude Code without breaking the surrounding workflow.",
+    "causal_summary": "Claude Code CLI orchestrator enabling external AI assistants (Codex, Copilot) to invoke Anthropic's Claude Code CLI for supplementary tasks including deep reasoning, code editing, structured output, code review, agent delegation, and extended thinking. It matters because it gives another assistant a reliable way to escalate difficult terminal work to Claude Code without breaking the surrounding workflow.",
     "source_docs": [
       "SKILL.md",
       "README.md",

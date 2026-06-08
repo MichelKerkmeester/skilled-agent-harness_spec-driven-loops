@@ -165,7 +165,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor=<type> [--model=X] [--reasoning-effort=Y] [--prompt-framework=Z] [--label=X]
    |     (repeatable; each occurrence adds one seat to config.fanout.executors)
-   |     type = `native` | `cli-opencode` | `cli-codex` | `cli-claude-code` | `cli-devin`
+   |     type = `native` | `cli-opencode` | `cli-codex` | `cli-claude-code`
    |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch for the full pool
    |-- --concurrency=N -> config.fanout.concurrency (default 4)
    |

@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- `dispatch-model.cjs` routes a prompt to one of five executors and returns the model output as a JSON envelope plus raw stdout and stderr.
+- `dispatch-model.cjs` routes a prompt to one of three executors and returns the model output as a JSON envelope plus raw stdout and stderr.
 - `run-benchmark.cjs` reads a benchmark profile, scores each fixture output, and writes `report.json` plus a label-stamped history snapshot.
 - Two scoring methods exist: `pattern` (default heading/pattern matcher) and `5dim` (opt-in, routed through `scorer/`).
 - `loop-host.cjs` in `../shared/` is the router. It resolves the bare names `run-benchmark.cjs` and `dispatch-model.cjs` to this folder at spawn time.
@@ -34,9 +34,8 @@ Current state:
 ┌──────────────────┐      ┌─────────────────────┐      ┌──────────────────┐
 │ loop-host.cjs    │ ───▶ │ dispatch-model.cjs  │ ───▶ │ executor CLI     │
 │ (../shared)      │      │ executor router     │      │ opencode/claude/ │
-│ router           │      │ read-only default   │      │ codex/gemini/    │
-└────────┬─────────┘      └─────────────────────┘      │ devin            │
-         │                                              └──────────────────┘
+│ router           │      │ read-only default   │      │ codex             │
+└────────┬─────────┘      └─────────────────────┘      └──────────────────┘
          │
          ▼
 ┌──────────────────┐      ┌─────────────────────┐
@@ -71,7 +70,7 @@ model-benchmark/
 
 | File | Responsibility |
 |---|---|
-| `dispatch-model.cjs` | Routes a prompt file to one of `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-devin`. Read-only by default. Handles rate-limit backoff and writes a run-scoped pause sentinel. |
+| `dispatch-model.cjs` | Routes a prompt file to one of `cli-opencode`, `cli-claude-code`, `cli-codex`. Read-only by default. Handles rate-limit backoff and writes a run-scoped pause sentinel. |
 | `run-benchmark.cjs` | Loads a profile, scores fixture outputs, writes `report.json` plus an immutable history snapshot, and appends a `benchmark_run` row to the state log. Sanitizes `fixture.id` and bounds authored regex patterns. |
 | `scorer/` | The 5-dimension scoring engine. `run-benchmark.cjs` lazy-requires `scorer/score-model-variant.cjs` only on `--scorer=5dim`, so the default path never loads the subtree. |
 

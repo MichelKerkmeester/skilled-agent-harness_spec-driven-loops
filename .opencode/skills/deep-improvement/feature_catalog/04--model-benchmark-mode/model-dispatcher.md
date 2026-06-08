@@ -23,7 +23,7 @@ This feature is the invocation seam for model-benchmark runs. It separates which
 
 ## 2. HOW IT WORKS
 
-`scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher. It routes through an executor map keyed on `opts.executor` across `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-gemini`, and `cli-devin`, building the spawn spec per executor instead of hard-coding a single CLI. The dispatcher is loaded only on the model-benchmark path and never in agent-improvement mode, so the default scoring route never pulls in executor-routing code.
+`scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher. It routes through an executor map keyed on `opts.executor` across `cli-opencode`, `cli-claude-code`, and `cli-codex`, building the spawn spec per executor instead of hard-coding a single CLI. The dispatcher is loaded only on the model-benchmark path and never in agent-improvement mode, so the default scoring route never pulls in executor-routing code.
 
 The dispatcher forwards `cwd` to every executor so spawned CLIs run against the intended workspace. Its rate-limit backoff reuses the existing backoff schedule and pauses with a non-busy `Atomics` sleep on an un-signalled buffer, which avoids spinning the thread while waiting out a rate limit.
 
@@ -35,7 +35,7 @@ The dispatcher forwards `cwd` to every executor so spawned CLIs run against the 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs` | Dispatcher | Routes a prompt to one of five executor CLIs, forwards `cwd`, and applies non-busy rate-limit backoff. |
+| `.opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs` | Dispatcher | Routes a prompt to one of three executor CLIs, forwards `cwd`, and applies non-busy rate-limit backoff. |
 | `.opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Consumes dispatcher output on the model-benchmark path before scoring. |
 | `.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs` | Mode router | Gates the dispatcher behind `--mode=model-benchmark` so it loads only on that path. |
 

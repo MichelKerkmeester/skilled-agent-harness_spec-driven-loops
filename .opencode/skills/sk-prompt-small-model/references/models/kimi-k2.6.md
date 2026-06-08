@@ -8,7 +8,7 @@ last_benchmarked: "none"
 
 # Kimi-k2.6 Prompt-Craft Profile
 
-Single source of truth for how to prompt Kimi-k2.6 in the small-model rotation. Framework choices mirror `recommended_frameworks` in the model-profiles registry (the DATA source); executor MECHANICS live in `cli-devin` / `cli-opencode`.
+Single source of truth for how to prompt Kimi-k2.6 in the small-model rotation. Framework choices mirror `recommended_frameworks` in the model-profiles registry (the DATA source); executor MECHANICS live in `cli-opencode`.
 
 ---
 
@@ -16,13 +16,13 @@ Single source of truth for how to prompt Kimi-k2.6 in the small-model rotation. 
 
 ### Purpose
 
-This profile is the single source for how to prompt Kimi-k2.6, the large-context specialist dispatched through `cli-devin` (cognition-pro) and `cli-opencode` (opencode-go). It mirrors the `kimi-k2.6` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+This profile is the single source for how to prompt Kimi-k2.6, the large-context specialist dispatched through `cli-opencode` (opencode-go). It mirrors the `kimi-k2.6` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
 
 ### When to Use
 
-- Before dispatching Kimi-k2.6 through `cli-devin` or `cli-opencode`.
+- Before dispatching Kimi-k2.6 through `cli-opencode`.
 - When choosing its prompt framework and scaffold shape.
-- When you need its dispatch gotchas (hang rate, quota pools, timeout headroom).
+- When you need its dispatch gotchas (hang rate, quota pool, timeout headroom).
 
 ### Core Principle
 
@@ -36,13 +36,12 @@ RCAF + medium pre-planning: the 200k window is for front-loading explicit file-a
 | --- | --- |
 | Model slug | `kimi-k2.6` |
 | Context window | 200,000 tokens |
-| Primary quota pool | `cognition-pro` (shared with DeepSeek-v4-pro, GLM-5.1) |
-| Executor path A | `cli-devin` → provider `cognition` → pool `cognition-pro` |
-| Executor path B | `cli-opencode` → provider `opencode-go` → pool `opencode-go` |
+| Primary quota pool | `opencode-go` (shared with DeepSeek-v4-pro, GLM-5.1, Qwen3.6) |
+| Executor path | `cli-opencode` → provider `opencode-go` → pool `opencode-go` |
 | Avg iteration wall-clock | ~22 min |
 | Fallback target | none |
 
-Kimi-k2.6 is the **large-context specialist** in the rotation — 200 k tokens makes it the first choice for sprawling diff reviews, long-file inspection, multi-repo evidence gathering, and cross-cutting refactors that would overflow the context of the 32 k / 64 k / 128 k siblings. It carries a documented ~5–10% hang rate on complex fixtures (see the `cli-opencode` SKILL.md §3); always set a `gtimeout` wrapper on automation paths.
+Kimi-k2.6 is the **large-context specialist** in the rotation — 200 k tokens makes it the first choice for sprawling diff reviews, long-file inspection, multi-repo evidence gathering, and cross-cutting refactors that would overflow the context of the 32 k / 64 k / 128 k siblings. It carries a documented ~5–10% hang rate on complex fixtures (see `cli-opencode` SKILL.md §3); always set a `gtimeout` wrapper on automation paths.
 
 ---
 
@@ -65,7 +64,7 @@ These choices mirror `recommended_frameworks` in [`../../../sk-prompt-small-mode
 
 No model-specific benchmark has been run for Kimi-k2.6. The registry entry records `benchmark: null`, `primary_score: null`, `sample: "no model-specific benchmark"`, `confidence: "low"` — reproduced verbatim from the DATA source.
 
-**Reasoned default rationale:** RCAF at medium pre-planning density is the convention default for all `default-unverified` models in this rotation (SWE-1.6, DeepSeek-v4-pro, Qwen3.6, GLM-5.1 all share this assignment). For Kimi-k2.6 specifically, two additional factors reinforce the default:
+**Reasoned default rationale:** RCAF at medium pre-planning density is the convention default for all `default-unverified` models in this rotation (DeepSeek-v4-pro, Qwen3.6, GLM-5.1 all share this assignment). For Kimi-k2.6 specifically, two additional factors reinforce the default:
 
 1. The model's use case (large-context synthesis, sprawling diff review) aligns with RCAF's strengths: wide context staging in the `Context` block, clear scoped action, structured output format.
 2. Medium pre-planning density fits the typical Kimi-k2.6 dispatch (multi-file or multi-repo tasks where the caller can name the scope but cannot hand the model a line-level plan).
@@ -78,7 +77,7 @@ Until a dedicated benchmark is run (fixtures covering long-file analysis and cro
 
 The generic RCAF framework definition and its full layered-RCAF YAML are defined in [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) § 3 "RCAF Mastery Patterns" — do not restate them here.
 
-The scaffold below is the Kimi-k2.6-specific fill of the RCAF body. Copy-paste-ready; executor-agnostic (no opencode/devin invocation wrapper included — those live in the executor cards).
+The scaffold below is the Kimi-k2.6-specific fill of the RCAF body. Copy-paste-ready; executor-agnostic (no opencode invocation wrapper included — those live in the executor cards).
 
 ```text
 ## Role
@@ -127,7 +126,7 @@ Output:
 
 ## 6. DISPATCH GOTCHAS
 
-Model-specific capability fields and flags are sourced from the `kimi-k2.6` entry in [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json). Full dispatch wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Model-specific capability fields and flags are sourced from the `kimi-k2.6` entry in [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -135,14 +134,14 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.6` entr
 | `variant_flag` | not declared | No `--variant` flag for this model; omit entirely. |
 | `agent_policy` | not declared | No `--agent` flag documented; omit unless executor-specific docs say otherwise. |
 | `format_mode` | not declared | No JSON envelope constraint; plain text output is expected. |
-| `quota_pool` | `cognition-pro` (cli-devin) / `opencode-go` (cli-opencode) | Both pools are shared across multiple models. Check pool exhaustion before dispatching; no same-pool fallback target is configured. |
+| `quota_pool` | `opencode-go` | Shared across DeepSeek, Kimi, Qwen, GLM. Check pool exhaustion before dispatching; no same-pool fallback target is configured. |
 | `fallback_target` | `null` | When both pools are exhausted there is no automated fallback model. Escalate or defer. |
 | `avg_iter_wall_clock_min` | ~22 | Size timeout headroom via the executor-owned wrapper; complex fixtures may run longer. |
 | Hang rate | ~5–10% documented | On complex fixtures (cli-opencode SKILL.md §3). Use the executor-owned timeout wrapper. |
 
-**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-devin`](../../../cli-devin/SKILL.md) or [`cli-opencode`](../../../cli-opencode/SKILL.md), not this profile.
+**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-opencode`](../../../cli-opencode/SKILL.md), not this profile.
 
-**Fallback target:** none. If `cognition-pro` is exhausted, switch to the `opencode-go` executor path. If both pools are exhausted, defer the task — do not retry against the same pool.
+**Fallback target:** none. If `opencode-go` is exhausted, defer the task — do not retry against the same pool.
 
 ---
 
@@ -150,9 +149,8 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.6` entr
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `#kimi-k2.6` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (RCAF § 3, full framework library).
-- [`../../../cli-devin/SKILL.md`](../../../cli-devin/SKILL.md) — Executor MECHANICS for the cli-devin path (cognition-pro); budget, verification, timeout wrappers.
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (opencode-go); hang-rate note, non-TTY rule, permissions.
 - [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax TIDD-EC + MiMo COSTAR templates as worked examples of the format).
-- [`../pattern-index.md`](../pattern-index.md) — Index of all executor-owned MECHANICS patterns + ship status.
-- [`../models/_index.md`](../models/_index.md) — Sibling model index; see GLM-5.1 and DeepSeek-v4-pro for cognition-pro pool peers.
-- **Executor quality cards (card↔profile round-trip):** [`../../../cli-devin/assets/prompt_quality_card.md`](../../../cli-devin/assets/prompt_quality_card.md) · [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection tables link to this profile; this closes the navigability round-trip.
+- [`../pattern-index.md`](../pattern-index.md) — Index of all MECHANICS patterns + ship status.
+- [`../models/_index.md`](../models/_index.md) — Sibling model index; see GLM-5.1 and DeepSeek-v4-pro for opencode-go pool peers.
+- **Executor quality card:** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

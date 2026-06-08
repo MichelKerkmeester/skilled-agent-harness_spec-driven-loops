@@ -1,10 +1,9 @@
 ---
 title: sk-prompt-small-model
-description: Per-model prompt-craft hub for small-model dispatch. Look up a model's prompt framework, scaffold and gotchas here, then apply the executor mechanics from cli-devin or cli-opencode.
+description: Per-model prompt-craft hub for small-model dispatch. Look up a model's prompt framework, scaffold and gotchas here, then apply the executor mechanics from cli-opencode.
 trigger_phrases:
   - "small model prompt"
   - "model profile"
-  - "cli-devin"
   - "cli-opencode"
   - "prompt framework"
   - "small model dispatch"
@@ -12,7 +11,7 @@ trigger_phrases:
 
 # sk-prompt-small-model
 
-> Before you dispatch any small model, read that model's prompt-craft profile here. The right framework, scaffold and gotchas live in one place. The executor mechanics live in cli-devin and cli-opencode. Each stays clean.
+> Before you dispatch any small model, read that model's prompt-craft profile here. The right framework, scaffold and gotchas live in one place. The executor mechanics live in cli-opencode. Each stays clean.
 
 ---
 
@@ -21,8 +20,8 @@ trigger_phrases:
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Looking up the prompt framework, scaffold and gotchas for a small model before dispatch |
-| **Invoke with** | Advisor co-surfaces this hub alongside cli-devin or cli-opencode when a small model is named |
-| **Works on** | SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3, MiMo-V2.5-Pro and optional Haiku |
+| **Invoke with** | Advisor co-surfaces this hub alongside cli-opencode when a small model is named |
+| **Works on** | DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3, MiMo-V2.5-Pro and optional Haiku |
 | **Produces** | A prompt-craft profile (framework, density, scaffold and gotchas) plus a pointer to the executor mechanics |
 
 ---
@@ -33,19 +32,19 @@ trigger_phrases:
 
 Small models do not all want the same prompt shape. MiMo performs best with COSTAR and a lean plan. MiniMax wants TIDD-EC and a dense plan. The rest default to RCAF. Guess wrong and the model underperforms or ignores half the instructions. Without one source of truth, each dispatch reinvents the framework choice. The fix is a single hub that records each model's framework, scaffold and known traps.
 
-Mixing that prompt-craft with executor mechanics (binary flags, invocation wrappers, budgets, permissions) makes both drift. This hub holds the craft. The executor holds the mechanics. Each stays clean and each can change without dragging the other along.
+Mixing that prompt-craft with executor mechanics (binary flags, invocation wrappers, budgets, permissions) makes both drift. This hub holds the craft. `cli-opencode` holds the mechanics. Each stays clean and each can change without dragging the other along.
 
 ### What It Does
 
 `sk-prompt-small-model` is the per-model prompt-craft hub for small-model dispatch. It owns one prompt-craft profile per active model in `references/models/`, indexed by `references/models/_index.md`. Each profile records the model's primary and fallback framework, its pre-planning density, a tuned scaffold and a gotchas table. The profiles mirror `assets/model-profiles.json`, the registry that is the source of truth for context length, executors, quota pools and recommended frameworks.
 
-The hub carries no tools and no runtime code. It is reached when the skill advisor co-surfaces it alongside `cli-devin` or `cli-opencode`. You read the profile here for the prompt-craft, then follow `references/pattern-index.md` to the executor mechanics in the relevant cli-X skill.
+The hub carries no tools and no runtime code. It is reached when the skill advisor co-surfaces it alongside `cli-opencode`. You read the profile here for the prompt-craft, then follow `references/pattern-index.md` to the executor mechanics in `cli-opencode`.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** The advisor surfaces this hub automatically when you name a small model alongside cli-devin or cli-opencode. If the advisor does not fire, load the entry surface directly.
+**Step 1: Invoke it.** The advisor surfaces this hub automatically when you name a small model alongside cli-opencode. If the advisor does not fire, load the entry surface directly.
 
 ```bash
 # Auto-routing through the skill advisor
@@ -59,7 +58,7 @@ Read(".opencode/skills/sk-prompt-small-model/SKILL.md")
 
 **Step 3: Read the profile.** Load `references/models/<id>.md`. It gives you the framework (primary and fallback), the pre-planning density, the scaffold shape and the gotchas table. Apply those when you build the prompt.
 
-**Step 4: Cross to the executor.** Open `references/pattern-index.md`. It locates each executor-owned mechanic (context budget, output verification, quota fallback, permissions schema) by path in cli-devin or cli-opencode. Load the mechanic your dispatch needs and combine it with the prompt-craft from step 3.
+**Step 4: Cross to the executor.** Open `references/pattern-index.md`. It locates each mechanic (context budget, output verification, quota fallback, permissions schema) by path in `sk-prompt-small-model` or `cli-opencode`. Load the mechanic your dispatch needs and combine it with the prompt-craft from step 3.
 
 ---
 
@@ -67,7 +66,7 @@ Read(".opencode/skills/sk-prompt-small-model/SKILL.md")
 
 ### The Navigation Chain
 
-Every dispatch follows four steps. First resolve the target model id through the alias map in `SKILL.md` (e.g. `minimax` resolves to `minimax-m3`, `deepseek` resolves to `deepseek-v4-pro`). Then load `references/models/_index.md` to pick the model row and confirm its status. Then load `references/models/<id>.md` for the prompt-craft: the framework, density, scaffold and gotchas. Finally follow `references/pattern-index.md` to the executor mechanics in cli-devin or cli-opencode. The prompt-craft from here and the mechanics from the cli-X combine in the executor's prompt-pack.
+Every dispatch follows four steps. First resolve the target model id through the alias map in `SKILL.md` (e.g. `minimax` resolves to `minimax-m3`, `deepseek` resolves to `deepseek-v4-pro`). Then load `references/models/_index.md` to pick the model row and confirm its status. Then load `references/models/<id>.md` for the prompt-craft: the framework, density, scaffold and gotchas. Finally follow `references/pattern-index.md` to the executor mechanics in `cli-opencode`. The prompt-craft from here and the mechanics from `cli-opencode` combine in the executor's prompt-pack.
 
 ### The Per-Model Profiles
 
@@ -87,7 +86,7 @@ The framework assignments follow a pattern rather than a pinned count. The set d
 
 | Model | Primary framework | Pre-planning density | Evidence |
 |---|---|---|---|
-| swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1 | RCAF | medium | Default, unverified |
+| deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1 | RCAF | medium | Default, unverified |
 | minimax-m3, minimax-2.7 | TIDD-EC (fallback RCAF) | dense | M3 empirical (benchmark), 2.7 historical |
 | mimo-v2.5-pro | COSTAR (fallback RACE, avoid TIDD-EC and CIDI) | lean | Empirical (benchmark 004) |
 
@@ -103,7 +102,7 @@ This hub owns prompt-craft and the model registry. The executor skills own mecha
 
 What prompt-craft means: which framework to use, how dense the plan should be, what the scaffold looks like and what traps to watch for. All of it is prose in `references/models/<id>.md`.
 
-What mechanics means: the binary flags for the executor CLI, the invocation wrapper, the context budget, the output-verification pipeline and the quota-fallback decision matrix. All of it lives in cli-devin or cli-opencode, reachable through `references/pattern-index.md`.
+What mechanics means: the binary flags for the executor CLI, the invocation wrapper, the context budget, the output-verification pipeline and the quota-fallback decision matrix. All of it lives in `cli-opencode`, reachable through `references/pattern-index.md`.
 
 This split keeps each side clean. Change a framework assignment in the profile and the executor flags do not drift. Add a new CLI flag in the executor and the profiles do not need a rewrite.
 
@@ -113,9 +112,9 @@ This split keeps each side clean. Change a framework assignment in the profile a
 
 ### When To Use This Skill
 
-Reach for `sk-prompt-small-model` before you dispatch any small model through cli-devin or cli-opencode. Reach for it when you need to know which framework a model wants or what its gotchas are. Reach for it when you are authoring a prompt-pack and need the scaffold shape.
+Reach for `sk-prompt-small-model` before you dispatch any small model through `cli-opencode`. Reach for it when you need to know which framework a model wants or what its gotchas are. Reach for it when you are authoring a prompt-pack and need the scaffold shape.
 
-Skip it for frontier models (Opus, Sonnet, gpt-5.5). Those are out of scope. Skip it when you are looking for binary flags or invocation wrappers. Those live in the executor, not here.
+Skip it for frontier models (Opus, Sonnet, gpt-5.5). Those are out of scope. Skip it when you are looking for binary flags or invocation wrappers. Those live in `cli-opencode`, not here.
 
 ### How the Four Owners Fit Together
 
@@ -125,11 +124,10 @@ Four skills own the small-model dispatch workflow. Each owns one layer and none 
 |---|---|
 | `sk-prompt-small-model` (this skill) | Per-model prompt-craft profiles and the model registry data |
 | `sk-prompt` | The generic framework definitions (the seven-framework set and CLEAR scoring) |
-| `cli-devin` | Executor mechanics for SWE-1.6, DeepSeek, Kimi and GLM: flags, wrappers, budgets, verification and fallback |
-| `cli-opencode` | Executor mechanics for MiniMax and MiMo: flags, wrappers, the permissions schema and budget propagation |
+| `cli-opencode` | Executor mechanics for all active models: flags, wrappers, the permissions schema and budget propagation |
 | `system-spec-kit` | Runtime TypeScript helpers used by the executors |
 
-`sk-prompt-small-model` enhances both cli-devin and cli-opencode (weight 0.5 each), so the advisor surfaces this hub next to whichever executor is in use. The generic framework definitions live in `sk-prompt`. The profiles choose from that set but never restate the definitions. This four-way split means you pick the framework from here, the definition from `sk-prompt` and the mechanics from the cli-X. Each layer changes independently.
+`sk-prompt-small-model` enhances `cli-opencode` (weight 0.8), so the advisor surfaces this hub next to that executor. The generic framework definitions live in `sk-prompt`. The profiles choose from that set but never restate the definitions. This three-way split means you pick the framework from here, the definition from `sk-prompt` and the mechanics from `cli-opencode`. Each layer changes independently.
 
 ---
 
@@ -141,7 +139,7 @@ Four skills own the small-model dispatch workflow. Each owns one layer and none 
 | The framework feels wrong for the task | The profile records the empirical best, but a task might be an outlier | Check the fallback framework. If both fail, open a benchmark run to test a third choice |
 | Profile and registry disagree | The registry (`model-profiles.json`) was updated but the profile was not re-mirrored | Re-mirror the profile from its `model-profiles.json` row |
 | Looking for flags or budgets here | Those are executor mechanics, not prompt-craft | Follow `references/pattern-index.md` to the cli-X for the flags and budget files |
-| Hub does not surface in the advisor | The model name is missing from the executor's trigger phrases, or the advisor index is stale | Check `SKILL.md` trigger phrases in the cli-X. Run `skill_graph_scan` to re-index |
+| Hub does not surface in the advisor | The model name is missing from the executor's trigger phrases, or the advisor index is stale | Check `SKILL.md` trigger phrases in `cli-opencode`. Run `skill_graph_scan` to re-index |
 | A model changed executors | The dispatch matrix row in `SKILL.md` §3 is out of date | Update the dispatch matrix row and the `executors` array in `model-profiles.json` |
 
 ---
@@ -156,13 +154,13 @@ A: This hub owns the per-model prompt-craft prose (framework, density, scaffold 
 
 A: `sk-prompt` owns the generic framework definitions (what RCAF is, what TIDD-EC is and the CLEAR scoring rubric). This hub owns the per-model choice of which framework to use. `sk-prompt` says what TIDD-EC means. This hub says MiniMax uses TIDD-EC and why.
 
-**Q: How is this different from `cli-devin` and `cli-opencode`?**
+**Q: How is this different from `cli-opencode`?**
 
-A: The cli-X skills own how you invoke a model: the binary, the flags, the budget and the fallback engine. This hub owns what prompt shape you send once the model is invoked. You read the profile here for the craft, then follow `pattern-index.md` to the cli-X for the mechanics.
+A: `cli-opencode` owns how you invoke a model: the binary, the flags, the budget and the fallback engine. This hub owns what prompt shape you send once the model is invoked. You read the profile here for the craft, then follow `pattern-index.md` to `cli-opencode` for the mechanics.
 
 **Q: How do I add a new small model?**
 
-A: Follow the adoption checklist in `references/pattern-index.md` §4. The steps are: add a row to `assets/model-profiles.json`, add a row to `references/models/_index.md`, author the profile at `references/models/<id>.md`, add the dispatch matrix row in `SKILL.md` §3 and re-index the advisor. No code changes unless the model needs a new executor path.
+A: Follow the adoption checklist in `references/pattern-index.md` §4. The steps are: add a row to `assets/model-profiles.json`, add a row to `references/models/_index.md`, author the profile at `references/models/<id>.md`, add the dispatch matrix row in `SKILL.md` §3 and re-index the advisor. No code changes unless the model needs a new executor path in `cli-opencode`.
 
 **Q: The hub says RCAF is the default for most models. Should I ever use something else?**
 

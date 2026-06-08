@@ -1,0 +1,170 @@
+{
+  "scope": "Deprecate .opencode/skills/cli-devin and remove all references across the framework",
+  "executorPool": "native x2 (sonnet), by-model-shared-scope, agreementMin 2, relevanceGate 0.55",
+  "iterations": 10,
+  "stopReason": "maxIterationsReached",
+  "codeGraph": "unavailable (Glob+Grep frontier; citations unverified-by-graph but line-verified by seats)",
+  "boundary": {
+    "activeWiringFiles": "~45",
+    "historicalFiles": "~1760",
+    "note": "edit active-only; leave specs/changelog/benchmark per 132-cli-gemini precedent"
+  },
+  "decisions": [
+    {
+      "id": "D1",
+      "q": "removal scope all-1811 vs active-only",
+      "rec": "active-only (~45 files)",
+      "evidence": "1572 specs + ~40 benchmark + ~30 changelog are historical records"
+    },
+    {
+      "id": "D2",
+      "q": "swe-1.6 remove vs retire",
+      "rec": "remove or mark retired (cli-devin-EXCLUSIVE)",
+      "evidence": "model-profiles.json single executor cli-devin, fallback null, absent from opencode.json/.utcp_config.json"
+    },
+    {
+      "id": "D3",
+      "q": "context-budget.md canonical re-home target",
+      "rec": "sk-prompt-small-model/references or cli-opencode; MUST precede deletion",
+      "evidence": "cli-opencode/references/context-budget.md is a sentinel pointing at cli-devin canonical"
+    },
+    {
+      "id": "D4",
+      "q": "deep-review successor executor",
+      "rec": "cli-codex or cli-opencode",
+      "evidence": "constitutional/post-implementation-deep-review.md prescribes cli-devin SWE-1.6"
+    },
+    {
+      "id": "D5",
+      "q": "Devin removal scope: cli-devin skill only vs full Devin runtime",
+      "rec": "full Devin removal (recommended) — confirm",
+      "evidence": "Devin IDE runtime hooks (.devin/, hooks/devin/, 'devin' runtime enum) are separate from cli-devin skill"
+    },
+    {
+      "id": "D6",
+      "q": "grader-prompt stale label",
+      "rec": "low-priority neutralize if touching",
+      "evidence": "system-{grader,skeptic}.md:3 'cli-devin SWE 1.6' label; grading executor-agnostic; seat contradiction"
+    }
+  ],
+  "phasePlan": [
+    {
+      "phase": "P1",
+      "name": "CI gate",
+      "action": "patch check-prompt-quality-card-sync.sh (63,93) + repoint prompt_quality_card path BEFORE deletion"
+    },
+    {
+      "phase": "P2",
+      "name": "re-home canonical",
+      "action": "move context-budget.md + per-model-budgets.json out of cli-devin; repoint 5 consumers"
+    },
+    {
+      "phase": "P3",
+      "name": "bulk removals",
+      "action": "runtime code + tests + 5 YAMLs + 6 cmd docs + sk-prompt-small-model cluster + agents(3rt) + governance + cross-skill/constitutional + run-deep-review-arc.sh; apply D2/D4/D5"
+    },
+    {
+      "phase": "P4",
+      "name": "graph rebuild",
+      "action": "remove cli-devin edges from 6 graph-metadata.json; rebuild skill-graph.sqlite; regen 2 skill-graph.json"
+    },
+    {
+      "phase": "P5",
+      "name": "delete + verify",
+      "action": "rm -rf cli-devin/; validate.sh --strict + check-prompt-quality-card-sync.sh + grep=0 active"
+    }
+  ],
+  "deletionSafety": {
+    "verdict": "SAFE after P1-P4",
+    "detail": "no retained code imports/requires cli-devin/ at runtime; no symlinks into dir"
+  },
+  "suggestedChildren": [
+    "001-canonical-rehome-and-ci-gate",
+    "002-runtime-code-and-executor-removal",
+    "003-registry-graph-and-skill-advisor",
+    "004-docs-agents-governance",
+    "005-delete-skill-and-verify"
+  ],
+  "activeWiringClusters": {
+    "runtimeCode": [
+      "executor-config.ts",
+      "executor-audit.ts",
+      "fanout-run.cjs",
+      "dispatch-model.cjs",
+      "profile-validator.cjs",
+      "advisor-runtime-values.ts",
+      "+tests"
+    ],
+    "yamlAndCmd": [
+      "deep_start-research/review_auto",
+      "deep_start-review_confirm",
+      "deep_start-context_auto/confirm",
+      "start-{research,review,context,model-benchmark,agent-improvement}-loop.md"
+    ],
+    "skPromptSmallModel": [
+      "SKILL.md",
+      "model-profiles.json",
+      "graph-metadata.json",
+      "description.json",
+      "cli_prompt_quality_card.md",
+      "pattern-index.md",
+      "5 model refs",
+      "README.md"
+    ],
+    "skillGraphAdvisor": [
+      "6 graph-metadata.json",
+      "2 skill-graph.json",
+      "skill-graph.sqlite(rebuild)",
+      "advisor SKILL/INSTALL/ARCHITECTURE/README/freshness/hook docs",
+      "check-prompt-quality-card-sync.sh",
+      "run-deep-review-arc.sh",
+      "devin playbook"
+    ],
+    "devinPlatformHooks": [
+      ".devin/hooks.v1.json",
+      "system-skill-advisor/hooks/devin/",
+      "system-spec-kit/mcp_server/hooks/devin/session-start.ts+test",
+      "code-graph devin-session-start playbook",
+      "comment-hygiene-devin-precommit playbook"
+    ],
+    "agents": [
+      "deep-context(3rt)",
+      "deep-research/review(.opencode SWE-1.6 sections)",
+      "deep-improvement(3rt)"
+    ],
+    "governance": [
+      "AGENTS.md",
+      "CLAUDE.md(twin)",
+      "README.md",
+      "skills/README.md"
+    ],
+    "crossSkill": [
+      "deep-context refs",
+      "cli-* sibling README/SKILL/refs",
+      "sk-prompt README",
+      "constitutional cli-dispatch + post-impl-deep-review",
+      "shared_smart_router",
+      "memory_handback",
+      "deep-improvement docs",
+      "deep-loop-runtime SKILL/feature_catalog/fanout-run",
+      "scripts/README"
+    ],
+    "skillDir": [
+      "rm -rf .opencode/skills/cli-devin (~70 files) LAST"
+    ]
+  },
+  "historical": {
+    "leave": [
+      "specs/** ~1700+",
+      "changelog/** ~30",
+      "benchmark state/eval ~40",
+      "descriptions.json cli-devin rows"
+    ],
+    "residualNonBlocking": [
+      "specs/.../research/run_loop.sh:13",
+      "specs/.../research/render_remediation.sh:10"
+    ],
+    "countCheck": "system-spec-kit playbook -ne 391 does NOT track cli-devin; no bump"
+  },
+  "generatedAt": "2026-06-08T15:57:06.081Z"
+}

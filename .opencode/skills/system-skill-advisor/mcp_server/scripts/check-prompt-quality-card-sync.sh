@@ -60,7 +60,6 @@ has_clear_matrix() {
 
 cli_cards=(
   "$ROOT/.opencode/skills/cli-opencode/assets/prompt_quality_card.md"
-  "$ROOT/.opencode/skills/cli-devin/assets/prompt_quality_card.md"
   "$ROOT/.opencode/skills/cli-codex/assets/prompt_quality_card.md"
   "$ROOT/.opencode/skills/cli-claude-code/assets/prompt_quality_card.md"
 )
@@ -90,7 +89,7 @@ done
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
 echo "CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-opencode cli-devin cli-codex cli-claude-code)
+cli_skills=(cli-opencode cli-codex cli-claude-code)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.opencode/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
@@ -120,7 +119,7 @@ all_ids = {m["id"] for m in reg["models"]}
 adopted = [m for m in reg["models"] if m.get("recommended_frameworks")]
 
 # Family token used for reachability (first id segment by default).
-FAMILY = {"swe-1.6": "swe", "deepseek-v4-pro": "deepseek", "kimi-k2.6": "kimi",
+FAMILY = {"deepseek-v4-pro": "deepseek", "kimi-k2.6": "kimi",
           "qwen3.6": "qwen", "glm-5.1": "glm", "minimax-m3": "minimax",
           "minimax-2.7": "minimax", "mimo-v2.5-pro": "mimo"}
 

@@ -11,7 +11,7 @@
 #   worktree-session.sh <runtime> [cli-args...]
 #   worktree-session.sh --dry-run <runtime> [cli-args...]   # print the plan, change nothing
 #
-# <runtime> is the CLI to exec (claude, codex, opencode, devin, gemini, ...).
+# <runtime> is the CLI to exec (claude, codex, opencode, ...).
 #
 # Child detection (either signal => exec in place, no new worktree):
 #   1. AI_SESSION_CHILD=1 in the environment (set at dispatch sites for orchestrated children).

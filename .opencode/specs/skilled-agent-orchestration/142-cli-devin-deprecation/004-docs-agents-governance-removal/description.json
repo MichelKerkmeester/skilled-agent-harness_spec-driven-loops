@@ -1,0 +1,17 @@
+{
+  "specFolder": "142-cli-devin-deprecation/004-docs-agents-governance-removal",
+  "description": "Phase 4: docs-agents-governance-removal",
+  "keywords": [
+    "phase",
+    "docs-agents-governance-removal"
+  ],
+  "lastUpdated": "2026-06-08T16:10:30.858Z",
+  "specId": "004",
+  "folderSlug": "docs-agents-governance-removal",
+  "parentChain": [
+    "142-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

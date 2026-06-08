@@ -39,6 +39,8 @@ Deferred decisions stay visible until they are explicitly resolved, superseded o
 
 ## 2. F4: `.devin/hooks.v1.json` migration
 
+> **CLOSED — SUPERSEDED by the cli-devin deprecation (packet `142-cli-devin-deprecation`, 2026-06-08).** Devin was fully removed from the framework: `.devin/hooks.v1.json`, the skill-advisor and spec-kit `hooks/devin/` sources + dist, and the `'devin'` runtime enum were all deleted. The migration described below is moot — no Devin hook is wired anymore. The text is retained as a historical record of the decision; do not act on its migration steps.
+
 ### Status: DONE as of 2026-05-16 in packet `008-tier-d-execution`
 
 UserPromptSubmit now points to `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js`. SessionStart now points to `.opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/hooks/devin/session-start.js`. Pivot from original plan: SessionStart was migrated to system-code-graph (its actual conceptual owner) rather than system-skill-advisor, because the hook source carries the `// MODULE: Devin SessionStart Hook — Code Graph Startup Context` comment plus imports `code-graph-boundary.js`. The system-code-graph dist already contained a compiled artifact at the target path.
@@ -84,7 +86,7 @@ A complete migration of both hooks requires building `session-start.js` at the N
 
 ### Status: DEPRECATION BANNERS IN PLACE as of 2026-05-16 in packet `008-tier-d-execution`
 
-All 4 OLD hook READMEs (`system-spec-kit/mcp_server/hooks/{claude,codex,gemini,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
+All 4 OLD hook READMEs (`system-spec-kit/mcp_server/hooks/{claude,codex,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
 
 ### F6 audit progress (2026-05-18)
 
@@ -105,8 +107,8 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 
 | OLD path | Still in use by | Disposition for 2026-08-16 |
 |---|---|---|
-| `system-spec-kit/mcp_server/hooks/{claude,codex,gemini,devin}/user-prompt-submit.ts` | Nothing at runtime (NEW dist is self-contained) | Safe to delete after 2026-08-16 |
-| `system-spec-kit/mcp_server/hooks/{claude,codex,gemini,devin}/README.md` | Operators migrating away | Safe to delete after 2026-08-16 |
+| `system-spec-kit/mcp_server/hooks/{claude,codex,devin}/user-prompt-submit.ts` | Nothing at runtime (NEW dist is self-contained) | Safe to delete after 2026-08-16 |
+| `system-spec-kit/mcp_server/hooks/{claude,codex,devin}/README.md` | Operators migrating away | Safe to delete after 2026-08-16 |
 | `system-spec-kit/mcp_server/hooks/claude/hook-state.ts` | Documented in `DEPLOYMENT.md` L7 as the project-hash source. | Keep until separate migration packet. |
 | `system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts` | Documented in `README.md` L769 as the canonical helper. | Keep until separate migration packet. |
 | `system-spec-kit/mcp_server/hooks/devin/session-prime.ts` + `session-start.ts` | Code-graph SKILL.md §8.2 explicitly documents these as still-in-use under spec-kit (ADR-001 hook ownership asymmetry). | Keep — not in scope for the F6 90-day removal. |
@@ -115,7 +117,7 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 **Revised F6 removal scope (after 2026-08-16):**
 
 The removal at 2026-08-16 should be limited to:
-- The 4 per-runtime entry-point files `system-spec-kit/mcp_server/hooks/{claude,codex,gemini,devin}/user-prompt-submit.ts` + each runtime's `README.md`.
+- The 4 per-runtime entry-point files `system-spec-kit/mcp_server/hooks/{claude,codex,devin}/user-prompt-submit.ts` + each runtime's `README.md`.
 
 NOT included in the F6 removal:
 - `hook-state.ts` (per DEPLOYMENT.md consumer)
@@ -129,8 +131,8 @@ A future packet (`006-skill-advisor/010-old-hooks-helper-migration` or similar) 
 
 Hooks exist at TWO locations:
 
-- OLD: `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,codex,gemini,devin}/` with source TS plus compiled JS
-- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,codex,gemini,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/{claude,codex,gemini}/` with compiled JS (devin missing session-start.js per F4)
+- OLD: `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,codex,devin}/` with source TS plus compiled JS
+- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,codex,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/{claude,codex}/` with compiled JS (devin missing session-start.js per F4)
 
 No README or doc explains which location is canonical or when OLD will deprecate.
 
@@ -150,7 +152,6 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
    |---|---|---|---|
    | Claude | `.claude/settings.local.json` hooks block | yes | Update Claude config |
    | Codex | `.codex/config.toml` hooks section | yes | Update Codex config |
-   | Gemini | Gemini CLI hook config | yes | Update Gemini config |
    | Devin | `.devin/hooks.v1.json` | partial (session-start.js missing) | Resolve F4 first |
    | OpenCode plugin | `.opencode/plugins/mk-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
 

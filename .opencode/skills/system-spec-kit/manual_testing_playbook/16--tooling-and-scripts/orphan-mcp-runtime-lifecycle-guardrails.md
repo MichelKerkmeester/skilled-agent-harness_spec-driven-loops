@@ -19,7 +19,7 @@ The flag-gated Stop-hook orphan-sweep fallback (`SPECKIT_STOP_HOOK_ORPHAN_SWEEP`
 - Real user request: `Please validate the orphan MCP leak prevention runbook without killing processes or deleting /tmp files. Show me the dry-run command, preservation evidence, syntax checks, plist lint, and where the idle-timeout knob is documented.`
 - Prompt: `Validate orphan MCP runtime lifecycle guardrails in dry-run mode and report cited pass/fail evidence.`
 - Expected execution process: Run the documented commands, capture transcripts, compare the observed output against the expected signals, and return a concise verdict.
-- Expected signals: syntax checks pass; plist lint passes; sweeper dry-run logs `[DRY-RUN]` actions or summary without killing/removing; verbose output shows preserve decisions when matching live preserved processes exist; `/tmp/devin-*` and `/tmp/codex-browser-use` are never removal candidates; `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` appears in the env reference and affected runtime docs.
+- Expected signals: syntax checks pass; plist lint passes; sweeper dry-run logs `[DRY-RUN]` actions or summary without killing/removing; verbose output shows preserve decisions when matching live preserved processes exist; `/tmp/codex-browser-use` is never a removal candidate; `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` appears in the env reference and affected runtime docs.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if every command is non-mutating, the dry-run output is reviewable, and documentation references align with the implementation packet.
 

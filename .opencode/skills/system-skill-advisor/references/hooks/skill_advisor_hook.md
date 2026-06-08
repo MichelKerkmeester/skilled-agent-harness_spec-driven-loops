@@ -1,11 +1,11 @@
 ---
 title: Skill Advisor Hook Reference
-description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Gemini CLI, Codex CLI and the OpenCode plugin bridge.
+description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Codex CLI and the OpenCode plugin bridge.
 ---
 
 # Skill Advisor Hook Reference
 
-Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Gemini CLI, Codex CLI and the OpenCode plugin bridge.
+Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Codex CLI and the OpenCode plugin bridge.
 
 ---
 
@@ -17,7 +17,7 @@ Defines the operator contract for prompt-time Skill Advisor hooks across support
 
 ### When to Use
 
-- Installing or debugging Claude, Copilot, Gemini, Codex, Devin or OpenCode prompt-submit hooks.
+- Installing or debugging Claude, Copilot, Codex or OpenCode prompt-submit hooks.
 - Checking hook fail-open, redaction or freshness behavior.
 - Aligning runtime adapters with the native advisor package.
 
@@ -40,7 +40,6 @@ Hooks surface compact advisor context; they do not replace skill loading or leak
 | --- | --- | --- | --- |
 | Claude Code | `mcp_server/hooks/claude/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt` and `cwd`. |
 | Copilot CLI | `mcp_server/hooks/copilot/user-prompt-submit.ts` | managed block in `$HOME/.copilot/copilot-instructions.md`. Hook stdout remains `{}` | Copilot advisor is NEXT-PROMPT freshness: current prompt sees PRIOR turn's brief. |
-| Gemini CLI | `mcp_server/hooks/gemini/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt`, `userPrompt` or `request.prompt`. |
 | Codex CLI | `mcp_server/hooks/codex/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Stdin JSON is canonical and wins over argv JSON. |
 | Codex fallback | `mcp_server/hooks/codex/prompt-wrapper.ts` | `promptWrapper` and `wrappedPrompt` | Runs only when Codex hook policy reports hooks unavailable. |
 | OpenCode | `.opencode/plugins/spec-kit-skill-advisor.js` + `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js`, applies the same effective threshold on native and fallback paths, then falls back to the Python-backed brief path only when native is unavailable. |
@@ -92,15 +91,6 @@ cat "$SPECKIT_COPILOT_INSTRUCTIONS_PATH"
 ```
 
 Expected: hook stdout is `{}` and the custom-instructions file contains `SPEC-KIT-COPILOT-CONTEXT` plus an `Active Advisor Brief` section.
-
-### Gemini CLI
-
-```bash
-printf '%s' '{"request":{"prompt":"create a flowchart for the auth process","cwd":"'"$PWD"'"}}' | \
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js
-```
-
-Expected: `{}` or `hookSpecificOutput.additionalContext`.
 
 ### Codex CLI
 

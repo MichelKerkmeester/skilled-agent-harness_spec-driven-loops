@@ -20,7 +20,7 @@ Templates are numbered for cross-reference from `references/integration_patterns
 ## 2. TEMPLATE 1 — EXTERNAL RUNTIME TO OPENCODE (USE CASE 1)
 
 **Framework:** RCAF
-**Calling runtime:** Claude Code, Codex, Copilot, Gemini, raw shell
+**Calling runtime:** Claude Code, Codex, Copilot, raw shell
 
 ```text
 You are dispatching from <calling-runtime> into a fresh OpenCode session via cli-opencode.
@@ -39,7 +39,7 @@ Success criteria:
 - <list>
 
 Budget awareness:
-- Apply `../references/context-budget.md`; canonical semantics live in `../../cli-devin/references/context-budget.md`.
+- Apply `../references/context-budget.md`; canonical semantics live in `../../sk-prompt-small-model/references/context-budget.md`.
 - When content is cut for context budget, keep the retained span and insert `[... truncated N tokens]`.
 - Treat truncation markers as intentional boundaries; do not infer missing evidence.
 
@@ -115,7 +115,7 @@ opencode run \
 ## 4. TEMPLATE 3 — CROSS-AI ORCHESTRATION HANDBACK (USE CASE 3)
 
 **Framework:** RCAF + TIDD-EC
-**Calling runtime:** Codex, Copilot, Gemini
+**Calling runtime:** Codex, Copilot
 
 ```text
 You are dispatching from <calling-runtime> into OpenCode for a spec-kit-specific workflow.
@@ -423,7 +423,7 @@ Asking cli-opencode to delegate this exact prompt back to OpenCode would create
 a circular dispatch.
 
 Options:
-1. Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-devin)
+1. Use a sibling cli-* skill (cli-claude-code, cli-codex)
    to dispatch a different model.
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
 3. If you wanted a parallel detached session (different session id, separate

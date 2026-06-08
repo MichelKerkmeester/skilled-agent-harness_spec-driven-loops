@@ -41,7 +41,7 @@ RCAF + medium pre-planning: on a 32k window, prompt economy is non-negotiable �
 | Fallback target | none (`fallback_target: null` in registry) |
 | Avg wall-clock / iter | ~12 min |
 
-Qwen3.6 is available only via the `opencode-go` provider credits. There is no Devin/Cognition path and no alternative pool. With only 32k tokens of context, prompt economy is non-negotiable: keep role statements lean, anchor to specific files rather than full-file pastes, and truncate long evidence blocks with `[... truncated N tokens]` markers before dispatch.
+Qwen3.6 is available only via the `opencode-go` provider credits, with no alternative pool. With only 32k tokens of context, prompt economy is non-negotiable: keep role statements lean, anchor to specific files rather than full-file pastes, and truncate long evidence blocks with `[... truncated N tokens]` markers before dispatch.
 
 ---
 
@@ -78,7 +78,7 @@ No model-specific benchmark has been run for `qwen3.6` as of this profile's auth
 }
 ```
 
-**Reasoned default:** RCAF at MEDIUM pre-planning density is the convention default for all unverified small coding models in this rotation (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, GLM-5.1 carry the same default). The discriminating constraint for Qwen3.6 specifically is its 32k window — the smallest in the active rotation. This makes RCAF's economy an asset rather than just a default: any framework that expands prompt length (TIDD-EC's instruction/guardrail blocks, COSTAR's audience/style elaborations) reduces the payload budget available for actual code and file context. Until a benchmark demonstrates otherwise, RCAF + MEDIUM density is the conservative and principled choice.
+**Reasoned default:** RCAF at MEDIUM pre-planning density is the convention default for all unverified small coding models in this rotation (DeepSeek-v4-pro, Kimi-k2.6, GLM-5.1 carry the same default). The discriminating constraint for Qwen3.6 specifically is its 32k window — the smallest in the active rotation. This makes RCAF's economy an asset rather than just a default: any framework that expands prompt length (TIDD-EC's instruction/guardrail blocks, COSTAR's audience/style elaborations) reduces the payload budget available for actual code and file context. Until a benchmark demonstrates otherwise, RCAF + MEDIUM density is the conservative and principled choice.
 
 **When to re-evaluate:** If correctness failures are observed on multi-step tasks, consider a structured pre-plan section (closer to dense) or switching to a larger-context model. If a benchmark is run, update `model-profiles.json` first, then update sections 2 and 3 here to reflect the empirical result.
 
@@ -160,5 +160,5 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 - [`cli-opencode/references/permissions-matrix.md`](../../../cli-opencode/references/permissions-matrix.md) — Structured permissions schema for tool-call gating
 - [`../pattern-index.md`](../pattern-index.md) — Index of executor-owned MECHANICS + ship status
 - [`../_index.md`](./_index.md) — All model profiles at a glance
-- **Sibling default-unverified profiles (same RCAF/medium convention):** `swe-1.6.md`, `deepseek-v4-pro.md`, `kimi-k2.6.md`, `glm-5.1.md` — same framework default; differ in context window, executor paths, and pool membership
+- **Sibling default-unverified profiles (same RCAF/medium convention):** `deepseek-v4-pro.md`, `kimi-k2.6.md`, `glm-5.1.md` — same framework default; differ in context window, executor paths, and pool membership
 - **Executor quality card (card↔profile round-trip):** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — qwen3.6's sole executor; its model-selection table links to this profile, closing the navigability round-trip.

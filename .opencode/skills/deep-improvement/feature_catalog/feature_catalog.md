@@ -290,7 +290,7 @@ Model-agnostic dispatcher that routes prompts across executor CLIs only on the m
 
 #### How It Works
 
-`scripts/model-benchmark/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, and cli-devin, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
+`scripts/model-benchmark/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, and cli-codex, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
 
 #### Source Files
 

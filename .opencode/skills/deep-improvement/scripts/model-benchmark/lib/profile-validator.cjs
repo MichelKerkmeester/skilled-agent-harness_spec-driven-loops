@@ -36,8 +36,6 @@ const KNOWN_EXECUTORS = new Set([
   'cli-opencode',
   'cli-claude-code',
   'cli-codex',
-  'cli-gemini',
-  'cli-devin',
 ]);
 
 const KNOWN_SCORERS = new Set(['pattern', '5dim']);

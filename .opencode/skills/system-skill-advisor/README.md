@@ -157,7 +157,6 @@ Skip the advisor for trivial queries where the intent is obvious, for structural
 | Top-2 candidates within 0.1 of each other | Ambiguous prompt. Two skills are equally plausible | Surface both candidates instead of routing silently |
 | `advisor_validate` corpus top-1 below 80.5% | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]` and `slices.corpus` |
 | Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
-| Devin hook ignores `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | The Devin hook checks `MK_SKILL_ADVISOR_HOOK_DISABLED` first | Set that variable, or set both |
 
 ---
 
@@ -181,7 +180,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract across Claude, Codex, Gemini, Devin and the OpenCode plugin bridge. Per-runtime hook files live under `hooks/claude/`, `hooks/codex/`, `hooks/gemini/` and `hooks/devin/`.
+A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract across Claude, Codex and the OpenCode plugin bridge. Per-runtime hook files live under `hooks/claude/` and `hooks/codex/`.
 
 ---
 

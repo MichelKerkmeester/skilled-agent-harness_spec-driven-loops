@@ -16,7 +16,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The playbook contains 22 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
+The playbook contains 21 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -28,7 +28,6 @@ The playbook contains 22 scenarios across 9 groups. It targets the current reali
 | MCP tool surface | [06--mcp-tool-surface](./06--mcp-tool-surface/) |
 | Doctor code graph | [08--doctor-code-graph](./08--doctor-code-graph/) |
 | Post-rename infrastructure | [09--post-rename-infrastructure](./09--post-rename-infrastructure/) |
-| Devin hooks | [10--devin-hooks](./10--devin-hooks/) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -138,20 +137,10 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 15. DEVIN HOOKS
-
-Validates the Devin CLI `SessionStart` hook variant shipped in packet `036-cli-devin-code-graph-hook`. The hook source lives at `system-spec-kit/mcp_server/hooks/devin/session-start.ts` (intentional asymmetry vs the advisor pattern — see ADR-001 of packet 036). Registration lives in `.devin/hooks.v1.json` under `SessionStart`.
-
-| ID | Scenario | File |
-| --- | --- | --- |
-| 025 | Devin CLI SessionStart Hook | [devin-session-start.md](./10--devin-hooks/devin-session-start.md) |
-
----
-
-## 16. AUTOMATED TEST CROSS-REFERENCE
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 Automated coverage lives in the code_graph runtime tests and build checks. Use this section as the manual-to-automated trace point when recording evidence for release review.
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 Each scenario maps to the runtime catalog at [../feature_catalog/feature_catalog.md](../feature_catalog/feature_catalog.md).

@@ -23,7 +23,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Sandboxed coding, repo analysis, PR review, live web research and cross-model validation through OpenAI's `codex` CLI |
 | **Invoke with** | "codex", "openai", "web search", "second opinion" or auto-routing on Codex keywords |
-| **Works on** | Any external runtime (Gemini CLI, Claude Code, Copilot, raw shell) that needs to reach the `codex` binary |
+| **Works on** | Any external runtime (Claude Code, Copilot, raw shell) that needs to reach the `codex` binary |
 | **Produces** | Code edits in a sandbox, text responses, diff-aware reviews and web-enriched research |
 
 ---
@@ -151,7 +151,6 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | `cli-codex` | OpenAI | Sandboxed coding, repo analysis, PR review, web research |
 | `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
 | `cli-opencode` | OpenCode | Full OpenCode runtime dispatch, in-OpenCode parallel sessions |
-| `cli-devin` | Cognition | Autonomous coding via Devin for Terminal |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 
@@ -184,7 +183,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 **Q: Why not just call `codex exec` directly from my shell?**
 
-A: You can. This skill exists for when an external AI assistant (Gemini, Claude Code, Copilot) needs to dispatch to Codex programmatically. It handles model selection, sandbox mapping, auth pre-flight and the self-invocation guard so the calling AI does not have to.
+A: You can. This skill exists for when an external AI assistant (Claude Code, Copilot) needs to dispatch to Codex programmatically. It handles model selection, sandbox mapping, auth pre-flight and the self-invocation guard so the calling AI does not have to.
 
 **Q: What reasoning effort do I pick?**
 
@@ -198,9 +197,9 @@ A: You hit the read-only default sandbox trap. `codex exec` without `--sandbox` 
 
 A: `codex exec review --commit HEAD` runs the built-in diff-aware subcommand, which sees line-level changes in the commit and catches things a plain prompt cannot. Use it for commit review. Use a read-only prompt for reviewing arbitrary files or patterns.
 
-**Q: When do I pick Codex over Claude Code or Devin?**
+**Q: When do I pick Codex over Claude Code?**
 
-A: Reach for Codex when the task needs sandboxed edits, live web search or diff-aware review. Reach for cli-claude-code when it needs deep extended thinking or `--json-schema` output. Reach for cli-devin when it is a large autonomous coding run.
+A: Reach for Codex when the task needs sandboxed edits, live web search or diff-aware review. Reach for cli-claude-code when it needs deep extended thinking or `--json-schema` output.
 
 ---
 

@@ -37,7 +37,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 | Code graph | Blocked/degraded `full_scan` contract on `code_graph_query` **and** `code_graph_context` | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`, `.opencode/skills/system-code-graph/README.md` |
 | Code graph | CALLS disambiguation + `deadlineMs` + null-summary clearing | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` |
 | Code graph | `graphQualitySummary` on status/startup surfaces | `.opencode/skills/system-code-graph/README.md`, `references/config/hook_system.md` |
-| Code graph | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`22--context-preservation/session-start-priming.md`](22--context-preservation/session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
+| Code graph | Shared startup payload parity across Claude/Copilot/Codex | [`22--context-preservation/session-start-priming.md`](22--context-preservation/session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
 | Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook.md` |
 | Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook_validation.md` |
 | Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill_advisor_hook.md`, `references/hooks/skill_advisor_hook_validation.md` (Step 3) |
@@ -1465,11 +1465,11 @@ See [`09--evaluation-and-measurement/evaluation-and-housekeeping-fixes.md`](09--
 
 #### Description
 
-Three different AI reviewers independently checked the codebase and found 14 issues that the original review missed. This is like getting a second and third opinion from different doctors: each one catches things the others overlooked. The fixes addressed problems ranging from tests that secretly passed when they should have failed to errors that were silently swallowed instead of reported.
+Independent AI reviewers checked the codebase and found 14 issues that the original review missed. This is like getting a second opinion from a different doctor: each one catches things the others overlooked. The fixes addressed problems ranging from tests that secretly passed when they should have failed to errors that were silently swallowed instead of reported.
 
 #### How It Works
 
-Independent reviews by Gemini 3.1 Pro and Codex gpt-5.3-codex identified 14 issues missed by the original audit. Key fixes:
+Independent reviews by Codex gpt-5.3-codex identified 14 issues missed by the original audit. Key fixes:
 
 - **CR-P0-1:** Test suite false-pass patterns. 21 silent-return guards converted to `it.skipIf()`, fail-fast imports with throw on required handler/vectorIndex missing.
 - **Deletion exception propagation. Causal edge cleanup errors in single-delete now propagate (previously swallowed).
@@ -1482,7 +1482,7 @@ Independent reviews by Gemini 3.1 Pro and Codex gpt-5.3-codex identified 14 issu
 - **CR-P2-3:** Dashboard row limit configurable via `SPECKIT_DASHBOARD_LIMIT` (default 10000) with NaN guard.
 - **CR-P2-5:** `Number.isFinite` guards on evidence gap detector scores.
 
-All 14 items verified through 3-stage review: Codex implemented, Gemini reviewed, Claude final-reviewed.
+All 14 items verified through staged review: Codex implemented, Claude final-reviewed.
 
 #### Source Files
 
@@ -1706,7 +1706,7 @@ Anchor markers are labels placed inside memories to highlight important sections
 
 #### How It Works
 
-**PLANNED (Sprint 019): DEFERRED.** Promoting parsed ANCHOR markers into typed graph nodes (most creative insight from cross-AI research, Gemini-2) is deferred behind a dedicated 2-day feasibility spike. Estimated effort: S-M (3-5 days).
+**PLANNED (Sprint 019): DEFERRED.** Promoting parsed ANCHOR markers into typed graph nodes (most creative insight from cross-AI research) is deferred behind a dedicated 2-day feasibility spike. Estimated effort: S-M (3-5 days).
 
 
 ---
@@ -4059,7 +4059,7 @@ See [`16--tooling-and-scripts/template-compliance-contract-enforcement.md`](16--
 
 #### Description
 
-The CLI matrix adapter runners turn the F1-F14 executor matrix into runnable cells for `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`.
+The CLI matrix adapter runners turn the F1-F14 executor matrix into runnable cells for `cli-codex`, `cli-claude-code`, and `cli-opencode`.
 
 #### How It Works
 
@@ -4093,13 +4093,13 @@ See [`16--tooling-and-scripts/codex-hook-freshness-smoke-check.md`](16--tooling-
 
 #### Description
 
-The orphan MCP sweeper gives operators a dry-run-first way to inspect and later clean stale MCP helper processes plus stale dispatch artifacts without touching active dev servers, Devin, Ollama, or live Claude Code session trees.
+The orphan MCP sweeper gives operators a dry-run-first way to inspect and later clean stale MCP helper processes plus stale dispatch artifacts without touching active dev servers, Ollama, or live Claude Code session trees.
 
 #### How It Works
 
 `.opencode/scripts/orphan-mcp-sweeper.sh` supports `--dry-run`, `--verbose`, `--log-path`, `ORPHAN_AGE_MIN_SEC`, `ORPHAN_TMP_AGE_HOURS`, log rotation, SIGTERM then SIGKILL in real mode, and `/tmp` cleanup. `.opencode/scripts/claude-session-cleanup.sh` handles the Claude Stop-hook side by walking only the current session descendants. `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is checked in as a template only; it is not installed or loaded by default.
 
-**026 rename and multi-runtime update (Track 006):** `.opencode/scripts/claude-session-cleanup.sh` is now a back-compat shim. The canonical script is `.opencode/scripts/session-cleanup.sh`, which resolves PID trees across all four supported runtimes: `claude`, `opencode`, `codex` and `gemini`. Both paths are safe to call from any Stop hook.
+**026 rename and multi-runtime update (Track 006):** `.opencode/scripts/claude-session-cleanup.sh` is now a back-compat shim. The canonical script is `.opencode/scripts/session-cleanup.sh`, which resolves PID trees across all three supported runtimes: `claude`, `opencode` and `codex`. Both paths are safe to call from any Stop hook.
 
 #### Worktree-per-session isolation
 

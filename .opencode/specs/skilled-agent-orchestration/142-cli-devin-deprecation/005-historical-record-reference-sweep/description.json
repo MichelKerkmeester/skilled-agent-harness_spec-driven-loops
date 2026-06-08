@@ -1,0 +1,17 @@
+{
+  "specFolder": "142-cli-devin-deprecation/005-historical-record-reference-sweep",
+  "description": "Phase 5: historical-record-reference-sweep",
+  "keywords": [
+    "phase",
+    "historical-record-reference-sweep"
+  ],
+  "lastUpdated": "2026-06-08T16:10:31.740Z",
+  "specId": "005",
+  "folderSlug": "historical-record-reference-sweep",
+  "parentChain": [
+    "142-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

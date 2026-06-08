@@ -65,7 +65,6 @@ Dry-run mode logs the same kill and remove decisions the real sweep would make, 
 
 The sweeper preserves:
 
-- `devin --print`
 - Ollama runner and server processes
 - Descendants of live Claude Code sessions
 - The freshest young instance per matched MCP class
@@ -75,7 +74,7 @@ It targets stale launcher/server classes such as `mk-*-launcher.cjs`, Spec Kit M
 
 ### Temporary files
 
-The sweeper considers stale `/tmp/codex-*`, `/tmp/cli-*`, `/tmp/opencode-*`, `/tmp/deep-review-*`, `/tmp/save-context-data-*`, `*-prompt.md`, and `*-cli-{err,out}.log` artifacts. It preserves `/tmp/devin-*`, `/tmp/cli-devin-*`, `/tmp/codex-browser-use`, and cache-like directories.
+The sweeper considers stale `/tmp/codex-*`, `/tmp/cli-*`, `/tmp/opencode-*`, `/tmp/deep-review-*`, `/tmp/save-context-data-*`, `*-prompt.md`, and `*-cli-{err,out}.log` artifacts. It preserves `/tmp/codex-browser-use` and cache-like directories.
 
 ### Real sweep boundary
 

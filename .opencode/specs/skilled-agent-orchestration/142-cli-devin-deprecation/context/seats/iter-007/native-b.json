@@ -1,0 +1,136 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
+      "symbol": "KNOWN_EXECUTORS",
+      "evidence": "137-142(141)",
+      "editType": "inline-edit",
+      "notes": "[HARD] remove 'cli-devin' from Set",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
+      "symbol": "buildSpawnSpec case 'cli-devin'",
+      "evidence": "438-449",
+      "editType": "delete-branch",
+      "notes": "[HARD] DEVIN_BIN/devin spawn; default throw handles residual",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs",
+      "symbol": "KNOWN_EXECUTORS (2nd, hand-synced)",
+      "evidence": "39",
+      "editType": "inline-edit",
+      "notes": "[HARD/NEW] second executor Set 'kept in sync by hand'; remove or cli-devin profile passes validation",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
+      "symbol": "executor loops + cli-devin perm test",
+      "evidence": "49,211-217,224-227,229-235",
+      "editType": "delete-branch",
+      "notes": "active fixtures; remove cli-devin from loops + delete dedicated permission-mode test or tests fail",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/model-dispatcher.md",
+      "symbol": "executor lists",
+      "evidence": "26,38",
+      "editType": "inline-edit",
+      "notes": "remove cli-devin from HOW-IT-WORKS + SOURCE FILES; 'five'->'three'",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/feature_catalog/feature_catalog.md",
+      "symbol": "dispatcher entry",
+      "evidence": "293",
+      "editType": "inline-edit",
+      "notes": "remove ', and cli-devin'",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/README.md",
+      "symbol": "diagram + table row",
+      "evidence": "37,73",
+      "editType": "inline-edit",
+      "notes": "'codex/devin'->'codex'; remove cli-devin table row",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/SKILL.md",
+      "symbol": "Lane B + §6 methodology",
+      "evidence": "290,310,313",
+      "editType": "inline-edit",
+      "notes": "remove cli-devin from routing map(290); update §6 8+2 split prescription (310) + methodology pointer(313) - keep pattern w/ different breadth executor",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/references/model-benchmark/mixed_executor_methodology.md",
+      "symbol": "entire doc",
+      "evidence": "1-148",
+      "editType": "leave",
+      "notes": "HISTORICAL methodology write-up (both seats agree); 19 hits are doc not control flow; LEAVE",
+      "kind": "gap",
+      "reuse": "leave",
+      "relevance": 0.82,
+      "classification": "historical-record",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md",
+      "symbol": "role label line 3",
+      "evidence": "3",
+      "editType": "CONTRADICTION",
+      "notes": "native-a=leave(historical artifact); native-b=edit(live grader, stale 'cli-devin SWE 1.6' label, grading is executor-agnostic). LOW-priority cosmetic; non-breaking. Surface, don't silently resolve.",
+      "kind": "integration_point",
+      "reuse": "decision",
+      "relevance": 0.75,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-skeptic.md",
+      "symbol": "role label line 3",
+      "evidence": "3",
+      "editType": "CONTRADICTION",
+      "notes": "same divergence as system-grader.md",
+      "kind": "integration_point",
+      "reuse": "decision",
+      "relevance": 0.75,
+      "classification": "active-wiring",
+      "verified": true
+    }
+  ]
+}

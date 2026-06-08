@@ -273,7 +273,7 @@ EOF
 }
 
 # Build the live operator-session process tree across ALL AI CLI runtimes, not just
-# Claude Code. Any MCP helper descended from a live claude / opencode / codex / gemini
+# Claude Code. Any MCP helper descended from a live claude / opencode / codex
 # session belongs to an active operator session and must be preserved — most importantly
 # an operator's `opencode run`, which previously fell outside the Claude-only tree and
 # got swept after ORPHAN_AGE_MIN_SEC (a hard-rule violation).
@@ -286,7 +286,7 @@ build_session_trees() {
       append_descendants "$pid"
     fi
   done <<EOF
-$(pgrep -f '(^|/)(claude|opencode|codex|gemini)( |$)|Claude Code' 2>/dev/null || true)
+$(pgrep -f '(^|/)(claude|opencode|codex)( |$)|Claude Code' 2>/dev/null || true)
 EOF
 }
 
@@ -318,10 +318,8 @@ preserve_reason() {
   # build_session_trees covers descendants via process ancestry; these patterns also
   # catch the session's own root process whatever its descendants look like.
   case "$cmd" in
-    *"devin --print"*) printf '%s\n' "operator-devin-preserve"; return 0 ;;
     *"opencode run"*) printf '%s\n' "operator-opencode-preserve"; return 0 ;;
     *"codex exec"*) printf '%s\n' "operator-codex-preserve"; return 0 ;;
-    *"gemini"*) printf '%s\n' "operator-gemini-preserve"; return 0 ;;
     *"ollama runner"*|*"ollama serve"*) printf '%s\n' "ollama-preserve"; return 0 ;;
   esac
 
@@ -446,7 +444,7 @@ preserve_tmp_path() {
   local path="$1"
   local base="${path##*/}"
   case "$base" in
-    devin-*|cli-devin-*|codex-browser-use|*cache*|*Cache*) return 0 ;;
+    codex-browser-use|*cache*|*Cache*) return 0 ;;
   esac
   return 1
 }

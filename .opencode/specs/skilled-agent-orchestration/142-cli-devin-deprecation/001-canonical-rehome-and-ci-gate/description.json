@@ -1,0 +1,17 @@
+{
+  "specFolder": "142-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
+  "description": "Phase 1: canonical-rehome-and-ci-gate",
+  "keywords": [
+    "phase",
+    "canonical-rehome-and-ci-gate"
+  ],
+  "lastUpdated": "2026-06-08T16:10:28.378Z",
+  "specId": "001",
+  "folderSlug": "canonical-rehome-and-ci-gate",
+  "parentChain": [
+    "142-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

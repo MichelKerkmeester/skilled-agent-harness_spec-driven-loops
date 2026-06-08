@@ -278,26 +278,6 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 | `.claude/agents/deep-review.md` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
 | `.codex/agents/deep-review.toml` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
 
-### SWE-1.6 Iter Contract (cli-devin executor)
-
-When the orchestrator dispatches this agent under the cli-devin executor branch (`config.executor.kind === 'cli-devin'`), the per-iteration prompt and output handling MUST honor this contract. Forward reference: `.opencode/skills/cli-devin/references/deep-loop-iter-contract.md` (authored in packet 059 Phase 4).
-
-Review iters use a narrower tool surface than research iters. Read and Grep cover the bulk of evidence collection. Write is needed only for the iteration artifact strategy edit and JSONL append. Bash is reserved for bounded numeric-count verification. WebFetch stays denied.
-
-| Dimension | Required Behavior |
-|-----------|-------------------|
-| Permission mode | `--permission-mode auto`. Review iters are read-only against the review target. `dangerous` is never used for review. |
-| Model selection | `--model swe-1.6` for evidence-collection iters (default, covering Files Reviewed enumeration, file:line citation and dimension scans). `--model deepseek-v4` for adjudication iters, P0 Hunter/Skeptic/Referee passes, multi-finding contradiction resolution or synthesis-style review. GLM 5.1 and Kimi k2.6 are operator-selected fallbacks per cli-devin SKILL §3 model selection. |
-| Prompt quality | EVERY dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (STAR / RCAF / BUILD framework + CLEAR 5-check) AND include an explicit pre-planning block (ordered steps + per-step acceptance criteria + stop conditions). Reference: `.opencode/skills/cli-devin/assets/prompt_quality_card.md`. The orchestrator runs ONE sk-prompt pass upfront and reuses the resulting per-iter template across all N dispatches. |
-| Output capture | The agent writes plain stdout. NEVER wrap iteration output in ` ```markdown ` fences. Nested fences break awk extractors. The orchestrator prepends YAML frontmatter to the captured stdout before writing `review/iterations/iteration-NNN.md`. |
-| Completion sentinel | The LAST line of iteration stdout MUST be exactly: `ITER_{N}_COMPLETE: <findingsCount> findings, newInfoRatio={0.XX}` where `findingsCount` aggregates P0 + P1 + P2 and `newInfoRatio` matches the JSONL `newFindingsRatio` field. This confirms iteration completion and provides the convergence signal that JSONL append cannot deliver alone. |
-| Numeric-count discipline | SWE-1.6 numeric counts ("N of X findings", "M files reviewed") are unreliable. The orchestrator MUST verify any numeric claim via `find/grep | wc -l` before consuming the count. This is the fourth check in the iter-output verification gate (imports grep + exports grep + validation_commands smoke-run + numeric-count smoke-run). |
-| Structured finding format | Findings MUST follow the canonical numbered table: `N. **Title** -- file:line -- Description` under `### P0 Findings`, `### P1 Findings`, `### P2 Findings`. Prose-only findings produce fabricated severity tags and missing file:line citations under SWE-1.6. Reference: `.opencode/skills/sk-code-review/references/review_core.md` for severity definitions and fix-completeness checklist. |
-| Cross-iter awareness | Each iter is independent. SWE-1.6 has no memory of prior iterations. Cross-reference iters (carried-forward P0/P1 adjudication or regression-check passes) require prior-iter findings and registry state injected verbatim into the dispatch prompt. The orchestrator handles injection. The agent reads dispatch context and treats injected findings as primary evidence. |
-| Dispatch concurrency | 3-at-a-time parallel iter dispatches are safe for independent-dimension review (correctness + security + maintainability scans on disjoint surfaces). Cross-iter-aware passes (P0 referee adjudication, synthesis, conditional re-review) MUST run sequentially. The orchestrator selects mode based on iter type. |
-
----
-
 ## 3. REVIEW CONTRACT
 
 This agent loads shared review doctrine from `.opencode/skills/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.

@@ -388,7 +388,7 @@ References are organized into subfolder families (`guides/ protocol/ convergence
 **Pairs with**:
 - `deep-loop-runtime` — coverage-graph (`loop_type='context'`), convergence script, parallel seat dispatch, executor config.
 - `sk-prompt-small-model` — per-model prompt framing for the heterogeneous pool.
-- `cli-opencode` / `cli-codex` / `cli-claude-code` / `cli-devin` — CLI seat dispatch contracts.
+- `cli-opencode` / `cli-codex` / `cli-claude-code` — CLI seat dispatch contracts.
 - `system-code-graph` — frontier seeding + reference verification.
 - `/speckit:plan` and `/speckit:implement` — downstream consumers of the Context Report.
 

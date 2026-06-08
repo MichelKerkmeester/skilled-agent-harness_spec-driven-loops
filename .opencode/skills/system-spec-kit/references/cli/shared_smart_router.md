@@ -1,11 +1,11 @@
 ---
 title: Shared Smart-Router Helpers for cli-* Skills
-description: Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the four cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+description: Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
 ---
 
 # Shared Smart-Router Helpers (cli-* family)
 
-The four cli-* sibling skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-opencode`) share an identical smart-router structure. The helper bodies below are byte-identical across all four files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
+The three cli-* sibling skills (`cli-claude-code`, `cli-codex`, `cli-opencode`) share an identical smart-router structure. The helper bodies below are byte-identical across all three files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
 
 > Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/assets/skill/skill_smart_router.md).
 
@@ -13,7 +13,7 @@ The four cli-* sibling skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli
 
 ## 1. OVERVIEW
 
-Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the four cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
 
 ---
 
@@ -122,7 +122,7 @@ def route_<PROVIDER>_resources(task):
     return result
 ```
 
-Replace `<PROVIDER>` with the provider slug (`claude_code`, `codex`, `devin`, `gemini`, `opencode`).
+Replace `<PROVIDER>` with the provider slug (`claude_code`, `codex`, `opencode`).
 
 ---
 
@@ -162,6 +162,6 @@ Each cli-* SKILL.md provides its own:
 - `LOADING_LEVELS` — provider-specific `ALWAYS` / `ON_DEMAND_KEYWORDS` / `ON_DEMAND` lists
 - `UNKNOWN_FALLBACK_CHECKLIST` — provider-specific disambiguation prompts
 
-See the per-skill SKILL.md §2 Smart Routing for these inline dictionaries.
+See each skill's SKILL.md §2 Smart Routing for these inline dictionaries.
 
 ---

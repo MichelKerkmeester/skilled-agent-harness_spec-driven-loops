@@ -56,7 +56,7 @@ Names are stable per layer; do not normalize them across layers unless a packet 
 
 ## 3. MCP SERVER NAME STABILITY (`mk-code-index` vs `system-code-graph`)
 
-The MCP server name `mk-code-index` is a stable tool contract. Renaming the server to match the skill folder slug (`system-code-graph`) would invalidate every config entry across all six runtimes (OpenCode, Claude Code, Codex, Gemini, Devin, VSCode) and would break every saved tool call ID (`mcp__mk_code_index__*`) in agent transcripts, memory records, and dispatched task logs.
+The MCP server name `mk-code-index` is a stable tool contract. Renaming the server to match the skill folder slug (`system-code-graph`) would invalidate every config entry across all four runtimes (OpenCode, Claude Code, Codex, VSCode) and would break every saved tool call ID (`mcp__mk_code_index__*`) in agent transcripts, memory records, and dispatched task logs.
 
 ADR-002 settled this: the **skill folder slug** describes what the skill is for; the **MCP server name** is the runtime identity contract; the two are allowed to diverge and the project tolerates the asymmetry in exchange for tool-call stability.
 

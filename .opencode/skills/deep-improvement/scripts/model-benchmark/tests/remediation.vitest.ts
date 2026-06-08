@@ -46,7 +46,7 @@ describe('F-P1-1: dispatch-model cwd propagation', () => {
     fs.writeFileSync(promptFile, 'review prompt');
   });
 
-  for (const executor of ['cli-codex', 'cli-claude-code', 'cli-gemini', 'cli-devin', 'cli-opencode']) {
+  for (const executor of ['cli-codex', 'cli-claude-code', 'cli-opencode']) {
     it(`passes cwd to the spawn layer for ${executor}`, () => {
       let capturedCwd: string | undefined;
       const fakeSpawn = (_bin: string, _args: string[], opts: { cwd?: string }) => {
@@ -208,35 +208,16 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     expect(spec.args).not.toContain('acceptEdits');
   });
 
-  it('cli-gemini omits the -y/--yolo auto-approve flag by default', () => {
-    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
-    const spec = dispatchModel.buildSpawnSpec('cli-gemini', 'prompt', resolved);
-    expect(spec.args).not.toContain('-y');
-    expect(spec.args).not.toContain('--yolo');
-  });
-
-  it('cli-devin defaults to --permission-mode auto (not dangerous)', () => {
-    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
-    const spec = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', resolved);
-    const idx = spec.args.indexOf('--permission-mode');
-    expect(spec.args[idx + 1]).toBe('auto');
-    expect(spec.args).not.toContain('dangerous');
-  });
-
   it('DEEP_AGENT_DISPATCH_WRITE=1 escalates each executor to its write-capable mode', () => {
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
     const codex = dispatchModel.buildSpawnSpec('cli-codex', 'prompt', resolved);
     expect(codex.args[codex.args.indexOf('--sandbox') + 1]).toBe('workspace-write');
     const claude = dispatchModel.buildSpawnSpec('cli-claude-code', 'prompt', resolved);
     expect(claude.args[claude.args.indexOf('--permission-mode') + 1]).toBe('acceptEdits');
-    const gemini = dispatchModel.buildSpawnSpec('cli-gemini', 'prompt', resolved);
-    expect(gemini.args).toContain('-y');
-    const devin = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', resolved);
-    expect(devin.args[devin.args.indexOf('--permission-mode') + 1]).toBe('dangerous');
   });
 
-  it('routing is preserved for all 5 executors (bin resolves)', () => {
-    for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-gemini', 'cli-devin']) {
+  it('routing is preserved for all active executors (bin resolves)', () => {
+    for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-codex']) {
       const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', resolved);
       expect(typeof spec.bin).toBe('string');
       expect(spec.bin.length).toBeGreaterThan(0);

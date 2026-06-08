@@ -8,7 +8,7 @@ last_benchmarked: "none"
 
 # GLM-5.1 Prompt-Craft Profile
 
-Single source of truth for how to prompt GLM-5.1. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source); executor mechanics (binary flags, invocation wrappers) live in `cli-devin` / `cli-opencode`.
+Single source of truth for how to prompt GLM-5.1. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source); executor mechanics (binary flags, invocation wrappers) live in `cli-opencode`.
 
 ---
 
@@ -16,13 +16,13 @@ Single source of truth for how to prompt GLM-5.1. Framework choices mirror `reco
 
 ### Purpose
 
-This profile is the single source for how to prompt GLM-5.1, an agentic model dispatched through `cli-devin` (cognition-pro) and `cli-opencode` (opencode-go). It mirrors the `glm-5.1` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+This profile is the single source for how to prompt GLM-5.1, an agentic model dispatched through `cli-opencode` (opencode-go). It mirrors the `glm-5.1` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
 
 ### When to Use
 
-- Before dispatching GLM-5.1 through `cli-devin` or `cli-opencode`.
+- Before dispatching GLM-5.1 through `cli-opencode`.
 - When choosing its prompt framework and scaffold shape.
-- When you need its dispatch gotchas (dual quota pools, no cross-pool fallback).
+- When you need its dispatch gotchas (quota pool, no cross-pool fallback).
 
 ### Core Principle
 
@@ -36,12 +36,12 @@ RCAF + medium pre-planning: front-load explicit Role and Context for structured 
 | --- | --- |
 | Model slug | `glm-5.1` |
 | Context window | 128,000 tokens |
-| Primary quota pool | `cognition-pro` |
-| Executor paths | `cli-devin` via provider `cognition` (Cognition Pro plan); `cli-opencode` via provider `opencode-go` (opencode-go credit pool) |
+| Primary quota pool | `opencode-go` |
+| Executor path | `cli-opencode` via provider `opencode-go` (opencode-go credit pool) |
 | Average iteration wall-clock | ~16 min |
 | Status | active |
 
-GLM-5.1 is an agentic model available on two independent quota pools. The primary path is Cognition Pro (shared with DeepSeek-v4-pro, Kimi-k2.6); the opencode-go path is the fallback when Cognition Pro is exhausted. No free-tier variant exists. Context depth and structured reasoning across multi-file synthesis are the documented strengths; the shared pool exposure on both paths is the primary weakness.
+GLM-5.1 is an agentic model dispatched via opencode-go. Context depth and structured reasoning across multi-file synthesis are the documented strengths; shared opencode-go pool exposure (with DeepSeek, Kimi, Qwen) is the primary weakness.
 
 ---
 
@@ -114,7 +114,7 @@ Relevant files:
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `"id": "glm-5.1"`. Full invocation wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `"id": "glm-5.1"`. Full invocation wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -122,13 +122,12 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 | `variant_flag` | not set | No `--variant` flag defined for this model. Omit. |
 | `agent_policy` | not set | No documented `--agent` restriction. Confirm with the executor's `--help` before adding. |
 | `format_mode` | not set | No `--format json` override required by default. Use executor default. |
-| `quota_pool (primary)` | `cognition-pro` | Shared with DeepSeek-v4-pro and Kimi-k2.6. Monitor pool exhaustion; fall through to `opencode-go` path if CLI returns a quota error. |
-| `quota_pool (secondary)` | `opencode-go` | Shared across the broader opencode-go rotation (DeepSeek, Kimi, Qwen, GLM). Not an independent pool. |
+| `quota_pool` | `opencode-go` | Shared across the opencode-go rotation (DeepSeek, Kimi, Qwen, GLM). Not an independent pool; monitor for exhaustion. |
 | `fallback_target` | `null` | No cross-pool fallback registered in `model-profiles.json`. When both pools are exhausted, escalate to the operator rather than retrying. |
 
-**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context (CI, scripts, background agent dispatch), append `</dev/null` to the executor-owned invocation wrapper so the process does not hang waiting for terminal input. Use the full wrapper from [`cli-devin`](../../../cli-devin/SKILL.md) or [`cli-opencode`](../../../cli-opencode/SKILL.md), not this profile.
+**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context (CI, scripts, background agent dispatch), append `</dev/null` to the executor-owned invocation wrapper so the process does not hang waiting for terminal input. Use the full wrapper from [`cli-opencode`](../../../cli-opencode/SKILL.md), not this profile.
 
-**Fallback target:** `null` — no automatic pool fallback is registered. When `cognition-pro` is exhausted, switch manually to the `opencode-go` executor path. When both are exhausted, do not retry on the same pool.
+**Fallback target:** `null` — no automatic pool fallback is registered. When `opencode-go` is exhausted, do not retry on the same pool.
 
 ---
 
@@ -136,8 +135,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `#glm-5.1` — Authoritative capability fields, executor list, and `recommended_frameworks` object.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF framework definition, scoring criteria, and all other supported frameworks.
-- [`../../../cli-devin/SKILL.md`](../../../cli-devin/SKILL.md) — Executor card for the `cli-devin` / Cognition Pro path including invocation wrappers, non-TTY rules, and quota-fallback mechanics.
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for the `cli-opencode` / opencode-go path.
 - [`_index.md`](./_index.md) — Hub index listing all active small-model profiles and their framework status.
-- Sibling default-unverified profiles with the same RCAF / medium baseline: [`swe-1.6.md`](./swe-1.6.md), [`deepseek-v4-pro.md`](./deepseek-v4-pro.md), [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md).
-- **Executor quality cards (card↔profile round-trip):** [`../../../cli-devin/assets/prompt_quality_card.md`](../../../cli-devin/assets/prompt_quality_card.md) · [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection tables link to this profile; this closes the navigability round-trip.
+- Sibling default-unverified profiles with the same RCAF / medium baseline: [`deepseek-v4-pro.md`](./deepseek-v4-pro.md), [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md).
+- **Executor quality card:** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

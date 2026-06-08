@@ -152,7 +152,6 @@ Reach for sk-prompt when a prompt you are about to send feels vague or unstructu
 | `sk-prompt-small-model` | Decides which of sk-prompt's seven frameworks a given small model wants and adds model-specific scaffold and gotchas. sk-prompt owns the definitions and the rubric. `sk-prompt-small-model` owns the per-model mapping. |
 | `cli-claude-code` | Consumes the prompt quality card that sk-prompt produces and handles the executor mechanics. sk-prompt does not own invocation flags or dispatch rules. |
 | `cli-codex` | Same boundary as cli-claude-code. Consumes the prompt card, owns the mechanics. |
-| `cli-devin` | Same boundary. Reads the structured output block and dispatches. |
 | `cli-opencode` | Same boundary. Receives the enhanced prompt and runs the session. |
 | `system-skill-advisor` | Routes non-trivial tasks to sk-prompt at Gate 2 when the prompt carries prompt-engineering keywords. |
 | `sk-doc` | Owns the documentation output. sk-prompt hands off when the final artifact is a spec doc or README. |

@@ -1,0 +1,172 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/agents/deep-context.md",
+      "symbol": "Sibling Seats",
+      "evidence": "203",
+      "editType": "inline-edit",
+      "notes": "remove /cli-devin; sync .claude:186 + .codex:193",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".claude/agents/deep-context.md",
+      "symbol": "Sibling Seats",
+      "evidence": "186",
+      "editType": "inline-edit",
+      "notes": "mirror",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".codex/agents/deep-context.toml",
+      "symbol": "Sibling Seats",
+      "evidence": "193",
+      "editType": "inline-edit",
+      "notes": "mirror",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/agents/deep-research.md",
+      "symbol": "### SWE-1.6 Iter Contract (cli-devin executor) section",
+      "evidence": "329-344",
+      "editType": "delete-section",
+      "notes": "whole section; .claude/.codex mirrors already clean (lack section)",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/agents/deep-review.md",
+      "symbol": "### SWE-1.6 Iter Contract (cli-devin executor) section",
+      "evidence": "281-298",
+      "editType": "delete-section",
+      "notes": "whole section; mirrors already clean",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/agents/deep-improvement.md",
+      "symbol": "Lane B executor list 'devin'",
+      "evidence": "44",
+      "editType": "inline-edit",
+      "notes": "remove ', and devin'; sync .claude:29 + .codex:34",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".claude/agents/deep-improvement.md",
+      "symbol": "Lane B executor list",
+      "evidence": "29",
+      "editType": "inline-edit",
+      "notes": "mirror",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".codex/agents/deep-improvement.toml",
+      "symbol": "Lane B executor list",
+      "evidence": "34",
+      "editType": "inline-edit",
+      "notes": "mirror",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": "AGENTS.md",
+      "symbol": "CLI + small-model dispatch rules",
+      "evidence": "56,57",
+      "editType": "inline-edit",
+      "notes": "remove 'devin /'(56) + 'cli-devin/'(57); CLAUDE.md root is verbatim twin - patch both",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": "CLAUDE.md",
+      "symbol": "CLI + small-model dispatch rules (root twin)",
+      "evidence": "56,57",
+      "editType": "inline-edit",
+      "notes": "verbatim copy of AGENTS.md; NOT a symlink - co-patch",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".claude/CLAUDE.md",
+      "symbol": "(none)",
+      "evidence": "0 matches",
+      "editType": "none",
+      "notes": "NO cli-devin - only code-graph routing; no edit",
+      "kind": "gap",
+      "reuse": "leave",
+      "relevance": 0.45,
+      "classification": "historical-record",
+      "verified": true
+    },
+    {
+      "path": "README.md",
+      "symbol": "tagline + skill section + sk-prompt bullet",
+      "evidence": "18,942-944,974",
+      "editType": "delete-section+inline",
+      "notes": "L18 'and Devin CLI'; L942-944 skill section; L974 'cli-devin and'",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/skills/README.md",
+      "symbol": "cli-devin skills-index row",
+      "evidence": "51",
+      "editType": "delete-paragraph",
+      "notes": "delete table row",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true
+    },
+    {
+      "path": ".opencode/specs/descriptions.json",
+      "symbol": "cli-devin entries",
+      "evidence": "1639-1649,5055+",
+      "editType": "none",
+      "notes": "ALL historical spec rows (z_archive,135/004) - NO active skills-index entry; LEAVE (historical-record)",
+      "kind": "gap",
+      "reuse": "leave",
+      "relevance": 0.45,
+      "classification": "historical-record",
+      "verified": true
+    }
+  ]
+}

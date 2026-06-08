@@ -22,7 +22,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | One-shot dispatch into OpenCode's full plugin, skill, MCP and Spec Kit Memory runtime, parallel detached sessions and cross-AI handback |
 | **Invoke with** | "delegate to opencode", "opencode run", "parallel detached", "cross-ai handback" or auto-routing on OpenCode keywords |
-| **Works on** | Any external runtime (Claude Code, Codex, Gemini, raw shell) and from inside OpenCode for parallel detached workers |
+| **Works on** | Any external runtime (Claude Code, Codex, raw shell) and from inside OpenCode for parallel detached workers |
 | **Produces** | Structured JSON event streams, code changes with full project context, parallel research sessions and cross-AI handback results |
 
 ---
@@ -31,7 +31,7 @@ trigger_phrases:
 
 ### Why This Skill Exists
 
-A Claude Code, Codex or Gemini session that needs the project's whole runtime has no native path to get it. The memory database, the code graph, every plugin and skill, the MCP toolset: none of that loads from outside. You would hand-build an `opencode run` invocation, pick a model and provider, and hit the non-obvious traps. The dispatch hangs at zero percent CPU if you forget to close stdin. The current OpenCode rejects a top-level `--agent general` without telling you why. If the caller is itself OpenCode, a self-dispatch loops and burns tokens. This skill standardizes the dispatch across three documented use cases and refuses self-invocation.
+A Claude Code or Codex session that needs the project's whole runtime has no native path to get it. The memory database, the code graph, every plugin and skill, the MCP toolset: none of that loads from outside. You would hand-build an `opencode run` invocation, pick a model and provider, and hit the non-obvious traps. The dispatch hangs at zero percent CPU if you forget to close stdin. The current OpenCode rejects a top-level `--agent general` without telling you why. If the caller is itself OpenCode, a self-dispatch loops and burns tokens. This skill standardizes the dispatch across three documented use cases and refuses self-invocation.
 
 ### What It Does
 
@@ -139,7 +139,6 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | `cli-opencode` | OpenCode | Full project runtime, parallel detached sessions, cross-AI handback |
 | `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
 | `cli-codex` | OpenAI | Sandboxed coding, repo analysis, PR review, live web research |
-| `cli-devin` | Cognition | Autonomous coding with SWE-1.6 and local-to-cloud handoff |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 

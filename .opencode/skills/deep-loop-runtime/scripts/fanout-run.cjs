@@ -108,10 +108,8 @@ function jsonOut(payload) {
 // Per-kind first state-dir env var (used for lockfile isolation across same-kind replicas).
 const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-codex': 'SPECKIT_CODEX_STATE_DIR',
-  'cli-gemini': 'SPECKIT_GEMINI_STATE_DIR',
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
-  'cli-devin': 'SPECKIT_DEVIN_STATE_DIR',
 };
 
 /**
@@ -281,15 +279,6 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
     };
   }
 
-  if (kind === 'cli-gemini') {
-    // Default must stay inside GEMINI_SUPPORTED_MODELS (executor-config), since
-    // the null-model lineage skips the whitelist check and reaches the CLI as-is.
-    return {
-      command: 'gemini',
-      args: [prompt, '-m', lineage.model || 'gemini-3.1-pro-preview', '-s', resolvedSandbox, '-y', '-o', 'text'],
-    };
-  }
-
   if (kind === 'cli-claude-code') {
     const args = [
       '-p',
@@ -327,20 +316,6 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
     return { command: 'opencode', args, input: '' };
   }
 
-  if (kind === 'cli-devin') {
-    return {
-      command: 'devin',
-      args: [
-        '--print',
-        '--model',
-        lineage.model || 'swe-1.6',
-        '--permission-mode',
-        resolvedPermission,
-      ],
-      input: prompt,
-    };
-  }
-
   throw inputError(`Unknown CLI executor kind: ${kind}`);
 }
 
@@ -373,8 +348,6 @@ async function main() {
     expandLineages,
     resolveCodexSandboxMode,
     resolveClaudePermissionMode,
-    resolveGeminiSandboxMode,
-    resolveDevinPermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
 
@@ -428,11 +401,9 @@ async function main() {
       // exposed one. Callers can still pass an explicit sandboxMode to override.
       const resolvedSandbox = resolveCodexSandboxMode(lineage.sandboxMode);
       const resolvedPermission = resolveClaudePermissionMode(lineage.sandboxMode);
-      const resolvedGeminiSandbox = resolveGeminiSandboxMode(lineage.sandboxMode);
-      const resolvedDevinPermission = resolveDevinPermissionMode(lineage.sandboxMode);
 
-      const effectiveSandbox = lineage.kind === 'cli-gemini' ? resolvedGeminiSandbox : resolvedSandbox;
-      const effectivePermission = lineage.kind === 'cli-devin' ? resolvedDevinPermission : resolvedPermission;
+      const effectiveSandbox = resolvedSandbox;
+      const effectivePermission = resolvedPermission;
 
       const { command, args: cmdArgs, input } = buildLineageCommand(
         lineage,

@@ -138,8 +138,6 @@ const KNOWN_EXECUTORS = new Set([
   'cli-opencode',
   'cli-claude-code',
   'cli-codex',
-  'cli-gemini',
-  'cli-devin',
 ]);
 
 function sha256Hex(input) {
@@ -435,22 +433,6 @@ function buildSpawnSpec(executor, promptText, resolved) {
       if (variant) args.push('-c', `model_reasoning_effort=${variant}`);
       args.push('-'); // prompt via stdin
       return { bin: process.env.CODEX_BIN || 'codex', args, input: promptText };
-    }
-    case 'cli-gemini': {
-      // -y / --yolo auto-approves writes/shell. Omit it for the read-only default;
-      // add it only under the write opt-in.
-      const args = [promptText, '-m', model, '-o', 'text'];
-      if (writeCapable) args.push('-y');
-      return { bin: process.env.GEMINI_BIN || 'gemini', args, input: null };
-    }
-    case 'cli-devin': {
-      // devin reads the prompt from a file; resolved.promptFile is required.
-      // `auto` is the read-only default (auto-approves read-only tools, prompts on
-      // write/exec — non-interactive => writes blocked). `dangerous` (auto-approve
-      // all) only under the write opt-in.
-      const permissionMode = writeCapable ? 'dangerous' : 'auto';
-      const args = ['--print', '--prompt-file', resolved.promptFile, '--model', model, '--permission-mode', permissionMode];
-      return { bin: process.env.DEVIN_BIN || 'devin', args, input: null };
     }
     default:
       throw new Error(`Unknown executor: ${executor}`);

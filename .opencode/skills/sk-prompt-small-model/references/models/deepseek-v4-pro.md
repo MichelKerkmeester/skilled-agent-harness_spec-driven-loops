@@ -8,7 +8,7 @@ last_benchmarked: "none"
 
 # DeepSeek-v4-Pro Prompt-Craft Profile
 
-Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
+Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
 
 ---
 
@@ -16,11 +16,11 @@ Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rota
 
 ### Purpose
 
-This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-devin` (cognition-pro) and `cli-opencode` (deepseek-api, opencode-go) as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-opencode` (deepseek-api, opencode-go) as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
 
 ### When to Use
 
-- Before dispatching DeepSeek-v4-pro through `cli-devin` or `cli-opencode`.
+- Before dispatching DeepSeek-v4-pro through `cli-opencode`.
 - When choosing its prompt framework and scaffold shape.
 - When you need its dispatch gotchas (`--pure` flag, quota pools, timeout headroom).
 
@@ -34,14 +34,13 @@ RCAF + medium pre-planning, leaning into depth: name concrete files, exact symbo
 
 | Field | Value |
 | --- | --- |
-| **Model slug** | `deepseek-v4-pro` (Cognition). Direct-API id is not pinned in the registry — confirm the live id with `opencode models deepseek` before use |
+| **Model slug** | `deepseek-v4-pro`. Direct-API id is not pinned in the registry — confirm the live id with `opencode models deepseek` before use |
 | **Context window** | 64,000 tokens |
-| **Primary quota pool** | `cognition-pro` (shared with kimi-k2.6, glm-5.1) |
-| **Executor paths** | `cli-devin` → provider `cognition`, pool `cognition-pro` |
-| | `cli-opencode` → provider `deepseek-api` (requires `DEEPSEEK_API_KEY`; `--pure` flag mandatory), pool `deepseek-api` |
+| **Primary quota pool** | `deepseek-api` (direct) or `opencode-go` (go provider) |
+| **Executor paths** | `cli-opencode` → provider `deepseek-api` (requires `DEEPSEEK_API_KEY`; `--pure` flag mandatory), pool `deepseek-api` |
 | | `cli-opencode` → provider `opencode-go`, pool `opencode-go` |
 | **Avg iteration wall-clock** | ~18 min |
-| **Role in rotation** | Escalation target from SWE-1.6 for complex review, RCA, and architecture trade-off analysis; strongest reasoning depth in the cognition-pro tier |
+| **Role in rotation** | Escalation target for complex review, RCA, and architecture trade-off analysis; strongest reasoning depth in the opencode-go tier |
 
 ---
 
@@ -80,7 +79,7 @@ confidence:      "low"
 
 1. **Model positioning.** The registry lists `complex reasoning`, `root-cause debugging`, `multi-step implementation`, and `architecture trade-off analysis` as its strengths. RCAF is the registry default for those tasks; there is no model-specific benchmark comparing RCAF, RACE, or TIDD-EC on DeepSeek-v4-pro.
 2. **Context budget.** 64k is the smallest context window in the rotation after qwen3.6 (32k). Medium pre-planning keeps the plan concise enough to leave budget for the actual payload (files, diffs, traces).
-3. **SWE-1.6 escalation contract.** DeepSeek-v4-pro is the next step after SWE-1.6 saturates. The caller already has a pre-plan; this model receives it and deepens it — medium density matches the hand-off pattern.
+3. **Escalation contract.** DeepSeek-v4-pro is an escalation target when a lighter model saturates. The caller already has a pre-plan; this model receives it and deepens it — medium density matches the hand-off pattern.
 
 The discriminator for a future benchmark run should be **correctness on multi-step RCA fixtures**, not format adherence — format is straightforward for this model class.
 
@@ -90,7 +89,7 @@ The discriminator for a future benchmark run should be **correctness on multi-st
 
 Primary framework: **RCAF**. For the generic RCAF definition and CLEAR scoring methodology, see [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md).
 
-The scaffold below is filled for deepseek-v4-pro's escalation use-cases (complex review, RCA, architecture analysis). Copy-paste-ready; executor-agnostic (no opencode/devin wrapper here — add those from the executor SKILL.md).
+The scaffold below is filled for deepseek-v4-pro's escalation use-cases (complex review, RCA, architecture analysis). Copy-paste-ready; executor-agnostic (no opencode wrapper here — add those from the executor SKILL.md).
 
 ```
 ## Role
@@ -104,7 +103,7 @@ Active files in scope:
   - [FILE PATH 2] — [one-line purpose]
 
 Relevant background:
-[2–4 sentences max. State what is known, what failed, and why the previous (SWE-1.6 or lighter) pass was insufficient.
+[2–4 sentences max. State what is known, what failed, and why the previous (lighter model) pass was insufficient.
 Include exact error messages or test output verbatim.]
 
 Pre-plan (caller-provided, medium density):
@@ -141,18 +140,18 @@ Constraints:
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
+Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
 
 | Field | Value | Notes |
 | --- | --- | --- |
-| `primary_quota_pool` | `cognition-pro` | Shared with kimi-k2.6 and glm-5.1 — monitor pool exhaustion |
-| `executor paths` | `cli-devin` (cognition-pro), `cli-opencode` (deepseek-api, opencode-go) | Three paths; direct API requires `DEEPSEEK_API_KEY` |
+| `primary_quota_pool` | `deepseek-api` (direct) / `opencode-go` (go provider) | Two independent pools |
+| `executor paths` | `cli-opencode` (deepseek-api, opencode-go) | Two paths; direct API requires `DEEPSEEK_API_KEY` |
 | `variant_flag` | not present | No `--variant` flag for this model; the field is absent in the registry entry |
 | `agent_policy` | not specified in registry | No `capability.agent_policy` field — follow the executor's default `--agent` behavior; verify before dispatch |
 | `format_mode` | not specified in registry | No `capability.format_mode` field — executor default applies; `--format json` is not mandated but safe to add |
 | `quota_pool` | `cognition-pro` (primary), `deepseek-api` (direct), `opencode-go` (go provider) | Three distinct pools; fallback routes to a different pool if primary is exhausted |
 | **`--pure` flag** | **Required** on `cli-opencode` + `deepseek-api` provider | DeepSeek API rejects tool names containing `:` — `--pure` strips them. Omitting it causes silent tool-call failures |
-| **Non-TTY rule** | Append `</dev/null` in any automation script | Applies to all cli-devin and cli-opencode invocations; missing redirect is the #1 hang cause in non-TTY environments (see cli-opencode SKILL.md §ALWAYS rule 5) |
+| **Non-TTY rule** | Append `</dev/null` in any automation script | Applies to all cli-opencode invocations; missing redirect is the #1 hang cause in non-TTY environments (see cli-opencode SKILL.md §ALWAYS rule 5) |
 | **Timeout headroom** | Budget ≥ 25 min (`gtimeout` / `--timeout`) | Avg wall-clock is 18 min; complex RCA fixtures can run long — under-budgeted timeouts kill mid-reasoning |
 | **Fallback target** | `null` (registry `fallback_target: null`) | No automatic fallback defined; on pool exhaustion, operator must manually route to a different-pool model |
 | **Context budget** | 64,000 tokens | Smallest window in the cognition-pro tier — keep pre-plans concise; trim context aggressively before dispatch |
@@ -164,9 +163,8 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 - [`../../../sk-prompt-small-model/assets/model-profiles.json#deepseek-v4-pro`](../../../sk-prompt-small-model/assets/model-profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
 - [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix
-- [`../pattern-index.md`](../pattern-index.md) — Executor-owned MECHANICS (context budget, output verification, quota fallback)
-- [`../../../cli-devin/SKILL.md`](../../../cli-devin/SKILL.md) — Executor card for cognition-pro path; non-TTY rules, timeout flags, `--agent` semantics
+- [`../pattern-index.md`](../pattern-index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for deepseek-api + opencode-go paths; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
-- **Sibling profiles (same RCAF/medium convention):** [`swe-1.6.md`](./swe-1.6.md), [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md), [`glm-5.1.md`](./glm-5.1.md)
+- **Sibling profiles (same RCAF/medium convention):** [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md), [`glm-5.1.md`](./glm-5.1.md)
 - **Empirical contrast:** [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium) and [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)
-- **Executor quality cards (card↔profile round-trip):** [`../../../cli-devin/assets/prompt_quality_card.md`](../../../cli-devin/assets/prompt_quality_card.md) · [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection tables link to this profile; this closes the navigability round-trip.
+- **Executor quality card:** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

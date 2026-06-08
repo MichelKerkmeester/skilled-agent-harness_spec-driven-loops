@@ -18,7 +18,7 @@ This scenario routes the same ambiguous spec task through multiple external CLI 
 - Objective: Confirm external CLI agents produce phase slugs with specific subject tokens when the `Generate LITERAL phase names` YAML activity is active.
 - Real user request: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /spec_kit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
 - Prompt: See the canonical test prompt in §3.
-- Expected execution process: Rotate the canonical test prompt through at least 3 of the 5 supported CLIs; collect JSON responses; verify each proposed slug contains a specific subject token and is absent from the stoplist.
+- Expected execution process: Rotate the canonical test prompt through at least 3 of the 4 supported CLIs; collect JSON responses; verify each proposed slug contains a specific subject token and is absent from the stoplist.
 - Expected signals: Each returned slug names a concrete component or behavior (`singleton-leak`, `thread-local-cache`, `session-teardown`, `launcher-uptime-fix`, etc.); no slug matches the generic stoplist (`phase-1`, `phase-2`, `phase-3`, `cleanup`, `remediation`, `fix`, `refactor`, `setup`); the rationale field explicitly identifies the subject token.
 - Desired user-visible outcome: A per-CLI verdict table with slug values and PASS/PARTIAL/FAIL per CLI plus an aggregate verdict.
 - Pass/fail: PASS if all 3 returned slugs contain a specific subject token and none match the stoplist. PARTIAL if exactly 2 of 3 slugs pass. FAIL if 2 or more slugs match the stoplist or none contain a specific subject token.
@@ -43,7 +43,7 @@ Expected: all four files printed. If fewer than 4, the Packet 012 implementation
 
 ### Phase 2 -- Per-CLI invocations
 
-Rotate the canonical prompt through at least 3 of the 5 CLIs below. Record each raw response.
+Rotate the canonical prompt through at least 3 of the 4 CLIs below. Record each raw response.
 
 #### Canonical test prompt
 
@@ -91,12 +91,18 @@ Do NOT execute create.sh. Do NOT scaffold the folder. Return only the JSON.
 PROMPT
 ```
 
-#### cli-devin
+#### cli-codex (alternate invocation)
 
-Write the prompt to a temp file, then dispatch:
+The `cli-codex` block above is the primary dispatch path. For a second seat or parallel confirmation, reuse the same codex invocation with a different `service_tier` or reasoning effort:
 
 ```bash
-cat > /tmp/phase008-devin-prompt.txt <<'PROMPT'
+codex exec \
+  --model "gpt-5.5" \
+  -c model_reasoning_effort="medium" \
+  -c approval_policy=never \
+  -c service_tier="fast" \
+  --sandbox workspace-write \
+  - <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /spec_kit:plan :with-phases (3 phases):
 
   TASK: "There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test."
@@ -105,18 +111,13 @@ Propose the 3 phase names you would pass to create.sh via --phase-names.
 
 Return ONLY a JSON object:
 {
-  "cli_name": "cli-devin",
+  "cli_name": "cli-codex",
   "proposed_phase_names": ["<slug-1>", "<slug-2>", "<slug-3>"],
   "rationale": "<one sentence per slug explaining the specific subject token chosen>"
 }
 
 Do NOT execute create.sh. Do NOT scaffold the folder. Return only the JSON.
 PROMPT
-
-devin --prompt-file /tmp/phase008-devin-prompt.txt \
-  --model swe-1.6 \
-  --permission-mode auto \
-  -p
 ```
 
 #### cli-opencode
@@ -135,30 +136,6 @@ Return ONLY a JSON object: { \"cli_name\": \"cli-opencode\", \"proposed_phase_na
   </dev/null
 ```
 
-#### cli-gemini
-
-Write the prompt to a temp file first, then dispatch with explicit stdin close (avoids the piped `$(cat)` wrapper race that hangs the dispatch):
-
-```bash
-PROMPT_FILE=/tmp/phase-008-gemini-prompt.md
-cat > "$PROMPT_FILE" <<'PROMPT'
-You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /spec_kit:plan :with-phases (3 phases):
-
-  TASK: "There is a singleton leak in the launcher that crashes the daemon after 6 hours of uptime under load. The thread-local cache is not being released on session teardown. Fix it, harden the teardown path, and add a smoke test."
-
-Propose the 3 phase names you would pass to create.sh via --phase-names.
-
-Return ONLY a JSON object on a single line:
-{"cli_name":"cli-gemini","proposed_phase_names":["<slug-1>","<slug-2>","<slug-3>"],"rationale":"<one sentence per slug>"}
-
-Do NOT execute create.sh. Return only the JSON.
-PROMPT
-
-gemini -p "$(cat "$PROMPT_FILE")" \
-  --model "gemini-2.5-flash" \
-  -y </dev/null > /tmp/phase-008-gemini.log 2>&1
-```
-
 #### cli-claude-code
 
 ```bash
@@ -174,7 +151,7 @@ Return ONLY a JSON object: { \"cli_name\": \"cli-claude-code\", \"proposed_phase
   --dangerously-skip-permissions
 ```
 
-Note: when running inside a Claude Code session, `cli-claude-code` invocations via `claude` will be blocked by the self-invocation guard. This is expected behavior. Skip `cli-claude-code` and substitute `cli-opencode` or `cli-gemini` instead.
+Note: when running inside a Claude Code session, `cli-claude-code` invocations via `claude` will be blocked by the self-invocation guard. This is expected behavior. Skip `cli-claude-code` and substitute `cli-opencode` instead.
 
 ### Phase 3 -- Verification
 
@@ -209,8 +186,8 @@ Summary table across CLIs tested:
 | External CLI    | model            | slug 1                           | slug 2                              | slug 3                            | verdict |
 |-----------------|------------------|----------------------------------|-------------------------------------|-----------------------------------|---------|
 | cli-codex       | gpt-5.5 high     | fix-singleton-leak-in-launcher   | harden-session-teardown             | add-launcher-uptime-smoke         | PASS    |
-| cli-devin       | swe-1.6          | identify-singleton-leak-site     | implement-teardown-cache-release    | smoke-test-multi-hour-uptime      | PASS    |
-| cli-gemini      | gemini-2.5-flash | ...                              | ...                                 | ...                               | ...     |
+| cli-codex       | gpt-5.5 medium   | identify-singleton-leak-site     | implement-teardown-cache-release    | smoke-test-multi-hour-uptime      | PASS    |
+| cli-opencode    | glm-5.1          | ...                              | ...                                 | ...                               | ...     |
 ```
 
 Include verbatim JSON responses from each CLI in the test report.

@@ -1,0 +1,224 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "EXECUTOR_KINDS",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:7",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "inline-edit: drop 'cli-devin' from as-const tuple"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "EXECUTOR_KIND_FLAG_SUPPORT['cli-devin']",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:40",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-map-entry"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "DEVIN_SUPPORTED_MODELS",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:46",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-const (hard-codes swe-1.6)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "DevinSupportedModel type",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:47",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-const"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "DevinPermissionMode type",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:48",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-const"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "resolveDevinPermissionMode fn",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:160-168",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-branch (imported by fanout-run.cjs:377)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "cli-devin model-required guard",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:194-198",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-branch"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "cli-devin model-whitelist guard",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:242-255",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-branch"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "symbol": "parseFanoutConfig JSDoc 'gemini/devin'",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-config.ts:320",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "inline-edit drop /devin"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "symbol": "EXECUTOR_BINARY_BY_KIND['cli-devin']",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-audit.ts:51",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-map-entry"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "symbol": "EXECUTOR_SESSION_ENV_BY_KIND['cli-devin']",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-audit.ts:59",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-map-entry"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "symbol": "EXECUTOR_STATE_ENV_BY_KIND['cli-devin']",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-audit.ts:67",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-map-entry"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "symbol": "EXECUTOR_DEFAULT_HOME_DIR_BY_KIND['cli-devin']",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-audit.ts:75",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-map-entry"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      "symbol": "EXECUTOR_ENV_PREFIXES_BY_KIND['cli-devin']",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "executor-audit.ts:92",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-map-entry"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "SPECKIT_STATE_ENV_BY_KIND['cli-devin']",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "fanout-run.cjs:114",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-map-entry"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "buildLineageCommand cli-devin branch",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "fanout-run.cjs:330-342",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-branch (hard-codes swe-1.6 at 336)"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "resolveDevinPermissionMode import",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "fanout-run.cjs:377",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "inline-edit remove token"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "resolvedDevinPermission local",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "fanout-run.cjs:432",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "delete-line"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "symbol": "effectivePermission ternary",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "fanout-run.cjs:435",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "inline-edit -> resolvedPermission"
+    },
+    {
+      "path": ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts",
+      "symbol": "swe-1.6 fixtures",
+      "kind": "integration_point",
+      "reuse": "remove",
+      "evidence": "fallback-router.vitest.ts:10,34,36,69,72,77,80,100,107",
+      "relevance": 1,
+      "classification": "active-wiring",
+      "verified": true,
+      "editType": "conditional: only if fallback-router retains & swe-1.6 dropped"
+    }
+  ]
+}
