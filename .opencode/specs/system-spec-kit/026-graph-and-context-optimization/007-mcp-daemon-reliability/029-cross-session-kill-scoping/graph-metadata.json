@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
   "migrated": true,

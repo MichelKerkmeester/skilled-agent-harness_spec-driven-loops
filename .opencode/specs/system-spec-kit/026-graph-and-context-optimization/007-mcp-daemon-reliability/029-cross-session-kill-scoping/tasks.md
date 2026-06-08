@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Cross-Session Kill Scoping [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping/tasks]"
+title: "Tasks: Cross-Session Kill Scoping [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/tasks]"
 description: "Forensics, two fixes, five drills, one salvage."
 trigger_phrases:
   - "kill scoping tasks"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping"
     last_updated_at: "2026-06-06T17:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both fixes shipped and drilled; live index salvaged"

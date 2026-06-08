@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Cross-Session Kill Scoping + Post-Crash Integrity Gate [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping/spec]"
+title: "Feature Specification: Cross-Session Kill Scoping + Post-Crash Integrity Gate [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/spec]"
 description: "Stop one session's cleanup from killing sibling sessions' MCP transports, and refuse to serve a corruption-damaged index after a dirty shutdown; includes the live-DB salvage that recovered 9,888 of 9,890 rows."
 trigger_phrases:
   - "cross session kill scoping"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping"
     last_updated_at: "2026-06-06T17:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both fixes shipped and drilled; live index salvaged"

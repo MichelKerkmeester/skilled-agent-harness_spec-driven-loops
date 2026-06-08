@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Cross-Session Kill Scoping [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping/plan]"
+title: "Implementation Plan: Cross-Session Kill Scoping [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/plan]"
 description: "Forensics-first: rank root causes from logs and source, ship the unowned P0 scoping fix and the marker-gated integrity probe, drill both, salvage the live index."
 trigger_phrases:
   - "kill scoping plan"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping"
     last_updated_at: "2026-06-06T17:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both fixes shipped and drilled; live index salvaged"

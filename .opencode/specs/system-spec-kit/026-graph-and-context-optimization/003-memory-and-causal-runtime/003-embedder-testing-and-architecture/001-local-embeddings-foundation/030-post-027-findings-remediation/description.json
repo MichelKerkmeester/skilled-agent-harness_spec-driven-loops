@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/030-post-027-findings-remediation",
   "description": "Feature Specification: Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correc",
   "keywords": [
     "feature",
@@ -18,8 +18,8 @@
     "fallback",
     "correc"
   ],
-  "lastUpdated": "2026-05-26T17:26:15.296Z",
-  "specId": "029",
+  "lastUpdated": "2026-06-08T11:11:03.320Z",
+  "specId": "030",
   "folderSlug": "post-027-findings-remediation",
   "parentChain": [
     "system-spec-kit",

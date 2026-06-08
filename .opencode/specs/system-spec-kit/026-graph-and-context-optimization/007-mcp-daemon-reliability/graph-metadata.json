@@ -19,7 +19,7 @@
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping",
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening"
   ],
   "manual": {
@@ -111,7 +111,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
     "last_active_at": "2026-06-06T16:59:24.223Z"
   }
 }

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Cross-Session Kill Scoping [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping/implementation-summary]"
+title: "Implementation Summary: Cross-Session Kill Scoping [system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/implementation-summary]"
 description: "The dominant MCP-disconnect path is closed: session cleanup now proves ancestry before every kill, dirty boots probe integrity before serving, and the corrupted live index was salvaged at 9,888 of 9,890 rows."
 trigger_phrases:
   - "kill scoping shipped"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping"
     last_updated_at: "2026-06-06T17:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both fixes shipped and drilled; live index salvaged"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping |
+| **Spec Folder** | 026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping |
 | **Completed** | 2026-06-06 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

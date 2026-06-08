@@ -1,4 +1,4 @@
-# GATE 3 PRE-ANSWERED — Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/029-post-027-findings-remediation` — A) existing. PROCEED. Non-interactive --approval-policy=never.
+# GATE 3 PRE-ANSWERED — Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/030-post-027-findings-remediation` — A) existing. PROCEED. Non-interactive --approval-policy=never.
 
 ---
 
