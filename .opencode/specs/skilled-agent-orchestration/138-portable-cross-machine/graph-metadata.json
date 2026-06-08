@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "138-portable-cross-machine",
+  "spec_folder": "138-portable-cross-machine",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": ["portable hook paths","barter framework sync","opt homebrew node hardcoded linux"],
+    "key_topics": ["hook-portability","cross-machine","barter-sync","project-dir-env-var","path-node"],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","implementation-summary.md",".codex/hooks.json",".devin/hooks.v1.json"],
+    "entities": ["CLAUDE_PROJECT_DIR","CODEX_PROJECT_DIR","DEVIN_PROJECT_DIR",".codex/hooks.json",".devin/hooks.v1.json"],
+    "causal_summary": "Hook commands hardcoded the owner's abs path and macOS-only /opt/homebrew node (with a botched n/bin/node corruption in Barter), failing on other machines and Linux; rewrote them to cd to a runtime project-dir env var with a $PWD fallback plus PATH node across Public source and Barter, then surgically synced the last 100 commits of framework files into the Barter mirror with sk-code/sk-git preserved.",
+    "created_at": "2026-06-08T05:50:45Z",
+    "last_save_at": "2026-06-08T05:50:45Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+  }
+}
