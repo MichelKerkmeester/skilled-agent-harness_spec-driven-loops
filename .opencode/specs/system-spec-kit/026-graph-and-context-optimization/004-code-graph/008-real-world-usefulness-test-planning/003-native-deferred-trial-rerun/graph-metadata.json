@@ -1,18 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
-  "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-scope-change-scan-guard",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience"
-  ],
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
+  "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
   "manual": {
@@ -22,42 +13,36 @@
   },
   "derived": {
     "trigger_phrases": [
-      "real-world usefulness test",
-      "code graph usefulness",
-      "hook usefulness validation",
-      "runtime integration usefulness",
-      "026/007/012",
-      "real-world usefulness plan",
-      "CLI matrix",
-      "code graph usefulness campaign",
-      "hook usefulness campaign",
-      "real-world usefulness tasks",
-      "scenario runtime cells",
-      "026/007/012 tasks"
+      "native rerun usefulness",
+      "026/007/012/002",
+      "code graph scope policy failure",
+      "native synthesis update"
     ],
     "key_topics": [
-      "real-world",
+      "native",
+      "rerun",
       "usefulness",
-      "test",
-      "code",
-      "graph",
-      "hook",
-      "validation",
-      "runtime",
-      "integration",
       "026",
       "007",
-      "012"
+      "012",
+      "002",
+      "code",
+      "graph",
+      "scope",
+      "policy",
+      "failure"
     ],
     "importance_tier": "important",
-    "status": "planning_scaffold_complete",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "trials/trial-log.jsonl",
+      "mcp_server/hooks/codex/session-start.ts"
     ],
     "entities": [
       {
@@ -97,19 +82,31 @@
         "source": "derived"
       },
       {
+        "name": "trial-log.jsonl",
+        "kind": "file",
+        "path": "trials/trial-log.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/codex/session-start.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "World Usefulness Test",
+        "name": "Native Rerun",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Planning Scaffold Complete",
+        "name": "Deferred Usefulness Cells",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,7 +124,7 @@
         "source": "derived"
       },
       {
-        "name": "Execution Mode",
+        "name": "Prior Child",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -151,13 +148,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scoring Rubric",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -181,13 +172,7 @@
         "source": "derived"
       },
       {
-        "name": "Major Scenario Tasks",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Matrix Cell Tasks",
+        "name": "Log Codex",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -205,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces. That proves the systems can exist, but it does not prove they help an engineer move faster or make better decisions during normal coding work. The missing evidence is a real-world usefulness campaign with controls, repeated trials, and runtime-specific observations.",
-    "created_at": "2026-05-05T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.113Z",
+    "causal_summary": "The sandbox campaign deferred native cells because it could not access MCP tools, authenticated state, network, or real compaction context. The initial synthesis therefore treated code graph overhead as sandbox-bound. The native rerun produced different evidence: code graph queries blocked under real workflow conditions, scope-mismatched scans wiped the live index to zero nodes, and parser crashes prevented recovery.",
+    "created_at": "2026-05-06T00:00:00.000Z",
+    "last_save_at": "2026-05-30T10:12:02.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

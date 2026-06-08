@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
+  "description": "Feature Specification: Real-World Usefulness Test",
+  "keywords": [
+    "feature",
+    "specification",
+    "real-world",
+    "usefulness",
+    "test"
+  ],
+  "lastUpdated": "2026-06-08T11:50:46.621Z",
+  "specId": "001",
+  "folderSlug": "usefulness-test-methodology",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "008-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

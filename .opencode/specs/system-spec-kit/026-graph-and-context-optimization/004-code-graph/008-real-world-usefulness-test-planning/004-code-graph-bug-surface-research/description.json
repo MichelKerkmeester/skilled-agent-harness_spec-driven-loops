@@ -1,0 +1,24 @@
+{
+  "level": 2,
+  "name": "Deep Research Issues",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
+  "description": "Feature Specification: Deep Research Issues",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "research",
+    "issues"
+  ],
+  "lastUpdated": "2026-05-26T17:27:20.245Z",
+  "specId": "003",
+  "folderSlug": "code-graph-bug-surface-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "008-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
