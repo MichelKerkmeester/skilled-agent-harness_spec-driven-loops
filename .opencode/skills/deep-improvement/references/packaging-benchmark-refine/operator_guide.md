@@ -12,7 +12,7 @@ Unlike Lanes A-C, the loop host lives **with the packaging under test**, not in 
 <packaging-root>/_gates/derive.py  source-of-truth -> derived-copies regeneration: derive | check
 ```
 
-`loop.py` env knobs: `LOOP_FIXTURES`, `LOOP_VARIANTS`, `LOOP_HELD_OUT`, `LOOP_SAMPLES`, `PROPOSER_MODEL`, `GRADER_MODEL`. The skill-side adapter (`scripts/packaging-benchmark-refine/run-packaging-refine.cjs`) only maps loop-host flags onto this surface and spawns `python3`. Loop logic stays packaging-owned so it can evolve without touching deep-improvement.
+`loop.py` env knobs: `LOOP_FIXTURES`, `LOOP_VARIANTS`, `LOOP_HELD_OUT`, `LOOP_SAMPLES`, `PROPOSER_MODEL`, `GRADER_MODEL`, `LOOP_ACCEPT_MARGIN` (required held-out improvement beyond non-regression, default 0), `LOOP_POLISH` (=1 targets the lowest-margin dimension when all floors pass; default declines-when-clean), `LOOP_LOCK_TTL`, `LOOP_SKIP_PROBE`. The skill-side adapter (`scripts/packaging-benchmark-refine/run-packaging-refine.cjs`) only maps loop-host flags onto this surface and spawns `python3`. Loop logic stays packaging-owned so it can evolve without touching deep-improvement.
 
 ## 2. INVOCATION
 
@@ -33,9 +33,10 @@ node scripts/shared/loop-host.cjs --mode=packaging-benchmark-refine \
 2. **Independent different-family grader.** The blind re-grader must not share a model family with the proposer (the loop refuses, e.g. a deepseek grader for a deepseek proposer). The packaging's hard rules are checked by a deterministic code linter, never by a model.
 3. **Held-out promotion gate.** Candidates are accepted only on non-regression of the independent grade on held-out fixtures the proposer never sees, measured against a pre-edit baseline in the same worktree. Held-out fixtures must produce gradeable deliverables (interactive fixtures that answer with a question cannot be graded).
 4. **N-sample averaging.** Single benchmark runs are stochastic (the pilot saw one fixture swing 16 to 22 independent across runs). Targeting and promotion use `LOOP_SAMPLES` (default 3) averaged grades.
-5. **Worktree isolation, always cleaned.** Edits happen on a detached worktree from HEAD (`loop.py --run` refuses a dirty source tree). Accepted candidates stay on the worktree branch for deliberate operator merge; rejected ones are removed, including on kill-switch exits.
+5. **Worktree isolation, always cleaned.** Edits happen in a worktree detached at HEAD (`loop.py --run` refuses a dirty source tree, including uncommitted edits to symlinked shared-global docs). Accepted candidates stay in their kept worktree (detached at the candidate state) for deliberate operator merge; rejected ones are removed, including on kill-switch exits.
+6. **Resume + observability.** Every per-sample grade is journaled; a killed run resumes from its journal (grade reuse is guarded by a config hash + the packaging HEAD sha; candidate-phase grades are never reused). Held-out gating uses N-sample averages with all-samples pass semantics for floors and the hard-rule linter. Stop reasons map onto the deep-improvement journal taxonomy (`converged`, `blockedStop`, `stuckRecovery`, `error`, ...).
 
-Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure on graded output, new floor breach, held-out regression, iteration ceiling.
+Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure on graded output, new floor breach, held-out regression (or improvement below `LOOP_ACCEPT_MARGIN`), iteration ceiling, and a concurrent-run lock (single writer; stale locks from dead runs are evicted).
 
 ## 4. CONTRACT CONFORMANCE CHECKLIST
 

@@ -175,7 +175,7 @@ function main() {
   const config = readJson(configPath);
   const mirrorStateFilePath = args['state-file'] || config?.promotion?.mirrorSyncStateFile || null;
   const allowedCanonicalTarget = resolveAllowedCanonicalTarget(manifestPath);
-  const threshold = Number(config?.scoring?.thresholdDelta || 1);
+  const threshold = Number(config?.scoring?.thresholdDelta ?? 1);   // iter-8 review: honor an explicit 0
   const proposalOnly = config?.proposalOnly;
   const promotionEnabled = config?.promotionEnabled;
   if (!benchmarkMode && score.status !== 'scored') {
@@ -236,6 +236,12 @@ function main() {
   if (repeatabilityReport.passed !== true) {
     process.stderr.write('Cannot promote: repeatability check did not pass\n');
     process.exit(1);
+  }
+
+  // iter-8 review: a missing candidate or target must fail closed with a structured
+  // error, not crash later at copyFileSync.
+  if (!fs.existsSync(candidate)) {
+    rejectWithStructuredError('missing-candidate', `Cannot promote: candidate file not found: ${candidate}`, {}, mirrorStateFilePath);
   }
 
   // Spec 143 T2 (rubric guard): the optimizer must never write its own ruler.

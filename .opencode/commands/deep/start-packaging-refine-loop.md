@@ -86,7 +86,7 @@ The adapter (`scripts/packaging-benchmark-refine/run-packaging-refine.cjs`) vali
 ## Output
 
 - The packaging's `_loop/state/loop-journal.jsonl` — append-only run journal (per-sample grades, promotion decisions, canonical stop reasons).
-- On `promote_accept`: the candidate edit lives on a **kept worktree branch** for deliberate operator merge — the loop never writes the live tree.
+- On `promote_accept`: the candidate edit lives in a **kept worktree (detached at the candidate state)** for deliberate operator merge — the loop never writes the live tree.
 
 Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure, new floor breach, held-out regression (or below `LOOP_ACCEPT_MARGIN`), iteration ceiling, concurrent-run lock.
 

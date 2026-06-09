@@ -288,7 +288,7 @@ async function scoreFixtureWithSamples(fixture, outputsDir, samples, scoreOne) {
   const mean = scores.reduce((a, b) => a + b, 0) / scores.length;
   const std = Math.sqrt(scores.reduce((a, b) => a + (b - mean) ** 2, 0) / scores.length);
   const failureModes = [...new Set(perSample.flatMap((s) => s.failureModes || []))];
-  return {
+  const aggregate = {
     ...perSample[0],
     outputPath: fixtureOutputPath(outputsDir, fixture.id),
     score: Math.round(mean),
@@ -298,6 +298,10 @@ async function scoreFixtureWithSamples(fixture, outputsDir, samples, scoreOne) {
     sample_count: perSample.length,
     sample_std: Math.round(std * 100) / 100,
   };
+  // iter-5 review: sample-0's per-sample diagnostics (missing patterns etc.) do not
+  // represent the aggregate; per-sample detail lives under `samples`.
+  for (const k of ['missingHeadings', 'missingPatterns', 'forbiddenMatches', 'extraction']) delete aggregate[k];
+  return aggregate;
 }
 
 function aggregateFailureModes(fixtures) {
@@ -546,11 +550,18 @@ async function main() {
       const selfRe = new RegExp(String(profile.self_score_pattern).slice(0, MAX_PATTERN_LENGTH), 'i');
       const perFixture = [];
       for (const entry of results) {
-        const primary = fs.existsSync(entry.outputPath) ? fs.readFileSync(entry.outputPath, 'utf8') : '';
+        // sampled runs may have only run-tagged outputs; fall back to sample 1
+        const candidatePaths = [entry.outputPath];
+        if (entry.sample_count) candidatePaths.push(fixtureSampleOutputPath(outputsDir, entry.id, 1));
+        const primaryPath = candidatePaths.find((p2) => fs.existsSync(p2));
+        const primary = primaryPath ? fs.readFileSync(primaryPath, 'utf8') : '';
         const m = selfRe.exec(primary.slice(0, MAX_MATCH_INPUT_LENGTH));
-        if (m && m[1] !== undefined) {
-          const gapRatio = Number(m[1]) / selfMax - entry.score / entry.maxScore;
-          perFixture.push({ id: entry.id, self_score: Number(m[1]), independent_score: entry.score, gap_ratio: Math.round(gapRatio * 1000) / 1000 });
+        const selfVal = m && m[1] !== undefined ? Number(m[1]) : NaN;
+        // iter-5 review: a non-numeric capture or self_score_max <= 0 must be skipped,
+        // never NaN-poison the mean (NaN > warn is false, silently muting the alarm).
+        if (Number.isFinite(selfVal) && Number.isFinite(selfMax) && selfMax > 0) {
+          const gapRatio = selfVal / selfMax - entry.score / entry.maxScore;
+          perFixture.push({ id: entry.id, self_score: selfVal, independent_score: entry.score, gap_ratio: Math.round(gapRatio * 1000) / 1000 });
         }
       }
       if (perFixture.length > 0) {
