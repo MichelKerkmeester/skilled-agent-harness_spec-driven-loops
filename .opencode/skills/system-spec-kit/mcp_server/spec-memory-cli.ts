@@ -184,7 +184,12 @@ Examples:
   spec-memory memory_context --json '{"input":"resume", "mode":"resume"}'
 
 Exit codes:
-  0 success, 1 runtime error, 64 usage/schema error, 69 protocol mismatch, 75 retryable daemon error`;
+  0 success, 1 runtime error, 64 usage/schema error, 69 protocol mismatch, 75 retryable daemon error
+
+Exit 69 recovery:
+  - Missing or stale dist entrypoint: run npm run build --workspace=@spec-kit/mcp-server.
+  - Backend protocol version changed: rebuild the CLI and daemon from the same checkout, then update any pinned client.
+  - Socket path or daemon config mismatch: check SPECKIT_IPC_SOCKET_DIR, socket length, and daemon config before retrying.`;
 }
 
 function normalizeName(value: string): string {
