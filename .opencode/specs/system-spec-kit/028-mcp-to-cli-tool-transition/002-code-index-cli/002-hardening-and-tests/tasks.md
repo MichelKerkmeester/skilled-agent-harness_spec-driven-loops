@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/tasks]"
-description: "Planned task breakdown for Hardening and Tests; rows expand at speckit:plan time."
+description: "Task breakdown for Hardening and Tests; all rows complete with shipped suite evidence."
 trigger_phrases:
   - "code-index hardening and tests tasks"
   - "002 002-hardening-and-tests tasks"
@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T19:30:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled task rows with shipped hardening evidence"
+    next_safe_action: "Use phase as verified handoff for runtime integration"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
+- [x] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,11 +54,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 D8 dual-client test: MCP client + CLI client against one daemon/socket (CLI secondary via the reconnecting proxy; assert replay + protocol-drift fail-closed)
-- [ ] T002 D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner, no stale locks; mk-code-index launcher EXITS on SIGTERM; pin SPECKIT_DAEMON_REELECTION
-- [ ] T003 Blocked-read regression suite: stale-readiness paths for query/context/detect-changes assert blocked rendering in all formats
-- [ ] T004 All-8 parity suite generated from CODE_GRAPH_TOOL_SCHEMAS
-- [ ] T005 Process-table teardown assertions: zero orphaned daemons/launchers post-suite
+- [x] T001 D8 dual-client test: MCP client + CLI client against one daemon/socket (CLI secondary via the reconnecting proxy; assert replay + protocol-drift fail-closed)
+- [x] T002 D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner, no stale locks; mk-code-index launcher EXITS on SIGTERM; pin SPECKIT_DAEMON_REELECTION
+- [x] T003 Blocked-read regression suite: stale-readiness paths for query/context/detect-changes assert blocked rendering in all formats
+- [x] T004 All-8 parity suite generated from CODE_GRAPH_TOOL_SCHEMAS
+- [x] T005 Process-table teardown assertions: zero orphaned daemons/launchers post-suite
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx All suites green; zero orphaned processes post-suite; parity locked at 8
+- [x] T9xx All suites green; zero orphaned processes post-suite; parity locked at 8
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] P0 requirements in spec.md verified with evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 requirements in spec.md verified with evidence
 <!-- /ANCHOR:completion -->
 
 ---
