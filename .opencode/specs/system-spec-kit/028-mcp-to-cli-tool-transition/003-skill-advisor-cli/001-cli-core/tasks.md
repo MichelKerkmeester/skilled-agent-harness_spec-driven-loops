@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 1: CLI Core [system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/tasks]"
-description: "Planned task breakdown for CLI Core; rows expand at speckit:plan time."
+description: "Task breakdown for CLI Core; all rows complete with shipped CLI and hardening-suite evidence."
 trigger_phrases:
   - "skill-advisor cli core tasks"
   - "003 001-cli-core tasks"
@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core"
-    last_updated_at: "2026-06-06T15:55:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Audit findings propagated to companions"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Ticked verification row on hardening-suite + drill evidence"
+    next_safe_action: "Continue dual-stack observation window"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
+- [x] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,12 +54,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 Registry codegen: 9 subcommands from `TOOL_DEFINITIONS` with the exported Zod schemas at argv (closest sibling to the spec-memory codegen path)
-- [ ] T002 IPC connect + auto-spawn via `mk-skill-advisor-launcher.cjs`; warm-first policy with `--timeout-ms`
-- [ ] T003 Trusted-caller gate: graph-mutating commands (`graph scan`, `rebuild`, `graph propagate-enhances --apply`) fail closed unless explicitly authorized
-- [ ] T004 Output contracts `--format json|text`; exit map 0/1/64/69/75
-- [ ] T005 skill_advisor.py untouched in this phase (facade reconciliation lands in phase 2 fixtures)
-- [ ] T006 Resident-service semantics: `status` reports artifact freshness and daemon trust-evidence as separate fields; telemetry/shadow-sink writes preserved on CLI calls; embedder resolution honored on CLI-triggered scan/rebuild
+- [x] T001 Registry codegen: 9 subcommands from `TOOL_DEFINITIONS` with the exported Zod schemas at argv (closest sibling to the spec-memory codegen path)
+- [x] T002 IPC connect + auto-spawn via `mk-skill-advisor-launcher.cjs`; warm-first policy with `--timeout-ms`
+- [x] T003 Trusted-caller gate: graph-mutating commands (`graph scan`, `rebuild`, `graph propagate-enhances --apply`) fail closed unless explicitly authorized
+- [x] T004 Output contracts `--format json|text`; exit map 0/1/64/69/75
+- [x] T005 skill_advisor.py untouched in this phase (facade reconciliation lands in phase 2 fixtures)
+- [x] T006 Resident-service semantics: `status` reports artifact freshness and daemon trust-evidence as separate fields; telemetry/shadow-sink writes preserved on CLI calls; embedder resolution honored on CLI-triggered scan/rebuild
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,7 +67,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx 9/9 subcommands invocable against a live daemon; mutating commands fail closed untrusted; exit matrix verified
+- [x] T9xx 9/9 subcommands invocable against a live daemon; mutating commands fail closed untrusted; exit matrix verified — proven by the phase-002 parity/dual-client suites + the fail-closed gate verification
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -75,9 +75,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] P0 requirements in spec.md verified with evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 requirements in spec.md verified with evidence
 <!-- /ANCHOR:completion -->
 
 ---

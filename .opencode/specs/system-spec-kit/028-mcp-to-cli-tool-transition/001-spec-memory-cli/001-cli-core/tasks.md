@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core"
-    last_updated_at: "2026-06-07T12:45:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Delivered daemon-backed spec-memory CLI core and shim"
-    next_safe_action: "Run phase 002 hardening/parity suites and phase 003 runtime integration"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Closed successor-owned verification row; phase 002 shipped"
+    next_safe_action: "Continue dual-stack observation window"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -70,7 +70,7 @@ _memory:
 - [x] T900 CLI tests: `npx vitest run tests/cli.vitest.ts tests/spec-memory-cli.vitest.ts` -> 11 passed
 - [x] T901 Typecheck/build: `npm run typecheck`; `npm run build`
 - [x] T902 Live smoke: `node .opencode/bin/spec-memory.cjs memory_stats --format json --timeout-ms 5000`
-- [ ] T9xx Full 37-subcommand invocation matrix, dual-spawn race tests, and warm-path p95 sample are owned by phase 002 hardening
+- [x] T9xx Full 37-subcommand invocation matrix, dual-spawn race tests, and warm-path p95 sample are owned by phase 002 hardening — phase 002 shipped and verified (suites 10/10)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,7 +78,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All phase-001-owned tasks marked `[x]`; successor-owned hardening row intentionally remains open
+- [x] All tasks marked `[x]`; the successor-owned hardening scope shipped in phase 002
 - [x] No `[B]` blocked tasks remaining
 - [x] P0 requirements in spec.md implemented with targeted evidence
 <!-- /ANCHOR:completion -->

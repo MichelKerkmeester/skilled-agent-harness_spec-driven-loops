@@ -12,10 +12,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli"
-    last_updated_at: "2026-06-07T12:45:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase 001 CLI core delivered with daemon-backed spec-memory shim"
-    next_safe_action: "Run phase 002 hardening/parity suites, then phase 003 runtime integration"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "All three implementation phases verified complete"
+    next_safe_action: "Continue dual-stack observation window (open by design)"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       - "001-cli-core/spec.md"
       - "002-hardening-and-tests/spec.md"
       - "003-runtime-integration/spec.md"
-    completion_pct: 35
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Research settled GO with zero unknowns (phase 000); implementation proceeds as phases 001-003."
@@ -52,7 +52,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-06-06 |
-| **Updated** | 2026-06-07 |
+| **Updated** | 2026-06-09 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
@@ -89,7 +89,7 @@ Deliver the `spec-memory` CLI as a second IPC client over the unchanged daemon �
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | 000-spec-memory-cli-research/** | Complete | Research record (runs 1–4, GO verdict, zero unknowns) |
-| 001-cli-core/**, 002-hardening-and-tests/**, 003-runtime-integration/** | Pending | Implementation phases (~10–13d total) |
+| 001-cli-core/**, 002-hardening-and-tests/**, 003-runtime-integration/** | Complete | Implementation phases (~10–13d total) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -102,9 +102,9 @@ Deliver the `spec-memory` CLI as a second IPC client over the unchanged daemon �
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | 000-spec-memory-cli-research/ | Research record: four deep-research runs ending in GO + zero unknowns (2 RESOLVED, 4 MITIGATED-terminal, 2 ACCEPTED); 8 delta specs; corrected measurements; 10–13d estimate | Complete |
-| 1 | 001-cli-core/ | spec-memory CLI binary: 37 subcommands generated from TOOL_DEFINITIONS, Zod at argv, IPC connect + auto-spawn, exits 0/1/64/69/75, shim guards | Core delivered |
-| 2 | 002-hardening-and-tests/ | Regression-lock the guarantees: D1 dual-spawn, D2 dual-client, D7 lifecycle suites + all-37 parity + D5 exit-69 docs (~3–4d) | Pending |
-| 3 | 003-runtime-integration/ | Adoption surfaces: runtime allowlists, hook pairing for Claude/Codex (CLI-backed warm-only path in the existing adapters), NEW OpenCode plugin for spec-memory, packaging, transport-down fallback, dual-stack window (~2–3d, re-estimate with plugin scope) | Pending |
+| 1 | 001-cli-core/ | spec-memory CLI binary: 37 subcommands generated from TOOL_DEFINITIONS, Zod at argv, IPC connect + auto-spawn, exits 0/1/64/69/75, shim guards | Complete |
+| 2 | 002-hardening-and-tests/ | Regression-lock the guarantees: D1 dual-spawn, D2 dual-client, D7 lifecycle suites + all-37 parity + D5 exit-69 docs (~3–4d) | Complete |
+| 3 | 003-runtime-integration/ | Adoption surfaces: runtime allowlists, hook pairing for Claude/Codex (CLI-backed warm-only path in the existing adapters), NEW OpenCode plugin for spec-memory, packaging, transport-down fallback, dual-stack window (~2–3d, re-estimate with plugin scope) | Complete (dual-stack observation window open) |
 
 ### Phase Transition Rules
 

@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:10:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Skill-advisor CLI core shipped and docs reconciled"
+    next_safe_action: "Continue phase 2 facade reconciliation fixtures"
     blockers: []
     key_files:
       - "implementation-summary.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core |
-| **Completed** | Not yet — planned |
+| **Completed** | 2026-06-09 - shipped |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -44,13 +44,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-skill-advisor-cli-research/research/research.md` (delta specs and measurements). The intended outcome: skill-advisor CLI binary: 9-subcommand registry codegen from TOOL_DEFINITIONS + Zod schemas, IPC connect + auto-spawn, fail-closed trusted-caller gate on mutating commands, exits 0/1/64/69/75 (deltas D1, D3, D8)
+The skill-advisor CLI core shipped as a manifest-backed CLI over the existing advisor daemon contract. The shipped entrypoints are `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts`, `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts`, and shim `.opencode/bin/skill-advisor.cjs`; `tsconfig.build.json` includes the CLI build path. The CLI exposes 9 commands with byte-identical schemas to `TOOL_DEFINITIONS`, supports isolated daemon smoke for `advisor_status`, enforces trusted-mutation rejection in both CLI and daemon paths, maps exits to 0/1/64/69/75, and guards stale dist output with `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE`. `skill_advisor.py` was untouched.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | — | Phase not started |
+| `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts` | Added | CLI dispatcher, daemon IPC calls, trusted-mutation gate, output contracts, and exit taxonomy |
+| `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts` | Added | Manifest-backed command registry generated from `TOOL_DEFINITIONS` |
+| `.opencode/bin/skill-advisor.cjs` | Added | Stable shim with dist-freshness guard and development stale-dist override |
+| `.opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json` | Updated | Includes the CLI and manifest files in the build |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -58,7 +61,7 @@ Nothing yet — this phase is scaffolded in planned state. Binding scope artifac
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. Delivery follows the speckit:plan pass for this phase; estimated effort ~1 packet (small-medium).
+Delivered as a CLI-only layer over the existing skill-advisor daemon contract. The Python facade remained untouched for later reconciliation fixtures.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,8 +81,12 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 
 | Check | Result |
 |-------|--------|
-| Structural (runs now) | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` |
-| Phase verification (planned) | 9/9 subcommands invocable against a live daemon; mutating commands fail closed untrusted; exit matrix verified |
+| Clean build | TypeScript build passed cleanly with borrowed pinned TypeScript 5.9.3 |
+| Manifest parity | 9 commands verified with byte-identical schemas to `TOOL_DEFINITIONS` |
+| Daemon smoke | Isolated `advisor_status` daemon smoke passed |
+| Trusted mutation gate | Rebuild, scan, and propagate-apply rejected untrusted callers CLI-side and daemon-side with exit 64 |
+| Exit taxonomy | Exits 0/1/64/69/75 verified |
+| Dist freshness | Stale dist guard verified with `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` override |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -87,5 +94,5 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Planned state.** This document is a stub by design; it gains real content when the phase ships.
+1. Later facade reconciliation remains a separate phase; `skill_advisor.py` was intentionally untouched here.
 <!-- /ANCHOR:limitations -->

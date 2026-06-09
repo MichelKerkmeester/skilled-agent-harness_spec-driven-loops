@@ -34,6 +34,8 @@ skill_budget_doctor_invariant: |
 upstream_assets:
   contract: "local command design contract"
   audit_script: ".opencode/commands/doctor/scripts/audit_descriptions.py"
+  cli_health_command: "node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500"
+  cli_health_policy: "Warm-only: probe the existing mk-skill-advisor IPC socket first. If the socket is absent or dead, report CLI availability as retryable-unavailable and continue the read-only audit."
   reference_doc: ".opencode/skills/sk-doc/assets/frontmatter_templates.md"
   doc_reference: ".opencode/skills/sk-doc/assets/frontmatter_templates.md#description-budget--trim-style"
 
@@ -84,9 +86,11 @@ workflow:
   phase_0_audit:
     purpose: "Run the description-budget audit (read-only)."
     activities:
+      - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code. Continue the read-only budget audit if the CLI is retryable-unavailable."
       - "Construct the command line and execute upstream_assets.audit_script via Bash."
       - "Capture stdout and exit code."
     outputs:
+      - cli_availability
       - report_text_or_json
       - exit_code
 

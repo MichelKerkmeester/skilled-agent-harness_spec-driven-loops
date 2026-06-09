@@ -127,6 +127,8 @@ routes:
       - mcp__mk_skill_advisor__skill_graph_status
       - mcp__mk_spec_memory__memory_context
       - mcp__mk_spec_memory__memory_search
+    script_invocations:
+      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500'
     trigger_phrases:
       - "skill advisor scoring"
       - "skill advisor rebuild"
@@ -140,6 +142,8 @@ routes:
     mutating: read-only
     gate3_location: "n/a (read-only audit; no spec folder required)"
     mcp_tools: []   # script-only audit; no MCP calls
+    script_invocations:
+      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500'
     trigger_phrases:
       - "skill budget audit"
       - "description budget check"

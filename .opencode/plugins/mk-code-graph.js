@@ -198,6 +198,11 @@ function diagnoseTransportPlanFailure(responseText) {
 
   try {
     const parsed = JSON.parse(responseText);
+    if (parsed?.status === 'skipped' || parsed?.status === 'fail_open') {
+      const exitCode = parsed?.metadata?.exitCode ?? null;
+      const reason = parsed?.error || parsed?.metadata?.reason || parsed?.metadata?.route || 'no transport payload';
+      return `Bridge ${parsed.status}: ${reason}${exitCode === null || exitCode === undefined ? '' : ` (exit=${exitCode})`}; plugin injection will no-op`;
+    }
     const data = parsed?.data ?? parsed;
     const plan = data?.opencodeTransport;
     if (!plan || typeof plan !== 'object') {
@@ -246,7 +251,7 @@ function execFilePromise(file, args, options) {
 }
 
 async function runTransportBridge({ projectDir, specFolder, nodeBinary, bridgeTimeoutMs }) {
-  const args = [BRIDGE_PATH, '--minimal'];
+  const args = [BRIDGE_PATH, '--minimal', '--timeout-ms', String(bridgeTimeoutMs)];
   if (specFolder) {
     args.push('--spec-folder', specFolder);
   }

@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled plan status with shipped CLI-core evidence"
+    next_safe_action: "Continue dual-stack observation window"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | **Testing** | vitest (existing harness) |
 
 ### Overview
-Planned phase (~3.5–4.5d); not implemented. code-index CLI binary: all-8 manifest codegen from CODE_GRAPH_TOOL_SCHEMAS, validateToolArgs parity at argv, IPC connect + auto-spawn, blocked-read rendering, exits 0/1/64/69/75, shim with dist-freshness (deltas D1–D7, D10) Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
+Implemented CLI core: all-8 manifest codegen from CODE_GRAPH_TOOL_SCHEMAS with validateToolArgs parity at argv, IPC connect + auto-spawn via the launcher, blocked-read rendering, exits 0/1/64/69/75, and the dist-freshness shim — verified including blocked-read, exit taxonomy, and auto-spawn. Binding scope and acceptance criteria live in spec.md and the research record.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,13 +51,13 @@ Planned phase (~3.5–4.5d); not implemented. code-index CLI binary: all-8 manif
 
 ### Definition of Ready
 - [x] Scope pinned in spec.md from the research record + program pairing rule
-- [ ] Predecessor phase handoff criteria met
-- [ ] speckit:plan pass completed for this phase
+- [x] Predecessor phase handoff criteria met
+- [x] Phase plan executed directly from the existing Level 1 plan and research authority
 
 ### Definition of Done
-- [ ] All P0 requirements in spec.md verified
-- [ ] Verification approach below executed with evidence
-- [ ] Phase summary reconciled and parent map updated
+- [x] All P0 requirements in spec.md verified
+- [x] Verification approach below executed with evidence
+- [x] Phase summary reconciled and parent map updated
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -96,13 +96,13 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm predecessor handoff criteria; load research deltas relevant to this phase
+- [x] Confirm predecessor handoff criteria; load research deltas relevant to this phase
 
 ### Phase 2: Core Execution
-- [ ] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
+- [x] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
 
 ### Phase 3: Verification
-- [ ] All 8 subcommands invocable against a live daemon; blocked-read renders blocked; exit matrix verified; auto-spawn works from a dead socket
+- [x] All 8 subcommands invocable against a live daemon; blocked-read renders blocked; exit matrix verified; auto-spawn works from a dead socket
 <!-- /ANCHOR:phases -->
 
 ---

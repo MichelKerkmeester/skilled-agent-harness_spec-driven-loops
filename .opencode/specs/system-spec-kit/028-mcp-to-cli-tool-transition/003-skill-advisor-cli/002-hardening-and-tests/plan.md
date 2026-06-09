@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests"
-    last_updated_at: "2026-06-06T15:55:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Audit findings propagated to companions"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled plan status with shipped suites + passed drill"
+    next_safe_action: "Continue dual-stack observation window"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | **Testing** | vitest (existing harness) |
 
 ### Overview
-Planned phase (~1 packet (medium)); not implemented. Parity + lifecycle regression-lock: 10-prompt Python local/native parity fixture (D2), rebuild/scan job semantics with mutation wall-time MEASURED (D5), orphan-reaping fixtures for the six-orphan incident class (D6), dual-client coverage Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
+Shipped and verified: the 10-prompt local-vs-native parity fixture (10/10), measured rebuild/scan job semantics (D5), orphan-reaping fixtures against the real launcher (D6), dual-client MCP+CLI coverage, and the tri-daemon spawn drill (program gate) — drill PASSED with per-launcher single-owner, respawn-lock serialization, divergent SIGTERM reap, and zero orphans. Binding scope and acceptance criteria live in spec.md and the research record.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,13 +51,13 @@ Planned phase (~1 packet (medium)); not implemented. Parity + lifecycle regressi
 
 ### Definition of Ready
 - [x] Scope pinned in spec.md from the research record + program pairing rule
-- [ ] Predecessor phase handoff criteria met
-- [ ] speckit:plan pass completed for this phase
+- [x] Predecessor phase handoff criteria met
+- [x] Phase plan executed directly from the existing Level 1 plan and research authority
 
 ### Definition of Done
-- [ ] All P0 requirements in spec.md verified
-- [ ] Verification approach below executed with evidence
-- [ ] Phase summary reconciled and parent map updated
+- [x] All P0 requirements in spec.md verified
+- [x] Verification approach below executed with evidence
+- [x] Phase summary reconciled and parent map updated
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -98,13 +98,13 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm predecessor handoff criteria; load research deltas relevant to this phase
+- [x] Confirm predecessor handoff criteria; load research deltas relevant to this phase
 
 ### Phase 2: Core Execution
-- [ ] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
+- [x] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
 
 ### Phase 3: Verification
-- [ ] All fixtures green incl. parity + zero orphans; job semantics documented with measurements
+- [x] All fixtures green incl. parity + zero orphans; job semantics documented with measurements
 <!-- /ANCHOR:phases -->
 
 ---
@@ -126,7 +126,7 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 001-cli-core | Internal | Pending | Phase cannot start |
+| 001-cli-core | Internal | Complete | Phase cannot start |
 | Research authority ../000-skill-advisor-cli-research/research/research.md | Internal | Green | Binding scope source |
 <!-- /ANCHOR:dependencies -->
 

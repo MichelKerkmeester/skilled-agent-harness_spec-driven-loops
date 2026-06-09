@@ -258,7 +258,13 @@ return {
 - **Low confidence:** load default runtime references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing intent/path/tool signal.
 - **Ambiguous intent scores:** load the top two resource domains and disclose the ambiguity instead of picking one silently.
 - **Known intent with no resources:** return a "no knowledge base found" notice naming the missing intent.
-- **Advisor MCP unavailable:** fall back to Python `skill_advisor.py` shim, then to keyword matching against each skill's frontmatter `trigger_phrases`. Announce the degraded mode in the response.
+- **Advisor MCP unavailable:** for normal Gate 2 routing, fall back to Python `skill_advisor.py` only when the caller needs the legacy JSON-array facade or MCP/CLI transport is unavailable. Use `node .opencode/bin/skill-advisor.cjs <tool> --format json --timeout-ms N` for operator checks, doctor routes and runtime fallbacks that have already verified a warm `mk-skill-advisor` daemon socket. Prompt-time hooks must probe the socket first, never cold-spawn the daemon, and fail open on CLI exit 75 before keyword matching against frontmatter `trigger_phrases`.
+
+### Gate 2 caller guidance
+
+- Prefer `mcp__mk_skill_advisor__advisor_recommend` for live runtime routing when MCP transport is healthy.
+- Use `skill_advisor.py` for the legacy facade contract: AGENTS.md fallback checks, compatibility scripts expecting the JSON-array shape, or environments without the daemon-backed CLI.
+- Use `.opencode/bin/skill-advisor.cjs` for daemon-backed CLI checks and runtime fallback only after a warm-socket probe succeeds; always pass `--timeout-ms` and treat exit 75 as retryable fail-open.
 
 ### Anti-patterns
 

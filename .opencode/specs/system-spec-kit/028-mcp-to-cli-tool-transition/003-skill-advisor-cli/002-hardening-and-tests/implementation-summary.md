@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/implementation-summary]"
-description: "Planned-stub summary for Phase 2 Hardening and Tests. Nothing implemented yet."
+description: "Shipped summary for Phase 2 Hardening and Tests: skill-advisor hardening suites and the passed tri-daemon program gate."
 trigger_phrases:
   - "skill-advisor hardening and tests result"
   - "003 002-hardening-and-tests result"
@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled shipped hardening suites + passed tri-daemon drill"
+    next_safe_action: "Continue dual-stack observation window"
     blockers: []
     key_files:
       - "implementation-summary.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests |
-| **Completed** | Not yet — planned |
+| **Completed** | 2026-06-09 - shipped and verified |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -44,13 +44,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-skill-advisor-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Parity + lifecycle regression-lock: 10-prompt Python local/native parity fixture (D2), rebuild/scan job semantics with mutation wall-time MEASURED (D5), orphan-reaping fixtures for the six-orphan incident class (D6), dual-client coverage
+The skill-advisor hardening phase shipped the parity, job-semantics, orphan-reaping, and dual-client regression suites plus the env-gated tri-daemon spawn drill (the program gate). The parity fixture runs the real `python3` local scorer against the native path (10/10 identical top recommendations), job semantics measure rebuild/scan wall-time under mutation, orphan-reaping exercises the real launcher (killed parent, removed worktree, warm adoption), and the drill verifies all three CLIs auto-spawning simultaneously — per-launcher single-owner, respawn-lock serialization, divergent SIGTERM reap, zero orphans. Drill PASSED.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | — | Phase not started |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-parity.vitest.ts` | Added | D2 10-prompt local-vs-native parity fixture (runs real python3) |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-job-semantics.vitest.ts` | Added | D5 rebuild/scan job semantics with measured wall-time under mutation |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts` | Added | D6 orphan-reaping against the real launcher (kill-parent, removed-worktree, warm adoption) |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-dual-client.vitest.ts` | Added | Dual-client MCP + CLI coverage against one daemon |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/tri-daemon-drill.vitest.ts` | Added | Env-gated tri-daemon spawn drill (program gate) |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-test-utils.ts` | Added | Shared sandbox harness and test utilities |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/tsconfig.tests.json` | Added | Test-only TypeScript configuration |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -58,7 +64,7 @@ Nothing yet — this phase is scaffolded in planned state. Binding scope artifac
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. Delivery follows the speckit:plan pass for this phase; estimated effort ~1 packet (medium).
+Delivered as sandboxed vitest coverage over the existing daemon/launcher stack; host daemons stayed untouched. The drill sandbox was re-rooted to /tmp (an ESM-scope stub crash), spec-memory boot artifacts were stubbed, and the daemon-holder models the owning runtime. Suites ran 9/9 green plus the drill 1/1.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,8 +84,13 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 
 | Check | Result |
 |-------|--------|
-| Structural (runs now) | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` |
-| Phase verification (planned) | All fixtures green incl. parity + zero orphans; job semantics documented with measurements |
+| Vitest suites | 9/9 green in sandbox |
+| D2 parity fixture | 10/10 identical top recommendations, local (real python3) vs native |
+| D5 job semantics | Rebuild + scan wall-time measured under mutation |
+| D6 orphan reaping | Real-launcher fixtures pass (killed parent, removed worktree, warm adoption) |
+| Dual-client | MCP + CLI against one daemon verified |
+| Tri-daemon drill (program gate) | PASSED 1/1: per-launcher single-owner, respawn-lock serialization, divergent SIGTERM reap, zero orphans |
+| Host isolation | Host daemons untouched |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -87,5 +98,5 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Planned state.** This document is a stub by design; it gains real content when the phase ships.
+1. None in the supplied verification evidence.
 <!-- /ANCHOR:limitations -->
