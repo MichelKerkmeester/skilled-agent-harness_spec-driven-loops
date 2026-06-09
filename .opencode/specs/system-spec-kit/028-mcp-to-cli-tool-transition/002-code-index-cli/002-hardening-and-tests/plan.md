@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled plan status with shipped hardening evidence"
+    next_safe_action: "Continue dual-stack observation window"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | **Testing** | vitest (existing harness) |
 
 ### Overview
-Planned phase (~1.5–2d); not implemented. Regression-lock the guarantees: dual-client MCP+CLI test (D8), dual-spawn/dead-socket-respawn test (D9), blocked-read regression suite, all-8 parity suite, zero-orphan teardown Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
+Shipped and verified: hardening suites for dual-client MCP+CLI (D8), real owner-lease takeover/respawn (D9), blocked-read regression, all-8 parity, and zero-orphan teardown — 16/16 green in sandbox with host daemons untouched. Binding scope and acceptance criteria live in spec.md and the research record.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,13 +51,13 @@ Planned phase (~1.5–2d); not implemented. Regression-lock the guarantees: dual
 
 ### Definition of Ready
 - [x] Scope pinned in spec.md from the research record + program pairing rule
-- [ ] Predecessor phase handoff criteria met
-- [ ] speckit:plan pass completed for this phase
+- [x] Predecessor phase handoff criteria met
+- [x] Phase plan executed directly from the existing Level 1 plan and research authority
 
 ### Definition of Done
-- [ ] All P0 requirements in spec.md verified
-- [ ] Verification approach below executed with evidence
-- [ ] Phase summary reconciled and parent map updated
+- [x] All P0 requirements in spec.md verified
+- [x] Verification approach below executed with evidence
+- [x] Phase summary reconciled and parent map updated
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -96,13 +96,13 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm predecessor handoff criteria; load research deltas relevant to this phase
+- [x] Confirm predecessor handoff criteria; load research deltas relevant to this phase
 
 ### Phase 2: Core Execution
-- [ ] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
+- [x] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
 
 ### Phase 3: Verification
-- [ ] All suites green; zero orphaned processes post-suite; parity locked at 8
+- [x] All suites green; zero orphaned processes post-suite; parity locked at 8
 <!-- /ANCHOR:phases -->
 
 ---
@@ -123,7 +123,7 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 001-cli-core | Internal | Pending | Phase cannot start |
+| 001-cli-core | Internal | Complete | Phase cannot start |
 | Research authority ../000-code-index-cli-research/research/research.md | Internal | Green | Binding scope source |
 <!-- /ANCHOR:dependencies -->
 

@@ -12,16 +12,16 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition"
-    last_updated_at: "2026-06-09T15:13:28Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Reconciled phase docs to main: struck Devin/Gemini, refit daemon contract"
-    next_safe_action: "Open the dual-stack CLI implementation phase via speckit:plan"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "All nine implementation phases verified; tri-daemon gate passed"
+    next_safe_action: "Run the deep-review + release-cleanup program"
     blockers: []
     key_files:
       - "spec.md"
       - "001-spec-memory-cli/spec.md"
       - "001-spec-memory-cli/000-spec-memory-cli-research/research/research.md"
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions:
       - "028 is the parent packet for the MCP-to-CLI transition; the completed feasibility/design/risk research lives under child phase 001."
@@ -50,7 +50,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-06-06 |
-| **Updated** | 2026-06-06 |
+| **Updated** | 2026-06-09 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
@@ -89,7 +89,7 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | 001-spec-memory-cli/** | Complete | Research phase: feasibility, design, risk closure (done) |
-| mcp_server/spec-memory-cli.ts, .opencode/bin/spec-memory.cjs | Future phase | Dual-stack CLI implementation |
+| mcp_server/spec-memory-cli.ts, .opencode/bin/spec-memory.cjs | Complete | Dual-stack CLI implementation |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -99,9 +99,9 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 
 | Phase | Folder | Status | Scope |
 |-------|--------|--------|-------|
-| 001 | `001-spec-memory-cli/` | Research complete; implementation phases scaffolded | The spec-memory CLI workstream. Research record nested as `000-spec-memory-cli-research/` (four runs ending in GO + zero unknowns, 8 delta specs, 10–13d estimate); implementation children: `001-cli-core/` (build), `002-hardening-and-tests/` (regression-lock), `003-runtime-integration/` (adoption + dual-stack window) |
-| 002 | `002-code-index-cli/` | Research complete (GO); implementation phases scaffolded | CLI-fallback workstream for `mk_code_index` (system-code-graph, 8 tools); phase 000 feasibility research, implementation phases on GO |
-| 003 | `003-skill-advisor-cli/` | Research complete (GO); implementation phases scaffolded | CLI-fallback workstream for `mk_skill_advisor` (system-skill-advisor, 9 tools); phase 000 feasibility research incl. the skill_advisor.py reconcile-vs-supersede question |
+| 001 | `001-spec-memory-cli/` | Implementation complete (dual-stack window open) | The spec-memory CLI workstream. Research record nested as `000-spec-memory-cli-research/` (four runs ending in GO + zero unknowns, 8 delta specs, 10–13d estimate); implementation children: `001-cli-core/` (build), `002-hardening-and-tests/` (regression-lock), `003-runtime-integration/` (adoption + dual-stack window) |
+| 002 | `002-code-index-cli/` | Implementation complete | CLI-fallback workstream for `mk_code_index` (system-code-graph, 8 tools); phase 000 feasibility research, implementation phases on GO |
+| 003 | `003-skill-advisor-cli/` | Implementation complete (tri-daemon program gate passed) | CLI-fallback workstream for `mk_skill_advisor` (system-skill-advisor, 9 tools); phase 000 feasibility research incl. the skill_advisor.py reconcile-vs-supersede question |
 | 004+ | not yet created | Pending | Separately-gated follow-ons: migration of the measured MCP reference surfaces, then the MCP-retirement decision |
 
 ### Phase Transition Rules

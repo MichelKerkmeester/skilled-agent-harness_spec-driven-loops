@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration"
-    last_updated_at: "2026-06-06T15:55:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Audit findings propagated to companions"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled plan status with shipped runtime evidence"
+    next_safe_action: "Run final multi-runtime transport-down drill"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | **Testing** | vitest (existing harness) |
 
 ### Overview
-Planned phase (~1.5–2d); not implemented. Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex) gain the CLI warm path, OpenCode plugin bridge repaired via CLI/IPC transport + CLI fallback, docs, dual-stack window Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
+Shipped: warm-only code-index CLI fallback wired into the Claude/Codex session adapters, the mk-code-graph bridge REPAIRED from in-process dist/DB imports to the CLI route (plugin transport contract synthesized from the status payload), allowlists, and the maintenance-tool policy — MCP registrations diff-verified unchanged. The dual-stack observation window remains open by design; binding scope and acceptance criteria live in spec.md and the research record.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,13 +51,13 @@ Planned phase (~1.5–2d); not implemented. Pairing per program rule: allowlists
 
 ### Definition of Ready
 - [x] Scope pinned in spec.md from the research record + program pairing rule
-- [ ] Predecessor phase handoff criteria met
-- [ ] speckit:plan pass completed for this phase
+- [x] Predecessor phase handoff criteria met
+- [x] Phase plan executed directly from the existing Level 1 plan and research authority
 
 ### Definition of Done
-- [ ] All P0 requirements in spec.md verified
-- [ ] Verification approach below executed with evidence
-- [ ] Phase summary reconciled and parent map updated
+- [x] All P0 requirements in spec.md verified
+- [ ] Verification approach below executed with evidence — dual-stack window observations remain open by design
+- [x] Phase summary reconciled and parent map updated
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -98,10 +98,10 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm predecessor handoff criteria; load research deltas relevant to this phase
+- [x] Confirm predecessor handoff criteria; load research deltas relevant to this phase
 
 ### Phase 2: Core Execution
-- [ ] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
+- [x] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
 
 ### Phase 3: Verification
 - [ ] Transport-down drill passes end-to-end in ≥2 runtimes; plugin functional; window observations recorded
@@ -126,7 +126,7 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 002-hardening-and-tests | Internal | Pending | Phase cannot start |
+| 002-hardening-and-tests | Internal | Complete | Phase cannot start |
 | Research authority ../000-code-index-cli-research/research/research.md | Internal | Green | Binding scope source |
 <!-- /ANCHOR:dependencies -->
 

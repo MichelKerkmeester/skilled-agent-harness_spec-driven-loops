@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 1: CLI Core [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/tasks]"
-description: "Planned task breakdown for CLI Core; rows expand at speckit:plan time."
+description: "Task breakdown for CLI Core; all rows complete with shipped CLI and hardening-suite evidence."
 trigger_phrases:
   - "code-index cli core tasks"
   - "002 001-cli-core tasks"
@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Ticked verification row on hardening-suite + smoke evidence"
+    next_safe_action: "Continue dual-stack observation window"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx All 8 subcommands invocable against a live daemon; blocked-read renders blocked; exit matrix verified; auto-spawn works from a dead socket
+- [x] T9xx All 8 subcommands invocable against a live daemon; blocked-read renders blocked; exit matrix verified; auto-spawn works from a dead socket — proven by the phase-002 suites (16/16) + smoke
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] P0 requirements in spec.md verified with evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 requirements in spec.md verified with evidence
 <!-- /ANCHOR:completion -->
 
 ---

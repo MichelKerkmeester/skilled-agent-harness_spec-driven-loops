@@ -11,15 +11,15 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Implementation phases 001-003 scaffolded from the GO verdict"
-    next_safe_action: "Run speckit:plan on 001-cli-core to open implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "All three implementation phases verified complete"
+    next_safe_action: "Continue dual-stack observation window (open by design)"
     blockers: []
     key_files:
       - "spec.md"
       - "000-code-index-cli-research/spec.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-06-06 |
-| **Updated** | 2026-06-06 |
+| **Updated** | 2026-06-09 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
@@ -84,8 +84,8 @@ Settle CLI-fallback feasibility for mk_code_index with evidence, then deliver a 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| 000-code-index-cli-research/** | In flight | Research phase: feasibility verdict |
-| 001-cli-core/**, 002-hardening-and-tests/**, 003-runtime-integration/** | Pending | Implementation phases (scaffolded; see phase map) |
+| 000-code-index-cli-research/** | Complete | Research phase: feasibility verdict (GO) |
+| 001-cli-core/**, 002-hardening-and-tests/**, 003-runtime-integration/** | Complete | Implementation phases (see phase map) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -98,9 +98,9 @@ Settle CLI-fallback feasibility for mk_code_index with evidence, then deliver a 
 | Phase | Folder | Status | Scope |
 |-------|--------|--------|-------|
 | 000 | `000-code-index-cli-research/` | Complete | Feasibility research: GO for daemon-backed dual-stack CLI; 8/8 portable; D1–D10; 6–9d estimate |
-| 1 | `001-cli-core/` | Pending | code-index CLI: all-8 manifest codegen, validateToolArgs parity, blocked-read rendering, exits, shim guards (~3.5–4.5d) |
-| 2 | `002-hardening-and-tests/` | Pending | Regression-lock: dual-client, dual-spawn/respawn, blocked-read suite, all-8 parity (~1.5–2d) |
-| 3 | `003-runtime-integration/` | Pending | Pairing: hooks ×3 runtimes (CLI warm path), OpenCode plugin bridge REPAIR + CLI fallback, allowlists, dual-stack window (~1.5–2d) |
+| 1 | `001-cli-core/` | Complete | code-index CLI: all-8 manifest codegen, validateToolArgs parity, blocked-read rendering, exits, shim guards (~3.5–4.5d) |
+| 2 | `002-hardening-and-tests/` | Complete | Regression-lock: dual-client, dual-spawn/respawn, blocked-read suite, all-8 parity (~1.5–2d) |
+| 3 | `003-runtime-integration/` | Complete (dual-stack observation window open) | Pairing: hooks ×3 runtimes (CLI warm path), OpenCode plugin bridge REPAIR + CLI fallback, allowlists, dual-stack window (~1.5–2d) |
 
 ### Phase Transition Rules
 

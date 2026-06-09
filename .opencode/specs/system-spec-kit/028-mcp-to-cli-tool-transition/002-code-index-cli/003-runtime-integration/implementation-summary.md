@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/implementation-summary]"
-description: "Planned-stub summary for Phase 3 Runtime Integration. Nothing implemented yet."
+description: "Shipped summary for Phase 3 Runtime Integration: code-index CLI fallback, bridge repair to the CLI route, allowlists, and docs."
 trigger_phrases:
   - "code-index runtime integration result"
   - "002 003-runtime-integration result"
@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled shipped code-index runtime evidence"
+    next_safe_action: "Run final multi-runtime transport-down drill"
     blockers: []
     key_files:
       - "implementation-summary.md"
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration |
-| **Completed** | Not yet — planned |
+| **Completed** | Shipped; observation window in progress |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -44,13 +44,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-code-index-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex) gain the CLI warm path, OpenCode plugin bridge repaired via CLI/IPC transport + CLI fallback, docs, dual-stack window
+The code-index runtime integration shipped a warm-only CLI fallback helper wired into the Claude/Codex session adapters (socket probe first, exit-75 skip, no prompt-time cold spawn) and REPAIRED the mk-code-graph bridge: in-process dist/DB imports were replaced with the CLI route, the plugin synthesizes its transport contract from the status payload, and maintenance tools are blocked at prompt time. Codex allowlist and AGENTS.md policy guidance landed alongside; MCP registrations stayed untouched.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | — | Phase not started |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts` | Added | Shared warm-only code-index CLI fallback helper |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Modified | Claude session adapter gains the code-index CLI warm path |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts` | Modified | Codex session adapter gains the code-index CLI warm path |
+| `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs` | Modified | Bridge repaired to the CLI route; no in-process dist/DB imports |
+| `.opencode/plugins/mk-code-graph.js` | Modified | Plugin synthesizes its transport contract from the status payload |
+| `.codex/settings.json` | Modified | Codex allowlist for CLI use |
+| `AGENTS.md` | Modified | Transport-down fallback + maintenance-tool policy guidance |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -58,7 +64,7 @@ Nothing yet — this phase is scaffolded in planned state. Binding scope artifac
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. Delivery follows the speckit:plan pass for this phase; estimated effort ~1.5–2d.
+Delivery stayed additive to the MCP registration: the hook path is warm-only (socket probe first, exit-75 skip, no prompt-time cold spawn) and the bridge repair removed the reverted in-process import approach in favor of the CLI/IPC route. Verified with a clean build, the plugin vitest suite green, a warm smoke returning a real payload, a maintenance-block smoke, and an MCP-registration diff showing no changes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -69,6 +75,8 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 | Decision | Why |
 |----------|-----|
 | Scope inherited verbatim from the research record + program pairing rule | The research terminally classified the risks; the pairing rule is operator-directed program scope |
+| Bridge repaired via the CLI route, never in-process imports | The import-only repair tried in 026/008 was reverted as a direct-DB dual-writer hazard |
+| Maintenance tools blocked at prompt time | scan/apply/verify must never run from prompt-time hooks |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -78,8 +86,11 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 
 | Check | Result |
 |-------|--------|
-| Structural (runs now) | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` |
-| Phase verification (planned) | Transport-down drill passes end-to-end in ≥2 runtimes; plugin functional; window observations recorded |
+| Build | Clean |
+| Plugin vitest | Suite green |
+| Warm smoke | Real payload returned over the CLI route |
+| Maintenance-block smoke | Prompt-time maintenance tools blocked as scoped |
+| MCP registrations | Diff-empty (untouched) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -87,5 +98,5 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Planned state.** This document is a stub by design; it gains real content when the phase ships.
+1. The dual-stack observation window remains open by design; the final program-level multi-runtime transport-down drill is tracked outside this phase's shipped implementation.
 <!-- /ANCHOR:limitations -->

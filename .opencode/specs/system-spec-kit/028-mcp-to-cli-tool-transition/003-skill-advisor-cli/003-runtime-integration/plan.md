@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration"
-    last_updated_at: "2026-06-06T15:55:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Audit findings propagated to companions"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled plan status with shipped runtime evidence"
+    next_safe_action: "Run final multi-runtime transport-down drill"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | **Testing** | vitest (existing harness) |
 
 ### Overview
-Planned phase (~1 packet (small-medium)); not implemented. Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
+Shipped: warm-only prompt-submit hook fallback for Claude/Codex, CLI fallback routing in the mk-skill-advisor bridge, read-only doctor CLI probes, and Gate-2 facade-vs-CLI guidance — MCP registrations diff-verified unchanged. The dual-stack observation window remains open by design; binding scope and acceptance criteria live in spec.md and the research record.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,13 +51,13 @@ Planned phase (~1 packet (small-medium)); not implemented. Pairing per program r
 
 ### Definition of Ready
 - [x] Scope pinned in spec.md from the research record + program pairing rule
-- [ ] Predecessor phase handoff criteria met
-- [ ] speckit:plan pass completed for this phase
+- [x] Predecessor phase handoff criteria met
+- [x] Phase plan executed directly from the existing Level 1 plan and research authority
 
 ### Definition of Done
-- [ ] All P0 requirements in spec.md verified
-- [ ] Verification approach below executed with evidence
-- [ ] Phase summary reconciled and parent map updated
+- [x] All P0 requirements in spec.md verified
+- [ ] Verification approach below executed with evidence — dual-stack window observations remain open by design
+- [x] Phase summary reconciled and parent map updated
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -98,10 +98,10 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm predecessor handoff criteria; load research deltas relevant to this phase
+- [x] Confirm predecessor handoff criteria; load research deltas relevant to this phase
 
 ### Phase 2: Core Execution
-- [ ] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
+- [x] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
 
 ### Phase 3: Verification
 - [ ] Transport-down drill passes in ≥2 runtimes within budget; plugin fallback works; docs published
@@ -126,7 +126,7 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 002-hardening-and-tests | Internal | Pending | Phase cannot start |
+| 002-hardening-and-tests | Internal | Complete | Phase cannot start |
 | Research authority ../000-skill-advisor-cli-research/research/research.md | Internal | Green | Binding scope source |
 <!-- /ANCHOR:dependencies -->
 
