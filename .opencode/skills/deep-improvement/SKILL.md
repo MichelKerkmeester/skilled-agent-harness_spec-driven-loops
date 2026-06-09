@@ -25,17 +25,18 @@ Evaluator-first workflow for testing whether a bounded agent surface can be impr
 
 ## 1. WHEN TO USE
 
-### Three Co-Equal Lanes
+### Four Co-Equal Lanes
 
-This skill supports three co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
+This skill supports four co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
 
 | Lane | Pick when | Command |
 | --- | --- | --- |
 | **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:start-agent-improvement-loop` |
 | **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:start-model-benchmark-loop` |
 | **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
+| **Lane D: Packaging-Benchmark-Refine** | You want to benchmark an AI-system packaging and auto-refine its technique docs behind hard guardrails | `loop-host.cjs --mode=packaging-benchmark-refine` |
 
-Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill-benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. All three lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill-benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. Lane D is documented in `references/packaging-benchmark-refine/operator_guide.md`; its guarded loop host lives with the packaging under test (`<packaging-root>/_loop/loop.py`) and loop-host only adapts to it. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
 
 ### Activation Triggers
 
@@ -43,6 +44,7 @@ Use this skill when:
 - You want to test whether an agent prompt or instruction surface can be improved (Lane A)
 - You want to benchmark a model or prompt framework against repeatable fixtures (Lane B)
 - You want to diagnose whether a skill is well-routed, discoverable, efficient, and useful in practice (Lane C)
+- You want to benchmark a multi-packaging AI system against an independent grader and auto-refine it behind guardrails (Lane D)
 - The mutation boundary is explicit and narrow
 - You need packet-local evidence instead of ad hoc prompt tweaking
 - You need target-specific benchmark or scoring rules before any canonical mutation
@@ -69,6 +71,10 @@ Use Lane B (model-benchmark) when the thing under test is a model or prompt fram
 #### Skill Benchmarking
 
 Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See `references/skill-benchmark/operator_guide.md`.
+
+#### Packaging Benchmark and Guarded Refine
+
+Use Lane D (packaging-benchmark-refine) when the thing under test is an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project and native skill) and the goal is to close measured quality gaps automatically. It benchmarks N-sample averaged outputs, re-grades them with an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. The frozen scoring surface, derivation and kill-switch logic live with the packaging (`_loop/loop.py` contract); dry-run is the default. See `references/packaging-benchmark-refine/operator_guide.md`.
 
 ### When NOT to Use
 
