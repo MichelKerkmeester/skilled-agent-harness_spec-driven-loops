@@ -1,4 +1,4 @@
-# Skilled - Agent Orchestration w/ Custom Spec Kit 
+# Skilled - Agent Orchestration w/ Custom Spec Kit & Memory System
 
 | Core layer | What it adds |
 | --- | --- |
