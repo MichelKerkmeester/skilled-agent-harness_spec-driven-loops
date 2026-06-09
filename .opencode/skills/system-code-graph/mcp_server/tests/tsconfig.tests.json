@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "noEmit": true,
+    "sourceMap": false
+  },
+  "include": [
+    "./code-index-cli-harness.ts",
+    "./code-index-cli-*.vitest.ts"
+  ],
+  "exclude": [
+    "../dist",
+    "../../node_modules"
+  ]
+}
