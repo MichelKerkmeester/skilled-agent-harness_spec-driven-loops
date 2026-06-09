@@ -45,7 +45,7 @@ function parseArgs(argv) {
 
 function classifyFixture(outputsDir, id, ext) {
   const files = fs.existsSync(outputsDir)
-    ? fs.readdirSync(outputsDir).filter((f) => f.startsWith(id) && f.endsWith(ext))
+    ? fs.readdirSync(outputsDir).filter((f) => f.startsWith(id + '.') && f.endsWith(ext))
     : [];
   if (files.length === 0) return { id, classification: 'unrecorded', outputs: 0 };
   let best = 'low';

@@ -72,7 +72,13 @@ function main() {
   }
   const env = { ...process.env };
   for (const [flag, envName] of Object.entries(ENV_FORWARD)) {
-    if (args[flag] !== undefined) env[envName] = String(args[flag]);
+    if (args[flag] === undefined) continue;
+    if (args[flag] === true) {
+      process.stderr.write(`packaging-benchmark-refine: --${flag} requires a value
+`);
+      process.exit(2);
+    }
+    env[envName] = String(args[flag]);
   }
   const pyArgs = [loopHost];
   if (args.live) {

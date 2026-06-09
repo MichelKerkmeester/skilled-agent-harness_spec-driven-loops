@@ -70,7 +70,7 @@ function familiesCollide(a, b) {
  * @returns {{ok: true, overridden: boolean} | {ok: false, collisions: string[]}}
  */
 function assertGraderIndependence(generatorModels, graderModel, allowSameFamily) {
-  const ids = (generatorModels || []).map((m) =>
+  const ids = (generatorModels || []).filter(Boolean).map((m) =>
     typeof m === 'string' ? m : `${m.provider || ''}/${m.model_slug || m.model || ''}`,
   );
   const collisions = ids.filter((id) => familiesCollide(id, graderModel));
