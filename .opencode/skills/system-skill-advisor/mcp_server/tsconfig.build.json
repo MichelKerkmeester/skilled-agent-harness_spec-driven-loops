@@ -13,6 +13,8 @@
   "include": [
     "../hooks/**/*.ts",
     "advisor-server.ts",
+    "skill-advisor-cli.ts",
+    "skill-advisor-cli-manifest.ts",
     "compat/**/*.ts",
     "handlers/**/*.ts",
     "lib/**/*.ts",
