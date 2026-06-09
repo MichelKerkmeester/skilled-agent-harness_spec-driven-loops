@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core"
-    last_updated_at: "2026-06-06T15:05:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:10:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Code-index CLI core shipped and docs reconciled"
+    next_safe_action: "Continue later-phase end-to-end verification work"
     blockers: []
     key_files:
       - "implementation-summary.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core |
-| **Completed** | Not yet — planned |
+| **Completed** | 2026-06-09 - shipped |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -44,13 +44,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-code-index-cli-research/research/research.md` (delta specs and measurements). The intended outcome: code-index CLI binary: all-8 manifest codegen from CODE_GRAPH_TOOL_SCHEMAS, validateToolArgs parity at argv, IPC connect + auto-spawn, blocked-read rendering, exits 0/1/64/69/75, shim with dist-freshness (deltas D1–D7, D10)
+The code-index CLI core shipped as a manifest-backed CLI over the existing daemon contract. The shipped entrypoints are `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts`, `.opencode/skills/system-code-graph/mcp_server/code-index-cli-manifest.ts`, and shim `.opencode/bin/code-index.cjs`. The CLI exposes exactly 8 commands from `CODE_GRAPH_TOOL_SCHEMAS`, validates argv through `validateToolArgs()` parity, preserves blocked-read payloads in JSON and text output, maps exits to 0/1/64/69/75, supports IPC auto-spawn, and guards stale dist output with the `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE` override.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | — | Phase not started |
+| `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts` | Added | CLI dispatcher, argument validation, output rendering, exit taxonomy, and IPC auto-spawn |
+| `.opencode/skills/system-code-graph/mcp_server/code-index-cli-manifest.ts` | Added | Manifest-backed command registry generated from `CODE_GRAPH_TOOL_SCHEMAS` |
+| `.opencode/bin/code-index.cjs` | Added | Stable shim with dist-freshness guard and development stale-dist override |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -58,7 +60,7 @@ Nothing yet — this phase is scaffolded in planned state. Binding scope artifac
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. Delivery follows the speckit:plan pass for this phase; estimated effort ~3.5–4.5d.
+Delivered as a CLI-only layer over the existing code-index daemon and launcher contracts. No daemon or launcher files changed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,8 +80,12 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 
 | Check | Result |
 |-------|--------|
-| Structural (runs now) | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` |
-| Phase verification (planned) | All 8 subcommands invocable against a live daemon; blocked-read renders blocked; exit matrix verified; auto-spawn works from a dead socket |
+| Clean build | TypeScript 5.9.3 build passed cleanly |
+| Manifest parity | `list-tools` enumerated exactly 8 commands matching `CODE_GRAPH_TOOL_SCHEMAS` |
+| Daemon smoke | Isolated `code_graph_status` passed, including IPC auto-spawn |
+| Argument validation | Bad enum, unknown key, and missing required argument rejected with exit 64 |
+| Output and exits | Blocked-read rendering preserved in JSON and text; exit taxonomy 0/1/64/69/75 verified |
+| Dist freshness | Stale dist exited 69; `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE` override verified |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -87,5 +93,5 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Planned state.** This document is a stub by design; it gains real content when the phase ships.
+1. Later program phases still own broader end-to-end transition verification; this phase did not change daemon or launcher files.
 <!-- /ANCHOR:limitations -->

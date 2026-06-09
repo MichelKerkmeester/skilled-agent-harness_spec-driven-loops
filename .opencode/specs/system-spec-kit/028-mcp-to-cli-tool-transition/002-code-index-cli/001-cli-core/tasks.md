@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
+- [x] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,11 +54,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 Stable shim (`.opencode/bin/code-index.cjs` working name) with dist-freshness guard (stale/missing dist → exit 69 unless dev override)
-- [ ] T002 Manifest codegen for all 8 subcommands from `CODE_GRAPH_TOOL_SCHEMAS`; validation parity via `validateToolArgs()` + dispatcher required-field checks — NOT Zod, confirmed system-specific
-- [ ] T003 Blocked-read rendering: `query`/`context`/`detect-changes` stale-readiness `status: blocked` + `requiredAction` preserved in every output format, never false empty success
-- [ ] T004 Exit taxonomy 0/1/64/69/75 incl. retryable socket/backend/cold-start → 75
-- [ ] T005 Connect-falls-back-to-spawn over the IPC socket via `mk-code-index-launcher.cjs`; `apply` keeps its `--confirm` hard-stale gate; scan/apply/verify confirmation UX
+- [x] T001 Stable shim (`.opencode/bin/code-index.cjs` working name) with dist-freshness guard (stale/missing dist → exit 69 unless dev override)
+- [x] T002 Manifest codegen for all 8 subcommands from `CODE_GRAPH_TOOL_SCHEMAS`; validation parity via `validateToolArgs()` + dispatcher required-field checks — NOT Zod, confirmed system-specific
+- [x] T003 Blocked-read rendering: `query`/`context`/`detect-changes` stale-readiness `status: blocked` + `requiredAction` preserved in every output format, never false empty success
+- [x] T004 Exit taxonomy 0/1/64/69/75 incl. retryable socket/backend/cold-start → 75
+- [x] T005 Connect-falls-back-to-spawn over the IPC socket via `mk-code-index-launcher.cjs`; `apply` keeps its `--confirm` hard-stale gate; scan/apply/verify confirmation UX
 <!-- /ANCHOR:phase-2 -->
 
 ---

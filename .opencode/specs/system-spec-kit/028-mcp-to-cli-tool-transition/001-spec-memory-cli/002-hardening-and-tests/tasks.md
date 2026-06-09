@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
+- [x] T000 Verify predecessor handoff criteria and run speckit:plan for this phase
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,11 +54,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 D1 dual-simultaneous-spawn vitest incl. divergent SPECKIT_IPC_SOCKET_DIR case; pin SPECKIT_DAEMON_REELECTION; assert single owner via owner-lease wx + respawn-lock; secondary via reconnecting proxy (mcp_server tests)
-- [ ] T002 D2 dual-client MCP+CLI vitest against one daemon (mcp_server tests)
-- [ ] T003 D7 lifecycle coverage: stdin null, disconnect, fatalShutdown, bridge close, lease cleanup; idle-reap gated on N-probe under the respawn lock with re-election OFF (mcp_server tests)
-- [ ] T004 All-37 parity suite extension generated from TOOL_DEFINITIONS (mcp_server tests)
-- [ ] T005 D5 exit-69 recovery documentation in CLI help/docs
+- [x] T001 D1 dual-simultaneous-spawn vitest incl. divergent SPECKIT_IPC_SOCKET_DIR case; pin SPECKIT_DAEMON_REELECTION; assert single owner via owner-lease wx + respawn-lock; secondary via reconnecting proxy (mcp_server tests)
+- [x] T002 D2 dual-client MCP+CLI vitest against one daemon (mcp_server tests)
+- [x] T003 D7 lifecycle coverage: stdin null, disconnect, fatalShutdown, bridge close, lease cleanup; idle-reap gated on N-probe under the respawn lock with re-election OFF (mcp_server tests)
+- [x] T004 All-37 parity suite extension generated from TOOL_DEFINITIONS (mcp_server tests)
+- [x] T005 D5 exit-69 recovery documentation in CLI help/docs
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx Full vitest run green; process-table assertion shows zero orphaned daemons/launchers post-suite; parity count locked at 37.
+- [x] T9xx Full vitest run green; process-table assertion shows zero orphaned daemons/launchers post-suite; parity count locked at 37.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] P0 requirements in spec.md verified with evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 requirements in spec.md verified with evidence
 <!-- /ANCHOR:completion -->
 
 ---

@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests"
-    last_updated_at: "2026-06-06T12:50:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase scaffolded in planned state"
-    next_safe_action: "Run speckit:plan on this phase to expand the plan before implementation"
+    last_updated_at: "2026-06-09T20:10:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Spec-memory hardening suites shipped and docs reconciled"
+    next_safe_action: "Proceed with downstream CLI transition phases"
     blockers: []
     key_files:
       - "implementation-summary.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests |
-| **Completed** | Not yet — planned |
+| **Completed** | 2026-06-09 - shipped |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -44,13 +44,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-spec-memory-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Regression-lock the dual-stack guarantees: dual-simultaneous-spawn vitest, dual-client MCP+CLI vitest, CLI-spawn idle-cleanup coverage, all-37 parity suite, exit-69 recovery docs.
+The spec-memory CLI hardening phase shipped four Vitest suites under `.opencode/skills/system-spec-kit/mcp_server/tests/` plus exit-69 recovery help text in `.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts`. The suites regression-lock dual-spawn hardening, dual-client MCP plus CLI concurrency, lifecycle cleanup and recycling behavior, and CLI parity/help output across all 37 tools.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | — | Phase not started |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-dual-spawn-hardening.test.ts` | Added | Covers dual-spawn hardening, including reelection on and off |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-dual-client-hardening.test.ts` | Added | Covers real MCP and CLI clients running concurrently against one daemon |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-lifecycle-hardening.test.ts` | Added | Covers N-probe reap gating and SIGTERM transparent recycle behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-parity-and-help.test.ts` | Added | Locks 37-tool parity and CLI help behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts` | Updated | Adds exit-69 recovery help text |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -58,7 +62,7 @@ Nothing yet — this phase is scaffolded in planned state. Binding scope artifac
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. Delivery follows the speckit:plan pass for this phase; estimated effort ~3-4 days within the program's consolidated 10–13 day envelope.
+Delivered as sandboxed CLI hardening coverage for the existing spec-memory daemon and CLI. Host daemons were untouched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,8 +82,13 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 
 | Check | Result |
 |-------|--------|
-| Structural (runs now) | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` |
-| Phase verification (planned) | Full vitest run green; process-table assertion shows zero orphaned daemons/launchers post-suite; parity count locked at 37. |
+| Clean build | Build passed cleanly |
+| Vitest hardening suites | 10/10 tests green in sandbox |
+| Dual-spawn coverage | Reelection-on and reelection-off cases covered |
+| Dual-client coverage | Real MCP and CLI clients covered concurrently |
+| Lifecycle coverage | N-probe reap gating and SIGTERM transparent recycle covered |
+| Parity coverage | 37-tool parity locked |
+| Host isolation | Host daemons untouched |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -87,5 +96,5 @@ Not delivered yet. Delivery follows the speckit:plan pass for this phase; estima
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Planned state.** This document is a stub by design; it gains real content when the phase ships.
+1. No known limitations for this phase; downstream CLI transition phases remain separate.
 <!-- /ANCHOR:limitations -->
