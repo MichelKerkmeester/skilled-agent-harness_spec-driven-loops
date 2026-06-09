@@ -37,6 +37,20 @@ node scripts/shared/loop-host.cjs --mode=packaging-benchmark-refine \
 
 Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure on graded output, new floor breach, held-out regression, iteration ceiling.
 
-## 4. PILOT
+## 4. CONTRACT CONFORMANCE CHECKLIST
+
+A new packaging is Lane-D-ready when every box checks. Verify each with the listed command before any live run.
+
+- [ ] `_loop/loop.py` exists; `python3 _loop/loop.py --dry-run` exits 0 (gates + grader-family guard + gap analysis).
+- [ ] `_gates/gates.py freeze` snapshots the scoring surface; `check` exits 1 after any edit to a frozen region (test it, then re-freeze).
+- [ ] `_gates/derive.py derive && _gates/derive.py check` exits 0; every derived copy regenerates from the source of truth (a single-packaging system may declare an empty derived set).
+- [ ] All paths honor `CW_ROOT` (run the dry-run from a git worktree of the repo: it must read only worktree files).
+- [ ] Benchmark fixtures produce a delimited deliverable (`<DELIVERABLE>` contract); held-out fixtures are non-interactive AND sensitive to the dimensions being optimized.
+- [ ] A deterministic code linter enforces the packaging's hard rules (never an LLM).
+- [ ] The grader model is a different family from the proposer; the loop refuses otherwise.
+- [ ] The red-team gauntlet (`_loop/gauntlet.py` or equivalent) passes 10/10 dispatch-free.
+- [ ] Loop state (`_loop/state/`) is gitignored; the staleness guard covers the knowledge base AND the real targets of any symlinked shared docs.
+
+## 5. PILOT
 
 Barter Copywriter: `/Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter/Copywriter` (three packagings: CLI knowledge base as source of truth, `claude project/`, `barter-copywriter/` skill). Its `benchmark/grader/regrade.py` writes per-sample grades plus the self-vs-independent phantom gap; `_loop/state/loop-journal.jsonl` is the append-only run journal. Dispatch discipline (stdin from `/dev/null`, one dispatch at a time, never `pkill` shared CLI sessions) is encoded in the packaging's `benchmark/run.sh`.

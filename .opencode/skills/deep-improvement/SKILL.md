@@ -34,7 +34,7 @@ This skill supports four co-equal use-case lanes that share the same candidate, 
 | **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:start-agent-improvement-loop` |
 | **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:start-model-benchmark-loop` |
 | **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
-| **Lane D: Packaging-Benchmark-Refine** | You want to benchmark an AI-system packaging and auto-refine its technique docs behind hard guardrails | `loop-host.cjs --mode=packaging-benchmark-refine` |
+| **Lane D: Packaging-Benchmark-Refine** | You want to benchmark an AI-system packaging and auto-refine its technique docs behind hard guardrails | `/deep:start-packaging-refine-loop` |
 
 Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill-benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. Lane D is documented in `references/packaging-benchmark-refine/operator_guide.md`; its guarded loop host lives with the packaging under test (`<packaging-root>/_loop/loop.py`) and loop-host only adapts to it. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
 

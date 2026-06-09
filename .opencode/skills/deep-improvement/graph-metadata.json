@@ -32,13 +32,20 @@
     "improvement",
     "scoring",
     "promotion",
-    "benchmarking"
+    "benchmarking",
+    "packaging",
+    "guarded-refinement"
   ],
   "intent_signals": [
     "improve agent",
     "evaluate agent",
     "agent scoring",
-    "benchmark model"
+    "benchmark model",
+    "benchmark packaging",
+    "refine prompt system",
+    "packaging refine",
+    "independent grader",
+    "guarded refine loop"
   ],
   "derived": {
     "trigger_phrases": [

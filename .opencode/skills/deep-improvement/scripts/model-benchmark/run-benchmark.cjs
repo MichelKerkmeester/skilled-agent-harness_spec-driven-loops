@@ -13,6 +13,10 @@ const path = require('node:path');
 // with materialize-benchmark-fixtures.cjs via ../lib/profile-resolve.cjs so the
 // F-P1-4b "resolves identically in both steps" invariant is one source of truth.
 const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../lib/profile-resolve.cjs');
+// Spec 143 anti-Goodhart guards (pilot teachings T1/T3/T4/T5): different-family
+// grader enforcement, N-sample aggregation, deliverable-contract extraction.
+const { assertGraderIndependence } = require('../shared/model-family.cjs');
+const { extractDeliverable } = require('../shared/extract-deliverable.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -168,7 +172,7 @@ function safeRegexTest(regex, content) {
 // 3. FIXTURE SCORING
 // ─────────────────────────────────────────────────────────────────────────────
 
-function scoreFixture(fixture, outputPath) {
+function scoreFixture(fixture, outputPath, options) {
   if (!fs.existsSync(outputPath)) {
     return {
       id: fixture.id,
@@ -183,7 +187,30 @@ function scoreFixture(fixture, outputPath) {
     };
   }
 
-  const content = fs.readFileSync(outputPath, 'utf8');
+  let content = fs.readFileSync(outputPath, 'utf8');
+  let extraction;
+  // T5 output contract: when the profile declares deliverable_contract, score
+  // ONLY the delimited deliverable region (reasoning text contaminates pattern
+  // and forbidden-pattern matching). Default path stays byte-identical.
+  if (options && options.contract) {
+    const extracted = extractDeliverable(content);
+    extraction = extracted.confidence;
+    if (extracted.confidence === 'low' && options.contract.required) {
+      return {
+        id: fixture.id,
+        outputPath,
+        score: 0,
+        maxScore: 100,
+        passed: false,
+        extraction,
+        missingHeadings: [],
+        missingPatterns: [],
+        forbiddenMatches: [],
+        failureModes: ['missing-deliverable-contract'],
+      };
+    }
+    if (extracted.confidence !== 'low') content = extracted.text;
+  }
   const missingHeadings = (fixture.requiredHeadings || []).filter((heading) => !content.includes(heading));
   const patternRegexes = compilePatterns(fixture.requiredPatterns);
   const missingPatterns = patternRegexes
@@ -227,10 +254,49 @@ function scoreFixture(fixture, outputPath) {
     score,
     maxScore: 100,
     passed: failureModes.length === 0,
+    ...(extraction !== undefined && { extraction }),
     missingHeadings,
     missingPatterns,
     forbiddenMatches,
     failureModes,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3a. N-SAMPLE AGGREGATION (opt-in, --samples N) — teaching T4
+// ─────────────────────────────────────────────────────────────────────────────
+// Single benchmark runs are stochastic (the pilot saw one fixture swing 16->22
+// independent across runs). With --samples N the runner scores run-tagged
+// outputs `<id>.run<k>.md` (k=1..N, produced by the dispatch side) and folds
+// them into one noise-robust entry: mean score, all-samples pass semantics,
+// per-sample detail + std. --samples 1 (default) stays byte-identical.
+
+function fixtureSampleOutputPath(outputsDir, id, runIndex) {
+  assertSafeFixtureId(id);
+  return path.join(outputsDir, `${id}.run${runIndex}.md`);
+}
+
+async function scoreFixtureWithSamples(fixture, outputsDir, samples, scoreOne) {
+  if (samples <= 1) {
+    return scoreOne(fixtureOutputPath(outputsDir, fixture.id));
+  }
+  const perSample = [];
+  for (let k = 1; k <= samples; k += 1) {
+    perSample.push(await scoreOne(fixtureSampleOutputPath(outputsDir, fixture.id, k)));
+  }
+  const scores = perSample.map((s) => s.score);
+  const mean = scores.reduce((a, b) => a + b, 0) / scores.length;
+  const std = Math.sqrt(scores.reduce((a, b) => a + (b - mean) ** 2, 0) / scores.length);
+  const failureModes = [...new Set(perSample.flatMap((s) => s.failureModes || []))];
+  return {
+    ...perSample[0],
+    outputPath: fixtureOutputPath(outputsDir, fixture.id),
+    score: Math.round(mean),
+    passed: perSample.every((s) => s.passed),
+    failureModes,
+    samples: perSample.map((s, i) => ({ run: i + 1, score: s.score, passed: s.passed, failureModes: s.failureModes })),
+    sample_count: perSample.length,
+    sample_std: Math.round(std * 100) / 100,
   };
 }
 
@@ -395,9 +461,11 @@ async function main() {
     scorer = 'pattern';
   }
   const graderKind = args.grader || 'noop';
+  const samples = Math.max(1, parseInt(args.samples, 10) || 1);
+  const allowSameFamily = args['allow-same-family'] === true || args['allow-same-family'] === 'true';
 
   if (!profileArg || !outputsDir || !outputPath) {
-    process.stderr.write('Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>] [--scorer pattern|5dim] [--grader noop|mock|llm]\n');
+    process.stderr.write('Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>] [--scorer pattern|5dim] [--grader noop|mock|llm] [--samples <n>] [--allow-same-family]\n');
     process.exit(2);
   }
 
@@ -424,16 +492,80 @@ async function main() {
     const fixtures = loaded.fixtures;
     fixtureDir = loaded.fixtureDir;
     fixtureFiles = loaded.fixtureFiles;
+
+    // T1/T3 different-family grader gate: an LLM grader sharing a model family
+    // with any generator model inherits its blind spots (the pilot's score
+    // inflation mechanism). Refuse unless explicitly overridden.
+    const graderModel = process.env.GRADER_MODEL || 'claude-sonnet-4-5';
+    let graderIndependence = null;
+    if (graderKind === 'llm' && Array.isArray(profile.models) && profile.models.length > 0) {
+      const verdict = assertGraderIndependence(profile.models, graderModel, allowSameFamily);
+      if (!verdict.ok) {
+        process.stderr.write(
+          `run-benchmark: GRADER FAMILY COLLISION — grader '${graderModel}' shares a model family with generator(s) ${JSON.stringify(verdict.collisions)}. `
+          + 'Same-family grading is the score-inflation mechanism (spec 143 T1/T3). Use a different-family grader or pass --allow-same-family to override explicitly.\n',
+        );
+        process.exit(2);
+      }
+      graderIndependence = verdict.overridden ? 'overridden-same-family' : 'independent';
+    }
+
+    // T5 deliverable contract: profile-declared; scorers grade only the
+    // delimited region. `{required: true}` fails fixtures with no contract region.
+    const contract = profile.deliverable_contract
+      ? { required: Boolean(profile.deliverable_contract.required) }
+      : null;
+    const scoreOptions = contract ? { contract } : undefined;
+
     let results;
     if (scorer === '5dim') {
       // Lazy-require so the default path never loads the scorer tree.
       const scorerModule = require('./scorer/score-model-variant.cjs');
       const cwdAbs = path.resolve(outputsDir);
       results = await Promise.all(
-        fixtures.map((fixture) => scoreFixture5dim(fixture, fixtureOutputPath(outputsDir, fixture.id), cwdAbs, graderKind, scorerModule)),
+        fixtures.map((fixture) => scoreFixtureWithSamples(
+          fixture, outputsDir, samples,
+          (outPath) => scoreFixture5dim(fixture, outPath, cwdAbs, graderKind, scorerModule),
+        )),
       );
     } else {
-      results = fixtures.map((fixture) => scoreFixture(fixture, fixtureOutputPath(outputsDir, fixture.id)));
+      results = await Promise.all(
+        fixtures.map((fixture) => scoreFixtureWithSamples(
+          fixture, outputsDir, samples,
+          (outPath) => scoreFixture(fixture, outPath, scoreOptions),
+        )),
+      );
+    }
+
+    // Phantom-gap standing metric (T1): when the profile declares how the
+    // system under test SELF-reports a score, record self-vs-independent per
+    // fixture and warn when the mean ratio gap exceeds the profile threshold.
+    let phantomGap = null;
+    if (profile.self_score_pattern) {
+      const selfMax = Number(profile.self_score_max || 100);
+      const selfRe = new RegExp(String(profile.self_score_pattern).slice(0, MAX_PATTERN_LENGTH), 'i');
+      const perFixture = [];
+      for (const entry of results) {
+        const primary = fs.existsSync(entry.outputPath) ? fs.readFileSync(entry.outputPath, 'utf8') : '';
+        const m = selfRe.exec(primary.slice(0, MAX_MATCH_INPUT_LENGTH));
+        if (m && m[1] !== undefined) {
+          const gapRatio = Number(m[1]) / selfMax - entry.score / entry.maxScore;
+          perFixture.push({ id: entry.id, self_score: Number(m[1]), independent_score: entry.score, gap_ratio: Math.round(gapRatio * 1000) / 1000 });
+        }
+      }
+      if (perFixture.length > 0) {
+        const meanGap = perFixture.reduce((a, b) => a + b.gap_ratio, 0) / perFixture.length;
+        const warnAt = Number(profile.phantom_gap_warn ?? 0.08);
+        phantomGap = {
+          per_fixture: perFixture,
+          mean_gap_ratio: Math.round(meanGap * 1000) / 1000,
+          warn_threshold: warnAt,
+          warning: meanGap > warnAt,
+        };
+        if (phantomGap.warning) {
+          process.stderr.write(`run-benchmark: PHANTOM-GAP WARNING — mean self-vs-independent gap ${phantomGap.mean_gap_ratio} exceeds ${warnAt}; self-reported scores are inflating (spec 143 T1).\n`);
+        }
+      }
     }
     const aggregateScore = results.length === 0
       ? 0
@@ -465,6 +597,11 @@ async function main() {
       // 014-review traceability-4-2: grader is part of the run identity for the
       // 5dim path; persist it on every report so 5dim+mock/llm runs are attributable.
       grader: graderKind,
+      // Spec 143 run-identity + anti-Goodhart fields (omitted when defaults).
+      ...(graderIndependence && { graderModel, graderIndependence }),
+      ...(samples > 1 && { samples }),
+      ...(contract && { deliverableContract: contract }),
+      ...(phantomGap && { phantomGap }),
       profileId,
       family: profile.family,
       target: profile.targetPath,

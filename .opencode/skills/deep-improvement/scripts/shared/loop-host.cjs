@@ -119,6 +119,8 @@ const BENCHMARK_RUN_OPTIONS = [
   'integration-report',
   'scorer',
   'grader',
+  'samples',
+  'allow-same-family',
 ];
 
 // The fixture materializer also needs --profiles-dir so a profile passed by ID

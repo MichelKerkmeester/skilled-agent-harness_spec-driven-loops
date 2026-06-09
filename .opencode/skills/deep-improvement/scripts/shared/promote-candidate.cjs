@@ -238,6 +238,25 @@ function main() {
     process.exit(1);
   }
 
+  // Spec 143 T2 (rubric guard): the optimizer must never write its own ruler.
+  // When the TARGET file contains its own scoring-relevant sections (rubric,
+  // floors, quality gates), a candidate that mutates them scores better for
+  // free — reject unless the operator explicitly allows a rubric edit.
+  const allowRubricEdit = args['allow-rubric-edit'] === true || args['allow-rubric-edit'] === 'true';
+  if (fs.existsSync(target) && fs.existsSync(candidate)) {
+    const { rubricMutated } = require('./rubric-guard.cjs');
+    const verdict = rubricMutated(fs.readFileSync(target, 'utf8'), fs.readFileSync(candidate, 'utf8'));
+    if (verdict.mutated && !allowRubricEdit) {
+      rejectWithStructuredError(
+        'rubric-mutation',
+        'Cannot promote: candidate mutates the target\'s own scoring-relevant regions (rubric/floors/gates). '
+        + 'Re-run with --allow-rubric-edit only if a rubric change is the explicit, reviewed intent.',
+        { baselineRegions: verdict.baselineRegions, candidateRegions: verdict.candidateRegions },
+        mirrorStateFilePath,
+      );
+    }
+  }
+
   if (target !== allowedCanonicalTarget) {
     process.stderr.write(`Cannot promote: target ${target} is not the single allowed canonical target ${allowedCanonicalTarget}\n`);
     process.exit(1);
