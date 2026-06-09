@@ -66,6 +66,12 @@ mcp__mk_skill_advisor__advisor_rebuild({ "force": true })
 
 Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount` and diagnostics. Run only when `advisor_status` reports `stale` or `absent`.
 
+### Gate 2 Caller Guidance
+
+Use the MCP tools as the primary Gate 2 path when `mk_skill_advisor` is registered and reachable. Keep `mcp_server/scripts/skill_advisor.py` for legacy scripts and runtimes that still expect the Python facade's JSON-array output.
+
+Use `.opencode/bin/skill-advisor.cjs` for daemon-backed runtime integrations such as hook fallback, doctor health checks and automation that needs explicit JSON plus exit codes. Prompt-time callers must probe the advisor IPC socket first and call the CLI only when the daemon is already warm; do not use the CLI wrapper to cold-start the daemon on a hook path.
+
 ---
 
 ## 4. HOW IT WORKS
