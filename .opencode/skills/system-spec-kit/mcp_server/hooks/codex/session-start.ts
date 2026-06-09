@@ -18,6 +18,7 @@ import {
 import { loadState } from '../claude/hook-state.js';
 import { handleStartup as buildStartupSections } from '../claude/session-prime.js';
 import { buildWarmSessionResumeSection } from '../spec-memory-cli-fallback.js';
+import { buildWarmCodeGraphStatusSection } from '../code-index-cli-fallback.js';
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -122,6 +123,10 @@ function hasContinuitySection(sections: OutputSection[]): boolean {
   return sections.some((section) => section.title === 'Session Continuity');
 }
 
+function hasStructuralContextSection(sections: OutputSection[]): boolean {
+  return sections.some((section) => section.title === 'Structural Context');
+}
+
 async function maybeAppendCliWarmFallback(
   sections: OutputSection[],
   input: CodexSessionStartInput | null,
@@ -145,6 +150,32 @@ async function maybeAppendCliWarmFallback(
         cliFallbackReason: result.reason ?? null,
         cliFallbackExitCode: result.exitCode,
         cliFallbackDurationMs: result.durationMs,
+      }));
+    },
+  });
+  return section ? [...sections, section] : sections;
+}
+
+async function maybeAppendCodeIndexCliWarmFallback(
+  sections: OutputSection[],
+  input: CodexSessionStartInput | null,
+  writeDiagnostic?: (line: string) => void,
+): Promise<OutputSection[]> {
+  const source = sourceFor(input);
+  if ((source !== 'startup' && source !== 'resume') || hasStructuralContextSection(sections)) {
+    return sections;
+  }
+  const section = await buildWarmCodeGraphStatusSection({
+    title: 'Code Index CLI Fallback',
+    timeoutMs: 600,
+    includeRetryableStatus: true,
+    onResult: (result) => {
+      writeDiagnostic?.(JSON.stringify({
+        surface: 'codex-session-start',
+        codeIndexCliFallbackStatus: result.status,
+        codeIndexCliFallbackReason: result.reason ?? null,
+        codeIndexCliFallbackExitCode: result.exitCode,
+        codeIndexCliFallbackDurationMs: result.durationMs,
       }));
     },
   });
@@ -192,6 +223,7 @@ export async function handleCodexSessionStart(
         ? (dependencies.clearSections ?? defaultClearSections)()
         : (dependencies.startupSections ?? buildStartupSections)(input ?? {});
     sections = await maybeAppendCliWarmFallback(sections, input, sessionId, dependencies.writeDiagnostic);
+    sections = await maybeAppendCodeIndexCliWarmFallback(sections, input, dependencies.writeDiagnostic);
     const additionalContext = truncateToTokenBudget(
       formatHookOutput(sections),
       adjustedBudgetFor(input),

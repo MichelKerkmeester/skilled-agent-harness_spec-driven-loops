@@ -130,6 +130,10 @@ Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when 
 
 Use the CLI only when the `mk-spec-memory` MCP tools are missing from the runtime, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm. Exact recovery invocation: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000`. Exit `75` means retryable daemon/IPC unavailability; retry after MCP reconnect, daemon prewarm, or a short backoff instead of treating it as user error. Prompt-time hooks must probe the daemon socket first and skip if absent; cold spawn is allowed only from SessionStart, explicit prewarm, cron, or other non-prompt maintenance contexts.
 
+**Code Index CLI Transport Fallback:**
+
+Use the CLI only when the `mk-code-index` MCP transport is missing/down or `code_graph_status` transport returns a daemon/IPC failure while the daemon is otherwise expected to be warm. Exact warm read: `node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 3000 --warm-only`. Exit `75` means retryable daemon/IPC unavailability; retry after MCP reconnect, daemon prewarm, or a short backoff. Prompt-time hooks must probe the code-index socket first and skip if absent; `code_graph_scan`, `code_graph_apply`, and `code_graph_verify` are maintenance commands and must never run from prompt-time hooks.
+
 ---
 
 ### Quality & Anti-Patterns

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node .opencode/bin/spec-memory.cjs *)"
+      "Bash(node .opencode/bin/spec-memory.cjs *)",
+      "Bash(node .opencode/bin/code-index.cjs *)"
     ]
   },
   "hooks": {
