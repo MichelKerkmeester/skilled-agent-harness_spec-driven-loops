@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec]"
-description: "Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex/Devin) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs"
+description: "Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs"
 trigger_phrases:
   - "skill-advisor runtime integration"
   - "003 003-runtime-integration"
@@ -57,14 +57,14 @@ _memory:
 
 This is **Phase 3** of the skill-advisor dual-stack CLI implementation (workstream 003-skill-advisor-cli), paired with runtime hooks and the OpenCode plugin per the program-wide pairing rule.
 
-**Scope Boundary**: Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex/Devin) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs
+**Scope Boundary**: Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs
 
 **Dependencies**:
 - Research authority: `../000-skill-advisor-cli-research/research/research.md` (GO verdict, delta specs, measurements) — premise, do not relitigate
 - Predecessor phase `002-hardening-and-tests/` shipped
 
 **Deliverables**:
-- Hook pairing (Claude Code, Codex, Devin)
+- Hook pairing (Claude Code, Codex)
 - OpenCode plugin
 - Config compatibility
 
@@ -90,14 +90,14 @@ Wire the skill-advisor CLI into every runtime per the program-wide pairing rule 
 ## 3. SCOPE
 
 ### In Scope
-- Hook pairing (Claude Code, Codex, Devin): the UserPromptSubmit advisor-brief adapters (`system-skill-advisor/hooks/{claude,codex,devin}/user-prompt-submit`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open; one-shot native bridge per prompt remains banned (824.8ms measured) — D4
+- Hook pairing (Claude Code, Codex): the UserPromptSubmit advisor-brief adapters (`system-skill-advisor/hooks/{claude,codex}/user-prompt-submit`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open; one-shot native bridge per prompt remains banned (824.8ms measured) — D4
 - OpenCode plugin: `mk-skill-advisor-bridge.mjs` gains CLI fallback (bridge currently probes MCP; add the CLI path for transport-down)
-- Config compatibility: MCP registrations across OpenCode/Codex/Claude/Devin stay unchanged (CLI is additive) — D7
+- Config compatibility: MCP registrations across OpenCode/Codex/Claude stay unchanged (CLI is additive) — D7
 - Doctor routes: add CLI checks to doctor:skill-advisor + skill-budget surfaces
 - Allowlists + docs: transport-down fallback guidance; Gate-2 caller guidance (when skill_advisor.py legacy facade vs new CLI)
 
 ### Out of Scope
-- Gemini pairing — deliberately excluded per the program rule (adapter exists, unregistered); not an acceptance blocker
+- Gemini and Devin pairing — excluded per the program rule; both framework surfaces were removed end-to-end (Gemini #132, Devin #142), so neither is an acceptance blocker. Revisit only on operator direction
 - MCP removal or reference migration — standing program non-goals
 - Work owned by sibling phases (CLI features → phase 1; test suites → phase 2)
 
@@ -106,10 +106,9 @@ Wire the skill-advisor CLI into every runtime per the program-wide pairing rule 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | Runtime hook adapters + plugin bridge + configs + docs | Modify/Create | Pairing per program rule |
-| Live runtime configs: `.claude/settings.local.json`, `.codex/hooks.json`, `.codex/settings.json`, `.devin/hooks.v1.json` | Modify | Hook registration entries gaining the CLI path |
-| MCP configs (diff-verified unchanged): `.codex/config.toml`, `.claude/mcp.json`, `.devin/config.json`, `opencode.json` | Verify | Dual-stack: registrations stay untouched |
+| Live runtime configs: `.claude/settings.local.json`, `.codex/hooks.json`, `.codex/settings.json` | Modify | Hook registration entries gaining the CLI path |
+| MCP configs (diff-verified unchanged): `.codex/config.toml`, `.claude/mcp.json`, `opencode.json` | Verify | Dual-stack: registrations stay untouched |
 | .opencode/plugins/mk-skill-advisor.js + plugin_bridges/mk-skill-advisor-bridge.mjs | Modify | CLI fallback path in the working bridge |
-| Gemini hook catalog/playbook source paths | Modify | Fix doc drift (catalog points at the shim, not the active implementation) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,14 +120,14 @@ Wire the skill-advisor CLI into every runtime per the program-wide pairing rule 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Hook pairing shipped for Claude Code, Codex, and Devin | Each runtime's advisor hook demonstrates the CLI path once with MCP stopped, under THREE separate checks: (a) cache-hit p95 <60ms, (b) warm-daemon non-cache call within a stated ceiling, (c) cold/transport-down path fails open within the runtime hook timeout |
+| REQ-001 | Hook pairing shipped for Claude Code and Codex | Each runtime's advisor hook demonstrates the CLI path once with MCP stopped, under THREE separate checks: (a) cache-hit p95 <60ms, (b) warm-daemon non-cache call within a stated ceiling, (c) cold/transport-down path fails open within the runtime hook timeout |
 | REQ-002 | OpenCode plugin CLI fallback shipped | Plugin serves the advisor brief via the CLI bridge with MCP transport stopped |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Configs untouched | MCP registrations unchanged across all four runtime configs incl. `.devin/config.json` (diff-verified); `.devin/config.local.json` is a local overlay — documented as excluded from unchanged-config verification |
+| REQ-003 | Configs untouched | MCP registrations unchanged across all three runtime configs (OpenCode/Codex/Claude), diff-verified |
 | REQ-004 | Doctor + Gate-2 guidance updated | doctor routes exercise the CLI; AGENTS/skill guidance names when to use facade vs CLI |
 | REQ-005 | Prompt-time dual-failure behavior pinned | With MCP stopped AND the skill-advisor daemon socket absent/dead: hook warm-only path performs NO cold spawn, returns fail-open within the runtime hook timeout, and surfaces retryable status (exit 75 semantics) without blocking the prompt |
 <!-- /ANCHOR:requirements -->

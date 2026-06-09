@@ -106,7 +106,7 @@ Settle CLI-fallback feasibility for mk_code_index with evidence, then deliver a 
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Phase 000 is the scope authority: implementation phases inherit its delta specs and measurements verbatim
-- Runtime pairing rule (program-wide): phase 3 ships hooks for Claude Code/Codex/Devin plus the OpenCode plugin, warm-only
+- Runtime pairing rule (program-wide): phase 3 ships hooks for Claude Code/Codex plus the OpenCode plugin, warm-only
 
 ### Phase Handoff Criteria
 

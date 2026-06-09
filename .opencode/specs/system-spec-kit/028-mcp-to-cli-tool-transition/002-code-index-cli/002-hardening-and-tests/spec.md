@@ -62,6 +62,7 @@ This is **Phase 2** of the code-index dual-stack CLI implementation (workstream 
 **Dependencies**:
 - Research authority: `../000-code-index-cli-research/research/research.md` (GO verdict, delta specs, measurements) — premise, do not relitigate
 - Predecessor phase `001-cli-core/` shipped
+- Current daemon-lifecycle baseline (packets 026/027/140/030 + #024): the reconnecting session proxy is now wired into mk-code-index (the CLI attaches as a replay-aware secondary), the launcher is import-pure (`require.main` guard for test import), re-election is gated by `SPECKIT_DAEMON_REELECTION`, reaping requires N consecutive deep-probe failures (default 2) under the respawn lock, and the mk-code-index launcher EXITS on child SIGTERM (no transparent recycle). Tests MUST pin `SPECKIT_DAEMON_REELECTION` and assert against these.
 
 **Deliverables**:
 - D8 dual-client test
@@ -90,8 +91,8 @@ Convert every verified-by-code-trace guarantee into a verified-by-test guarantee
 ## 3. SCOPE
 
 ### In Scope
-- D8 dual-client test: MCP client + CLI client against one daemon/socket — both answered, no owner conflict
-- D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner, no stale locks
+- D8 dual-client test: MCP client + CLI client against one daemon/socket — both answered, no owner conflict; the CLI attaches as a secondary through the now-wired reconnecting session proxy, so assert replay + protocol-drift fail-closed behavior under concurrent MCP+CLI
+- D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner (owner-lease `wx` + respawn-lock serialization), no stale locks; note the mk-code-index launcher EXITS on child SIGTERM (no transparent recycle — dead-socket takeover is a fresh launcher under the respawn lock); pin `SPECKIT_DAEMON_REELECTION`
 - Blocked-read regression suite: stale-readiness paths for query/context/detect-changes assert blocked rendering in all formats
 - All-8 parity suite generated from CODE_GRAPH_TOOL_SCHEMAS — breaks loudly on schema drift
 - Process-table teardown assertions: zero orphaned daemons/launchers post-suite

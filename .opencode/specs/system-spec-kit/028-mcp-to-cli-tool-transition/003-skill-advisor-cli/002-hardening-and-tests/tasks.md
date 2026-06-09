@@ -56,10 +56,10 @@ _memory:
 
 - [ ] T001 D2 parity fixture: the 10-prompt local-vs-native set runs in CI; identical top recommendation required — the research measured 10/10; the fixture keeps it true
 - [ ] T002 D5 job semantics: measure advisor_rebuild + skill_graph_scan wall-time under mutation (the research residual); decide per-call vs progress-reporting job UX from the measurement; generation before/after reported
-- [ ] T003 D6 orphan-reaping fixtures: stale lease/no socket, killed parent, removed worktree
+- [ ] T003 D6 orphan-reaping fixtures: stale lease/no socket, killed parent, removed worktree; N-probe-gated reap under the respawn lock; killed-parent exercises ppid-reparent liveness; stale reclaim may adopt a warm daemon
 - [ ] T004 Dual-client coverage: MCP + CLI against one daemon; FS-watcher rebuild behavior under concurrent clients
 - [ ] T005 Resident-service fixtures: status trust-state split, telemetry/shadow-sink preservation, and embedder resolution under CLI scan/rebuild each get an assertion
-- [ ] T006 Tri-daemon spawn drill (program gate, owned here): spec-memory + code-index + skill-advisor CLIs auto-spawn simultaneously in one runtime/worktree; all three launchers hold single-owner leases and reap cleanly
+- [ ] T006 Tri-daemon spawn drill (program gate, owned here): spec-memory + code-index + skill-advisor CLIs auto-spawn simultaneously in one runtime/worktree with SPECKIT_DAEMON_REELECTION pinned (no spurious respawn); per-launcher single-owner (skill-advisor via launcher-PID + daemon lease, no owner-lease file); respawn-lock serializes the three spawns with no cross-daemon deadlock; reap diverges (spec-memory recycles on SIGTERM, code-index/skill-advisor exit); zero orphans at teardown
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -54,8 +54,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 D8 dual-client test: MCP client + CLI client against one daemon/socket
-- [ ] T002 D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner, no stale locks
+- [ ] T001 D8 dual-client test: MCP client + CLI client against one daemon/socket (CLI secondary via the reconnecting proxy; assert replay + protocol-drift fail-closed)
+- [ ] T002 D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner, no stale locks; mk-code-index launcher EXITS on SIGTERM; pin SPECKIT_DAEMON_REELECTION
 - [ ] T003 Blocked-read regression suite: stale-readiness paths for query/context/detect-changes assert blocked rendering in all formats
 - [ ] T004 All-8 parity suite generated from CODE_GRAPH_TOOL_SCHEMAS
 - [ ] T005 Process-table teardown assertions: zero orphaned daemons/launchers post-suite

@@ -55,7 +55,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T001 Allowlist entries per runtime for the code-index shim
-- [ ] T002 Hook pairing (Claude Code, Codex, Devin): the code-graph-serving session adapters (`system-spec-kit/mcp_server/hooks/claude/session-prime`, `hooks/codex/session-start`, `hooks/devin/session-start`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open, engaged on MCP-transport-down
+- [ ] T002 Hook pairing (Claude Code, Codex): the code-graph-serving session adapters (`system-spec-kit/mcp_server/hooks/claude/session-prime`, `hooks/codex/session-start`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open, engaged on MCP-transport-down
 - [ ] T003 OpenCode plugin: REPAIR the bridge via the CLI/IPC-backed transport (an import-only repair was tried in 026/008 and REVERTED — it arms a direct-DB dual-writer; the bridge must never initialize the memory DB in-process), then add CLI fallback
 - [ ] T004 Docs: transport-down fallback guidance + maintenance-command policy (scan/apply/verify never from prompt-time hooks)
 - [ ] T005 Dual-stack verification window with rollback notes (CLI is additive)

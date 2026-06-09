@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-skill-advisor-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex/Devin) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs
+Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-skill-advisor-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs
 
 ### Files Changed
 

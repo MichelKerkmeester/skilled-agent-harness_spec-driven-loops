@@ -74,7 +74,7 @@ Thin client/integration over the existing mk_skill_advisor daemon architecture; 
 - D6 orphan-reaping fixtures: stale lease/no socket, killed parent, removed worktree
 - Dual-client coverage: MCP + CLI against one daemon; FS-watcher rebuild behavior under concurrent clients
 - **Resident-service fixtures**: trust split / telemetry sink / embedder resolution assertions
-- **Tri-daemon spawn drill (program gate)**: simultaneous three-CLI auto-spawn, single-owner leases, clean reap
+- **Tri-daemon spawn drill (program gate)**: simultaneous three-CLI auto-spawn, single-owner leases, clean reap — pin `SPECKIT_DAEMON_REELECTION`; per-launcher single-owner (skill-advisor via launcher-PID + daemon lease, no owner-lease file); respawn-lock serialization with no cross-daemon deadlock; reap diverges (spec-memory recycles on SIGTERM, code-index/skill-advisor exit)
 
 ### Data Flow
 Each suite spawns isolated daemon instances under temp dirs, drives CLI/MCP clients, asserts lease/process/parity state at teardown.

@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-code-index-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex/Devin) gain the CLI warm path, OpenCode plugin bridge REPAIRED (import drift) + CLI fallback, docs, dual-stack window
+Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-code-index-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex) gain the CLI warm path, OpenCode plugin bridge repaired via CLI/IPC transport + CLI fallback, docs, dual-stack window
 
 ### Files Changed
 

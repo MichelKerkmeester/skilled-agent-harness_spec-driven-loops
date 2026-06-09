@@ -62,6 +62,7 @@ This is **Phase 2** of the skill-advisor dual-stack CLI implementation (workstre
 **Dependencies**:
 - Research authority: `../000-skill-advisor-cli-research/research/research.md` (GO verdict, delta specs, measurements) — premise, do not relitigate
 - Predecessor phase `001-cli-core/` shipped
+- Current daemon-lifecycle baseline (packets 026/027/140/030): mk-skill-advisor has NO owner-lease file — single-owner is enforced via the launcher-PID lease + daemon lease (not the `wx` owner-lease used by spec-memory/code-index); the advisor launcher EXITS on child SIGTERM (no transparent recycle) and has NO reconnecting session proxy (raw bridge); re-election is gated by `SPECKIT_DAEMON_REELECTION`; reaping requires N consecutive deep-probe failures (default 2) under the respawn lock. Tests/drills MUST pin `SPECKIT_DAEMON_REELECTION` and assert against these per-launcher specifics.
 
 **Deliverables**:
 - D2 parity fixture
@@ -92,10 +93,10 @@ Lock the parity, lifecycle, and job-semantics guarantees in tests before any run
 ### In Scope
 - D2 parity fixture: the 10-prompt local-vs-native set runs in CI; identical top recommendation required (the research measured 10/10 — this keeps it true)
 - D5 job semantics: measure advisor_rebuild + skill_graph_scan wall-time under mutation (the research residual); decide per-call vs progress-reporting job UX from the measurement; generation before/after reported
-- D6 orphan-reaping fixtures: stale lease/no socket, killed parent, removed worktree — each leaves zero extra launchers (owner token, process-group reap, stale-socket probe, idle timeout)
+- D6 orphan-reaping fixtures: stale lease/no socket, killed parent, removed worktree — each leaves zero extra launchers (owner token, process-group reap, stale-socket probe, idle timeout); align assertions with the current reap contract — N consecutive deep-probe failures (default 2) gate the reap under the respawn lock, the killed-parent case exercises ppid-reparent-to-1 liveness detection, and stale reclaim may adopt a warm daemon rather than reap+respawn
 - Dual-client coverage: MCP + CLI against one daemon; FS-watcher rebuild behavior under concurrent clients
 - Resident-service assertions: status trust-state split, telemetry/shadow-sink preservation, and embedder resolution under CLI scan/rebuild each get a fixture
-- **Tri-daemon spawn drill (program gate, owned here)**: spec-memory + code-index + skill-advisor CLIs auto-spawn simultaneously in one runtime/worktree; all three launchers hold single-owner leases and reap cleanly
+- **Tri-daemon spawn drill (program gate, owned here)**: spec-memory + code-index + skill-advisor CLIs auto-spawn simultaneously in one runtime/worktree, with `SPECKIT_DAEMON_REELECTION` pinned explicitly (verify re-election does NOT spuriously respawn mid-drill). Assert each holds a single owner — spec-memory/code-index via the `wx` owner-lease, skill-advisor via its launcher-PID + daemon lease (it has no owner-lease file) — and that the respawn lock serializes the three concurrent spawns with no cross-daemon deadlock. Reap behavior diverges per launcher: spec-memory transparent-recycles its child on SIGTERM, while code-index and skill-advisor exit; verify clean teardown (zero orphans) accounting for that divergence and for warm-daemon adoption on stale reclaim
 
 ### Out of Scope
 - MCP removal or reference migration — standing program non-goals

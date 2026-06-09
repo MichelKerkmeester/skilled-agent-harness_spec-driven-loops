@@ -104,7 +104,7 @@ Deliver the `spec-memory` CLI as a second IPC client over the unchanged daemon �
 | 000 | 000-spec-memory-cli-research/ | Research record: four deep-research runs ending in GO + zero unknowns (2 RESOLVED, 4 MITIGATED-terminal, 2 ACCEPTED); 8 delta specs; corrected measurements; 10–13d estimate | Complete |
 | 1 | 001-cli-core/ | spec-memory CLI binary: 37 subcommands generated from TOOL_DEFINITIONS, Zod at argv, IPC connect + auto-spawn, exits 0/1/64/69/75, shim guards | Core delivered |
 | 2 | 002-hardening-and-tests/ | Regression-lock the guarantees: D1 dual-spawn, D2 dual-client, D7 lifecycle suites + all-37 parity + D5 exit-69 docs (~3–4d) | Pending |
-| 3 | 003-runtime-integration/ | Adoption surfaces: runtime allowlists, hook pairing for Claude/Codex/Devin (CLI-backed warm-only path in the existing adapters), NEW OpenCode plugin for spec-memory, packaging, transport-down fallback, dual-stack window (~2–3d, re-estimate with plugin scope) | Pending |
+| 3 | 003-runtime-integration/ | Adoption surfaces: runtime allowlists, hook pairing for Claude/Codex (CLI-backed warm-only path in the existing adapters), NEW OpenCode plugin for spec-memory, packaging, transport-down fallback, dual-stack window (~2–3d, re-estimate with plugin scope) | Pending |
 
 ### Phase Transition Rules
 

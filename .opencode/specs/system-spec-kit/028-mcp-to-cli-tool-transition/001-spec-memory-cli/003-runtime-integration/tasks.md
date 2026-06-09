@@ -59,12 +59,12 @@ _memory:
 - [ ] T003 Publish hook integration policy with warm-only examples and timeout fallback
 - [ ] T004 Packaging/install steps verified from a fresh checkout
 - [ ] T005 Author transport-down fallback guidance (AGENTS.md / skill text) and verify once against a stopped MCP transport
-- [ ] T006 Extend spec-memory hook adapters with the CLI warm path for Claude Code, Codex, and Devin (system-spec-kit/mcp_server/hooks/{claude,codex,devin})
+- [ ] T006 Extend spec-memory hook adapters with the CLI warm path for Claude Code and Codex (system-spec-kit/mcp_server/hooks/{claude,codex})
 - [ ] T007 Create the OpenCode spec-memory plugin + bridge following the mk-skill-advisor pattern (.opencode/plugins/ + plugin_bridges/)
 - [ ] T008 Open dual-stack verification window and record observations + rollback note
 - [x] T009 Rewire `.codex/hooks.json` to the Codex adapters — COMPLETED EARLY in 026/008-runtime-defect-fixes (smoke-verified); remaining for this phase: smoke the CLI-backed path against the live hook file
 - [ ] T010 Dual-failure drill: MCP transport stopped + daemon socket absent/dead → hook warm-only path performs NO cold spawn, fails open within the runtime hook timeout, surfaces exit-75 retryable status
-- [ ] T011 Runtime-config inventory verification: live hook configs (.claude/settings.local.json, .codex/hooks.json, .codex/settings.json, .devin/hooks.v1.json) modified as scoped; MCP configs diff-verified unchanged
+- [ ] T011 Runtime-config inventory verification: live hook configs (.claude/settings.local.json, .codex/hooks.json, .codex/settings.json) modified as scoped; MCP configs diff-verified unchanged
 <!-- /ANCHOR:phase-2 -->
 
 ---

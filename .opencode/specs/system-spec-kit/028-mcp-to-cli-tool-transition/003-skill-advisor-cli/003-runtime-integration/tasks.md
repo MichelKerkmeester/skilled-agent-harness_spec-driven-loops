@@ -54,14 +54,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 Hook pairing (Claude Code, Codex, Devin): the UserPromptSubmit advisor-brief adapters (`system-skill-advisor/hooks/{claude,codex,devin}/user-prompt-submit`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open; one-shot native bridge per prompt remains banned (824.8ms measured)
+- [ ] T001 Hook pairing (Claude Code, Codex): the UserPromptSubmit advisor-brief adapters (`system-skill-advisor/hooks/{claude,codex}/user-prompt-submit`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open; one-shot native bridge per prompt remains banned (824.8ms measured)
 - [ ] T002 OpenCode plugin: `mk-skill-advisor-bridge.mjs` gains CLI fallback (bridge currently probes MCP; add the CLI path for transport-down)
-- [ ] T003 Config compatibility: MCP registrations across OpenCode/Codex/Claude/Devin stay unchanged (CLI is additive)
+- [ ] T003 Config compatibility: MCP registrations across OpenCode/Codex/Claude stay unchanged (CLI is additive)
 - [ ] T004 Doctor routes: add CLI checks to doctor:skill-advisor + skill-budget surfaces
 - [ ] T005 Allowlists + docs: transport-down fallback guidance; Gate-2 caller guidance (when skill_advisor.py legacy facade vs new CLI)
 - [ ] T006 Dual-failure drill: MCP transport stopped + skill-advisor daemon socket absent/dead → hook warm-only path performs NO cold spawn, fails open within the runtime hook timeout, surfaces exit-75 retryable status
 - [ ] T007 Three-way latency verification per the split acceptance: (a) cache-hit p95 <60ms, (b) warm-daemon non-cache call within its stated ceiling, (c) cold/transport-down path fails open within the runtime hook timeout
-- [ ] T008 Document `.devin/config.local.json` as a local overlay excluded from unchanged-config verification; `.devin/config.json` included in the diff-verified set
 - [x] T009 Fix Gemini hook catalog source-path drift — COMPLETED EARLY in 026/008-runtime-defect-fixes
 <!-- /ANCHOR:phase-2 -->
 

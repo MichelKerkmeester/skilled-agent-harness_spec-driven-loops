@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-spec-memory-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Adoption surfaces incl. the program-wide pairing rule (hooks for Claude Code/Codex/Devin with the CLI warm path + a NEW OpenCode spec-memory plugin): per-runtime allowlists for the shim, warm-only hook policy, packaging/install steps, MCP-transport-down fallback guidance, dual-stack verification window.
+Nothing yet — this phase is scaffolded in planned state. Binding scope artifacts: `spec.md` (requirements + acceptance criteria), `tasks.md` (planned rows), and the research authority `../000-spec-memory-cli-research/research/research.md` (delta specs and measurements). The intended outcome: Adoption surfaces incl. the program-wide pairing rule (hooks for Claude Code/Codex with the CLI warm path + a NEW OpenCode spec-memory plugin): per-runtime allowlists for the shim, warm-only hook policy, packaging/install steps, MCP-transport-down fallback guidance, dual-stack verification window.
 
 ### Files Changed
 

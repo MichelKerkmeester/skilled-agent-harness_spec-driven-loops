@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/plan]"
-description: "Planned approach: Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex/Devin) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs"
+description: "Planned approach: Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs"
 trigger_phrases:
   - "skill-advisor runtime integration plan"
   - "003 003-runtime-integration plan"
@@ -41,7 +41,7 @@ _memory:
 | **Testing** | vitest (existing harness) |
 
 ### Overview
-Planned phase (~1 packet (small-medium)); not implemented. Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex/Devin) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
+Planned phase (~1 packet (small-medium)); not implemented. Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -69,9 +69,9 @@ Planned phase (~1 packet (small-medium)); not implemented. Pairing per program r
 Thin client/integration over the existing mk_skill_advisor daemon architecture; no daemon changes in any phase.
 
 ### Key Components
-- Hook pairing (Claude Code, Codex, Devin): the UserPromptSubmit advisor-brief adapters (`system-skill-advisor/hooks/{claude,codex,devin}/user-prompt-submit`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open; one-shot native bridge per prompt remains banned (824.8ms measured)
+- Hook pairing (Claude Code, Codex): the UserPromptSubmit advisor-brief adapters (`system-skill-advisor/hooks/{claude,codex}/user-prompt-submit`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open; one-shot native bridge per prompt remains banned (824.8ms measured)
 - OpenCode plugin: `mk-skill-advisor-bridge.mjs` gains CLI fallback (bridge currently probes MCP; add the CLI path for transport-down)
-- Config compatibility: MCP registrations across OpenCode/Codex/Claude/Devin stay unchanged (CLI is additive)
+- Config compatibility: MCP registrations across OpenCode/Codex/Claude stay unchanged (CLI is additive)
 - Doctor routes: add CLI checks to doctor:skill-advisor + skill-budget surfaces
 - **Three-way latency acceptance**: cache-hit p95 <60ms / warm non-cache ceiling / cold fail-open — verified separately
 - **Dual-failure acceptance**: MCP down + daemon dead inside a prompt hook → no cold spawn, fail-open within hook timeout, exit-75 semantics

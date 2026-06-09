@@ -54,9 +54,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T001 D1 dual-simultaneous-spawn vitest incl. divergent SPECKIT_IPC_SOCKET_DIR case (mcp_server tests)
+- [ ] T001 D1 dual-simultaneous-spawn vitest incl. divergent SPECKIT_IPC_SOCKET_DIR case; pin SPECKIT_DAEMON_REELECTION; assert single owner via owner-lease wx + respawn-lock; secondary via reconnecting proxy (mcp_server tests)
 - [ ] T002 D2 dual-client MCP+CLI vitest against one daemon (mcp_server tests)
-- [ ] T003 D7 lifecycle coverage: stdin null, disconnect, fatalShutdown, bridge close, lease cleanup (mcp_server tests)
+- [ ] T003 D7 lifecycle coverage: stdin null, disconnect, fatalShutdown, bridge close, lease cleanup; idle-reap gated on N-probe under the respawn lock with re-election OFF (mcp_server tests)
 - [ ] T004 All-37 parity suite extension generated from TOOL_DEFINITIONS (mcp_server tests)
 - [ ] T005 D5 exit-69 recovery documentation in CLI help/docs
 <!-- /ANCHOR:phase-2 -->

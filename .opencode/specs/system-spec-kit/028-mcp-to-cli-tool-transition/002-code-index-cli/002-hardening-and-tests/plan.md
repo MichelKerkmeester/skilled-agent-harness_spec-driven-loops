@@ -69,8 +69,8 @@ Planned phase (~1.5–2d); not implemented. Regression-lock the guarantees: dual
 Thin client/integration over the existing mk_code_index daemon architecture; no daemon changes in any phase.
 
 ### Key Components
-- D8 dual-client test: MCP client + CLI client against one daemon/socket
-- D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner, no stale locks
+- D8 dual-client test: MCP client + CLI client against one daemon/socket (CLI secondary via the now-wired reconnecting proxy; assert replay + protocol-drift fail-closed)
+- D9 dual-spawn + dead-socket-respawn test: simultaneous CLI starts and takeover preserve a single owner, no stale locks (launcher EXITS on SIGTERM; takeover is a fresh launcher under the respawn lock; pin `SPECKIT_DAEMON_REELECTION`)
 - Blocked-read regression suite: stale-readiness paths for query/context/detect-changes assert blocked rendering in all formats
 - All-8 parity suite generated from CODE_GRAPH_TOOL_SCHEMAS
 

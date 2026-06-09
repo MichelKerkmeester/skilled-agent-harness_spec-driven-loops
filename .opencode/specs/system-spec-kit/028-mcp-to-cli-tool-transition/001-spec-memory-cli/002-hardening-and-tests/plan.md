@@ -69,9 +69,9 @@ Planned phase (~3-4 days); not implemented. Regression-lock the dual-stack guara
 Thin client over the existing daemon/IPC architecture; no daemon changes in any phase.
 
 ### Key Components
-- **D1 suite**: two simultaneous shim invocations vs one dead socket — single owner lease asserted
+- **D1 suite**: two simultaneous shim invocations vs one dead socket — single owner lease asserted (owner-lease `wx` + respawn-lock serialization; secondary bridges via the reconnecting session proxy; pin `SPECKIT_DAEMON_REELECTION`)
 - **D2 suite**: MCP client + CLI client against one IPC server — both answered, identity stable
-- **D7 suite**: CLI-spawn lifecycle — idle self-shutdown, no orphan processes
+- **D7 suite**: CLI-spawn lifecycle — idle self-shutdown, no orphan processes (reap gated on N-probe under the respawn lock; re-election pinned OFF; spec-memory's SIGTERM transparent-recycle covered separately)
 - **Parity suite**: all-37 subcommand round-trip, breaks on schema drift
 - **D5 docs**: exit-69 recovery guidance per mismatch class
 

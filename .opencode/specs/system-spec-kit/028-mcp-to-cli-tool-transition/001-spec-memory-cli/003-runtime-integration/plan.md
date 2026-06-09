@@ -69,11 +69,11 @@ Planned phase (~2-3 days); not implemented. Adoption surfaces: per-runtime allow
 Thin client over the existing daemon/IPC architecture; no daemon changes in any phase.
 
 ### Key Components
-- **Allowlists**: Claude Bash pattern + Codex/OpenCode/Gemini equivalents for the shim
+- **Allowlists**: Claude Bash pattern + Codex/OpenCode equivalents for the shim
 - **Hook policy**: warm-only with --timeout-ms at prompt-time; cold spawn only SessionStart/prewarm/cron
 - **Packaging**: bin wiring + fresh-checkout install verification
 - **Fallback guidance**: transport-down detection signal + exact CLI invocation + exit-75 retry semantics
-- **Hook pairing ×3 runtimes**: spec-memory-serving adapters (Claude/Codex/Devin) gain the CLI warm path, fail-open
+- **Hook pairing ×2 runtimes**: spec-memory-serving adapters (Claude/Codex) gain the CLI warm path, fail-open
 - **OpenCode plugin (NEW)**: spec-memory plugin + bridge (mk-skill-advisor pattern); OpenCode memory access is MCP-only today
 - **Codex live-registration rewiring**: `.codex/hooks.json` → Codex adapters (today it points at the Claude scripts), smoked against the live file
 - **Dual-failure acceptance**: MCP down + daemon dead inside a prompt hook → no cold spawn, fail-open within hook timeout, exit-75 semantics

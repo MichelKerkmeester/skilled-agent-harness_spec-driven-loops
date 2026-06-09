@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/plan]"
-description: "Planned approach: Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex/Devin) gain the CLI warm path, OpenCode plugin bridge REPAIRED (import drift) + CLI fallback, docs, dual-stack window"
+description: "Planned approach: Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex) gain the CLI warm path, OpenCode plugin bridge repaired via CLI/IPC transport + CLI fallback, docs, dual-stack window"
 trigger_phrases:
   - "code-index runtime integration plan"
   - "002 003-runtime-integration plan"
@@ -41,7 +41,7 @@ _memory:
 | **Testing** | vitest (existing harness) |
 
 ### Overview
-Planned phase (~1.5–2d); not implemented. Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex/Devin) gain the CLI warm path, OpenCode plugin bridge REPAIRED (import drift) + CLI fallback, docs, dual-stack window Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
+Planned phase (~1.5–2d); not implemented. Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex) gain the CLI warm path, OpenCode plugin bridge repaired via CLI/IPC transport + CLI fallback, docs, dual-stack window Detailed planning happens via speckit:plan when this phase opens; binding scope and acceptance criteria live in spec.md and the research record.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -70,8 +70,8 @@ Thin client/integration over the existing mk_code_index daemon architecture; no 
 
 ### Key Components
 - Allowlist entries per runtime for the code-index shim
-- Hook pairing (Claude Code, Codex, Devin): the code-graph-serving session adapters (`system-spec-kit/mcp_server/hooks/claude/session-prime`, `hooks/codex/session-start`, `hooks/devin/session-start`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open, engaged on MCP-transport-down
-- OpenCode plugin: REPAIR `mk-code-graph-bridge.mjs` import drift (currently points at missing dist paths), then add CLI fallback to the bridge
+- Hook pairing (Claude Code, Codex): the code-graph-serving session adapters (`system-spec-kit/mcp_server/hooks/claude/session-prime`, `hooks/codex/session-start`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open, engaged on MCP-transport-down
+- OpenCode plugin: repair `mk-code-graph-bridge.mjs` via a CLI/IPC-backed transport (the in-process import-only fix tried in 026/008 was reverted — it armed a direct-DB dual-writer; the bridge must never initialize the memory DB in-process), then add CLI fallback to the bridge
 - Docs: transport-down fallback guidance + maintenance-command policy (scan/apply/verify never from prompt-time hooks)
 - **Dual-failure acceptance**: MCP down + daemon dead inside a prompt hook → no cold spawn, fail-open within hook timeout, exit-75 semantics
 - **Config-note correction**: `.codex/config.toml` code-index DB-path note updated to the skill-local default

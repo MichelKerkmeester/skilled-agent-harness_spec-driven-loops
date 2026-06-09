@@ -94,7 +94,7 @@ Wire the CLI into every runtime's permission surface with a hook-safe usage poli
 
 ### In Scope
 - Allowlist entries: Claude Code `Bash(node .opencode/bin/spec-memory.cjs *)` pattern and equivalents for Codex (approval policy) and OpenCode (plugin/Bash surface)
-- **Hook pairing (Claude Code, Codex, Devin)**: extend the existing spec-memory-serving hook adapters (`system-spec-kit/mcp_server/hooks/claude/{session-prime,compact-inject,session-stop}`, `hooks/codex/session-start`, `hooks/devin/session-start`) with a CLI-backed path — warm-only with `--timeout-ms`, fail-open, engaged on MCP-transport-down and available as preferred transport where measurement favors it
+- **Hook pairing (Claude Code, Codex)**: extend the existing spec-memory-serving hook adapters (`system-spec-kit/mcp_server/hooks/claude/{session-prime,compact-inject,session-stop}`, `hooks/codex/session-start`) with a CLI-backed path — warm-only with `--timeout-ms`, fail-open, engaged on MCP-transport-down and available as preferred transport where measurement favors it
 - **Codex live-registration rewiring**: `.codex/hooks.json` currently invokes the CLAUDE hook scripts (compact-inject/session-prime/user-prompt-submit), not the Codex adapters this phase targets — rewire or verify-and-document ownership, and smoke the CLI path against the LIVE hook file, not only the template
 - **OpenCode plugin (NEW)**: create the missing spec-memory plugin (`.opencode/plugins/` + a `plugin_bridges/` bridge following the mk-skill-advisor pattern) so OpenCode sessions get continuity surfaces and transport-down recovery via the CLI; memory access in OpenCode is currently MCP-only
 - Hook policy publication: prompt-time hooks call warm-only with `--timeout-ms` (budget ≈40–46ms p95 warm; ceilings ~3s); cold spawn only from SessionStart/prewarm/cron contexts; stale/no-op fallback guidance for timeout cases
@@ -103,7 +103,7 @@ Wire the CLI into every runtime's permission surface with a hook-safe usage poli
 - Dual-stack verification window: MCP + CLI in concurrent real use; record observations; rollback note (CLI is additive — disable by removing allowlist entries)
 
 ### Out of Scope
-- Gemini pairing — deliberately excluded per the program rule (adapters exist, unregistered); not an acceptance blocker
+- Gemini and Devin pairing — excluded per the program rule; both framework surfaces were removed end-to-end (Gemini #132, Devin #142), so neither is an acceptance blocker. Revisit only on operator direction
 - OpenCode first-class `tools:` permission gate — upstream/product item, ACCEPTED out-of-scope by research; dual-stack does not need it
 - Migration of the measured 93-file/1,041-reference MCP surface — future packet, separately gated
 - MCP deregistration — standing non-goal of the program
@@ -112,10 +112,10 @@ Wire the CLI into every runtime's permission surface with a hook-safe usage poli
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| Runtime permission configs (Claude/Codex/OpenCode/Gemini) | Modify | Allowlist the spec-memory shim |
-| system-spec-kit/mcp_server/hooks/{claude,codex,devin}/* | Modify | CLI-backed warm-only path in the spec-memory-serving hook adapters |
-| Live runtime configs: `.claude/settings.local.json`, `.codex/hooks.json`, `.codex/settings.json`, `.devin/hooks.v1.json` | Modify | Hook registration entries gaining the CLI path |
-| MCP configs (diff-verified unchanged): `.codex/config.toml`, `.claude/mcp.json`, `.devin/config.json`, `opencode.json` | Verify | Dual-stack: registrations stay untouched |
+| Runtime permission configs (Claude/Codex/OpenCode) | Modify | Allowlist the spec-memory shim |
+| system-spec-kit/mcp_server/hooks/{claude,codex}/* | Modify | CLI-backed warm-only path in the spec-memory-serving hook adapters |
+| Live runtime configs: `.claude/settings.local.json`, `.codex/hooks.json`, `.codex/settings.json` | Modify | Hook registration entries gaining the CLI path |
+| MCP configs (diff-verified unchanged): `.codex/config.toml`, `.claude/mcp.json`, `opencode.json` | Verify | Dual-stack: registrations stay untouched |
 | .opencode/plugins/ (new spec-memory plugin) + plugin bridge | Create | OpenCode plugin following the mk-skill-advisor bridge pattern |
 | AGENTS.md / relevant skill guidance | Modify | Transport-down fallback + hook policy text |
 | package.json / install docs | Modify | Bin exposure + install verification steps |
@@ -140,7 +140,7 @@ Wire the CLI into every runtime's permission surface with a hook-safe usage poli
 |----|-------------|---------------------|
 | REQ-004 | Second-runtime allowlist (Codex or OpenCode) | Same smoke check passes in that runtime |
 | REQ-005 | Dual-stack window observations recorded | At least one week of concurrent MCP+CLI use noted in the phase summary with zero corruption/contention incidents |
-| REQ-006 | Hook pairing shipped for Claude Code, Codex, and Devin | Each runtime's spec-memory hook adapter demonstrates the CLI path once with the MCP transport stopped (warm-only, fail-open, within hook ceiling) |
+| REQ-006 | Hook pairing shipped for Claude Code and Codex | Each runtime's spec-memory hook adapter demonstrates the CLI path once with the MCP transport stopped (warm-only, fail-open, within hook ceiling) |
 | REQ-007 | OpenCode spec-memory plugin shipped | Plugin loads in an OpenCode session and serves a continuity surface via the CLI bridge with MCP transport stopped |
 | REQ-008 | Prompt-time dual-failure behavior pinned | With MCP stopped AND the spec-memory daemon socket absent/dead: hook warm-only path performs NO cold spawn, returns fail-open within the runtime hook timeout, and surfaces retryable status (exit 75 semantics) without blocking the prompt |
 <!-- /ANCHOR:requirements -->

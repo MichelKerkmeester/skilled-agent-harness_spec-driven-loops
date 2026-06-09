@@ -12,9 +12,9 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition"
-    last_updated_at: "2026-06-06T15:05:00Z"
+    last_updated_at: "2026-06-09T15:13:28Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "All three workstreams phased and pairing encoded"
+    recent_action: "Reconciled phase docs to main: struck Devin/Gemini, refit daemon contract"
     next_safe_action: "Open the dual-stack CLI implementation phase via speckit:plan"
     blockers: []
     key_files:
@@ -82,7 +82,7 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 ### Out of Scope
 
 - MCP removal — the MCP registration stays through the dual-stack window.
-- Daemon redesign — the daemon, IPC bridge, session proxy, and all 37 handlers stay unchanged.
+- Daemon/launcher redesign — 028 adds no daemon changes; it binds the CLI to the daemon's existing tool-handler + IPC surface. (The launcher/lease/reap/re-election lifecycle evolved under packets 026/027/140/030 after this packet was drafted; the CLI auto-spawn path must target that current launcher contract — see each workstream's hardening phase.)
 
 ### Files to Change
 
@@ -114,11 +114,11 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 
 Every CLI workstream ships PAIRED with its runtime integrations — a CLI nobody's runtime calls does not close the transport-down incident class:
 
-- **Hooks** for Claude Code, Codex, and Devin: the existing hook adapters (session/prompt-submit family under `system-spec-kit/mcp_server/hooks/<runtime>/` and `system-skill-advisor/hooks/<runtime>/`) gain a CLI-backed path — warm-only with `--timeout-ms`, fail-open, used when the MCP transport is down or as the preferred transport where measurement favors it.
-- **An OpenCode plugin** per system: extend `mk-skill-advisor.js` and `mk-code-graph.js` (whose bridge has known import drift to repair) with CLI-backed fallback; CREATE the missing spec-memory plugin (none exists today — memory access is currently MCP-only in OpenCode).
+- **Hooks** for Claude Code and Codex: the existing hook adapters (session/prompt-submit family under `system-spec-kit/mcp_server/hooks/<runtime>/` and `system-skill-advisor/hooks/<runtime>/`) gain a CLI-backed path — warm-only with `--timeout-ms`, fail-open, used when the MCP transport is down or as the preferred transport where measurement favors it.
+- **An OpenCode plugin** per system: extend `mk-skill-advisor.js` and `mk-code-graph.js` (whose bridge needs a CLI/IPC-backed repair — the in-process import-only fix was reverted as a direct-DB dual-writer hazard; see workstream 002) with CLI-backed fallback; CREATE the missing spec-memory plugin (none exists today — memory access is currently MCP-only in OpenCode).
 - Hook/plugin work lands in each workstream's runtime-integration phase and inherits the warm-only latency policy from the research records.
-- **Gemini is deliberately excluded from pairing scope** (operator decision): its hook adapters exist for external operators but no repo-level Gemini registration ships; do not treat Gemini work as a gap or an acceptance blocker. Revisit only on operator direction.
-- **Tri-daemon spawn drill (program gate)**: before the program's dual-stack window closes, run one drill spawning all three CLIs (spec-memory + code-index + skill-advisor) simultaneously in a single runtime/worktree — owned by the skill-advisor workstream's hardening phase, verifying all three launchers' lease/reap behavior under concurrent auto-spawn.
+- **Gemini and Devin are excluded from pairing scope**: their framework surfaces were removed end-to-end after this packet was drafted (Gemini deprecated under packet 132; cli-devin + the entire Devin runtime/hook surface removed under packet 142). Neither is a gap or an acceptance blocker; the triad collapses to Claude Code + Codex (plus the per-system OpenCode plugin). Revisit only on operator direction.
+- **Tri-daemon spawn drill (program gate)**: before the program's dual-stack window closes, run one drill spawning all three CLIs (spec-memory + code-index + skill-advisor) simultaneously in a single runtime/worktree — owned by the skill-advisor workstream's hardening phase, verifying all three launchers' lease/reap behavior under concurrent auto-spawn. Reap diverges by launcher (spec-memory transparent-recycles on SIGTERM; code-index and skill-advisor exit), so the drill pins `SPECKIT_DAEMON_REELECTION` and verifies respawn-lock serialization with no cross-daemon deadlock.
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -64,6 +64,7 @@ This is **Phase 2** of the Dual-stack spec-memory CLI implementation: daemon-bac
 **Dependencies**:
 - 001-cli-core shipped (the binary under test must exist)
 - Existing vitest harness and the bridge multi-client tests as the base to extend
+- Current daemon-lifecycle baseline (packets 026/027/140/030): re-election is gated by `SPECKIT_DAEMON_REELECTION` (set on in the runtime configs, off by code default); lease reclaim is CAS via owner-lease `wx`/atomic-rename keyed on owner-pid signal-0 + heartbeat-TTL (2×60s) + ppid-reparent; reaping requires N consecutive deep-probe failures (default 2, `SPECKIT_LEASE_PROBE_RETRIES`), serialized under the respawn lock (SIGTERM→7s→SIGKILL), with warm-daemon adoption on stale reclaim. mk-spec-memory transparent-recycles its child on SIGTERM (crash-loop guard). Tests MUST pin `SPECKIT_DAEMON_REELECTION` explicitly and assert against these mechanisms.
 
 **Deliverables**:
 - Dual-simultaneous-spawn integration test (research delta D1)
@@ -94,9 +95,9 @@ Convert every verified-by-code-trace guarantee into a verified-by-test guarantee
 ## 3. SCOPE
 
 ### In Scope
-- D1: dual simultaneous auto-spawn test — two `spec-memory.cjs` invocations against the same missing/dead socket; assert exactly one owner lease, one context-server child, bridged/retryable secondary behavior, no stale locks; include the divergent `SPECKIT_IPC_SOCKET_DIR` case
+- D1: dual simultaneous auto-spawn test — two `spec-memory.cjs` invocations against the same missing/dead socket; assert exactly one owner lease (owner-lease `wx`-exclusive acquire + respawn-lock + bootstrap-lock serialization), one context-server child, the secondary bridges through the reconnecting session proxy (retryable-recycle, not error), no stale locks; pin `SPECKIT_DAEMON_REELECTION` (cover on and off); include the divergent `SPECKIT_IPC_SOCKET_DIR` case
 - D2: dual-client test — MCP client + CLI client against one IPC server; assert both receive valid responses and daemon identity stays stable
-- D7: CLI-spawn lifecycle coverage — backend-only `stdin: null`, IPC client disconnect, `fatalShutdown`, bridge close, lease cleanup; assert idle self-shutdown reaps the daemon (no orphans)
+- D7: CLI-spawn lifecycle coverage — backend-only `stdin: null`, IPC client disconnect, `fatalShutdown`, bridge close, lease cleanup; assert idle self-shutdown reaps the daemon (no orphans) under the current contract — reap gated on N consecutive deep-probe failures (default 2) and serialized under the respawn lock (SIGTERM→7s→SIGKILL); run the idle-reap assertion with `SPECKIT_DAEMON_REELECTION` OFF so no daemon respawns, and cover spec-memory's SIGTERM transparent-recycle as a separate (non-idle) case
 - Parity suite: enumerate and invoke all 37 subcommands against a live daemon, asserting schema-valid round-trips
 - D5: exit-69 recovery documentation in CLI help/docs — rebuild, update client/protocol, or check socket/config depending on mismatch class
 
@@ -127,7 +128,7 @@ Convert every verified-by-code-trace guarantee into a verified-by-test guarantee
 |----|-------------|---------------------|
 | REQ-001 | D1 dual-spawn test exists and passes | Both orderings (race won/lost) asserted; no stale lock artifacts after run |
 | REQ-002 | D2 dual-client test exists and passes | Concurrent MCP + CLI calls both succeed against one daemon |
-| REQ-003 | D7 lifecycle coverage exists and passes | A CLI-spawned daemon with no clients self-shuts down within its idle window; zero orphan processes post-suite |
+| REQ-003 | D7 lifecycle coverage exists and passes | A CLI-spawned daemon with no clients self-shuts down within its idle window (reap gated on N-probe + respawn-lock; re-election pinned OFF for this assertion); zero orphan processes post-suite |
 
 ### P1 - Required (complete OR user-approved deferral)
 
