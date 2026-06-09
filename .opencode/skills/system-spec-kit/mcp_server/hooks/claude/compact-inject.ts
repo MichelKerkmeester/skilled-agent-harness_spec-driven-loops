@@ -15,6 +15,7 @@ import {
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, getRequiredSessionId,
 } from './shared.js';
 import { ensureStateDir, updateState } from './hook-state.js';
+import { buildWarmMemoryContextSection } from '../spec-memory-cli-fallback.js';
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
 import { autoSurfaceAtCompaction } from '../../hooks/memory-surface.js';
 import {
@@ -202,6 +203,18 @@ function renderTriggeredMemories(
   return `## Relevant Memories\n${lines.join('\n')}`;
 }
 
+async function renderCliCompactionFallback(sessionState: string): Promise<string> {
+  const section = await buildWarmMemoryContextSection({
+    title: 'Spec Memory CLI Fallback',
+    input: sessionState,
+    timeoutMs: 600,
+    onResult: (result) => {
+      hookLog('info', 'compact-inject', `CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
+    },
+  });
+  return section ? `## ${section.title}\n${section.content}` : '';
+}
+
 /**
  * Build merged context using the 3-source merge pipeline.
  * Extracts session state from transcript, then delegates budget allocation
@@ -283,7 +296,10 @@ async function buildMergedContext(transcriptLines: string[]): Promise<string> {
 
   const autoSurfaced = await autoSurfaceAtCompaction(sessionState);
   if (!autoSurfaced) {
-    return merged.text;
+    const cliFallback = await renderCliCompactionFallback(sessionState || sanitizedLines.slice(-10).join('\n'));
+    return cliFallback && merged.text
+      ? `${cliFallback}\n\n${merged.text}`
+      : (cliFallback || merged.text);
   }
 
   hookLog(

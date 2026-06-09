@@ -22,6 +22,7 @@ import {
   clearCompactPrime,
   validatePendingCompactPrimeSemantics,
 } from './hook-state.js';
+import { buildWarmSessionResumeSection } from '../spec-memory-cli-fallback.js';
 import { getCachedSessionSummaryDecision, logCachedSummaryDecision } from '../../handlers/session-resume.js';
 import { getStartupBriefFromMarker } from '../../lib/code-graph-boundary.js';
 
@@ -322,6 +323,32 @@ function writeHookOutput(output: string): Promise<void> {
   });
 }
 
+function hasContinuitySection(sections: OutputSection[]): boolean {
+  return sections.some((section) => section.title === 'Session Continuity');
+}
+
+async function maybeAppendCliWarmFallback(
+  sections: OutputSection[],
+  source: string,
+  input: HookInput,
+): Promise<OutputSection[]> {
+  if ((source !== 'startup' && source !== 'resume') || hasContinuitySection(sections)) {
+    return sections;
+  }
+  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
+  const specFolder = typeof input.specFolder === 'string' ? input.specFolder : undefined;
+  const section = await buildWarmSessionResumeSection({
+    title: 'Spec Memory CLI Fallback',
+    sessionId,
+    specFolder,
+    timeoutMs: Math.min(600, HOOK_TIMEOUT_MS),
+    onResult: (result) => {
+      hookLog('info', 'session-prime', `CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
+    },
+  });
+  return section ? [...sections, section] : sections;
+}
+
 async function main(): Promise<void> {
   ensureStateDir();
 
@@ -361,6 +388,8 @@ async function main(): Promise<void> {
       sections = handleStartup(input);
       budget = SESSION_PRIME_TOKEN_BUDGET;
   }
+
+  sections = await maybeAppendCliWarmFallback(sections, source, input);
 
   // Apply token pressure awareness — reduce budget when context window is filling up
   const adjustedBudget = calculatePressureAdjustedBudget(

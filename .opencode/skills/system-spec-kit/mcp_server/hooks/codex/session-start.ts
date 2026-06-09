@@ -17,6 +17,7 @@ import {
 } from '../claude/shared.js';
 import { loadState } from '../claude/hook-state.js';
 import { handleStartup as buildStartupSections } from '../claude/session-prime.js';
+import { buildWarmSessionResumeSection } from '../spec-memory-cli-fallback.js';
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -117,6 +118,39 @@ function adjustedBudgetFor(input: CodexSessionStartInput | null): number {
   );
 }
 
+function hasContinuitySection(sections: OutputSection[]): boolean {
+  return sections.some((section) => section.title === 'Session Continuity');
+}
+
+async function maybeAppendCliWarmFallback(
+  sections: OutputSection[],
+  input: CodexSessionStartInput | null,
+  sessionId: string | null,
+  writeDiagnostic?: (line: string) => void,
+): Promise<OutputSection[]> {
+  const source = sourceFor(input);
+  if ((source !== 'startup' && source !== 'resume') || hasContinuitySection(sections)) {
+    return sections;
+  }
+  const specFolder = typeof input?.specFolder === 'string' ? input.specFolder : undefined;
+  const section = await buildWarmSessionResumeSection({
+    title: 'Spec Memory CLI Fallback',
+    sessionId: sessionId ?? undefined,
+    specFolder,
+    timeoutMs: 600,
+    onResult: (result) => {
+      writeDiagnostic?.(JSON.stringify({
+        surface: 'codex-session-start',
+        cliFallbackStatus: result.status,
+        cliFallbackReason: result.reason ?? null,
+        cliFallbackExitCode: result.exitCode,
+        cliFallbackDurationMs: result.durationMs,
+      }));
+    },
+  });
+  return section ? [...sections, section] : sections;
+}
+
 function emitDiagnostic(
   status: 'ok' | 'fail_open',
   input: CodexSessionStartInput | null,
@@ -152,11 +186,12 @@ export async function handleCodexSessionStart(
 
   try {
     const source = sourceFor(input);
-    const sections = source === 'resume'
+    let sections = source === 'resume'
       ? (dependencies.resumeSections ?? defaultResumeSections)(sessionId)
       : source === 'clear'
         ? (dependencies.clearSections ?? defaultClearSections)()
         : (dependencies.startupSections ?? buildStartupSections)(input ?? {});
+    sections = await maybeAppendCliWarmFallback(sections, input, sessionId, dependencies.writeDiagnostic);
     const additionalContext = truncateToTokenBudget(
       formatHookOutput(sections),
       adjustedBudgetFor(input),

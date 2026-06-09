@@ -1,4 +1,9 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(node .opencode/bin/spec-memory.cjs *)"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {

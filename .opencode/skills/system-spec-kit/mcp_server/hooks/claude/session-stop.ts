@@ -18,6 +18,7 @@ import {
   ensureStateDir, loadState, updateState, cleanStaleStates,
   type HookState, type HookProducerMetadata, type PersistedHookState,
 } from './hook-state.js';
+import { runWarmSpecMemoryCliTool } from '../spec-memory-cli-fallback.js';
 import { parseTranscript, estimateCost, type TranscriptUsage } from './claude-transcript.js';
 
 /** Default max age (ms) for stale state cleanup in --finalize mode */
@@ -99,10 +100,36 @@ interface SpecFolderDetectionResult {
  * create a torn-state window where interleaved writers could re-compose
  * fields between the stop hook's atomic write and the autosave spawn.
  */
-function runContextAutosave(
+async function runContextAutosaveCliFallback(
   sessionId: string,
   state: PersistedHookState,
-): SessionStopAutosaveOutcome {
+  primaryOutcome: SessionStopAutosaveOutcome,
+  reason: string,
+): Promise<SessionStopAutosaveOutcome> {
+  const specFolder = state.lastSpecFolder?.trim();
+  if (!specFolder) {
+    return primaryOutcome;
+  }
+  const result = await runWarmSpecMemoryCliTool({
+    toolName: 'session_resume',
+    args: { specFolder, sessionId, minimal: true },
+    sessionId,
+    timeoutMs: Math.min(1000, AUTOSAVE_TIMEOUT_MS),
+  });
+  if (result.status === 'ok') {
+    hookLog('warn', 'session-stop', `Context auto-save deferred after ${reason}; CLI warm path reached the daemon in ${result.durationMs}ms`);
+    return 'deferred';
+  }
+  if (result.exitCode === 75 || result.reason) {
+    hookLog('warn', 'session-stop', `Context auto-save CLI fallback skipped (${result.reason ?? `exit=${result.exitCode}`})`);
+  }
+  return primaryOutcome;
+}
+
+async function runContextAutosave(
+  sessionId: string,
+  state: PersistedHookState,
+): Promise<SessionStopAutosaveOutcome> {
   const specFolder = state.lastSpecFolder?.trim();
   const summary = state.sessionSummary?.text?.trim();
 
@@ -113,7 +140,7 @@ function runContextAutosave(
   const scriptPath = resolveGenerateContextScriptPath();
   if (!scriptPath) {
     hookLog('warn', 'session-stop', 'Auto-save skipped: generate-context.js not found');
-    return 'skipped';
+    return runContextAutosaveCliFallback(sessionId, state, 'skipped', 'missing autosave script');
   }
 
   const payload = {
@@ -147,7 +174,7 @@ function runContextAutosave(
   const stdout = (result.stdout ?? '').trim();
   const errorText = stderr || stdout || result.error?.message || `exit=${String(result.status)}`;
   hookLog('warn', 'session-stop', `Context auto-save failed: ${errorText}`);
-  return 'failed';
+  return runContextAutosaveCliFallback(sessionId, state, 'failed', 'primary autosave failure');
 }
 
 export interface SessionStopProcessOptions {
@@ -502,7 +529,7 @@ export async function processStopHook(
       // No pre-existing state and no patch attempted → nothing to save.
       autosaveOutcome = 'skipped';
     } else {
-      autosaveOutcome = runContextAutosave(sessionId, autosaveState);
+      autosaveOutcome = await runContextAutosave(sessionId, autosaveState);
     }
   }
 
