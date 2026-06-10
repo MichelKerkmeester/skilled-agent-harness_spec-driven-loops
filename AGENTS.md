@@ -134,6 +134,10 @@ Use the CLI only when the `mk-spec-memory` MCP tools are missing from the runtim
 
 Use the CLI only when the `mk-code-index` MCP transport is missing/down or `code_graph_status` transport returns a daemon/IPC failure while the daemon is otherwise expected to be warm. Exact warm read: `node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 3000 --warm-only`. Exit `75` means retryable daemon/IPC unavailability; retry after MCP reconnect, daemon prewarm, or a short backoff. Prompt-time hooks must probe the code-index socket first and skip if absent; `code_graph_scan`, `code_graph_apply`, and `code_graph_verify` are maintenance commands and must never run from prompt-time hooks.
 
+**Skill Advisor CLI Transport Fallback:**
+
+Use the CLI only when the `mk_skill_advisor` MCP tools are missing from the runtime, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm. Exact warm read: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000`. Exit `75` means retryable daemon/IPC unavailability; retry after MCP reconnect, daemon prewarm, or a short backoff instead of treating it as user error. Warm-only policy: prompt-time use must probe the advisor socket first and skip if absent — never cold-spawn the daemon from a prompt-time path; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are maintenance-only and require `--trusted`.
+
 ---
 
 ### Quality & Anti-Patterns
@@ -212,7 +216,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
 1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.
-2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior.
+2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. When the advisor daemon is warm, the daemon-backed CLI is the alternative: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --warm-only --format json` (see "Skill Advisor CLI Transport Fallback").
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`

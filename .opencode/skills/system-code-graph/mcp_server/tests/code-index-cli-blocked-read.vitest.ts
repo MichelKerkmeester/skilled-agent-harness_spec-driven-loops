@@ -44,7 +44,10 @@ describe('code-index CLI blocked-read rendering', () => {
         harness.env.SPECKIT_CODE_GRAPH_INDEX_SKILLS = 'true';
         const result = await harness.runCli([...command.args, '--format', format]);
 
-        expect(result.exitCode).not.toBeNull();
+        // Exit-code policy: a blocked read is a rendered result, not an error —
+        // the CLI must exit 0 (EXIT_SUCCESS), reserving 1/64/69/75 for failures.
+        expect(result.signal).toBeNull();
+        expect(result.exitCode).toBe(0);
         if (format === 'json' || format === 'jsonl') {
           expectBlockedRender(parseJsonOutput(result));
         } else {

@@ -124,8 +124,26 @@ class JsonRpcError extends Error {
   }
 }
 
-function writeLine(stream: Pick<NodeJS.WriteStream, 'write'>, value: string): void {
-  stream.write(`${value}\n`);
+// Awaits drain when the kernel pipe buffer is full: a fire-and-forget
+// write followed by process.exit() truncates large payloads at the pipe
+// buffer boundary (observed as exactly 64KB on darwin). Streams without
+// emitter methods (test fakes) resolve immediately.
+async function writeLine(stream: Pick<NodeJS.WriteStream, 'write'>, value: string): Promise<void> {
+  const flushed = stream.write(`${value}\n`);
+  if (flushed) return;
+  const drainable = stream as Pick<NodeJS.WriteStream, 'write'> & Partial<Pick<NodeJS.WriteStream, 'once' | 'off'>>;
+  if (typeof drainable.once !== 'function') return;
+  await new Promise<void>((resolve) => {
+    const settle = (): void => {
+      drainable.off?.('drain', settle);
+      drainable.off?.('error', settle);
+      drainable.off?.('close', settle);
+      resolve();
+    };
+    drainable.once?.('drain', settle);
+    drainable.once?.('error', settle);
+    drainable.once?.('close', settle);
+  });
 }
 
 function currentModulePath(): string {
@@ -733,15 +751,15 @@ export async function runSpecMemoryCli(argv: string[], io: CliIo = { stdout: pro
   try {
     const parsed = parseCliArgs(argv);
     if (parsed.help) {
-      writeLine(io.stdout, usageText());
+      await writeLine(io.stdout, usageText());
       return EXIT_SUCCESS;
     }
     if (parsed.version) {
-      writeLine(io.stdout, readCliVersion(findRepoPaths()));
+      await writeLine(io.stdout, readCliVersion(findRepoPaths()));
       return EXIT_SUCCESS;
     }
     if (parsed.command === 'list-tools') {
-      writeLine(io.stdout, renderToolList(parsed.format));
+      await writeLine(io.stdout, renderToolList(parsed.format));
       return EXIT_SUCCESS;
     }
 
@@ -751,7 +769,7 @@ export async function runSpecMemoryCli(argv: string[], io: CliIo = { stdout: pro
     }
     const result = await callTool(validated.tool.name, validated.args, parsed.timeoutMs, parsed.warmOnly);
     const { payload, isError } = extractToolPayload(validated.tool.name, result);
-    writeLine(io.stdout, renderPayload(payload, parsed.format));
+    await writeLine(io.stdout, renderPayload(payload, parsed.format));
     return isError ? EXIT_RUNTIME : EXIT_SUCCESS;
   } catch (error: unknown) {
     const exitCode = exitCodeForError(error);
@@ -769,9 +787,9 @@ export async function runSpecMemoryCli(argv: string[], io: CliIo = { stdout: pro
       }
     })();
     if (format === 'json' || format === 'jsonl') {
-      writeLine(io.stderr, renderJson(payload, format));
+      await writeLine(io.stderr, renderJson(payload, format));
     } else {
-      writeLine(io.stderr, `ERROR: ${message}`);
+      await writeLine(io.stderr, `ERROR: ${message}`);
     }
     return exitCode;
   }
@@ -797,6 +815,9 @@ export const __testing = {
 };
 
 if (isCliEntrypoint()) {
-  const exitCode = await runSpecMemoryCli(process.argv.slice(2));
-  process.exit(exitCode);
+  // Natural exit via process.exitCode: a hard process.exit() drops any
+  // stdout bytes still queued behind the kernel pipe buffer, truncating
+  // large payloads. Pending pipe writes keep the event loop alive until
+  // they flush; all sockets and timers are closed or unref'd by here.
+  process.exitCode = await runSpecMemoryCli(process.argv.slice(2));
 }

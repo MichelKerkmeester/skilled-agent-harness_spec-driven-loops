@@ -91,6 +91,10 @@ Delivered as sandboxed vitest coverage over the existing daemon/launcher stack; 
 | Dual-client | MCP + CLI against one daemon verified |
 | Tri-daemon drill (program gate) | PASSED 1/1: per-launcher single-owner, respawn-lock serialization, divergent SIGTERM reap, zero orphans |
 | Host isolation | Host daemons untouched |
+
+### Fidelity Notes
+
+Parity (real `python3` local scorer vs native path) and orphan-reaping (real launcher: killed parent, removed worktree, warm adoption) run process-level end-to-end in a sandbox; dual-client and job-semantics lock the MCP+CLI contract against one daemon. The tri-daemon drill exercises the three REAL launchers with stub CLI children by design — it proves lease ownership, respawn-lock serialization, and divergent SIGTERM reap under concurrent auto-spawn, not the full CLI binaries end-to-end. The multi-runtime transport-down drill is not covered here and stays open in `003-runtime-integration/`.
 <!-- /ANCHOR:verification -->
 
 ---

@@ -11,15 +11,15 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli"
-    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_at: "2026-06-10T00:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "All three implementation phases verified complete"
-    next_safe_action: "Continue dual-stack observation window (open by design)"
+    recent_action: "Implementation phases complete; suites green; T9xx drill open"
+    next_safe_action: "Run T9xx transport-down drill in dual-stack window"
     blockers: []
     key_files:
       - "spec.md"
       - "000-code-index-cli-research/spec.md"
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -100,7 +100,7 @@ Settle CLI-fallback feasibility for mk_code_index with evidence, then deliver a 
 | 000 | `000-code-index-cli-research/` | Complete | Feasibility research: GO for daemon-backed dual-stack CLI; 8/8 portable; D1–D10; 6–9d estimate |
 | 1 | `001-cli-core/` | Complete | code-index CLI: all-8 manifest codegen, validateToolArgs parity, blocked-read rendering, exits, shim guards (~3.5–4.5d) |
 | 2 | `002-hardening-and-tests/` | Complete | Regression-lock: dual-client, dual-spawn/respawn, blocked-read suite, all-8 parity (~1.5–2d) |
-| 3 | `003-runtime-integration/` | Complete (dual-stack observation window open) | Pairing: hooks ×3 runtimes (CLI warm path), OpenCode plugin bridge REPAIR + CLI fallback, allowlists, dual-stack window (~1.5–2d) |
+| 3 | `003-runtime-integration/` | Implementation complete; T9xx transport-down drill pending (dual-stack observation window open) | Pairing: hooks ×3 runtimes (CLI warm path), OpenCode plugin bridge REPAIR + CLI fallback, allowlists, dual-stack window (~1.5–2d) |
 
 ### Phase Transition Rules
 

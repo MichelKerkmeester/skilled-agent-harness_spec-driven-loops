@@ -126,8 +126,26 @@ class JsonRpcError extends Error {
   }
 }
 
-function writeLine(stream: Pick<NodeJS.WriteStream, 'write'>, value: string): void {
-  stream.write(`${value}\n`);
+// Awaits drain when the kernel pipe buffer is full: a fire-and-forget
+// write followed by process.exit() truncates large payloads at the pipe
+// buffer boundary (observed as exactly 64KB on darwin). Streams without
+// emitter methods (test fakes) resolve immediately.
+async function writeLine(stream: Pick<NodeJS.WriteStream, 'write'>, value: string): Promise<void> {
+  const flushed = stream.write(`${value}\n`);
+  if (flushed) return;
+  const drainable = stream as Pick<NodeJS.WriteStream, 'write'> & Partial<Pick<NodeJS.WriteStream, 'once' | 'off'>>;
+  if (typeof drainable.once !== 'function') return;
+  await new Promise<void>((resolve) => {
+    const settle = (): void => {
+      drainable.off?.('drain', settle);
+      drainable.off?.('error', settle);
+      drainable.off?.('close', settle);
+      resolve();
+    };
+    drainable.once?.('drain', settle);
+    drainable.once?.('error', settle);
+    drainable.once?.('close', settle);
+  });
 }
 
 function currentModulePath(): string {
@@ -194,7 +212,12 @@ Examples:
   code-index detect_changes --json '{"diff":"diff --git a/a.ts b/a.ts\n"}' --warm-only --timeout-ms 2000
 
 Exit codes:
-  0 success, 1 runtime error, 64 usage/schema error, 69 protocol/dist mismatch, 75 retryable daemon error`;
+  0 success, 1 runtime error, 64 usage/schema error, 69 protocol/dist mismatch, 75 retryable daemon error
+
+Exit code notes:
+  detect_changes status:"parse_error" (malformed diff input) exits 64.
+  status:"blocked" readiness refusals exit 0 deliberately: blocked is an
+  actionable answer (run the surfaced requiredAction), not a CLI failure.`;
 }
 
 function normalizeName(value: string): string {
@@ -431,6 +454,55 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
   };
 }
 
+function declaredSchemaTypes(propertySchema: unknown): string[] {
+  if (!isRecord(propertySchema)) return [];
+  const type = propertySchema.type;
+  if (typeof type === 'string') return [type];
+  if (Array.isArray(type)) return type.filter((entry): entry is string => typeof entry === 'string');
+  return [];
+}
+
+// Flag values arrive as strings; without schema-driven coercion a numeric
+// filter like `--min-confidence 0.8` reaches the daemon as "0.8", which
+// numeric clamps silently treat as 0 — the user's filter is dropped under
+// a status:ok response. Coerce strings to the schema-declared primitive
+// and reject unparseable values as usage errors instead.
+function coerceArgsToSchema(tool: ToolDefinition, args: Record<string, unknown>): Record<string, unknown> {
+  const schema = tool.inputSchema;
+  const properties = isRecord(schema) && isRecord(schema.properties) ? schema.properties : null;
+  if (!properties) return args;
+
+  const coerced: Record<string, unknown> = { ...args };
+  for (const [key, value] of Object.entries(args)) {
+    if (typeof value !== 'string') continue;
+    const types = declaredSchemaTypes(properties[key]);
+    if (types.includes('number') || types.includes('integer')) {
+      const trimmed = value.trim();
+      const parsed = trimmed.length > 0 ? Number(trimmed) : Number.NaN;
+      if (!Number.isFinite(parsed)) {
+        throw new CliUsageError(`Invalid value for ${key}: expected ${types.includes('integer') ? 'an integer' : 'a number'}, received "${value}"`);
+      }
+      if (types.includes('integer') && !Number.isInteger(parsed)) {
+        throw new CliUsageError(`Invalid value for ${key}: expected an integer, received "${value}"`);
+      }
+      coerced[key] = parsed;
+      continue;
+    }
+    if (types.includes('boolean')) {
+      if (value === 'true' || value === '1') {
+        coerced[key] = true;
+        continue;
+      }
+      if (value === 'false' || value === '0') {
+        coerced[key] = false;
+        continue;
+      }
+      throw new CliUsageError(`Invalid value for ${key}: expected true or false, received "${value}"`);
+    }
+  }
+  return coerced;
+}
+
 function missingRequiredArgs(tool: ToolDefinition, args: Record<string, unknown>): string[] {
   return requiredPropertyNames(tool).filter((key) => {
     const value = args[key];
@@ -445,7 +517,7 @@ function validateCommand(parsed: ParsedCommand): { readonly tool: ToolDefinition
     throw new CliUsageError(`Unknown command: ${parsed.command}`);
   }
 
-  const args = { ...parsed.args };
+  const args = coerceArgsToSchema(tool, { ...parsed.args });
   const missing = missingRequiredArgs(tool, args);
   if (missing.length > 0) {
     throw new CliUsageError(`Missing required field${missing.length === 1 ? '' : 's'}: ${missing.join(', ')}`);
@@ -592,6 +664,10 @@ function renderPayload(toolName: string, payload: unknown, format: OutputFormat)
 
 function isErrorPayload(payload: unknown): boolean {
   return isRecord(payload) && payload.status === 'error';
+}
+
+function isParseErrorPayload(payload: unknown): boolean {
+  return isRecord(payload) && payload.status === 'parse_error';
 }
 
 function isProtocolMismatch(error: unknown): boolean {
@@ -823,15 +899,15 @@ export async function runCodeIndexCli(argv: string[], io: CliIo = { stdout: proc
   try {
     const parsed = parseCliArgs(argv);
     if (parsed.help) {
-      writeLine(io.stdout, usageText());
+      await writeLine(io.stdout, usageText());
       return EXIT_SUCCESS;
     }
     if (parsed.version) {
-      writeLine(io.stdout, readCliVersion(findRepoPaths()));
+      await writeLine(io.stdout, readCliVersion(findRepoPaths()));
       return EXIT_SUCCESS;
     }
     if (parsed.command === 'list-tools') {
-      writeLine(io.stdout, renderToolList(parsed.format));
+      await writeLine(io.stdout, renderToolList(parsed.format));
       return EXIT_SUCCESS;
     }
 
@@ -842,7 +918,10 @@ export async function runCodeIndexCli(argv: string[], io: CliIo = { stdout: proc
     const result = await callTool(validated.tool.name, validated.args, parsed.timeoutMs, parsed.warmOnly);
     const { payload, isError } = extractToolPayload(validated.tool.name, result);
     const renderedPayload = normalizeBlockedPayload(validated.tool.name, payload);
-    writeLine(io.stdout, renderPayload(validated.tool.name, renderedPayload, parsed.format));
+    await writeLine(io.stdout, renderPayload(validated.tool.name, renderedPayload, parsed.format));
+    if (validated.tool.name === 'detect_changes' && isParseErrorPayload(renderedPayload)) {
+      return EXIT_USAGE;
+    }
     return isError || isErrorPayload(renderedPayload) ? EXIT_RUNTIME : EXIT_SUCCESS;
   } catch (error: unknown) {
     const exitCode = exitCodeForError(error);
@@ -860,9 +939,9 @@ export async function runCodeIndexCli(argv: string[], io: CliIo = { stdout: proc
       }
     })();
     if (format === 'json' || format === 'jsonl') {
-      writeLine(io.stderr, renderJson(payload, format));
+      await writeLine(io.stderr, renderJson(payload, format));
     } else {
-      writeLine(io.stderr, `ERROR: ${message}`);
+      await writeLine(io.stderr, `ERROR: ${message}`);
     }
     return exitCode;
   }
@@ -890,6 +969,9 @@ export const __testing = {
 };
 
 if (isCliEntrypoint()) {
-  const exitCode = await runCodeIndexCli(process.argv.slice(2));
-  process.exit(exitCode);
+  // Natural exit via process.exitCode: a hard process.exit() drops any
+  // stdout bytes still queued behind the kernel pipe buffer, truncating
+  // large payloads. Pending pipe writes keep the event loop alive until
+  // they flush; all sockets and timers are closed or unref'd by here.
+  process.exitCode = await runCodeIndexCli(process.argv.slice(2));
 }

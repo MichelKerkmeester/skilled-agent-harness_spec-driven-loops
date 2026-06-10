@@ -12,10 +12,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition"
-    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_at: "2026-06-10T00:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "All nine implementation phases verified; tri-daemon gate passed"
-    next_safe_action: "Run the deep-review + release-cleanup program"
+    recent_action: "Implementation done, suites green; runtime T9xx drills pending"
+    next_safe_action: "Run T9xx transport-down drills during dual-stack window"
     blockers: []
     key_files:
       - "spec.md"
@@ -99,9 +99,9 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 
 | Phase | Folder | Status | Scope |
 |-------|--------|--------|-------|
-| 001 | `001-spec-memory-cli/` | Implementation complete (dual-stack window open) | The spec-memory CLI workstream. Research record nested as `000-spec-memory-cli-research/` (four runs ending in GO + zero unknowns, 8 delta specs, 10–13d estimate); implementation children: `001-cli-core/` (build), `002-hardening-and-tests/` (regression-lock), `003-runtime-integration/` (adoption + dual-stack window) |
-| 002 | `002-code-index-cli/` | Implementation complete | CLI-fallback workstream for `mk_code_index` (system-code-graph, 8 tools); phase 000 feasibility research, implementation phases on GO |
-| 003 | `003-skill-advisor-cli/` | Implementation complete (tri-daemon program gate passed) | CLI-fallback workstream for `mk_skill_advisor` (system-skill-advisor, 9 tools); phase 000 feasibility research incl. the skill_advisor.py reconcile-vs-supersede question |
+| 001 | `001-spec-memory-cli/` | Implementation complete, suites green; T9xx transport-down drill pending (dual-stack window open) | The spec-memory CLI workstream. Research record nested as `000-spec-memory-cli-research/` (four runs ending in GO + zero unknowns, 8 delta specs, 10–13d estimate); implementation children: `001-cli-core/` (build), `002-hardening-and-tests/` (regression-lock), `003-runtime-integration/` (adoption + dual-stack window) |
+| 002 | `002-code-index-cli/` | Implementation complete, suites green; T9xx transport-down drill pending (dual-stack window open) | CLI-fallback workstream for `mk_code_index` (system-code-graph, 8 tools); phase 000 feasibility research, implementation phases on GO |
+| 003 | `003-skill-advisor-cli/` | Implementation complete (tri-daemon program gate passed); T9xx transport-down drill pending (dual-stack window open) | CLI-fallback workstream for `mk_skill_advisor` (system-skill-advisor, 9 tools); phase 000 feasibility research incl. the skill_advisor.py reconcile-vs-supersede question |
 | 004+ | not yet created | Pending | Separately-gated follow-ons: migration of the measured MCP reference surfaces, then the MCP-retirement decision |
 
 ### Phase Transition Rules

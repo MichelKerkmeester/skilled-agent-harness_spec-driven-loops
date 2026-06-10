@@ -135,10 +135,22 @@ export function parseJsonOutput(result: ProcessResult): unknown {
   return JSON.parse(text);
 }
 
-export function expectBlockedRender(value: unknown): void {
-  const text = typeof value === 'string' ? value : JSON.stringify(value);
-  expect(text).toContain('blocked');
-  expect(text).toContain('requiredAction');
+export function expectBlockedRender(value: unknown, expectedRequiredAction = 'code_graph_scan'): void {
+  if (typeof value === 'string') {
+    // Text format renders the normalized envelope as two fixed lines:
+    //   blocked: <reason>
+    //   requiredAction: <action>
+    expect(value).toMatch(/^blocked: .+$/m);
+    expect(value).toMatch(new RegExp(`^requiredAction: ${expectedRequiredAction}$`, 'm'));
+    return;
+  }
+
+  expect(value).toBeTypeOf('object');
+  expect(value).not.toBeNull();
+  const envelope = value as { status?: unknown; requiredAction?: unknown; data?: { requiredAction?: unknown } };
+  expect(envelope.status).toBe('blocked');
+  expect(envelope.requiredAction).toBe(expectedRequiredAction);
+  expect(envelope.data?.requiredAction).toBe(expectedRequiredAction);
 }
 
 export function textFromMcpResult(result: unknown): string {

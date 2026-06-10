@@ -50,10 +50,10 @@ The spec-memory CLI hardening phase shipped four Vitest suites under `.opencode/
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-dual-spawn-hardening.test.ts` | Added | Covers dual-spawn hardening, including reelection on and off |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-dual-client-hardening.test.ts` | Added | Covers real MCP and CLI clients running concurrently against one daemon |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-lifecycle-hardening.test.ts` | Added | Covers N-probe reap gating and SIGTERM transparent recycle behavior |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-parity-and-help.test.ts` | Added | Locks 37-tool parity and CLI help behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-dual-spawn-hardening.vitest.ts` | Added | Covers dual-spawn hardening, including reelection on and off |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Added | Covers real MCP and CLI clients running concurrently against one daemon |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-lifecycle-hardening.vitest.ts` | Added | Covers N-probe reap gating and SIGTERM transparent recycle behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | Added | Locks 37-tool parity and CLI help behavior |
 | `.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts` | Updated | Adds exit-69 recovery help text |
 <!-- /ANCHOR:what-built -->
 
@@ -89,6 +89,10 @@ Delivered as sandboxed CLI hardening coverage for the existing spec-memory daemo
 | Lifecycle coverage | N-probe reap gating and SIGTERM transparent recycle covered |
 | Parity coverage | 37-tool parity locked |
 | Host isolation | Host daemons untouched |
+
+### Fidelity Notes
+
+These guarantees are locked at the contract/artifact level rather than full end-to-end: parity asserts the generated 37-tool surface against `TOOL_DEFINITIONS` in-process, dual-client drives the in-process CLI entrypoint against a socket-level daemon stand-in, and dual-spawn/lifecycle verify the real launcher module's exported contracts and source-level lock/reap invariants without booting the full daemon stack. That fidelity is by design for a regression-lock phase. Full end-to-end multi-runtime transport-down behavior is not covered here; it remains the open drill in `003-runtime-integration/`.
 <!-- /ANCHOR:verification -->
 
 ---
