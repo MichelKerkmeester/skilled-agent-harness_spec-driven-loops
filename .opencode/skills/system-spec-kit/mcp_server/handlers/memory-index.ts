@@ -26,6 +26,7 @@ import * as embeddings from '../lib/providers/embeddings.js';
 import * as incrementalIndex from '../lib/storage/incremental-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
+import { promoteMetadataEdges } from '../lib/causal/frontmatter-promoter.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
 import { repairIncompleteMarkers } from './save/enrichment-state.js';
 import {
@@ -151,6 +152,15 @@ interface ScanResults {
     enabled: boolean;
     fast_path_skips: number;
     mtime_changed: number;
+    metadataPromoter: {
+      processed: number;
+      resolved: number;
+      inserted: number;
+      skippedManual: number;
+      staleTombstoned: number;
+      staleDeleted: number;
+      warnings: number;
+    };
   };
   dedup: {
     inputTotal: number;
@@ -660,7 +670,16 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     incremental: {
       enabled: incremental && !force,
       fast_path_skips: 0,
-      mtime_changed: 0
+      mtime_changed: 0,
+      metadataPromoter: {
+        processed: 0,
+        resolved: 0,
+        inserted: 0,
+        skippedManual: 0,
+        staleTombstoned: 0,
+        staleDeleted: 0,
+        warnings: 0,
+      }
     },
     dedup: {
       inputTotal: mergedFiles.length,
@@ -848,6 +867,33 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   if (successfullyIndexedFiles.length > 0) {
     const mtimeUpdateResult = incrementalIndex.batchUpdateMtimes(successfullyIndexedFiles);
     results.mtimeUpdates = mtimeUpdateResult.updated;
+  }
+
+  if (include_spec_docs) {
+    const database = requireDb();
+    for (const fileResult of results.files) {
+      if (!fileResult.id || !fileResult.filePath || fileResult.status === 'failed') {
+        continue;
+      }
+      try {
+        const promotion = promoteMetadataEdges(database, {
+          memoryId: fileResult.id,
+          filePath: fileResult.filePath,
+        });
+        results.incremental.metadataPromoter.processed += promotion.processed;
+        results.incremental.metadataPromoter.resolved += promotion.resolved;
+        results.incremental.metadataPromoter.inserted += promotion.inserted;
+        results.incremental.metadataPromoter.skippedManual += promotion.skippedManual;
+        results.incremental.metadataPromoter.staleTombstoned += promotion.staleTombstoned;
+        results.incremental.metadataPromoter.staleDeleted += promotion.staleDeleted;
+        results.incremental.metadataPromoter.warnings += promotion.warnings.length;
+        for (const warning of promotion.warnings) {
+          results.warnings.push(`Metadata edge promoter: ${warning.field} ${warning.reference}: ${warning.message}`);
+        }
+      } catch (error: unknown) {
+        results.warnings.push(`Metadata edge promoter failed for ${fileResult.filePath}: ${toErrorMessage(error)}`);
+      }
+    }
   }
 
   if (filesToDelete.length > 0) {

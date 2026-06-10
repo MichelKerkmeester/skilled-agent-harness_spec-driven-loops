@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "027-xce-research-based-refinement/003-memory-index-causal-lifecycle/003-metadata-edge-promoter"
-    last_updated_at: "2026-06-05T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Applied 2026-06-05 audit rescope: narrow promoter vs relation-backfill"
-    next_safe_action: "Implement parent/children/parentChain promotion + provenance columns"
+    last_updated_at: "2026-06-10T08:20:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shipped metadata edge promoter with tests"
+    next_safe_action: "Use v33 promoter in memory index scans"
     blockers:
       - "004"
     key_files:
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-005-spec-authoring"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions:
       - "depends_on relation"
     answered_questions:
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Target Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-13 |
 | **Branch** | `scaffold/005-metadata-edge-promoter` |
 | **Parent Spec** | ../spec.md |

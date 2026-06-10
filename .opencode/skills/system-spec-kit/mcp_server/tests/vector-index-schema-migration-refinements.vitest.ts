@@ -389,7 +389,7 @@ describe('vector-index schema migration refinements', () => {
 
     // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(32);
+    expect(versionRow.version).toBe(33);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
@@ -451,7 +451,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(32);
+    expect(versionRow.version).toBe(33);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edge_tombstones)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -480,5 +480,64 @@ describe('vector-index schema migration refinements', () => {
     const tombstoneCount = database.prepare('SELECT COUNT(*) AS count FROM causal_edge_tombstones').get() as { count: number };
     expect(activeCount.count).toBe(1);
     expect(tombstoneCount.count).toBe(0);
+  });
+
+  it('adds generated causal-edge provenance columns during the v33 upgrade without touching active edges', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    database.exec('ALTER TABLE causal_edges RENAME TO causal_edges_with_provenance');
+    database.exec(`
+      CREATE TABLE causal_edges (
+        id INTEGER PRIMARY KEY,
+        source_id TEXT NOT NULL,
+        target_id TEXT NOT NULL,
+        source_anchor TEXT,
+        target_anchor TEXT,
+        relation TEXT NOT NULL,
+        strength REAL DEFAULT 1.0,
+        evidence TEXT,
+        extracted_at TEXT DEFAULT (datetime('now')),
+        created_by TEXT DEFAULT 'manual',
+        last_accessed TEXT,
+        UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)
+      )
+    `);
+    database.exec(`
+      INSERT INTO causal_edges (
+        id, source_id, target_id, source_anchor, target_anchor, relation,
+        strength, evidence, extracted_at, created_by, last_accessed
+      )
+      SELECT id, source_id, target_id, source_anchor, target_anchor, relation,
+        strength, evidence, extracted_at, created_by, last_accessed
+      FROM causal_edges_with_provenance;
+      DROP TABLE causal_edges_with_provenance;
+    `);
+    database.prepare('UPDATE schema_version SET version = 32 WHERE id = 1').run();
+    database.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, evidence, created_by)
+      VALUES (?, ?, ?, ?, ?)
+    `).run('301', '302', 'derived_from', 'active edge survives provenance migration', 'manual');
+
+    ensureSchemaVersion(database);
+
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(versionRow.version).toBe(33);
+
+    const columns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining(['confidence', 'extraction_method']));
+
+    const row = database.prepare(`
+      SELECT confidence, extraction_method, evidence, created_by
+      FROM causal_edges
+      WHERE source_id = '301' AND target_id = '302'
+    `).get() as { confidence: number; extraction_method: string; evidence: string; created_by: string };
+    expect(row).toEqual({
+      confidence: 1,
+      extraction_method: 'manual',
+      evidence: 'active edge survives provenance migration',
+      created_by: 'manual',
+    });
   });
 });

@@ -54,7 +54,9 @@ describe('vector-index schema incremental foundation', () => {
       expect(getColumnNames(db, 'memory_index')).toEqual(expect.arrayContaining([...CHUNK_COLUMNS]));
       expect(hasIndex(db, 'idx_memory_chunk_identity')).toBe(true);
       expect(hasIndex(db, 'idx_memory_chunk_fingerprint')).toBe(true);
-      expect(SCHEMA_VERSION).toBe(32);
+      // The incremental-index foundation ships from v31 onward; assert it is present
+      // rather than pinning an exact version that restales on every later migration.
+      expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(31);
     } finally {
       db.close();
     }

@@ -132,6 +132,23 @@ describe('Vector index schema compatibility validator', () => {
         CREATE INDEX idx_conflicts_memory ON memory_conflicts(existing_memory_id);
         CREATE INDEX idx_conflicts_timestamp ON memory_conflicts(timestamp DESC);
 
+        CREATE TABLE causal_edges (
+          id INTEGER PRIMARY KEY,
+          source_id TEXT NOT NULL,
+          target_id TEXT NOT NULL,
+          source_anchor TEXT,
+          target_anchor TEXT,
+          relation TEXT NOT NULL,
+          strength REAL DEFAULT 1.0,
+          evidence TEXT,
+          extracted_at TEXT DEFAULT (datetime('now')),
+          created_by TEXT DEFAULT 'manual',
+          confidence REAL DEFAULT 1.0,
+          extraction_method TEXT DEFAULT 'manual',
+          last_accessed TEXT,
+          UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)
+        );
+
         CREATE TABLE causal_edge_tombstones (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           source_id TEXT NOT NULL,

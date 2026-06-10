@@ -158,6 +158,11 @@ interface DeleteEdgeOptions {
   restoreContext?: Record<string, unknown>;
 }
 
+interface InsertEdgeMetadataOptions {
+  confidence?: number;
+  extractionMethod?: string;
+}
+
 interface CausalChainNode {
   id: string;
   edgeId?: number;          // Preserve causal_edges.id for unlink workflow
@@ -278,6 +283,7 @@ function insertEdge(
   shouldInvalidateCache: boolean = true,
   createdBy: string = 'manual',
   anchors: { sourceAnchor?: string | null; targetAnchor?: string | null } = {},
+  metadata: InsertEdgeMetadataOptions = {},
 ): number | null {
   if (!db) {
     console.warn('[causal-edges] Database not initialized. Server may still be starting up.');
@@ -352,37 +358,47 @@ function insertEdge(
         return 0;
       }
 
+      const columns = new Set((database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
+        .map((column) => column.name));
+
       if (existing) {
+        const assignments = [
+          'strength = ?',
+          'evidence = COALESCE(?, evidence)',
+          'created_by = ?',
+        ];
+        const params: unknown[] = [clampedStrength, evidence, createdBy];
+        if (columns.has('confidence') && metadata.confidence !== undefined) {
+          assignments.push('confidence = ?');
+          params.push(metadata.confidence);
+        }
+        if (columns.has('extraction_method') && metadata.extractionMethod !== undefined) {
+          assignments.push('extraction_method = ?');
+          params.push(metadata.extractionMethod);
+        }
+        params.push(existing.id);
+
         (database.prepare(`
           UPDATE causal_edges
-          SET strength = ?,
-              evidence = COALESCE(?, evidence),
-              created_by = ?
+          SET ${assignments.join(',\n              ')}
           WHERE id = ?
-        `) as Database.Statement).run(
-          clampedStrength,
-          evidence,
-          createdBy,
-          existing.id,
-        );
+        `) as Database.Statement).run(...params);
       } else {
         if (!enforceRelationWindowCap(relation, database)) {
           return 0;
         }
 
-        (database.prepare(`
-          INSERT INTO causal_edges (
-            source_id,
-            target_id,
-            source_anchor,
-            target_anchor,
-            relation,
-            strength,
-            evidence,
-            created_by
-          )
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        `) as Database.Statement).run(
+        const insertColumns = [
+          'source_id',
+          'target_id',
+          'source_anchor',
+          'target_anchor',
+          'relation',
+          'strength',
+          'evidence',
+          'created_by',
+        ];
+        const insertValues: unknown[] = [
           sourceId,
           targetId,
           anchors.sourceAnchor ?? null,
@@ -391,7 +407,22 @@ function insertEdge(
           clampedStrength,
           evidence,
           createdBy,
-        );
+        ];
+        if (columns.has('confidence') && metadata.confidence !== undefined) {
+          insertColumns.push('confidence');
+          insertValues.push(metadata.confidence);
+        }
+        if (columns.has('extraction_method') && metadata.extractionMethod !== undefined) {
+          insertColumns.push('extraction_method');
+          insertValues.push(metadata.extractionMethod);
+        }
+
+        (database.prepare(`
+          INSERT INTO causal_edges (
+            ${insertColumns.join(',\n            ')}
+          )
+          VALUES (${insertColumns.map(() => '?').join(', ')})
+        `) as Database.Statement).run(...insertValues);
       }
 
       const row = (database.prepare(`
@@ -441,6 +472,8 @@ function insertEdgesBatch(
     createdBy?: string;
     sourceAnchor?: string | null;
     targetAnchor?: string | null;
+    confidence?: number;
+    extractionMethod?: string;
   }>
 ): { inserted: number; failed: number } {
   if (!db) return { inserted: 0, failed: edges.length };
@@ -461,6 +494,10 @@ function insertEdgesBatch(
         {
           sourceAnchor: edge.sourceAnchor ?? null,
           targetAnchor: edge.targetAnchor ?? null,
+        },
+        {
+          confidence: edge.confidence,
+          extractionMethod: edge.extractionMethod,
         },
       );
       if (id !== null) inserted++;

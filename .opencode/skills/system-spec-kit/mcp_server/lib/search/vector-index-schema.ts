@@ -123,6 +123,10 @@ const REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS: readonly string[] = [
   'lifecycle_generation',
   'restore_metadata',
 ];
+const CAUSAL_EDGE_PROVENANCE_COLUMNS: ReadonlyArray<{ name: string; sql: string }> = [
+  { name: 'confidence', sql: 'ALTER TABLE causal_edges ADD COLUMN confidence REAL DEFAULT 1.0' },
+  { name: 'extraction_method', sql: "ALTER TABLE causal_edges ADD COLUMN extraction_method TEXT DEFAULT 'manual'" },
+];
 const REQUIRED_LINEAGE_TABLES: readonly string[] = [
   MEMORY_LINEAGE_TABLE,
   ACTIVE_MEMORY_PROJECTION_TABLE,
@@ -557,8 +561,33 @@ function getMigrationAllowedBasePaths(): string[] {
 // V30: Add post-insert enrichment completion markers
 // V31: Add incremental-index memo tables and chunk metadata
 // V32: Add causal edge tombstone audit table
+// V33: Add generated causal-edge provenance columns
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 32;
+export const SCHEMA_VERSION = 33;
+
+function ensureCausalEdgeProvenanceColumns(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'causal_edges')) {
+    logger.warn(`${context}: causal_edges missing; skipping generated-edge provenance columns`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'causal_edges'));
+  for (const column of CAUSAL_EDGE_PROVENANCE_COLUMNS) {
+    if (columns.has(column.name)) {
+      continue;
+    }
+    try {
+      database.exec(column.sql);
+      columns.add(column.name);
+      logger.info(`${context}: Added causal_edges.${column.name}`);
+    } catch (error: unknown) {
+      if (!get_error_message(error).includes('duplicate column')) {
+        throw error;
+      }
+      logDuplicateColumnMigrationSkip(column.name, error);
+    }
+  }
+}
 
 /**
  * Deprecate-before-create pre-pass for the active-row logical-key unique index.
@@ -1658,6 +1687,11 @@ export function run_migrations(database: Database.Database, from_version: number
   migrations[32] = () => {
     ensureCausalEdgeTombstoneSchema(database, 'Migration v32');
     logger.info('Migration v32: Created causal edge tombstone schema');
+  };
+
+  migrations[33] = () => {
+    ensureCausalEdgeProvenanceColumns(database, 'Migration v33');
+    logger.info('Migration v33: Added generated causal-edge provenance columns');
   };
 
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity

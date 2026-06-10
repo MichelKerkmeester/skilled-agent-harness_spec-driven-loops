@@ -150,6 +150,8 @@ const OPTIONAL_EDGE_COLUMNS: readonly string[] = [
   'evidence',
   'extracted_at',
   'created_by',
+  'confidence',
+  'extraction_method',
   'last_accessed',
 ];
 

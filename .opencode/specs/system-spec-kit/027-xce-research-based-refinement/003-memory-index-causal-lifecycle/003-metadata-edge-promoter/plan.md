@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/003-metadata-edge-promoter"
-    last_updated_at: "2026-06-04T00:00:00Z"
-    last_updated_by: "gpt-5-5"
-    recent_action: "Planned metadata edge promoter"
-    next_safe_action: "Confirm wired metadata links first"
-    blockers: ["004-causal-edge-tombstones should land before active generated-edge cleanup."]
+    last_updated_at: "2026-06-10T08:20:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed promoter implementation and verification"
+    next_safe_action: "Monitor scan warnings for unresolved packet IDs"
+    blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-phase-005-research-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Parent, child, and parentChain promotion remain planned."
@@ -57,15 +57,15 @@ Phase 005 promotes only deterministic, authored packet metadata into causal edge
 ### Definition of Ready
 - [x] Current parser already handles `manual.depends_on`, `manual.supersedes`, and `manual.related_to`.
 - [x] Missing high-confidence fields are identified: `graph-metadata.json.parent_id`, `graph-metadata.json.children_ids`, and `description.json.parentChain`.
-- [ ] Phase 004 tombstone lifecycle is available before stale generated-edge cleanup becomes active.
+- [x] Phase 004 tombstone lifecycle is available before stale generated-edge cleanup becomes active.
 
 ### Definition of Done
-- [ ] Relation mapping table documents source, target, and relation direction for every promoted field.
-- [ ] Promoter creates deterministic edge intents for parent, children, and parent-chain metadata.
-- [ ] Existing manual metadata relationship paths are deduplicated, not duplicated.
-- [ ] Unresolvable targets emit warnings and create no guessed edge.
-- [ ] Generated edges include provenance, confidence, and extraction method.
-- [ ] Strict validation passes for this phase.
+- [x] Relation mapping table documents source, target, and relation direction for every promoted field.
+- [x] Promoter creates deterministic edge intents for parent, children, and parent-chain metadata.
+- [x] Existing manual metadata relationship paths are deduplicated, not duplicated.
+- [x] Unresolvable targets emit warnings and create no guessed edge.
+- [x] Generated edges include provenance, confidence, and extraction method.
+- [x] Strict validation passes for this phase.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -110,28 +110,28 @@ Deterministic metadata-to-edge promotion with schema validation and idempotent s
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Field Inventory and Mapping
-- [ ] Confirm already-wired manual relationship fields and existing causal-link processor behavior.
-- [ ] Define relation direction semantics for parent, children, parentChain, depends_on, supersedes, and related_to.
-- [ ] Decide whether `related_to` maps to the current related/support relation without expanding vocabulary.
+- [x] Confirm already-wired manual relationship fields and existing causal-link processor behavior.
+- [x] Define relation direction semantics for parent, children, parentChain, depends_on, supersedes, and related_to.
+- [x] Decide whether `related_to` maps to the current related/support relation without expanding vocabulary.
 
 ### Phase 2: Promoter Foundation
-- [ ] Create relationship extractor helper for authored metadata fields.
-- [ ] Create generated edge-intent type with source, target, relation, anchors, confidence, extraction method, and source field.
-- [ ] Create promoter unit tests for each supported field and unresolved target behavior.
+- [x] Create relationship extractor helper for authored metadata fields.
+- [x] Create generated edge-intent type with source, target, relation, anchors, confidence, extraction method, and source field.
+- [x] Create promoter unit tests for each supported field and unresolved target behavior.
 
 ### Phase 3: Storage and Index Integration
-- [ ] Add generated-edge provenance fields if missing.
-- [ ] Add idempotent generated-edge write path that does not weaken manual edges.
-- [ ] Invoke promoter from `memory-index.ts` after metadata rows are indexed.
-- [ ] Defer or tombstone stale generated edges through Phase 004 lifecycle cleanup.
+- [x] Add generated-edge provenance fields if missing.
+- [x] Add idempotent generated-edge write path that does not weaken manual edges.
+- [x] Invoke promoter from `memory-index.ts` after metadata rows are indexed.
+- [x] Defer or tombstone stale generated edges through Phase 004 lifecycle cleanup.
 
 ### Phase 4: Verification
-- [ ] Test parent id creates child-to-parent edge.
-- [ ] Test children ids create parent-to-child edges or are inferred from child parent ids.
-- [ ] Test parentChain creates ancestor edges without duplicates.
-- [ ] Test re-indexing creates zero duplicates.
-- [ ] Test unresolved target warnings are visible.
-- [ ] Run strict validation for this phase.
+- [x] Test parent id creates child-to-parent edge.
+- [x] Test children ids create parent-to-child edges or are inferred from child parent ids.
+- [x] Test parentChain creates ancestor edges without duplicates.
+- [x] Test re-indexing creates zero duplicates.
+- [x] Test unresolved target warnings are visible.
+- [x] Run strict validation for this phase.
 <!-- /ANCHOR:phases -->
 
 ---
