@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Status: planned. This phase is specified but not yet implemented."
+description: "Concise self-check and failure-mode guidance now ships in the spec, plan, and checklist manifest templates."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates"
-    last_updated_at: "2026-06-02T10:04:52Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored phase docs"
-    next_safe_action: "Implement this phase"
+    last_updated_at: "2026-06-10T04:32:22Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed self-check guidance in manifest templates"
+    next_safe_action: "Proceed to next peck phase when ready"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-self-check-templates"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-self-check-templates |
-| **Completed** | Pending (planned) |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,22 +48,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Status: Planned - not yet implemented.** This phase is specified and ready to pick up; nothing has
-shipped yet. This summary will be rewritten in past tense once the work is done.
+Newly scaffolded specs now carry a short artifact-local self-check in the places authors actually fill:
+the spec, plan, and verification checklist. The guidance is compact HTML-comment prose, so it reminds
+authors to audit evidence, scope, and failure modes without adding tracked headings or changing the
+validator's required section order.
 
-### Planned outcome
-A short self-check + failure-modes guidance block will be added to the spec, plan, and checklist
-manifest templates, shipped as HTML-comment guidance so header validation stays green. The intent is
-that every newly scaffolded spec folder carries the "audit your own output" reminder where the author
-fills the form.
+### Template guidance
+
+The manifest templates now render `SELF-CHECK:` and `FAILURE MODES:` comment blocks immediately after
+their template source markers. The copy is tailored per artifact: spec guidance checks problem, outcome,
+scope, and evidence; plan guidance checks approach, affected surfaces, and verification path; checklist
+guidance checks evidence before completion marks and names rubber-stamping as the failure mode.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `templates/manifest/spec.md.tmpl` | Planned | Add self-check + failure-modes block |
-| `templates/manifest/plan.md.tmpl` | Planned | Add self-check + failure-modes block |
-| `templates/manifest/checklist.md.tmpl` | Planned | Add self-check + failure-modes block |
+| `templates/manifest/spec.md.tmpl` | Modified | Added self-check + failure-modes guidance to each generated level |
+| `templates/manifest/plan.md.tmpl` | Modified | Added self-check + failure-modes guidance to each generated level |
+| `templates/manifest/checklist.md.tmpl` | Modified | Added self-check + failure-modes guidance to each generated level |
+| `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Updated | Reconciled phase status, task evidence, and verification summary |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,8 +75,9 @@ fills the form.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending implementation. Planned verification: scaffold a throwaway folder and run `validate.sh --strict`
-to confirm the blocks render and introduce no header or section errors.
+The implementation stayed in the three manifest template files named by the phase scope. I used the
+existing comment-guidance pattern rather than tracked sections, then generated a Level 2 smoke scaffold
+so all three target artifacts rendered together and strict validation exercised the checklist surface.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -84,6 +89,7 @@ to confirm the blocks render and introduce no header or section errors.
 |----------|-----|
 | Ship as HTML-comment guidance, not a tracked section | TEMPLATE_HEADERS enforces exact header order; a comment block adds the guidance with zero header-validation risk and matches the existing voice-guide pattern. |
 | Scope to spec/plan/checklist only | These are the templates an author fills during a task; implementation-summary is a possible follow-up. |
+| Do not edit the parent changelog in this phase | The changelog is mentioned by phase notes but is not listed in Files to Change and sits outside the approved write paths. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -93,8 +99,10 @@ to confirm the blocks render and introduce no header or section errors.
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict` on a scaffold | Pending - phase not implemented |
-| Blocks render in spec/plan/checklist | Pending - phase not implemented |
+| Level 2 smoke scaffold rendered blocks in spec/plan/checklist | PASS (`SELF-CHECK` and `FAILURE MODES` found in all three files) |
+| Smoke scaffold guidance avoided line-start markdown headings | PASS (no `## SELF-CHECK` or `## FAILURE MODES` matches) |
+| `validate.sh --strict` on smoke scaffold | PASS (Errors: 0, Warnings: 0; v3.0.0) |
+| `validate.sh --strict` on this phase folder | PASS (Errors: 0, Warnings: 0; v3.0.0) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -102,7 +110,7 @@ to confirm the blocks render and introduce no header or section errors.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not yet implemented.** This is a planning artifact; see `spec.md`, `plan.md`, and `tasks.md` for the intended work.
+1. **Parent changelog not updated.** The phase notes mention a changelog refresh, but that file is outside the approved write paths and not listed in Files to Change.
 <!-- /ANCHOR:limitations -->
 
 ---

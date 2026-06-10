@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates"
-    last_updated_at: "2026-06-02T10:04:52Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored phase tasks (planned, not implemented)"
-    next_safe_action: "Implement: add self-check blocks to the three templates"
+    last_updated_at: "2026-06-10T04:32:22Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed self-check guidance in manifest templates"
+    next_safe_action: "Proceed to next peck phase when ready"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-self-check-templates"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Inventory the three manifest templates (templates/manifest/{spec,plan,checklist}.md.tmpl)
-- [ ] T002 Confirm comment-guidance approach vs a tracked section
-- [ ] T003 [P] Draft the self-check + failure-modes copy
+- [x] T001 Inventory the three manifest templates (templates/manifest/{spec,plan,checklist}.md.tmpl)
+- [x] T002 Confirm comment-guidance approach vs a tracked section
+- [x] T003 [P] Draft the self-check + failure-modes copy
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +60,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add the block to spec.md.tmpl
-- [ ] T005 Add the block to plan.md.tmpl
-- [ ] T006 Add the block to checklist.md.tmpl
-- [ ] T007 Update header/section manifest ONLY if a tracked section was added
+- [x] T004 Add the block to spec.md.tmpl
+- [x] T005 Add the block to plan.md.tmpl
+- [x] T006 Add the block to checklist.md.tmpl
+- [x] T007 Update header/section manifest ONLY if a tracked section was added - not needed because guidance stayed in HTML comments
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Scaffold a throwaway folder and confirm blocks render
-- [ ] T009 Run validate.sh --strict and confirm green
-- [ ] T010 Update phase docs + changelog
+- [x] T008 Scaffold a throwaway folder and confirm blocks render
+- [x] T009 Run validate.sh --strict and confirm green
+- [x] T010 Update phase docs; parent changelog is out of allowed scope
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Strict validation passed on a scaffold
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Strict validation passed on a scaffold
 <!-- /ANCHOR:completion -->
 
 ---

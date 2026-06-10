@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates"
-    last_updated_at: "2026-06-02T10:04:52Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored phase spec (planned, not implemented)"
-    next_safe_action: "Implement: add self-check blocks to the three manifest templates"
+    last_updated_at: "2026-06-10T04:32:22Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed self-check guidance in manifest templates"
+    next_safe_action: "Proceed to next peck phase when ready"
     blockers: []
     key_files:
       - "templates/manifest/spec.md.tmpl"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-self-check-templates"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-02 |
 | **Branch** | `001-peck-teachings-adoption` |
 | **Parent Spec** | ../spec.md |
@@ -159,7 +159,7 @@ Add a short self-check + failure-modes block to the spec, plan, and checklist ma
 ## 7. OPEN QUESTIONS
 
 - RESOLVED (research.md §3): ship as HTML-comment guidance, not a tracked section — and never place a line-start `## ` inside the comment.
-- Include `implementation-summary.md.tmpl` in this phase, or keep scope to spec/plan/checklist? (still open; default: keep to spec/plan/checklist)
+- RESOLVED: keep `implementation-summary.md.tmpl` out of this phase; spec/plan/checklist are the adopted self-check surfaces.
 <!-- /ANCHOR:questions -->
 
 ---

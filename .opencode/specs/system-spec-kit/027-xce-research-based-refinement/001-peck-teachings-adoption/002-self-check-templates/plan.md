@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates"
-    last_updated_at: "2026-06-02T10:04:52Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored phase plan (planned, not implemented)"
-    next_safe_action: "Implement: add self-check blocks to the three templates"
+    last_updated_at: "2026-06-10T04:32:22Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed self-check guidance in manifest templates"
+    next_safe_action: "Proceed to next peck phase when ready"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-self-check-templates"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -62,9 +62,9 @@ guides) so header validation is untouched. Verify by scaffolding a throwaway fol
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met - guidance renders in a Level 2 smoke scaffold
+- [x] Tests passing - smoke scaffold strict validation passed
+- [x] Docs updated - phase docs reconciled with evidence
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -98,19 +98,19 @@ schema, or security surface, so there is no affected-surface inventory to perfor
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory the current content of the three manifest templates
-- [ ] Confirm the comment-guidance approach (vs a tracked section)
-- [ ] Draft the self-check + failure-modes copy (one block, reused with per-doc tweaks)
+- [x] Inventory the current content of the three manifest templates
+- [x] Confirm the comment-guidance approach (vs a tracked section)
+- [x] Draft the self-check + failure-modes copy (one block, reused with per-doc tweaks)
 
 ### Phase 2: Core Implementation
-- [ ] Add the block to `spec.md.tmpl`
-- [ ] Add the block to `plan.md.tmpl`
-- [ ] Add the block to `checklist.md.tmpl`
+- [x] Add the block to `spec.md.tmpl`
+- [x] Add the block to `plan.md.tmpl`
+- [x] Add the block to `checklist.md.tmpl`
 
 ### Phase 3: Verification
-- [ ] Scaffold a throwaway folder and confirm the blocks render
-- [ ] `validate.sh --strict` green on the scaffold
-- [ ] Update phase docs + changelog
+- [x] Scaffold a throwaway folder and confirm the blocks render
+- [x] `validate.sh --strict` green on the scaffold
+- [x] Update phase docs; parent changelog remains out of scope for this phase
 <!-- /ANCHOR:phases -->
 
 ---
