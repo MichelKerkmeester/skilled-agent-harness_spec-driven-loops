@@ -200,6 +200,8 @@ Use the CLI only when the `mk_skill_advisor` MCP tools are missing from the runt
 | **Constitutional memory**  | `/memory:learn` → create, list, edit, remove, budget                                                                                                                                        |                                                                                                                                                                          |
 | **Doctor command surface** | `/doctor <target>` argv-router for subsystem diagnostics/repairs (memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget); `/doctor:mcp install\              | debug` for MCP infra; `/doctor:update` for dependency-ordered alignment (snapshot/validate/rollback/run log). Don't route to deleted legacy `/doctor:<name>` colon-forms |
 
+Acceptance coverage completion note: `AC_COVERAGE` is an opt-in INFO validation rule documented in `.opencode/skills/system-spec-kit/references/validation/validation_rules.md`. When `SPECKIT_AC_COVERAGE=true`, completion evidence should include covered/total acceptance criteria and the configured floor; unset defaults preserve existing strict-validation outcomes.
+
 ---
 
 ## 2. ⛔ MANDATORY GATES - STOP BEFORE ACTING

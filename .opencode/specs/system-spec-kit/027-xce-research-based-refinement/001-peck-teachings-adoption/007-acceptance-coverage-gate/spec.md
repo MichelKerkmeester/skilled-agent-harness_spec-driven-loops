@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 011 from research 006 sub-packet-proposal P011 + integration plan"
-    next_safe_action: "Land pending 002 templates, then author AC-format normalization in spec.md.tmpl"
+    last_updated_at: "2026-06-10T07:17:10Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed opt-in INFO AC coverage source pass"
+    next_safe_action: "Plan validator v3 dispatch wiring if approved"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-011-acceptance-coverage-gate-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Final SPECKIT_AC_COVERAGE_FLOOR default (proposed 0.9)"
       - "Whether L3 counts story-ACs only or both tables (recommend story-ACs only)"
@@ -57,7 +57,7 @@ The integration plan (research 006, integration-plan.md) places this packet behi
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Source-Pass Complete |
 | **Parent Packet** | `001-peck-teachings-adoption` |
 | **Source** | `research/006-peck-source-deep-mining/sub-packet-proposal.md` §3 (Packet 011) + §7; `research/006-peck-source-deep-mining/integration-plan.md`; `research/006-peck-source-deep-mining/research.md` §2 (T1) + §5 (cross-model) |
 | **Depends on** | Packet `010-reviewer-prompt-benchmark-substrate` (regression fixtures); pending `001/002-self-check-templates` (shared manifest templates) |
@@ -134,6 +134,8 @@ Make acceptance-criteria coverage measurable and enforceable without breaking in
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Phase 4: surface the coverage signal in the verdict gate |
 | `CLAUDE.md` | Modify | Phase 4: §2 completion gate note for the warn-first coverage signal (mirror to `AGENTS.md` per the runtime-mirror rule) |
 <!-- /ANCHOR:scope -->
+
+**Source-pass scope reconciliation:** The implemented pass followed the current approved write paths. Shared manifest-template edits and `CLAUDE.md` edits were not performed; they remain deferred/out-of-scope for this pass. The shipped scope is the default-off INFO `AC_COVERAGE` rule, registry/docs/ENV integration, deep-review advisory surfacing, `AGENTS.md` pointer, and phase-doc evidence.
 
 ---
 

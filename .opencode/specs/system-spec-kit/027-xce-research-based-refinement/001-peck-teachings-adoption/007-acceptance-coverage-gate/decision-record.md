@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 011 decision-record from research 006 cross-model constraints"
-    next_safe_action: "Land pending 002 templates, then execute ADR-001 AC-format normalization"
+    last_updated_at: "2026-06-10T07:17:10Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Accepted source-pass AC coverage decisions"
+    next_safe_action: "Plan validator v3 dispatch wiring if approved"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-011-acceptance-coverage-gate-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Final SPECKIT_AC_COVERAGE_FLOOR default (proposed 0.9)"
       - "Whether L3 counts story-ACs only or both tables (recommend story-ACs only)"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-06-06 |
 | **Deciders** | Operator, claude-opus-4-8 (scaffold), MiniMax M3 (cross-model verify) |
 
@@ -115,7 +115,7 @@ A Level 3 spec carries acceptance criteria in two places: the `Requirement | Acc
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-06-06 |
 | **Deciders** | Operator, claude-opus-4-8 (scaffold), MiniMax M3 (cross-model verify) |
 
@@ -186,7 +186,7 @@ A coverage gate keyed on level alone would fire on a freshly scaffolded Level 2 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-06-06 |
 | **Deciders** | Operator, claude-opus-4-8 (scaffold), MiniMax M3 (cross-model verify, MUST-FIX D6) |
 
@@ -257,7 +257,7 @@ Phases 1-2 edit `spec.md.tmpl` and `checklist.md.tmpl`. The pending `001/002-sel
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-06-06 |
 | **Deciders** | Operator, claude-opus-4-8 (scaffold), MiniMax M3 (cross-model verify) |
 

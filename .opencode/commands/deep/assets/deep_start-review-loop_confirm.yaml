@@ -1115,6 +1115,7 @@ workflow:
           - p2_count: "Total P2 findings across all iterations (deduped)"
           - dimensions_covered: "List of reviewed dimensions"
           - dimension_coverage: "covered / total"
+          - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and checklist.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
           - last_3_summaries: "Summarize the latest 3 iteration records"
           - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
 
@@ -1133,9 +1134,11 @@ workflow:
           else:
             verdict = "PASS"
           has_advisories = (verdict == "PASS" and p2_count > 0)
+          ac_coverage_signal is advisory while the validation rule is INFO/default-off; include it in synthesis traceability, but do not change the exact verdict enum from this signal alone.
         outputs:
           - verdict: "PASS | CONDITIONAL | FAIL"
           - has_advisories: "Boolean true when verdict is PASS and any active P2 findings exist"
+          - ac_coverage_signal: "exempt | disabled | pass | advisory-shortfall"
         contract: |
           Every iteration-NNN.md must end with exactly: "Review verdict: PASS" (or CONDITIONAL or FAIL).
           Downstream automation parses this final line via exact string match — do not vary the format.
@@ -1246,9 +1249,10 @@ workflow:
           6. **Plan Seed**
              - Concrete starter tasks for `/speckit:plan`
 
-          7. **Traceability Status**
-             - Summarize required core protocols first, then applicable overlay protocols
-             - Include status, evidence, and any unresolved drift per protocol
+           7. **Traceability Status**
+              - Summarize required core protocols first, then applicable overlay protocols
+              - Include status, evidence, and any unresolved drift per protocol
+              - Include `AC_COVERAGE` status for lifecycle-active spec-folder targets: exempt, disabled, pass, or advisory-shortfall, with covered/total and floor when available
 
           8. **Deferred Items**
              - Advisory-only or backlog-worthy follow-ups that do not block the current verdict

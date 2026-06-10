@@ -346,6 +346,10 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 | **CONDITIONAL** | P1 findings present, remediation plan included in report |
 | **FAIL** | Any P0 finding confirmed after adversarial self-check |
 
+### Acceptance-Coverage Signal
+
+When the review target is a spec folder, deep review reflects the `AC_COVERAGE` validation signal in synthesis for Level 2+ folders only after both lifecycle conditions are true: `checklist.md` exists and `implementation-summary.md` is in-progress or later. Level 1 folders and fresh scaffolds are exempt. The signal is advisory while the validation rule remains INFO/default-off; it can add traceability context and planning-seed work, but it must not alter the exact iteration final-line contract below unless a later enforcement rollout explicitly changes severity.
+
 ### Iteration Final-Line Contract (MANDATORY)
 
 Every `iteration-NNN.md` MUST end with exactly one of the following plain-text lines as the **absolute final line** (no trailing whitespace, no variation):
@@ -451,6 +455,7 @@ Each gate is binary: pass or block. STOP cannot be legal until every gate passes
 - **Severity coverage**: every reported finding carries `severity` in {P0, P1, P2}, `category`, `file:line` evidence, `finding_class`, and a `content_hash` for synthesis dedup.
 - **Adversarial replay**: every P0 finding survived adversarial self-check. Rejected P0s downgraded with rationale recorded in the iteration narrative.
 - **Coverage threshold**: `dimensions_covered_count == configured_dimensions_count` AND required traceability protocols covered, stable for at least `minStabilizationPasses` iterations.
+- **Acceptance coverage**: when the spec-folder lifecycle predicate is active, the final report records `AC_COVERAGE` status, covered/total, floor, and next action; default-off INFO output is advisory and does not by itself block STOP.
 - **Security-sensitive override**: when the run targets security, path handling, env precedence, schema boundaries, persistence, or shared policy, the gates from `references/convergence/convergence.md` "Security-Sensitive Fix Overrides" apply (`minStabilizationPasses=2`, closed-finding replay required, fix-completeness gate enforced).
 
 ### Validation Success
@@ -487,4 +492,3 @@ Recover context via `/speckit:resume` in the order `handover.md -> _memory.conti
 - Finding all usages of a pattern by concept/intent
 - Locating implementations when exact symbol names are unknown
 - Cross-referencing behavior across unfamiliar code paths
-

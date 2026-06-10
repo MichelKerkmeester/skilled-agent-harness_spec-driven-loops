@@ -46,6 +46,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
 | `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
+| `AC_COVERAGE`        | INFO     | checklist.md  | Opt-in advisory acceptance-criteria traceability scan |
 | `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
 | `FRONTMATTER_VALID`  | ERROR    | spec docs     | YAML frontmatter properly structured           |
@@ -58,6 +59,25 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `CURRENT_STATE_DISCIPLINE` | INFO | implementation summaries | Long-lived summaries avoid migration-history narratives |
 
 > **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (37 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+
+### Non-Breaking Acceptance Coverage Rollout
+
+`AC_COVERAGE` is intentionally registered at INFO severity and stays disabled unless `SPECKIT_AC_COVERAGE=true`. This preserves existing strict-validation outcomes while making the coverage signal available to operators who opt in. The current rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, and malformed evidence citations without adding strict warnings or errors. The `SPECKIT_AC_COVERAGE_ENFORCE` flag is documented as a future promotion switch; changing validation outcome requires a later severity change backed by adoption evidence.
+
+**Rule ID:** `AC_COVERAGE`  
+**Severity:** INFO  
+**Default:** Disabled. Set `SPECKIT_AC_COVERAGE=true` to run the advisory scan.  
+**Lifecycle predicate:** Level 2+ only, with `checklist.md` present and `implementation-summary.md` status in-progress or later. Level 1 folders and fresh scaffolds are exempt.  
+**Coverage calculation:** covered acceptance criteria divided by total acceptance criteria must meet `ceil(total * SPECKIT_AC_COVERAGE_FLOOR)`. The default floor is `0.9`; values outside `[0,1]` are clamped.  
+**Escape hatch:** a traceability row classified as Manual-infeasible counts as covered only when it carries a rationale.  
+**Evidence citations:** Tested or Partially covered rows count only with `file:line` evidence. Malformed evidence is named in the advisory details.
+
+| Flag | Default | Effect |
+| --- | --- | --- |
+| `SPECKIT_AC_TRACEABILITY_TEMPLATE` | `false` | Reserved opt-in for future scaffold template rendering of traceability rows. |
+| `SPECKIT_AC_COVERAGE` | `false` | Enables the advisory validation scan. |
+| `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | Reserved promotion switch; current rule remains INFO/advisory. |
+| `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | Sets the advisory coverage floor, clamped to `[0,1]`. |
 
 ---
 

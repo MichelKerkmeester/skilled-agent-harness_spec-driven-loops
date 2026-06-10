@@ -48,6 +48,19 @@
     "description": "Checks completed checklist/tasks items for evidence citations."
   },
   {
+    "rule_id": "AC_COVERAGE",
+    "aliases": ["ACCEPTANCE_COVERAGE", "AC_TRACEABILITY"],
+    "script_path": "rules/check-ac-coverage.sh",
+    "severity": "info",
+    "category": "authored_template",
+    "flags": [
+      "SPECKIT_AC_COVERAGE",
+      "SPECKIT_AC_COVERAGE_ENFORCE",
+      "SPECKIT_AC_COVERAGE_FLOOR"
+    ],
+    "description": "Opt-in advisory scan for acceptance-criteria traceability coverage."
+  },
+  {
     "rule_id": "ANCHORS_VALID",
     "aliases": ["ANCHOR", "ANCHORS", "ANCHOR_MATCHED"],
     "script_path": "rules/check-anchors.sh",
