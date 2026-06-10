@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph",
+  "description": "Feature Specification: Adopt proven spec-027 memory-system features into the skill advisor and code graph systems",
+  "keywords": [
+    "feature",
+    "specification",
+    "adopt",
+    "proven",
+    "spec-027",
+    "memory-system",
+    "features",
+    "skill",
+    "advisor",
+    "code",
+    "graph",
+    "systems"
+  ],
+  "lastUpdated": "2026-06-10T19:41:42.903Z",
+  "specId": "145",
+  "folderSlug": "xce-feature-adoption-advisor-codegraph",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

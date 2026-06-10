@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
+  "description": "Feature Specification: Phase 5: advisor-feedback-calibration",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "advisor-feedback-calibration"
+  ],
+  "lastUpdated": "2026-06-10T19:41:55.525Z",
+  "specId": "005",
+  "folderSlug": "advisor-feedback-calibration",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

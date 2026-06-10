@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included",
+  "description": "Feature Specification: Phase 8: codegraph-why-included",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "codegraph-why-included"
+  ],
+  "lastUpdated": "2026-06-10T19:41:55.999Z",
+  "specId": "008",
+  "folderSlug": "codegraph-why-included",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

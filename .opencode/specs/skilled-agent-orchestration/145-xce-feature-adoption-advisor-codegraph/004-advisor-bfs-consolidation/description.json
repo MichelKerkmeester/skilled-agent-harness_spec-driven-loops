@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation",
+  "description": "Feature Specification: Phase 4: advisor-bfs-consolidation",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "advisor-bfs-consolidation"
+  ],
+  "lastUpdated": "2026-06-10T19:41:55.377Z",
+  "specId": "004",
+  "folderSlug": "advisor-bfs-consolidation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

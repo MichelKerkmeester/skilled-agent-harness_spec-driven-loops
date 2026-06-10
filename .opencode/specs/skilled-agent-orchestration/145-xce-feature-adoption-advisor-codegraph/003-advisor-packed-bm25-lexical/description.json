@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
+  "description": "Feature Specification: Phase 3: advisor-packed-bm25-lexical",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "advisor-packed-bm25-lexical"
+  ],
+  "lastUpdated": "2026-06-10T19:41:55.234Z",
+  "specId": "003",
+  "folderSlug": "advisor-packed-bm25-lexical",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

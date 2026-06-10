@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard",
+  "description": "Feature Specification: Phase 2: advisor-provenance-guard",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "advisor-provenance-guard"
+  ],
+  "lastUpdated": "2026-06-10T19:41:55.091Z",
+  "specId": "002",
+  "folderSlug": "advisor-provenance-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

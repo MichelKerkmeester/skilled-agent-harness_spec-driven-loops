@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
+  "description": "Feature Specification: Phase 6: codegraph-tombstone-audit",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "codegraph-tombstone-audit"
+  ],
+  "lastUpdated": "2026-06-10T19:41:55.695Z",
+  "specId": "006",
+  "folderSlug": "codegraph-tombstone-audit",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
