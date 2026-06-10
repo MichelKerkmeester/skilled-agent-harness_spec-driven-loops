@@ -9,24 +9,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T16:40:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Rewrote the public root README to current framework state and reconciled phase evidence"
+    next_safe_action: "Monitor README drift"
     blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "implementation-summary.md"
+      - "README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-001-public-root-readme-planned"
+      fingerprint: "sha256:67a618d91957ff4c7a0fce33d104f4ebba1dd63cd494ef2d25547ab73c042d63"
+      session_id: "2026-06-10-001-public-root-readme-completed"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned release-cleanup scaffolds."
+      - "Operator pre-approved this release-cleanup phase and scope."
 ---
 # Implementation Plan: Public Root README
 
@@ -48,7 +49,7 @@ _memory:
 | **Testing** | Strict spec validation plus surface-specific review |
 
 ### Overview
-Rewrite the repo-root README to current shipped reality: MCP and CLI dual-stack, memory capabilities, skill, command, and agent surfaces. This is the capstone and should be authored last. This planned phase follows an inventory -> align -> verify flow and is scaffolded only.
+Rewrote the repo-root README to current shipped reality: MCP and CLI dual-stack, memory capabilities, skill, command, and agent surfaces. This capstone followed an inventory -> align -> verify flow.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +63,10 @@ Rewrite the repo-root README to current shipped reality: MCP and CLI dual-stack,
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Inventory current claims on README.md
-- [ ] Align current-state claims to shipped 027 reality
-- [ ] Verify coherence and record evidence
-- [ ] Strict validation passes for this child phase
+- [x] Inventory current claims on README.md
+- [x] Align current-state claims to shipped 027 reality
+- [x] Verify coherence and record evidence
+- [x] Strict validation passes for this child phase
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,15 +95,15 @@ Documentation surface alignment with explicit ownership boundaries.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory README.md
+- [x] Inventory README.md
 
 ### Phase 2: Implementation
-- [ ] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
-- [ ] Preserve ownership boundary: Capstone phase; verify after the other outward surfaces settle.
+- [x] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
+- [x] Preserve ownership boundary: Capstone phase; verify after the other outward surfaces settle.
 
 ### Phase 3: Verification
-- [ ] Run strict spec validation
-- [ ] Run surface-specific coherence checks
+- [x] Run strict spec validation
+- [x] Run surface-specific coherence checks
 <!-- /ANCHOR:phases -->
 
 ---
