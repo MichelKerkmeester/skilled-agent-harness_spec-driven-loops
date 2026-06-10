@@ -433,6 +433,26 @@ What do you need?
 [Everything learned that would help a human continue]
 ```
 
+### Optional Agent I/O Envelope
+
+When requested, append this advisory envelope after the success, blocked, or escalation response. It does not replace the phase trace, evidence, or verification requirements.
+
+```text
+AGENT_IO_RESULT v1
+schema_version: agent-io/v1
+dispatch_id: <matching dispatch_id or none>
+status: pass | fail | blocked | partial
+confidence_band: high | medium | low
+confidence_numeric: 0.90 | 0.70 | 0.30
+failure_type: none | missing_info | access_denied | complexity_exceeded | external_dependency | operator_opt_in_missing | verify_fail | low_confidence
+summary: <one-line debug outcome>
+files_changed: <repo-relative paths or none>
+verification: <test/result evidence or not_applicable>
+next_action: <specific follow-up or none>
+```
+
+If the dispatch prompt includes `AGENT_IO_DISPATCH v1`, use `dispatch_id` only for correlation and treat handoff-related fields as advisory. The operator opt-in boundary and 5-phase method remain authoritative. Derive numeric confidence from the band: high `0.90`, medium `0.70`, low `0.30`.
+
 ---
 
 ## 7. ESCALATION PROTOCOL

@@ -12,21 +12,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 001 from research 007 P1 + 009 integration"
-    next_safe_action: "Author agent-io-contract.md, then wire @orchestrate header"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5"
+    recent_action: "Implemented advisory contract and planning headers"
+    next_safe_action: "Ready for handoff"
     blockers: []
     key_files: ["spec.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-001-typed-agent-io-adapter-scaffold"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "context_snapshot one-shot vs progressive cache (default one-shot)"
-      - "Exact numeric confidence defaults (HIGH=0.90 / MED=0.70 / LOW=0.30)"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "context_snapshot is one-shot for Wave-1 dispatch headers"
+      - "Confidence defaults are high=0.90, medium=0.70, low=0.30"
 ---
 # Implementation Plan: 027/006/001 Typed Agent I/O Adapter
 
@@ -66,13 +66,13 @@ Phase 001 adds an optional typed adapter over the existing agent contracts. The 
 
 ### Definition of Done
 
-- [ ] `agent-io-contract.md` exists with `schema_version` and the five grouped sections, all fields optional.
-- [ ] The optional `AGENT_IO_DISPATCH` header is defined and emitted by `@orchestrate`.
-- [ ] The optional `AGENT_IO_RESULT` envelope is defined and appended after existing bodies, never before `@code`'s `RETURN:`.
-- [ ] The numeric-to-band confidence mapping is defined and derived from the band.
-- [ ] The four `@context` dispatches in `/speckit:plan` Step 5 emit the header (both auto and confirm YAMLs).
-- [ ] `@orchestrate` documents and follows the never-reject-envelope-less degrade path.
-- [ ] `@code` first-line `RETURN:` and `@context` six required sections are preserved.
+- [x] `agent-io-contract.md` exists with `schema_version` and the five grouped sections, all fields optional.
+- [x] The optional `AGENT_IO_DISPATCH` header is defined and emitted by `@orchestrate`.
+- [x] The optional `AGENT_IO_RESULT` envelope is defined and appended after existing bodies, never before `@code`'s `RETURN:`.
+- [x] The numeric-to-band confidence mapping is defined and derived from the band.
+- [x] The four `@context` dispatches in `/speckit:plan` Step 5 emit the header (both auto and confirm YAMLs).
+- [x] `@orchestrate` documents and follows the never-reject-envelope-less degrade path.
+- [x] `@code` first-line `RETURN:` and `@context` six required sections are preserved.
 - [ ] Strict spec validation passes for this packet.
 <!-- /ANCHOR:quality-gates -->
 
@@ -112,6 +112,8 @@ This packet touches shared agent-contract surfaces and the planning dispatch pat
 | `.opencode/agents/review.md` | Read-only reviewer; P0/P1/P2 severities | Modify | P0/P1/P2 to envelope mapping present; severity vocabulary unchanged |
 | `.opencode/agents/context.md` | Retrieval agent; six required Context-Package sections | Modify | Header/read-directives accept section present; `grep` confirms six required sections intact |
 | `.opencode/agents/debug.md` | Debug agent; 5-phase method | Modify | Dispatch/handoff header awareness added; 5-phase method untouched (handoff fields reserved for 002) |
+| `.claude/agents/{orchestrate,code,review,context,debug}.md` | Claude runtime mirrors | Modify | Optional advisory I/O guidance mirrors the OpenCode intent while preserving runtime-specific path conventions |
+| `.codex/agents/{orchestrate,code,review,context,debug}.toml` | Codex runtime mirrors | Modify | Optional advisory I/O guidance mirrors the OpenCode intent; TOML parsing verified with `tomli` |
 | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` | Planning workflow (auto) Step 5 four `@context` dispatches | Modify | Header shown on the four planning dispatches |
 | `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml` | Planning workflow (confirm) Step 5 four `@context` dispatches | Modify | Header shown on the four planning dispatches |
 | `AGENTS.md` | Framework guardrails (Four Laws, Gates) | Modify (small) | One optional/advisory pointer added; Four Laws and Gates text unchanged |
@@ -129,33 +131,33 @@ Required inventories:
 
 ### Phase 1: Setup
 
-- [ ] Read the five agent docs (`orchestrate`, `code`, `review`, `context`, `debug`) and locate the body/return/section anchors the envelope must respect.
-- [ ] Read `/speckit:plan` Step 5 in both plan YAMLs and locate the four `@context` dispatch blocks.
-- [ ] Confirm the `agent-io-contract.md` path is absent and the `workflows/` parent exists.
-- [ ] Record the current `@code` first-line `RETURN:` contract and the `@context` six required section headers as the preservation baseline.
+- [x] Read the five agent docs (`orchestrate`, `code`, `review`, `context`, `debug`) and locate the body/return/section anchors the envelope must respect.
+- [x] Read `/speckit:plan` Step 5 in both plan YAMLs and locate the four `@context` dispatch blocks.
+- [x] Confirm the `agent-io-contract.md` path is absent and the `workflows/` parent exists.
+- [x] Record the current `@code` first-line `RETURN:` contract and the `@context` six required section headers as the preservation baseline.
 
 ### Phase 2: Core Implementation
 
-- [ ] Author `agent-io-contract.md` with `schema_version`, the `dispatch` and `result` groups fully specified, and `handoff` / `pre_execution` / `advisory` as reserved placeholder groupings for 002/003.
-- [ ] Document the `AGENT_IO_DISPATCH` header (fields, compact target under 15 lines, read-directive buckets) in the contract.
-- [ ] Document the `AGENT_IO_RESULT` envelope (status, confidence band+numeric, failure_type) and the after-body placement rule.
-- [ ] Define the deterministic numeric-to-band confidence mapping in the contract.
-- [ ] Add the header-emit and envelope-consume sections to `@orchestrate`, including the never-reject-envelope-less degrade path.
-- [ ] Add the after-body envelope section to `@code`, mapping its escalation classes to `failure_type`; keep the first-line `RETURN:` first.
-- [ ] Add the P0/P1/P2-to-envelope mapping section to `@review`.
-- [ ] Add the header/read-directives accept section to `@context`; keep the six required sections and do not add a seventh.
-- [ ] Add the dispatch/handoff header awareness to `@debug` (handoff fields reserved for 002).
-- [ ] Wire the `AGENT_IO_DISPATCH` header onto the four Step 5 `@context` dispatches in both plan YAMLs.
-- [ ] Add the small optional/advisory pointer to `AGENTS.md`; leave Four Laws and Gates unchanged.
+- [x] Author `agent-io-contract.md` with `schema_version`, the `dispatch` and `result` groups fully specified, and `handoff` / `pre_execution` / `advisory` as reserved placeholder groupings for 002/003.
+- [x] Document the `AGENT_IO_DISPATCH` header (fields, compact target under 15 lines, read-directive buckets) in the contract.
+- [x] Document the `AGENT_IO_RESULT` envelope (status, confidence band+numeric, failure_type) and the after-body placement rule.
+- [x] Define the deterministic numeric-to-band confidence mapping in the contract.
+- [x] Add the header-emit and envelope-consume sections to `@orchestrate`, including the never-reject-envelope-less degrade path.
+- [x] Add the after-body envelope section to `@code`, mapping its escalation classes to `failure_type`; keep the first-line `RETURN:` first.
+- [x] Add the P0/P1/P2-to-envelope mapping section to `@review`.
+- [x] Add the header/read-directives accept section to `@context`; keep the six required sections and do not add a seventh.
+- [x] Add the dispatch/handoff header awareness to `@debug` (handoff fields reserved for 002).
+- [x] Wire the `AGENT_IO_DISPATCH` header onto the four Step 5 `@context` dispatches in both plan YAMLs.
+- [x] Add the small optional/advisory pointer to `AGENTS.md`; leave Four Laws and Gates unchanged.
 
 ### Phase 3: Verification
 
-- [ ] Confirm the contract doc exists and every field is documented as optional.
-- [ ] Confirm both plan YAMLs show the header on all four planning `@context` dispatches.
-- [ ] Confirm `@orchestrate` documents the envelope-less degrade path and an envelope-less agent still works.
-- [ ] Confirm the numeric-to-band mapping is defined and derived from the band.
-- [ ] Grep-confirm `@code`'s first-line `RETURN:` and `@context`'s six required sections survive.
-- [ ] Confirm no validator/governance file changed except the small `AGENTS.md` pointer.
+- [x] Confirm the contract doc exists and every field is documented as optional.
+- [x] Confirm both plan YAMLs show the header on all four planning `@context` dispatches.
+- [x] Confirm `@orchestrate` documents the envelope-less degrade path and an envelope-less agent still works.
+- [x] Confirm the numeric-to-band mapping is defined and derived from the band.
+- [x] Grep-confirm `@code`'s first-line `RETURN:` and `@context`'s six required sections survive.
+- [x] Confirm no validator/governance file changed except the small `AGENTS.md` pointer.
 - [ ] Run strict spec validation for this packet.
 <!-- /ANCHOR:phases -->
 

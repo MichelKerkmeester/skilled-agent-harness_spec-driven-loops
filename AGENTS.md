@@ -55,6 +55,7 @@ Reinventing a workflow's core feature because you assumed friction you never che
 **Dispatch Rules**
 - **CLI dispatch rule** — Before composing any `cli-X` prompt (codex / claude-code / opencode), MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Skills carry model-specific prompt contracts not in `--help`; required for every `<binary> --model <X>` invocation.
 - **Small-model dispatch rule** — Before dispatching to small models (MiniMax, Kimi, Qwen, etc. via cli-opencode), MUST consult `sk-prompt-small-model` — canonical home for context-budget defaults, output-verification, model-profile registry, permissions schema, and dispatch matrix (executor + provider + quota_pool).
+- **Agent I/O pointer** — Optional agent dispatch headers and result envelopes are documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`; missing advisory metadata must never block an otherwise valid agent exchange.
 
 ---
 

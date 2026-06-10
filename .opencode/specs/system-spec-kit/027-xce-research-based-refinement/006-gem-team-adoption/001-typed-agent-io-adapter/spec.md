@@ -12,22 +12,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 001 from research 007 P1 + 009 integration"
-    next_safe_action: "Author agent-io-contract.md, then wire @orchestrate header"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5"
+    recent_action: "Implemented advisory agent I/O contract and planning dispatch headers"
+    next_safe_action: "Ready for handoff"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-001-typed-agent-io-adapter-scaffold"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "context_snapshot one-shot vs orchestrator-maintained progressive cache (default one-shot)"
-      - "Exact numeric confidence defaults (HIGH=0.90 / MED=0.70 / LOW=0.30)"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Proposal P1 confirmed as phase 001 — substrate child of 006-gem-team-adoption"
+      - "context_snapshot uses one-shot for Wave-1 dispatch headers"
+      - "Confidence defaults are high=0.90, medium=0.70, low=0.30 with numeric derived from band"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: 001 — Typed Agent I/O Adapter
@@ -62,7 +62,7 @@ Source context:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Implemented |
 | **Parent Packet** | `027-xce-research-based-refinement/006-gem-team-adoption` |
 | **Source** | `../research/007-gem-team-adoption-matrix/sub-packet-proposals.md` § P1; `../research/009-gem-team-integration-impact/research.md` §§2-8 |
 | **Depends on** | None (this is the substrate children 002 and 003 build on) |
@@ -140,6 +140,8 @@ Make orchestration decisions machine-parseable at the point they are first knowa
 | `.opencode/agents/review.md` | Modify | Map existing P0/P1/P2 severities plus confidence bands into the envelope |
 | `.opencode/agents/context.md` | Modify | Accept the dispatch header and read-directives; the envelope must NOT become a 7th Context-Package section (six required sections stay) |
 | `.opencode/agents/debug.md` | Modify | Accept the dispatch/handoff header (handoff fields are reserved for 002; Wave-1 adds only the header awareness) |
+| `.claude/agents/{orchestrate,code,review,context,debug}.md` | Modify | Mirror the same optional advisory I/O guidance for Claude runtime parity |
+| `.codex/agents/{orchestrate,code,review,context,debug}.toml` | Modify | Mirror the same optional advisory I/O guidance for Codex runtime parity |
 | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` | Modify | Emit the `AGENT_IO_DISPATCH` header on the four Step 5 `@context` dispatches |
 | `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml` | Modify | Emit the `AGENT_IO_DISPATCH` header on the four Step 5 `@context` dispatches |
 | `AGENTS.md` | Modify | Small pointer noting the optional/advisory contract; Four Laws and Gates unchanged |
@@ -256,8 +258,8 @@ Make orchestration decisions machine-parseable at the point they are first knowa
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- `context_snapshot` shape: one-shot retrieval (per-invocation) versus an orchestrator-maintained progressive cache enriched between waves. This is the phase-007 architectural fork; default is one-shot, recorded as a ruled-out alternative in the plan ADR if progressive is rejected.
-- Exact numeric confidence defaults: confirm HIGH=0.90 / MED=0.70 / LOW=0.30 (the phase-009 iter-001 proposal) or adjust during contract authoring.
+- Resolved: `context_snapshot` uses `one-shot` for Wave-1 planning dispatches; progressive cache remains out of scope.
+- Resolved: confidence mapping is `high -> 0.90`, `medium -> 0.70`, `low -> 0.30`; numeric is derived from the band.
 <!-- /ANCHOR:questions -->
 </content>
 </invoke>

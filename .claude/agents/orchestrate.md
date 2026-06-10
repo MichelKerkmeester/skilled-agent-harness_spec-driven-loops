@@ -20,6 +20,8 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 **Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`; Codex profile reads `.codex/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
 
+**Agent I/O Contract**: When helpful, include an `AGENT_IO_DISPATCH v1` header in delegated prompts and accept optional `AGENT_IO_RESULT v1` envelopes appended to native agent output. The contract is advisory only; missing headers or envelopes are never a rejection reason.
+
 **CRITICAL**: You primarily orchestrate via the `task` tool. You MAY use `read` to load agent definitions or command specs needed for correct dispatch, but you MUST NOT perform implementation or codebase exploration directly. Execution work remains delegated to sub-agents.
 
 ---
@@ -188,9 +190,28 @@ TASK #N: [Descriptive Title]
 ├─ Depends: [Task numbers that must complete first | "none"]
 ├─ Branch: [Optional conditional routing - see Conditional Branching below]
 ├─ Depth: [0|1] — current dispatch depth (§2 NDP). Agent tier: [ORCHESTRATOR|LEAF]
+├─ Agent I/O: [optional `AGENT_IO_DISPATCH v1` header | none]
 ├─ Scale: [1-agent | 2-4 agents | 10+ agents]
 └─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§8 TCB)
 ```
+
+Optional dispatch header:
+
+```text
+AGENT_IO_DISPATCH v1
+schema_version: agent-io/v1
+dispatch_id: <stable id or none>
+agent: @[agent]
+task_type: explore | implement | review | debug | document | plan | research
+task_definition: <one-line task summary>
+context_snapshot: none | included | one-shot
+read_directives: none | packet-first | codebase-first | exact-paths
+contract: advisory
+context_package: none | included
+expected_result: native | agent_io_result
+```
+
+The loaded agent definition remains authoritative. If `AGENT_IO_RESULT v1` is present in a child result, use it as a routing hint only after the native report passes §5 output verification. If it is absent, parse the existing markdown contract and continue; do not reject a child result solely because the advisory result envelope is absent.
 
 ### Pre-Delegation Reasoning (PDR)
 

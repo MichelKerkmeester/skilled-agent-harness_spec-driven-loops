@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 027/006/001 Typed Agent I/O Adapter"
-description: "Placeholder implementation summary for the typed agent dispatch header + output envelope adapter (gem-team P1). Populate after code and tests land."
+description: "Implementation summary for the optional typed agent dispatch header + output envelope adapter."
 trigger_phrases:
   - "027 phase 006/001"
   - "typed agent io adapter"
@@ -12,19 +12,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 001 planning docs (not implemented)"
-    next_safe_action: "Implement P1 typed I/O adapter, then fill evidence"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5"
+    recent_action: "Implemented advisory agent I/O contract, runtime mirror guidance, and planning dispatch headers"
+    next_safe_action: "Ready for handoff"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-001-typed-agent-io-adapter-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "context_snapshot uses one-shot for Wave-1 planning dispatches"
+      - "Confidence defaults are high=0.90, medium=0.70, low=0.30"
 ---
 # Implementation Summary
 
@@ -40,9 +42,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter` |
-| **Completed** | Pending |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Implemented; strict validation passed |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,20 +52,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending implementation. This packet adopts gem-team proposal P1 (research/007) per the integration plan (research/009): a typed, OPTIONAL agent-I/O adapter over the existing agent contracts. It is the substrate that children 002 and 003 build on.
+Implemented an optional advisory agent-I/O adapter over the existing agent contracts. The rich markdown agent bodies remain canonical; the new header and envelope are typed hints that can be omitted without breaking legacy dispatches.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md` | Pending (ADD) | Single advisory contract: dispatch/result/handoff/pre_execution/advisory sections |
-| `.opencode/agents/orchestrate.md` | Pending | Emit dispatch header, consume result envelope, tolerate missing |
-| `.opencode/agents/code.md` | Pending | Append envelope after §8 body (never before first-line `RETURN:`) |
-| `.opencode/agents/review.md` | Pending | Map P0/P1/P2 + confidence bands into the envelope |
-| `.opencode/agents/context.md` | Pending | Accept dispatch header + read-directives; keep 6 Context-Package sections |
-| `.opencode/agents/debug.md` | Pending | Dispatch header on the debug handoff |
-| `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`, `speckit_plan_confirm.yaml` | Pending | Header on the four `@context` planning dispatches |
-| `AGENTS.md` | Pending | Note the optional contract (Four Laws / Gates unchanged) |
+| `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md` | Added | Single advisory contract: dispatch/result/handoff/pre_execution/advisory sections |
+| `.opencode/agents/orchestrate.md` | Updated | Optional dispatch header, result-envelope consume guidance, and envelope-less degrade path |
+| `.opencode/agents/code.md` | Updated | Envelope appended after §8 body, never before first-line `RETURN:`; escalation-to-failure mapping added |
+| `.opencode/agents/review.md` | Updated | P0/P1/P2 + confidence-band mapping into the envelope |
+| `.opencode/agents/context.md` | Updated | Accept dispatch header + read-directives; keep 6 Context-Package sections |
+| `.opencode/agents/debug.md` | Updated | Dispatch/handoff header awareness; 5-phase method untouched |
+| `.claude/agents/{orchestrate,code,review,context,debug}.md` | Updated | Runtime mirror parity for optional advisory guidance |
+| `.codex/agents/{orchestrate,code,review,context,debug}.toml` | Updated | Runtime mirror parity for optional advisory guidance; TOML parse passed |
+| `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`, `speckit_plan_confirm.yaml` | Updated | Header on the four `@context` planning dispatches in both modes |
+| `AGENTS.md` | Updated | Small optional contract pointer; Four Laws / Gates unchanged |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +75,7 @@ Pending implementation. This packet adopts gem-team proposal P1 (research/007) p
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. Delivery evidence should include the new contract doc, additive optional sections in the five agents, the two plan-YAML edits, and strict spec validation. No runtime enforcement; every field optional.
+Delivered as docs/contract-only additive edits. The shared contract defines `schema_version`, dispatch and result groups, reserved future groups, deterministic confidence mapping, and backward-compat rules. Agent docs reference the optional header/envelope without changing native output requirements. The two plan YAMLs now prepend compact advisory headers to the four Wave-1 `@context` exploration prompts.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -85,6 +89,7 @@ Pending. Delivery evidence should include the new contract doc, additive optiona
 | Dispatch-input first | research/009: the dispatch header is the primary gap; output is mostly already-typed. |
 | Numeric confidence derived from band | Avoid a competing source of truth with HIGH/MED/LOW. |
 | @orchestrate tolerates missing envelope | Backward-compat: envelope-less output must still parse. |
+| Runtime mirror parity | The same advisory guidance is present across OpenCode, Claude, and Codex agent surfaces. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -94,9 +99,13 @@ Pending. Delivery evidence should include the new contract doc, additive optiona
 
 | Check | Result |
 |-------|--------|
-| Contract doc present + the 4 planning `@context` dispatches emit the header | Pending |
-| Envelope-less agent output still parses unchanged | Pending |
-| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter --strict` | Pending |
+| Contract doc present + the 4 planning `@context` dispatches emit the header | Passed by read/grep verification |
+| Envelope-less agent output still parses unchanged | Passed by advisory-only degrade path in `@orchestrate` |
+| YAML parse for both plan assets | Passed with `python3 -c 'import yaml; ...'` |
+| TOML parse for Codex agent mirrors | Passed with `tomli` |
+| Preservation grep: `@code` `RETURN:` and `@context` six sections | Passed |
+| AGENTS guardrail headings | Passed: Four Laws and Gate 3 headings remain present |
+| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter --strict` | Passed (exit 0, Errors 0 / Warnings 0) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -104,5 +113,6 @@ Pending. Delivery evidence should include the new contract doc, additive optiona
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented yet.** This is a scaffold placeholder; no behavior changes are claimed here.
+1. **Advisory only.** No runtime parser or validator consumes the contract yet; existing markdown remains authoritative.
+2. **Wave-1 only.** Broader command and deep-loop integration remain out of scope for this packet.
 <!-- /ANCHOR:limitations -->

@@ -300,6 +300,26 @@ RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|UNKNOWN_STACK|SCOPE_CONFLICT|LOW_
 
 **Conditional fields:** first_failing_assertion (when verification fails), adversarial_summary (when any P0/P1 disagreement occurred), out_of_scope (when P2 follow-ups were observed).
 
+### Optional Agent I/O Envelope
+
+When requested by the orchestrator, append this advisory envelope after the complete RETURN body. Never place it before the first-line `RETURN:` status, and never omit required RETURN fields because this envelope exists.
+
+```text
+AGENT_IO_RESULT v1
+schema_version: agent-io/v1
+dispatch_id: <matching dispatch_id or none>
+status: pass | fail | blocked | partial
+confidence_band: high | medium | low
+confidence_numeric: 0.90 | 0.70 | 0.30
+failure_type: none | unknown_stack | scope_conflict | low_confidence | logic_sync | verify_fail
+summary: <one-line outcome>
+files_changed: <repo-relative paths or none>
+verification: <command/result or failure evidence>
+next_action: <specific follow-up or none>
+```
+
+Map `failure_type` from existing escalation classes only: `UNKNOWN_STACK -> unknown_stack`, `SCOPE_CONFLICT -> scope_conflict`, `LOW_CONFIDENCE -> low_confidence`, `LOGIC_SYNC -> logic_sync`, `VERIFY_FAIL -> verify_fail`, and `NONE -> none`. Derive numeric confidence from the band: high `0.90`, medium `0.70`, low `0.30`.
+
 ### Escalation Triggers
 
 Return BLOCKED with the appropriate escalation classifier in any of:

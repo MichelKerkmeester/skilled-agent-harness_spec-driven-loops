@@ -579,6 +579,18 @@ workflow:
         architecture_explorer:
           focus: "Project structure, entry points, component connections"
           prompt: |
+            AGENT_IO_DISPATCH v1
+            schema_version: agent-io/v1
+            dispatch_id: plan-step5-architecture
+            agent: @context
+            task_type: explore
+            task_definition: Project structure, entry points, component connections
+            context_snapshot: one-shot
+            read_directives: codebase-first
+            contract: advisory
+            context_package: none
+            expected_result: native
+
             Explore codebase architecture for: {task_description}
             Use Code Graph structural queries (code_graph_query) + Grep for concept discovery.
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
@@ -588,6 +600,18 @@ workflow:
         feature_explorer:
           focus: "Similar features, related patterns"
           prompt: |
+            AGENT_IO_DISPATCH v1
+            schema_version: agent-io/v1
+            dispatch_id: plan-step5-feature
+            agent: @context
+            task_type: explore
+            task_definition: Similar features and related patterns
+            context_snapshot: one-shot
+            read_directives: codebase-first
+            contract: advisory
+            context_package: none
+            expected_result: native
+
             Explore codebase for similar features/patterns for: {task_description}
             Use Code Graph structural queries (code_graph_query) + Grep for concept discovery.
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
@@ -597,6 +621,18 @@ workflow:
         dependency_explorer:
           focus: "Imports, modules, affected areas"
           prompt: |
+            AGENT_IO_DISPATCH v1
+            schema_version: agent-io/v1
+            dispatch_id: plan-step5-dependency
+            agent: @context
+            task_type: explore
+            task_definition: Imports, modules, and affected areas
+            context_snapshot: one-shot
+            read_directives: codebase-first
+            contract: advisory
+            context_package: none
+            expected_result: native
+
             Explore dependencies and integration points for: {task_description}
             Use Code Graph structural queries (code_graph_query) + Grep for concept discovery.
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
@@ -606,6 +642,18 @@ workflow:
         test_explorer:
           focus: "Test patterns, testing infrastructure"
           prompt: |
+            AGENT_IO_DISPATCH v1
+            schema_version: agent-io/v1
+            dispatch_id: plan-step5-test
+            agent: @context
+            task_type: explore
+            task_definition: Test patterns and testing infrastructure
+            context_snapshot: one-shot
+            read_directives: codebase-first
+            contract: advisory
+            context_package: none
+            expected_result: native
+
             Explore test patterns and testing infrastructure.
             Use Code Graph structural queries (code_graph_query) + Grep for concept discovery.
             Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").

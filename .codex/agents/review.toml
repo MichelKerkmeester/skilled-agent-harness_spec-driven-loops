@@ -265,6 +265,26 @@ All reports follow structured markdown. Key sections per format:
 ### Focused File Review Report
 `## Focused File Review: [Path]` → Review Scope (files, focus area) → Per-File Score table (all 5 dimensions) → Issues (P0/P1/P2 with file:line, evidence, impact, fix) → Pattern Compliance table → Recommendation (PASS/CONDITIONAL PASS/FAIL)
 
+### Optional Agent I/O Envelope
+
+When requested, append this advisory envelope after the complete review report. It does not replace the required review format, evidence, or rubric.
+
+```text
+AGENT_IO_RESULT v1
+schema_version: agent-io/v1
+dispatch_id: <matching dispatch_id or none>
+status: pass | fail | blocked | partial
+confidence_band: high | medium | low
+confidence_numeric: 0.90 | 0.70 | 0.30
+failure_type: none | p0 | p1 | p2 | low_confidence
+summary: <one-line review outcome>
+files_changed: none
+verification: <evidence summary or not_applicable>
+next_action: <specific follow-up or none>
+```
+
+Map `failure_type` from existing severity vocabulary only: any P0 blocker -> `p0`, unresolved P1 required finding -> `p1`, P2-only suggestions -> `p2`, no findings -> `none`, and insufficient evidence -> `low_confidence`. Derive numeric confidence from the band: high `0.90`, medium `0.70`, low `0.30`.
+
 ---
 
 ## 9. RULES
