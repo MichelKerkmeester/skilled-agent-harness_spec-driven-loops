@@ -32,6 +32,7 @@ export {
   type LexicalSearchResult,
   type LexicalSearchStats,
 } from './lexical-search.js';
+export { BetterSqliteVectorStore } from './vector-store.js';
 export type {
   VectorMetadata,
   VectorRecord,

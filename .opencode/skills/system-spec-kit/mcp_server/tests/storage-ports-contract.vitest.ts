@@ -2,14 +2,21 @@
 // TEST: STORAGE PORT CONTRACTS
 // -------------------------------------------------------------------
 
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
+
 import Database from 'better-sqlite3';
 import { describe, expect, it } from 'vitest';
 
 import {
   BetterSqliteGraphTraversal,
+  BetterSqliteVectorStore,
   PackedBm25LexicalSearch,
   type GraphTraversal,
   type LexicalSearch,
+  type VectorMetadata,
+  type VectorStore,
 } from '../lib/storage/ports';
 import {
   FakeContentionPolicy,
@@ -22,6 +29,37 @@ import {
 interface ContractSubject<TPort> {
   readonly port: TPort;
   readonly cleanup: () => void;
+}
+
+interface EnvSnapshot {
+  readonly EMBEDDING_DIM: string | undefined;
+  readonly MEMORY_ALLOWED_PATHS: string | undefined;
+}
+
+type VectorFixtureMetadata = VectorMetadata & {
+  readonly spec_folder: string;
+  readonly file_path: string;
+  readonly title: string;
+};
+
+function snapshotEnv(): EnvSnapshot {
+  return {
+    EMBEDDING_DIM: process.env.EMBEDDING_DIM,
+    MEMORY_ALLOWED_PATHS: process.env.MEMORY_ALLOWED_PATHS,
+  };
+}
+
+function restoreEnv(snapshot: EnvSnapshot): void {
+  if (snapshot.EMBEDDING_DIM === undefined) {
+    delete process.env.EMBEDDING_DIM;
+  } else {
+    process.env.EMBEDDING_DIM = snapshot.EMBEDDING_DIM;
+  }
+  if (snapshot.MEMORY_ALLOWED_PATHS === undefined) {
+    delete process.env.MEMORY_ALLOWED_PATHS;
+  } else {
+    process.env.MEMORY_ALLOWED_PATHS = snapshot.MEMORY_ALLOWED_PATHS;
+  }
 }
 
 function createGraphFixtureDb(): Database.Database {
@@ -67,6 +105,22 @@ function createFakeGraphTraversal(): FakeGraphTraversal {
       { parentPath: 'child', childPath: 'grandchild' },
     ],
   });
+}
+
+function createBetterSqliteVectorSubject(): ContractSubject<VectorStore<VectorFixtureMetadata>> {
+  const env = snapshotEnv();
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'vector-store-port-'));
+  process.env.EMBEDDING_DIM = '4';
+  process.env.MEMORY_ALLOWED_PATHS = tempDir;
+  const store = new BetterSqliteVectorStore({ dbPath: path.join(tempDir, 'context-index.sqlite') });
+  return {
+    port: store,
+    cleanup: () => {
+      void store.close();
+      restoreEnv(env);
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    },
+  };
 }
 
 function runGraphTraversalContract(
@@ -172,6 +226,71 @@ function runLexicalSearchContract(
   });
 }
 
+function runVectorStoreContract(
+  label: string,
+  createSubject: () => ContractSubject<VectorStore<VectorFixtureMetadata>>,
+): void {
+  describe(label, () => {
+    it('stores vectors and returns ranked matches through the port', async () => {
+      const subject = createSubject();
+      try {
+        await subject.port.upsert({
+          id: 'left',
+          embedding: [1, 0, 0, 0],
+          metadata: {
+            spec_folder: 'specs/vector-port',
+            file_path: 'left.md',
+            title: 'Left vector',
+          },
+        });
+        await subject.port.upsert({
+          id: 'right',
+          embedding: [0, 1, 0, 0],
+          metadata: {
+            spec_folder: 'specs/vector-port',
+            file_path: 'right.md',
+            title: 'Right vector',
+          },
+        });
+
+        const results = await subject.port.search([1, 0, 0, 0], { limit: 2, minScore: 0 });
+
+        expect(results).toHaveLength(2);
+        expect(results[0]?.metadata.title).toBe('Left vector');
+        expect(results[0]?.score).toBeGreaterThanOrEqual(results[1]?.score ?? 0);
+
+        const stored = await subject.port.get(String(results[0]?.id));
+        expect(stored?.metadata.title).toBe('Left vector');
+        expect(await subject.port.delete(String(results[0]?.id))).toBe(true);
+        expect(await subject.port.get(String(results[0]?.id))).toBeNull();
+      } finally {
+        subject.cleanup();
+      }
+    });
+
+    it('clears stored vector records', async () => {
+      const subject = createSubject();
+      try {
+        await subject.port.upsert({
+          id: 'clear-me',
+          embedding: [1, 0, 0, 0],
+          metadata: {
+            spec_folder: 'specs/vector-port',
+            file_path: 'clear.md',
+            title: 'Clear vector',
+          },
+        });
+
+        await subject.port.clear();
+
+        expect(await subject.port.search([1, 0, 0, 0], { limit: 5, minScore: 0 })).toEqual([]);
+      } finally {
+        subject.cleanup();
+      }
+    });
+  });
+}
+
 runGraphTraversalContract('BetterSqliteGraphTraversal contract', () => {
   const database = createGraphFixtureDb();
   return {
@@ -192,6 +311,13 @@ runLexicalSearchContract('PackedBm25LexicalSearch contract', () => ({
 
 runLexicalSearchContract('FakeLexicalSearch contract', () => ({
   port: new FakeLexicalSearch(),
+  cleanup: () => {},
+}));
+
+runVectorStoreContract('BetterSqliteVectorStore contract', createBetterSqliteVectorSubject);
+
+runVectorStoreContract('FakeVectorStore contract', () => ({
+  port: new FakeVectorStore<VectorFixtureMetadata>(),
   cleanup: () => {},
 }));
 

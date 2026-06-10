@@ -5,6 +5,10 @@
 // Backward-compatible export surface across split modules.
 
 export {
+  BetterSqliteVectorStore,
+  BetterSqliteVectorStore as SQLiteVectorStore,
+} from '../storage/ports/vector-store.js';
+export {
   MAX_TRIGGERS_PER_MEMORY,
   to_embedding_buffer,
   parse_trigger_phrases,
@@ -142,7 +146,6 @@ export {
   clearConstitutionalCache,
   validateFilePath,
   isVectorSearchAvailable,
-  SQLiteVectorStore,
   getConfirmedEmbeddingDimension,
   getEmbeddingDim,
   validateEmbeddingDimension,

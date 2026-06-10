@@ -27,7 +27,6 @@ import {
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings/factory';
 
 import { resolveDatabasePaths, SERVER_DIR } from '../../core/config.js';
-import { IVectorStore } from '../interfaces/vector-store.js';
 import { computeInterferenceScoresBatch } from '../scoring/interference-scoring.js';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
 import {
@@ -48,13 +47,7 @@ import {
   ensure_schema_version,
 } from './vector-index-schema.js';
 import { migrateLegacySingleDbToShardSync } from './db-shard-migration.js';
-import type {
-  EmbeddingInput,
-  EnrichedSearchResult,
-  IndexMemoryParams,
-  MemoryRow,
-  VectorSearchOptions,
-} from './vector-index-types.js';
+import type { MemoryRow } from './vector-index-types.js';
 
 type SearchWeightsConfig = {
   maxTriggersPerMemory?: number;
@@ -123,30 +116,6 @@ export const search_weights: SearchWeightsConfig = {
     return getSearchWeights().smartRanking;
   },
 };
-
-type EnhancedSearchOptions = {
-  specFolder?: string | null;
-  minSimilarity?: number;
-  diversityFactor?: number;
-  noDiversity?: boolean;
-};
-type JsonObject = Record<string, unknown>;
-
-let _cached_queries: Awaited<typeof import('./vector-index-queries.js')> | null = null;
-let _cached_mutations: Awaited<typeof import('./vector-index-mutations.js')> | null = null;
-let _cached_aliases: Awaited<typeof import('./vector-index-aliases.js')> | null = null;
-
-async function getQueriesModule() {
-  return _cached_queries ??= await import('./vector-index-queries.js');
-}
-
-async function getMutationsModule() {
-  return _cached_mutations ??= await import('./vector-index-mutations.js');
-}
-
-async function getAliasesModule() {
-  return _cached_aliases ??= await import('./vector-index-aliases.js');
-}
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION — Embedding Dimension
@@ -1987,249 +1956,12 @@ export function is_vector_search_available(): boolean {
   return sqlite_vec_available_flag;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   8. IVECTORSTORE IMPLEMENTATION
-----------------------------------------------------------------*/
-
-/** Implements the vector-store interface on top of SQLite. */
-export class SQLiteVectorStore extends IVectorStore {
-  dbPath: string | null;
-  _initialized: boolean;
-
-  constructor(options: { dbPath?: string } = {}) {
-    super();
-    this.dbPath = options.dbPath || null;
-    this._initialized = false;
-  }
-
-  _ensureInitialized(): void {
-    if (!this._initialized) {
-      this._getDatabase();
-      this._initialized = true;
-    }
-  }
-
-  _getDatabase(): Database.Database {
-    return initialize_db(this.dbPath);
-  }
-
-  /**
-   * Searches indexed memories by embedding similarity.
-   * @param embedding - The query embedding to search with.
-   * @param topK - The maximum number of matches to return.
-   * @param options - Optional ranking and filtering controls.
-   * @returns Matching memory rows ordered by similarity.
-   * @throws {VectorIndexError} When the embedding dimension is invalid or the store cannot initialize.
-   * @example
-   * ```ts
-   * const rows = await store.search(queryEmbedding, 10, { specFolder: 'specs/001-demo' });
-   * ```
-   */
-  async search(embedding: EmbeddingInput, topK: number, options: VectorSearchOptions = {}): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-
-    const expected_dim = get_embedding_dim();
-    if (!embedding || embedding.length !== expected_dim) {
-      throw new VectorIndexError(
-        `Invalid embedding dimension: expected ${expected_dim}, got ${embedding?.length}`,
-        VectorIndexErrorCode.EMBEDDING_VALIDATION,
-      );
-    }
-
-    const search_options = {
-      limit: topK,
-      specFolder: options.specFolder,
-      minSimilarity: options.minSimilarity || 0,
-      useDecay: options.useDecay !== false,
-      tier: options.tier,
-      contextType: options.contextType,
-      includeConstitutional: options.includeConstitutional !== false,
-      includeArchived: options.includeArchived === true
-    };
-
-    const { vector_search } = await getQueriesModule();
-    return vector_search(embedding, search_options, database);
-  }
-
-  /**
-   * Inserts or updates a memory row and its embedding metadata.
-   * @param _id - Legacy identifier input retained for interface compatibility.
-   * @param embedding - The embedding to persist.
-   * @param metadata - Store metadata containing the spec folder and file path.
-   * @returns The stored memory identifier.
-   * @throws {VectorIndexError} When embedding validation fails or required metadata is missing.
-   * @example
-   * ```ts
-   * const id = await store.upsert('ignored', embedding, { spec_folder: 'specs/001-demo', file_path: 'spec.md' });
-   * ```
-   */
-  async upsert(_id: string, embedding: EmbeddingInput, metadata: JsonObject): Promise<number> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-
-    const expected_dim = get_embedding_dim();
-    if (!embedding || embedding.length !== expected_dim) {
-      throw new VectorIndexError(
-        `Embedding dimension mismatch: expected ${expected_dim}, got ${embedding?.length}`,
-        VectorIndexErrorCode.EMBEDDING_VALIDATION,
-      );
-    }
-
-    const metadata_alias = metadata as JsonObject & {
-      spec_folder?: string;
-      specFolder?: string;
-      file_path?: string;
-      filePath?: string;
-      anchor_id?: string;
-      anchorId?: string;
-      title?: string;
-      trigger_phrases?: string[];
-      triggerPhrases?: string[];
-      importance_weight?: number;
-      importanceWeight?: number;
-    };
-
-    const params: IndexMemoryParams = {
-      specFolder: metadata_alias.spec_folder || metadata_alias.specFolder || '',
-      filePath: metadata_alias.file_path || metadata_alias.filePath || '',
-      anchorId: metadata_alias.anchor_id || metadata_alias.anchorId || null,
-      title: metadata_alias.title || null,
-      triggerPhrases: metadata_alias.trigger_phrases || metadata_alias.triggerPhrases || [],
-      importanceWeight: metadata_alias.importance_weight ?? metadata_alias.importanceWeight ?? 0.5,
-      embedding: embedding
-    };
-
-    if (!params.specFolder || !params.filePath) {
-      throw new VectorIndexError(
-        'metadata must include spec_folder and file_path',
-        VectorIndexErrorCode.STORE_ERROR,
-      );
-    }
-
-    const { index_memory } = await getMutationsModule();
-    return index_memory(params, database);
-  }
-
-  /**
-   * Deletes a memory by identifier.
-   * @param id - The memory identifier.
-   * @returns True when a memory was deleted.
-   * @throws {VectorIndexError} Propagates underlying delete failures from the mutation layer.
-   * @example
-   * ```ts
-   * const deleted = await store.delete(42);
-   * ```
-   */
-  async delete(id: number): Promise<boolean> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { delete_memory } = await getMutationsModule();
-    return delete_memory(id, database);
-  }
-
-  /**
-   * Retrieves a memory by identifier.
-   * @param id - The memory identifier.
-   * @returns The stored memory row, if found.
-   * @throws {VectorIndexError} Propagates underlying store initialization failures.
-   * @example
-   * ```ts
-   * const memory = await store.get(42);
-   * ```
-   */
-  async get(id: number): Promise<MemoryRow | null> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_memory } = await getQueriesModule();
-    return get_memory(id, database);
-  }
-
-  async getStats(): Promise<{ total: number; pending: number; success: number; failed: number; retry: number }> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_stats } = await getQueriesModule();
-    return get_stats(database);
-  }
-
-  isAvailable(): boolean {
-    return sqlite_vec_available_flag;
-  }
-
-  getEmbeddingDimension(): number {
-    return get_embedding_dim();
-  }
-
-  async close(): Promise<void> {
-    if (this._initialized) {
-      close_db();
-      this._initialized = false;
-    }
-  }
-
-  async deleteByPath(specFolder: string, filePath: string, anchorId: string | null = null): Promise<boolean> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { delete_memory_by_path } = await getMutationsModule();
-    return delete_memory_by_path(specFolder, filePath, anchorId, database);
-  }
-
-  async getByFolder(specFolder: string): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_memories_by_folder } = await getQueriesModule();
-    return get_memories_by_folder(specFolder, database);
-  }
-
-  async searchEnriched(
-    embedding: string,
-    options: { specFolder?: string | null; minSimilarity?: number } = {},
-  ): Promise<EnrichedSearchResult[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { vector_search_enriched } = await getQueriesModule();
-    return vector_search_enriched(embedding, undefined, options, database);
-  }
-
-  async enhancedSearch(embedding: string, options: EnhancedSearchOptions = {}): Promise<EnrichedSearchResult[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { enhanced_search } = await getAliasesModule();
-    return enhanced_search(embedding, undefined, options, database);
-  }
-
-  async getConstitutionalMemories(
-    options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-  ): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_constitutional_memories_public } = await getQueriesModule();
-    return get_constitutional_memories_public(options, database);
-  }
-
-  async verifyIntegrity(
-    options: { autoClean?: boolean; cleanFiles?: boolean } = {},
-  ): Promise<{
-    totalMemories: number;
-    totalVectors: number;
-    orphanedVectors: number;
-    missingVectors: number;
-    orphanedFiles: Array<{ id: number; file_path: string; reason: string }>;
-    orphanedChunks: number;
-    isConsistent: boolean;
-    cleaned?: { vectors: number; chunks: number; files: number };
-  }> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { verify_integrity } = await getQueriesModule();
-    return verify_integrity(options, database);
-  }
-}
-
 export const __testables = {
   get_existing_embedding_dimension,
   run_vector_shard_integrity_probe_at_path,
 };
+
+export { BetterSqliteVectorStore as SQLiteVectorStore } from '../storage/ports/vector-store.js';
 
 /* ───────────────────────────────────────────────────────────────
    9. CAMELCASE ALIASES
