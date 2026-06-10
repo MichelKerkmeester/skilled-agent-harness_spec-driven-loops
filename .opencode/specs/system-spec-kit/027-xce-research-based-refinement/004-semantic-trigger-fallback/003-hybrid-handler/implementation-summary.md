@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: 004/003 Hybrid Handler Integration"
-description: "Implementation evidence placeholder for the hybrid handler sub-phase. No implementation changes are claimed until this file is completed after code and tests land."
+title: "Implementation Summary: Hybrid Handler Integration"
+description: "Evidence for the hybrid trigger handler integration: shadow-default mode, union-on-demand fallback, source-tagging, activation guards, and tests."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/003-hybrid-handler"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded sub-phase from 007 split"
-    next_safe_action: "Fill evidence after implementation lands"
+    last_updated_at: "2026-06-10T10:25:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed hybrid handler integration"
+    next_safe_action: "Hand off env docs to phase 004"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-007-phase-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-hybrid-handler |
-| **Completed** | 2026-06-06 |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,19 +48,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet implemented. This sub-phase is scaffolded; evidence will be filled after code and tests land.
+Implemented a feature-flagged semantic Stage 2 inside `memory_match_triggers` while preserving the lexical control surface.
 
 ### Planned scope
 
-This phase will modify `mcp_server/handlers/memory-triggers.ts` to add a feature-flagged Stage 2 semantic gate (UNION, short-circuit, source-tag, activation guards), with integration tests in `mcp_server/__tests__/triggers/hybrid-handler.vitest.ts` and a flag-off parity test in `mcp_server/__tests__/triggers/lexical-parity.vitest.ts`.
+- Master flag off: semantic code path stays inert and lexical output remains stable.
+- Master flag on with default mode: shadow metadata remains results-only neutral.
+- Mode `union`: semantic matches are added only when the lexical stage is weak and not an exact strong lexical match.
+- Lexical precedence is preserved by ordering lexical results first and deduplicating semantic hits by memory id.
+- Semantic-only hits carry `matchSource: "semantic"`, `semanticScore`, and the matched phrase in `matchedPhrases`.
+- Cognitive activation uses `1.0` for lexical matches and `min(0.85, semanticScore)` for semantic matches.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `mcp_server/handlers/memory-triggers.ts` | Pending (Modify) | Stage 2 gate, UNION, source-tag, activation guards |
-| `mcp_server/__tests__/triggers/hybrid-handler.vitest.ts` | Pending (Create) | 2-stage integration tests |
-| `mcp_server/__tests__/triggers/lexical-parity.vitest.ts` | Pending (Create) | Flag-off bit-identical diff test |
+| `mcp_server/handlers/memory-triggers.ts` | Modified | Stage 2 mode gate, UNION, source-tagging, activation guards |
+| `mcp_server/tests/hybrid-trigger-handler.vitest.ts` | Created | Short-circuit, union, and activation guard tests |
+| `mcp_server/tests/lexical-parity.vitest.ts` | Created | Flag-off and shadow-default lexical parity tests |
+| `mcp_server/tests/handler-memory-triggers.vitest.ts` | Modified | Adjusted shadow canary to a non-strong lexical prompt |
+| `checklist.md` | Created | Phase verification evidence checklist |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +75,9 @@ This phase will modify `mcp_server/handlers/memory-triggers.ts` to add a feature
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The handler keeps semantic trigger behavior behind `SPECKIT_SEMANTIC_TRIGGERS`. Result-affecting behavior additionally requires `SPECKIT_SEMANTIC_TRIGGERS_MODE=union`; the default mode is shadow, so enabling the master flag alone does not change returned results.
+
+Cold-start, missing cache, and matcher failures degrade to lexical-only behavior with a union status in response metadata when union mode is active.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,7 +87,10 @@ This phase will modify `mcp_server/handlers/memory-triggers.ts` to add a feature
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Read mode from `SPECKIT_SEMANTIC_TRIGGERS_MODE` with shadow default | Preserves the parent shadow-before-union contract |
+| Treat weak lexical as empty or below caller limit, except exact strong matches | Allows fallback recall without overriding explicit lexical commands |
+| Keep env flag documentation out of this phase | The parent assigns env documentation to the final phase |
+| Use `mcp_server/tests/*.vitest.ts` | This repository does not use the scaffolded `__tests__/triggers/` path |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -88,7 +100,11 @@ This phase will modify `mcp_server/handlers/memory-triggers.ts` to add a feature
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| New suites | PASS: 2 files, 11 tests |
+| Listed canaries | PASS: 4 files, 25 tests |
+| `npm run build` | PASS: exits 0 |
+| `SCHEMA_VERSION` | PASS: remains 34 |
+| Strict spec validation | PASS: exits 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -96,5 +112,6 @@ This phase will modify `mcp_server/handlers/memory-triggers.ts` to add a feature
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. Env flag documentation for `SPECKIT_SEMANTIC_TRIGGERS_MODE` remains a handoff to the final semantic trigger fallback phase.
+2. The original scaffold referenced `mcp_server/__tests__/triggers/`; implementation used the repository's actual `mcp_server/tests/*.vitest.ts` convention.
 <!-- /ANCHOR:limitations -->

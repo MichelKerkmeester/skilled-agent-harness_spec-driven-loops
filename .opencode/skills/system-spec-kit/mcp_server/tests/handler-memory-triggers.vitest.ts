@@ -396,7 +396,7 @@ describe('semantic trigger shadow handler wiring', () => {
     );
     const semanticSpy = vi.spyOn(semanticTriggerMatcher, 'computeSemanticTriggerShadow');
 
-    const response = await handler.handleMemoryMatchTriggers({ prompt: 'save context', include_cognitive: false });
+    const response = await handler.handleMemoryMatchTriggers({ prompt: 'please save context', include_cognitive: false });
     const payload = parseEnvelope(response);
     const data = getRecord(payload.data) ?? {};
     const meta = getRecord(payload.meta) ?? {};
@@ -427,7 +427,7 @@ describe('semantic trigger shadow handler wiring', () => {
     });
     vi.spyOn(console, 'info').mockImplementation(() => undefined);
 
-    const response = await handler.handleMemoryMatchTriggers({ prompt: 'save context', include_cognitive: false });
+    const response = await handler.handleMemoryMatchTriggers({ prompt: 'please save context', include_cognitive: false });
     const payload = parseEnvelope(response);
     const data = getRecord(payload.data) ?? {};
     const meta = getRecord(payload.meta) ?? {};

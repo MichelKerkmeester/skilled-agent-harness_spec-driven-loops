@@ -26,6 +26,10 @@ import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
 import {
   computeSemanticTriggerShadow,
   isSemanticTriggerShadowEnabled,
+  loadSemanticTriggerCache,
+  lookupCachedQueryEmbedding,
+  matchSemanticTriggers,
+  type SemanticMatch,
   type SemanticTriggerShadowStats,
 } from '../lib/triggers/semantic-trigger-matcher.js';
 import * as workingMemory from '../lib/cognitive/working-memory.js';
@@ -61,7 +65,23 @@ interface TriggerMatch {
   title: string | null;
   matchedPhrases: string[];
   importanceWeight: number;
+  matchSource?: 'lexical' | 'semantic';
+  semanticScore?: number;
   [key: string]: unknown;
+}
+
+type SemanticTriggerMode = 'shadow' | 'union';
+
+interface SemanticTriggerUnionStats {
+  enabled: true;
+  mode: 'union';
+  status: 'skipped_shadow_mode' | 'skipped_strong_lexical' | 'skipped_strong_lexical_command' | 'skipped_lexical_sufficient' | 'no_query_embedding' | 'no_trigger_embeddings' | 'computed' | 'failed';
+  lexicalCount: number;
+  semanticCount: number;
+  addedCount: number;
+  topScore: number | null;
+  latencyMs: number;
+  error?: string;
 }
 
 interface EnrichedTriggerMatch extends TriggerMatch {
@@ -157,6 +177,101 @@ function fetchMemoryRecords(memoryIds: number[]): Map<number, TierInput> {
   }
 
   return records;
+}
+
+function getSemanticTriggerMode(): SemanticTriggerMode {
+  return process.env.SPECKIT_SEMANTIC_TRIGGERS_MODE?.trim().toLowerCase() === 'union'
+    ? 'union'
+    : 'shadow';
+}
+
+function isStrongLexicalCommand(prompt: string, matches: readonly TriggerMatch[]): boolean {
+  const normalizedPrompt = triggerMatcher.normalizeTriggerText(prompt);
+  return matches.some((match) => match.matchedPhrases.some((phrase) => {
+    const normalizedPhrase = triggerMatcher.normalizeTriggerText(phrase);
+    return normalizedPhrase === normalizedPrompt;
+  }));
+}
+
+function isExplicitCommandPrompt(prompt: string): boolean {
+  return prompt.trim().startsWith('/');
+}
+
+function isLexicalStageWeak(matches: readonly TriggerMatch[], limit: number): boolean {
+  return matches.length === 0 || matches.length < limit;
+}
+
+function semanticMatchToTriggerMatch(match: SemanticMatch): TriggerMatch {
+  return {
+    memoryId: match.memoryId,
+    specFolder: match.specFolder,
+    filePath: match.filePath,
+    title: match.title,
+    matchedPhrases: match.matchedPhrases,
+    importanceWeight: match.importanceWeight,
+    matchSource: 'semantic',
+    semanticScore: match.score,
+  };
+}
+
+function mergeTriggerResults(lexicalMatches: readonly TriggerMatch[], semanticMatches: readonly SemanticMatch[]): TriggerMatch[] {
+  const seen = new Set<number>();
+  const merged: TriggerMatch[] = [];
+  for (const match of lexicalMatches) {
+    seen.add(match.memoryId);
+    merged.push({ ...match, matchSource: 'lexical' });
+  }
+  for (const match of semanticMatches) {
+    if (seen.has(match.memoryId)) {
+      continue;
+    }
+    seen.add(match.memoryId);
+    merged.push(semanticMatchToTriggerMatch(match));
+  }
+  return merged;
+}
+
+function getTriggerActivationScore(match: TriggerMatch): number {
+  if (match.matchSource !== 'semantic') {
+    return 1.0;
+  }
+  const semanticScore = typeof match.semanticScore === 'number' && Number.isFinite(match.semanticScore)
+    ? match.semanticScore
+    : 0;
+  return Math.max(0, Math.min(0.85, semanticScore));
+}
+
+function filterSemanticMatchesByScope(
+  database: ReturnType<typeof initialize_db>,
+  matches: readonly SemanticMatch[],
+  args: TriggerArgs,
+): SemanticMatch[] {
+  const { specFolder, tenantId, userId, agentId } = args;
+  if ((!specFolder && !tenantId && !userId && !agentId) || matches.length === 0) {
+    return [...matches];
+  }
+
+  const placeholders = matches.map(() => '?').join(',');
+  const scopeRows = database.prepare(`
+    SELECT id, spec_folder, tenant_id, user_id, agent_id
+    FROM memory_index WHERE id IN (${placeholders})
+  `).all(...matches.map((match) => match.memoryId)) as Array<{
+    id: number;
+    spec_folder?: string;
+    tenant_id?: string;
+    user_id?: string;
+    agent_id?: string;
+  }>;
+  const scopeMap = new Map(scopeRows.map((row) => [row.id, row]));
+  return matches.filter((match) => {
+    const row = scopeMap.get(match.memoryId);
+    if (!row) return false;
+    if (specFolder && row.spec_folder !== specFolder) return false;
+    if (tenantId && row.tenant_id !== tenantId) return false;
+    if (userId && row.user_id !== userId) return false;
+    if (agentId && row.agent_id !== agentId) return false;
+    return true;
+  });
 }
 
 /** Result shape returned by getTieredContent */
@@ -350,8 +465,101 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     : [];
   const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
   let semanticTriggerShadow: SemanticTriggerShadowStats | null = null;
+  let semanticTriggerUnion: SemanticTriggerUnionStats | null = null;
+  const semanticTriggersEnabled = isSemanticTriggerShadowEnabled();
+  const semanticTriggerMode = getSemanticTriggerMode();
+  const strongLexicalMatch = isStrongLexicalCommand(prompt, results);
+  const strongLexicalCommandMatch = strongLexicalMatch && isExplicitCommandPrompt(prompt);
+  if (semanticTriggersEnabled && semanticTriggerMode === 'union') {
+    const unionStartTime = Date.now();
+    if (strongLexicalMatch) {
+      semanticTriggerUnion = {
+        enabled: true,
+        mode: 'union',
+        status: strongLexicalCommandMatch ? 'skipped_strong_lexical_command' : 'skipped_strong_lexical',
+        lexicalCount: results.length,
+        semanticCount: 0,
+        addedCount: 0,
+        topScore: null,
+        latencyMs: Date.now() - unionStartTime,
+      };
+    } else if (!isLexicalStageWeak(results, limit)) {
+      semanticTriggerUnion = {
+        enabled: true,
+        mode: 'union',
+        status: 'skipped_lexical_sufficient',
+        lexicalCount: results.length,
+        semanticCount: 0,
+        addedCount: 0,
+        topScore: null,
+        latencyMs: Date.now() - unionStartTime,
+      };
+    } else {
+      try {
+        const semanticDatabase = initialize_db();
+        const queryEmbedding = lookupCachedQueryEmbedding(semanticDatabase, prompt);
+        if (!queryEmbedding) {
+          semanticTriggerUnion = {
+            enabled: true,
+            mode: 'union',
+            status: 'no_query_embedding',
+            lexicalCount: results.length,
+            semanticCount: 0,
+            addedCount: 0,
+            topScore: null,
+            latencyMs: Date.now() - unionStartTime,
+          };
+        } else {
+          const semanticCache = loadSemanticTriggerCache(semanticDatabase);
+          if (semanticCache.length === 0) {
+            semanticTriggerUnion = {
+              enabled: true,
+              mode: 'union',
+              status: 'no_trigger_embeddings',
+              lexicalCount: results.length,
+              semanticCount: 0,
+              addedCount: 0,
+              topScore: null,
+              latencyMs: Date.now() - unionStartTime,
+            };
+          } else {
+            const semanticMatches = filterSemanticMatchesByScope(
+              semanticDatabase,
+              matchSemanticTriggers(queryEmbedding, semanticCache, { max: limit }),
+              args,
+            );
+            const mergedResults = mergeTriggerResults(results, semanticMatches);
+            semanticTriggerUnion = {
+              enabled: true,
+              mode: 'union',
+              status: 'computed',
+              lexicalCount: results.length,
+              semanticCount: semanticMatches.length,
+              addedCount: mergedResults.length - results.length,
+              topScore: semanticMatches[0]?.score ?? null,
+              latencyMs: Date.now() - unionStartTime,
+            };
+            results = mergedResults;
+          }
+        }
+      } catch (unionErr: unknown) {
+        semanticTriggerUnion = {
+          enabled: true,
+          mode: 'union',
+          status: 'failed',
+          lexicalCount: results.length,
+          semanticCount: 0,
+          addedCount: 0,
+          topScore: null,
+          latencyMs: Date.now() - unionStartTime,
+          error: toErrorMessage(unionErr),
+        };
+        console.warn('[memory_match_triggers] Semantic trigger union failed:', toErrorMessage(unionErr));
+      }
+    }
+  }
   try {
-    if (isSemanticTriggerShadowEnabled()) {
+    if (semanticTriggersEnabled && semanticTriggerMode === 'shadow' && !strongLexicalMatch) {
       const semanticDatabase = initialize_db();
       semanticTriggerShadow = computeSemanticTriggerShadow(
         semanticDatabase,
@@ -409,8 +617,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     for (const match of results) {
       try {
         attentionDecay.activateMemory(match.memoryId);
-        // Persist max attention boost for matched memories.
-        workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
+        workingMemory.setAttentionScore(sessionId as string, match.memoryId, getTriggerActivationScore(match));
         activatedMemories.push(match.memoryId);
       } catch (err: unknown) {
         const message = toErrorMessage(err);
@@ -500,6 +707,8 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       title: r.title,
       matchedPhrases: r.matchedPhrases,
       importanceWeight: r.importanceWeight,
+      matchSource: r.matchSource,
+      semanticScore: r.semanticScore,
       tier: r.tier,
       attentionScore: r.attentionScore,
       content: tieredContent[i].content,
@@ -532,7 +741,9 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       filePath: r.filePath,
       title: r.title,
       matchedPhrases: r.matchedPhrases,
-      importanceWeight: r.importanceWeight
+      importanceWeight: r.importanceWeight,
+      matchSource: r.matchSource,
+      semanticScore: r.semanticScore,
     }));
   }
 
@@ -573,6 +784,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
         latencyMs: latencyMs,
         triggerSignals: detectedSignals,
         ...(semanticTriggerShadow ? { semanticTriggerShadow } : {}),
+        ...(semanticTriggerUnion ? { semanticTriggerUnion } : {}),
         ...(degradedTriggerMatching ? { degradedMatching: degradedTriggerMatching } : {}),
       }
   });

@@ -38,13 +38,14 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "spec_scaffolded",
+    "status": "completed",
     "key_files": [
       "mcp_server/handlers/memory-triggers.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -201,7 +202,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

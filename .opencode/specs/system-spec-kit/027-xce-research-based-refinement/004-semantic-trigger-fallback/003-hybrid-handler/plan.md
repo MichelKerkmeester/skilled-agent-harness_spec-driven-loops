@@ -9,17 +9,17 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/003-hybrid-handler"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Split Sub-Phase 3 plan section from 007 leaf plan"
-    next_safe_action: "Begin T001 Stage 2 gate"
+    last_updated_at: "2026-06-10T10:25:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Verified hybrid handler implementation"
+    next_safe_action: "Hand off mode flag docs to phase 004"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-007-phase-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,14 +52,14 @@ Add a feature-flagged Stage 2 to `memory_match_triggers` after the lexical stage
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `002-semantic-matcher` available.
-- [ ] Insertion point confirmed (after `.slice(0, limit)`, per parent iter-035).
-- [ ] Activation block `memory-triggers.ts:360-380` confirmed.
+- [x] `002-semantic-matcher` available.
+- [x] Insertion point confirmed after lexical stage.
+- [x] Activation block confirmed and guarded by source.
 
 ### Definition of Done
-- [ ] Flag-off diff test bit-identical.
-- [ ] Short-circuit trace assertion green (no matcher call on strong command).
-- [ ] UNION + activation-guard tests green.
+- [x] Flag-off parity test stable for slash, plain, resume, and CJK prompts.
+- [x] Short-circuit trace assertion green; matcher not called.
+- [x] UNION + activation-guard tests green.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -85,17 +85,17 @@ prompt → Stage 1 lexical (unchanged) → short-circuit gate → Stage 2 semant
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm matcher interface from `002` and the handler insertion point.
-- [ ] Confirm result-envelope type additions (`matchSource`, `semanticScore?`).
+- [x] Confirm matcher interface from `002` and the handler insertion point.
+- [x] Confirm result-envelope type additions (`matchSource`, `semanticScore?`).
 
 ### Phase 2: Core Implementation
-- [ ] Add Stage 2 gate + strong-command short-circuit.
-- [ ] Implement UNION semantics with lexical precedence.
-- [ ] Add activation guards + source-tagging.
+- [x] Add Stage 2 gate + strong-command short-circuit.
+- [x] Implement UNION semantics with lexical precedence.
+- [x] Add activation guards + source-tagging.
 
 ### Phase 3: Verification
-- [ ] Flag-off lexical-parity diff test.
-- [ ] Hybrid-handler integration tests (UNION, short-circuit, activation).
+- [x] Flag-off lexical-parity diff test.
+- [x] Hybrid-handler integration tests (UNION, short-circuit, activation).
 <!-- /ANCHOR:phases -->
 
 ---

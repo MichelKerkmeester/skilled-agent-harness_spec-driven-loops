@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/003-hybrid-handler"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Split from 007 leaf into hybrid-handler sub-phase"
-    next_safe_action: "Implement T001 Stage 2 gate in memory-triggers.ts"
+    last_updated_at: "2026-06-10T10:25:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented hybrid handler union fallback"
+    next_safe_action: "Hand off env docs to phase 004"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-007-phase-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Complete |
 | **Created** | 2026-06-06 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -106,8 +106,8 @@ Add a feature-flagged Stage 2 that runs only when lexical is empty/weak, unions 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `mcp_server/handlers/memory-triggers.ts` | Modify | Stage 2 gate, short-circuit, UNION, source-tag, activation guards |
-| `mcp_server/__tests__/triggers/hybrid-handler.vitest.ts` | Create | 2-stage handler integration tests |
-| `mcp_server/__tests__/triggers/lexical-parity.vitest.ts` | Create | Flag-off bit-identical diff test |
+| `mcp_server/tests/hybrid-trigger-handler.vitest.ts` | Create | 2-stage handler integration tests |
+| `mcp_server/tests/lexical-parity.vitest.ts` | Create | Flag-off and shadow-default parity tests |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -159,4 +159,8 @@ Add a feature-flagged Stage 2 that runs only when lexical is empty/weak, unions 
 
 - Should semantic-only trigger hits activate working memory at reduced score, or only retrieve content without activation until proven? (inherited from parent 007)
 - What exactly classifies a lexical hit as "weak" enough to trigger Stage 2 (no `passes_threshold`)?
+
+Resolved during implementation: weak lexical means no lexical hits or fewer lexical hits than the requested limit, excluding exact strong lexical matches.
+
+Doc drift noted: the scaffolded test paths used `mcp_server/__tests__/triggers/`, but this repository uses `mcp_server/tests/*.vitest.ts`.
 <!-- /ANCHOR:questions -->
