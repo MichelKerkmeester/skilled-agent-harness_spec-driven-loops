@@ -39,17 +39,20 @@
       "system"
     ],
     "importance_tier": "normal",
-    "status": "planned_(not_implemented)",
+    "status": "complete",
     "key_files": [
-      "lib/feedback/feedback-ledger.ts",
-      "schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-safety-posture.vitest.ts",
+      "tests/feedback-safety-posture.vitest.ts",
+      "lib/feedback/feedback-ledger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       "lib/feedback/query-flow-tracker.ts",
       "lib/feedback/batch-learning.ts",
+      "schemas/tool-input-schemas.ts",
+      "tests/feedback-ledger.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -58,21 +61,15 @@
     ],
     "entities": [
       {
-        "name": "feedback-ledger.ts",
-        "kind": "code",
-        "path": "lib/feedback/feedback-ledger.ts",
-        "source": "derived"
-      },
-      {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
-        "name": "query-flow-tracker.ts",
+        "name": "feedback-ledger.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts",
         "source": "derived"
       },
       {
@@ -82,9 +79,27 @@
         "source": "derived"
       },
       {
+        "name": "feedback-safety-posture.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-safety-posture.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-flow-tracker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts",
+        "source": "derived"
+      },
+      {
         "name": "context-server.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-ledger.vitest.ts",
+        "kind": "test",
+        "path": "tests/feedback-ledger.vitest.ts",
         "source": "derived"
       },
       {
@@ -188,23 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3** of the Memclaw-derived memory hardening: provenance, idempotency, feedback reframe, tombstones, edges, stale audit, tool ownership specification. This phase is the **central safety posture** of the program: it ratifies that feedback never mutates ranking, retention, or FSRS state for a single-user store.",
     "created_at": "2026-06-06T10:10:47Z",
-    "last_save_at": "2026-06-06T14:09:11.238Z",
+    "last_save_at": "2026-06-10T11:29:26.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -58,6 +58,36 @@ export const CONFIDENCE_WEIGHTS: Record<FeedbackConfidence, number> = {
  */
 export const SCORE_NORMALIZATION = 10.0;
 
+export const FUTURE_REDUCER_DAMPING_CONTRACT = Object.freeze({
+  positiveSignalDamping: 0.1,
+  negativeSignalDamping: 0.1,
+});
+
+const PROTECTED_FEEDBACK_TIERS = new Set(['constitutional', 'critical', 'important']);
+
+export interface FutureFeedbackReducerTarget {
+  importanceTier?: string | null;
+  protectedMemory?: boolean;
+  userConfirmed?: boolean;
+  sparseDomain?: boolean;
+}
+
+export function assertFutureReducerDampingIsSymmetric(
+  contract: { positiveSignalDamping: number; negativeSignalDamping: number } = FUTURE_REDUCER_DAMPING_CONTRACT,
+): true {
+  if (contract.positiveSignalDamping !== contract.negativeSignalDamping) {
+    throw new Error('Future feedback reducers must use symmetric soft damping, not asymmetric penalties.');
+  }
+  return true;
+}
+
+export function isFutureFeedbackDemotionPermitted(target: FutureFeedbackReducerTarget): boolean {
+  const tier = target.importanceTier?.trim().toLowerCase();
+  if (target.protectedMemory || target.userConfirmed || target.sparseDomain) return false;
+  if (tier && PROTECTED_FEEDBACK_TIERS.has(tier)) return false;
+  return true;
+}
+
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
 ----------------------------------------------------------------*/

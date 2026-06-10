@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe"
-    last_updated_at: "2026-06-06T10:10:48Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populated planning docs for the 008 feedback reframe"
-    next_safe_action: "Begin T001 audit of feedback-ledger shadow-only guarantees"
+    last_updated_at: "2026-06-10T13:24:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed feedback safety posture guards and tests"
+    next_safe_action: "Proceed to next phase after handoff"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-feedback-log-and-005-reframe"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned (not implemented) |
+| **Status** | Completed |
 | **Created** | 2026-06-06 |
 | **Branch** | `scaffold/003-feedback-log-and-005-reframe` |
 | **Parent Spec** | ../spec.md |
@@ -71,6 +71,7 @@ This is **Phase 3** of the Memclaw-derived memory hardening: provenance, idempot
 - A documented invariant set (symmetric/soft damping, rare-but-correct guard, constitutional immunity) governing any future reducer.
 - A coordination note flagging the `005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` children for rescope to diagnostics-first (coordination only; those specs are not edited here).
 - vitest unit tests proving forged feedback writes are rejected and the ledger produces no ranking side-effects.
+- `__provenanceContext` connection documented: any future feedback reducer that mutates memory must pass automated provenance so Phase 1 overwrite guards still apply.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -135,6 +136,20 @@ Lock 008 in as **event-capture + diagnostics only**: keep the feedback ledger sh
 | REQ-003 | Symmetric-damping, rare-but-correct, and constitutional-immunity invariants are documented for any future reducer. | The three invariants are recorded in-spec/plan with explicit definitions; constitutional/protected memories are stated as immune from feedback-driven demotion or archival. |
 | REQ-004 | The 008 active-reducer children are flagged for rescope to diagnostics-first. | A coordination note names `005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` as deferred / diagnostics-first; no edits are made to those specs in this phase. |
 <!-- /ANCHOR:requirements -->
+
+### Future Reducer Invariants
+
+Any future reducer is bound by these invariants before it can mutate memory:
+
+- **Symmetric and soft damping**: positive and negative feedback damping magnitudes must be symmetric. A failure signal cannot carry a heavier penalty than a success signal carries reward.
+- **Rare-but-correct guard**: a single negative signal must never demote, decay, or archive a high-tier, constitutional, user-confirmed, or sparse-domain memory.
+- **Constitutional immunity**: feedback may never demote or archive constitutional/protected memories.
+
+Any future reducer that writes to memory must inject automated `__provenanceContext` and remains subject to the existing automated-overwrite guard. Feedback-derived writes are not exempt from provenance enforcement.
+
+### Coordination Note
+
+`005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` are diagnostics-first and deferred default-off. This phase made no edits to those child specs.
 
 ---
 
@@ -214,8 +229,8 @@ Lock 008 in as **event-capture + diagnostics only**: keep the feedback ledger sh
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which concrete ledger-quality gates (volume, mis-attribution rate, signal/noise) must pass before any active reducer is even reconsidered? (deferred to the 008 rescope coordination)
-- Should the future-reducer invariants live only here, or be promoted into a shared constitutional-memory rule so they bind across the whole program?
+- Answered: Concrete ledger-quality gates remain deferred to the diagnostics-first reducer children; no active reducer is enabled here.
+- Answered: The invariant contract is recorded in this phase and pinned by tests; broader constitutional promotion can be a separate packet if needed.
 <!-- /ANCHOR:questions -->
 
 ---

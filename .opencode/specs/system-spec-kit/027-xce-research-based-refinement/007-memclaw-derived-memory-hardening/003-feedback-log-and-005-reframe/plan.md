@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe"
-    last_updated_at: "2026-06-06T10:10:48Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populated implementation plan for the 008 feedback reframe"
-    next_safe_action: "Begin T001 audit of feedback-ledger shadow-only guarantees"
+    last_updated_at: "2026-06-10T13:24:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed feedback safety posture implementation"
+    next_safe_action: "Proceed to next phase after handoff"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-feedback-log-and-005-reframe"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,14 +58,14 @@ This phase ratifies the existing shadow-first feedback posture rather than build
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -85,6 +85,17 @@ Shadow-first event-capture layer in front of an unchanged ranking/retention/FSRS
 
 ### Data Flow
 Search/usage activity emits implicit feedback events; the ledger records them (shadow-only) with server-stamped types; the query-flow tracker and batch-learning derive aggregate diagnostics into shadow logs; nothing on this path writes retrieval score, retention, or FSRS state. A user/agent write that tries to supply a reserved feedback type is rejected at the schema boundary.
+
+### Future Reducer Invariant Contract
+
+- **Symmetric and soft damping**: future positive/negative damping magnitudes must be equal; no asymmetric failure penalty is allowed.
+- **Rare-but-correct guard**: one negative signal cannot demote, decay, or archive high-tier, constitutional, user-confirmed, or sparse-domain memory.
+- **Constitutional immunity**: constitutional/protected memories cannot be demoted or archived by feedback.
+- **Provenance connection**: any future reducer that mutates memory must supply automated `__provenanceContext`, so the existing automated-overwrite guard continues to apply.
+
+### Coordination Note
+
+`005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` are diagnostics-first and deferred default-off. This phase made no edits to those child specs.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -115,19 +126,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the feedback ledger is shadow-only (no retrieval-score / retention / FSRS side-effects)
-- [ ] Audit the current reserved/stamped feedback event/artifact types and how callers reach them
-- [ ] Confirm batch-learning + query-flow-tracker stay shadow-gated / diagnostic-only
+- [x] Confirm the feedback ledger is shadow-only (no retrieval-score / retention / FSRS side-effects)
+- [x] Audit the current reserved/stamped feedback event/artifact types and how callers reach them
+- [x] Confirm batch-learning + query-flow-tracker stay shadow-gated / diagnostic-only
 
 ### Phase 2: Core Implementation
-- [ ] Reserve the system-generated feedback artifact types server-side; reject forged feedback writes at the schema boundary (no public feedback-write tool)
-- [ ] Document the symmetric-damping + rare-but-correct + constitutional-immunity invariants for any future reducer
-- [ ] Add the coordination note rescoping the `005-learning-feedback-reducers/` active-reducer children to diagnostics-first / deferred (no edits to those specs)
+- [x] Reserve the system-generated feedback artifact types server-side; reject forged feedback writes at the schema boundary (no public feedback-write tool)
+- [x] Document the symmetric-damping + rare-but-correct + constitutional-immunity invariants for any future reducer
+- [x] Add the coordination note rescoping the `005-learning-feedback-reducers/` active-reducer children to diagnostics-first / deferred (no edits to those specs)
 
 ### Phase 3: Verification
-- [ ] vitest: forged feedback writes are rejected (reserved-type rejection)
-- [ ] vitest: the ledger path produces no ranking / retention / FSRS side-effects (shadow-only assertion)
-- [ ] Documentation updated (spec/plan/tasks); manual verification of the invariants + coordination note
+- [x] vitest: forged feedback writes are rejected (reserved-type rejection)
+- [x] vitest: the ledger path produces no ranking / retention / FSRS side-effects (shadow-only assertion)
+- [x] Documentation updated (spec/plan/tasks); manual verification of the invariants + coordination note
 <!-- /ANCHOR:phases -->
 
 ---
@@ -149,7 +160,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001-provenance-and-audit (`source_kind`) | Internal | Yellow (planned, not implemented) | A future reducer cannot distinguish system-stamped feedback from forged writes; reserve the `feedback` artifact types on top of 001's provenance |
+| Phase 001-provenance-and-audit (`source_kind`) | Internal | Green (committed) | A future reducer must inject automated `__provenanceContext` so feedback-derived writes remain subject to provenance overwrite guards |
 | Existing shadow-only feedback substrate (`lib/feedback/**`) | Internal | Green (already shadow-only) | If substrate were not shadow-only, the reframe would require new gating rather than confirmation |
 <!-- /ANCHOR:dependencies -->
 
@@ -197,9 +208,9 @@ Phase 1 (Setup: confirm shadow-only) ──► Phase 2 (Core: reserve types + in
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Active reducers confirmed default-off (ledger + batch-learning shadow-only) before the reserved-type guard merges
-- [ ] No public feedback-write tool is exposed by the change
-- [ ] vitest reserved-type and shadow-only suites green
+- [x] Active reducers confirmed default-off (ledger + batch-learning shadow-only) before the reserved-type guard merges
+- [x] No public feedback-write tool is exposed by the change
+- [x] vitest reserved-type and shadow-only suites green
 
 ### Rollback Procedure
 1. Revert the `schemas/tool-input-schemas.ts` reserved-type commit (the only runtime-affecting change)

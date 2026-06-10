@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe"
-    last_updated_at: "2026-06-06T10:10:48Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populated task list for the 008 feedback reframe"
-    next_safe_action: "Begin T001 audit of feedback-ledger shadow-only guarantees"
+    last_updated_at: "2026-06-10T13:24:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed feedback safety posture task evidence"
+    next_safe_action: "Proceed to next phase after handoff"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-feedback-log-and-005-reframe"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Audit current feedback-ledger shadow-only guarantees: confirm no retrieval-score / retention / FSRS side-effects (`lib/feedback/feedback-ledger.ts`)
-- [ ] T002 [P] Audit reserved/stamped feedback event/artifact types and how callers reach them (`lib/feedback/feedback-ledger.ts`, `context-server.ts`, `schemas/tool-input-schemas.ts`)
-- [ ] T003 [P] Confirm batch-learning + query-flow-tracker stay shadow-gated / diagnostic-only (`lib/feedback/batch-learning.ts`, `lib/feedback/query-flow-tracker.ts`)
+- [x] T001 Audit current feedback-ledger shadow-only guarantees: confirmed with `tests/feedback-safety-posture.vitest.ts` and `tests/feedback-ledger.vitest.ts` (`lib/feedback/feedback-ledger.ts`)
+- [x] T002 [P] Audit reserved/stamped feedback event/artifact types: schema guard rejects forged public writes; ledger direct path remains system-stamped (`lib/feedback/feedback-ledger.ts`, `context-server.ts`, `schemas/tool-input-schemas.ts`)
+- [x] T003 [P] Confirm batch-learning + query-flow-tracker stay shadow-gated / diagnostic-only; targeted canaries passed (`lib/feedback/batch-learning.ts`, `lib/feedback/query-flow-tracker.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,10 +63,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Reserve system feedback event/artifact types server-side; ensure no public feedback-write tool exists (`schemas/tool-input-schemas.ts`, `context-server.ts`)
-- [ ] T005 Reject forged feedback writes at the write boundary (a caller-supplied reserved feedback type is refused; server stamps the type) (`schemas/tool-input-schemas.ts`)
-- [ ] T006 Document the symmetric-damping + rare-but-correct + constitutional-immunity invariants for any future reducer (spec.md / plan.md)
-- [ ] T007 Add the coordination note rescoping the `005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` children to diagnostics-first / deferred — coordination only, do NOT edit those specs (this folder's docs)
+- [x] T004 Reserve system feedback event/artifact types server-side; no public feedback-write tool added (`schemas/tool-input-schemas.ts`, `context-server.ts`)
+- [x] T005 Reject forged feedback writes at the write boundary with `E_RESERVED_FEEDBACK_TYPE` (`schemas/tool-input-schemas.ts`)
+- [x] T006 Document the symmetric-damping + rare-but-correct + constitutional-immunity invariants for any future reducer (spec.md / plan.md)
+- [x] T007 Add the coordination note rescoping the `005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` children to diagnostics-first / deferred — coordination only; no 005 specs edited (this folder's docs)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 vitest: forged feedback writes are rejected (reserved-type rejection); system-stamped path succeeds (`schemas/tool-input-schemas.ts`, feedback ledger tests)
-- [ ] T009 vitest: ledger path produces no ranking / retention / FSRS side-effects (shadow-only assertion) (`lib/feedback/feedback-ledger.ts` tests)
-- [ ] T010 Update documentation (spec/plan/tasks) and perform manual verification of invariants + 008 coordination note
+- [x] T008 vitest: forged feedback writes are rejected (reserved-type rejection); system-stamped path succeeds (`schemas/tool-input-schemas.ts`, feedback ledger tests)
+- [x] T009 vitest: ledger path produces no ranking / retention / FSRS side-effects (shadow-only assertion) (`lib/feedback/feedback-ledger.ts` tests)
+- [x] T010 Update documentation (spec/plan/tasks) and perform manual verification of invariants + 008 coordination note
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -84,9 +84,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

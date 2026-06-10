@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 3: feedback-log-and-008-reframe [template:level_1/implementation-summary.md]"
-description: "Planned-stub summary for Phase 3 feedback-log-and-008-reframe. Nothing implemented: records the intended shadow-only feedback ledger confirmation, reserved system feedback types, future-reducer invariants, and 008 reducer rescope coordination before any code is written."
+description: "Completed summary for the feedback safety posture phase: reserved feedback type rejection, shadow-only assertions, ledger fail-safe proof, future-reducer invariants, and reducer coordination notes."
 trigger_phrases:
   - "feedback event ledger shadow only summary"
   - "008 reducer reframe diagnostics first"
@@ -12,17 +12,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe"
-    last_updated_at: "2026-06-06T10:10:48Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold Phase 3 planned-stub impl doc"
-    next_safe_action: "Begin T001 audit of feedback-ledger shadow-only guarantees"
+    last_updated_at: "2026-06-10T13:24:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Safety posture complete"
+    next_safe_action: "Proceed to next phase after handoff"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-safety-posture.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-feedback-log-and-005-reframe"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-feedback-log-and-005-reframe |
-| **Completed** | Not started — plan only |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -57,32 +61,39 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-Nothing has been built yet. This is a planning stub for Phase 3 of the Memclaw-derived memory hardening, written before any code is touched. The phase exists to lock in the central safety posture: feedback in this single-user store stays event-capture plus diagnostics only and never mutates ranking, retention, or FSRS state. The plan rests on a key research finding — caura-memclaw's feedback loop applies direct, immediate, asymmetric weight mutation (success +0.10 / failure -0.15) with no shadow state, and low weight feeds stale-archival, so one mis-attributed failure can irrecoverably demote a rare-but-correct memory. That validates Spec Kit's existing default-off, shadow-first posture, so this phase is largely validation, scoping, and documentation on top of substrate that already exists.
+The feedback safety posture is now pinned in code, tests, and phase docs. Public memory writes cannot forge reserved feedback event or artifact types, while system-stamped ledger writes continue to work. Feedback capture and batch learning remain shadow-only: they can write diagnostic ledger rows, but they do not mutate ranking, retention, or FSRS state.
 
-### Planned: keep the feedback ledger shadow-only (REQ-002)
+### Shadow-only feedback proof
 
-The plan confirms `lib/feedback/feedback-ledger.ts` stays shadow-only with its five fixed event types (`search_shown`, `result_cited`, `query_reformulated`, `same_topic_requery`, `follow_on_tool_use`) and no ranking side-effects, and that `query-flow-tracker.ts` and the shadow-gated `batch-learning.ts` stay diagnostic-only. Active reducers (retrieval-score, retention, FSRS mutation) remain deferred until measured ledger quality justifies one. No new behavior is added here — the work is to assert and test the absence of live side-effects.
+`feedback-ledger.ts` now exports a shadow-only table contract, and the new safety suite asserts that feedback capture plus `runBatchLearning()` leaves `importance_weight`, retention state, and FSRS columns unchanged. `query-flow-tracker.ts` follow-on logging remains system-stamped by construction: callers provide only the session, and the tracker emits fixed `follow_on_tool_use` events.
 
-### Planned: reserve system feedback types at the write boundary (REQ-001)
+### Reserved feedback type guard
 
-The plan reserves the system-generated feedback event/artifact types server-side at the schema boundary (`schemas/tool-input-schemas.ts`), so a user or agent write cannot forge a learning signal. There is no public feedback-write tool today, and the plan keeps it that way: the server stamps the feedback type, and a write attempting to supply a reserved type is rejected.
+`tool-input-schemas.ts` rejects caller-supplied reserved feedback fields on `memory_save` and `memory_update` before generic unknown-key handling. Forged inputs fail with `E_RESERVED_FEEDBACK_TYPE`; normal `memory_save` and `memory_update` validation is unchanged. There is still no public feedback-write tool.
 
-### Planned: record future-reducer invariants and coordinate the 008 rescope (REQ-003, REQ-004)
+### Future-reducer invariants
 
-The plan documents three invariants any future reducer must honor — symmetric/soft damping (no asymmetric penalty), a rare-but-correct guard for high-tier / constitutional / user-confirmed / sparse-domain memories, and constitutional immunity (feedback may never demote or archive constitutional/protected memories). It also adds a coordination note flagging the `005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` children for rescope to diagnostics-first; those specs are not edited from this phase.
+The phase records three invariants any future reducer must honor: symmetric/soft damping, rare-but-correct protection, and constitutional immunity. `batch-learning.ts` exports inert contract helpers that tests assert are symmetric and that constitutional, critical, important, user-confirmed, sparse-domain, or protected memories are not demotion candidates.
 
-### Files Changed (planned)
+### Provenance connection
+
+Any future reducer that mutates memory must inject automated `__provenanceContext`. Feedback-derived writes remain subject to the Phase 1 provenance overwrite guard and cannot bypass manual or constitutional protections.
+
+### Reducer coordination note
+
+`005-learning-feedback-reducers/{001-aggregator,003-causal-reducer,004-retention-reducer,005-env-tests-integration}` are recorded here as diagnostics-first and deferred default-off. No 005 specs were edited.
+
+### Files Changed
 
 <!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts` | Planned (Modify) | Confirm/assert shadow-only capture; no ranking side-effects introduced |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts` | Planned (Modify) | Confirm follow-on / requery events stay diagnostic-only |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts` | Planned (Modify) | Confirm shadow-gated batch learning keeps active effects deferred |
-| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Planned (Modify) | Confirm follow-on tool-use logging emits system-stamped events only |
-| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Planned (Modify) | Reserve system feedback artifact types; reject forged feedback writes |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/` | Planned (Coordinate, no edit) | Flag active-reducer children for rescope to diagnostics-first |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified | Reject forged reserved feedback event/artifact fields with `E_RESERVED_FEEDBACK_TYPE` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts` | Modified | Export shadow-only table contract for invariant tests |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts` | Modified | Export inert future-reducer invariant contract helpers |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/feedback-safety-posture.vitest.ts` | Added | Prove forged rejection, system-stamped path, shadow-only behavior, fail-safe logging, symmetric damping, and constitutional immunity |
+| Phase docs in this folder | Modified | Mark completion, evidence, invariants, provenance connection, and coordination note |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -96,7 +107,7 @@ The plan documents three invariants any future reducer must honor — symmetric/
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-Not delivered. The planned approach is to confirm the shadow-only ledger, reserve the system feedback types at the schema boundary, document the future-reducer invariants, and prove the posture with vitest unit tests (forged feedback rejected; ledger path mutates no live ranking / retention / FSRS columns). Nothing has been tested or shipped.
+Delivered with narrow schema-boundary validation plus invariant-only exports. No active reducer, ranking mutation, retention mutation, FSRS mutation, schema version bump, or public feedback-write tool was added. The targeted build and canary suites passed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -113,6 +124,7 @@ Not delivered. The planned approach is to confirm the shadow-only ledger, reserv
 | Reserve system feedback types server-side instead of exposing a feedback-write tool | If callers could supply a feedback type they could forge a learning signal; stamping the type on the server keeps reducer inputs trustworthy |
 | Record symmetric-damping + rare-but-correct + constitutional-immunity invariants now | The anti-pattern is asymmetric damping plus stale-archival; documenting the guardrails up front stops a future reducer from rebuilding it |
 | Coordinate (not edit) the 008 active-reducer children's rescope | Keeps this phase's scope frozen to validation/docs while flagging the downstream children as diagnostics-first / deferred |
+| Require future reducers to use automated `__provenanceContext` | Feedback-derived mutations must remain governed by the existing source-kind overwrite guard |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -125,10 +137,15 @@ Not delivered. The planned approach is to confirm the shadow-only ledger, reserv
 
 | Check | Result |
 |-------|--------|
-| vitest: forged feedback writes rejected (reserved-type rejection) | Not started — plan only |
-| vitest: ledger path produces no ranking / retention / FSRS side-effects | Not started — plan only |
-| Manual: no public feedback-write tool exposed; invariant docs + 008 coordination note present | Not started — plan only |
-| `validate.sh --strict` on this spec folder | Not started — plan only |
+| `npm run build` | Passed |
+| `npm run test:core -- tests/feedback-safety-posture.vitest.ts tests/feedback-ledger.vitest.ts tests/batch-learning.vitest.ts tests/feedback-reducers-integration.vitest.ts tests/review-fixes.vitest.ts` | Passed: 5 files, 128 tests |
+| vitest: forged feedback writes rejected (reserved-type rejection) | Passed in `tests/feedback-safety-posture.vitest.ts` |
+| vitest: ledger path produces no ranking / retention / FSRS side-effects | Passed in `tests/feedback-safety-posture.vitest.ts` |
+| vitest: ledger append failure is non-fatal | Passed in `tests/feedback-safety-posture.vitest.ts` |
+| vitest: symmetric damping invariant catches asymmetric contract | Passed in `tests/feedback-safety-posture.vitest.ts` |
+| vitest: constitutional/protected immunity contract | Passed in `tests/feedback-safety-posture.vitest.ts` |
+| Manual: no public feedback-write tool exposed; invariant docs + 008 coordination note present | Passed |
+| `validate.sh --strict` on this spec folder | Passed: 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -141,9 +158,9 @@ Not delivered. The planned approach is to confirm the shadow-only ledger, reserv
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **Not implemented.** This document is a planned stub; no code, tests, or schema changes exist yet. All claims above describe intended work, not shipped behavior.
-2. **Depends on Phase 001 provenance.** Reserving the `feedback` artifact types assumes Phase 001's `source_kind` provenance lands first; until then a future reducer cannot distinguish system-stamped feedback from forged writes.
-3. **Concrete ledger-quality gates are undefined.** The thresholds (volume, mis-attribution rate, signal/noise) that would justify enabling any active reducer are deferred to the 008 rescope coordination and are not set here.
+1. **Active reducer still deferred.** This phase intentionally adds no feedback-driven ranking, retention, or FSRS mutation.
+2. **Concrete ledger-quality gates are undefined.** The thresholds that would justify reconsidering any reducer remain deferred to the diagnostics-first reducer children.
+3. **Invariant helpers are inert.** They exist so tests can catch unsafe future reducer contracts; they are not connected to the live path.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -153,4 +170,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

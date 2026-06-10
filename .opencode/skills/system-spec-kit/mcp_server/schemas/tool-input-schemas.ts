@@ -66,6 +66,36 @@ const optionalPathString = (minLength = 0) => pathString(minLength).optional();
 /** Shared max paths constant — used by both schema and handler. */
 export const MAX_INGEST_PATHS = 50;
 export const MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS = 1;
+export const RESERVED_FEEDBACK_TYPE_ERROR_CODE = 'E_RESERVED_FEEDBACK_TYPE';
+
+const publicMemoryWriteTools = new Set(['memory_save', 'memory_update']);
+const reservedFeedbackEventTypes = new Set([
+  'search_shown',
+  'result_cited',
+  'query_reformulated',
+  'same_topic_requery',
+  'follow_on_tool_use',
+]);
+const reservedFeedbackArtifactTypes = new Set([
+  'feedback',
+  'feedback_event',
+  'feedback_events',
+  'feedback-ledger',
+  'feedback_ledger',
+  'batch_learning_log',
+  'learned_feedback',
+]);
+
+const reservedFeedbackFields = new Set([
+  'artifact_type',
+  'artifactType',
+  'feedback_event_type',
+  'feedbackEventType',
+  'feedbackType',
+  'source_kind',
+  'sourceKind',
+  'type',
+]);
 
 const intentEnum = z.enum([
   'add_feature',
@@ -622,15 +652,74 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
 
 export class ToolSchemaValidationError extends Error {
   public readonly toolName: string;
-  public readonly code = 'E030';
+  public readonly code: string;
   public readonly details: Record<string, unknown>;
 
-  constructor(toolName: string, message: string, details: Record<string, unknown>) {
+  constructor(toolName: string, message: string, details: Record<string, unknown>, code = 'E030') {
     super(message);
     this.name = 'ToolSchemaValidationError';
     this.toolName = toolName;
+    this.code = code;
     this.details = details;
   }
+}
+
+export class ReservedFeedbackTypeValidationError extends ToolSchemaValidationError {
+  constructor(toolName: string, field: string, value: unknown) {
+    super(
+      toolName,
+      `Invalid arguments for "${toolName}". Parameter "${field}" supplies a reserved feedback event/artifact type; feedback signals are system-generated only.`,
+      {
+        tool: toolName,
+        issues: [`${field}: reserved feedback event/artifact type is system-generated`],
+        issueType: 'reserved_feedback_type',
+        reservedField: field,
+        reservedValue: value,
+        expectedParameters: ALLOWED_PARAMETERS[toolName] ?? [],
+      },
+      RESERVED_FEEDBACK_TYPE_ERROR_CODE,
+    );
+    this.name = 'ReservedFeedbackTypeValidationError';
+  }
+}
+
+function normalizeReservedFeedbackValue(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const normalized = value.trim().toLowerCase();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function isReservedFeedbackValue(field: string, value: unknown): boolean {
+  const normalized = normalizeReservedFeedbackValue(value);
+  if (!normalized) return false;
+  if (field === 'source_kind' || field === 'sourceKind') return normalized === 'feedback';
+  if (field === 'artifact_type' || field === 'artifactType') return reservedFeedbackArtifactTypes.has(normalized);
+  return reservedFeedbackEventTypes.has(normalized) || reservedFeedbackArtifactTypes.has(normalized);
+}
+
+function findReservedFeedbackWrite(rawInput: Record<string, unknown>): { field: string; value: unknown } | null {
+  for (const [field, value] of Object.entries(rawInput)) {
+    if (reservedFeedbackFields.has(field) && isReservedFeedbackValue(field, value)) {
+      return { field, value };
+    }
+
+    if (field === '__provenanceContext' && value && typeof value === 'object' && !Array.isArray(value)) {
+      const provenance = value as Record<string, unknown>;
+      for (const provenanceField of ['source_kind', 'sourceKind', 'provenanceSource', 'provenance_source']) {
+        if (isReservedFeedbackValue(provenanceField, provenance[provenanceField])) {
+          return { field: `__provenanceContext.${provenanceField}`, value: provenance[provenanceField] };
+        }
+      }
+    }
+  }
+  return null;
+}
+
+function rejectReservedFeedbackWrites(toolName: string, rawInput: Record<string, unknown>): void {
+  if (!publicMemoryWriteTools.has(toolName)) return;
+  const reserved = findReservedFeedbackWrite(rawInput);
+  if (!reserved) return;
+  throw new ReservedFeedbackTypeValidationError(toolName, reserved.field, reserved.value);
 }
 
 export function formatZodError(toolName: string, error: ZodError): ToolSchemaValidationError {
@@ -694,8 +783,13 @@ export function validateToolArgs(toolName: string, rawInput: Record<string, unkn
   }
 
   try {
+    rejectReservedFeedbackWrites(toolName, rawInput);
     return schema.parse(rawInput);
   } catch (error: unknown) {
+    if (error instanceof ReservedFeedbackTypeValidationError) {
+      console.error(`[schema-validation] ${toolName}: ${error.message}`);
+      throw error;
+    }
     if (error instanceof ZodError) {
       const formatted = formatZodError(toolName, error);
       // Log rejected params for audit trail (MCP uses stderr)
