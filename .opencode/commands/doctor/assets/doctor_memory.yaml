@@ -28,6 +28,8 @@ memory_doctor_invariant: |
 
 upstream_assets:
   contract: "local command design contract"
+  cli_health_command: "node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only"
+  cli_health_policy: "Warm-only: probe the existing mk-spec-memory IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
     spec: "spec.md"  # REQ-005..REQ-007 cover flock, snapshots, dashboard
     decision_record: "decision-record.md"  # ADR-001 documents memory_index_scan tx model
@@ -140,11 +142,13 @@ workflow:
   phase_0_discovery:
     purpose: Probe memory_health + memory_stats; capture baseline
     activities:
+      - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
       - "Run: memory_health({reportMode: 'full'})"
       - "Run: memory_stats({})"
       - "Bash: stat -f '%m %z' database/context-index__*.sqlite (mtime + size for present profile DBs)"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
+      - cli_availability: available|retryable-unavailable|failed
       - total_records: N
       - last_index_at: ISO_timestamp
       - fts_health: ok|degraded|missing

@@ -98,7 +98,7 @@ _memory:
 - [x] CHK-040 [P0] Groups (a)-(c): skill, code, and top-level READMEs aligned or "no drift" recorded with evidence (REQ-001) — completed waves 1-2 (T010-T012, T020-T024, T030-T031)
 - [x] CHK-041 [P0] ENV_REFERENCE.md rows added for all new CLI env vars (REQ-002) — T060 done; SC-002 confirms 11/11
 - [x] CHK-042 [P0] Release changelog entries published in all three tracks via skill-local paths (REQ-003) — wave 2 (v3.5.0.5 / v1.2.0.0 / v0.7.0)
-- [x] CHK-043 [P1] Group (d): doctor routes verified; memory/code-graph probe gap dispositioned; memory:*/speckit:* CLI-fallback references added where warranted (REQ-004) — 14 files patched; parity gap dispositioned-deferred for sign-off
+- [x] CHK-043 [P1] Group (d): doctor routes verified; memory/code-graph probe gap dispositioned; memory:*/speckit:* CLI-fallback references added where warranted (REQ-004) — 14 files patched; parity gap now FIXED (operator sign-off 2026-06-10): warm-only CLI probes added to both doctor yamls + _routes.yaml, route-validate.sh passes
 - [x] CHK-044 [P1] Group (e): agent rosters swept across 3 runtimes; updates only where CLI-relevant (REQ-005) — verified-no-change (correctly conservative)
 - [x] CHK-045 [P1] Group (g): catalogs + playbooks reconciled incl. 028 CLI stress scenarios (REQ-006) — waves 1-2; stress scenarios 434-438 authored AND executed (triple-verified PASS)
 - [x] CHK-046 [P1] Spec/plan/tasks synchronized; implementation-summary.md authored at close — this reconciliation pass

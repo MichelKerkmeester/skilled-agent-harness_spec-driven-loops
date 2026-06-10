@@ -36,6 +36,8 @@ routes:
       - mcp__mk_spec_memory__memory_drift_why
       - mcp__mk_spec_memory__memory_search
       - mcp__mk_spec_memory__memory_stats
+    script_invocations:
+      - 'Warm-only: probe the existing mk-spec-memory IPC socket first; only when it answers, run node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "memory continuity index drift"
       - "memory health rebuild"
@@ -88,6 +90,8 @@ routes:
       - mcp__mk_code_index__detect_changes
       - mcp__mk_spec_memory__memory_context
       - mcp__mk_spec_memory__memory_search
+    script_invocations:
+      - 'Warm-only: probe the existing mk-code-index IPC socket first; only when it answers, run node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "code-graph index drift"
       - "code-graph rebuild"
