@@ -60,9 +60,9 @@ Fixtures must produce a delimited deliverable (`<DELIVERABLE>` contract) so the 
 
 Interactive fixtures that answer with a clarifying question cannot be graded. They turn into false gate failures.
 
-**Guardrail:** `lint_held_out()` in `loop.py` checks that every held-out fixture has at least one recorded output containing a `<DELIVERABLE>` region. Fixtures that fail this check halt the loop before any paid dispatch. Lists are gated with `scripts/shared/`scripts/shared/fixture-lint.cjs` (skill-side lint) and the packaging loop's own `lint_held_out()` pre-flight` before any paid dispatch.
+**Guardrail:** two distinct layers gate held-out lists before any paid dispatch. Skill-side, `scripts/shared/fixture-lint.cjs` classifies fixtures from recorded outputs (deliverable, uncontracted or unrecorded) and exits non-zero on ungradeable entries. Packaging-side, `lint_held_out()` in the loop host re-checks run-tagged recorded outputs for a `<DELIVERABLE>` region at pre-flight and halts the loop on failures. They are separate implementations with the same teaching, not one tool.
 
-**Lives in:** `loop.py` (`lint_held_out`), `scripts/shared/`scripts/shared/fixture-lint.cjs` (skill-side lint) and the packaging loop's own `lint_held_out()` pre-flight`.
+**Lives in:** `scripts/shared/fixture-lint.cjs` (skill-side) and each packaging's `_loop/loop.py` `lint_held_out()` (loop pre-flight).
 
 ## 7. T7 -- MEASUREMENT GAPS ARE NOT FAILURES
 
