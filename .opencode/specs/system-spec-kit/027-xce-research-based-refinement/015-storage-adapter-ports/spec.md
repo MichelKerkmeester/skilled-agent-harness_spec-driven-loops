@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T23:06:52Z"
+    last_updated_at: "2026-06-10T23:20:56Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Slice 3 Maintenance adapter implemented and verified"
-    next_safe_action: "Continue with slices 4-5; route only their assigned call sites"
+    recent_action: "Slice 4 ContentionPolicy adapter implemented and verified"
+    next_safe_action: "Continue with Slice 5 final routing/coupling grep only"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In progress - Slices 1-3 complete |
+| **Status** | In progress - Slices 1-4 complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -80,7 +80,8 @@ A thin, explicitly-typed five-port adapter makes storage behavior unit-testable 
 - Complete: the five typed interfaces, GraphTraversal adapter over the existing BFS helper, LexicalSearch adapter over the existing packed BM25 engine, five storage-free fakes, and contract tests for the two implemented ports.
 - Slice 2 complete: the better-sqlite3 VectorStore adapter now owns the legacy SQLiteVectorStore method bodies, the vector-index export surface routes the legacy class through that port, and VectorStore contract tests cover both the better-sqlite adapter and fake.
 - Slice 3 complete: the better-sqlite3 Maintenance adapter now owns the active maintenance pragma idioms for integrity checks, incremental-vacuum maintenance, and WAL checkpoints; retention/reindex call sites route through the port and Maintenance contract tests cover both the adapter and fake.
-- Pending: ContentionPolicy and final routing/coupling work remain deferred to slices 4-5.
+- Slice 4 complete: the better-sqlite3 ContentionPolicy adapter now owns retry/backoff/write-lock and busy-timeout idioms; checkpoint creation, async busy-retry helpers, analytics DB, and eval DB setup route through the port with identical retry counts, delays, and timeout values.
+- Pending: final routing/coupling work remains deferred to Slice 5.
 
 ### Out of Scope
 - Any non-better-sqlite3 port implementation (Turso/libSQL pilots are explicitly out of scope here)
@@ -141,7 +142,7 @@ A thin, explicitly-typed five-port adapter makes storage behavior unit-testable 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should ContentionPolicy also wrap the skill-advisor lease retry idiom (cross-skill) or stay spec-kit-local in this phase?
+- Answered for Slice 4: ContentionPolicy stays spec-kit mcp_server-local in this phase; skill-advisor lease retry remains out of scope.
 <!-- /ANCHOR:questions -->
 
 ---

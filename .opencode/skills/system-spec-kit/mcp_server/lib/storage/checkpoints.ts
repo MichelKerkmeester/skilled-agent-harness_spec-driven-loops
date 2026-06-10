@@ -37,6 +37,7 @@ import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../ut
 import { reopenActiveDatabase } from '../search/vector-index-store.js';
 import { SCHEMA_VERSION } from '../search/vector-index-schema.js';
 import { sweepCausalEdges } from '../causal/sweep.js';
+import { BetterSqliteContentionPolicy } from './ports/contention-policy.js';
 
 function batchedInQuery<T>(db: Database.Database, sql: string, ids: (number | string)[], batchSize = 500): T[] {
   const results: T[] = [];
@@ -117,6 +118,7 @@ const CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS = 50;
 const CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS = 200;
 const RESTORE_JOURNAL_NAME = '.restore-journal.json';
 const NEEDS_REBUILD_SENTINEL_NAME = '.needs-rebuild';
+const checkpointContention = new BetterSqliteContentionPolicy({ retryable: isCheckpointBusyError });
 
 const CHECKPOINT_MANIFEST = Object.freeze({
   snapshot: [
@@ -549,10 +551,6 @@ function classifyCheckpointCreateError(
 function checkpointRetryDelayMs(): number {
   return CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS
     + Math.floor(Math.random() * (CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS - CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS + 1));
-}
-
-function sleepSync(ms: number): void {
-  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 }
 
 function isRestoreInProgress(): boolean {
@@ -2263,11 +2261,7 @@ function createCheckpointV2(
       );
     }
 
-    try {
-      database.pragma('busy_timeout = 5000');
-    } catch (_pragmaError: unknown) {
-      // Non-fatal: older/mocked better-sqlite3 handles may not expose pragma.
-    }
+    checkpointContention.setBusyTimeout(database, 5000, { ignoreErrors: true });
 
     fs.mkdirSync(checkpointsDir, { recursive: true, mode: 0o700 });
     sweepStaleCheckpointTmpDirs(checkpointsDir);
@@ -2276,28 +2270,25 @@ function createCheckpointV2(
     fs.mkdirSync(tmpDir, { recursive: true, mode: 0o700 });
 
     let lastVacuumError: unknown;
-    for (let attempt = 1; attempt <= CHECKPOINT_CREATE_MAX_ATTEMPTS; attempt += 1) {
-      try {
+    checkpointContention.withRetry(() => {
         database.exec(`VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}`);
         const activeVecPath = getActiveVectorShardPath(database);
         if (options.includeEmbeddings && activeVecPath) {
           database.exec(`VACUUM active_vec INTO ${quoteSqlString(vecSnapshotPath)}`);
         }
-        break;
-      } catch (error: unknown) {
+    }, {
+      attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+      delayMs: checkpointRetryDelayMs,
+      sync: true,
+      onRetry: (error, { attempt, delayMs }) => {
         lastVacuumError = error;
-        if (!isCheckpointBusyError(error) || attempt >= CHECKPOINT_CREATE_MAX_ATTEMPTS) {
-          throw error;
-        }
         fs.rmSync(mainSnapshotPath, { force: true });
         fs.rmSync(vecSnapshotPath, { force: true });
-        const delayMs = checkpointRetryDelayMs();
         console.warn(
           `[checkpoints] createCheckpoint v2 VACUUM busy for "${sanitizedName}" on attempt ${attempt}; retrying in ${delayMs}ms`,
         );
-        sleepSync(delayMs);
-      }
-    }
+      },
+    });
 
     if (lastVacuumError && !fs.existsSync(mainSnapshotPath)) {
       throw lastVacuumError;
@@ -2419,7 +2410,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
 
   try {
     try {
-      database.pragma('busy_timeout = 1000');
+      checkpointContention.setBusyTimeout(database, 1000, { ignoreErrors: true });
     } catch (_pragmaError: unknown) {
       // Non-fatal: older/mocked better-sqlite3 handles may not expose pragma.
     }
@@ -2518,34 +2509,34 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
       return checkpointInfo;
     };
 
-    let lastError: unknown;
-    for (let attempt = 1; attempt <= CHECKPOINT_CREATE_MAX_ATTEMPTS; attempt += 1) {
-      try {
+    let attempt = 0;
+    try {
+      const checkpointInfo = checkpointContention.withRetry(() => {
+        attempt += 1;
         const checkpointInfo = writeCheckpoint();
         if (attempt > 1) {
           console.warn(`[checkpoints] createCheckpoint succeeded after ${attempt} attempts for "${name}"`);
         }
-        console.error(`[checkpoints] Created checkpoint "${name}" (${checkpointInfo.snapshotSize} bytes compressed)`);
         return checkpointInfo;
-      } catch (error: unknown) {
-        lastError = error;
-        if (!isCheckpointBusyError(error) || attempt >= CHECKPOINT_CREATE_MAX_ATTEMPTS) {
-          break;
-        }
-
-        const delayMs = checkpointRetryDelayMs();
+      }, {
+        attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+        delayMs: checkpointRetryDelayMs,
+        sync: true,
+        onRetry: (_error, { attempt: retryAttempt, delayMs }) => {
         console.warn(
-          `[checkpoints] createCheckpoint write busy for "${name}" on attempt ${attempt}; retrying in ${delayMs}ms`,
+          `[checkpoints] createCheckpoint write busy for "${name}" on attempt ${retryAttempt}; retrying in ${delayMs}ms`,
         );
-        sleepSync(delayMs);
-      }
+        },
+      }) as CheckpointInfo;
+      console.error(`[checkpoints] Created checkpoint "${name}" (${checkpointInfo.snapshotSize} bytes compressed)`);
+      return checkpointInfo;
+    } catch (lastError: unknown) {
+      throw classifyCheckpointCreateError(lastError, {
+        name,
+        specFolder,
+        attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+      });
     }
-
-    throw classifyCheckpointCreateError(lastError, {
-      name,
-      specFolder,
-      attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
-    });
   } catch (error: unknown) {
     const typedError = classifyCheckpointCreateError(error, {
       name,

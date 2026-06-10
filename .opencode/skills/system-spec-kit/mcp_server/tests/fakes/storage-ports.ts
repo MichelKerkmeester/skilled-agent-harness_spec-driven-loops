@@ -11,6 +11,7 @@ import {
   type WeightedWalkOptions,
   type WeightedWalkResult,
 } from '../../lib/graph/bfs-traversal';
+import { isSqliteContentionError } from '../../lib/storage/ports';
 import type {
   CheckpointOptions,
   ContentionOperationOptions,
@@ -31,6 +32,7 @@ import type {
   VectorSearchResult,
   VectorStore,
 } from '../../lib/storage/ports';
+import type Database from 'better-sqlite3';
 
 interface FakeCausalEdge {
   readonly sourceId: number;
@@ -239,20 +241,27 @@ export class FakeMaintenance implements Maintenance {
 
 /** Storage-free contention policy test double. */
 export class FakeContentionPolicy implements ContentionPolicy {
+  readonly busyTimeouts: number[] = [];
+
   async withRetry<T>(
     operation: () => T | Promise<T>,
     options: ContentionOperationOptions = {},
   ): Promise<T> {
     const attempts = Math.max(1, options.attempts ?? 1);
-    let lastError: unknown;
-    for (let attempt = 0; attempt < attempts; attempt += 1) {
+    const retryable = options.retryable ?? isSqliteContentionError;
+    for (let attemptIndex = 0; attemptIndex < attempts; attemptIndex += 1) {
       try {
         return await operation();
       } catch (error: unknown) {
-        lastError = error;
+        const canRetry = retryable(error) && attemptIndex < attempts - 1;
+        if (!canRetry) {
+          throw error;
+        }
+        const delayMs = resolveFakeDelayMs(options, attemptIndex);
+        options.onRetry?.(error, { attempt: attemptIndex + 1, delayMs, label: options.label });
       }
     }
-    throw lastError;
+    throw new Error('FakeContentionPolicy.withRetry: unreachable');
   }
 
   withWriteLock<T>(
@@ -261,6 +270,19 @@ export class FakeContentionPolicy implements ContentionPolicy {
   ): Promise<T> {
     return this.withRetry(operation, options);
   }
+
+  setBusyTimeout(
+    _database: Database.Database,
+    timeoutMs: number,
+  ): void {
+    this.busyTimeouts.push(timeoutMs);
+  }
+}
+
+function resolveFakeDelayMs(options: ContentionOperationOptions, attemptIndex: number): number {
+  const configuredDelay = options.retryDelaysMs?.[attemptIndex] ?? options.delayMs ?? 0;
+  const delay = typeof configuredDelay === 'function' ? configuredDelay() : configuredDelay;
+  return Math.max(0, delay);
 }
 
 function fieldsToText(fields: LexicalDocumentFields): string {

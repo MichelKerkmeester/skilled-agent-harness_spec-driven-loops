@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T23:06:52Z"
+    last_updated_at: "2026-06-10T23:20:56Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Slice 3 Maintenance adapter tasks completed; slices 4-5 remain pending"
-    next_safe_action: "Run the next per-port slice without broad call-site routing outside that slice"
+    recent_action: "Slice 4 ContentionPolicy adapter tasks completed; Slice 5 remains pending"
+    next_safe_action: "Run Slice 5 final routing/coupling grep without widening scope"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Planning decision row: phase-sized per-port slices vs promotion to standalone packet
-- [ ] T002 Call-site inventory per port (vector/lexical/traversal/maintenance/contention) - vector and maintenance inventories complete; remaining ports deferred to slices 4-5
+- [ ] T002 Call-site inventory per port (vector/lexical/traversal/maintenance/contention) - vector, maintenance, and contention inventories complete; final coupling grep deferred to Slice 5
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,7 +57,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T003 Port interface definitions + docs
-- [ ] T004 Extract better-sqlite3 implementations (no-logic-edit rule) - VectorStore and Maintenance complete; ContentionPolicy deferred to slice 4
+- [x] T004 Extract better-sqlite3 implementations (no-logic-edit rule) - VectorStore, Maintenance, and ContentionPolicy complete
 - [x] T005 Adopt 012 traversal helper and 014 packed engine as port impls
 <!-- /ANCHOR:phase-2 -->
 
@@ -66,15 +66,15 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Route call sites through ports in reviewable slices - VectorStore legacy export and Maintenance retention/reindex call sites routed through ports; remaining routing deferred to slices 4-5
+- [ ] T006 Route call sites through ports in reviewable slices - VectorStore legacy export, Maintenance retention/reindex, and scoped ContentionPolicy call sites routed through ports; final routing deferred to Slice 5
 - [x] T007 Port contract tests + fakes
-- [ ] T008 Before/after golden evals + full suites green; coupling grep recorded - Slice 3 maintenance/eval subset passed before and after; full phase gate deferred
+- [ ] T008 Before/after golden evals + full suites green; coupling grep recorded - Slice 4 eval/golden subset matched pre-change counts; full phase gate deferred
 
 ### Deferred Slices
 
 - [x] Slice 2: VectorStore better-sqlite3 adapter, legacy export routing, and contract coverage verified.
 - [x] Slice 3: route and verify the Maintenance production port slice.
-- [ ] Slice 4: route and verify the ContentionPolicy production port slice.
+- [x] Slice 4: route and verify the ContentionPolicy production port slice.
 - [ ] Slice 5: finish remaining concrete implementations, routing, coupling grep, and full phase completion gates.
 <!-- /ANCHOR:phase-3 -->
 
@@ -83,7 +83,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` - not yet; only Slice 1 foundation is complete
+- [ ] All tasks marked `[x]` - not yet; Slices 1-4 are complete and Slice 5 remains pending
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
 <!-- /ANCHOR:completion -->

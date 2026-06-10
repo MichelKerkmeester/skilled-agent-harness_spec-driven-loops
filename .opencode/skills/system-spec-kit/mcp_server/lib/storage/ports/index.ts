@@ -4,10 +4,14 @@
 
 export type { Awaitable, StorageId } from './common.js';
 export type {
+  BetterSqliteContentionPolicyOptions,
+  BusyTimeoutOptions,
+  ContentionRetryContext,
   ContentionOperationOptions,
   ContentionPolicy,
   ContentionRetryOptions,
 } from './contention-policy.js';
+export { BetterSqliteContentionPolicy, isSqliteContentionError } from './contention-policy.js';
 export type {
   BetterSqliteMaintenanceOptions,
   CheckpointOptions,

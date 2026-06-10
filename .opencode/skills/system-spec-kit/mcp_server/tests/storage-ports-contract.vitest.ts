@@ -10,10 +10,12 @@ import Database from 'better-sqlite3';
 import { describe, expect, it } from 'vitest';
 
 import {
+  BetterSqliteContentionPolicy,
   BetterSqliteGraphTraversal,
   BetterSqliteMaintenance,
   BetterSqliteVectorStore,
   PackedBm25LexicalSearch,
+  type ContentionPolicy,
   type GraphTraversal,
   type LexicalSearch,
   type Maintenance,
@@ -143,6 +145,20 @@ function createBetterSqliteMaintenanceSubject(): ContractSubject<Maintenance> {
       database.close();
       fs.rmSync(tempDir, { recursive: true, force: true });
     },
+  };
+}
+
+function createBetterSqliteContentionSubject(): ContractSubject<ContentionPolicy> & { database: Database.Database } {
+  const database = new Database(':memory:');
+  database.exec('CREATE TABLE writes (id INTEGER PRIMARY KEY, value TEXT NOT NULL)');
+  return {
+    database,
+    port: new BetterSqliteContentionPolicy({
+      database,
+      sleep: async () => undefined,
+      sleepSync: () => undefined,
+    }),
+    cleanup: () => database.close(),
   };
 }
 
@@ -340,6 +356,46 @@ function runMaintenanceContract(
   });
 }
 
+function runContentionPolicyContract(
+  label: string,
+  createSubject: () => ContractSubject<ContentionPolicy>,
+): void {
+  describe(label, () => {
+    it('retries transient failures through the port', async () => {
+      const subject = createSubject();
+      try {
+        let attempts = 0;
+
+        const result = await subject.port.withRetry(() => {
+          attempts += 1;
+          if (attempts === 1) {
+            const error = new Error('SQLITE_BUSY: database is locked');
+            (error as unknown as { code: string }).code = 'SQLITE_BUSY';
+            throw error;
+          }
+          return 'ok';
+        }, { attempts: 2 });
+
+        expect(result).toBe('ok');
+        expect(attempts).toBe(2);
+      } finally {
+        subject.cleanup();
+      }
+    });
+
+    it('runs exclusive write sections through the port', async () => {
+      const subject = createSubject();
+      try {
+        const result = await subject.port.withWriteLock(() => 'locked', { sync: true });
+
+        expect(result).toBe('locked');
+      } finally {
+        subject.cleanup();
+      }
+    });
+  });
+}
+
 runGraphTraversalContract('BetterSqliteGraphTraversal contract', () => {
   const database = createGraphFixtureDb();
   return {
@@ -377,6 +433,26 @@ runMaintenanceContract('FakeMaintenance contract', () => ({
   cleanup: () => {},
 }));
 
+runContentionPolicyContract('BetterSqliteContentionPolicy contract', createBetterSqliteContentionSubject);
+
+runContentionPolicyContract('FakeContentionPolicy contract', () => ({
+  port: new FakeContentionPolicy(),
+  cleanup: () => {},
+}));
+
+describe('BetterSqliteContentionPolicy', () => {
+  it('applies better-sqlite busy_timeout pragmas through the port', () => {
+    const subject = createBetterSqliteContentionSubject();
+    try {
+      subject.port.setBusyTimeout(subject.database, 1234);
+
+      expect(subject.database.pragma('busy_timeout', { simple: true })).toBe(1234);
+    } finally {
+      subject.cleanup();
+    }
+  });
+});
+
 describe('storage port fakes', () => {
   it('FakeVectorStore stores vectors and returns cosine-ranked matches', () => {
     const store = new FakeVectorStore<{ readonly type: string }>();
@@ -407,7 +483,9 @@ describe('storage port fakes', () => {
     const result = await policy.withRetry(() => {
       attempts += 1;
       if (attempts === 1) {
-        throw new Error('busy');
+        const error = new Error('SQLITE_BUSY: database is locked');
+        (error as unknown as { code: string }).code = 'SQLITE_BUSY';
+        throw error;
       }
       return 'ok';
     }, { attempts: 2 });
@@ -415,5 +493,9 @@ describe('storage port fakes', () => {
     expect(result).toBe('ok');
     expect(attempts).toBe(2);
     await expect(policy.withWriteLock(() => 'locked')).resolves.toBe('locked');
+    const database = new Database(':memory:');
+    policy.setBusyTimeout(database, 250);
+    database.close();
+    expect(policy.busyTimeouts).toEqual([250]);
   });
 });

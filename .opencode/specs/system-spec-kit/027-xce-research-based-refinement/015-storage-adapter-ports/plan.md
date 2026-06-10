@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T23:06:52Z"
+    last_updated_at: "2026-06-10T23:20:56Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Slice 3 Maintenance adapter completed and verified"
-    next_safe_action: "Proceed to slices 4-5 for ContentionPolicy and final scoped routing"
+    recent_action: "Slice 4 ContentionPolicy adapter completed and verified"
+    next_safe_action: "Proceed to Slice 5 for final scoped routing/coupling grep"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,7 @@ FAILURE MODES:
 Extract five typed port interfaces (VectorStore, LexicalSearch, GraphTraversal, Maintenance, ContentionPolicy) with the current better-sqlite3 implementations behind them; no behavior change; port fakes enable storage-free unit tests. Planning starts with a split-vs-promote decision.
 
 ### Slice Updates
-Foundation slice is complete: the port module, two adopted adapters, fakes, and contract tests are in place. Slice 2 is complete: VectorStore now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slice 3 is complete: Maintenance now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slices 4-5 remain pending for ContentionPolicy and final scoped routing/coupling work.
+Foundation slice is complete: the port module, two adopted adapters, fakes, and contract tests are in place. Slice 2 is complete: VectorStore now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slice 3 is complete: Maintenance now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slice 4 is complete: ContentionPolicy now has a better-sqlite3 adapter, fake parity, contract coverage, and scoped contention call-site routing. Slice 5 remains pending for final scoped routing/coupling work.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -106,18 +106,19 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 
 ### Phase 1: Setup
 - [x] Planning decision: **PER-PORT SLICES within this phase** (not promoted to a standalone packet). Rationale: kept inside the 027 epic per operator direction; behavior-preserving seam extraction is the lowest-risk form of a large refactor when sliced small and gated on golden evals; phases 012 (traversal helper) and 014 (packed lexical engine) already supply two of the five port implementations. Execution = five sequential reviewable slices (VectorStore, LexicalSearch [adopt 014], GraphTraversal [adopt 012], Maintenance, ContentionPolicy), each green on the existing suites + golden evals before the next slice begins.
-- [ ] Call-site inventory per port - vector and maintenance inventories complete; remaining ports deferred to slices 4-5
+- [ ] Call-site inventory per port - vector, maintenance, and contention inventories complete; final coupling grep deferred to Slice 5
 
 ### Phase 2: Core
 - [x] Ports defined (Slice 1 foundation)
 - [x] Implementations extracted for the two adopted helpers (GraphTraversal + LexicalSearch)
-- [ ] Call sites routed - VectorStore legacy class export and Maintenance retention/reindex call sites routed through ports; remaining routing deferred
+- [ ] Call sites routed - VectorStore legacy class export, Maintenance retention/reindex, and scoped ContentionPolicy call sites routed through ports; remaining routing deferred to Slice 5
 
 ### Phase 3: Verification
 - [x] Slice 1 targeted suites + local eval-channel checks green
 - [x] Contract tests vs impl and fake for GraphTraversal and LexicalSearch
 - [x] Slice 2 targeted vector/search/eval suites green with zero behavioral delta against the pre-change baseline
 - [x] Slice 3 targeted maintenance/storage/eval suites green with zero behavioral delta against the pre-change baseline
+- [x] Slice 4 targeted contention/storage/eval suites green with zero behavioral delta against the pre-change baseline
 - [ ] Coupling grep trends to ~0 outside ports - final phase gate deferred
 <!-- /ANCHOR:phases -->
 
@@ -141,7 +142,7 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 012 + 014 outputs | Internal | Available | Two port implementations adopted in Slice 1 |
-| Golden evals | Internal | In progress | Slice 3 maintenance/eval subset passed before and after; full phase gate remains for Slice 5 |
+| Golden evals | Internal | In progress | Slice 4 eval/golden subset passed before and after with matching counts; full phase gate remains for Slice 5 |
 <!-- /ANCHOR:dependencies -->
 
 ---
