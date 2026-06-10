@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/140-deep-review-remediation",
+  "specFolder": "skilled-agent-orchestration/140-deep-review-remediation",
   "description": "Feature Specification: Deep-review remediation of the daemon-reliability and portability work",
   "keywords": [
     "feature",
@@ -11,12 +11,10 @@
     "portability",
     "work"
   ],
-  "lastUpdated": "2026-06-08T09:05:09.577Z",
+  "lastUpdated": "2026-06-10T04:53:30.855Z",
   "specId": "140",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,

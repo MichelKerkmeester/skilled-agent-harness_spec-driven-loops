@@ -18,19 +18,22 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening",
-  "description": "Require N consecutive deep liveness-probe failures before a sibling launcher reaps the mk-spec-memory lease owner and respawns. maybeBridgeLeaseHolder now calls probeLeaseHolderWithRetries: the first probe keeps its tuned full timeout, then up to N-1 short retries with a small backoff; any 'alive' short-circuits to a bridge and only an all-failures run respawns. Defaults (1 retry, 1500ms retry timeout, 250ms backoff) keep the worst case inside the 6999ms probe grace ceiling, and dead sockets fail fast. Tunable/disablable via SPECKIT_LEASE_PROBE_RETRIES. Second of the deferred daemon-reliability hardening items from phase 017.",
+  "description": "Feature Specification: Dead-socket reap hardening",
   "keywords": [
-    "reap-hardening",
-    "liveness-probe",
-    "daemon-reliability",
-    "false-dead",
-    "lease-owner",
-    "retry"
+    "feature",
+    "specification",
+    "dead-socket",
+    "reap",
+    "hardening"
   ],
-  "lastUpdated": "2026-06-07T16:45:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.154Z",
   "specId": "019",
   "folderSlug": "dead-socket-reap-hardening",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

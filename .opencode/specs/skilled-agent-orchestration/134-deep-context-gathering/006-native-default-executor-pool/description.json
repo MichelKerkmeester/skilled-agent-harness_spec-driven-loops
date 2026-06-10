@@ -17,21 +17,24 @@
   "completed_at": "2026-06-07T11:30:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "006-native-default-executor-pool",
-  "description": "Make the deep-context executor pool native-only by default (2 @deep-context seats in deep_context_config.json fanout.executors) and restructure the setup pool question to A) Native only (default) / B) Custom, removing the specific model list from the user-facing options. De-name the heterogeneous pool across the command, both YAMLs, SKILL.md, and README; soften the agent body and re-sync the three runtime mirrors. The by-model-shared-scope mode enum and YAML dispatch logic are unchanged; the heterogeneous pool stays available via --executor/--executors.",
+  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool",
+  "description": "Feature Specification: Deep-context native-only default executor pool",
   "keywords": [
+    "feature",
+    "specification",
     "deep-context",
-    "executor-pool",
-    "native-default",
-    "fanout",
-    "pool-question",
-    "heterogeneous",
-    "config-default"
+    "native-only",
+    "default",
+    "executor",
+    "pool"
   ],
-  "lastUpdated": "2026-06-07T11:30:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:30.723Z",
   "specId": "006",
   "folderSlug": "native-default-executor-pool",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-deep-context-gathering"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

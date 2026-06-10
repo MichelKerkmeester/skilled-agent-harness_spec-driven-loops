@@ -17,22 +17,25 @@
   "completed_at": "2026-06-07T10:30:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "005-runtime-mirror-parity",
-  "description": "Create the two missing per-runtime mirrors of the native @deep-context analyzer agent (.claude/agents/deep-context.md and .codex/agents/deep-context.toml) so native seats dispatch in all three runtimes, and document the canonical-source + runtime-mirror convention in the deep-context and deep-loop-runtime skills. Commands/YAML are shared symlinks and dispatch the native seat by name; only the per-runtime agent files were missing.",
+  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity",
+  "description": "Feature Specification: Deep-context native agent runtime mirror parity",
   "keywords": [
+    "feature",
+    "specification",
     "deep-context",
-    "runtime-mirror",
-    "agent-parity",
-    "claude",
-    "codex",
-    "native-seat",
-    "deep-loop-runtime",
-    "dispatch-by-name"
+    "native",
+    "agent",
+    "runtime",
+    "mirror",
+    "parity"
   ],
-  "lastUpdated": "2026-06-07T10:30:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:30.719Z",
   "specId": "005",
   "folderSlug": "runtime-mirror-parity",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-deep-context-gathering"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

@@ -1,19 +1,20 @@
 {
-  "specFolder": "007-deep-context-readme",
-  "description": "Rewrite deep-context skill README in the narrative voice",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/007-deep-context-readme",
+  "description": "Feature Specification: deep-context README",
   "keywords": [
-    "rewrite",
+    "feature",
+    "specification",
     "deep-context",
-    "skill",
-    "readme",
-    "narrative",
-    "voice"
+    "readme"
   ],
-  "lastUpdated": "2026-06-07T11:12:10.757Z",
+  "lastUpdated": "2026-06-10T04:53:30.764Z",
   "specId": "007",
   "folderSlug": "deep-context-readme",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

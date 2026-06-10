@@ -1,17 +1,23 @@
 {
-  "specFolder": "027-xce-research-based-refinement/009-openltm-continuity-resilience",
-  "description": "Phase 1: openltm-continuity-resilience",
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience",
+  "description": "Feature Specification: 009 — OpenLTM Continuity & Session Resilience",
   "keywords": [
-    "phase",
-    "openltm-continuity-resilience"
+    "feature",
+    "specification",
+    "009",
+    "openltm",
+    "continuity",
+    "session",
+    "resilience"
   ],
-  "lastUpdated": "2026-06-08T15:11:23.027Z",
+  "lastUpdated": "2026-06-10T04:53:31.269Z",
   "specId": "009",
   "folderSlug": "openltm-continuity-resilience",
   "parentChain": [
+    "system-spec-kit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

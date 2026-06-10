@@ -24,20 +24,18 @@
   "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
   "description": "Feature Specification: Spec-Memory CLI Workstream (Phase Parent)",
   "keywords": [
+    "feature",
+    "specification",
     "spec-memory",
     "cli",
-    "dual-stack",
-    "daemon",
-    "ipc",
     "workstream",
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T12:45:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.280Z",
   "specId": "001",
   "folderSlug": "spec-memory-cli",
   "parentChain": [
-    "specs",
     "system-spec-kit",
     "028-mcp-to-cli-tool-transition"
   ],

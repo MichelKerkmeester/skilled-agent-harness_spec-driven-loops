@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup",
   "description": "Feature Specification: Phase 4: Release and Program Cleanup",
   "keywords": [
@@ -9,7 +10,7 @@
     "program",
     "cleanup"
   ],
-  "lastUpdated": "2026-06-10T02:18:58.082Z",
+  "lastUpdated": "2026-06-10T04:53:31.325Z",
   "specId": "004",
   "folderSlug": "release-and-program-cleanup",
   "parentChain": [
@@ -17,6 +18,5 @@
     "028-mcp-to-cli-tool-transition"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

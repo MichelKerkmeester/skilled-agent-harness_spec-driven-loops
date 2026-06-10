@@ -16,23 +16,21 @@
   "created_at": "2026-06-06T14:09:09Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "001-context-loop-foundation",
-  "description": "Feature Specification: deep-context loop (foundational build)",
+  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/001-context-loop-foundation",
+  "description": "Feature Specification: deep-context loop",
   "keywords": [
+    "feature",
+    "specification",
     "deep-context",
-    "context",
-    "gathering",
-    "report",
-    "reuse",
-    "catalog",
-    "loop",
-    "convergence",
-    "coverage-graph"
+    "loop"
   ],
-  "lastUpdated": "2026-06-06T21:40:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:30.703Z",
   "specId": "001",
   "folderSlug": "context-loop-foundation",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-deep-context-gathering"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

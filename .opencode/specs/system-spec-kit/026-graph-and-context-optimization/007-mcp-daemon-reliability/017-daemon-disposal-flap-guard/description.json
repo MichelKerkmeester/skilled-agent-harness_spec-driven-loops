@@ -18,21 +18,23 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
-  "description": "Stop the mk-spec-memory daemon SIGTERM/relaunch flap on owner-session disposal. The launcher's child-exit supervisor respawned the daemon on a 250ms backoff under a disposing runtime, dropping every bridged session's MCP transport. Fix: capture the launcher's initial parent pid and, at relaunch fire-time, abort + release lease + exit if the launcher is shutting down or its owning runtime has gone away (orphaned). Additive and recycle/crash-safe; addresses the owner-shutdown root cause v3.5.0.2 deferred. Deferred to follow-up phases: full RC-2 ownership re-election, mk-code-index reconnecting proxy, dead-socket reap hardening, CLAUDE_SESSION_PID/orphan-sweeper, persistent launcher log.",
+  "description": "Feature Specification: Daemon disposal relaunch-flap guard",
   "keywords": [
-    "mcp-daemon",
-    "launcher",
+    "feature",
+    "specification",
+    "daemon",
+    "disposal",
     "relaunch-flap",
-    "owner-disposal",
-    "orphan-detection",
-    "mk-spec-memory",
-    "transport-drop",
-    "daemon-reliability"
+    "guard"
   ],
-  "lastUpdated": "2026-06-07T13:00:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.146Z",
   "specId": "017",
   "folderSlug": "daemon-disposal-flap-guard",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

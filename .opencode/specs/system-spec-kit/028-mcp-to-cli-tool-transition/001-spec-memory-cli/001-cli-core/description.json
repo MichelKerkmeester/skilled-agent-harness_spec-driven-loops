@@ -1,20 +1,22 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
-  "description": "Phase 1: daemon-backed spec-memory CLI core",
+  "description": "Feature Specification: Phase 1: CLI Core",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "cli-core",
-    "spec-memory",
-    "daemon-backed-cli",
-    "ipc-fallback"
+    "cli",
+    "core"
   ],
-  "lastUpdated": "2026-06-07T12:45:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.285Z",
   "specId": "001",
   "folderSlug": "cli-core",
   "parentChain": [
+    "system-spec-kit",
+    "028-mcp-to-cli-tool-transition",
     "001-spec-memory-cli"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

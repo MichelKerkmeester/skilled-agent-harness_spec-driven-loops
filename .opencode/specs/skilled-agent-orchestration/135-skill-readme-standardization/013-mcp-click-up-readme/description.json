@@ -1,19 +1,20 @@
 {
-  "specFolder": "013-mcp-click-up-readme",
-  "description": "Rewrite mcp-click-up skill README in the narrative voice",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/013-mcp-click-up-readme",
+  "description": "Feature Specification: mcp-click-up README",
   "keywords": [
-    "rewrite",
+    "feature",
+    "specification",
     "mcp-click-up",
-    "skill",
-    "readme",
-    "narrative",
-    "voice"
+    "readme"
   ],
-  "lastUpdated": "2026-06-07T12:50:50.000Z",
+  "lastUpdated": "2026-06-10T04:53:30.788Z",
   "specId": "013",
   "folderSlug": "mcp-click-up-readme",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

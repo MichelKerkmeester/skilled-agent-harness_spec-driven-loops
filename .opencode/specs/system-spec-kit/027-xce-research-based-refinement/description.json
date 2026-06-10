@@ -36,18 +36,24 @@
     "008-openltm-retrieval-observability",
     "009-openltm-continuity-resilience"
   ],
-  "specFolder": "027-xce-research-based-refinement",
-  "description": "OpenLTM continuity and session resilience",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
+  "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
   "keywords": [
-    "openltm",
-    "continuity",
-    "session",
-    "resilience"
+    "feature",
+    "specification",
+    "xce-derived",
+    "spec",
+    "kit",
+    "refinement",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-06-08T15:25:36.955Z",
+  "lastUpdated": "2026-06-10T04:53:31.219Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit"
+  ],
   "memorySequence": 5,
   "memoryNameHistory": [
     "08-05-26_16-41__2nd-pass-cross-validation-deep-research-run-via.md",

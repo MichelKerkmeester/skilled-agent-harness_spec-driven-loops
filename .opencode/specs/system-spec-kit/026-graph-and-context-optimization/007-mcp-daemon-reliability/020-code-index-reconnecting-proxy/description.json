@@ -18,19 +18,23 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy",
-  "description": "Port the mk-spec-memory reconnecting session proxy to mk-code-index so a code-index owner death reattaches to the respawned backend and replays in-flight read queries instead of surfacing a hard Connection closed. Adds a generic createClassifyFrame({replayableToolNames, unsafeToolNames}) factory to the shared proxy (default reproduces the mk-spec-memory sets, so memory behavior is unchanged); mk-code-index builds a code-graph classifier (read tools replay; code_graph_scan/code_graph_apply never replay) + a bridgeStdioThroughSessionProxy wrapper wired as the bridge, and gains a require.main guard so it is testable. Third of the deferred daemon-reliability hardening items from phase 017.",
+  "description": "Feature Specification: mk-code-index reconnecting session proxy",
   "keywords": [
-    "code-index",
-    "session-proxy",
-    "reconnect",
-    "daemon-reliability",
-    "replay-classifier",
-    "mk-code-index"
+    "feature",
+    "specification",
+    "mk-code-index",
+    "reconnecting",
+    "session",
+    "proxy"
   ],
-  "lastUpdated": "2026-06-07T17:00:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.159Z",
   "specId": "020",
   "folderSlug": "code-index-reconnecting-proxy",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

@@ -18,19 +18,22 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log",
-  "description": "Add a bounded, best-effort, durable launcher log behind the mk-spec-memory launcher's log(): each logged line is also appended (timestamped + pid-stamped) to a size-capped file that rotates to a single .prev.log generation, so daemon flaps and owner-disposal races are attributable from disk instead of only from stderr the MCP host may drop. Default-on, db-dir path (gitignored by *.log), operator-controllable via SPECKIT_LAUNCHER_LOG / _PATH / _MAX_BYTES. First of the deferred daemon-reliability hardening items from phase 017.",
+  "description": "Feature Specification: Persistent launcher log",
   "keywords": [
-    "launcher-log",
-    "observability",
-    "daemon-reliability",
-    "rotation",
-    "mk-spec-memory",
-    "best-effort-write"
+    "feature",
+    "specification",
+    "persistent",
+    "launcher",
+    "log"
   ],
-  "lastUpdated": "2026-06-07T16:30:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.150Z",
   "specId": "018",
   "folderSlug": "persistent-launcher-log",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

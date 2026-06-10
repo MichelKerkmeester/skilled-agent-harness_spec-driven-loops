@@ -17,23 +17,22 @@
   "completed_at": "2026-06-07T10:30:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "004-reference-architecture-alignment",
-  "description": "Align the deep-context skill's reference layout and smart-router to its mature siblings (deep-review, deep-research, deep-ai-council): decompose the two flat references into convergence/ protocol/ state/ guides/ subfolders, author the missing references from the loop YAML/scripts/runtime, rewrite the smart-router to the canonical pattern, and sweep all citations.",
+  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/004-reference-architecture-alignment",
+  "description": "Feature Specification: deep-context reference-architecture alignment",
   "keywords": [
+    "feature",
+    "specification",
     "deep-context",
-    "references",
     "reference-architecture",
-    "alignment",
-    "smart-router",
-    "convergence",
-    "protocol",
-    "state",
-    "guides"
+    "alignment"
   ],
-  "lastUpdated": "2026-06-07T10:30:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:30.715Z",
   "specId": "004",
   "folderSlug": "reference-architecture-alignment",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-deep-context-gathering"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

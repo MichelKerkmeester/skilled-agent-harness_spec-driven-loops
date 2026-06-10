@@ -16,23 +16,22 @@
   "created_at": "2026-06-06T21:32:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "002-runtime-robustness-parity",
-  "description": "Feature Specification: deep-context runtime-robustness parity (durability + validation wiring)",
+  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/002-runtime-robustness-parity",
+  "description": "Feature Specification: deep-context runtime-robustness parity",
   "keywords": [
+    "feature",
+    "specification",
     "deep-context",
-    "runtime",
-    "robustness",
-    "parity",
-    "atomic-state",
-    "jsonl-repair",
-    "post-dispatch-validate",
-    "loop-lock",
-    "executor-audit"
+    "runtime-robustness",
+    "parity"
   ],
-  "lastUpdated": "2026-06-06T20:12:17.278Z",
+  "lastUpdated": "2026-06-10T04:53:30.707Z",
   "specId": "002",
   "folderSlug": "runtime-robustness-parity",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-deep-context-gathering"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "06-06-26_21-12__next-steps.md"
