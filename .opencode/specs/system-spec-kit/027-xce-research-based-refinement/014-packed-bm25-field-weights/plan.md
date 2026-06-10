@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase plan scaffolded from revalidation findings"
-    next_safe_action: "Start Phase 1 setup tasks when this phase is picked up"
+    last_updated_at: "2026-06-10T20:40:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Plan executed and verified"
+    next_safe_action: "Use packed-inmemory for fallback validation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-014-packed-bm25-field-weights"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -63,9 +63,9 @@ Implement the reserved packed-inmemory engine (term dictionary + typed-array pos
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing: `npm run build` and `npx vitest run tests/bm25-packed-inmemory.vitest.ts`
+- [x] Docs updated (spec/plan/tasks/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -103,18 +103,18 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] RAM/warmup spike on packed layout at 1x and 3x corpus
-- [ ] Eval baseline run (legacy + FTS5)
+- [x] RAM/warmup spike on packed layout at 1x and 3x corpus
+- [x] Eval baseline run (legacy + FTS5)
 
 ### Phase 2: Core
-- [ ] Packed engine in reserved slot
-- [ ] BM25F field weighting
-- [ ] Engine selection logging
+- [x] Packed engine in reserved slot
+- [x] BM25F field weighting
+- [x] Engine selection logging
 
 ### Phase 3: Verification
-- [ ] Budget gates measured
-- [ ] Eval parity vs legacy and FTS5 recorded
-- [ ] Contingency decision if breached
+- [x] Budget gates measured
+- [x] Eval parity vs legacy and FTS5 recorded
+- [x] Contingency decision: current corpus passed; 3x projection recorded as a follow-up scale risk
 <!-- /ANCHOR:phases -->
 
 ---

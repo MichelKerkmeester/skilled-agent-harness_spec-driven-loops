@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase scaffolded from sqlite-to-turso revalidation findings"
-    next_safe_action: "Spike the packed postings layout and measure RSS at the live corpus"
+    last_updated_at: "2026-06-10T20:40:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Packed in-memory BM25 engine shipped with BM25F weighting and measured budget evidence"
+    next_safe_action: "Monitor packed fallback warmups"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-014-packed-bm25-field-weights"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Shipped |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

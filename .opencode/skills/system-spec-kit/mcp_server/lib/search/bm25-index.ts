@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Bm25 Index
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: BM25 trigger phrase re-index gate
 import type Database from 'better-sqlite3';
 import { normalizeContentForBM25 } from '../parsing/content-normalizer.js';
 import {
@@ -9,6 +8,7 @@ import {
   sanitizeFTS5Query,
   sanitizeQueryTokens,
   simpleStem,
+  STOP_WORDS,
   tokenize,
 } from './lexical-normalizer.js';
 import type { NormalizedLexicalQueryTokens } from './lexical-normalizer.js';
@@ -52,7 +52,11 @@ const BM25_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'experimental', '
 const BM25_DISABLED_VALUES = new Set(['0', 'false', 'no', 'off']);
 const BM25_ENGINE_VALUES = ['auto', 'sqlite', 'packed-inmemory', 'legacy-inmemory'] as const;
 type Bm25Engine = typeof BM25_ENGINE_VALUES[number];
-let packedInmemoryWarningEmitted = false;
+type InMemoryBm25Engine = Extract<Bm25Engine, 'packed-inmemory' | 'legacy-inmemory'>;
+type BM25FieldName = 'title' | 'trigger_phrases' | 'content_generic' | 'body';
+
+const BM25_FIELD_NAMES = ['title', 'trigger_phrases', 'content_generic', 'body'] as const;
+const BM25_ENGINE_LOGGED = new Set<string>();
 
 /**
  * Field weight multipliers for weighted BM25 scoring.
@@ -60,8 +64,8 @@ let packedInmemoryWarningEmitted = false;
  * each field's token scores by the appropriate weight before
  * accumulating the total document score.
  *
- * These weights are consumed by the FTS5 path in sqlite-fts.ts,
- * not the in-memory BM25 engine in this file. Exported for shared access.
+ * These weights are shared by the FTS5 path and the packed in-memory
+ * fallback so both lexical lanes preserve the same field-priority intent.
  *
  * title:           10.0 — exact title matches are the strongest signal
  * trigger_phrases:  5.0 — curated keywords next most important
@@ -76,6 +80,54 @@ const BM25_FIELD_WEIGHTS: Record<string, number> = {
   content_generic: BM25_FTS5_WEIGHTS[2],
   body: BM25_FTS5_WEIGHTS[3],
 };
+
+type BM25FieldWeights = Record<BM25FieldName, number>;
+
+interface BM25DocumentFields {
+  title?: string | null;
+  trigger_phrases?: string | string[] | null;
+  content_generic?: string | null;
+  body?: string | null;
+}
+
+interface BM25SearchOptions {
+  fieldWeights?: Partial<BM25FieldWeights>;
+}
+
+interface LegacyDocumentRecord {
+  tokens: string[];
+  termFreq: Map<string, number>;
+}
+
+interface PackedTermFrequency {
+  total: number;
+  fields: Record<BM25FieldName, number>;
+}
+
+interface PackedDocumentRecord {
+  numericId: number;
+  id: string;
+  length: number;
+  terms: string[];
+}
+
+interface PackedPostingMutable {
+  docIds: number[];
+  totalTfs: number[];
+  titleTfs: number[];
+  triggerTfs: number[];
+  pathTfs: number[];
+  bodyTfs: number[];
+}
+
+interface PackedPostingList {
+  docIds: Uint32Array;
+  totalTfs: Uint32Array;
+  titleTfs: Uint32Array;
+  triggerTfs: Uint32Array;
+  pathTfs: Uint32Array;
+  bodyTfs: Uint32Array;
+}
 
 /**
  * Check whether the in-memory BM25 index is enabled.
@@ -118,6 +170,33 @@ function getTermFrequencies(tokens: string[]): Map<string, number> {
   return freq;
 }
 
+function visitBm25Tokens(text: string, visitor: (token: string) => void): void {
+  if (!text || typeof text !== 'string') return;
+
+  let token = '';
+  const flush = () => {
+    if (token.length >= 2 && !STOP_WORDS.has(token)) {
+      visitor(simpleStem(token));
+    }
+    token = '';
+  };
+
+  for (let i = 0; i < text.length; i += 1) {
+    const code = text.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      token += String.fromCharCode(code + 32);
+    } else if ((code >= 97 && code <= 122) || (code >= 48 && code <= 57) || code === 45 || code === 95) {
+      token += text[i];
+    } else if (token.length > 0) {
+      flush();
+    }
+  }
+
+  if (token.length > 0) {
+    flush();
+  }
+}
+
 function normalizeTriggerPhrasesForBM25(triggerPhrases: string | string[] | null | undefined): string {
   if (Array.isArray(triggerPhrases)) {
     return triggerPhrases
@@ -146,6 +225,68 @@ function normalizeTriggerPhrasesForBM25(triggerPhrases: string | string[] | null
   }
 
   return trimmed;
+}
+
+function defaultPackedTermFrequency(): PackedTermFrequency {
+  return {
+    total: 0,
+    fields: {
+      title: 0,
+      trigger_phrases: 0,
+      content_generic: 0,
+      body: 0,
+    },
+  };
+}
+
+function resolveBm25FieldWeights(overrides: Partial<BM25FieldWeights> = {}): BM25FieldWeights {
+  return {
+    title: overrides.title ?? BM25_FIELD_WEIGHTS.title,
+    trigger_phrases: overrides.trigger_phrases ?? BM25_FIELD_WEIGHTS.trigger_phrases,
+    content_generic: overrides.content_generic ?? BM25_FIELD_WEIGHTS.content_generic,
+    body: overrides.body ?? BM25_FIELD_WEIGHTS.body,
+  };
+}
+
+function emitBm25EngineSelection(engine: Bm25Engine | InMemoryBm25Engine, reason: string): void {
+  const key = `${engine}:${reason}`;
+  if (BM25_ENGINE_LOGGED.has(key)) {
+    return;
+  }
+  BM25_ENGINE_LOGGED.add(key);
+  console.info(`[bm25-index] BM25 engine selected: ${engine} (${reason})`);
+}
+
+function resolveInMemoryBm25Engine(): InMemoryBm25Engine {
+  const configured = resolveBm25Engine();
+  if (configured === 'legacy-inmemory') {
+    emitBm25EngineSelection('legacy-inmemory', 'explicit legacy in-memory flag');
+    return 'legacy-inmemory';
+  }
+
+  if (configured === 'sqlite') {
+    emitBm25EngineSelection('packed-inmemory', 'sqlite mode requested an in-memory fallback instance');
+    return 'packed-inmemory';
+  }
+
+  if (configured === 'packed-inmemory') {
+    emitBm25EngineSelection('packed-inmemory', 'explicit packed in-memory flag');
+    return 'packed-inmemory';
+  }
+
+  emitBm25EngineSelection('packed-inmemory', 'auto mode fallback');
+  return 'packed-inmemory';
+}
+
+function buildBm25DocumentFields(row: BM25DocumentSource): BM25DocumentFields {
+  return {
+    title: typeof row.title === 'string' && row.title.trim() ? row.title.trim() : '',
+    body: typeof row.content_text === 'string' && row.content_text.trim()
+      ? normalizeContentForBM25(row.content_text)
+      : '',
+    trigger_phrases: normalizeTriggerPhrasesForBM25(row.trigger_phrases),
+    content_generic: typeof row.file_path === 'string' && row.file_path.trim() ? row.file_path.trim() : '',
+  };
 }
 
 function buildBm25DocumentText(row: BM25DocumentSource): string {
@@ -178,16 +319,34 @@ function buildBm25DocumentText(row: BM25DocumentSource): string {
 class BM25Index {
   private k1: number;
   private b: number;
-  private documents: Map<string, { tokens: string[]; termFreq: Map<string, number> }>;
+  private engine: InMemoryBm25Engine;
+  private documents: Map<string, LegacyDocumentRecord>;
+  private packedDocuments: Map<string, PackedDocumentRecord>;
+  private packedDocIds: string[];
+  private packedDocNumbersById: Map<string, number>;
+  private packedMutablePostings: Map<string, PackedPostingMutable>;
+  private packedPostings: Map<string, PackedPostingList>;
+  private packedDirtyTerms: Set<string>;
   private documentFreq: Map<string, number>;
   private totalDocLength: number;
   private warmupHandle: ReturnType<typeof setTimeout> | null;
   private warmupGeneration: number;
 
-  constructor(k1: number = DEFAULT_K1, b: number = DEFAULT_B) {
+  constructor(
+    k1: number = DEFAULT_K1,
+    b: number = DEFAULT_B,
+    engine: InMemoryBm25Engine = resolveInMemoryBm25Engine()
+  ) {
     this.k1 = k1;
     this.b = b;
+    this.engine = engine;
     this.documents = new Map();
+    this.packedDocuments = new Map();
+    this.packedDocIds = [];
+    this.packedDocNumbersById = new Map();
+    this.packedMutablePostings = new Map();
+    this.packedPostings = new Map();
+    this.packedDirtyTerms = new Set();
     this.documentFreq = new Map();
     this.totalDocLength = 0;
     this.warmupHandle = null;
@@ -195,10 +354,14 @@ class BM25Index {
   }
 
   addDocument(id: string, text: string): void {
+    if (this.engine === 'packed-inmemory') {
+      this.addDocumentFields(id, { body: text });
+      return;
+    }
+
     const tokens = tokenize(text);
     const termFreq = getTermFrequencies(tokens);
 
-    // Remove old document if exists
     if (this.documents.has(id)) {
       this.removeDocument(id);
     }
@@ -212,7 +375,39 @@ class BM25Index {
     }
   }
 
+  addDocumentFields(id: string, fields: BM25DocumentFields): void {
+    if (this.engine === 'legacy-inmemory') {
+      this.addDocument(id, this.joinDocumentFields(fields));
+      return;
+    }
+
+    if (this.packedDocuments.has(id)) {
+      this.removeDocument(id);
+    }
+
+    const termFreq = this.getPackedTermFrequencies(fields);
+    const length = Array.from(termFreq.values()).reduce((sum, freq) => sum + freq.total, 0);
+    if (length === 0) {
+      return;
+    }
+
+    const numericId = this.getPackedNumericId(id);
+    this.packedDocuments.set(id, { numericId, id, length, terms: Array.from(termFreq.keys()) });
+    this.totalDocLength += length;
+
+    for (const [term, frequency] of termFreq) {
+      const postings = this.ensurePackedMutablePostings(term);
+      this.setPackedMutablePosting(postings, numericId, frequency);
+      this.packedDirtyTerms.add(term);
+      this.documentFreq.set(term, (this.documentFreq.get(term) || 0) + 1);
+    }
+  }
+
   removeDocument(id: string): boolean {
+    if (this.engine === 'packed-inmemory') {
+      return this.removePackedDocument(id);
+    }
+
     const doc = this.documents.get(id);
     if (!doc) return false;
 
@@ -232,17 +427,21 @@ class BM25Index {
   }
 
   calculateIdf(term: string): number {
-    const n = this.documents.size;
+    const n = this.getDocumentCount();
     const df = this.documentFreq.get(term) || 0;
     if (df === 0 || n === 0) return 0;
     return Math.log((n - df + 0.5) / (df + 0.5) + 1);
   }
 
-  calculateScore(queryTokens: string[], docId: string): number {
+  calculateScore(queryTokens: string[], docId: string, options: BM25SearchOptions = {}): number {
+    if (this.engine === 'packed-inmemory') {
+      return this.calculatePackedScore(queryTokens, docId, options);
+    }
+
     const doc = this.documents.get(docId);
     if (!doc) return 0;
 
-    const avgDl = this.documents.size > 0 ? this.totalDocLength / this.documents.size : 0;
+    const avgDl = this.getAverageDocumentLength();
     const dl = doc.tokens.length;
 
     let score = 0;
@@ -259,9 +458,13 @@ class BM25Index {
     return score;
   }
 
-  search(query: string, limit: number = 10): BM25SearchResult[] {
+  search(query: string, limit: number = 10, options: BM25SearchOptions = {}): BM25SearchResult[] {
     const queryTokens = normalizeLexicalQueryTokens(query).bm25;
     if (queryTokens.length === 0) return [];
+
+    if (this.engine === 'packed-inmemory') {
+      return this.searchPacked(queryTokens, limit, options);
+    }
 
     const results: BM25SearchResult[] = [];
 
@@ -279,15 +482,21 @@ class BM25Index {
 
   getStats(): BM25Stats {
     return {
-      documentCount: this.documents.size,
+      documentCount: this.getDocumentCount(),
       termCount: this.documentFreq.size,
-      avgDocLength: this.documents.size > 0 ? this.totalDocLength / this.documents.size : 0,
+      avgDocLength: this.getAverageDocumentLength(),
     };
   }
 
   clear(): void {
     this.cancelWarmup();
     this.documents.clear();
+    this.packedDocuments.clear();
+    this.packedDocIds = [];
+    this.packedDocNumbersById.clear();
+    this.packedMutablePostings.clear();
+    this.packedPostings.clear();
+    this.packedDirtyTerms.clear();
     this.documentFreq.clear();
     this.totalDocLength = 0;
   }
@@ -296,6 +505,17 @@ class BM25Index {
     for (const doc of docs) {
       this.addDocument(doc.id, doc.text);
     }
+  }
+
+  finalizePackedPostings(): void {
+    if (this.engine === 'legacy-inmemory') {
+      return;
+    }
+
+    for (const term of Array.from(this.packedDirtyTerms)) {
+      this.getPackedPosting(term);
+    }
+    this.packedMutablePostings.clear();
   }
 
   /**
@@ -340,9 +560,9 @@ class BM25Index {
           continue;
         }
 
-        const text = buildBm25DocumentText(row);
-        if (text.trim()) {
-          this.addDocument(String(row.id), text);
+        const fields = buildBm25DocumentFields(row);
+        if (this.joinDocumentFields(fields).trim()) {
+          this.addDocumentFields(String(row.id), fields);
         } else {
           this.removeDocument(String(row.id));
         }
@@ -383,6 +603,7 @@ class BM25Index {
 
         const batchIds = pendingIds.splice(0, BM25_WARMUP_BATCH_SIZE);
         if (batchIds.length === 0) {
+          this.finalizePackedPostings();
           this.warmupHandle = null;
           return;
         }
@@ -411,6 +632,289 @@ class BM25Index {
       clearRegisteredTimer(this.warmupHandle);
       this.warmupHandle = null;
     }
+  }
+
+  private getDocumentCount(): number {
+    return this.engine === 'packed-inmemory' ? this.packedDocuments.size : this.documents.size;
+  }
+
+  private getAverageDocumentLength(): number {
+    const documentCount = this.getDocumentCount();
+    return documentCount > 0 ? this.totalDocLength / documentCount : 0;
+  }
+
+  private joinDocumentFields(fields: BM25DocumentFields): string {
+    const parts: string[] = [];
+    for (const fieldName of BM25_FIELD_NAMES) {
+      const value = fields[fieldName];
+      if (Array.isArray(value)) {
+        parts.push(value.join(' '));
+      } else if (typeof value === 'string' && value.trim()) {
+        parts.push(value.trim());
+      }
+    }
+    return parts.join(' ').trim();
+  }
+
+  private getPackedNumericId(id: string): number {
+    const existing = this.packedDocNumbersById.get(id);
+    if (existing !== undefined) {
+      return existing;
+    }
+
+    const numericId = this.packedDocIds.length;
+    this.packedDocIds.push(id);
+    this.packedDocNumbersById.set(id, numericId);
+    return numericId;
+  }
+
+  private getPackedTermFrequencies(fields: BM25DocumentFields): Map<string, PackedTermFrequency> {
+    const termFreq = new Map<string, PackedTermFrequency>();
+
+    for (const fieldName of BM25_FIELD_NAMES) {
+      const rawValue = fields[fieldName];
+      const text = Array.isArray(rawValue) ? rawValue.join(' ') : (rawValue ?? '');
+      visitBm25Tokens(text, (token) => {
+        let frequency = termFreq.get(token);
+        if (!frequency) {
+          frequency = defaultPackedTermFrequency();
+          termFreq.set(token, frequency);
+        }
+        frequency.total += 1;
+        frequency.fields[fieldName] += 1;
+      });
+    }
+
+    return termFreq;
+  }
+
+  private removePackedDocument(id: string): boolean {
+    const doc = this.packedDocuments.get(id);
+    if (!doc) return false;
+
+    this.totalDocLength -= doc.length;
+
+    for (const term of doc.terms) {
+      const postings = this.ensurePackedMutablePostings(term);
+      this.deletePackedMutablePosting(postings, doc.numericId);
+      this.packedDirtyTerms.add(term);
+
+      const count = this.documentFreq.get(term) || 0;
+      if (count <= 1) {
+        this.documentFreq.delete(term);
+        this.packedMutablePostings.delete(term);
+        this.packedPostings.delete(term);
+      } else {
+        this.documentFreq.set(term, count - 1);
+      }
+    }
+
+    this.packedDocuments.delete(id);
+    return true;
+  }
+
+  private getPackedPosting(term: string): PackedPostingList | undefined {
+    if (!this.packedDirtyTerms.has(term)) {
+      return this.packedPostings.get(term);
+    }
+
+    const mutable = this.packedMutablePostings.get(term);
+    if (!mutable || mutable.docIds.length === 0) {
+      this.packedDirtyTerms.delete(term);
+      this.packedPostings.delete(term);
+      return undefined;
+    }
+
+    this.sortPackedMutablePosting(mutable);
+
+    const packed: PackedPostingList = {
+      docIds: Uint32Array.from(mutable.docIds),
+      totalTfs: Uint32Array.from(mutable.totalTfs),
+      titleTfs: Uint32Array.from(mutable.titleTfs),
+      triggerTfs: Uint32Array.from(mutable.triggerTfs),
+      pathTfs: Uint32Array.from(mutable.pathTfs),
+      bodyTfs: Uint32Array.from(mutable.bodyTfs),
+    };
+    this.packedPostings.set(term, packed);
+    this.packedDirtyTerms.delete(term);
+    return packed;
+  }
+
+  private ensurePackedMutablePostings(term: string): PackedPostingMutable {
+    const existing = this.packedMutablePostings.get(term);
+    if (existing) {
+      return existing;
+    }
+
+    const hydrated: PackedPostingMutable = {
+      docIds: [],
+      totalTfs: [],
+      titleTfs: [],
+      triggerTfs: [],
+      pathTfs: [],
+      bodyTfs: [],
+    };
+    const packed = this.packedPostings.get(term);
+    if (packed) {
+      for (let i = 0; i < packed.docIds.length; i += 1) {
+        hydrated.docIds.push(packed.docIds[i]);
+        hydrated.totalTfs.push(packed.totalTfs[i]);
+        hydrated.titleTfs.push(packed.titleTfs[i]);
+        hydrated.triggerTfs.push(packed.triggerTfs[i]);
+        hydrated.pathTfs.push(packed.pathTfs[i]);
+        hydrated.bodyTfs.push(packed.bodyTfs[i]);
+      }
+    }
+
+    this.packedMutablePostings.set(term, hydrated);
+    return hydrated;
+  }
+
+  private setPackedMutablePosting(
+    postings: PackedPostingMutable,
+    numericId: number,
+    frequency: PackedTermFrequency
+  ): void {
+    const existingIndex = postings.docIds.indexOf(numericId);
+    if (existingIndex >= 0) {
+      postings.totalTfs[existingIndex] = frequency.total;
+      postings.titleTfs[existingIndex] = frequency.fields.title;
+      postings.triggerTfs[existingIndex] = frequency.fields.trigger_phrases;
+      postings.pathTfs[existingIndex] = frequency.fields.content_generic;
+      postings.bodyTfs[existingIndex] = frequency.fields.body;
+      return;
+    }
+
+    postings.docIds.push(numericId);
+    postings.totalTfs.push(frequency.total);
+    postings.titleTfs.push(frequency.fields.title);
+    postings.triggerTfs.push(frequency.fields.trigger_phrases);
+    postings.pathTfs.push(frequency.fields.content_generic);
+    postings.bodyTfs.push(frequency.fields.body);
+  }
+
+  private deletePackedMutablePosting(postings: PackedPostingMutable, numericId: number): void {
+    const index = postings.docIds.indexOf(numericId);
+    if (index < 0) {
+      return;
+    }
+    postings.docIds.splice(index, 1);
+    postings.totalTfs.splice(index, 1);
+    postings.titleTfs.splice(index, 1);
+    postings.triggerTfs.splice(index, 1);
+    postings.pathTfs.splice(index, 1);
+    postings.bodyTfs.splice(index, 1);
+  }
+
+  private sortPackedMutablePosting(postings: PackedPostingMutable): void {
+    const order = postings.docIds.map((docId, index) => ({ docId, index }));
+    order.sort((a, b) => a.docId - b.docId);
+
+    postings.docIds = order.map((entry) => entry.docId);
+    postings.totalTfs = order.map((entry) => postings.totalTfs[entry.index]);
+    postings.titleTfs = order.map((entry) => postings.titleTfs[entry.index]);
+    postings.triggerTfs = order.map((entry) => postings.triggerTfs[entry.index]);
+    postings.pathTfs = order.map((entry) => postings.pathTfs[entry.index]);
+    postings.bodyTfs = order.map((entry) => postings.bodyTfs[entry.index]);
+  }
+
+  private calculatePackedScore(
+    queryTokens: string[],
+    docId: string,
+    options: BM25SearchOptions
+  ): number {
+    const doc = this.packedDocuments.get(docId);
+    if (!doc) return 0;
+
+    const weights = resolveBm25FieldWeights(options.fieldWeights);
+    const avgDl = Math.max(this.getAverageDocumentLength(), 1);
+    let score = 0;
+
+    for (const term of queryTokens) {
+      const postings = this.getPackedPosting(term);
+      if (!postings) continue;
+      const postingIndex = this.findPackedPostingIndex(postings, doc.numericId);
+      if (postingIndex < 0) continue;
+
+      const weightedTf = this.calculateWeightedPostingFrequency(postings, postingIndex, weights);
+      if (weightedTf <= 0) continue;
+
+      const idf = this.calculateIdf(term);
+      score += this.calculateBm25TermScore(weightedTf, doc.length, avgDl, idf);
+    }
+
+    return score;
+  }
+
+  private searchPacked(
+    queryTokens: string[],
+    limit: number,
+    options: BM25SearchOptions
+  ): BM25SearchResult[] {
+    const weights = resolveBm25FieldWeights(options.fieldWeights);
+    const avgDl = Math.max(this.getAverageDocumentLength(), 1);
+    const scores = new Map<number, number>();
+
+    for (const term of queryTokens) {
+      const postings = this.getPackedPosting(term);
+      if (!postings) continue;
+
+      const idf = this.calculateIdf(term);
+      for (let i = 0; i < postings.docIds.length; i += 1) {
+        const numericId = postings.docIds[i];
+        const id = this.packedDocIds[numericId];
+        if (!id) continue;
+        const doc = this.packedDocuments.get(id);
+        if (!doc) continue;
+
+        const weightedTf = this.calculateWeightedPostingFrequency(postings, i, weights);
+        if (weightedTf <= 0) continue;
+
+        const termScore = this.calculateBm25TermScore(weightedTf, doc.length, avgDl, idf);
+        scores.set(numericId, (scores.get(numericId) || 0) + termScore);
+      }
+    }
+
+    return Array.from(scores.entries())
+      .map(([numericId, score]) => ({ id: this.packedDocIds[numericId], score }))
+      .filter((result): result is BM25SearchResult => typeof result.id === 'string' && result.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit);
+  }
+
+  private calculateWeightedPostingFrequency(
+    postings: PackedPostingList,
+    index: number,
+    weights: BM25FieldWeights
+  ): number {
+    return (
+      postings.titleTfs[index] * weights.title +
+      postings.triggerTfs[index] * weights.trigger_phrases +
+      postings.pathTfs[index] * weights.content_generic +
+      postings.bodyTfs[index] * weights.body
+    );
+  }
+
+  private findPackedPostingIndex(postings: PackedPostingList, numericId: number): number {
+    let low = 0;
+    let high = postings.docIds.length - 1;
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const value = postings.docIds[mid];
+      if (value === numericId) return mid;
+      if (value < numericId) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return -1;
+  }
+
+  private calculateBm25TermScore(tf: number, dl: number, avgDl: number, idf: number): number {
+    const numerator = tf * (this.k1 + 1);
+    const denominator = tf + this.k1 * (1 - this.b + this.b * (dl / avgDl));
+    return idf * (numerator / denominator);
   }
 }
 
@@ -484,20 +988,13 @@ function isMemoryFtsAvailable(database: Database.Database | null | undefined): b
   }
 }
 
-function emitPackedInmemoryWarning(): void {
-  if (packedInmemoryWarningEmitted) {
-    return;
-  }
-  packedInmemoryWarningEmitted = true;
-  console.warn('[bm25-index] SPECKIT_BM25_ENGINE=packed-inmemory is reserved and not yet implemented; using legacy-inmemory');
-}
-
 function shouldWarmInMemoryBm25(database: Database.Database | null | undefined): boolean {
   if (!isBm25Enabled()) {
     return false;
   }
 
   const engine = resolveBm25Engine();
+  emitBm25EngineSelection(engine, 'warmup routing');
   if (engine === 'sqlite') {
     if (!isMemoryFtsAvailable(database)) {
       throw new Error('SPECKIT_BM25_ENGINE=sqlite requires the memory_fts table; JS BM25 warmup is disabled in sqlite mode');
@@ -510,7 +1007,6 @@ function shouldWarmInMemoryBm25(database: Database.Database | null | undefined):
   }
 
   if (engine === 'packed-inmemory') {
-    emitPackedInmemoryWarning();
     return true;
   }
 
@@ -519,6 +1015,7 @@ function shouldWarmInMemoryBm25(database: Database.Database | null | undefined):
 
 function shouldUseSqliteLexicalEngine(database: Database.Database | null | undefined): boolean {
   const engine = resolveBm25Engine();
+  emitBm25EngineSelection(engine, 'lexical routing');
   if (engine === 'sqlite') {
     if (!isMemoryFtsAvailable(database)) {
       throw new Error('SPECKIT_BM25_ENGINE=sqlite requires the memory_fts table for lexical BM25 search');
@@ -528,10 +1025,6 @@ function shouldUseSqliteLexicalEngine(database: Database.Database | null | undef
 
   if (engine === 'auto') {
     return isMemoryFtsAvailable(database);
-  }
-
-  if (engine === 'packed-inmemory') {
-    emitPackedInmemoryWarning();
   }
 
   return false;
@@ -582,6 +1075,7 @@ export {
   sanitizeFTS5Query,
   normalizeLexicalQueryTokens,
   buildBm25DocumentText,
+  buildBm25DocumentFields,
   DEFAULT_K1,
   DEFAULT_B,
   BM25_FTS5_WEIGHTS,
@@ -592,6 +1086,10 @@ export type {
   BM25SearchResult,
   BM25Stats,
   BM25DocumentSource,
+  BM25DocumentFields,
+  BM25FieldWeights,
+  BM25SearchOptions,
   Bm25Engine,
+  InMemoryBm25Engine,
   NormalizedLexicalQueryTokens,
 };
