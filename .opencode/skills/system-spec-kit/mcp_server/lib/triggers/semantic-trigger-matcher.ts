@@ -57,7 +57,15 @@ export interface SemanticTriggerShadowStats {
   overlapCount: number;
   topScore: number | null;
   latencyMs: number;
+  thresholdBands?: SemanticTriggerThresholdBands;
   error?: string;
+}
+
+export interface SemanticTriggerThresholdBands {
+  atOrAboveThreshold: number;
+  withinMarginBelowThreshold: number;
+  belowMarginBand: number;
+  total: number;
 }
 
 interface TriggerEmbeddingRow {
@@ -119,6 +127,39 @@ function resolveCacheTtlMs(options: SemanticTriggerCacheOptions): number {
     1,
     Math.floor(options.ttlMs ?? readPositiveIntegerEnv('SPECKIT_SEMANTIC_TRIGGER_CACHE_TTL_MS', DEFAULT_CACHE_TTL_MS)),
   );
+}
+
+function createEmptyThresholdBands(): SemanticTriggerThresholdBands {
+  return {
+    atOrAboveThreshold: 0,
+    withinMarginBelowThreshold: 0,
+    belowMarginBand: 0,
+    total: 0,
+  };
+}
+
+function computeThresholdBands(
+  promptEmbedding: Float32Array | number[],
+  triggerCache: readonly SemanticTriggerCacheEntry[],
+  options: SemanticTriggerMatcherOptions = {},
+): SemanticTriggerThresholdBands {
+  const config = resolveMatcherOptions(options);
+  const bands = createEmptyThresholdBands();
+  const lowerBandFloor = Math.max(0, config.threshold - config.margin);
+
+  for (const entry of triggerCache) {
+    const score = cosineSimilarity(promptEmbedding, entry.embedding);
+    bands.total += 1;
+    if (score >= config.threshold) {
+      bands.atOrAboveThreshold += 1;
+    } else if (score >= lowerBandFloor) {
+      bands.withinMarginBelowThreshold += 1;
+    } else {
+      bands.belowMarginBand += 1;
+    }
+  }
+
+  return bands;
 }
 
 function bufferToFloat32(buffer: Buffer): Float32Array {
@@ -449,6 +490,7 @@ export function computeSemanticTriggerShadow(
     }
 
     const matches = matchSemanticTriggers(queryEmbedding, triggerCache, options);
+    const thresholdBands = computeThresholdBands(queryEmbedding, triggerCache, options);
     const lexicalSet = new Set(lexicalMemoryIds);
     const overlapCount = matches.filter((match) => lexicalSet.has(match.memoryId)).length;
     return {
@@ -459,6 +501,7 @@ export function computeSemanticTriggerShadow(
       overlapCount,
       topScore: matches[0]?.score ?? null,
       latencyMs: Date.now() - startTime,
+      thresholdBands,
     };
   } catch (error: unknown) {
     return {
@@ -478,5 +521,6 @@ export const __testables = {
   bufferToFloat32,
   cosineSimilarity,
   parseTriggerPhraseByHash,
+  computeThresholdBands,
   resolveMatcherOptions,
 };

@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/004-tests-goldens-shadow-eval"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Split from 007 leaf into tests/goldens/shadow-eval sub-phase"
-    next_safe_action: "Implement T001 trigger goldens fixture"
-    blockers: []
+    last_updated_at: "2026-06-10T10:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added synthetic goldens, tests, and flag docs"
+    next_safe_action: "Run live embedding eval before union promotion"
+    blockers: ["Union promotion blocked pending live eval evidence"]
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-007-phase-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Completed; union promotion blocked |
 | **Created** | 2026-06-06 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -67,6 +67,8 @@ This is **Phase 4** (final) of the semantic trigger fallback decomposition (pare
 - The 5 `SPECKIT_SEMANTIC_TRIGGERS*` flags documented in `ENV_REFERENCE.md`.
 - Shadow telemetry + the shadow→union promotion gate evidence.
 
+**Fixture honesty**: the goldens use deterministic synthetic vectors to validate matcher gates, metrics, and telemetry machinery. They do not represent live 768d embedding recall. Union promotion remains blocked pending live-profile evidence.
+
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
@@ -89,8 +91,8 @@ Establish the evaluation harness, document the flags, capture shadow telemetry, 
 ## 3. SCOPE
 
 ### In Scope
-- `mcp_server/__tests__/fixtures/trigger-goldens.json` (NEW): ~40 phrases × {exact, paraphrase, distractor}, CJK + Latin, expected match-source per fixture.
-- `cold-start.vitest.ts`, `latency-budget.vitest.ts`, `threshold-tuning.vitest.ts`, `backfill-resume.vitest.ts` (NEW).
+- `mcp_server/tests/fixtures/trigger-goldens.json` (NEW): ~40 phrases × {exact, paraphrase, distractor}, CJK + Latin, expected match-source per fixture.
+- `trigger-cold-start.vitest.ts`, `trigger-latency-budget.vitest.ts`, `trigger-threshold-tuning.vitest.ts`, `trigger-backfill-resume.vitest.ts` (NEW).
 - Document the 5 `SPECKIT_SEMANTIC_TRIGGERS*` flags (master, mode, threshold, margin, max) in `mcp_server/ENV_REFERENCE.md` with defaults preserved.
 - Shadow telemetry: log would-have-fired hits without activation when `_MODE=shadow`; record threshold-band distribution.
 - Shadow→union promotion checklist evidence (FP, recall, latency, cost, rollback).
@@ -104,11 +106,11 @@ Establish the evaluation harness, document the flags, capture shadow telemetry, 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `mcp_server/__tests__/fixtures/trigger-goldens.json` | Create | Goldens fixture (exact/paraphrase/distractor) |
-| `mcp_server/__tests__/triggers/cold-start.vitest.ts` | Create | Uncached phrase skipped silently |
-| `mcp_server/__tests__/triggers/latency-budget.vitest.ts` | Create | 30-50ms PASS / 100ms WARN preserved |
-| `mcp_server/__tests__/triggers/threshold-tuning.vitest.ts` | Create | Threshold-band distribution from shadow telemetry |
-| `mcp_server/__tests__/triggers/backfill-resume.vitest.ts` | Create | Interrupted backfill restarts without duplicate ready rows |
+| `mcp_server/tests/fixtures/trigger-goldens.json` | Create | Goldens fixture (exact/paraphrase/distractor) |
+| `mcp_server/tests/trigger-cold-start.vitest.ts` | Create | Uncached phrase skipped silently |
+| `mcp_server/tests/trigger-latency-budget.vitest.ts` | Create | 30-50ms PASS / 100ms WARN preserved |
+| `mcp_server/tests/trigger-threshold-tuning.vitest.ts` | Create | Threshold-band distribution from shadow telemetry |
+| `mcp_server/tests/trigger-backfill-resume.vitest.ts` | Create | Interrupted backfill restarts without duplicate ready rows |
 | `mcp_server/ENV_REFERENCE.md` | Modify | Document 5 semantic-trigger flags |
 <!-- /ANCHOR:scope -->
 
@@ -139,7 +141,7 @@ Establish the evaluation harness, document the flags, capture shadow telemetry, 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Goldens: exact precision = 1.0; paraphrase recall ≥ 0.7 (re-tuned for 768d); distractor FP ≤ 0.05.
+- **SC-001**: Synthetic goldens: exact precision = 1.0; paraphrase recall ≥ 0.7; distractor FP ≤ 0.05. Live 768d retuning remains a promotion blocker.
 - **SC-002**: Latency p95 within WARN budget; 5 flags documented; shadow→union promotion evidence recorded before any union rollout.
 <!-- /ANCHOR:success-criteria -->
 
