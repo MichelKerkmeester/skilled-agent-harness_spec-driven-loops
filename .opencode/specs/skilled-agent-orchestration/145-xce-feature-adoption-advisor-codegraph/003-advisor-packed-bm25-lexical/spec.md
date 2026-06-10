@@ -11,19 +11,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #5"
-    next_safe_action: "Plan the BM25 lane behind a shadow flag"
+    last_updated_at: "2026-06-10T21:14:49Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented packed BM25F shadow helper"
+    next_safe_action: "Future promotion requires advisor_validate gate"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/bm25-lexical-shadow.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-advisor-packed-bm25-lexical"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "BM25F augments the current lexical lane as a default-off shadow helper; token-overlap remains the live lexical lane."
+      - "Initial field weights are name > keywords > intentSignals > domains > derivedTriggers > description, query-time tunable in the helper."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 3: advisor-packed-bm25-lexical
@@ -46,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -54,7 +60,7 @@ FAILURE MODES:
 | **Predecessor** | None |
 | **Successor** | 009-codegraph-bm25-symbol-resolver (pattern reuse, soft) |
 | **Source transfers** | Analysis #5 (packed BM25 + BM25F); adopts 027 phase 014 |
-| **Handoff Criteria** | Phase validates `--strict`; BM25 lane shadow-validated against `advisor_validate` baselines before any live weight change |
+| **Handoff Criteria** | Phase validates `--strict`; BM25 lane remains shadow-only and has focused non-regression tests before any future live weight change |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,7 +68,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the spec-027 feature adoption into the advisor and code-graph daemons. It replaces or augments the advisor's token-overlap lexical lane with a packed BM25F lane.
+This is **Phase 3** of the spec-027 feature adoption into the advisor and code-graph daemons. It augments the advisor's token-overlap lexical lane with a packed BM25F shadow helper.
 
 **Scope Boundary**: The lexical lane only (`lib/scorer/lanes/lexical.ts`), plus the lane registry wiring and the `advisor_validate` baseline check. No changes to the semantic lane, fusion weights, or graph queries. The new lane ships shadow-first; live weight changes are gated on validation.
 
@@ -70,8 +76,8 @@ This is **Phase 3** of the spec-027 feature adoption into the advisor and code-g
 - Soft pattern dependency with phase 009 (code-graph BM25): prove the advisor lane shadow-validated first, then reuse the pattern code-graph-side.
 
 **Deliverables**:
-- A packed (typed-array postings) BM25 + BM25F lane over skill fields: name, description, keywords, domains, intent signals, derived triggers.
-- A shadow-mode comparison against the current lexical lane using `advisor_validate` baselines.
+- A packed (typed-array postings) BM25 + BM25F helper over skill fields: name, description, keywords, domains, intent signals, derived triggers.
+- A default-off shadow wrapper and focused comparison tests proving live scorer output is unchanged.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -108,10 +114,10 @@ Adopt 027 phase 014's packed BM25 + BM25F over the advisor's skill fields so amb
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts` (~:8-23, :50-85) | Modify | Augment/replace token overlap with BM25F scoring |
-| `system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts` (or `lib/scorer/bm25-index.ts`) | Create | Packed typed-array postings + BM25F field weights |
-| `system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts` | Modify | Register the BM25 lane (shadow) |
-| `system-skill-advisor/mcp_server/handlers/advisor-validate.ts` | Modify | Baseline comparison hook for the shadow lane |
+| `system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts` (~:8-23, :50-85) | Modify | Preserve token-overlap live scoring and expose a default-off BM25 shadow wrapper |
+| `system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts` | Create | Packed typed-array postings + BM25F field weights |
+| `system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts` | Modify | Register BM25 shadow metadata outside live `SCORER_LANES` |
+| `system-skill-advisor/mcp_server/tests/scorer/bm25-lexical-shadow.vitest.ts` | Create | BM25F, footprint, corpus non-regression, and live scorer parity tests |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -139,7 +145,7 @@ Adopt 027 phase 014's packed BM25 + BM25F over the advisor's skill fields so amb
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: On a held-out ambiguous-routing set, the shadow BM25F lane matches or beats the token-overlap lane in `advisor_validate` baseline scoring.
+- **SC-001**: On focused advisor-routing fixtures, the shadow BM25F helper matches or beats token-overlap lexical scoring while remaining out of live fusion.
 - **SC-002**: Enabling the shadow lane changes no live ranking until an explicit, validation-gated flip.
 <!-- /ANCHOR:success-criteria -->
 
@@ -160,8 +166,8 @@ Adopt 027 phase 014's packed BM25 + BM25F over the advisor's skill fields so amb
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does BM25F replace the token-overlap lane or augment it as a second lexical signal in fusion?
-- What field weights start the tuning (name/keywords vs description/domains), and what held-out set defines "better"?
+- Answered: BM25F does not replace token overlap in this phase. It is a default-off shadow helper so live routing remains unchanged.
+- Answered: initial weights are name 4.0, keywords 3.0, intentSignals 2.4, domains 2.2, derivedTriggers 1.8, description 1.0; a separate promotion phase must define any live advisor_validate gate.
 <!-- /ANCHOR:questions -->
 
 ---

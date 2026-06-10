@@ -4,6 +4,7 @@
 
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { matchesPhraseBoundary, scoreTokenOverlap, tokenize } from '../text.js';
+import { scoreBm25LexicalShadowLane, type AdvisorBm25Match } from './bm25.js';
 
 const SYNONYMS: Readonly<Record<string, readonly string[]>> = {
   branch: ['git', 'worktree', 'merge'],
@@ -35,6 +36,13 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],
   'sk-code': ['css', 'html', 'javascript', 'browser', 'frontend', 'layout', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],
 };
+
+const BM25_SHADOW_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'shadow', 'experimental']);
+
+export function isBm25LexicalShadowEnabled(): boolean {
+  const value = process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW?.trim().toLowerCase();
+  return value ? BM25_SHADOW_ENABLED_VALUES.has(value) : false;
+}
 
 function expandedTokens(prompt: string): string[] {
   const tokens = tokenize(prompt);
@@ -86,4 +94,15 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
   }
 
   return matches;
+}
+
+export function scoreLexicalShadowLanes(
+  prompt: string,
+  projection: AdvisorProjection,
+): { lexical: LaneMatch[]; bm25: AdvisorBm25Match[] } {
+  const lexical = scoreLexicalLane(prompt, projection);
+  return {
+    lexical,
+    bm25: isBm25LexicalShadowEnabled() ? scoreBm25LexicalShadowLane(prompt, projection) : [],
+  };
 }

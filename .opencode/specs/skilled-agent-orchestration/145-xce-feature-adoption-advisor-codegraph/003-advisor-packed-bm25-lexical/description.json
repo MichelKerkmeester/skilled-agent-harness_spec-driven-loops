@@ -1,14 +1,14 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
-  "description": "Feature Specification: Phase 3: advisor-packed-bm25-lexical",
+  "description": "Completed packed BM25F lexical shadow helper for the skill advisor scorer",
   "keywords": [
     "feature",
     "specification",
     "phase",
     "advisor-packed-bm25-lexical"
   ],
-  "lastUpdated": "2026-06-10T19:41:55.234Z",
+  "lastUpdated": "2026-06-10T21:14:49Z",
   "specId": "003",
   "folderSlug": "advisor-packed-bm25-lexical",
   "parentChain": [

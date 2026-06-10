@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: advisor packed BM25F lexical shadow helper"
+description: "Added a default-off packed BM25F lexical shadow helper for advisor skill fields while preserving existing live recommendation ranking."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T21:14:49Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shipped BM25F shadow helper"
+    next_safe_action: "Future promotion requires advisor_validate gate"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/bm25-lexical-shadow.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-advisor-packed-bm25-lexical"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,12 +60,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The advisor now has a packed BM25F lexical scorer available for shadow evaluation without changing live recommendations. Existing token-overlap lexical scoring remains the only live lexical contribution, and the BM25 flag is default-off so ranking order and scores stay unchanged until a future promotion phase explicitly changes fusion.
 
-### [Feature Name]
+### Packed BM25F Shadow Helper
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The helper builds a term dictionary over advisor skill fields and compacts postings into typed arrays after warmup. Each posting stores per-field term frequencies for name, keywords, domains, intent signals, derived triggers, and description; query-time BM25F weights emphasize authored identity fields above generic descriptions.
+
+### Default-Off Guardrail
+
+The live `scoreLexicalLane` function stays unchanged. `scoreLexicalShadowLanes` calls BM25 only when `SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW` is set to an enabled value, and `scoreAdvisorPrompt` does not consume BM25 output in this phase.
 
 ### Files Changed
 
@@ -69,7 +76,10 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts` | Created | Packed BM25F helper with typed-array postings, query-time field weights, and footprint stats |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts` | Modified | Added default-off shadow wrapper while preserving live lexical scoring |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts` | Modified | Added BM25 shadow metadata outside live fusion lanes |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/bm25-lexical-shadow.vitest.ts` | Created | Added BM25F, footprint, corpus non-regression, and live parity tests |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +93,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Delivered as an additive shadow helper. The parity test serializes live `scoreAdvisorPrompt` output with the BM25 flag off, enables the flag, reruns the same prompt/projection, and asserts the JSON string is identical.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +106,10 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep BM25 outside `SCORER_LANES` | Adding it to live lane enumeration would change response shape and violate the no-ranking-drift guardrail because `fusion.ts` is out of scope. |
+| Use typed arrays after helper construction | Query-time search only needs compact postings; tests assert mutable warmup postings are cleared. |
+| Keep field weights query-time tunable | Future validation can tune field emphasis without rebuilding the packed index. |
+| Leave promotion for a future phase | Live fusion and advisor_validate handler wiring are explicitly outside the allowed-write scope for this phase. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +122,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npx vitest run tests/scorer/bm25-lexical-shadow.vitest.ts` | PASS: 1 file, 5 tests |
+| `npm run typecheck` | PASS |
+| `npx vitest run tests/scorer/*.vitest.ts lib/scorer/lanes/__tests__/*.vitest.ts tests/handlers/advisor-validate.vitest.ts tests/handlers/advisor-validate-shapes.vitest.ts` | PASS: 9 files, 74 tests |
+| `npm run build` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +138,8 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **No live promotion in this phase.** BM25F is evaluable as shadow output only. A future phase must wire the helper into advisor_validate baselines and then make a separate promotion decision.
+2. **No handler changes.** `handlers/advisor-validate.ts` was not modified because it was not in the user-approved write paths.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +149,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

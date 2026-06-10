@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the spec-027 feature adoption into the advisor and code-graph daemons. It replaces or augments the advisor's token-overlap lexical lane with a packed BM25F lane.",
+    "causal_summary": "Completed a default-off packed BM25F lexical shadow helper for the advisor scorer while preserving the live token-overlap lexical lane.",
     "created_at": "2026-06-10T19:24:10Z",
-    "last_save_at": "2026-06-10T19:41:16.128Z",
+    "last_save_at": "2026-06-10T21:14:49Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

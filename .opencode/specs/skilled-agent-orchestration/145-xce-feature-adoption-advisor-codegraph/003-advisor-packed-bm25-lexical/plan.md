@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 3: advisor-packed-bm25-lexical [template:level_1/plan.md]"
-description: "Planned adoption of the cited 027 feature; full problem/scope/requirements live in this phase's spec.md. Implementation is deferred (scaffold-only packet)."
+title: "Implementation Plan: advisor packed BM25F lexical shadow helper"
+description: "Add a default-off packed BM25F lexical shadow helper for advisor skill fields while preserving the existing live lexical lane byte-for-byte."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,17 +12,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T21:14:49Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed BM25F shadow implementation"
+    next_safe_action: "Future promotion requires separate decision"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/bm25-lexical-shadow.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-advisor-packed-bm25-lexical"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,7 +55,7 @@ FAILURE MODES:
 | **Testing** | vitest |
 
 ### Overview
-Planned adoption of the cited 027 feature; full problem/scope/requirements live in this phase's spec.md. Implementation is deferred (scaffold-only packet).
+The implementation adds a packed BM25F index for advisor skill projections and exposes it only through a default-off shadow wrapper. The current token-overlap lexical lane remains the live scorer path, so existing recommendation scores and order remain unchanged.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +64,14 @@ Planned adoption of the cited 027 feature; full problem/scope/requirements live 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing: focused BM25, scorer, advisor-validate, typecheck, build
+- [x] Docs updated: spec, plan, tasks, implementation summary
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +80,15 @@ Planned adoption of the cited 027 feature; full problem/scope/requirements live 
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Additive in-memory shadow scorer helper.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Packed BM25F helper**: Builds a term dictionary with typed-array postings over advisor skill fields.
+- **Lexical shadow wrapper**: Emits BM25 shadow matches only when `SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW` is enabled.
+- **Registry metadata**: Records BM25 as a shadow-only option without adding it to live fusion lanes.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Projection skills are converted into weighted fields, indexed into packed postings during helper construction, and searched by query terms. Live `scoreAdvisorPrompt` still calls `scoreLexicalLane`, so BM25 output never contributes to live fusion.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,8 +100,9 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `lanes/lexical.ts` | Live lexical scorer | Preserve live function; add default-off shadow wrapper | `bm25-lexical-shadow.vitest.ts` live JSON parity |
+| `lanes/bm25.ts` | New shadow scorer helper | Create packed BM25F implementation | BM25F and footprint tests |
+| `lane-registry.ts` | Lane metadata | Add shadow metadata outside live `SCORER_LANES` | Typecheck and scorer tests |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -113,19 +117,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Existing scorer contracts inspected
+- [x] No dependency or package changes required
+- [x] Allowed-write scope confirmed
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Added `AdvisorPackedBm25Index` with typed-array postings
+- [x] Added query-time BM25F field weights over advisor fields
+- [x] Added default-off shadow wrapper and registry metadata without live fusion changes
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Focused BM25 shadow tests pass
+- [x] Scorer and advisor-validate suites pass
+- [x] Documentation updated
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +139,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | BM25F weights, packed footprint, shadow flag behavior | Vitest |
+| Integration | Scorer lane registry, scorer corpus, advisor_validate handler shapes | Vitest |
+| Manual | Review of out-of-scope handler/fusion constraints | Direct file inspection |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +151,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Existing scorer fusion | Internal | Green | BM25 stays outside live fusion because `fusion.ts` is out of scope |
+| `advisor_validate` promotion gate | Internal | Yellow | Future phase must wire BM25 comparison into handler before promotion |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +160,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any future attempt to make BM25 live without passing advisor_validate baselines.
+- **Procedure**: Keep `SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW` unset; the live scorer ignores BM25 helper output by design.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +172,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-
