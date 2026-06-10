@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 004/001 Schema + Backfill"
-description: "Implementation evidence placeholder for the schema + backfill sub-phase. No implementation changes are claimed until this file is completed after code and tests land."
+description: "Completed schema v34 and default-off trigger embedding backfill for semantic trigger fallback foundation."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/001-schema-backfill"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded sub-phase from 007 split"
-    next_safe_action: "Fill evidence after implementation lands"
+    last_updated_at: "2026-06-10T07:29:23Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed v34 schema and gated trigger backfill"
+    next_safe_action: "Start 002 semantic matcher implementation"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-007-phase-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,8 +39,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-schema-backfill |
-| **Completed** | 2026-06-06 |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
+| **Status** | Completed |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,19 +49,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet implemented. This sub-phase is scaffolded; evidence will be filled after code and tests land.
+Implemented the storage substrate and default-off out-of-band trigger embedding backfill for the first semantic trigger fallback phase.
 
-### Planned scope
+### Completed scope
 
-This phase will add the `memory_trigger_embeddings` derived table in `mcp_server/lib/search/vector-index-schema.ts`, reuse the existing `mcp_server/lib/cache/embedding-cache.ts` BLOB store, add resumable per-memory backfill in `mcp_server/handlers/memory-index.ts`, and a best-effort save-time hook in `mcp_server/handlers/save/embedding-pipeline.ts`.
+This phase added the `memory_trigger_embeddings` derived table in `mcp_server/lib/search/vector-index-schema.ts`, reused the existing `mcp_server/lib/cache/embedding-cache.ts` BLOB store, and added a resumable per-memory backfill helper wired into `mcp_server/handlers/memory-index.ts`. The save-time hook and trigger matcher are intentionally not implemented in this phase.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `mcp_server/lib/search/vector-index-schema.ts` | Pending (Modify) | Add `memory_trigger_embeddings` table |
-| `mcp_server/handlers/memory-index.ts` | Pending (Modify) | Resumable per-memory trigger backfill |
-| `mcp_server/handlers/save/embedding-pipeline.ts` | Pending (Modify) | Best-effort save-time embedding hook |
+| `mcp_server/lib/search/vector-index-schema.ts` | Modified | Bumped `SCHEMA_VERSION` to 34 and added additive table migration/bootstrap/compatibility checks. |
+| `mcp_server/lib/search/trigger-embedding-backfill.ts` | Added | Implements default-off, profile-keyed, resumable trigger phrase embedding backfill. |
+| `mcp_server/handlers/memory-index.ts` | Modified | Calls the backfill helper from scan completion and returns backfill outcome data. |
+| `mcp_server/tests/vector-index-schema-compatibility.vitest.ts` | Modified | Requires the new table in the minimal compatible schema footprint. |
+| `mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts` | Modified | Updates terminal schema assertions to 34 and covers v34 migration. |
+| `mcp_server/tests/trigger-embedding-backfill.vitest.ts` | Added | Proves default-off behavior, resumable re-run without duplicates, and no ready row before durable store. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +72,7 @@ This phase will add the `memory_trigger_embeddings` derived table in `mcp_server
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Delivered as an additive schema migration plus a disabled-by-default backfill path. The migration creates only metadata/status rows for trigger phrase embeddings; actual embedding generation runs only when the dedicated backfill flag is enabled. Runtime trigger matching remains unchanged.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,7 +82,10 @@ This phase will add the `memory_trigger_embeddings` derived table in `mcp_server
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Store trigger embedding state in `memory_trigger_embeddings` and keep vectors in `embedding_cache`. | Reuses the existing BLOB cache and keeps derived trigger state regeneratable from `memory_index.trigger_phrases`. |
+| Include profile identity and `input_kind` in the derived-table primary key. | Prevents a profile or input-kind change from silently reusing stale trigger rows. |
+| Keep backfill default-off. | Preserves lexical-first behavior and prevents semantic expansion from activating before later matcher/handler/eval phases. |
+| Defer save-time hook code. | The approved implementation scope for this pass was storage substrate plus scan/backfill wiring only. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -88,7 +95,13 @@ This phase will add the `memory_trigger_embeddings` derived table in `mcp_server
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run build` in `mcp_server` | PASS, exit 0. |
+| Focused schema/backfill tests | PASS, 3 files / 18 tests. |
+| Requested targeted suite | PASS, 7 files / 69 tests. |
+| Resumability proof | PASS, backfill re-run produced no duplicate rows and no extra provider calls. |
+| Default-off proof | PASS, disabled backfill created no rows and made no provider call. |
+| OpenCode alignment verifier | FAIL on out-of-scope existing files only; no touched file findings. |
+| Strict spec validation | PASS, exit 0 after docs reconciliation. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -96,5 +109,7 @@ This phase will add the `memory_trigger_embeddings` derived table in `mcp_server
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. The semantic matcher, hybrid handler behavior, and shadow/promotion evaluation remain for later child phases.
+2. The trigger embedding backfill is disabled by default and must be explicitly enabled for population.
+3. The save-time hook mentioned in the original scaffold was deferred because it was outside this pass's approved write scope.
 <!-- /ANCHOR:limitations -->

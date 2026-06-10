@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/001-schema-backfill"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Split from 007 leaf into schema-backfill sub-phase"
-    next_safe_action: "Implement T001 memory_trigger_embeddings schema"
+    last_updated_at: "2026-06-10T07:29:23Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed schema v34 and gated scan backfill"
+    next_safe_action: "Start 002 semantic matcher on cached rows"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-007-phase-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Completed |
 | **Created** | 2026-06-06 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -64,7 +64,7 @@ This is **Phase 1** of the semantic trigger fallback decomposition (parent `004-
 **Deliverables**:
 - `memory_trigger_embeddings` derived table reusing the existing `embedding_cache` BLOB store.
 - Resumable per-memory backfill in `memory_index_scan`.
-- Best-effort, non-blocking save-time embedding hook.
+- Default-off scan backfill gate; no runtime trigger-path embedding.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -90,8 +90,8 @@ Add a regeneratable derived table and resumable, out-of-band backfill so the run
 ### In Scope
 - New `memory_trigger_embeddings` table (PK `(memory_id, phrase_hash, profile_key, input_kind)`) in `vector-index-schema.ts`, carrying the active embedding-profile identity so a profile change does not silently reuse stale embeddings.
 - BLOB reuse of the existing `embedding_cache(content_hash, profile_key, input_kind, model_id, dimensions, embedding)` store — no new BLOB table.
-- Resumable per-memory backfill in `memory_index_scan`: generate embeddings for phrases with `embedding_status='pending'`; mark `ready` only after durable store.
-- Save-time hook in `embedding-pipeline.ts`: best-effort generation on `memory_save`, non-blocking on provider failure (`embedding_status='failed'`, retried on next scan).
+- Resumable per-memory backfill in `memory_index_scan`: generate embeddings for derived rows with `embedding_status='pending'`; mark `ready` only after durable store.
+- Default-off gating so semantic expansion and trigger embedding backfill do not activate by default.
 
 ### Out of Scope
 - The cosine semantic matcher itself - owned by `002-semantic-matcher`.
@@ -104,8 +104,9 @@ Add a regeneratable derived table and resumable, out-of-band backfill so the run
 |-----------|-------------|-------------|
 | `mcp_server/lib/search/vector-index-schema.ts` | Modify | Add `memory_trigger_embeddings` table (forward-only). |
 | `mcp_server/lib/cache/embedding-cache.ts` | Analyze | Reuse existing BLOB store keyed by profile identity. |
-| `mcp_server/handlers/memory-index.ts` | Modify | Add resumable per-memory trigger backfill. |
-| `mcp_server/handlers/save/embedding-pipeline.ts` | Modify | Add best-effort, non-blocking save-time embedding hook. |
+| `mcp_server/lib/search/trigger-embedding-backfill.ts` | Add | Implement default-off, resumable trigger phrase embedding backfill. |
+| `mcp_server/handlers/memory-index.ts` | Modify | Wire the default-off trigger backfill into scan completion. |
+| `mcp_server/tests/trigger-embedding-backfill.vitest.ts` | Add | Prove default-off, resumability, and no ready status before durable store. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -134,7 +135,7 @@ Add a regeneratable derived table and resumable, out-of-band backfill so the run
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Migration creates `memory_trigger_embeddings` cleanly on an existing memory DB (forward-only ADD).
-- **SC-002**: A `memory_index_scan` populates embeddings for `pending` phrases; `--force` regenerates from JSON without loss; an interrupted scan resumes safely.
+- **SC-002**: The scan backfill populates embeddings for `pending` derived rows when explicitly enabled; re-runs do not duplicate rows; durable-store failure leaves rows non-ready.
 <!-- /ANCHOR:success-criteria -->
 
 ---

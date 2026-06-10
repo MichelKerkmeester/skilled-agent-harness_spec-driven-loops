@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/001-schema-backfill",
-  "description": "Feature Specification: 001 — Schema + Backfill",
+  "description": "Completed schema v34 and default-off trigger embedding backfill foundation",
   "keywords": [
     "feature",
     "specification",
@@ -9,7 +9,7 @@
     "schema",
     "backfill"
   ],
-  "lastUpdated": "2026-06-06T14:41:13.491Z",
+  "lastUpdated": "2026-06-10T07:29:23Z",
   "specId": "001",
   "folderSlug": "schema-backfill",
   "parentChain": [

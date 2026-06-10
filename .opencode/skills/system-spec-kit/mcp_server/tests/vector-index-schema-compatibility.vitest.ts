@@ -8,9 +8,15 @@ describe('Vector index schema compatibility validator', () => {
     try {
       const report = validateBackwardCompatibility(db);
       expect(report.compatible).toBe(false);
-      expect(report.missingTables).toEqual(['memory_index', 'schema_version', 'causal_edge_tombstones']);
+      expect(report.missingTables).toEqual([
+        'memory_index',
+        'schema_version',
+        'causal_edge_tombstones',
+        'memory_trigger_embeddings',
+      ]);
       expect(report.missingColumns.memory_index).toContain('spec_folder');
       expect(report.missingColumns.causal_edge_tombstones).toContain('restore_metadata');
+      expect(report.missingColumns.memory_trigger_embeddings).toContain('phrase_hash');
     } finally {
       db.close();
     }
@@ -165,6 +171,22 @@ describe('Vector index schema compatibility validator', () => {
           ON causal_edge_tombstones(tombstoned_at DESC);
         CREATE INDEX idx_causal_edge_tombstones_reason
           ON causal_edge_tombstones(reason);
+
+        CREATE TABLE memory_trigger_embeddings (
+          memory_id INTEGER NOT NULL,
+          phrase_hash TEXT NOT NULL,
+          profile_key TEXT NOT NULL,
+          input_kind TEXT NOT NULL DEFAULT 'document' CHECK(input_kind IN ('document', 'query')),
+          model_id TEXT NOT NULL,
+          dimensions INTEGER NOT NULL,
+          embedding_status TEXT NOT NULL DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'ready', 'failed')),
+          failure_reason TEXT,
+          created_at TEXT NOT NULL DEFAULT (datetime('now')),
+          updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+          PRIMARY KEY (memory_id, phrase_hash, profile_key, input_kind)
+        );
+        CREATE INDEX idx_memory_trigger_embeddings_status
+          ON memory_trigger_embeddings(embedding_status, updated_at);
       `);
 
       const report = validateBackwardCompatibility(db);

@@ -14,6 +14,10 @@ import { acquireIndexScanLease, completeIndexScanLease, refreshScanLease } from 
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
+import {
+  runTriggerEmbeddingBackfill,
+  type TriggerEmbeddingBackfillResult,
+} from '../lib/search/trigger-embedding-backfill.js';
 
 /* ───────────────────────────────────────────────────────────────
    2. LIB MODULE IMPORTS
@@ -172,6 +176,7 @@ interface ScanResults {
   aliasConflicts: AliasConflictSummary;
   divergenceReconcile: DivergenceReconcileSummary;
   checkpointRepair: CheckpointRepairReport;
+  triggerEmbeddingBackfill?: TriggerEmbeddingBackfillResult;
   warnings: string[];
   capExceeded: DiscoveryCapExceeded;
 }
@@ -606,6 +611,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     let staleDeleteFailed = 0;
     const orphanSweepResult = runGlobalOrphanSweep();
     const postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
+    const triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
 
     if (incremental && !force) {
       const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing([]);
@@ -651,6 +657,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         staleDeleted,
         staleDeleteFailed,
         postInsertEnrichmentRepaired,
+        triggerEmbeddingBackfill,
         orphanSwept: orphanSweepResult.swept,
         orphanSweepFailed: orphanSweepResult.failed,
         orphanSweepScanned: orphanSweepResult.scannedRows,
@@ -662,6 +669,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       hints: [
         ...(staleDeleted > 0 ? [`Removed ${staleDeleted} stale index record(s) for deleted files`] : []),
         ...(postInsertEnrichmentRepaired > 0 ? [`Repaired ${postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`] : []),
+        ...(triggerEmbeddingBackfill.readyRows > 0 ? [`Backfilled ${triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`] : []),
+        ...(triggerEmbeddingBackfill.failedRows > 0 ? [`${triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`] : []),
         ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
         ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
         ...(checkpointRepair.cleared ? [`Cleared checkpoint derived rebuild sentinel after repairing ${checkpointRepair.completed} step(s)`] : []),
@@ -997,6 +1006,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }));
   }
 
+  results.triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
+
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
   if (include_spec_docs) {
@@ -1107,6 +1118,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
   if (results.postInsertEnrichmentRepaired > 0) {
     hints.push(`Repaired ${results.postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`);
+  }
+  if (results.triggerEmbeddingBackfill?.readyRows) {
+    hints.push(`Backfilled ${results.triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`);
+  }
+  if (results.triggerEmbeddingBackfill?.failedRows) {
+    hints.push(`${results.triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`);
   }
   if (results.orphanSweepFailed > 0) {
     hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);

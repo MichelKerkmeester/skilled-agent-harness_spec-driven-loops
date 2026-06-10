@@ -49,7 +49,12 @@ const MEMORY_LINEAGE_TABLE = 'memory_lineage';
 const ACTIVE_MEMORY_PROJECTION_TABLE = 'active_memory_projection';
 const LEGACY_MEMORY_LINEAGE_TABLE = 'hydra_memory_lineage';
 const LEGACY_ACTIVE_MEMORY_PROJECTION_TABLE = 'hydra_active_memory_projection';
-const REQUIRED_TABLES: readonly string[] = ['memory_index', 'schema_version', 'causal_edge_tombstones'];
+const REQUIRED_TABLES: readonly string[] = [
+  'memory_index',
+  'schema_version',
+  'causal_edge_tombstones',
+  'memory_trigger_embeddings',
+];
 const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_index: [
     'idx_stability',
@@ -76,6 +81,9 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
     'idx_causal_edge_tombstones_identity',
     'idx_causal_edge_tombstones_tombstoned_at',
     'idx_causal_edge_tombstones_reason',
+  ],
+  memory_trigger_embeddings: [
+    'idx_memory_trigger_embeddings_status',
   ],
 };
 const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
@@ -122,6 +130,18 @@ const REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS: readonly string[] = [
   'reason',
   'lifecycle_generation',
   'restore_metadata',
+];
+const REQUIRED_TRIGGER_EMBEDDING_COLUMNS: readonly string[] = [
+  'memory_id',
+  'phrase_hash',
+  'profile_key',
+  'input_kind',
+  'model_id',
+  'dimensions',
+  'embedding_status',
+  'failure_reason',
+  'created_at',
+  'updated_at',
 ];
 const CAUSAL_EDGE_PROVENANCE_COLUMNS: ReadonlyArray<{ name: string; sql: string }> = [
   { name: 'confidence', sql: 'ALTER TABLE causal_edges ADD COLUMN confidence REAL DEFAULT 1.0' },
@@ -186,6 +206,10 @@ const MEMORY_CHUNK_FINGERPRINT_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_memory_chunk_fingerprint
   ON memory_index(chunk_fingerprint)
   WHERE chunk_fingerprint IS NOT NULL
+`;
+const MEMORY_TRIGGER_EMBEDDINGS_STATUS_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_trigger_embeddings_status
+  ON memory_trigger_embeddings(embedding_status, updated_at)
 `;
 
 function hasTable(database: Database.Database, tableName: string): boolean {
@@ -562,8 +586,9 @@ function getMigrationAllowedBasePaths(): string[] {
 // V31: Add incremental-index memo tables and chunk metadata
 // V32: Add causal edge tombstone audit table
 // V33: Add generated causal-edge provenance columns
+// V34: Add derived trigger embedding status table
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 33;
+export const SCHEMA_VERSION = 34;
 
 function ensureCausalEdgeProvenanceColumns(database: Database.Database, context: string): void {
   if (!hasTable(database, 'causal_edges')) {
@@ -587,6 +612,32 @@ function ensureCausalEdgeProvenanceColumns(database: Database.Database, context:
       logDuplicateColumnMigrationSkip(column.name, error);
     }
   }
+}
+
+export function ensureMemoryTriggerEmbeddingsSchema(database: Database.Database, context: string): void {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memory_trigger_embeddings (
+      memory_id INTEGER NOT NULL,
+      phrase_hash TEXT NOT NULL,
+      profile_key TEXT NOT NULL,
+      input_kind TEXT NOT NULL DEFAULT 'document' CHECK(input_kind IN ('document', 'query')),
+      model_id TEXT NOT NULL,
+      dimensions INTEGER NOT NULL,
+      embedding_status TEXT NOT NULL DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'ready', 'failed')),
+      failure_reason TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (memory_id, phrase_hash, profile_key, input_kind),
+      FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE CASCADE
+    )
+  `);
+
+  createRequiredIndex(
+    database,
+    'idx_memory_trigger_embeddings_status',
+    MEMORY_TRIGGER_EMBEDDINGS_STATUS_INDEX_SQL,
+    context,
+  );
 }
 
 /**
@@ -1694,6 +1745,11 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v33: Added generated causal-edge provenance columns');
   };
 
+  migrations[34] = () => {
+    ensureMemoryTriggerEmbeddingsSchema(database, 'Migration v34');
+    logger.info('Migration v34: Created trigger embedding schema');
+  };
+
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -2000,6 +2056,16 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       missingColumns.causal_edge_tombstones = [...REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS];
     }
 
+    if (hasTable(database, 'memory_trigger_embeddings')) {
+      const existingColumns = new Set(getTableColumns(database, 'memory_trigger_embeddings'));
+      const absentColumns = REQUIRED_TRIGGER_EMBEDDING_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.memory_trigger_embeddings = absentColumns;
+      }
+    } else {
+      missingColumns.memory_trigger_embeddings = [...REQUIRED_TRIGGER_EMBEDDING_COLUMNS];
+    }
+
     for (const [tableName, requiredIndexes] of Object.entries(REQUIRED_INDEXES_BY_TABLE)) {
       if (!hasTable(database, tableName)) {
         continue;
@@ -2041,7 +2107,10 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       compatible: false,
       schemaVersion: null,
       missingTables: [...REQUIRED_TABLES],
-      missingColumns: { memory_index: [...REQUIRED_MEMORY_INDEX_COLUMNS] },
+      missingColumns: {
+        memory_index: [...REQUIRED_MEMORY_INDEX_COLUMNS],
+        memory_trigger_embeddings: [...REQUIRED_TRIGGER_EMBEDDING_COLUMNS],
+      },
       missingIndexes: [],
       constraintMismatches: ['compatibility inspection failed before constraint verification'],
       warnings: [
@@ -2744,6 +2813,7 @@ export function create_schema(
     ensureLineageTables(database);
     ensureGovernanceTables(database);
     ensureCausalEdgeTombstoneSchema(database, 'create_schema');
+    ensureMemoryTriggerEmbeddingsSchema(database, 'create_schema');
     const compatibility = validate_backward_compatibility(database);
     if (!compatibility.compatible) {
       logger.warn(
@@ -2890,6 +2960,7 @@ export function create_schema(
   ensureGovernanceTables(database);
   ensureIncrementalIndexFoundationSchema(database, 'create_schema');
   ensureCausalEdgeTombstoneSchema(database, 'create_schema');
+  ensureMemoryTriggerEmbeddingsSchema(database, 'create_schema');
 
   // the rollout — create embedding_cache table
   ensureEmbeddingCacheSchema(database);
@@ -2970,3 +3041,4 @@ export { migrate_confidence_columns as migrateConfidenceColumns };
 export { ensure_canonical_file_path_support as ensureCanonicalFilePathSupport };
 export { migrate_constitutional_tier as migrateConstitutionalTier };
 export { validate_backward_compatibility as validateBackwardCompatibility };
+export { ensureMemoryTriggerEmbeddingsSchema as ensureMemoryTriggerEmbeddingsSchemaForTests };

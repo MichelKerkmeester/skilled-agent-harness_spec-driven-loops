@@ -100,13 +100,16 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Community search fallback | ON | `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | Community-level fallback channel | Phase B T018 |
 | Dual retrieval | ON | `SPECKIT_DUAL_RETRIEVAL` | Local/global/auto retrieval level control | Phase B T019 |
 | Intent auto profile | ON | `SPECKIT_INTENT_AUTO_PROFILE` | Intent-to-response-profile auto-routing | Phase C |
+| Acceptance traceability template | OFF | `SPECKIT_AC_TRACEABILITY_TEMPLATE` | Enables future acceptance-criteria traceability table rendering in scaffold templates | acceptance coverage gate |
+| Acceptance coverage gate | OFF | `SPECKIT_AC_COVERAGE` | Opt-in advisory scan for acceptance-criteria traceability coverage during spec validation | acceptance coverage gate |
+| Acceptance coverage enforcement | OFF | `SPECKIT_AC_COVERAGE_ENFORCE` | Reserved promotion switch for a later strict coverage gate; current shipped rule remains advisory | acceptance coverage gate |
 <!-- PHASE-007-ENV-SLOT: SPECKIT_CODE_GRAPH_INTENT_* flags inserted here (027/007) -->
 <!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
 <!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_CODE_GRAPH_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 161 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
+Total unique variables documented: 165 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
 
 ### Provisional Measurement Contract
 
@@ -359,6 +362,10 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_MEMORY_ADAPTIVE_RANKING` | `false` | boolean | Adaptive ranking capability. **Default OFF**: opt-in. | `lib/config/capability-flags.ts` |
 | `SPECKIT_RETENTION_SWEEP` | `true` | boolean | Governed memory retention sweep. Graduated ON; set `false` to disable the background interval. Manual `memory_retention_sweep` remains available. | `lib/session/session-manager.ts` |
 | `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` | `3600000` | number | Background retention sweep interval in milliseconds. Values must be positive integers; invalid values fall back to one hour. | `lib/session/session-manager.ts` |
+| `SPECKIT_AC_TRACEABILITY_TEMPLATE` | `false` | boolean | Opt-in placeholder for rendering acceptance-criteria traceability tables in future scaffold templates. Current delivery documents the flag; template mutation is intentionally outside this rollout. | `scripts/rules/check-ac-coverage.sh` |
+| `SPECKIT_AC_COVERAGE` | `false` | boolean | Opt-in acceptance-criteria coverage scan during spec validation. When unset, the registered rule exits pass with no warnings, preserving strict-validation results for existing folders. | `scripts/rules/check-ac-coverage.sh` |
+| `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | boolean | Reserved enforcement switch for a later promotion. The current shipped rule is INFO/advisory even when coverage is below the configured floor. | `scripts/rules/check-ac-coverage.sh` |
+| `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | number | Minimum covered acceptance-criteria ratio for the advisory scan. Values outside `[0,1]` are clamped before the floor is calculated. | `scripts/rules/check-ac-coverage.sh` |
 
 ---
 

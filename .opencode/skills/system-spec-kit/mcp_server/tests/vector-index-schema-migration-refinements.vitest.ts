@@ -389,7 +389,7 @@ describe('vector-index schema migration refinements', () => {
 
     // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(33);
+    expect(versionRow.version).toBe(34);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
@@ -451,7 +451,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(33);
+    expect(versionRow.version).toBe(34);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edge_tombstones)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -522,7 +522,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(33);
+    expect(versionRow.version).toBe(34);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -539,5 +539,62 @@ describe('vector-index schema migration refinements', () => {
       evidence: 'active edge survives provenance migration',
       created_by: 'manual',
     });
+  });
+
+  it('creates trigger embedding schema during the v34 upgrade without touching source memories', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    database.exec('DROP INDEX IF EXISTS idx_memory_trigger_embeddings_status');
+    database.exec('DROP TABLE IF EXISTS memory_trigger_embeddings');
+    database.prepare('UPDATE schema_version SET version = 33 WHERE id = 1').run();
+    database.prepare(`
+      INSERT INTO memory_index (
+        id, spec_folder, file_path, title, trigger_phrases,
+        created_at, updated_at, importance_tier, context_type, embedding_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      401,
+      'schema/backfill',
+      '/workspace/schema/backfill/spec.md',
+      'Trigger Source',
+      JSON.stringify(['save context']),
+      '2026-06-10T00:00:00.000Z',
+      '2026-06-10T00:00:00.000Z',
+      'normal',
+      'implementation',
+      'pending',
+    );
+
+    ensureSchemaVersion(database);
+
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(versionRow.version).toBe(34);
+
+    const columns = (database.prepare('PRAGMA table_info(memory_trigger_embeddings)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining([
+      'memory_id',
+      'phrase_hash',
+      'profile_key',
+      'input_kind',
+      'model_id',
+      'dimensions',
+      'embedding_status',
+      'failure_reason',
+      'created_at',
+      'updated_at',
+    ]));
+
+    const indexes = (database.prepare(`
+      SELECT name FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'memory_trigger_embeddings'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexes).toContain('idx_memory_trigger_embeddings_status');
+
+    const sourceCount = database.prepare('SELECT COUNT(*) AS count FROM memory_index WHERE id = 401').get() as { count: number };
+    const derivedCount = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
+    expect(sourceCount.count).toBe(1);
+    expect(derivedCount.count).toBe(0);
   });
 });
