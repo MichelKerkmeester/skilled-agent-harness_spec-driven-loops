@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Frozen scoring surface for the {{SYSTEM_NAME}} auto-refine loop (council invariant #1).
+
+  gates.py freeze   -> snapshot the scoring region into this _gates/ folder + MANIFEST.json
+  gates.py check    -> verify the live scoring region is UNCHANGED vs the frozen snapshot;
+                       prints drift and exits 1 if anything in the scoring surface changed.
+
+The loop's proposer is READ-ONLY to _gates/. Any candidate edit that changes a frozen scoring
+region is drift, and the loop MUST halt + escalate. This is the single guardrail the
+council would never remove: the thing being optimized and the thing defining "better" must
+never be writable by the same loop.
+
+v1 enforces drift detection without relocating the regions. v2 hardening = physically move the
+scoring regions out of the editable docs (the docs reference _gates/) so the loop cannot touch
+them at all.
+"""
+import sys, os, json, hashlib, re
+
+CW = os.environ.get("{{PACKAGING_ROOT_ENV}}", "{{PACKAGING_ROOT}}")
+GATES = os.path.join(CW, "_gates")
+KB = os.path.join(CW, "knowledge base")
+
+SOURCES = {{FROZEN_SURFACE}}
+
+ANCHORS = {{ANCHORS}}
+
+
+def sha(s: str) -> str:
+    return hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+def read(p: str) -> str:
+    return open(p, encoding="utf-8", errors="replace").read()
+
+
+def extract(text: str, anchor):
+    """Return the markdown section starting at `anchor` up to the next top-level `## ` header,
+    or the whole text when anchor is None."""
+    if anchor is None:
+        return text
+    out, capturing = [], False
+    for line in text.splitlines(keepends=True):
+        stripped = line.rstrip("\n")
+        if not capturing and (stripped == anchor or stripped.startswith(anchor)):
+            capturing = True
+            out.append(line)
+            continue
+        if capturing and re.match(r"^## ", line):
+            break
+        if capturing:
+            out.append(line)
+    return "".join(out)
+
+
+def freeze():
+    os.makedirs(GATES, exist_ok=True)
+    manifest = {"note": "{{MANIFEST_NOTE}}", "sources": [], "anchors": ANCHORS}
+    for entry in SOURCES:
+        name = entry["frozen_name"]
+        path = os.path.join(CW, entry["live_relpath"])
+        anchor = entry.get("section_anchor")
+        region = extract(read(path), anchor)
+        if not region.strip():
+            sys.exit(f"FREEZE REFUSED: empty region for {name} (anchor={anchor!r}) — fix the anchor/doc first")
+        open(os.path.join(GATES, name), "w", encoding="utf-8").write(region)
+        manifest["sources"].append({
+            "frozen": name, "live": entry["live_relpath"], "anchor": anchor,
+            "sha256": sha(region), "chars": len(region),
+        })
+    json.dump(manifest, open(os.path.join(GATES, "MANIFEST.json"), "w"), indent=2, ensure_ascii=False)
+    print(f"Froze {len(SOURCES)} scoring regions into {GATES}")
+    for s in manifest["sources"]:
+        print(f"  {s['frozen']}: {s['chars']} chars, sha {s['sha256'][:12]}")
+
+
+def check():
+    manifest = json.load(open(os.path.join(GATES, "MANIFEST.json")))
+    drift = []
+    for s in manifest["sources"]:
+        try:
+            live_text = read(os.path.join(CW, s["live"]))
+        except FileNotFoundError:
+            drift.append(f"{s['frozen']}: live doc '{s['live']}' is MISSING"); continue
+        region = extract(live_text, s["anchor"])
+        if not region.strip():
+            drift.append(f"{s['frozen']}: live region in '{s['live']}' extracts EMPTY (anchor gone)")
+        elif sha(region) != s["sha256"]:
+            drift.append(f"{s['frozen']}: live region in '{s['live']}' differs from frozen snapshot")
+    alltext = "".join(read(os.path.join(CW, s["live"])) for s in manifest["sources"])
+    for a in manifest["anchors"]:
+        if a not in alltext:
+            drift.append(f"required anchor '{a}' missing from live scoring docs")
+    if drift:
+        print("SCORING-SURFACE DRIFT DETECTED — loop must HALT + escalate:")
+        for d in drift:
+            print("  - " + d)
+        sys.exit(1)
+    print("Scoring surface intact, no drift. OK")
+
+
+if __name__ == "__main__":
+    cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
+    {"freeze": freeze, "check": check}.get(cmd, lambda: (_ for _ in ()).throw(SystemExit(f"unknown cmd: {cmd}")))()

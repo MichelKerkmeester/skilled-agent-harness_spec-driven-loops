@@ -38,7 +38,17 @@ node scripts/shared/loop-host.cjs --mode=non-dev-ai-system-refine \
 
 Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure on graded output, new floor breach, held-out regression (or improvement below `LOOP_ACCEPT_MARGIN`), iteration ceiling, and a concurrent-run lock (single writer; stale locks from dead runs are evicted).
 
-## 4. CONTRACT CONFORMANCE CHECKLIST
+## 4. ONBOARDING A NEW PACKAGING (SCAFFOLDER)
+
+Do not copy-edit a sibling packaging (a hand-port once disabled floor enforcement for two dimensions via stale dimension keys). Onboard with the kit:
+
+1. Copy `assets/non_dev_ai_system/packaging_config.example.json`, fill every field for the new system (dimensions, floors, maxes, frozen-surface anchors, technique-doc map, fixtures, models, lexicon). The schema is `packaging_config.schema.json`.
+2. Render: `python3 scripts/non-dev-ai-system/init_packaging.py --config <your-config.json> [--check-only]` writes `_loop/`, `_gates/` and `benchmark/` into the packaging root from `assets/non_dev_ai_system/templates/`.
+3. Author fixtures per `references/non_dev_ai_system/fixture_authoring.md`, then run the conformance checklist below.
+
+Template provenance: the templates parameterize the pilot implementations verbatim, including every deep-review guardrail fix. A packaging owns its rendered instance afterwards; re-render deliberately when the kit version advances.
+
+## 5. CONTRACT CONFORMANCE CHECKLIST
 
 A new packaging is Lane-D-ready when every box checks. Verify each with the listed command before any live run.
 
@@ -52,6 +62,6 @@ A new packaging is Lane-D-ready when every box checks. Verify each with the list
 - [ ] The red-team gauntlet (`_loop/gauntlet.py` or equivalent) passes 10/10 dispatch-free.
 - [ ] Loop state (`_loop/state/`) is gitignored; the staleness guard covers the knowledge base AND the real targets of any symlinked shared docs.
 
-## 5. PILOT
+## 6. PILOT
 
 Barter Copywriter: `/Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter/Copywriter` (three packagings: CLI knowledge base as source of truth, `claude project/`, `barter-copywriter/` skill). Its `benchmark/grader/regrade.py` writes per-sample grades plus the self-vs-independent phantom gap; `_loop/state/loop-journal.jsonl` is the append-only run journal. Dispatch discipline (stdin from `/dev/null`, one dispatch at a time, never `pkill` shared CLI sessions) is encoded in the packaging's `benchmark/run.sh`.

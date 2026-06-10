@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# {{SYSTEM_NAME}} benchmark — ONE dispatch per call (Lane D contract harness).
+# Usage: bash run.sh <{{VARIANTS_USAGE}}> <test_id> [run_number]
+set -uo pipefail
+
+BARTER="${BENCH_BARTER:-{{PACKAGING_ROOT_PARENT}}}"
+CW="$BARTER/{{WORKTREE_SUBDIR}}"
+BENCH="$(cd "$(dirname "$0")" && pwd)"
+VARIANT="${1:?variant: {{VARIANTS_USAGE}}}"
+TEST="${2:?test id (prompt filename without .md)}"
+RUN="${3:-}"
+MODEL="${MODEL:-{{PROPOSER_MODEL}}}"
+VAR="${VAR:-high}"
+
+TASK="$(cat "$BENCH/prompts/$TEST.md")"
+OUTDIR="$BENCH/results/$VARIANT"; mkdir -p "$OUTDIR"
+OUT="$OUTDIR/$TEST${RUN:+.run$RUN}.txt"
+
+case "$VARIANT" in
+{{BENCHMARK_VARIANT_CASES}}
+  *) echo "unknown variant: $VARIANT" >&2; exit 2 ;;
+esac
+
+PROMPT="$SYS
+
+===== OUTPUT CONTRACT (required for grading) =====
+Wrap ONLY the final deliverable between <DELIVERABLE> and </DELIVERABLE> tags. Put EVERYTHING ELSE outside those tags: narration, the self-reported score, the HVR status, and any explanation. The text inside the tags must contain NO rule-quoting, NO self-assessment, and NO meta commentary, only the literal deliverable. An independent grader reads only what is inside the tags.
+
+===== TASK =====
+$TASK"
+
+echo "[$(date +%H:%M:%S)] dispatch $VARIANT/$TEST${RUN:+/run$RUN}  model=$MODEL variant=$VAR"
+AI_SESSION_CHILD=1 opencode run --model "$MODEL" --variant "$VAR" --dir "$BARTER" "$PROMPT" </dev/null > "$OUT" 2>&1
+RC=$?
+echo "[$(date +%H:%M:%S)] exit=$RC -> $OUT ($(wc -c <"$OUT" | tr -d ' ') bytes)"
+# IMPORTANT: do NOT pkill 'opencode run' — operator-owned opencode sessions can run in
+# parallel (cli-opencode rule 5 / 2026-05-23 directive). Sequential dispatches exit cleanly.
+exit $RC
