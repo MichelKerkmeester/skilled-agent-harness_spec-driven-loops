@@ -55,8 +55,9 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `SECTION_COUNTS`     | WARNING  | All levels    | Section counts within expected ranges          |
 | `PHASE_LINKS`        | WARNING  | Phased specs  | Parent-child phase references valid            |
 | `PHASE_PARENT_CONTENT` | WARNING | Phase parents | Phase-parent `spec.md` avoids consolidation/migration narratives |
+| `CURRENT_STATE_DISCIPLINE` | INFO | implementation summaries | Long-lived summaries avoid migration-history narratives |
 
-> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (36 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (37 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
 ---
 
@@ -182,7 +183,36 @@ Move any flagged narrative to `context-index.md` (create the file if it does not
 
 ---
 
-## 5. PLACEHOLDER_FILLED
+## 5. CURRENT_STATE_DISCIPLINE
+
+**Severity:** INFO  
+**Description:** Advises when `implementation-summary.md` includes migration-history narrative. Canonical summaries should describe what exists now and the verification that proves it, while historical movement belongs in deliberately historical surfaces.
+
+**Detection:** Scans only `implementation-summary.md`. It does not scan `decision-record.md`, changelogs, or context indexes because those documents are allowed to preserve decision and migration history. It also does not scan ordinary `spec.md` files in this rollout.
+
+**Flagged tokens** (case-insensitive scan, code-fence + HTML-comment aware):
+
+```
+merged from
+renamed from
+collapsed
+reorganization
+renumbered from
+migrated from
+[0-9]+→[0-9]+       # arrow-style migration narrative
+```
+
+The broader `consolidat[a-z]*` token remains limited to the phase-parent rule because phrases such as "consolidated findings" can be legitimate current-state prose in summaries.
+
+**Implementation:** `.opencode/skills/system-spec-kit/scripts/rules/check-current-state-discipline.sh`. Registered as `CURRENT_STATE_DISCIPLINE` in `scripts/lib/validator-registry.json` (severity: info, category: authored_template).
+
+### How to Fix
+
+Rewrite the summary so it states the current delivered behavior, the files changed, and the validation evidence. Move migration history to a decision record, changelog, context index, or source control history.
+
+---
+
+## 6. PLACEHOLDER_FILLED
 
 **Severity:** ERROR  
 **Description:** Detects unfilled template placeholders that should be replaced with actual content.

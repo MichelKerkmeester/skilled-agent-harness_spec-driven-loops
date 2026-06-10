@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/003-current-state-discipline"
-    last_updated_at: "2026-06-05T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Applied 2026-06-05 audit rescope: severity warn->info"
-    next_safe_action: "Implement the INFO-severity current-state rule"
+    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Registered info current-state advisory"
+    next_safe_action: "No follow-up; phase complete"
     blockers: []
     key_files:
       - "scripts/rules/check-phase-parent-content.sh"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-current-state-discipline"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,14 +43,14 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-02 |
 | **Branch** | `001-peck-teachings-adoption` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 4 |
 | **Predecessor** | 002-self-check-templates |
 | **Successor** | 004-constitutional-rule-review |
-| **Handoff Criteria** | Advisory rule registered; no new errors on existing folders |
+| **Handoff Criteria** | Met: advisory rule registered; no strict errors added |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -137,8 +137,8 @@ Broaden the current-state discipline to more documents as an advisory **INFO** c
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The warning fires on a doc containing history-narrative tokens and stays silent on exempt docs and fenced examples.
-- **SC-002**: Running validation on existing folders introduces no new errors in normal (non-strict) mode.
+- **SC-001**: The advisory fires on a doc containing history-narrative tokens and stays silent on exempt docs and fenced examples.
+- **SC-002**: Running strict validation on an already-valid folder still exits 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---

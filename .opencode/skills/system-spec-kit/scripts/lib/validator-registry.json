@@ -120,6 +120,14 @@
     "description": "Warns when phase-parent spec.md includes migration-history narrative tokens."
   },
   {
+    "rule_id": "CURRENT_STATE_DISCIPLINE",
+    "aliases": [],
+    "script_path": "rules/check-current-state-discipline.sh",
+    "severity": "info",
+    "category": "authored_template",
+    "description": "Advises when implementation-summary.md includes migration-history narrative tokens."
+  },
+  {
     "rule_id": "AI_PROTOCOLS",
     "aliases": ["AI_PROTOCOL"],
     "script_path": "rules/check-ai-protocols.sh",
