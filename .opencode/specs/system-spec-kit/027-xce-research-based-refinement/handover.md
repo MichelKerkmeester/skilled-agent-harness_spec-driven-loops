@@ -1,143 +1,104 @@
 ---
-title: "Session Handover Document [template:handover.md]"
-description: "Handover to the agent working 027: four new phases (012-015) were added from the sqlite-to-turso revalidation, the phase map was repaired (011 row), and an ownership amendment was recorded — all scaffolds validate strict-PASSED, nothing committed."
+title: "Session Handover — 027 + 145 Epic Continuation [template:handover.md]"
+description: "Resume handover for the expanded 027 epic: phases 000-010 shipped+reviewed+remediated; new phases 011-015 in build (012/013/014/011-memory done, speckit+create in flight); new packet 145 (advisor/code-graph adoption) scaffolded and queued for implementation; then 5-iter Fable-via-claude2 review + stress/playbook. Branch-only, no main merge."
 trigger_phrases:
-  - "027 handover"
-  - "phases 012-015 handover"
-  - "turso revalidation phases"
-  - "027 new phases"
-importance_tier: "normal"
+  - "027 epic resume"
+  - "011-015 build status"
+  - "145 advisor code-graph adoption"
+  - "epic continuation handover"
+importance_tier: "important"
 contextType: "general"
 ---
-# Session Handover Document
+# Session Handover — 027 + 145 Epic Continuation
 
-Handover from the sqlite-to-turso revalidation session to the agent working `027-xce-research-based-refinement`. Four new improvement phases were appended to this packet from that research; this document tells you what landed, why, what to trust, and where to start.
+> Replaces the historical turso-revalidation handover (012-015 scaffold; that content is in git history at commit `1d7e7269bf`). This is the live epic-continuation resume artifact.
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
 ---
 
-<!-- ANCHOR:when-to-use -->
-## WHEN TO USE THIS TEMPLATE
+## 0. AFTER COMPACTION — DO THIS FIRST
 
-**Use handover.md when:**
-- Ending a session with incomplete work that needs continuation
-- Context needs to be preserved for a future session (same or different agent)
-- Transitioning work between team members or AI sessions
-
-**Status values:** draft | in_progress | review | complete | archived — this handover: **complete** (scaffolding session finished; phases await implementation).
-<!-- /ANCHOR:when-to-use -->
+1. Re-read `~/.claude/CLAUDE.md` (compaction protocol) and the project `CLAUDE.md`.
+2. Read THIS file fully.
+3. **Check the in-flight background lanes** (they may have completed during compaction): tasks `btv07c8at` (011 speckit family) and `bixyvgj0q` (011 create family). For each: extract the final text from `/tmp/impl-011-{speckit,create}.out.json` (node loop over JSON lines, last `type:"text"`), verify files landed (`git status`), confirm no live-DB/daemon touch, run the family `validate.sh --strict`, then **scoped-commit** (`git commit --only -- <paths>`).
+4. Do NOT trust the compaction summary's implied next step — verify against this file + `git log`.
+5. Continue the epic per §4 order. Work autonomously (the /goal forbids asking unless really needed).
 
 ---
 
-<!-- ANCHOR:handover-summary -->
-## 1. Handover Summary
+## 1. GOVERNING /goal (Stop-hook-enforced, verbatim)
 
-- **From Session:** 2026-06-10 sqlite-to-turso revalidation session (`res-20260610-1626-sqlt` lineage; Claude Code, Fable 5)
-- **To Session:** whichever session/agent owns 027 execution
-- **Phase Completed:** PLANNING — phases 012-015 scaffolded and strict-validated; zero implementation started
-- **Handover Time:** 2026-06-10T20:00:00Z
-<!-- /ANCHOR:handover-summary -->
+> Complete the entire 027 epic on branch `028-mcp-to-cli-tool-transition` (never merge/push to main). Phases 000-010 are shipped, release-cleaned, deep-reviewed (CONDITIONAL, 0 P0), and remediated. Now also implement the five planned phases (011 command-presentation, 012 causal-traversal BFS, 013 vector read-path resilience, 014 packed BM25, 015 storage adapter ports). For each: expand the scaffold via /speckit:plan, implement with cli-opencode gpt-5.5-fast --variant high, verify with Fable 5 via the claude2 account (switch to native claude when claude2 is usage-limited). Honor each scaffold's gates and the handover execution order: 012 ∥ 014 → 013 (coordinates with 008) → 015 last; 011 independent. At 015 planning, make the recorded phase-split-vs-promote decision. When 011-015 implemented + verified, run a deep review over the new phases (~20-30 iters) and remediate with Fable 5. Finally, validate the complete 000-015 epic through updated stress tests + manual playbook (playbook via cli-opencode MiMo v2.5 Pro / DeepSeek v4 Pro). Only sleep when the whole epic is done, verified, and tested. Autonomous; no main merge; comment hygiene; scoped commits; never touch host daemons.
 
----
+**Operator amendments after the /goal:**
+- The cross-pollination side-quest **IS in the epic**: scaffold + IMPLEMENT all 10 advisor/code-graph transfers (packet 145). (AskUserQuestion: "Scaffold + implement in this epic" / "All 10 viable transfers".)
+- New-phases deep review is REFINED to **5 iterations, Fable 5 via claude2** (not 20-30), via `/deep:start-review-loop` to the tee. Native fallback if claude2 limited.
 
-<!-- ANCHOR:context-transfer -->
-## 2. Context Transfer
+## 2. STANDING CONSTRAINTS (do-nots)
 
-### 2.1 Key Decisions Made
-| Decision     | Rationale | Impact                 |
-| ------------ | --------- | ---------------------- |
-| Added phases `012-causal-traversal-bfs`, `013-vector-read-path-resilience`, `014-packed-bm25-field-weights`, `015-storage-adapter-ports` to 027 | The sqlite-to-turso revalidation surfaced four backend-agnostic improvements that pay off on the CURRENT better-sqlite3 stack — they fit 027's research-based-refinement charter | Four new child folders, full Level-1 doc sets, all strict-PASSED |
-| Turso migration itself stays OUT of 027 | Revalidation verdict: don't migrate before upstream 1.0 signals (Turso's own FAQ says below-SQLite reliability; no 1.0 date) | Migration prep items (VACUUM INTO substitution, error-class shim, changes() audit) live in the research packet's pilot checklist, not here |
-| Execution order: 012 ∥ 014 independent → 013 coordinates with 008 → 015 last | 015 adopts 012's traversal helper and 014's packed engine as port implementations; 013's health counters overlap 008's observability surface | Recorded in the parent phase-map amendment bullet |
-| Repaired the parent phase map: added the missing `011` row | `011-command-presentation-workflow-separation` existed on disk (created 2026-06-10 by a concurrent session) but was absent from the map | Map now lists 000-015; see Blockers for the merge caveat |
-| Evidence baked into specs as measured numbers, not vibes | All thresholds come from live measurements (corpus 10,245 docs / 69.2 MB; causal graph 10,240 edges, max degree 22; `dependency_edges` = 0 rows) | Implementers do not need to re-read the research to know the gates |
+- **Branch only** — never merge/push to `main`. Work stays on `028-mcp-to-cli-tool-transition`.
+- **Scoped commits** — `git add -- <paths>` then `git commit --only -F <msg> -- <paths>`. The git index is SHARED with a concurrent deep-improvement/143 session + the turso/z_future session. NEVER `git add -A`. Never commit `deep-improvement/**`, `skilled-agent-orchestration/143-**`, or `z_future/**` (other sessions own those).
+- **Comment hygiene [HARD]** — no spec-paths / REQ-/CHK-/ADR-/task-ids / packet/phase numbers in CODE comments. Spec-doc prose MAY cite file:line.
+- **Never touch/kill host daemons** or the live `mcp_server/database/**` shards. Tests use temp/copy fixtures only.
+- **Fable via claude2** for review/remediation; native claude fallback when claude2 is usage-limited.
+- **Concurrency discipline** — keep cli-opencode parallel lanes ≤ 2-3. Launching 4+ `opencode run` within ~5ms triggers a launch race (~2 die instantly: 306ms, exit 1, empty stdout). 2 concurrent is proven safe.
 
-### 2.2 Blockers Encountered
-| Blocker     | Status          | Resolution/Workaround |
-| ----------- | --------------- | --------------------- |
-| Concurrent session also editing 027 (it created `011` today) | open (coordination, not technical) | My parent-spec edits were additive rows only; if your session also updates the phase map, expect a trivial duplicate-row merge on `spec.md`. Nothing is committed — all changes are working-tree only. Use `git commit --only -- <paths>` for scoped commits (shared git index across sessions). |
-| Live vector-shard corruption observed (motivates 013) | open (real product defect) | `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` reported "database disk image is malformed" + `vec_768` missing from `context-index.sqlite`; the provider cascade degraded silently. Phase 013 turns this into detect → quarantine → auto-rebuild. Until then the defect persists on this machine. |
+## 3. EPIC STATE (HEAD = 30eb36db96)
 
-### 2.3 Files Modified
-| File        | Change Summary | Status                 |
-| ----------- | -------------- | ---------------------- |
-| `012-causal-traversal-bfs/` (spec/plan/tasks/impl-summary/description.json/graph-metadata.json) | New phase: shared BFS helper replaces the two recursive CTEs; snapshot-equivalence gated | complete (scaffold) |
-| `013-vector-read-path-resilience/` (same doc set) | New phase: shard integrity probe + quarantine + auto-rebuild, authoritative dims, KNN-shape benchmark | complete (scaffold) |
-| `014-packed-bm25-field-weights/` (same doc set) | New phase: packed in-memory BM25 engine (reserved slot) + BM25F weights; RAM/warmup gates | complete (scaffold) |
-| `015-storage-adapter-ports/` (same doc set) | New phase: five-port storage adapter seam; planning opens with split-vs-promote decision | complete (scaffold) |
-| `spec.md` (parent) | Phase-map rows 011-015 added; ownership amendment bullet for 012-015 appended under Continuation Research Planning Amendments | complete |
-| `graph-metadata.json` (parent) | Refreshed via `refreshGraphMetadataForSpecFolder` so the new children are graph-visible | complete |
-<!-- /ANCHOR:context-transfer -->
+### Done + committed (newest first)
+- `30eb36db96` chore(145): scaffold xce-feature-adoption packet (parent + 9 children, all strict-validated PASSED)
+- `059284c35b` feat(027/011): memory command family — presentation/router split + search UX
+- `157b95c213` feat(027/013): vector read-path resilience (P0 fault-injection on copy fixture verified; live DB untouched)
+- `e78430e7d2` feat(027/014): packed BM25 + BM25F (P0 RSS 111MB/warmup 809ms verified)
+- `db38d4b921` feat(027/012): shared BFS traversal (P0 equivalence vs CTE verified; faster)
+- `1d7e7269bf` docs(027): parent-doc reconciliation + 012-015 scaffolds + handover (the turso one)
+- `7f72ce0f63` docs(027): deep-review synthesis — CONDITIONAL, 0 P0 / 4 P1 (parent-doc drift; review/ packet)
+- `04e1cd3f5b` fix(144): macOS identity vars (USER/LOGNAME/__CF_USER_TEXT_ENCODING) in CLI dispatch env
+- `adae43d71b` feat(144): per-executor --config-dir override for cli-claude-code
+- `ca01a6dab3` before-vs-after.md | `4027b36ea5` root README | `c0b67a5089` Wave B | `2f52299b37` Wave A
 
----
+(NOTE `455c48d504` is the concurrent 143 deep-improvement session's commit — NOT mine.)
 
-<!-- ANCHOR:next-session -->
-## 3. For Next Session
+### In flight (verify + commit these first after compaction)
+- **`btv07c8at`** — 011 speckit family (commands/speckit/*.md: plan/resume/implement/complete + presentation md; spec 027/011/002-speckit-commands). Output: `/tmp/impl-011-speckit.out.json`.
+- **`bixyvgj0q`** — 011 create family (commands/create/*.md: 7 cmds; spec 027/011/003-create-commands). Output: `/tmp/impl-011-create.out.json`.
 
-### 3.1 Recommended Starting Point
-- **File:** `013-vector-read-path-resilience/spec.md`
-- **Context:** 013 addresses a defect that is live RIGHT NOW (silently degraded vector search on this machine), so it has the best urgency-to-effort ratio. If you prefer pure wins with zero coordination, 012 and 014 are fully independent of every other 027 phase and of each other.
+### Queued (task tracker #33-40)
+1. 011 doctor family (#35) — commands/doctor/{mcp,speckit,update}.md. Brief at `/tmp/impl-011-doctor.txt`.
+2. 015 storage adapter ports (#36) — 5 per-port slices in mcp_server/lib/storage/ports/; behavior-preserving, golden-eval-gated; adopt 012 (GraphTraversal) + 014 (LexicalSearch). Decision recorded in 015/plan.md (per-port slices, in-epic). LAST code phase.
+3. 145 implement (#37) — 9 phases / 10 transfers. Disjoint trees: advisor (system-skill-advisor/mcp_server) + code-graph (system-code-graph). Each child has spec/plan/tasks ready. Source: `/tmp/xce-adoption-analysis.md`.
+4. Deep review (#38) — 5 iters Fable-5 via claude2, `/deep:start-review-loop` on the new phases.
+5. Remediate (#39) — Fable 5.
+6. Final validation (#40) — stress tests + manual playbook (MiMo/DeepSeek) on full 000-015 + 145.
 
-### 3.2 Priority Tasks Remaining
-1. Implement 013 (shard self-heal) — or at minimum manually rebuild the corrupted nomic-768 shard so search stops silently degrading while the phase waits.
-2. Implement 012 and/or 014 in any order (independent; both flag-gated with hard verification gates already specified).
-3. At 015 planning time, make the recorded decision: per-port phase slices vs promotion to a standalone packet (estimate is 1,200-2,000 LOC — Level 2-3 territory).
+### Uncommitted (mine, defer to final /memory:save)
+Scattered `027/**/description.json` + `graph-metadata.json` metadata churn (from generator/backfill runs). Harmless; fold into the final canonical save. Do NOT sweep in 143/z_future.
 
-### 3.3 Critical Context to Load
-- [ ] Indexed save or continuity target: use `generate-context.js` for indexed saves. Edit `_memory.continuity` frontmatter in the relevant child's `implementation-summary.md` for quick continuity updates.
-- [ ] Spec file: parent `spec.md` (PHASE DOCUMENTATION MAP + the 012-015 ownership amendment bullet)
-- [ ] Source evidence (only if you need the WHY behind a gate): `.opencode/specs/z_future/sqlite-to-turso/research/research.md` §9 verdict matrix and `004 - gap-alternatives.md` §§2-5; the live-code blocker map is `.opencode/specs/z_future/sqlite-to-turso/context/context-report.md`
-<!-- /ANCHOR:next-session -->
+## 4. RESUME MECHANICS (how to dispatch + verify)
 
----
+**cli-opencode implementation lane (Gate-3 baked, scoped):**
+```
+AI_SESSION_CHILD=1 gtimeout -k 60 2400 opencode run --model openai/gpt-5.5-fast --variant high \
+  --format json --dir "$PWD" --dangerously-skip-permissions "$(cat /tmp/<brief>.txt)" \
+  </dev/null > /tmp/<brief>.out.json 2> /tmp/<brief>.err.log    # run_in_background:true
+```
+Brief MUST bake: "Spec folder <path> (pre-approved, skip Gate 3)", ALLOWED WRITE PATHS (disjoint), BANNED OPERATIONS, the phase's gate, "read your own scaffold spec/plan/tasks", verify (build + vitest + validate --strict), hygiene HARD, no git, no daemon/live-DB.
 
-<!-- ANCHOR:validation-checklist -->
-## 4. Validation Checklist
+**Verify each lane (don't trust its report):** extract final text from out.json (node: loop JSON lines, last `type:"text"` `.part.text`); `git status` files landed; independently re-run the phase's vitest from `mcp_server` (`cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run <files>`); run ONE authoritative `npm run build` after a wave (catches cross-lane composition); hygiene grep; then scoped commit. Read the test to confirm it's genuine (not a stub) for P0 gates.
 
-Before handover, verify:
-- [x] All in-progress work committed or stashed — N/A by design: working-tree only, nothing committed (shared-index discipline; scope your own commits with `git commit --only`)
-- [x] Current context saved — continuity lives in each new child's frontmatter; the source-research packet carries its own completed continuity
-- [x] No breaking changes left mid-implementation — scaffolds only; zero production code touched by this session inside 027
-- [x] Tests passing — `validate.sh --strict` PASSED for all four children; parent `validate.sh` PASSED (0 errors, 0 warnings)
-- [x] This handover document is complete
-<!-- /ANCHOR:validation-checklist -->
+**Fable-via-claude2 (review/remediation):** `cli-claude-code` executor with `--config-dir=~/.claude-account2` (sets CLAUDE_CONFIG_DIR; env fix landed so it auths under the filtered dispatch env). claude2 was session-limited until ~20:40 UTC 2026-06-10 — check first; native fallback (`claude` default account, drop --config-dir) per the operator PS. Bare `claude` resolves on PATH (real binary).
 
----
+**Deep review (the command fan-out, "to the tee"):** `/deep:start-review-loop` → `fanout-run.cjs --spec-folder <X> --loop-type review --fanout-config-json '<json>' --base-artifact-dir <X>/review`. Config shape: `{concurrency, executors:[{kind,model,configDir,reasoningEffort,label,count,iterations,timeoutSeconds}]}`. Each lineage = ONE CLI session running the whole loop. cli-opencode lineages now run CONCURRENTLY (async spawn + pool — the spawnSync-serialization is FIXED). Merge: `fanout-merge.cjs --loop-type review --artifact-dir <X>/review` (strongest-restriction). New-phases review = 5 iters Fable-5 via claude2 (count/iters per the operator's "5 iterations"). See memory `deep-review-command-fanout-cli-gotchas`.
 
-<!-- ANCHOR:session-notes -->
-## 5. Session Notes
+**Stress/playbook:** stress harness in mcp_server; manual playbook scenarios run via cli-opencode MiMo v2.5 Pro (`xiaomi/mimo-v2.5-pro --variant high`) / DeepSeek (`deepseek/deepseek-v4-pro`) — check live `opencode providers list` first (provider ids drift; see memory `xiaomi-token-plan-provider-id`).
 
-**Trust levels for the baked-in numbers.** Every quantitative gate in the four specs traces to a measurement taken 2026-06-10: corpus size and text volume from a read-only query of `context-index.sqlite`; causal-graph shape (10,240 edges, max degree 22, `dependency_edges` = 0) likewise; the 300-600 MB legacy-BM25 estimate is arithmetic over the engine's per-doc token-array storage (`bm25-index.ts:197-207`) — treat it as an estimate to be confirmed by 014's T001 spike, not as gospel.
-
-**Why these four and not more.** The source research also produced Turso-migration-prep items (VACUUM INTO substitution at two `db-shard-migration.ts` sites, a `convertError`-vs-`SqliteError` catch-block audit, a `.changes` control-flow audit). They were deliberately excluded: bare VACUUM and the current error classes work fine on better-sqlite3, so those items improve nothing today. They live in the research packet's pilot checklist if the migration ever activates.
-
-**Phase-interaction notes.** 013's degraded-vector counters intersect 008-openltm-retrieval-observability's surface — if 008 lands first, 013 plugs into its counters; if 013 lands first, keep its counters additive so 008 can absorb them. 012 deletes the only two `WITH RECURSIVE` consumers in the backend; if 003's children touch `causal-boost.ts` write-adjacent code in the same window, merge order matters but conflicts should be trivial (read path vs write path).
-
-**One latent simplification spotted but NOT scoped:** `memo.ts`'s whole memoization/dependency-DAG surface ran with zero rows in both tables. 012 adds fast-path guards; if the feature is genuinely unused, a future phase could consider retiring it instead. That's a product decision — flagged, not taken.
-<!-- /ANCHOR:session-notes -->
-
----
-
-<!-- ANCHOR:template-instructions -->
-## TEMPLATE INSTRUCTIONS
-
-**How to use this template:**
-1. Fill in all placeholders with actual values
-2. Complete all validation checklist items before handover
-3. Ensure memory file is saved with current context
-4. Prioritize tasks clearly for next session
-5. Remove placeholder text after filling in content
-
-**Common mistakes to avoid:**
-- Handover without saving memory context
-- Incomplete validation checklist
-- Vague task descriptions that lose context
-- Missing file references or line numbers
-
-**Related templates:**
-- Use with `/memory:save` so the main agent can capture end-of-session continuity
-- Reference `handover.md`, `_memory.continuity` in `implementation-summary.md`, and canonical spec docs for context recovery
-- Link to spec.md, plan.md, and tasks.md for complete picture
-- Run `generate-context.js` before handover when the session also needs an indexed save
-<!-- /ANCHOR:template-instructions -->
+## 5. KEY PATHS
+- Epic root: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/`
+- Review packet (done): `.../027.../review/` (review-report.md CONDITIONAL, merged registry, fanout-attribution.md, 6 lineage dirs)
+- New phases: `.../027.../{011-command-presentation-workflow-separation,012-causal-traversal-bfs,013-vector-read-path-resilience,014-packed-bm25-field-weights,015-storage-adapter-ports}/`
+- 145 packet: `.opencode/specs/skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/` (parent + 001-009)
+- mcp_server: `.opencode/skills/system-spec-kit/mcp_server/` (build: `npm run build`; tests from here)
+- Command families: `.opencode/commands/{memory,speckit,create,doctor}/`
+- Briefs: `/tmp/impl-011-{speckit,create,doctor}.txt`, `/tmp/xce-adoption-analysis.md`
+- deep-loop runtime: `.opencode/skills/deep-loop-runtime/` (fanout-run.cjs, executor-config.ts, executor-audit.ts)
