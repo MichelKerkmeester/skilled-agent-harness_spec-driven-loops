@@ -1,27 +1,33 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: 009 OpenLTM Continuity Resilience"
+description: "Completed low-tech continuity resilience surfaces for bounded startup restore, authored PreCompact snapshots, and faceted continuity summaries."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "027 phase 009"
+  - "openltm continuity resilience"
+  - "bounded startup restore panel"
+  - "precompact authored continuity snapshot"
+  - "goal decision progress gotcha taxonomy"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-openltm-continuity-resilience"
-    last_updated_at: "2026-06-08T15:11:23Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience"
+    last_updated_at: "2026-06-10T14:35:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented continuity resilience surfaces"
+    next_safe_action: "Monitor opt-in snapshot rollout"
     blockers: []
-    key_files: []
+    key_files:
+      - "mcp_server/lib/resume/resume-ladder.ts"
+      - "mcp_server/handlers/session-bootstrap.ts"
+      - "mcp_server/lib/continuity/authored-continuity-snapshot.ts"
+      - "mcp_server/hooks/claude/compact-inject.ts"
+      - "mcp_server/tests/openltm-continuity-resilience.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-openltm-continuity-resilience"
+      session_id: "2026-06-10-openltm-continuity-resilience"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,9 +44,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-openltm-continuity-resilience |
-| **Completed** | 2026-06-08 |
-| **Level** | 2 |
+| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience` |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +55,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
-
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Session startup now gets a bounded restore panel from the existing markdown resume ladder, with explicit restored and not-restored counts instead of an unbounded continuity dump. PreCompact can also refresh a plain-markdown authored snapshot into `handover.md` and `_memory.continuity`, but only when explicitly enabled; disabled mode leaves docs, memory rows, indexes, schema, and ranking untouched.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts` | Modified | Adds bounded restore panel, omission counts, and facet-backed panel markdown. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modified | Adds startup restore panel payload section and count hint. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts` | Modified | Adds goal/decision/progress/gotcha facet formatter. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts` | Created | Refreshes packet-local authored markdown without minting memory records. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts` | Modified | Wires opt-in authored snapshot refresh before hook-cache work. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/openltm-continuity-resilience.vitest.ts` | Created | Covers bounded panel, snapshot, cache-loss recovery, facets, and disabled behavior. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience/*` | Modified | Reconciles phase documentation and validation metadata. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +75,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The implementation stayed inside the approved continuity/bootstrap/hook scope and used temp-file tests only. The snapshot helper reports `createdMemoryRecords=0` and `indexMutations=0`, and the disabled test asserts packet-local ladder docs remain byte-for-byte unchanged.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +83,13 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep the restore panel in `resume-ladder.ts` | The ladder already owns `handover.md`, `_memory.continuity`, and spec-doc fallback ordering, so the panel can be bounded without another source of truth. |
+| Expose the panel through `session_bootstrap` | Startup can show restored and omitted counts while `session_resume` remains the fuller recovery payload. |
+| Make authored snapshots opt-in | PreCompact writes are useful resilience, but default-off behavior prevents surprise doc mutation during ordinary hooks. |
+| Return mutation counters from the snapshot helper | Tests can prove no memory rows or indexes are touched without adding DB fixtures. |
+| Do not edit `ENV_REFERENCE.md` | The user explicitly asked to report any needed opt-in flag instead of documenting it in this phase. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +97,16 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npx vitest run tests/openltm-continuity-resilience.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server` | PASS: 1 file, 6 tests |
+| `npx vitest run tests/openltm-continuity-resilience.vitest.ts tests/resume-ladder.vitest.ts tests/session-bootstrap.vitest.ts tests/thin-continuity-record.vitest.ts tests/hook-precompact.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server` | PASS: 5 files, 29 tests |
+| `npx tsc --noEmit -p tsconfig.json` from repo root | FAIL: `error TS5058: The specified path does not exist: 'tsconfig.json'.` |
+| `npx tsc --noEmit -p tsconfig.json` from `.opencode/skills/system-spec-kit` | PASS |
+| `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh <touched files>` | PASS |
+| `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` | FAIL: out-of-scope existing findings in `canonical-fingerprint.ts`, `memo.ts`, and `deploy-mcp.sh` |
+| `SCHEMA_VERSION` check | PASS: `vector-index-schema.ts` remains `export const SCHEMA_VERSION = 37;` |
+| `ENV_REFERENCE.md` check | PASS: no `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` entry added |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +114,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Opt-in flag needs operator documentation later** `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT=1` enables PreCompact authored snapshots, but this phase intentionally did not edit `ENV_REFERENCE.md`.
+2. **Alignment drift has unrelated failures** The OpenCode alignment verifier reports three out-of-scope files missing required headers/strict mode; this phase did not edit them under the concurrency rule.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

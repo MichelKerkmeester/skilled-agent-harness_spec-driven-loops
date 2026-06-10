@@ -11,7 +11,11 @@ import path from 'node:path';
 // other lib code; the handler implementation stays the source of truth.
 import { findSpecDocuments } from '../discovery/spec-document-finder.js';
 import {
+  buildContinuityFacets,
+  renderContinuityFacets,
   readThinContinuityRecord,
+  type ContinuityFacetName,
+  type ContinuityFacets,
   type ThinContinuityRecord,
 } from '../continuity/thin-continuity-record.js';
 
@@ -45,6 +49,32 @@ export interface ResumeLadderResult {
   hints: string[];
   documents: ResumeLadderDocument[];
   freshnessWinner: 'handover' | 'continuity' | 'spec-docs' | null;
+  restorePanel: ResumeRestorePanel;
+}
+
+export interface ResumeRestorePanelItem {
+  facet: ContinuityFacetName;
+  label: string;
+  source: ResumeLadderSource;
+  text: string;
+}
+
+export interface ResumeRestorePanelOmission {
+  facet: ContinuityFacetName;
+  label: string;
+  reason: 'item-budget' | 'char-budget';
+}
+
+export interface ResumeRestorePanel {
+  maxItems: number;
+  maxChars: number;
+  restoredCount: number;
+  omittedCount: number;
+  omittedByReason: Record<ResumeRestorePanelOmission['reason'], number>;
+  facets: ContinuityFacets;
+  restored: ResumeRestorePanelItem[];
+  omitted: ResumeRestorePanelOmission[];
+  markdown: string;
 }
 
 export interface ResumeLadderOptions {
@@ -87,6 +117,8 @@ const SPEC_DOC_PRIORITY = [
   'handover.md',
   'resource-map.md',
 ] as const;
+const RESTORE_PANEL_MAX_ITEMS = 8;
+const RESTORE_PANEL_MAX_CHARS = 1200;
 
 function normalizeSpecFolder(specFolder: string | null | undefined): string | null {
   if (typeof specFolder !== 'string') {
@@ -267,6 +299,104 @@ function uniqueStrings(values: Array<string | null | undefined>): string[] {
   }
 
   return result;
+}
+
+function pushPanelCandidate(
+  candidates: ResumeRestorePanelItem[],
+  seen: Set<string>,
+  item: ResumeRestorePanelItem,
+): void {
+  const normalized = item.text.trim();
+  if (normalized.length === 0) {
+    return;
+  }
+  const key = `${item.facet}:${item.label}:${normalized}`;
+  if (seen.has(key)) {
+    return;
+  }
+  seen.add(key);
+  candidates.push({ ...item, text: normalized });
+}
+
+function buildRestorePanel(params: {
+  source: ResumeLadderSource;
+  summary: string;
+  recentAction: string | null;
+  nextSafeAction: string | null;
+  blockers: string[];
+  keyFiles: string[];
+  documents: ResumeLadderDocument[];
+}): ResumeRestorePanel {
+  const facets = buildContinuityFacets({
+    summary: params.summary,
+    recentAction: params.recentAction,
+    nextSafeAction: params.nextSafeAction,
+    blockers: params.blockers,
+    keyFiles: params.keyFiles,
+  });
+  const candidates: ResumeRestorePanelItem[] = [];
+  const seen = new Set<string>();
+  const source = params.source;
+
+  for (const text of facets.goal) {
+    pushPanelCandidate(candidates, seen, { facet: 'goal', label: 'next-safe-action', source, text });
+  }
+  for (const text of facets.decision) {
+    pushPanelCandidate(candidates, seen, { facet: 'decision', label: 'answered-question', source, text });
+  }
+  for (const text of facets.progress) {
+    pushPanelCandidate(candidates, seen, { facet: 'progress', label: 'progress', source, text });
+  }
+  for (const text of facets.gotcha) {
+    pushPanelCandidate(candidates, seen, { facet: 'gotcha', label: 'gotcha', source, text });
+  }
+  for (const document of params.documents) {
+    pushPanelCandidate(candidates, seen, {
+      facet: 'progress',
+      label: document.relativePath,
+      source: document.type === 'spec-doc' ? 'spec-docs' : document.type,
+      text: `Recovered ${document.relativePath}`,
+    });
+  }
+
+  const restored: ResumeRestorePanelItem[] = [];
+  const omitted: ResumeRestorePanelOmission[] = [];
+  let charCount = 0;
+  for (const candidate of candidates) {
+    const nextChars = candidate.text.length + candidate.label.length + 8;
+    if (restored.length >= RESTORE_PANEL_MAX_ITEMS) {
+      omitted.push({ facet: candidate.facet, label: candidate.label, reason: 'item-budget' });
+      continue;
+    }
+    if (charCount + nextChars > RESTORE_PANEL_MAX_CHARS) {
+      omitted.push({ facet: candidate.facet, label: candidate.label, reason: 'char-budget' });
+      continue;
+    }
+    restored.push(candidate);
+    charCount += nextChars;
+  }
+
+  const omittedByReason = omitted.reduce<Record<ResumeRestorePanelOmission['reason'], number>>((counts, item) => {
+    counts[item.reason] += 1;
+    return counts;
+  }, { 'item-budget': 0, 'char-budget': 0 });
+
+  return {
+    maxItems: RESTORE_PANEL_MAX_ITEMS,
+    maxChars: RESTORE_PANEL_MAX_CHARS,
+    restoredCount: restored.length,
+    omittedCount: omitted.length,
+    omittedByReason,
+    facets,
+    restored,
+    omitted,
+    markdown: [
+      `Restored: ${restored.length}`,
+      `Not restored: ${omitted.length}`,
+      '',
+      renderContinuityFacets(facets),
+    ].join('\n'),
+  };
 }
 
 function getPriorityIndex(basename: string): number {
@@ -466,21 +596,35 @@ function synthesizeResult(params: {
     }
   }
 
+  const summary = uniqueStrings([
+    primary.summary,
+    secondary?.summary ?? null,
+  ]).join(' | ');
+  const recentAction = primary.recentAction ?? secondary?.recentAction ?? null;
+  const nextSafeAction = primary.nextSafeAction ?? secondary?.nextSafeAction ?? null;
+  const restorePanel = buildRestorePanel({
+    source: primary.source,
+    summary,
+    recentAction,
+    nextSafeAction,
+    blockers: mergedBlockers,
+    keyFiles: mergedKeyFiles,
+    documents: mergedDocuments,
+  });
+
   return {
     source: primary.source,
     specFolder: resolution.resolvedSpecFolder,
     resolution,
-    summary: uniqueStrings([
-      primary.summary,
-      secondary?.summary ?? null,
-    ]).join(' | '),
-    recentAction: primary.recentAction ?? secondary?.recentAction ?? null,
-    nextSafeAction: primary.nextSafeAction ?? secondary?.nextSafeAction ?? null,
+    summary,
+    recentAction,
+    nextSafeAction,
     blockers: mergedBlockers,
     keyFiles: mergedKeyFiles,
     hints,
     documents: mergedDocuments,
     freshnessWinner: primary.source,
+    restorePanel,
   };
 }
 
@@ -502,6 +646,15 @@ function buildNoRecoveryResult(
     hints,
     documents: [],
     freshnessWinner: null,
+    restorePanel: buildRestorePanel({
+      source: 'none',
+      summary: '',
+      recentAction: null,
+      nextSafeAction: null,
+      blockers: [],
+      keyFiles: [],
+      documents: [],
+    }),
   };
 }
 

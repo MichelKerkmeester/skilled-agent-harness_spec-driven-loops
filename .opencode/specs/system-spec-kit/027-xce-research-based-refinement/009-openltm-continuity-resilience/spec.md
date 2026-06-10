@@ -11,18 +11,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience"
-    last_updated_at: "2026-06-08T15:20:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold 009 from OpenLTM research phase 010 (plan only)"
-    next_safe_action: "Plan restore panel and snapshot surfaces"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience"
+    last_updated_at: "2026-06-10T14:35:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented continuity resilience surfaces"
+    next_safe_action: "Monitor opt-in snapshot rollout"
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
+    key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md", "mcp_server/tests/openltm-continuity-resilience.vitest.ts"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-08-010-openltm-phase-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Derived from research/010-openltm-memory-architecture-teachings (corrected Priority 4)."
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Spec-Scaffolded (plan only) |
+| **Status** | Complete |
 | **Created** | 2026-06-08 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -96,12 +96,15 @@ Make session recovery more trustworthy and crash-resistant by adding a bounded "
 - Auto-minting memories from transcripts/git (row-coupled; see `005` amendment and research §8).
 - Changes to retrieval ranking or the index (owned by `008` and `003`).
 
-### Files to Change
+### Files Changed
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| session bootstrap / resume surface | Modify | Bounded restore panel with restored/not-restored status + counts. |
-| PreCompact / compaction hook | Modify | Refresh authored continuity snapshot before compaction. |
-| continuity summary shape | Modify | Adopt goal/decision/progress/gotcha facets. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts` | Modify | Bounded restore panel with restored/not-restored status + counts. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Startup payload section for bounded restore panel. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts` | Modify | Opt-in authored continuity snapshot refresh before compaction cache work. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts` | Modify | Goal/decision/progress/gotcha facet formatter. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts` | Create | Markdown-only authored snapshot refresh helper. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/openltm-continuity-resilience.vitest.ts` | Create | Targeted coverage for restore panel, snapshot, cache-loss recovery, facets, and disabled mode. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -155,6 +158,5 @@ Make session recovery more trustworthy and crash-resistant by adding a bounded "
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the PreCompact snapshot be indexed for search, or remain a recovery-only artifact outside canonical memory?
-- What retention applies to snapshots before they are folded into authored docs?
+- None. The PreCompact snapshot remains a recovery artifact inside authored ladder docs and does not create a memory row or index mutation.
 <!-- /ANCHOR:questions -->

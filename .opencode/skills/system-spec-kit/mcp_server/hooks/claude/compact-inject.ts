@@ -27,6 +27,7 @@ import {
   CANONICAL_FOLD_VERSION,
   getUnicodeRuntimeFingerprint,
 } from '@spec-kit/shared/unicode-normalization';
+import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 
 const COMPACT_FEEDBACK_GUARDS = [
   /^\s*\[SOURCE:\s*hook-cache/i,
@@ -127,6 +128,12 @@ function detectSpecFolder(lines: string[]): string | null {
   if (freq.size === 0) return null;
   // Return the most-referenced spec folder
   return [...freq.entries()].sort((a, b) => b[1] - a[1])[0][0];
+}
+
+function authoredSnapshotEnabled(input: Record<string, unknown>): boolean {
+  return input.authored_continuity_snapshot === true
+    || input.continuity_snapshot === 'authored'
+    || process.env.SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT === '1';
 }
 
 /** Build compact context from transcript analysis (legacy fallback) */
@@ -389,6 +396,18 @@ async function main(): Promise<void> {
   if (input.transcript_path) {
     transcriptLines = tailFile(input.transcript_path, 50);
     hookLog('info', 'compact-inject', `Read ${transcriptLines.length} transcript lines`);
+  }
+
+  const snapshotResult = refreshAuthoredContinuitySnapshot({
+    enabled: authoredSnapshotEnabled(input),
+    specFolder: detectSpecFolder(transcriptLines),
+    sessionId,
+    actor: 'precompact-hook',
+  });
+  if (snapshotResult.status === 'updated') {
+    hookLog('info', 'compact-inject', `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated.length} doc(s); memory records=${snapshotResult.createdMemoryRecords}; index mutations=${snapshotResult.indexMutations}`);
+  } else if (snapshotResult.status === 'skipped') {
+    hookLog('warn', 'compact-inject', `Authored continuity snapshot skipped: ${snapshotResult.reason}`);
   }
 
   // Use the 3-source merge pipeline, falling back to legacy on error
