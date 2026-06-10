@@ -11,11 +11,12 @@
     "presentation",
     "markdown"
   ],
-  "lastUpdated": "2026-06-10T14:25:53.326Z",
+  "lastUpdated": "2026-06-10T19:14:00.000Z",
   "specId": "002",
   "folderSlug": "author-presentation-md",
   "parentChain": [
     "system-spec-kit",
+    "027-xce-research-based-refinement",
     "011-command-presentation-workflow-separation",
     "001-memory-commands"
   ],

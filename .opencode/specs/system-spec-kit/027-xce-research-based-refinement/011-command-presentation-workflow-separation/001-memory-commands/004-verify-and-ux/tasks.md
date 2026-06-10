@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Memory Commands - Verify and UX"
-description: "Planned task outline for memory commands verify and ux."
+description: "Completed task outline for memory commands verify and ux."
 trigger_phrases:
   - "memory commands verify and ux tasks"
   - "command presentation tasks"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Captured memory-search open-ended startup and low-clutter results contract"
+    next_safe_action: "Use search_presentation.md for future memory search display adherence"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,12 +21,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-001-memory-commands-004-verify-and-ux-planned"
+      session_id: "2026-06-10-memory-commands-ux-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Memory search startup is open-ended and avoids a broad option dump."
 ---
 # Tasks: Memory Commands - Verify and UX
 
@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## PHASE 1: SETUP
 
-- [ ] T001 Define cross-model render scenarios (.opencode/commands/memory/*.md)
-- [ ] T002 Verify startup questions are asked consistently (.opencode/commands/memory/*.md)
+- [x] T001 Define cross-model render scenarios (`search_presentation.md`) [EVIDENCE: empty query, retrieval query, analysis overview, and empty-result fallback are specified]
+- [x] T002 Verify startup questions are asked consistently (`search_presentation.md`) [EVIDENCE: empty startup asks one open-ended question]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,9 +62,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [ ] T003 [P] Verify dashboard layout is stable (.opencode/commands/memory/*.md)
-- [ ] T004 [P] Verify results-display template is followed (.opencode/commands/memory/*.md)
-- [ ] T005 [P] Apply family-specific UX polish plan (.opencode/commands/memory/*.md)
+- [x] T003 [P] Verify dashboard layout is stable (`manage_presentation.md`, `learn_presentation.md`, `search_presentation.md`) [EVIDENCE: compact templates with `STATUS=` lines]
+- [x] T004 [P] Verify results-display template is followed (`search_presentation.md`) [EVIDENCE: retrieval output is grouped by leaf folder with score, id, and title only]
+- [x] T005 [P] Apply family-specific UX polish plan (`search_presentation.md`) [EVIDENCE: no startup option dump; targeted follow-ups only when ambiguous]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,9 +72,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## PHASE 3: VERIFICATION
 
-- [ ] T006 Record verification evidence for implementation handoff (.opencode/commands/memory/*.md)
-- [ ] T007 Run strict validation for this leaf (.opencode/skills/system-spec-kit/scripts/spec/validate.sh)
-- [ ] T008 Confirm Planned implementation-summary.md stub exists for strict validation (implementation-summary.md)
+- [x] T006 Record verification evidence for implementation handoff (`implementation-summary.md::verification`) [EVIDENCE: reference checks and strict validation recorded]
+- [x] T007 Run strict validation for this leaf (`validate.sh --strict`) [EVIDENCE: see final validation output]
+- [x] T008 Confirm implementation-summary.md exists for strict validation (`implementation-summary.md`) [EVIDENCE: summary updated with delivered state]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All planned tasks are complete or explicitly deferred with approval
-- [ ] No blocked tasks remain
-- [ ] Strict validation passes for this leaf
+- [x] All planned tasks are complete or explicitly deferred with approval [EVIDENCE: T001-T008 complete]
+- [x] No blocked tasks remain [EVIDENCE: UX contract exists and is referenced by the router]
+- [x] Strict validation passes for this leaf [EVIDENCE: see final validation output]
 <!-- /ANCHOR:completion -->
 
 ---

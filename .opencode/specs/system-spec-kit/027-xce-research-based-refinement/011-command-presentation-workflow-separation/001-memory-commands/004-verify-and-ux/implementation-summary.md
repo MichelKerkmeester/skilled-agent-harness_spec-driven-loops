@@ -1,19 +1,19 @@
 ---
 title: "Implementation Summary: Memory Commands - Verify and UX"
-description: "Planned - not yet implemented. Level 1 leaf phase for verify startup questions, dashboards, and results render consistently across claude and gpt-via-opencode, then complete family-specific presentation ux polish."
+description: "Completed memory command UX contract verification and search startup/result-display polish."
 trigger_phrases:
   - "memory commands - verify and ux implementation summary"
-  - "planned scaffold implementation summary"
+  - "memory search open ended startup"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Completed memory-search startup and result-display UX contract"
+    next_safe_action: "Use the presentation asset as the display adherence target for future command testing"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,12 +22,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-001-memory-commands-004-verify-and-ux-planned"
+      session_id: "2026-06-10-memory-commands-ux-summary"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Memory search does not dump the old startup option list."
 ---
 # Implementation Summary: Memory Commands - Verify and UX
 
@@ -42,10 +42,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the leaf as a complete Planned scaffold while preserving completion at 0%.
+Captured the memory-family UX contract in presentation Markdown, with special focus on `/memory:search`.
 
-### Planned Scope
+### Memory Search UX Change
 
-Level 1 leaf phase for verify startup questions, dashboards, and results render consistently across claude and gpt-via-opencode, then complete family-specific presentation ux polish.
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+- Empty startup now asks one open-ended question: `What would you like to retrieve or analyze?`
+- Intent is inferred from the query or delegated to the server when no explicit `--intent:` is provided.
+- Targeted follow-up questions are reserved for genuinely missing subcommand parameters.
+- Retrieval output is compact, grouped by leaf folder, and limited to score, id, and title unless trace is requested.
+- Empty-result fallback uses canonical labels for trigger-matched spec-doc records and constitutional rules.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +69,7 @@ Level 1 leaf phase for verify startup questions, dashboards, and results render 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This leaf has not been delivered. Future implementation must update this summary with actual changes and verification evidence.
+The UX contract is encoded in `search_presentation.md`, while save/manage/learn display consistency is covered in their own presentation assets.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +79,9 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested minimal placeholders for strict validation, not implementation claims. |
+| Use open-ended startup for search | The operator requested smarter intent inference and fewer startup options. |
+| Use compact result tables | Dispatched models need parseable output with low clutter. |
+| Keep analysis overview on request | Full menus are useful when asked for, but should not be the default startup path. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +91,10 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Search startup contract | Open-ended question present in `search_presentation.md` and router references it |
+| Result-display contract | Compact templates present for retrieval, empty results, and analysis modes |
+| Forbidden-label gate | Legacy result labels are described without being emitted as renderable output |
+| Strict validation | See final validation output |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +102,5 @@ This leaf has not been delivered. Future implementation must update this summary
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or workflow files have been changed.
+1. Cross-model runtime execution was represented by static contract checks in this pass; no external model dispatch was run.
 <!-- /ANCHOR:limitations -->

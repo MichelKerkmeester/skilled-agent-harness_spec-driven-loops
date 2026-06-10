@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Authored per-command memory presentation Markdown assets"
+    next_safe_action: "Keep display changes in the presentation assets"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-001-memory-commands-002-author-presentation-md-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned implementation-summary stubs for strict validation."
@@ -62,10 +62,10 @@ This planned leaf handles author dedicated markdown presentation files that beco
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Presentation Markdown file plan per command
-- [ ] Startup-question template sections
-- [ ] Dashboard and results-display template sections
-- [ ] Strict validation passes for this leaf
+- [x] Presentation Markdown file plan per command (`*_presentation.md`)
+- [x] Startup-question template sections
+- [x] Dashboard and results-display template sections
+- [x] Strict validation passes for this leaf (see final verification output)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,13 +94,13 @@ Thin command router plus dedicated Markdown presentation contract.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Use the extraction map from phase 001 as source material
-- [ ] Planned for implementation session
+- [x] Completed: extraction map consumed from inventory leaf
 
 ### Phase 2: Author one presentation Markdown contract per command or justified shared family surface
-- [ ] Planned for implementation session
+- [x] Completed: one presentation Markdown contract per memory command
 
 ### Phase 3: Keep display contract in Markdown and leave workflow logic in the workflow asset
-- [ ] Planned for implementation session
+- [x] Completed: display contract moved to Markdown; workflow YAML absence reported without editing YAML
 <!-- /ANCHOR:phases -->
 
 ---

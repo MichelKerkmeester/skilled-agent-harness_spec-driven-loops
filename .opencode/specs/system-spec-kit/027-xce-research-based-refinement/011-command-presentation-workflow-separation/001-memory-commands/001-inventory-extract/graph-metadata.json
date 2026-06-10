@@ -17,7 +17,9 @@
       "memory commands inventory and extract plan",
       "command presentation workflow plan",
       "memory commands inventory and extract tasks",
-      "command presentation tasks"
+      "command presentation tasks",
+      "memory commands - inventory and extract implementation summary",
+      "planned scaffold implementation summary"
     ],
     "key_topics": [
       "001-memory-commands",
@@ -34,11 +36,12 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "spec_scaffolded",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -108,6 +117,12 @@
         "source": "derived"
       },
       {
+        "name": "Prepared Planned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -115,12 +130,6 @@
       },
       {
         "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Thin",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -138,7 +147,7 @@
         "source": "derived"
       },
       {
-        "name": "Planned Work",
+        "name": "Confirm Planned",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -150,21 +159,40 @@
         "source": "derived"
       },
       {
-        "name": "Family Parent",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Scope Level",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Memory Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T14:25:56.097Z",
+    "last_save_at": "2026-06-10T19:22:14.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

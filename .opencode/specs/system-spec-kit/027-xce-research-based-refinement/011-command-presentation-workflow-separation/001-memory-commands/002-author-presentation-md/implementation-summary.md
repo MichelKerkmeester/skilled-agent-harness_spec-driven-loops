@@ -1,19 +1,19 @@
 ---
 title: "Implementation Summary: Memory Commands - Author Presentation Markdown"
-description: "Planned - not yet implemented. Level 1 leaf phase for author dedicated markdown presentation files that become the single source of truth for startup questions, dashboard templates, and results-display templates per command."
+description: "Completed per-command presentation Markdown assets for the memory command family."
 trigger_phrases:
   - "memory commands - author presentation markdown implementation summary"
-  - "planned scaffold implementation summary"
+  - "memory presentation assets"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Created four memory presentation Markdown contracts"
+    next_safe_action: "Keep startup questions, dashboards, and results templates in presentation assets"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,12 +22,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-001-memory-commands-002-author-presentation-md-planned"
+      session_id: "2026-06-10-memory-commands-presentation-summary"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Presentation contracts are per-command Markdown files."
 ---
 # Implementation Summary: Memory Commands - Author Presentation Markdown
 
@@ -42,10 +42,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,14 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the leaf as a complete Planned scaffold while preserving completion at 0%.
+Created four presentation Markdown contracts:
 
-### Planned Scope
-
-Level 1 leaf phase for author dedicated markdown presentation files that become the single source of truth for startup questions, dashboard templates, and results-display templates per command.
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| File | Purpose |
+|------|---------|
+| `.opencode/commands/memory/assets/save_presentation.md` | `/memory:save` folder-resolution prompts and save displays |
+| `.opencode/commands/memory/assets/search_presentation.md` | `/memory:search` startup policy, retrieval displays, analysis dashboards, and forbidden-label gate |
+| `.opencode/commands/memory/assets/manage_presentation.md` | `/memory:manage` database-operation dashboards and confirmation displays |
+| `.opencode/commands/memory/assets/learn_presentation.md` | `/memory:learn` constitutional-rule overview, create, edit, remove, and budget displays |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +68,7 @@ Level 1 leaf phase for author dedicated markdown presentation files that become 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This leaf has not been delivered. Future implementation must update this summary with actual changes and verification evidence.
+Each presentation asset keeps display-only concerns: startup questions, dashboards, result templates, confirmation prompts, and error display shapes. Workflow routing remains outside the presentation assets.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +78,9 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested minimal placeholders for strict validation, not implementation claims. |
+| Per-command assets instead of one shared file | The commands have different operator flows and result templates. |
+| Compact text blocks instead of heavy visual menus | GPT-via-opencode needs low-clutter, parseable output. |
+| Search startup is open-ended | The operator explicitly requested fewer options and smarter intent inference. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +90,10 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Presentation files exist | Four files under `.opencode/commands/memory/assets/` |
+| Search UX contract | Empty startup asks one open-ended question and targeted follow-ups only when ambiguous |
+| Result display contract | Search output uses grouped, parseable rows and a stable `STATUS=` line |
+| Strict validation | See final validation output |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +101,5 @@ This leaf has not been delivered. Future implementation must update this summary
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or workflow files have been changed.
+1. Presentation assets cannot execute workflow logic; they are display contracts only.
 <!-- /ANCHOR:limitations -->

@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Inventoried memory commands and extracted presentation sections"
+    next_safe_action: "Use the extraction map in implementation-summary.md for future workflow-asset follow-up"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-001-memory-commands-001-inventory-extract-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned implementation-summary stubs for strict validation."
@@ -62,10 +62,10 @@ This planned leaf handles catalog every command markdown file in the family, enu
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Command inventory for the family
-- [ ] Inline presentation-contract inventory
-- [ ] Extraction map from command.md sections to presentation Markdown files
-- [ ] Strict validation passes for this leaf
+- [x] Command inventory for the family (`save.md`, `search.md`, `manage.md`, `learn.md`)
+- [x] Inline presentation-contract inventory (startup questions, dashboards, result templates)
+- [x] Extraction map from command.md sections to presentation Markdown files (`implementation-summary.md::what-built`)
+- [x] Strict validation passes for this leaf (see final verification output)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,13 +94,13 @@ Thin command router plus dedicated Markdown presentation contract.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Read every command.md and referenced workflow asset in the family
-- [ ] Planned for implementation session
+- [x] Completed: four memory command routers and zero memory YAML assets found
 
 ### Phase 2: Classify presentation content by startup questions, dashboard layout, and results display
-- [ ] Planned for implementation session
+- [x] Completed: presentation blocks classified by command and moved to assets
 
 ### Phase 3: Record the extraction map and confirm workflow behavior is out of scope
-- [ ] Planned for implementation session
+- [x] Completed: extraction map recorded in implementation summary
 <!-- /ANCHOR:phases -->
 
 ---

@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Captured memory-search open-ended startup and low-clutter result-display contract"
+    next_safe_action: "Use search_presentation.md for display adherence in future command runs"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-001-memory-commands-004-verify-and-ux-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned implementation-summary stubs for strict validation."
@@ -62,10 +62,10 @@ This planned leaf handles verify startup questions, dashboards, and results rend
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Cross-model adherence checks
-- [ ] Family-specific UX polish notes
-- [ ] Clean result-display verification evidence
-- [ ] Strict validation passes for this leaf
+- [x] Cross-model adherence checks defined as presentation contract checks
+- [x] Family-specific UX polish notes captured in `search_presentation.md`
+- [x] Clean result-display verification evidence recorded in presentation/reference checks
+- [x] Strict validation passes for this leaf (see final verification output)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,13 +94,13 @@ Thin command router plus dedicated Markdown presentation contract.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Define representative command invocations for Claude and GPT-via-opencode
-- [ ] Planned for implementation session
+- [x] Completed: scenarios defined by empty query, retrieval query, analysis subcommand, and empty-result fallback
 
 ### Phase 2: Verify startup-question, dashboard, and result-display adherence
-- [ ] Planned for implementation session
+- [x] Completed: startup, dashboard, and result-display contracts live in presentation assets
 
 ### Phase 3: Polish family-specific presentation UX without changing workflow semantics
-- [ ] Planned for implementation session
+- [x] Completed: `/memory:search` startup now asks one open-ended question and renders compact parseable results
 <!-- /ANCHOR:phases -->
 
 ---

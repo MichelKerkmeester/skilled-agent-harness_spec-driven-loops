@@ -7,14 +7,14 @@ trigger_phrases:
   - "memory results display"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Scaffold family phase-parent and four leaf aspects; no implementation"
-    next_safe_action: "Plan or implement 001-memory-commands/001-inventory-extract"
+    last_updated_at: "2026-06-10T19:14:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed memory command presentation extraction and router slimming"
+    next_safe_action: "Track missing workflow YAML asset gap"
     blockers: []
     key_files:
       - "001-inventory-extract/spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-001-memory-commands-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Presentation extraction format is Markdown."
@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -114,10 +114,10 @@ Future implementation scope for audit only. Per-leaf detail lives in the child p
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-inventory-extract/ | Catalog every command Markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out. | Spec-Scaffolded |
-| 2 | 002-author-presentation-md/ | Author dedicated Markdown presentation files that become the single source of truth for startup questions, dashboard templates, and results-display templates per command. | Spec-Scaffolded |
-| 3 | 003-router-rewire/ | Rewrite each command.md as a thin router that points to the workflow file and the presentation Markdown file, preserving behavior and leaving no presentation contract inline. | Spec-Scaffolded |
-| 4 | 004-verify-and-ux/ | Verify startup questions, dashboards, and results render consistently across Claude and GPT-via-opencode, then complete family-specific presentation UX polish. | Spec-Scaffolded |
+| 1 | 001-inventory-extract/ | Catalog every command Markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out. | Completed |
+| 2 | 002-author-presentation-md/ | Author dedicated Markdown presentation files that become the single source of truth for startup questions, dashboard templates, and results-display templates per command. | Completed |
+| 3 | 003-router-rewire/ | Rewrite each command.md as a thin router that points to the workflow file and the presentation Markdown file, preserving behavior and leaving no presentation contract inline. | Completed with YAML asset gap reported |
+| 4 | 004-verify-and-ux/ | Verify startup questions, dashboards, and results render consistently across Claude and GPT-via-opencode, then complete family-specific presentation UX polish. | Completed |
 
 ### Phase Transition Rules
 
