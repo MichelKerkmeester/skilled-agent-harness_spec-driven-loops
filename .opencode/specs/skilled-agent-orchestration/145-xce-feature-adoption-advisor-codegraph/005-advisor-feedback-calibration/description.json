@@ -1,14 +1,14 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
-  "description": "Feature Specification: Phase 5: advisor-feedback-calibration",
+  "description": "Shadow-only advisor feedback calibration from advisor_validate outcomes",
   "keywords": [
     "feature",
     "specification",
     "phase",
     "advisor-feedback-calibration"
   ],
-  "lastUpdated": "2026-06-10T19:41:55.525Z",
+  "lastUpdated": "2026-06-10T23:45:00.000Z",
   "specId": "005",
   "folderSlug": "advisor-feedback-calibration",
   "parentChain": [

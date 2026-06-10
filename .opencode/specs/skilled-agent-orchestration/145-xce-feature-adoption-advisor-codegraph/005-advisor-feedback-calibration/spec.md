@@ -11,19 +11,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #10"
-    next_safe_action: "Plan a shadow/default-off reducer with held-out gating"
+    last_updated_at: "2026-06-10T23:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed shadow feedback calibration reducer"
+    next_safe_action: "Use recorded reports for manual review only"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/005-advisor-feedback-calibration"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Future promotion still needs a held-out validation set and non-regression threshold."
+    answered_questions:
+      - "Minimum shadow sample support is eight retained outcome records by default; lane deltas also require lane attribution and pass concentration guards."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 5: advisor-feedback-calibration
@@ -46,7 +48,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -100,7 +102,7 @@ Adopt 027's shadow/default-off learning reducers: use `advisor_validate` outcome
 - A default-off feature flag gating the whole path.
 
 ### Out of Scope
-- Auto-promoting any proposed weight into the live scorer (explicitly forbidden; promotion is a separate, gated decision).
+- Auto-promoting any proposed weight into the live scorer (explicitly forbidden; promotion is a separate, gated decision and remains unimplemented).
 - Changing the outcome-event schema or the validate handler's recording behavior.
 - Online/continuous learning - this is batch shadow calibration only.
 
@@ -110,7 +112,7 @@ Adopt 027's shadow/default-off learning reducers: use `advisor_validate` outcome
 |-----------|-------------|-------------|
 | `system-skill-advisor/mcp_server/handlers/advisor-validate.ts` | Modify | Feed recorded outcomes into the shadow reducer |
 | `system-skill-advisor/mcp_server/lib/scorer/weights-config.ts` | Modify | Read-only "proposed weights" surface; no live mutation |
-| `system-skill-advisor/mcp_server/lib/scorer/feedback-reducer.ts` (+ eval table) | Create | Aggregate outcomes into proposed calibration deltas |
+| `system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts` | Create | Aggregate outcomes into advisory calibration reports and persisted shadow records |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -159,8 +161,8 @@ Adopt 027's shadow/default-off learning reducers: use `advisor_validate` outcome
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What held-out validation set and non-regression threshold would gate any future weight promotion?
-- What minimum sample size per lane is required before a calibration delta is even proposed?
+- Future work must define the held-out validation set and non-regression threshold before any promotion path can be considered.
+- The implemented reducer uses eight retained outcome records as default minimum support, and excludes lane deltas unless lane attribution is available.
 <!-- /ANCHOR:questions -->
 
 ---

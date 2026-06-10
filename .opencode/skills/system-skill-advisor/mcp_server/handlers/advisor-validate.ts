@@ -23,10 +23,12 @@ import {
   advisorHookDiagnosticsPath,
   advisorHookOutcomesPath,
   createAdvisorHookOutcomeRecord,
+  type AdvisorHookOutcomeRecord,
   persistAdvisorHookOutcomeRecord,
   readAdvisorHookHealthSection,
   summarizeAdvisorHookOutcomeRecords,
 } from '../lib/metrics.js';
+import { recordAdvisorFeedbackCalibrationIfEnabled } from '../lib/scorer/feedback-calibration.js';
 import {
   AdvisorValidateInputSchema,
   AdvisorValidateOutputSchema,
@@ -489,14 +491,17 @@ export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun:
     ? canonicalizeWorkspaceRoot(args.workspaceRoot)
     : findWorkspaceRoot();
   const selectedSkillSlug = args.skillSlug ?? null;
+  const recordedOutcomeRecords: AdvisorHookOutcomeRecord[] = [];
   for (const outcomeEvent of args.outcomeEvents ?? []) {
-    persistAdvisorHookOutcomeRecord(workspaceRoot, createAdvisorHookOutcomeRecord({
+    const record = createAdvisorHookOutcomeRecord({
       runtime: outcomeEvent.runtime,
       outcome: outcomeEvent.outcome,
       skillLabel: outcomeEvent.skillId,
       correctedSkillLabel: outcomeEvent.correctedSkillId,
       timestamp: outcomeEvent.timestamp,
-    }));
+    });
+    recordedOutcomeRecords.push(record);
+    persistAdvisorHookOutcomeRecord(workspaceRoot, record);
   }
   const corpus = loadCorpus(workspaceRoot)
     .filter((row) => selectedSkillSlug ? row.skill_top_1 === selectedSkillSlug : true);
@@ -514,6 +519,21 @@ export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun:
   const regressionSuite = evaluateRegressionCases(loadRegressionCases(workspaceRoot), workspaceRoot);
   const outcomeSummary = summarizeAdvisorHookOutcomeRecords(workspaceRoot);
   const scopedOutcomeTotals = summarizeScopedOutcomeTotals(outcomeSummary.records, selectedSkillSlug);
+  const calibrationRecords = [
+    ...outcomeSummary.records,
+    ...recordedOutcomeRecords,
+  ].filter((record) => matchesOutcomeScope(record, selectedSkillSlug));
+  recordAdvisorFeedbackCalibrationIfEnabled({
+    workspaceRoot,
+    records: calibrationRecords,
+    options: {
+      skillSlug: selectedSkillSlug,
+      currentThresholds: {
+        confidenceThreshold: VALIDATION_THRESHOLD_SEMANTICS.runtimeRouting.confidenceThreshold,
+        uncertaintyThreshold: VALIDATION_THRESHOLD_SEMANTICS.runtimeRouting.uncertaintyThreshold,
+      },
+    },
+  });
   const perSkill = [...full.aggregates.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([skillId, aggregate]) => ({

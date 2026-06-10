@@ -11,19 +11,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T23:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed shadow feedback calibration reducer"
+    next_safe_action: "Inspect advisory records; do not promote automatically"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/005-advisor-feedback-calibration"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Future promotion criteria remain out of scope."
+    answered_questions:
+      - "No live scoring drift is allowed; tests prove byte-identical scoring with the shadow flag off and on."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 5: advisor-feedback-calibration
@@ -50,9 +52,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read phase scaffold and existing validate/scorer surfaces
+- [x] T002 Confirm no new dependencies or package changes are needed
+- [x] T003 [P] Identify existing vitest and TypeScript verification commands
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +62,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Implement default-off shadow feedback calibration reducer
+- [x] T005 Add read-only proposed-vs-current weight and threshold proposal surface
+- [x] T006 Wire `advisor_validate` to record advisory reports only when enabled
+- [x] T007 Add low-sample, sample-concentration, no-lane-attribution, and no-auto-promotion guardrails
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Add reducer and validate integration vitest coverage
+- [x] T009 Add no-live-drift test for byte-identical recommendation order, scores, and weights with flag off vs on
+- [x] T010 Run typecheck, build, targeted tests, and update documentation
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +83,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Verification passed with targeted vitest, typecheck, build, and strict spec validation
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +105,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-
