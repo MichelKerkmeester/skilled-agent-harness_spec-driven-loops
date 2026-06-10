@@ -27,7 +27,7 @@ Stack-aware application-code implementer that delegates stack detection to `sk-c
 
 > ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.opencode/agents/orchestrate.md` §2 NDP), HALT and return:
 >
-> "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate. (D3 caller-restriction convention; see .opencode/specs/skilled-agent-orchestration/z_archive/059-agent-implement-code/decision-record.md ADR-3.)"
+> "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate."
 >
 > This is a convention-level gate, not a harness validator. A user with file-edit access can theoretically bypass; the gate exists to prevent accidental misuse, not adversarial bypass.
 
@@ -62,6 +62,21 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 ### Stack Delegation Contract
 
 @code does NOT pre-detect the project route. The full code-routing logic lives in `.opencode/skills/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
+
+### Diagnosis-Based Handoff Validation
+
+This receiver gate applies only when the orchestrator explicitly asks for a surgical fix based on an @debug diagnosis crossing into @code. It is not a universal input requirement, and envelope-less ordinary implementation prompts still use the normal workflow.
+
+Before editing for a diagnosis-based surgical fix, validate the handoff fields:
+
+| Field | Required Check |
+| --- | --- |
+| `root_cause` | Evidence-backed cause is present and specific enough to test. |
+| `target_files` | Candidate repo-relative files are named, or `none` is justified. |
+| `fix_recommendations` | Small fix direction and verification target are present. |
+| `confidence` | `high`, `medium`, or `low` is present and matches the evidence. |
+
+If any required handoff field is missing, empty, or unsupported by the native debug report, do not invent the fix. Return `BLOCKED` with `escalation=LOW_CONFIDENCE`, `confidence=LOW`, `files=(none)`, and a summary naming the missing field. Legacy `debug-delegation.md` reports outside a debug-to-implementation crossing are warning-only context: verify them manually, then proceed only if the ordinary scope and sk-code route are clear.
 
 ---
 
@@ -326,6 +341,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 - sk-code returns UNKNOWN → `UNKNOWN_STACK`
 - Verification fails (per §1 step 5 fail-closed contract) → `VERIFY_FAIL`
 - Scope conflict detected (file outside orchestrator-named scope) → `SCOPE_CONFLICT`
+- Diagnosis-based @debug handoff is missing required fields → `LOW_CONFIDENCE`
 - Confidence < 80% on a load-bearing decision (per `AGENTS.md` §4) → `LOW_CONFIDENCE`
 - Logic-Sync conflict (per `AGENTS.md` §4) → `LOGIC_SYNC`
 

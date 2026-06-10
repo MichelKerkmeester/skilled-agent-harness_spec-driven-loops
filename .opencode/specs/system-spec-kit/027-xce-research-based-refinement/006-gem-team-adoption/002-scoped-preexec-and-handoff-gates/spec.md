@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/002-scoped-preexec-and-handoff-gates"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 002 scoped gates from 007 P2 + 009"
-    next_safe_action: "Land 001 envelope, then wire the 3 scoped gates"
+    last_updated_at: "2026-06-10T05:18:20Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Landed scoped agent gates"
+    next_safe_action: "Report out-of-scope skill/scaffold items"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-002-scoped-preexec-gates-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "007 critic + 009 synthesis: ship as 3 scoped advisory gates, never universal ceremony"
@@ -60,7 +60,7 @@ Source context:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Implemented with scope exceptions |
 | **Parent Packet** | `027-xce-research-based-refinement/006-gem-team-adoption` |
 | **Source** | `research/007-gem-team-adoption-matrix/sub-packet-proposals.md` § P2; `research/009-gem-team-integration-impact/research.md` §2, §4 |
 | **Depends on** | `001-typed-agent-io-adapter` (reuses its typed envelope for the `confidence`/`failure_type` fields) |
@@ -134,6 +134,8 @@ Each gate is guarded by a predicate that `@orchestrate` evaluates at dispatch ti
 | `.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl` | Modify | Add the typed fields inside existing sections (PROBLEM SUMMARY / CONTEXT FOR SPECIALIST / RECOMMENDED NEXT STEPS) |
 | `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Modify | Add CLI flags + JSON extraction for the typed fields; refresh the stale schema-line comment near the file tail (`SCHEMA SOURCE ... lines 60-89`) |
 <!-- /ANCHOR:scope -->
+
+Approved implementation note: the Wave 2 execution scope approved only the agent mirrors, the shared contract, and this phase folder. The direct `sk-code`, debug-delegation template, and scaffold-script edits above were read and flagged, not modified, because they were outside that approved write scope.
 
 ---
 

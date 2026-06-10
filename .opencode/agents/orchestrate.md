@@ -1,6 +1,6 @@
 ---
 name: orchestrate
-description: Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis.
+description: "Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis."
 mode: primary
 temperature: 0.1
 permission:
@@ -213,6 +213,9 @@ TASK #N: [Descriptive Title]
 ├─ Branch: [Optional conditional routing - see Conditional Branching below]
 ├─ Depth: [0|1] — current dispatch depth (§2 NDP). Agent tier: [ORCHESTRATOR|LEAF]
 ├─ Agent I/O: [optional `AGENT_IO_DISPATCH v1` header | none]
+├─ Scoped Pre-Execution: [diagnosis_crosses_agents=<true|false>; change_class=<docs|typo|ordinary|api|schema|integration|other>; complexity=<low|medium|high>]
+├─ Handoff: [none | debug_to_implement: root_cause, target_files, fix_recommendations, confidence]
+├─ Pre-Mortem: [none for low | risk + 2-3 failure modes + assumptions for medium/high]
 ├─ Scale: [1-agent | 2-4 agents | 10+ agents]
 └─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§8 TCB)
 ```
@@ -231,9 +234,37 @@ read_directives: none | packet-first | codebase-first | exact-paths
 contract: advisory
 context_package: none | included
 expected_result: native | agent_io_result
+handoff: none | debug_to_implement
+pre_execution: none | scoped
 ```
 
 The loaded agent definition remains authoritative. If `AGENT_IO_RESULT v1` is present in a child result, use it as a routing hint only after the native report passes §5 output verification. If it is absent, parse the existing markdown contract and continue; do not reject a child result solely because the advisory result envelope is absent.
+
+### Scoped Pre-Execution Predicates
+
+The orchestrator owns these predicates and evaluates them before dispatch. They are advisory and additive; absence of a header in ordinary or legacy work is not a rejection reason.
+
+| Gate | Predicate | Required Dispatch Behavior | Skip Behavior |
+| --- | --- | --- | --- |
+| Typed debug handoff | `diagnosis_crosses_agents == true` | Preserve the @debug handoff fields (`root_cause`, `target_files`, `fix_recommendations`, `confidence`) when dispatching @code for a diagnosis-based surgical fix. | If no debug diagnosis crosses agents, omit the handoff entirely. |
+| Boundary contract-first | `change_class in {api, schema, integration}` | Identify a contract, boundary test, or executable acceptance check before production edits. | Docs, typo, and ordinary changes do not trigger this gate. |
+| Pre-mortem | `complexity in {medium, high}` | Add risk level, 2-3 likely failure modes, and key assumptions to the task. | Low-complexity work omits the pre-mortem. |
+
+For a debug-to-implementation crossing, carry this optional handoff block inside the @code dispatch prompt:
+
+```text
+AGENT_IO_HANDOFF v1
+schema_version: agent-io/v1
+handoff_type: debug_to_implement
+source_agent: @debug
+target_agent: @code
+root_cause: <from @debug, evidence-backed>
+target_files: <from @debug, recommendations only>
+fix_recommendations: <from @debug>
+confidence: high | medium | low
+```
+
+If any handoff field is missing in a diagnosis-based @code dispatch, instruct @code to return `BLOCKED` with low confidence rather than guessing. Legacy debug reports outside this crossing should be treated as warning-only context that requires manual verification.
 
 ### Pre-Delegation Reasoning (PDR)
 
@@ -248,6 +279,7 @@ PRE-DELEGATION REASONING [Task #N]:
 ├─ Depth: [N] → Tier: [ORCHESTRATOR|LEAF] (§2 NDP)
 ├─ Parallel: [Yes/No] → Because: [data dependency]
 ├─ Risk: [Low/Medium/High] → [If High: fallback agent]
+├─ Scoped Gates: [A debug handoff? B boundary contract? C pre-mortem?]
 └─ TCB: [N] tool calls → [Single agent | Split: M × ~K calls] (mandatory for file I/O tasks)
 ```
 
@@ -340,7 +372,7 @@ TASK #1: Explore Toast Patterns
 
 TASK #2: Implement Notification System
 ├─ Scope: Build new system using patterns from Task #1
-├─ Agent: @general
+├─ Agent: @code
 ├─ Skills: sk-code-review baseline + sk-code router-selected evidence
 ├─ Output: Functional notification system
 ├─ Success: Works in browser, tests pass

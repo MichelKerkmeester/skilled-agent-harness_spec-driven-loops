@@ -64,23 +64,49 @@ Rules for result envelopes:
 
 ## 4. Handoff Group
 
-Reserved for future handoff gates. Current status: advisory placeholder only.
+Optional handoff fields describe information crossing from one agent to another. The first concrete use is a debug-to-implementation handoff. This is a narrower, advisory adaptation of Gem's existing orchestrator `debugger_diagnosis` machine-check; it adds typed fields without replacing native debug reports.
 
-```yaml
-handoff:
-  enabled: false
-  fields: optional
+```text
+AGENT_IO_HANDOFF v1
+schema_version: agent-io/v1
+handoff_type: debug_to_implement | none
+source_agent: @debug | none
+target_agent: @code | none
+root_cause: <evidence-backed cause, or none>
+target_files: <comma-separated repo-relative paths, or none>
+fix_recommendations: <short recommended fix steps, or none>
+confidence: high | medium | low | none
 ```
+
+Handoff rules:
+
+- This group is required only when an orchestrator explicitly hands an `@debug` diagnosis to `@code` for a diagnosis-based surgical fix.
+- `target_files` are recommendations, not an automatic edit allowlist. The orchestrator and receiver still enforce their scoped file rules.
+- If the crossing is present but required fields are missing, `@code` should return `BLOCKED` with low confidence rather than inventing a fix.
+- Legacy `debug-delegation.md` reports outside a debug-to-implementation crossing warn and require manual verification; they are not rejected for missing this group.
+- Absence of this group in ordinary work remains valid and must not block the receiver.
 
 ## 5. Pre-Execution Group
 
-Reserved for future scoped pre-execution gates. Current status: advisory placeholder only.
+Optional pre-execution fields describe scoped gates that fire only when their predicate is true. The orchestrator owns the predicates and should not spread heuristic copies across leaf agents.
 
-```yaml
-pre_execution:
-  enabled: false
-  fields: optional
+```text
+AGENT_IO_PRE_EXECUTION v1
+schema_version: agent-io/v1
+diagnosis_crosses_agents: true | false
+change_class: docs | typo | ordinary | api | schema | integration | other
+boundary_contract: <contract, boundary test, executable acceptance check, or none>
+complexity: low | medium | high
+pre_mortem: none | risk=<low|medium|high>; failure_modes=<2-3 concise modes>; assumptions=<concise assumptions>
 ```
+
+Pre-execution rules:
+
+- Gate A fires only when `diagnosis_crosses_agents: true`.
+- Gate B fires only when `change_class` is `api`, `schema`, or `integration`; it asks for a contract, boundary test, or executable acceptance check before production edits.
+- Gate C fires only when `complexity` is `medium` or `high`; low-complexity tasks omit `pre_mortem`.
+- A low, typo, or docs task with no cross-agent diagnosis should skip all three gates.
+- Missing pre-execution metadata in legacy or ordinary dispatches remains a degraded advisory state, not a rejection reason.
 
 ## 6. Advisory Group
 

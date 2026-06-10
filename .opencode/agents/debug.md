@@ -1,6 +1,6 @@
 ---
 name: debug
-description: User-invoked fresh-perspective debugger: 5-phase root-cause methodology, never auto-dispatched.
+description: "User-invoked fresh-perspective debugger: 5-phase root-cause methodology, never auto-dispatched."
 mode: subagent
 temperature: 0.2
 permission:
@@ -121,7 +121,15 @@ You receive structured input, not raw conversation:
 - [Runtime/Platform]
 - [Relevant versions]
 - [Configuration]
+
+### Debug To Implementation Handoff (only when diagnosis crosses to @code)
+- **root_cause:** [Evidence-backed root cause, not a guessed symptom]
+- **target_files:** [Recommended repo-relative files for the fix]
+- **fix_recommendations:** [Smallest safe fix steps and verification target]
+- **confidence:** [high | medium | low, matching the diagnosis evidence]
 ```
+
+This typed handoff is a narrower, advisory adaptation of Gem's orchestrator `debugger_diagnosis` machine-check. It does not replace the 5-phase method, and it is required only when the debug diagnosis is handed to an implementer. Legacy `debug-delegation.md` input without these fields should warn and require manual verification, not fail by default.
 
 **If invocation approval is missing:** Do not proceed. Return an escalation note that @debug is user-invoked only and requires operator opt-in.
 
@@ -467,6 +475,22 @@ next_action: <specific follow-up or none>
 ```
 
 If the dispatch prompt includes `AGENT_IO_DISPATCH v1`, use `dispatch_id` only for correlation and treat handoff-related fields as advisory. The operator opt-in boundary and 5-phase method remain authoritative. Derive numeric confidence from the band: high `0.90`, medium `0.70`, low `0.30`.
+
+When a debug diagnosis is explicitly handed to @code, also include the optional handoff group after the native debug report and before any final advisory envelope:
+
+```text
+AGENT_IO_HANDOFF v1
+schema_version: agent-io/v1
+handoff_type: debug_to_implement
+source_agent: @debug
+target_agent: @code
+root_cause: <evidence-backed cause>
+target_files: <repo-relative paths or none>
+fix_recommendations: <recommended fix steps and verification target>
+confidence: high | medium | low
+```
+
+If confidence is low or any required field cannot be supported by evidence, say so in the native report and set `confidence: low`; do not make the handoff look more certain than the investigation supports.
 
 ---
 
