@@ -7,14 +7,14 @@ trigger_phrases:
   - "create command startup questions"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Scaffold family phase-parent and four leaf aspects; no implementation"
-    next_safe_action: "Plan or implement 003-create-commands/001-inventory-extract"
+    last_updated_at: "2026-06-10T19:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed create command presentation/workflow separation across all four leaf aspects"
+    next_safe_action: "Run future UX checks only if command presentation behavior changes"
     blockers: []
     key_files:
       - "001-inventory-extract/spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-003-create-commands-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Presentation extraction format is Markdown."
@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -89,20 +89,18 @@ Coordinate extraction for create commands commands so each command.md can become
 - This family polishes create-command presentation so scaffolding prompts, dashboards, and result summaries stay concise and template-oriented.
 
 ### Out of Scope
-- Implementation during this scaffold.
-- Rewriting command.md files during this scaffold.
-- Editing workflow YAML files during this scaffold.
-- Changing behavior or routing semantics.
+- Editing workflow YAML files.
+- Changing behavior or routing semantics beyond command-to-asset separation.
+- Other command families.
 
-### Files to Change
-Future implementation scope for audit only. Per-leaf detail lives in the child plans.
+### Files Changed
+Per-leaf detail lives in the child phase folders.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/commands/create/*.md` | Future Review/Modify | 001-003 | Inventory inline presentation and then thin-router rewiring |
-| `.opencode/commands/create/assets/**/*.yaml` | Future Review/Modify | 001-003 | Inventory inline presentation and then thin-router rewiring |
-| `.opencode/commands/create/assets/**/*.yml` | Future Review/Modify | 001-003 | Inventory inline presentation and then thin-router rewiring |
-| Dedicated presentation Markdown files | Future Create | 002 | Startup-question, dashboard, and results-display source of truth |
+| `.opencode/commands/create/*.md` | Modified | 001-003 | Rewritten as thin routers to workflow and presentation assets |
+| `.opencode/commands/create/assets/*.yaml` | Reviewed Only | 001,003 | Existing workflow assets referenced but not edited |
+| `.opencode/commands/create/assets/*_presentation.md` | Created | 002 | Startup-question, dashboard, and results-display source of truth |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -114,10 +112,10 @@ Future implementation scope for audit only. Per-leaf detail lives in the child p
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-inventory-extract/ | Catalog every command Markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out. | Spec-Scaffolded |
-| 2 | 002-author-presentation-md/ | Author dedicated Markdown presentation files that become the single source of truth for startup questions, dashboard templates, and results-display templates per command. | Spec-Scaffolded |
-| 3 | 003-router-rewire/ | Rewrite each command.md as a thin router that points to the workflow file and the presentation Markdown file, preserving behavior and leaving no presentation contract inline. | Spec-Scaffolded |
-| 4 | 004-verify-and-ux/ | Verify startup questions, dashboards, and results render consistently across Claude and GPT-via-opencode, then complete family-specific presentation UX polish. | Spec-Scaffolded |
+| 1 | 001-inventory-extract/ | Catalog every command Markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out. | Completed |
+| 2 | 002-author-presentation-md/ | Author dedicated Markdown presentation files that become the single source of truth for startup questions, dashboard templates, and results-display templates per command. | Completed |
+| 3 | 003-router-rewire/ | Rewrite each command.md as a thin router that points to the workflow file and the presentation Markdown file, preserving behavior and leaving no presentation contract inline. | Completed |
+| 4 | 004-verify-and-ux/ | Verify startup questions, dashboards, and results render consistently across Claude and GPT-via-opencode, then complete family-specific presentation UX polish. | Completed |
 
 ### Phase Transition Rules
 

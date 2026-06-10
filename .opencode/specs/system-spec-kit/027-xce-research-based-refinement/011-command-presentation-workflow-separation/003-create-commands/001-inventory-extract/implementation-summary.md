@@ -1,33 +1,34 @@
 ---
 title: "Implementation Summary: Create Commands - Inventory and Extract"
-description: "Planned - not yet implemented. Level 1 leaf phase for catalog every command markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out."
+description: "Completed inventory for create command presentation/workflow separation."
 trigger_phrases:
-  - "create commands - inventory and extract implementation summary"
-  - "planned scaffold implementation summary"
+  - "create commands inventory extract implementation summary"
+  - "create command presentation inventory complete"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:45:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Inventoried create command routers, workflow YAML assets, and inline presentation contracts"
+    next_safe_action: "Maintain the command-to-asset inventory when create commands change"
     blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
       - "tasks.md"
       - "implementation-summary.md"
+      - ".opencode/commands/create/*.md"
+      - ".opencode/commands/create/assets/*_presentation.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-003-create-commands-001-inventory-extract-planned"
+      session_id: "2026-06-10-003-create-commands-001-inventory-extract-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "All seven create command Markdown files have workflow and presentation asset coverage."
 ---
 # Implementation Summary: Create Commands - Inventory and Extract
 
@@ -41,11 +42,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the leaf as a complete Planned scaffold while preserving completion at 0%.
+The create command family was inventoried across command routers, existing workflow YAML assets, and inline presentation-contract sections.
 
-### Planned Scope
+### Inventory Results
 
-Level 1 leaf phase for catalog every command markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out.
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| Command | Existing Workflow YAML | New Presentation Markdown |
+|---------|------------------------|---------------------------|
+| `agent.md` | `create_agent_auto.yaml`, `create_agent_confirm.yaml` | `create_agent_presentation.md` |
+| `changelog.md` | `create_changelog_auto.yaml`, `create_changelog_confirm.yaml` | `create_changelog_presentation.md` |
+| `feature-catalog.md` | `create_feature_catalog_auto.yaml`, `create_feature_catalog_confirm.yaml` | `create_feature_catalog_presentation.md` |
+| `folder_readme.md` | `create_folder_readme_auto.yaml`, `create_folder_readme_confirm.yaml` | `create_folder_readme_presentation.md` |
+| `sk-skill.md` | `create_sk_skill_auto.yaml`, `create_sk_skill_confirm.yaml` | `create_sk_skill_presentation.md` |
+| `skill.md` | `create_sk_skill_auto.yaml`, `create_sk_skill_confirm.yaml` | `create_skill_presentation.md` |
+| `testing-playbook.md` | `create_testing_playbook_auto.yaml`, `create_testing_playbook_confirm.yaml` | `create_testing_playbook_presentation.md` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +73,7 @@ Level 1 leaf phase for catalog every command markdown file in the family, enumer
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This leaf has not been delivered. Future implementation must update this summary with actual changes and verification evidence.
+Inline startup questions, setup dashboards, and result templates were identified as presentation concerns. Existing YAML files were treated as read-only workflow assets and were not edited.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +83,9 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested minimal placeholders for strict validation, not implementation claims. |
+| Keep YAML read-only | Existing YAML assets already own execution behavior. |
+| Give `/create:skill` a separate presentation file | The command has distinct user-facing command text even though it shares the sk-skill workflow YAML. |
+| Use one presentation file per command | This preserves per-command startup and result wording without duplicating it in routers. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +95,10 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Command inventory | 7 command Markdown files accounted for |
+| Workflow asset inventory | 12 existing YAML files referenced; none edited |
+| Presentation inventory | 7 new presentation Markdown files planned and created |
+| Sufficiency artifact | `REFERENCE_CHECK=PASS` confirms router references resolve to existing assets |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +106,5 @@ This leaf has not been delivered. Future implementation must update this summary
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or workflow files have been changed.
+No out-of-scope command family or workflow YAML changes were made.
 <!-- /ANCHOR:limitations -->

@@ -1,33 +1,34 @@
 ---
 title: "Implementation Summary: Create Commands - Verify and UX"
-description: "Planned - not yet implemented. Level 1 leaf phase for verify startup questions, dashboards, and results render consistently across claude and gpt-via-opencode, then complete family-specific presentation ux polish."
+description: "Completed static UX and reference verification for create command presentation/workflow separation."
 trigger_phrases:
-  - "create commands - verify and ux implementation summary"
-  - "planned scaffold implementation summary"
+  - "create commands verify ux complete"
+  - "create command presentation verification"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:45:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Verified router-to-asset references and presentation-contract coverage"
+    next_safe_action: "Use validation output as final completion evidence"
     blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
       - "tasks.md"
       - "implementation-summary.md"
+      - ".opencode/commands/create/*.md"
+      - ".opencode/commands/create/assets/*_presentation.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-003-create-commands-004-verify-and-ux-planned"
+      session_id: "2026-06-10-003-create-commands-004-verify-and-ux-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Static UX contracts use plain Markdown and deterministic tables/prompts for model-neutral rendering."
 ---
 # Implementation Summary: Create Commands - Verify and UX
 
@@ -41,11 +42,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the leaf as a complete Planned scaffold while preserving completion at 0%.
+Static UX verification was completed for the create command separation. Presentation files under `.opencode/commands/create/assets/*_presentation.md` use consistent sections for Phase 0 display, auto setup, consolidated startup prompt, setup dashboard, and completion result templates.
 
-### Planned Scope
+### Verification Scope
 
-Level 1 leaf phase for verify startup questions, dashboards, and results render consistently across claude and gpt-via-opencode, then complete family-specific presentation ux polish.
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| Area | Evidence |
+|------|----------|
+| Startup questions | Consolidated prompt section exists in each presentation file |
+| Dashboard layout | Setup dashboard table exists in each presentation file |
+| Results display | Completion result template exists in each presentation file |
+| Router references | Each command router references presentation Markdown and workflow YAML assets |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +70,7 @@ Level 1 leaf phase for verify startup questions, dashboards, and results render 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This leaf has not been delivered. Future implementation must update this summary with actual changes and verification evidence.
+The implementation uses static Markdown contracts rather than runtime rendering. This keeps the display source deterministic and reviewable while preserving workflow YAML behavior.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +80,9 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested minimal placeholders for strict validation, not implementation claims. |
+| Prefer plain text and tables | They render consistently across model surfaces. |
+| Keep UX checks static | The requested scope banned daemon/runtime touches. |
+| Report out-of-scope instead of fixing | Workflow YAML and other command families were explicitly banned. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +92,9 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Broken-reference check | `REFERENCE_CHECK=PASS` |
+| Presentation contract coverage | Startup, dashboard, and results sections present in all presentation files |
+| Strict validation | `validate.sh --strict` passed for the parent and all four leaf folders |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +102,5 @@ This leaf has not been delivered. Future implementation must update this summary
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or workflow files have been changed.
+No live command invocation or cross-model runtime rendering was performed because the task explicitly prohibited daemon touch and requested static command-architecture changes.
 <!-- /ANCHOR:limitations -->
