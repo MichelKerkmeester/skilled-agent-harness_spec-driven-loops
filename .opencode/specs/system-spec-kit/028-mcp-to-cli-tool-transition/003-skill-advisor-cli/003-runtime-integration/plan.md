@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration"
-    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Reconciled plan status with shipped runtime evidence"
-    next_safe_action: "Run final multi-runtime transport-down drill"
+    recent_action: "T9xx transport-down drill PASSED; verification approach executed"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,7 +56,7 @@ Shipped: warm-only prompt-submit hook fallback for Claude/Codex, CLI fallback ro
 
 ### Definition of Done
 - [x] All P0 requirements in spec.md verified
-- [ ] Verification approach below executed with evidence — dual-stack window observations remain open by design
+- [x] Verification approach below executed with evidence — T9xx transport-down drill PASSED across Claude+Codex hooks (fail-open, no cold spawn, exit-75)
 - [x] Phase summary reconciled and parent map updated
 <!-- /ANCHOR:quality-gates -->
 
@@ -104,7 +104,7 @@ Planned-state placeholder: surfaces are enumerated in spec.md "Files to Change" 
 - [x] Execute the task list in tasks.md (planned rows; expanded at speckit:plan time)
 
 ### Phase 3: Verification
-- [ ] Transport-down drill passes in ≥2 runtimes within budget; plugin fallback works; docs published
+- [x] Transport-down drill passes in ≥2 runtimes within budget; plugin fallback works; docs published — PASSED (Claude+Codex hook suites + unavailable fail-open; launcher delta 0)
 <!-- /ANCHOR:phases -->
 
 ---

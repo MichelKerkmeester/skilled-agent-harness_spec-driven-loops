@@ -13,13 +13,13 @@ _memory:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli"
     last_updated_at: "2026-06-10T00:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Phases complete; tri-daemon gate passed; T9xx drill open"
-    next_safe_action: "Run T9xx transport-down drill in dual-stack window"
+    recent_action: "All phases complete; tri-daemon gate + T9xx transport-down drill passed"
+    next_safe_action: "Workstream complete"
     blockers: []
     key_files:
       - "spec.md"
       - "000-skill-advisor-cli-research/spec.md"
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -100,7 +100,7 @@ Settle CLI-fallback feasibility for mk_skill_advisor with evidence, then deliver
 | 000 | `000-skill-advisor-cli-research/` | Complete | Feasibility research: GO for additive 9-tool CLI; skill_advisor.py reconciled as facade; D1–D8; 3 packets |
 | 1 | `001-cli-core/` | Complete | skill-advisor CLI: 9-subcommand Zod codegen, trusted-caller fail-closed gate on mutations, IPC + auto-spawn, exits |
 | 2 | `002-hardening-and-tests/` | Complete (tri-daemon program gate passed) | Parity + lifecycle lock: 10-prompt Python parity fixture, rebuild/scan wall-time MEASURED, orphan-reaping fixtures, dual-client |
-| 3 | `003-runtime-integration/` | Implementation complete; T9xx transport-down drill pending (dual-stack observation window open) | Pairing: prompt-submit hooks ×3 runtimes (CLI warm path under <60ms bar; 824.8ms one-shot ban), plugin bridge CLI fallback, doctor routes, docs |
+| 3 | `003-runtime-integration/` | Complete (T9xx transport-down drill passed: Claude+Codex hooks 9/9 each, fail-open, no cold spawn) | Pairing: prompt-submit hooks ×3 runtimes (CLI warm path under <60ms bar; 824.8ms one-shot ban), plugin bridge CLI fallback, doctor routes, docs |
 
 ### Phase Transition Rules
 

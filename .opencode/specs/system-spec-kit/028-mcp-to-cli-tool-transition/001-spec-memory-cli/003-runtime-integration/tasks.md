@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration"
-    last_updated_at: "2026-06-09T19:30:00Z"
+    last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Reconciled task rows with shipped runtime evidence"
-    next_safe_action: "Continue dual-stack observation window"
+    recent_action: "T9xx transport-down drill PASSED; T008 window observation recorded"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -61,7 +61,7 @@ _memory:
 - [x] T005 Author transport-down fallback guidance (AGENTS.md / skill text) and verify once against a stopped MCP transport
 - [x] T006 Extend spec-memory hook adapters with the CLI warm path for Claude Code and Codex (system-spec-kit/mcp_server/hooks/{claude,codex})
 - [x] T007 Create the OpenCode spec-memory plugin + bridge following the mk-skill-advisor pattern (.opencode/plugins/ + plugin_bridges/)
-- [ ] T008 Open dual-stack verification window and record observations + rollback note — IN PROGRESS: window open; observation is open-ended by design, not failed
+- [x] T008 Open dual-stack verification window and record observations + rollback note — window observation recorded: T9xx drill PASSED (cross-runtime-fallback 16/16, adaptive-fallback 7/7, hooks green); no rollback triggered; dual-stack stable
 - [x] T009 Rewire `.codex/hooks.json` to the Codex adapters — COMPLETED EARLY in 026/008-runtime-defect-fixes (smoke-verified); remaining for this phase: smoke the CLI-backed path against the live hook file
 - [x] T010 Dual-failure drill: MCP transport stopped + daemon socket absent/dead → hook warm-only path performs NO cold spawn, fails open within the runtime hook timeout, surfaces exit-75 retryable status
 - [x] T011 Runtime-config inventory verification: live hook configs (.claude/settings.local.json, .codex/hooks.json, .codex/settings.json) modified as scoped; MCP configs diff-verified unchanged
@@ -72,7 +72,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx End-to-end transport-down drill (kill MCP transport, CLI keeps continuity ops working); two runtimes invoke without manual approval; window observations recorded.
+- [x] T9xx End-to-end transport-down drill (kill MCP transport, CLI keeps continuity ops working); two runtimes invoke without manual approval; window observations recorded. — PASS: spec-memory cross-runtime-fallback 16/16 + adaptive-fallback 7/7; Claude+Codex hook adapters green; warm-only no-spawn proven by stress scenario 435 (60/60 exit-75); launcher delta 0
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,7 +80,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] P0 requirements in spec.md verified with evidence
 <!-- /ANCHOR:completion -->

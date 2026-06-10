@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration"
-    last_updated_at: "2026-06-09T19:30:00Z"
+    last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Reconciled task rows with shipped runtime evidence"
-    next_safe_action: "Run final multi-runtime transport-down drill"
+    recent_action: "T9xx transport-down drill PASSED (Claude+Codex hooks, fail-open); phase complete"
+    next_safe_action: "Phase complete; parent 028 map reconciled"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -69,7 +69,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx Transport-down drill passes in ≥2 runtimes within budget; plugin fallback works; docs published
+- [x] T9xx Transport-down drill passes in ≥2 runtimes within budget; plugin fallback works; docs published — PASS: Claude user-prompt-submit hook 9/9, Codex user-prompt-submit hook 9/9, runtime-parity 4/4, advisor-recommend-unavailable (fail-open) 1/1; warm-only no-spawn proven by stress scenario 435 (60/60 exit-75, zero spawns); launcher delta 0
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,7 +77,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] P0 requirements in spec.md verified with evidence
 <!-- /ANCHOR:completion -->

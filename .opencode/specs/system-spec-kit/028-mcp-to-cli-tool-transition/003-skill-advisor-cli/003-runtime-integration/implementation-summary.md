@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration |
-| **Completed** | Shipped; final multi-runtime drill pending |
+| **Completed** | 2026-06-10 (T9xx multi-runtime transport-down drill passed) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 

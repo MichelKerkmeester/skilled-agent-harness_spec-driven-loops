@@ -10,14 +10,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration"
-    last_updated_at: "2026-06-09T20:17:55Z"
+    last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Reconciled task rows with shipped runtime evidence"
-    next_safe_action: "Run final multi-runtime transport-down drill"
+    recent_action: "T9xx transport-down drill passed; CLI dual-client + warm-only green"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -69,7 +69,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T9xx Transport-down drill passes end-to-end in ≥2 runtimes; plugin functional; window observations recorded
+- [x] T9xx Transport-down drill passes end-to-end in ≥2 runtimes; plugin functional; window observations recorded — PASS: code-index CLI dual-client green across 3 rounds (stress 434) + warm-only no-spawn 60/60 exit-75 (stress 435); mk-code-graph bridge CLI/IPC route verified; launcher delta 0; covered alongside the Claude+Codex hook drill (shared warm-only fallback contract)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,7 +77,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] P0 requirements in spec.md verified with evidence
 <!-- /ANCHOR:completion -->

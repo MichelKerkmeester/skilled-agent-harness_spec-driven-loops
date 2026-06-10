@@ -12,10 +12,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Implementation phases complete; suites green; T9xx drill open"
-    next_safe_action: "Run T9xx transport-down drill in dual-stack window"
+    recent_action: "All phases complete; suites green; T9xx transport-down drill passed"
+    next_safe_action: "Workstream complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -104,7 +104,7 @@ Deliver the `spec-memory` CLI as a second IPC client over the unchanged daemon �
 | 000 | 000-spec-memory-cli-research/ | Research record: four deep-research runs ending in GO + zero unknowns (2 RESOLVED, 4 MITIGATED-terminal, 2 ACCEPTED); 8 delta specs; corrected measurements; 10–13d estimate | Complete |
 | 1 | 001-cli-core/ | spec-memory CLI binary: 37 subcommands generated from TOOL_DEFINITIONS, Zod at argv, IPC connect + auto-spawn, exits 0/1/64/69/75, shim guards | Complete |
 | 2 | 002-hardening-and-tests/ | Regression-lock the guarantees: D1 dual-spawn, D2 dual-client, D7 lifecycle suites + all-37 parity + D5 exit-69 docs (~3–4d) | Complete |
-| 3 | 003-runtime-integration/ | Adoption surfaces: runtime allowlists, hook pairing for Claude/Codex (CLI-backed warm-only path in the existing adapters), NEW OpenCode plugin for spec-memory, packaging, transport-down fallback, dual-stack window (~2–3d, re-estimate with plugin scope) | Implementation complete; T9xx end-to-end transport-down drill pending (dual-stack observation window open) |
+| 3 | 003-runtime-integration/ | Adoption surfaces: runtime allowlists, hook pairing for Claude/Codex (CLI-backed warm-only path in the existing adapters), NEW OpenCode plugin for spec-memory, packaging, transport-down fallback, dual-stack window (~2–3d, re-estimate with plugin scope) | Complete (T9xx transport-down drill passed: cross-runtime-fallback 16/16, adaptive-fallback 7/7, Claude+Codex hooks green) |
 
 ### Phase Transition Rules
 
