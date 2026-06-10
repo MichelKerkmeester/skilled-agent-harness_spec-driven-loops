@@ -25,6 +25,11 @@ import {
   type GraphBfsNeighbor,
   type GraphBfsPathStep,
 } from '../lib/graph/bfs-traversal.js';
+import {
+  isCodeGraphBm25SymbolResolverEnabled,
+  resolveSymbolBm25Candidates,
+  type SymbolBm25Candidate,
+} from '../lib/symbol-bm25-resolver.js';
 // Emit a stable failure-counter metric so operators can distinguish DB /
 // compute failures from legitimately empty blast radii.
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../lib/shared/metrics-stub.js';
@@ -58,6 +63,7 @@ const SUPPORTED_EDGE_TYPES = [
 
 const SUPPORTED_EDGE_TYPE_SET = new Set<string>(SUPPORTED_EDGE_TYPES);
 const AMBIGUOUS_SUBJECT_WARNING_CANDIDATE_LIMIT = 10;
+const SYMBOL_BM25_SUGGESTION_LIMIT = 5;
 const SUPPORTED_RELATIONSHIP_OPERATIONS = [
   'calls_from',
   'calls_to',
@@ -137,6 +143,7 @@ interface ResolvedSubject {
   symbolId: string | null;
   selectedCandidate?: SubjectCandidateMetadata;
   warnings?: AmbiguousSubjectWarning[];
+  suggestions?: SymbolBm25Candidate[];
 }
 
 interface SubjectCandidateMetadata {
@@ -367,6 +374,41 @@ function buildAmbiguousSubjectWarning(
   };
 }
 
+function querySymbolBm25Suggestions(subject: string): SymbolBm25Candidate[] {
+  if (!isCodeGraphBm25SymbolResolverEnabled()) {
+    return [];
+  }
+
+  return resolveSymbolBm25Candidates(
+    subject,
+    graphDb.querySymbolIndexRows(),
+    { limit: SYMBOL_BM25_SUGGESTION_LIMIT },
+  );
+}
+
+function buildUnresolvedSubjectError(subject: string, suggestions: SymbolBm25Candidate[]) {
+  const base = {
+    status: 'error' as const,
+    error: `Could not resolve subject: ${subject}`,
+  };
+
+  if (suggestions.length === 0) {
+    return base;
+  }
+
+  return {
+    ...base,
+    data: {
+      symbolResolution: {
+        resolver: 'bm25',
+        disambiguationOnly: true,
+        message: 'No exact symbol match was found. These are candidate symbols only; use a symbolId, fqName, or exact name to run a structural query.',
+        candidates: suggestions,
+      },
+    },
+  };
+}
+
 /** Resolve a subject string to a symbolId */
 function resolveSubject(
   subject: string,
@@ -439,7 +481,7 @@ function resolveSubject(
     };
   }
 
-  return { symbolId: null };
+  return { symbolId: null, suggestions: querySymbolBm25Suggestions(subject) };
 }
 
 // Readiness helpers extracted to lib/code-graph/readiness-contract.ts so the
@@ -1602,7 +1644,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     return {
       content: [{
         type: 'text',
-        text: JSON.stringify({ status: 'error', error: `Could not resolve subject: ${subject}` }),
+        text: JSON.stringify(buildUnresolvedSubjectError(subject, resolvedSubject.suggestions ?? [])),
       }],
     };
   }

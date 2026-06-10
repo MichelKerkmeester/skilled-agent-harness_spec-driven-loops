@@ -1,14 +1,14 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver",
-  "description": "Feature Specification: Phase 9: codegraph-bm25-symbol-resolver",
+  "description": "Completed optional default-off BM25 symbol resolver for code-graph disambiguation-only suggestions",
   "keywords": [
     "feature",
     "specification",
     "phase",
     "codegraph-bm25-symbol-resolver"
   ],
-  "lastUpdated": "2026-06-10T19:41:56.143Z",
+  "lastUpdated": "2026-06-10T21:38:20Z",
   "specId": "009",
   "folderSlug": "codegraph-bm25-symbol-resolver",
   "parentChain": [

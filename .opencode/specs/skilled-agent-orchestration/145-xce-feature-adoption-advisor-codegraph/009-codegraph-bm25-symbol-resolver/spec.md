@@ -11,17 +11,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #9"
-    next_safe_action: "Plan a disambiguation-only fuzzy resolver"
+    last_updated_at: "2026-06-10T21:38:20Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented fallback-only BM25 symbol suggestions"
+    next_safe_action: "Keep BM25 resolver default-off"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/symbol-bm25-resolver.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/symbol-bm25-resolver.vitest.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/009-codegraph-bm25-symbol-resolver"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +51,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -108,9 +113,9 @@ Adopt a packed BM25/BM25F resolver as an optional, disambiguation-only path: whe
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `system-code-graph/mcp_server/handlers/query.ts` (~:202-235) | Modify | Fall back to fuzzy resolver only when exact match fails/ambiguous |
-| `system-code-graph/mcp_server/lib/code-graph-db.ts` | Modify | Provide symbol-field rows for the index |
-| `system-code-graph/mcp_server/lib/symbol-lexical-index.ts` | Create | Packed BM25/BM25F index over symbol fields (disambiguation-only) |
+| `system-code-graph/mcp_server/handlers/query.ts` (~:202-235) | Modified | Fall back to symbol suggestions only when exact subject matching returns no symbol and the opt-in flag is enabled |
+| `system-code-graph/mcp_server/lib/code-graph-db.ts` | Modified | Added a read-only symbol-field row accessor for resolver indexing |
+| `system-code-graph/mcp_server/lib/symbol-bm25-resolver.ts` | Created | Packed BM25F index over symbol fields for disambiguation-only candidates |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -159,8 +164,13 @@ Adopt a packed BM25/BM25F resolver as an optional, disambiguation-only path: whe
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Is this phase worth doing at all, or should it stay a documented backlog item until a real disambiguation pain point appears?
-- What ambiguity threshold (exact-match count) triggers the resolver, and how many candidates does it return?
+None remaining.
+
+Answered decisions:
+- The resolver shipped because the user explicitly requested phase implementation.
+- The trigger threshold is strict: the resolver runs only when `symbol_id`, `fq_name`, and `name` exact matching all miss. Existing exact and ambiguous exact-match behavior remains unchanged.
+- The suggestion limit is five candidates.
+- The resolver is enabled only by `SPECKIT_CODE_GRAPH_BM25_SYMBOL_RESOLVER` values `1`, `true`, `yes`, `on`, `experimental`, or `fallback`.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -123,6 +123,17 @@ export interface CodeGraphTombstoneSummary {
   readonly recent: CodeGraphTombstoneRecord[];
 }
 
+export interface SymbolIndexRow {
+  readonly symbolId: string;
+  readonly fqName: string | null;
+  readonly name: string | null;
+  readonly kind: string | null;
+  readonly filePath: string | null;
+  readonly startLine: number | null;
+  readonly signature: string | null;
+  readonly docstring: string | null;
+}
+
 export interface DeleteAuditOptions {
   readonly reason?: string;
 }
@@ -1219,6 +1230,35 @@ export function queryStartupHighlights(limit: number = 5): StartupHighlight[] {
     kind: row.kind,
     filePath: row.file_path,
     callCount: row.call_count,
+  }));
+}
+
+export function querySymbolIndexRows(): SymbolIndexRow[] {
+  const d = getDb();
+  const rows = d.prepare(`
+    SELECT symbol_id, fq_name, name, kind, file_path, start_line, signature, docstring
+    FROM code_nodes
+    ORDER BY file_path, start_line, symbol_id
+  `).all() as Array<{
+    symbol_id: string;
+    fq_name: string | null;
+    name: string | null;
+    kind: string | null;
+    file_path: string | null;
+    start_line: number | null;
+    signature: string | null;
+    docstring: string | null;
+  }>;
+
+  return rows.map((row) => ({
+    symbolId: row.symbol_id,
+    fqName: row.fq_name,
+    name: row.name,
+    kind: row.kind,
+    filePath: row.file_path,
+    startLine: row.start_line,
+    signature: row.signature,
+    docstring: row.docstring,
   }));
 }
 
