@@ -23,6 +23,7 @@ import {
   recordTierDowngradeAudit,
 } from '../lib/governance/scope-governance.js';
 import { isConstitutionalPath } from '../lib/utils/index-scope.js';
+import { scrubSecrets, SecretScrubberError } from '../lib/parsing/secret-scrubber.js';
 import { toErrorMessage } from '../utils/index.js';
 
 import { recordHistory } from '../lib/storage/history.js';
@@ -52,8 +53,8 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
 
   const {
     id,
-    title,
-    triggerPhrases,
+    title: rawTitle,
+    triggerPhrases: rawTriggerPhrases,
     importanceWeight,
     importanceTier,
     allowPartialUpdate = false,
@@ -61,6 +62,32 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
 
   if (typeof id !== 'number') {
     throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, 'id is required', { param: 'id' });
+  }
+
+  // Title and trigger phrases are persisted/indexed fields written outside
+  // the parse path, so they get the same pre-index secret redaction. A
+  // scrubber failure refuses this write (fail-closed) rather than persisting
+  // potentially unscrubbed text.
+  let title = rawTitle;
+  let triggerPhrases = rawTriggerPhrases;
+  try {
+    if (typeof title === 'string') {
+      title = scrubSecrets(title);
+    }
+    if (Array.isArray(triggerPhrases)) {
+      triggerPhrases = triggerPhrases.map((phrase) => (
+        typeof phrase === 'string' ? scrubSecrets(phrase) : phrase
+      ));
+    }
+  } catch (error: unknown) {
+    if (error instanceof SecretScrubberError) {
+      throw new MemoryError(
+        ErrorCodes.INVALID_PARAMETER,
+        `Update refused: ${error.message}`,
+        { param: 'title/triggerPhrases', memoryId: id },
+      );
+    }
+    throw error;
   }
 
   if (importanceWeight !== undefined && (typeof importanceWeight !== 'number' || importanceWeight < 0 || importanceWeight > 1)) {

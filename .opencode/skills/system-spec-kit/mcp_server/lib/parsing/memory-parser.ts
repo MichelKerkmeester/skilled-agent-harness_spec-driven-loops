@@ -35,6 +35,7 @@ import {
   perFolderDescriptionSchema,
   formatDescriptionSchemaIssues,
 } from '../description/description-schema.js';
+import { scrubSecretsDetailed } from './secret-scrubber.js';
 
 export { getCanonicalPathKey };
 
@@ -256,6 +257,19 @@ export function parseMemoryContent(
   content: string,
   options: { lastModified?: string } = {},
 ): ParsedMemory {
+  // Secret redaction runs at the head of the write/index path, BEFORE
+  // content-hash, embedding, FTS, and every persisted field derived from
+  // content (title, trigger phrases, normalized text). A scrubber failure
+  // throws and refuses the write (fail-closed) instead of persisting raw
+  // text; clean content passes through unchanged.
+  const scrubResult = scrubSecretsDetailed(content);
+  if (scrubResult.redactions > 0) {
+    console.warn(
+      `[memory-parser] Redacted ${scrubResult.redactions} secret(s) [${scrubResult.kinds.join(', ')}] from ${path.basename(filePath)} before indexing`,
+    );
+    content = scrubResult.text;
+  }
+
   // Infer document type from file path.
   const documentType = extractDocumentType(filePath);
 

@@ -63,6 +63,17 @@ function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
+/**
+ * Classify edge provenance as automatic. Covers the legacy 'auto' creator and
+ * namespaced automatic creators such as 'auto-session'. Shared by the insert
+ * cap path and the consolidation strengthening cap so the two sites cannot
+ * drift. Non-auto values ('manual', 'automatic', 'author') must not match.
+ */
+function isAutoEdgeCreator(createdBy: string | null | undefined): boolean {
+  return createdBy === 'auto'
+    || (typeof createdBy === 'string' && createdBy.startsWith('auto-'));
+}
+
 function clampStrength(strength: number): number | null {
   if (!Number.isFinite(strength)) return null;
   return Math.max(0, Math.min(1, strength));
@@ -267,7 +278,7 @@ function insertEdge(
   const database = db;
 
   // NFR-R01: Auto edges capped at MAX_AUTO_STRENGTH
-  const effectiveStrength = createdBy === 'auto'
+  const effectiveStrength = isAutoEdgeCreator(createdBy)
     ? Math.min(strength, MAX_AUTO_STRENGTH)
     : strength;
 
@@ -280,7 +291,7 @@ function insertEdge(
   // Implementing FK validation would require seeding memory_index in 20+ causal edge tests.
 
   // NFR-R01: Edge bounds — reject if node already has MAX_EDGES_PER_NODE auto edges
-  if (createdBy === 'auto') {
+  if (isAutoEdgeCreator(createdBy)) {
     const edgeCount = countEdgesForNode(sourceId);
     if (edgeCount >= MAX_EDGES_PER_NODE) {
       console.warn(`[causal-edges] Edge bounds: node ${sourceId} has ${edgeCount} edges (max ${MAX_EDGES_PER_NODE}), rejecting auto edge`);
@@ -311,7 +322,7 @@ function insertEdge(
       // To write a weight_history row after the upsert. The subsequent INSERT
       // Uses last_insert_rowid() to avoid a second post-upsert SELECT.
       const existing = (database.prepare(`
-        SELECT id, strength FROM causal_edges
+        SELECT id, strength, created_by FROM causal_edges
         WHERE source_id = ? AND target_id = ? AND relation = ?
           AND COALESCE(source_anchor, '') = COALESCE(?, '')
           AND COALESCE(target_anchor, '') = COALESCE(?, '')
@@ -321,7 +332,17 @@ function insertEdge(
         relation,
         anchors.sourceAnchor ?? null,
         anchors.targetAnchor ?? null,
-      ) as { id: number; strength: number } | undefined;
+      ) as { id: number; strength: number; created_by: string | null } | undefined;
+
+      // Manual/curated edges must never be overwritten by automatic writers:
+      // an auto upsert against a non-auto row is skipped so curated provenance
+      // and strength survive. Auto-to-auto updates remain allowed under caps.
+      if (existing && isAutoEdgeCreator(createdBy) && !isAutoEdgeCreator(existing.created_by ?? 'manual')) {
+        console.warn(
+          `[causal-edges] Preserving non-auto edge ${existing.id} (created_by=${existing.created_by ?? 'manual'}); skipped overwrite by ${createdBy}`,
+        );
+        return 0;
+      }
 
       if (existing) {
         (database.prepare(`
@@ -1056,6 +1077,7 @@ export {
   DECAY_PERIOD_DAYS,
 
   init,
+  isAutoEdgeCreator,
   enforceRelationWindowCap,
   insertEdge,
   insertEdgesBatch,

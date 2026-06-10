@@ -272,6 +272,145 @@ describe('memory retention sweep', () => {
     expect((db.prepare('SELECT COUNT(*) AS count FROM vec_memories WHERE rowid = 2').get() as { count: number }).count).toBe(1);
   });
 
+  describe('tier basement protection', () => {
+    function insertTieredMemory(
+      db: ReturnType<typeof createMemoryIndexTestDatabase>,
+      id: number,
+      deleteAfter: string | null,
+      overrides: { tier?: string | null; isPinned?: number; accessCount?: number; lastAccessed?: number } = {},
+    ): void {
+      insertMemory(db, id, deleteAfter, `tiered ${id}`);
+      db.prepare(`
+        UPDATE memory_index
+        SET importance_tier = ?, is_pinned = ?, access_count = ?, last_accessed = ?
+        WHERE id = ?
+      `).run(
+        overrides.tier === undefined ? 'normal' : overrides.tier,
+        overrides.isPinned ?? 0,
+        overrides.accessCount ?? 0,
+        overrides.lastAccessed ?? 0,
+        id,
+      );
+    }
+
+    function protectedAuditRows(db: ReturnType<typeof createMemoryIndexTestDatabase>): Array<{ memory_id: number; decision: string; reason: string }> {
+      return db.prepare(`
+        SELECT memory_id, decision, reason FROM governance_audit
+        WHERE action = 'retention_sweep' AND decision = 'deny'
+        ORDER BY memory_id
+      `).all() as Array<{ memory_id: number; decision: string; reason: string }>;
+    }
+
+    it('does not delete an expired constitutional row on TTL expiry alone', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'constitutional' });
+
+      const result = runMemoryRetentionSweep(db);
+
+      expect(result.swept).toBe(0);
+      expect(result.deletedIds).toEqual([]);
+      expect(result.protectedCount).toBe(1);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1]);
+      expect(protectedAuditRows(db)).toEqual([
+        { memory_id: 1, decision: 'deny', reason: 'retention_tier_protected' },
+      ]);
+    });
+
+    it('does not delete an expired critical row on TTL expiry alone', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'critical' });
+
+      const result = runMemoryRetentionSweep(db);
+
+      expect(result.swept).toBe(0);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1]);
+    });
+
+    it('does not delete an expired pinned row even with a normal tier', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'normal', isPinned: 1 });
+
+      const result = runMemoryRetentionSweep(db);
+
+      expect(result.swept).toBe(0);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1]);
+    });
+
+    it('still deletes unprotected expired rows alongside protected ones', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'constitutional' });
+      insertTieredMemory(db, 2, isoOffset(-3_600_000), { tier: 'normal' });
+      insertTieredMemory(db, 3, isoOffset(-3_600_000), { tier: 'temporary' });
+      insertTieredMemory(db, 4, isoOffset(3_600_000), { tier: 'normal' });
+
+      const result = runMemoryRetentionSweep(db);
+
+      expect(result.swept).toBe(2);
+      expect(result.deletedIds).toEqual([2, 3]);
+      expect(result.protectedCount).toBe(1);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1, 4]);
+    });
+
+    it('treats a null tier conservatively as unprotected without crashing', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: null });
+
+      const result = runMemoryRetentionSweep(db);
+
+      expect(result.swept).toBe(1);
+      expect(result.deletedIds).toEqual([1]);
+      expect(result.protectedIds).toEqual([]);
+      expect(memoryIds(db)).toEqual([]);
+    });
+
+    it('protects constitutional rows on a legacy schema without pin/decay columns', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+      insertMemory(db, 1, isoOffset(-3_600_000), 'legacy constitutional');
+      db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = 1').run('constitutional');
+
+      const result = runMemoryRetentionSweep(db);
+
+      expect(result.swept).toBe(0);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1]);
+    });
+
+    it('dry-run reports which expired candidates would be protected', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'critical' });
+      insertTieredMemory(db, 2, isoOffset(-3_600_000), { tier: 'normal' });
+
+      const result = runMemoryRetentionSweep(db, { dryRun: true });
+
+      expect(result.swept).toBe(0);
+      expect(result.candidates.map((row) => row.id)).toEqual([1, 2]);
+      expect(result.protectedCount).toBe(1);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1, 2]);
+    });
+
+    it('selects tier and usage fields on the expired-row candidates', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'critical', isPinned: 1, accessCount: 7, lastAccessed: 1234 });
+
+      const result = runMemoryRetentionSweep(db, { dryRun: true });
+
+      expect(result.candidates).toHaveLength(1);
+      expect(result.candidates[0]).toMatchObject({
+        id: 1,
+        importanceTier: 'critical',
+        isPinned: 1,
+        accessCount: 7,
+        lastAccessed: 1234,
+        decayHalfLifeDays: 90,
+      });
+    });
+  });
+
   it('keeps future rows written through another file-backed connection', async () => {
     const dir = mkdtempSync(join(tmpdir(), 'retention-sweep-'));
     const dbPath = join(dir, 'memory.sqlite');

@@ -18,6 +18,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import { isMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as embeddings from '../lib/providers/embeddings.js';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+import { getRedactionStats } from '../lib/parsing/secret-scrubber.js';
 import * as incrementalIndex from '../lib/storage/incremental-index.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
@@ -987,6 +988,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         totalRecorded: routingTelemetry.totalRecorded,
         windowSize: routingTelemetry.windowSize,
       },
+      redaction: getRedactionStats(),
       ...(fullMemoryReport ?? {}),
     },
     hints,

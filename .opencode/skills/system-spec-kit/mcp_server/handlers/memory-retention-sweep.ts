@@ -35,9 +35,12 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
 
   try {
     const result = runMemoryRetentionSweep(database, { dryRun: args?.dryRun === true });
+    const protectedSuffix = result.protectedCount > 0
+      ? `; protected ${result.protectedCount} high-tier/pinned row(s)`
+      : '';
     const summary = result.dryRun
-      ? `Dry-run found ${result.candidates.length} expired memory row(s); no rows deleted`
-      : `Swept ${result.swept} expired memory row(s); retained ${result.retained}`;
+      ? `Dry-run found ${result.candidates.length} expired memory row(s); no rows deleted${protectedSuffix}`
+      : `Swept ${result.swept} expired memory row(s); retained ${result.retained}${protectedSuffix}`;
 
     const hints: string[] = [];
     if (result.ledgerRecorded === false) {
@@ -62,6 +65,8 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
           filePath: candidate.filePath,
         })),
         deletedIds: result.deletedIds,
+        protectedCount: result.protectedCount,
+        protectedIds: result.protectedIds,
         ledgerRecorded: result.ledgerRecorded,
       },
       hints,

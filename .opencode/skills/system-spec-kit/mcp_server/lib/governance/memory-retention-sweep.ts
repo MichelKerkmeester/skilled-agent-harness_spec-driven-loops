@@ -14,7 +14,13 @@ export interface MemoryRetentionSweepArgs {
   dryRun?: boolean;
 }
 
-/** Expired memory_index row selected for retention deletion. */
+/**
+ * Expired memory_index row selected for retention deletion.
+ *
+ * Beyond `delete_after`, the row carries tier and usage metadata so the
+ * destructive delete decision can protect high-tier and pinned records:
+ * deletion must never be driven by TTL expiry alone.
+ */
 export interface RetentionExpiredRow {
   id: number;
   specFolder: string | null;
@@ -25,12 +31,18 @@ export interface RetentionExpiredRow {
   agentId: string | null;
   sessionId: string | null;
   deleteAfter: string;
+  importanceTier: string | null;
+  decayHalfLifeDays: number | null;
+  isPinned: number | null;
+  accessCount: number | null;
+  lastAccessed: string | number | null;
 }
 
 /** Aggregate sweep counts returned to callers and audit logs. */
 export interface MemoryRetentionSweepSummary {
   swept: number;
   retained: number;
+  protectedCount: number;
   dryRun: boolean;
   durationMs: number;
 }
@@ -39,6 +51,7 @@ export interface MemoryRetentionSweepSummary {
 export interface MemoryRetentionSweepResult extends MemoryRetentionSweepSummary {
   candidates: RetentionExpiredRow[];
   deletedIds: number[];
+  protectedIds: number[];
   ledgerRecorded: boolean | null;
 }
 
@@ -49,7 +62,30 @@ function hasTable(database: Database.Database, tableName: string): boolean {
   return row?.present === 1;
 }
 
+/**
+ * Tier/usage columns may be absent on legacy databases that predate the
+ * corresponding migrations. Missing columns are selected as NULL so the
+ * protection decision degrades conservatively instead of crashing the sweep.
+ */
+const OPTIONAL_RETENTION_COLUMNS: ReadonlyArray<{ column: string; alias: string }> = [
+  { column: 'importance_tier', alias: 'importanceTier' },
+  { column: 'decay_half_life_days', alias: 'decayHalfLifeDays' },
+  { column: 'is_pinned', alias: 'isPinned' },
+  { column: 'access_count', alias: 'accessCount' },
+  { column: 'last_accessed', alias: 'lastAccessed' },
+];
+
 function selectExpiredRows(database: Database.Database): RetentionExpiredRow[] {
+  const presentColumns = new Set(
+    (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .map((row) => row.name),
+  );
+  const optionalSelects = OPTIONAL_RETENTION_COLUMNS
+    .map(({ column, alias }) => (presentColumns.has(column)
+      ? `${column} AS ${alias}`
+      : `NULL AS ${alias}`))
+    .join(',\n      ');
+
   return database.prepare(`
     SELECT
       id,
@@ -60,12 +96,32 @@ function selectExpiredRows(database: Database.Database): RetentionExpiredRow[] {
       user_id AS userId,
       agent_id AS agentId,
       session_id AS sessionId,
-      delete_after AS deleteAfter
+      delete_after AS deleteAfter,
+      ${optionalSelects}
     FROM memory_index
     WHERE delete_after IS NOT NULL
       AND datetime(delete_after) < datetime('now')
     ORDER BY datetime(delete_after) ASC, id ASC
   `).all() as RetentionExpiredRow[];
+}
+
+/** Importance tiers that must never be deleted on TTL expiry alone. */
+const PROTECTED_RETENTION_TIERS = new Set(['constitutional', 'critical']);
+
+/**
+ * Tier-aware deletion decision evaluated BEFORE the destructive delete path.
+ * Constitutional/critical tiers and pinned rows are protected from TTL-only
+ * deletion; a null or unknown tier falls back to the pre-existing behavior
+ * (unprotected rows keep deleting) so legacy rows are handled without crashes.
+ */
+function isProtectedFromRetentionDelete(row: RetentionExpiredRow): boolean {
+  const tier = typeof row.importanceTier === 'string'
+    ? row.importanceTier.trim().toLowerCase()
+    : null;
+  if (tier !== null && PROTECTED_RETENTION_TIERS.has(tier)) {
+    return true;
+  }
+  return row.isPinned != null && Number(row.isPinned) !== 0;
 }
 
 // Re-validate inside the delete transaction: a concurrent writer can raise or
@@ -173,10 +229,12 @@ export function runMemoryRetentionSweep(
     return {
       swept: 0,
       retained: 0,
+      protectedCount: 0,
       dryRun,
       durationMs: Date.now() - startTime,
       candidates: [],
       deletedIds: [],
+      protectedIds: [],
       ledgerRecorded: null,
     };
   }
@@ -185,13 +243,18 @@ export function runMemoryRetentionSweep(
 
   if (dryRun || candidates.length === 0) {
     const totalRows = countRows(database);
+    const dryRunProtectedIds = candidates
+      .filter((candidate) => isProtectedFromRetentionDelete(candidate))
+      .map((candidate) => candidate.id);
     return {
       swept: 0,
       retained: totalRows,
+      protectedCount: dryRunProtectedIds.length,
       dryRun,
       durationMs: Date.now() - startTime,
       candidates,
       deletedIds: [],
+      protectedIds: dryRunProtectedIds,
       ledgerRecorded: null,
     };
   }
@@ -199,12 +262,37 @@ export function runMemoryRetentionSweep(
   initHistory(database);
 
   const deletedIds: number[] = [];
+  const protectedIds: number[] = [];
   let ledgerRecorded: boolean | null = null;
 
   const sweepTx = database.transaction(() => {
     for (const candidate of candidates) {
       // TOCTOU guard: skip rows un-expired by another writer since selection.
       if (!isStillExpired(database, candidate.id)) {
+        continue;
+      }
+      // Tier basement: protected rows are never deleted on TTL expiry alone.
+      // Audited as decision='deny' (the delete was denied) with a protection reason.
+      if (isProtectedFromRetentionDelete(candidate)) {
+        protectedIds.push(candidate.id);
+        recordGovernanceAudit(database, {
+          action: 'retention_sweep',
+          decision: 'deny',
+          memoryId: candidate.id,
+          logicalKey: candidate.filePath,
+          tenantId: candidate.tenantId ?? undefined,
+          userId: candidate.userId ?? undefined,
+          agentId: candidate.agentId ?? undefined,
+          sessionId: candidate.sessionId ?? undefined,
+          reason: 'retention_tier_protected',
+          metadata: {
+            originalDeleteAfter: candidate.deleteAfter,
+            importanceTier: candidate.importanceTier,
+            isPinned: candidate.isPinned,
+            specFolder: candidate.specFolder,
+            filePath: candidate.filePath,
+          },
+        });
         continue;
       }
       const deleted = vectorIndex.deleteMemory(candidate.id, database);
@@ -259,10 +347,12 @@ export function runMemoryRetentionSweep(
   return {
     swept: deletedIds.length,
     retained: countRows(database),
+    protectedCount: protectedIds.length,
     dryRun,
     durationMs: Date.now() - startTime,
     candidates,
     deletedIds,
+    protectedIds,
     ledgerRecorded,
   };
 }

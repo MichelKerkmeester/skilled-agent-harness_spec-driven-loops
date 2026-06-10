@@ -10,6 +10,7 @@ import {
   updateEdge,
   getStaleEdges,
   countEdgesForNode,
+  isAutoEdgeCreator,
   MAX_EDGES_PER_NODE,
   MAX_AUTO_STRENGTH,
   MAX_STRENGTH_INCREASE_PER_CYCLE,
@@ -353,8 +354,8 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
         const increase = Math.min(MAX_STRENGTH_INCREASE_PER_CYCLE, 1.0 - edge.strength);
         if (increase > 0) {
           const newStrength = Math.min(1.0, edge.strength + increase);
-          // Auto edges cannot exceed MAX_AUTO_STRENGTH
-          const cappedStrength = edge.created_by === 'auto'
+          // Auto edges (incl. namespaced auto-* creators) cannot exceed MAX_AUTO_STRENGTH
+          const cappedStrength = isAutoEdgeCreator(edge.created_by)
             ? Math.min(newStrength, MAX_AUTO_STRENGTH)
             : newStrength;
 

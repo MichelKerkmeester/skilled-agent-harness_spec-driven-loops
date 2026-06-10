@@ -12,19 +12,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety"
-    last_updated_at: "2026-05-11T00:00:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Scaffolded packet per pt-04 audit"
-    next_safe_action: "Read the current storage/governance target files and implement the P0 fixes with focused tests"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "All plan phases complete incl. secret-redaction amendment"
+    next_safe_action: "Start 027/005 reducers; this packet is their completed dependency"
     blockers: []
     key_files: ["spec.md", "tasks.md", "checklist.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-11-012-feedback-p0-correctness-scaffold"
+      session_id: "2026-06-10-027-002-memory-write-safety-implementation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "OpenLTM amendment folded into this phase: pre-index secret redaction at the parse head"
 ---
 # Implementation Plan: 027/002 Memory Write Safety
 
@@ -47,7 +48,7 @@ _memory:
 
 ### Overview
 
-Phase 002 implements the three P0 precondition fixes split from 027/005. The work is intentionally narrow: update causal provenance handling, add manual-edge overwrite protection, and prevent retention sweep from deleting protected high-tier records on TTL expiry alone.
+Phase 002 implements the three P0 precondition fixes split from 027/005. The work is intentionally narrow: update causal provenance handling, add manual-edge overwrite protection, and prevent retention sweep from deleting protected high-tier records on TTL expiry alone. The OpenLTM amendment (spec.md) folds one further write-safety item into this phase: fail-closed pre-index secret redaction at the head of the memory write/index path, before content-hash, embedding, and FTS.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -64,12 +65,13 @@ Phase 002 implements the three P0 precondition fixes split from 027/005. The wor
 
 ### Definition of Done
 
-- [ ] `auto-session` and other `auto-*` provenance values are capped like `auto`.
-- [ ] Manual causal edges cannot be overwritten by automatic/reducer upsert.
-- [ ] Retention sweep has tier and pin fields available before delete decisions.
-- [ ] Constitutional and critical expired rows are protected from TTL-only deletion.
-- [ ] Focused tests pass.
-- [ ] Strict validation passes for this packet.
+- [x] `auto-session` and other `auto-*` provenance values are capped like `auto`.
+- [x] Manual causal edges cannot be overwritten by automatic/reducer upsert.
+- [x] Retention sweep has tier and pin fields available before delete decisions.
+- [x] Constitutional and critical expired rows are protected from TTL-only deletion.
+- [x] Secrets are scrubbed fail-closed at the parse head before content-hash/embedding/FTS, with a redaction count in memory_health.
+- [x] Focused tests pass (60/60 across the three focused suites).
+- [x] Strict validation passes for this packet.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -102,6 +104,11 @@ Causal edge writes enter `insertEdge`, inspect requested provenance, inspect exi
 | `mcp_server/lib/storage/causal-edges.ts` | Edge insert/upsert and strength cap | Modify | Predicate tests and manual-overwrite fixture |
 | `mcp_server/lib/storage/consolidation.ts` | Decay/consolidation cap behavior | Modify | `auto-session` cap fixture or shared helper coverage |
 | `mcp_server/lib/governance/memory-retention-sweep.ts` | Expired-row selection and deletion | Modify | Expired protected/unprotected row tests |
+| `mcp_server/handlers/memory-retention-sweep.ts` | MCP tool response for the sweep | Modify | Protected counts surfaced in summary/data |
+| `mcp_server/lib/parsing/secret-scrubber.ts` | Pre-index secret redaction (new) | Create | Per-kind, false-positive, and fail-closed tests |
+| `mcp_server/lib/parsing/memory-parser.ts` | Single parse head for write/index path | Modify | Scrub-before-content-hash integration test |
+| `mcp_server/handlers/memory-crud-update.ts` | Direct title/trigger writes | Modify | Fail-closed refusal path |
+| `mcp_server/handlers/memory-crud-health.ts` | memory_health report | Modify | `data.redaction` counter test |
 | Existing causal tests | Regression coverage | Modify/Create | Auto, auto-session, manual, auto-to-auto rows |
 | Existing retention tests | Regression coverage | Modify/Create | Tier, pinned, missing-tier matrix |
 <!-- /ANCHOR:affected-surfaces -->
@@ -113,36 +120,44 @@ Causal edge writes enter `insertEdge`, inspect requested provenance, inspect exi
 
 ### Phase 1: Setup
 
-- [ ] Read `causal-edges.ts`, `consolidation.ts`, and `memory-retention-sweep.ts`.
-- [ ] Locate existing causal and retention tests.
-- [ ] Confirm whether a shared provenance helper already exists.
-- [ ] Confirm the current code still uses `createdBy === "auto"` / `created_by === "auto"` checks before editing.
+- [x] Read `causal-edges.ts`, `consolidation.ts`, and `memory-retention-sweep.ts`.
+- [x] Locate existing causal and retention tests.
+- [x] Confirm whether a shared provenance helper already exists.
+- [x] Confirm the current code still uses `createdBy === "auto"` / `created_by === "auto"` checks before editing.
 
 ### Phase 2: Core Implementation
 
-- [ ] Implement or reuse `isAutoEdgeCreator(createdBy)`.
-- [ ] Apply the predicate in `causal-edges.ts`.
-- [ ] Apply the predicate in `consolidation.ts`.
-- [ ] Add existing-edge lookup before upsert overwrite in `insertEdge`.
-- [ ] Preserve non-auto existing edge rows when attempted write provenance is auto/reducer.
-- [ ] Extend `RetentionExpiredRow` and select query fields.
-- [ ] Add tier-aware deletion decision before destructive delete.
-- [ ] Treat `auto`, `auto-session`, and other `auto-*` values as automatic in both insert and consolidation paths.
-- [ ] Preserve a non-auto existing edge when an automatic or reducer-origin upsert conflicts with it.
-- [ ] Select `importance_tier`, `decay_half_life_days`, `is_pinned`, `access_count`, and `last_accessed` before retention deletion.
+- [x] Implement or reuse `isAutoEdgeCreator(createdBy)`.
+- [x] Apply the predicate in `causal-edges.ts`.
+- [x] Apply the predicate in `consolidation.ts`.
+- [x] Add existing-edge lookup before upsert overwrite in `insertEdge`.
+- [x] Preserve non-auto existing edge rows when attempted write provenance is auto/reducer.
+- [x] Extend `RetentionExpiredRow` and select query fields.
+- [x] Add tier-aware deletion decision before destructive delete.
+- [x] Treat `auto`, `auto-session`, and other `auto-*` values as automatic in both insert and consolidation paths.
+- [x] Preserve a non-auto existing edge when an automatic or reducer-origin upsert conflicts with it.
+- [x] Select `importance_tier`, `decay_half_life_days`, `is_pinned`, `access_count`, and `last_accessed` before retention deletion.
+
+### Phase 2b: Secret Redaction (OpenLTM Amendment)
+
+- [x] Create the ordered, fail-closed secret scrubber module with typed `[REDACTED:<kind>]` markers.
+- [x] Call the scrubber at the head of `parseMemoryContent`, BEFORE content-hash/embedding/FTS.
+- [x] Scrub direct `title`/`triggerPhrases` writes in `memory_update` with fail-closed refusal.
+- [x] Surface the redaction count in `memory_health`.
 
 ### Phase 3: Verification
 
-- [ ] Test `auto-session` cap behavior.
-- [ ] Test non-auto values are not classified as auto.
-- [ ] Test manual edge is not overwritten by auto/reducer write.
-- [ ] Test auto edge can still update under cap.
-- [ ] Test constitutional and critical expired rows are not deleted.
-- [ ] Test normal expired rows keep existing deletion behavior.
-- [ ] Test `auto-session` cannot bypass the strength cap in either edge insert or consolidation.
-- [ ] Test retention decisions protect pinned and high-tier rows from TTL-only deletion.
-- [ ] Run selected TypeScript tests.
-- [ ] Run strict spec validation.
+- [x] Test `auto-session` cap behavior.
+- [x] Test non-auto values are not classified as auto.
+- [x] Test manual edge is not overwritten by auto/reducer write.
+- [x] Test auto edge can still update under cap.
+- [x] Test constitutional and critical expired rows are not deleted.
+- [x] Test normal expired rows keep existing deletion behavior.
+- [x] Test `auto-session` cannot bypass the strength cap in either edge insert or consolidation.
+- [x] Test retention decisions protect pinned and high-tier rows from TTL-only deletion.
+- [x] Test secret scrubbing across persisted fields, fail-closed-on-error, and the memory_health redaction count.
+- [x] Run selected TypeScript tests.
+- [x] Run strict spec validation.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -169,6 +184,7 @@ Execution order is sequential. P0-1 and P0-2 both touch causal edge semantics, s
 | Unit | Auto provenance predicate and cap boundaries | Vitest |
 | Unit | `insertEdge` conflict behavior | Vitest with existing DB/test fixture |
 | Unit/Integration | Retention sweep expired-row decision | Existing retention test harness |
+| Unit/Integration | Secret scrubber kinds, false-positive guards, fail-closed, parse-head and memory_health integration | Vitest (`tests/secret-scrubber.vitest.ts`) |
 | Regression | Existing causal and retention tests | Project test runner selected from current package scripts |
 | Documentation | Spec folder contract | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
 
