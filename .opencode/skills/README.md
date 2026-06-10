@@ -84,9 +84,9 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`system-code-graph`](system-code-graph/README.md) | The structural half of code intelligence. Answer what depends on what, and refuse on a stale graph |
-| [`system-skill-advisor`](system-skill-advisor/README.md) | Pick the right skill for any prompt with a calibrated score, and refuse on a stale index |
-| [`system-spec-kit`](system-spec-kit/README.md) | Documentation and memory for AI-assisted development. Every file change gets a spec folder |
+| [`system-code-graph`](system-code-graph/README.md) | The structural half of code intelligence. Answer what depends on what, and refuse on a stale graph — over MCP or the daemon-backed `code-index` CLI |
+| [`system-skill-advisor`](system-skill-advisor/README.md) | Pick the right skill for any prompt with a calibrated score, and refuse on a stale index — over MCP or the daemon-backed `skill-advisor` CLI |
+| [`system-spec-kit`](system-spec-kit/README.md) | Documentation and memory for AI-assisted development. Every file change gets a spec folder, and the memory daemon answers over MCP or the `spec-memory` CLI |
 
 ---
 

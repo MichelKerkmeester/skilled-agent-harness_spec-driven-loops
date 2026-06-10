@@ -59,22 +59,22 @@ _memory:
 
 ### Group (a) — Skill docs: SKILL.md + README.md, three systems — IN-FLIGHT
 
-- [ ] T010 [P] IN-FLIGHT reconcile: system-spec-kit SKILL.md + README.md describe the dual-stack `spec-memory` CLI, warm-only fallback semantics, and the new `mk-spec-memory.js` OpenCode plugin (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/README.md`)
-- [ ] T011 [P] IN-FLIGHT reconcile: system-code-graph SKILL.md + README.md describe the `code-index` CLI fallback and the CLI-backed `mk-code-graph.js` bridge repair (the reverted in-process import fix replaced by the CLI/IPC path) (`.opencode/skills/system-code-graph/SKILL.md`, `.opencode/skills/system-code-graph/README.md`)
-- [ ] T012 [P] IN-FLIGHT reconcile: system-skill-advisor SKILL.md + README.md describe the `skill-advisor` CLI, prompt-time warm path, trust gate (`MK_SKILL_ADVISOR_TRUST_DEFAULT`), and facade-vs-CLI caller guidance (`.opencode/skills/system-skill-advisor/SKILL.md`, `.opencode/skills/system-skill-advisor/README.md`)
+- [x] T010 [P] IN-FLIGHT reconcile: system-spec-kit SKILL.md + README.md describe the dual-stack `spec-memory` CLI, warm-only fallback semantics, and the new `mk-spec-memory.js` OpenCode plugin (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/README.md`)
+- [x] T011 [P] IN-FLIGHT reconcile: system-code-graph SKILL.md + README.md describe the `code-index` CLI fallback and the CLI-backed `mk-code-graph.js` bridge repair (the reverted in-process import fix replaced by the CLI/IPC path) (`.opencode/skills/system-code-graph/SKILL.md`, `.opencode/skills/system-code-graph/README.md`)
+- [x] T012 [P] IN-FLIGHT reconcile: system-skill-advisor SKILL.md + README.md describe the `skill-advisor` CLI, prompt-time warm path, trust gate (`MK_SKILL_ADVISOR_TRUST_DEFAULT`), and facade-vs-CLI caller guidance (`.opencode/skills/system-skill-advisor/SKILL.md`, `.opencode/skills/system-skill-advisor/README.md`)
 
 ### Group (b) — Code READMEs
 
-- [ ] T020 [P] Align `mcp_server/README.md` for system-spec-kit: `spec-memory-cli.ts` entry point, dual-stack contract, env vars, launcher relationship (`.opencode/skills/system-spec-kit/mcp_server/README.md`)
-- [ ] T021 [P] Align `mcp_server/README.md` for system-code-graph: `code-index-cli.ts`, plugin bridge (`plugin_bridges/mk-code-graph-bridge.mjs`), hooks fallback (`.opencode/skills/system-code-graph/mcp_server/README.md`)
-- [ ] T022 [P] Align `mcp_server/README.md` for system-skill-advisor: `skill-advisor-cli.ts`, `plugin_bridges/mk-skill-advisor-bridge.mjs`, hooks `lib/skill-advisor-cli-fallback.ts` (`.opencode/skills/system-skill-advisor/mcp_server/README.md`)
-- [ ] T023 [P] Align `.opencode/bin/README.md`: document the three CLI wrappers (`spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`) next to the three launchers (`.opencode/bin/README.md`)
-- [ ] T024 [P] Align `.opencode/bin/lib/README.md` with any shared-lib additions the CLI wrappers introduced (`.opencode/bin/lib/README.md`)
+- [x] T020 [P] Align `mcp_server/README.md` for system-spec-kit: `spec-memory-cli.ts` entry point, dual-stack contract, env vars, launcher relationship (`.opencode/skills/system-spec-kit/mcp_server/README.md`)
+- [x] T021 [P] Align `mcp_server/README.md` for system-code-graph: `code-index-cli.ts`, plugin bridge (`plugin_bridges/mk-code-graph-bridge.mjs`), hooks fallback (`.opencode/skills/system-code-graph/mcp_server/README.md`)
+- [x] T022 [P] Align `mcp_server/README.md` for system-skill-advisor: `skill-advisor-cli.ts`, `plugin_bridges/mk-skill-advisor-bridge.mjs`, hooks `lib/skill-advisor-cli-fallback.ts` (`.opencode/skills/system-skill-advisor/mcp_server/README.md`)
+- [x] T023 [P] Align `.opencode/bin/README.md`: document the three CLI wrappers (`spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`) next to the three launchers (`.opencode/bin/README.md`)
+- [x] T024 [P] Align `.opencode/bin/lib/README.md` with any shared-lib additions the CLI wrappers introduced (`.opencode/bin/lib/README.md`)
 
 ### Group (c) — Top-level READMEs
 
-- [ ] T030 [P] Public root README: the NATIVE MCP TOPOLOGY section and access-path prose gain the dual-stack CLI surface; no claim that the three systems are MCP-only (`README.md`)
-- [ ] T031 [P] Skills index README: three-system entries reflect the CLI fallback surfaces (`.opencode/skills/README.md`)
+- [x] T030 [P] Public root README: the NATIVE MCP TOPOLOGY section and access-path prose gain the dual-stack CLI surface; no claim that the three systems are MCP-only (`README.md`)
+- [x] T031 [P] Skills index README: three-system entries reflect the CLI fallback surfaces (`.opencode/skills/README.md`)
 
 ### Group (d) — Commands
 
@@ -91,20 +91,20 @@ _memory:
 
 ### Group (f) — Skill references / assets
 
-- [ ] T060 Add the new CLI env var rows to ENV_REFERENCE.md — confirmed absent today: `SPECKIT_SPEC_MEMORY_CLI_{WARM_ONLY,PROMPT_TIME,DEV_ALLOW_STALE}`, `SPECKIT_CODE_INDEX_CLI_{WARM_ONLY,PROMPT_TIME,DEV_ALLOW_STALE}`, `MK_SKILL_ADVISOR_CLI_{WARM_ONLY,PROMPT_TIME,TRUSTED,DEV_ALLOW_STALE}`, `MK_SKILL_ADVISOR_TRUST_DEFAULT` (`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`)
+- [x] T060 Add the new CLI env var rows to ENV_REFERENCE.md — confirmed absent today: `SPECKIT_SPEC_MEMORY_CLI_{WARM_ONLY,PROMPT_TIME,DEV_ALLOW_STALE}`, `SPECKIT_CODE_INDEX_CLI_{WARM_ONLY,PROMPT_TIME,DEV_ALLOW_STALE}`, `MK_SKILL_ADVISOR_CLI_{WARM_ONLY,PROMPT_TIME,TRUSTED,DEV_ALLOW_STALE}`, `MK_SKILL_ADVISOR_TRUST_DEFAULT` (`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`)
 - [ ] T061 [P] Verify/align CLI-reference-style docs in each system's `references/` (incl. hook-system docs that describe the runtime fallback path) (`.opencode/skills/{system-spec-kit,system-code-graph,system-skill-advisor}/references/`)
 
 ### Group (g) — Feature catalogs + manual-testing playbooks — IN-FLIGHT
 
-- [ ] T070 [P] IN-FLIGHT reconcile: system-spec-kit feature catalog section(s) for the `spec-memory` CLI + playbook rows incl. 028 CLI stress scenarios; bump the playbook's hand-maintained file-count self-check and big-table index (`.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`)
-- [ ] T071 [P] IN-FLIGHT reconcile: system-code-graph catalog + playbook rows for the `code-index` CLI and bridge repair (`.opencode/skills/system-code-graph/feature_catalog/`, `.opencode/skills/system-code-graph/manual_testing_playbook/`)
-- [ ] T072 [P] IN-FLIGHT reconcile: system-skill-advisor catalog + playbook rows — `02--cli-hooks-and-plugin/` scenarios already exist; verify coverage incl. trust gate + dual-failure stress rows (`.opencode/skills/system-skill-advisor/feature_catalog/`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/`)
+- [x] T070 [P] IN-FLIGHT reconcile: system-spec-kit feature catalog section(s) for the `spec-memory` CLI + playbook rows incl. 028 CLI stress scenarios; bump the playbook's hand-maintained file-count self-check and big-table index (`.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`)
+- [x] T071 [P] IN-FLIGHT reconcile: system-code-graph catalog + playbook rows for the `code-index` CLI and bridge repair (`.opencode/skills/system-code-graph/feature_catalog/`, `.opencode/skills/system-code-graph/manual_testing_playbook/`)
+- [x] T072 [P] IN-FLIGHT reconcile: system-skill-advisor catalog + playbook rows — `02--cli-hooks-and-plugin/` scenarios already exist; verify coverage incl. trust gate + dual-failure stress rows (`.opencode/skills/system-skill-advisor/feature_catalog/`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/`)
 
 ### Group (h) — Changelog
 
-- [ ] T080 Author the 028 release changelog entry for system-spec-kit (next free slot after v3.5.0.4); write via the skill-local changelog path, not the `.opencode/changelog/` symlink; check the slot at write time for parallel-session collisions (`.opencode/skills/system-spec-kit/changelog/`)
-- [ ] T081 [P] Author the system-code-graph release entry (next free slot after v1.1.0.0) (`.opencode/skills/system-code-graph/changelog/`)
-- [ ] T082 [P] Author the system-skill-advisor release entry (next free slot after v0.6.0) (`.opencode/skills/system-skill-advisor/changelog/`)
+- [x] T080 Author the 028 release changelog entry for system-spec-kit (next free slot after v3.5.0.4); write via the skill-local changelog path, not the `.opencode/changelog/` symlink; check the slot at write time for parallel-session collisions (`.opencode/skills/system-spec-kit/changelog/`)
+- [x] T081 [P] Author the system-code-graph release entry (next free slot after v1.1.0.0) (`.opencode/skills/system-code-graph/changelog/`)
+- [x] T082 [P] Author the system-skill-advisor release entry (next free slot after v0.6.0) (`.opencode/skills/system-skill-advisor/changelog/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

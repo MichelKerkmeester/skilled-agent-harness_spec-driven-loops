@@ -1,13 +1,13 @@
-# Skilled Agent Orchestration w/ Custom Spec Kit 
+# Skilled - Agent Orchestration w/ Custom Spec Kit & Memory System
 
-| Core layer | What it adds |
-| --- | --- |
-| 📋 **Spec Kit Framework** | Structured plans, task tracking, validation gates, and handover docs |
-| 🧠 **Cognitive Memory** | Local-first project memory for decisions, context, and continuity |
-| ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
-| 🔍 **Code Graph** | Callers, imports, impact paths, and Code Graph + Grep code discovery |
-| 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **22 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| Core layer　　　　　　　　　　 | What it adds                                                            |
+| --------------------------------| -------------------------------------------------------------------------|
+| 📋 **Spec Kit Framework**　　　| Structured plans, task tracking, validation gates, and handover docs    |
+| 🧠 **Cognitive Memory**　　　　| Local-first project memory for decisions, context, and continuity       |
+| ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context  |
+| 🔍 **Code Graph**　　　　　　　| Callers, imports, impact paths, and Code Graph + Grep code discovery    |
+| 🤖 **11 Specialized Agents**　 | Focused roles for implementation, review, research, docs, git, and more |
+| 🎯 **22 On-Demand Skills**　　 | Skill Advisor routing for the right workflow at the right time          |
 
 **Reasons to try it**
 
@@ -103,6 +103,9 @@ The framework adds four layers on top of the base platform:
          │                                          │
          │  Shared contract: hybrid retrieval +     │
          │  startup payload via runtime hooks       │
+         │                                          │
+         │  Dual-stack: spec-memory, code-index and │
+         │  skill-advisor CLIs share the daemons    │
          └──────────────────────┬───────────────────┘
                                 │
                                 ▼
@@ -141,7 +144,7 @@ node .opencode/bin/mk-skill-advisor-launcher.cjs --help
 node .opencode/bin/mk-code-index-launcher.cjs --help
 ```
 
-The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first invocation and the checked-in runtime configs already point at them. There is no separate build step. Launcher reliability covers the owner-disposal relaunch gate, a persistent log, lease-probe reap hardening, mk-code-index reconnect, an opt-in orphan-process sweep and daemon re-election. Re-election is on by default in the committed runtime configs, so a disposing session releases the shared daemon for another live session to adopt instead of killing it, and an unadopted daemon is bounded by the idle timeout. All of it is operator-tunable and documented in [`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
+The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first invocation and the checked-in runtime configs already point at them. There is no separate build step. Access is dual-stack: each of the three is also fronted by a daemon-backed CLI (`node .opencode/bin/spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`) exposing the same 37/8/9 tools over the same daemons — the surface hooks, cron, CI and transport-down recovery use while the MCP registrations stay unchanged. Launcher reliability covers the owner-disposal relaunch gate, a persistent log, lease-probe reap hardening, mk-code-index reconnect, an opt-in orphan-process sweep and daemon re-election. Re-election is on by default in the committed runtime configs, so a disposing session releases the shared daemon for another live session to adopt instead of killing it, and an unadopted daemon is bounded by the idle timeout. All of it is operator-tunable and documented in [`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
 Runtime lifecycle guardrails are part of the native MCP stack. The servers share `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` for idle self-exit, and the repo ships a dry-run-first orphan process sweeper plus a LaunchAgent template under `.opencode/scripts/`. The LaunchAgent is not installed or loaded by default; activation is a separate operator-approved rollout. See [Repo Scripts Runbook](.opencode/scripts/README.md) and the [022 orphan MCP leak prevention packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md).
 
@@ -372,7 +375,7 @@ The Memory Engine is a local-first cognitive memory system built as an MCP serve
 
 `/memory:save` refreshes packet metadata on every invocation. `session_resume` binds `args.sessionId` to transport caller context by default. Set `MCP_SESSION_RESUME_AUTH_MODE=permissive` for rollout canaries. Copilot and Claude share the same compact-cache provenance path.
 
-The memory engine works with session lifecycle surfaces and hybrid retrieval. Structural code indexing now lives in the standalone [`system-code-graph`](.opencode/skills/system-code-graph/) skill and MCP server.
+The memory engine works with session lifecycle surfaces and hybrid retrieval. Structural code indexing now lives in the standalone [`system-code-graph`](.opencode/skills/system-code-graph/) skill and MCP server. The full 37-tool surface is also reachable from a shell through the daemon-backed `spec-memory` CLI (`node .opencode/bin/spec-memory.cjs`) — the same daemon, no MCP transport required.
 
 Expired ephemeral rows are cleaned by a retention sweep on startup and hourly by default. Use `memory_retention_sweep` for manual or dry-run cleanup. The handler is defined at [memory-retention-sweep.ts](.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts), with `SPECKIT_RETENTION_SWEEP` and `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` controlling the background interval.
 
@@ -593,7 +596,7 @@ Existing v1 scans trigger a blocked read with `requiredAction:"code_graph_scan"`
 &nbsp;
 #### How the Code Graph Works
 
-The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered as the standalone `mk_code_index` MCP server. MCP callers use the `mcp__mk_code_index__*` namespace. Runtime config parity is mixed across clients during the rename transition, so docs use the canonical `mk_code_index` surface while follow-on config work handles remaining legacy bindings.
+The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered as the standalone `mk_code_index` MCP server. MCP callers use the `mcp__mk_code_index__*` namespace, and the same eight tools are callable through the daemon-backed `code-index` CLI (`node .opencode/bin/code-index.cjs`) when a hook or shell needs the graph without an MCP transport. Runtime config parity is mixed across clients during the rename transition, so docs use the canonical `mk_code_index` surface while follow-on config work handles remaining legacy bindings.
 
 **Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan and activates a file watcher. Two supported runtimes (Claude Code, Codex CLI) transport the same compact startup shared-payload through their runtime hooks (`session-prime.ts` on Claude, `session-start.ts` on Codex). Codex requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions with a limited cache and writer path. It refreshes a managed block but does not inject model-visible context during the precompute phase. The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary) and the `sharedPayloadTransport` envelope so downstream consumers receive identical structural context regardless of runtime. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
 
@@ -668,7 +671,7 @@ For the full code-graph tool and architecture reference, see the [`system-code-g
 
 ### 🎯 Skill Advisor
 
-The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `mk_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp_server/`. The server registers nine tools: eight on the public surface (four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation), plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable.
+The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `mk_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp_server/`. The server registers nine tools: eight on the public surface (four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation), plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable, and the daemon-backed `skill-advisor` CLI (`node .opencode/bin/skill-advisor.cjs`) fronts the same nine tools for hooks, doctor checks and automation.
 
 #### How It Works
 
