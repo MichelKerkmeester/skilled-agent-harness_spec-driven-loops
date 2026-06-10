@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Phase 4: advisor-bfs-consolidation [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Advisor BFS consolidation"
+description: "Completed task list for the behavior-preserving advisor skill-graph BFS extraction."
 trigger_phrases:
   - "tasks"
   - "name"
@@ -11,22 +11,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T23:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed BFS helper extraction, call-site cutovers, parity tests, and verification"
+    next_safe_action: "None; phase complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/bfs-traversal.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-bfs-traversal.vitest.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-queries-parity.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-advisor-bfs-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: advisor-bfs-consolidation
+# Tasks: Advisor BFS Consolidation
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +54,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read scaffold and target implementation files before edits
+- [x] T002 Identify current `transitivePath` and `subgraph` BFS semantics
+- [x] T003 [P] Confirm local advisor test/build commands
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +64,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Create advisor-local BFS helper with shared depth clamp, visited set, path match, and truncation metadata
+- [x] T005 Cut over `transitivePath` to use the helper without changing returned path shape
+- [x] T006 Cut over `subgraph` to use the helper without changing returned graph shape
+- [x] T007 Add helper tests for caps, visited semantics, truncation, and queue order
+- [x] T008 Add parity tests comparing new query outputs to legacy traversal behavior
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +76,13 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Run `npm run typecheck`
+- [x] T010 Run `npm run build`
+- [x] T011 Run new helper and parity vitest files
+- [x] T012 Run existing skill-graph-focused vitest suites
+- [x] T013 Run alignment and comment-hygiene checks
+- [x] T014 Update phase documentation and continuity metadata
+- [x] T015 Run full advisor vitest suite and confirm only the known hook parity file fails
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +90,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Automated verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +112,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

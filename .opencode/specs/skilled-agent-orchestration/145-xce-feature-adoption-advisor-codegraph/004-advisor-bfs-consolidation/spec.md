@@ -11,17 +11,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #6"
-    next_safe_action: "Plan a behavior-preserving advisor-local BFS helper"
+    last_updated_at: "2026-06-10T23:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented advisor-local BFS helper and cut over transitive_path/subgraph callers"
+    next_safe_action: "None; phase complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/bfs-traversal.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-bfs-traversal.vitest.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-queries-parity.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-advisor-bfs-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +50,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -137,8 +141,8 @@ Adopt 027 phase 012's shared-BFS pattern as an advisor-local helper so the two t
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Both traversals run through one shared advisor-local helper with zero output drift versus the current implementation.
-- **SC-002**: Truncation is now an explicit signal callers can surface, where it was previously implicit.
+- **SC-001**: Both traversals run through one shared advisor-local helper with zero output drift versus the current implementation. Verified by `tests/skill-graph-queries-parity.vitest.ts`.
+- **SC-002**: Truncation is now an explicit helper result signal while public query outputs remain unchanged for behavior preservation. Verified by `tests/skill-graph-bfs-traversal.vitest.ts`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

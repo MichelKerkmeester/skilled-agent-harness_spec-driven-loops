@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Advisor BFS consolidation"
+description: "The advisor skill graph now uses one local BFS helper for transitive_path and subgraph traversal while preserving existing outputs."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T23:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented advisor-local BFS helper, query cutovers, tests, and docs"
+    next_safe_action: "None; phase complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/bfs-traversal.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-bfs-traversal.vitest.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-queries-parity.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-advisor-bfs-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,12 +60,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The advisor skill graph now has one local BFS traversal helper instead of two duplicated queue loops. `transitive_path` and `subgraph` still return the same public shapes and ordering, while the shared helper owns the reusable depth cap, visited-set behavior, path matching, and truncation metadata.
 
-### [Feature Name]
+### Shared Traversal Helper
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`bfs-traversal.ts` provides `runSkillGraphBfs`, `clampSkillGraphTraversalDepth`, and the advisor traversal cap. It is local to the advisor package and does not import the memory traversal helper.
+
+### Query Cutovers
+
+`transitivePath` now supplies the existing outbound adjacency reader and stops on the target node through the helper. `subgraph` now supplies existing outbound plus inbound adjacency readers and keeps collecting nodes/edges through the helper callback. Both callers intentionally preserve their previous returned objects.
 
 ### Files Changed
 
@@ -69,7 +76,10 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/bfs-traversal.ts` | Created | Advisor-local reusable BFS helper with caps, visited semantics, path matching, and truncation metadata |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts` | Modified | Repointed `transitivePath` and `subgraph` to the helper while preserving return shapes |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-bfs-traversal.vitest.ts` | Created | Covers helper cap, visited, truncation, and queue-order behavior |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-queries-parity.vitest.ts` | Created | Compares refactored query outputs to legacy traversal behavior |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +93,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The implementation was delivered as an internal refactor with no public schema changes. Parity tests compare the refactored query outputs to local legacy traversal implementations over the same SQLite fixture.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +106,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep the helper under the advisor skill graph package | The scope requires advisor-local ownership and forbids importing the memory traversal helper. |
+| Keep public query return shapes unchanged | The consolidation is behavior-preserving, so callers should not receive new fields. |
+| Expose truncation on the helper result, not handler responses | This gives call sites a reusable signal without changing current `transitive_path` or `subgraph` outputs. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +121,13 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run typecheck` in advisor `mcp_server` | PASS |
+| `npm run build` in advisor `mcp_server` | PASS |
+| `npx vitest run tests/skill-graph-bfs-traversal.vitest.ts tests/skill-graph-queries-parity.vitest.ts` | PASS: 2 files, 4 tests |
+| `npx vitest run tests/skill-graph*.vitest.ts tests/handlers/skill-graph*.vitest.ts` | PASS: 8 files, 15 passed, 1 skipped |
+| `npx vitest run` | Existing out-of-scope failure only: 72 files passed, 1 skipped, 1 failed; 444 tests passed, 5 skipped, 35 failed in `tests/hooks/settings-driven-invocation-parity.vitest.ts` |
+| `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph` | PASS: 3 files, 0 findings |
+| `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh ...` for changed TypeScript files | PASS; initial `bash` invocation failed because the script is Python, then reran with `python3` successfully |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +140,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+None identified.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +150,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

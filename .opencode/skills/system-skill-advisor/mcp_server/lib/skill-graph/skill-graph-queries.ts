@@ -13,6 +13,12 @@ import {
   type SkillFamily,
   type SkillNode,
 } from './skill-graph-db.js';
+import {
+  clampSkillGraphTraversalDepth,
+  MAX_SKILL_GRAPH_TRAVERSAL_DEPTH,
+  runSkillGraphBfs,
+  type SkillGraphTraversalRelation,
+} from './bfs-traversal.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -73,7 +79,6 @@ interface RelationRow {
   node_indexed_at: string | null;
 }
 
-const MAX_TRANSITIVE_DEPTH = 8;
 const preparedStatementCache = new WeakMap<Database.Database, PreparedStatements>();
 
 // ───────────────────────────────────────────────────────────────
@@ -247,6 +252,16 @@ function edgeKey(edge: SkillEdge): string {
     : `${edge.sourceId}:${edge.edgeType}:${edge.targetId}`;
 }
 
+function relationToTraversalRelation(
+  relation: SkillGraphRelation,
+): SkillGraphTraversalRelation<SkillNode, SkillEdge> {
+  return {
+    nodeId: relation.node.id,
+    node: relation.node,
+    edge: relation.edge,
+  };
+}
+
 // ───────────────────────────────────────────────────────────────
 // 4. QUERIES
 // ───────────────────────────────────────────────────────────────
@@ -314,41 +329,26 @@ export function transitivePath(
     [startNode.id, startNode],
     [targetNode.id, targetNode],
   ]);
-  const queue: Array<{ nodeIds: string[]; edges: SkillEdge[] }> = [
-    { nodeIds: [fromSkillId], edges: [] },
-  ];
-  const visited = new Set<string>([fromSkillId]);
+  const traversal = runSkillGraphBfs({
+    rootId: fromSkillId,
+    maxDepth: MAX_SKILL_GRAPH_TRAVERSAL_DEPTH,
+    readRelations: (currentId) => {
+      const rows = statements.outgoingAny.all(currentId) as RelationRow[];
+      return rows.map((row) => relationToTraversalRelation(relationRowToResult(row, 'outbound')));
+    },
+    onRelation: (relation) => {
+      nodeCache.set(relation.nodeId, relation.node);
+    },
+    shouldStop: (relation) => relation.nodeId === toSkillId,
+  });
 
-  while (queue.length > 0) {
-    const current = queue.shift()!;
-    const currentId = current.nodeIds[current.nodeIds.length - 1];
-    if (current.edges.length >= MAX_TRANSITIVE_DEPTH) {
-      continue;
-    }
-
-    const rows = statements.outgoingAny.all(currentId) as RelationRow[];
-    for (const row of rows) {
-      const relation = relationRowToResult(row, 'outbound');
-      nodeCache.set(relation.node.id, relation.node);
-
-      if (visited.has(relation.node.id)) {
-        continue;
-      }
-
-      const nextNodeIds = [...current.nodeIds, relation.node.id];
-      const nextEdges = [...current.edges, relation.edge];
-      if (relation.node.id === toSkillId) {
-        return {
-          nodes: nextNodeIds.map((nodeId) => nodeCache.get(nodeId) ?? getNodeById(nodeId, database)).filter(
-            (node): node is SkillNode => node !== null,
-          ),
-          edges: nextEdges,
-        };
-      }
-
-      visited.add(relation.node.id);
-      queue.push({ nodeIds: nextNodeIds, edges: nextEdges });
-    }
+  if (traversal.match) {
+    return {
+      nodes: traversal.match.nodeIds.map((nodeId) => nodeCache.get(nodeId) ?? getNodeById(nodeId, database)).filter(
+        (node): node is SkillNode => node !== null,
+      ),
+      edges: [...traversal.match.edges],
+    };
   }
 
   return null;
@@ -384,41 +384,27 @@ export function subgraph(
     return { nodes: [], edges: [] };
   }
 
-  const safeDepth = Number.isFinite(depth) ? Math.max(0, Math.min(Math.trunc(depth), MAX_TRANSITIVE_DEPTH)) : 1;
+  const safeDepth = clampSkillGraphTraversalDepth(depth, 1);
   const statements = getPreparedStatements(database);
   const nodes = new Map<string, SkillNode>([[root.id, root]]);
   const edges = new Map<string, SkillEdge>();
-  const visited = new Set<string>([root.id]);
-  const queue: Array<{ skillId: string; depth: number }> = [{ skillId: root.id, depth: 0 }];
 
-  while (queue.length > 0) {
-    const current = queue.shift()!;
-    if (current.depth >= safeDepth) {
-      continue;
-    }
-
-    const outgoingRows = statements.outgoingAny.all(current.skillId) as RelationRow[];
-    const incomingRows = statements.incomingAny.all(current.skillId) as RelationRow[];
-    const relations = [
-      ...outgoingRows.map((row) => relationRowToResult(row, 'outbound')),
-      ...incomingRows.map((row) => relationRowToResult(row, 'inbound')),
-    ];
-
-    for (const relation of relations) {
-      nodes.set(relation.node.id, relation.node);
+  runSkillGraphBfs({
+    rootId: root.id,
+    maxDepth: safeDepth,
+    readRelations: (currentId) => {
+      const outgoingRows = statements.outgoingAny.all(currentId) as RelationRow[];
+      const incomingRows = statements.incomingAny.all(currentId) as RelationRow[];
+      return [
+        ...outgoingRows.map((row) => relationToTraversalRelation(relationRowToResult(row, 'outbound'))),
+        ...incomingRows.map((row) => relationToTraversalRelation(relationRowToResult(row, 'inbound'))),
+      ];
+    },
+    onRelation: (relation) => {
+      nodes.set(relation.nodeId, relation.node);
       edges.set(edgeKey(relation.edge), relation.edge);
-
-      if (visited.has(relation.node.id)) {
-        continue;
-      }
-
-      visited.add(relation.node.id);
-      queue.push({
-        skillId: relation.node.id,
-        depth: current.depth + 1,
-      });
-    }
-  }
+    },
+  });
 
   return {
     nodes: [...nodes.values()].sort((left, right) => left.id.localeCompare(right.id)),
