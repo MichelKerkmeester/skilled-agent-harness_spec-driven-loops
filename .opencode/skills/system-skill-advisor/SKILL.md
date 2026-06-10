@@ -265,6 +265,7 @@ return {
 - Prefer `mcp__mk_skill_advisor__advisor_recommend` for live runtime routing when MCP transport is healthy.
 - Use `skill_advisor.py` for the legacy facade contract: AGENTS.md fallback checks, compatibility scripts expecting the JSON-array shape, or environments without the daemon-backed CLI.
 - Use `.opencode/bin/skill-advisor.cjs` for daemon-backed CLI checks and runtime fallback only after a warm-socket probe succeeds; always pass `--timeout-ms` and treat exit 75 as retryable fail-open.
+- CLI calls are sent untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1` — the maintainer path. Read tools never need it.
 
 ### Anti-patterns
 
@@ -298,6 +299,8 @@ Internal trusted-caller (1):
 - `skill_graph_propagate_enhances`, gated behind trusted-caller auth (see `references/runtime/tool_ids_reference.md` §4)
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
+
+The surface is dual-stack: the same nine tools are callable through the daemon-backed CLI `node .opencode/bin/skill-advisor.cjs <tool_name>` over the same daemon (the MCP registration is unchanged). Trust resolution fails closed: the daemon treats a caller as untrusted when transport `_meta` is absent or unknown, the CLI sends `callerAuthority: untrusted` unless `--trusted`/`MK_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, and native MCP surfaces whose clients send no `_meta` are re-granted default trust only through `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (set in the committed MCP registrations: `.mcp.json`, `opencode.json`, `.codex/config.toml`), which callers cannot forge. An env-gated tri-daemon drill (`SPECKIT_RUN_TRI_DAEMON_DRILL=1`, `mcp_server/tests/tri-daemon-drill.vitest.ts`) exercises all three daemon-backed CLIs together.
 
 The advisor implementation, skill-graph library and package-local database now live under this skill package, while memory remains focused on memory tools.
 
@@ -382,8 +385,9 @@ Current package state:
 
 Expected consumers:
 
-- Prompt-time hooks for Claude, Codex and OpenCode.
+- Prompt-time hooks for Claude, Codex and OpenCode. The Claude/Codex hooks share the warm-only CLI fallback helper `hooks/lib/skill-advisor-cli-fallback.ts`; the OpenCode plugin bridge (`mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`) falls back to `node .opencode/bin/skill-advisor.cjs --warm-only` when its bridge path is unavailable.
 - MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
+- Daemon-backed CLI callers (`node .opencode/bin/skill-advisor.cjs <tool>`) for doctor routes, scripts and CI — untrusted by default, `--trusted` for maintainer mutations.
 - Doctor workflows that validate advisor health and rebuild state.
 - Skill graph indexers and routing accuracy checks.
 

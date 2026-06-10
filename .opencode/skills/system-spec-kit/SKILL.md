@@ -108,7 +108,7 @@ Primary operational scripts:
 - `spec/recommend-level.sh`
 - `mcp_server/lib/templates/level-contract-resolver.ts`
 
-CLI exit codes:
+Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI taxonomy in §3):
 - `0`: success.
 - `1`: user error such as bad flags or invalid input.
 - `2`: validation error.
@@ -408,7 +408,9 @@ def route_speckit_resources(task):
 
 ### Spec Kit Memory
 
-Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`. Launcher/daemon reliability is operator-tunable via the `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION` (default-on in the runtime configs: a disposing owner releases the shared daemon for a live secondary, and a fresh session reaps the released daemon before respawn for a single writer) flags, all documented in `mcp_server/ENV_REFERENCE.md`.
+Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves.
+
+The surface is dual-stack: alongside the `mk-spec-memory` MCP registration, all 37 tools are callable through the daemon-backed CLI `node .opencode/bin/spec-memory.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema, `69` protocol/dist mismatch, `75` retryable daemon error. Prompt-time callers must pass `--warm-only` (probe-only, exit `75` instead of cold-spawning); non-prompt contexts auto-spawn the daemon through the launcher. See `mcp_server/ENV_REFERENCE.md` ("CLI front door") for the warm-only/prompt-time env flags. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`. Launcher/daemon reliability is operator-tunable via the `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION` (default-on in the runtime configs: a disposing owner releases the shared daemon for a live secondary, and a fresh session reaps the released daemon before respawn for a single writer) flags, all documented in `mcp_server/ENV_REFERENCE.md`.
 
 `memory_index_scan` is self-maintaining: overlapping scan calls return a `coalesced:true` success envelope instead of a raw E429 error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` with a `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep. `memory_health` now includes an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) and counts for indexed/pending/failed rows.
 
@@ -505,6 +507,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Validate | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
 | Verify code alignment drift | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
 | Save context | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
+| Memory CLI (dual-stack) | `node .opencode/bin/spec-memory.cjs <tool> --format json` calls any of the 37 memory tools over the live daemon; `list-tools` enumerates them offline; `--warm-only` for prompt-time contexts |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |

@@ -283,6 +283,8 @@ The router selects from these tool intents. `mcp_server/tool-schemas.ts` `CODE_G
 
 The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*` and `detect_changes`.
 
+The surface is dual-stack: every tool above is also callable through the daemon-backed CLI `node .opencode/bin/code-index.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon (MCP registration unchanged). Flag values are coerced against the tool's input schema. Exit taxonomy: `0` success, `1` runtime, `64` usage/schema (including `detect_changes` `parse_error` on a malformed diff), `69` protocol/dist mismatch, `75` retryable daemon error. Blocked-read rendering is preserved: a `status:"blocked"` readiness refusal exits `0` with the `requiredAction` surfaced — an actionable answer, not a failure. Prompt-time callers must pass `--warm-only` (probe-only; exit `75` on a cold daemon); other contexts auto-spawn via `mk-code-index-launcher.cjs`.
+
 ### Fallback Contract
 
 - **Low confidence:** load default runtime/readiness references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing tool/status/path signal.
@@ -364,6 +366,7 @@ Cross-subsystem consumers use two intentional paths:
 |---------------|-------------|
 | `system-spec-kit` handlers / hooks / session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup, and context helpers via `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. |
 | MCP callers (agents, commands, runtimes) | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*` and `mcp__mk_code_index__detect_changes`. |
+| CLI callers (hooks, scripts, CI, transport-down recovery) | Daemon-backed `node .opencode/bin/code-index.cjs <tool>` over the same daemon. The Claude/Codex hook adapters fall back through `system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts` (warm-only), and the OpenCode plugin bridge (`mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`) routes through the CLI with `SPECKIT_CODE_INDEX_CLI_PROMPT_TIME=1`. |
 
 The shared SQLite file at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
 

@@ -129,6 +129,18 @@ Check that Spec Kit Memory tools are available:
 
 The response should return `status: "ok"` and database table counts. If it returns an error, see [Troubleshooting](#7-troubleshooting).
 
+The same check works from a shell through the daemon-backed CLI, which fronts the identical 37-tool surface:
+
+```bash
+# Enumerate the tools without touching the daemon
+node .opencode/bin/spec-memory.cjs list-tools --format text
+
+# Call a tool against the live daemon (auto-spawns it when cold)
+node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}' --format json
+```
+
+Exit codes: `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn.
+
 Codex CLI note: if the MCP server runs in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
 ---
@@ -240,6 +252,10 @@ The indexed-continuity store lives in an MCP server that gives AI assistants per
 Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT and back. The spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
 
 For full architecture details, the 37-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
+
+#### Dual-Stack Access: MCP and CLI
+
+The memory surface is dual-stack. The `mk-spec-memory` MCP registration stays the native in-session path, and `node .opencode/bin/spec-memory.cjs` is an additive CLI front door over the **same daemon** — nothing about the daemon changed. The CLI is what hooks, cron jobs, CI and transport-down recovery use: when an MCP transport drops mid-session and the client never reconnects it, the CLI still reaches every tool. `list-tools` answers offline; every other command speaks JSON-RPC to the daemon over the IPC socket. Shared exit taxonomy across the three sibling CLIs (`spec-memory`, `code-index`, `skill-advisor`): `0`/`1`/`64`/`69`/`75`. The shim refuses to run a stale build (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` for dev loops), and `--warm-only` plus the prompt-time env flags keep prompt-time hooks from ever cold-spawning the daemon. See [`mcp_server/ENV_REFERENCE.md`](./mcp_server/ENV_REFERENCE.md) for the CLI env-flag table.
 
 #### Hybrid Search
 
@@ -931,6 +947,8 @@ The MCP daemon serializes writes through its own handler queue. Only fall back t
 | Placeholder check fails          | Run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values              |
 | Stale results after save         | Call `memory_index_scan({ specFolder: "..." })` to force re-index               |
 | Too many near-duplicate results  | Check that interference penalty is active in feature flags                      |
+| `spec-memory.cjs` exits 69       | CLI dist is missing or stale: run `npm run build --workspace=@spec-kit/mcp-server` |
+| `spec-memory.cjs` exits 75 with `--warm-only` | Expected when the daemon is cold: retry without `--warm-only` or start a session that spawns it |
 
 ### Diagnostic Commands
 

@@ -50,7 +50,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-06-06 |
-| **Updated** | 2026-06-09 |
+| **Updated** | 2026-06-10 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
@@ -102,7 +102,8 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 | 001 | `001-spec-memory-cli/` | Implementation complete, suites green; T9xx transport-down drill pending (dual-stack window open) | The spec-memory CLI workstream. Research record nested as `000-spec-memory-cli-research/` (four runs ending in GO + zero unknowns, 8 delta specs, 10–13d estimate); implementation children: `001-cli-core/` (build), `002-hardening-and-tests/` (regression-lock), `003-runtime-integration/` (adoption + dual-stack window) |
 | 002 | `002-code-index-cli/` | Implementation complete, suites green; T9xx transport-down drill pending (dual-stack window open) | CLI-fallback workstream for `mk_code_index` (system-code-graph, 8 tools); phase 000 feasibility research, implementation phases on GO |
 | 003 | `003-skill-advisor-cli/` | Implementation complete (tri-daemon program gate passed); T9xx transport-down drill pending (dual-stack window open) | CLI-fallback workstream for `mk_skill_advisor` (system-skill-advisor, 9 tools); phase 000 feasibility research incl. the skill_advisor.py reconcile-vs-supersede question |
-| 004+ | not yet created | Pending | Separately-gated follow-ons: migration of the measured MCP reference surfaces, then the MCP-retirement decision |
+| 004 | `004-release-and-program-cleanup/` | In progress | Post-release documentation alignment (release gate, modeled on 026's cleanup phase): skill/code/root READMEs, commands, agent rosters, references incl. ENV_REFERENCE env-var rows, feature catalogs + manual-testing playbooks, release changelog |
+| 005+ | not yet created | Pending | Separately-gated follow-ons: migration of the measured MCP reference surfaces, then the MCP-retirement decision |
 
 ### Phase Transition Rules
 

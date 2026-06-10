@@ -3851,6 +3851,42 @@ See [`16--tooling-and-scripts/standalone-admin-cli.md`](16--tooling-and-scripts/
 
 ---
 
+### Daemon-backed spec-memory CLI surface
+
+#### Description
+
+The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon: all 37 tools become CLI commands generated at runtime from `TOOL_DEFINITIONS`, so the surface cannot drift from the MCP registration. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery; the MCP registration stays untouched through the dual-stack window. Sibling skills ship the same pattern (`code-index.cjs`, 8 tools; `skill-advisor.cjs`, 9 tools with a fail-closed trusted-mutation gate).
+
+#### How It Works
+
+The shim defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/mk-spec-memory`, guards Darwin socket-path length, and refuses missing or stale dist with exit 69 (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). The entrypoint validates argv with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` on probe failure, and maps results to the shared exit taxonomy: 0 success, 1 runtime, 64 usage/validation, 69 protocol/dist-freshness, 75 retryable backend-unavailable. `--warm-only` (default-on via `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`) probes the socket first and exits 75 instead of cold-spawning — the contract prompt-time hooks rely on. `spec-memory list-tools --format json` returns `{ status: "ok", data: { count: 37 } }` as the one-command parity check.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md`](16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) for full implementation and test file listings.
+
+> **Playbook:** [427](../manual_testing_playbook/manual_testing_playbook.md), [428](../manual_testing_playbook/manual_testing_playbook.md), [429](../manual_testing_playbook/manual_testing_playbook.md), [432](../manual_testing_playbook/manual_testing_playbook.md), [434](../manual_testing_playbook/manual_testing_playbook.md), [435](../manual_testing_playbook/manual_testing_playbook.md), [436](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Warm-only CLI hook fallbacks and plugin bridges
+
+#### Description
+
+Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and Codex prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `mk-spec-memory` plugin, a repaired `mk-code-graph` bridge on the CLI route, and CLI fallback routing in `mk-skill-advisor`.
+
+#### How It Works
+
+The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier mk-code-graph revert cannot return. `.codex/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md`](16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) for full implementation and test file listings.
+
+> **Playbook:** [433](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
 ### Constitutional memory manager command
 
 #### Description

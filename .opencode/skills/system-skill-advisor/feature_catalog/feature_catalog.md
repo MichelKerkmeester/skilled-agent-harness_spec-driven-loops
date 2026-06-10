@@ -18,7 +18,7 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 ## 1. OVERVIEW
 
-The catalog covers 36 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools. Groups 07-08 cover runtime integrations plus Python compatibility.
+The catalog covers 37 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools plus the daemon-backed CLI fallback shipped by the 028 MCP-to-CLI program. Groups 07-08 cover runtime integrations plus Python compatibility.
 
 > **Numbering note (gap-05).** The directory layout skips slot `05--*` between `04--scorer-fusion` and `06--mcp-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -28,7 +28,7 @@ The catalog covers 36 features across 7 groups. Group 01 owns daemon correctness
 | [02--auto-indexing](./02--auto-indexing/) | 6 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus |
 | [03--lifecycle-routing](./03--lifecycle-routing/) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
 | [04--scorer-fusion](./04--scorer-fusion/) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
-| [06--mcp-surface](./06--mcp-surface/) | 9 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` |
+| [06--mcp-surface](./06--mcp-surface/) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
 | [07--hooks-and-plugin](./07--hooks-and-plugin/) | 4 | Claude, Copilot, Codex hooks plus OpenCode plugin bridge |
 | [08--python-compat](./08--python-compat/) | 3 | Python CLI shim, regression suite, bench runner |
 
@@ -112,6 +112,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | `skill_graph_query` MCP tool | [06--mcp-surface/skill-graph-query.md](./06--mcp-surface/skill-graph-query.md) |
 | `skill_graph_status` MCP tool | [06--mcp-surface/skill-graph-status.md](./06--mcp-surface/skill-graph-status.md) |
 | `skill_graph_validate` MCP tool | [06--mcp-surface/skill-graph-validate.md](./06--mcp-surface/skill-graph-validate.md) |
+| Daemon-backed `skill-advisor` CLI (9 commands, fail-closed trusted-mutation gate) | [06--mcp-surface/skill-advisor-cli.md](./06--mcp-surface/skill-advisor-cli.md) |
 
 ---
 

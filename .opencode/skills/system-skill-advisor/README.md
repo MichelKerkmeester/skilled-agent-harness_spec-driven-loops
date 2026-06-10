@@ -70,7 +70,14 @@ Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount` and 
 
 Use the MCP tools as the primary Gate 2 path when `mk_skill_advisor` is registered and reachable. Keep `mcp_server/scripts/skill_advisor.py` for legacy scripts and runtimes that still expect the Python facade's JSON-array output.
 
-Use `.opencode/bin/skill-advisor.cjs` for daemon-backed runtime integrations such as hook fallback, doctor health checks and automation that needs explicit JSON plus exit codes. Prompt-time callers must probe the advisor IPC socket first and call the CLI only when the daemon is already warm; do not use the CLI wrapper to cold-start the daemon on a hook path.
+Use `.opencode/bin/skill-advisor.cjs` for daemon-backed runtime integrations such as hook fallback, doctor health checks and automation that needs explicit JSON plus exit codes. All nine tools are reachable this way over the same daemon the MCP registration uses (dual-stack; the MCP registration is unchanged), and `list-tools` enumerates them offline. Exit taxonomy: `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error.
+
+Two guardrails apply. First, prompt-time callers must probe the advisor IPC socket first (or pass `--warm-only`) and call the CLI only when the daemon is already warm; a cold daemon under warm-only exits `75` instead of cold-starting, and hooks fail open on that. Second, CLI calls are sent untrusted by default: the mutation tools `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances` require `--trusted` (or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`), which is the maintainer path.
+
+```bash
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
+```
 
 ---
 
@@ -163,6 +170,8 @@ Skip the advisor for trivial queries where the intent is obvious, for structural
 | Top-2 candidates within 0.1 of each other | Ambiguous prompt. Two skills are equally plausible | Surface both candidates instead of routing silently |
 | `advisor_validate` corpus top-1 below 80.5% | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]` and `slices.corpus` |
 | Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
+| CLI reports a mutation `requires --trusted` (exit 64) | The trusted-mutation gate fails closed on untrusted calls | Re-run with `--trusted` or set `MK_SKILL_ADVISOR_CLI_TRUSTED=1` if you are the maintainer |
+| A native MCP mutation is rejected as untrusted | The daemon fails closed when transport `_meta` is absent | Verify `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the MCP registration env block (it cannot be forged by callers) |
 
 ---
 

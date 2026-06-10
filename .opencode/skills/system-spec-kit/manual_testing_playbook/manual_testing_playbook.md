@@ -137,7 +137,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 387 scenario files while the feature catalog contains 324 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 399 scenario files while the feature catalog contains 326 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count is zero (every scenario file is linked in Section 12).
 
@@ -163,14 +163,14 @@ count += sum(
 print(count)
 PY
 )
-if [ "$TOTAL_FEATURES" -ne 387 ]; then
-  echo "Expected 387 scenario files, found $TOTAL_FEATURES" >&2
+if [ "$TOTAL_FEATURES" -ne 399 ]; then
+  echo "Expected 399 scenario files, found $TOTAL_FEATURES" >&2
   exit 1
 fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-08, the deterministic file count is 387. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-10, the deterministic file count is 399. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 are the 028 MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), and the 028 CLI stress set (434-438). Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -3828,3 +3828,15 @@ This split playbook keeps automated coverage references in three places:
 | 424 | Pipeline Architecture | MCP code-index reconnecting proxy | [424](14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md) | [14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md](../feature_catalog/14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md) |
 | 425 | Tooling And Scripts | Orphan-sweep Stop-hook activation | [425](16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md) | [16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md](../feature_catalog/16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
 | 426 | Pipeline Architecture | Daemon ownership re-election (default-on, reap-before-respawn, live two-session validation) | [426](14--pipeline-architecture/daemon-ownership-reelection.md) | [14--pipeline-architecture/daemon-ownership-reelection.md](../feature_catalog/14--pipeline-architecture/daemon-ownership-reelection.md) |
+| 427 | Tooling And Scripts | CLI list-tools parity per system (spec-memory 37 / code-index 8 / skill-advisor 9) | [427](16--tooling-and-scripts/cli-list-tools-parity.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 428 | Tooling And Scripts | CLI warm-only no-spawn behavior (exit 75) | [428](16--tooling-and-scripts/cli-warm-only-no-spawn.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 429 | Tooling And Scripts | CLI dist-freshness guard trip (exit 69, dev overrides) | [429](16--tooling-and-scripts/cli-dist-freshness-guard.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 430 | Tooling And Scripts | code-index CLI blocked-read rendering (exit 0, requiredAction surfaced) | [430](16--tooling-and-scripts/cli-blocked-read-rendering.md) | [06--mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/06--mcp-tool-surface/code-index-cli.md) |
+| 431 | Tooling And Scripts | skill-advisor CLI trusted-gate refusal (exit 64, fail-closed) | [431](16--tooling-and-scripts/cli-trusted-gate-refusal.md) | [06--mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/06--mcp-surface/skill-advisor-cli.md) |
+| 432 | Pipeline Architecture | Tri-daemon spawn drill invocation (028 program gate, SPECKIT_RUN_TRI_DAEMON_DRILL=1) | [432](14--pipeline-architecture/tri-daemon-spawn-drill.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 433 | UX Hooks | CLI hook transport-down fail-open (warm-only, no prompt-time spawn) | [433](18--ux-hooks/cli-hook-transport-down-fail-open.md) | [16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md](../feature_catalog/16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) |
+| 434 | Tooling And Scripts | 028 CLI stress: concurrent dual-CLI+MCP load | [434](16--tooling-and-scripts/cli-stress-concurrent-dual-client-load.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 435 | Tooling And Scripts | 028 CLI stress: repeated warm-only probes under daemon churn | [435](16--tooling-and-scripts/cli-stress-warm-only-probe-churn.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 436 | Tooling And Scripts | 028 CLI stress: large-payload (>64KB) pipe integrity | [436](16--tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 437 | Tooling And Scripts | 028 CLI stress: numeric-coercion edge args | [437](16--tooling-and-scripts/cli-stress-numeric-coercion-edge-args.md) | [06--mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/06--mcp-tool-surface/code-index-cli.md) |
+| 438 | Tooling And Scripts | 028 CLI stress: trust-gate fuzz (untrusted mutations all exit 64) | [438](16--tooling-and-scripts/cli-stress-trust-gate-fuzz.md) | [06--mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/06--mcp-surface/skill-advisor-cli.md) |

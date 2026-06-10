@@ -78,6 +78,15 @@ Returns the reverse import impact set: every file that imports the subject, tran
 
 TypeScript exits 0. The focused Vitest code-graph suite passes.
 
+**Prefer a shell?** The same eight tools are callable through the daemon-backed CLI, over the same daemon the MCP registration uses:
+
+```bash
+node .opencode/bin/code-index.cjs list-tools --format text     # offline, no daemon contact
+node .opencode/bin/code-index.cjs code_graph_status --format json
+```
+
+Exit codes are `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error. The false-safe contract carries through: a `status: "blocked"` readiness refusal exits `0` deliberately — blocked is an actionable answer (run the surfaced `requiredAction`), not a CLI failure — while a malformed diff to `detect_changes` (`status: "parse_error"`) exits `64`. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn.
+
 ---
 
 ## 4. HOW IT WORKS
@@ -143,6 +152,8 @@ The boundary with text search is simple. Use Grep when you know the exact token 
 | `parserHealth` shows quarantined files | One or more files failed parsing and landed in the skip-list | Inspect `parserSkipList.sample` from `code_graph_status`. Repair the file or accept the quarantine for this scan run |
 | Skill files do not appear in scan results | `.opencode/skills/**` is excluded by default | Set `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` or pass the `includeSkills` array on the scan call |
 | `code_graph_query` returns fewer results than expected | Some files are not indexed due to parse failures or scope exclusions | Check `parserHealth` and `nodesByKind` in `code_graph_status` output |
+| `code-index.cjs` exits 69 | The CLI dist entrypoint is missing or stale relative to its sources | Run `tsc -p .opencode/skills/system-code-graph/tsconfig.json` (dev loops can set `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`) |
+| `code-index.cjs` exits 75 under `--warm-only` | The daemon is cold and warm-only forbids a cold spawn | Expected at prompt time; retry without `--warm-only` to auto-spawn via the launcher |
 | Plugin bridge fails on startup with missing `dist/handlers/session-resume.js` | The bridge imports modules that moved to `system-spec-kit` after extraction | See `mcp_server/plugin_bridges/README.md` section 1 for the broken-import table |
 | An old doc references `system_code_graph` (underscore form) | A pre-rename reference survived the standalone server rename | Use `mk-code-index`, `mk_code_index` and `mcp__mk_code_index__*` for current runtime docs |
 
@@ -180,6 +191,7 @@ A: Readiness answers whether the graph reflects the current workspace. The four 
 | Vitest code-graph suite | `.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph` passes all tests |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-code-graph/README.md --type readme` reports zero issues |
 | Gold-query battery | `mcp__mk_code_index__code_graph_verify({})` returns `passed` status on a fresh graph |
+| CLI front door | `node .opencode/bin/code-index.cjs list-tools --format text` prints the eight tool names offline and exits 0 |
 | Skill graph integrity | `mcp__mk_skill_advisor__skill_graph_scan({})` and `mcp__mk_skill_advisor__skill_graph_validate({})` report no errors |
 
 ---

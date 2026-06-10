@@ -1,11 +1,11 @@
 ---
 title: SPECKIT Environment Variable Reference
-description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP server, organized by subsystem with defaults, types and source file references.
+description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP server (plus the MK_*/runtime variables of the dual-stack CLI front door), organized by subsystem with defaults, types and source file references.
 ---
 
 # SPECKIT Environment Variable Reference
 
-> All `SPECKIT_*` environment variables for the Spec Kit Memory MCP server.
+> All `SPECKIT_*` environment variables for the Spec Kit Memory MCP server, plus the `MK_*` and runtime prompt-time variables used by the daemon-backed CLI front door.
 
 ---
 
@@ -106,7 +106,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 141 (legacy HYDRA aliases removed in commit 6f2c2c939).
+Total unique variables documented: 161 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
 
 ### Provisional Measurement Contract
 
@@ -509,6 +509,31 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 
 ---
 
+## CLI FRONT DOOR (DUAL-STACK)
+
+Environment variables for the daemon-backed CLIs shipped by the MCP-to-CLI transition: `node .opencode/bin/spec-memory.cjs` (37 tools), `node .opencode/bin/code-index.cjs` (8 tools) and `node .opencode/bin/skill-advisor.cjs` (9 tools). The CLIs run over the unchanged daemons; MCP registrations stay as they were (the CLI is additive). All three share the exit taxonomy `0` success / `1` runtime / `64` usage-schema / `69` protocol-or-dist mismatch / `75` retryable daemon error.
+
+Warm-only and prompt-time flags accept `1`, `true`, `yes` or `on`. When any of them is set, the CLI defaults to `--warm-only`: it probes the daemon socket and exits `75` instead of cold-spawning the launcher, which is the contract prompt-time hooks rely on. `--no-warm-only` on the command line overrides the env default. Without warm-only, a cold daemon is auto-spawned through the matching `mk-*-launcher.cjs`.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY` | unset (off) | flag | Default the spec-memory CLI to warm-only (probe, never cold-spawn; exit `75` when the daemon is down). | `mcp_server/spec-memory-cli.ts` |
+| `SPECKIT_SPEC_MEMORY_CLI_PROMPT_TIME` | unset (off) | flag | Marks the spec-memory CLI invocation as prompt-time; implies warm-only. | `mcp_server/spec-memory-cli.ts` |
+| `SPECKIT_CODE_INDEX_CLI_WARM_ONLY` | unset (off) | flag | Default the code-index CLI to warm-only. | `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts` |
+| `SPECKIT_CODE_INDEX_CLI_PROMPT_TIME` | unset (off) | flag | Marks the code-index CLI invocation as prompt-time; implies warm-only. The OpenCode plugin bridge sets this on every call. | `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts`, `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs` |
+| `MK_SKILL_ADVISOR_CLI_WARM_ONLY` | unset (off) | flag | Default the skill-advisor CLI to warm-only. Alias: `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`. | `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts` |
+| `MK_SKILL_ADVISOR_CLI_PROMPT_TIME` | unset (off) | flag | Marks the skill-advisor CLI invocation as prompt-time; implies warm-only. Alias: `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`. | `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts` |
+| `SPECKIT_CLI_PROMPT_TIME` | unset (off) | flag | Cross-CLI prompt-time marker honored by all three CLIs; implies warm-only. | all three `*-cli.ts` entrypoints |
+| `OPENCODE_PROMPT_TIME` / `CODEX_PROMPT_TIME` / `CLAUDE_CODE_PROMPT_TIME` | unset (off) | flag | Runtime-set prompt-time markers; any of them implies warm-only across all three CLIs, so a hook environment can flag prompt time once for the whole stack. | all three `*-cli.ts` entrypoints |
+| `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the spec-memory shim's dist-freshness guard (skips the exit-`69` stale check). | `.opencode/bin/spec-memory.cjs` |
+| `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the code-index shim's dist-freshness guard. | `.opencode/bin/code-index.cjs` |
+| `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the skill-advisor shim's dist-freshness guard. Alias: `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE`. | `.opencode/bin/skill-advisor.cjs` |
+| `MK_SKILL_ADVISOR_CLI_TRUSTED` | unset (untrusted) | boolean (`"1"`) | Send skill-advisor CLI calls as trusted (equivalent to `--trusted`), required for the mutation tools `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances`. Alias: `SPECKIT_SKILL_ADVISOR_CLI_TRUSTED`. | `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts` |
+| `MK_SKILL_ADVISOR_TRUST_DEFAULT` | unset (fail-closed untrusted) | string (`"trusted"`) | **Daemon-side** trust default. The advisor daemon fails closed (untrusted) when a caller's transport `_meta` is absent; setting `trusted` in the daemon's own environment restores default-trusted behavior for native MCP surfaces whose clients send no `_meta`. Set in the committed MCP registrations (`.mcp.json`, `opencode.json`, `.codex/config.toml`); callers cannot forge it. | `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts` |
+| `SPECKIT_RUN_TRI_DAEMON_DRILL` | unset (skip) | boolean (`"1"`) | Opt-in gate for the tri-daemon CLI drill test that exercises all three daemon-backed CLIs together; the suite `describe.skip`s without it. | `.opencode/skills/system-skill-advisor/mcp_server/tests/tri-daemon-drill.vitest.ts` |
+
+---
+
 ## EMBEDDER CASCADE PROBE
 
 Cascade-probe timing overrides for the embedder auto-selection cascade. Defaults are the empirically tuned values from the 015 cascade-reorder packet; operators can tune timeout / lock-staleness / sleep without code changes via env vars (022/009).
@@ -576,4 +601,4 @@ export SPECKIT_LLM_REFORMULATION=false
 
 ---
 
-*Generated from source code analysis. Last updated: 2026-05-23.*
+*Generated from source code analysis. Last updated: 2026-06-10.*

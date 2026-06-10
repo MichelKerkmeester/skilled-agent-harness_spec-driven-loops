@@ -19,8 +19,9 @@ trigger_phrases:
 
 Current state:
 
-- `advisor-server.ts` (262 lines) is the MCP transport entrypoint. It registers tools, manages daemon lifecycle and triggers skill metadata indexing on startup.
-- `tools/` defines tool descriptors and dispatches calls. `tools/index.ts:37-43` registers `TOOL_DEFINITIONS` with 4 advisor tools plus the spread of skill-graph tools.
+- `advisor-server.ts` is the MCP transport entrypoint. It registers tools, manages daemon lifecycle and triggers skill metadata indexing on startup. Its caller-context builder resolves trust **fail-closed**: absent or unknown transport `_meta` is untrusted, and only `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (set in the committed MCP registrations, unforgeable by callers) restores default trust for native MCP surfaces whose clients send no `_meta`.
+- `skill-advisor-cli.ts` (with `skill-advisor-cli-manifest.ts`) is the daemon-backed CLI over the same 9 tools, fronted by the `.opencode/bin/skill-advisor.cjs` shim — the dual-stack surface beside the unchanged MCP registration. Calls are sent untrusted by default; `--trusted` / `MK_SKILL_ADVISOR_CLI_TRUSTED=1` marks maintainer mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`), and the gate fails closed with a usage error (exit `64`) otherwise. Shared exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes and exits `75` instead of cold-spawning the daemon.
+- `tools/` defines tool descriptors and dispatches calls. `tools/index.ts` registers `TOOL_DEFINITIONS` with 4 advisor tools plus the spread of skill-graph tools.
 - `handlers/` owns orchestration for advisor tools (recommend, rebuild, status, validate) and skill-graph subhandlers (scan, query, status, validate, propagate_enhances).
 - `lib/` carries the runtime helpers across 11 subdirectories: `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/` and `shadow/`, plus several flat modules.
 - `database/skill-graph.sqlite` stores skill metadata, relationships and derived signals. Schema initialization and prepared queries live in `lib/skill-graph/skill-graph-db.ts` and `lib/skill-graph/skill-graph-queries.ts`.
@@ -67,6 +68,8 @@ lib/ ───▶ database/skill-graph.sqlite through lib/skill-graph/ adapters
 ```text
 mcp_server/
 +-- advisor-server.ts        # MCP transport entrypoint and daemon lifecycle
++-- skill-advisor-cli.ts     # Daemon-backed CLI entrypoint (dual-stack front door)
++-- skill-advisor-cli-manifest.ts # CLI tool manifest
 +-- tools/                   # MCP tool descriptors and dispatch
 +-- handlers/                # Tool handler orchestration
 +-- lib/                     # Runtime helpers (scorer, daemon, freshness, skill-graph)
@@ -77,7 +80,7 @@ mcp_server/
 +-- bench/                   # Benchmark harnesses
 +-- tests/                   # Vitest and Python coverage
 +-- scripts/                 # Python CLI and graph compiler utilities
-+-- plugin_bridges/          # Runtime bridge packages
++-- plugin_bridges/          # OpenCode bridge with warm-only CLI fallback to skill-advisor.cjs
 `-- README.md
 ```
 
@@ -107,6 +110,8 @@ schemas/ → handlers/ (schemas are contracts, not orchestration)
 ```text
 mcp_server/
 +-- advisor-server.ts              # MCP server entrypoint and transport layer
++-- skill-advisor-cli.ts           # Daemon-backed CLI entrypoint
++-- skill-advisor-cli-manifest.ts  # CLI tool manifest
 +-- tools/                         # MCP tool definitions and dispatch
 |   +-- advisor-recommend.ts
 |   +-- advisor-rebuild.ts
@@ -201,8 +206,10 @@ mcp_server/
 
 | File | Responsibility |
 |---|---|
-| `advisor-server.ts` (lines 1-262) | MCP transport entrypoint, tool registration, daemon startup, skill graph indexing via `indexSkillMetadata`. |
-| `tools/index.ts` (lines 1-70) | Tool descriptor registry (`TOOL_DEFINITIONS` at lines 37-43) and dispatch router for 9 public tools. |
+| `advisor-server.ts` | MCP transport entrypoint, tool registration, daemon startup, skill graph indexing via `indexSkillMetadata`, and the fail-closed trusted-caller resolution (`resolveTrustedCaller` honors `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` from the daemon env only). |
+| `skill-advisor-cli.ts` | Daemon-backed CLI over the same 9 tools (built to `dist/mcp_server/skill-advisor-cli.js`, fronted by `.opencode/bin/skill-advisor.cjs`). Untrusted-by-default `_meta` (`callerAuthority`), trusted-mutation gate for `advisor_rebuild` / `skill_graph_scan` / apply-mode `skill_graph_propagate_enhances`, warm-only probe support, launcher auto-spawn, exit taxonomy `0`/`1`/`64`/`69`/`75`. |
+| `skill-advisor-cli-manifest.ts` | CLI tool manifest asserted at CLI startup so the command list cannot drift from the tool registry. |
+| `tools/index.ts` (lines 1-70) | Tool descriptor registry (`TOOL_DEFINITIONS` at line 37) and dispatch router for 9 public tools. |
 | `tools/skill-graph-tools.ts` (lines 1-143) | Skill graph tool definitions for scan, query, status, validate and propagate_enhances. |
 | `handlers/index.ts` | Re-exports handler entrypoints for advisor and skill-graph operations. |
 | `lib/skill-graph/skill-graph-db.ts` | SQLite schema initialization, metadata indexing, stats and row mapping. |
@@ -281,8 +288,9 @@ The server registers 9 public tools (4 advisor + 5 skill_graph) defined in `tool
 | `skill_graph_status` | Tool | Reports skill graph health and counts. |
 | `skill_graph_validate` | Tool | Validates skill graph for schema drift, broken edges and cycles. |
 | `skill_graph_propagate_enhances` | Tool | Detects and (opt-in) applies missing inbound enhance edges across skills. |
+| `node .opencode/bin/skill-advisor.cjs <tool>` | CLI | Daemon-backed front door for all 9 tools (shim guards dist freshness, exit `69`; `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` dev override; `list-tools` answers offline; `--trusted` for maintainer mutations). |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
-| `npm test` | Command | Runs Vitest and Python test coverage. |
+| `npm test` | Command | Runs Vitest and Python test coverage. The tri-daemon CLI drill (`tests/tri-daemon-drill.vitest.ts`) is env-gated: it runs only with `SPECKIT_RUN_TRI_DAEMON_DRILL=1` and skips otherwise. |
 
 ---
 
