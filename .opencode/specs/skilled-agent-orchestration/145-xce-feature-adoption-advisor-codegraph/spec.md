@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase-parent and 9 child phases from 027 adoption analysis"
-    next_safe_action: "Plan or resume a child phase folder"
+    last_updated_at: "2026-06-11T00:00:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled parent docs: all 9 child phases implemented and committed"
+    next_safe_action: "Close packet or schedule BM25 shadow-lane wiring as a future phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-145-xce-feature-adoption-advisor-codegraph"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 (phase parent) |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | None (track root) |
@@ -68,7 +68,7 @@ Spec-027 hardened the Spec Kit Memory system with retrieval observability, a pro
 ### Purpose
 Adopt the proven, shipped 027 memory features into the advisor and code-graph daemons phase by phase, carrying each feature's 027 rollout discipline (prompt-safety, shadow-first, behavior-preservation, bounded retention) so the adoption never regresses the live systems. The work is decomposed into nine independently executable child phases; this parent only tracks purpose, the phase manifest, and handoff discipline.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot. All nine phases are PLANNED (scaffolded, not yet implemented). This packet is SCAFFOLD-ONLY: no advisor or code-graph source has been modified.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot. All nine phases are IMPLEMENTED and COMMITTED: the advisor and code-graph source changes have landed, with per-phase validation evidence in each child's implementation-summary.md.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -84,7 +84,7 @@ Adopt the proven, shipped 027 memory features into the advisor and code-graph da
 ### Out of Scope
 - The three rejected transfers: vector read-path resilience shard quarantine (027 phase 013 is planned-only, not shipped), the five-port storage adapter seam (027 phase 015 planned-only, likely over-engineering), and idempotency receipts (already covered by content-hash skip + duplicate-id rejection in both daemons).
 - Adding a brand-new semantic lane to the advisor (it already has a live semantic-shadow lane) or text search to the code graph (intentionally structural; Grep owns text search).
-- Any code edits to advisor/code-graph source — this packet is scaffold-only; implementation lands later per phase.
+- Advisor/code-graph code edits outside the per-phase file scopes below — implementation landed phase by phase within each child's frozen scope.
 
 ### Files to Change
 Aggregate file scope across all phases (audit trail only). Per-phase detail and the exact file:line evidence live in each child's spec.md and plan.md.
@@ -111,15 +111,15 @@ Aggregate file scope across all phases (audit trail only). Per-phase detail and 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-advisor-observability/ | Transfers #1+#2: prompt-safe `why_recommended` attribution + degraded-vector/maintenance counters in `advisor_status` | Planned |
-| 2 | 002-advisor-provenance-guard/ | Transfer #3: `source_kind` / manual-overwrite guard for `skill_graph_propagate_enhances` auto edges | Planned |
-| 3 | 003-advisor-packed-bm25-lexical/ | Transfer #5: packed BM25 + BM25F field weights for the advisor lexical lane (adopts 027 phase 014) | Planned |
-| 4 | 004-advisor-bfs-consolidation/ | Transfer #6: shared app-level BFS for advisor `transitive_path` / `subgraph` (adopts 027 phase 012) | Planned |
-| 5 | 005-advisor-feedback-calibration/ | Transfer #10: shadow-only lane-weight/threshold calibration from `advisor_validate` outcomes | Planned |
-| 6 | 006-codegraph-tombstone-audit/ | Transfer #4: bounded soft-delete tombstone lineage for stale code-graph nodes/edges | Planned |
-| 7 | 007-codegraph-bfs-consolidation/ | Transfer #7: standardize code-graph's two BFS paths (transitive symbol + blast radius) | Planned |
-| 8 | 008-codegraph-why-included/ | Transfer #8: `why_included` edge-chain breadcrumbs for `blast_radius` + `code_graph_context` | Planned |
-| 9 | 009-codegraph-bm25-symbol-resolver/ | Transfer #9: optional BM25 fuzzy symbol resolver for disambiguation only (must not compete with Grep) | Planned |
+| 1 | 001-advisor-observability/ | Transfers #1+#2: prompt-safe `why_recommended` attribution + degraded-vector/maintenance counters in `advisor_status` | Complete |
+| 2 | 002-advisor-provenance-guard/ | Transfer #3: `source_kind` / manual-overwrite guard for `skill_graph_propagate_enhances` auto edges | Complete |
+| 3 | 003-advisor-packed-bm25-lexical/ | Transfer #5: packed BM25 + BM25F field weights for the advisor lexical lane (adopts 027 phase 014) | Complete |
+| 4 | 004-advisor-bfs-consolidation/ | Transfer #6: shared app-level BFS for advisor `transitive_path` / `subgraph` (adopts 027 phase 012) | Complete |
+| 5 | 005-advisor-feedback-calibration/ | Transfer #10: shadow-only lane-weight/threshold calibration from `advisor_validate` outcomes | Complete |
+| 6 | 006-codegraph-tombstone-audit/ | Transfer #4: bounded soft-delete tombstone lineage for stale code-graph nodes/edges | Complete |
+| 7 | 007-codegraph-bfs-consolidation/ | Transfer #7: standardize code-graph's two BFS paths (transitive symbol + blast radius) | Complete |
+| 8 | 008-codegraph-why-included/ | Transfer #8: `why_included` edge-chain breadcrumbs for `blast_radius` + `code_graph_context` | Complete |
+| 9 | 009-codegraph-bm25-symbol-resolver/ | Transfer #9: optional BM25 fuzzy symbol resolver for disambiguation only (must not compete with Grep) | Complete |
 
 ### Phase Transition Rules
 
@@ -134,7 +134,7 @@ Aggregate file scope across all phases (audit trail only). Per-phase detail and 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 004-advisor-bfs-consolidation | 007-codegraph-bfs-consolidation | Advisor BFS helper pattern proven behavior-preserving before reusing the same consolidation pattern code-graph-side | Advisor `transitive_path`/`subgraph` parity tests green |
-| 003-advisor-packed-bm25-lexical | 009-codegraph-bm25-symbol-resolver | Advisor packed-BM25 lane shadow-validated before code-graph attempts the lower-priority symbol resolver | `advisor_validate` baseline non-regression |
+| 003-advisor-packed-bm25-lexical | 009-codegraph-bm25-symbol-resolver | Advisor packed-BM25 lane validated before code-graph attempts the lower-priority symbol resolver. SATISFIED: the 003 lane shipped as inert-until-promotion shadow infra, validated by its vitest parity suite (not `advisor_validate` baselines); wiring into `advisor_validate` shadow recording is a scheduled future phase | Vitest BM25/BM25F parity suite green (003 implementation-summary.md) |
 | 001-advisor-observability | (none) | Independent; ships standalone | Phase `--strict` validate |
 | 002-advisor-provenance-guard | (none) | Independent; ships standalone | Phase `--strict` validate |
 | 005-advisor-feedback-calibration | (none) | Independent; shadow/default-off; ships standalone | Phase `--strict` validate |

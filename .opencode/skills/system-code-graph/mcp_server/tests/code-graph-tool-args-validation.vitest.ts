@@ -35,6 +35,12 @@ describe('validateToolArgs (BUG-04 schema enforcement)', () => {
     ).not.toThrow();
   });
 
+  it('accepts includeTrace on code_graph_query (declared key under additionalProperties:false)', () => {
+    expect(() =>
+      validateToolArgs('code_graph_query', { operation: 'blast_radius', subject: 'src/x.ts', includeTrace: true }),
+    ).not.toThrow();
+  });
+
   it('throws for an unknown tool name', () => {
     expect(() => validateToolArgs('nope', {})).toThrow(/Unknown tool/i);
   });

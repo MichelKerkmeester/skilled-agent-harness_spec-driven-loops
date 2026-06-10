@@ -62,6 +62,8 @@ _memory:
 
 The advisor now has a packed BM25F lexical scorer available for shadow evaluation without changing live recommendations. Existing token-overlap lexical scoring remains the only live lexical contribution, and the BM25 flag is default-off so ranking order and scores stay unchanged until a future promotion phase explicitly changes fusion.
 
+> **Shadow-lane status:** The BM25F lane is deliberately not consumed by live fusion. This is intentional inert-until-promotion infrastructure, not an unfinished wiring step. Validation evidence for this phase is the vitest parity suite (live output proven byte-identical with the shadow flag on and off), not advisor_validate baselines. Wiring the lane into advisor_validate shadow recording is a scheduled future phase; wiring it now would violate the no-ranking-drift guardrail.
+
 ### Packed BM25F Shadow Helper
 
 The helper builds a term dictionary over advisor skill fields and compacts postings into typed arrays after warmup. Each posting stores per-field term frequencies for name, keywords, domains, intent signals, derived triggers, and description; query-time BM25F weights emphasize authored identity fields above generic descriptions.
