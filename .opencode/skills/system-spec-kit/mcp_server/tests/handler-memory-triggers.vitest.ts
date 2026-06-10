@@ -12,6 +12,7 @@ import * as coActivation from '../lib/cognitive/co-activation';
 import * as consumptionLogger from '../lib/telemetry/consumption-logger';
 import * as sessionManager from '../lib/session/session-manager';
 import * as vectorIndexStore from '../lib/search/vector-index-store';
+import * as semanticTriggerMatcher from '../lib/triggers/semantic-trigger-matcher';
 import type {
   SignalDetection,
   TriggerMatch,
@@ -365,5 +366,82 @@ describe('Sprint-0 reliability fixes', () => {
     expect(results).toHaveLength(1);
     expect(results[0]?.memoryId).toBe(11);
     expect(results[0]?.filePath).toBe('/tmp/scoped.md');
+  });
+});
+
+describe('semantic trigger shadow handler wiring', () => {
+  let previousFlag: string | undefined;
+
+  beforeEach(() => {
+    previousFlag = process.env.SPECKIT_SEMANTIC_TRIGGERS;
+    delete process.env.SPECKIT_SEMANTIC_TRIGGERS;
+    vi.spyOn(core, 'checkDatabaseUpdated').mockResolvedValue(false);
+    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 51, evalRunId: 52 });
+    vi.spyOn(evalLogger, 'logFinalResult').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    if (previousFlag === undefined) {
+      delete process.env.SPECKIT_SEMANTIC_TRIGGERS;
+    } else {
+      process.env.SPECKIT_SEMANTIC_TRIGGERS = previousFlag;
+    }
+  });
+
+  it('keeps semantic matching inert by default', async () => {
+    const lexicalMatch = buildTriggerMatch({ memoryId: 101, matchedPhrases: ['save context'] });
+    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+      buildTriggerMatchResult([lexicalMatch])
+    );
+    const semanticSpy = vi.spyOn(semanticTriggerMatcher, 'computeSemanticTriggerShadow');
+
+    const response = await handler.handleMemoryMatchTriggers({ prompt: 'save context', include_cognitive: false });
+    const payload = parseEnvelope(response);
+    const data = getRecord(payload.data) ?? {};
+    const meta = getRecord(payload.meta) ?? {};
+    const results = getArray(data.results).map((item) => getRecord(item) ?? {});
+
+    expect(data.count).toBe(1);
+    expect(results[0]?.memoryId).toBe(101);
+    expect(results[0]?.matchedPhrases).toEqual(['save context']);
+    expect(meta.semanticTriggerShadow).toBeUndefined();
+    expect(semanticSpy).not.toHaveBeenCalled();
+  });
+
+  it('computes semantic shadow metadata without changing lexical results', async () => {
+    process.env.SPECKIT_SEMANTIC_TRIGGERS = 'true';
+    const lexicalMatch = buildTriggerMatch({ memoryId: 201, matchedPhrases: ['save context'] });
+    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+      buildTriggerMatchResult([lexicalMatch])
+    );
+    vi.spyOn(vectorIndexStore, 'initialize_db').mockReturnValue({} as never);
+    vi.spyOn(semanticTriggerMatcher, 'computeSemanticTriggerShadow').mockReturnValue({
+      enabled: true,
+      status: 'computed',
+      lexicalCount: 1,
+      semanticCount: 2,
+      overlapCount: 1,
+      topScore: 0.91,
+      latencyMs: 3,
+    });
+    vi.spyOn(console, 'info').mockImplementation(() => undefined);
+
+    const response = await handler.handleMemoryMatchTriggers({ prompt: 'save context', include_cognitive: false });
+    const payload = parseEnvelope(response);
+    const data = getRecord(payload.data) ?? {};
+    const meta = getRecord(payload.meta) ?? {};
+    const results = getArray(data.results).map((item) => getRecord(item) ?? {});
+
+    expect(data.count).toBe(1);
+    expect(results).toHaveLength(1);
+    expect(results[0]?.memoryId).toBe(201);
+    expect(getRecord(meta.semanticTriggerShadow)).toMatchObject({
+      enabled: true,
+      status: 'computed',
+      lexicalCount: 1,
+      semanticCount: 2,
+      overlapCount: 1,
+    });
   });
 });

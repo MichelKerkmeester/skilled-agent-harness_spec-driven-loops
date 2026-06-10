@@ -23,6 +23,11 @@ import { calculateTokenMetrics, estimateTokens, type TokenMetrics } from '../for
 
 // Lib modules
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+import {
+  computeSemanticTriggerShadow,
+  isSemanticTriggerShadowEnabled,
+  type SemanticTriggerShadowStats,
+} from '../lib/triggers/semantic-trigger-matcher.js';
 import * as workingMemory from '../lib/cognitive/working-memory.js';
 import * as attentionDecay from '../lib/cognitive/attention-decay.js';
 import * as tierClassifier from '../lib/cognitive/tier-classifier.js';
@@ -344,6 +349,30 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     ? triggerMatchResult.stats.signals
     : [];
   const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
+  let semanticTriggerShadow: SemanticTriggerShadowStats | null = null;
+  try {
+    if (isSemanticTriggerShadowEnabled()) {
+      const semanticDatabase = initialize_db();
+      semanticTriggerShadow = computeSemanticTriggerShadow(
+        semanticDatabase,
+        prompt,
+        results.map((match) => match.memoryId),
+      );
+      console.info('[memory_match_triggers] Semantic trigger shadow', semanticTriggerShadow);
+    }
+  } catch (shadowErr: unknown) {
+    semanticTriggerShadow = {
+      enabled: true,
+      status: 'failed',
+      lexicalCount: results.length,
+      semanticCount: 0,
+      overlapCount: 0,
+      topScore: null,
+      latencyMs: 0,
+      error: toErrorMessage(shadowErr),
+    };
+    console.warn('[memory_match_triggers] Semantic trigger shadow failed:', toErrorMessage(shadowErr));
+  }
 
   if (!results || results.length === 0) {
     const noMatchResponse = createMCPEmptyResponse({
@@ -540,11 +569,12 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     },
     hints,
     startTime: startTime,
-    extraMeta: {
-      latencyMs: latencyMs,
-      triggerSignals: detectedSignals,
-      ...(degradedTriggerMatching ? { degradedMatching: degradedTriggerMatching } : {}),
-    }
+      extraMeta: {
+        latencyMs: latencyMs,
+        triggerSignals: detectedSignals,
+        ...(semanticTriggerShadow ? { semanticTriggerShadow } : {}),
+        ...(degradedTriggerMatching ? { degradedMatching: degradedTriggerMatching } : {}),
+      }
   });
 
   // Consumption instrumentation — log triggers event (fail-safe, never throws)

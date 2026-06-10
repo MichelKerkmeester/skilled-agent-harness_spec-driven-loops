@@ -103,13 +103,18 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Acceptance traceability template | OFF | `SPECKIT_AC_TRACEABILITY_TEMPLATE` | Enables future acceptance-criteria traceability table rendering in scaffold templates | acceptance coverage gate |
 | Acceptance coverage gate | OFF | `SPECKIT_AC_COVERAGE` | Opt-in advisory scan for acceptance-criteria traceability coverage during spec validation | acceptance coverage gate |
 | Acceptance coverage enforcement | OFF | `SPECKIT_AC_COVERAGE_ENFORCE` | Reserved promotion switch for a later strict coverage gate; current shipped rule remains advisory | acceptance coverage gate |
+| Semantic trigger shadow matcher | OFF | `SPECKIT_SEMANTIC_TRIGGERS` | Opt-in shadow-only semantic trigger scoring; lexical trigger results remain primary and unchanged | semantic trigger fallback |
+| Semantic trigger threshold | OFF | `SPECKIT_SEMANTIC_TRIGGER_THRESHOLD` | Cosine threshold for shadow semantic trigger matches; only used when semantic trigger shadow is enabled | semantic trigger fallback |
+| Semantic trigger margin | OFF | `SPECKIT_SEMANTIC_TRIGGER_MARGIN` | Minimum top-vs-second score gap for accepting shadow semantic trigger matches | semantic trigger fallback |
+| Semantic trigger max | OFF | `SPECKIT_SEMANTIC_TRIGGER_MAX` | Maximum shadow semantic trigger matches computed for comparison telemetry | semantic trigger fallback |
+| Semantic trigger cache TTL | OFF | `SPECKIT_SEMANTIC_TRIGGER_CACHE_TTL_MS` | In-memory ready trigger-embedding cache TTL for shadow semantic trigger scoring | semantic trigger fallback |
 <!-- PHASE-007-ENV-SLOT: SPECKIT_CODE_GRAPH_INTENT_* flags inserted here (027/007) -->
 <!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
 <!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_CODE_GRAPH_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 165 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
+Total unique variables documented: 170 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
 
 ### Provisional Measurement Contract
 

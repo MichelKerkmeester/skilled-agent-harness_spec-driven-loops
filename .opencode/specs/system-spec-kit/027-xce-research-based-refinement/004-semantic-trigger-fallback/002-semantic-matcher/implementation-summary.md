@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 004/002 Semantic Matcher"
-description: "Implementation evidence placeholder for the semantic matcher sub-phase. No implementation changes are claimed until this file is completed after code and tests land."
+description: "Implementation evidence for the semantic matcher sub-phase: default-off shadow semantic trigger scoring, cache reads, handler metadata, and verification."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/002-semantic-matcher"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded sub-phase from 007 split"
-    next_safe_action: "Fill evidence after implementation lands"
+    last_updated_at: "2026-06-10T10:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed semantic matcher with default-off shadow wiring"
+    next_safe_action: "Ready for follow-on shadow evaluation phase"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-007-phase-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-semantic-matcher |
-| **Completed** | 2026-06-06 |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,18 +48,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet implemented. This sub-phase is scaffolded; evidence will be filled after code and tests land.
-
-### Planned scope
-
-This phase will add `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (pure cosine matcher with threshold/margin/max gates and an in-memory cache), reusing the cosine + BLOB-to-Float32 precedent in `mcp_server/lib/search/memory-summaries.ts`, with unit tests in `mcp_server/__tests__/triggers/semantic-matcher.vitest.ts`.
+Implemented a semantic trigger matcher that reads cached prompt and trigger embeddings only, computes cosine matches with threshold/margin/max gates, and exposes default-off shadow stats through `memory_match_triggers` metadata without changing lexical results.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `mcp_server/lib/triggers/semantic-trigger-matcher.ts` | Pending (Create) | Pure cosine matcher + in-memory cache |
-| `mcp_server/__tests__/triggers/semantic-matcher.vitest.ts` | Pending (Create) | Cosine math + gate unit tests |
+| `mcp_server/lib/triggers/semantic-trigger-matcher.ts` | Created | Pure matcher, cache loader, cached-query lookup, shadow stats |
+| `mcp_server/handlers/memory-triggers.ts` | Updated | Default-off semantic shadow wiring; lexical results unchanged |
+| `mcp_server/handlers/mutation-hooks.ts` | Updated | Clears semantic trigger cache with existing mutation cache hook |
+| `mcp_server/tests/semantic-trigger-matcher.vitest.ts` | Created | Cosine, gates, cache, default-off, and shadow tests |
+| `mcp_server/tests/handler-memory-triggers.vitest.ts` | Updated | Handler default-off and shadow-only regression tests |
+| `mcp_server/ENV_REFERENCE.md` | Updated | Documents semantic trigger matcher flags |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +67,7 @@ This phase will add `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (pure 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The matcher remains opt-in behind `SPECKIT_SEMANTIC_TRIGGERS`. When the flag is unset, the handler does not initialize semantic matching. When the flag is enabled, semantic scoring is logged and surfaced as metadata only; returned lexical results and activation behavior are unchanged.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +77,9 @@ This phase will add `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (pure 
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| No schema bump | The implementation consumes existing schema v34 tables and adds no columns or indexes. |
+| Cached-query lookup only | Avoids embedding generation in the trigger hot path and fails closed on cache miss. |
+| Shadow metadata only | Preserves lexical-first behavior until a later evidence phase promotes union mode. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +89,11 @@ This phase will add `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (pure 
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run build` | PASS |
+| `npx vitest run tests/semantic-trigger-matcher.vitest.ts tests/handler-memory-triggers.vitest.ts tests/trigger-embedding-backfill.vitest.ts tests/vector-index-schema*.vitest.ts tests/causal-edges-write-safety.vitest.ts tests/secret-scrubber.vitest.ts` | PASS: 9 files, 84 tests |
+| Comment hygiene on changed TypeScript files | PASS |
+| Alignment verifier on changed-scope directories | PASS |
+| Strict spec validation | PASS: exits 0 after reconciliation |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,5 +101,6 @@ This phase will add `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (pure 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Union mode remains out of scope.** Semantic matches are shadow-only and cannot affect trigger results until a later evidence phase promotes them.
+2. **Prompt cache miss is a no-op.** The matcher does not generate query embeddings in the hot path; missing cached query embeddings produce `no_query_embedding` shadow stats.
 <!-- /ANCHOR:limitations -->

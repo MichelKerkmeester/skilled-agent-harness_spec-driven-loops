@@ -2,6 +2,7 @@
 // MODULE: Mutation Hooks
 // ───────────────────────────────────────────────────────────────
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+import { clearSemanticTriggerCache } from '../lib/triggers/semantic-trigger-matcher.js';
 import * as toolCache from '../lib/cache/tool-cache.js';
 import { clearConstitutionalCache } from '../hooks/memory-surface.js';
 import { clearGraphSignalsCache } from '../lib/graph/graph-signals.js';
@@ -22,6 +23,7 @@ export type { MutationHookResult };
 
 type HookSubscriberName =
   | 'trigger-cache'
+  | 'semantic-trigger-cache'
   | 'tool-cache'
   | 'constitutional-cache'
   | 'graph-cache'
@@ -80,6 +82,13 @@ const hookSubscribers: HookSubscriber[] = [
     shouldRun: (actions) => actions.length > 0,
     run: () => {
       triggerMatcher.clearCache();
+    },
+  },
+  {
+    name: 'semantic-trigger-cache',
+    shouldRun: (actions) => actions.length > 0,
+    run: () => {
+      clearSemanticTriggerCache();
     },
   },
   {
