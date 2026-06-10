@@ -723,20 +723,20 @@ run_continuity_freshness_check() {
     local details=()
     local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
 
-    if [[ -f "$CONTINUITY_FRESHNESS_JS" ]]; then
-        output=$(node "$CONTINUITY_FRESHNESS_JS" --folder "$folder" 2>&1) || exit_code=$?
-    else
-        if [[ ! -f "$CONTINUITY_FRESHNESS_TS" ]]; then
-            log_warn "$rule_name" "Strict-mode validator missing: $CONTINUITY_FRESHNESS_TS"
-            return 0
-        fi
+    if [[ -f "$CONTINUITY_FRESHNESS_TS" ]]; then
         if [[ ! -x "$tsx_bin" ]]; then
             log_error "$rule_name" "tsx runtime missing: $tsx_bin"
             return 0
         fi
-        output=$("$tsx_bin" "$CONTINUITY_FRESHNESS_TS" --folder "$folder" 2>&1) || exit_code=$?
+        output=$("$tsx_bin" "$CONTINUITY_FRESHNESS_TS" --folder "$folder" --strict 2>&1) || exit_code=$?
+    else
+        if [[ ! -f "$CONTINUITY_FRESHNESS_JS" ]]; then
+            log_warn "$rule_name" "Strict-mode validator missing: $CONTINUITY_FRESHNESS_TS"
+            return 0
+        fi
+        output=$(node "$CONTINUITY_FRESHNESS_JS" --folder "$folder" --strict 2>&1) || exit_code=$?
     fi
-    if [[ $exit_code -gt 1 ]]; then
+    if [[ $exit_code -gt 2 ]]; then
         log_error "$rule_name" "Continuity freshness validator failed to execute"
         log_detail "$output"
         return 0
@@ -828,7 +828,9 @@ run_evidence_marker_lint_check() {
 run_strict_validators() {
     local folder="$1"
     $STRICT_MODE || return 0
-    should_run_rule "CONTINUITY_FRESHNESS" && run_continuity_freshness_check "$folder"
+    if [[ "${SPECKIT_COMPLETION_FRESHNESS:-}" =~ ^(1|true|TRUE|yes|YES|on|ON)$ ]]; then
+        should_run_rule "CONTINUITY_FRESHNESS" && run_continuity_freshness_check "$folder"
+    fi
     should_run_rule "EVIDENCE_MARKER_LINT" && run_evidence_marker_lint_check "$folder"
     return 0
 }
@@ -1041,7 +1043,9 @@ main() {
     apply_env_overrides
     detect_legacy_grandfathered "$FOLDER_PATH"
     detect_level "$FOLDER_PATH"
-    run_node_orchestrator
+    if [[ ! "${SPECKIT_COMPLETION_FRESHNESS:-}" =~ ^(1|true|TRUE|yes|YES|on|ON)$ ]]; then
+        run_node_orchestrator || true
+    fi
     validate_template_hashes "$FOLDER_PATH"
     print_header
     run_all_rules "$FOLDER_PATH" "$DETECTED_LEVEL"

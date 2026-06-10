@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 009 decision-record (not implemented)"
-    next_safe_action: "Confirm ADRs at planning review, then implement Phase 1"
+    last_updated_at: "2026-06-10T15:10:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Accepted T6 freshness gate"
+    next_safe_action: "Monitor freshness warnings"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,9 +40,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-06-06 |
-| **Deciders** | Operator, claude-opus-4-8 |
+| **Status** | Accepted |
+| **Date** | 2026-06-10 |
+| **Deciders** | Operator, gpt-5.5-fast |
 
 ---
 
@@ -130,6 +130,8 @@ We needed to decide how to adopt peck's verification-discipline bundle (completi
 - Prompts: `sk-code/SKILL.md`, `/speckit:complete`, `deep-review/SKILL.md` + YAMLs, `@review` (+ `.claude` mirrors), `sk-code-review`.
 
 **How to roll back**: set the enforce flags to `false` (`SPECKIT_COMPLETION_FRESHNESS_ENFORCE=false`) to return to warn-only; remove the flag entirely to disable. No data migration involved.
+
+**Final T6 scope decisions**: the clean-tree precondition is packet-scoped, not whole-repository scoped; the `clock_drift` path remains a benign PASS path; `ENV_REFERENCE.md`, registry, dist, command YAML, and observability surfaces stayed outside the final approved write set.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

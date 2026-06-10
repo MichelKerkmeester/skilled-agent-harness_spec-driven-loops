@@ -47,6 +47,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
 | `AC_COVERAGE`        | INFO     | checklist.md  | Opt-in advisory acceptance-criteria traceability scan |
+| `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
 | `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
 | `FRONTMATTER_VALID`  | ERROR    | spec docs     | YAML frontmatter properly structured           |
@@ -78,6 +79,28 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `SPECKIT_AC_COVERAGE` | `false` | Enables the advisory validation scan. |
 | `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | Reserved promotion switch; current rule remains INFO/advisory. |
 | `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | Sets the advisory coverage floor, clamped to `[0,1]`. |
+
+### Non-Breaking Completion Freshness Rollout
+
+`CONTINUITY_FRESHNESS` is strict-only and inert by default. It runs only when `SPECKIT_COMPLETION_FRESHNESS=true`, so unset validation output stays unchanged. When enabled, it binds a completion claim to the stored `session_dedup.fingerprint`: the validator recomputes the content fingerprint, compares it to the stored value, and checks that packet-scoped working-tree paths are clean. The zero fingerprint placeholder is treated as never recorded and does not produce stale warnings.
+
+**Rule ID:** `CONTINUITY_FRESHNESS`  
+**Severity:** WARNING by default; ERROR when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`  
+**Default:** Disabled. Set `SPECKIT_COMPLETION_FRESHNESS=true` to run the strict-only scan.  
+**Lifecycle predicate:** strict validation only, with a completion claim present (`checklist.md` checked evidence, `completion_pct: 100`, or complete/shipped status).  
+**Clean-tree scope:** packet-scoped paths only, not the whole repository.  
+**Clock drift:** a continuity timestamp newer than graph metadata remains a benign pass path.
+
+| Flag | Default | Effect |
+| --- | --- | --- |
+| `SPECKIT_COMPLETION_FRESHNESS` | `false` | Enables strict-only completion freshness validation. |
+| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | Promotes stale completion freshness from warning to error while the rule is enabled. |
+
+### How to Fix `CONTINUITY_FRESHNESS`
+
+1. Re-run the verification that supports the completion claim.
+2. Refresh the packet continuity fingerprint after the verified content is current.
+3. Ensure the packet's own paths are clean, then run `validate.sh --strict` again.
 
 ---
 

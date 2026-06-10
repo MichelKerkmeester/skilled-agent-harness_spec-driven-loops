@@ -29,6 +29,8 @@ export interface RuleResult {
   diagnostics: RuleDiagnostic[];
 }
 
+export const ZERO_CONTINUITY_FINGERPRINT = `sha256:${'0'.repeat(64)}`;
+
 export interface MergePlan {
   targetFile?: string;
   targetAnchor?: string;
@@ -556,6 +558,17 @@ function parseAnchors(content: string): { anchors: AnchorOccurrence[]; errors: s
   }
 
   return { anchors, errors };
+}
+
+export function normalizeForContinuityFingerprint(content: string): string {
+  return content
+    .replace(/\r\n/g, '\n')
+    .replace(/^(\s{6}fingerprint:\s*)(?:["'])?sha256:[a-f0-9]{64}(?:["'])?(\s*(?:#.*)?)$/gm, `$1"${ZERO_CONTINUITY_FINGERPRINT}"$2`)
+    .replace(/[ \t]+$/gm, '');
+}
+
+export function buildContinuityFingerprint(content: string): string {
+  return `sha256:${createHash('sha256').update(normalizeForContinuityFingerprint(content), 'utf8').digest('hex')}`;
 }
 
 function computeNormalizedFingerprint(content: string): string {

@@ -12,21 +12,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-10T08:05:00Z"
+    last_updated_at: "2026-06-10T15:10:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Implemented T5/T7/T9 guidance"
-    next_safe_action: "Route T6 through mcp_server pipeline"
+    recent_action: "Shipped T6 freshness gate"
+    next_safe_action: "Monitor freshness warnings"
     blockers: []
     key_files: ["spec.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 60
-    open_questions:
-      - "Clean-tree precondition scope: whole repo vs packet paths only (default packet-scoped)"
-      - "Whether the clock_drift PASS path in continuity-freshness.ts must be tightened"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Clean-tree precondition is packet-scoped"
+      - "clock_drift remains a benign PASS path"
 ---
 # Implementation Plan: 027/001/006 Peck Verification Discipline
 
@@ -63,17 +63,17 @@ Phase 006 adopts the scoped agent-roster prompt-guidance slice of the peck verif
 - [x] Integration model, impact matrix, UX table, automation table, and rollout waves identified in `research/006-peck-source-deep-mining/integration-plan.md`.
 - [x] Verdict evidence for T5-T9 identified in `research/006-peck-source-deep-mining/research.md` §2.
 - [x] Rollout precedent identified (`SPECKIT_SAVE_QUALITY_GATE`, `save-quality-gate.ts`).
-- [ ] 010 reviewer-benchmark fixtures available (hard dependency for ERROR promotion).
+- [x] 010 reviewer-benchmark fixtures available (hard dependency for ERROR promotion). Evidence: `reviewer-stale-verdict.json` consumed by the freshness test; dependent packet docs record all three fixtures green.
 
 ### Definition of Done
 
-- [ ] Phase A: freshness recomputes the content fingerprint + clean-tree precondition; strict-only `CONTINUITY_FRESHNESS`; warn-first behind `SPECKIT_COMPLETION_FRESHNESS` + `..._ENFORCE`.
+- [x] Phase A: freshness recomputes the content fingerprint + clean-tree precondition; strict-only `CONTINUITY_FRESHNESS`; warn-first behind `SPECKIT_COMPLETION_FRESHNESS` + `..._ENFORCE`. Evidence: targeted vitest passed for flag-off, warn, enforce, no-false-positive, and packet-scoped dirty paths.
 - [x] Phase B: escalation gates added to `sk-code/SKILL.md` + `CLAUDE.md`/`AGENTS.md` Logic-Sync.
-- [ ] Phase C: anti-softening deep-review verdict line added; completion-ritual file excluded by approved write paths.
+- [x] Phase C: anti-softening deep-review verdict line added; completion-ritual file excluded by approved write paths. Evidence: prior scoped guidance shipped and remains unchanged in this final validator slice.
 - [x] Phase D: reviewer read-budget ADOPTed for `@review`, ADAPTed for deep-*/`@context` (P0 rereads exempt), `.claude/agents/*` and `.codex/agents/*` mirrors updated.
 - [x] Phase E: docs-only numeric-severity note in `sk-code-review` (no `score>=4 blocks`).
-- [ ] Net-new UX/automation opportunities implemented (auto-fix hints, startup freshness indicator, one-command fingerprint refresh, single deep-review verdict, checklist quick-fill).
-- [ ] Each shipped rule references a green 010 fixture before any ERROR promotion.
+- [x] Net-new UX/automation opportunities implemented within the approved T6 write set: validator `How to Fix` and `fix:` hints ship; startup/helper/command surfaces remain excluded by the final scope.
+- [x] Each shipped rule references a green 010 fixture before any ERROR promotion. Evidence: stale-verdict fixture consumed; T5/T7/T8/T9 were previously shipped against their fixtures.
 - [x] Strict spec validation passes for this packet.
 <!-- /ANCHOR:quality-gates -->
 

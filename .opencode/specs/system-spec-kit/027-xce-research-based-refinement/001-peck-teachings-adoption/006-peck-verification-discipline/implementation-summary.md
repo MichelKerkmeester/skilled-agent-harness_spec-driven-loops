@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-10T08:05:00Z"
+    last_updated_at: "2026-06-10T15:10:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Implemented T5/T7/T9 guidance"
-    next_safe_action: "Route T6 through mcp_server pipeline"
+    recent_action: "Shipped T6 freshness gate"
+    next_safe_action: "Monitor freshness warnings"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 | **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline` |
 | **Completed** | 2026-06-10 |
 | **Level** | 3 |
-| **Status** | Scoped-Agent-Roster-Implemented |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,12 +50,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Implemented the non-`mcp_server` verification-discipline remainder allowed for this run. The cumulative state now includes the previously shipped reviewer read-budget guidance plus escalation gates, deep-review verdict anti-softening, and docs-only numeric severity calibration. The completion-freshness validator slice remains deferred to the `mcp_server` pipeline.
+Implemented the final completion-freshness validator slice. The cumulative state now includes the previously shipped reviewer read-budget guidance, escalation gates, deep-review verdict anti-softening, docs-only numeric severity calibration, and the T6 validator/governance anchor.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
+| `.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts` | Modified | Replaced timestamp-only freshness with completion fingerprint recompute, packet-scoped dirty-path detection, default warn/enforce behavior, and preserved clock-drift pass handling. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts` | Modified | Exported the normalized continuity fingerprint helper used by the freshness rule. |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modified | Gated `CONTINUITY_FRESHNESS` behind `SPECKIT_COMPLETION_FRESHNESS`, preferred source for the strict rule, and fixed the source fallback path. |
+| `.opencode/skills/system-spec-kit/references/validation/validation_rules.md` | Modified | Documented `CONTINUITY_FRESHNESS`, default-off rollout, warn/enforce flags, packet scope, and How to Fix steps. |
+| `CLAUDE.md`, `AGENTS.md` | Modified | Added one additive completion-rule line binding completion claims to freshness when the flag is enabled. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/continuity-freshness.vitest.ts` | Added | Covered flag-off byte-identical behavior, stale warn, enforce error, no false positive, and packet-scoped dirty paths. |
 | `.opencode/agents/review.md`, `.claude/agents/review.md`, `.codex/agents/review.toml` | Modified | Added strict read-budget discipline for non-diff reads. |
 | `.opencode/agents/context.md`, `.claude/agents/context.md`, `.codex/agents/context.toml` | Modified | Added adapted read-budget guidance that preserves blocker-grade rereads and the six-section Context Package. |
 | `.opencode/agents/deep-research.md`, `.claude/agents/deep-research.md`, `.codex/agents/deep-research.toml` | Modified | Added read-budget freshness and status-honesty safeguards. |
@@ -65,7 +71,7 @@ Implemented the non-`mcp_server` verification-discipline remainder allowed for t
 | `.claude/CLAUDE.md`, `AGENTS.md` | Modified | Added amendment-path Logic-Sync guidance without changing existing laws or gates. |
 | `.opencode/skills/deep-review/SKILL.md` | Modified | Added VERDICT_LOCK, exact verdict anti-softening, and optional non-gating `riskScore`. |
 | `.opencode/skills/sk-code-review/SKILL.md`, `.opencode/skills/sk-code-review/references/review_core.md` | Modified | Added `+/-2 context` numeric calibration and rejected numeric gating thresholds. |
-| `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Modified | Reconciled packet docs to the scoped phase-006 agent-roster implementation. |
+| `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` | Modified | Reconciled packet docs to completion_pct 100 and recorded T6 evidence. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -73,7 +79,7 @@ Implemented the non-`mcp_server` verification-discipline remainder allowed for t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered as additive prompt-contract and review-doctrine text only. The changes do not alter routing, permissions, validator code, command workflows, daemon files, package manifests, or severity gating thresholds. The completion-ritual constitutional file was not edited because it was outside the approved write paths.
+Delivered as a default-off strict validator plus additive governance text. The rule is inert when `SPECKIT_COMPLETION_FRESHNESS` is unset; when enabled it recomputes `session_dedup.fingerprint`, checks packet-scoped working-tree cleanliness, warns by default, and promotes to error only when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,7 +94,10 @@ Delivered as additive prompt-contract and review-doctrine text only. The changes
 | Read-budget ADOPT for `review`, ADAPT elsewhere | `review` gets the strict non-diff read rule; retrieval/deep-loop agents keep P0/blocker reread ability. |
 | Orchestrate consumes, does not redefine, verdict signals | The orchestrator preserves review/context blocker results and routes explicit escalation choices. |
 | Keep numeric scoring advisory | `riskScore` communicates relative risk only; blocking remains governed by P0/P1/P2 severity. |
-| Defer T6 validator work | The freshness validator and `mcp_server` surfaces are sequenced into the separate pipeline. |
+| Ship T6 default-off | Existing strict validation remains unchanged unless `SPECKIT_COMPLETION_FRESHNESS=true`. |
+| Keep packet-scoped dirty checks | Concurrent agents can edit other files without invalidating this packet's completion claim. |
+| Preserve `clock_drift` pass | A continuity timestamp newer than graph metadata remains a legitimate exception. |
+| Exclude banned surfaces | `ENV_REFERENCE.md`, registry, dist, command YAML, observability, package, and daemon files stayed untouched. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -98,15 +107,20 @@ Delivered as additive prompt-contract and review-doctrine text only. The changes
 
 | Check | Result |
 |-------|--------|
-| Freshness invalidates a green completion after in-scope edits (warn-first, then enforce) | Out of scope for this run |
-| 010 fixtures green for stale-verdict, softened-Fail, over-read | Out of scope for this run |
+| Freshness invalidates a green completion after in-scope edits (warn-first, then enforce) | PASS: `npx vitest run tests/continuity-freshness.vitest.ts tests/spec-doc-structure.vitest.ts` covered warn and enforce paths. |
+| 010 fixtures green for stale-verdict, softened-Fail, over-read | PASS for T6 stale-verdict class in the new suite; prior T7/T8/T9 shipped evidence retained. |
 | Anti-softening keeps active P0 at FAIL in scoped prompt guidance | Implemented in deep-review mirrors |
 | Anti-softening keeps active P0 at FAIL in deep-review skill guidance | Implemented with VERDICT_LOCK and exact final-line mapping |
 | Escalation surfaces one consolidated decision (not per-uncertainty thrash) | Implemented in sk-code and Logic-Sync guidance |
 | Numeric severity is non-gating | Implemented; `riskScore` is advisory and `score>=4` was not adopted |
-| Four Laws and Gates unchanged | Verified by section hashes after additive AGENTS.md edit; repo-local CLAUDE.md has no Four Laws block |
+| Flag-off byte-identical validation | PASS: new vitest fixture compares `validate.sh --strict --json` output before and after a stale edit with the flag unset. |
+| Recomputed fingerprint no false positive | PASS: unchanged completion content returns `fresh_completion` with matching recomputed hash. |
+| Packet-scoped clean-tree | PASS: fake-git fixture keeps outside dirty state clean and flags in-packet dirty paths only. |
+| Four Laws and Gates unchanged | PASS: direct read confirmed Four Laws and Gate sections intact; only the additive completion-freshness line was added. |
 | `.claude/agents/*` and `.codex/agents/*` mirrors updated or mirror-lag recorded | Complete |
-| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline --strict` | Passed: 0 errors, 0 warnings |
+| TypeScript no-emit | PASS: `npx tsc --noEmit -p tsconfig.json` from `.opencode/skills/system-spec-kit`; repo root has no `tsconfig.json` (`TS5058`). |
+| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline --strict` | PASS: 0 errors, 0 warnings with freshness flag unset. |
+| Comment hygiene | PASS: `check-comment-hygiene.sh` produced no output for modified executable/test files. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -114,7 +128,7 @@ Delivered as additive prompt-contract and review-doctrine text only. The changes
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Validator slice deferred.** The freshness validator remains sequenced into the `mcp_server` pipeline.
-2. **Prompt-contract only.** This run changes guidance, not runtime enforcement code.
-3. **Completion ritual excluded.** The constitutional completion-ritual file was not edited because it was outside the approved write paths.
+1. **Default off.** `CONTINUITY_FRESHNESS` is inert until `SPECKIT_COMPLETION_FRESHNESS=true`.
+2. **Source fallback used for tests.** Dist files were not touched; the orchestrator build remains authoritative outside this source-only verification slice.
+3. **Excluded docs remain excluded.** `ENV_REFERENCE.md` and the constitutional completion-ritual file were not edited because they were outside the final approved write paths.
 <!-- /ANCHOR:limitations -->

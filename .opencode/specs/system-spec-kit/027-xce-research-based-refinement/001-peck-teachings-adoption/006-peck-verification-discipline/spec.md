@@ -12,22 +12,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-10T08:05:00Z"
+    last_updated_at: "2026-06-10T15:10:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Implemented T5/T7/T9 guidance"
-    next_safe_action: "Route T6 through mcp_server pipeline"
+    recent_action: "Shipped T6 freshness gate"
+    next_safe_action: "Monitor freshness warnings"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 60
-    open_questions:
-      - "Clean-tree precondition scope: whole repo vs packet paths only (default packet-scoped)"
-      - "Whether the clock_drift PASS path in continuity-freshness.ts must be tightened or kept as a legit exception"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Proposal Packet 009 confirmed as the verification-discipline bundle (T5-T9); T1 -> 011, fixtures -> 010"
+      - "Clean-tree precondition is packet-scoped"
+      - "clock_drift remains a benign PASS path"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: 006 — Peck Verification Discipline
@@ -55,7 +55,7 @@ The integration thesis is zero new infrastructure: every rule plugs into a surfa
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Scoped-Agent-Roster-Implemented |
+| **Status** | Complete |
 | **Parent Packet** | `001-peck-teachings-adoption` |
 | **Source** | `research/006-peck-source-deep-mining/sub-packet-proposal.md` §1 (Packet 009), §6, §7; `research/006-peck-source-deep-mining/integration-plan.md` (full); `research/006-peck-source-deep-mining/research.md` §2 (T5,T6,T7,T8,T9) |
 | **Depends on** | `010-reviewer-prompt-benchmark-substrate` (regression fixtures; land FIRST) |
