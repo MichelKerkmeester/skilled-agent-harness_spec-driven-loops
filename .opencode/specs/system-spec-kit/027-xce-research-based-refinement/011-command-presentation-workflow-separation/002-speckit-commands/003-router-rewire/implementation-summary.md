@@ -1,33 +1,33 @@
 ---
 title: "Implementation Summary: Speckit Commands - Router Rewire"
-description: "Planned - not yet implemented. Level 1 leaf phase for rewrite each command.md as a thin router that points to the workflow file and the presentation markdown file, preserving behavior and leaving no presentation contract inline."
+description: "Completed thin-router rewiring for speckit command Markdown files."
 trigger_phrases:
-  - "speckit commands - router rewire implementation summary"
-  - "planned scaffold implementation summary"
+  - "speckit commands router rewire summary"
+  - "speckit thin command routers"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:51:18Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Rewired four speckit command Markdown files into thin routers"
+    next_safe_action: "Keep routers limited to mode routing and asset pointers"
     blockers: []
     key_files:
-      - "spec.md"
-      - "plan.md"
-      - "tasks.md"
-      - "implementation-summary.md"
+      - ".opencode/commands/speckit/plan.md"
+      - ".opencode/commands/speckit/implement.md"
+      - ".opencode/commands/speckit/complete.md"
+      - ".opencode/commands/speckit/resume.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-002-speckit-commands-003-router-rewire-planned"
+      session_id: "2026-06-10-002-speckit-commands-003-router-rewire-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Every speckit command has an existing workflow YAML pair and a new presentation Markdown pointer."
 ---
 # Implementation Summary: Speckit Commands - Router Rewire
 
@@ -41,11 +41,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +52,14 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the leaf as a complete Planned scaffold while preserving completion at 0%.
+Rewrote the four speckit command Markdown files as thin routers.
 
-### Planned Scope
-
-Level 1 leaf phase for rewrite each command.md as a thin router that points to the workflow file and the presentation markdown file, preserving behavior and leaving no presentation contract inline.
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| Router | Rewire Result |
+|--------|---------------|
+| `plan.md` | Points to plan presentation plus plan auto/confirm YAML |
+| `implement.md` | Points to implement presentation plus implement auto/confirm YAML |
+| `complete.md` | Points to complete presentation plus complete auto/confirm YAML |
+| `resume.md` | Points to resume presentation plus resume auto/confirm YAML |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +67,7 @@ Level 1 leaf phase for rewrite each command.md as a thin router that points to t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This leaf has not been delivered. Future implementation must update this summary with actual changes and verification evidence.
+Each router now keeps frontmatter, the no-agent-dispatch router contract, the owned asset table, mode routing, execution target mapping, and the presentation boundary. Inline startup questions, dashboard templates, and result-display blocks were removed from routers.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +77,8 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested minimal placeholders for strict validation, not implementation claims. |
+| Keep routers declarative | Prevents presentation text from mixing with workflow routing. |
+| Preserve existing YAML names | Avoids workflow behavior changes and dangling asset references. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +88,10 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Router reference grep | Routers reference presentation assets and auto/confirm YAML assets |
+| Presentation placement grep | Presentation templates appear in assets rather than routers |
+| YAML edit constraint | Existing YAML files were read-only and unmodified |
+| Strict validation | Run in final verification pass |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +99,5 @@ This leaf has not been delivered. Future implementation must update this summary
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or workflow files have been changed.
+Command runtime invocation was not performed; verification is static reference and document validation.
 <!-- /ANCHOR:limitations -->

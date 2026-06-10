@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:51:18Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Created presentation Markdown source-of-truth files for each speckit command"
+    next_safe_action: "Keep startup, dashboard, and results-display edits in presentation Markdown assets"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-002-speckit-commands-002-author-presentation-md-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned implementation-summary stubs for strict validation."
@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## PHASE 1: SETUP
 
-- [ ] T001 Define presentation Markdown path conventions (.opencode/commands/speckit/*.md)
-- [ ] T002 Author startup-question sections (.opencode/commands/speckit/*.md)
+- [x] T001 Define presentation Markdown path conventions (.opencode/commands/speckit/*.md) - Evidence: created `assets/speckit_plan_presentation.md`, `assets/speckit_implement_presentation.md`, `assets/speckit_complete_presentation.md`, and `assets/speckit_resume_presentation.md`.
+- [x] T002 Author startup-question sections (.opencode/commands/speckit/*.md) - Evidence: each presentation asset contains startup prompt and auto setup sections.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,9 +62,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [ ] T003 [P] Author dashboard layout sections (.opencode/commands/speckit/*.md)
-- [ ] T004 [P] Author results-display sections (.opencode/commands/speckit/*.md)
-- [ ] T005 [P] Check that presentation files are the single display source of truth (.opencode/commands/speckit/*.md)
+- [x] T003 [P] Author dashboard layout sections (.opencode/commands/speckit/*.md) - Evidence: each presentation asset contains a command-specific dashboard layout.
+- [x] T004 [P] Author results-display sections (.opencode/commands/speckit/*.md) - Evidence: each presentation asset contains success/failure or resume/no-session result templates.
+- [x] T005 [P] Check that presentation files are the single display source of truth (.opencode/commands/speckit/*.md) - Evidence: routers now point to presentation assets and do not retain presentation templates inline.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,9 +72,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## PHASE 3: VERIFICATION
 
-- [ ] T006 Record any shared template reuse within the family (.opencode/commands/speckit/*.md)
-- [ ] T007 Run strict validation for this leaf (.opencode/skills/system-spec-kit/scripts/spec/validate.sh)
-- [ ] T008 Confirm Planned implementation-summary.md stub exists for strict validation (implementation-summary.md)
+- [x] T006 Record any shared template reuse within the family (.opencode/commands/speckit/*.md) - Evidence: implementation summary lists shared startup, dashboard, and result-display presentation sections.
+- [x] T007 Run strict validation for this leaf (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) - Evidence: final strict validation result recorded after reconciliation.
+- [x] T008 Confirm implementation-summary.md exists for strict validation (implementation-summary.md) - Evidence: implementation summary updated from planned stub to completion record.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All planned tasks are complete or explicitly deferred with approval
-- [ ] No blocked tasks remain
-- [ ] Strict validation passes for this leaf
+- [x] All planned tasks are complete or explicitly deferred with approval
+- [x] No blocked tasks remain
+- [x] Strict validation passes for this leaf
 <!-- /ANCHOR:completion -->
 
 ---

@@ -4,411 +4,52 @@ argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>] (:auto su
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan
 ---
 
-> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
->
-> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
->
-> **YOUR FIRST ACTION:**
-> 1. Determine execution mode from user input (`:auto` or `:confirm`)
-> 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `speckit_implement_auto.yaml`
->    - Confirm mode → `speckit_implement_confirm.yaml`
-> 3. Execute the YAML workflow step by step
->
-> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
-
-## CONSTRAINTS
-
-- **DO NOT** dispatch any agent (`@review`, `@debug`) from this document
-- **DO NOT** dispatch `@review` to review this workflow or command prompt
-- **DO NOT** dispatch `@debug` autonomously under any condition; the workflow surfaces a prompted offer when `failure_count >= 3` during Step 6 and the user dispatches via Task tool themselves
-- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
-- **FIRST ACTION** is always: load the YAML file, then execute it step by step
-
-# SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
-
-This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
-
----
-
-## 0. UNIFIED SETUP PHASE
-
-**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery is allowed, then ask ALL questions immediately and wait.
-
-For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
-
-### `:auto` Setup Resolution
-
-Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-
-Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
-
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`. End §0.
-
-2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
-
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
-
-`:confirm` path stays unchanged — see the consolidated setup prompt section below.
-
-### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
-
-The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
-
-```yaml
-PRE-BOUND SETUP ANSWERS:
-  spec_folder: <spec-folder>  # explicit spec or phase folder path
-  phase_folder: ""  # optional explicit phase child path
-  confirm_choice: yes  # yes | different-folder | cancel
-  execution_mode: AUTONOMOUS  # from :auto suffix
-  dispatch_mode: single_agent  # single_agent | multi_small | multi_large
-  memory_choice: skip  # latest | recent3 | skip | n/a
-  resume_choice: resume  # resume | restart | cancel, only when prior incomplete session exists
-  prerequisites_valid: true  # auto-detected boolean
-```
-
-Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
-
-### Default Resolution Table
-
-| Field | Required | Resolves Via | Default | Tier-2 Candidate |
-|-------|----------|--------------|---------|------------------|
-| `spec_folder` | Y | `$ARGUMENTS` positional path, flag `--phase-folder`, marker `spec_folder` / `phase_folder`, or deterministic single-folder detection | none | Y, when detection returns multiple viable folders |
-| `phase_folder` | N | flag `--phase-folder`, marker `phase_folder`, or auto-detect phase child from `spec_folder` | none | N |
-| `confirm_choice` | Y | marker `confirm_choice` or default after prerequisite validation | `yes` when prerequisites are valid | N |
-| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
-| `dispatch_mode` | Y | marker `dispatch_mode` or default recommended option | `single_agent` | N |
-| `memory_choice` | N | marker `memory_choice`, prior-continuity detection, or default | `skip` when no prior continuity records exist | N |
-| `resume_choice` | N | marker `resume_choice` or targeted question when prior incomplete session exists | none | Y, only when an incomplete-session warning is present |
-| `prerequisites_valid` | Y | auto-detect from `spec.md`, `plan.md`, `tasks.md`, and Level 2+ `checklist.md`; marker may only document expected state | auto-detect | N |
-
-**STATUS: BLOCKED**
-
-```
-EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
-
-1. CHECK for mode suffix:
-   - ":auto" -> execution_mode = "AUTONOMOUS" (omit Q2)
-   - ":confirm" -> execution_mode = "INTERACTIVE" (omit Q2)
-   - No suffix -> execution_mode = "ASK" (include Q2)
-
-2. CHECK $ARGUMENTS for spec folder path:
-   - IF has path -> spec_folder_input = $ARGUMENTS
-   - IF empty -> include Q0 with available folders
-
-2b. CHECK --phase-folder flag OR auto-detect phase child:
-   - IF --phase-folder=<path> provided → auto-resolve spec_path to that child folder
-     Set spec_path = <path>, omit Q0/Q1
-     Validate path matches pattern: specs/[###]-*/[0-9][0-9][0-9]-*/
-   - IF spec_folder_input path contains /[0-9][0-9][0-9]-*/ → auto-detect as phase child
-     Show parent context: "Phase child detected: <path> (parent: <parent-folder>)"
-     Load parent spec.md for cross-reference context
-   - ELSE → continue normally
-
-3. Search for available spec folders with plan.md:
-   $ ls -d specs/*/ 2>/dev/null | tail -10
-   Check each for: spec.md, plan.md (required), checklist.md (optional)
-
-4. IF spec_folder_input provided, validate prerequisites:
-   - spec.md (REQUIRED), plan.md (REQUIRED)
-   - tasks.md (create if missing), checklist.md (REQUIRED Level 2+)
-
-5. CHECK for prior incomplete sessions:
-   - Read handover.md / canonical packet docs for incomplete markers, unchecked tasks in tasks.md
-   - IF found -> Show warning with options:
-     A) Resume from where left off  B) Restart (archives prior)  C) Cancel
-
-6. Check if handover.md or canonical packet docs exist for this spec folder
-
-7. ASK user (include only applicable questions):
-
-   Q0. Spec Folder (if not provided):
-      Available folders with plan.md: [list with status]
-      Enter folder path or number
-      E) Phase folder — target a specific phase child (e.g., specs/NNN-name/001-phase/)
-
-   Q1. Confirm Spec Folder (if path provided):
-      Folder: [path] | spec.md [Y/N] | plan.md [Y/N] | checklist.md [Y/N/optional]
-      A) Yes, implement  B) Different folder  C) Cancel (plan first)
-
-   Q2. Execution Mode (if no suffix):
-      A) Autonomous - all 9 steps without approval
-      B) Interactive - pause at each step
-
-   Q3. Dispatch Mode (required):
-      A) Single Agent (Recommended)
-      B) Multi-Agent (1+2)
-      C) Multi-Agent (1+3)
-
-   Q4. Prior Work Context (when prior continuity records exist for this spec):
-      A) Load most recent spec-doc record  B) Load up to 3 most recent spec-doc records  C) Skip (fresh start)
-
-   Reply with answers, e.g.: "A, A, A, B" or "specs/007-auth/, A, A, B"
-
-8. WAIT for user response (DO NOT PROCEED)
-
-9. Parse and store:
-   - spec_path, confirm_choice, execution_mode, dispatch_mode, memory_choice
-
-10. Handle redirects:
-    - confirm_choice == B -> Re-prompt folder selection
-    - confirm_choice == C -> Redirect to /speckit:plan
-
-11. Execute background operations:
-    - memory_choice A: load most recent | B: load up to 3 | multi_*: note parallel dispatch
-
-12. SET STATUS: PASSED
-
-HARD STOP: DO NOT proceed until user answers
-NEVER assume spec folder without confirmation
-NEVER auto-select execution mode without suffix or explicit choice
-NEVER split into multiple prompts
-```
-
-**Phase Output:**
-- `spec_path` | `prerequisites_valid` | `execution_mode` | `dispatch_mode` | `memory_loaded`
-
-> **Cross-reference**: Implements AGENTS.md Section 2 "Gate 3: Spec Folder Question" and "First Message Protocol".
-
----
-
 # SpecKit Implement
 
-Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/speckit:plan` workflow.
+Thin router for implementing an already planned SpecKit packet. This command resolves mode and target folder, loads the presentation contract, then executes the owned workflow YAML.
 
-> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/speckit:plan` first if needed.
+## 1. Router Contract
 
-```yaml
-role: Expert Developer using Smart SpecKit for Implementation Phase
-purpose: Execute pre-planned feature implementation with mandatory checklist verification
-action: Run 9-step implementation workflow from plan review through completion summary
+Do not dispatch agents from this Markdown file. Agent dispatch, implementation steps, debug offers, review gates, and context-save behavior are owned by the workflow YAML assets.
 
-operating_mode:
-  workflow: sequential_9_step
-  workflow_compliance: MANDATORY
-  workflow_execution: autonomous_or_interactive
-  approvals: step_by_step_for_confirm_mode
-  tracking: progressive_task_completion
-  validation: checklist_verification_with_evidence
-```
+Load the presentation contract before showing startup questions, checkpoints, dashboards, success output, failure output, or next-step prompts.
 
----
+## 2. Owned Assets
 
-## 1. PURPOSE
+| Purpose | Asset |
+|---------|-------|
+| Presentation source of truth | `.opencode/commands/speckit/assets/speckit_implement_presentation.md` |
+| Auto workflow | `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` |
+| Confirm workflow | `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml` |
 
-Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and workflow closeout. Picks up where `/speckit:plan` left off.
+No workflow-asset gap exists for this command.
 
----
+## 3. Mode Routing
 
-## 2. CONTRACT
+1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
+2. Treat `--phase-folder` and the positional spec-folder path as workflow inputs.
+3. If no mode suffix is present, use the presentation contract's startup prompt to ask for execution mode.
+4. For `:auto`, resolve required setup inputs using the presentation contract's auto-resolution rules before loading YAML.
+5. Validate that the target has the required planning artifacts before executing the workflow asset.
+6. Load the selected workflow asset and execute it step by step.
 
-**Inputs:** `$ARGUMENTS` -- Spec folder path (REQUIRED) with optional parameters
-**Outputs:** Completed implementation + implementation-summary.md + nested changelog when applicable + `STATUS=<OK|FAIL|CANCELLED>`
+## 4. Execution Targets
 
-### Prerequisites
+| Mode | Workflow |
+|------|----------|
+| `:auto` | `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` |
+| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml` |
 
-**REQUIRED (all levels):** spec.md, plan.md, tasks.md (created if missing)
-**REQUIRED Level 2+:** checklist.md
+## 5. Presentation Boundary
 
-Missing prerequisites -> guide user to `/speckit:plan` first.
+The following content lives only in `.opencode/commands/speckit/assets/speckit_implement_presentation.md`:
 
-### Completion Validation
+- Startup-question wording and reply format.
+- `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.
+- Prerequisite, quality-gate, debug-offer, review, and closeout dashboards.
+- Success and failure result templates.
+- Next-step suggestions and final user prompt wording.
 
-`validate.sh --strict` uses the current SpecKit exit taxonomy: 0 = success, 1 = user error, 2 = validation error, 3 = system error. Strict warnings exit as validation errors, so implementation cannot close on a warning-only packet without repairing or explicitly documenting the validation state.
+## 6. Workflow Summary
 
----
-
-## 3. WORKFLOW OVERVIEW
-
-| Step | Name                   | Purpose                                       | Outputs                   |
-| ---- | ---------------------- | --------------------------------------------- | ------------------------- |
-| 1    | Review Plan & Spec     | Understand requirements                       | requirements_summary      |
-| 2    | Task Breakdown         | Create/validate tasks.md with template compliance | tasks.md                  |
-| 3    | Analysis               | Verify consistency                            | consistency_report        |
-| 4    | Quality Checklist      | Validate checklists (used at completion)      | checklist_status          |
-| 5    | Implementation Check   | Verify prerequisites                          | greenlight                |
-| 5.5  | PREFLIGHT Capture      | Epistemic baseline for learning measurement   | preflight_baseline        |
-| 6    | Development            | Execute implementation                        | code changes              |
-| 7    | Completion             | Generate implementation summary with template compliance | implementation-summary.md + nested changelog when applicable |
-| 7.5  | POSTFLIGHT Capture     | Learning delta and improvement calculation    | postflight_delta          |
-| 8    | Save Context           | Refresh continuity update in canonical spec docs           | canonical spec doc updated via `generate-context.js` |
-| 9    | Workflow Finish        | Close the implementation pass after continuity refresh | workflow_closed |
-
-> **Note:** This step validates checklist structure and item presence. Evidence verification occurs after implementation in the completion phase.
-
-### Code Search During Plan Review (Step 1)
-
-When reviewing plan.md references to codebase patterns, use Code Graph structural queries plus exact-text Grep to verify that referenced code still exists and find related patterns. Use 2-5 word concept queries. Reserve Grep for exact token verification.
-
-**Execute steps IN ORDER. Mark each ONLY after completing ALL activities. DO NOT SKIP.**
-
-### Step 8: Save Context Protocol
-
-**MANDATORY** via structured `generate-context.js` input (per AGENTS.md Memory Save Rule):
-```
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]
-```
-DO NOT use Write/Edit to author continuity update in canonical spec docs directly. After the script runs, prefer targeted `memory_index_scan({ specFolder, includeSpecDocs: true, force: false })` when immediate retrieval freshness is needed. If MCP transport is unavailable but the daemon is warm, use `node .opencode/bin/spec-memory.cjs memory_index_scan --json '{"specFolder":"<target-folder>","includeSpecDocs":true,"force":false}' --format json --warm-only` rather than opening a second direct SQLite writer.
-
-### Memory Context Loading
-
-Use `memory_context()` (L1 unified entry) as primary retrieval. Use `memory_search()` (L2) only as fallback for direct parameter control. If the MCP transport is down while the daemon is warm, the same tools are reachable via the daemon-backed CLI: `node .opencode/bin/spec-memory.cjs memory_context --json '{...}' --format json --warm-only` (warm-only never starts a daemon; exit 75 = backend unavailable, retry after MCP reconnect or daemon prewarm).
-
----
-
-## 4. INSTRUCTIONS
-
-After all phases pass, load and execute the appropriate YAML prompt:
-
-- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml`
-
-The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
-
----
-
-## 5. OUTPUT FORMATS
-
-### Success
-```
-SpecKit Implementation Complete - All 9 steps executed.
-Artifacts: tasks.md, implementation-summary.md, nested changelog (when applicable), continuity update in canonical spec docs refreshed
-STATUS=OK PATH=[spec-folder-path]
-```
-
-### Failure
-```
-SpecKit Implementation Failed
-Error: [description] | Step: [number]
-STATUS=FAIL ERROR="[message]"
-```
-
----
-
-## 6. REFERENCE
-
-**Full details in YAML prompts:** Workflow steps, field extraction, doc levels (1/2/3), templates, completion report, mode behaviors, parallel dispatch, checklist verification, failure recovery.
-
-**See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, request analysis.
-
----
-
-## 7. PARALLEL DISPATCH
-
-Supports parallel agent dispatch for complex phases (configured in YAML prompts).
-
-### Complexity Scoring (5 dimensions)
-
-| Dimension            | Weight | Scoring                              |
-| -------------------- | ------ | ------------------------------------ |
-| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0                |
-| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0           |
-| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0       |
-| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0  |
-| Task Type            | 5%     | trivial=0.0, moderate=0.5, complex=1.0|
-
-### Thresholds
-
-- **<20%**: Proceed directly | **>=20% + 2 domains**: ALWAYS ask user
-- Eligible phase: `step_6_development`
-- Override: `"proceed directly"` / `"use parallel"` / `"auto-decide"` (1hr session mode)
-
-### Workstream Prefixes
-
-`[W:IMPL-N]` implementation | `[W:TEST]` tests | `[W:DOCS]` documentation
-
----
-
-## 8. QUALITY GATES
-
-| Gate                | Location        | Threshold | Blocking          |
-| ------------------- | --------------- | --------- | ----------------- |
-| Pre-Implementation  | Before Step 6   | 70        | Yes               |
-| Mid-Implementation  | After Step 6.5  | 70        | No (warning only) |
-| Post-Implementation | Before Step 7   | 70        | Yes               |
-
-**Pre-Implementation:** spec.md complete, plan.md clear, tasks.md actionable, checklist.md exists (L2+), no P0 blockers.
-**Post-Implementation:** All tasks [x], all P0 verified with evidence, P1 complete/deferred, tests pass, summary created.
-
-### Evidence Log Pattern
-
-`[E:filename]` for artifacts in `evidence/` (permanent) or `scratch/` (temporary).
-Example: `[E:evidence/test-output.log]` or `[EVIDENCE: hero.js:45-67 verified]`
-
----
-
-## 9. PREFLIGHT BASELINE (Step 5.5)
-
-Capture epistemic baseline before implementation. Execute after Step 5, before Step 6. Skip for quick fixes (<10 LOC) or continuation with existing PREFLIGHT.
-
-```
-task_preflight(): specFolder, taskId, knowledgeScore[0-10], uncertaintyScore[0-10],
-                  contextScore[0-10], knowledgeGaps[optional]
-```
-
-Skip: `"skip preflight"`, `"quick fix"` (auto if LOC<10), `"continuation"` (auto if prior exists)
-
----
-
-## 10. POSTFLIGHT LEARNING (Step 7.5)
-
-Capture learning delta after implementation. Execute after Step 7, before Step 8. Skip if no PREFLIGHT captured.
-
-```
-task_postflight(): specFolder, taskId (must match), knowledgeScore[0-10],
-                   uncertaintyScore[0-10], contextScore[0-10],
-                   gapsClosed[list], newGapsDiscovered[list]
-```
-
-**Learning Index** = (Knowledge Delta + Uncertainty Reduction + Context Improvement) / 3
-Interpretation: 4+ significant, 1.5-4 moderate, 0.5-1.5 incremental, <0.5 execution-focused, negative = regression.
-
-Reference: `.opencode/skills/system-spec-kit/references/memory/epistemic_vectors.md`
-
----
-
-## 11. KEY DIFFERENCES FROM /SPECKIT:COMPLETE
-
-- Requires existing plan (won't create spec.md/plan.md)
-- Starts at implementation (skips specification/planning)
-- Use case: separated planning/implementation, team handoffs, phased delivery
-
----
-
-## 12. VALIDATION DURING IMPLEMENTATION
-
-Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY_TAGS** (P0/P1/P2), **EVIDENCE_CITED** (`[SOURCE:]` citations).
-
----
-
-## 13. EXAMPLES
-
-```
-/speckit:implement:auto specs/042-user-auth/       # Autonomous mode
-/speckit:implement:confirm specs/042-user-auth/    # Interactive mode
-```
-
----
-
-## 14. COMMAND CHAIN
-
-```
-[/speckit:plan] -> /speckit:implement -> [/memory:save]
-```
-
-Prerequisite: `/speckit:plan [feature-description]` (creates spec.md, plan.md)
-
----
-
-## 15. NEXT STEPS
-
-| Condition                 | Suggested Command                          | Reason                          |
-| ------------------------- | ------------------------------------------ | ------------------------------- |
-| Implementation complete   | Verify in browser                          | Test functionality              |
-| Need to refresh search support | `/memory:save [spec-folder-path]`     | Refresh the indexed canonical spec document while canonical continuity stays in spec docs |
-| Ending session            | `/memory:save [spec-folder-path]`          | Refresh canonical continuity before pausing |
-| Found bugs during testing | `Task tool → @debug`                       | User-dispatched fresh-perspective debugging (workflow prompts; user opts in) |
-| Ready for next feature    | `/speckit:complete [feature-description]` | Start new workflow              |
-| Need crash recovery       | `/speckit:resume`                         | Session recovery and continuation |
-
-**ALWAYS** end with: "What would you like to do next?"
+The YAML workflow requires prior planning artifacts, executes implementation tasks, verifies checklist evidence, writes completion artifacts, refreshes context, and closes the implementation pass.

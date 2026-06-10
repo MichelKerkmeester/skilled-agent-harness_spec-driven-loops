@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T19:51:18Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Completed speckit command inventory and presentation extraction map"
+    next_safe_action: "Use implementation-summary.md extraction map for future command presentation audits"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-002-speckit-commands-001-inventory-extract-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned implementation-summary stubs for strict validation."
@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## PHASE 1: SETUP
 
-- [ ] T001 List every family command Markdown file (.opencode/commands/speckit/*.md)
-- [ ] T002 List referenced workflow asset YAML files (.opencode/commands/speckit/*.md)
+- [x] T001 List every family command Markdown file (.opencode/commands/speckit/*.md) - Evidence: inventoried `plan.md`, `implement.md`, `complete.md`, and `resume.md`.
+- [x] T002 List referenced workflow asset YAML files (.opencode/commands/speckit/*.md) - Evidence: mapped all eight existing auto/confirm YAML assets and left them unmodified.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,9 +62,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [ ] T003 [P] Identify inline startup-question blocks (.opencode/commands/speckit/*.md)
-- [ ] T004 [P] Identify inline dashboard layout blocks (.opencode/commands/speckit/*.md)
-- [ ] T005 [P] Identify inline results-display templates (.opencode/commands/speckit/*.md)
+- [x] T003 [P] Identify inline startup-question blocks (.opencode/commands/speckit/*.md) - Evidence: moved consolidated startup prompt and auto setup contract into `assets/speckit_*_presentation.md`.
+- [x] T004 [P] Identify inline dashboard layout blocks (.opencode/commands/speckit/*.md) - Evidence: moved checkpoint and dashboard templates into presentation assets.
+- [x] T005 [P] Identify inline results-display templates (.opencode/commands/speckit/*.md) - Evidence: moved success, failure, resume brief, and next-step display templates into presentation assets.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,9 +72,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## PHASE 3: VERIFICATION
 
-- [ ] T006 Draft the extraction map for each command (.opencode/commands/speckit/*.md)
-- [ ] T007 Run strict validation for this leaf (.opencode/skills/system-spec-kit/scripts/spec/validate.sh)
-- [ ] T008 Confirm Planned implementation-summary.md stub exists for strict validation (implementation-summary.md)
+- [x] T006 Draft the extraction map for each command (.opencode/commands/speckit/*.md) - Evidence: extraction map recorded in `implementation-summary.md`.
+- [x] T007 Run strict validation for this leaf (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) - Evidence: final strict validation result recorded after reconciliation.
+- [x] T008 Confirm implementation-summary.md exists for strict validation (implementation-summary.md) - Evidence: implementation summary updated from planned stub to completion record.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All planned tasks are complete or explicitly deferred with approval
-- [ ] No blocked tasks remain
-- [ ] Strict validation passes for this leaf
+- [x] All planned tasks are complete or explicitly deferred with approval
+- [x] No blocked tasks remain
+- [x] Strict validation passes for this leaf
 <!-- /ANCHOR:completion -->
 
 ---

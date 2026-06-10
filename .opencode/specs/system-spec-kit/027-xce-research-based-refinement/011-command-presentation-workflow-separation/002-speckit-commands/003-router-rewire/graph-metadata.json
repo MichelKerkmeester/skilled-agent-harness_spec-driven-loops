@@ -17,7 +17,9 @@
       "speckit commands router rewire plan",
       "command presentation workflow plan",
       "speckit commands router rewire tasks",
-      "command presentation tasks"
+      "command presentation tasks",
+      "speckit commands - router rewire implementation summary",
+      "planned scaffold implementation summary"
     ],
     "key_topics": [
       "002-speckit-commands",
@@ -34,11 +36,12 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "spec_scaffolded",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -108,13 +117,13 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Prepared Planned",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,27 +141,40 @@
         "source": "derived"
       },
       {
-        "name": "Planned Work",
+        "name": "Confirm Planned",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Speckit Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T14:25:56.106Z",
+    "last_save_at": "2026-06-10T19:22:14.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

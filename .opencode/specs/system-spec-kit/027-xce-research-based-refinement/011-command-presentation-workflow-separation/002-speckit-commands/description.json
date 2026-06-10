@@ -13,11 +13,12 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-10T14:25:53.798Z",
+  "lastUpdated": "2026-06-10T16:42:09.677Z",
   "specId": "002",
   "folderSlug": "speckit-commands",
   "parentChain": [
     "system-spec-kit",
+    "027-xce-research-based-refinement",
     "011-command-presentation-workflow-separation"
   ],
   "memorySequence": 0,

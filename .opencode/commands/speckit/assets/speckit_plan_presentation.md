@@ -1,0 +1,158 @@
+# SpecKit Plan Presentation Contract
+
+Presentation source of truth for `/speckit:plan`. The command router owns only mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard layout, and final result displays.
+
+## 1. Startup Presentation
+
+For `:confirm` or no suffix, the consolidated setup prompt is the first visible response. Ask all applicable questions once, then wait. No analysis or tool calls precede the prompt unless the workflow already has an explicit path that needs read-only folder-state classification.
+
+For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-mode table below. Ask targeted questions only for fields marked Tier 2.
+
+### Auto Pre-Bound Setup Answers
+
+Accept one optional marker block in the prompt body before applying defaults.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  feature_description: Add passwordless login
+  spec_folder: <spec-folder>
+  execution_mode: AUTONOMOUS
+  dispatch_mode: single_agent
+  memory_choice: skip
+  research_intent: add_feature
+  context_integration: false
+  phase_decomposition: false
+  phase_count: 3
+  phase_names: ""
+  phase_folder: ""
+  intake_only: false
+  selected_level: ""
+  start_state: ""
+  repair_mode: ""
+  record_relationships: false
+  depends_on: ""
+  related_to: ""
+  supersedes: ""
+```
+
+Unknown fields warn. Malformed lines are parse errors. Marker values override flags; omitted fields fall back to defaults.
+
+### Auto Resolution Table
+
+| Field | Required | Default | Tier 2 |
+|-------|----------|---------|--------|
+| `feature_description` | Yes | none | No |
+| `spec_folder` | Yes | none | Yes, when feature is present but folder choice is ambiguous |
+| `execution_mode` | Yes | `AUTONOMOUS` under `:auto` | No |
+| `dispatch_mode` | Yes | `single_agent` | No |
+| `memory_choice` | No | `skip` when no prior continuity exists | No |
+| `research_intent` | Yes | none | Yes |
+| `context_integration` | No | `false` | No |
+| `phase_decomposition` | Yes | `false` | No |
+| `phase_count` | No | `3` | No |
+| `phase_names` | No | none | No |
+| `phase_folder` | No | none | No |
+| `intake_only` | No | `false` | No |
+| `selected_level` | No | none | No |
+| `start_state` | No | auto-detect | No |
+| `repair_mode` | No | none | No |
+| `record_relationships` | No | `false` | No |
+| `depends_on` | No | none | No |
+| `related_to` | No | none | No |
+| `supersedes` | No | none | No |
+
+### Consolidated Prompt Template
+
+```text
+SpecKit Plan setup
+
+Mode: [auto|confirm|ask]
+Feature flags: [with-context yes/no] [with-phases yes/no] [intake-only yes/no]
+
+Q0. Feature Description, if not provided: What feature should be planned?
+Q1. Spec Folder: A) Use existing  B) Create new  C) Update related  D) Skip documentation  E) Phase folder
+Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive
+Q3. Dispatch Mode: A) Single Agent  B) Multi-Agent (1+2)  C) Multi-Agent (1+3)
+Q4. Prior Work Context, only when prior records exist: A) Latest  B) Recent 3  C) Skip
+Q5. Research Intent: A) add_feature  B) fix_bug  C) refactor  D) understand
+Q6. Phase Decomposition, if not already enabled: A) No  B) Yes
+Q7. Phase Count, if phase decomposition is enabled and not provided: default 3
+Q8. Phase Names, if phase decomposition is enabled and not provided: optional comma-separated names
+
+If folder intake is required, include the intake interview in this same prompt.
+
+Reply format: "B, A, A, C, A" or "Add auth, B, A, C, A".
+```
+
+Never split these questions into separate visible prompts. If `--intake-only` is present, stop after intake emit and do not continue to planning steps.
+
+### Auto Fail-Fast Display
+
+```text
+SpecKit Plan auto setup failed
+Missing required inputs: [field-list]
+Provide the missing inputs or rerun with :confirm.
+STATUS=FAIL ERROR="missing required setup inputs"
+```
+
+## 2. Dashboard Layout
+
+Use this compact progress panel whenever the user needs workflow visibility.
+
+```text
+SPECKIT PLAN DASHBOARD
+Spec: [spec_path]
+Mode: [AUTONOMOUS|INTERACTIVE]
+Step: [current] / 8 - [step name]
+Inputs: feature=[set|missing] folder=[set|missing] intent=[value]
+Optional flows: context=[on|off] phases=[on|off] intake_only=[on|off]
+Artifacts: spec.md [status] | plan.md [status] | tasks.md [status] | checklist.md [status]
+Next: [next action]
+```
+
+### Deep-Context Checkpoint
+
+```text
+WORKFLOW CHECKPOINT - Deep-Context Complete
+Context Report: [spec_folder]/context/context-report.md
+Reuse candidates: [N] | Integration points: [N] | Conventions: [N]
+Continue to specification? [Y/continue, n/skip]
+```
+
+### Phase-Decomposition Checkpoint
+
+```text
+WORKFLOW CHECKPOINT - Phase Decomposition Complete
+Parent: [parent_folder] | Phases: [N] children created
+Continue planning first child ([first_child_folder])? [Y/n/review]
+```
+
+## 3. Results Display
+
+### Success
+
+```text
+SpecKit Planning Complete - All 8 steps executed.
+Artifacts: spec.md, plan.md, tasks.md, checklist.md when Level 2+, graph-metadata.json scaffolded, continuity refreshed in canonical spec docs
+Ready for: /speckit:implement [spec-folder-path]
+STATUS=OK PATH=[spec-folder-path]
+```
+
+### Failure
+
+```text
+SpecKit Planning Failed
+Error: [description] | Step: [number]
+STATUS=FAIL ERROR="[message]"
+```
+
+### Next-Step Suggestions
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Ready to implement | `/speckit:implement [spec-folder-path]` | Continue to implementation |
+| Need stakeholder review | Share `plan.md` | Get approval before coding |
+| Technical uncertainty | `/deep:start-research-loop [topic]` | Investigate first |
+| Need continuity refresh | `/memory:save [spec-folder-path]` | Refresh indexed canonical continuity |
+
+End interactive presentations with: `What would you like to do next?`
