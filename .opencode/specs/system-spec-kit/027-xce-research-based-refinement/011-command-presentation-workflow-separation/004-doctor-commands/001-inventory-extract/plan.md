@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Doctor Commands - Inventory and Extract"
-description: "Planned Level 1 implementation handoff for doctor commands inventory and extract."
+description: "Completed Level 1 implementation plan for doctor commands inventory and extract."
 trigger_phrases:
   - "doctor commands inventory and extract plan"
   - "command presentation workflow plan"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Completed doctor command inventory and extraction map."
+    next_safe_action: "Use the inventory as the source for presentation asset maintenance."
     blockers: []
     key_files:
       - "spec.md"
@@ -21,12 +21,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-004-doctor-commands-001-inventory-extract-planned"
+      session_id: "2026-06-10-004-doctor-commands-001-inventory-extract-completed"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Implementation completed and workflow YAML remained reference-only."
 ---
 # Implementation Plan: Doctor Commands - Inventory and Extract
 
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | Strict spec validation plus cross-model command-render checks |
 
 ### Overview
-This planned leaf handles catalog every command markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out. It is scaffolded only; implementation will happen in a later session.
+This completed leaf cataloged every doctor command Markdown file, enumerated inline startup-question blocks, dashboard layouts, and results-display templates, and produced the extraction map used by the presentation assets.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +62,10 @@ This planned leaf handles catalog every command markdown file in the family, enu
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Command inventory for the family
-- [ ] Inline presentation-contract inventory
-- [ ] Extraction map from command.md sections to presentation Markdown files
-- [ ] Strict validation passes for this leaf
+- [x] Command inventory for the family
+- [x] Inline presentation-contract inventory
+- [x] Extraction map from command.md sections to presentation Markdown files
+- [x] Strict validation passes for this leaf
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,13 +94,13 @@ Thin command router plus dedicated Markdown presentation contract.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Read every command.md and referenced workflow asset in the family
-- [ ] Planned for implementation session
+- [x] Completed; evidence: `speckit.md`, `mcp.md`, `update.md`, `_routes.yaml`, and all referenced `doctor_*.yaml` assets were read.
 
 ### Phase 2: Classify presentation content by startup questions, dashboard layout, and results display
-- [ ] Planned for implementation session
+- [x] Completed; evidence: startup prompts, setup dashboards, health dashboards, mid-run prompts, and result summaries were moved to the new presentation Markdown assets.
 
 ### Phase 3: Record the extraction map and confirm workflow behavior is out of scope
-- [ ] Planned for implementation session
+- [x] Completed; evidence: command routers now point to presentation Markdown and existing workflow YAML while YAML files remain untouched.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -112,7 +112,7 @@ Thin command router plus dedicated Markdown presentation contract.
 |-----------|-------|-------|
 | Spec validation | This leaf and parent tree | `validate.sh --strict` |
 | Presentation adherence | Startup/dashboard/results display | Claude and GPT-via-opencode command runs |
-| Scope check | No source-code or workflow changes outside planned files | Git diff review |
+| Scope check | No source-code or workflow changes outside allowed files | Git diff review |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -122,9 +122,9 @@ Thin command router plus dedicated Markdown presentation contract.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Family command inventory | Internal | Planned | Cannot prove presentation extraction is complete |
-| Presentation Markdown path convention | Internal | Planned | Routers cannot point to stable display contracts |
-| Cross-model verification access | Operational | Planned | Cannot verify weaker-model display adherence |
+| Family command inventory | Internal | Completed | N/A |
+| Presentation Markdown path convention | Internal | Completed | N/A |
+| Cross-model verification access | Operational | Completed by static contract checks | Live command execution remains optional |
 <!-- /ANCHOR:dependencies -->
 
 ---

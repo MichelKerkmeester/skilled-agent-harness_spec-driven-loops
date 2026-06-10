@@ -11,11 +11,12 @@
     "presentation",
     "markdown"
   ],
-  "lastUpdated": "2026-06-10T14:25:55.606Z",
+  "lastUpdated": "2026-06-10T16:42:09.728Z",
   "specId": "002",
   "folderSlug": "author-presentation-md",
   "parentChain": [
     "system-spec-kit",
+    "027-xce-research-based-refinement",
     "011-command-presentation-workflow-separation",
     "004-doctor-commands"
   ],

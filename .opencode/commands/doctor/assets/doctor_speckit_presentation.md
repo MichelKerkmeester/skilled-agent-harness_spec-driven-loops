@@ -1,0 +1,195 @@
+# /doctor Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor <target>`: startup questions, subsystem manifest display, setup dashboards, diagnostic dashboards, result templates, troubleshooting, and next-step text. The command router owns target resolution and asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Startup Presentation
+
+When `$ARGUMENTS` lacks a recognized positional target, ask this prompt first after reading `_routes.yaml`.
+
+```text
+What do you want to do?
+
+   1) Update everything to match latest spec-kit release   (e.g. 3.3.0.0 -> 3.4.x)
+   2) Debug Memory database              (search index, spec-doc indexing)
+   3) Debug Embeddings                   (provider choice, hf-local health)
+   4) Debug Causal-Graph                 (spec lineage, drift_why)
+   5) Debug Code-Graph                   (structural index, stale/missed/bloat)
+   6) Debug Deep-Loop history            (research/review iteration graphs)
+   7) Re-tune Skill Advisor              (which skill gets recommended)
+   8) Audit Skill Description budget     (char counts, CI-friendly)
+   0) Full sweep - rebuild everything    (no migration, current schema)
+   H) Help me decide
+   X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result |
+|--------|--------|
+| `1` | Abort `/doctor`; display `Switch to /doctor:update --migrate for upgrade migration. Exiting /doctor.` |
+| `2` | target = `memory` |
+| `3` | target = `embeddings` |
+| `4` | target = `causal-graph` |
+| `5` | target = `code-graph` |
+| `6` | target = `deep-loop` |
+| `7` | target = `skill-advisor` |
+| `8` | target = `skill-budget` |
+| `0` | Abort `/doctor`; display `Switch to /doctor:update for full sweep. Exiting /doctor.` |
+| `H` | Show the help block, then ask the startup prompt again |
+| `X`, empty, `cancel` | `STATUS=CANCEL` |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR=unknown_selection`.
+
+### Help Block
+
+```text
+Pick by symptom:
+
+   Search returns stale or empty results               -> 2  Memory
+   "context-index__*.sqlite missing" warning           -> 2  Memory
+   Model mismatch or hf-local loading state unclear    -> 3  Embeddings
+   memory_drift_why returns nothing                    -> 4  Causal-Graph
+   "causal coverage <60%" warning                      -> 4  Causal-Graph
+   "code-graph stale/missed/bloat" warning             -> 5  Code-Graph
+   "code_graph_status: unhealthy" or code-graph errors -> 5  Code-Graph
+   deep-research/deep-review iteration graph empty     -> 6  Deep-Loop
+   Convergence not detected between iterations         -> 6  Deep-Loop
+   Skill Advisor recommends the wrong skill            -> 7  Skill Advisor
+   New skill not appearing in advisor results          -> 7  Skill Advisor
+   Description char-count over hard cap                -> 8  Skill Budget
+
+Quick reference for confusable pairs:
+   Code-Graph (5) is STRUCTURAL - functions, files, dirs, AST
+   Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
+   Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
+
+Press 1-8, 0, or X.
+```
+
+### Unknown Target Failure
+
+```text
+Unknown target: [target]
+Valid targets: memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget
+Try: /doctor list
+STATUS=FAIL ERROR="unknown_target"
+```
+
+### Cross-Target Flag Failure
+
+```text
+Flag '[flag]' is not valid for target '[target]'. Did you mean `/doctor [suggested-target] [flag]`?
+STATUS=FAIL ERROR="cross_target_flag_injection"
+```
+
+## 2. Subsystem Manifest Display
+
+Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `memory` | `doctor_memory.yaml` | read-only | Diagnose the memory continuity index; report drift and recommend action |
+| `embeddings` | `doctor_embeddings.yaml` | read-only | Inspect provider selection and hf-local model-server status |
+| `causal-graph` | `doctor_causal-graph.yaml` | read-only | Diagnose causal-edge integrity; sample drift and recommend candidates |
+| `code-graph` | `doctor_code-graph.yaml` | read-only | Diagnose code-graph index; report stale, missed, or bloat findings |
+| `deep-loop` | `doctor_deep-loop.yaml` | read-only | Diagnose deep-loop coverage graphs for research and review |
+| `skill-advisor` | `doctor_skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
+| `skill-budget` | `doctor_skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |
+
+## 3. Setup Prompts
+
+Ask only prompts needed for unresolved setup variables. Do not split a required setup question into multiple visible turns.
+
+### Memory Rebuild Mode
+
+```text
+Rebuild mode?
+   1) Incremental - only changed files (fast, ~30s, default)
+   2) Full        - every file (5-15 min; needed after upgrade)
+```
+
+Accept `1`, `I`, or Enter as `incremental=true`. Accept `2`, `F`, or `full` as `incremental=false`.
+
+### Code-Graph Scope
+
+Ask this only when `--scope` was not passed and the operation needs a scope.
+
+```text
+Code-graph scope?
+   1) stale     - files indexed but mtime moved
+   2) missed    - files in repo but not indexed
+   3) bloat     - large dirs hogging the graph
+   4) all       - full scan (default)
+   5) excludes  - review the exclude config
+```
+
+Accept `1-5`; empty defaults to `all`.
+
+## 4. Setup Dashboard
+
+Render this compact panel after setup and before YAML execution when target resolution or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: [target]
+Workflow: .opencode/commands/doctor/assets/[yaml]
+Mutation class: [read-only|add-only|mutates]
+Execution mode: INTERACTIVE
+Setup values: [key=value list]
+Presentation: .opencode/commands/doctor/assets/doctor_speckit_presentation.md
+Next: load workflow YAML
+```
+
+## 5. Diagnostic Result Templates
+
+Use the target workflow output contract when it provides a stricter report shape. Use these family templates for summary display and fallback rendering.
+
+### Read-Only Diagnostic Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: [target]
+Workflow: [yaml]
+Status: [OK|DEGRADED|STALE|MISSING|ATTENTION|EMPTY|CANCELLED|FAIL]
+Mutation class: read-only
+Evidence: [health checks, counts, sampled records, or report path]
+Recommendation: [operator action or none]
+STATUS=[status]
+```
+
+### Mutating Target Summary
+
+```text
+DOCTOR MUTATING RESULT
+Target: [target]
+Workflow: [yaml]
+Status: [OK|CANCELLED|FAIL|ROLLED_BACK]
+Approved changes: [none|summary]
+Files modified: [list or none]
+Verification: [checks run and result]
+Rollback: [path or not required]
+STATUS=[status]
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: [target]
+Step: [setup|workflow phase]
+Error: [message]
+Next: [recommended command or manual action]
+STATUS=FAIL ERROR="[message]"
+```
+
+## 6. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| Need dependency-safe full rebuild | Use `/doctor:update` |
+| MCP servers are broken | Use `/doctor:mcp debug --fix` |
+| Fresh-install MCP servers | Use `/doctor:mcp install` |
+| Cross-target flag rejected | Use the suggested target from the error |
+| Route manifest parse error | Run `bash .opencode/commands/doctor/scripts/route-validate.sh` |
+
+End interactive presentations with: `What would you like to do next?`

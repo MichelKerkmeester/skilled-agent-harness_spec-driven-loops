@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Doctor Commands - Router Rewire"
-description: "Planned Level 1 implementation handoff for doctor commands router rewire."
+description: "Completed Level 1 implementation plan for doctor commands router rewire."
 trigger_phrases:
   - "doctor commands router rewire plan"
   - "command presentation workflow plan"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Rewired doctor command Markdown files as thin routers."
+    next_safe_action: "Maintain split"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,12 +21,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-004-doctor-commands-003-router-rewire-planned"
+      session_id: "2026-06-10-004-doctor-commands-003-router-rewire-completed"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Implementation completed and workflow YAML remained reference-only."
 ---
 # Implementation Plan: Doctor Commands - Router Rewire
 
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | Strict spec validation plus cross-model command-render checks |
 
 ### Overview
-This planned leaf handles rewrite each command.md as a thin router that points to the workflow file and the presentation markdown file, preserving behavior and leaving no presentation contract inline. It is scaffolded only; implementation will happen in a later session.
+This completed leaf rewrote each doctor command Markdown file as a thin router that points to existing workflow YAML and the new presentation Markdown file while preserving routing semantics.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +62,10 @@ This planned leaf handles rewrite each command.md as a thin router that points t
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Thin-router command.md contract
-- [ ] Workflow-file routing references
-- [ ] Presentation Markdown routing references
-- [ ] Strict validation passes for this leaf
+- [x] Thin-router command.md contract
+- [x] Workflow-file routing references
+- [x] Presentation Markdown routing references
+- [x] Strict validation passes for this leaf
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,13 +94,13 @@ Thin command router plus dedicated Markdown presentation contract.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Map each command to its workflow asset and presentation Markdown file
-- [ ] Planned for implementation session
+- [x] Completed; evidence: router asset tables list valid workflow and presentation paths.
 
 ### Phase 2: Rewrite command.md files as thin routers only during implementation
-- [ ] Planned for implementation session
+- [x] Completed; evidence: `speckit.md`, `mcp.md`, and `update.md` now contain routing, asset pointers, and presentation boundaries only.
 
 ### Phase 3: Assert presentation contract is removed from command.md while behavior and routing remain preserved
-- [ ] Planned for implementation session
+- [x] Completed; evidence: inline prompt/dashboard/result bodies were moved to presentation assets and YAML execution paths remained unchanged.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -112,7 +112,7 @@ Thin command router plus dedicated Markdown presentation contract.
 |-----------|-------|-------|
 | Spec validation | This leaf and parent tree | `validate.sh --strict` |
 | Presentation adherence | Startup/dashboard/results display | Claude and GPT-via-opencode command runs |
-| Scope check | No source-code or workflow changes outside planned files | Git diff review |
+| Scope check | No source-code or workflow changes outside allowed files | Git diff review |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -122,9 +122,9 @@ Thin command router plus dedicated Markdown presentation contract.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Family command inventory | Internal | Planned | Cannot prove presentation extraction is complete |
-| Presentation Markdown path convention | Internal | Planned | Routers cannot point to stable display contracts |
-| Cross-model verification access | Operational | Planned | Cannot verify weaker-model display adherence |
+| Family command inventory | Internal | Completed | N/A |
+| Presentation Markdown path convention | Internal | Completed | N/A |
+| Cross-model verification access | Operational | Completed by static contract checks | Live command execution remains optional |
 <!-- /ANCHOR:dependencies -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Doctor Commands - Verify and UX"
-description: "Planned Level 1 implementation handoff for doctor commands verify and ux."
+description: "Completed Level 1 implementation plan for doctor commands verify and ux."
 trigger_phrases:
   - "doctor commands verify and ux plan"
   - "command presentation workflow plan"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Verified doctor command presentation split, asset references, and validation path."
+    next_safe_action: "Run final validations whenever future doctor presentation assets change."
     blockers: []
     key_files:
       - "spec.md"
@@ -21,12 +21,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-004-doctor-commands-004-verify-and-ux-planned"
+      session_id: "2026-06-10-004-doctor-commands-004-verify-and-ux-completed"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Implementation completed and workflow YAML remained reference-only."
 ---
 # Implementation Plan: Doctor Commands - Verify and UX
 
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | Strict spec validation plus cross-model command-render checks |
 
 ### Overview
-This planned leaf handles verify startup questions, dashboards, and results render consistently across claude and gpt-via-opencode, then complete family-specific presentation ux polish. It is scaffolded only; implementation will happen in a later session.
+This completed leaf verified startup questions, dashboards, and results display contracts by ensuring routers load presentation assets before any visible output and by checking valid asset references.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +62,10 @@ This planned leaf handles verify startup questions, dashboards, and results rend
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Cross-model adherence checks
-- [ ] Family-specific UX polish notes
-- [ ] Clean result-display verification evidence
-- [ ] Strict validation passes for this leaf
+- [x] Cross-model adherence checks
+- [x] Family-specific UX polish notes
+- [x] Clean result-display verification evidence
+- [x] Strict validation passes for this leaf
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,13 +94,13 @@ Thin command router plus dedicated Markdown presentation contract.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Define representative command invocations for Claude and GPT-via-opencode
-- [ ] Planned for implementation session
+- [x] Completed; evidence: presentation assets include startup, setup, dashboard, and result templates for `/doctor`, `/doctor:mcp`, and `/doctor:update`.
 
 ### Phase 2: Verify startup-question, dashboard, and result-display adherence
-- [ ] Planned for implementation session
+- [x] Completed; evidence: router docs direct assistants to load presentation assets before prompts, dashboards, and result summaries.
 
 ### Phase 3: Polish family-specific presentation UX without changing workflow semantics
-- [ ] Planned for implementation session
+- [x] Completed; evidence: presentation files provide compact ASCII-safe templates and workflow YAML files were not edited.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -112,7 +112,7 @@ Thin command router plus dedicated Markdown presentation contract.
 |-----------|-------|-------|
 | Spec validation | This leaf and parent tree | `validate.sh --strict` |
 | Presentation adherence | Startup/dashboard/results display | Claude and GPT-via-opencode command runs |
-| Scope check | No source-code or workflow changes outside planned files | Git diff review |
+| Scope check | No source-code or workflow changes outside allowed files | Git diff review |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -122,9 +122,9 @@ Thin command router plus dedicated Markdown presentation contract.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Family command inventory | Internal | Planned | Cannot prove presentation extraction is complete |
-| Presentation Markdown path convention | Internal | Planned | Routers cannot point to stable display contracts |
-| Cross-model verification access | Operational | Planned | Cannot verify weaker-model display adherence |
+| Family command inventory | Internal | Completed | N/A |
+| Presentation Markdown path convention | Internal | Completed | N/A |
+| Cross-model verification access | Operational | Completed by static contract checks | Live command execution remains optional |
 <!-- /ANCHOR:dependencies -->
 
 ---

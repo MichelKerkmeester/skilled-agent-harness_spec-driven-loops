@@ -1,19 +1,19 @@
 ---
 title: "Implementation Summary: Doctor Commands - Inventory and Extract"
-description: "Planned - not yet implemented. Level 1 leaf phase for catalog every command markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out."
+description: "Completed Level 1 leaf phase for cataloging doctor command Markdown files and extracting inline presentation contracts."
 trigger_phrases:
   - "doctor commands - inventory and extract implementation summary"
-  - "planned scaffold implementation summary"
+  - "doctor command presentation extraction complete"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Completed inventory and extraction map for doctor command presentation contracts."
+    next_safe_action: "Keep newly discovered display wording in presentation Markdown assets, not command routers."
     blockers: []
     key_files:
       - "spec.md"
@@ -22,12 +22,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-004-doctor-commands-001-inventory-extract-planned"
+      session_id: "2026-06-10-004-doctor-commands-001-inventory-extract-completed"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "No separate legacy doctor:*.md command surfaces were present."
 ---
 # Implementation Summary: Doctor Commands - Inventory and Extract
 
@@ -42,10 +42,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,25 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the leaf as a complete Planned scaffold while preserving completion at 0%.
+The doctor command family was inventoried and inline presentation contracts were classified for extraction.
 
-### Planned Scope
+### Files Reviewed
 
-Level 1 leaf phase for catalog every command markdown file in the family, enumerate inline startup-question blocks, dashboard layouts, and results-display templates, and produce the extraction map for what moves out.
+| File | Purpose |
+|------|---------|
+| `.opencode/commands/doctor/speckit.md` | `/doctor <target>` router and inline target presentation |
+| `.opencode/commands/doctor/mcp.md` | `/doctor:mcp` sub-action router and inline MCP presentation |
+| `.opencode/commands/doctor/update.md` | `/doctor:update` router and inline update presentation |
+| `.opencode/commands/doctor/_routes.yaml` | Canonical target-to-YAML route manifest |
+| `.opencode/commands/doctor/assets/doctor_*.yaml` | Existing workflow YAML assets, reference only |
 
-### Files Changed
+### Extraction Map
 
-| File | Action | Purpose |
-|------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| Command | Presentation Moved |
+|---------|--------------------|
+| `/doctor` | Target menu, help block, manifest display, setup prompts, route setup dashboard, diagnostic result templates, troubleshooting |
+| `/doctor:mcp` | Sub-action menu, flag errors, setup dashboard, MCP assessment tables, install/debug prompts, final reports, troubleshooting |
+| `/doctor:update` | Initial confirmation, mid-run prompt catalog, setup dashboard, cross-subsystem health dashboard, status/restart/failure/rollback displays, related commands |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +79,7 @@ Level 1 leaf phase for catalog every command markdown file in the family, enumer
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This leaf has not been delivered. Future implementation must update this summary with actual changes and verification evidence.
+Inventory was performed by reading every doctor command Markdown file, the route manifest, and every existing doctor workflow YAML asset. The extraction map was then used by the author-presentation and router-rewire leaves.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +89,9 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested minimal placeholders for strict validation, not implementation claims. |
+| Use three presentation assets | The three command surfaces have distinct startup and result displays. |
+| Keep YAML reference-only | Workflow behavior already lives in existing YAML assets and must not be edited for presentation extraction. |
+| Do not invent legacy command paths | No `.opencode/commands/doctor:*.md` files were present. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +101,10 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Command inventory | Passed: three Markdown routers found |
+| Workflow asset inventory | Passed: existing YAML assets mapped and left untouched |
+| Extraction coverage | Passed: startup, dashboard, and result display categories mapped for each command |
+| Strict validation | Recorded in final verification output |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +112,5 @@ This leaf has not been delivered. Future implementation must update this summary
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or workflow files have been changed.
+None.
 <!-- /ANCHOR:limitations -->

@@ -1,19 +1,19 @@
 ---
 title: "Implementation Summary: Doctor Commands - Verify and UX"
-description: "Planned - not yet implemented. Level 1 leaf phase for verify startup questions, dashboards, and results render consistently across claude and gpt-via-opencode, then complete family-specific presentation ux polish."
+description: "Completed Level 1 leaf phase for verifying doctor command presentation references and UX contracts."
 trigger_phrases:
   - "doctor commands - verify and ux implementation summary"
-  - "planned scaffold implementation summary"
+  - "doctor command presentation verification complete"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Verified doctor command presentation split and reference integrity."
+    next_safe_action: "Use the validation commands recorded here after future doctor command presentation edits."
     blockers: []
     key_files:
       - "spec.md"
@@ -22,12 +22,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-004-doctor-commands-004-verify-and-ux-planned"
+      session_id: "2026-06-10-004-doctor-commands-004-verify-and-ux-completed"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Broken-reference and no-YAML-edit verification are required before reporting completion."
 ---
 # Implementation Summary: Doctor Commands - Verify and UX
 
@@ -42,10 +42,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the leaf as a complete Planned scaffold while preserving completion at 0%.
+Verification and UX polish were added for the doctor command presentation split.
 
-### Planned Scope
+### UX Outcomes
 
-Level 1 leaf phase for verify startup questions, dashboards, and results render consistently across claude and gpt-via-opencode, then complete family-specific presentation ux polish.
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| Outcome | Evidence |
+|---------|----------|
+| Startup prompts are centralized | Presentation assets own `/doctor`, `/doctor:mcp`, and `/doctor:update` startup prompts |
+| Dashboard layouts are centralized | Presentation assets own route setup, MCP assessment, and update health dashboards |
+| Result displays are centralized | Presentation assets own diagnostic, final report, restart, failure, and rollback displays |
+| Routers are display-light | Command Markdown keeps routing and pointers, not inline presentation templates |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +70,7 @@ Level 1 leaf phase for verify startup questions, dashboards, and results render 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This leaf has not been delivered. Future implementation must update this summary with actual changes and verification evidence.
+The routers explicitly require loading presentation assets before visible prompts and results. Verification checks confirm valid asset references, presentation coverage, no workflow YAML edits, and strict spec validation for the family and leaf folders.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +80,9 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested minimal placeholders for strict validation, not implementation claims. |
+| Verify by reference integrity and router load order | This task is a command-architecture split, not a runtime execution of doctor maintenance workflows. |
+| Preserve YAML workflow wording where it is execution-owned | YAML remains the workflow source of truth. Presentation files own the command Markdown display contract. |
+| Report out-of-scope instead of fixing it | The user banned workflow YAML, daemon, package, MCP server, and other command-family edits. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +92,10 @@ This leaf has not been delivered. Future implementation must update this summary
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Router reference check | Passed: shell `test -f` loop confirmed every router-referenced workflow and presentation asset exists |
+| Presentation extraction check | Passed: `Grep` for startup/dashboard/final-report phrases found them in presentation Markdown assets |
+| Workflow YAML untouched check | Passed: `git diff --name-only -- ".opencode/commands/doctor/assets/*.yaml"` returned no YAML paths |
+| Strict validation | Passed: `validate.sh --strict` exited 0 for the verification leaf after frontmatter compactness fixes |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +103,5 @@ This leaf has not been delivered. Future implementation must update this summary
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or workflow files have been changed.
+No live doctor maintenance workflow was executed; verification targets command architecture, references, and spec validation.
 <!-- /ANCHOR:limitations -->

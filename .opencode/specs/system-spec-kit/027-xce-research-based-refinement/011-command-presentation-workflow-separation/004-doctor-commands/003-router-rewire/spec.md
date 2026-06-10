@@ -7,14 +7,14 @@ trigger_phrases:
   - "command presentation markdown"
 importance_tier: "important"
 contextType: "implementation"
-status: "spec-scaffolded"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Scaffold Level 1 leaf spec, plan, and tasks; no implementation"
-    next_safe_action: "Begin implementation planning from this leaf's tasks.md"
+    recent_action: "Routers rewired"
+    next_safe_action: "Maintain routing in command Markdown and presentation wording in presentation assets."
     blockers: []
     key_files:
       - "spec.md"
@@ -24,10 +24,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-004-doctor-commands-003-router-rewire-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Status is Spec-Scaffolded / Planned; implementation has not started."
+      - "Implementation completed with workflow YAML kept reference-only."
 ---
 # Feature Specification: Doctor Commands - Router Rewire
 
@@ -43,11 +43,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded / Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Completion** | 0% |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -76,20 +76,19 @@ Rewrite each command.md as a thin router that points to the workflow file and th
 
 ### Out of Scope
 - Source-code changes.
-- Command.md rewrites during scaffold.
-- Workflow YAML edits during scaffold.
-- Implementation work beyond the Planned scaffold.
+- Workflow YAML edits.
+- Out-of-family command changes.
 
 ### Files to Change
-Planned future implementation scope; this scaffold only creates spec docs and metadata.
+Completed implementation scope for this leaf.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/doctor/*.md` | Future Review/Modify | Family command and workflow asset scope for this leaf |
-| `.opencode/commands/doctor:*.md` | Future Review/Modify | Family command and workflow asset scope for this leaf |
-| `.opencode/commands/doctor/assets/**/*.yaml` | Future Review/Modify | Family command and workflow asset scope for this leaf |
-| `.opencode/commands/doctor/assets/**/*.yml` | Future Review/Modify | Family command and workflow asset scope for this leaf |
-| Dedicated presentation Markdown files | Future Create/Modify | Presentation contracts for startup questions, dashboards, and results display |
+| `.opencode/commands/doctor/*.md` | Modified | Thin routers now point to workflow YAML and presentation Markdown assets |
+| `.opencode/commands/doctor:*.md` | Reviewed | No legacy command surfaces found |
+| `.opencode/commands/doctor/assets/**/*.yaml` | Reviewed Only | Existing workflow YAML referenced, never edited |
+| `.opencode/commands/doctor/assets/**/*.yml` | Reviewed Only | No workflow YAML edits performed |
+| Dedicated presentation Markdown files | Referenced | Routers point to presentation contracts for startup questions, dashboards, and results display |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -101,7 +100,7 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| R1 | Preserve workflow behavior | Planned changes do not alter command routing semantics |
+| R1 | Preserve workflow behavior | Completed changes do not alter command routing semantics |
 | R2 | Keep presentation contract explicit | Startup questions, dashboard layouts, and results-display rules are discoverable through Markdown presentation contracts |
 
 ### P1 - Required (complete OR user-approved deferral)

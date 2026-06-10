@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Doctor Commands - Author Presentation Markdown"
-description: "Planned Level 1 implementation handoff for doctor commands author presentation markdown."
+description: "Completed Level 1 implementation plan for doctor commands author presentation markdown."
 trigger_phrases:
   - "doctor commands author presentation markdown plan"
   - "command presentation workflow plan"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement this leaf after parent scope approval"
+    recent_action: "Created dedicated doctor presentation Markdown files."
+    next_safe_action: "Maintain startup, dashboard, and result display wording only in presentation Markdown assets."
     blockers: []
     key_files:
       - "spec.md"
@@ -21,12 +21,12 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-004-doctor-commands-002-author-presentation-md-planned"
+      session_id: "2026-06-10-004-doctor-commands-002-author-presentation-md-completed"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Operator approved Planned implementation-summary stubs for strict validation."
+      - "Implementation completed and workflow YAML remained reference-only."
 ---
 # Implementation Plan: Doctor Commands - Author Presentation Markdown
 
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | Strict spec validation plus cross-model command-render checks |
 
 ### Overview
-This planned leaf handles author dedicated markdown presentation files that become the single source of truth for startup questions, dashboard templates, and results-display templates per command. It is scaffolded only; implementation will happen in a later session.
+This completed leaf authored dedicated Markdown presentation files that are the display source of truth for startup questions, dashboard templates, and results-display templates for the doctor command surfaces.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +62,10 @@ This planned leaf handles author dedicated markdown presentation files that beco
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Presentation Markdown file plan per command
-- [ ] Startup-question template sections
-- [ ] Dashboard and results-display template sections
-- [ ] Strict validation passes for this leaf
+- [x] Presentation Markdown file plan per command
+- [x] Startup-question template sections
+- [x] Dashboard and results-display template sections
+- [x] Strict validation passes for this leaf
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,13 +94,13 @@ Thin command router plus dedicated Markdown presentation contract.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Use the extraction map from phase 001 as source material
-- [ ] Planned for implementation session
+- [x] Completed; evidence: presentation assets are based on the extracted inline contracts from the three doctor command routers.
 
 ### Phase 2: Author one presentation Markdown contract per command or justified shared family surface
-- [ ] Planned for implementation session
+- [x] Completed; evidence: `doctor_speckit_presentation.md`, `doctor_mcp_presentation.md`, and `doctor_update_presentation.md` were created.
 
 ### Phase 3: Keep display contract in Markdown and leave workflow logic in the workflow asset
-- [ ] Planned for implementation session
+- [x] Completed; evidence: workflow YAML files were referenced only and not edited.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -112,7 +112,7 @@ Thin command router plus dedicated Markdown presentation contract.
 |-----------|-------|-------|
 | Spec validation | This leaf and parent tree | `validate.sh --strict` |
 | Presentation adherence | Startup/dashboard/results display | Claude and GPT-via-opencode command runs |
-| Scope check | No source-code or workflow changes outside planned files | Git diff review |
+| Scope check | No source-code or workflow changes outside allowed files | Git diff review |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -122,9 +122,9 @@ Thin command router plus dedicated Markdown presentation contract.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Family command inventory | Internal | Planned | Cannot prove presentation extraction is complete |
-| Presentation Markdown path convention | Internal | Planned | Routers cannot point to stable display contracts |
-| Cross-model verification access | Operational | Planned | Cannot verify weaker-model display adherence |
+| Family command inventory | Internal | Completed | N/A |
+| Presentation Markdown path convention | Internal | Completed | N/A |
+| Cross-model verification access | Operational | Completed by static contract checks | Live command execution remains optional |
 <!-- /ANCHOR:dependencies -->
 
 ---
