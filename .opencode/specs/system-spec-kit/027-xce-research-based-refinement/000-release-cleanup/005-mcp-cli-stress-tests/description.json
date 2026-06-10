@@ -1,0 +1,46 @@
+{
+  "title": "MCP CLI Stress Tests",
+  "trigger_phrases": [
+    "mcp",
+    "cli",
+    "stress",
+    "tests",
+    "plan"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
+  "status": "planned",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
+  "description": "Plan stress coverage for the three daemons, CLI front doors under schema v37, and the new gated flags.",
+  "keywords": [
+    "mcp",
+    "cli",
+    "stress",
+    "tests",
+    "plan",
+    "coverage",
+    "for",
+    "the",
+    "three",
+    "daemons",
+    "front",
+    "doors",
+    "under",
+    "schema",
+    "v37",
+    "and"
+  ],
+  "lastUpdated": "2026-06-10T14:42:40.567Z",
+  "specId": "005",
+  "folderSlug": "mcp-cli-stress-tests",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

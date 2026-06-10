@@ -1,0 +1,141 @@
+---
+title: "Implementation Plan: MCP CLI Stress Tests"
+description: "Planned Level 1 implementation handoff for MCP CLI Stress Tests."
+trigger_phrases:
+  - "mcp cli stress tests plan"
+  - "027 release cleanup plan"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Prepared Planned scaffold for strict validation"
+    next_safe_action: "Implement child phase after scope approval"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-005-mcp-cli-stress-tests-planned"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions:
+      - "Operator approved Planned release-cleanup scaffolds."
+---
+# Implementation Plan: MCP CLI Stress Tests
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Markdown documentation and spec metadata |
+| **Framework** | OpenCode spec-kit documentation workflow |
+| **Storage** | Files under the owned outward/governance surface |
+| **Testing** | Strict spec validation plus surface-specific review |
+
+### Overview
+Plan stress coverage for the three daemons, CLI front doors under schema v37, and the new gated flags. This planned phase follows an inventory -> align -> verify flow and is scaffolded only.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] Inventory current claims on .opencode/skills/system-spec-kit/**
+- [ ] Align current-state claims to shipped 027 reality
+- [ ] Verify coherence and record evidence
+- [ ] Strict validation passes for this child phase
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Documentation surface alignment with explicit ownership boundaries.
+
+### Key Components
+- **Inventory**: list every current outward claim in scope.
+- **Alignment**: update stale or incomplete current-state claims during implementation.
+- **Verification**: validate strict spec docs and perform surface-specific checks.
+
+### Data Flow
+1. Read the owned surface.
+2. Compare claims against shipped 027 reality.
+3. Apply only in-scope content changes during implementation.
+4. Record verification evidence in implementation-summary.md.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+- [ ] Inventory .opencode/skills/system-spec-kit/**
+
+### Phase 2: Implementation
+- [ ] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
+- [ ] Preserve ownership boundary: Epic Phase-5 runs this coverage.
+
+### Phase 3: Verification
+- [ ] Run strict spec validation
+- [ ] Run surface-specific coherence checks
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Spec validation | This child phase | `validate.sh --strict` |
+| Surface review | .opencode/skills/system-spec-kit/** | Grep/read diff review during implementation |
+| Ownership check | 027/000 boundary | Git diff review |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Shipped 027 source of truth | Internal | Available | Cannot align outward claims accurately |
+| 027/011 command-presentation ownership | Internal | Planned | Command content work could collide with structural split |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: Implementation changes make the surface conflict with shipped 027 behavior or 027/011 ownership.
+- **Procedure**:
+  1. Revert the affected outward-surface edits.
+  2. Restore the last strict-valid spec docs.
+  3. Re-run strict validation and surface-specific checks.
+<!-- /ANCHOR:rollback -->

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract",
+  "description": "Feature Specification: Doctor Commands - Inventory and Extract",
+  "keywords": [
+    "feature",
+    "specification",
+    "doctor",
+    "commands",
+    "inventory",
+    "extract"
+  ],
+  "lastUpdated": "2026-06-10T14:25:55.457Z",
+  "specId": "001",
+  "folderSlug": "inventory-extract",
+  "parentChain": [
+    "system-spec-kit",
+    "011-command-presentation-workflow-separation",
+    "004-doctor-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

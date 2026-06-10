@@ -1,0 +1,25 @@
+{
+  "level": "phase",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands",
+  "description": "Feature Specification: Doctor Commands Presentation Workflow Separation (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "doctor",
+    "commands",
+    "presentation",
+    "workflow",
+    "separation",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-10T14:25:55.311Z",
+  "specId": "004",
+  "folderSlug": "doctor-commands",
+  "parentChain": [
+    "system-spec-kit",
+    "011-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

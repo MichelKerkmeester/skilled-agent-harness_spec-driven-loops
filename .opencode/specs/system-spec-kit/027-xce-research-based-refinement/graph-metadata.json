@@ -14,7 +14,8 @@
     "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening",
     "system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability",
     "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience",
-    "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition"
+    "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
+    "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation"
   ],
   "migrated": true,
   "migration_source": "legacy",
