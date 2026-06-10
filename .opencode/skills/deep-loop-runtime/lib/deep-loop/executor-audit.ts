@@ -74,6 +74,12 @@ const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
   'TMPDIR',
   'NODE_PATH',
   'TERM',
+  // macOS credential auth for CLI executors (e.g. claude OAuth keychain lookup)
+  // keys on the user identity + CoreFoundation locale; without these a dispatched
+  // CLI reports "Not logged in" even with a valid config dir.
+  'USER',
+  'LOGNAME',
+  '__CF_USER_TEXT_ENCODING',
 ]);
 
 const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
