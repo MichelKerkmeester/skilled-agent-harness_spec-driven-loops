@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/002-cli-help-aliases-errors",
+  "description": "Feature Specification: CLI Per-Command Help, Aliases, and Errors",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli",
+    "per-command",
+    "help",
+    "aliases",
+    "errors"
+  ],
+  "lastUpdated": "2026-06-10T20:46:22.828Z",
+  "specId": "002",
+  "folderSlug": "cli-help-aliases-errors",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "016-cli-tooling-ux"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

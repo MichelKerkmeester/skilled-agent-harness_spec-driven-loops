@@ -8,6 +8,24 @@ trigger_phrases:
   - "epic continuation handover"
 importance_tier: "important"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
+    last_updated_at: "2026-06-10T20:30:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "New per-parent review /goal; 016 scaffolded; 145 lanes in flight"
+    next_safe_action: "Commit 016 + registry; run 011 deep review; finish 145 + 015"
+    blockers: []
+    key_files:
+      - "handover.md"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-027-epic-continuation"
+      parent_session_id: null
+    completion_pct: 55
+    open_questions: []
+    answered_questions: []
 ---
 # Session Handover — 027 + 145 Epic Continuation
 
@@ -31,9 +49,10 @@ contextType: "general"
 
 > Complete the entire 027 epic on branch `028-mcp-to-cli-tool-transition` (never merge/push to main). Phases 000-010 are shipped, release-cleaned, deep-reviewed (CONDITIONAL, 0 P0), and remediated. Now also implement the five planned phases (011 command-presentation, 012 causal-traversal BFS, 013 vector read-path resilience, 014 packed BM25, 015 storage adapter ports). For each: expand the scaffold via /speckit:plan, implement with cli-opencode gpt-5.5-fast --variant high, verify with Fable 5 via the claude2 account (switch to native claude when claude2 is usage-limited). Honor each scaffold's gates and the handover execution order: 012 ∥ 014 → 013 (coordinates with 008) → 015 last; 011 independent. At 015 planning, make the recorded phase-split-vs-promote decision. When 011-015 implemented + verified, run a deep review over the new phases (~20-30 iters) and remediate with Fable 5. Finally, validate the complete 000-015 epic through updated stress tests + manual playbook (playbook via cli-opencode MiMo v2.5 Pro / DeepSeek v4 Pro). Only sleep when the whole epic is done, verified, and tested. Autonomous; no main merge; comment hygiene; scoped commits; never touch host daemons.
 
-**Operator amendments after the /goal:**
-- The cross-pollination side-quest **IS in the epic**: scaffold + IMPLEMENT all 10 advisor/code-graph transfers (packet 145). (AskUserQuestion: "Scaffold + implement in this epic" / "All 10 viable transfers".)
-- New-phases deep review is REFINED to **5 iterations, Fable 5 via claude2** (not 20-30), via `/deep:start-review-loop` to the tee. Native fallback if claude2 limited.
+**Operator amendments after the /goal (cumulative, newest wins):**
+- The cross-pollination side-quest **IS in the epic**: scaffold + IMPLEMENT all 10 advisor/code-graph transfers (packet `skilled-agent-orchestration/145`).
+- CLI-tooling UX/docs/integration/automation improvements belong **inside 027** as child phase `027/016-cli-tooling-ux` (NOT a track-root packet — operator corrected a proposed 146). Scaffolded from the assessment at `/tmp/cli-tooling-assessment.md`.
+- **REVIEW MODEL (latest /goal — supersedes "5-iter Fable-via-claude2"):** every PARENT phase, AFTER completion, gets **≥5 deep-review iterations** via cli-opencode **gpt-5.5-fast --variant high**, **falling back to MiMo v2.5 Pro** if gpt-5.5-high-fast fails, run through `/deep:start-review-loop` to the tee. Then a **FRESH Fable 5 agent reviews the deep-review synthesis + double-checks the findings** (meta-review). **Re-visit release cleanup after every big phase.** Applies per parent phase (011 owed, 145, 016, 015) + the epic. Final: stress + manual playbook (MiMo/DeepSeek). Autonomous until perfection.
 
 ## 2. STANDING CONSTRAINTS (do-nots)
 
@@ -89,7 +108,7 @@ Brief MUST bake: "Spec folder <path> (pre-approved, skip Gate 3)", ALLOWED WRITE
 
 **Fable-via-claude2 (review/remediation):** `cli-claude-code` executor with `--config-dir=~/.claude-account2` (sets CLAUDE_CONFIG_DIR; env fix landed so it auths under the filtered dispatch env). claude2 was session-limited until ~20:40 UTC 2026-06-10 — check first; native fallback (`claude` default account, drop --config-dir) per the operator PS. Bare `claude` resolves on PATH (real binary).
 
-**Deep review (the command fan-out, "to the tee"):** `/deep:start-review-loop` → `fanout-run.cjs --spec-folder <X> --loop-type review --fanout-config-json '<json>' --base-artifact-dir <X>/review`. Config shape: `{concurrency, executors:[{kind,model,configDir,reasoningEffort,label,count,iterations,timeoutSeconds}]}`. Each lineage = ONE CLI session running the whole loop. cli-opencode lineages now run CONCURRENTLY (async spawn + pool — the spawnSync-serialization is FIXED). Merge: `fanout-merge.cjs --loop-type review --artifact-dir <X>/review` (strongest-restriction). New-phases review = 5 iters Fable-5 via claude2 (count/iters per the operator's "5 iterations"). See memory `deep-review-command-fanout-cli-gotchas`.
+**Deep review (the command fan-out, "to the tee"):** `/deep:start-review-loop` → `fanout-run.cjs --spec-folder <X> --loop-type review --fanout-config-json '<json>' --base-artifact-dir <X>/review`. Config shape: `{concurrency, executors:[{kind,model,configDir,reasoningEffort,label,count,iterations,timeoutSeconds}]}`. Each lineage = ONE CLI session running the whole loop. cli-opencode lineages now run CONCURRENTLY (async spawn + pool — the spawnSync-serialization is FIXED). Merge: `fanout-merge.cjs --loop-type review --artifact-dir <X>/review` (strongest-restriction). PER-PARENT review (latest /goal): ≥5 iters per parent phase via cli-opencode gpt-5.5-fast --variant high (executor=cli-opencode model=openai/gpt-5.5-fast reasoningEffort=high), **fallback MiMo v2.5 Pro** (xiaomi/mimo-v2.5-pro --variant high) if gpt-5.5-high-fast fails; then a FRESH Fable 5 agent (cli-claude-code via claude2, or native if limited) reviews the synthesis + double-checks findings. See memory `deep-review-command-fanout-cli-gotchas` + `deep-review-parallel-fanout-execution`.
 
 **Stress/playbook:** stress harness in mcp_server; manual playbook scenarios run via cli-opencode MiMo v2.5 Pro (`xiaomi/mimo-v2.5-pro --variant high`) / DeepSeek (`deepseek/deepseek-v4-pro`) — check live `opencode providers list` first (provider ids drift; see memory `xiaomi-token-plan-provider-id`).
 

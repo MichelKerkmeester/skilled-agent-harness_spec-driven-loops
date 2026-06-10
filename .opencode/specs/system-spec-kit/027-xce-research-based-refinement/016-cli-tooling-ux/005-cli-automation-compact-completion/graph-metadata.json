@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli list-tools compact names-only",
+      "cli shell completion generation",
+      "machine friendly cli json",
+      "cli automation manifests",
+      "005-cli-automation-compact-completion plan",
+      "005-cli-automation-compact-completion tasks",
+      "005-cli-automation-compact-completion summary"
+    ],
+    "key_topics": [
+      "cli",
+      "list-tools",
+      "compact",
+      "names-only",
+      "shell",
+      "completion",
+      "generation",
+      "machine",
+      "friendly",
+      "json",
+      "automation",
+      "manifests"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "mcp_server/spec-memory-cli.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-memory-cli.ts",
+        "kind": "code",
+        "path": "mcp_server/spec-memory-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compact Output",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shell Completion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `list-tools --format json` output includes the full `inputSchema` for every tool, so machine scripts must parse large payloads to get tool names: spec (`spec-memory-cli.ts:463-481`; the spec-memory JSON was over 75KB in the assessment run), code (`code-index-cli.ts:542-562`), advisor (`skill-advisor-cli.ts:705-725`). There is no compact or names-only JSON mode. Separately, no CLI has a `completion` command; the tool registries already exist (`TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, advisor manifest), so shell completion could be generated from the same source instead of hand-maintained.",
+    "created_at": "2026-06-10T20:46:28.787Z",
+    "last_save_at": "2026-06-10T20:46:28.787Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

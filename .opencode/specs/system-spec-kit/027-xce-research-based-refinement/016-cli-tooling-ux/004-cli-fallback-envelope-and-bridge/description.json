@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
+  "description": "Feature Specification: CLI Fallback Envelope and Bridge Allowlist",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli",
+    "fallback",
+    "envelope",
+    "bridge",
+    "allowlist"
+  ],
+  "lastUpdated": "2026-06-10T20:46:23.132Z",
+  "specId": "004",
+  "folderSlug": "cli-fallback-envelope-and-bridge",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "016-cli-tooling-ux"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
