@@ -8,13 +8,13 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T09:20:57Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented deferred session-trace causal reducer and tests."
+    next_safe_action: "Ready for parent integration phase."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Plan: Session-Trace Causal Reducer
 
@@ -43,7 +43,7 @@ Build a deferred reducer that infers weak causal edges from session trace eviden
 - Strict child validation exits 0.
 - Tests prove no overwrite of manual edges.
 - Grep/code review confirms no live `logFeedbackEvent` invocation.
-- Shadow replay proves inferred edges are weak, capped, relation-floor aware, and do not exceed manual-edge protection boundaries.
+- Shadow replay proves inferred edges are weak, capped, relation-valid, and do not exceed manual-edge protection boundaries.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -60,17 +60,17 @@ The reducer groups feedback events by session, keeps a rolling list of shown mem
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Event Reader
-- Query and group events by session and timestamp.
+- Complete. Query and group events by session and timestamp.
 
 ### Phase 2: Inference
-- Select eligible sources.
-- Emit or update weak auto-session edges.
-- Enforce caps and idempotency.
+- Complete. Select eligible sources.
+- Complete. Emit weak auto-session edges through the existing edge writer.
+- Complete. Enforce caps and idempotency through guard-aware writes and pre-skip checks.
 
 ### Phase 3: Invocation and Tests
-- Add deferred invocation surface.
-- Add feature flag and tests.
-- Add shadow replay output before allowing any active edge mutation path.
+- Complete. Add deferred invocation surface.
+- Complete. Add feature flag and tests.
+- Complete. Add shadow replay output before allowing any active edge mutation path.
 <!-- /ANCHOR:phases -->
 
 ---

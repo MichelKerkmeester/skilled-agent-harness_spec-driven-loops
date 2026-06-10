@@ -8,13 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T09:20:57Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented deferred session-trace causal reducer and tests."
+    next_safe_action: "Ready for parent integration phase."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Summary: Session-Trace Causal Reducer
 
@@ -28,9 +28,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `009-feedback-reducers/003-causal-reducer` |
+| **Spec Folder** | `003-causal-reducer` |
 | **Level** | 2 |
-| **Status** | Not implemented |
+| **Status** | Implemented |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,7 +38,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Expected file: `mcp_server/lib/feedback/session-trace-causal-reducer.ts`.
+- Added `mcp_server/lib/feedback/session-trace-causal-reducer.ts`.
+- Added a default-off reducer flag check for `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE`.
+- Added deterministic prior-source selection from same-session feedback traces, with same-query preference and a five-source cap.
+- Added active deferred edge insertion through the existing causal edge writer using weak `enabled` edges.
+- Added dry-run shadow replay that returns candidates and skip reasons without mutating edges.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -46,7 +50,10 @@ Pending. Expected file: `mcp_server/lib/feedback/session-trace-causal-reducer.ts
 <!-- ANCHOR:how-delivered -->
 ## HOW IT WAS DELIVERED
 
-Delivery evidence will be recorded after the child work lands.
+- Edge writes call the existing `insertEdge` function, preserving its cap and manual-edge guard logic.
+- Re-runs skip existing `auto-session` pairs before calling the writer, keeping same-session replay bounded.
+- Manual edges are not preemptively replaced; the reducer calls the writer and lets the existing guard reject auto overwrite attempts.
+- The relation check uses the frozen relation vocabulary and confirmed `enabled` is already non-gating in coverage targets.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -54,7 +61,9 @@ Delivery evidence will be recorded after the child work lands.
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Reducer is deferred-only and emits weak `auto-session` edges.
+- Reducer is deferred-only and emits weak `auto-session` edges.
+- MCP/CLI wiring remains out of scope for this child; the explicit maintenance entrypoint is exported TypeScript.
+- `enabled` coverage was not changed because it already has a zero-floor target.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -68,7 +77,13 @@ Scaffold validation command:
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer --strict
 ```
 
-Implementation tests are recorded here after the child work lands.
+- `npm run build` exited 0.
+- `npx vitest run tests/session-trace-causal-reducer.vitest.ts` passed: 1 file, 10 tests.
+- `npx vitest run tests/session-trace-causal-reducer.vitest.ts tests/causal-edges-write-safety.vitest.ts tests/feedback-ledger.vitest.ts tests/batch-learning.vitest.ts` passed: 4 files, 128 tests.
+- Comment hygiene checker passed for the new reducer and test files when run with `python3`.
+- `SCHEMA_VERSION` stayed at 34.
+- ENV count changed from 171 to 172.
+- Strict spec validation exited 0.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -76,7 +91,11 @@ Implementation tests are recorded here after the child work lands.
 <!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
-Pending.
+- Deferred-only: grep found reducer calls only in the reducer module and tests.
+- Flag-off: test leaves the in-memory DB untouched with zero events and zero edges.
+- Idempotency: rerun over the same session inserts zero new edges.
+- Manual protection: pre-existing manual edges keep their strength, evidence, and provenance.
+- Cap enforcement: saturated nodes reject new auto-session edges through the existing edge writer.
 <!-- /ANCHOR:nfr-verify -->
 
 ---
@@ -84,7 +103,7 @@ Pending.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-No live edge learning is allowed in v1.
+No live edge learning is allowed in v1. The reducer is available only as an exported maintenance function until later wiring is explicitly scoped.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -92,5 +111,5 @@ No live edge learning is allowed in v1.
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None at scaffold time.
+None. Scope stayed within reducer, tests, ENV documentation, and child packet docs.
 <!-- /ANCHOR:deviations -->

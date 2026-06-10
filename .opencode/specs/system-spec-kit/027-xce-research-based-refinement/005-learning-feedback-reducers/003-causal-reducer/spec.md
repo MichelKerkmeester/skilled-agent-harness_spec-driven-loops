@@ -11,13 +11,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer"
-    last_updated_at: "2026-06-05T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Applied 2026-06-05 audit rescope: relation-vocab alignment"
-    next_safe_action: "Implement tasks.md with RELATION_TYPES-aligned coverage targets."
+    last_updated_at: "2026-06-10T09:20:57Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented deferred session-trace causal reducer and tests."
+    next_safe_action: "Ready for parent integration phase."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Feature Specification: Session-Trace Causal Reducer
 
@@ -33,7 +33,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Implemented |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers` |
 | **Depends On** | `system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator` |
 | **Estimated LOC** | ~265 production LOC |
@@ -58,7 +58,7 @@ Session traces already record `search_shown` and `result_cited` events, but thos
 - Read feedback events ordered by `(session_id, timestamp)`.
 - For each citation, select 3-5 prior shown sources where `A !== B`.
 - Emit `ENABLED` edges at strength `0.3` with `created_by='auto-session'`.
-  - AUDIT 2026-06-05: candidate `ENABLED` edges are valid per `RELATION_TYPES` but ABSENT from `DEFAULT_RELATION_TARGETS`; the reducer must validate against `RELATION_TYPES`/schema and align coverage targets before applying the relation floor.
+  - Amendment-A check complete: `enabled` is valid in `RELATION_TYPES` and already tracked as a zero-floor, non-gating coverage target.
 - Preserve manual-edge guard behavior from Phase 002.
 - Keep invocation deferred only.
 - Add default-off flag `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE=false`.
@@ -66,6 +66,7 @@ Session traces already record `search_shown` and `result_cited` events, but thos
 ### Out of Scope
 - Live per-event reducer firing.
 - Retention learning.
+- MCP/CLI command wiring for the maintenance entrypoint.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -131,7 +132,7 @@ Session traces already record `search_shown` and `result_cited` events, but thos
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- Whether the explicit maintenance entrypoint is MCP-only or also a CLI command can be decided during implementation.
+- None. The maintenance entrypoint is an exported TypeScript function for this child; MCP/CLI wiring remains out of scope.
 <!-- /ANCHOR:questions -->
 
 ---
