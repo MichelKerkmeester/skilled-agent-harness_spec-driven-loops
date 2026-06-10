@@ -12,9 +12,11 @@
  * in <DELIVERABLE>...</DELIVERABLE>; this helper extracts that region with an
  * explicit confidence so scorers can record what they actually scored.
  *
- * Mirrors the python extraction in the pilot's benchmark/grader/hvr_lint.py.
+ * Mirrors the python extraction in the pilot's benchmark/grader/deterministic_lint.py.
  */
 
+// Same SGR escape pattern the python counterparts strip before extraction.
+const ANSI_RE = /\x1b\[[0-9;]*m/g;
 const TAG_RE = /<DELIVERABLE>([\s\S]*?)<\/DELIVERABLE>/gi;
 const FENCE_RE = /```[a-zA-Z]*\n([\s\S]*?)```/g;
 
@@ -26,7 +28,7 @@ const FENCE_RE = /```[a-zA-Z]*\n([\s\S]*?)```/g;
  *   low    = no contract markers; the whole text (reasoning contaminates)
  */
 function extractDeliverable(raw) {
-  const s = String(raw || '');
+  const s = String(raw || '').replace(ANSI_RE, '');
   const tags = [...s.matchAll(TAG_RE)].map((m) => m[1]);
   if (tags.length > 0) return { text: tags.join('\n').trim(), confidence: 'high' };
   const fences = [...s.matchAll(FENCE_RE)].map((m) => m[1]);

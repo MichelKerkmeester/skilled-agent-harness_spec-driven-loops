@@ -35,6 +35,7 @@
 
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { parseArgs } = require('./parse-args.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -70,7 +71,7 @@ const LANE_SKILL_BENCHMARK = new Set([
   'run-skill-benchmark.cjs',
 ]);
 // Lane D (non-dev-ai-system-refine): a thin adapter that spawns the loop
-// host living WITH the packaging under test (<packaging-root>/_loop/loop.py).
+// host living WITH the packaging under test (<packaging-root>/benchmark/_loop/loop.py).
 // The guarded loop logic (frozen scoring surface, independent re-grade,
 // worktree promote-N, kill-switches) belongs to the packaging, not this skill.
 const LANE_NON_DEV_AI_SYSTEM = new Set([
@@ -160,40 +161,6 @@ function resolveScriptPath(scriptName) {
 }
 
 /**
- * Parse CLI argv into a flag map, supporting =-form and space-form values.
- *
- * @param {string[]} argv - Argument vector (without node/script entries)
- * @returns {Object<string, string|boolean>} Parsed flags keyed by name
- */
-function parseArgs(argv) {
-  const args = {};
-  for (let index = 0; index < argv.length; index += 1) {
-    const entry = argv[index];
-    const match = /^--([a-z][a-z0-9-]*)(?:=(.*))?$/.exec(entry);
-    if (!match) continue;
-    const key = match[1];
-    if (match[2] !== undefined) {
-      // =-form: byte-identical to the original behavior (identity contract).
-      args[key] = match[2];
-      continue;
-    }
-    // Bare --key: if the next token is a value (does not start with '--'),
-    // consume it as the space-form value; otherwise it stays a boolean flag.
-    // The Lane B command surface invokes loop-host with space-form
-    // (--profile {p} --scorer 5dim --grader noop), so these must bind to the
-    // following token rather than parse as booleans.
-    const next = argv[index + 1];
-    if (next !== undefined && !next.startsWith('--')) {
-      args[key] = next;
-      index += 1;
-    } else {
-      args[key] = true;
-    }
-  }
-  return args;
-}
-
-/**
  * Resolve a raw --mode value to a valid mode, defaulting unknown values.
  *
  * @param {string|undefined} rawMode - Raw --mode flag value
@@ -270,7 +237,7 @@ function planInvocation(mode, args) {
       return { ok: false, error: 'non-dev-ai-system-refine: missing required --packaging-root=<path>' };
     }
     // Single adapter step (same single-orchestrator plan shape as Lane C): run-non-dev-ai-system.cjs validates the
-    // _loop/loop.py contract and spawns the packaging's own guarded loop host.
+    // benchmark/_loop/loop.py contract and spawns the packaging's own guarded loop host.
     // Lane D scripts use space-separated args. --live is a boolean: forwarded
     // bare so the adapter's parser keeps it a flag, not a key/value pair.
     const refineArgs = ['--packaging-root', String(args['packaging-root'])];

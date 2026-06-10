@@ -15,7 +15,13 @@ Usage:
 Idempotent: re-running overwrites rendered files but never removes user data.
 Stdlib-only: no external Python dependencies beyond what ships with Python 3.9+.
 """
-import os, sys, json, shutil, argparse, tempfile, re, py_compile, traceback
+import argparse
+import json
+import os
+import py_compile
+import re
+import sys
+import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL_ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -23,10 +29,10 @@ TEMPLATES_DIR = os.path.join(SKILL_ROOT, "assets", "non_dev_ai_system", "templat
 SCHEMA_PATH = os.path.join(SKILL_ROOT, "assets", "non_dev_ai_system", "packaging_config.schema.json")
 
 TEMPLATE_FILES = {
-    "_loop/loop.py": "loop.py.template",
-    "_loop/gauntlet.py": "gauntlet.py.template",
-    "_gates/gates.py": "gates.py.template",
-    "_gates/derive.py": "derive.py.template",
+    "benchmark/_loop/loop.py": "loop.py.template",
+    "benchmark/_loop/gauntlet.py": "gauntlet.py.template",
+    "benchmark/_gates/gates.py": "gates.py.template",
+    "benchmark/_gates/derive.py": "derive.py.template",
     "benchmark/run.sh": "run.sh.template",
     "benchmark/grader/regrade.py": "regrade.py.template",
     "benchmark/grader/grader_prompt.md": "grader_prompt.md.template",
@@ -67,6 +73,10 @@ def validate_config(cfg):
                     if not isinstance(val, int) or val < 0:
                         errs.append(f"dimension '{k}.{f}' must be a non-negative integer")
 
+    ssr = cfg.get("self_score_regex", "")
+    if isinstance(ssr, str) and ('"' in ssr or "\n" in ssr):
+        errs.append("self_score_regex must not contain double quotes or newlines (it is embedded in a Python r\"...\" literal)")
+
     if not isinstance(cfg.get("score_total"), int) or cfg["score_total"] < 1:
         errs.append("score_total must be a positive integer")
     if not isinstance(cfg.get("ship_threshold"), int) or cfg["ship_threshold"] < 1:
@@ -92,6 +102,28 @@ def validate_config(cfg):
 
     if not isinstance(cfg.get("derived_copies"), list):
         errs.append("derived_copies must be an array")
+    else:
+        for i, entry in enumerate(cfg["derived_copies"]):
+            if not isinstance(entry, dict) or not entry.get("src_relpath"):
+                errs.append(f"derived_copies[{i}] must be an object with a non-empty src_relpath")
+                continue
+            if not isinstance(entry.get("targets"), list) or not entry["targets"]:
+                errs.append(f"derived_copies[{i}].targets must be a non-empty array")
+                continue
+            for j, target in enumerate(entry["targets"]):
+                if not isinstance(target, dict) or not target.get("relpath"):
+                    errs.append(f"derived_copies[{i}].targets[{j}] must be an object with a non-empty relpath")
+                    continue
+                mode = target.get("mode", "copy")
+                if mode not in ("copy", "symlink"):
+                    errs.append(f"derived_copies[{i}].targets[{j}].mode must be 'copy' or 'symlink'")
+                if mode == "symlink":
+                    if not target.get("link_target"):
+                        errs.append(f"derived_copies[{i}].targets[{j}] mode=symlink requires a non-empty link_target")
+                    if target.get("is_skill_ref") or target.get("transform", "none") != "none":
+                        errs.append(f"derived_copies[{i}].targets[{j}] mode=symlink cannot combine with is_skill_ref/transform")
+                elif target.get("transform", "none") not in ("none", "skill_strip"):
+                    errs.append(f"derived_copies[{i}].targets[{j}].transform must be 'none' or 'skill_strip'")
 
     if not isinstance(cfg.get("synthesized_surfaces"), list):
         errs.append("synthesized_surfaces must be an array")
@@ -123,6 +155,15 @@ def dimension_keys_ordered(dims):
     """Return dimension keys in the order they appear in the dict."""
     return list(dims.keys())
 
+
+
+def py_lit(value):
+    """Render a config value as a Python literal for .py templates.
+
+    json.dumps emits JSON booleans/null (true/false/null), which are NameErrors when the
+    rendered token lands in Python source; repr emits valid Python for the same data.
+    """
+    return repr(value)
 
 def build_placeholders(cfg, dest):
     """Build the full placeholder map from the config."""
@@ -205,26 +246,27 @@ def build_placeholders(cfg, dest):
         "PROPOSER_FAMILY": models["proposer_family"],
 
         # JSON-serialized placeholders
-        "DIMENSIONS_KEYS": json.dumps(dim_keys),
-        "DIMENSIONS_FLOORS": json.dumps(floors),
-        "DIMENSIONS_MAXES": json.dumps(maxes),
-        "FROZEN_SURFACE": json.dumps(cfg["frozen_surface"]),
+        "DIMENSIONS_KEYS": py_lit(dim_keys),
+        "DIMENSIONS_FLOORS": py_lit(floors),
+        "DIMENSIONS_MAXES": py_lit(maxes),
+        "FROZEN_SURFACE": py_lit(cfg["frozen_surface"]),
         # R5-P2-003: the grader rubric is the anchored (scoring-section) subset of the frozen
         # surface, never the full surface (which includes the large hard-rules doc).
-        "RUBRIC_FROZEN_FILES": json.dumps([e["frozen_name"] for e in cfg["frozen_surface"] if e.get("in_rubric", bool(e.get("section_anchor")))]),
-        "ANCHORS": json.dumps(cfg["anchors"]),
-        "TECHNIQUE_DOC_MAP": json.dumps(cfg["technique_doc_map"]),
-        "DERIVED_COPIES": json.dumps(cfg["derived_copies"]),
-        "SYNTHESIZED_SURFACES": json.dumps(cfg["synthesized_surfaces"]),
-        "SKILL_FRONTMATTER": json.dumps(cfg.get("skill_reference_frontmatter", {})),
-        "HARD_BLOCKER_WORDS": json.dumps(lexicon["hard_blocker_words"]),
-        "HARD_BLOCKER_PATTERNS": json.dumps(lexicon["hard_blocker_patterns"]),
-        "SOFT_PHRASE_PATTERNS": json.dumps(lexicon.get("soft_phrase_patterns", [])),
+        "RUBRIC_FROZEN_FILES": py_lit([e["frozen_name"] for e in cfg["frozen_surface"] if e.get("in_rubric", bool(e.get("section_anchor")))]),
+        "ANCHORS": py_lit(cfg["anchors"]),
+        "TECHNIQUE_DOC_MAP": py_lit(cfg["technique_doc_map"]),
+        "DERIVE_SOURCE_ROOT": py_lit(cfg.get("derive_source_root", "knowledge base")),
+        "DERIVED_COPIES": py_lit(cfg["derived_copies"]),
+        "SYNTHESIZED_SURFACES": py_lit(cfg["synthesized_surfaces"]),
+        "SKILL_FRONTMATTER": py_lit(cfg.get("skill_reference_frontmatter", {})),
+        "HARD_BLOCKER_WORDS": py_lit(lexicon["hard_blocker_words"]),
+        "HARD_BLOCKER_PATTERNS": py_lit(lexicon["hard_blocker_patterns"]),
+        "SOFT_PHRASE_PATTERNS": py_lit(lexicon.get("soft_phrase_patterns", [])),
 
         # CSV-serialized placeholders
-        "FIXTURES_VISIBLE_CSV": json.dumps(",".join(fixtures["visible"])),
-        "FIXTURES_HELD_OUT_CSV": json.dumps(",".join(fixtures["held_out"])),
-        "FIXTURES_VARIANTS_CSV": json.dumps(",".join(fixtures["variants"])),
+        "FIXTURES_VISIBLE_CSV": py_lit(",".join(fixtures["visible"])),
+        "FIXTURES_HELD_OUT_CSV": py_lit(",".join(fixtures["held_out"])),
+        "FIXTURES_VARIANTS_CSV": py_lit(",".join(fixtures["variants"])),
 
         # Special bash-shell placeholders
         "VARIANTS_USAGE": variants_usage,
@@ -246,10 +288,11 @@ def resolve_template(template_content, placeholders):
         value = placeholders[key]
         result = result.replace("{{" + key + "}}", value)
 
-    # Warn about any remaining {{...}} that weren't resolved
+    # Unresolved placeholders are fatal: py_compile only protects .py files, so a broken
+    # markdown/shell render would otherwise ship silently
     remaining = re.findall(r"\{\{[A-Z_]+\}\}", result)
     if remaining:
-        print(f"WARNING: unresolved placeholders remain: {remaining}", file=sys.stderr)
+        sys.exit(f"FATAL: unresolved placeholders remain: {remaining}")
 
     return result
 
@@ -286,7 +329,7 @@ def write_gitignore(dest, report_only=False):
     """Write the .gitignore for loop state and benchmark results."""
     gi_path = os.path.join(dest, ".gitignore")
     lines = [
-        "_loop/state/",
+        "benchmark/_loop/state/",
         "benchmark/results/",
         "__pycache__/",
     ]
@@ -306,20 +349,20 @@ def print_checklist_commands(cfg, dest):
     """Print conformance checklist commands."""
     print("\n===== CONFORMANCE CHECKLIST COMMANDS =====")
     print(f"cd {dest}")
-    print(f"python3 _gates/gates.py freeze")
-    print(f"python3 _gates/derive.py check")
-    print(f"python3 _loop/loop.py --dry-run")
-    print(f"python3 _loop/gauntlet.py")
+    print(f"python3 benchmark/_gates/gates.py freeze")
+    print(f"python3 benchmark/_gates/derive.py check")
+    print(f"python3 benchmark/_loop/loop.py --dry-run")
+    print(f"python3 benchmark/_loop/gauntlet.py")
     print(f"")
     print("Verify items:")
-    print("  - [ ] _loop/loop.py --dry-run exits 0")
-    print("  - [ ] _gates/gates.py freeze; check exits 0")
-    print("  - [ ] _gates/derive.py derive && check exits 0")
+    print("  - [ ] benchmark/_loop/loop.py --dry-run exits 0")
+    print("  - [ ] benchmark/_gates/gates.py freeze; check exits 0")
+    print("  - [ ] benchmark/_gates/derive.py derive && check exits 0")
     print("  - [ ] All fixtures produce <DELIVERABLE> blocks")
     print("  - [ ] deterministic_lint.py enforces hard rules")
     print(f"  - [ ] Grader model ({cfg['models']['grader']}) is different family from proposer ({cfg['models']['proposer_family']})")
-    print("  - [ ] _loop/gauntlet.py battery fully green (9 attacks, 10 checks, dispatch-free)")
-    print("  - [ ] _loop/state/ is gitignored")
+    print("  - [ ] benchmark/_loop/gauntlet.py battery fully green (9 attacks, 10 checks, dispatch-free)")
+    print("  - [ ] benchmark/_loop/state/ is gitignored")
 
 
 def verify_render(dest):

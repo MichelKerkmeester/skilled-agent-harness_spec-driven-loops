@@ -218,4 +218,50 @@ describe('loop-host', () => {
       expect(resolved).not.toContain(path.join('model-benchmark', 'materialize-benchmark-fixtures.cjs'));
     });
   });
+
+  describe('non-dev-ai-system-refine (Lane D)', () => {
+    it('is a valid mode and resolveMode passes it through', () => {
+      expect(loopHost.VALID_MODES.has('non-dev-ai-system-refine')).toBe(true);
+      expect(loopHost.resolveMode('non-dev-ai-system-refine')).toBe('non-dev-ai-system-refine');
+    });
+
+    it('fails closed without --packaging-root', () => {
+      const plan = loopHost.planInvocation('non-dev-ai-system-refine', {});
+      expect(plan.ok).toBe(false);
+      if (!plan.ok) expect(plan.error).toContain('--packaging-root');
+    });
+
+    it('plans a single run-non-dev-ai-system.cjs step with space-form args', () => {
+      const plan = loopHost.planInvocation('non-dev-ai-system-refine', {
+        'packaging-root': '/tmp/pkg',
+        'max-iters': '2',
+        fixtures: 'T1-write',
+        live: true,
+      });
+      expect(plan.ok).toBe(true);
+      if (plan.ok) {
+        expect(plan.steps).toHaveLength(1);
+        expect(plan.steps[0].script).toBe('run-non-dev-ai-system.cjs');
+        expect(plan.steps[0].args.slice(0, 2)).toEqual(['--packaging-root', '/tmp/pkg']);
+        expect(plan.steps[0].args).toContain('--live');
+        const i = plan.steps[0].args.indexOf('--max-iters');
+        expect(plan.steps[0].args[i + 1]).toBe('2');
+      }
+    });
+
+    it('adapter ENV_FORWARD maps every loop env knob the template reads', () => {
+      const adapter = require(path.join(
+        WORKSPACE_ROOT,
+        '.opencode/skills/deep-improvement/scripts/non-dev-ai-system/run-non-dev-ai-system.cjs',
+      )) as { ENV_FORWARD: Record<string, string> };
+      expect(adapter.ENV_FORWARD).toEqual({
+        fixtures: 'LOOP_FIXTURES',
+        variants: 'LOOP_VARIANTS',
+        'held-out': 'LOOP_HELD_OUT',
+        samples: 'LOOP_SAMPLES',
+        'proposer-model': 'PROPOSER_MODEL',
+        'grader-model': 'GRADER_MODEL',
+      });
+    });
+  });
 });

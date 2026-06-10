@@ -11,13 +11,26 @@ Verdict: PROCEED when mean abs disagreement <= --max-disagreement (default 2.0 o
 the council's calibration threshold); RECALIBRATE otherwise. Both graders must also differ from
 the proposer family (regrade.py enforces that per dispatch).
 """
-import sys, os, json, subprocess, statistics
+import json
+import os
+import statistics
+import subprocess
+import sys
+from typing import Any, Dict, List, Optional, Tuple
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
-def regrade_with(model, files):
-    """Run regrade.py with a specific grader; parse the per-file records from stdout."""
+def regrade_with(model: str, files: List[str]) -> Dict[str, Any]:
+    """Run regrade.py with a specific grader.
+
+    Args:
+        model: The grader model identifier.
+        files: Result files to re-grade.
+
+    Returns:
+        Dict mapping filename to its grade record.
+    """
     r = subprocess.run(["python3", os.path.join(HERE, "regrade.py"), *files],
                        env={**os.environ, "GRADER_MODEL": model},
                        capture_output=True, text=True, stdin=subprocess.DEVNULL, timeout=3600)
@@ -34,8 +47,15 @@ def regrade_with(model, files):
     return {rec["file"]: rec for rec in recs}
 
 
-def agreement(by_model):
-    """Fold two models' records into per-file comparisons + summary stats."""
+def agreement(by_model: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], List[float]]:
+    """Fold two models' records into per-file comparisons and summary stats.
+
+    Args:
+        by_model: Mapping of grader model name to its per-file grade records.
+
+    Returns:
+        Tuple of (per-file comparison rows, absolute differences).
+    """
     models = list(by_model)
     a, b = by_model[models[0]], by_model[models[1]]
     rows, diffs = [], []
@@ -50,7 +70,7 @@ def agreement(by_model):
     return rows, diffs
 
 
-def main():
+def main() -> None:
     argv = sys.argv[1:]
     if "--graders" not in argv:
         sys.exit("usage: calibrate.py <result-file.txt> [...] --graders modelA,modelB [--max-disagreement 2.0]")

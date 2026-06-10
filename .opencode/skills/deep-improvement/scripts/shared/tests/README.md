@@ -123,3 +123,7 @@ Expected result: every suite under `*/tests/**/*.vitest.ts` passes.
 - [`scripts/README.md`](../../README.md)
 - [`fixtures/README.md`](./fixtures/README.md)
 - [`scripts/lib/README.md`](../../lib/README.md)
+
+## Running the battery
+
+Run the deep-improvement Vitest battery from `.opencode/skills/deep-improvement/scripts/` with `npx --yes vitest@4.1.6 run --config vitest.config.mjs`; the versioned `npx` package supplies the missing Vitest binary without editing `.opencode/package.json` or any lockfile, and running from `scripts/` keeps config resolution on the local `vitest.config.mjs`.

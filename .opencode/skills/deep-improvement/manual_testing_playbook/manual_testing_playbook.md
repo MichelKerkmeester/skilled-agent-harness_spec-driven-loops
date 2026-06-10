@@ -1,6 +1,6 @@
 ---
 title: "deep-improvement Manual Testing Playbook"
-description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, and runtime-truth validation."
+description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, and the model-benchmark, skill-benchmark and non-dev-ai-system lanes."
 ---
 
 # deep-improvement Manual Testing Playbook
@@ -23,16 +23,17 @@ Canonical package artifacts:
 - `08--agent-discipline-stress-tests/`
 - `09--model-benchmark-mode/`
 - `10--skill-benchmark/`
+- `11--non-dev-ai-system/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), and the Lane C skill-benchmark scenarios (10). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
+This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), the Lane C skill-benchmark scenarios (10), and the Lane D non-dev-ai-system scenarios (11). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
 
 ### Lane Note
 
-Scenarios belong to one of three lanes, or are shared. Categories `01--integration-scanner`, `02--profile-generator`, `06--end-to-end-loop`, `07--runtime-truth`, and `08--agent-discipline-stress-tests` are Lane A (agent-improvement). Category `09--model-benchmark-mode` is Lane B (model-benchmark). Category `10--skill-benchmark` is Lane C (skill-benchmark). Categories `03--5d-scorer`, `04--benchmark-integration`, and `05--reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
+Scenarios belong to one of four lanes, or are shared. Categories `01--integration-scanner`, `02--profile-generator`, `06--end-to-end-loop`, `07--runtime-truth`, and `08--agent-discipline-stress-tests` are Lane A (agent-improvement). Category `09--model-benchmark-mode` is Lane B (model-benchmark). Category `10--skill-benchmark` is Lane C (skill-benchmark). Category `11--non-dev-ai-system` is Lane D (non-dev-ai-system); its loop host is packaging-owned, so its scenarios run against a packaging that implements the `benchmark/_loop/loop.py` contract. Categories `03--5d-scorer`, `04--benchmark-integration`, and `05--reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
 
 ### REALISTIC TEST MODEL
 

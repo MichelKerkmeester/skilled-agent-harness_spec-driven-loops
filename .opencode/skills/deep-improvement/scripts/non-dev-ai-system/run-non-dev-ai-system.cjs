@@ -8,7 +8,7 @@
  * Thin executor adapter for the non-dev-ai-system-refine lane (Lane D).
  *
  * The lane's loop host lives WITH the packaging under test, not in this skill:
- * a packaging root implements the contract `<root>/_loop/loop.py` (pre-flight
+ * a packaging root implements the contract `<root>/benchmark/_loop/loop.py` (pre-flight
  * gates -> N-sample benchmark -> independent re-grade -> gap analysis ->
  * worktree propose -> guarded promote-N -> converge/kill-switch). This adapter
  * only translates loop-host flags into that contract's env/argv surface and
@@ -16,8 +16,8 @@
  * the loop without touching deep-improvement.
  *
  * Pilot implementation: Barter Copywriter
- *   (.../AI_Systems/Barter/Copywriter — _gates/ frozen scoring surface,
- *    _gates/derive.py 3-copy derivation, benchmark/ harness + blind re-grader).
+ *   (.../AI_Systems/Barter/Copywriter — benchmark/_gates/ frozen scoring surface,
+ *    benchmark/_gates/derive.py derivation, benchmark/ harness + blind re-grader).
  *
  * Usage:
  *   node run-non-dev-ai-system.cjs --packaging-root <path> [--live] [--max-iters N]
@@ -34,8 +34,9 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { parseArgs } = require('../shared/parse-args.cjs');
 
-// loop.py contract: env knobs + argv modes (see <root>/_loop/loop.py)
+// loop.py contract: env knobs + argv modes (see <root>/benchmark/_loop/loop.py)
 const ENV_FORWARD = {
   fixtures: 'LOOP_FIXTURES',
   variants: 'LOOP_VARIANTS',
@@ -45,19 +46,6 @@ const ENV_FORWARD = {
   'grader-model': 'GRADER_MODEL',
 };
 
-function parseArgs(argv) {
-  const args = {};
-  for (let i = 0; i < argv.length; i += 1) {
-    const m = /^--([a-z][a-z0-9-]*)(?:=(.*))?$/.exec(argv[i]);
-    if (!m) continue;
-    if (m[2] !== undefined) { args[m[1]] = m[2]; continue; }
-    const next = argv[i + 1];
-    if (next !== undefined && !next.startsWith('--')) { args[m[1]] = next; i += 1; }
-    else args[m[1]] = true;
-  }
-  return args;
-}
-
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const root = args['packaging-root'];
@@ -65,9 +53,9 @@ function main() {
     process.stderr.write('non-dev-ai-system-refine: missing required --packaging-root=<path>\n');
     process.exit(2);
   }
-  const loopHost = path.join(root, '_loop', 'loop.py');
+  const loopHost = path.join(root, 'benchmark', '_loop', 'loop.py');
   if (!fs.existsSync(loopHost)) {
-    process.stderr.write(`non-dev-ai-system-refine: ${loopHost} not found — the packaging root must implement the _loop/loop.py contract\n`);
+    process.stderr.write(`non-dev-ai-system-refine: ${loopHost} not found — the packaging root must implement the benchmark/_loop/loop.py contract\n`);
     process.exit(2);
   }
   const env = { ...process.env };

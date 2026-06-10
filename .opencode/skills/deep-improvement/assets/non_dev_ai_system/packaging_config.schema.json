@@ -89,7 +89,7 @@
         "properties": {
           "frozen_name": {
             "type": "string",
-            "description": "Filename in _gates/ for the frozen snapshot."
+            "description": "Filename in benchmark/_gates/ for the frozen snapshot."
           },
           "live_relpath": {
             "type": "string",
@@ -119,7 +119,12 @@
     },
     "manifest_note": {
       "type": "string",
-      "description": "Note written into _gates/MANIFEST.json. Defaults to 'Immutable {system_name} scoring surface.' if omitted."
+      "description": "Note written into benchmark/_gates/MANIFEST.json. Defaults to 'Immutable {system_name} scoring surface.' if omitted."
+    },
+    "derive_source_root": {
+      "type": "string",
+      "default": "knowledge base",
+      "description": "Root folder the derive src_relpaths resolve against, e.g. 'skill/references'."
     },
     "technique_doc_map": {
       "type": "object",
@@ -134,7 +139,7 @@
     },
     "derived_copies": {
       "type": "array",
-      "description": "Verbatin-copy derivations (derive.py). Each entry maps a CLI source to one or more target copies.",
+      "description": "Copy/symlink derivations (derive.py). Each entry maps a CLI source to one or more target surfaces.",
       "items": {
         "type": "object",
         "required": [
@@ -145,7 +150,7 @@
         "properties": {
           "src_relpath": {
             "type": "string",
-            "description": "Relative path from packaging root's knowledge base to the CLI source doc."
+            "description": "Relative path from derive_source_root to the source doc."
           },
           "targets": {
             "type": "array",
@@ -164,13 +169,64 @@
                 "is_skill_ref": {
                   "type": "boolean",
                   "default": false,
-                  "description": "True = this target gets sk-doc frontmatter prepended."
+                  "description": "True = this target gets sk-doc frontmatter prepended. mode=copy targets only."
                 },
                 "skill_ref_basename": {
                   "type": "string",
                   "description": "Key into skill_reference_frontmatter for this target's template frontmatter."
+                },
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "copy",
+                    "symlink"
+                  ],
+                  "default": "copy",
+                  "description": "copy = write content derived from the CLI source. symlink = create a relative symlink to a shared-global real file; no content is generated and frontmatter fields are ignored (the global doc carries its own)."
+                },
+                "link_target": {
+                  "type": "string",
+                  "description": "Required when mode=symlink. Relative symlink target from the target file's directory, e.g. '../../../a_Global KB/Context - Brand - v0.130.md'. Relative so it resolves inside git worktrees."
+                },
+                "transform": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "skill_strip"
+                  ],
+                  "default": "none",
+                  "description": "skill_strip = sk-doc alignment for skill copies: strip the TABLE OF CONTENTS section and decorative emojis (keep-set: the do/don't check and cross marks), normalize heading whitespace. mode=copy targets only."
                 }
-              }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "required": [
+                      "mode"
+                    ],
+                    "properties": {
+                      "mode": {
+                        "const": "symlink"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "link_target"
+                    ],
+                    "not": {
+                      "required": [
+                        "is_skill_ref"
+                      ]
+                    },
+                    "properties": {
+                      "transform": {
+                        "const": "none"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -273,7 +329,7 @@
       "properties": {
         "benchmark_mode_instructions": {
           "type": "object",
-          "description": "Per-variant system prompt body for benchmark/run.sh. Key = variant name. May contain {{CW}} (replaced with $CW), (removed phantom token) (replaced with full CI load command), (removed phantom token) (replaced with $skill_dir).",
+          "description": "Per-variant system prompt body for benchmark/run.sh. Key = variant name. The only substitution token is {{CW}} (replaced with the packaging root shell variable $CW); write document paths and load instructions literally.",
           "additionalProperties": {
             "type": "string"
           },

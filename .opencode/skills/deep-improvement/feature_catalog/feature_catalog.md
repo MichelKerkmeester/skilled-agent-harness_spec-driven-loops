@@ -1,11 +1,11 @@
 ---
 title: "deep-improvement: Feature Catalog"
-description: "Unified reference combining the evaluation loop, integration scanning, scoring, model-benchmark mode, and skill-benchmark mode surfaces that currently ship in deep-improvement."
+description: "Unified reference combining the evaluation loop, integration scanning, scoring, model-benchmark mode, skill-benchmark mode, and non-dev-ai-system mode surfaces that currently ship in deep-improvement."
 ---
 
 # deep-improvement: Feature Catalog
 
-This document combines the current feature inventory for the `deep-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, the deterministic scoring stack, the model-benchmark mode, and the skill-benchmark mode, then points to the per-feature files that carry the deeper implementation and validation anchors.
+This document combines the current feature inventory for the `deep-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, the deterministic scoring stack, the model-benchmark mode, the skill-benchmark mode, and the non-dev-ai-system mode, then points to the per-feature files that carry the deeper implementation and validation anchors.
 
 ---
 
@@ -15,13 +15,14 @@ Use this catalog as the canonical inventory for the live `deep-improvement` feat
 
 ### Lane Legend
 
-The skill runs three lanes through one agent. Each category and feature below is tagged with the lane it serves.
+The skill runs four lanes through one agent. Each category and feature below is tagged with the lane it serves.
 
 | Lane | Meaning | Entry Point |
 |---|---|---|
 | **Lane A** | Agent-improvement: evaluate and improve an agent markdown file via guarded promotion | `/deep:start-agent-improvement-loop`, `loop-host --mode=agent-improvement` |
 | **Lane B** | Model-benchmark: benchmark a model or prompt framework, no agent mutation | `/deep:start-model-benchmark-loop`, `loop-host --mode=model-benchmark` |
 | **Lane C** | Skill-benchmark: diagnose a skill's routing, discovery, efficiency, and usefulness, no skill mutation | `/deep:start-skill-benchmark-loop`, `loop-host --mode=skill-benchmark` |
+| **Lane D** | Non-dev-ai-system: benchmark an AI-system packaging and auto-refine technique docs behind guardrails; the guarded loop is packaging-owned | `/deep:start-non-dev-ai-system-loop`, `loop-host --mode=non-dev-ai-system-refine` |
 | **Shared** | Surface used by all lanes (reducer, dashboard, profiling, command scaffolding) | reached from any lane |
 
 | Category | Coverage | Lane | Primary Runtime Surface |
@@ -31,6 +32,7 @@ The skill runs three lanes through one agent. Each category and feature below is
 | Scoring system | 4 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
 | Model-benchmark mode | 4 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
 | Skill-benchmark mode | 6 features | Lane C | `loop-host.cjs --mode=skill-benchmark`, `scripts/skill-benchmark/*.cjs` |
+| Non-dev-ai-system mode | 1 feature | Lane D | `loop-host.cjs --mode=non-dev-ai-system-refine`, `<packaging-root>/benchmark/_loop/loop.py`, `scripts/non-dev-ai-system/init_packaging.py` |
 
 ---
 
@@ -419,3 +421,25 @@ Emits a machine report plus a human report rendered from it (anti-drift), with r
 #### Source Files
 
 See [`05--skill-benchmark/dual-report-and-remediation.md`](05--skill-benchmark/dual-report-and-remediation.md) for full implementation and validation file listings.
+
+---
+
+## 7. NON-DEV-AI-SYSTEM MODE
+
+**Lane:** Lane D (non-dev-ai-system)
+
+This entry describes the guarded packaging refine path: benchmark an AI-system packaging (one prompt system shipped as CLI runtime, claude.ai Project and native skill), re-grade outputs with an independent different-family grader, and auto-refine technique docs behind a frozen scoring surface with kill-switches. The loop logic is packaging-owned by design; the skill ships the contract, the onboarding kit, and the loop-host adapter.
+
+### Guarded packaging refine loop
+
+#### Description
+
+Runs the packaging-owned 7-phase guarded loop (preflight gates, N-sample benchmark, gap analysis, worktree, held-out baseline, propose, guarded promote-N) with dry-run as the default and independent-grade optimization as the only target.
+
+#### How It Works
+
+`scripts/shared/loop-host.cjs` resolves `--mode=non-dev-ai-system-refine` to `scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`, a thin adapter that spawns `<packaging-root>/benchmark/_loop/loop.py`. The frozen scoring surface (`benchmark/_gates/gates.py`), executable derivation (`benchmark/_gates/derive.py`), independent grader and red-team gauntlet live with the packaging. New packagings onboard via `scripts/non-dev-ai-system/init_packaging.py` rendering `assets/non_dev_ai_system/templates/` from one `packaging_config.json`, never by copy-editing a sibling; `derive_source_root` selects whether `src_relpath` values resolve under `knowledge base`, `skill/references`, or another packaging source root.
+
+#### Source Files
+
+See [`06--non-dev-ai-system/guarded-refine-loop.md`](06--non-dev-ai-system/guarded-refine-loop.md) for full implementation and validation file listings.

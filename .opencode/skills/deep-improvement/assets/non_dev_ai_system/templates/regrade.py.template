@@ -4,7 +4,7 @@
   regrade.py <result-file.txt> [more files...]      (set GRADER_MODEL to override the default)
 
 For each benchmark result file: extract the <DELIVERABLE>, grade it BLIND on a DIFFERENT model
-family than the proposer ({{PROPOSER_FAMILY}}), against the FROZEN rubric in _gates/, run the
+family than the proposer ({{PROPOSER_FAMILY}}), against the FROZEN rubric in benchmark/_gates/, run the
 deterministic linter, and append a phantom-gap record (self-reported score vs independent score) to
 results/regrade.jsonl.
 
@@ -14,11 +14,16 @@ self-reported scores are inflated and the auto-refine premise is unsafe until fi
 Dispatch discipline (matches run.sh): single dispatch per call, stdin redirected from /dev/null
 (opencode hangs at 0% CPU otherwise), and NEVER pkill 'opencode run' (kills operator sessions).
 """
-import sys, os, re, json, subprocess
+import json
+import os
+import re
+import subprocess
+import sys
+from typing import Any, Dict, List, Optional
 
 CW = os.environ.get("{{PACKAGING_ROOT_ENV}}", "{{PACKAGING_ROOT}}")
 BARTER = os.path.dirname(CW)
-GATES = os.path.join(CW, "_gates")
+GATES = os.path.join(CW, "benchmark", "_gates")
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "results", "regrade.jsonl")
 
@@ -36,25 +41,27 @@ DELIM = re.compile(r"<DELIVERABLE>(.*?)</DELIVERABLE>", re.S | re.I)
 FENCE = re.compile(r"```[a-zA-Z]*\n(.*?)```", re.S)
 
 
-def extract_deliverable(raw):
+def extract_deliverable(raw: str) -> str:
+    """Extract the deliverable text from a benchmark result, stripping ANSI codes."""
     raw = ANSI.sub("", raw)
     m = DELIM.findall(raw) or FENCE.findall(raw)
     return "\n".join(m).strip() if m else ""
 
 
-def self_score(raw):
+def self_score(raw: str) -> Optional[int]:
     m = re.search(r"{{SELF_SCORE_REGEX}}", ANSI.sub("", raw), re.I)
     return int(m.group(1)) if m else None
 
 
-RUBRIC_FILES = {{RUBRIC_FROZEN_FILES}}   # R5-P2-003: scoring-rubric subset only (anchored frozen regions), not the full frozen surface
+# R5-P2-003: scoring-rubric subset only (anchored frozen regions), not the full frozen surface
+RUBRIC_FILES = {{RUBRIC_FROZEN_FILES}}
 
 
-def rubric():
+def rubric() -> str:
     return "\n".join(open(os.path.join(GATES, f), encoding="utf-8").read() for f in RUBRIC_FILES)
 
 
-def grade(deliverable):
+def grade(deliverable: str) -> Dict[str, Any]:
     prompt = (open(os.path.join(HERE, "grader_prompt.md"), encoding="utf-8").read()
               .replace("{RUBRIC}", rubric()).replace("{DELIVERABLE}", deliverable))
     r = subprocess.run(["opencode", "run", "--model", GRADER_MODEL, "--variant", "high",
@@ -74,7 +81,7 @@ def grade(deliverable):
     return json.loads(m.group(0)) if m else {"error": "no-json", "tail": out[-200:]}
 
 
-def lint(path):
+def lint(path: str) -> Dict[str, Any]:
     r = subprocess.run(["python3", os.path.join(HERE, "deterministic_lint.py"), path], capture_output=True, text=True)
     try:
         return json.loads(r.stdout)
@@ -82,7 +89,7 @@ def lint(path):
         return {"clean": None}
 
 
-def main():
+def main() -> None:
     files = sys.argv[1:]
     if not files:
         sys.exit("usage: regrade.py <result-file.txt> [more...]  (GRADER_MODEL env overrides the grader)")

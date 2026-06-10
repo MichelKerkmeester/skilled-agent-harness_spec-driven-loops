@@ -2,7 +2,7 @@
 name: deep-improvement
 description: "Evaluator-first bounded agent improvement: 5-dim scoring, dynamic profiling, packet-local candidates, guarded promotion."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.13.0.0
+version: 1.15.0.0
 triggers:
   - deep-improvement
   - agent improvement loop
@@ -13,9 +13,11 @@ triggers:
   - model-benchmark mode
   - benchmark a model or prompt framework
   - skill-benchmark mode
+  - non-dev-ai-system mode
+  - benchmark and refine a packaging
 ---
 
-<!-- Keywords: deep-improvement, deep-improvement, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate -->
+<!-- Keywords: deep-improvement, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate, non-dev-ai-system -->
 
 # Recursive Agent: Evaluator-First Improvement Orchestrator
 
@@ -36,7 +38,7 @@ This skill supports four co-equal use-case lanes that share the same candidate, 
 | **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
 | **Lane D: Non-Dev-AI-System Refine** | You want to benchmark an AI-system packaging and auto-refine its technique docs behind hard guardrails | `/deep:start-non-dev-ai-system-loop` |
 
-Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill_benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. Lane D is documented in `references/non_dev_ai_system/operator_guide.md`; its guarded loop host lives with the packaging under test (`<packaging-root>/_loop/loop.py`) and loop-host only adapts to it. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill_benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. Lane D is documented in `references/non_dev_ai_system/operator_guide.md`; its guarded loop host lives with the packaging under test (`<packaging-root>/benchmark/_loop/loop.py`) and loop-host only adapts to it. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
 
 ### Activation Triggers
 
@@ -74,7 +76,7 @@ Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measu
 
 #### Packaging Benchmark and Guarded Refine
 
-Use Lane D (non-dev-ai-system-refine) when the thing under test is an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project and native skill) and the goal is to close measured quality gaps automatically. It benchmarks N-sample averaged outputs, re-grades them with an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. The frozen scoring surface, derivation and kill-switch logic live with the packaging (`_loop/loop.py` contract); dry-run is the default. New packagings onboard via the kit: `assets/non_dev_ai_system/` (config schema + parameterized templates) rendered by `scripts/non-dev-ai-system/init_packaging.py`, never by copy-editing a sibling. See `references/non_dev_ai_system/operator_guide.md` (contract: `loop_contract.md`, teachings: `guardrails_teachings.md`).
+Use Lane D (non-dev-ai-system-refine) when the thing under test is an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project and native skill) and the goal is to close measured quality gaps automatically. It benchmarks N-sample averaged outputs, re-grades them with an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. The frozen scoring surface, derivation and kill-switch logic live with the packaging (`benchmark/_loop/loop.py` contract); dry-run is the default. New packagings onboard via the kit: `assets/non_dev_ai_system/` (config schema + parameterized templates) rendered by `scripts/non-dev-ai-system/init_packaging.py`, never by copy-editing a sibling. See `references/non_dev_ai_system/operator_guide.md` (contract: `loop_contract.md`, teachings: `guardrails_teachings.md`).
 
 ### When NOT to Use
 
@@ -97,7 +99,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/` for reusable runtime templates such as the charter and strategy markdown files
 - `scripts/` for deterministic benchmark, scoring, reduction, promotion, rollback, and drift-check helpers
 
-**Lane awareness**: resources are organized by lane. `references/agent_improvement/` + `assets/agent_improvement/` carry Lane A guidance, `references/model_benchmark/` + `assets/model_benchmark/` carry Lane B guidance, and `references/skill_benchmark/` + `assets/skill_benchmark/` carry Lane C guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` and `SKILL_BENCHMARK` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all three lanes.
+**Lane awareness**: resources are organized by lane. `references/agent_improvement/` + `assets/agent_improvement/` carry Lane A guidance, `references/model_benchmark/` + `assets/model_benchmark/` carry Lane B guidance, `references/skill_benchmark/` + `assets/skill_benchmark/` carry Lane C guidance, and `references/non_dev_ai_system/` + `assets/non_dev_ai_system/` carry Lane D guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK`, `SKILL_BENCHMARK` and `NON_DEV_AI_SYSTEM` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all four lanes.
 
 ### Resource Loading Levels
 
@@ -132,6 +134,7 @@ INTENT_SIGNALS = {
     "INTEGRATION_SCAN": {"weight": 4, "keywords": ["integration", "scan surfaces", "mirror sync", "dynamic profile", "5-dimension"]},
     "MODEL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a model", "benchmark a prompt framework", "optimize a model", "model-benchmark", "model benchmark"]},
     "SKILL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a skill", "skill benchmark", "skill routing", "unprompted discovery", "routing accuracy", "skill-benchmark"]},
+    "NON_DEV_AI_SYSTEM": {"weight": 5, "keywords": ["non-dev-ai-system", "packaging refine", "refine a packaging", "benchmark a packaging", "guarded refine", "ai-system packaging"]},
     "FULL_SETUP": {"weight": 3, "keywords": ["full setup", "initialize runtime", "charter", "strategy"]},
 }
 
@@ -144,6 +147,7 @@ RESOURCE_MAP = {
     "INTEGRATION_SCAN": ["references/agent_improvement/integration_scanning.md", "references/model_benchmark/evaluator_contract.md"],
     "MODEL_BENCHMARK": ["references/model_benchmark/benchmark_operator_guide.md", "references/model_benchmark/evaluator_contract.md"],
     "SKILL_BENCHMARK": ["references/skill_benchmark/operator_guide.md", "references/skill_benchmark/scoring_contract.md", "references/skill_benchmark/scenario_authoring.md"],
+    "NON_DEV_AI_SYSTEM": ["references/non_dev_ai_system/operator_guide.md", "references/non_dev_ai_system/loop_contract.md", "references/non_dev_ai_system/guardrails_teachings.md"],
     "FULL_SETUP": ["assets/agent_improvement/improvement_charter.md", "assets/agent_improvement/improvement_strategy.md"],
 }
 
@@ -151,6 +155,7 @@ RUNTIME_ASSETS = {
     "ALWAYS": ["assets/agent_improvement/improvement_config.json", "assets/agent_improvement/target_manifest.jsonc"],
     "MODEL_BENCHMARK": ["assets/model_benchmark/benchmark-profiles/default.json"],
     "SKILL_BENCHMARK": ["assets/skill_benchmark/default_profile.json"],
+    "NON_DEV_AI_SYSTEM": ["assets/non_dev_ai_system/packaging_config.example.json"],
 }
 
 ON_DEMAND_KEYWORDS = ["target profile", "score candidate", "proposal loop", "benchmark", "promotion gate", "mirror drift"]
@@ -225,6 +230,8 @@ def route_recursive_agent_resources(task):
         runtime_assets.extend(RUNTIME_ASSETS.get("MODEL_BENCHMARK", []))
     if "SKILL_BENCHMARK" in intents:
         runtime_assets.extend(RUNTIME_ASSETS.get("SKILL_BENCHMARK", []))
+    if "NON_DEV_AI_SYSTEM" in intents:
+        runtime_assets.extend(RUNTIME_ASSETS.get("NON_DEV_AI_SYSTEM", []))
 
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
@@ -539,6 +546,8 @@ Core references: `README.md`, `references/shared/quick_reference.md`, `reference
 
 - `/deep:start-agent-improvement-loop` initializes and runs the Lane A bounded workflow
 - `/deep:start-model-benchmark-loop` initializes and runs the Lane B model-benchmark workflow
+- `/deep:start-skill-benchmark-loop` runs the Lane C skill diagnostic
+- `/deep:start-non-dev-ai-system-loop` runs the Lane D guarded packaging refine (dry-run default)
 - `.opencode/agents/deep-improvement.md` provides the mutator surface for deep-improvement runs
 - `sk-doc` validators enforce package-shape, README, and markdown document consistency
 - `system-spec-kit` packet validation proves phase records remain truthful

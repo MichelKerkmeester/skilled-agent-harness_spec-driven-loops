@@ -29,19 +29,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { extractDeliverable } = require('./extract-deliverable.cjs');
-
-function parseArgs(argv) {
-  const args = {};
-  for (let i = 0; i < argv.length; i += 1) {
-    const m = /^--([a-z][a-z0-9-]*)(?:=(.*))?$/.exec(argv[i]);
-    if (!m) continue;
-    if (m[2] !== undefined) { args[m[1]] = m[2]; continue; }
-    const next = argv[i + 1];
-    if (next !== undefined && !next.startsWith('--')) { args[m[1]] = next; i += 1; }
-    else args[m[1]] = true;
-  }
-  return args;
-}
+const { parseArgs } = require('./parse-args.cjs');
 
 function classifyFixture(outputsDir, id, ext) {
   const files = fs.existsSync(outputsDir)
@@ -80,4 +68,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { classifyFixture, lintFixtures };
+module.exports = { classifyFixture, lintFixtures, parseArgs };
