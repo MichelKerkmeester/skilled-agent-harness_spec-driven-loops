@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Planned phase, not started: Vector Read-Path Resilience & Performance. Scaffolded from the sqlite-to-turso revalidation findings; this summary is rewritten when the phase ships."
+title: "Implementation Summary: Vector Read-Path Resilience & Performance [template:level_1/implementation-summary.md]"
+description: "Implemented vector shard integrity probing, quarantine, repair reindex wiring, degraded-vector observability counters, authoritative dimension fallback behavior, and KNN query-shape benchmark coverage."
 trigger_phrases:
   - "013-vector-read-path-resilience summary"
 importance_tier: "normal"
@@ -8,17 +8,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase scaffolded; implementation not started"
-    next_safe_action: "Start Phase 1 setup tasks when this phase is picked up"
+    last_updated_at: "2026-06-10T21:05:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented vector shard read-path resilience and benchmark coverage"
+    next_safe_action: "Rerun live-corpus KNN benchmark after MCP health recovers"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-vector-read-path-resilience"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-vector-read-path-resilience |
-| **Completed** | Not started (scaffolded 2026-06-10) |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,17 +49,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Status: PLANNED, nothing implemented yet. The phase was scaffolded from the sqlite-to-turso revalidation findings; this document is rewritten at completion and makes no done-claims now.
+Implemented the vector read-path resilience path end to end for isolated shard corruption:
 
-### Scaffolding only
-
-The phase contract (spec/plan/tasks) is in place with measured evidence anchors from the revalidation research; the implementation has not begun.
+1. Existing vector shards are probed before attach with `quick_check(1)` and required table checks.
+2. Probe failures rename the shard and sidecars aside, attach a fresh shard, and schedule an auto repair reindex.
+3. Repair reindex jobs reuse the existing staging shard plus atomic rename path in `reindex.ts`.
+4. Degraded-vector state is exposed additively through `recallDegradation.degradedVector` without changing existing observability counters.
+5. Dimension discovery now prefers explicit stored metadata and active embedder profile/config sources; schema regex parsing is a warning-only last resort.
+6. KNN query-shape benchmarking compares scalar JOIN against sqlite-vec `MATCH` and gates adoption at greater than 20 percent improvement.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md, plan.md, tasks.md, implementation-summary.md, description.json | Created | Phase contract scaffold |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` | Modified | Added shard probe, quarantine, repair scheduling, and dimension-source precedence |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts` | Modified | Added tagged repair reindex entry point and repair-state completion hooks |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts` | Modified | Added scalar JOIN vs `vec0 MATCH` benchmark helper and adoption threshold helper |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts` | Modified | Added degraded-vector counters and embedded health snapshot |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts` | Added | Fault-injection corrupted copied shard self-heal test |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-dimension-source.vitest.ts` | Added | Dimension source precedence and regex fallback tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-knn-query-shape-benchmark.vitest.ts` | Added | KNN query-shape benchmark and threshold test |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -63,7 +76,9 @@ The phase contract (spec/plan/tasks) is in place with measured evidence anchors 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet; scaffold only.
+The probe runs before attaching a pre-existing shard. If `quick_check(1)` fails, required shard tables are missing, or attach fails against an existing shard, the shard is moved to a `.quarantined-*` file beside the original. The store then attaches a fresh shard and schedules `startVectorShardRepairReindex()`, which enters the existing reindex worker. That worker writes vectors into a staging shard and only renames the staging shard over the active shard after the job completes.
+
+The fault-injection test corrupts a copied fixture shard under a temp directory. It observes the health state while the mocked embedder is blocked at `rebuilding`, releases the embedder, and verifies the rebuilt active shard contains the expected vector IDs.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,7 +88,9 @@ Not delivered yet; scaffold only.
 
 | Decision | Why |
 |----------|-----|
-| Scaffolded as a 027 phase | The improvement derives from the research-based-refinement charter and the sqlite-to-turso revalidation evidence |
+| Keep scalar JOIN query shape | Isolated benchmark at corpus 32 measured scalar JOIN at 0.0201 ms and `MATCH` at 0.0220 ms; `MATCH` was not greater than 20 percent faster |
+| Surface counters through existing health payload | `memory-crud-health.ts` is outside this lane's write list, so the observability helper embeds the new snapshot inside the existing `recallDegradation` response |
+| Retain quarantined shards | Quarantine files are retained beside the original shard for forensics; no deletion policy was introduced |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -83,8 +100,12 @@ Not delivered yet; scaffold only.
 
 | Check | Result |
 |-------|--------|
-| validate.sh at scaffold time | See parent session log |
-| Implementation gates | PENDING (phase not started) |
+| `npm run build` | PASS: `tsc --build && node scripts/finalize-dist.mjs` exited 0 |
+| New targeted vitest files | PASS: 3 files, 5 tests |
+| Existing observability suite | PASS: `tests/openltm-retrieval-observability.vitest.ts`, 6 tests |
+| Combined targeted + observability run | PASS: 4 files, 11 tests |
+| KNN benchmark | PASS: corpus 32, scalar JOIN 0.0201 ms, `MATCH` 0.0220 ms, decision `keep_scalar_join` |
+| Live corpus benchmark sizing | BLOCKED: live daemon `memory_health` and `memory_stats` both returned `E040`; no live shard was opened, renamed, or rebuilt |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,7 +113,8 @@ Not delivered yet; scaffold only.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Nothing implemented.** All requirement and benchmark gates in spec.md are open.
+1. A direct live-corpus benchmark could not be recorded because live memory MCP health/stat calls returned `E040`. The implementation keeps scalar JOIN because the isolated benchmark did not clear the adoption threshold.
+2. The repair path depends on the active embedder manifest being registered. If the manifest is unknown, the health snapshot records a rebuild failure rather than silently degrading.
 <!-- /ANCHOR:limitations -->
 
 ---

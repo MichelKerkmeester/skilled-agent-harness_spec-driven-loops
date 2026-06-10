@@ -30,6 +30,11 @@ import { resolveDatabasePaths, SERVER_DIR } from '../../core/config.js';
 import { IVectorStore } from '../interfaces/vector-store.js';
 import { computeInterferenceScoresBatch } from '../scoring/interference-scoring.js';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
+import {
+  recordVectorShardProbeFailure,
+  recordVectorShardQuarantined,
+  recordVectorShardRebuildFailed,
+} from '../observability/retrieval-observability.js';
 import { validateFilePath } from '../utils/path-security.js';
 import {
   get_error_code,
@@ -188,13 +193,15 @@ type EmbeddingDimensionValidation = {
 type StoredEmbeddingDimension = {
   existing_db: boolean;
   stored_dim: number | null;
-  source: 'vec_metadata' | 'vec_memories' | null;
+  source: 'vec_metadata' | 'active_embedder_profile' | 'startup_profile' | 'vec_memories' | null;
   reason?: string;
 };
 
 function get_existing_embedding_dimension(
   database: Database.Database,
+  options: { allowProfileFallback?: boolean } = {},
 ): StoredEmbeddingDimension {
+  const allowProfileFallback = options.allowProfileFallback !== false;
   const schema_row = database.prepare(`
     SELECT name FROM sqlite_master WHERE type='table' AND name='memory_index'
   `).get();
@@ -240,8 +247,10 @@ function get_existing_embedding_dimension(
 
   if (metadata_table) {
     const stored_row = database.prepare(`
-      SELECT value FROM vec_metadata WHERE key = 'embedding_dim'
-    `).get() as { value: string } | undefined;
+      SELECT key, value FROM vec_metadata WHERE key IN ('embedding_dim', 'dim', 'active_embedder_dim')
+      ORDER BY CASE key WHEN 'embedding_dim' THEN 0 WHEN 'dim' THEN 1 ELSE 2 END
+      LIMIT 1
+    `).get() as { key: string; value: string } | undefined;
 
     if (stored_row) {
       const stored_dim = parseInt(stored_row.value, 10);
@@ -249,9 +258,29 @@ function get_existing_embedding_dimension(
         return {
           existing_db: true,
           stored_dim,
-          source: 'vec_metadata',
+          source: stored_row.key === 'active_embedder_dim' ? 'active_embedder_profile' : 'vec_metadata',
         };
       }
+    }
+  }
+
+  if (allowProfileFallback) {
+    const active = getActiveEmbedder(database);
+    if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name && active.dim > 0) {
+      return {
+        existing_db: true,
+        stored_dim: active.dim,
+        source: 'active_embedder_profile',
+      };
+    }
+
+    const startupProfile = getStartupEmbeddingProfile();
+    if (Number.isInteger(startupProfile.dim) && startupProfile.dim > 0) {
+      return {
+        existing_db: true,
+        stored_dim: startupProfile.dim,
+        source: 'startup_profile',
+      };
     }
   }
 
@@ -264,6 +293,7 @@ function get_existing_embedding_dimension(
   if (match) {
     const stored_dim = parseInt(match[1], 10);
     if (Number.isFinite(stored_dim) && stored_dim > 0) {
+      console.warn('[vector-index] Falling back to vec_memories schema text for embedding dimension; configure an active embedder profile to make dimension discovery authoritative.');
       return {
         existing_db: true,
         stored_dim,
@@ -434,6 +464,136 @@ function table_exists_in_schema(database: Database.Database, schema: string, tab
     LIMIT 1
   `).get(tableName) as { found?: number } | undefined;
   return row?.found === 1;
+}
+
+type VectorShardIntegrityProbeResult =
+  | { ok: true }
+  | { ok: false; reason: string };
+
+function quick_check_verdict(database: Database.Database, schema?: string): string {
+  const rows = schema
+    ? database.pragma(`${schema}.quick_check(1)`) as Array<Record<string, unknown>>
+    : database.pragma('quick_check(1)') as Array<Record<string, unknown>>;
+  const first = rows?.[0] ? Object.values(rows[0])[0] : undefined;
+  return typeof first === 'string' ? first : 'quick_check returned no verdict';
+}
+
+function required_vector_shard_tables(profile: EmbeddingProfile, vecAvailable: boolean): string[] {
+  return [
+    'vec_metadata',
+    'embedding_cache',
+    vector_table_name_for_profile(profile),
+    ...(vecAvailable ? ['vec_memories'] : []),
+  ];
+}
+
+function run_attached_vector_shard_integrity_probe(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  vecAvailable: boolean,
+): VectorShardIntegrityProbeResult {
+  try {
+    const verdict = quick_check_verdict(database, ACTIVE_VECTOR_SCHEMA);
+    if (verdict !== 'ok') {
+      return { ok: false, reason: `quick_check failed: ${verdict}` };
+    }
+    for (const tableName of required_vector_shard_tables(profile, vecAvailable)) {
+      if (!table_exists_in_schema(database, ACTIVE_VECTOR_SCHEMA, tableName)) {
+        return { ok: false, reason: `required table missing: ${tableName}` };
+      }
+    }
+    return { ok: true };
+  } catch (error: unknown) {
+    return { ok: false, reason: get_error_message(error) };
+  }
+}
+
+function run_vector_shard_integrity_probe_at_path(
+  shardPath: string,
+  profile: EmbeddingProfile,
+  vecAvailable: boolean,
+): VectorShardIntegrityProbeResult {
+  if (!fs.existsSync(shardPath)) {
+    return { ok: true };
+  }
+
+  let shard: Database.Database | null = null;
+  try {
+    shard = new Database(shardPath, { readonly: true, fileMustExist: true });
+    if (vecAvailable) {
+      sqliteVec.load(shard);
+    }
+    const verdict = quick_check_verdict(shard);
+    if (verdict !== 'ok') {
+      return { ok: false, reason: `quick_check failed: ${verdict}` };
+    }
+    for (const tableName of required_vector_shard_tables(profile, vecAvailable)) {
+      const row = shard.prepare(`
+        SELECT 1 AS found
+        FROM sqlite_master
+        WHERE type IN ('table', 'view') AND name = ?
+        LIMIT 1
+      `).get(tableName) as { found?: number } | undefined;
+      if (row?.found !== 1) {
+        return { ok: false, reason: `required table missing: ${tableName}` };
+      }
+    }
+    return { ok: true };
+  } catch (error: unknown) {
+    return { ok: false, reason: get_error_message(error) };
+  } finally {
+    if (shard) {
+      try { shard.close(); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
+function quarantine_vector_shard(shardPath: string, reason: string): string {
+  const stamp = new Date().toISOString().replace(/[^0-9A-Za-z]/g, '');
+  const quarantinePath = `${shardPath}.quarantined-${stamp}-${process.pid}`;
+  for (const suffix of ['', '-wal', '-shm']) {
+    const source = `${shardPath}${suffix}`;
+    if (!fs.existsSync(source)) {
+      continue;
+    }
+    fs.renameSync(source, `${quarantinePath}${suffix}`);
+  }
+  fsync_file_if_possible(quarantinePath);
+  fsync_directory_if_possible(path.dirname(shardPath));
+  recordVectorShardQuarantined({ shardPath, quarantinePath, reason });
+  return quarantinePath;
+}
+
+function schedule_vector_shard_rebuild(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+  reason: string,
+): void {
+  setImmediate(() => {
+    void import('../embedders/reindex.js')
+      .then(({ startVectorShardRepairReindex }) => {
+        startVectorShardRepairReindex(profile, { db: database, reason, shardPath });
+      })
+      .catch((error: unknown) => {
+        recordVectorShardRebuildFailed({
+          jobId: 'not-started',
+          shardPath,
+          reason: get_error_message(error),
+        });
+      });
+  });
+}
+
+function quarantine_and_rebuild_vector_shard(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+  reason: string,
+): void {
+  recordVectorShardProbeFailure({ shardPath, reason });
+  const quarantinePath = quarantine_vector_shard(shardPath, reason);
+  schedule_vector_shard_rebuild(database, profile, shardPath, `${reason}; quarantined as ${path.basename(quarantinePath)}`);
 }
 
 function write_shard_metadata(database: Database.Database, profile: EmbeddingProfile): void {
@@ -1102,6 +1262,28 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
     drop_legacy_temp_aliases(database);
     database.exec(`DETACH DATABASE ${ACTIVE_VECTOR_SCHEMA}`);
   } else if (attachedPath === path.resolve(shardPath)) {
+    const probe = run_attached_vector_shard_integrity_probe(database, profile, sqlite_vec_available_flag);
+    if (!probe.ok) {
+      drop_legacy_temp_aliases(database);
+      database.exec(`DETACH DATABASE ${ACTIVE_VECTOR_SCHEMA}`);
+      quarantine_and_rebuild_vector_shard(database, profile, shardPath, probe.reason);
+      database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+      ensure_vector_shard_schema(database, profile);
+      drop_canonical_vector_payload_tables(database);
+      create_legacy_temp_aliases(database, profile);
+      active_vector_source = {
+        canonical_path: canonicalPath,
+        shard_path: shardPath,
+        attached: true,
+        profile: {
+          provider: profile.provider,
+          model: profile.model,
+          dim: profile.dim,
+          dtype: profile.dtype,
+        },
+      };
+      return;
+    }
     ensure_vector_shard_schema(database, profile);
     drop_canonical_vector_payload_tables(database);
     create_legacy_temp_aliases(database, profile);
@@ -1119,7 +1301,35 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
     return;
   }
 
-  database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+  const shardExistedBeforeAttach = fs.existsSync(shardPath);
+  const preAttachProbe = run_vector_shard_integrity_probe_at_path(shardPath, profile, sqlite_vec_available_flag);
+  let needsPostAttachProbe = shardExistedBeforeAttach && preAttachProbe.ok;
+  if (!preAttachProbe.ok) {
+    quarantine_and_rebuild_vector_shard(database, profile, shardPath, preAttachProbe.reason);
+    needsPostAttachProbe = false;
+  }
+
+  try {
+    database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+  } catch (attachError: unknown) {
+    const reason = get_error_message(attachError);
+    if (!fs.existsSync(shardPath)) {
+      throw attachError;
+    }
+    quarantine_and_rebuild_vector_shard(database, profile, shardPath, reason);
+    needsPostAttachProbe = false;
+    database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+  }
+
+  if (needsPostAttachProbe) {
+    const attachedProbe = run_attached_vector_shard_integrity_probe(database, profile, sqlite_vec_available_flag);
+    if (!attachedProbe.ok) {
+      drop_legacy_temp_aliases(database);
+      database.exec(`DETACH DATABASE ${ACTIVE_VECTOR_SCHEMA}`);
+      quarantine_and_rebuild_vector_shard(database, profile, shardPath, attachedProbe.reason);
+      database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+    }
+  }
   ensure_vector_shard_schema(database, profile);
   drop_canonical_vector_payload_tables(database);
   create_legacy_temp_aliases(database, profile);
@@ -2015,6 +2225,11 @@ export class SQLiteVectorStore extends IVectorStore {
     return verify_integrity(options, database);
   }
 }
+
+export const __testables = {
+  get_existing_embedding_dimension,
+  run_vector_shard_integrity_probe_at_path,
+};
 
 /* ───────────────────────────────────────────────────────────────
    9. CAMELCASE ALIASES

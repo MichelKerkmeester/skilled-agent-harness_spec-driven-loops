@@ -35,11 +35,12 @@
       "check"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "completed",
     "key_files": [
       "mcp_server/lib/search/vector-index-store.ts",
       "mcp_server/lib/embedders/reindex.ts",
       "mcp_server/lib/search/vector-index-queries.ts",
+      "mcp_server/lib/observability/retrieval-observability.ts",
       "spec.md",
       "plan.md",
       "tasks.md",

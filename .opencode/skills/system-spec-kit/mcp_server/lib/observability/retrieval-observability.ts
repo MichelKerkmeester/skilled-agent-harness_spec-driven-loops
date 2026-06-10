@@ -33,6 +33,24 @@ export interface VectorDegradationSignal {
   vectorSearchAvailable: boolean;
   mode: 'hybrid' | 'lexical_only';
   reason: string | null;
+  degradedVector?: DegradedVectorHealthSnapshot;
+}
+
+export type DegradedVectorRepairState = 'healthy' | 'detected' | 'quarantined' | 'rebuilding' | 'rebuild_failed';
+
+export interface DegradedVectorHealthSnapshot {
+  state: DegradedVectorRepairState;
+  degraded: boolean;
+  detections: number;
+  quarantines: number;
+  rebuildsStarted: number;
+  rebuildsCompleted: number;
+  rebuildsFailed: number;
+  lastEventAt: string | null;
+  lastReason: string | null;
+  lastShard: string | null;
+  lastQuarantine: string | null;
+  activeJobId: string | null;
 }
 
 export interface MaintenanceRunCounters {
@@ -49,6 +67,21 @@ const maintenanceRuns: Record<MaintenanceTool, MaintenanceRunCounters> = {
   memory_index_scan: emptyMaintenanceRun('memory_index_scan'),
   memory_embedding_reconcile: emptyMaintenanceRun('memory_embedding_reconcile'),
   memory_retention_sweep: emptyMaintenanceRun('memory_retention_sweep'),
+};
+
+const degradedVectorHealth: DegradedVectorHealthSnapshot = {
+  state: 'healthy',
+  degraded: false,
+  detections: 0,
+  quarantines: 0,
+  rebuildsStarted: 0,
+  rebuildsCompleted: 0,
+  rebuildsFailed: 0,
+  lastEventAt: null,
+  lastReason: null,
+  lastShard: null,
+  lastQuarantine: null,
+  activeJobId: null,
 };
 
 function emptyMaintenanceRun(tool: MaintenanceTool): MaintenanceRunCounters {
@@ -78,6 +111,19 @@ function scoreMap(value: unknown): Record<string, number> {
     if (score !== null) output[key] = score;
   }
   return output;
+}
+
+function basenameOrNull(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const normalized = value.replace(/\\/g, '/');
+  return normalized.slice(normalized.lastIndexOf('/') + 1);
+}
+
+function updateDegradedVectorHealth(update: Partial<DegradedVectorHealthSnapshot>): void {
+  Object.assign(degradedVectorHealth, update, {
+    degraded: update.state ? update.state !== 'healthy' : degradedVectorHealth.state !== 'healthy',
+    lastEventAt: new Date().toISOString(),
+  });
 }
 
 function channelScore(rawResult: Record<string, unknown>, channel: typeof CHANNEL_KEYS[number]): number | null {
@@ -149,13 +195,92 @@ export function buildWhyRankedTrace(rawResult: Record<string, unknown>, rank: nu
   };
 }
 
-export function buildVectorDegradationSignal(vectorSearchAvailable: boolean): VectorDegradationSignal {
+export function buildVectorDegradationSignal(
+  vectorSearchAvailable: boolean,
+  degradedVector = getDegradedVectorObservabilitySnapshot(),
+): VectorDegradationSignal {
+  const degraded = !vectorSearchAvailable || degradedVector.degraded;
   return {
-    degraded: !vectorSearchAvailable,
+    degraded,
     vectorSearchAvailable,
     mode: vectorSearchAvailable ? 'hybrid' : 'lexical_only',
-    reason: vectorSearchAvailable ? null : 'vector_search_unavailable',
+    reason: !vectorSearchAvailable
+      ? 'vector_search_unavailable'
+      : degradedVector.degraded
+        ? `vector_shard_${degradedVector.state}`
+        : null,
+    degradedVector,
   };
+}
+
+export function recordVectorShardProbeFailure(input: { shardPath: string; reason: string }): void {
+  degradedVectorHealth.detections += 1;
+  updateDegradedVectorHealth({
+    state: 'detected',
+    lastReason: input.reason,
+    lastShard: basenameOrNull(input.shardPath),
+  });
+}
+
+export function recordVectorShardQuarantined(input: { shardPath: string; quarantinePath: string; reason: string }): void {
+  degradedVectorHealth.quarantines += 1;
+  updateDegradedVectorHealth({
+    state: 'quarantined',
+    lastReason: input.reason,
+    lastShard: basenameOrNull(input.shardPath),
+    lastQuarantine: basenameOrNull(input.quarantinePath),
+  });
+}
+
+export function recordVectorShardRebuildStarted(input: { jobId: string; shardPath: string; reason: string }): void {
+  degradedVectorHealth.rebuildsStarted += 1;
+  updateDegradedVectorHealth({
+    state: 'rebuilding',
+    activeJobId: input.jobId,
+    lastReason: input.reason,
+    lastShard: basenameOrNull(input.shardPath),
+  });
+}
+
+export function recordVectorShardRebuildCompleted(input: { jobId: string; shardPath: string }): void {
+  degradedVectorHealth.rebuildsCompleted += 1;
+  updateDegradedVectorHealth({
+    state: 'healthy',
+    activeJobId: degradedVectorHealth.activeJobId === input.jobId ? null : degradedVectorHealth.activeJobId,
+    lastReason: null,
+    lastShard: basenameOrNull(input.shardPath),
+  });
+}
+
+export function recordVectorShardRebuildFailed(input: { jobId: string; shardPath: string; reason: string }): void {
+  degradedVectorHealth.rebuildsFailed += 1;
+  updateDegradedVectorHealth({
+    state: 'rebuild_failed',
+    activeJobId: degradedVectorHealth.activeJobId === input.jobId ? null : degradedVectorHealth.activeJobId,
+    lastReason: input.reason,
+    lastShard: basenameOrNull(input.shardPath),
+  });
+}
+
+export function getDegradedVectorObservabilitySnapshot(): DegradedVectorHealthSnapshot {
+  return { ...degradedVectorHealth };
+}
+
+export function resetDegradedVectorObservabilityForTest(): void {
+  Object.assign(degradedVectorHealth, {
+    state: 'healthy',
+    degraded: false,
+    detections: 0,
+    quarantines: 0,
+    rebuildsStarted: 0,
+    rebuildsCompleted: 0,
+    rebuildsFailed: 0,
+    lastEventAt: null,
+    lastReason: null,
+    lastShard: null,
+    lastQuarantine: null,
+    activeJobId: null,
+  });
 }
 
 export function recordMaintenanceRun(
@@ -243,6 +368,8 @@ export const __testables = {
   buildWhyRankedTrace,
   buildVectorDegradationSignal,
   findInlineConflictWarnings,
+  getDegradedVectorObservabilitySnapshot,
   getMaintenanceObservabilitySnapshot,
   recordMaintenanceRun,
+  resetDegradedVectorObservabilityForTest,
 };

@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase plan scaffolded from revalidation findings"
-    next_safe_action: "Start Phase 1 setup tasks when this phase is picked up"
+    last_updated_at: "2026-06-10T21:05:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented phase plan and verification gates"
+    next_safe_action: "Rerun live-corpus KNN benchmark after live memory health recovers"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-vector-read-path-resilience"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -63,9 +63,9 @@ Add an integrity probe to shard open/attach, quarantine + auto-rebuild corrupted
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met, except live-corpus benchmark sizing blocked by live MCP `E040`; isolated benchmark recorded and kept scalar JOIN
+- [x] Tests passing: build, new targeted vitest, and existing observability suite
+- [x] Docs updated (spec/plan/tasks/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -103,17 +103,17 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Corruption fixture (truncated/malformed shard copies)
-- [ ] Baseline KNN benchmark
+- [x] Corruption fixture (truncated/malformed shard copies)
+- [x] Baseline KNN benchmark
 
 ### Phase 2: Core
-- [ ] Probe + quarantine + rebuild wiring
-- [ ] Health counters (coordinate 008)
-- [ ] Dims from profile
+- [x] Probe + quarantine + rebuild wiring
+- [x] Health counters (coordinate 008)
+- [x] Dims from profile
 
 ### Phase 3: Verification
-- [ ] Fault-injection self-heal test green
-- [ ] Benchmark table recorded; conditional query adoption
+- [x] Fault-injection self-heal test green
+- [x] Benchmark table recorded; conditional query adoption
 <!-- /ANCHOR:phases -->
 
 ---

@@ -66,6 +66,19 @@ type VectorSource = {
   embeddingColumn: string;
 };
 
+export interface KnnQueryShapeBenchmarkResult {
+  readonly corpusSize: number;
+  readonly iterations: number;
+  readonly scalarJoinAverageMs: number;
+  readonly matchAverageMs: number | null;
+  readonly matchSupported: boolean;
+  readonly matchImprovementPct: number | null;
+  readonly decision: 'adopt_match' | 'keep_scalar_join';
+  readonly reason: string;
+}
+
+const KNN_MATCH_ADOPTION_THRESHOLD_PCT = 20;
+
 function appendSpecFolderScope(
   clauses: string[],
   params: unknown[],
@@ -104,6 +117,123 @@ function getActiveVectorSourceForQuery(database: Database.Database): VectorSourc
     tableName: activeVectorSchema('vec_memories'),
     idColumn: 'rowid',
     embeddingColumn: 'embedding',
+  };
+}
+
+function elapsedMs(start: bigint): number {
+  return Number(process.hrtime.bigint() - start) / 1_000_000;
+}
+
+function average(values: number[]): number {
+  if (values.length === 0) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+export function shouldAdoptMatchQueryShape(result: Pick<KnnQueryShapeBenchmarkResult, 'matchSupported' | 'matchImprovementPct'>): boolean {
+  return result.matchSupported === true
+    && typeof result.matchImprovementPct === 'number'
+    && result.matchImprovementPct > KNN_MATCH_ADOPTION_THRESHOLD_PCT;
+}
+
+export function benchmarkKnnQueryShapes(
+  query_embedding: EmbeddingInput,
+  options: { iterations?: number; limit?: number } = {},
+  database: Database.Database = initialize_db(),
+): KnnQueryShapeBenchmarkResult {
+  const vectorSource = getActiveVectorSourceForQuery(database);
+  if (!query_embedding || query_embedding.length !== vectorSource.dim) {
+    throw new VectorIndexError(
+      `Invalid embedding dimension: expected ${vectorSource.dim}, got ${query_embedding?.length}`,
+      VectorIndexErrorCode.EMBEDDING_VALIDATION,
+    );
+  }
+
+  const iterations = Math.max(1, Math.floor(options.iterations ?? 5));
+  const limit = Math.max(1, Math.floor(options.limit ?? 20));
+  const queryBuffer = to_embedding_buffer(query_embedding);
+  const corpusSize = (database.prepare(`
+    SELECT COUNT(*) AS count
+    FROM memory_index m
+    JOIN active_memory_projection p ON p.active_memory_id = m.id
+    WHERE m.embedding_status = 'success'
+  `).get() as { count: number }).count;
+
+  const scalarSql = `
+    SELECT m.id, vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) AS distance
+    FROM memory_index m
+    JOIN active_memory_projection p ON p.active_memory_id = m.id
+    JOIN ${vectorSource.tableName} v ON m.id = v.${vectorSource.idColumn}
+    WHERE m.embedding_status = 'success'
+    ORDER BY distance ASC
+    LIMIT ?
+  `;
+  const scalarStmt = database.prepare(scalarSql);
+  scalarStmt.all(queryBuffer, limit);
+  const scalarRuns: number[] = [];
+  for (let i = 0; i < iterations; i += 1) {
+    const start = process.hrtime.bigint();
+    scalarStmt.all(queryBuffer, limit);
+    scalarRuns.push(elapsedMs(start));
+  }
+
+  const matchTable = activeVectorSchema('vec_memories');
+  const matchAvailable = tableExists(database, 'vec_memories');
+  let matchAverageMs: number | null = null;
+  let matchError: string | null = null;
+
+  if (matchAvailable) {
+    try {
+      const matchSql = `
+        WITH knn AS (
+          SELECT rowid, distance
+          FROM ${matchTable}
+          WHERE embedding MATCH ? AND k = ?
+        )
+        SELECT m.id, knn.distance
+        FROM knn
+        JOIN memory_index m ON m.id = knn.rowid
+        JOIN active_memory_projection p ON p.active_memory_id = m.id
+        WHERE m.embedding_status = 'success'
+        ORDER BY knn.distance ASC
+        LIMIT ?
+      `;
+      const matchStmt = database.prepare(matchSql);
+      matchStmt.all(queryBuffer, limit, limit);
+      const matchRuns: number[] = [];
+      for (let i = 0; i < iterations; i += 1) {
+        const start = process.hrtime.bigint();
+        matchStmt.all(queryBuffer, limit, limit);
+        matchRuns.push(elapsedMs(start));
+      }
+      matchAverageMs = average(matchRuns);
+    } catch (error: unknown) {
+      matchError = get_error_message(error);
+    }
+  }
+
+  const scalarJoinAverageMs = average(scalarRuns);
+  const matchImprovementPct = matchAverageMs !== null && scalarJoinAverageMs > 0
+    ? ((scalarJoinAverageMs - matchAverageMs) / scalarJoinAverageMs) * 100
+    : null;
+  const preliminary: Pick<KnnQueryShapeBenchmarkResult, 'matchSupported' | 'matchImprovementPct'> = {
+    matchSupported: matchAverageMs !== null,
+    matchImprovementPct,
+  };
+  const decision = shouldAdoptMatchQueryShape(preliminary) ? 'adopt_match' : 'keep_scalar_join';
+
+  return {
+    corpusSize,
+    iterations,
+    scalarJoinAverageMs,
+    matchAverageMs,
+    matchSupported: matchAverageMs !== null,
+    matchImprovementPct,
+    decision,
+    reason: decision === 'adopt_match'
+      ? `MATCH exceeded ${KNN_MATCH_ADOPTION_THRESHOLD_PCT}% threshold`
+      : matchError
+        ? `MATCH unavailable: ${matchError}`
+        : `MATCH did not exceed ${KNN_MATCH_ADOPTION_THRESHOLD_PCT}% threshold`,
   };
 }
 

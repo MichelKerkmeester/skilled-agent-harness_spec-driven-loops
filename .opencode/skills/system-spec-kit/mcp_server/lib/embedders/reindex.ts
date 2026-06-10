@@ -25,6 +25,11 @@ import { getManifest } from './registry.js';
 import { parseBoundedEnv } from '../util/env.js';
 import { createLogger } from '../utils/logger.js';
 import { getRestoreBarrierStatus } from '../storage/checkpoints.js';
+import {
+  recordVectorShardRebuildCompleted,
+  recordVectorShardRebuildFailed,
+  recordVectorShardRebuildStarted,
+} from '../observability/retrieval-observability.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -55,6 +60,10 @@ export interface ReindexRuntimeOptions {
 
 interface ReindexInternalRuntimeOptions extends ReindexRuntimeOptions {
   readonly autoStart?: boolean;
+  readonly vectorShardRepair?: {
+    readonly reason: string;
+    readonly shardPath: string;
+  };
 }
 
 type JobRow = Omit<ReindexJob, 'error'> & {
@@ -106,6 +115,7 @@ const JOB_SELECT_COLUMNS = `
 `;
 
 const runningJobs = new Set<string>();
+const vectorShardRepairJobs = new Map<string, { readonly reason: string; readonly shardPath: string }>();
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -529,6 +539,14 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
 
   try {
     setJobStatus(jobDb, jobId, 'running');
+    const repairContext = vectorShardRepairJobs.get(jobId);
+    if (repairContext) {
+      recordVectorShardRebuildStarted({
+        jobId,
+        shardPath: repairContext.shardPath,
+        reason: repairContext.reason,
+      });
+    }
     // Start each run from a clean staging slate (a prior crashed run may have left one).
     cleanupStaging();
 
@@ -618,6 +636,10 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       setJobStatus(jobDb, jobId, 'completed', initialJob.total);
     });
     complete();
+    if (repairContext) {
+      recordVectorShardRebuildCompleted({ jobId, shardPath: repairContext.shardPath });
+      vectorShardRepairJobs.delete(jobId);
+    }
     // The active-embedder pointer just flipped; drop the cached provider singleton so the
     // next embedding re-resolves against the new pointer instead of the stale model/dim.
     invalidateProviderSingleton();
@@ -644,6 +666,11 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     cleanupStaging();
     const message = error instanceof Error ? error.message : String(error);
     setJobStatus(jobDb, jobId, 'failed', processed, message);
+    const repairContext = vectorShardRepairJobs.get(jobId);
+    if (repairContext) {
+      recordVectorShardRebuildFailed({ jobId, shardPath: repairContext.shardPath, reason: message });
+      vectorShardRepairJobs.delete(jobId);
+    }
     logger.error('embedder reindex job failed', {
       event: 'embedder_reindex_failed',
       jobId,
@@ -693,6 +720,10 @@ function startReindexInternal(
       id, from_name, to_name, to_dim, total, processed, status, started_at, updated_at, error
     ) VALUES (?, ?, ?, ?, ?, 0, 'queued', ?, ?, NULL)
   `).run(id, active.name, manifest.name, manifest.dim, total, timestamp, timestamp);
+
+  if (runtimeOptions.vectorShardRepair) {
+    vectorShardRepairJobs.set(id, runtimeOptions.vectorShardRepair);
+  }
 
   if (runtimeOptions.autoStart !== false) {
     enqueueJob(db, id);
@@ -748,6 +779,23 @@ export function startReindexForTest(
   runtimeOptions: ReindexInternalRuntimeOptions = {},
 ): string {
   return startReindexInternal(options, runtimeOptions);
+}
+
+export function startVectorShardRepairReindex(
+  profile: EmbeddingProfile,
+  runtimeOptions: ReindexRuntimeOptions & { readonly reason: string; readonly shardPath: string; readonly autoStart?: boolean },
+): string {
+  return startReindexInternal(
+    { toName: profile.model },
+    {
+      db: runtimeOptions.db,
+      autoStart: runtimeOptions.autoStart,
+      vectorShardRepair: {
+        reason: runtimeOptions.reason,
+        shardPath: runtimeOptions.shardPath,
+      },
+    },
+  );
 }
 
 export function estimateEta(job: ReindexJob | null): number | null {
