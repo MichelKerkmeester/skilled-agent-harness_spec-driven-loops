@@ -370,7 +370,7 @@ caller explicitly selects an apply action, `plannerMode:"full-auto"`, or the CLI
 > })
 > ```
 >
-> The save itself is durable before indexing. When Step 11.5 skips because the daemon is running, docs are not lost; retrieval remains stale until the MCP scan runs. The re-index covers canonical spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `research/research.md`, `resource-map.md`) and `graph-metadata.json` modified earlier in the session. Incremental mode skips unchanged files cheaply via mtime + content-hash checks.
+> The save itself is durable before indexing. When Step 11.5 skips because the daemon is running, docs are not lost; retrieval remains stale until the MCP scan runs. If the daemon is up but the MCP transport is down in this session, issue the same scan through the daemon-backed CLI instead: `node .opencode/bin/spec-memory.cjs memory_index_scan --json '{"specFolder":"<target-folder>","includeSpecDocs":true,"force":false}' --format json --warm-only` (warm-only never starts a daemon; exit 75 = backend unavailable, retry after MCP reconnect or daemon prewarm). The re-index covers canonical spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `research/research.md`, `resource-map.md`) and `graph-metadata.json` modified earlier in the session. Incremental mode skips unchanged files cheaply via mtime + content-hash checks.
 >
 > Kill switches: `SPECKIT_AUTO_INDEX_TOUCHED=false` (targeted opt-out) or `SPECKIT_INDEX_SPEC_DOCS=false` (existing global opt-out) disables Step 11.5. The backend has a 51s cooldown between scans; when a save fires during cooldown, Step 11.5 logs `skipped (scan cooldown active; retry on next save)` and continues — the index catches up on the next save.
 
@@ -626,7 +626,7 @@ mcp__mk_spec_memory__memory_index_scan({ specFolder: "011-memory", force: true }
 
 | Issue                  | Recovery                                                                                                                       |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| MCP server unreachable | Restart OpenCode to restart MCP server. Post-026: run `memory_health()` after restart to verify all retrieval channels (graph, vector, FTS5) are operational |
+| MCP server unreachable | First probe the warm daemon via `node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 3000 --warm-only`: if it answers, only the MCP transport is down — run the deferred scan through the same CLI and reconnect MCP when convenient; exit 75 means the daemon is down too. Then restart OpenCode to restart the MCP server. Post-026: run `memory_health()` after restart to verify all retrieval channels (graph, vector, FTS5) are operational |
 | Embedding timeout      | Use `memory_index_scan` with smaller batch                                                                                     |
 | Corrupted file         | Read file, verify ANCHOR tags, re-save with corrections                                                                        |
 | Database locked        | For database recovery, use `/memory:manage health` to diagnose issues and `/memory:manage checkpoint restore` to recover from a known-good state. Avoid manual file deletion. |

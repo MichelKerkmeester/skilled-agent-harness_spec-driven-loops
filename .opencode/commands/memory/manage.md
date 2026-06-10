@@ -9,6 +9,7 @@ allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__mem
 > **NEVER use Bash to query the database directly. NEVER run `sqlite3` commands.**
 > All database access MUST go through the `mk_spec_memory_*` MCP tools listed in `allowed-tools`.
 > If an MCP tool returns an error, report the error to the user: do NOT fall back to raw SQL via Bash.
+> Transport-down recovery (operator-level, outside this command's toolset): when the MCP tools are missing from the runtime or the transport is down while the daemon may still be warm, the daemon-backed `spec-memory` CLI is the sanctioned fallback — e.g. `node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 3000 --warm-only` (warm-only never starts a daemon; exit 75 = backend unavailable, retry after MCP reconnect or daemon prewarm). Raw SQL stays forbidden either way.
 
 **STATUS: BLOCKED** (until argument is parsed)
 
@@ -902,7 +903,7 @@ STATUS=OK ACTION=ingest JOB=<jobId>
 | Scan failed              | `STATUS=FAIL ERROR="Scan failed: <reason>"`                                                                                      |
 | Checkpoint not found     | `STATUS=FAIL ERROR="Checkpoint not found"`                                                                                       |
 | Max checkpoints reached  | Auto-delete oldest, warn user                                                                                                    |
-| MCP tool unavailable     | `STATUS=FAIL ERROR="MCP tool unavailable. Verify the Spec Kit Memory MCP server is running."` Do NOT fall back to Bash/sqlite3.  |
+| MCP tool unavailable     | `STATUS=FAIL ERROR="MCP tool unavailable. Verify the Spec Kit Memory MCP server is running."` Do NOT fall back to Bash/sqlite3. Operator recovery: reconnect MCP, or probe the warm daemon via `node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 3000 --warm-only` (exit 75 = retryable backend-unavailable). |
 | Database not initialized | `STATUS=FAIL ERROR="Database not initialized. Run memory_index_scan() to create schema, or restart the MCP server."`             |
 | Ingest job not found     | `STATUS=FAIL ERROR="Job '<jobId>' not found"`                                                                                    |
 | Too many ingest paths    | `STATUS=FAIL ERROR="Maximum 50 paths per job"`                                                                                   |

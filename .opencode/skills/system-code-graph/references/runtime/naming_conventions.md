@@ -49,7 +49,8 @@ Names are stable per layer; do not normalize them across layers unless a packet 
 | MCP tool namespace prefix | `mcp__mk_code_index__` | Tool call sites | MCP convention: hyphens → underscores in tool prefix. |
 | Launcher file | `mk-code-index-launcher.cjs` | `.opencode/bin/mk-code-index-launcher.cjs` | Filesystem path uses the hyphenated server identity. |
 | Database directory | `.opencode/skills/system-code-graph/mcp_server/database/` | `INSTALL_GUIDE.md §7` | Skill-local data dir; folder name uses `code-graph` (skill-domain) to keep the path readable across runtimes. |
-| Plugin bridge file | `mk-code-graph-bridge.mjs` | `.opencode/plugins/` (if present) | Matches the `code-graph` domain word and the symmetry pattern used by `system-skill-advisor` (whose plugin bridge is `mk-skill-advisor-bridge.mjs`). |
+| Plugin bridge file | `mk-code-graph-bridge.mjs` | `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs` (spawned by the OpenCode plugin `.opencode/plugins/mk-code-graph.js`) | Matches the `code-graph` domain word and the symmetry pattern used by `system-skill-advisor` (whose plugin bridge is `mk-skill-advisor-bridge.mjs`). The bridge routes through the daemon-backed CLI shim in warm-only mode. |
+| CLI shim | `code-index.cjs` | `.opencode/bin/code-index.cjs` | Daemon-backed CLI uses the hyphenated server identity without the `mk-` prefix; exposes the same tool ids as the MCP namespace as an additive dual-stack fallback (`--warm-only`, exit `75` = retryable). |
 | Hook source location | `.opencode/skills/system-spec-kit/mcp_server/hooks/` | Hook source tree | Asymmetric vs the skill-owned hook pattern. See §4 below. |
 
 ---

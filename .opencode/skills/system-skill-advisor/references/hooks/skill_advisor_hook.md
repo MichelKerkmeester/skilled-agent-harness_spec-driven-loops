@@ -42,7 +42,7 @@ Hooks surface compact advisor context; they do not replace skill loading or leak
 | Copilot CLI | `mcp_server/hooks/copilot/user-prompt-submit.ts` | managed block in `$HOME/.copilot/copilot-instructions.md`. Hook stdout remains `{}` | Copilot advisor is NEXT-PROMPT freshness: current prompt sees PRIOR turn's brief. |
 | Codex CLI | `mcp_server/hooks/codex/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Stdin JSON is canonical and wins over argv JSON. |
 | Codex fallback | `mcp_server/hooks/codex/prompt-wrapper.ts` | `promptWrapper` and `wrappedPrompt` | Runs only when Codex hook policy reports hooks unavailable. |
-| OpenCode | `.opencode/plugins/spec-kit-skill-advisor.js` + `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js`, applies the same effective threshold on native and fallback paths, then falls back to the Python-backed brief path only when native is unavailable. |
+| OpenCode | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js` and applies the same effective threshold on native and fallback paths. When native is unavailable it falls back to the warm-only skill-advisor CLI (`.opencode/bin/skill-advisor.cjs`; daemon socket probe, never a cold spawn, exit `75` retryable, `metadata.route: "cli"`); the Python route remains only as a force-local fail-open stub that yields no brief. |
 
 Build all runtime adapters:
 
@@ -110,7 +110,7 @@ printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}'
 
 ```bash
 printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | \
-  node .opencode/plugins/spec-kit-skill-advisor-bridge.mjs
+  node .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs
 ```
 
 Expected: `status: "ok"` with `metadata.route: "native"` when native is available, `metadata.workspaceRoot` matching the supplied repo root and `metadata.effectiveThresholds` showing the active confidence/uncertainty pair.

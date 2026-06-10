@@ -106,6 +106,8 @@ Every caller that uses an advisor response must inspect `trustState` plus act ac
 | Python shim (`skill_advisor.py`) | Use native response | Pass through with stale annotation | Compute fallback locally | Compute fallback locally |
 | Validation harness (`advisor_validate`) | Run as configured | Trigger rebuild before measurement | Trigger rebuild before measurement | Fail the validate run with clear error |
 
+When `unavailable` is caused by the runtime's MCP transport (tools missing or failing to initialize) rather than a dead daemon, the daemon-backed CLI shim can still reach the warm daemon: `node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json`. Exit `75` means the daemon itself is unavailable and the failure is retryable.
+
 The caller must NOT:
 
 - Cache the trust state across calls. Always inspect the current response.

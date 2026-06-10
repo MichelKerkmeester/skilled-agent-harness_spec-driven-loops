@@ -34,6 +34,18 @@ These variables control memory system behavior, token budgets, script execution,
 
 Codex note: point `SPEC_KIT_DB_DIR` at a writable directory outside read-only repo paths (for example under your home directory or `/tmp`) so the MCP server can derive and create the active SQLite database safely. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
+### CLI Transport (Dual-Stack Fallback)
+
+The MCP server remains the primary registered transport; the daemon-backed CLI shim (`.opencode/bin/spec-memory.cjs`) is an additive dual-stack surface over the same warm daemon.
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY` | unset (off) | Default the spec-memory CLI to warm-only: probe the daemon socket, never cold-spawn, exit `75` when the daemon is down |
+| `SPECKIT_SPEC_MEMORY_CLI_PROMPT_TIME` | unset (off) | Marks a spec-memory CLI invocation as prompt-time; implies warm-only |
+| `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE` | unset (off) | Dev override for the CLI shim's dist-freshness guard (skips the exit-`69` stale check) |
+
+The sibling families for the other daemons (`SPECKIT_CODE_INDEX_CLI_*`, `MK_SKILL_ADVISOR_CLI_*`, `MK_SKILL_ADVISOR_TRUST_DEFAULT`) are documented in `mcp_server/ENV_REFERENCE.md`.
+
 ---
 
 ## 3. EMBEDDING PROVIDERS

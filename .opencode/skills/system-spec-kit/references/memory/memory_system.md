@@ -22,6 +22,7 @@ When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | MCP Server | `mcp_server/context-server.ts` | Spec Kit Memory MCP with vector search |
+| CLI Shim | `.opencode/bin/spec-memory.cjs` | Daemon-backed CLI over the same tool surface; additive warm-only fallback when runtime MCP transport is unavailable (exit `75` = retryable daemon/IPC unavailability) |
 | Database | `mcp_server/database/context-index__*.sqlite` | SQLite with FTS5 + vector embeddings; active profile filename resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
 | Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
 | Scripts | runtime `scripts/dist/memory/generate-context.js` (source: `scripts/memory/generate-context.ts`) | Canonical continuity save entrypoint for packet docs |

@@ -252,7 +252,7 @@ DO NOT use Write/Edit to author continuity update in canonical spec docss direct
 
 ### Memory Context Loading
 
-Use `memory_context()` (L1 unified entry) as primary retrieval. Use `memory_search()` (L2) only as fallback for direct parameter control.
+Use `memory_context()` (L1 unified entry) as primary retrieval. Use `memory_search()` (L2) only as fallback for direct parameter control. If the MCP transport is down while the daemon is warm, the same tools are reachable via the daemon-backed CLI: `node .opencode/bin/spec-memory.cjs memory_context --json '{...}' --format json --warm-only` (warm-only never starts a daemon; exit 75 = backend unavailable, retry after MCP reconnect or daemon prewarm).
 
 ---
 

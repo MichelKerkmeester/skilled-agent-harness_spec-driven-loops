@@ -32,8 +32,8 @@ skill_advisor_doctor_invariant: |
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   contract: "local command design contract"
-  cli_health_command: "node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500"
-  cli_health_policy: "Warm-only: probe the existing mk-skill-advisor IPC socket first. If the socket is absent or dead, report CLI availability as retryable-unavailable and do not start a daemon."
+  cli_health_command: "node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only"
+  cli_health_policy: "Warm-only: probe the existing mk-skill-advisor IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
     spec: "spec.md"  # advisor system requirements
     decision_record: "decision-record.md"  # ADRs for scoring lanes + thresholds

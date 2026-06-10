@@ -578,6 +578,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 | Validation errors (exit 2) | Fix before proceeding |
 | System errors (exit 3) | Diagnose tooling, missing folders, or file I/O before proceeding |
 | Incomplete session detected | Offer: Resume / Restart / Cancel |
+| Memory context load failure | Proceed without prior context; note gap. If the MCP transport is down while the daemon is warm, retry via the daemon-backed CLI: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"<feature>"}' --format json --warm-only` (exit 75 = backend unavailable, retryable) |
 
 ---
 

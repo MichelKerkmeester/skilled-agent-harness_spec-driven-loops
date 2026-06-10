@@ -491,7 +491,7 @@ STATUS=OK ACTION=budget
 | Token budget exceeded | Warn with dashboard, offer trim/shorten/cancel |
 | File already exists with same name | ASK: overwrite or rename |
 | File not found (edit/remove) | Show list dashboard, ask user to select |
-| `memory_save` fails | Show error, suggest `memory_index_scan({ force: true })` |
+| `memory_save` fails | Show error, suggest `memory_index_scan({ force: true })`. If the MCP transport is down while the daemon is warm, the same tools are reachable via the daemon-backed CLI: `node .opencode/bin/spec-memory.cjs memory_save --json '{...}' --format json --warm-only` (exit 75 = backend unavailable, retryable) |
 | Filename has spaces or uppercase | Auto-convert to kebab-case |
 
 ---

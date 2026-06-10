@@ -826,6 +826,7 @@ STATUS=OK ACTION=dashboard
 | No causal edges found | Display empty graph message |
 | Spec-doc record ID not found | `STATUS=FAIL ERROR="Memory #<id> not found"` (runtime string preserved verbatim) |
 | No learning history records | Suggest using `preflight` before tasks |
+| MCP tools missing or transport down | `STATUS=FAIL`; operator fallback is the daemon-backed `spec-memory` CLI, e.g. `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"<query>"}' --format json --timeout-ms 3000 --warm-only` (warm-only never starts a daemon; exit 75 = backend unavailable, retry after MCP reconnect or daemon prewarm) |
 
 ---
 

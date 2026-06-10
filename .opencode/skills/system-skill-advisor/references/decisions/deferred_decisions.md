@@ -86,6 +86,8 @@ A complete migration of both hooks requires building `session-start.js` at the N
 
 ### Status: DEPRECATION BANNERS IN PLACE as of 2026-05-16 in packet `008-tier-d-execution`
 
+> **Update (2026-06-08).** The Devin runtime was subsequently removed from the framework entirely (see the F4 supersession note above): the `hooks/devin/` sources + dist and `.devin/hooks.v1.json` no longer exist. All Devin rows and steps below are retained as historical record only; the remaining F6 removal scope concerns the claude/codex entries.
+
 All 4 OLD hook READMEs (`system-spec-kit/mcp_server/hooks/{claude,codex,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
 
 ### F6 audit progress (2026-05-18)

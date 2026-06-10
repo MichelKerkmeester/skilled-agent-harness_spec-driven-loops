@@ -12,16 +12,16 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Implementation done, suites green; runtime T9xx drills pending"
-    next_safe_action: "Run T9xx transport-down drills during dual-stack window"
+    recent_action: "004 release-cleanup complete; stress set 434-438 executed + verified"
+    next_safe_action: "Run T9xx transport-down drills (Claude+Codex hooks) to close 001/002/003"
     blockers: []
     key_files:
       - "spec.md"
+      - "004-release-and-program-cleanup/implementation-summary.md"
       - "001-spec-memory-cli/spec.md"
-      - "001-spec-memory-cli/000-spec-memory-cli-research/research/research.md"
-    completion_pct: 80
+    completion_pct: 92
     open_questions: []
     answered_questions:
       - "028 is the parent packet for the MCP-to-CLI transition; the completed feasibility/design/risk research lives under child phase 001."
@@ -102,7 +102,7 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 | 001 | `001-spec-memory-cli/` | Implementation complete, suites green; T9xx transport-down drill pending (dual-stack window open) | The spec-memory CLI workstream. Research record nested as `000-spec-memory-cli-research/` (four runs ending in GO + zero unknowns, 8 delta specs, 10–13d estimate); implementation children: `001-cli-core/` (build), `002-hardening-and-tests/` (regression-lock), `003-runtime-integration/` (adoption + dual-stack window) |
 | 002 | `002-code-index-cli/` | Implementation complete, suites green; T9xx transport-down drill pending (dual-stack window open) | CLI-fallback workstream for `mk_code_index` (system-code-graph, 8 tools); phase 000 feasibility research, implementation phases on GO |
 | 003 | `003-skill-advisor-cli/` | Implementation complete (tri-daemon program gate passed); T9xx transport-down drill pending (dual-stack window open) | CLI-fallback workstream for `mk_skill_advisor` (system-skill-advisor, 9 tools); phase 000 feasibility research incl. the skill_advisor.py reconcile-vs-supersede question |
-| 004 | `004-release-and-program-cleanup/` | In progress | Post-release documentation alignment (release gate, modeled on 026's cleanup phase): skill/code/root READMEs, commands, agent rosters, references incl. ENV_REFERENCE env-var rows, feature catalogs + manual-testing playbooks, release changelog |
+| 004 | `004-release-and-program-cleanup/` | Complete | Post-release documentation alignment (release gate, modeled on 026's cleanup phase): skill/code/root READMEs, commands, agent rosters, references incl. ENV_REFERENCE env-var rows, feature catalogs + manual-testing playbooks, release changelog. SC-001/SC-002 green; 028 CLI stress set 434-438 executed (MiMo test subject + Fable review + orchestrator ground truth); doctor parity gap dispositioned-deferred for sign-off |
 | 005+ | not yet created | Pending | Separately-gated follow-ons: migration of the measured MCP reference surfaces, then the MCP-retirement decision |
 
 ### Phase Transition Rules

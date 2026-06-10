@@ -480,7 +480,7 @@ Record results in decision-record.md for architectural changes.
 | Error | Action |
 |-------|--------|
 | Spec folder not found | Verify path exists; offer to create via /speckit:plan |
-| Memory context load failure | Proceed without prior context; note gap |
+| Memory context load failure | Proceed without prior context; note gap. If the MCP transport is down while the daemon is warm, retry via the daemon-backed CLI: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"<feature>"}' --format json --warm-only` (exit 75 = backend unavailable, retryable) |
 | YAML workflow dispatch error | Retry once; if persistent, report error and halt |
 
 ---

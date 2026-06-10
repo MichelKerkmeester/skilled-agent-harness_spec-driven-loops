@@ -393,6 +393,8 @@ Why this is next: [short reason based on tasks/checklist/memory]
 
 Call MCP tools directly — NEVER through Code Mode.
 
+**Transport fallback:** if the `mk-spec-memory` MCP tools are missing from the runtime, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm, use the daemon-backed CLI instead: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000 --warm-only`. Warm-only never starts a daemon; exit 75 means retryable daemon/IPC unavailability — retry after MCP reconnect, daemon prewarm, or a short backoff. The canonical file-based recovery ladder (`handover.md` → `_memory.continuity` → spec docs) needs no MCP at all and remains the first resort.
+
 ### Memory Tools
 
 | Tool                    | Purpose                                |

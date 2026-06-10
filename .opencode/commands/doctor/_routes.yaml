@@ -128,7 +128,7 @@ routes:
       - mcp__mk_spec_memory__memory_context
       - mcp__mk_spec_memory__memory_search
     script_invocations:
-      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500'
+      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "skill advisor scoring"
       - "skill advisor rebuild"
@@ -143,7 +143,7 @@ routes:
     gate3_location: "n/a (read-only audit; no spec folder required)"
     mcp_tools: []   # script-only audit; no MCP calls
     script_invocations:
-      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500'
+      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "skill budget audit"
       - "description budget check"

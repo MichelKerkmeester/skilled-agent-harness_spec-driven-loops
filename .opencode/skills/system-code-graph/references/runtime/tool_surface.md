@@ -85,6 +85,8 @@ mcp__mk_code_index__code_graph_query
 
 ```
 
+The same 8-tool surface is also reachable through the daemon-backed CLI shim `.opencode/bin/code-index.cjs` (for example `code-index code_graph_status --format json`). The CLI is an additive dual-stack fallback over the same warm daemon, not a replacement for the MCP registration: `--warm-only` probes the daemon socket without cold-spawning, and exit `75` signals retryable daemon/IPC unavailability.
+
 Direct library consumers in `system-spec-kit` handlers and hooks bypass MCP and import from `system-code-graph/mcp_server/lib/*` via the boundary at `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. They do not call the MCP-namespaced tool IDs.
 
 ---

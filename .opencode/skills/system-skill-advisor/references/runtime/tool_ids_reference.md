@@ -83,6 +83,8 @@ Worked examples:
 
 Stable IDs survive migrations. The MCP server namespace may rename across packets, but the per-tool IDs do not change. See [legacy_tool_bridge.md](./legacy_tool_bridge.md) for the bridge policy.
 
+The same public tool ids are also invocable through the daemon-backed CLI shim `.opencode/bin/skill-advisor.cjs` (for example `skill-advisor advisor_status --workspace-root "$PWD" --format json`), which accepts snake_case, kebab-case, and camelCase aliases. The CLI is an additive dual-stack fallback over the same warm daemon: `--warm-only` probes the daemon socket without cold-spawning, exit `75` signals retryable daemon/IPC unavailability, and the mutation tools (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) additionally require `--trusted`.
+
 ---
 
 ## 6. SCHEMA INDEX
