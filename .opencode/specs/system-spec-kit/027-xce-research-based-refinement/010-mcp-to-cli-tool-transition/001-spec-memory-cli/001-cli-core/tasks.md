@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: CLI Core [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core/tasks]"
+title: "Tasks: Phase 1: CLI Core [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core/tasks]"
 description: "Implemented task breakdown for CLI Core: daemon-backed spec-memory CLI, shim, runtime command generation from TOOL_DEFINITIONS, Zod argv validation, targeted tests, and live smoke evidence."
 trigger_phrases:
   - "spec-memory cli core tasks"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core"
     last_updated_at: "2026-06-09T20:17:55Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Closed successor-owned verification row; phase 002 shipped"

@@ -58,7 +58,7 @@ The current server starts the owner heartbeat and IPC socket after connecting st
 | Reuse Zod validation at argv boundary | No, not verbatim | Code-index has hand-coded JSON schema and `validateToolArgs()` subset validation. [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:200] |
 | Exit codes 0/1/64/69/75 | Yes | Ensure blocked-read payload is not rendered as false success in text mode. |
 | `--session-id` | Partial | Less central than memory; still useful for audit/provenance and future session-bound behavior. |
-| Keep MCP registered during dual-stack | Yes | Required; parent packet keeps MCP migration/removal out of scope. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:111] |
+| Keep MCP registered during dual-stack | Yes | Required; parent packet keeps MCP migration/removal out of scope. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:111] |
 
 ## 5. CLI Architecture
 
@@ -88,7 +88,7 @@ Broad documentation/history references are larger and noisy. They belong to a fu
 
 ## 7. Hook-Latency Fit
 
-Warm CLI usage is plausible for hooks. The nearest measured precedent is spec-memory closure: empty Node p95 40.85ms and bridge-require p95 46.09ms. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md:187] Code-index configs already pin short socket dirs (`/tmp/mk-code-index`) in all three runtime configs. [SOURCE: file:.codex/config.toml:92] [SOURCE: file:.claude/mcp.json:61] [SOURCE: file:opencode.json:73]
+Warm CLI usage is plausible for hooks. The nearest measured precedent is spec-memory closure: empty Node p95 40.85ms and bridge-require p95 46.09ms. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md:187] Code-index configs already pin short socket dirs (`/tmp/mk-code-index`) in all three runtime configs. [SOURCE: file:.codex/config.toml:92] [SOURCE: file:.claude/mcp.json:61] [SOURCE: file:opencode.json:73]
 
 Policy:
 
@@ -160,8 +160,8 @@ The estimate is lower than spec-memory because there are 8 tools rather than 37,
 | Pure daemon-free CLI | Fails zero-feature-loss; must replace runtime safety and persistence behavior. | [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/index.ts:139] | 3, 10 |
 | Treat `detect_changes` as absent | Current schema and dispatcher register it. | [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:21] | 1 |
 | Copy spec-memory Zod codegen path | Code-index validator is hand-coded JSON-schema subset plus dispatcher required checks. | [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:200] | 4 |
-| Prompt-time cold spawn | Prior-art Node overhead supports warm calls; cold spawn is startup/manual only. | [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md:187] | 7 |
-| Full MCP reference migration now | Parent packet excludes full migration until dual-stack proves itself. | [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:111] | 6 |
+| Prompt-time cold spawn | Prior-art Node overhead supports warm calls; cold spawn is startup/manual only. | [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md:187] | 7 |
+| Full MCP reference migration now | Parent packet excludes full migration until dual-stack proves itself. | [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:111] | 6 |
 | Separate CLI daemon manager | Existing launcher/bridge already own race safety; a second manager adds split-brain risk. | [SOURCE: file:.opencode/bin/mk-code-index-launcher.cjs:347] | 8 |
 
 ## 12. Open Questions
@@ -184,9 +184,9 @@ Implementation packet should still choose exact command name (`code-index`, `mk-
 
 ## 14. References
 
-- `.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec.md`
-- `.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md`
-- `.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/cli-backend/lineages/gpt/research.md`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec.md`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/cli-backend/lineages/gpt/research.md`
 - `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`
 - `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts`
 - `.opencode/skills/system-code-graph/mcp_server/index.ts`

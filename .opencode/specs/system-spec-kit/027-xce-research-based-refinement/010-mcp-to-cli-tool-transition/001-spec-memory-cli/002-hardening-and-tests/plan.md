@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests/plan]"
+title: "Implementation Plan: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests/plan]"
 description: "Planned approach: Regression-lock the dual-stack guarantees: dual-simultaneous-spawn vitest, dual-client MCP+CLI vitest, CLI-spawn idle-cleanup coverage, all-37 parity suite, exit-69 recovery docs."
 trigger_phrases:
   - "cli hardening tests plan"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-09T20:17:55Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Reconciled plan status with shipped hardening evidence"

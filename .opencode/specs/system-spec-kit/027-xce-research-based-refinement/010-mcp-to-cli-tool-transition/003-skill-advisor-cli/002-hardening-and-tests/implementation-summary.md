@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/implementation-summary]"
+title: "Implementation Summary: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/implementation-summary]"
 description: "Shipped summary for Phase 2 Hardening and Tests: skill-advisor hardening suites and the passed tri-daemon program gate."
 trigger_phrases:
   - "skill-advisor hardening and tests result"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-09T20:17:55Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Reconciled shipped hardening suites + passed tri-daemon drill"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: Release and Program Cleanup [system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup/spec]"
+title: "Feature Specification: Phase 4: Release and Program Cleanup [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/spec]"
 description: "Post-release documentation alignment pass for the 028 CLI program: every README (skill, code, root), command, agent roster, skill reference/asset, feature catalog, and manual-testing playbook double-checked against the shipped dual-stack reality, plus the release changelog."
 trigger_phrases:
   - "028 release and program cleanup"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
     last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Phase complete: doc surface aligned, SC-001/SC-002 green, stress set executed"

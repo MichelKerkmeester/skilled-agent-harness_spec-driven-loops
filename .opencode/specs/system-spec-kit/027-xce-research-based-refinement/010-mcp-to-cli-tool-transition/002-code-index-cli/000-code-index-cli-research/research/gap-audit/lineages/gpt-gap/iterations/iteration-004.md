@@ -6,9 +6,9 @@ Validate phase ordering, estimate arithmetic, and cross-workstream shared-infras
 
 ## Findings
 
-- Estimate arithmetic is coherent. The code-index phase map says phase 1 is about 3.5-4.5d, phase 2 is about 1.5-2d, and phase 3 is about 1.5-2d, totaling about 6.5-8.5d. That fits the research estimate of 6-9d. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:101] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:102] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:103] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/research.md:39]
+- Estimate arithmetic is coherent. The code-index phase map says phase 1 is about 3.5-4.5d, phase 2 is about 1.5-2d, and phase 3 is about 1.5-2d, totaling about 6.5-8.5d. That fits the research estimate of 6-9d. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:101] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:102] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:103] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/research.md:39]
 
-- P1 gap: prompt-time dual failure is not explicitly accepted. Phase 1 says a stopped daemon should auto-spawn; phase 3 says hook paths are warm-only and fail-open when MCP transport is down; phase 3 REQ-001 only requires demonstration with MCP stopped, not with MCP stopped and daemon absent/dead. The missing acceptance case is: hook calls CLI warm path with MCP down and daemon down, does not cold-spawn, returns fail-open within the runtime hook timeout. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:126] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec.md:94] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec.md:119]
+- P1 gap: prompt-time dual failure is not explicitly accepted. Phase 1 says a stopped daemon should auto-spawn; phase 3 says hook paths are warm-only and fail-open when MCP transport is down; phase 3 REQ-001 only requires demonstration with MCP stopped, not with MCP stopped and daemon absent/dead. The missing acceptance case is: hook calls CLI warm path with MCP down and daemon down, does not cold-spawn, returns fail-open within the runtime hook timeout. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:126] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec.md:94] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec.md:119]
 
 - Hook timeout evidence makes that acceptance case material. Current Claude, Codex, and Devin hook registrations use 3-second timeouts; a prompt-time fallback must fail open inside those ceilings and avoid cold-spawn work on the prompt path. [SOURCE: file:.claude/settings.local.json:61] [SOURCE: file:.codex/settings.json:7] [SOURCE: file:.devin/hooks.v1.json:19]
 
@@ -16,8 +16,8 @@ Validate phase ordering, estimate arithmetic, and cross-workstream shared-infras
 
 ## Sources Consulted
 
-- [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:117]
-- [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:118]
+- [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:117]
+- [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:118]
 - [SOURCE: file:opencode.json:27]
 - [SOURCE: file:opencode.json:55]
 - [SOURCE: file:opencode.json:73]

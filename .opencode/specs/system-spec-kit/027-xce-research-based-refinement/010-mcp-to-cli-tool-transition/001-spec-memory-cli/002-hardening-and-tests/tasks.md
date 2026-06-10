@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests/tasks]"
+title: "Tasks: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests/tasks]"
 description: "Planned task breakdown for Hardening and Tests; rows expand at speckit:plan time."
 trigger_phrases:
   - "cli hardening tests tasks"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-06T12:50:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded in planned state"

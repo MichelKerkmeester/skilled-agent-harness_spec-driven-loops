@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: Release and Program Cleanup [system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup/plan]"
+title: "Implementation Plan: Phase 4: Release and Program Cleanup [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/plan]"
 description: "Verification-first documentation alignment pass: read each doc surface, diff against the shipped dual-stack CLI reality, patch only real drift; ENV_REFERENCE rows, changelog entries, in-flight reconciliation."
 trigger_phrases:
   - "028 release cleanup plan"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
     last_updated_at: "2026-06-10T00:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Authored plan for the release-cleanup phase"

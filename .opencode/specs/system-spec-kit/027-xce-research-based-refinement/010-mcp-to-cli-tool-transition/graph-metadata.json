@@ -1,12 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-mcp-to-cli-tool-transition",
-  "spec_folder": "system-spec-kit/028-mcp-to-cli-tool-transition",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
   "children_ids": [
-    "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
-    "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli",
-    "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli"
+    "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli",
+    "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli",
+    "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+    "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -16,7 +17,7 @@
   "derived": {
     "trigger_phrases": [
       "mcp to cli transition",
-      "028 transition",
+      "010 transition",
       "spec-memory cli phases",
       "memory mcp cli",
       "dual-stack cli program"
@@ -25,7 +26,7 @@
       "mcp",
       "cli",
       "transition",
-      "028",
+      "010",
       "spec-memory",
       "phases",
       "memory",

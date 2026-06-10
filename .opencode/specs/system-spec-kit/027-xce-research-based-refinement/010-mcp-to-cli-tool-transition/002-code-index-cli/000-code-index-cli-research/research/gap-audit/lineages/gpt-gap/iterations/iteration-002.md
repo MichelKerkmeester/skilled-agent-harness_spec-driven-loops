@@ -6,11 +6,11 @@ Trace every research design delta to phase requirements/tasks, and every phase r
 
 ## Findings
 
-- D1, D2, and D10 are owned by phase 1 through the stable shim and dist-freshness guard. D3 and D4 are owned by manifest codegen and validateToolArgs parity. D5 is owned by blocked-read rendering. D6 and D7 are owned by exit taxonomy and timeout/warm-only policy plumbing. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/research.md:39] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:93] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:96]
+- D1, D2, and D10 are owned by phase 1 through the stable shim and dist-freshness guard. D3 and D4 are owned by manifest codegen and validateToolArgs parity. D5 is owned by blocked-read rendering. D6 and D7 are owned by exit taxonomy and timeout/warm-only policy plumbing. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/research.md:39] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:93] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:96]
 
-- D8 and D9 are owned by phase 2. The requirements explicitly require a dual-client test and dual-spawn/dead-socket-respawn test, while tasks T001 and T002 mirror the same work. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/spec.md:119] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/spec.md:120] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/tasks.md:57]
+- D8 and D9 are owned by phase 2. The requirements explicitly require a dual-client test and dual-spawn/dead-socket-respawn test, while tasks T001 and T002 mirror the same work. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/spec.md:119] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/spec.md:120] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/tasks.md:57]
 
-- P2 gap: phase-1 prose is truncated in both spec and tasks around the "NOT Zod" note. Acceptance criteria still preserve the requirement, but the broken sentence can confuse implementation and review. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:68] [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/tasks.md:58]
+- P2 gap: phase-1 prose is truncated in both spec and tasks around the "NOT Zod" note. Acceptance criteria still preserve the requirement, but the broken sentence can confuse implementation and review. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:68] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/tasks.md:58]
 
 ## Sources Consulted
 
@@ -18,8 +18,8 @@ Trace every research design delta to phase requirements/tasks, and every phase r
 - [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:213]
 - [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:61]
 - [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:67]
-- [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:119]
-- [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:127]
+- [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:119]
+- [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:127]
 
 ## Assessment
 

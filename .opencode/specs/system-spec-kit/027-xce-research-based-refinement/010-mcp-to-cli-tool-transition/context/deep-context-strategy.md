@@ -8,7 +8,7 @@ Gather context on:
 - `.opencode/skills/system-skill-advisor`
 - `.opencode/skills/system-spec-kit`
 
-Target packet: `specs/system-spec-kit/028-mcp-to-cli-tool-transition`.
+Target packet: `specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition`.
 
 ## Recovery Note
 

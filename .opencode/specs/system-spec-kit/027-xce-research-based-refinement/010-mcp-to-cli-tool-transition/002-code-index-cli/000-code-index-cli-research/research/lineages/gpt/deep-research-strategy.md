@@ -6,10 +6,10 @@ Can `mk_code_index` gain a dual-stack CLI fallback with zero feature loss, using
 
 ## Known Context
 
-- The packet explicitly scopes a single gpt-5.5 lane, forced 10 iterations, and a verdict-shaped report with an 8-tool parity matrix, daemon-dependency loss table, prior-art transfer, migration map, risks, and effort. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec.md:63]
+- The packet explicitly scopes a single gpt-5.5 lane, forced 10 iterations, and a verdict-shaped report with an 8-tool parity matrix, daemon-dependency loss table, prior-art transfer, migration map, risks, and effort. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec.md:63]
 - `resource-map.md` was not present in the target spec folder at init; skipping coverage gate.
 - The requested executor was `cli-codex model=gpt-5.5`; nested Codex self-invocation was not used because the `cli-codex` skill forbids invoking Codex from inside Codex.
-- Code Graph was unavailable at session startup, which matches the packet's motivating incident class. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec.md:52]
+- Code Graph was unavailable at session startup, which matches the packet's motivating incident class. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec.md:52]
 
 ## Key Questions
 
@@ -62,7 +62,7 @@ Can `mk_code_index` gain a dual-stack CLI fallback with zero feature loss, using
 | Pure daemon-free CLI | Fails zero-feature-loss because it bypasses resident lease, readiness, bridge, scan, and recovery behavior. | [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/index.ts:139] |
 | Treat `detect_changes` as unregistered | Current schema and dispatcher include it. | [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:21] |
 | Zod codegen verbatim from spec-memory | Code-index uses hand-coded JSON schema validation. | [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:200] |
-| Full MCP-reference migration now | Parent packet keeps full migration out of scope until dual-stack proves itself. | [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:111] |
+| Full MCP-reference migration now | Parent packet keeps full migration out of scope until dual-stack proves itself. | [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:111] |
 
 ## Next Focus
 

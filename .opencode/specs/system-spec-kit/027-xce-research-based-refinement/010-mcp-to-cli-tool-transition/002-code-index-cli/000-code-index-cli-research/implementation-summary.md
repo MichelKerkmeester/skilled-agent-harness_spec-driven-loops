@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Code-Index CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/implementation-summary]"
+title: "Implementation Summary: Code-Index CLI Feasibility [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/implementation-summary]"
 description: "Planned-stub summary for the Code-Index CLI feasibility research. Nothing concluded yet: the forced-10 lane runs against the 10-KQ register; the verdict lands here at reconciliation."
 trigger_phrases:
   - "code index cli feasibility result"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research"
     last_updated_at: "2026-06-06T14:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "GO verdict shipped; research reconciled"

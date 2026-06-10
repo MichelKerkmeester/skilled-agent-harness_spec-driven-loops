@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/implementation-summary]"
+title: "Implementation Summary: Phase 3: Runtime Integration [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/implementation-summary]"
 description: "Shipped summary for Phase 3 Runtime Integration: spec-memory CLI fallback, OpenCode plugin, and runtime guidance."
 trigger_phrases:
   - "cli runtime integration implementation-summary"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration"
     last_updated_at: "2026-06-09T19:10:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Reconciled shipped spec-memory runtime evidence"

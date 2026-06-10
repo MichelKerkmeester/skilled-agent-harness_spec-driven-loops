@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec]"
+title: "Feature Specification: Phase 3: Runtime Integration [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec]"
 description: "Pairing per program rule: allowlists, code-graph hook adapters (Claude/Codex) gain the CLI warm path, OpenCode plugin bridge repaired via CLI/IPC transport + CLI fallback, docs, dual-stack window"
 trigger_phrases:
   - "code-index runtime integration"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration"
     last_updated_at: "2026-06-06T15:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded in planned state"

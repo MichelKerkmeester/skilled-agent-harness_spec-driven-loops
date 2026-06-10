@@ -47,9 +47,9 @@ Adversarial completeness audit of the `003-skill-advisor-cli` workstream packet 
 
 | Approach | Reason Eliminated | Evidence |
 |---|---|---|
-| Mark the workstream NO-GO | No P0 was found; gaps are pre-implementation cleanup items. | file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/spec.md:100 |
-| Require Gemini CLI fallback implementation | Operator explicitly excluded Gemini from required implementation scope. | file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/gap-audit/deep-research-strategy.md:22 |
-| Treat phase placeholder surfaces as blockers | Planned docs state expansion happens at speckit:plan time. | file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/plan.md:84 |
+| Mark the workstream NO-GO | No P0 was found; gaps are pre-implementation cleanup items. | file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/spec.md:100 |
+| Require Gemini CLI fallback implementation | Operator explicitly excluded Gemini from required implementation scope. | file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/gap-audit/deep-research-strategy.md:22 |
+| Treat phase placeholder surfaces as blockers | Planned docs state expansion happens at speckit:plan time. | file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/plan.md:84 |
 
 ## Next Focus
 

@@ -13,7 +13,7 @@
       "severity": "P1",
       "title": "Codex live hook registration is misaligned with the phase-3 Codex adapter target",
       "evidence": [
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec.md:97",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec.md:97",
         "file:.codex/hooks.json:21",
         "file:.codex/settings.json:8",
         "file:.opencode/skills/system-spec-kit/references/config/hook_system.md:130"
@@ -25,10 +25,10 @@
       "severity": "P1",
       "title": "Gemini exclusion is undocumented and contradicted by phase-3 allowlist wording",
       "evidence": [
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:117",
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:118",
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec.md:66",
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec.md:96"
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:117",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:118",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec.md:66",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec.md:96"
       ],
       "recommendation": "Remove Gemini from phase-3 scope and document it as a non-goal, or promote it to a real requirement with files and acceptance criteria."
     },
@@ -50,9 +50,9 @@
       "severity": "P2",
       "title": "Sibling CLI shims should inherit per-service short socket defaults",
       "evidence": [
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core/spec.md:101",
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:97",
-        "file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/spec.md:94",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core/spec.md:101",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:97",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/spec.md:94",
         "file:.opencode/bin/lib/launcher-ipc-bridge.cjs:59"
       ],
       "recommendation": "Track as a program-level checklist item; spec-memory itself already owns the short `/tmp/mk-spec-memory` default."

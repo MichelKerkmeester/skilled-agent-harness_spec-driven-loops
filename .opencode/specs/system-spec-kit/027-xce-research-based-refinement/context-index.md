@@ -38,3 +38,7 @@ On 2026-06-04, the same peck-derived phase was renumbered again to the first act
 | `005-write-path-reconciliation/` | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation |
 | `006-semantic-trigger-fallback/` | `004-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching |
 | `007-learning-feedback-reducers/` | `005-learning-feedback-reducers/` | Learning feedback reducers |
+
+## MCP to CLI Workstream Placement
+
+028-mcp-to-cli-tool-transition relocated here as child phase 010 (history-preserving git mv); the dual-stack CLI transition is now a 027 workstream.

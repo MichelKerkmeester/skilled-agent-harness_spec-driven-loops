@@ -17570,7 +17570,7 @@
       "lastUpdated": "2026-06-10T04:53:31.269Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
       "description": "Feature Specification: MCP to CLI Tool Transition (Phase Parent)",
       "keywords": [
         "feature",
@@ -17585,7 +17585,7 @@
       "lastUpdated": "2026-06-10T04:53:31.276Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli",
       "description": "Feature Specification: Spec-Memory CLI Workstream (Phase Parent)",
       "keywords": [
         "feature",
@@ -17599,7 +17599,7 @@
       "lastUpdated": "2026-06-10T04:53:31.280Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
       "description": "Feature Specification: Memory MCP to CLI Feasibility",
       "keywords": [
         "feature",
@@ -17612,7 +17612,7 @@
       "lastUpdated": "2026-06-07T14:08:18.213Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
       "description": "Feature Specification: Phase 1: CLI Core",
       "keywords": [
         "feature",
@@ -17624,7 +17624,7 @@
       "lastUpdated": "2026-06-10T04:53:31.285Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests",
       "description": "Feature Specification: Phase 2: Hardening and Tests",
       "keywords": [
         "feature",
@@ -17636,7 +17636,7 @@
       "lastUpdated": "2026-06-10T04:53:31.290Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration",
       "description": "Feature Specification: Phase 3: Runtime Integration",
       "keywords": [
         "feature",
@@ -17648,7 +17648,7 @@
       "lastUpdated": "2026-06-10T04:53:31.294Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli",
       "description": "Feature Specification: Code-Index CLI Workstream (Phase Parent)",
       "keywords": [
         "feature",
@@ -17662,7 +17662,7 @@
       "lastUpdated": "2026-06-10T04:53:31.298Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
       "description": "Feature Specification: Code-Index CLI Feasibility",
       "keywords": [
         "feature",
@@ -17674,7 +17674,7 @@
       "lastUpdated": "2026-06-07T14:08:18.231Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
       "description": "Feature Specification: Phase 1: CLI Core",
       "keywords": [
         "feature",
@@ -17686,7 +17686,7 @@
       "lastUpdated": "2026-06-07T14:08:18.236Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests",
       "description": "Feature Specification: Phase 2: Hardening and Tests",
       "keywords": [
         "feature",
@@ -17698,7 +17698,7 @@
       "lastUpdated": "2026-06-10T04:53:31.302Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration",
       "description": "Feature Specification: Phase 3: Runtime Integration",
       "keywords": [
         "feature",
@@ -17710,7 +17710,7 @@
       "lastUpdated": "2026-06-10T04:53:31.307Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli",
       "description": "Feature Specification: Skill-Advisor CLI Workstream (Phase Parent)",
       "keywords": [
         "feature",
@@ -17724,7 +17724,7 @@
       "lastUpdated": "2026-06-10T04:53:31.312Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
       "description": "Feature Specification: Skill-Advisor CLI Feasibility",
       "keywords": [
         "feature",
@@ -17736,7 +17736,7 @@
       "lastUpdated": "2026-06-07T14:08:18.252Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core",
       "description": "Feature Specification: Phase 1: CLI Core",
       "keywords": [
         "feature",
@@ -17748,7 +17748,7 @@
       "lastUpdated": "2026-06-07T14:08:18.256Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
       "description": "Feature Specification: Phase 2: Hardening and Tests",
       "keywords": [
         "feature",
@@ -17760,7 +17760,7 @@
       "lastUpdated": "2026-06-10T04:53:31.316Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration",
       "description": "Feature Specification: Phase 3: Runtime Integration",
       "keywords": [
         "feature",
@@ -17772,7 +17772,7 @@
       "lastUpdated": "2026-06-10T04:53:31.321Z"
     },
     {
-      "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup",
       "description": "Feature Specification: Phase 4: Release and Program Cleanup",
       "keywords": [
         "feature",

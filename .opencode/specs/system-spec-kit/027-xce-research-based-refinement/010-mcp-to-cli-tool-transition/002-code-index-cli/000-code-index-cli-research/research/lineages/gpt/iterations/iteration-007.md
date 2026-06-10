@@ -6,7 +6,7 @@ Determine whether a `code-index` CLI can fit session hooks and prompt-time helpe
 
 ## Findings
 
-1. Spec-memory closure measured empty Node p95 at 40.85ms and bridge-require p95 at 46.09ms; this is the best available local baseline for a warm Node CLI wrapper. [SOURCE: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md:187]
+1. Spec-memory closure measured empty Node p95 at 40.85ms and bridge-require p95 at 46.09ms; this is the best available local baseline for a warm Node CLI wrapper. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/research.md:187]
 2. Code-index runtime configs already pin `SPECKIT_IPC_SOCKET_DIR=/tmp/mk-code-index`, avoiding macOS socket path limits for warm IPC. [SOURCE: file:.codex/config.toml:92] [SOURCE: file:opencode.json:73]
 3. The shared bridge can use Unix socket or `tcp://` style socket paths, with `/tmp` allowed because macOS `sun_path` length can break deep workspace sockets. [SOURCE: file:.opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:111]
 4. `code_graph_status` is the hook-fit command; `code_graph_scan` and `code_graph_apply` should be startup/prewarm/cron/manual because they can scan, verify, mutate, and rollback.

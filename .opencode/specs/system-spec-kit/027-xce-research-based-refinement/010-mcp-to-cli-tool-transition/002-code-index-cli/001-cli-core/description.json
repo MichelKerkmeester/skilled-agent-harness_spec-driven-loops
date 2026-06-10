@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
   "description": "Feature Specification: Phase 1: CLI Core",
   "keywords": [
     "feature",
@@ -14,7 +14,8 @@
   "folderSlug": "cli-core",
   "parentChain": [
     "system-spec-kit",
-    "028-mcp-to-cli-tool-transition",
+    "027-xce-research-based-refinement",
+    "010-mcp-to-cli-tool-transition",
     "002-code-index-cli"
   ],
   "memorySequence": 0,

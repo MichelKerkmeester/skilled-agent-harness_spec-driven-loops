@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests/implementation-summary]"
+title: "Implementation Summary: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests/implementation-summary]"
 description: "Planned-stub summary for Phase 2 Hardening and Tests. Nothing implemented yet: this records the intended scope before any code is written."
 trigger_phrases:
   - "cli hardening tests implementation-summary"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-09T20:10:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Spec-memory hardening suites shipped and docs reconciled"

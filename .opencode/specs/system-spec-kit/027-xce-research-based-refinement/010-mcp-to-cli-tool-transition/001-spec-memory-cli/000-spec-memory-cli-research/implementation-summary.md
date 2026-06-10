@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Memory MCP to CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/implementation-summary]"
+title: "Implementation Summary: Memory MCP to CLI Feasibility [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/implementation-summary]"
 description: "GO verdict shipped: the mk-spec-memory MCP can become a CLI with zero feature loss iff the daemon stays; 3-lane fan-out research (15 iterations) merged with full parity matrix and migration plan."
 trigger_phrases:
   - "mcp cli feasibility result"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research"
     last_updated_at: "2026-06-06T12:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Run-4 total risk closure converged 4/20: zero unknowns remain in dual-stack scope"

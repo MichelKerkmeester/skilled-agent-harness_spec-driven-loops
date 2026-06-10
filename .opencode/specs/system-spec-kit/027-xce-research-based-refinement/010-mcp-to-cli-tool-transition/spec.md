@@ -3,7 +3,7 @@ title: "MCP to CLI Tool Transition"
 description: "Phase-parent packet for transitioning the mk-spec-memory MCP surface to a CLI tool: feasibility research, dual-stack CLI delivery, and the eventual migration decision."
 trigger_phrases:
   - "mcp to cli transition"
-  - "028 transition"
+  - "010 transition"
   - "spec-memory cli phases"
   - "memory mcp cli"
   - "dual-stack cli program"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition"
     last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "All created phases 001-004 complete; T9xx drills passed; stress set verified"
@@ -24,7 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "028 is the parent packet for the MCP-to-CLI transition; the completed feasibility/design/risk research lives under child phase 001."
+      - "010 is the 027 child phase for the MCP-to-CLI transition; the completed feasibility/design/risk research lives under child phase 001."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -52,6 +52,7 @@ _memory:
 | **Created** | 2026-06-06 |
 | **Updated** | 2026-06-10 |
 | **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -82,7 +83,7 @@ Transition the memory MCP surface to a CLI tool in phases: settle feasibility wi
 ### Out of Scope
 
 - MCP removal — the MCP registration stays through the dual-stack window.
-- Daemon/launcher redesign — 028 adds no daemon changes; it binds the CLI to the daemon's existing tool-handler + IPC surface. (The launcher/lease/reap/re-election lifecycle evolved under packets 026/027/140/030 after this packet was drafted; the CLI auto-spawn path must target that current launcher contract — see each workstream's hardening phase.)
+- Daemon/launcher redesign — this phase adds no daemon changes; it binds the CLI to the daemon's existing tool-handler + IPC surface. (The launcher/lease/reap/re-election lifecycle evolved under packets 026/027/140/030 after this packet was drafted; the CLI auto-spawn path must target that current launcher contract — see each workstream's hardening phase.)
 
 ### Files to Change
 

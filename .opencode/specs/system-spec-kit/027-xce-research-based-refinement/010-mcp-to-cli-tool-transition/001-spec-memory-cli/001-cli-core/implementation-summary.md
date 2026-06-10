@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 1: CLI Core [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core/implementation-summary]"
+title: "Implementation Summary: Phase 1: CLI Core [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core/implementation-summary]"
 description: "Implemented Phase 1 CLI Core: daemon-backed spec-memory CLI, shim, runtime command generation from TOOL_DEFINITIONS, Zod argv validation, IPC call path, exit mapping, targeted tests, and live daemon smoke."
 trigger_phrases:
   - "spec-memory cli core implementation-summary"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core"
     last_updated_at: "2026-06-07T12:45:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Delivered daemon-backed spec-memory CLI core and shim"

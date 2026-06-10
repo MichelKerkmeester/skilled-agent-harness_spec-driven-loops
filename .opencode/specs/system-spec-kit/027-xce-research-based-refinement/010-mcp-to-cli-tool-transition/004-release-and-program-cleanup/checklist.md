@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Phase 4: Release and Program Cleanup [system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup/checklist]"
+title: "Verification Checklist: Phase 4: Release and Program Cleanup [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/checklist]"
 description: "Verification Date: pending"
 trigger_phrases:
   - "028 release cleanup checklist"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
     last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "All P0/P1 verified with evidence; SC-001/SC-002 green"

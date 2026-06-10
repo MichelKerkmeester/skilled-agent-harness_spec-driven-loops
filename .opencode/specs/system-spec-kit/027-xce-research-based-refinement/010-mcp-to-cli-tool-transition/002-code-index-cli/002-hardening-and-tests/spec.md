@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/spec]"
+title: "Feature Specification: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/spec]"
 description: "Regression-lock the guarantees: dual-client MCP+CLI test (D8), dual-spawn/dead-socket-respawn test (D9), blocked-read regression suite, all-8 parity suite, zero-orphan teardown"
 trigger_phrases:
   - "code-index hardening and tests"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-06T15:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded in planned state"

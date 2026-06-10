@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: Release and Program Cleanup [system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup/tasks]"
+title: "Tasks: Phase 4: Release and Program Cleanup [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/tasks]"
 description: "Task breakdown for the 028 post-release doc-alignment universe, grouped (a)-(h); in-flight concurrent-agent rows marked for reconciliation."
 trigger_phrases:
   - "028 release cleanup tasks"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
     last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "All task groups closed; SC-001/SC-002 green; T041 dispositioned-deferred"

@@ -82,8 +82,8 @@ Adversarial completeness audit of the 002-code-index-cli workstream packet set. 
 
 ## 10. RULED OUT DIRECTIONS
 
-- MCP removal as a gap: out of scope for dual-stack. Evidence: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:80.
-- Zod reuse as a gap: code-index uses hand-coded validateToolArgs plus dispatcher required-field checks. Evidence: file:.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/research.md:26.
+- MCP removal as a gap: out of scope for dual-stack. Evidence: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:80.
+- Zod reuse as a gap: code-index uses hand-coded validateToolArgs plus dispatcher required-field checks. Evidence: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/research.md:26.
 - Literal socket directory collision: runtime configs use distinct /tmp service directories for memory, skill-advisor, and code-index. Evidence: file:.codex/config.toml:67; file:.codex/config.toml:92; file:.codex/config.toml:109.
 
 ---
@@ -111,5 +111,5 @@ Done. Synthesis complete. Verdict: GAP_REGISTER_REQUIRED with 0 P0, 2 P1, 3 P2.
 - Convergence threshold: 0
 - Per-iteration budget: 12 tool calls, 10 minutes
 - Progressive synthesis: true
-- Artifact root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/gap-audit/lineages/gpt-gap`
+- Artifact root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/gap-audit/lineages/gpt-gap`
 - Writes outside artifact root: none

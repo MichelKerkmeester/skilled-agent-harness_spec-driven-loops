@@ -8,7 +8,7 @@ description: Auto-generated reducer view over the deep-context packet.
 Auto-generated from the JSONL state log, per-seat findings, and the merged registry. Never manually edited.
 
 ## 1. STATUS
-- Scope: Gather context on .opencode/skills/system-code-graph, .opencode/skills/system-skill-advisor, and .opencode/skills/system-spec-kit for use in specs/system-spec-kit/028-mcp-to-cli-tool-transition
+- Scope: Gather context on .opencode/skills/system-code-graph, .opencode/skills/system-skill-advisor, and .opencode/skills/system-spec-kit for use in specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition
 - Started: 2026-06-07T08:30:00Z
 - Status: COMPLETE
 - Iterations (parallel sweeps): 1 of 8

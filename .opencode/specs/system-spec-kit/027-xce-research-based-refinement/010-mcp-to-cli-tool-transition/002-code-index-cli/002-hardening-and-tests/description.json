@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests",
   "description": "Feature Specification: Phase 2: Hardening and Tests",
   "keywords": [
     "feature",
@@ -14,7 +14,8 @@
   "folderSlug": "hardening-and-tests",
   "parentChain": [
     "system-spec-kit",
-    "028-mcp-to-cli-tool-transition",
+    "027-xce-research-based-refinement",
+    "010-mcp-to-cli-tool-transition",
     "002-code-index-cli"
   ],
   "memorySequence": 0,

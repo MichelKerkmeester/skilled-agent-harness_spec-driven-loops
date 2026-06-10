@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Code-Index CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec]"
+title: "Feature Specification: Code-Index CLI Feasibility [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/spec]"
 description: "Deep-research feasibility study: can the mk_code_index MCP (8 tools) gain a dual-stack CLI fallback with zero feature loss? Single gpt-5.5 lane, forced 10 iterations, spec-memory record as settled prior art."
 trigger_phrases:
   - "code index cli feasibility"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research"
     last_updated_at: "2026-06-06T14:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Research complete: GO verdict with terminal KQ answers"

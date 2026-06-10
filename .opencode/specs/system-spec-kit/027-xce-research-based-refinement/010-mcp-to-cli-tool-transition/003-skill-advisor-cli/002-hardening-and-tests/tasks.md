@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/tasks]"
+title: "Tasks: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/tasks]"
 description: "Task breakdown for Hardening and Tests; all rows complete with shipped suite and tri-daemon drill evidence."
 trigger_phrases:
   - "skill-advisor hardening and tests tasks"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-09T20:17:55Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Reconciled task rows with shipped suites + passed tri-daemon drill"

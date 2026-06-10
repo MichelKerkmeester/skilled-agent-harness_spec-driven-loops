@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 2: Hardening and Tests [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/implementation-summary]"
+title: "Implementation Summary: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests/implementation-summary]"
 description: "Shipped summary for Phase 2 Hardening and Tests: code-index CLI hardening suites and verification."
 trigger_phrases:
   - "code-index hardening and tests result"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-09T19:10:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Reconciled shipped code-index hardening evidence"

@@ -34,7 +34,8 @@
     "006-gem-team-adoption",
     "007-memclaw-derived-memory-hardening",
     "008-openltm-retrieval-observability",
-    "009-openltm-continuity-resilience"
+    "009-openltm-continuity-resilience",
+    "010-mcp-to-cli-tool-transition"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
   "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",

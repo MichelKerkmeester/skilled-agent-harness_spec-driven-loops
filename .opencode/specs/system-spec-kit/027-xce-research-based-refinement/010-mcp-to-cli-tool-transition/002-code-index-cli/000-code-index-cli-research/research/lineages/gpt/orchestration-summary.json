@@ -9,7 +9,7 @@
   "stopReason": "maxIterationsReached",
   "answeredQuestions": 10,
   "totalQuestions": 10,
-  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/lineages/gpt",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/lineages/gpt",
   "outputs": [
     "deep-research-config.json",
     "deep-research-state.jsonl",

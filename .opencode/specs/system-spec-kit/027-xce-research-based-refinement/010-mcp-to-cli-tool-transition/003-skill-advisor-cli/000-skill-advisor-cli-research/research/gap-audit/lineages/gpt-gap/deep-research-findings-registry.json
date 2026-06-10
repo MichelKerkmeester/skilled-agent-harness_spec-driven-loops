@@ -13,9 +13,9 @@
       "severity": "P1",
       "summary": "Resident-service semantics are not all explicitly owned by phase requirements/tasks.",
       "sources": [
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/lineages/gpt/research.md:31",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/spec.md:96",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:93"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/lineages/gpt/research.md:31",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/spec.md:96",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:93"
       ]
     },
     {
@@ -23,8 +23,8 @@
       "severity": "P1",
       "summary": "D7 research acceptance omits Devin while phase 3 requires all four runtime configs.",
       "sources": [
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/lineages/gpt/research.md:89",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:126",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/lineages/gpt/research.md:89",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:126",
         ".devin/config.json:37",
         ".devin/config.local.json:8"
       ]
@@ -34,9 +34,9 @@
       "severity": "P1",
       "summary": "Gemini exclusion is not explicitly documented in the phase-3 packet despite active Gemini advisor surfaces.",
       "sources": [
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/spec.md:117",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:117",
         ".opencode/skills/system-skill-advisor/hooks/gemini/user-prompt-submit.ts:3",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:93"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:93"
       ]
     },
     {
@@ -44,7 +44,7 @@
       "severity": "P1",
       "summary": "Phase 3 lacks an explicit configured-file inventory for runtime hooks, shims, configs, plugin bridge, and doctor assets.",
       "sources": [
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:93",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:93",
         ".codex/settings.json:14",
         ".claude/settings.local.json:31",
         ".devin/hooks.v1.json:1",
@@ -58,7 +58,7 @@
       "sources": [
         ".opencode/bin/README.md:14",
         ".opencode/bin/README.md:137",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/spec.md:126"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/spec.md:126"
       ]
     },
     {
@@ -66,9 +66,9 @@
       "severity": "P1",
       "summary": "Phase-3 latency acceptance conflates cache-hit p95, warm-daemon non-cache, and cold/transport-down fail-open scenarios.",
       "sources": [
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/research.md:22",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/research.md:29",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:119"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/research.md:22",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/research.md:29",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:119"
       ]
     },
     {
@@ -76,8 +76,8 @@
       "severity": "P1",
       "summary": "Combined outage behavior when both MCP transport and daemon auto-spawn fail is not explicitly accepted.",
       "sources": [
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:120",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/spec.md:126",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/spec.md:120",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/spec.md:126",
         ".opencode/skills/system-skill-advisor/hooks/devin/user-prompt-submit.ts:198"
       ]
     },
@@ -96,8 +96,8 @@
       "severity": "P2",
       "summary": "Phase-2 parity-fixture text has a truncated parenthetical in plan and tasks.",
       "sources": [
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/plan.md:72",
-        ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/tasks.md:57"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/plan.md:72",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/tasks.md:57"
       ]
     }
   ],

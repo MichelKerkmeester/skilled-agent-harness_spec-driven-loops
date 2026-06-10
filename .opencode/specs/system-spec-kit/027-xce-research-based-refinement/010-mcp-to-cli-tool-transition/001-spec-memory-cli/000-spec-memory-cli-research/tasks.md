@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Memory MCP to CLI Feasibility [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/tasks]"
+title: "Tasks: Memory MCP to CLI Feasibility [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/tasks]"
 description: "Task breakdown for the 3-lane fan-out feasibility research: bootstrap, launch, monitor, reconcile."
 trigger_phrases:
   - "mcp cli feasibility tasks"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research"
     last_updated_at: "2026-06-06T12:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "T009 run-4 total risk closure complete; all tasks done"

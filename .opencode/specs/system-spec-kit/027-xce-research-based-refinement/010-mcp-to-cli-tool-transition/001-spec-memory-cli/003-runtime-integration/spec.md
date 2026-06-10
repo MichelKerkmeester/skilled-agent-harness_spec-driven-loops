@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec]"
+title: "Feature Specification: Phase 3: Runtime Integration [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration/spec]"
 description: "Make the CLI adoptable: runtime allowlists, warm-only hook integration policy, packaging/install steps, transport-down fallback guidance, and the dual-stack verification window."
 trigger_phrases:
   - "cli runtime integration"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration"
     last_updated_at: "2026-06-06T12:50:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded in planned state"

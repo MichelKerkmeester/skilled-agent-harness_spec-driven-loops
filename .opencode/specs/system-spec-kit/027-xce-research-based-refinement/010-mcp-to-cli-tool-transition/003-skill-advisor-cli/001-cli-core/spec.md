@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: CLI Core [system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/spec]"
+title: "Feature Specification: Phase 1: CLI Core [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core/spec]"
 description: "skill-advisor CLI binary: 9-subcommand registry codegen from TOOL_DEFINITIONS + Zod schemas, IPC connect + auto-spawn, fail-closed trusted-caller gate on mutating commands, exits 0/1/64/69/75 (deltas D1, D3, D8)"
 trigger_phrases:
   - "skill-advisor cli core"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core"
     last_updated_at: "2026-06-06T15:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded in planned state"

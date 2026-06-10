@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 4: Release and Program Cleanup [system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup/implementation-summary]"
+title: "Implementation Summary: Phase 4: Release and Program Cleanup [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/implementation-summary]"
 description: "IN PROGRESS — running summary for the 028 post-release doc-alignment phase; final state recorded at phase close."
 trigger_phrases:
   - "028 release cleanup result"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
     last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Phase closed: all doc groups aligned, SC-001/SC-002 green, stress set executed"

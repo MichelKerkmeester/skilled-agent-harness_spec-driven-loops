@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3: Runtime Integration [system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/implementation-summary]"
+title: "Implementation Summary: Phase 3: Runtime Integration [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/implementation-summary]"
 description: "Shipped summary for Phase 3 Runtime Integration: code-index CLI fallback, bridge repair to the CLI route, allowlists, and docs."
 trigger_phrases:
   - "code-index runtime integration result"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration"
     last_updated_at: "2026-06-09T20:17:55Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Reconciled shipped code-index runtime evidence"

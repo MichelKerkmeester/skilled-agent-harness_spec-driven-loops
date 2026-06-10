@@ -3,8 +3,8 @@
   "topic": "Code-Index CLI Feasibility",
   "sessionId": "fanout-gpt-1780754394644-rd2108",
   "loopType": "research",
-  "specFolder": ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
-  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/lineages/gpt",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/lineages/gpt",
   "maxIterations": 10,
   "convergenceThreshold": 0,
   "stuckThreshold": 3,
@@ -18,7 +18,7 @@
     "actual": "direct-codex-session",
     "note": "Nested codex execution was not spawned because cli-codex forbids self-invocation from inside Codex."
   },
-  "fanoutLineageArtifactDirOverride": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/lineages/gpt",
+  "fanoutLineageArtifactDirOverride": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/research/lineages/gpt",
   "resourceMapPresent": false,
   "protection": {
     "config": "immutable-after-init",

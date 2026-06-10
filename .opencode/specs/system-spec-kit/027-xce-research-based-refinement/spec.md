@@ -97,6 +97,7 @@ Coordinate the remaining child phases so each one can be resumed, implemented, a
 ### In Scope
 - Spec Kit Memory safety, indexing, causal-edge lifecycle, metadata edge promotion, statediff reconciliation, semantic trigger matching, and learning feedback reducers.
 - Low-risk peck-derived documentation/process improvements: self-check template guidance, current-state discipline, and constitutional rule review.
+- Dual-stack CLI surfaces over the mk-* MCP daemons as a completed workstream.
 - Root-level child phase routing, dependency visibility, and resume wayfinding.
 
 ### Out of Scope
@@ -135,6 +136,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 007 | `007-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-005 | Phase-parent |
 | 008 | `008-openltm-retrieval-observability/` | OpenLTM-derived retrieval & memory observability — doc-anchor `why_ranked`, inline contradiction/supersession warnings, degraded-vector signal, maintenance counters (`research/010`) | Spec-scaffolded |
 | 009 | `009-openltm-continuity-resilience/` | OpenLTM-derived continuity/session resilience — bounded restore panel, authored-continuity PreCompact snapshot, goal/decision/progress/gotcha facets (`research/010`) | Spec-scaffolded |
+| 010 | `010-mcp-to-cli-tool-transition/` | Dual-stack CLI surfaces over the mk-* MCP daemons — complete | Complete |
 
 > `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `006` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `007` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All three programs are scaffolded and planned, not implemented.
 
