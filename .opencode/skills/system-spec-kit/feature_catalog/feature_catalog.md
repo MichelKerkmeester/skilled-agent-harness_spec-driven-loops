@@ -153,6 +153,38 @@ See [`01--retrieval/trigger-phrase-matching-memorymatchtriggers.md`](01--retriev
 
 ---
 
+### Semantic trigger shadow matcher and hybrid handler
+
+#### Description
+
+Trigger matching can now compute semantic trigger candidates from cached embeddings without changing lexical results by default. Operators may enable shadow diagnostics with `SPECKIT_SEMANTIC_TRIGGERS`; `SPECKIT_SEMANTIC_TRIGGERS_MODE=union` is the explicit opt-in that lets semantic hits supplement weak lexical matches.
+
+#### How It Works
+
+The semantic matcher reads cached prompt and trigger embeddings, applies cosine threshold, margin, and max-result gates, and returns shadow metadata when the master flag is on. The hybrid handler keeps lexical matches first, degrades to lexical-only on cache misses or matcher failures, and caps semantic-only activation when union mode is explicitly enabled.
+
+#### Source Files
+
+See [`01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md`](01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md) for full implementation and test file listings.
+
+---
+
+### Trigger embedding backfill
+
+#### Description
+
+The trigger matcher has a derived embedding substrate for trigger phrases. The backfill helper populates `memory_trigger_embeddings` only when explicitly enabled, so lexical trigger behavior remains unchanged until semantic trigger evaluation is intentionally turned on.
+
+#### How It Works
+
+Schema v34 adds the derived table, and the scan completion path calls a resumable helper that reuses the embedding cache, keys rows by profile, and prevents duplicate ready rows on re-run. When the backfill flag is off, the helper makes no provider call and creates no rows.
+
+#### Source Files
+
+See [`01--retrieval/trigger-embedding-backfill.md`](01--retrieval/trigger-embedding-backfill.md) for full implementation and test file listings.
+
+---
+
 ### Hybrid search pipeline
 
 #### Description
@@ -307,7 +339,7 @@ See [`01--retrieval/session-recovery-spec-kit-resume.md`](01--retrieval/session-
 
 ## 3. MUTATION
 
-This section documents 12 mutation features.
+This section documents 13 mutation features.
 
 ### Memory indexing (memory_save)
 
@@ -357,6 +389,38 @@ See [`02--mutation/memory-indexing-memorysave.md`](02--mutation/memory-indexing-
 
 ---
 
+### Provenance source_kind write-ingress guard and mutation audit
+
+#### Description
+
+Memory writes now carry server-derived provenance instead of trusting caller-authored provenance fields. The write path persists `source_kind`, blocks automated overwrites of protected manual or constitutional fields, and records deduplicated mutation-audit events without making audit append failures roll back the successful write.
+
+#### How It Works
+
+Schema v35 adds `memory_index.source_kind` with a safe backfill. Create and update handlers derive the source kind from server-side provenance context, reject forged provenance input, skip protected automated overwrites before mutation, and append deterministic mutation-ledger records keyed by actor, source, and reason.
+
+#### Source Files
+
+See [`02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md`](02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md) for full implementation and test file listings.
+
+---
+
+### Memory idempotency receipts and near-duplicate hints
+
+#### Description
+
+Memory save and update paths can now replay identical retries and report advisory near-duplicate hints when `SPECKIT_MEMORY_IDEMPOTENCY=true`. With the flag off, the schema is present but existing writes behave as before.
+
+#### How It Works
+
+Schema v36 adds the receipt table plus `near_duplicate_of` and `last_dedup_checked_at` markers. The handlers derive receipt keys from operation and content data, strip caller-supplied idempotency tokens, replay exact matches, fail closed on changed-payload retries, and attach `near_duplicate_of` as an advisory response field after successful writes.
+
+#### Source Files
+
+See [`02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md`](02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md) for full implementation and test file listings.
+
+---
+
 ### Memory metadata update (memory_update)
 
 #### Description
@@ -400,6 +464,22 @@ Bulk deletes by spec folder are more involved. The system first creates an auto-
 #### Source Files
 
 See [`02--mutation/single-and-folder-delete-memorydelete.md`](02--mutation/single-and-folder-delete-memorydelete.md) for full implementation and test file listings.
+
+---
+
+### Soft-delete tombstones and active/purgeable partitions
+
+#### Description
+
+Delete and retention paths now have default-off tombstone infrastructure behind `SPECKIT_SOFT_DELETE_TOMBSTONES`. The default remains hard deletion, while the opt-in path preserves the first `deleted_at` timestamp and lets retention sweeps target purgeable tombstoned rows.
+
+#### How It Works
+
+Schema v37 adds `deleted_at`, an active partial index for live rows, and a purgeable partial index for tombstoned rows. Single delete, bulk delete, and retention sweep handlers check the flag: off keeps prior hard-delete behavior, while on writes tombstones with `COALESCE(deleted_at, now)` and reports tombstone-state details from retention sweeps.
+
+#### Source Files
+
+See [`02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md`](02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md) for full implementation and test file listings.
 
 ---
 
@@ -858,6 +938,22 @@ See [`06--analysis/causal-edge-deletion-memorycausalunlink.md`](06--analysis/cau
 
 ---
 
+### Causal tombstone sweep and metadata-edge promoter
+
+#### Description
+
+Causal graph maintenance now preserves delete lineage and promotes validated packet metadata into generated causal edges. Active causal-edge deletions write compact tombstone rows before removal, and scan indexing can derive deterministic packet lineage edges from `graph-metadata.json` and `description.json` without overwriting manual edges.
+
+#### How It Works
+
+The sweep helper snapshots matching active edges, writes tombstones with restore metadata, hard-deletes by active edge id, and clears graph caches. The metadata promoter reads parent, child, and parent-chain metadata, resolves packet memory rows, inserts generated `derived_from` or `enabled` edges with provenance columns, and tombstones stale generated edges during scan repair.
+
+#### Source Files
+
+See [`06--analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md`](06--analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md) for full implementation and test file listings.
+
+---
+
 ### Causal chain tracing (memory_drift_why)
 
 #### Description
@@ -941,6 +1037,22 @@ Pass `onlyComplete: true` to restrict results to tasks where both preflight and 
 #### Source Files
 
 See [`06--analysis/learning-history-memorygetlearninghistory.md`](06--analysis/learning-history-memorygetlearninghistory.md) for full implementation and test file listings.
+
+---
+
+### Learning feedback reducers
+
+#### Description
+
+Feedback learning now has three reducer surfaces: a read-only shared aggregator, a default-off deferred session-trace causal reducer, and a feedback-aware retention reducer that requires shadow-first safety evidence before active changes. The reducers share aggregate fields while preserving independent default-off behavior.
+
+#### How It Works
+
+`aggregateEvents` emits per-memory counts and weighted hit metadata without writes. The session-trace causal reducer can insert weak `auto-session` edges only when `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` is enabled. The retention reducer is gated by `SPECKIT_FEEDBACK_RETENTION_LEARNING`, `SPECKIT_FEEDBACK_RETENTION_MODE`, and caller-supplied shadow evidence before it mutates retention state; shadow mode writes audit rows only.
+
+#### Source Files
+
+See [`06--analysis/learning-feedback-reducers.md`](06--analysis/learning-feedback-reducers.md) for full implementation and test file listings.
 
 ---
 
@@ -3759,6 +3871,22 @@ See [`16--tooling-and-scripts/progressive-validation-for-spec-documents.md`](16-
 
 ---
 
+### Completion-verdict freshness validation
+
+#### Description
+
+Strict validation can now check whether a completion claim is still fresh after packet-local edits. The rule is default-off behind `SPECKIT_COMPLETION_FRESHNESS`, warns first, and can promote stale findings to errors with `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`.
+
+#### How It Works
+
+The validator recomputes the normalized continuity fingerprint, compares it with stored `_memory.continuity.session_dedup.fingerprint`, and checks packet-scoped dirty paths. With the flag unset, validation output remains unchanged. With enforcement enabled, stale freshness findings block completion rather than only warning.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/completion-verdict-freshness-validation.md`](16--tooling-and-scripts/completion-verdict-freshness-validation.md) for full implementation and test file listings.
+
+---
+
 ### Dead code removal
 
 #### Description
@@ -3866,6 +3994,38 @@ The shim defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/mk-spec-memory`, guard
 See [`16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md`](16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) for full implementation and test file listings.
 
 > **Playbook:** [427](../manual_testing_playbook/manual_testing_playbook.md), [428](../manual_testing_playbook/manual_testing_playbook.md), [429](../manual_testing_playbook/manual_testing_playbook.md), [432](../manual_testing_playbook/manual_testing_playbook.md), [434](../manual_testing_playbook/manual_testing_playbook.md), [435](../manual_testing_playbook/manual_testing_playbook.md), [436](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Daemon-backed code-index CLI surface
+
+#### Description
+
+The code graph daemon has a second CLI front door at `node .opencode/bin/code-index.cjs`. It exposes the mk-code-index tool set over the same daemon/IPC transport used by MCP, including warm-only reads for prompt-time fallback and maintenance-command guardrails.
+
+#### How It Works
+
+The stable shim checks dist freshness and socket readiness, while the CLI entrypoint validates commands against the code-index manifest and sends JSON-RPC calls over the daemon socket. Runtime hooks and the OpenCode bridge use the CLI path only when the warm daemon is available, preserving no-cold-spawn prompt behavior and avoiding in-process DB imports.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/code-index-cli-daemon-backed-surface.md`](16--tooling-and-scripts/code-index-cli-daemon-backed-surface.md) for full implementation and test file listings.
+
+---
+
+### Daemon-backed skill-advisor CLI surface
+
+#### Description
+
+The skill-advisor daemon has a second CLI front door at `node .opencode/bin/skill-advisor.cjs`. It exposes advisor and skill-graph commands over the same daemon/IPC transport, with trusted mutations gated and warm-only fallback available for Gate 2 recovery.
+
+#### How It Works
+
+The CLI manifest defines the advisor command surface, the shim handles dist/socket guardrails, and runtime integrations call it with `--warm-only` so prompt-time fallback never cold-spawns the daemon. Mutation commands require explicit trusted execution, while read paths can fail open when the daemon is unavailable.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md`](16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md) for full implementation and test file listings.
 
 ---
 
@@ -4207,6 +4367,22 @@ See [`16--tooling-and-scripts/markdown-link-integrity-guard.md`](16--tooling-and
 
 ---
 
+### Stale-exclusion audit and tool-ownership lint
+
+#### Description
+
+The memory health surface now reports read-only hard-exclusion audit metadata, and pre-commit tooling can fail on drift in the 37-tool ownership map. Recall behavior and stored data are unchanged; the feature exists to expose silent-risk exclusions and keep command/tool ownership documentation synchronized with the registered tool definitions.
+
+#### How It Works
+
+`memory_health` reads hard-exclusion predicate metadata from the retrieval layer and classifies archived, deprecated, or unclassified exclusions for diagnostics. The ownership lint derives a deterministic map from `TOOL_DEFINITIONS`, compares it with the committed fixture, and blocks missing tools, extra tools, field drift, malformed maps, or unreadable definitions.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md`](16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md) for full implementation and test file listings.
+
+---
+
 ## 18. GOVERNANCE
 
 ### Feature flag governance
@@ -4278,6 +4454,38 @@ The governance audit trail captures scope decisions so policy behavior can be re
 See [`17--governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md`](17--governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md) for full implementation and test file listings.
 
 > **Playbook:** [122](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Automated writers never overwrite manual constitutional rule
+
+#### Description
+
+The constitutional memory pack includes an advisory rule that automated writers must not overwrite protected manual or constitutional material. It pairs with the write-ingress guard so generated or automated updates skip protected fields instead of silently replacing human-authored truth.
+
+#### How It Works
+
+The rule is stored as a constitutional memory and indexed through the existing always-surface constitutional loader. The write path derives provenance server-side and applies the protected-field guard before mutation, so the advisory rule is backed by executable write-ingress behavior.
+
+#### Source Files
+
+See [`17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md`](17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md) for full implementation and test file listings.
+
+---
+
+### Entity co-occurrence is not causal constitutional rule
+
+#### Description
+
+The constitutional memory pack includes an advisory rule that entity co-occurrence and similarity evidence must not be promoted as causal truth. It keeps recall signals separate from causal lineage unless an explicit causal relationship is authored or generated by a validated causal promoter.
+
+#### How It Works
+
+The rule is stored as a constitutional memory and loaded with the other always-surface governance rules. It complements the tombstone and metadata-edge work by requiring causal graph writers to preserve provenance and avoid treating entity overlap as proof of causation.
+
+#### Source Files
+
+See [`17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md`](17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md) for full implementation and test file listings.
 
 ---
 
@@ -4565,6 +4773,22 @@ The explainability module detects 10+ signal types including semantic/lexical ma
 #### Source Files
 
 See [`18--ux-hooks/result-explainability.md`](18--ux-hooks/result-explainability.md) for full implementation and test file listings.
+
+---
+
+### Retrieval observability diagnostics
+
+#### Description
+
+Retrieval can now expose additive diagnostics for why results ranked, whether returned records conflict, whether vector recall is degraded, and what maintenance counters last reported. These diagnostics are opt-in or health-only surfaces and do not change ranking, schema, or write behavior.
+
+#### How It Works
+
+`memory_search(includeTrace: true)` can include `why_ranked` from the actual ranker and inline contradiction or supersession warnings from existing causal edges. Search/context debug paths surface degraded-vector trace metadata, health and embedder status report recall degradation, and index scan, embedding reconcile, and retention sweep handlers publish process-local last-run counters to health.
+
+#### Source Files
+
+See [`18--ux-hooks/retrieval-observability-diagnostics.md`](18--ux-hooks/retrieval-observability-diagnostics.md) for full implementation and test file listings.
 
 ---
 
@@ -4977,3 +5201,19 @@ The active package includes a dedicated category folder with feature records for
 - Category overview: [`22--context-preservation/category-overview.md`](22--context-preservation/category-overview.md)
 - Latest feature: [`22--context-preservation/resource-map-template.md`](22--context-preservation/resource-map-template.md)
 - Playbook counterpart: [`../manual_testing_playbook/22--context-preservation/`](../manual_testing_playbook/22--context-preservation/)
+
+---
+
+### OpenLTM continuity resilience
+
+#### Description
+
+Session continuity now has a bounded restore panel, an opt-in authored PreCompact snapshot path, and a goal/decision/progress/gotcha facet taxonomy. The feature is markdown-native, creates no memory rows, performs no index mutations, and is gated by `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` for authored snapshots.
+
+#### How It Works
+
+The resume ladder formats restored and omitted counts from existing `handover.md`, `_memory.continuity`, and spec-doc fallback sources. Session bootstrap includes the restore-panel section, the thin-continuity formatter renders facets, and the Claude compact hook can refresh authored continuity snapshots before compaction when the flag is enabled.
+
+#### Source Files
+
+See [`22--context-preservation/openltm-continuity-resilience.md`](22--context-preservation/openltm-continuity-resilience.md) for full implementation and test file listings.

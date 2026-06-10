@@ -2,7 +2,7 @@
 // STRESS: Post-insert enrichment marker backfill convergence under save flood
 // ───────────────────────────────────────────────────────────────
 //
-// The schema-v30 post-insert enrichment markers
+// The post-insert enrichment markers
 // (post_insert_enrichment_status + idx_post_insert_enrichment_incomplete) let a
 // crashed daemon find the rows whose enrichment never completed. This stress
 // drives a flood of saves that each leave a `pending` marker, then runs the
@@ -135,8 +135,8 @@ afterEach(() => {
 });
 
 describe('durability: enrichment marker backfill convergence under save flood', () => {
-  it('pins schema v30 and the repair partial index the backfill relies on', () => {
-    expect(SCHEMA_VERSION).toBe(30);
+  it('pins the current schema and the repair partial index the backfill relies on', () => {
+    expect(SCHEMA_VERSION).toBe(37);
     const indexSql = (db.prepare(`
       SELECT sql FROM sqlite_master
       WHERE type = 'index' AND name = 'idx_post_insert_enrichment_incomplete'

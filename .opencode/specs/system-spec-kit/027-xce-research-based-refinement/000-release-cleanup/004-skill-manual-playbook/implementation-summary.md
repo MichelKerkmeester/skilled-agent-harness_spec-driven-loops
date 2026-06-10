@@ -1,19 +1,19 @@
 ---
 title: "Implementation Summary: Skill Manual Playbook"
-description: "Planned - not yet implemented. Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check."
+description: "Completed. Added release-hardening manual_testing_playbook scenarios and reconciled the drift-prone count self-check."
 trigger_phrases:
   - "skill manual playbook implementation summary"
   - "planned release cleanup scaffold"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T16:12:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Added release-hardening manual testing scenarios and reconciled the playbook count guard"
+    next_safe_action: "Run the new manual scenarios in the later model-execution phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,10 +24,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-004-skill-manual-playbook-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
+      - "Operator approved manual playbook implementation scope and no-build constraint."
 ---
 # Implementation Summary: Skill Manual Playbook
 
@@ -42,10 +43,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Complete |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +54,41 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the child as a complete Planned scaffold while preserving completion at 0%.
+Added ten executable manual-testing scenarios for release-hardening coverage and reconciled the root playbook's drift-prone scenario-file count guard.
 
-### Planned Scope
+### Added Scenarios
 
-Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check.
+| Playbook ID | Title | File |
+|-------------|-------|------|
+| 439 | Semantic Trigger Shadow and Union Modes | `19--feature-flag-reference/semantic-trigger-shadow-and-union.md` |
+| 440 | Memory Idempotency Replay and Conflict | `19--feature-flag-reference/memory-idempotency-replay-and-conflict.md` |
+| 441 | Soft-Delete Tombstones | `19--feature-flag-reference/soft-delete-tombstones.md` |
+| 442 | Session-Trace Causal Inference | `19--feature-flag-reference/session-trace-causal-inference.md` |
+| 443 | Feedback Retention Learning Modes | `19--feature-flag-reference/feedback-retention-learning-modes.md` |
+| 444 | Authored Continuity Snapshot | `19--feature-flag-reference/authored-continuity-snapshot.md` |
+| 445 | Completion Freshness Validator | `19--feature-flag-reference/completion-freshness-validator.md` |
+| 446 | Retrieval Observability Trace and Health | `15--retrieval-enhancements/retrieval-observability-trace-and-health.md` |
+| 447 | Source Kind Provenance Guard | `17--governance/source-kind-provenance-guard.md` |
+| 448 | Stale-Exclusion Audit and Tool-Ownership Lint | `17--governance/stale-exclusion-audit-and-tool-ownership-lint.md` |
+
+### Skipped As Already Covered
+
+| Surface | Existing coverage |
+|---------|-------------------|
+| Three daemon-backed CLI front doors | Playbook IDs 427-431 already cover all three daemon-backed CLI surfaces and related parity/safety behavior; IDs 432-438 cover tri-daemon, hook fallback, and stress scenarios. |
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Added Playbook ID rows 439-448 and bumped scenario-file count statements from 399 to 409 |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/retrieval-observability-trace-and-health.md` | Created | Executable retrieval observability scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/source-kind-provenance-guard.md` | Created | Executable provenance guard scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/stale-exclusion-audit-and-tool-ownership-lint.md` | Created | Executable stale-exclusion and lint scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/*.md` | Created | Seven executable default-off flag/mode scenarios |
+| `implementation-summary.md` | Modified | Recorded added scenarios, count-bump locations, and validation evidence |
+| `tasks.md` | Modified | Marked phase tasks complete with evidence |
+| `spec.md`, `plan.md`, `description.json`, `graph-metadata.json` | Modified | Reconciled status and continuity metadata to complete |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +96,13 @@ Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surfac
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This child phase has not been delivered. Future implementation must replace this stub content with actual changes and verification evidence.
+Read the root playbook, representative scenario files, committed release changelogs, and phase docs before editing. Added one executable scenario per missing default-off flag or non-flag release-hardening surface. Preserved the concurrency boundary by not editing feature catalog, stress-test, command, agent, source, or YAML trees.
+
+Count-bump locations in `manual_testing_playbook.md`:
+- Release-readiness prose: `399 scenario files` -> `409 scenario files`
+- Deterministic guard: `-ne 399` -> `-ne 409`
+- Guard error text: `Expected 399 scenario files` -> `Expected 409 scenario files`
+- Deterministic count prose: `deterministic file count is 399` -> `deterministic file count is 409`
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +112,9 @@ This child phase has not been delivered. Future implementation must replace this
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested scaffolding only, with completion held at 0%. |
+| Skip duplicate CLI-front-door scenarios | Existing Playbook IDs 427-431 already cover all three daemon-backed CLI front doors, with related follow-ons in 432-438. |
+| Do not add feature-catalog links for new rows | A sibling lane owns feature_catalog edits, so new rows explicitly note that catalog entries are sibling-lane owned instead of adding broken or out-of-scope links. |
+| Use focused test runners where public manual calls are insufficient | Some safety behaviors are server-derived or internal-provenance-only, so executable scenarios point to existing focused tests for replay/conflict, reducer, and lint checks. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +124,10 @@ This child phase has not been delivered. Future implementation must replace this
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| Scenario count guard | PASS: documented count 409 equals actual scenario file count 409 |
+| Concrete scenario steps/results | PASS: new scenarios include prompts, command sequences, expected results, evidence, pass/fail, and triage |
+| Strict validation | PASS: `validate.sh --strict` exit 0 |
+| Scope check | PASS for this lane: changed files are manual_testing_playbook files and this phase's spec docs; `git status` also shows unrelated concurrent changes outside this lane |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +135,5 @@ This child phase has not been delivered. Future implementation must replace this
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or YAML files have been changed.
+1. The new manual scenarios were authored and structurally checked, but not executed end-to-end because this phase explicitly forbids build execution and the later model-execution phase owns scenario runs.
 <!-- /ANCHOR:limitations -->

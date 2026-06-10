@@ -123,7 +123,16 @@ function findScenarioFile(scenario) {
   const prefix = `${scenario}-`;
   const entries = fs.readdirSync(PLAYBOOK_DIR);
   const match = entries.find((entry) => entry.startsWith(prefix) && entry.endsWith('.md'));
-  return match ? path.join(PLAYBOOK_DIR, match) : null;
+  if (match) return path.join(PLAYBOOK_DIR, match);
+
+  for (const entry of entries) {
+    if (!entry.endsWith('.md')) continue;
+    const candidate = path.join(PLAYBOOK_DIR, entry);
+    const markdown = fs.readFileSync(candidate, 'utf8');
+    const scenarioPattern = new RegExp(`(?:title:\\s*["']?|^#\\s+)${scenario}(?!\\d)`, 'm');
+    if (scenarioPattern.test(markdown)) return candidate;
+  }
+  return null;
 }
 
 function section(markdown, heading) {

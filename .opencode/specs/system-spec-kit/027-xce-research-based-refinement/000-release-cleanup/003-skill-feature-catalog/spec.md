@@ -7,14 +7,14 @@ trigger_phrases:
   - "shipped 027 alignment"
 importance_tier: "important"
 contextType: "implementation"
-status: "spec-scaffolded"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T16:15:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Completed feature catalog release cleanup"
+    next_safe_action: "Report catalog additions"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,10 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-003-skill-feature-catalog-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
+      - "Operator pre-approved implementation scope for feature_catalog and this phase's spec docs."
 ---
 # Feature Specification: Skill Feature Catalog
 
@@ -44,11 +45,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded / Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Completion** | 0% |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -83,12 +84,13 @@ Inventory the owned surface, align its current-state claims to shipped 027 reali
 - Claiming implementation before verification evidence exists.
 
 ### Files to Change
-Planned future implementation scope; this scaffold only creates spec docs and metadata.
+Implementation updated the system-spec-kit feature catalog and this phase's spec docs only.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skills/**/feature_catalog/** | Future Review/Modify | Inventory, align, and verify current-state documentation claims |
-| implementation-summary.md | Created | Planned stub for strict validation |
+| .opencode/skills/system-spec-kit/feature_catalog/** | Modified/Added | Add one current-state entry per missing shipped feature and reconcile count self-checks |
+| implementation-summary.md | Modified | Record added/skipped entries and verification evidence |
+| tasks.md | Modified | Mark tasks complete with evidence |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,8 +119,8 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 ## 5. SUCCESS CRITERIA
 
 - The phase has a clear inventory -> align -> verify handoff.
-- Completion remains 0% until implementation changes and verification evidence exist.
-- The surface does not conflict with 027/011 ownership boundaries.
+- Completion is 100% with implementation and verification evidence recorded.
+- The surface does not conflict with sibling release-cleanup lanes.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -137,5 +139,5 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None for scaffold. Implementation may discover surface-specific conflicts.
+- None.
 <!-- /ANCHOR:questions -->

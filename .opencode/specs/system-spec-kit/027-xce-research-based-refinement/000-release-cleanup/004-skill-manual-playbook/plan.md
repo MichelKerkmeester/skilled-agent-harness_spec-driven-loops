@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T16:12:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Added release-hardening manual testing scenarios and reconciled the playbook count guard"
+    next_safe_action: "Run the new manual scenarios in the later model-execution phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,10 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-004-skill-manual-playbook-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
+      - "Operator approved manual playbook implementation scope and no-build constraint."
 ---
 # Implementation Plan: Skill Manual Playbook
 
@@ -62,10 +63,10 @@ Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surfac
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Inventory current claims on .opencode/skills/**/manual_testing_playbook/**
-- [ ] Align current-state claims to shipped 027 reality
-- [ ] Verify coherence and record evidence
-- [ ] Strict validation passes for this child phase
+- [x] Inventory current claims on .opencode/skills/**/manual_testing_playbook/**
+- [x] Align current-state claims to shipped 027 reality
+- [x] Verify coherence and record evidence
+- [x] Strict validation passes for this child phase
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,15 +95,15 @@ Documentation surface alignment with explicit ownership boundaries.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory .opencode/skills/**/manual_testing_playbook/**
+- [x] Inventory .opencode/skills/**/manual_testing_playbook/**
 
 ### Phase 2: Implementation
-- [ ] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
-- [ ] Preserve ownership boundary: Epic Phase-5 will run these via MiMo and DeepSeek.
+- [x] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
+- [x] Preserve ownership boundary: Epic Phase-5 will run these via MiMo and DeepSeek.
 
 ### Phase 3: Verification
-- [ ] Run strict spec validation
-- [ ] Run surface-specific coherence checks
+- [x] Run strict spec validation
+- [x] Run surface-specific coherence checks
 <!-- /ANCHOR:phases -->
 
 ---
