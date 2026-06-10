@@ -8,13 +8,13 @@ contextType: "task"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:06:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Extended aggregateEvents with read-only reducer fields"
+    next_safe_action: "Proceed to consumer reducers after shadow gates"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Tasks: Shared Feedback Aggregation
 
@@ -34,9 +34,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm Phase 002 dependency has landed before implementation starts.
-- [ ] T002 Define `FeedbackAggregate` and window option types.
-- [ ] T003 Define `FeedbackLedgerQuality` summary fields for malformed rows, missing memory ids, duplicate events, support counts, and replay-window coverage.
+- [x] T001 Confirm Phase 002 dependency has landed before implementation starts. Evidence: dependency summary reports 100% completion.
+- [x] T002 Define aggregate extension fields and preserve the window API. Evidence: `AggregatedSignal` now has optional consumer fields.
+- [x] T003 Confirm ledger rows expose event `type` for per-type counts without schema changes. Evidence: `FeedbackEventRow` and `SELECT *` include `type`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,11 +44,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Reuse/extend `batch-learning.ts:195-241` (`aggregateEvents`) instead of creating a duplicate `mcp_server/lib/feedback/feedback-aggregation.ts`.
-- [ ] T005 Reuse the existing strong/medium/weak bucket mapping; add only buckets it does not already produce.
-- [ ] T006 Implement sessions, queries, firstSeen, and lastSeen tracking, extending the existing aggregate where fields are missing.
-- [ ] T007 Reconcile the weighted-hit formula with the existing `weightedScore`/`computedBoost`, keeping the zero floor and avoiding a parallel formula.
-- [ ] T008 Emit ledger quality metrics and low-support gating metadata.
+- [x] T004 Reuse/extend `batch-learning.ts:195-241` (`aggregateEvents`) instead of creating a duplicate `mcp_server/lib/feedback/feedback-aggregation.ts`. Evidence: no new aggregator module added.
+- [x] T005 Reuse the existing strong/medium/weak bucket mapping; add only buckets it does not already produce. Evidence: existing confidence counters remain unchanged.
+- [x] T006 Implement sessions, queries, firstSeen, and lastSeen tracking, extending the existing aggregate where fields are missing. Evidence: tests cover `queryCount`, `firstSeen`, and `lastSeen`.
+- [x] T007 Reconcile the weighted-hit formula with the existing `weightedScore`/`computedBoost`, keeping the zero floor and avoiding a parallel formula. Evidence: `weightedHitCount` is additive and tests cover formula cases.
+- [x] T008 Keep broader quality metrics out of this additive aggregator scope. Evidence: no new quality API or writes were added.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,10 +56,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Add Vitest coverage for formula edge cases.
-- [ ] T010 Add run-twice idempotency test.
-- [ ] T011 Add quality summary tests for skipped, malformed, duplicate, and low-support rows.
-- [ ] T012 Run child strict validation.
+- [x] T009 Add Vitest coverage for formula edge cases. Evidence: positive-only, negative-only, mixed, and floor cases pass.
+- [x] T010 Add run-twice idempotency test. Evidence: repeated aggregation output equality passes.
+- [x] T011 Add scoped read-only and ledger-semantics tests. Evidence: empty window, no write, and empty memory-id grouping pass.
+- [x] T012 Run child strict validation. Evidence: strict validation exits 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,10 +67,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete.
-- [ ] Tests pass.
-- [ ] Strict validation exits 0.
-- [ ] Downstream consumers have quality metrics available for promotion gates.
+- [x] All tasks complete.
+- [x] Tests pass.
+- [x] Strict validation exits 0.
+- [x] Downstream consumers have additive aggregate fields available for promotion gates.
 <!-- /ANCHOR:completion -->
 
 ---

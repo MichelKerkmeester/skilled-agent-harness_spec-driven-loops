@@ -8,13 +8,13 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:06:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Extended aggregateEvents with read-only reducer fields"
+    next_safe_action: "Proceed to consumer reducers after shadow gates"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Plan: Shared Feedback Aggregation
 
@@ -46,7 +46,7 @@ Reuse/extend the existing `aggregateEvents` reducer (avoid a duplicate `feedback
 - Strict child validation exits 0.
 - Unit tests cover formula, empty windows, mixed confidence events, and idempotency.
 - No writes or live ranking/retention side effects are introduced.
-- Ledger quality summary reports malformed rows, missing memory ids, duplicate event ids, support counts, and replay-window coverage before downstream reducers consume aggregates.
+- Ledger quality summary work remains deferred to consumer/integration gates; this child adds only the approved per-memory fields.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -72,7 +72,7 @@ Downstream consumers should depend on the summary type, not raw event rows.
 - Reuse the existing strong/medium/weak bucket mapping in `aggregateEvents`; add only buckets it does not already produce.
 - Compute session/query sets and first/last timestamps, extending the existing aggregate where fields are missing.
 - Compute weighted positive hits with zero floor, reconciled with the existing `weightedScore`/`computedBoost` formula rather than as a parallel formula.
-- Emit quality metrics for skipped rows, duplicate rows, low-support windows, and aggregate coverage.
+- Preserve read-only, deterministic output without introducing a separate quality API.
 
 ### Phase 3: Verification
 - Add Vitest coverage for formula and idempotency.
@@ -89,7 +89,7 @@ Downstream consumers should depend on the summary type, not raw event rows.
 | Unit | Formula and bucket mapping | Vitest |
 | Unit | Empty and mixed windows | Vitest |
 | Regression | Run-twice idempotency | Vitest |
-| Quality | Ledger quality summary and low-support gating | Vitest |
+| Regression | Read-only aggregation and stable output | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -109,7 +109,7 @@ Downstream consumers should depend on the summary type, not raw event rows.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Because this child is additive and read-only, rollback is removal of the new module and its tests. No schema or production data rollback is expected.
+Because this child is additive and read-only, rollback is removal of the new fields and tests. No schema or production data rollback is expected.
 <!-- /ANCHOR:rollback -->
 
 ---

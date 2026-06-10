@@ -24,7 +24,7 @@ import {
   initFeedbackLedger,
   getFeedbackEvents,
 } from './feedback-ledger.js';
-import type { FeedbackConfidence } from './feedback-ledger.js';
+import type { FeedbackConfidence, FeedbackEventType } from './feedback-ledger.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -67,12 +67,20 @@ export interface AggregatedSignal {
   memoryId: string;
   /** Number of distinct sessions that contributed events. */
   sessionCount: number;
+  /** Number of distinct queries that contributed events. */
+  queryCount?: number;
   /** Raw count of strong-tier events. */
   strongCount: number;
   /** Raw count of medium-tier events. */
   mediumCount: number;
   /** Raw count of weak-tier events. */
   weakCount: number;
+  /** Earliest event timestamp in the aggregation window. */
+  firstSeen?: number;
+  /** Latest event timestamp in the aggregation window. */
+  lastSeen?: number;
+  /** Positive-signal hit count with reformulation damping and zero floor. */
+  weightedHitCount?: number;
   /** Confidence-weighted composite score. */
   weightedScore: number;
   /**
@@ -80,6 +88,29 @@ export interface AggregatedSignal {
    * Computed as: min(normalizedWeightedScore, MAX_BOOST_DELTA)
    */
   computedBoost: number;
+}
+
+type FeedbackEventTypeCounts = Record<FeedbackEventType, number>;
+
+interface AggregationBucket {
+  sessions: Set<string>;
+  queries: Set<string>;
+  strong: number;
+  medium: number;
+  weak: number;
+  firstSeen: number;
+  lastSeen: number;
+  typeCounts: FeedbackEventTypeCounts;
+}
+
+function createEventTypeCounts(): FeedbackEventTypeCounts {
+  return {
+    search_shown: 0,
+    result_cited: 0,
+    query_reformulated: 0,
+    same_topic_requery: 0,
+    follow_on_tool_use: 0,
+  };
 }
 
 /** Record written to batch_learning_log after a shadow-apply cycle. */
@@ -204,23 +235,31 @@ export function aggregateEvents(
     const events = getFeedbackEvents(db, { since, until });
 
     // Group by memoryId
-    const byMemory = new Map<string, {
-      sessions: Set<string>;
-      strong: number;
-      medium: number;
-      weak: number;
-    }>();
+    const byMemory = new Map<string, AggregationBucket>();
 
     for (const ev of events) {
       let entry = byMemory.get(ev.memory_id);
       if (!entry) {
-        entry = { sessions: new Set<string>(), strong: 0, medium: 0, weak: 0 };
+        entry = {
+          sessions: new Set<string>(),
+          queries: new Set<string>(),
+          strong: 0,
+          medium: 0,
+          weak: 0,
+          firstSeen: ev.timestamp,
+          lastSeen: ev.timestamp,
+          typeCounts: createEventTypeCounts(),
+        };
         byMemory.set(ev.memory_id, entry);
       }
       // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
       const sessionKey = ev.session_id ?? `__null_${ev.id}`;
       entry.sessions.add(sessionKey);
+      entry.queries.add(ev.query_id);
+      entry.firstSeen = Math.min(entry.firstSeen, ev.timestamp);
+      entry.lastSeen = Math.max(entry.lastSeen, ev.timestamp);
       entry[ev.confidence]++;
+      entry.typeCounts[ev.type]++;
     }
 
     // Build AggregatedSignal array
@@ -240,19 +279,30 @@ export function aggregateEvents(
         MAX_BOOST_DELTA
       );
 
+      const weightedHitCount = Math.max(
+        0,
+        data.strong +
+          (0.25 * data.typeCounts.same_topic_requery) -
+          (0.5 * data.typeCounts.query_reformulated)
+      );
+
       signals.push({
         memoryId,
         sessionCount:  data.sessions.size,
+        queryCount:    data.queries.size,
         strongCount:   data.strong,
         mediumCount:   data.medium,
         weakCount:     data.weak,
+        firstSeen:     data.firstSeen,
+        lastSeen:      data.lastSeen,
+        weightedHitCount,
         weightedScore,
         computedBoost,
       });
     }
 
-    // Sort descending by weightedScore for deterministic output
-    signals.sort((a, b) => b.weightedScore - a.weightedScore);
+    // Stable tie-breaker keeps equal-score output reproducible across SQLite plans.
+    signals.sort((a, b) => (b.weightedScore - a.weightedScore) || a.memoryId.localeCompare(b.memoryId));
 
     return signals;
   } catch (err: unknown) {

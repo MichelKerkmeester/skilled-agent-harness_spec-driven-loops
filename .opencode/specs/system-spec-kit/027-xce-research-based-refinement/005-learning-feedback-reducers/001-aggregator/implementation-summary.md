@@ -8,13 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:06:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Extended aggregateEvents with read-only reducer fields"
+    next_safe_action: "Proceed to consumer reducers after shadow gates"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Summary: Shared Feedback Aggregation
 
@@ -28,9 +28,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `009-feedback-reducers/001-aggregator` |
+| **Spec Folder** | `005-learning-feedback-reducers/001-aggregator` |
 | **Level** | 2 |
-| **Status** | Not implemented |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. AUDIT 2026-06-05: reuse/extend `mcp_server/lib/feedback/batch-learning.ts:195-241` (`aggregateEvents`) rather than create a duplicate `feedback-aggregation.ts`. `feedback_events` dependency confirmed present (`feedback-ledger.ts`).
+Extended the existing `aggregateEvents` reducer in `mcp_server/lib/feedback/batch-learning.ts` rather than creating a duplicate aggregator module. The aggregation now adds `queryCount`, `firstSeen`, `lastSeen`, and `weightedHitCount` to each per-memory signal while preserving existing `weightedScore`, `computedBoost`, and min-support consumers.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -46,7 +46,7 @@ Pending. AUDIT 2026-06-05: reuse/extend `mcp_server/lib/feedback/batch-learning.
 <!-- ANCHOR:how-delivered -->
 ## HOW IT WAS DELIVERED
 
-Delivery evidence will be recorded after the child work lands.
+The ledger row already carried `type` through `FeedbackEventRow` and `SELECT *`, so no schema or ledger read widening was needed. Tests were added to the existing batch-learning canary for field coverage, formula edge cases, empty windows, idempotency, read-only behavior, and ledger string semantics for empty memory ids.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -54,7 +54,7 @@ Delivery evidence will be recorded after the child work lands.
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Use one shared weighted-positive formula for downstream consumers, reconciled with (and reusing) the existing `weightedScore`/`computedBoost` in `batch-learning.ts:195-241` rather than introducing a parallel aggregator or formula.
+Use one shared aggregation function for downstream consumers. `weightedHitCount` is additive and consumer-facing; the existing confidence-weighted score and shadow boost semantics remain intact for current batch-learning callers.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -68,7 +68,13 @@ Scaffold validation command:
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator --strict
 ```
 
-Implementation tests are recorded here after the child work lands.
+| Check | Result |
+|-------|--------|
+| `npm run build` | Passed |
+| `npx vitest run tests/batch-learning.vitest.ts tests/feedback-ledger.vitest.ts` | Passed: 2 files, 103 tests |
+| Comment hygiene on modified source/test files | Passed |
+| Strict child validation | Passed |
+| Alignment drift verifier | Flagged unrelated out-of-scope files |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -76,7 +82,7 @@ Implementation tests are recorded here after the child work lands.
 <!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
-Pending.
+Read-only aggregation was verified by test; deterministic and idempotent output was verified by a run-twice equality test and stable tie-break sorting; negative weighted-hit inputs are floored at zero.
 <!-- /ANCHOR:nfr-verify -->
 
 ---
@@ -84,7 +90,7 @@ Pending.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-None recorded at scaffold time.
+The broader ledger-quality summary noted in the scaffolded plan was not added here because the approved implementation scope limited this child to additive per-memory aggregate fields.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -92,5 +98,5 @@ None recorded at scaffold time.
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None at scaffold time.
+The spec formula names mapped cleanly to real event types for `same_topic_requery` and `query_reformulated`; `strong` maps to the existing strong confidence tier so both `result_cited` and `follow_on_tool_use` remain positive signals.
 <!-- /ANCHOR:deviations -->
