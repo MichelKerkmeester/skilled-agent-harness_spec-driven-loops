@@ -8,13 +8,13 @@ contextType: "task"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:55:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed env docs and reducer integration tests"
+    next_safe_action: "Parent closeout can review this child"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Verification Checklist: Feedback Reducer Env and Integration Closeout
 
@@ -34,7 +34,7 @@ P0 items block completion.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Children 001-004 confirmed complete.
+- [x] CHK-001 [P0] Children 001-004 confirmed complete. Evidence: shipped modules were read and imported only through public entrypoints.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -42,7 +42,7 @@ P0 items block completion.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Integration tests are deterministic and local.
+- [x] CHK-010 [P0] Integration tests are deterministic and local. Evidence: suite uses in-memory SQLite fixtures and no external services.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -50,9 +50,9 @@ P0 items block completion.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All flags unset equals safe no-op behavior.
-- [ ] CHK-021 [P0] Individual consumer flags behave independently.
-- [ ] CHK-022 [P0] Retention active mode requires eval gate.
+- [x] CHK-020 [P0] All flags unset equals safe no-op behavior. Evidence: no causal edges, no feedback-retention report or audit, aggregator read-only.
+- [x] CHK-021 [P0] Individual consumer flags behave independently. Evidence: causal-only and retention-only cases are tested separately.
+- [x] CHK-022 [P0] Retention active mode requires eval gate. Evidence: active mode without shadow-evaluation evidence is blocked.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -60,7 +60,7 @@ P0 items block completion.
 <!-- ANCHOR:fix-completeness -->
 ## FIX COMPLETENESS
 
-- [ ] CHK-900 [P0] All requirements in spec.md map to checklist items before implementation completion.
+- [x] CHK-900 [P0] All requirements in spec.md map to checklist items before implementation completion. Evidence: env docs, default-off, independence, and active-gate cases are covered.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -68,7 +68,7 @@ P0 items block completion.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] Default values are safe/off in ENV docs.
+- [x] CHK-030 [P0] Default values are safe/off in ENV docs. Evidence: causal and retention master flags are OFF; retention mode defaults to shadow.
 <!-- /ANCHOR:security -->
 
 ---
@@ -76,9 +76,9 @@ P0 items block completion.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-041 [P0] `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` documented.
-- [ ] CHK-042 [P0] `SPECKIT_FEEDBACK_RETENTION_LEARNING` documented.
-- [ ] CHK-043 [P0] `SPECKIT_FEEDBACK_RETENTION_MODE` documented.
+- [x] CHK-041 [P0] `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` documented. Evidence: found in summary table and feedback section.
+- [x] CHK-042 [P0] `SPECKIT_FEEDBACK_RETENTION_LEARNING` documented. Evidence: found in summary table and feedback section.
+- [x] CHK-043 [P0] `SPECKIT_FEEDBACK_RETENTION_MODE` documented. Evidence: summary default now says shadow and detail row says shadow.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -86,7 +86,7 @@ P0 items block completion.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Tests live beside existing feedback/governance suites.
+- [x] CHK-050 [P1] Tests live beside existing feedback/governance suites. Evidence: `tests/feedback-reducers-integration.vitest.ts`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -94,5 +94,5 @@ P0 items block completion.
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Pending implementation.
+Integration suite and requested canaries passed: 5 files and 90 tests. Build passed with `npm run build`. Strict validation passed with 0 errors and 0 warnings.
 <!-- /ANCHOR:summary -->

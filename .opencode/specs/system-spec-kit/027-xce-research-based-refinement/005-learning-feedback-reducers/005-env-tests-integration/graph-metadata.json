@@ -37,7 +37,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "spec_scaffolded",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "spec.md",
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The two feedback reducer consumers introduce separate default-off flags and cross-consumer safety expectations. This closeout child verifies that flags are documented and integration behavior remains coherent across the reducers.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-06T03:47:51.166Z",
+    "last_save_at": "2026-06-10T11:55:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

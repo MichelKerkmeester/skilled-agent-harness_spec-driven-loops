@@ -9,7 +9,7 @@
   "level": 2,
   "importance_tier": "important",
   "contextType": "implementation",
-  "status": "spec-scaffolded",
+  "status": "complete",
   "priority": "P0",
   "createdAt": "2026-05-12T07:20:00.000Z",
   "branch": "main",
@@ -22,8 +22,8 @@
     ]
   },
   "derived": {
-    "status": "spec-scaffolded",
-    "completion_pct": 0,
+    "status": "complete",
+    "completion_pct": 100,
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration",
@@ -37,7 +37,7 @@
     "integration",
     "closeout"
   ],
-  "lastUpdated": "2026-06-06T14:41:14.762Z",
+  "lastUpdated": "2026-06-10T11:55:00.000Z",
   "specId": "005",
   "folderSlug": "env-tests-integration",
   "parentChain": [

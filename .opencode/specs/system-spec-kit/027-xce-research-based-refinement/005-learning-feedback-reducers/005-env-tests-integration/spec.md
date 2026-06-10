@@ -11,13 +11,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:55:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed env docs and reducer integration tests"
+    next_safe_action: "Parent closeout can review this child"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Feature Specification: Feedback Reducer Env and Integration Closeout
 
@@ -33,7 +33,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Complete |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers` |
 | **Depends On** | `001-aggregator`, `003-causal-reducer`, `004-retention-reducer` |
 | **Estimated LOC** | ~100 LOC/docs |
@@ -72,7 +72,7 @@ The two feedback reducer consumers introduce separate default-off flags and cros
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Document all feedback reducer flags in `ENV_REFERENCE.md`. | Grep finds all four flag names. |
+| REQ-001 | Document all feedback reducer flags in `ENV_REFERENCE.md`. | Grep finds the three shipped reducer flags; the older four-flag wording is stale because the aggregator is read-only and flagless. |
 | REQ-002 | Add integration coverage across aggregator and consumers. | Tests prove flag-off default safety. |
 | REQ-003 | Verify active mutation requires configured gates. | Retention active mode blocked without eval gate. |
 | REQ-004 | Confirm consumer independence after aggregator. | Tests or docs show 002/003/004 can run independently after 001. |

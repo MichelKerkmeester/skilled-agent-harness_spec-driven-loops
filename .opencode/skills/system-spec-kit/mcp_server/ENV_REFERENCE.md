@@ -88,7 +88,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Result confidence | ON | `SPECKIT_RESULT_CONFIDENCE_V1` | Per-result calibrated confidence scoring | D5 REQ-D5-004 |
 | Batch learned feedback | ON | `SPECKIT_BATCH_LEARNED_FEEDBACK` | Weekly batch feedback learning pipeline | D4 REQ-D4-004 |
 | Feedback retention learning | OFF | `SPECKIT_FEEDBACK_RETENTION_LEARNING` | Default-off feedback-aware retention reducer; shadow-first and audit-only unless active mode is gated | current |
-| Feedback retention mode | OFF | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`; default `shadow`; active still requires the master flag and shadow-evaluation gate | current |
+| Feedback retention mode | shadow | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`; default `shadow`; active still requires the master flag and shadow-evaluation gate | current |
 | Session-trace causal inference | OFF | `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | Deferred session-trace causal edge inference from feedback events | current |
 | Assistive reconsolidation | ON | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | Near-duplicate detection and review routing | D4 REQ-D4-005 |
 | Result explainability | ON | `SPECKIT_RESULT_EXPLAIN_V1` | Two-tier result explainability | D5 REQ-D5-002 |

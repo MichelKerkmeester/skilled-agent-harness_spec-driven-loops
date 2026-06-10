@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary — 005 Env Tests Integration"
-description: "Scaffolded implementation summary for env docs and integration closeout."
+description: "Implementation summary for env docs and integration closeout."
 trigger_phrases:
   - "009 env tests implementation summary"
 importance_tier: "normal"
@@ -8,13 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:55:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed env docs and reducer integration tests"
+    next_safe_action: "Parent closeout can review this child"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Summary: Feedback Reducer Env and Integration Closeout
 
@@ -28,9 +28,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `009-feedback-reducers/005-env-tests-integration` |
+| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration` |
 | **Level** | 2 |
-| **Status** | Not implemented |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,7 +38,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Expected work: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` updates and integration tests under the feedback/governance test suites.
+- Added `tests/feedback-reducers-integration.vitest.ts` for cross-consumer reducer coverage.
+- Corrected the `SPECKIT_FEEDBACK_RETENTION_MODE` summary-table default from `OFF` to `shadow` in `ENV_REFERENCE.md`.
+- Confirmed the detail rows already document all three shipped reducer flags and their defaults.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -46,7 +48,9 @@ Pending. Expected work: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFEREN
 <!-- ANCHOR:how-delivered -->
 ## HOW IT WAS DELIVERED
 
-Delivery evidence will be recorded after the child work lands.
+- Read the shipped aggregator, causal reducer, retention reducer, and retention sweep modules before importing them in tests.
+- Reused in-memory SQLite fixtures and existing ledger helpers for deterministic tests.
+- Kept consumer internals unchanged; the new suite imports public entrypoints only.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -54,7 +58,9 @@ Delivery evidence will be recorded after the child work lands.
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Closeout owns cross-consumer default-off verification.
+- The aggregator remains read-only and flagless, so the older four-flag wording is stale; only three reducer flags exist.
+- Retention mode is an enum defaulting to `shadow`, not an OFF boolean.
+- Active retention learning remains blocked unless the master flag is enabled and shadow-evaluation evidence is supplied.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -68,7 +74,11 @@ Scaffold validation command:
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration --strict
 ```
 
-Implementation tests are recorded here after the child work lands.
+- `npm run build` exits 0.
+- `npx vitest run tests/feedback-reducers-integration.vitest.ts` passed: 1 file, 4 tests.
+- `npx vitest run tests/feedback-reducers-integration.vitest.ts tests/session-trace-causal-reducer.vitest.ts tests/feedback-retention-reducer.vitest.ts tests/memory-retention-feedback-learning.vitest.ts tests/batch-learning.vitest.ts` passed: 5 files, 90 tests.
+- ENV grep finds `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE`, `SPECKIT_FEEDBACK_RETENTION_LEARNING`, and `SPECKIT_FEEDBACK_RETENTION_MODE`.
+- `validate.sh --strict` passed with 0 errors and 0 warnings.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -76,7 +86,11 @@ Implementation tests are recorded here after the child work lands.
 <!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
-Pending.
+- Tests are hermetic: in-memory SQLite databases, no live external services, deterministic timestamps.
+- Default-off safety is covered: no causal edges, no feedback-retention audit/report, and aggregator summaries remain read-only.
+- Consumer independence is covered: causal-only does not activate retention; retention-only does not activate causal inference.
+- Retention shadow mode is audit-only and leaves memory rows unchanged.
+- Retention active mode without shadow-evaluation evidence is blocked and leaves rows unchanged.
 <!-- /ANCHOR:nfr-verify -->
 
 ---
@@ -84,7 +98,7 @@ Pending.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Exact test filenames depend on final implementation from children 002-004.
+- Parent scaffold still contains a stale note saying `STATE_LIMITS` is non-exported; current code has resolved that, but the parent spec was left untouched by scope.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -92,5 +106,5 @@ Exact test filenames depend on final implementation from children 002-004.
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None at scaffold time.
+- The phase spec expected four flag names, but only three reducer flags exist. The aggregator is read-only and flagless, so no fourth flag was invented.
 <!-- /ANCHOR:deviations -->

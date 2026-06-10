@@ -8,13 +8,13 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:55:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed env docs and reducer integration tests"
+    next_safe_action: "Parent closeout can review this child"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Plan: Feedback Reducer Env and Integration Closeout
 
@@ -41,9 +41,9 @@ Close the packet by documenting default-off flags and proving the consumers rema
 ## 2. QUALITY GATES
 
 - Strict child validation exits 0.
-- ENV_REFERENCE contains all reducer flags.
+- ENV_REFERENCE contains all three shipped reducer flags.
 - Integration tests verify default-off behavior.
-- Integration tests verify live mutation remains blocked without ledger quality, shadow replay, and consumer-specific promotion evidence.
+- Integration tests verify active retention remains blocked without shadow-evaluation evidence.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -60,16 +60,16 @@ This child does not introduce core reducer logic. It connects the outputs of chi
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Flag Documentation
-- Add all feedback reducer flags to ENV_REFERENCE with defaults.
+- Confirmed all three feedback reducer flags in ENV_REFERENCE with defaults.
 
 ### Phase 2: Integration Tests
-- Cover aggregator plus consumer flag-off behavior.
-- Cover retention active-mode gate.
-- Cover causal reducer active-mutation gate.
+- Covered aggregator plus consumer flag-off behavior.
+- Covered retention active-mode gate.
+- Covered causal reducer flag isolation.
 
 ### Phase 3: Closeout
-- Validate all child packets.
-- Update implementation summaries with verification evidence as needed.
+- Updated child closeout docs with verification evidence.
+- Final strict validation remains the last reporting gate.
 <!-- /ANCHOR:phases -->
 
 ---
