@@ -28,6 +28,7 @@ function createMinimalDb(): Database.Database {
       created_at TEXT DEFAULT (datetime('now')),
       updated_at TEXT DEFAULT (datetime('now')),
       importance_tier TEXT DEFAULT 'normal',
+      source_kind TEXT,
       tenant_id TEXT,
       user_id TEXT,
       agent_id TEXT,
@@ -216,6 +217,44 @@ describe('create-record identity helpers', () => {
       },
     }));
 
+    db.close();
+  });
+
+  it('persists a non-null server-derived source_kind and ignores forged parsed values', () => {
+    const db = createMinimalDb();
+    vi.spyOn(vectorIndex, 'indexMemory').mockImplementation((params: any) => {
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, canonical_file_path, anchor_id, title, content_hash)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `).run(88, params.specFolder, params.filePath, params.filePath, params.anchorId ?? null, params.title ?? null, 'hash-before-metadata');
+      return 88;
+    });
+    vi.spyOn(bm25Index, 'isBm25Enabled').mockReturnValue(false);
+    vi.spyOn(incrementalIndex, 'getFileMetadata').mockReturnValue(null as any);
+    vi.spyOn(dbHelpers, 'applyPostInsertMetadata').mockImplementation(() => {});
+    vi.spyOn(lineageState, 'recordLineageTransition').mockImplementation(() => undefined);
+
+    const parsed = buildParsedMemory({
+      source_kind: 'agent',
+      sourceKind: 'agent',
+    });
+
+    const id = createMemoryRecord(
+      db,
+      parsed,
+      parsed.filePath,
+      new Float32Array([0.1, 0.2, 0.3, 0.4]),
+      null,
+      {
+        action: 'CREATE',
+        similarity: 0,
+      },
+      {},
+    );
+
+    const row = db.prepare('SELECT id, source_kind FROM memory_index WHERE id = ?')
+      .get(id) as { id: number; source_kind: string | null };
+    expect(row).toEqual({ id: 88, source_kind: 'human' });
     db.close();
   });
 });

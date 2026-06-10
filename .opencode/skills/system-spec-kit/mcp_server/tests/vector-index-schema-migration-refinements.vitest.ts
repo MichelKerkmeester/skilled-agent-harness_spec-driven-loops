@@ -389,7 +389,7 @@ describe('vector-index schema migration refinements', () => {
 
     // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(34);
+    expect(versionRow.version).toBe(35);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
@@ -451,7 +451,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(34);
+    expect(versionRow.version).toBe(35);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edge_tombstones)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -522,7 +522,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(34);
+    expect(versionRow.version).toBe(35);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -569,7 +569,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(34);
+    expect(versionRow.version).toBe(35);
 
     const columns = (database.prepare('PRAGMA table_info(memory_trigger_embeddings)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -596,5 +596,41 @@ describe('vector-index schema migration refinements', () => {
     const derivedCount = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
     expect(sourceCount.count).toBe(1);
     expect(derivedCount.count).toBe(0);
+  });
+
+  it('adds source_kind during the v35 upgrade and backfills legacy rows conservatively', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        provenance_source TEXT
+      );
+      INSERT INTO memory_index (id, provenance_source) VALUES
+        (1, 'manual'),
+        (2, 'memory_index_scan'),
+        (3, 'feedback-validator'),
+        (4, NULL);
+    `);
+
+    runMigrations(database, 34, 35);
+    runMigrations(database, 34, 35);
+
+    const sourceKindColumns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .filter((column) => column.name === 'source_kind');
+    expect(sourceKindColumns).toHaveLength(1);
+
+    const rows = database.prepare(`
+      SELECT id, source_kind
+      FROM memory_index
+      ORDER BY id ASC
+    `).all() as Array<{ id: number; source_kind: string }>;
+    expect(rows).toEqual([
+      { id: 1, source_kind: 'human' },
+      { id: 2, source_kind: 'import' },
+      { id: 3, source_kind: 'feedback' },
+      { id: 4, source_kind: 'system' },
+    ]);
   });
 });

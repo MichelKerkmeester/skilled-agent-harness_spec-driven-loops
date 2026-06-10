@@ -64,6 +64,89 @@ type ScopePostInsertMetadata = Partial<{
   session_id: string;
 }>;
 
+export type SourceKind = 'human' | 'agent' | 'system' | 'import' | 'feedback';
+
+const SOURCE_KINDS = new Set<SourceKind>(['human', 'agent', 'system', 'import', 'feedback']);
+
+export function normalizeSourceKind(value: unknown): SourceKind | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const normalized = value.trim().toLowerCase();
+  return SOURCE_KINDS.has(normalized as SourceKind) ? normalized as SourceKind : null;
+}
+
+function sourceKindFromLabel(value: unknown): SourceKind | null {
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    return null;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (/\b(human|manual|user|operator|author)\b/.test(normalized)) {
+    return 'human';
+  }
+  if (normalized.includes('feedback') || normalized.includes('validate') || normalized.includes('validation')) {
+    return 'feedback';
+  }
+  if (normalized.includes('import') || normalized.includes('ingest') || normalized.includes('scan') || normalized.includes('index')) {
+    return 'import';
+  }
+  if (/\b(agent|assistant|claude|codex|opencode|automation|bot)\b/.test(normalized)) {
+    return 'agent';
+  }
+  if (/\b(system|runtime|daemon|scheduler|hook)\b/.test(normalized)) {
+    return 'system';
+  }
+  return null;
+}
+
+export function deriveSourceKindFromContext(context: {
+  provenanceSource?: unknown;
+  provenanceActor?: unknown;
+  tool?: unknown;
+  filePath?: unknown;
+  scope?: MemoryScopeMatch;
+} = {}): SourceKind {
+  const fromSource = sourceKindFromLabel(context.provenanceSource);
+  if (fromSource) {
+    return fromSource;
+  }
+  const fromActor = sourceKindFromLabel(context.provenanceActor);
+  if (fromActor) {
+    return fromActor;
+  }
+  const fromTool = sourceKindFromLabel(context.tool);
+  if (fromTool) {
+    return fromTool;
+  }
+  const scope = context.scope ?? {};
+  const hasUser = normalizeScopeMatchValue(scope.userId) !== null;
+  const hasAgent = normalizeScopeMatchValue(scope.agentId) !== null;
+  if (hasAgent && !hasUser) {
+    return 'agent';
+  }
+  const filePath = normalizeOptionalString(context.filePath);
+  if (filePath && /\b(import|ingest|scan|index)\b/i.test(filePath)) {
+    return 'import';
+  }
+  return 'human';
+}
+
+function hasSourceKindColumn(database: BetterSqlite3.Database): boolean {
+  try {
+    return (database.prepare("PRAGMA table_info(memory_index)").all() as Array<{ name: string }>)
+      .some((column) => column.name === 'source_kind');
+  } catch {
+    return false;
+  }
+}
+
+function persistSourceKind(database: BetterSqlite3.Database, memoryId: number, sourceKind: SourceKind): void {
+  if (!hasSourceKindColumn(database)) {
+    return;
+  }
+  database.prepare('UPDATE memory_index SET source_kind = ? WHERE id = ?').run(sourceKind, memoryId);
+}
+
 function normalizeOptionalString(value: unknown): string | null {
   if (typeof value !== 'string') {
     return null;
@@ -273,6 +356,11 @@ export function createMemoryRecord(
   identityHints: CreateRecordIdentityHints = {},
 ): number {
   const recordIdentity = resolveCreateRecordIdentity(parsed, filePath, identityHints);
+  const sourceKind = deriveSourceKindFromContext({
+    tool: 'memory_save',
+    filePath: recordIdentity.targetDocPath,
+    scope,
+  });
   const routedDocumentType = inferDocumentTypeFromPath(recordIdentity.targetDocPath);
   const persistedDocumentType = routedDocumentType !== 'memory'
     ? routedDocumentType
@@ -351,6 +439,7 @@ export function createMemoryRecord(
 
     const fileMetadata = incrementalIndex.getFileMetadata(recordIdentity.targetDocPath);
     const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
+    persistSourceKind(database, memory_id, sourceKind);
 
     applyPostInsertMetadata(database, memory_id, {
       content_hash: parsed.contentHash,

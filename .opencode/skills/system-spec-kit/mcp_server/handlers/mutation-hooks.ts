@@ -10,7 +10,9 @@ import { clearRelatedCache } from '../lib/cognitive/co-activation.js';
 import { clearDegreeCache } from '../lib/search/graph-search-fn.js';
 import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 import { createStatediffAction } from '../lib/storage/statediff.js';
+import { appendAutomatedMutationAudit } from '../lib/storage/mutation-ledger.js';
 
+import type Database from 'better-sqlite3';
 import type { MutationHookResult } from './memory-crud-types.js';
 import type { StatediffAction, StatediffTargetType } from '../lib/storage/statediff.js';
 
@@ -74,6 +76,52 @@ function actionsFromContext(operation: string, context: Record<string, unknown>)
 
 function hasTarget(actions: readonly StatediffAction[], targets: readonly StatediffTargetType[]): boolean {
   return actions.some((action) => targets.includes(action.target));
+}
+
+function maybeAppendAutomatedMutationAudit(
+  operation: string,
+  context: Record<string, unknown>,
+  actions: readonly StatediffAction[],
+): string | null {
+  const sourceKind = typeof context.sourceKind === 'string' ? context.sourceKind : null;
+  if (!sourceKind || sourceKind === 'human') {
+    return null;
+  }
+  if (!['agent', 'system', 'import', 'feedback'].includes(sourceKind)) {
+    return `automated audit skipped: unknown sourceKind=${sourceKind}`;
+  }
+
+  const database = context.database as Database.Database | undefined;
+  if (!database || typeof database.prepare !== 'function') {
+    return 'automated audit skipped: database unavailable';
+  }
+
+  const actor = typeof context.actor === 'string' && context.actor.trim().length > 0
+    ? context.actor.trim()
+    : `mcp:${operation}`;
+  const reason = typeof context.auditReason === 'string' && context.auditReason.trim().length > 0
+    ? context.auditReason.trim()
+    : operation;
+  const linkedMemoryIds = actions
+    .filter((action) => action.target === 'memory_index' && /^\d+$/.test(action.key))
+    .map((action) => Number(action.key));
+
+  try {
+    appendAutomatedMutationAudit(database, {
+      mutation_type: operation.includes('delete') ? 'delete' : 'update',
+      actor,
+      source_kind: sourceKind as 'agent' | 'system' | 'import' | 'feedback',
+      reason,
+      linked_memory_ids: linkedMemoryIds,
+      session_id: typeof context.sessionId === 'string' ? context.sessionId : null,
+      decision_meta: { operation },
+    });
+    return null;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[mutation-hooks] automated audit append failed for operation="${operation}":`, message);
+    return `automated-audit: ${message}`;
+  }
 }
 
 const hookSubscribers: HookSubscriber[] = [
@@ -172,6 +220,11 @@ function runPostMutationHooks(
         toolCacheInvalidated = 0;
       }
     }
+  }
+
+  const auditWarning = maybeAppendAutomatedMutationAudit(operation, context, actions);
+  if (auditWarning) {
+    errors.push(auditWarning);
   }
 
   return {

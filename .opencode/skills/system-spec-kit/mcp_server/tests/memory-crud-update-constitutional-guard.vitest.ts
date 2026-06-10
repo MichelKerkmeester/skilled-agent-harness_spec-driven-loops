@@ -27,6 +27,7 @@ function createTestDatabase(): Database.Database {
       user_id TEXT,
       agent_id TEXT,
       session_id TEXT,
+      source_kind TEXT,
       delete_after TEXT
     );
 
@@ -41,13 +42,13 @@ function createTestDatabase(): Database.Database {
   return db;
 }
 
-function seedMemory(filePath: string): number {
+function seedMemory(filePath: string, sourceKind: string | null = 'human', tier = 'important'): number {
   const now = new Date().toISOString();
   database.prepare(`
-    INSERT INTO memory_index (
-      id, spec_folder, file_path, canonical_file_path, anchor_id, title,
-      trigger_phrases, importance_weight, created_at, updated_at, importance_tier
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO memory_index (
+        id, spec_folder, file_path, canonical_file_path, anchor_id, title,
+        trigger_phrases, importance_weight, created_at, updated_at, importance_tier, source_kind
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     101,
     'system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants',
@@ -59,7 +60,8 @@ function seedMemory(filePath: string): number {
     0.5,
     now,
     now,
-    'important',
+    tier,
+    sourceKind,
   );
   database.prepare(`
     INSERT INTO active_memory_projection (
@@ -219,5 +221,106 @@ describe('memory_update constitutional tier guard', () => {
       { action: 'tier_downgrade_non_constitutional_path' },
       { action: 'tier_downgrade_non_constitutional_path' },
     ]);
+  });
+
+  it('skips automated overwrites of protected manual fields while persisting safe fields and a hint', async () => {
+    const filePath = '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md';
+    const memoryId = seedMemory(filePath, 'human');
+    const { handleMemoryUpdate } = await loadHandler();
+
+    const response = await handleMemoryUpdate({
+      id: memoryId,
+      title: 'Automated title should not land',
+      importanceWeight: 0.8,
+      __provenanceContext: { provenanceSource: 'memory_index_scan', provenanceActor: 'system-scan' },
+    } as never);
+
+    const row = database.prepare(`
+      SELECT title, importance_weight, source_kind
+      FROM memory_index
+      WHERE id = ?
+    `).get(memoryId) as { title: string; importance_weight: number; source_kind: string };
+    expect(row).toEqual({
+      title: 'Wave 1 fixture',
+      importance_weight: 0.8,
+      source_kind: 'human',
+    });
+    expect(JSON.stringify(response)).toContain('skipped to protect manual data');
+    expect(JSON.stringify(response)).toContain('title');
+  });
+
+  it('ignores forged source_kind fields when internal provenance is automated', async () => {
+    const filePath = '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md';
+    const memoryId = seedMemory(filePath, 'human');
+    const { handleMemoryUpdate } = await loadHandler();
+
+    const response = await handleMemoryUpdate({
+      id: memoryId,
+      title: 'Forged human title',
+      source_kind: 'human',
+      sourceKind: 'human',
+      __provenanceContext: { provenanceSource: 'system-hook', provenanceActor: 'agent-worker' },
+    } as never);
+
+    const row = database.prepare('SELECT title, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { title: string; source_kind: string };
+    expect(row.title).toBe('Wave 1 fixture');
+    expect(row.source_kind).toBe('human');
+    expect(JSON.stringify(response)).toContain('skipped to protect manual data');
+  });
+
+  it('allows human writes over automated rows and flips source_kind to human', async () => {
+    const filePath = '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md';
+    const memoryId = seedMemory(filePath, 'agent');
+    const { handleMemoryUpdate } = await loadHandler();
+
+    await handleMemoryUpdate({
+      id: memoryId,
+      triggerPhrases: ['human', 'correction'],
+    });
+
+    const row = database.prepare('SELECT trigger_phrases, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { trigger_phrases: string; source_kind: string };
+    expect(JSON.parse(row.trigger_phrases)).toEqual(['human', 'correction']);
+    expect(row.source_kind).toBe('human');
+  });
+
+  it('treats legacy ambiguous source_kind as protected for automated payload partitioning', async () => {
+    const filePath = '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md';
+    const memoryId = seedMemory(filePath, null);
+    const { handleMemoryUpdate } = await loadHandler();
+
+    await handleMemoryUpdate({
+      id: memoryId,
+      title: 'Ambiguous overwrite',
+      importanceWeight: 0.7,
+      __provenanceContext: { provenanceSource: 'import-batch', provenanceActor: 'batch-importer' },
+    } as never);
+
+    const row = database.prepare('SELECT title, importance_weight, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { title: string; importance_weight: number; source_kind: string };
+    expect(row.title).toBe('Wave 1 fixture');
+    expect(row.importance_weight).toBe(0.7);
+    expect(row.source_kind).toBe('human');
+  });
+
+  it('skips protected fields on constitutional rows while persisting safe fields', async () => {
+    const filePath = '/workspace/.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md';
+    const memoryId = seedMemory(filePath, 'system', 'constitutional');
+    const { handleMemoryUpdate } = await loadHandler();
+
+    const response = await handleMemoryUpdate({
+      id: memoryId,
+      importanceTier: 'normal',
+      importanceWeight: 0.9,
+      __provenanceContext: { provenanceSource: 'agent-enrichment', provenanceActor: 'agent' },
+    } as never);
+
+    const row = database.prepare('SELECT importance_tier, importance_weight, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { importance_tier: string; importance_weight: number; source_kind: string };
+    expect(row.importance_tier).toBe('constitutional');
+    expect(row.importance_weight).toBe(0.9);
+    expect(row.source_kind).toBe('system');
+    expect(JSON.stringify(response)).toContain('skipped to protect manual data');
   });
 });

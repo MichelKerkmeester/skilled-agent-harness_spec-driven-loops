@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 1: provenance-and-audit [template:level_1/implementation-summary.md]"
-description: "Planned-stub summary for Phase 1 provenance-and-audit. Nothing implemented yet: this records the intended source_kind tagging, write-ingress overwrite guard, standardized mutation_ledger audit, and constitutional immunity rule before any code is written."
+description: "Completed implementation summary for provenance-and-audit: source_kind tagging, write-ingress overwrite guard, deduped mutation_ledger audit, and advisory constitutional rule."
 trigger_phrases:
   - "memory source_kind provenance"
   - "auto overwrite manual constitutional guard"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/001-provenance-and-audit"
-    last_updated_at: "2026-06-06T10:10:45Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold Phase 1 planned-stub impl doc"
-    next_safe_action: "Plan or implement T001 source_kind column migration"
+    last_updated_at: "2026-06-10T12:25:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Reconciled completed provenance docs"
+    next_safe_action: "Begin next child phase after handoff"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-provenance-and-audit"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-provenance-and-audit |
-| **Completed** | Not started — plan only |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,47 +49,38 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The provenance-and-audit hardening is implemented. Memory writes now carry a server-derived `source_kind`, automated writers are stopped at write ingress before they can overwrite protected manual or constitutional data, automated mutations append deduped audit records, and the constitutional rule is registered as advisory guidance.
 
-**Planned — not yet implemented.** Nothing in this phase has been built. This summary is a forward-looking stub that records the intended change so the work can be picked up cleanly. When implemented, Phase 1 will tag every memory write with a server-derived `source_kind`, refuse automated overwrites of manual/constitutional fields at write ingress, append a deduped audit row per automated mutation to the existing `mutation_ledger`, and register one narrow constitutional immunity rule — all automatic and invisible to the user.
+### Server-derived `source_kind` on every write
 
-### Planned: server-derived `source_kind` on every write
+The memory index schema moved from `SCHEMA_VERSION` 34 to 35 with an additive guarded `ALTER TABLE memory_index ADD COLUMN source_kind ... DEFAULT 'system' CHECK(...)` migration registered as `migrations[35]`. The migration is idempotent: re-running it leaves one `source_kind` column. Existing rows are backfilled from `provenance_source`: `manual` maps to `human`, `memory_index_scan` maps to `import`, `feedback-validator` maps to `feedback`, and missing provenance maps to `system`.
 
-The memory index schema will gain a `source_kind` enum (`human|agent|system|import|feedback`), derived server-side from the calling context (caller/path/tool) at write ingress. The user is never prompted for it. This gives every row an explicit origin so the write path can reason about whether an automated actor should be allowed to touch a given field.
+New records persist `source_kind` inside the insert transaction through `persistSourceKind`. Updates derive `source_kind` server-side through `deriveSourceKindFromContext`; callers cannot assert it directly. The `memory_update` schema is strict, so forged `source_kind` or `__provenanceContext` input is rejected at dispatch.
 
-### Planned: write-ingress overwrite guard
+### Write-ingress overwrite guard
 
-The update handler will refuse, in its pre-mutation phase, any automated (`source_kind != human`) write that targets a human-authored or constitutional field. Protected fields are skipped, safe fields in the same payload still persist, and the response envelope carries a quiet "skipped to protect manual data" hint. Manual and constitutional memory becomes structurally un-overwritable rather than relying on caller discipline.
+`buildGuardedUpdateParams` runs in `memory-crud-update.ts` before mutation. It skips automated overwrites of protected fields, persists safe fields from the same payload, and returns the "skipped to protect manual data" hint instead of throwing. Human writes and human-over-automated writes are allowed; a human edit flips `source_kind` to `human` and protects the field. Ambiguous row origin, including a null row `source_kind`, is treated as protected.
 
-### Planned: standardized automated-mutation audit
+`mutation-hooks.ts` stays post-write only. It handles cache invalidation and audit append; it does not make integrity decisions.
 
-Each automated mutation will append exactly one deduped row to the existing append-only `mutation_ledger` (actor/source/reason), keyed by a deterministic event key so an identical repeat does not duplicate. No parallel audit table is introduced.
+### Standardized automated-mutation audit
 
-### Planned: constitutional immunity rule
+Automated mutation audit reuses `mutation_ledger`. The append is deduped with a SHA-256 event key over actor, source, and reason; re-running the same logical mutation appends zero additional rows. Audit append is non-blocking: append failure logs a warning and never fails or rolls back the save being audited.
 
-One narrow rule — "automated writers may never overwrite manual/constitutional fields" — will be registered under `constitutional/` and surface as advisory in validation.
+### Advisory constitutional rule
 
-### Files Changed (planned)
+`constitutional/automated-writers-never-overwrite-manual.md` is registered through the constitutional loader. It is advisory only and does not add blocking machinery.
 
-<!-- Planned changes for a not-yet-implemented Level 1 phase. No code has been written. -->
+### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify (planned) | Add the `source_kind` enum column + forward migration (defaults from existing `provenance_source`). |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts` | Modify (planned) | Derive and persist `source_kind` at write ingress for new records. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` | Modify (planned) | Derive `source_kind` on update, enforce the manual/constitutional overwrite guard, attach the skipped-overwrite hint. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts` | Modify (planned) | Append the deduped automated-mutation audit row in the post-write hook (no integrity decisions). |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts` | Modify (planned) | Add a deduped audit-append entry point keyed by a deterministic event key. |
-| `.opencode/skills/system-spec-kit/constitutional/automated-writers-never-overwrite-manual.md` | Create (planned) | Register the narrow constitutional rule (advisory in validation). |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/__tests__/memory-crud-update.test.ts` | Create (planned) | vitest: overwrite guard blocks automated manual-field writes; safe fields still save. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/__tests__/mutation-ledger.test.ts` | Create (planned) | vitest: audit appends once per automated mutation; identical repeat appends none. |
-| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modify (planned) | Document `source_kind` and the write-ingress overwrite guard. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modified | Adds the `source_kind` enum column and migration 35 with idempotent backfill. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts` | Modified | Persists server-derived `source_kind` inside the create transaction. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` | Modified | Derives update provenance, rejects forged provenance input, and runs the pre-mutation guard. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts` | Modified | Keeps post-write cache and audit behavior only. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts` | Modified | Provides deduped audit append keyed by actor, source, and reason. |
+| `.opencode/skills/system-spec-kit/constitutional/automated-writers-never-overwrite-manual.md` | Created | Registers the advisory constitutional rule. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,13 +88,7 @@ One narrow rule — "automated writers may never overwrite manual/constitutional
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-Not started — plan only. Nothing has been delivered, tested, or shipped. The intended delivery path is: schema migration first (Setup), then the write-ingress derivation, overwrite guard, audit standardization, and constitutional rule (Core), then vitest unit/integration coverage and a manual `/doctor memory` check (Verification). Rollout is behind a fail-safe: `source_kind` defaults to the existing `provenance_source` if the migration is reverted, and the overwrite guard fails open on derivation ambiguity so a write is never silently lost.
+The work landed as an additive schema migration, create/update ingress changes, post-write audit standardization, and one advisory constitutional rule. Independent verification reported `npm run build` exit 0 and 9 green vitest suites covering 74 tests: `create-record-identity`, `gate-d-regression-constitutional-memory`, `memory-crud-update-constitutional-guard`, `mutation-hooks`, `mutation-ledger`, `vector-index-schema-compatibility`, `vector-index-schema-migration-refinements`, `vector-index-schema-incremental-foundation`, and `causal-edges-write-safety`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -111,16 +96,14 @@ Not started — plan only. Nothing has been delivered, tested, or shipped. The i
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
 | Put the `source_kind` derivation and overwrite guard in the pre-mutation (write-ingress) phase, not in `mutation-hooks.ts`. | `mutation-hooks.ts` is post-write, so a guard there fires too late to prevent an overwrite. Integrity decisions have to run before the transactional writer. |
 | Reuse the existing `mutation_ledger` for the audit instead of adding a parallel table. | The append-only ledger and its SQLite triggers already exist; a second table would split the trail and add maintenance for no gain. |
-| Dedup audit appends with a deterministic event key (actor/source/reason) and summarize in `/doctor`. | Stops automated mutations from flooding the ledger with redundant rows while keeping one row per logical mutation. |
-| Derive `source_kind` strictly from explicit caller/tool context and default conservatively. | Guessing origin from row content risks mislabeling a human edit as `agent`; explicit context keeps the tag trustworthy. |
-| Default `source_kind` to the existing `provenance_source` and keep the guard fail-open on ambiguity. | Makes the migration cleanly reversible and guarantees a write is never silently dropped if derivation is uncertain. |
+| Dedup audit appends with a deterministic event key over actor/source/reason. | Stops automated mutations from flooding the ledger with redundant rows while keeping one row per logical mutation. |
+| Treat the protected field set as rows with `importance_tier` constitutional or critical, plus pinned data; manual protection comes from `source_kind: human`. | This resolves the open protected-set question with row metadata the write path already has, without adding a separate field allowlist. |
+| Treat every non-`human` kind (`agent`, `system`, `import`, `feedback`) as automated for overwrite protection. | `import` and `feedback` are not separate trust tiers; all automated origins are blocked from overwriting human or constitutional fields. |
+| Default the unauthenticated MCP write surface to `human`, while treating ambiguous row origin as protected. | On this local single-user system the MCP save/update surface is the human channel. Automated callers must inject automated provenance context so they are classified non-human and subject to the guard. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -128,15 +111,16 @@ Not started — plan only. Nothing has been delivered, tested, or shipped. The i
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| vitest: overwrite guard blocks automated manual/constitutional writes; safe fields still save | Not started — plan only |
-| vitest: automated mutation appends exactly one `mutation_ledger` row; identical repeat appends none | Not started — plan only |
-| vitest: every create/update path persists a non-null `source_kind` | Not started — plan only |
-| Manual: automated update of a human-authored field is skipped and the response carries the "skipped to protect manual data" hint (`/doctor memory` audit summary) | Not started — plan only |
+| Build | PASS - `npm run build` exit 0. |
+| Vitest | PASS - 9 suites / 74 tests green. |
+| Schema migration | PASS - `SCHEMA_VERSION` 34 to 35, migration registered as `migrations[35]`, idempotent re-run yields one column. |
+| Backfill mapping | PASS - `manual` to `human`, `memory_index_scan` to `import`, `feedback-validator` to `feedback`, null to `system`. |
+| Create/update provenance | PASS - create persists via `persistSourceKind`; update derives via `deriveSourceKindFromContext`; forged client provenance rejected by strict dispatch schema. |
+| Guard behavior | PASS - automated protected-field writes skip only protected fields, safe fields persist, response carries the skipped hint, and human writes remain allowed. |
+| Audit behavior | PASS - deduped by SHA-256 actor/source/reason key; repeated mutation appends zero rows; append failure warns without rollback. |
+| Constitutional rule | PASS - loader sees the rule and treats it as advisory. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -144,14 +128,10 @@ Not started — plan only. Nothing has been delivered, tested, or shipped. The i
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **Unimplemented.** This phase is planned only; no code, schema migration, tests, or constitutional rule have been written yet. Every claim here is intended behavior, not shipped behavior. Start at T001 (`source_kind` column + migration).
-2. **Open: constitutional field set.** Which exact fields count as "constitutional" for the overwrite guard (and whether the set derives from `importance_tier`/`contextType` or an explicit allowlist) is unresolved and must be confirmed against the live schema during Setup.
-3. **Open: `import`/`feedback` tier.** Whether `import` and `feedback` `source_kind` values share `agent`/`system` overwrite protection or form a distinct tier is undecided; the working default blocks all non-`human` kinds from overwriting human/constitutional fields.
+1. **P1: Human-default caller discipline for phase-003+ automated writers.** The unauthenticated MCP save/update surface defaults to `human` by design because it is the local human channel. Automated callers introduced later must inject automated provenance context (`__provenanceContext`) so they are classified as non-human and subject to the guard.
+2. **P2: Startup drift repair re-runs the backfill each boot.** This is convergent and protection-only, but it is still repeated work that could be optimized later.
+3. **P2: Audit event key omits a value hash.** The key matches the current requirement by hashing actor/source/reason, but it does not distinguish identical reasons that carry different values.
+4. **P2: Strict-schema defense-in-depth.** Consider stripping `__provenanceContext` at dispatch when `SPECKIT_STRICT_SCHEMAS=false`, so forged provenance input is removed even if strict schemas are disabled.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -161,4 +141,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/001-provenance-and-audit"
-    last_updated_at: "2026-06-06T10:10:45Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populate Phase 1 provenance-and-audit planning spec"
-    next_safe_action: "Plan or implement T001 source_kind column migration"
+    last_updated_at: "2026-06-10T12:25:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented provenance guard and audit"
+    next_safe_action: "Begin next child phase after handoff"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-provenance-and-audit"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned (not implemented) |
+| **Status** | Implemented |
 | **Created** | 2026-06-06 |
 | **Branch** | `scaffold/001-provenance-and-audit` |
 | **Parent Spec** | ../spec.md |
@@ -188,7 +188,7 @@ Every memory write carries an explicit, server-derived `source_kind`, automated 
 ### Error Scenarios
 - **`mutation_ledger` append fails** (lock, disk, trigger error): surface a non-fatal warning, do NOT block or roll back the write it was auditing — the audit gap is logged, the save still succeeds.
 - **Automated write targets a constitutional row**: the write to the protected field is skipped and the response returns a typed "skipped to protect manual data" hint rather than a hard error, so the automated actor continues with its safe fields.
-- **Derivation cannot resolve a `source_kind`**: default conservatively (treat as non-`human` for guard purposes, persist a defaulted non-null value) rather than writing null or guessing `human`.
+- **Derivation cannot resolve a `source_kind`**: ambiguous row origin is treated as protected; the unauthenticated MCP write surface defaults to `source_kind=human` by design because it is the human channel on this local single-user system. Automated callers (enrichment, promoters, reducers, and later automated phases) must inject automated provenance context (`__provenanceContext`) so they are classified non-human and subject to the guard.
 
 ### State Transitions
 - **`source_kind` changes from `agent` to `human`**: when a human manually edits a row previously written by an automated actor, the row's `source_kind` flips to `human` and the field becomes protected from future automated overwrite — a legitimate human-over-automated write is always allowed.

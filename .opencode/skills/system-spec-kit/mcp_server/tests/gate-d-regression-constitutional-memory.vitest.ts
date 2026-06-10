@@ -138,6 +138,18 @@ describe('Gate D regression constitutional memory', () => {
     expect(discovered).toEqual([ruleFile]);
   });
 
+  it('loads the automated-writer manual-protection rule as constitutional advisory guidance', () => {
+    const workspaceRoot = path.resolve(process.cwd(), '../../../..');
+    const rulePath = path.resolve(process.cwd(), '..', 'constitutional', 'automated-writers-never-overwrite-manual.md');
+    const discovered = findConstitutionalFiles(workspaceRoot);
+    const content = fs.readFileSync(rulePath, 'utf8');
+
+    expect(discovered).toContain(rulePath);
+    expect(content).toContain('importanceTier: constitutional');
+    expect(content).toContain('contextType: decision');
+    expect(content).toContain('Automated writers may never overwrite manual or constitutional memory fields');
+  });
+
   it('keeps constitutional guidance at the top while dropping archived and legacy-memory rows', async () => {
     handlerMocks.executePipeline.mockResolvedValueOnce({
       results: [

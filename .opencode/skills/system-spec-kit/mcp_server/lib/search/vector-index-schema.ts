@@ -99,6 +99,7 @@ const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'post_insert_enrichment_state',
   'post_insert_enrichment_completed_at',
   'post_insert_enrichment_version',
+  'source_kind',
   'chunk_id',
   'chunk_fingerprint',
   'chunk_kind',
@@ -587,8 +588,74 @@ function getMigrationAllowedBasePaths(): string[] {
 // V32: Add causal edge tombstone audit table
 // V33: Add generated causal-edge provenance columns
 // V34: Add derived trigger embedding status table
+// V35: Add server-derived write provenance kind
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 34;
+export const SCHEMA_VERSION = 35;
+
+const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
+
+function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    return 'system';
+  }
+
+  const normalized = value.trim().toLowerCase();
+  if (/\b(human|manual|user|operator|author)\b/.test(normalized)) {
+    return 'human';
+  }
+  if (normalized.includes('feedback') || normalized.includes('validate') || normalized.includes('validation')) {
+    return 'feedback';
+  }
+  if (normalized.includes('import') || normalized.includes('ingest') || normalized.includes('scan') || normalized.includes('index')) {
+    return 'import';
+  }
+  if (/\b(agent|assistant|claude|codex|opencode|automation|bot)\b/.test(normalized)) {
+    return 'agent';
+  }
+  return 'system';
+}
+
+function ensureMemoryIndexSourceKindColumn(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping source_kind column`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  if (!columns.has('source_kind')) {
+    try {
+      database.exec(SOURCE_KIND_COLUMN_SQL);
+      columns.add('source_kind');
+      logger.info(`${context}: Added memory_index.source_kind`);
+    } catch (error: unknown) {
+      if (!get_error_message(error).includes('duplicate column')) {
+        throw error;
+      }
+      logDuplicateColumnMigrationSkip('source_kind', error);
+    }
+  }
+
+  if (columns.has('provenance_source')) {
+    const rows = database.prepare(`
+      SELECT id, provenance_source
+      FROM memory_index
+      WHERE source_kind IS NULL OR TRIM(source_kind) = ''
+        OR source_kind NOT IN ('human', 'agent', 'system', 'import', 'feedback')
+        OR (source_kind = 'system' AND provenance_source IS NOT NULL AND TRIM(provenance_source) != '')
+    `).all() as Array<{ id: number; provenance_source: string | null }>;
+    const update = database.prepare('UPDATE memory_index SET source_kind = ? WHERE id = ?');
+    for (const row of rows) {
+      update.run(sourceKindFromProvenanceSource(row.provenance_source), row.id);
+    }
+  } else {
+    database.prepare(`
+      UPDATE memory_index
+      SET source_kind = 'system'
+      WHERE source_kind IS NULL OR TRIM(source_kind) = ''
+        OR source_kind NOT IN ('human', 'agent', 'system', 'import', 'feedback')
+    `).run();
+  }
+}
 
 function ensureCausalEdgeProvenanceColumns(database: Database.Database, context: string): void {
   if (!hasTable(database, 'causal_edges')) {
@@ -1750,6 +1817,11 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v34: Created trigger embedding schema');
   };
 
+  migrations[35] = () => {
+    ensureMemoryIndexSourceKindColumn(database, 'Migration v35');
+    logger.info('Migration v35: Added memory_index.source_kind provenance backfill');
+  };
+
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -1944,6 +2016,7 @@ function ensureMemoryIndexGovernanceColumns(database: Database.Database): void {
     { name: 'agent_id', sql: 'ALTER TABLE memory_index ADD COLUMN agent_id TEXT' },
     { name: 'provenance_source', sql: 'ALTER TABLE memory_index ADD COLUMN provenance_source TEXT' },
     { name: 'provenance_actor', sql: 'ALTER TABLE memory_index ADD COLUMN provenance_actor TEXT' },
+    { name: 'source_kind', sql: SOURCE_KIND_COLUMN_SQL },
     { name: 'governed_at', sql: 'ALTER TABLE memory_index ADD COLUMN governed_at TEXT' },
     { name: 'retention_policy', sql: "ALTER TABLE memory_index ADD COLUMN retention_policy TEXT DEFAULT 'keep'" },
     { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
@@ -1958,6 +2031,8 @@ function ensureMemoryIndexGovernanceColumns(database: Database.Database): void {
       logDuplicateColumnMigrationSkip(column.name, error);
     }
   }
+
+  ensureMemoryIndexSourceKindColumn(database, 'governance bootstrap');
 }
 
 // Idempotent: runs on every startup. If the column is gone we return without
@@ -2861,6 +2936,7 @@ export function create_schema(
       content_hash TEXT,
       provenance_source TEXT,
       provenance_actor TEXT,
+      source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback')),
       governed_at TEXT,
       retention_policy TEXT DEFAULT 'keep',
       delete_after TEXT,

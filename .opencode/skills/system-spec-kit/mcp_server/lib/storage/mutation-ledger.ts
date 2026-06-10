@@ -82,6 +82,22 @@ interface RecordDivergenceReconcileResult {
   escalation: DivergenceEscalationPayload | null;
 }
 
+interface AutomatedMutationAuditInput {
+  mutation_type?: MutationType;
+  actor: string;
+  source_kind: 'agent' | 'system' | 'import' | 'feedback';
+  reason: string;
+  linked_memory_ids?: number[];
+  session_id?: string | null;
+  decision_meta?: Record<string, unknown>;
+}
+
+interface AutomatedMutationAuditResult {
+  appended: boolean;
+  eventKey: string;
+  entry: MutationLedgerEntry | null;
+}
+
 /* ───────────────────────────────────────────────────────────────
    2. SCHEMA SQL
 ----------------------------------------------------------------*/
@@ -166,6 +182,55 @@ function appendEntry(db: Database.Database, entry: AppendEntryInput): MutationLe
 
   const row = db.prepare('SELECT * FROM mutation_ledger WHERE id = ?').get(id) as MutationLedgerEntry;
   return row;
+}
+
+function buildAutomatedMutationEventKey(input: AutomatedMutationAuditInput): string {
+  return computeHash(JSON.stringify({
+    actor: input.actor,
+    source_kind: input.source_kind,
+    reason: input.reason,
+  }));
+}
+
+function getAutomatedMutationAuditEntry(db: Database.Database, eventKey: string): MutationLedgerEntry | null {
+  const row = db.prepare(`
+    SELECT *
+    FROM mutation_ledger
+    WHERE json_extract(decision_meta, '$.eventKey') = ?
+    ORDER BY id ASC
+    LIMIT 1
+  `).get(eventKey) as MutationLedgerEntry | undefined;
+  return row ?? null;
+}
+
+function appendAutomatedMutationAudit(
+  db: Database.Database,
+  input: AutomatedMutationAuditInput,
+): AutomatedMutationAuditResult {
+  initLedger(db);
+  const eventKey = buildAutomatedMutationEventKey(input);
+  const existing = getAutomatedMutationAuditEntry(db, eventKey);
+  if (existing) {
+    return { appended: false, eventKey, entry: existing };
+  }
+
+  const entry = appendEntry(db, {
+    mutation_type: input.mutation_type ?? 'update',
+    reason: input.reason,
+    prior_hash: null,
+    new_hash: eventKey,
+    linked_memory_ids: input.linked_memory_ids ?? [],
+    decision_meta: {
+      ...(input.decision_meta ?? {}),
+      eventKey,
+      sourceKind: input.source_kind,
+      automated: true,
+    },
+    actor: input.actor,
+    session_id: input.session_id ?? null,
+  });
+
+  return { appended: true, eventKey, entry };
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -452,6 +517,8 @@ export {
   initLedger,
   computeHash,
   appendEntry,
+  appendAutomatedMutationAudit,
+  buildAutomatedMutationEventKey,
   getEntries,
   getEntryCount,
   getLinkedEntries,
@@ -472,6 +539,8 @@ export type {
   MutationType,
   MutationLedgerEntry,
   AppendEntryInput,
+  AutomatedMutationAuditInput,
+  AutomatedMutationAuditResult,
   GetEntriesOptions,
   DivergenceReconcilePolicy,
   DivergenceEscalationPayload,

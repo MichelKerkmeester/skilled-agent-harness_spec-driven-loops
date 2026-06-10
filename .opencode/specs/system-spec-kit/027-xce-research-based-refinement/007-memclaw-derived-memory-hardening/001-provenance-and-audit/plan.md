@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/001-provenance-and-audit"
-    last_updated_at: "2026-06-06T10:10:45Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populate Phase 1 provenance-and-audit plan"
-    next_safe_action: "Plan or implement T001 source_kind column migration"
+    last_updated_at: "2026-06-10T12:25:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented provenance guard and audit"
+    next_safe_action: "Begin next child phase after handoff"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-provenance-and-audit"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,14 +55,14 @@ This phase tags every memory write with a server-derived `source_kind` and makes
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -114,22 +114,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Add the `source_kind` enum column to `vector-index-schema.ts`.
-- [ ] Write the forward migration (default `source_kind` from existing `provenance_source`).
-- [ ] Confirm the constitutional "field class" set (which fields count as manual/constitutional) against the live schema.
+- [x] Add the `source_kind` enum column to `vector-index-schema.ts`.
+- [x] Write the forward migration (default `source_kind` from existing `provenance_source`).
+- [x] Confirm the constitutional "field class" set (which fields count as manual/constitutional) against the live schema.
 
 ### Phase 2: Core Implementation
-- [ ] Derive `source_kind` at write ingress in `create-record.ts` and `memory-crud-update.ts` (server-side, from caller/path/tool).
-- [ ] Enforce the manual/constitutional overwrite guard in the pre-mutation phase of `memory-crud-update.ts` (skip protected fields, persist safe fields).
-- [ ] Attach the "skipped to protect manual data" hint to the response envelope when an overwrite is blocked.
-- [ ] Standardize the automated-mutation audit append in `mutation-hooks.ts` + `mutation-ledger.ts` with a deterministic dedup key.
-- [ ] Add the constitutional rule file under `constitutional/`.
+- [x] Derive `source_kind` at write ingress in `create-record.ts` and `memory-crud-update.ts` (server-side, from caller/path/tool).
+- [x] Enforce the manual/constitutional overwrite guard in the pre-mutation phase of `memory-crud-update.ts` (skip protected fields, persist safe fields).
+- [x] Attach the "skipped to protect manual data" hint to the response envelope when an overwrite is blocked.
+- [x] Standardize the automated-mutation audit append in `mutation-hooks.ts` + `mutation-ledger.ts` with a deterministic dedup key.
+- [x] Add the constitutional rule file under `constitutional/`.
 
 ### Phase 3: Verification
-- [ ] vitest: automated overwrite of a manual/constitutional field is blocked while safe fields still save.
-- [ ] vitest: automated mutation appends exactly one `mutation_ledger` row; a repeat appends none.
-- [ ] vitest: every create/update path persists a non-null `source_kind`.
-- [ ] Update the memory-system docs to describe `source_kind` and the overwrite guard.
+- [x] vitest: automated overwrite of a manual/constitutional field is blocked while safe fields still save.
+- [x] vitest: automated mutation appends exactly one `mutation_ledger` row; a repeat appends none.
+- [x] vitest: every create/update path persists a non-null `source_kind`.
+- [x] Update the phase implementation summary to describe `source_kind` and the overwrite guard.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -224,4 +224,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

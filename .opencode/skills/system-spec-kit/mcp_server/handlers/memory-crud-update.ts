@@ -30,6 +30,11 @@ import { recordHistory } from '../lib/storage/history.js';
 import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
 import { buildMutationHookFeedback } from '../hooks/mutation-feedback.js';
+import {
+  deriveSourceKindFromContext,
+  normalizeSourceKind,
+  type SourceKind,
+} from './save/create-record.js';
 
 import type { MCPResponse } from './types.js';
 import type { UpdateArgs } from './memory-crud-types.js';
@@ -43,6 +48,109 @@ import type { UpdateArgs } from './memory-crud-types.js';
 /* ───────────────────────────────────────────────────────────────
    CORE LOGIC
 ──────────────────────────────────────────────────────────────── */
+
+const PROTECTED_AUTOMATED_UPDATE_FIELDS = new Set(['title', 'triggerPhrases', 'importanceTier']);
+const SKIPPED_MANUAL_PROTECTION_HINT = 'skipped to protect manual data';
+
+interface ProvenanceGuardResult {
+  updateParams: UpdateMemoryParams;
+  requestedFields: string[];
+  persistedFields: string[];
+  skippedFields: string[];
+  sourceKind: SourceKind;
+  storedSourceKind: SourceKind;
+  hint: string | null;
+}
+
+function getInternalProvenanceContext(args: UpdateArgs): Record<string, unknown> {
+  const rawArgs = args as unknown as Record<string, unknown>;
+  const context = rawArgs.__provenanceContext;
+  return context && typeof context === 'object' && !Array.isArray(context)
+    ? context as Record<string, unknown>
+    : {};
+}
+
+function hasSourceKindColumn(database: ReturnType<typeof vectorIndex.getDb>): boolean {
+  if (!database) {
+    return false;
+  }
+  try {
+    return (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .some((column) => column.name === 'source_kind');
+  } catch {
+    return false;
+  }
+}
+
+function isProtectedExistingRow(existing: Record<string, unknown>): boolean {
+  const existingSourceKind = normalizeSourceKind(existing.source_kind);
+  const importanceTier = typeof existing.importance_tier === 'string' ? existing.importance_tier : null;
+  const pathCandidate = [existing.canonical_file_path, existing.file_path]
+    .find((value) => typeof value === 'string' && value.length > 0);
+  const rowPath = typeof pathCandidate === 'string' ? pathCandidate : null;
+  return existingSourceKind === null
+    || existingSourceKind === 'human'
+    || importanceTier === 'constitutional'
+    || (rowPath !== null && isConstitutionalPath(rowPath));
+}
+
+function buildGuardedUpdateParams(
+  args: UpdateArgs,
+  existing: Record<string, unknown>,
+): ProvenanceGuardResult {
+  const internalContext = getInternalProvenanceContext(args);
+  const sourceKind = deriveSourceKindFromContext({
+    provenanceSource: internalContext.provenanceSource ?? internalContext.provenance_source,
+    provenanceActor: internalContext.provenanceActor ?? internalContext.provenance_actor,
+    tool: internalContext.tool,
+  });
+  const existingSourceKind = normalizeSourceKind(existing.source_kind);
+  const automated = sourceKind !== 'human';
+  const protectExisting = automated && isProtectedExistingRow(existing);
+  const updateParams: UpdateMemoryParams = { id: args.id };
+  const requestedFields: string[] = [];
+  const persistedFields: string[] = [];
+  const skippedFields: string[] = [];
+
+  const maybeAssign = <K extends keyof UpdateMemoryParams>(field: K, value: UpdateMemoryParams[K]): void => {
+    if (value === undefined) {
+      return;
+    }
+    requestedFields.push(field);
+    if (protectExisting && PROTECTED_AUTOMATED_UPDATE_FIELDS.has(field)) {
+      skippedFields.push(field);
+      return;
+    }
+    updateParams[field] = value;
+    persistedFields.push(field);
+  };
+
+  maybeAssign('title', args.title);
+  maybeAssign('triggerPhrases', args.triggerPhrases);
+  maybeAssign('importanceWeight', args.importanceWeight);
+  maybeAssign('importanceTier', args.importanceTier);
+
+  const storedSourceKind = sourceKind === 'human'
+    ? 'human'
+    : (protectExisting ? (existingSourceKind ?? 'human') : sourceKind);
+
+  return {
+    updateParams,
+    requestedFields,
+    persistedFields,
+    skippedFields,
+    sourceKind,
+    storedSourceKind,
+    hint: skippedFields.length > 0 ? SKIPPED_MANUAL_PROTECTION_HINT : null,
+  };
+}
+
+function persistUpdateSourceKind(database: ReturnType<typeof vectorIndex.getDb>, id: number, sourceKind: SourceKind): void {
+  if (!hasSourceKindColumn(database)) {
+    return;
+  }
+  database?.prepare('UPDATE memory_index SET source_kind = ? WHERE id = ?').run(sourceKind, id);
+}
 
 /** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
 async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
@@ -114,18 +222,15 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   const database = vectorIndex.getDb();
   const priorSnapshot = getMemoryHashSnapshot(database, id);
 
-  const updateParams: UpdateMemoryParams = { id };
-  if (title !== undefined) updateParams.title = title;
-  if (triggerPhrases !== undefined) updateParams.triggerPhrases = triggerPhrases;
-  if (importanceWeight !== undefined) updateParams.importanceWeight = importanceWeight;
-  if (importanceTier !== undefined) updateParams.importanceTier = importanceTier;
+  const guard = buildGuardedUpdateParams({ ...args, title, triggerPhrases }, existing as Record<string, unknown>);
+  const updateParams = guard.updateParams;
 
   let embeddingRegenerated = false;
   let embeddingMarkedForReindex = false;
   let embeddingStatusNeedsPendingWrite = false;
   let mutationLedgerWarning: string | null = null;
 
-  if (title !== undefined && title !== existing.title) {
+  if (updateParams.title !== undefined && updateParams.title !== existing.title) {
     console.error(`[memory-update] Title changed, regenerating embedding for memory ${id} [requestId=${requestId}]`);
     let newEmbedding: Float32Array | null = null;
 
@@ -133,7 +238,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
       // Embed title + content_text, not title alone.
       // This produces better semantic embeddings that capture the full memory context.
       const contentText = existing.content_text || '';
-      const embeddingInput = contentText ? `${title}\n\n${contentText}` : title;
+      const embeddingInput = contentText ? `${updateParams.title}\n\n${contentText}` : updateParams.title;
       newEmbedding = await embeddings.generateDocumentEmbedding(embeddingInput);
     } catch (err: unknown) {
       const message = toErrorMessage(err);
@@ -172,7 +277,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   // transaction wrapper — wraps all synchronous mutation steps (DB update,
   // Cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
   // Embedding generation (async) runs before this block; its result feeds into updateParams.
-  const fields = Object.keys(updateParams).filter((key) => key !== 'id' && key !== 'embedding');
+  const fields = guard.persistedFields;
 
   if (database) {
     runInTransaction(database, () => {
@@ -180,16 +285,19 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
         vectorIndex.updateEmbeddingStatus(id, 'pending');
       }
 
-      vectorIndex.updateMemory(updateParams);
+      if (fields.length > 0 || updateParams.embedding !== undefined) {
+        vectorIndex.updateMemory(updateParams);
+      }
+      persistUpdateSourceKind(database, id, guard.storedSourceKind);
 
-      if (importanceTier !== undefined) {
+      if (updateParams.importanceTier !== undefined) {
         const updated = vectorIndex.getMemory(id) as (Record<string, unknown> | null);
         const previousTier = typeof existing.importance_tier === 'string'
           ? existing.importance_tier
           : undefined;
         const nextTier = typeof updated?.importance_tier === 'string'
           ? updated.importance_tier
-          : (previousTier ?? importanceTier);
+          : (previousTier ?? updateParams.importanceTier);
         const guardPathCandidate = [
           updated?.canonical_file_path,
           updated?.file_path,
@@ -221,7 +329,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
             recordTierDowngradeAudit(database, {
               memoryId: id,
               logicalKey: buildGovernanceLogicalKey(specFolder, guardPath, anchorId),
-              requestedTier: importanceTier,
+              requestedTier: updateParams.importanceTier,
               previousTier,
               nextTier,
               source: 'memory_update',
@@ -301,6 +409,10 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
         decisionMeta: {
           tool: 'memory_update',
           fields,
+          requestedFields: guard.requestedFields,
+          skippedFields: guard.skippedFields,
+          sourceKind: guard.sourceKind,
+          storedSourceKind: guard.storedSourceKind,
           embeddingRegenerated,
           embeddingMarkedForReindex,
           allowPartialUpdate,
@@ -319,7 +431,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
       tool: 'memory_update',
       error: `Memory ${id} update aborted: database unavailable`,
       code: 'E_DB_UNAVAILABLE',
-      details: { updated: null, fields },
+      details: { updated: null, fields, skippedFields: guard.skippedFields },
       recovery: {
         hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database',
         actions: ['Restart the MCP server', 'Call memory_index_scan()'],
@@ -330,7 +442,13 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
 
   let postMutationHooks: import('./mutation-hooks.js').MutationHookResult;
   try {
-    postMutationHooks = runPostMutationHooks('update', { memoryId: id });
+    postMutationHooks = runPostMutationHooks('update', {
+      database,
+      memoryId: id,
+      sourceKind: guard.sourceKind,
+      actor: 'mcp:memory_update',
+      auditReason: `memory_update:${id}:${fields.slice().sort().join(',') || 'source_kind'}`,
+    });
   } catch (hookError: unknown) {
     const msg = hookError instanceof Error ? hookError.message : String(hookError);
     postMutationHooks = {
@@ -356,11 +474,19 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   if (mutationLedgerWarning) {
     hints.push(mutationLedgerWarning);
   }
+  if (guard.hint) {
+    hints.push(guard.hint);
+  }
   hints.push(...postMutationFeedback.hints);
 
   const data: Record<string, unknown> = {
     updated: id,
     fields,
+    skippedFields: guard.skippedFields,
+    provenance: {
+      sourceKind: guard.sourceKind,
+      storedSourceKind: guard.storedSourceKind,
+    },
     embeddingRegenerated,
     postMutationHooks: postMutationFeedback.data,
   };

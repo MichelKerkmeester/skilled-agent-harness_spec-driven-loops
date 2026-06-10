@@ -5,6 +5,7 @@ import Database from 'better-sqlite3';
 import {
   initLedger,
   appendEntry,
+  appendAutomatedMutationAudit,
   computeHash,
   getEntries,
   getEntryCount,
@@ -280,6 +281,36 @@ describe('Mutation Ledger', () => {
       return meta.attempt;
     });
     expect(attempts).toEqual([1, 2, 3]);
+  });
+
+  it('dedupes automated mutation audit entries by deterministic event key', () => {
+    const first = appendAutomatedMutationAudit(db, {
+      actor: 'agent:enricher',
+      source_kind: 'agent',
+      reason: 'memory_update:42:title',
+      linked_memory_ids: [42],
+    });
+    const second = appendAutomatedMutationAudit(db, {
+      actor: 'agent:enricher',
+      source_kind: 'agent',
+      reason: 'memory_update:42:title',
+      linked_memory_ids: [42],
+    });
+
+    expect(first.appended).toBe(true);
+    expect(second.appended).toBe(false);
+    expect(second.eventKey).toBe(first.eventKey);
+    expect(getEntryCount(db)).toBe(1);
+
+    const rows = getEntries(db);
+    const meta = JSON.parse(rows[0].decision_meta) as { eventKey?: string; sourceKind?: string; automated?: boolean };
+    expect(rows[0].actor).toBe('agent:enricher');
+    expect(rows[0].reason).toBe('memory_update:42:title');
+    expect(meta).toMatchObject({
+      eventKey: first.eventKey,
+      sourceKind: 'agent',
+      automated: true,
+    });
   });
 
   it('escalates with payload when divergence retries are exhausted', () => {

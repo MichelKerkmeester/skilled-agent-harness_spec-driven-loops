@@ -119,4 +119,23 @@ describe('Mutation hooks', () => {
       'degree cache failure'
     );
   });
+
+  it('treats automated audit append failures as non-fatal hook warnings', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const result = runPostMutationHooks('update', {
+      database: { prepare: vi.fn() },
+      memoryId: 42,
+      sourceKind: 'system',
+      actor: 'system:hook',
+      auditReason: 'memory_update:42:title',
+    });
+
+    expect(result.triggerCacheCleared).toBe(true);
+    expect(result.toolCacheInvalidated).toBe(3);
+    expect(result.errors.some((error) => error.startsWith('automated-audit:'))).toBe(true);
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[mutation-hooks] automated audit append failed for operation="update":',
+      expect.any(String),
+    );
+  });
 });

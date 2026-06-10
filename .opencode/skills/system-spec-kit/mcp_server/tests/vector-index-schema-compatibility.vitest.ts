@@ -40,6 +40,7 @@ describe('Vector index schema compatibility validator', () => {
           importance_tier TEXT CHECK(importance_tier IN ('constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated')),
           context_type TEXT,
           session_id TEXT,
+          source_kind TEXT,
           content_hash TEXT,
           embedding_status TEXT,
           tenant_id TEXT,

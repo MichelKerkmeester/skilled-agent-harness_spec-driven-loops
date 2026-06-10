@@ -1,14 +1,14 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/001-provenance-and-audit",
-  "description": "Feature Specification: Phase 1: provenance-and-audit",
+  "description": "Implemented provenance-and-audit hardening for source_kind, write-ingress protection, and automated mutation audit",
   "keywords": [
     "feature",
     "specification",
     "phase",
     "provenance-and-audit"
   ],
-  "lastUpdated": "2026-06-06T14:41:15.910Z",
+  "lastUpdated": "2026-06-10T12:25:00.000Z",
   "specId": "001",
   "folderSlug": "provenance-and-audit",
   "parentChain": [
