@@ -12,22 +12,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 010 from research 006 T10 + integration-plan 019-023"
-    next_safe_action: "Author the reviewer fixture schema, then the reviewer scorer branch"
+    last_updated_at: "2026-06-10T07:04:58Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added reviewer fixture substrate"
+    next_safe_action: "Use reviewer fixtures before promoting reviewer rules"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-010-reviewer-prompt-benchmark-substrate-scaffold"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Default verdict-extraction order: pattern-first then LLM-grader fallback (recommended) vs grader-first"
-      - "input_kind value set: diff + state_ref only, or also a story/spec input for AC-coverage fixtures"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Proposal ranks 010 #2 in ship-order and explicitly LAND FIRST as the test substrate for 009/011"
+      - "Verdict extraction uses pattern-first, then LLM-grader fallback when --grader llm is selected"
+      - "input_kind is limited to diff and state_ref; AC coverage uses state_ref"
+      - "Schema lives in reviewer-schema.md with a README pointer"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: 010 — Reviewer-Prompt Benchmark Substrate
@@ -63,7 +64,7 @@ Source context:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Completed |
 | **Parent Packet** | `001-peck-teachings-adoption` |
 | **Source** | `../../research/006-peck-source-deep-mining/research.md` §2 (T10); `iterations/iteration-016.md`; `integration-plan.md` §§2-7; `sub-packet-proposal.md` §2 |
 | **Depends on** | None structural (sequence FIRST so 009/011 are regression-tested) |
@@ -269,7 +270,9 @@ These are first-class P0/P1 requirements, called out separately because UX and a
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Verdict-extraction order: pattern-first then `--grader llm` fallback (recommended, matches the MiniMax sketch) versus grader-first. Default recommended is pattern-first; confirm during scorer authoring.
-- `input_kind` value set: `diff` + `state_ref` only (matches the peck `revim-*` `CHECKOUT/INPUT` shape), or also a story/spec input kind for the 011 AC-coverage fixture. Default recommended is `diff` + `state_ref`, with the AC-coverage fixture using `state_ref`; confirm when authoring the AC-coverage seed fixture.
-- Whether the reviewer schema lives in its own `reviewer-schema.md` or folds into the existing `benchmark-fixtures/README.md`. Default recommended is a short dedicated doc plus a pointer from the README.
+All scaffolded questions are answered:
+
+- Verdict extraction is pattern-first, with `--grader llm` fallback only when the pattern matcher cannot parse a verdict.
+- `input_kind` is limited to `diff` and `state_ref`; the acceptance-coverage seed uses `state_ref`.
+- The reviewer schema lives in `reviewer-schema.md`, with a pointer from the fixtures README.
 <!-- /ANCHOR:questions -->

@@ -1,6 +1,6 @@
 ---
 title: "lib: config-driven sweep framework primitives"
-description: "Pure, mostly dependency-free helpers consumed by the sweep runner: per-cell scoring, the correctness gate, framework rendering, profile validation, grouped reporting, and stats."
+description: "Pure, mostly dependency-free helpers consumed by the sweep runner: per-cell scoring, reviewer verdict scoring, correctness gating, framework rendering, profile validation, grouped reporting, and stats."
 trigger_phrases:
   - "sweep framework primitives"
   - "correctness gate"
@@ -19,6 +19,7 @@ trigger_phrases:
 Current state:
 
 - `code-task-scorer.cjs` produces the per-cell dimension vector by running fixture oracles as deep-equal tests in isolated child processes.
+- `reviewer-scorer.cjs` scores reviewer-prompt fixtures by dispatching a reviewer prompt, extracting a verdict, and comparing it to the expected-verdict oracle.
 - `correctness-gate.cjs` decides eligibility and the ranking key; correctness is dropped as the key when it saturates, never folded into a blend.
 - `framework-renderer.cjs` fills `{{slot}}` placeholders from a machine-readable framework registry and fails loud on any unfilled required slot.
 - `profile-validator.cjs` validates only the new sweep keys, only when present, so legacy profiles pass untouched.
@@ -32,6 +33,7 @@ Current state:
 | File | Responsibility |
 |---|---|
 | `code-task-scorer.cjs` | Scores ONE cell's model output against a code-task fixture. Extracts the target function from fenced/bare and `function`/arrow forms, runs visible + `hidden_tests` oracles as deep-equal checks in isolated child processes (one process per case, each with its own hard timeout), and returns `{ correctness_pass_rate, assertions_passed/total, format_adherent, output_words/chars, per_test, extracted, ... }`. Exports `scoreCodeTask`, `extractFunction`, `detectFormatAdherence`, `unfence`, `runSuite`. Dependency-free (Node stdlib). |
+| `reviewer-scorer.cjs` | Scores reviewer-prompt fixtures. Detects `kind: "reviewer-prompt"`, composes prompts from `prompt_template` plus `input`, dispatches through `dispatch-model.cjs` when no deterministic `reviewer_output` is present, extracts `PASS`/`FAIL`/`BLOCK` pattern-first with `--grader llm` fallback, and emits a Lane B report row with `correctness_pass_rate`, D1-D5 dimensions, per-case details, and `REVIEWER_BENCHMARK` mismatch messages. |
 | `correctness-gate.cjs` | Applies correctness as a GATE. A group is eligible iff its `correctness_mean` clears the threshold (default 1.0); among the eligible, correctness ranks them only while it still separates, otherwise it is dropped and survivors rank on format-adherence (desc) then efficiency / fewer words (asc). Exports `applyGate`, `DEFAULT_THRESHOLD`. Pure, no I/O. |
 | `framework-renderer.cjs` | Data-driven `{{slot}}` prompt renderer over a JSON framework registry. Computes a framework-neutral `output_contract` + `constraints` from the fixture, fills every slot, and throws naming any required slot left empty or any placeholder that survived. Exports `renderFramework`, `loadRegistry`, `getFramework`, `DEFAULT_CONSTRAINTS`. |
 | `profile-validator.cjs` | Additive, dependency-free sweep-key validator. Returns `{ valid, errors }` (collects all issues, never throws). A profile with no `mode` is reported valid and untouched; present keys (`mode`, `models[].executor`, `scoring.scorer`, dimension weights summing to 1.0, `correctnessGate.threshold ∈ [0,1]`, `sampling.samplesPerCell`) are checked against their contract. Exports `validateProfile`, `KNOWN_MODES`, `KNOWN_EXECUTORS`, `KNOWN_SCORERS`. |
@@ -72,7 +74,8 @@ Main flow:
                   ▼
 ┌──────────────────────────────────────────────┐
 │ code-task-scorer.scoreCodeTask               │
-│ isolated child-process oracles → row vector  │
+│ or reviewer-scorer.scoreReviewerFixture      │
+│ oracle checks → row vector                   │
 └──────────────────────────────────────────────┘
                   │
                   ▼

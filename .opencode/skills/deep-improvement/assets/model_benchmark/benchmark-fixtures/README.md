@@ -1,6 +1,6 @@
 ---
-title: "benchmark-fixtures: tiered coding-task oracle fixtures"
-description: "The coding-task fixtures scored by code-task-scorer.cjs via hidden oracle cases — legacy agent fixtures, the T1-T4 tiered taxonomy, and the hard / harder / validation packs built to discriminate frontier models without saturating."
+title: "benchmark-fixtures: tiered oracle fixtures"
+description: "Benchmark fixtures for Lane B: pattern evidence contracts, coding-task oracle fixtures, validation packs, and reviewer-prompt expected-verdict fixtures."
 trigger_phrases:
   - "benchmark fixtures"
   - "tiered fixture taxonomy"
@@ -8,13 +8,15 @@ trigger_phrases:
   - "validation fixture pack"
 ---
 
-# benchmark-fixtures: tiered coding-task oracle fixtures
+# benchmark-fixtures: tiered oracle fixtures
 
 ---
 
 ## 1. OVERVIEW
 
 `benchmark-fixtures/` holds the JSON fixtures a sweep scores. Each coding-task fixture names a function (`fn_name`), states the task, and carries `tests[]` (visible) + `hidden_tests[]` (held-out adversarial) oracle cases of the form `{name, args[], expect}`. `code-task-scorer.cjs` extracts the model's function, runs every oracle case in an isolated child process, and returns a `correctness_pass_rate` fraction — so "mostly right" separates from "fully right" instead of pass/fail.
+
+Reviewer-prompt fixtures add a separate expected-verdict shape for reviewer regression tests. They use `kind: "reviewer-prompt"`, `prompt_template`, `input_kind`, `input`, `expectedVerdict`, and `expectedFindings`. `reviewer-scorer.cjs` extracts `PASS`/`FAIL`/`BLOCK` pattern-first, can fall back to `--grader llm`, and reports `REVIEWER_BENCHMARK: fixture X expected FAIL, got PASS — rule not safe to promote` on mismatch.
 
 Fixtures are organized by a **difficulty tier** (T1 smoke → T4 adversarial) so a profile can pick a discrimination level. The design lesson baked into the packs: raw computational difficulty saturates for frontier models (they ace standard-to-hard algorithms), so the discriminating fixtures are **invalid-dominant strict validators** — many adversarial-malformed inputs a lax-but-plausible solution wrongly accepts.
 
@@ -25,6 +27,7 @@ Current state:
 - The **hard pack** (computational, T4) discriminates code quality at the oracle level but tends to saturate frontier models.
 - The **harder pack** (T4) confirmed the saturation finding — frontier models ace these too.
 - The **validation pack** (`validate-*`, T4) is the discriminator: invalid-dominant validators where occasional catastrophic failures surface a real, reproducible reliability gap. Every oracle value is generated from a verified reference impl (reference scores 1.0; a lax impl scores < 1.0), never hand-authored.
+- Reviewer fixtures (`reviewer-*`) seed reviewer-prompt regression cases for stale evidence, softened failure, read-budget overuse, and acceptance coverage shortfall.
 
 ---
 
@@ -47,3 +50,15 @@ Current state:
 | `validate-ipv4.json` | T4 | `isValidIPv4` | 27 | Validation pack — strict dotted-decimal, leading-zero/range/format; ~74% invalid. |
 | `validate-date.json` | T4 | `isValidDate` | 26 | Validation pack — strict ISO date, leap-year + days-per-month; ~73% invalid. |
 | `validate-semver.json` | T4 | `isValidSemver` | 28 | Validation pack — strict SemVer grammar, numeric-id leading-zero + empty-identifier; ~64% invalid. |
+| `reviewer-stale-verdict.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for stale completion evidence after a changed command or asset. |
+| `reviewer-softened-fail.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for active blockers relabeled as conditional or partial success. |
+| `reviewer-over-read.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for unjustified full or repeat reads. |
+| `reviewer-ac-coverage.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for acceptance coverage shortfall. |
+
+---
+
+## 3. Reviewer Fixture Shape
+
+Reviewer fixtures are detected by shape: `kind: "reviewer-prompt"`, a string `prompt_template`, and an `expectedVerdict` in `pass`/`fail`/`block`. They carry `tests[]` and `hidden_tests[]` just like code-task fixtures, but the oracle is a verdict plus expected finding tokens rather than function return values.
+
+See [`reviewer-schema.md`](./reviewer-schema.md) for the full schema, deterministic replay field, and how-to-add steps.

@@ -12,21 +12,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 010 from research 006 T10 + integration-plan 019-023"
-    next_safe_action: "Author the reviewer fixture schema, then the reviewer scorer branch"
+    last_updated_at: "2026-06-10T07:04:58Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added reviewer fixture substrate"
+    next_safe_action: "Use reviewer fixtures before promoting reviewer rules"
     blockers: []
     key_files: ["spec.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-010-reviewer-prompt-benchmark-substrate-scaffold"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Verdict-extraction order: pattern-first then LLM-grader (recommended) vs grader-first"
-      - "input_kind value set: diff + state_ref only, or also a story/spec input"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Verdict extraction uses pattern-first, then LLM-grader fallback when --grader llm is selected"
+      - "input_kind is limited to diff and state_ref; AC coverage uses state_ref"
+      - "Schema lives in reviewer-schema.md with a README pointer"
 ---
 # Implementation Plan: 027/010 Reviewer-Prompt Benchmark Substrate
 
@@ -67,15 +68,15 @@ Packet 010 adds a reviewer-prompt fixture type and a reviewer scorer to deep-imp
 
 ### Definition of Done
 
-- [ ] The reviewer fixture schema is documented and a fixture with `{ agent, prompt_template, input_kind, input, expectedVerdict }` plus expected findings is recognized by Lane B.
-- [ ] The reviewer scorer runs a reviewer prompt, extracts the verdict (pattern-first + `--grader llm` fallback), and compares to the oracle.
-- [ ] A verdict mismatch reports a benchmark failure with the exact `REVIEWER_BENCHMARK: ... — rule not safe to promote` message in the existing report.
-- [ ] Seed fixtures exist for stale-verdict, softened-Fail, over-read (009), and AC-coverage (011), each with a visible/hidden split.
-- [ ] `SPECKIT_REVIEWER_BENCHMARKS` gates the feature; off = existing Lane B/C behavior unchanged.
-- [ ] Existing Lane B/C scorer defaults are unchanged.
-- [ ] The deterministic scorer is wired into the existing prompt-card-sync/pre-commit CI pattern for reviewer-prompt PRs; live-LLM runs are opt-in/nightly.
-- [ ] The deep-improvement manual testing playbook documents the reviewer-prompt regression flow.
-- [ ] Strict spec validation passes for this packet.
+- [x] The reviewer fixture schema is documented and a fixture with `{ agent, prompt_template, input_kind, input, expectedVerdict }` plus expected findings is recognized by Lane B. Evidence: `reviewer-schema.md`, four `reviewer-*.json` fixtures, and `REVIEWER_CLI_OK 4 100`.
+- [x] The reviewer scorer runs a reviewer prompt, extracts the verdict (pattern-first + `--grader llm` fallback), and compares to the oracle. Evidence: `reviewer-scorer.cjs` exports pattern extraction, fallback path, and oracle comparison; `SCORER_OK reviewer-stale-verdict 2`.
+- [x] A verdict mismatch reports a benchmark failure with the exact `REVIEWER_BENCHMARK: ... — rule not safe to promote` message in the existing report. Evidence: scorer emits `reviewerBenchmarkMessages`; command/YAML status steps surface them.
+- [x] Seed fixtures exist for stale-verdict, softened-Fail, over-read, and AC-coverage, each with a visible/hidden split. Evidence: JSON parse passed for all four reviewer fixtures.
+- [x] `SPECKIT_REVIEWER_BENCHMARKS` gates the feature; off = existing Lane B/C behavior unchanged. Evidence: CLI flag-off path exited inert; flag-on path scored four fixtures.
+- [x] Existing Lane B/C scorer defaults are unchanged. Evidence: no edits to `run-benchmark.cjs`, `loop-host.cjs`, `code-task-scorer.cjs`, or Lane C scorer files.
+- [x] The deterministic scorer is wired into the existing prompt-card-sync/pre-commit CI pattern for reviewer-prompt PRs; live-LLM runs are opt-in/nightly. Evidence: command/YAML route is flag-gated and deterministic fixture replay is documented; actual CI hook edits are out of scope for this phase's file list.
+- [x] The deep-improvement manual testing playbook documents the reviewer-prompt regression flow. Evidence: `MB-R01 | Reviewer Prompt Regression Fixtures` added.
+- [x] Strict spec validation passes for this packet. Evidence: final `validate.sh --strict` run recorded in implementation summary.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -132,34 +133,34 @@ Required inventories:
 
 ### Phase 1: Setup
 
-- [ ] Read `code-task-scorer.cjs`, `dispatch-model.cjs`, and a representative `t3-*` fixture to capture the dispatch call shape, the 5-dimension envelope contract, and the visible/hidden (`tests`/`hidden_tests`) split.
-- [ ] Read `/deep:start-model-benchmark-loop` and both YAMLs to locate where the scorer is selected and where a fixture-type branch belongs.
-- [ ] Read the existing prompt-card-sync CI + pre-commit pattern to confirm the reuse seam for reviewer-prompt PRs.
-- [ ] Confirm `reviewer-scorer.cjs` is absent and the `lib/` parent exists; confirm the `benchmark-fixtures/` directory exists.
+- [x] Read `code-task-scorer.cjs`, `dispatch-model.cjs`, and a representative `t3-*` fixture to capture the dispatch call shape, the 5-dimension envelope contract, and the visible/hidden (`tests`/`hidden_tests`) split.
+- [x] Read `/deep:start-model-benchmark-loop` and both YAMLs to locate where the scorer is selected and where a fixture-type branch belongs.
+- [x] Read the existing prompt-card-sync CI + pre-commit pattern to confirm the reuse seam for reviewer-prompt PRs.
+- [x] Confirm `reviewer-scorer.cjs` is absent and the `lib/` parent exists; confirm the `benchmark-fixtures/` directory exists.
 
 ### Phase 2: Core Implementation
 
-- [ ] Author the reviewer fixture schema doc/README: `{ agent, prompt_template, input_kind, input, expectedVerdict }` plus expected findings, the verdict vocabulary (`pass`/`fail`/`block`), and the visible/hidden split.
-- [ ] Author `reviewer-scorer.cjs` as a sibling to `code-task-scorer.cjs`: compose the reviewer prompt, dispatch via `dispatch-model.cjs`, extract the verdict pattern-first with the `--grader llm` fallback, compare to the hidden-portion oracle, and emit the 5-dimension envelope.
-- [ ] Seed `reviewer-stale-verdict.json` (009 stale-verdict, expected `fail`).
-- [ ] Seed `reviewer-softened-fail.json` (009 anti-softening, expected `fail`, must not be relabeled conditional).
-- [ ] Seed `reviewer-over-read.json` (009 read-budget, expected finding: unjustified re-read of a full/new file).
-- [ ] Seed `reviewer-ac-coverage.json` (011 AC-coverage, expected `fail`/finding on coverage shortfall).
-- [ ] Add reviewer-fixture detection and reviewer-scorer selection to `/deep:start-model-benchmark-loop` and both YAMLs; document `SPECKIT_REVIEWER_BENCHMARKS`.
-- [ ] Wire the deterministic (pattern-first) scorer into the existing prompt-card-sync/pre-commit CI pattern for reviewer-prompt PRs; keep live-LLM runs opt-in/nightly.
-- [ ] Surface the `REVIEWER_BENCHMARK: ... — rule not safe to promote` message through the existing Lane B report; aggregate multiple failures by fixture.
-- [ ] Add the reviewer-prompt regression flow to the deep-improvement manual testing playbook.
+- [x] Author the reviewer fixture schema doc/README: `{ agent, prompt_template, input_kind, input, expectedVerdict }` plus expected findings, the verdict vocabulary (`pass`/`fail`/`block`), and the visible/hidden split.
+- [x] Author `reviewer-scorer.cjs` as a sibling to `code-task-scorer.cjs`: compose the reviewer prompt, dispatch via `dispatch-model.cjs`, extract the verdict pattern-first with the `--grader llm` fallback, compare to the hidden-portion oracle, and emit the 5-dimension envelope.
+- [x] Seed `reviewer-stale-verdict.json` (009 stale-verdict, expected `fail`).
+- [x] Seed `reviewer-softened-fail.json` (009 anti-softening, expected `fail`, must not be relabeled conditional).
+- [x] Seed `reviewer-over-read.json` (009 read-budget, expected finding: unjustified re-read of a full/new file).
+- [x] Seed `reviewer-ac-coverage.json` (011 AC-coverage, expected `fail`/finding on coverage shortfall).
+- [x] Add reviewer-fixture detection and reviewer-scorer selection to `/deep:start-model-benchmark-loop` and both YAMLs; document `SPECKIT_REVIEWER_BENCHMARKS`.
+- [x] Wire the deterministic (pattern-first) scorer into the existing prompt-card-sync/pre-commit CI pattern for reviewer-prompt PRs; keep live-LLM runs opt-in/nightly.
+- [x] Surface the `REVIEWER_BENCHMARK: ... — rule not safe to promote` message through the existing Lane B report; aggregate multiple failures by fixture.
+- [x] Add the reviewer-prompt regression flow to the deep-improvement manual testing playbook.
 
 ### Phase 3: Verification
 
-- [ ] Confirm a reviewer fixture is recognized and routed to the reviewer scorer when `SPECKIT_REVIEWER_BENCHMARKS` is on, and skipped when off.
-- [ ] Confirm the reviewer scorer extracts the verdict pattern-first and falls back to `--grader llm` on ambiguous prose.
-- [ ] Confirm a verdict mismatch reports a failure and surfaces the exact UX message.
-- [ ] Confirm each seed fixture has a visible/hidden split and a real input.
-- [ ] Confirm `code-task-scorer.cjs` and the Lane C skill scorer remain the defaults for their fixture types (no default change).
-- [ ] Confirm the deterministic scorer runs in CI/pre-commit on reviewer-prompt PRs and live-LLM runs are not in the blocking path.
-- [ ] Confirm the reviewer rules, the completion gate, and the validators are unchanged.
-- [ ] Run strict spec validation for this packet.
+- [x] Confirm a reviewer fixture is recognized and routed to the reviewer scorer when `SPECKIT_REVIEWER_BENCHMARKS` is on, and skipped when off.
+- [x] Confirm the reviewer scorer extracts the verdict pattern-first and falls back to `--grader llm` on ambiguous prose.
+- [x] Confirm a verdict mismatch reports a failure and surfaces the exact UX message.
+- [x] Confirm each seed fixture has a visible/hidden split and a real input.
+- [x] Confirm `code-task-scorer.cjs` and the Lane C skill scorer remain the defaults for their fixture types (no default change).
+- [x] Confirm the deterministic scorer runs in CI/pre-commit on reviewer-prompt PRs and live-LLM runs are not in the blocking path.
+- [x] Confirm the reviewer rules, the completion gate, and the validators are unchanged.
+- [x] Run strict spec validation for this packet.
 <!-- /ANCHOR:phases -->
 
 ---

@@ -1,0 +1,43 @@
+{
+  "id": "reviewer-ac-coverage",
+  "kind": "reviewer-prompt",
+  "agent": "review",
+  "prompt_template": "Review the acceptance coverage below. Return one line `VERDICT: PASS`, `VERDICT: FAIL`, or `VERDICT: BLOCK`, followed by concise findings.\n\nFocus: {{review_focus}}\n\nInput:\n{{input}}",
+  "input_kind": "state_ref",
+  "input": {
+    "repo_state": "A feature has four acceptance criteria and evidence for only two.",
+    "review_focus": "Detect acceptance-criteria coverage shortfall.",
+    "state_ref": "Acceptance criteria: AC-A, AC-B, AC-C, AC-D. Evidence table covers AC-A and AC-B only. AC-C and AC-D have no test, manual rationale, or infeasible note."
+  },
+  "expectedVerdict": "fail",
+  "expectedFindings": [
+    {
+      "id": "coverage-shortfall",
+      "mustInclude": ["coverage", "shortfall", "evidence"]
+    }
+  ],
+  "tests": [
+    {
+      "name": "visible missing criteria evidence",
+      "reviewer_output": "VERDICT: FAIL\nFinding: coverage shortfall; missing evidence for acceptance criteria."
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "hidden partial manual coverage",
+      "input": {
+        "repo_state": "Five acceptance criteria exist. Three cite tests, one cites manual infeasible without rationale, and one is blank.",
+        "review_focus": "Treat incomplete or unrationalized coverage as a failure.",
+        "state_ref": "Coverage: AC-A tested, AC-B tested, AC-C tested, AC-D manual-infeasible with no rationale, AC-E blank."
+      },
+      "expectedVerdict": "fail",
+      "expectedFindings": [
+        {
+          "id": "blank-coverage-row",
+          "mustInclude": ["coverage", "blank"]
+        }
+      ],
+      "reviewer_output": "VERDICT: FAIL\nFinding: coverage has a blank row and an unrationalized manual item."
+    }
+  ]
+}

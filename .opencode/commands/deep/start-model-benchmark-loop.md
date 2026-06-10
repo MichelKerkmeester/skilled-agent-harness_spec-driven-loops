@@ -1,6 +1,6 @@
 ---
-description: "Benchmark a model or prompt framework: fixtures, pattern or 5dim scoring, deterministic or graded runs. :auto/:confirm."
-argument-hint: "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim] [--grader=noop|mock|llm] [--iterations=N] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+description: "Benchmark a model or prompt framework: fixtures, pattern, 5dim, or reviewer scoring; deterministic or graded runs. :auto/:confirm."
+argument-hint: "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim|reviewer] [--grader=noop|mock|llm] [--iterations=N] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -91,7 +91,7 @@ PRE-BOUND SETUP ANSWERS:
   spec_folder: specs/121/008  # required spec folder path or explicit runtime folder
   run_label: minimax-tidd-ec  # required; identifies the benchmark run in the hub (e.g. "minimax-tidd-ec", "mimo-costar")
   execution_mode: AUTONOMOUS  # from :auto suffix
-  scoring_method: pattern  # pattern (default) or 5dim
+  scoring_method: pattern  # pattern (default), 5dim, or reviewer
   grader: noop  # noop (default) | mock | llm
   max_iterations: 5  # positive integer; default 5
   executor: cli-codex  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-codex
@@ -176,6 +176,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ **Q3. Scoring Method**:                                        │
    │    A) Pattern - heading/pattern matcher (default, fastest)     │
    │    B) 5dim - ported 5-dimension scorer (deterministic + grader)│
+   │    C) Reviewer - expected-verdict reviewer fixtures (flagged)  │
    │                                                                │
    │ **Q4. Grader**:                                                │
    │    A) noop - deterministic, no model dispatch (default)        │
@@ -199,7 +200,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - run_label = [from --run-label or Q1b; e.g. "minimax-tidd-ec", "mimo-costar"]
    - outputs_dir = [.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
-   - scoring_method = [pattern or 5dim from Q3 or --scorer]
+   - scoring_method = [pattern, 5dim, or reviewer from Q3 or --scorer]
    - grader = [noop/mock/llm from Q4 or --grader]
    - max_iterations = [from --iterations or default 5]
    - executor = [from Q5, only when grader = llm]
@@ -277,7 +278,7 @@ VERIFICATION CHECK:
 
 # Benchmark Model or Prompt Framework
 
-Benchmark a model or prompt framework against a fixture profile. The skill materializes benchmark fixtures into packet-local outputs, scores them with the pattern matcher or the ported 5-dimension scorer, records mode-aware state, and never mutates a canonical agent file.
+Benchmark a model or prompt framework against a fixture profile. The skill materializes benchmark fixtures into packet-local outputs, scores them with the pattern matcher, the ported 5-dimension scorer, or the flagged reviewer scorer, records mode-aware state, and never mutates a canonical agent file.
 
 ---
 
@@ -286,7 +287,7 @@ Benchmark a model or prompt framework against a fixture profile. The skill mater
 Run a bounded model-benchmark loop that:
 1. Resolves the benchmark profile (default profile or an explicit profile path)
 2. Materializes the profile's fixtures into packet-local markdown outputs
-3. Runs the fixtures against those outputs with the selected scorer (`pattern` or `5dim`)
+3. Runs the fixtures against those outputs with the selected scorer (`pattern`, `5dim`, or flagged `reviewer`)
 4. Selects a grader for the 5-dimension path (`noop` deterministic, `mock` stub, or `llm` real dispatch)
 5. Records mode-aware state where every record carries `mode: model-benchmark` and every benchmark report carries `scoringMethod: pattern|5dim`
 6. Reduces evidence into a benchmark report and presents the result
@@ -316,7 +317,7 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
 
 - `loop-host.cjs` resolves `--mode=model-benchmark`, then runs `materialize-benchmark-fixtures.cjs` and `run-benchmark.cjs` in that order (the EC-5 ordering: materialize MUST run and succeed before run-benchmark, or scoring has no inputs).
 - `--profile` and `--outputs-dir` are required for the model-benchmark path. `loop-host.cjs` forwards `--output`, `--state-log`, `--label`, and `--profiles-dir` through to `run-benchmark.cjs`.
-- `--scorer pattern` (default, heading/pattern matcher) or `--scorer 5dim` (ported 5-dimension scorer via `scripts/model-benchmark/scorer/score-model-variant.cjs`). `--scorer` and `--grader` are consumed at the `run-benchmark.cjs` layer.
+- `--scorer pattern` (default, heading/pattern matcher), `--scorer 5dim` (ported 5-dimension scorer via `scripts/model-benchmark/scorer/score-model-variant.cjs`), or `--scorer reviewer` (expected-verdict reviewer fixtures via `scripts/model-benchmark/lib/reviewer-scorer.cjs`). Reviewer scoring is selected only when `SPECKIT_REVIEWER_BENCHMARKS` is on; with the flag off, reviewer fixtures are inert and existing Lane B/C defaults are unchanged.
 - `--grader noop` (default, deterministic, no model dispatch) or `--grader mock` (stub) or `--grader llm` (real model dispatch).
 - **Threading executor/model when `grader = llm`:** the gathered `executor` and `model` values are NOT loop-host flags. Setup MUST persist them into `modelBenchmarkConfig.target_model` (executor + model) inside the runtime config that `dispatch-model.cjs` reads, so the dispatcher resolves the requested executor and model. Setup persists `executor` and `model` into the Lane B config record (see Step 3) and the config record threads `modelBenchmarkConfig.target_model`. Without that thread, `dispatch-model.cjs` falls back to its built-in defaults and the gathered values are silently dropped.
 - An unknown `--mode` warns to stderr and falls back to agent-improvement. An unknown `--scorer` warns and falls back to `pattern`.
@@ -324,7 +325,7 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
 ### Default Profile and Fixtures
 
 - Default profile: `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json`
-- Fixtures: `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`)
+- Fixtures: `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`; reviewer fixtures use the `reviewer-*` shape)
 
 ### User Input
 
@@ -342,6 +343,7 @@ $ARGUMENTS
 | --- | --- | --- | --- |
 | Pattern | `--scorer pattern` | Byte-identical heading/pattern matcher (default) | Fast deterministic structural benchmarking |
 | 5dim | `--scorer 5dim` | Ported 5-dimension scorer (`scripts/model-benchmark/scorer/score-model-variant.cjs`) with deterministic checks plus a pluggable grader | Richer multi-dimension evaluation of produced outputs |
+| Reviewer | `--scorer reviewer` | Expected-verdict reviewer scorer (`scripts/model-benchmark/lib/reviewer-scorer.cjs`) gated by `SPECKIT_REVIEWER_BENCHMARKS` | Regression-test reviewer prompts against known `PASS`/`FAIL`/`BLOCK` fixtures |
 
 ### Graders (5-dimension path)
 
@@ -359,7 +361,8 @@ $ARGUMENTS
 
 - `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer.
 - `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache.
-- Both default to the permissive value for backward compatibility.
+- `SPECKIT_REVIEWER_BENCHMARKS=1` enables reviewer fixture scoring; when unset, reviewer fixtures are skipped/inert and existing scorer defaults remain unchanged.
+- The first two gates default to the permissive value for backward compatibility; reviewer benchmarks default off.
 
 ---
 
@@ -396,7 +399,7 @@ Load the matching YAML workflow based on execution mode:
 
 Execute the YAML workflow step by step. Each iteration:
 1. Materialize benchmark fixtures into packet-local markdown outputs (`materialize-benchmark-fixtures.cjs`)
-2. Run the fixtures with the selected scorer and grader (`run-benchmark.cjs`)
+2. Run the fixtures with the selected scorer and grader (`run-benchmark.cjs`, or `reviewer-scorer.cjs` for flagged reviewer fixtures)
 3. Record mode-aware state where each record carries `mode: model-benchmark` and the report carries `scoringMethod: pattern|5dim`
 4. Reduce state and refresh the benchmark report
 5. Check stop conditions (converged, maxIterationsReached, blockedStop, manualStop, error, stuckRecovery)
@@ -426,6 +429,12 @@ When `--benchmark-report` is supplied, `promote-candidate.cjs` runs its benchmar
 - Converged: `STATUS=OK REASON="converged"`
 - Error: `STATUS=FAIL ERROR="{message}"`
 
+Reviewer mismatch line in the Lane B report:
+
+```text
+REVIEWER_BENCHMARK: fixture reviewer-stale-verdict expected FAIL, got PASS — rule not safe to promote
+```
+
 ---
 
 ## 5. EXAMPLES
@@ -450,6 +459,13 @@ Setup asks the remaining questions. Grader stays `noop` unless changed. Outputs 
 /deep:start-model-benchmark-loop :auto --spec-folder=specs/121/008 --run-label=minimax-tidd-ec --scorer=5dim --grader=llm --executor=cli-codex --model=gpt-5.5
 ```
 Routes graded scoring through `dispatch-model.cjs` to the named executor and model. Outputs go to `.opencode/skills/sk-prompt-small-model/benchmarks/minimax-tidd-ec/`.
+
+### Reviewer Prompt Regression Fixtures
+
+```
+SPECKIT_REVIEWER_BENCHMARKS=1 /deep:start-model-benchmark-loop :auto --spec-folder=specs/121/008 --run-label=reviewer-regression --scorer=reviewer --grader=noop
+```
+Routes `kind: "reviewer-prompt"` fixtures to `reviewer-scorer.cjs`. Deterministic cases parse fixture-provided `reviewer_output`; live reviewer dispatch stays opt-in by omitting that field and using `--grader=llm` only when model classification fallback is required.
 
 ### Prompt for Setup
 
@@ -496,9 +512,9 @@ STATUS=OK SCORING=pattern GRADER=noop AGGREGATE=82 REASON="converged"
 - **Lane**: This command fixes `lane = model-benchmark`. It never mutates a canonical agent file. Use `/deep:start-agent-improvement-loop` for the agent-improvement lane.
 - **Entry point**: `scripts/shared/loop-host.cjs --mode=model-benchmark` runs `materialize-benchmark-fixtures.cjs` then `run-benchmark.cjs` in that order. Required flags: `--profile`, `--outputs-dir`.
 - **Output location**: Benchmark outputs are always written to the sk-prompt-small-model hub at `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. There is no spec-local output option. `run_label` is a required identifier (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`) that distinguishes benchmark runs in the hub.
-- **Scorer default**: `--scorer pattern` keeps the byte-identical heading/pattern matcher. `--scorer 5dim` is opt-in and lazily loads `scripts/model-benchmark/scorer/score-model-variant.cjs`.
+- **Scorer default**: `--scorer pattern` keeps the byte-identical heading/pattern matcher. `--scorer 5dim` is opt-in and lazily loads `scripts/model-benchmark/scorer/score-model-variant.cjs`. `--scorer reviewer` is opt-in, gated by `SPECKIT_REVIEWER_BENCHMARKS`, and routes only reviewer-shaped fixtures to `scripts/model-benchmark/lib/reviewer-scorer.cjs`.
 - **Grader default**: `--grader noop` stays deterministic with no model dispatch. `--grader llm` is the only grader that loads `dispatch-model.cjs`.
-- **Mode-aware records**: every state record carries `mode: model-benchmark` and benchmark reports carry `scoringMethod: pattern|5dim` for downstream attribution.
+- **Mode-aware records**: every state record carries `mode: model-benchmark` and benchmark reports carry `scoringMethod: pattern|5dim|reviewer` for downstream attribution.
 - **Promotion**: Lane B promotes via `promote-candidate.cjs --benchmark-report`, which runs a benchmark-mode promotion path that gates on a `benchmark-complete` report with a `benchmark-pass` recommendation instead of an agent-scored candidate file. It stays guarded by the benchmark aggregate gate, repeatability, and operator approval.
 - **Hub convention**: Benchmark outputs are written to `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/` by convention. The hub is the single canonical location for all model and framework benchmark runs. There is no spec-local default and no override path.
 - **Canonical source of truth**: `.opencode/skills/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.

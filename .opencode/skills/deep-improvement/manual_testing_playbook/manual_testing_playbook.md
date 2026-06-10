@@ -105,7 +105,7 @@ Scenario verdict:
 Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
-2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 (model-benchmark), and SB-043..048 (skill-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
+2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 (model-benchmark), and SB-043..048 (skill-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 48`).
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
@@ -679,7 +679,7 @@ Desired user-visible outcome: PASS verdict showing benchmark completion has a re
 
 ## 15. MODEL-BENCHMARK MODE
 
-This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, the unknown-value fallbacks, and the criteria-exec hardening gate. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, reviewer-prompt expected-verdict fixtures, the unknown-value fallbacks, and the criteria-exec hardening gate. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
 
 ### MB-038 | Mode Switch Routing via loop-host
 
@@ -745,6 +745,19 @@ Expected signals: Default run (gate unset) executes the criterion: `per_criterio
 
 #### Test Execution
 > **Feature File:** [MB-042](09--model-benchmark-mode/criteria-exec-gate.md)
+
+### MB-R01 | Reviewer Prompt Regression Fixtures
+
+#### Description
+reviewer-prompt fixtures route to the expected-verdict scorer only when the reviewer benchmark flag is enabled.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that reviewer-prompt fixtures can be scored through Lane B without changing the default pattern or 5-dimension scorer behavior. Verify `reviewer-scorer.cjs` parses deterministic reviewer output, compares `expectedVerdict`, writes `reviewer-report.json`, and emits the `REVIEWER_BENCHMARK` mismatch line on a forced mismatch. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: with `SPECKIT_REVIEWER_BENCHMARKS=1`, `reviewer-scorer.cjs --profile <reviewer-profile> --outputs-dir <tmp>` exits 0 and writes `reviewer-report.json` with `scoringMethod: "reviewer"`; rows include `correctness_pass_rate`, `dimensions.D1`-`D5`, visible and hidden per-case results, and `reviewerBenchmarkMessages`; a forced mismatch includes `REVIEWER_BENCHMARK: fixture reviewer-stale-verdict expected FAIL, got PASS — rule not safe to promote`; with the flag unset, the scorer exits inert and existing `pattern`/`5dim` runs still stamp their original scoring methods.
+
+#### Test Execution
+> **Feature File:** Add a per-feature file under `09--model-benchmark-mode/` when the reviewer profile is promoted from seed fixtures to a stable scenario package.
 
 ---
 
