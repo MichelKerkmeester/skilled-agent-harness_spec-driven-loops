@@ -10,17 +10,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_at: "2026-06-10T08:05:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Updated scoped agent mirror prompt guidance"
-    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
+    recent_action: "Implemented T5/T7/T9 guidance"
+    next_safe_action: "Route T6 through mcp_server pipeline"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -69,7 +69,7 @@ Scope note: this checklist now records the scoped agent-roster run. Rows that de
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-020 [P0] All acceptance criteria met. Deferred: T6 remains in the `mcp_server` pipeline; completion-ritual file was outside approved write paths.
 - [ ] CHK-021 [P0] 010 regression fixtures green for stale-verdict, softened-Fail, over-read
 - [ ] CHK-022 [P1] Warn-mode emits the actionable message without blocking (each rule)
 - [ ] CHK-023 [P1] Error/enforce mode blocks only after the warn-only window
@@ -139,7 +139,7 @@ Scope note: this checklist now records the scoped agent-roster run. Rows that de
 
 - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
 - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale (incl. rejected literal `score>=4 blocks`)
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale (incl. rejected literal `score>=4 blocks`). Evidence: numeric severity notes explicitly reject numeric gating thresholds.
 - [ ] CHK-103 [P2] Migration path documented (warn->error rollout)
 <!-- /ANCHOR:arch-verify -->
 
@@ -172,8 +172,8 @@ Scope note: this checklist now records the scoped agent-roster run. Rows that de
 ## L3+: COMPLIANCE VERIFICATION
 
 - [x] CHK-130 [P1] Comment-hygiene + honesty constitutional rules respected. Evidence: new agent guidance contains no packet IDs, task IDs, checklist IDs, or spec-folder pointers.
-- [ ] CHK-131 [P1] No regression in existing constitutional completion rules
-- [ ] CHK-132 [P2] Anti-softening rule reviewed against existing honesty rules
+- [x] CHK-131 [P1] No regression in existing constitutional completion rules. Evidence: Four Laws and Gate hashes unchanged; completion-ritual file untouched.
+- [x] CHK-132 [P2] Anti-softening rule reviewed against existing honesty rules. Evidence: VERDICT_LOCK keeps confirmed P0 as FAIL and preserves exact verdict output.
 - [ ] CHK-133 [P2] Data handling compliant
 <!-- /ANCHOR:compliance-verify -->
 
@@ -182,7 +182,7 @@ Scope note: this checklist now records the scoped agent-roster run. Rows that de
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] All spec documents synchronized (incl. integration-plan cross-refs)
+- [x] CHK-140 [P1] All spec documents synchronized (incl. integration-plan cross-refs). Evidence: tasks, plan, checklist, spec, and implementation summary reconciled for the current slice.
 - [x] CHK-141 [P1] `.claude/agents/*` mirrors updated or mirror-lag recorded. Evidence: `.claude` and `.codex` mirrors updated for all five scoped agents.
 - [ ] CHK-142 [P2] User-facing message wording reviewed
 - [ ] CHK-143 [P2] Knowledge transfer documented

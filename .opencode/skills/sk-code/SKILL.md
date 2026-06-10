@@ -251,6 +251,13 @@ Ask for the runtime surface and required verification commands. Do not route gen
 3. Security-sensitive validation or filesystem behavior is unclear.
 4. Three fixes fail for the same symptom.
 
+### Escalation Discipline
+
+- Before applying another fix for the same symptom, state a one-sentence root cause tied to observed evidence. If you cannot, escalate instead of guessing.
+- If implementation evidence conflicts with the approved spec, stop and escalate for an AMENDMENT decision. Do not ship a workaround that silently changes the spec's meaning.
+- After three failed fix attempts for the same symptom, stop automatic retries and escalate with the attempted fixes, current evidence, and one recommended next action.
+- If independent reviewers or validators contradict each other on a blocking outcome, do not silently pick one. Emit one consolidated escalation with the conflicting facts and the decision needed.
+
 ---
 
 ## 5. SUCCESS CRITERIA

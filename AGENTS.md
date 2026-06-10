@@ -332,6 +332,8 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 On contradiction (Spec vs Code, conflicting requirements) → HALT → Report "LOGIC-SYNC REQUIRED: [Fact A] contradicts [Fact B]" → Ask "Which truth prevails?"
 
+If implementation evidence conflicts with the approved spec, route the stop through an amendment decision rather than a workaround. Escalate once with the conflicting facts, a one-sentence root cause when known, and the decision needed.
+
 #### Escalation
 
 Confidence stays <80% after two failed attempts → ask with 2-3 options. Blockers beyond control → escalate with evidence and proposed next step.

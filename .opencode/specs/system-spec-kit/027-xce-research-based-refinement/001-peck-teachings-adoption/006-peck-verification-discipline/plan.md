@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_at: "2026-06-10T08:05:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Updated scoped agent mirror prompt guidance"
-    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
+    recent_action: "Implemented T5/T7/T9 guidance"
+    next_safe_action: "Route T6 through mcp_server pipeline"
     blockers: []
     key_files: ["spec.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 60
     open_questions:
       - "Clean-tree precondition scope: whole repo vs packet paths only (default packet-scoped)"
       - "Whether the clock_drift PASS path in continuity-freshness.ts must be tightened"
@@ -68,10 +68,10 @@ Phase 006 adopts the scoped agent-roster prompt-guidance slice of the peck verif
 ### Definition of Done
 
 - [ ] Phase A: freshness recomputes the content fingerprint + clean-tree precondition; strict-only `CONTINUITY_FRESHNESS`; warn-first behind `SPECKIT_COMPLETION_FRESHNESS` + `..._ENFORCE`.
-- [ ] Phase B: escalation gates added to `sk-code/SKILL.md` + `CLAUDE.md` Logic-Sync.
-- [ ] Phase C: anti-softening (always one parseable verdict; no Fail->conditional relabel) in the completion ritual + deep-review verdict line.
+- [x] Phase B: escalation gates added to `sk-code/SKILL.md` + `CLAUDE.md`/`AGENTS.md` Logic-Sync.
+- [ ] Phase C: anti-softening deep-review verdict line added; completion-ritual file excluded by approved write paths.
 - [x] Phase D: reviewer read-budget ADOPTed for `@review`, ADAPTed for deep-*/`@context` (P0 rereads exempt), `.claude/agents/*` and `.codex/agents/*` mirrors updated.
-- [ ] Phase E: docs-only numeric-severity note in `sk-code-review` (no `score>=4 blocks`).
+- [x] Phase E: docs-only numeric-severity note in `sk-code-review` (no `score>=4 blocks`).
 - [ ] Net-new UX/automation opportunities implemented (auto-fix hints, startup freshness indicator, one-command fingerprint refresh, single deep-review verdict, checklist quick-fill).
 - [ ] Each shipped rule references a green 010 fixture before any ERROR promotion.
 - [x] Strict spec validation passes for this packet.
@@ -157,13 +157,13 @@ Required inventories:
 
 ### Phase B: Escalation gates (T5)
 
-- [ ] Add the escalation block to `sk-code/SKILL.md` (one-sentence-root-cause-or-escalate; spec-conflict->AMENDMENT-not-workaround; 3-strike; reviewers-contradict).
-- [ ] Reference the amendment path from `CLAUDE.md` Logic-Sync; emit one consolidated escalation prompt only after a contradiction/3-strike.
+- [x] Add the escalation block to `sk-code/SKILL.md` (one-sentence-root-cause-or-escalate; spec-conflict->AMENDMENT-not-workaround; 3-strike; reviewers-contradict).
+- [x] Reference the amendment path from `CLAUDE.md`/`AGENTS.md` Logic-Sync; emit one consolidated escalation prompt only after a contradiction/3-strike.
 
 ### Phase C: Anti-softening (T7)
 
-- [ ] Add "always emit a single parseable verdict; do not relabel a Fail as conditional/partial" to `verify-before-completion-claims.md` and the completion ritual.
-- [ ] Add the VERDICT_LOCK verdict line to `deep-review/SKILL.md` (active P0 => exact `FAIL`); enforce it in `deep_start-review-loop_{auto,confirm}.yaml` legal-stop/verdict gates.
+- [ ] Add "always emit a single parseable verdict; do not relabel a Fail as conditional/partial" to `verify-before-completion-claims.md` and the completion ritual. Deferred: this file was excluded from the approved write paths.
+- [x] Add the VERDICT_LOCK verdict line to `deep-review/SKILL.md` (active P0 => exact `FAIL`); command YAML enforcement remains with the sibling-owned command pipeline.
 
 ### Phase D: Reviewer read-budget (T8)
 
@@ -173,8 +173,8 @@ Required inventories:
 
 ### Phase E: Numeric-severity note (T9, docs only)
 
-- [ ] Add the `+/-2 context` note + optional advisory `riskScore` (explicitly non-gating) to `sk-code-review/SKILL.md` and `review_core.md`.
-- [ ] Add the optional advisory `riskScore` field to the deep-review report schema; do NOT adopt `score>=4 blocks`.
+- [x] Add the `+/-2 context` note + optional advisory `riskScore` (explicitly non-gating) to `sk-code-review/SKILL.md` and `review_core.md`.
+- [x] Add the optional advisory `riskScore` field to the deep-review report schema; do NOT adopt `score>=4 blocks`.
 
 ### Phase F: Net-new UX/automation opportunities
 

@@ -286,6 +286,10 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 5. Produce findings ordered by severity (`P0`, `P1`, `P2`).
 6. For every actionable finding, classify fix scope as `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. If unknown, default to class/cross-consumer until a producer/consumer inventory proves instance-only.
 
+#### Numeric Severity Calibration
+
+Use numeric calibration only as reviewer context, never as the gate. A finding may include an optional advisory `riskScore` to communicate relative risk, and reviewers may adjust that score by `+/-2` for local context such as exploitability, blast radius, user impact, confidence, or proven containment. The blocking decision still comes only from the `P0`/`P1`/`P2` severity contract. Do not introduce `score>=4` or any other numeric threshold as a blocker.
+
 #### Instance-Only Opt-Out
 
 A finding may use the narrow fix path only when all are true:
@@ -318,6 +322,7 @@ Required output contract:
    - Finding class: [instance-only | class-of-bug | cross-consumer | algorithmic | matrix/evidence | test-isolation]
    - Scope proof: [grep/test evidence proving class coverage or instance-only status]
    - affectedSurfaceHints: [optional string array of short producer/consumer surface names; recommended for actionable findings, required for cross-consumer findings]
+   - riskScore: [optional advisory number only; never gating]
    - Recommended fix
 
 ### P1 - High

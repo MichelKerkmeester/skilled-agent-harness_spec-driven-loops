@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_at: "2026-06-10T08:05:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Updated scoped agent mirror prompt guidance"
-    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
+    recent_action: "Implemented T5/T7/T9 guidance"
+    next_safe_action: "Route T6 through mcp_server pipeline"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 60
     open_questions:
       - "Clean-tree precondition scope: whole repo vs packet paths only (default packet-scoped)"
       - "Whether the clock_drift PASS path in continuity-freshness.ts must be tightened or kept as a legit exception"
@@ -88,7 +88,7 @@ This packet is the peck "verification discipline" bundle. It represents the prop
 
 ### Scope Update: Current Run
 
-This implementation run is limited to agent-roster prompt guidance. It ships the reviewer read-budget rule for `review`, P0-safe adapted reread guidance for `context`, `deep-research`, and `deep-review`, plus consume-only verdict/escalation awareness for `orchestrate`. The updates are mirrored across `.opencode/agents`, `.claude/agents`, and `.codex/agents`. Validator, command, skill, daemon, fixture, and package files remain planned source-proposal surfaces but were explicitly out of scope for this run.
+The current implementation state includes the previously shipped reviewer read-budget guidance plus the non-`mcp_server` remainder for escalation gates, deep-review anti-softening, and numeric severity calibration. The validator/freshness slice remains deferred to the `mcp_server` pipeline, and command-owned verdict-gate files remain outside this run.
 
 ### In Scope
 

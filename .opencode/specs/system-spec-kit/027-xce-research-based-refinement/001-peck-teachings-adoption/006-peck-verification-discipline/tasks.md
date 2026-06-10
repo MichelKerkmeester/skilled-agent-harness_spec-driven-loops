@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_at: "2026-06-10T08:05:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Updated scoped agent mirror prompt guidance"
-    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
+    recent_action: "Implemented T5/T7/T9 guidance"
+    next_safe_action: "Route T6 through mcp_server pipeline"
     blockers: []
     key_files: ["spec.md", "plan.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -77,12 +77,12 @@ _memory:
 - [ ] T016 Document the freshness rule + severity + `How to Fix` in `references/validation/validation_rules.md`; register it in `scripts/lib/validator-registry.json`.
 
 **Group B — Escalation gates (T5):**
-- [ ] T020 [P] Add the escalation block to `sk-code/SKILL.md` (one-sentence-root-cause-or-escalate; spec-conflict->AMENDMENT-not-workaround; 3-strike; reviewers-contradict).
-- [ ] T021 [P] Reference the amendment path from `CLAUDE.md` Logic-Sync; one consolidated escalation prompt fired only after a contradiction/3-strike.
+- [x] T020 [P] Add the escalation block to `sk-code/SKILL.md` (one-sentence-root-cause-or-escalate; spec-conflict->AMENDMENT-not-workaround; 3-strike; reviewers-contradict). Evidence: Escalation Discipline section added.
+- [x] T021 [P] Reference the amendment path from `CLAUDE.md` Logic-Sync; one consolidated escalation prompt fired only after a contradiction/3-strike. Evidence: repo-local `CLAUDE.md` addendum added; `AGENTS.md` Logic-Sync mirror updated additively.
 
 **Group C — Anti-softening (T7):**
-- [ ] T030 Add "always emit a single parseable verdict; do not relabel a Fail as conditional/partial" to `verify-before-completion-claims.md` + the completion ritual.
-- [ ] T031 Add the VERDICT_LOCK verdict line to `deep-review/SKILL.md` (active P0 => exact `FAIL`; one of `PASS|CONDITIONAL|FAIL`).
+- [ ] T030 [B] Add "always emit a single parseable verdict; do not relabel a Fail as conditional/partial" to `verify-before-completion-claims.md` + the completion ritual. Deferred: file is outside approved write paths for this run.
+- [x] T031 Add the VERDICT_LOCK verdict line to `deep-review/SKILL.md` (active P0 => exact `FAIL`; one of `PASS|CONDITIONAL|FAIL`). Evidence: Verdict Lock section and final-line mapping added.
 - [ ] T032 Enforce the single-verdict/no-softening rule in `deep_start-review-loop_auto.yaml` + `..._confirm.yaml` legal-stop/verdict gates.
 
 **Group D — Reviewer read-budget (T8):**
@@ -91,8 +91,8 @@ _memory:
 - [x] T042 Mirror T040/T041 into the `.claude/agents/*` equivalents (or record a mirror-lag decision). Evidence: matching `.claude` and `.codex` runtime mirrors updated for all five agents.
 
 **Group E — Numeric-severity note (T9, docs only):**
-- [ ] T050 [P] Add the `+/-2 context` note + optional advisory `riskScore` (explicitly non-gating) to `sk-code-review/SKILL.md` + `references/review_core.md`.
-- [ ] T051 [P] Add the optional advisory `riskScore` field to the deep-review report schema; do NOT adopt `score>=4 blocks`.
+- [x] T050 [P] Add the `+/-2 context` note + optional advisory `riskScore` (explicitly non-gating) to `sk-code-review/SKILL.md` + `references/review_core.md`. Evidence: numeric calibration note added; numeric thresholds explicitly rejected.
+- [x] T051 [P] Add the optional advisory `riskScore` field to the deep-review report schema; do NOT adopt `score>=4 blocks`. Evidence: deep-review finding details may include non-gating `riskScore`; verdict mapping ignores it.
 
 **Group F — Net-new UX/automation opportunities (integration-plan §6):**
 - [ ] T060 Validator auto-fix hints: emit `fix:` lines in failures + JSON so `/speckit:complete` shows "run this / edit this".
@@ -122,10 +122,10 @@ _memory:
 
 - [ ] All P0 requirements in `spec.md` are satisfied (freshness recompute + clean-tree + strict-only + warn-first flag; anti-softening one-verdict; each rule on an existing surface; automation classes documented; numeric note docs-only).
 - [ ] Freshness ships warn-first behind `SPECKIT_COMPLETION_FRESHNESS` + `..._ENFORCE` and is not promoted to ERROR before its 010 fixture is green.
-- [ ] The deep-review verdict line + completion ritual always emit one exact parseable verdict and never relabel a Fail.
+- [ ] The deep-review verdict line emits one exact parseable verdict and never relabels a Fail; completion ritual remains deferred because its file was excluded from approved write paths.
 - [x] Read-budget ADOPTed for `@review`, ADAPTed for deep-*/`@context` (P0 rereads exempt), `.claude/agents/*` and `.codex/agents/*` mirrors updated.
 - [ ] Net-new UX/automation opportunities are implemented.
-- [ ] No files outside the spec.md Files-to-Change set changed; no memory-subsystem, 010, or 011 file touched.
+- [ ] No files outside the approved write-path set changed; no memory-subsystem, benchmark, coverage-gate, validator, command, package, or daemon file touched.
 <!-- /ANCHOR:completion -->
 
 ---

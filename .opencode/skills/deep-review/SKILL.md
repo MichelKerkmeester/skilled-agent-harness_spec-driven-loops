@@ -346,6 +346,10 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 | **CONDITIONAL** | P1 findings present, remediation plan included in report |
 | **FAIL** | Any P0 finding confirmed after adversarial self-check |
 
+### Verdict Lock and Advisory Risk Score
+
+Always emit exactly one parseable verdict. A confirmed active P0 locks the verdict to `FAIL`; do not soften it to `CONDITIONAL`, `partial`, or any other phrasing. Truncated or partial iteration output is not a valid substitute for the final verdict line. Review narratives and JSONL details may include an optional advisory `riskScore` for relative risk calibration, but it never changes the `PASS|CONDITIONAL|FAIL` mapping.
+
 ### Acceptance-Coverage Signal
 
 When the review target is a spec folder, deep review reflects the `AC_COVERAGE` validation signal in synthesis for Level 2+ folders only after both lifecycle conditions are true: `checklist.md` exists and `implementation-summary.md` is in-progress or later. Level 1 folders and fresh scaffolds are exempt. The signal is advisory while the validation rule remains INFO/default-off; it can add traceability context and planning-seed work, but it must not alter the exact iteration final-line contract below unless a later enforcement rollout explicitly changes severity.
@@ -367,6 +371,8 @@ Review verdict: FAIL
 ```
 
 **Mapping rule:** PASS if no P0 or P1 findings in this iteration. CONDITIONAL if any P1 (but no P0) findings. FAIL if any P0 findings. P2-only findings → PASS.
+
+**VERDICT_LOCK:** Any confirmed active P0 forces the exact final line `Review verdict: FAIL`. Do not relabel that state as conditional, partial, mixed, or advisory.
 
 Downstream automation (including the synthesis phase and CI gate parser) parses this final line via exact string match, do not vary the format.
 
@@ -453,6 +459,7 @@ Each gate is binary: pass or block. STOP cannot be legal until every gate passes
 - **State consistency**: `deep-review-state.jsonl` opens with the config record and appends one iteration record per dispatched iteration. Reducer-owned fields in `deep-review-findings-registry.json` reconcile against JSONL totals.
 - **Iteration completeness**: every dispatched iteration produced both an `iterations/iteration-NNN.md` (non-empty, ending with the canonical `Review verdict: PASS|CONDITIONAL|FAIL` line) AND a JSONL delta record with `findingDetails[]`, `findingsSummary`, `newFindingsRatio`.
 - **Severity coverage**: every reported finding carries `severity` in {P0, P1, P2}, `category`, `file:line` evidence, `finding_class`, and a `content_hash` for synthesis dedup.
+- **Advisory numeric score**: `riskScore` may appear in finding details as non-gating context only; verdict logic must ignore it.
 - **Adversarial replay**: every P0 finding survived adversarial self-check. Rejected P0s downgraded with rationale recorded in the iteration narrative.
 - **Coverage threshold**: `dimensions_covered_count == configured_dimensions_count` AND required traceability protocols covered, stable for at least `minStabilizationPasses` iterations.
 - **Acceptance coverage**: when the spec-folder lifecycle predicate is active, the final report records `AC_COVERAGE` status, covered/total, floor, and next action; default-off INFO output is advisory and does not by itself block STOP.
