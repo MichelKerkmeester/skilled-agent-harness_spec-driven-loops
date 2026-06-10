@@ -11,19 +11,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #4"
-    next_safe_action: "Plan bounded/default-off tombstone lineage"
+    last_updated_at: "2026-06-10T23:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented bounded default-off code-graph tombstone audit lineage"
+    next_safe_action: "No implementation action remains"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/006-codegraph-tombstone-audit"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Use a bounded row-level tombstone table created only when SPECKIT_CODE_GRAPH_TOMBSTONES=true."
+      - "Use count retention via SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT, default 100 and clamped to 10000."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 6: codegraph-tombstone-audit
@@ -46,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -54,7 +60,7 @@ FAILURE MODES:
 | **Predecessor** | None (independent) |
 | **Successor** | None (independent) |
 | **Source transfers** | Analysis #4 (soft-delete tombstones / active-purgeable lifecycle) |
-| **Handoff Criteria** | Phase validates `--strict`; tombstone retention is bounded and default-off |
+| **Handoff Criteria** | Met: phase validates `--strict`; tombstone retention is bounded and default-off |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -70,8 +76,8 @@ This is **Phase 6** of the spec-027 feature adoption into the advisor and code-g
 - None. Independent of all other phases; ships standalone.
 
 **Deliverables**:
-- A bounded tombstone lineage (or status-only counts) recording why/when nodes/edges were removed.
-- A default-off flag and a retention bound so path-history does not bloat the DB.
+- Bounded tombstone lineage records file/node/edge removals with reason and timestamp when `SPECKIT_CODE_GRAPH_TOMBSTONES=true`.
+- Default-off behavior creates no tombstone table or rows; retention is bounded by `SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT`.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -112,6 +118,8 @@ Adopt 027's soft-delete audit lineage for code-graph cleanup so deletions are di
 | `system-code-graph/mcp_server/lib/code-graph-db.ts` (~:692-704, :784-790, :890-905) | Modify | Record bounded tombstone/reason at delete sites instead of pure hard-delete |
 | `system-code-graph/mcp_server/handlers/scan.ts` | Modify | Emit deletion reasons during reindex/stale cleanup |
 | `system-code-graph/mcp_server/handlers/status.ts` | Modify | Surface bounded deletion/tombstone counts |
+| `system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts` | Create | Verify default-off, lineage, retention pruning, and live-query isolation |
+| `system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` | Modify | Verify scan cleanup passes deletion reasons |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -160,8 +168,8 @@ Adopt 027's soft-delete audit lineage for code-graph cleanup so deletions are di
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Minimal viable form: full row-level tombstones, or just status-only deletion counts with reasons in a small ring buffer?
-- What retention bound (count vs age) fits the typical reindex churn without bloating the DB?
+- Answered: implemented bounded row-level tombstones plus status summary counts, not full graph time-travel.
+- Answered: count-based retention uses default 100 rows and `SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT` for operator tuning.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -171,20 +179,4 @@ CORE TEMPLATE (~80 lines)
 - Essential what/why/how only
 - No boilerplate sections
 - Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
 -->

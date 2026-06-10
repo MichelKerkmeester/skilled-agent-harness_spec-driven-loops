@@ -1053,7 +1053,9 @@ describe('handleCodeGraphScan', () => {
     expect(payload.data.filesIndexed).toBe(0);
     expect(payload.data.filesSkipped).toBe(1);
     expect(payload.data.fullReindexTriggered).toBe(false);
-    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/deleted.ts');
+    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/deleted.ts', {
+      reason: 'incremental_missing_tracked_file',
+    });
     expect(mocks.upsertFileMock).not.toHaveBeenCalled();
   });
 
@@ -1342,7 +1344,9 @@ describe('handleCodeGraphScan', () => {
     const payload = JSON.parse(response.content[0].text) as { status: string };
 
     expect(payload.status).toBe('ok');
-    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/removed.ts');
+    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/removed.ts', {
+      reason: 'full_scan_unindexed_tracked_file',
+    });
     expect(mocks.setLastGitHeadMock).toHaveBeenCalledWith('same-head');
     expect(mocks.setCodeGraphScopeMock).toHaveBeenCalled();
   });

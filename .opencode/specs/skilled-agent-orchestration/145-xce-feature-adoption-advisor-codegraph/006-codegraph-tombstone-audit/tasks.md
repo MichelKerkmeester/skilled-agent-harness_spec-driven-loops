@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Phase 6: codegraph-tombstone-audit [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 6: codegraph-tombstone-audit"
+description: "Completed task list for bounded default-off code-graph tombstone audit lineage."
 trigger_phrases:
   - "tasks"
   - "name"
@@ -11,17 +11,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T23:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed tombstone audit implementation and verification"
+    next_safe_action: "No implementation action remains"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/006-codegraph-tombstone-audit"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +54,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Reuse existing code-graph MCP server structure and temp DB test harness
+- [x] T002 Confirm no dependency or package changes are required
+- [x] T003 [P] Identify verification commands from code-graph package scripts
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +64,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add flag-gated tombstone schema and summary helpers (`lib/code-graph-db.ts`)
+- [x] T005 Add bounded retention pruning for tombstone rows (`lib/code-graph-db.ts`)
+- [x] T006 Capture deletion reasons at node, edge, dangling-edge, file, and orphan cleanup paths (`lib/code-graph-db.ts`)
+- [x] T007 Surface scan/status tombstone summaries without changing live query tables (`handlers/scan.ts`, `handlers/status.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +75,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Add tombstone tests for enabled lineage and default-off behavior (`tests/code-graph-tombstones.vitest.ts`)
+- [x] T009 Run code-graph DB, scan, status, typecheck, and build verification
+- [x] T010 Update phase documentation (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +85,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Verification passed with vitest/typecheck/build evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +107,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

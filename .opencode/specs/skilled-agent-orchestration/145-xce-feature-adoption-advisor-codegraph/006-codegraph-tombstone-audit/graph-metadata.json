@@ -39,7 +39,7 @@
       "cleanup"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 6** of the spec-027 feature adoption into the advisor and code-graph daemons. It adds a deletion audit lineage for stale code-graph cleanup.",
     "created_at": "2026-06-10T19:24:12Z",
-    "last_save_at": "2026-06-10T19:41:16.131Z",
+    "last_save_at": "2026-06-10T23:00:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

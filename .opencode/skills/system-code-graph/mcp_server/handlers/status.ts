@@ -72,6 +72,22 @@ function getLastFailedScanForStatus(): graphDb.FailedScanRecord | null {
   return graphDb.getLastFailedScan();
 }
 
+function getTombstoneSummaryForStatus(
+  stats: ReturnType<typeof graphDb.getStats>,
+): graphDb.CodeGraphTombstoneSummary {
+  if (stats.tombstones) {
+    return stats.tombstones;
+  }
+  return {
+    enabled: false,
+    retentionLimit: 0,
+    retainedRows: 0,
+    byKind: {},
+    byReason: {},
+    recent: [],
+  };
+}
+
 function getPersistedEdgeDistributionBaseline(): EdgeDistribution | null {
   const rawBaseline = graphDb.getCodeGraphMetadata('edge_distribution_baseline');
   if (!rawBaseline) {
@@ -281,6 +297,7 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
     const parseDiagnostics = getParseDiagnosticsForStatus();
     const staleButValidGraphFiles = getStaleButValidGraphFilesForStatus();
     const lastFailedScan = getLastFailedScanForStatus();
+    const tombstones = getTombstoneSummaryForStatus(stats);
     const parserSkipList = getSkipListSummary();
     const parserHealth = getParserHealth();
     const apply = getLastApplyMetadata();
@@ -366,6 +383,7 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
             parseDiagnostics,
             parserSkipList,
             staleButValidGraphFiles,
+            tombstones,
             ...(lastFailedScan ? { lastFailedScan } : {}),
             graphQualitySummary: stats.graphQualitySummary,
             goldVerificationTrust,

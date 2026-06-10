@@ -61,6 +61,7 @@ export interface ScanResult {
   previousGitHead?: string | null;
   detectorProvenanceSummary?: graphDb.DetectorProvenanceSummary;
   graphEdgeEnrichmentSummary?: graphDb.GraphEdgeEnrichmentSummary | null;
+  tombstones: graphDb.CodeGraphTombstoneSummary;
   parseDiagnostics: graphDb.ParseDiagnosticsSummary;
   parserSkipList: {
     added: number;
@@ -227,8 +228,19 @@ function cleanupMissingTrackedFiles(filePaths: string[]): void {
       continue;
     }
 
-    graphDb.removeFile(filePath);
+    graphDb.removeFile(filePath, { reason: 'incremental_missing_tracked_file' });
   }
+}
+
+function emptyTombstoneSummary(): graphDb.CodeGraphTombstoneSummary {
+  return {
+    enabled: false,
+    retentionLimit: 0,
+    retainedRows: 0,
+    byKind: {},
+    byReason: {},
+    recent: [],
+  };
 }
 
 function summarizeEdgeDistribution(results: Array<{ edges: CodeEdge[] }>) {
@@ -573,7 +585,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     const indexedPaths = new Set(results.map((result) => result.filePath));
     for (const filePath of graphDb.getTrackedFiles()) {
       if (!indexedPaths.has(filePath)) {
-        graphDb.removeFile(filePath);
+        graphDb.removeFile(filePath, { reason: 'full_scan_unindexed_tracked_file' });
       }
     }
   }
@@ -725,6 +737,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const persistedStats = graphDb.getStats();
   const responseTotalNodes = persistedStats.totalNodes;
   const responseTotalEdges = persistedStats.totalEdges;
+  const tombstones = persistedStats.tombstones ?? emptyTombstoneSummary();
   const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
   const skipListSummary = getSkipListSummary();
 
@@ -744,6 +757,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     previousGitHead,
     detectorProvenanceSummary,
     graphEdgeEnrichmentSummary,
+    tombstones,
     parseDiagnostics,
     parserSkipList: {
       added: Math.max(0, skipListSummary.count - initialSkipListCount),

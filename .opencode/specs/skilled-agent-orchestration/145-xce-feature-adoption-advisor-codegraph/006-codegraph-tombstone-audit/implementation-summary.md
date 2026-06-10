@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: codegraph tombstone audit"
+description: "Implemented bounded default-off tombstone audit lineage for code-graph stale node and edge cleanup."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T23:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Documented completed tombstone audit implementation"
+    next_safe_action: "No implementation action remains"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/006-codegraph-tombstone-audit"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,28 +52,25 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+You can now opt into a bounded deletion audit for code-graph cleanup and answer why retained nodes or edges disappeared. The default path still hard-deletes exactly as before: with `SPECKIT_CODE_GRAPH_TOMBSTONES` unset, no tombstone table is created and no tombstone rows are written.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Bounded Tombstone Audit
 
-### [Feature Name]
+The code graph records file, node, and edge tombstones only when `SPECKIT_CODE_GRAPH_TOMBSTONES=true`. Each retained row stores the deletion kind, minimal identity fields, reason, and timestamp. Retention is count-bound by `SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT`, defaulting to 100 rows and clamped to 10000.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Status Visibility
+
+`getStats()` now includes a tombstone summary. `code_graph_scan` and `code_graph_status` expose retained counts by kind and reason plus recent retained tombstones, while live graph queries continue to read only `code_nodes` and `code_edges`.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Modified | Added flag-gated tombstone schema, deletion capture, retention pruning, and stats summary |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts` | Modified | Passed explicit cleanup reasons and included tombstone summary in scan results |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts` | Modified | Included tombstone summary in read-only status output |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts` | Created | Covered default-off behavior, enabled lineage, retention pruning, and query isolation |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` | Modified | Updated cleanup assertions to require explicit deletion reasons |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +78,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+All audit writes ship behind `SPECKIT_CODE_GRAPH_TOMBSTONES=true`; unset remains the default. Verification used temp/fixture DBs only and did not touch the live code-graph DB.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +91,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Create the tombstone table only when enabled | This preserves default-off DB behavior and avoids default path-history growth. |
+| Use count-bound retention | The code graph is rebuildable, so bounded diagnosis is enough and full time-travel would add unnecessary storage cost. |
+| Keep tombstones outside live graph tables | Existing queries ignore tombstones without extra filters, preserving correctness and query performance. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +106,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run typecheck` | PASS |
+| `npm run build` | PASS |
+| `npm test -- --run mcp_server/tests/code-graph-tombstones.vitest.ts mcp_server/tests/code-graph-db.vitest.ts mcp_server/tests/code-graph-scan.vitest.ts mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts` | PASS: 4 files, 55 tests |
+| `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh ...` | PASS: no output |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +122,8 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. Tombstones are audit-only. They do not restore deleted nodes or edges.
+2. Retention is intentionally bounded. Older deletion evidence is pruned once the configured row limit is exceeded.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +133,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-
