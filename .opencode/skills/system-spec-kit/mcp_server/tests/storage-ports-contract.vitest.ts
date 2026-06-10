@@ -11,10 +11,12 @@ import { describe, expect, it } from 'vitest';
 
 import {
   BetterSqliteGraphTraversal,
+  BetterSqliteMaintenance,
   BetterSqliteVectorStore,
   PackedBm25LexicalSearch,
   type GraphTraversal,
   type LexicalSearch,
+  type Maintenance,
   type VectorMetadata,
   type VectorStore,
 } from '../lib/storage/ports';
@@ -118,6 +120,27 @@ function createBetterSqliteVectorSubject(): ContractSubject<VectorStore<VectorFi
     cleanup: () => {
       void store.close();
       restoreEnv(env);
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    },
+  };
+}
+
+function createBetterSqliteMaintenanceSubject(): ContractSubject<Maintenance> {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'maintenance-port-'));
+  const database = new Database(path.join(tempDir, 'maintenance.sqlite'));
+  database.pragma('auto_vacuum = INCREMENTAL');
+  database.exec('VACUUM');
+  database.pragma('journal_mode = WAL');
+  database.exec(`
+    CREATE TABLE records (id INTEGER PRIMARY KEY, value TEXT NOT NULL);
+    INSERT INTO records (value) VALUES ('kept'), ('deleted');
+    DELETE FROM records WHERE value = 'deleted';
+  `);
+
+  return {
+    port: new BetterSqliteMaintenance(database),
+    cleanup: () => {
+      database.close();
       fs.rmSync(tempDir, { recursive: true, force: true });
     },
   };
@@ -291,6 +314,32 @@ function runVectorStoreContract(
   });
 }
 
+function runMaintenanceContract(
+  label: string,
+  createSubject: () => ContractSubject<Maintenance>,
+): void {
+  describe(label, () => {
+    it('reports storage integrity through the port', () => {
+      const subject = createSubject();
+      try {
+        expect(subject.port.integrityCheck().ok).toBe(true);
+      } finally {
+        subject.cleanup();
+      }
+    });
+
+    it('runs vacuum and checkpoint maintenance through the port', () => {
+      const subject = createSubject();
+      try {
+        expect(subject.port.vacuum().ok).toBe(true);
+        expect(subject.port.checkpoint({ mode: 'truncate' }).ok).toBe(true);
+      } finally {
+        subject.cleanup();
+      }
+    });
+  });
+}
+
 runGraphTraversalContract('BetterSqliteGraphTraversal contract', () => {
   const database = createGraphFixtureDb();
   return {
@@ -318,6 +367,13 @@ runVectorStoreContract('BetterSqliteVectorStore contract', createBetterSqliteVec
 
 runVectorStoreContract('FakeVectorStore contract', () => ({
   port: new FakeVectorStore<VectorFixtureMetadata>(),
+  cleanup: () => {},
+}));
+
+runMaintenanceContract('BetterSqliteMaintenance contract', createBetterSqliteMaintenanceSubject);
+
+runMaintenanceContract('FakeMaintenance contract', () => ({
+  port: new FakeMaintenance({ ok: true, message: 'healthy' }),
   cleanup: () => {},
 }));
 

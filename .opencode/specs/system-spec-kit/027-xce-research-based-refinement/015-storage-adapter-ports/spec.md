@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T22:54:23Z"
+    last_updated_at: "2026-06-10T23:06:52Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Slice 2 VectorStore adapter implemented and verified"
-    next_safe_action: "Continue with slices 3-5; do not route non-vector call sites until their assigned slices"
+    recent_action: "Slice 3 Maintenance adapter implemented and verified"
+    next_safe_action: "Continue with slices 4-5; route only their assigned call sites"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 40
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In progress - Slices 1-2 complete |
+| **Status** | In progress - Slices 1-3 complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -79,7 +79,8 @@ A thin, explicitly-typed five-port adapter makes storage behavior unit-testable 
 ### Slice 1 Status
 - Complete: the five typed interfaces, GraphTraversal adapter over the existing BFS helper, LexicalSearch adapter over the existing packed BM25 engine, five storage-free fakes, and contract tests for the two implemented ports.
 - Slice 2 complete: the better-sqlite3 VectorStore adapter now owns the legacy SQLiteVectorStore method bodies, the vector-index export surface routes the legacy class through that port, and VectorStore contract tests cover both the better-sqlite adapter and fake.
-- Pending: Maintenance, ContentionPolicy, and final routing/coupling work remain deferred to slices 3-5.
+- Slice 3 complete: the better-sqlite3 Maintenance adapter now owns the active maintenance pragma idioms for integrity checks, incremental-vacuum maintenance, and WAL checkpoints; retention/reindex call sites route through the port and Maintenance contract tests cover both the adapter and fake.
+- Pending: ContentionPolicy and final routing/coupling work remain deferred to slices 4-5.
 
 ### Out of Scope
 - Any non-better-sqlite3 port implementation (Turso/libSQL pilots are explicitly out of scope here)

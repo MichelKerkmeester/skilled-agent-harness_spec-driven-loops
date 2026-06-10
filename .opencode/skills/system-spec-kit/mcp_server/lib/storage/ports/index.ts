@@ -9,10 +9,13 @@ export type {
   ContentionRetryOptions,
 } from './contention-policy.js';
 export type {
+  BetterSqliteMaintenanceOptions,
   CheckpointOptions,
   Maintenance,
+  MaintenanceOperation,
   MaintenanceResult,
 } from './maintenance.js';
+export { BetterSqliteMaintenance } from './maintenance.js';
 export {
   BetterSqliteGraphTraversal,
   type DirectedReachabilityOptions,
