@@ -11,17 +11,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #7"
-    next_safe_action: "Plan a behavior-preserving shared BFS helper"
+    last_updated_at: "2026-06-10T21:12:38Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed behavior-preserving BFS helper consolidation"
+    next_safe_action: "Use existing query tests as regression coverage for future traversal changes"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/bfs-traversal.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/007-codegraph-bfs-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +49,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -158,8 +161,8 @@ Adopt 027 phase 012's shared-BFS pattern code-graph-side so both traversals use 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Given the existing code already handles truncation and dangling edges well, is the consolidation worth shipping standalone or only alongside phase 008?
-- Should the helper be shaped so phase 008's `why_included` breadcrumbs can hook into the same traversal pass?
+- Resolved: Ship standalone as requested because this phase is a scoped, behavior-preserving consolidation with targeted regression coverage.
+- Resolved: Do not add phase 008 breadcrumb hooks here; the helper exposes traversal visits without changing blast-radius response shape.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -169,20 +172,4 @@ CORE TEMPLATE (~80 lines)
 - Essential what/why/how only
 - No boilerplate sections
 - Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
 -->

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 7: codegraph-bfs-consolidation [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+description: "Completed task list for the code-graph BFS helper extraction and query-handler call-site cutover."
 trigger_phrases:
   - "tasks"
   - "name"
@@ -11,17 +11,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T21:12:38Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Marked BFS consolidation tasks complete with verification evidence"
+    next_safe_action: "Use helper tests and query-handler tests for future traversal regressions"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/bfs-traversal.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/007-codegraph-bfs-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read approved phase scaffold (`spec.md`, `plan.md`, `tasks.md`)
+- [x] T002 Inspect existing transitive traversal and blast-radius BFS paths (`handlers/query.ts`)
+- [x] T003 [P] Inspect existing query-handler tests for traversal and blast-radius expectations
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +63,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add shared code-graph-local BFS helper (`mcp_server/lib/graph/bfs-traversal.ts`)
+- [x] T005 Repoint transitive symbol traversal to the shared helper (`handlers/query.ts`)
+- [x] T006 Repoint blast-radius traversal to the shared helper (`handlers/query.ts`)
+- [x] T007 Add helper tests for cap, dangling, truncation, and non-result traversal behavior (`mcp_server/tests/bfs-traversal.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +74,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Run TypeScript typecheck: `npm run typecheck`
+- [x] T009 Run build: `npm run build`
+- [x] T010 Run helper and query-handler tests: `npx vitest run mcp_server/tests/bfs-traversal.vitest.ts mcp_server/tests/code-graph-query-handler.vitest.ts`
+- [x] T011 Run comment hygiene and alignment drift checks
+- [x] T012 Update phase documentation and metadata
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +86,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Verification passed with typecheck, build, targeted Vitest suites, comment hygiene, alignment drift, and strict spec validation
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +108,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: code-graph BFS consolidation"
+description: "Code-graph transitive traversal and blast radius now share one local BFS helper while preserving existing query behavior."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T21:12:38Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed BFS helper extraction and verification"
+    next_safe_action: "Keep traversal behavior pinned by helper and query-handler tests"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/bfs-traversal.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/007-codegraph-bfs-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,12 +59,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Code-graph now has one local BFS helper for both transitive symbol traversal and blast-radius traversal. The handler still owns response mapping, so existing warning text, depth truncation, limit fallback, depth grouping, and affected-file ordering remain covered by the same query-handler tests.
 
-### [Feature Name]
+### Shared BFS Helper
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`traverseGraphBfs` centralizes breadth-first queueing, visit timing, result caps, dangling-neighbor collection, and depth-boundary truncation. It supports the two existing semantics without introducing a cross-package dependency: transitive traversal uses dequeue-time visits and a result cap, while blast radius uses enqueue-time visits and boundary inspection for `depthTruncated`.
+
+### Query Handler Cutovers
+
+`handlers/query.ts` now adapts graph DB edges into helper neighbors for `calls_from`, `calls_to`, `imports_from`, and `imports_to` transitive queries. Blast radius builds file-dependency neighbors from the existing import-dependent map and still produces the same affected files, depth groups, hot-file breadcrumbs, `depthTruncated`, and `failureFallback` fields.
 
 ### Files Changed
 
@@ -69,7 +75,10 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts` | Created | Adds the shared code-graph-local BFS helper |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts` | Modified | Repoints transitive traversal and blast radius to the helper |
+| `.opencode/skills/system-code-graph/mcp_server/tests/bfs-traversal.vitest.ts` | Created | Pins helper cap, dangling, truncation, and non-result traversal behavior |
+| `.opencode/specs/skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation/*` | Modified | Reconciles phase docs and metadata to completed state |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +92,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Delivered as a local helper extraction with no package, daemon, DB, scan, status, or schema changes. Verification used the existing query-handler traversal tests as behavior-preservation proof plus new helper tests for the centralized mechanics.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +105,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep the helper under `mcp_server/lib/graph/` | The phase required a code-graph-local helper and no cross-package import. |
+| Preserve handler-owned payload mapping | Existing response fields and warning messages are the public behavior; the helper only owns traversal mechanics. |
+| Do not touch scan/status/database code | Those files are outside this phase's scope and owned by sibling work. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +120,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run typecheck` in `.opencode/skills/system-code-graph` | PASS |
+| `npm run build` in `.opencode/skills/system-code-graph` | PASS |
+| `npx vitest run mcp_server/tests/bfs-traversal.vitest.ts mcp_server/tests/code-graph-query-handler.vitest.ts` | PASS: 2 files, 38 tests |
+| `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <modified ts file>` | PASS for helper, query handler, and helper test |
+| `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-code-graph` | PASS: 153 files scanned, 0 findings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +137,8 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. Parent changelog was not updated because it is outside the user-approved write paths for this phase.
+2. No live code-graph DB or host daemon verification was run; all verification used TypeScript build and Vitest with mocked/fixture data.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +148,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

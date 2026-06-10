@@ -1,14 +1,17 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation",
-  "description": "Feature Specification: Phase 7: codegraph-bfs-consolidation",
+  "description": "Completed code-graph BFS consolidation: transitive traversal and blast radius share one local helper with preserved behavior.",
   "keywords": [
     "feature",
     "specification",
     "phase",
-    "codegraph-bfs-consolidation"
+    "codegraph-bfs-consolidation",
+    "bfs-traversal",
+    "blast-radius",
+    "transitive-traversal"
   ],
-  "lastUpdated": "2026-06-10T19:41:55.855Z",
+  "lastUpdated": "2026-06-10T21:12:38Z",
   "specId": "007",
   "folderSlug": "codegraph-bfs-consolidation",
   "parentChain": [
