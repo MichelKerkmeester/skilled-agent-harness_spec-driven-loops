@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports",
+  "description": "Feature Specification: Storage Adapter Ports (Five Divergence Seams)",
+  "keywords": [
+    "feature",
+    "specification",
+    "storage",
+    "adapter",
+    "ports",
+    "five",
+    "divergence",
+    "seams"
+  ],
+  "lastUpdated": "2026-06-10T17:52:29.390Z",
+  "specId": "015",
+  "folderSlug": "storage-adapter-ports",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

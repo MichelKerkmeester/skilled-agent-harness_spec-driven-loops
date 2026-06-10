@@ -21,10 +21,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-08T15:25:00Z"
+    last_updated_at: "2026-06-10T18:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Added OpenLTM phases 008/009 + amended 002/003/005 from research 010"
-    next_safe_action: "Plan 008/009 or implement 002 secret-redaction amendment"
+    recent_action: "Shipped phases 000-010; deep review CONDITIONAL (0 P0); reconciling parent docs"
+    next_safe_action: "Finish review remediation; run stress + manual playbook; then implement 011"
     blockers: []
     key_files:
       - "spec.md"
@@ -37,11 +37,14 @@ _memory:
       - "007-memclaw-derived-memory-hardening/spec.md"
       - "008-openltm-retrieval-observability/spec.md"
       - "009-openltm-continuity-resilience/spec.md"
+      - "010-mcp-to-cli-tool-transition/spec.md"
+      - "011-command-presentation-workflow-separation/spec.md"
+      - "review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-peck-phase-adoption"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions:
       - "027 is the parent packet for the peck-derived planned work; the peck work lives under child phase 001."
@@ -126,19 +129,24 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 000 | `000-release-cleanup/` | Placeholder release cleanup shell | Placeholder |
-| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 (self-check/current-state/constitutional) + source-pass T5-T10 (reviewer-benchmark, verification-discipline, acceptance-coverage gate), as 7 nested phases (`001-007`) | Phase-parent |
-| 002 | `002-memory-write-safety/` | P0 feedback correctness fixes | Spec-scaffolded |
-| 003 | `003-memory-index-causal-lifecycle/` | Memory index & causal write lifecycle phase-parent — incremental index foundation, causal-edge tombstones, metadata-edge promoter, write-path reconciliation, as 4 nested phases (`001-004`) | Phase-parent |
-| 004 | `004-semantic-trigger-fallback/` | Hybrid lexical+semantic trigger matching phase-parent — schema+backfill, semantic matcher, hybrid handler, tests/goldens/shadow eval, as 4 nested phases (`001-004`) | Phase-parent |
-| 005 | `005-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
-| 006 | `006-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
-| 007 | `007-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-005 | Phase-parent |
-| 008 | `008-openltm-retrieval-observability/` | OpenLTM-derived retrieval & memory observability — doc-anchor `why_ranked`, inline contradiction/supersession warnings, degraded-vector signal, maintenance counters (`research/010`) | Spec-scaffolded |
-| 009 | `009-openltm-continuity-resilience/` | OpenLTM-derived continuity/session resilience — bounded restore panel, authored-continuity PreCompact snapshot, goal/decision/progress/gotcha facets (`research/010`) | Spec-scaffolded |
-| 010 | `010-mcp-to-cli-tool-transition/` | Dual-stack CLI surfaces over the mk-* MCP daemons — complete | Complete |
+| 000 | `000-release-cleanup/` | Release cleanup phase-parent — public README, skill docs, feature catalog, manual playbook, MCP/CLI stress, commands, agents, AGENTS.md, as 8 nested aspects (`001-008`) | Complete |
+| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 (self-check/current-state/constitutional) + source-pass T5-T10 (reviewer-benchmark, verification-discipline, acceptance-coverage gate), as 7 nested phases (`001-007`) | Complete |
+| 002 | `002-memory-write-safety/` | P0 feedback correctness fixes + secret redaction | Complete |
+| 003 | `003-memory-index-causal-lifecycle/` | Memory index & causal write lifecycle phase-parent — incremental index foundation, causal-edge tombstones, metadata-edge promoter, write-path reconciliation, as 4 nested phases (`001-004`) | Complete |
+| 004 | `004-semantic-trigger-fallback/` | Hybrid lexical+semantic trigger matching phase-parent — schema+backfill, semantic matcher, hybrid handler, tests/goldens/shadow eval, as 4 nested phases (`001-004`) | Complete |
+| 005 | `005-learning-feedback-reducers/` | Learning feedback reducers phase parent | Complete |
+| 006 | `006-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Complete |
+| 007 | `007-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-005 | Complete |
+| 008 | `008-openltm-retrieval-observability/` | OpenLTM-derived retrieval & memory observability — doc-anchor `why_ranked`, inline contradiction/supersession warnings, degraded-vector signal, maintenance counters (`research/010`) | Complete |
+| 009 | `009-openltm-continuity-resilience/` | OpenLTM-derived continuity/session resilience — bounded restore panel, authored-continuity PreCompact snapshot, goal/decision/progress/gotcha facets (`research/010`) | Complete |
+| 010 | `010-mcp-to-cli-tool-transition/` | Dual-stack CLI surfaces over the mk-* MCP daemons | Complete |
+| 011 | `011-command-presentation-workflow-separation/` | Split presentation (startup questions, dashboards, results templates) out of command.md into routed files — memory/speckit/create/doctor command families, as 4 nested phases (`001-004`) each with 4 aspects | Planned |
+| 012 | `012-causal-traversal-bfs/` | Replace the two recursive-CTE graph traversals with a shared snapshot-equivalent BFS helper (CTE OR-join defeats indexes; memo path queries empty tables per insert) | Spec-scaffolded |
+| 013 | `013-vector-read-path-resilience/` | Vector shard integrity probe + quarantine + auto-rebuild (live malformed shard observed 2026-06-10), authoritative dimension discovery, KNN query-shape benchmark | Spec-scaffolded |
+| 014 | `014-packed-bm25-field-weights/` | Packed in-memory BM25 engine (reserved slot; fixes 300-600MB fallback RAM hazard) + BM25F field weights restoring title-weighting parity | Spec-scaffolded |
+| 015 | `015-storage-adapter-ports/` | Five-port storage adapter seam (vector/lexical/traversal/maintenance/contention) — testability now, backend option-value later; planning decides phase-split vs packet promotion | Spec-scaffolded |
 
-> `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `006` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `007` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All three programs are scaffolded and planned, not implemented.
+> `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `006` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `007` holds the `research/008-caura-memclaw-...` memory-hardening proposals. Phases 000-010 are implemented and shipped (see `changelog/` and `before-vs-after.md`). Phases `011-015` are planned refinement phases, scaffolded but not yet implemented: `011` is the command-presentation refactor; `012-015` are the backend-agnostic improvements from the sqlite-to-turso revalidation (BFS traversal, vector read-path resilience, packed BM25 field weights, storage adapter ports), detailed in the Continuation Research Planning Amendments below.
 
 ### Continuation Research Planning Amendments
 
@@ -153,6 +161,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 - Iterations 050 and 059 are planned together under `005-learning-feedback-reducers/`: reducers stay default-off and shadow-first until ledger quality, replay, and consumer-specific gates pass.
 - Iterations 051-057 are cross-cutting planning rules for the child phases: prefer local packet context first, keep context bundles explicit, automate resource maps only with validation, keep reducer repairs idempotent, standardize `/speckit`, refuse stale impact analysis, and keep `memory_context` curation scoped to local memory-backend concerns.
 - Phases 008-009 are owned by the OpenLTM study (`research/010-openltm-memory-architecture-teachings`): `008` adopts retrieval/memory observability and `009` adopts continuity/session resilience — both filtered through the spec-documentation-based vs row-based architecture (research §8). Secret redaction, content-fingerprint indexing, and reshaped opt-in capture from the same study are folded as amendments into `002`, `003`, and `005` respectively. Row-coupled mechanics (`learn/reinforce`, per-row provenance/audit, row dedup) are rejected as negative knowledge.
+- Phases 012-015 are owned by the sqlite-to-turso revalidation (`.opencode/specs/z_future/sqlite-to-turso/research/research.md` + `004 - gap-alternatives.md`): backend-agnostic improvements that pay off on the current better-sqlite3 stack — BFS traversal (`012`), vector shard self-healing (`013`; live shard corruption observed 2026-06-10), packed BM25 fallback (`014`), and the five-port adapter seam (`015`). Execution order: `012` and `014` are independent; `013` coordinates with `008`'s counters; `015` runs last (it adopts `012`/`014` outputs as port implementations). The Turso migration itself stays out of 027 — gated on upstream 1.0 signals per the revalidation verdict.
 
 ### Phase Transition Rules
 

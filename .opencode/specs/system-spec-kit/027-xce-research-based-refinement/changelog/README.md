@@ -11,13 +11,13 @@ contextType: "implementation"
 
 # Spec 027 Changelog Index
 
-Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, and CLI hardening across ten implemented phase tracks (001 through 010) plus two planned tracks (000 release cleanup and 011 command presentation) that are scaffolded but not yet implemented. Every shipped phase has a packet-local changelog, and every phase parent has a rollup with an Included Phases table. This index links each track to its top rollup. The chronological view of the same folders lives in `../timeline.md`.
+Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, and CLI hardening across ten implemented phase tracks (001 through 010) plus the 000 release-cleanup track (complete this release, captured in the root README and before-vs-after.md), with the 011 command-presentation track planned and scaffolded but not yet implemented. Every shipped phase has a packet-local changelog, and every phase parent has a rollup with an Included Phases table. This index links each track to its top rollup. The chronological view of the same folders lives in `../timeline.md`.
 
 ## Tracks
 
 | Track | Status | Leaf changelogs | Top rollup |
 |-------|--------|-----------------|------------|
-| 000 release cleanup | planned | 0 | (scaffolded, not implemented) |
+| 000 release cleanup | complete | 0 | (captured in root README + before-vs-after.md) |
 | 001 peck teachings adoption | shipped | 7 | [changelog-001-peck-teachings-adoption-root.md](./001-peck-teachings-adoption/changelog-001-peck-teachings-adoption-root.md) |
 | 002 memory write safety | shipped | 1 | [changelog-002-memory-write-safety.md](./002-memory-write-safety/changelog-002-memory-write-safety.md) |
 | 003 memory index causal lifecycle | shipped | 4 | [changelog-003-memory-index-causal-lifecycle-root.md](./003-memory-index-causal-lifecycle/changelog-003-memory-index-causal-lifecycle-root.md) |

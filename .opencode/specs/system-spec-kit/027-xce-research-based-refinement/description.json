@@ -35,7 +35,12 @@
     "007-memclaw-derived-memory-hardening",
     "008-openltm-retrieval-observability",
     "009-openltm-continuity-resilience",
-    "010-mcp-to-cli-tool-transition"
+    "010-mcp-to-cli-tool-transition",
+    "011-command-presentation-workflow-separation",
+    "012-causal-traversal-bfs",
+    "013-vector-read-path-resilience",
+    "014-packed-bm25-field-weights",
+    "015-storage-adapter-ports"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
   "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",

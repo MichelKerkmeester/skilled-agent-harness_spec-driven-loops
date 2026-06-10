@@ -30,8 +30,10 @@ _memory:
 - **Total references**: 27
 - **By category**: Documents=0, Skills=16, Specs=11, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: parent-aggregate map for `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/`, focused on renumbered metadata and the peck-derived feature under `001-peck-teachings-adoption/`
+- **Scope**: point-in-time snapshot (2026-06-04) of the renumbered metadata and the peck-derived feature under `001-peck-teachings-adoption/`. It is NOT a live epic-wide ledger and does not enumerate the later-shipped phases (002-011) or the planned 011 track.
 - **Generated**: 2026-06-04T00:00:00Z
+
+> **Current authority:** for the live phase inventory and status (phases 000-011), see the `spec.md` PHASE DOCUMENTATION MAP and `graph-metadata.json`. Per-phase resource maps and the committed `changelog/` cover 002-011 scope. This snapshot is retained only as historical provenance for the renumbering work.
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` (exists on disk) · `MISSING` (referenced but absent) · `PLANNED` (intentional future path).

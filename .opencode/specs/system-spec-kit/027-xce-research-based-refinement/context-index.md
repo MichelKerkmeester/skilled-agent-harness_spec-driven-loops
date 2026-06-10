@@ -32,10 +32,10 @@ On 2026-06-04, the same peck-derived phase was renumbered again to the first act
 |---|---|---|
 | `008-peck-teachings-adoption/` | `001-peck-teachings-adoption/` | Low-risk peck teachings T3, T4, and T2; T1 remains deferred |
 | `001-memory-write-safety/` | `002-memory-write-safety/` | Memory write safety and feedback correctness |
-| `002-incremental-index-foundation/` | `003-incremental-index-foundation/` | Incremental memory index foundation |
-| `003-causal-edge-tombstones/` | `004-causal-edge-tombstones/` | Causal edge tombstone lifecycle |
-| `004-metadata-edge-promoter/` | `005-metadata-edge-promoter/` | Deterministic metadata edge promotion |
-| `005-write-path-reconciliation/` | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation |
+| `002-incremental-index-foundation/` | `003-memory-index-causal-lifecycle/001-incremental-index-foundation/` | Incremental memory index foundation |
+| `003-causal-edge-tombstones/` | `003-memory-index-causal-lifecycle/002-causal-edge-tombstones/` | Causal edge tombstone lifecycle |
+| `004-metadata-edge-promoter/` | `003-memory-index-causal-lifecycle/003-metadata-edge-promoter/` | Deterministic metadata edge promotion |
+| `005-write-path-reconciliation/` | `003-memory-index-causal-lifecycle/004-write-path-reconciliation/` | Desired/prior statediff reconciliation |
 | `006-semantic-trigger-fallback/` | `004-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching |
 | `007-learning-feedback-reducers/` | `005-learning-feedback-reducers/` | Learning feedback reducers |
 

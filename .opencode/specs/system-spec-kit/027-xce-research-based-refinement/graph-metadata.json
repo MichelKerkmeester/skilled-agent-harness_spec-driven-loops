@@ -15,7 +15,11 @@
     "system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability",
     "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience",
     "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
-    "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation"
+    "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation",
+    "system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs",
+    "system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience",
+    "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights",
+    "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -225,7 +229,7 @@
     ],
     "causal_summary": "Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-08T15:25:38.312Z",
+    "last_save_at": "2026-06-10T17:52:29.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
