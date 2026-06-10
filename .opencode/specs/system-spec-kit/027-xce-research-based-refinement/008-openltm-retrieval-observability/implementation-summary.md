@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: OpenLTM Retrieval Observability"
+description: "Memory retrieval now exposes opt-in diagnostics for ranking, conflict warnings, degraded vectors, and maintenance counters without changing ranking or writes."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -10,18 +10,24 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-openltm-retrieval-observability"
-    last_updated_at: "2026-06-08T15:10:29Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability"
+    last_updated_at: "2026-06-10T13:03:37Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Documented completed observability phase"
+    next_safe_action: "Use focused suite for future retrieval changes"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/008-openltm-retrieval-observability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,8 +45,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-openltm-retrieval-observability |
-| **Completed** | 2026-06-08 |
-| **Level** | 2 |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +54,30 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Memory retrieval is now inspectable through opt-in trace/debug and health surfaces. Operators can see why returned documents ranked, whether returned documents contradict or supersede each other, whether vector recall degraded, and what the latest maintenance passes counted, without changing ranking, scoring, decay, schema, or write behavior.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Retrieval Diagnostics
 
-### [Feature Name]
+`memory_search(includeTrace: true)` now adds per-result `why_ranked` from ranker-carried row intermediates, keyed by document path and anchor. `memory_context(profile: "debug")` forwards trace opt-in to the underlying search path so debug context responses expose the same retrieval diagnostics.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Inline Warnings And Health
+
+Search formatting now adds one compact warning when returned documents are explicitly linked by existing `contradicts` or `supersedes` causal edges. Health and embedder-status responses expose degraded-vector state, and health reports last-run counters for index scan, embedding reconcile, and retention sweep.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts` | Created | Shared read-only observability helpers. |
+| `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` | Modified | Emits `why_ranked` and inline conflict warnings under trace opt-in. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Modified | Adds degraded-vector trace metadata. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modified | Treats debug profile as trace opt-in for nested search. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Surfaces recall degradation and maintenance counters. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts` | Modified | Surfaces recall degradation with embedder status. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | Records latest scan counters in memory. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts` | Modified | Records latest reconcile counters in memory. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts` | Modified | Records latest retention counters in memory. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/openltm-retrieval-observability.vitest.ts` | Created | Proves observability behavior and no ranking/state mutation. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +85,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+All surfaces ship behind existing per-call opt-ins (`includeTrace` and debug profile) or existing diagnostic tools. No environment flag, schema bump, ranking formula, FSRS write path, or vector schema change was added.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +93,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Derive `why_ranked` from row intermediates | This prevents a display-only formula from drifting from the actual rank order. |
+| Key diagnostics to document path and anchor | Consumers need authored-document references, not opaque memory row identifiers. |
+| Keep counters in process memory | The phase needed last-run observability without a schema bump or persisted write path. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +105,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Focused suite | PASS: 1 file, 6 tests. |
+| Recall canaries | PASS: 2 files, 116 tests. |
+| MCP TypeScript no-emit | PASS: `npx tsc --noEmit -p tsconfig.json` from `mcp_server`. |
+| Root TypeScript no-emit | NOT RUN: root `tsconfig.json` missing, TS5058. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,12 +118,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Process-local maintenance counters** Last-run counters reset when the MCP process restarts. This avoids a schema bump and persisted write path.
+2. **No new env flag** Surfaces are opt-in per call or via existing diagnostic tools, so `ENV_REFERENCE.md` did not need an update.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +129,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

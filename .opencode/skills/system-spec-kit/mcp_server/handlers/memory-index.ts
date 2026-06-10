@@ -57,6 +57,7 @@ import {
 // Standardized response structure
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { validateGovernedIngest } from '../lib/governance/scope-governance.js';
+import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
 
 // Shared handler types
 import type { MCPResponse, EmbeddingProfile } from './types.js';
@@ -386,6 +387,11 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     } else {
       message = 'A scan recently completed; this call coalesced onto the recent scan window.';
     }
+    recordMaintenanceRun('memory_index_scan', {
+      status: 'coalesced',
+      counts: { waitSeconds: lease.waitSeconds },
+      staleCandidates: 0,
+    });
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
       summary: message,
@@ -702,6 +708,20 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       })]);
     }
 
+    recordMaintenanceRun('memory_index_scan', {
+      status: 'success',
+      counts: {
+        scanned: 0,
+        indexed: 0,
+        updated: 0,
+        unchanged: 0,
+        failed: 0,
+        staleDeleted,
+        staleDeleteFailed,
+        orphanSwept: orphanSweepResult.swept,
+      },
+      staleCandidates: staleDeleted + staleDeleteFailed,
+    });
     await releaseScanLease();
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
@@ -1224,6 +1244,21 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
 
   await releaseScanLease();
+
+  recordMaintenanceRun('memory_index_scan', {
+    status: 'success',
+    counts: {
+      scanned: results.scanned,
+      indexed: results.indexed,
+      updated: results.updated,
+      unchanged: results.unchanged,
+      failed: results.failed,
+      staleDeleted: results.staleDeleted,
+      staleDeleteFailed: results.staleDeleteFailed,
+      orphanSwept: results.orphanSwept,
+    },
+    staleCandidates: filesToDelete.length,
+  });
 
   return createMCPSuccessResponse({
     tool: 'memory_index_scan',

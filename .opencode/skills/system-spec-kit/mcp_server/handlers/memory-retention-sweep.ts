@@ -7,6 +7,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import { runMemoryRetentionSweep } from '../lib/governance/memory-retention-sweep.js';
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
+import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
 
 import type { MCPResponse } from './types.js';
 import type { MemoryRetentionSweepArgs } from '../lib/governance/memory-retention-sweep.js';
@@ -49,6 +50,16 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
     if (result.dryRun && result.candidates.length > 0) {
       hints.push('Run memory_retention_sweep({ dryRun: false }) to delete expired rows.');
     }
+    recordMaintenanceRun('memory_retention_sweep', {
+      status: 'success',
+      counts: {
+        swept: result.swept,
+        retained: result.retained,
+        candidates: result.candidates.length,
+        protectedCount: result.protectedCount,
+      },
+      staleCandidates: result.candidates.length,
+    });
 
     return createMCPSuccessResponse({
       tool: 'memory_retention_sweep',

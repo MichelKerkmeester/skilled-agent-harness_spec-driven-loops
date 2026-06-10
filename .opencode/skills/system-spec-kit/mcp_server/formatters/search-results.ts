@@ -50,6 +50,12 @@ import {
   isResultExplainEnabled,
   type ExplainabilityOptions,
 } from '../lib/search/result-explainability.js';
+import {
+  buildWhyRankedTrace,
+  findInlineConflictWarnings,
+  type RetrievalConflictWarning,
+  type WhyRankedTrace,
+} from '../lib/observability/retrieval-observability.js';
 
 // Consolidated path validation from core/config.js (single source of truth)
 import { ALLOWED_BASE_PATHS } from '../core/config.js';
@@ -189,6 +195,7 @@ export interface MemoryResultEnvelope extends FormattedSearchResult {
   scores?: MemoryResultScores;
   source?: MemoryResultSource;
   trace?: MemoryResultTrace;
+  why_ranked?: WhyRankedTrace;
   trustBadges?: MemoryTrustBadges;
   /** Phase C: Graph evidence provenance — edges, communities, and boost factors. */
   graphEvidence?: {
@@ -824,7 +831,7 @@ export async function formatSearchResults(
   const constitutionalCount = results.filter(rawResult => rawResult.isConstitutional).length;
   const trustBadgeFetch = fetchTrustBadgeSnapshots(results);
 
-  const formatted: MemoryResultEnvelope[] = await Promise.all(results.map(async (rawResult: RawSearchResult) => {
+  const formatted: MemoryResultEnvelope[] = await Promise.all(results.map(async (rawResult: RawSearchResult, index: number) => {
     const resultId = toNullableNumber(rawResult.id);
     const formattedResult: MemoryResultEnvelope = {
       id: typeof rawResult.id === 'number' ? rawResult.id : Number.parseInt(rawResult.id, 10),
@@ -882,6 +889,7 @@ export async function formatSearchResults(
         memoryState: typeof rawResult.memoryState === 'string' ? rawResult.memoryState : null,
       };
       formattedResult.trace = extractTrace(rawResult, extraData);
+      formattedResult.why_ranked = buildWhyRankedTrace(rawResult, index + 1);
       // stamp the badge-derivation observability
       // fields onto the trace so operators can distinguish
       // explicit-vs-derived without inspecting logs.
@@ -1101,6 +1109,9 @@ export async function formatSearchResults(
 
   const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
   const citationPolicy = deriveCitationPolicy(requestQualityData);
+  const inlineWarnings: RetrievalConflictWarning[] = includeTrace
+    ? findInlineConflictWarnings(results, requireDb)
+    : [];
 
   // Use standardized success response envelope
   const responseData: Record<string, unknown> = {
@@ -1113,6 +1124,7 @@ export async function formatSearchResults(
     // Recovery payload for weak/partial results (additive)
     ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
     citationPolicy,
+    ...(inlineWarnings.length > 0 ? { inlineWarnings, retrievalWarnings: inlineWarnings } : {}),
     ...(responsePolicy !== null ? { responsePolicy } : {}),
   };
   // Preserve caller metadata, but keep trace-only fields opt-in.

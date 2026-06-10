@@ -1592,6 +1592,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     }
 
     // Build options object for strategy executors
+    const debugProfileRequested = args.profile === 'debug';
     const options: ContextOptions = {
       specFolder: spec_folder,
       tenantId: args.tenantId,
@@ -1601,7 +1602,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       sessionId: effectiveSessionId,
       enableDedup: enableDedup,
       includeContent: include_content,
-      includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // Forward to internal memory_search calls
+      includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true || debugProfileRequested,
       anchors,
       profile: args.profile,
     };

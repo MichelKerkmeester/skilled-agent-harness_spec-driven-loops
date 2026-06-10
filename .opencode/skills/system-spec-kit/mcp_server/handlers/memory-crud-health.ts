@@ -48,6 +48,10 @@ import {
   type HardExclusionPredicate,
   type HardExclusionSource,
 } from '../lib/search/hybrid-search.js';
+import {
+  buildVectorDegradationSignal,
+  getMaintenanceObservabilitySnapshot,
+} from '../lib/observability/retrieval-observability.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -855,6 +859,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     vectorIndex.isVectorSearchAvailable(),
     Date.now(),
   );
+  const vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
+  const maintenance = getMaintenanceObservabilitySnapshot();
   const exclusionAudit = auditHardExclusions(database);
 
   if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
@@ -885,6 +891,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databaseConnected: !!database,
         process: processHealth,
         index: indexHealth,
+        recallDegradation: vectorDegradation,
+        maintenance,
         exclusionAudit,
         embeddingRetry,
         specFolder: specFolder ?? null,
@@ -1047,6 +1055,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         causalEdges: causalEdgeHealth,
         process: processHealth,
         index: indexHealth,
+        recallDegradation: vectorDegradation,
+        maintenance,
         exclusionAudit,
         embeddingRetry,
         ...(fullMemoryReport ?? {}),
@@ -1215,10 +1225,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       runtime_initialized: runtimeInitialized,
       databaseConnected: !!database,
       vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
+      recallDegradation: vectorDegradation,
       memoryCount,
       uptime: process.uptime(),
       process: processHealth,
       index: indexHealth,
+      maintenance,
       exclusionAudit,
       version: SERVER_VERSION,
       reportMode: 'full',

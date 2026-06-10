@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 1: openltm-retrieval-observability [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: OpenLTM Retrieval Observability"
+description: "Add opt-in retrieval observability to memory search/context and health surfaces without changing ranking, scoring, decay, schema, or write behavior."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -11,23 +11,29 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-openltm-retrieval-observability"
-    last_updated_at: "2026-06-08T15:10:29Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability"
+    last_updated_at: "2026-06-10T13:03:37Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Planned additive retrieval observability"
+    next_safe_action: "Use targeted suite as regression guard"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/008-openltm-retrieval-observability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: openltm-retrieval-observability
+# Implementation Plan: OpenLTM Retrieval Observability
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -40,13 +46,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript, Node.js |
+| **Framework** | MCP handler modules |
+| **Storage** | Existing SQLite memory index, no schema change |
+| **Testing** | Vitest, TypeScript no-emit |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Add an opt-in retrieval observability layer to the existing memory search, context, health, and embedder-status surfaces. The implementation reads ranker-carried intermediates and maintenance outcomes, then formats diagnostics without changing result order, score calculation, FSRS/decay, schema, or persisted retrieval state.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +61,14 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing: focused suite plus memory-search canaries
+- [x] Docs updated: spec, plan, tasks, implementation summary
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,14 +77,16 @@ _memory:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Additive response-observability helper plus existing handler/formatter surfaces.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Retrieval formatter**: Adds per-result `why_ranked` and inline conflict warnings only when trace output is requested.
+- **Search/context handlers**: Forward trace/debug opt-in and attach vector degradation diagnostics to trace data.
+- **Health/embedder surfaces**: Report degraded-vector state and last-run maintenance counters.
+- **Maintenance handlers**: Record in-process last-run counters after scan, reconcile, and retention operations.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The search pipeline returns already-ranked rows with score/channel metadata. The formatter reads those row fields into `why_ranked`, queries existing causal edges for returned-pair warnings, and leaves the row order untouched. Maintenance handlers record their latest counters in memory, and health/status handlers expose that snapshot read-only.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -90,14 +98,12 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Retrieval formatter | Shapes search results consumed by agents | Add `why_ranked` and returned-pair warnings | `openltm-retrieval-observability.vitest.ts` |
+| Search/context handlers | Opt-in trace/debug routing | Add degraded-vector trace and debug-profile forwarding | Focused suite and tsc |
+| Health/embedder status | Operator diagnostics | Add recall degradation and maintenance snapshot | Focused suite |
+| Maintenance handlers | Scan/reconcile/retention outcomes | Record last-run counters in memory | Focused suite |
 
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+Inventories completed through targeted handler, formatter, health, embedder-status, and test reads. No ranking, schema, environment-reference, validator, or sibling-phase files were edited.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -106,19 +112,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Existing handler/formatter/test structure identified
+- [x] No dependencies or schema changes needed
+- [x] MCP server test config used for source-level verification
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add `why_ranked` from ranker intermediates
+- [x] Add inline conflict warnings for returned causal-edge pairs
+- [x] Add degraded-vector and maintenance-counter surfaces
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Focused Vitest suite passed
+- [x] Memory-search and hybrid-search canaries passed
+- [x] Documentation updated
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,9 +134,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Observability helper and formatter outputs | Vitest |
+| Integration | Health surface and retrieval response shape | Vitest |
+| Regression | Memory-search and hybrid-search canaries | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -140,7 +146,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Existing causal edge vocabulary | Internal | Green | Warnings consume `contradicts`/`supersedes`; no vocabulary change. |
+| Existing ranker intermediates | Internal | Green | `why_ranked` reads row metadata; no display formula added. |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -148,8 +155,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A trace/debug response causes ranking drift or TypeScript/test regression.
+- **Procedure**: Remove the observability helper wiring and tests; no data migration rollback is needed because no schema or persisted ranking state changed.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -160,4 +167,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability"
-    last_updated_at: "2026-06-08T15:20:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold 008 from OpenLTM research phase 010 (plan only)"
-    next_safe_action: "Plan the four observability surfaces"
+    last_updated_at: "2026-06-10T13:03:37Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shipped retrieval observability surfaces"
+    next_safe_action: "Use trace/debug and health surfaces when diagnosing recall"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-08-010-openltm-phase-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Derived from research/010-openltm-memory-architecture-teachings (corrected Priority 3)."
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Spec-Scaffolded (plan only) |
+| **Status** | Complete |
 | **Created** | 2026-06-08 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

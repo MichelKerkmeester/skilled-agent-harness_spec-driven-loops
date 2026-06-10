@@ -7,6 +7,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import { runMemoryEmbeddingReconcile, ActiveShardGuardError } from '../lib/embedders/embedding-reconcile.js';
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
+import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
 
 import type { MCPResponse } from './types.js';
 import type { EmbeddingReconcileArgs } from '../lib/embedders/embedding-reconcile.js';
@@ -75,6 +76,17 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
     } else if (result.mode === 'dry-run' && stale > 0) {
       hints.push('Run memory_embedding_reconcile({ mode: "apply" }) to converge embedding_status to success.');
     }
+    recordMaintenanceRun('memory_embedding_reconcile', {
+      status: 'success',
+      counts: {
+        vectorPresentStatusStale: stale,
+        missingActiveVectorRetryEligible: missing,
+        reconciledToSuccess: result.applied?.reconciledToSuccess ?? 0,
+        resetToRetry: result.applied?.resetToRetry ?? 0,
+        successCoverageReset: coverageReset,
+      },
+      staleCandidates: stale + missing,
+    });
 
     return createMCPSuccessResponse({
       tool: 'memory_embedding_reconcile',

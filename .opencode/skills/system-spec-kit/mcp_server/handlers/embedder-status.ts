@@ -8,6 +8,8 @@ import { checkDatabaseUpdated } from '../core/index.js';
 import { createMCPSuccessResponse } from '../lib/response/envelope.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { get_db } from '../lib/search/vector-index-store.js';
+import * as vectorIndex from '../lib/search/vector-index.js';
+import { buildVectorDegradationSignal, type VectorDegradationSignal } from '../lib/observability/retrieval-observability.js';
 import {
   estimateEta,
   getActiveJob,
@@ -42,6 +44,7 @@ interface EmbeddingsStatusData {
   readonly provider: ReturnType<typeof getProviderInfo> | null;
   readonly modelServer: ProviderMetadata | null;
   readonly modelServerError?: string;
+  readonly recallDegradation: VectorDegradationSignal;
 }
 
 // -------------------------------------------------------------------
@@ -58,11 +61,13 @@ async function collectEmbeddingsStatus(): Promise<EmbeddingsStatusData> {
   // embedder_status call (which also serves re-index job status).
   let provider: ReturnType<typeof getProviderInfo> | null = null;
   try {
+    const recallDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
     provider = getProviderInfo();
     if (provider.effectiveProvider !== 'hf-local') {
       return {
         provider,
         modelServer: null,
+        recallDegradation,
       };
     }
 
@@ -71,12 +76,14 @@ async function collectEmbeddingsStatus(): Promise<EmbeddingsStatusData> {
     return {
       provider,
       modelServer: hfLocal.getMetadata(),
+      recallDegradation,
     };
   } catch (error: unknown) {
     return {
       provider,
       modelServer: null,
       modelServerError: getErrorMessage(error),
+      recallDegradation: buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable()),
     };
   }
 }

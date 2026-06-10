@@ -99,7 +99,9 @@ import {
   getLastLexicalCapabilitySnapshot,
   resetLastLexicalCapabilitySnapshot,
 } from '../lib/search/sqlite-fts.js';
+import * as vectorIndex from '../lib/search/vector-index.js';
 import type { LexicalCapabilitySnapshot } from '../lib/search/sqlite-fts.js';
+import { buildVectorDegradationSignal } from '../lib/observability/retrieval-observability.js';
 import { evaluatePublicationGate } from '../lib/context/publication-gate.js';
 import {
   deduplicateResults as deduplicateWithSessionState,
@@ -1216,6 +1218,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     if (includeTrace && pipelineResult.trace) {
       extraData.retrievalTrace = pipelineResult.trace;
+      extraData.vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
+      extraData.vector_degradation = extraData.vectorDegradation;
     }
     const degradedReadiness = mapGraphReadinessToTelemetry(
       getGraphReadinessSnapshotFromMarker(),
