@@ -475,20 +475,33 @@ Constitutional files are stored in:
 - Matched via trigger phrases for fast keyword matching
 - Not affected by decay scoring
 
+### Review Cadence
+
+Constitutional rules are fixed-visibility records, so operators should review them on a calendar cadence instead of relying on decay. Each active rule file should carry `last_confirmed` and `last_confirmed_source` frontmatter fields. Use the standalone staleness diagnostic to list active rules by age:
+
+```bash
+node .opencode/skills/system-spec-kit/scripts/constitutional-rule-staleness.cjs
+```
+
+Default cadence: review any rule older than 180 days. The diagnostic computes `review_by` at report time and performs no writes. A stale result is a human review signal only; it must not auto-delete, auto-demote, or change the always-surface behavior.
+
 ### Creating Constitutional Rules
 
 1. Create file in `constitutional/` folder
-2. Add YAML frontmatter with triggers:
-   ```yaml
-   ---
-   title: Gate 3 Enforcement
-   triggers:
-     - "file modification"
-     - "gate 3"
-     - "spec folder"
-   importanceTier: constitutional
-   ---
-   ```
+2. Add YAML frontmatter with triggers and review metadata:
+    ```yaml
+    ---
+    title: Gate 3 Enforcement
+    importanceTier: constitutional
+    contextType: decision
+    last_confirmed: "2026-06-10"
+    last_confirmed_source: "human-review"
+    triggerPhrases:
+      - "file modification"
+      - "gate 3"
+      - "spec folder"
+    ---
+    ```
 3. Restart MCP server or use `memory_index_scan()`
 
 ---

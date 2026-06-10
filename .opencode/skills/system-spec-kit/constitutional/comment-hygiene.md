@@ -2,6 +2,8 @@
 title: "Comment Hygiene — No Ephemeral Artifact Pointers in Code Comments"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-06-05"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   # Code comment writes
   - code comment

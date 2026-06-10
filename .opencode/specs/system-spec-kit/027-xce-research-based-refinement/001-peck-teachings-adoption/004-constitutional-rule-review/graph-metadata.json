@@ -39,12 +39,13 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -194,14 +195,15 @@
     ],
     "causal_summary": "This is **Phase 4** of the Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system-spec-kit specification.",
     "created_at": "2026-06-02T10:04:53Z",
-    "last_save_at": "2026-06-05T12:47:34.380Z",
+    "last_save_at": "2026-06-10T06:19:50.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

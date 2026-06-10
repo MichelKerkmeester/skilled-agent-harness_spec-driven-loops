@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: constitutional-rule-review [template:level_1/spec.md]"
+title: "Feature Specification: Phase 4: constitutional-rule-review [template:level_2/spec.md]"
 description: "Phase 4 (T2): add a read-only review surface that lists constitutional rules with last-confirmed metadata, so stale always-surface rules can be retired by a human."
 trigger_phrases:
   - "feature"
@@ -12,26 +12,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review"
-    last_updated_at: "2026-06-02T10:04:54Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored phase spec (planned, not implemented)"
-    next_safe_action: "Implement: add last-confirmed metadata + review diagnostic"
+    last_updated_at: "2026-06-10T06:19:50Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed rule staleness diagnostic"
+    next_safe_action: "Use diagnostic for future reviews"
     blockers: []
     key_files:
       - "constitutional/"
-      - "scripts/ (new review diagnostic)"
+      - "scripts/constitutional-rule-staleness.cjs"
+      - "references/memory/memory_system.md"
+      - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-constitutional-rule-review"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 4: constitutional-rule-review
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -40,16 +42,16 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-02 |
 | **Branch** | `001-peck-teachings-adoption` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 4 |
 | **Predecessor** | 003-current-state-discipline |
 | **Successor** | None |
-| **Handoff Criteria** | Review diagnostic lists all constitutional rules with staleness; read-only |
+| **Handoff Criteria** | Delivered: diagnostic lists all active constitutional rules with staleness and writes nothing |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -66,7 +68,7 @@ This is **Phase 4** of the Adopt low-risk peck teachings (T3 self-check template
 - A diagnostic host - DECIDED (see `../001-peck-teachings-for-spec-kit/research/research.md` §5): a standalone read-only script first; `/memory:learn` report mode is the better future wrapper (`/memory:manage` and `/doctor memory` are mutation surfaces).
 
 **Deliverables**:
-- A `last_confirmed` (or `review_by`) field on each constitutional rule, plus a diagnostic that lists rules by staleness.
+- Delivered: a `last_confirmed` field and provenance field on each active constitutional rule, plus a diagnostic that lists rules by staleness.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent phase folder name plus this phase folder name.
@@ -152,11 +154,62 @@ Add a read-only review surface that lists each constitutional rule with a last-c
 
 ---
 
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: Diagnostic completes from local file reads without daemon startup.
+- **NFR-P02**: Rule enumeration is dynamic and does not rely on a hardcoded count.
+
+### Security
+- **NFR-S01**: Diagnostic performs no writes, deletes, demotions, or memory mutations.
+- **NFR-S02**: Stale output is a human review signal only.
+
+### Reliability
+- **NFR-R01**: Missing or malformed review metadata is visible in diagnostic output rather than silently ignored.
+- **NFR-R02**: Review cadence is documented where constitutional tier behavior is described.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Empty rule directory: diagnostic prints zero matching rules without writing.
+- README file present: diagnostic excludes it because it is not an active rule.
+- Missing date: diagnostic reports missing metadata instead of inventing a date.
+
+### Error Scenarios
+- Unterminated frontmatter: diagnostic exits with an error.
+- Invalid date format: diagnostic marks the rule stale for review.
+- Unknown CLI argument: diagnostic exits with usage-compatible error output.
+
+### State Transitions
+- A fresh rule becomes stale only by calendar age in report output.
+- A human may refresh or retire a rule separately; this phase does neither automatically.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 18/25 | Multiple rule files plus one diagnostic, one reference, and phase docs |
+| Risk | 8/25 | Read-only diagnostic and metadata-only rule changes |
+| Research | 10/20 | Required backfill from git dates and cadence placement |
+| **Total** | **36/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - RESOLVED (research.md §5): standalone read-only script first; `/memory:learn` report mode is the future wrapper (not `/memory:manage` or `/doctor memory`, which mutate).
-- RESOLVED (research.md §5): use `last_confirmed` (date) + `last_confirmed_source` provenance; compute `review_by` at report time. Cadence threshold (180 vs 365 days) still open.
+- RESOLVED: use `last_confirmed` (date) + `last_confirmed_source` provenance; compute `review_by` at report time. Cadence threshold is 180 days.
 <!-- /ANCHOR:questions -->
 
 ---

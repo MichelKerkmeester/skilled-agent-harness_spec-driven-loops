@@ -2,6 +2,8 @@
 title: "DEEP SKILLS — Use the Workflow, Never Hand-Roll"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-06-07"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   # deep skills
   - deep-context

@@ -2,6 +2,8 @@
 title: "Main Branch — Owner's AIs Push Directly"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-05-31"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   - push to main
   - commit to main

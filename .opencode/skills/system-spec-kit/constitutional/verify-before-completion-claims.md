@@ -2,6 +2,8 @@
 title: "Verify Before Completion Claims"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-05-31"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   - done
   - committed

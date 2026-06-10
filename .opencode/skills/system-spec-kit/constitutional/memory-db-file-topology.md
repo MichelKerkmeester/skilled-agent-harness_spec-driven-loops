@@ -2,6 +2,8 @@
 title: "MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files)"
 importanceTier: constitutional
 contextType: reference
+last_confirmed: "2026-06-04"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   - where is the memory database
   - context-index.sqlite location
