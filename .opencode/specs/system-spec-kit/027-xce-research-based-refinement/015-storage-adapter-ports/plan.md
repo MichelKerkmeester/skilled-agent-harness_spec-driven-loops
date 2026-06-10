@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase plan scaffolded from revalidation findings"
-    next_safe_action: "Start Phase 1 setup tasks when this phase is picked up"
+    last_updated_at: "2026-06-10T23:55:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Slice 1 foundation completed without production call-site routing"
+    next_safe_action: "Proceed to slices 2-5 for per-port implementation and call-site routing"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 20
     open_questions: []
     answered_questions: []
 ---
@@ -50,6 +50,9 @@ FAILURE MODES:
 
 ### Overview
 Extract five typed port interfaces (VectorStore, LexicalSearch, GraphTraversal, Maintenance, ContentionPolicy) with the current better-sqlite3 implementations behind them; no behavior change; port fakes enable storage-free unit tests. Planning starts with a split-vs-promote decision.
+
+### Slice 1 Update
+Foundation slice is complete: the port module, two adopted adapters, fakes, and contract tests are in place. Slices 2-5 remain pending for production call-site routing and the remaining concrete implementations.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -102,17 +105,17 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Planning decision: per-port slices vs standalone packet promotion
+- [x] Planning decision: **PER-PORT SLICES within this phase** (not promoted to a standalone packet). Rationale: kept inside the 027 epic per operator direction; behavior-preserving seam extraction is the lowest-risk form of a large refactor when sliced small and gated on golden evals; phases 012 (traversal helper) and 014 (packed lexical engine) already supply two of the five port implementations. Execution = five sequential reviewable slices (VectorStore, LexicalSearch [adopt 014], GraphTraversal [adopt 012], Maintenance, ContentionPolicy), each green on the existing suites + golden evals before the next slice begins.
 - [ ] Call-site inventory per port
 
 ### Phase 2: Core
-- [ ] Ports defined
-- [ ] Implementations extracted (012 traversal + 014 lexical adopted)
+- [x] Ports defined (Slice 1 foundation)
+- [x] Implementations extracted for the two adopted helpers (GraphTraversal + LexicalSearch)
 - [ ] Call sites routed
 
 ### Phase 3: Verification
-- [ ] Existing suites + golden evals green before/after
-- [ ] Contract tests vs impl and fake
+- [x] Slice 1 targeted suites + local eval-channel checks green
+- [x] Contract tests vs impl and fake for GraphTraversal and LexicalSearch
 - [ ] Coupling grep trends to ~0 outside ports
 <!-- /ANCHOR:phases -->
 

@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Task list scaffolded from revalidation findings"
-    next_safe_action: "Start T001 when this phase is picked up"
+    last_updated_at: "2026-06-10T23:55:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Slice 1 foundation tasks completed; slices 2-5 remain pending"
+    next_safe_action: "Run the next per-port slice without broad call-site routing outside that slice"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 20
     open_questions: []
     answered_questions: []
 ---
@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Planning decision row: phase-sized per-port slices vs promotion to standalone packet
-- [ ] T002 Call-site inventory per port (vector/lexical/traversal/maintenance/contention)
+- [x] T001 Planning decision row: phase-sized per-port slices vs promotion to standalone packet
+- [ ] T002 Call-site inventory per port (vector/lexical/traversal/maintenance/contention) - deferred to slices 2-5
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Port interface definitions + docs
-- [ ] T004 Extract better-sqlite3 implementations (no-logic-edit rule)
-- [ ] T005 Adopt 012 traversal helper and 014 packed engine as port impls
+- [x] T003 Port interface definitions + docs
+- [ ] T004 Extract better-sqlite3 implementations (no-logic-edit rule) - remaining concrete implementations deferred to slices 2-5
+- [x] T005 Adopt 012 traversal helper and 014 packed engine as port impls
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,9 +66,16 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Route call sites through ports in reviewable slices
-- [ ] T007 Port contract tests + fakes
-- [ ] T008 Before/after golden evals + full suites green; coupling grep recorded
+- [ ] T006 Route call sites through ports in reviewable slices - deferred to slices 2-5
+- [x] T007 Port contract tests + fakes
+- [ ] T008 Before/after golden evals + full suites green; coupling grep recorded - Slice 1 ran targeted preservation and local eval-channel checks only
+
+### Deferred Slices
+
+- [ ] Slice 2: route and verify the first production port slice.
+- [ ] Slice 3: route and verify the second production port slice.
+- [ ] Slice 4: route and verify the third production port slice.
+- [ ] Slice 5: finish remaining concrete implementations, routing, coupling grep, and full phase completion gates.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,7 +83,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [ ] All tasks marked `[x]` - not yet; only Slice 1 foundation is complete
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
 <!-- /ANCHOR:completion -->

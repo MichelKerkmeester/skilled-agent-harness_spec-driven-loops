@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase scaffolded from sqlite-to-turso revalidation findings"
-    next_safe_action: "Planning decision: phase-sized per-port slices vs promotion to standalone packet"
+    last_updated_at: "2026-06-10T23:55:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Slice 1 foundation implemented: typed ports, two adopted adapters, fakes, and contract tests"
+    next_safe_action: "Continue with slices 2-5; do not route the production call sites until their assigned slices"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 20
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | In progress - Slice 1 foundation complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -75,6 +75,10 @@ A thin, explicitly-typed five-port adapter makes storage behavior unit-testable 
 - Port-level fakes for tests; no behavior change (golden evals + existing suites stay green)
 - Adoption of 012's traversal helper and 014's packed engine as port implementations
 - Migration notes per port documenting the known Turso divergences from the revalidation (informational only)
+
+### Slice 1 Status
+- Complete: the five typed interfaces, GraphTraversal adapter over the existing BFS helper, LexicalSearch adapter over the existing packed BM25 engine, five storage-free fakes, and contract tests for the two implemented ports.
+- Pending: production call-site routing and the remaining better-sqlite3 implementations are deferred to slices 2-5.
 
 ### Out of Scope
 - Any non-better-sqlite3 port implementation (Turso/libSQL pilots are explicitly out of scope here)
