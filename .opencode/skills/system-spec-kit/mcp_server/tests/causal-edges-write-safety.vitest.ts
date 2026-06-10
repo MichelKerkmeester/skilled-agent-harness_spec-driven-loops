@@ -16,7 +16,7 @@ interface EdgeRow {
   relation: string;
   strength: number;
   evidence: string | null;
-  created_by: string;
+  created_by: string | null;
 }
 
 describe('Causal Edges Write Safety', () => {
@@ -154,8 +154,9 @@ describe('Causal Edges Write Safety', () => {
       const manualId = causalEdges.insertEdge('1', '2', 'caused', 0.9, 'curated evidence', true, 'manual');
       expect(manualId).not.toBeNull();
 
-      const result = causalEdges.insertEdge('1', '2', 'caused', 0.3, 'inferred evidence', true, 'auto-session');
+      const result = causalEdges.insertEdge('1', '2', 'caused', 1.0, 'inferred evidence', true, 'auto-session');
       expect(result).toBeNull();
+      expect(causalEdges.getLastInsertEdgeOutcome()).toMatchObject({ reason: 'skipped manual edge' });
 
       const edge = getEdge('1', '2', 'caused');
       expect(edge?.created_by).toBe('manual');
@@ -170,6 +171,32 @@ describe('Causal Edges Write Safety', () => {
       const edge = getEdge('1', '2', 'supports');
       expect(edge?.created_by).toBe('manual');
       expect(edge?.strength).toBe(0.8);
+    });
+
+    it('treats absent provenance as manual and repeats the same skip decision', () => {
+      testDb.prepare(`
+        INSERT INTO causal_edges (source_id, target_id, relation, strength, evidence, created_by)
+        VALUES ('10', '20', 'supports', 0.7, 'unknown provenance evidence', NULL)
+      `).run();
+
+      const first = causalEdges.insertEdge('10', '20', 'supports', 1.0, 'stronger auto evidence', true, 'auto-session');
+      const firstOutcome = causalEdges.getLastInsertEdgeOutcome();
+      const second = causalEdges.insertEdge('10', '20', 'supports', 1.0, 'stronger auto evidence', true, 'auto-session');
+      const secondOutcome = causalEdges.getLastInsertEdgeOutcome();
+
+      expect(first).toBeNull();
+      expect(second).toBeNull();
+      expect(firstOutcome).toMatchObject({ reason: 'skipped manual edge' });
+      expect(secondOutcome).toMatchObject({ reason: 'skipped manual edge' });
+
+      const edge = getEdge('10', '20', 'supports');
+      expect(edge?.created_by).toBeNull();
+      expect(edge?.strength).toBe(0.7);
+      expect(edge?.evidence).toBe('unknown provenance evidence');
+      expect((testDb.prepare(`
+        SELECT COUNT(*) AS count FROM causal_edges
+        WHERE source_id = '10' AND target_id = '20' AND relation = 'supports'
+      `).get() as { count: number }).count).toBe(1);
     });
 
     it('allows auto-to-auto conflict updates within the cap', () => {

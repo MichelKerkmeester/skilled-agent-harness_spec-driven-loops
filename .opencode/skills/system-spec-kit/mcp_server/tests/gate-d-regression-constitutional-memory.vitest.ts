@@ -150,6 +150,18 @@ describe('Gate D regression constitutional memory', () => {
     expect(content).toContain('Automated writers may never overwrite manual or constitutional memory fields');
   });
 
+  it('loads the entity co-occurrence boundary as constitutional advisory guidance', () => {
+    const workspaceRoot = path.resolve(process.cwd(), '../../../..');
+    const rulePath = path.resolve(process.cwd(), '..', 'constitutional', 'entity-cooccurrence-is-not-causal.md');
+    const discovered = findConstitutionalFiles(workspaceRoot);
+    const content = fs.readFileSync(rulePath, 'utf8');
+
+    expect(discovered).toContain(rulePath);
+    expect(content).toContain('importanceTier: constitutional');
+    expect(content).toContain('contextType: decision');
+    expect(content).toContain('Entity, similarity, and co-occurrence signals are recall evidence only');
+  });
+
   it('keeps constitutional guidance at the top while dropping archived and legacy-memory rows', async () => {
     handlerMocks.executePipeline.mockResolvedValueOnce({
       results: [

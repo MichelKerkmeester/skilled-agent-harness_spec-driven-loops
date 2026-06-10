@@ -415,16 +415,21 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
           mapping.relation,
           1.0,
           `Auto-extracted from ${link_type} in memory file`,
+          true,
+          'auto-causal-links',
         );
         if (insertedRowId !== null) {
           result.inserted++;
           console.error(`[causal-links] Inserted edge id=${insertedRowId}: ${edgeSourceId} -[${mapping.relation}]-> ${edgeTargetId}`);
         } else {
+          const outcome = causalEdges.getLastInsertEdgeOutcome();
           // Surface skipped reasons rather than masking them.
           result.errors.push({
             type: link_type,
             reference,
-            error: 'edge insert returned null (db not ready, self-loop, edge cap, or contradiction)',
+            error: outcome?.reason === 'skipped manual edge'
+              ? 'skipped manual edge'
+              : 'edge insert returned null (db not ready, self-loop, edge cap, or contradiction)',
           });
           console.warn(`[causal-links] Edge insert returned null (skipped): ${edgeSourceId} -[${mapping.relation}]-> ${edgeTargetId}`);
         }

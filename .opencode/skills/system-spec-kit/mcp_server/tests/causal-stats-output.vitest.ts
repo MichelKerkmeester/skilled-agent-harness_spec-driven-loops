@@ -3,6 +3,7 @@ import * as handler from '../handlers/causal-graph';
 import * as core from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as causalEdges from '../lib/storage/causal-edges';
+import { createMemoryDbFixture, disposeMemoryDbFixture, seedMemoryRow } from './helpers/memory-db-fixture';
 
 function parseResponse(result: { content: Array<{ text: string }> }) {
   return JSON.parse(result.content[0].text);
@@ -83,5 +84,29 @@ describe('memory_causal_stats output schema', () => {
       'derived_from',
     ]);
     expect(parsed.hints.join('\n')).toContain('Top 1 unlinked records');
+  });
+
+  it('keeps similarity and co-occurrence backfill requests recall-only', async () => {
+    const db = createMemoryDbFixture();
+    try {
+      seedMemoryRow(db, { id: 1, specFolder: 'specs/entity-boundary' });
+      seedMemoryRow(db, { id: 2, specFolder: 'specs/entity-boundary' });
+      db.prepare('UPDATE memory_index SET related_memories = ? WHERE id = 1')
+        .run(JSON.stringify([{ id: 2, similarity: 99 }]));
+
+      const result = await handler.handleMemoryCausalStats({
+        backfill: {
+          dryRun: false,
+          similarity: true,
+          similarityThreshold: 1,
+        },
+      });
+      const parsed = parseResponse(result);
+
+      expect(parsed.hints.join('\n')).toContain('recall evidence only');
+      expect((db.prepare('SELECT COUNT(*) AS count FROM causal_edges').get() as { count: number }).count).toBe(0);
+    } finally {
+      disposeMemoryDbFixture(db);
+    }
   });
 });

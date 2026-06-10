@@ -37,8 +37,41 @@ interface BulkDeleteArgs {
   skipCheckpoint?: boolean;
 }
 
+function hasDeletedAtColumn(database: ReturnType<typeof vectorIndex.getDb>): boolean {
+  if (!database || !('prepare' in database)) return false;
+  try {
+    const columns = database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>;
+    return columns.some((column) => column.name === 'deleted_at');
+  } catch {
+    return false;
+  }
+}
+
+function isSoftDeleteTombstonesEnabled(): boolean {
+  return process.env.SPECKIT_SOFT_DELETE_TOMBSTONES?.trim().toLowerCase() === 'true';
+}
+
+function tombstoneMemory(database: NonNullable<ReturnType<typeof vectorIndex.getDb>>, memoryId: number): boolean {
+  if (!isSoftDeleteTombstonesEnabled()) {
+    return vectorIndex.deleteMemory(memoryId, database);
+  }
+
+  if (!hasDeletedAtColumn(database)) {
+    return vectorIndex.deleteMemory(memoryId, database);
+  }
+
+  const deletedAt = new Date().toISOString();
+  const result = database.prepare(`
+    UPDATE memory_index
+    SET deleted_at = COALESCE(deleted_at, ?),
+        updated_at = datetime('now')
+    WHERE id = ?
+  `).run(deletedAt, memoryId);
+  return result.changes > 0;
+}
+
 /* ───────────────────────────────────────────────────────────────
-   2. HANDLER
+    2. HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse> {
@@ -211,7 +244,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
 
   const bulkDeleteTx = database.transaction(() => {
     for (const memory of memoriesToDelete) {
-      if (vectorIndex.deleteMemory(memory.id)) {
+      if (tombstoneMemory(database, memory.id)) {
         // Record DELETE history after confirmed delete (no FK, history rows survive).
         try {
           recordHistory(
@@ -233,7 +266,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
         // Previously errors were caught and logged, leaving orphan causal edges
         // When memory rows were successfully deleted but edge cleanup failed.
         causalEdges.deleteEdgesForMemory(String(memory.id), {
-          reason: 'memory_bulk_delete cleanup',
+          reason: 'memory row mutation cleanup',
           command: 'memory-bulk-delete.handleMemoryBulkDelete',
           restoreContext: { memoryId: memory.id, tier, specFolder: memory.spec_folder, checkpointName },
         });

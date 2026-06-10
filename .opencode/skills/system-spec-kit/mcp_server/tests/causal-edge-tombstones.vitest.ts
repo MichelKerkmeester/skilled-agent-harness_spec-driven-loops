@@ -15,6 +15,7 @@ import {
 } from './helpers/memory-db-fixture';
 
 const SPEC_FOLDER = 'specs/tombstone-fixture';
+const SOFT_DELETE_FLAG = 'SPECKIT_SOFT_DELETE_TOMBSTONES';
 
 function parseResponse(response: { content: Array<{ text: string }> }): Record<string, any> {
   return JSON.parse(response.content[0].text) as Record<string, any>;
@@ -30,17 +31,44 @@ function activeEdgeCount(db: Database.Database): number {
   return (db.prepare('SELECT COUNT(*) AS count FROM causal_edges').get() as { count: number }).count;
 }
 
+function deletedAt(db: Database.Database, id: number): string | null {
+  const row = db.prepare('SELECT deleted_at FROM memory_index WHERE id = ?').get(id) as { deleted_at: string | null };
+  return row.deleted_at;
+}
+
 describe('causal edge tombstones', () => {
   let db: Database.Database;
+  let originalSoftDeleteFlag: string | undefined;
 
   beforeEach(() => {
     vi.restoreAllMocks();
+    originalSoftDeleteFlag = process.env[SOFT_DELETE_FLAG];
+    delete process.env[SOFT_DELETE_FLAG];
     db = createMemoryDbFixture();
   });
 
   afterEach(() => {
+    if (originalSoftDeleteFlag === undefined) {
+      delete process.env[SOFT_DELETE_FLAG];
+    } else {
+      process.env[SOFT_DELETE_FLAG] = originalSoftDeleteFlag;
+    }
     vi.restoreAllMocks();
     disposeMemoryDbFixture(db);
+  });
+
+  it('hard-deletes memory rows by default while cleaning related edges', async () => {
+    seedMemoryRow(db, { id: 401, specFolder: SPEC_FOLDER });
+    seedMemoryRow(db, { id: 402, specFolder: SPEC_FOLDER });
+    seedCausalEdge(db, { sourceId: '401', targetId: '402', relation: 'supports' });
+
+    const response = await handleMemoryDelete({ id: 401, confirm: true });
+    const envelope = parseResponse(response);
+
+    expect(envelope.data.deleted).toBe(1);
+    expect((db.prepare('SELECT COUNT(*) AS count FROM memory_index WHERE id = 401').get() as { count: number }).count).toBe(0);
+    expect(activeEdgeCount(db)).toBe(0);
+    expect(tombstones(db)).toHaveLength(1);
   });
 
   it('tombstones incoming and outgoing edges before single memory delete', async () => {
@@ -106,6 +134,65 @@ describe('causal edge tombstones', () => {
     expect(envelope.data.deleted).toBe(1);
     expect(activeEdgeCount(db)).toBe(0);
     expect(tombstones(db)).toHaveLength(2);
+  });
+
+  it('preserves the first tombstone timestamp on repeated single delete', async () => {
+    process.env[SOFT_DELETE_FLAG] = 'true';
+    seedMemoryRow(db, { id: 40, specFolder: SPEC_FOLDER });
+
+    vi.useFakeTimers();
+    try {
+      vi.setSystemTime(new Date('2026-06-10T00:00:00.000Z'));
+      expect(parseResponse(await handleMemoryDelete({ id: 40, confirm: true })).data.deleted).toBe(1);
+      const firstDeletedAt = deletedAt(db, 40);
+      expect(firstDeletedAt).toBe('2026-06-10T00:00:00.000Z');
+
+      vi.setSystemTime(new Date('2026-06-12T00:00:00.000Z'));
+      expect(parseResponse(await handleMemoryDelete({ id: 40, confirm: true })).data.deleted).toBe(1);
+      expect(parseResponse(await handleMemoryDelete({ id: 40, confirm: true })).data.deleted).toBe(1);
+
+      expect(deletedAt(db, 40)).toBe(firstDeletedAt);
+      expect((db.prepare('SELECT COUNT(*) AS count FROM memory_index WHERE id = 40').get() as { count: number }).count).toBe(1);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('preserves the first tombstone timestamp on repeated bulk delete', async () => {
+    process.env[SOFT_DELETE_FLAG] = 'true';
+    seedMemoryRow(db, { id: 50, specFolder: SPEC_FOLDER, importanceTier: 'temporary' });
+
+    vi.useFakeTimers();
+    try {
+      vi.setSystemTime(new Date('2026-06-10T01:00:00.000Z'));
+      expect(parseResponse(await handleMemoryBulkDelete({
+        tier: 'temporary',
+        specFolder: SPEC_FOLDER,
+        confirm: true,
+        skipCheckpoint: true,
+      })).data.deleted).toBe(1);
+      const firstDeletedAt = deletedAt(db, 50);
+      expect(firstDeletedAt).toBe('2026-06-10T01:00:00.000Z');
+
+      vi.setSystemTime(new Date('2026-06-13T01:00:00.000Z'));
+      expect(parseResponse(await handleMemoryBulkDelete({
+        tier: 'temporary',
+        specFolder: SPEC_FOLDER,
+        confirm: true,
+        skipCheckpoint: true,
+      })).data.deleted).toBe(1);
+      expect(parseResponse(await handleMemoryBulkDelete({
+        tier: 'temporary',
+        specFolder: SPEC_FOLDER,
+        confirm: true,
+        skipCheckpoint: true,
+      })).data.deleted).toBe(1);
+
+      expect(deletedAt(db, 50)).toBe(firstDeletedAt);
+      expect((db.prepare('SELECT COUNT(*) AS count FROM memory_index WHERE id = 50').get() as { count: number }).count).toBe(1);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('manual causal unlink records reason and restore metadata', async () => {

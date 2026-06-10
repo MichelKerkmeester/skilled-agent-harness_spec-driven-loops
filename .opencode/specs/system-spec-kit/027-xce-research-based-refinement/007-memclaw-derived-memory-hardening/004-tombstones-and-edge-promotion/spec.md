@@ -1,28 +1,29 @@
 ---
 title: "Feature Specification: Phase 4: tombstones-and-edge-promotion [template:level_1/spec.md]"
-description: "Repeat soft-deletes rewrite deleted_at and extend retention, auto edge promotion can overwrite a manually-authored causal edge via insertEdge's on-conflict update, and entity/co-occurrence signals risk being treated as causal truth. This phase makes soft-delete first-timestamp-idempotent, makes auto edge promotion natural-key idempotent and skip-manual, splits active/purgeable indexes, and records the entity-not-causal invariant."
+description: "Default hard-delete remains active while opt-in SPECKIT_SOFT_DELETE_TOMBSTONES preserves first tombstone timestamps, auto edge promotion skips manual causal edges, active/purgeable indexes are additive, and entity/co-occurrence signals remain non-causal recall evidence."
 trigger_phrases:
   - "tombstone soft-delete idempotent deleted_at"
   - "causal edge promotion skip manual created_by"
   - "active purgeable partial index split"
   - "entity co-occurrence not causal truth invariant"
   - "natural-key edge upsert preserve manual provenance"
+  - "SPECKIT_SOFT_DELETE_TOMBSTONES default off"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion"
-    last_updated_at: "2026-06-06T10:10:49Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populate Phase 4 tombstones-and-edge-promotion planning spec"
-    next_safe_action: "Plan or implement T001 active/purgeable partial indexes"
+    last_updated_at: "2026-06-10T13:58:30Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shipped tombstones and skip-manual edges"
+    next_safe_action: "Monitor targeted canaries for drift"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-tombstones-and-edge-promotion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (not implemented) |
+| **Status** | Completed |
 | **Created** | 2026-06-06 |
 | **Branch** | `scaffold/004-tombstones-and-edge-promotion` |
 | **Parent Spec** | ../spec.md |
@@ -57,14 +58,14 @@ _memory:
 
 This is **Phase 4** of the Memclaw-derived memory hardening: provenance, idempotency, feedback reframe, tombstones, edges, stale audit, tool ownership specification.
 
-**Scope Boundary**: Soft-delete lifecycle correctness and causal-edge promotion safety only. This phase makes a repeat soft-delete preserve the first tombstone timestamp via COALESCE, splits the memory index into active (`deleted_at IS NULL`) and purgeable (`deleted_at IS NOT NULL`) partial indexes, makes auto causal-edge promotion natural-key idempotent while skipping rows with manual provenance, and records the invariant that entity/co-occurrence signals are recall evidence only and never causal truth. It does NOT add an entity-graph recall feature, any fleet/distributed lifecycle machinery, or idempotency receipts (those are phase 002).
+**Scope Boundary**: Delete lifecycle correctness and causal-edge promotion safety only. The shipped default remains the existing hard-delete path. The opt-in `SPECKIT_SOFT_DELETE_TOMBSTONES=true` path makes a repeat tombstone preserve the first timestamp via COALESCE, while active/purgeable partial indexes remain additive until recall filtering lands. This phase also makes auto causal-edge promotion natural-key idempotent while skipping rows with manual provenance, and records the invariant that entity/co-occurrence signals are recall evidence only and never causal truth. It does NOT add recall-surface tombstone filtering, an entity-graph recall feature, fleet/distributed lifecycle machinery, or idempotency receipts.
 
 **Dependencies**:
 - Phase 001 (provenance-and-audit) supplies the provenance signal that distinguishes a manually-authored edge from an auto-promoted one. The skip-manual edge logic keys off manual provenance — `causal_edges.created_by` already defaults to `'manual'` (schema migration v18), and `source_kind` from phase 001 is the program-wide provenance distinguisher the auto-promoter consults.
 - Builds on substrate that already exists: `causal_edges` has a natural unique key `(source_id, target_id, relation, source_anchor, target_anchor)` and bounded auto-edge caps; the retention sweep already reports ledger state; `memory.supersedes_id` is the only memory-to-memory link.
 
 **Deliverables**:
-- COALESCE-preserve the first tombstone timestamp on repeat delete so a second delete never extends retention; the first `deleted_at` wins.
+- Keep hard-delete as default behavior; when `SPECKIT_SOFT_DELETE_TOMBSTONES=true`, COALESCE-preserve the first tombstone timestamp on repeat delete so a second delete never extends retention.
 - Active/purgeable partial indexes (active `deleted_at IS NULL` for recall, purgeable `deleted_at IS NOT NULL` for the retention sweep) so both the recall and cleanup paths stay fast.
 - Natural-key auto edge promotion that skips rows carrying manual provenance: an auto-promoter never overwrites a manual `created_by`/evidence and instead skips or adds parallel low-strength evidence only.
 - The entity-not-causal invariant recorded as a constitutional/rule note: entity and co-occurrence signals are recall evidence only, never causal truth.
@@ -79,10 +80,10 @@ This is **Phase 4** of the Memclaw-derived memory hardening: provenance, idempot
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Soft-delete currently rewrites `deleted_at` on a repeat delete, which silently extends retention every time a row is deleted again instead of preserving the original tombstone moment. `insertEdge` updates `created_by` (and via COALESCE, evidence) on an existing row when the natural key matches, so an auto-promoter can clobber a manually-authored causal edge's provenance and meaning. And entity/co-occurrence signals — which are recall evidence — could be mistaken for causal truth if nothing records the boundary.
+The review found the prior soft-delete premise was false: delete was a hard delete via `vectorIndex.deleteMemory`, not a soft-delete writer. A tombstone path without recall filters would leave deleted memories searchable, so tombstones must be default-off until recall surfaces filter `deleted_at IS NULL`. `insertEdge` updates `created_by` (and via COALESCE, evidence) on an existing row when the natural key matches, so an auto-promoter can clobber a manually-authored causal edge's provenance and meaning. And entity/co-occurrence signals, which are recall evidence, could be mistaken for causal truth if nothing records the boundary.
 
 ### Purpose
-Soft-delete is first-timestamp-idempotent, auto causal-edge promotion is natural-key idempotent and never overwrites manual provenance, recall and purge are kept fast by split partial indexes, and the entity-not-causal boundary is recorded as an invariant.
+Default delete behavior stays byte-identical hard-delete. Opt-in tombstones are first-timestamp-idempotent behind `SPECKIT_SOFT_DELETE_TOMBSTONES`, auto causal-edge promotion is natural-key idempotent and never overwrites manual provenance, split partial indexes are in place for the future tombstone lifecycle, and the entity-not-causal boundary is recorded as an invariant.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -91,7 +92,7 @@ Soft-delete is first-timestamp-idempotent, auto causal-edge promotion is natural
 ## 3. SCOPE
 
 ### In Scope
-- COALESCE-preserve the first tombstone timestamp on repeat delete (the transactional soft-delete writer keeps the original `deleted_at`).
+- Default-off tombstone flag: `SPECKIT_SOFT_DELETE_TOMBSTONES` keeps hard-delete behavior when unset and enables COALESCE first-timestamp tombstones only when set to `true`.
 - Active/purgeable partial indexes: an active index over `deleted_at IS NULL` for recall and a purgeable index over `deleted_at IS NOT NULL` for the retention sweep.
 - Natural-key auto edge promotion that skips rows with manual provenance: never overwrite a manual `created_by`/evidence; skip or add parallel low-strength evidence only.
 - The entity-not-causal boundary invariant recorded as a constitutional/rule note (entity/co-occurrence is recall evidence only, never causal truth).
@@ -100,6 +101,7 @@ Soft-delete is first-timestamp-idempotent, auto causal-edge promotion is natural
 - An entity-graph recall feature - deferred; over-engineering for a local single-user system.
 - Fleet/distributed lifecycle machinery - out of program scope (local single-user system, ruled out as negative knowledge by the 008 research).
 - Idempotency receipts - belongs to phase 002.
+- Recall-surface tombstone filtering - follow-up required before enabling `SPECKIT_SOFT_DELETE_TOMBSTONES`; search/list/get/context/triggers must filter `deleted_at IS NULL`, caches must invalidate tombstoned rows, and tombstone-on-expiry reaping must be specified.
 
 ### Files to Change
 
@@ -124,7 +126,7 @@ Soft-delete is first-timestamp-idempotent, auto causal-edge promotion is natural
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | First-timestamp-idempotent soft-delete. | A repeat delete does not extend retention; the first `deleted_at` is preserved via COALESCE so a second delete leaves the original tombstone moment unchanged. |
+| REQ-001 | Default-off first-timestamp tombstones. | With `SPECKIT_SOFT_DELETE_TOMBSTONES` unset, delete hard-removes the row through the existing path; with the flag set to `true`, repeat delete preserves the first `deleted_at` via COALESCE. |
 | REQ-002 | Auto edge promotion preserves manual edges. | An auto-promoter never overwrites a manual `created_by`/evidence; on a natural-key match against a manual row it skips, or adds parallel low-strength evidence only. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -140,7 +142,7 @@ Soft-delete is first-timestamp-idempotent, auto causal-edge promotion is natural
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Deletes are idempotent and audit-preserving — a repeat soft-delete keeps the first `deleted_at`, so retention is computed from the original tombstone and is never silently extended.
+- **SC-001**: Default delete behavior remains hard-delete and byte-identical; opt-in tombstones keep the first `deleted_at`, so retention is computed from the original tombstone when the flag is enabled.
 - **SC-002**: Auto edges never clobber manual meaning — auto promotion is natural-key idempotent and a manual `created_by`/evidence is never overwritten; the worst case is a skipped or parallel low-strength edge.
 - **SC-003**: Recall and purge paths are both fast — the active partial index serves default recall and the purgeable partial index serves the retention sweep, each without scanning the other partition.
 - **SC-004**: The entity-not-causal boundary is explicit — entity/co-occurrence is recorded as recall evidence only and cannot be treated as causal truth, surfaced as an advisory invariant.

@@ -1,35 +1,41 @@
 ---
 title: "Implementation Summary: Phase 4: tombstones-and-edge-promotion [template:level_1/implementation-summary.md]"
-description: "Planned-stub summary for Phase 4 tombstones-and-edge-promotion. Nothing implemented yet: this records the intended first-timestamp tombstone idempotence, natural-key skip-manual edge promotion, active/purgeable partial indexes, and the entity-not-causal invariant before any code is written."
+description: "Delivered summary for flag-gated memory tombstones, skip-manual causal-edge promotion, active/purgeable partial indexes, and the entity-not-causal advisory invariant."
 trigger_phrases:
+  - "SPECKIT_SOFT_DELETE_TOMBSTONES default off"
   - "tombstone soft-delete idempotent deleted_at"
   - "causal edge promotion skip manual created_by"
   - "active purgeable partial index split"
   - "entity co-occurrence not causal truth invariant"
-  - "tombstones edge promotion phase summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion"
-    last_updated_at: "2026-06-06T10:10:49Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold Phase 4 planned-stub impl doc"
-    next_safe_action: "Plan or implement T001 active/purgeable partial indexes"
+    last_updated_at: "2026-06-10T14:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Flag-gated tombstones and reconciled docs"
+    next_safe_action: "Land recall filters before enabling flag"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-tombstones-and-edge-promotion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Existing delete was hard-delete, not soft-delete"
+      - "Tombstones stay default-off until recall filters land"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
@@ -40,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-tombstones-and-edge-promotion |
-| **Completed** | Not started — plan only |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,46 +55,36 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+This phase now preserves shipped behavior by default and moves tombstone semantics behind an explicit opt-in. The independent review found the original premise was wrong: memory delete was not a soft-delete writer that rewrote `deleted_at`; it was a hard delete through `vectorIndex.deleteMemory`. Because recall surfaces do not yet filter `deleted_at IS NULL`, tombstones cannot be enabled safely by default.
 
-Nothing is implemented yet. This is a planned stub for Phase 4: it records the intended soft-delete and causal-edge lifecycle hardening before any code is written. When delivered, a repeat delete will keep the first tombstone moment (retention stops silently extending), auto causal-edge promotion will never clobber a manually-authored edge, recall and purge will each run against their own partial index, and the entity-not-causal boundary will be a recorded invariant.
+### Default-off tombstone flag
 
-### First-timestamp-idempotent soft-delete (planned)
+`SPECKIT_SOFT_DELETE_TOMBSTONES` is documented as an opt-in flag and defaults to off. With the flag off, `memory_delete` and `memory_bulk_delete` call the existing hard-delete primitive, so rows are removed from `memory_index` and the existing cache, FTS, vector, active-projection, and ancillary cleanup path remains active. With the flag on, the delete handlers use the tombstone writer and preserve the first timestamp with `deleted_at = COALESCE(deleted_at, <now>)`.
 
-You will be able to delete the same memory more than once without extending its retention. The transactional soft-delete writer in `memory-crud-delete.ts` (and the bulk path in `memory-bulk-delete.ts`) will write `deleted_at = COALESCE(deleted_at, <now>)`, so the original tombstone moment wins and a repeat delete is a no-op on the timestamp. Retention is then always computed from the first delete (REQ-001, P0).
+### Retention sweep partition gate
 
-### Manual-preserving causal-edge promotion (planned)
+The retention sweep now follows the same flag. With the flag off, expired active rows are selected and reaped exactly as before, even when a `deleted_at` column and purgeable partial index exist. With the flag on, the sweep uses the purgeable partition (`deleted_at IS NOT NULL`) and reports that partition in `tombstoneState`. The feedback-retention hook path is preserved: `buildFeedbackRetentionReport`, `isFeedbackRetentionLearningEnabled`, `feedbackRetention`, and `extendedIds` behavior was not changed.
 
-Auto-promoted causal edges will never overwrite a manually-authored one. `insertEdge` in `causal-edges.ts` already dedups on the natural key `(source_id, target_id, relation, source_anchor, target_anchor)`; its on-conflict branch currently runs `created_by = ?` unconditionally. The change makes that branch skip-manual: when the matched row is manual provenance, it skips the `created_by`/evidence overwrite (or adds parallel low-strength evidence only). Auto-promotion callers (`causal-graph.ts`, `causal-links-processor.ts`) will pass provenance and report "skipped manual edge"; unknown provenance is treated conservatively as manual (REQ-002, P0).
+### Skip-manual edge promotion and provenance pass-through
 
-### Active/purgeable partial indexes (planned)
+The existing skip-manual guard in `causal-edges.ts` remains in place. Auto promotion does not overwrite a manually-authored causal edge on the natural key, and the provenance pass-through in `causal-graph.ts` and `causal-links-processor.ts` remains intact. The causal-graph API note is explicit: callers that do not want similarity-derived support edges should pass `similarity:false`; entity and co-occurrence evidence is recall evidence, not causal truth.
 
-Recall and the retention sweep will each scan only their own partition. `vector-index-schema.ts` will add an active partial index (`WHERE deleted_at IS NULL`) for default recall and a purgeable partial index (`WHERE deleted_at IS NOT NULL`) for the sweep, with a forward migration; `memory-retention-sweep.ts` will use the purgeable index and report tombstone/edge state with no triage prompt (REQ-003, P1).
+### Schema and invariant artifacts
 
-### Entity-not-causal invariant (planned)
+The active and purgeable partial indexes plus migration stay at schema version 37. They are additive and harmless while tombstones are disabled. The advisory rule `entity-cooccurrence-is-not-causal.md` remains as the constitutional boundary: entity and co-occurrence signals must not be promoted as causal truth.
 
-The boundary that entity and co-occurrence signals are recall evidence only — never causal truth — will be recorded as an advisory constitutional rule (`constitutional/entity-cooccurrence-is-not-causal.md`), so an auto-promoter cannot quietly turn co-occurrence into causal `created_by` (REQ-004, P1).
-
-### Files Changed (planned)
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
+### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts` | Modify (planned) | COALESCE-preserve the first `deleted_at` on single-row soft-delete so a repeat delete does not extend retention. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modify (planned) | Apply the same first-timestamp tombstone idempotence to the bulk soft-delete path. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modify (planned) | Make `insertEdge` natural-key idempotent and skip-manual: never overwrite a manual `created_by`/evidence. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts` | Modify (planned) | Pass provenance from the auto-promotion entry point and report "skipped manual edge". |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts` | Modify (planned) | Route post-insert enrichment promotions through the skip-manual path; keep entity/co-occurrence as recall evidence only. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify (planned) | Add active (`deleted_at IS NULL`) and purgeable (`deleted_at IS NOT NULL`) partial indexes plus a forward migration. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | Modify (planned) | Use the purgeable partial index for the sweep and report tombstone/edge state (no triage prompt). |
-| `.opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md` | Create (planned) | Record the invariant: entity/co-occurrence signals are recall evidence only, never causal truth. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts` | Modified | Default-off flag gate: hard delete when off, COALESCE tombstone when on. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modified | Same flag gate and first-timestamp tombstone behavior for bulk deletes. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | Modified | Default-off active TTL sweep; flag-on purgeable partition selection. |
+| `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Documented `SPECKIT_SOFT_DELETE_TOMBSTONES`; total count 175 to 176. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts` | Modified | Added default hard-delete proof and flag-on first-timestamp tests. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts` | Modified | Added flag-off active TTL proof and flag-on purgeable partition proof. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Kept | Active/purgeable partial indexes and v37 migration remain as reviewed. |
+| `.opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md` | Kept | Advisory invariant remains as reviewed. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -96,13 +92,7 @@ The boundary that entity and co-occurrence signals are recall evidence only — 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-Not yet delivered — plan only. The intended approach: land the additive partial indexes and forward migration first, then make the single-row and bulk soft-delete writers COALESCE-preserve the first `deleted_at`, then make `insertEdge` skip-manual on a natural-key match, then register the entity-not-causal constitutional rule. Verification will be vitest unit and integration tests (repeat-delete idempotence single + bulk, auto-promote against manual/auto/unknown edges, query-plan coverage for both indexes) plus one manual MCP end-to-end check, before any completion claim.
+The repair is intentionally small. The delete handlers read one opt-in env var and choose either the existing hard-delete primitive or the already-implemented tombstone UPDATE. The retention sweep reads the same flag and only adds `deleted_at IS NOT NULL` and `INDEXED BY idx_memory_purgeable_retention` when tombstones are enabled. Tests exercise both flag states directly.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -110,16 +100,13 @@ Not yet delivered — plan only. The intended approach: land the additive partia
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| Preserve the first tombstone via `COALESCE(deleted_at, <now>)` rather than guarding in handler code | Keeps the first-timestamp rule inside the single SQL UPDATE, so both the single and bulk paths get it without branching logic, and the change stays a one-line revert. |
-| Skip-manual on the existing `insertEdge` natural key instead of a new edge table | The natural unique key and bounded auto-edge caps already exist (schema v18); reusing them avoids new schema and keeps this incremental hardening, not a redesign. |
-| Treat unknown/absent provenance as manual | Fails safe toward never clobbering human meaning — the worst case becomes a skipped auto edge, never a lost manual edge. |
-| Split active vs purgeable into two partial indexes | Recall (`deleted_at IS NULL`) and the retention sweep (`deleted_at IS NOT NULL`) never scan each other's partition, so both stay fast as tombstones accumulate. |
-| Record entity-not-causal as an advisory constitutional rule, not a hard gate | Mirrors phase 001's approach and makes the boundary explicit/checkable without blocking writes; entity/co-occurrence stays recall evidence only. |
+| Keep `SPECKIT_SOFT_DELETE_TOMBSTONES` default off | Recall surfaces do not filter tombstones yet; default-on would leave deleted memories searchable. |
+| Use `vectorIndex.deleteMemory` when the flag is off | This preserves current hard-delete behavior and cleanup side effects instead of approximating them. |
+| Keep COALESCE only on the flag-on path | First-timestamp tombstones are useful, but only after recall filtering and cache invalidation are complete. |
+| Gate retention sweep partitioning with the same flag | Governed TTL must keep deleting active expired rows by default; purgeable-only sweep is correct only when tombstones are enabled. |
+| Leave skip-manual edges and v37 partial indexes as-is | They are independent additive fixes and were not part of the P0 regression. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -127,16 +114,16 @@ Not yet delivered — plan only. The intended approach: land the additive partia
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| vitest unit (tombstone idempotence single + bulk) | Not started — plan only |
-| vitest unit (`insertEdge` skip-manual on natural-key match) | Not started — plan only |
-| vitest integration (auto-promote vs manual/auto/unknown edges) | Not started — plan only |
-| Query-plan coverage (active + purgeable partial indexes) | Not started — plan only |
-| Manual MCP end-to-end (repeat delete; "skipped manual edge" + tombstone state report) | Not started — plan only |
+| `npx tsc --noEmit -p tsconfig.json` | PASS, no output |
+| `npx vitest run tests/causal-edge-tombstones.vitest.ts tests/memory-retention-sweep.vitest.ts tests/memory-retention-feedback-learning.vitest.ts tests/causal-edges-write-safety.vitest.ts` | PASS, 4 files, 48 tests |
+| Flag-off single delete hard-removes memory | PASS, `causal-edge-tombstones.vitest.ts` asserts row removed from `memory_index` and related edge tombstoned. |
+| Flag-on single and bulk tombstone first timestamp | PASS, repeated deletes keep the first `deleted_at` in `causal-edge-tombstones.vitest.ts`. |
+| Flag-off retention sweep reaps active expired rows | PASS, `memory-retention-sweep.vitest.ts` asserts expired active and tombstoned rows are deleted when flag is unset. |
+| Flag-on retention sweep uses purgeable partition | PASS, `memory-retention-sweep.vitest.ts` asserts `usesPurgeablePartition:true`, `usingPurgeableIndex:true`, and only tombstoned expired rows are swept. |
+| Schema version | PASS, `SCHEMA_VERSION` remains 37. |
+| Env count | PASS, `ENV_REFERENCE.md` total changed from 175 to 176. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -144,21 +131,16 @@ Not yet delivered — plan only. The intended approach: land the additive partia
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **Not implemented.** This is a planning stub; no code, schema, or constitutional rule has been written yet. Every claim above is intended behavior, not shipped behavior.
-2. **Open questions remain (see spec.md §7).** Whether an auto-promoter skips silently or always adds a parallel low-strength evidence edge on a manual-edge match, and whether the entity-not-causal boundary is a full constitutional rule file or a lighter in-code note, are not yet decided. Defaults: skip-and-report, and a narrow advisory constitutional rule.
-3. **Depends on phase 001 provenance.** The skip-manual rule is most precise when phase 001's `source_kind` distinguishes manual vs auto; absent it, the rule still keys off `causal_edges.created_by` (default `'manual'`, schema v18) but is coarser.
+1. `SPECKIT_SOFT_DELETE_TOMBSTONES` must stay off until a follow-up adds `deleted_at IS NULL` filtering to every recall surface: search, list, get, context, and triggers.
+2. The same follow-up must add cache invalidation for tombstoned rows and decide tombstone-on-expiry reaping semantics before operators enable the flag.
+3. Governed TTL behavior is intentionally hard-delete by default. The P1 note is that active expired governed rows must continue to reap while the tombstone flag is off.
+4. Causal graph callers that do not want similarity-derived support edges should pass `similarity:false`; entity/co-occurrence remains recall evidence only.
 <!-- /ANCHOR:limitations -->
 
 ---
 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
+Write in human voice: active, direct, specific. No em dash, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

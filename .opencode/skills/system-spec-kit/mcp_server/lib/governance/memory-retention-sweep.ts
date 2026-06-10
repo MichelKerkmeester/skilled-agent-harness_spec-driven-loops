@@ -58,6 +58,7 @@ export interface RetentionExpiredRow {
   isPinned: number | null;
   accessCount: number | null;
   lastAccessed: string | number | null;
+  deletedAt: string | null;
 }
 
 /** Aggregate sweep counts returned to callers and audit logs. */
@@ -77,6 +78,16 @@ export interface MemoryRetentionSweepResult extends MemoryRetentionSweepSummary 
   extendedIds?: number[];
   ledgerRecorded: boolean | null;
   feedbackRetention?: FeedbackRetentionSweepReport;
+  tombstoneState: {
+    usesPurgeablePartition: boolean;
+    usingPurgeableIndex: boolean;
+    candidateCount: number;
+    deletedCount: number;
+  };
+  edgeState: {
+    causalEdgesTablePresent: boolean;
+    candidateEdgeCount: number;
+  };
 }
 
 /** Feedback-retention learning summary included only when the feature is enabled. */
@@ -98,6 +109,13 @@ function hasTable(database: Database.Database, tableName: string): boolean {
   return row?.present === 1;
 }
 
+function hasIndex(database: Database.Database, indexName: string): boolean {
+  const row = database.prepare(
+    "SELECT 1 AS present FROM sqlite_master WHERE type = 'index' AND name = ? LIMIT 1"
+  ).get(indexName) as { present?: number } | undefined;
+  return row?.present === 1;
+}
+
 /**
  * Tier/usage columns may be absent on legacy databases that predate the
  * corresponding migrations. Missing columns are selected as NULL so the
@@ -111,11 +129,22 @@ const OPTIONAL_RETENTION_COLUMNS: ReadonlyArray<{ column: string; alias: string 
   { column: 'last_accessed', alias: 'lastAccessed' },
 ];
 
-function selectExpiredRows(database: Database.Database): RetentionExpiredRow[] {
+function isSoftDeleteTombstonesEnabled(): boolean {
+  return process.env.SPECKIT_SOFT_DELETE_TOMBSTONES?.trim().toLowerCase() === 'true';
+}
+
+function selectExpiredRows(database: Database.Database, useSoftDeleteTombstones: boolean): RetentionExpiredRow[] {
   const presentColumns = new Set(
     (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
       .map((row) => row.name),
   );
+  const hasDeletedAt = presentColumns.has('deleted_at');
+  const usePurgeableIndex = useSoftDeleteTombstones && hasDeletedAt && hasIndex(database, 'idx_memory_purgeable_retention');
+  const memoryIndexSource = usePurgeableIndex
+    ? 'memory_index INDEXED BY idx_memory_purgeable_retention'
+    : 'memory_index';
+  const deletedAtSelect = hasDeletedAt ? 'deleted_at AS deletedAt' : 'NULL AS deletedAt';
+  const tombstonePredicate = useSoftDeleteTombstones && hasDeletedAt ? 'AND deleted_at IS NOT NULL' : '';
   const optionalSelects = OPTIONAL_RETENTION_COLUMNS
     .map(({ column, alias }) => (presentColumns.has(column)
       ? `${column} AS ${alias}`
@@ -133,9 +162,11 @@ function selectExpiredRows(database: Database.Database): RetentionExpiredRow[] {
       agent_id AS agentId,
       session_id AS sessionId,
       delete_after AS deleteAfter,
+      ${deletedAtSelect},
       ${optionalSelects}
-    FROM memory_index
+    FROM ${memoryIndexSource}
     WHERE delete_after IS NOT NULL
+      ${tombstonePredicate}
       AND datetime(delete_after) < datetime('now')
     ORDER BY datetime(delete_after) ASC, id ASC
   `).all() as RetentionExpiredRow[];
@@ -163,12 +194,18 @@ function isProtectedFromRetentionDelete(row: RetentionExpiredRow): boolean {
 // Re-validate inside the delete transaction: a concurrent writer can raise or
 // clear delete_after between candidate selection and deletion, so a row that is
 // no longer expired must not be swept. Mirrors the selectExpiredRows predicate.
-function isStillExpired(database: Database.Database, id: number): boolean {
+function isStillExpired(database: Database.Database, id: number, useSoftDeleteTombstones = isSoftDeleteTombstonesEnabled()): boolean {
+  const presentColumns = new Set(
+    (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .map((row) => row.name),
+  );
+  const tombstonePredicate = useSoftDeleteTombstones && presentColumns.has('deleted_at') ? 'AND deleted_at IS NOT NULL' : '';
   const row = database.prepare(`
     SELECT 1 AS expired
     FROM memory_index
     WHERE id = ?
       AND delete_after IS NOT NULL
+      ${tombstonePredicate}
       AND datetime(delete_after) < datetime('now')
     LIMIT 1
   `).get(id) as { expired?: number } | undefined;
@@ -181,6 +218,42 @@ export const __retentionSweepTestables = { isStillExpired };
 function countRows(database: Database.Database): number {
   const row = database.prepare('SELECT COUNT(*) AS count FROM memory_index').get() as { count: number };
   return row.count;
+}
+
+function buildTombstoneState(
+  database: Database.Database,
+  candidateCount: number,
+  deletedCount: number,
+  useSoftDeleteTombstones = isSoftDeleteTombstonesEnabled(),
+): MemoryRetentionSweepResult['tombstoneState'] {
+  const columns = new Set(
+    (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .map((row) => row.name),
+  );
+  const usesPurgeablePartition = useSoftDeleteTombstones && columns.has('deleted_at');
+  return {
+    usesPurgeablePartition,
+    usingPurgeableIndex: usesPurgeablePartition && hasIndex(database, 'idx_memory_purgeable_retention'),
+    candidateCount,
+    deletedCount,
+  };
+}
+
+function buildEdgeState(
+  database: Database.Database,
+  candidates: RetentionExpiredRow[],
+): MemoryRetentionSweepResult['edgeState'] {
+  if (!hasTable(database, 'causal_edges') || candidates.length === 0) {
+    return { causalEdgesTablePresent: hasTable(database, 'causal_edges'), candidateEdgeCount: 0 };
+  }
+  const ids = candidates.map((candidate) => String(candidate.id));
+  const placeholders = ids.map(() => '?').join(', ');
+  const row = database.prepare(`
+    SELECT COUNT(*) AS count
+    FROM causal_edges
+    WHERE source_id IN (${placeholders}) OR target_id IN (${placeholders})
+  `).get(...ids, ...ids) as { count: number };
+  return { causalEdgesTablePresent: true, candidateEdgeCount: row.count };
 }
 
 function buildFeedbackRetentionReport(
@@ -311,6 +384,7 @@ export function runMemoryRetentionSweep(
 ): MemoryRetentionSweepResult {
   const startTime = Date.now();
   const dryRun = args.dryRun === true;
+  const useSoftDeleteTombstones = isSoftDeleteTombstonesEnabled();
 
   if (!hasTable(database, 'memory_index')) {
     return {
@@ -323,10 +397,21 @@ export function runMemoryRetentionSweep(
       deletedIds: [],
       protectedIds: [],
       ledgerRecorded: null,
+      tombstoneState: {
+        usesPurgeablePartition: false,
+        usingPurgeableIndex: false,
+        candidateCount: 0,
+        deletedCount: 0,
+      },
+      edgeState: {
+        causalEdgesTablePresent: false,
+        candidateEdgeCount: 0,
+      },
     };
   }
 
-  const candidates = selectExpiredRows(database);
+  const candidates = selectExpiredRows(database, useSoftDeleteTombstones);
+  const initialEdgeState = buildEdgeState(database, candidates);
   const feedbackRetention = isFeedbackRetentionLearningEnabled()
     ? buildFeedbackRetentionReport(database, candidates, dryRun, args.feedbackRetention)
     : null;
@@ -346,6 +431,8 @@ export function runMemoryRetentionSweep(
       deletedIds: [],
       protectedIds: dryRunProtectedIds,
       ledgerRecorded: null,
+      tombstoneState: buildTombstoneState(database, candidates.length, 0, useSoftDeleteTombstones),
+      edgeState: initialEdgeState,
       ...(feedbackRetention ? { feedbackRetention } : {}),
     };
   }
@@ -372,6 +459,8 @@ export function runMemoryRetentionSweep(
       protectedIds: feedbackRetention.protectedIds,
       extendedIds: [],
       ledgerRecorded: null,
+      tombstoneState: buildTombstoneState(database, candidates.length, 0, useSoftDeleteTombstones),
+      edgeState: initialEdgeState,
       feedbackRetention,
     };
   }
@@ -386,7 +475,7 @@ export function runMemoryRetentionSweep(
   const sweepTx = database.transaction(() => {
     for (const candidate of candidates) {
       // TOCTOU guard: skip rows un-expired by another writer since selection.
-      if (!isStillExpired(database, candidate.id)) {
+      if (!isStillExpired(database, candidate.id, useSoftDeleteTombstones)) {
         continue;
       }
       if (feedbackRetention) {
@@ -517,6 +606,8 @@ export function runMemoryRetentionSweep(
     deletedIds,
     protectedIds,
     ledgerRecorded,
+    tombstoneState: buildTombstoneState(database, candidates.length, deletedIds.length, useSoftDeleteTombstones),
+    edgeState: initialEdgeState,
     ...(feedbackRetention ? { extendedIds } : {}),
     ...(feedbackRetention ? { feedbackRetention } : {}),
   };

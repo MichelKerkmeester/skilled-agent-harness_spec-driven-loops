@@ -1,14 +1,16 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
-  "description": "Feature Specification: Phase 4: tombstones-and-edge-promotion",
+  "description": "Completed phase: default hard-delete remains active while SPECKIT_SOFT_DELETE_TOMBSTONES gates first-timestamp tombstones; skip-manual causal-edge promotion, active/purgeable partial indexes, and entity-not-causal advisory rule remain in place.",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "tombstones-and-edge-promotion"
+    "SPECKIT_SOFT_DELETE_TOMBSTONES",
+    "hard-delete default",
+    "first-timestamp tombstones",
+    "skip-manual causal edges",
+    "active purgeable partial indexes",
+    "entity cooccurrence not causal"
   ],
-  "lastUpdated": "2026-06-06T14:41:16.376Z",
+  "lastUpdated": "2026-06-10T14:30:00.000Z",
   "specId": "004",
   "folderSlug": "tombstones-and-edge-promotion",
   "parentChain": [

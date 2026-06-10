@@ -6,6 +6,7 @@ import {
   ensureSchemaVersion,
   migrateConstitutionalTier,
   runMigrations,
+  SCHEMA_VERSION,
   validateBackwardCompatibility,
 } from '../lib/search/vector-index-schema';
 
@@ -389,7 +390,7 @@ describe('vector-index schema migration refinements', () => {
 
     // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(36);
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
@@ -451,7 +452,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(36);
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edge_tombstones)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -522,7 +523,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(36);
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -569,7 +570,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(36);
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
 
     const columns = (database.prepare('PRAGMA table_info(memory_trigger_embeddings)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -678,5 +679,58 @@ describe('vector-index schema migration refinements', () => {
     const nearDuplicateColumns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
       .filter((column) => column.name === 'near_duplicate_of');
     expect(nearDuplicateColumns).toHaveLength(1);
+  });
+
+  it('adds tombstone partitions during the v37 upgrade idempotently', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        spec_folder TEXT,
+        document_type TEXT,
+        updated_at TEXT,
+        delete_after TEXT
+      );
+      INSERT INTO memory_index (id, spec_folder, document_type, updated_at, delete_after)
+      VALUES
+        (1, 'specs/a', 'spec', '2026-06-10T00:00:00.000Z', NULL),
+        (2, 'specs/a', 'plan', '2026-06-10T01:00:00.000Z', '2026-06-09T00:00:00.000Z');
+    `);
+
+    runMigrations(database, 36, 37);
+    runMigrations(database, 36, 37);
+    database.prepare("UPDATE memory_index SET deleted_at = ? WHERE id = 2").run('2026-06-08T00:00:00.000Z');
+
+    const columns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toContain('deleted_at');
+
+    const indexes = (database.prepare(`
+      SELECT name, sql
+      FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'memory_index'
+        AND name IN ('idx_memory_active_recall', 'idx_memory_purgeable_retention')
+      ORDER BY name
+    `).all() as Array<{ name: string; sql: string }>);
+    expect(indexes).toHaveLength(2);
+    expect(indexes[0].sql).toContain('WHERE deleted_at IS NULL');
+    expect(indexes[1].sql).toContain('WHERE deleted_at IS NOT NULL');
+
+    const activePlan = database.prepare(`
+      EXPLAIN QUERY PLAN
+      SELECT id FROM memory_index
+      WHERE deleted_at IS NULL AND spec_folder = ?
+      ORDER BY updated_at DESC, id DESC
+    `).all('specs/a') as Array<{ detail: string }>;
+    const purgeablePlan = database.prepare(`
+      EXPLAIN QUERY PLAN
+      SELECT id FROM memory_index INDEXED BY idx_memory_purgeable_retention
+      WHERE deleted_at IS NOT NULL AND delete_after IS NOT NULL
+    `).all() as Array<{ detail: string }>;
+
+    expect(activePlan.some((row) => row.detail.includes('idx_memory_active_recall'))).toBe(true);
+    expect(purgeablePlan.some((row) => row.detail.includes('idx_memory_purgeable_retention'))).toBe(true);
   });
 });

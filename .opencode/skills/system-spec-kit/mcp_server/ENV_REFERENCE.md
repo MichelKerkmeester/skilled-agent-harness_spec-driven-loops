@@ -90,6 +90,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Feedback retention learning | OFF | `SPECKIT_FEEDBACK_RETENTION_LEARNING` | Default-off feedback-aware retention reducer; shadow-first and audit-only unless active mode is gated | current |
 | Feedback retention mode | shadow | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`; default `shadow`; active still requires the master flag and shadow-evaluation gate | current |
 | Session-trace causal inference | OFF | `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | Deferred session-trace causal edge inference from feedback events | current |
+| Soft-delete tombstones | OFF | `SPECKIT_SOFT_DELETE_TOMBSTONES` | Default-off tombstone delete path for memory deletes and purgeable retention partition; keep OFF until recall surfaces filter `deleted_at IS NULL` | current |
 | Assistive reconsolidation | ON | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | Near-duplicate detection and review routing | D4 REQ-D4-005 |
 | Memory idempotency receipts | OFF | `SPECKIT_MEMORY_IDEMPOTENCY` | Default-off server-derived replay receipts for memory_save/memory_update plus advisory near_duplicate_of hints | memory hardening |
 | Result explainability | ON | `SPECKIT_RESULT_EXPLAIN_V1` | Two-tier result explainability | D5 REQ-D5-002 |
@@ -119,7 +120,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 175 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
+Total unique variables documented: 176 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
 
 ### Provisional Measurement Contract
 

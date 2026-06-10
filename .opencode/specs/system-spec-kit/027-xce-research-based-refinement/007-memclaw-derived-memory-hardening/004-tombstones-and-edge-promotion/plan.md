@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 4: tombstones-and-edge-promotion [template:level_1/plan.md]"
-description: "Makes soft-delete first-timestamp-idempotent by COALESCE-preserving the original deleted_at in the transactional delete writer, makes auto causal-edge promotion natural-key idempotent and skip-manual in causal-edges.ts, and adds active/purgeable partial indexes plus the entity-not-causal invariant."
+description: "Keeps default hard-delete behavior, gates first-timestamp tombstones behind SPECKIT_SOFT_DELETE_TOMBSTONES, preserves manual causal edges during auto promotion, and keeps active/purgeable partial indexes plus the entity-not-causal invariant."
 trigger_phrases:
   - "tombstone soft-delete idempotent deleted_at"
   - "causal edge promotion skip manual created_by"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion"
-    last_updated_at: "2026-06-06T10:10:49Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populate Phase 4 tombstones-and-edge-promotion plan"
-    next_safe_action: "Plan or implement T001 active/purgeable partial indexes"
+    last_updated_at: "2026-06-10T14:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Reconciled plan to flag-gated tombstones"
+    next_safe_action: "Keep tombstone flag off until recall filters land"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-tombstones-and-edge-promotion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 | **Testing** | vitest |
 
 ### Overview
-This phase fixes three soft-delete and causal-edge lifecycle hazards. The transactional soft-delete writer COALESCE-preserves the original `deleted_at` so a repeat delete cannot extend retention. `insertEdge` in `causal-edges.ts` becomes natural-key idempotent and skip-manual: its on-conflict path stops overwriting a manual `created_by`/evidence and instead skips or adds parallel low-strength evidence only. Two partial indexes (active `deleted_at IS NULL`, purgeable `deleted_at IS NOT NULL`) keep recall and the retention sweep fast, and the entity-not-causal boundary is recorded as an advisory invariant. Most substrate already exists (`causal_edges` natural unique key, bounded auto-edge caps, retention-sweep ledger reporting), so this is incremental hardening.
+This phase fixes delete and causal-edge lifecycle hazards without changing shipped delete behavior by default. The existing hard-delete path stays active while `SPECKIT_SOFT_DELETE_TOMBSTONES` is unset. When the flag is set to `true`, the tombstone writer COALESCE-preserves the original `deleted_at` so a repeat delete cannot extend retention. `insertEdge` in `causal-edges.ts` is natural-key idempotent and skip-manual: its on-conflict path does not overwrite a manual `created_by`/evidence. Two partial indexes (active `deleted_at IS NULL`, purgeable `deleted_at IS NOT NULL`) are additive at schema version 37, and the retention sweep uses the purgeable partition only when the tombstone flag is enabled. The entity-not-causal boundary is recorded as an advisory invariant.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +55,14 @@ This phase fixes three soft-delete and causal-edge lifecycle hazards. The transa
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented - spec.md corrected the hard-delete premise and the default-off tombstone flag.
+- [x] Success criteria measurable - vitest covers hard-delete default, flag-on first timestamp, and retention partitioning.
+- [x] Dependencies identified - recall-filter follow-up is documented as the blocker for enabling tombstones.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met - skip-manual, partial indexes, default delete behavior, and flag-on tombstones are covered.
+- [x] Tests passing - targeted vitest suite passed 4 files and 48 tests.
+- [x] Docs updated - spec, plan, tasks, checklist, implementation summary, metadata, and env reference reconciled.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -74,14 +74,14 @@ This phase fixes three soft-delete and causal-edge lifecycle hazards. The transa
 Three-phase write split (program-wide architectural rule). Each invariant lives in the correct phase of the memory write path: the first-timestamp tombstone belongs to the transactional writer (the soft-delete UPDATE itself), the natural-key skip-manual decision belongs to the transactional writer in `causal-edges.ts` (`insertEdge`), and the partial indexes are schema. Post-mutation hooks (cache invalidation, audit append, advisory enrichment) stay out of these integrity decisions; the retention sweep and post-insert enrichment only consume the results.
 
 ### Key Components
-- **First-timestamp tombstone (`handlers/memory-crud-delete.ts`, `handlers/memory-bulk-delete.ts`)**: The soft-delete UPDATE sets `deleted_at = COALESCE(deleted_at, <now>)` so the first tombstone moment wins; a repeat delete is a no-op on the timestamp and therefore on retention. The bulk path applies the same COALESCE-preserve.
+- **Default-off tombstone flag (`handlers/memory-crud-delete.ts`, `handlers/memory-bulk-delete.ts`)**: The default path calls `vectorIndex.deleteMemory` and preserves hard-delete cleanup. `SPECKIT_SOFT_DELETE_TOMBSTONES=true` switches to `deleted_at = COALESCE(deleted_at, <now>)` so the first tombstone moment wins.
 - **Natural-key skip-manual edge promotion (`lib/storage/causal-edges.ts`)**: `insertEdge` already dedups on the natural key `(source_id, target_id, relation, source_anchor, target_anchor)`; its on-conflict branch currently runs `created_by = ?` unconditionally. The change: when the existing row is manual provenance, skip the `created_by`/evidence overwrite (skip the update, or add parallel low-strength evidence only). New auto edges still respect the bounded auto-edge caps.
 - **Partial indexes (`lib/search/vector-index-schema.ts`)**: Add an active partial index (`WHERE deleted_at IS NULL`) for default recall and a purgeable partial index (`WHERE deleted_at IS NOT NULL`) for the retention sweep, with a forward migration. Each path scans only its partition.
-- **Promotion callers + sweep (`handlers/causal-graph.ts`, `handlers/causal-links-processor.ts`, `lib/governance/memory-retention-sweep.ts`)**: Auto-promotion callers pass provenance so the skip-manual rule has the signal; the retention sweep uses the purgeable index and reports tombstone/edge state. Entity/co-occurrence stays recall evidence only.
+- **Promotion callers + sweep (`handlers/causal-graph.ts`, `handlers/causal-links-processor.ts`, `lib/governance/memory-retention-sweep.ts`)**: Auto-promotion callers pass provenance so the skip-manual rule has the signal; the retention sweep uses the purgeable index only when the tombstone flag is enabled and otherwise reaps active expired rows as before. Entity/co-occurrence stays recall evidence only.
 - **Entity-not-causal invariant (`constitutional/entity-cooccurrence-is-not-causal.md`)**: Records that entity/co-occurrence signals are recall evidence only and never causal truth; advisory in validation.
 
 ### Data Flow
-A delete request reaches `memory-crud-delete.ts` (or `memory-bulk-delete.ts`). Inside the existing transaction, the soft-delete UPDATE writes `deleted_at = COALESCE(deleted_at, <now>)`, so a row already tombstoned keeps its original timestamp and retention is computed from the first delete. Separately, post-insert enrichment in `causal-links-processor.ts`/`causal-graph.ts` proposes causal edges; each goes through `insertEdge`. On a natural-key match, `insertEdge` checks the existing row's provenance: a manual edge is preserved (the `created_by`/evidence overwrite is skipped; at most a parallel low-strength evidence edge is added), while an auto edge updates as before under the bounded caps. Recall queries hit the active partial index; the retention sweep hits the purgeable partial index and reports tombstone/edge state without prompting for triage.
+A delete request reaches `memory-crud-delete.ts` or `memory-bulk-delete.ts`. With `SPECKIT_SOFT_DELETE_TOMBSTONES` unset, the handler calls `vectorIndex.deleteMemory` and the row is removed through the existing cleanup path. With the flag set to `true`, the handler writes `deleted_at = COALESCE(deleted_at, <now>)`, so a row already tombstoned keeps its original timestamp and retention is computed from the first delete. Separately, post-insert enrichment in `causal-links-processor.ts`/`causal-graph.ts` proposes causal edges; each goes through `insertEdge`. On a natural-key match, `insertEdge` checks the existing row's provenance and preserves manual rows. Recall filtering for tombstones is a follow-up requirement before enabling the flag.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,13 +93,13 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `handlers/memory-crud-delete.ts` | Producer: soft-deletes a single memory row (writes `deleted_at`). | update — write `deleted_at = COALESCE(deleted_at, <now>)` inside the existing transaction. | Repeat-delete vitest keeps the first `deleted_at`; `rg -n 'deleted_at|COALESCE' handlers/memory-crud-delete.ts`. |
-| `handlers/memory-bulk-delete.ts` | Producer: soft-deletes many rows in one pass. | update — apply the same COALESCE-preserve to the bulk UPDATE. | Bulk repeat-delete vitest; `rg -n 'deleted_at|COALESCE' handlers/memory-bulk-delete.ts`. |
+| `handlers/memory-crud-delete.ts` | Producer: deletes a single memory row. | update - default to existing hard delete; use COALESCE tombstone only when `SPECKIT_SOFT_DELETE_TOMBSTONES=true`. | Vitest proves default row removal and flag-on first timestamp. |
+| `handlers/memory-bulk-delete.ts` | Producer: deletes many rows in one pass. | update - default to existing hard delete; use COALESCE tombstone only when `SPECKIT_SOFT_DELETE_TOMBSTONES=true`. | Vitest proves flag-on bulk first timestamp. |
 | `lib/storage/causal-edges.ts` | Producer/storage: `insertEdge` upserts on the natural key; on-conflict runs `created_by = ?`. | update — skip the `created_by`/evidence overwrite when the existing row is manual provenance. | Skip-manual vitest; `rg -n 'insertEdge|created_by|ON CONFLICT|UPDATE causal_edges' lib/storage/causal-edges.ts`. |
 | `handlers/causal-graph.ts` | Consumer: auto-promotion entry point that calls into edge insert. | update — pass provenance so skip-manual has the signal; report "skipped manual edge". | `rg -n 'insertEdge|insertEdgesBatch|created_by|skipped' handlers/causal-graph.ts`; skipped-edge hint in vitest. |
 | `handlers/causal-links-processor.ts` | Consumer: post-insert enrichment that proposes/promotes edges. | update — route promotions through the skip-manual path; keep entity/co-occurrence as recall evidence only. | `rg -n 'insertEdge|promote|created_by|entity|co-occur' handlers/causal-links-processor.ts`. |
 | `lib/search/vector-index-schema.ts` | Owns the memory index schema and migrations. | update — add active (`deleted_at IS NULL`) + purgeable (`deleted_at IS NOT NULL`) partial indexes + forward migration. | Migration runs clean; query plan uses each index; `rg -n 'deleted_at|CREATE INDEX|WHERE' lib/search/vector-index-schema.ts`. |
-| `lib/governance/memory-retention-sweep.ts` | Consumer: retention sweep that reports ledger/tombstone state. | update — use the purgeable partial index; report tombstone/edge state (no triage prompt). | `rg -n 'deleted_at IS NOT NULL|purge|retention|index' lib/governance/memory-retention-sweep.ts`. |
+| `lib/governance/memory-retention-sweep.ts` | Consumer: retention sweep that reports ledger/tombstone state. | update - default to active TTL reaping; use the purgeable partial index only when the tombstone flag is enabled. | Vitest proves flag-off active expiry and flag-on purgeable partition. |
 | `constitutional/` loader + validation | Loads constitutional rules and surfaces them in validation. | update (add-only) — register the entity-not-causal rule; advisory surfacing. | Rule appears in validation output; loader picks up the new file. |
 
 Required inventories:
@@ -116,23 +116,23 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Add the active (`deleted_at IS NULL`) and purgeable (`deleted_at IS NOT NULL`) partial indexes to `vector-index-schema.ts` with a forward migration.
-- [ ] Confirm the soft-delete writer location and the exact `deleted_at` UPDATE statement in `memory-crud-delete.ts` / `memory-bulk-delete.ts`.
-- [ ] Confirm the manual-provenance signal the skip-manual rule will key off (`causal_edges.created_by` default `'manual'`; `source_kind` from phase 001).
+- [x] Add the active (`deleted_at IS NULL`) and purgeable (`deleted_at IS NOT NULL`) partial indexes to `vector-index-schema.ts` with a forward migration.
+- [x] Confirm the delete writer location and gate tombstones behind `SPECKIT_SOFT_DELETE_TOMBSTONES`.
+- [x] Confirm the manual-provenance signal the skip-manual rule keys off (`causal_edges.created_by` default `'manual'`; `source_kind` provenance pass-through).
 
 ### Phase 2: Core Implementation
-- [ ] Make single-row soft-delete first-timestamp-idempotent: `deleted_at = COALESCE(deleted_at, <now>)` inside the existing transaction in `memory-crud-delete.ts`.
-- [ ] Apply the same COALESCE-preserve to the bulk soft-delete in `memory-bulk-delete.ts`.
-- [ ] Make `insertEdge` skip-manual in `causal-edges.ts`: on a natural-key match against a manual row, skip the `created_by`/evidence overwrite (skip the update, or add parallel low-strength evidence only).
-- [ ] Pass provenance from the auto-promotion callers (`causal-graph.ts`, `causal-links-processor.ts`) and report "skipped manual edge"; keep entity/co-occurrence as recall evidence only.
-- [ ] Point the retention sweep at the purgeable partial index and report tombstone/edge state (no triage prompt).
-- [ ] Add the entity-not-causal constitutional rule file under `constitutional/`.
+- [x] Make single-row tombstones first-timestamp-idempotent behind the default-off flag.
+- [x] Apply the same COALESCE-preserve to the bulk tombstone path behind the default-off flag.
+- [x] Make `insertEdge` skip-manual in `causal-edges.ts`: on a natural-key match against a manual row, never overwrite `created_by`/evidence.
+- [x] Pass provenance from the auto-promotion callers and keep entity/co-occurrence as recall evidence only.
+- [x] Point the retention sweep at the purgeable partial index only when the tombstone flag is enabled; otherwise active TTL reaping remains unchanged.
+- [x] Add the entity-not-causal constitutional rule file under `constitutional/`.
 
 ### Phase 3: Verification
-- [ ] vitest: a repeat delete (single and bulk) preserves the first `deleted_at` and does not extend retention.
-- [ ] vitest: an auto edge promotion against a manual edge never overwrites `created_by`/evidence (skips, or adds parallel low-strength evidence only).
-- [ ] vitest / query-plan check: recall uses the active partial index and the retention sweep uses the purgeable partial index.
-- [ ] Update the memory-system docs to describe first-timestamp tombstones, the skip-manual edge rule, and the entity-not-causal invariant.
+- [x] vitest: default delete hard-removes the row; flag-on repeat delete (single and bulk) preserves the first `deleted_at`.
+- [x] vitest: auto edge promotion against a manual edge never overwrites `created_by`/evidence.
+- [x] vitest / query-plan check: additive partial indexes exist and the retention sweep uses the purgeable partition only when flag-on.
+- [x] Update phase docs and env reference to describe the default-off flag, recall-filter follow-up, skip-manual edge rule, and entity-not-causal invariant.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -228,4 +228,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

@@ -59,6 +59,8 @@ describe('Vector index schema compatibility validator', () => {
           post_insert_enrichment_version INTEGER,
           near_duplicate_of TEXT,
           last_dedup_checked_at TEXT,
+          delete_after TEXT,
+          deleted_at TEXT,
           stability REAL,
           difficulty REAL,
           last_review TEXT,
@@ -111,6 +113,12 @@ describe('Vector index schema compatibility validator', () => {
         CREATE INDEX idx_memory_chunk_fingerprint
           ON memory_index(chunk_fingerprint)
           WHERE chunk_fingerprint IS NOT NULL;
+        CREATE INDEX idx_memory_active_recall
+          ON memory_index(spec_folder, document_type, updated_at DESC, id DESC)
+          WHERE deleted_at IS NULL;
+        CREATE INDEX idx_memory_purgeable_retention
+          ON memory_index(delete_after, deleted_at, id)
+          WHERE deleted_at IS NOT NULL;
 
         CREATE TABLE memory_history (
           id INTEGER PRIMARY KEY,

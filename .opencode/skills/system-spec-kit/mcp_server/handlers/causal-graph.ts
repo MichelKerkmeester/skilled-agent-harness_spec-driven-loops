@@ -972,7 +972,7 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
           dryRun: backfillRequest.dryRun !== false,
           limit: backfillRequest.limit,
           actor: backfillRequest.actor ?? 'memory_causal_stats:backfill',
-          similarity: backfillRequest.similarity,
+          similarity: false,
           contradicts: backfillRequest.contradicts,
           similarityThreshold: backfillRequest.similarityThreshold,
         });
@@ -1036,6 +1036,9 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
     if (orphanedEdges.length > 0) {
       hints.push(`${orphanedEdges.length} orphaned edges detected - consider cleanup`);
     }
+    if (backfillRequest?.similarity === true) {
+      hints.push('Entity and co-occurrence signals remain recall evidence only; similarity causal promotion was skipped.');
+    }
     if (stats.totalEdges === 0) {
       hints.push('No causal links exist yet - use memory_causal_link to create relationships');
     }
@@ -1053,6 +1056,9 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
         hints.push(
           `Relation-inference backfill: wrote ${backfillResult.written} new auto edges from ${backfillResult.scanned} scanned rows${skippedNote}.`,
         );
+        if (backfillResult.skipped > backfillResult.skippedConflicting) {
+          hints.push('skipped manual edge: auto promotion preserved existing manual or unknown-provenance edges.');
+        }
       }
     }
 

@@ -163,6 +163,12 @@ interface InsertEdgeMetadataOptions {
   extractionMethod?: string;
 }
 
+interface InsertEdgeOutcome {
+  status: 'inserted' | 'updated' | 'skipped';
+  reason: string | null;
+  edgeId: number | null;
+}
+
 interface CausalChainNode {
   id: string;
   edgeId?: number;          // Preserve causal_edges.id for unlink workflow
@@ -179,6 +185,7 @@ interface CausalChainNode {
 ----------------------------------------------------------------*/
 
 let db: Database.Database | null = null;
+let lastInsertEdgeOutcome: InsertEdgeOutcome | null = null;
 
 /**
  * Monotonically-increasing generation counter bumped on every causal-edge
@@ -201,6 +208,14 @@ function bumpCausalEdgesGeneration(): void {
 
 function getCausalEdgesGeneration(): number {
   return causalEdgesGeneration;
+}
+
+function setLastInsertEdgeOutcome(outcome: InsertEdgeOutcome): void {
+  lastInsertEdgeOutcome = outcome;
+}
+
+function getLastInsertEdgeOutcome(): InsertEdgeOutcome | null {
+  return lastInsertEdgeOutcome;
 }
 
 function invalidateDegreeCache(): void {
@@ -285,8 +300,10 @@ function insertEdge(
   anchors: { sourceAnchor?: string | null; targetAnchor?: string | null } = {},
   metadata: InsertEdgeMetadataOptions = {},
 ): number | null {
+  lastInsertEdgeOutcome = null;
   if (!db) {
     console.warn('[causal-edges] Database not initialized. Server may still be starting up.');
+    setLastInsertEdgeOutcome({ status: 'skipped', reason: 'database not initialized', edgeId: null });
     return null;
   }
   const database = db;
@@ -298,6 +315,7 @@ function insertEdge(
 
   // Prevent self-loops
   if (sourceId === targetId) {
+    setLastInsertEdgeOutcome({ status: 'skipped', reason: 'self-loop', edgeId: null });
     return null;
   }
 
@@ -309,6 +327,7 @@ function insertEdge(
     const edgeCount = countEdgesForNode(sourceId);
     if (edgeCount >= MAX_EDGES_PER_NODE) {
       console.warn(`[causal-edges] Edge bounds: node ${sourceId} has ${edgeCount} edges (max ${MAX_EDGES_PER_NODE}), rejecting auto edge`);
+      setLastInsertEdgeOutcome({ status: 'skipped', reason: 'edge bounds exceeded', edgeId: null });
       return null;
     }
   }
@@ -317,6 +336,7 @@ function insertEdge(
     const clampedStrength = clampStrength(effectiveStrength);
     if (clampedStrength === null) {
       console.warn('[causal-edges] insertEdge rejected non-finite strength');
+      setLastInsertEdgeOutcome({ status: 'skipped', reason: 'non-finite strength', edgeId: null });
       return null;
     }
 
@@ -336,7 +356,7 @@ function insertEdge(
       // To write a weight_history row after the upsert. The subsequent INSERT
       // Uses last_insert_rowid() to avoid a second post-upsert SELECT.
       const existing = (database.prepare(`
-        SELECT id, strength, created_by FROM causal_edges
+        SELECT id, strength, evidence, created_by FROM causal_edges
         WHERE source_id = ? AND target_id = ? AND relation = ?
           AND COALESCE(source_anchor, '') = COALESCE(?, '')
           AND COALESCE(target_anchor, '') = COALESCE(?, '')
@@ -346,15 +366,16 @@ function insertEdge(
         relation,
         anchors.sourceAnchor ?? null,
         anchors.targetAnchor ?? null,
-      ) as { id: number; strength: number; created_by: string | null } | undefined;
+      ) as { id: number; strength: number; evidence: string | null; created_by: string | null } | undefined;
 
       // Manual/curated edges must never be overwritten by automatic writers:
       // an auto upsert against a non-auto row is skipped so curated provenance
       // and strength survive. Auto-to-auto updates remain allowed under caps.
       if (existing && isAutoEdgeCreator(createdBy) && !isAutoEdgeCreator(existing.created_by ?? 'manual')) {
         console.warn(
-          `[causal-edges] Preserving non-auto edge ${existing.id} (created_by=${existing.created_by ?? 'manual'}); skipped overwrite by ${createdBy}`,
+          `[causal-edges] skipped manual edge ${existing.id} (created_by=${existing.created_by ?? 'manual'}); skipped overwrite by ${createdBy}`,
         );
+        setLastInsertEdgeOutcome({ status: 'skipped', reason: 'skipped manual edge', edgeId: existing.id });
         return 0;
       }
 
@@ -383,8 +404,10 @@ function insertEdge(
           SET ${assignments.join(',\n              ')}
           WHERE id = ?
         `) as Database.Statement).run(...params);
+        setLastInsertEdgeOutcome({ status: 'updated', reason: null, edgeId: existing.id });
       } else {
         if (!enforceRelationWindowCap(relation, database)) {
+          setLastInsertEdgeOutcome({ status: 'skipped', reason: 'relation cap exceeded', edgeId: null });
           return 0;
         }
 
@@ -438,6 +461,9 @@ function insertEdge(
         anchors.targetAnchor ?? null,
       ) as { id: number } | undefined;
       const rowId = row ? row.id : 0;
+      if (!existing && rowId) {
+        setLastInsertEdgeOutcome({ status: 'inserted', reason: null, edgeId: rowId });
+      }
 
       // Log weight change on conflict update
       if (existing && rowId && isFiniteNumber(existing.strength) && existing.strength !== clampedStrength) {
@@ -455,6 +481,7 @@ function insertEdge(
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] insertEdge error: ${msg}`);
+    setLastInsertEdgeOutcome({ status: 'skipped', reason: msg, edgeId: null });
     if (/SQLITE_BUSY|SQLITE_LOCKED|database is locked/i.test(msg)) {
       throw error;
     }
@@ -475,11 +502,12 @@ function insertEdgesBatch(
     confidence?: number;
     extractionMethod?: string;
   }>
-): { inserted: number; failed: number } {
-  if (!db) return { inserted: 0, failed: edges.length };
+): { inserted: number; failed: number; skippedManual: number } {
+  if (!db) return { inserted: 0, failed: edges.length, skippedManual: 0 };
 
   let inserted = 0;
   let failed = 0;
+  let skippedManual = 0;
 
   const insertTx = db.transaction(() => {
     for (const edge of edges) {
@@ -501,7 +529,12 @@ function insertEdgesBatch(
         },
       );
       if (id !== null) inserted++;
-      else failed++;
+      else {
+        failed++;
+        if (getLastInsertEdgeOutcome()?.reason === 'skipped manual edge') {
+          skippedManual++;
+        }
+      }
     }
   });
 
@@ -515,7 +548,7 @@ function insertEdgesBatch(
     console.warn(`[causal-edges] insertEdgesBatch error: ${msg}`);
   }
 
-  return { inserted, failed };
+  return { inserted, failed, skippedManual };
 }
 
 function bulkInsertEdges(edges: Array<Record<string, unknown>>): { inserted: number; failed: number } {
@@ -1147,6 +1180,7 @@ export {
 
   init,
   isAutoEdgeCreator,
+  getLastInsertEdgeOutcome,
   enforceRelationWindowCap,
   insertEdge,
   insertEdgesBatch,

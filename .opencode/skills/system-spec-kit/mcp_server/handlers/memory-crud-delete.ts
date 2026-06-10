@@ -65,6 +65,39 @@ function createDatabaseUnavailableDeleteResponse(): MCPResponse {
   });
 }
 
+function hasDeletedAtColumn(database: ReturnType<typeof vectorIndex.getDb>): boolean {
+  if (!database || !('prepare' in database)) return false;
+  try {
+    const columns = database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>;
+    return columns.some((column) => column.name === 'deleted_at');
+  } catch {
+    return false;
+  }
+}
+
+function isSoftDeleteTombstonesEnabled(): boolean {
+  return process.env.SPECKIT_SOFT_DELETE_TOMBSTONES?.trim().toLowerCase() === 'true';
+}
+
+function tombstoneMemory(database: NonNullable<ReturnType<typeof vectorIndex.getDb>>, memoryId: number): boolean {
+  if (!isSoftDeleteTombstonesEnabled()) {
+    return vectorIndex.deleteMemory(memoryId, database);
+  }
+
+  if (!hasDeletedAtColumn(database)) {
+    return vectorIndex.deleteMemory(memoryId, database);
+  }
+
+  const deletedAt = new Date().toISOString();
+  const result = database.prepare(`
+    UPDATE memory_index
+    SET deleted_at = COALESCE(deleted_at, ?),
+        updated_at = datetime('now')
+    WHERE id = ?
+  `).run(deletedAt, memoryId);
+  return result.changes > 0;
+}
+
 /** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
 async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_delete');
@@ -96,7 +129,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
     // transaction wrapper — wraps single-delete path (memory delete, causal edge
     // Cleanup, ledger append) in a transaction for atomicity on error.
     database.transaction(() => {
-      deletedCount = vectorIndex.deleteMemory(numericId) ? 1 : 0;
+      deletedCount = tombstoneMemory(database, numericId) ? 1 : 0;
 
       if (deletedCount > 0) {
         // Record DELETE history after confirmed delete (no FK, history rows survive).
@@ -116,7 +149,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
 
         causalEdges.init(database);
         causalEdges.deleteEdgesForMemory(String(numericId), {
-          reason: 'memory_delete single memory cleanup',
+          reason: 'memory row mutation cleanup',
           command: 'memory-crud-delete.handleMemoryDelete',
           restoreContext: { memoryId: numericId, specFolder: singleSnapshot?.spec_folder ?? null },
         });
@@ -197,7 +230,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
     causalEdges.init(database);
     const bulkDeleteTx = database.transaction(() => {
       for (const memory of memories) {
-        if (vectorIndex.deleteMemory(memory.id)) {
+        if (tombstoneMemory(database, memory.id)) {
           // Record DELETE history after confirmed delete (no FK, history rows survive).
           try {
             const snapshot = hashById.get(memory.id);
@@ -215,7 +248,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
           deletedCount++;
           deletedIds.push(memory.id);
           causalEdges.deleteEdgesForMemory(String(memory.id), {
-            reason: 'memory_delete folder cleanup',
+            reason: 'memory row mutation cleanup',
             command: 'memory-crud-delete.handleMemoryDelete',
             restoreContext: { memoryId: memory.id, specFolder, checkpointName },
           });

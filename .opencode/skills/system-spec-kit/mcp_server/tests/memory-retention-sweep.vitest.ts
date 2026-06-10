@@ -11,6 +11,27 @@ import Database from 'better-sqlite3';
 import { runMemoryRetentionSweep, __retentionSweepTestables } from '../lib/governance/memory-retention-sweep';
 import { createMemoryIndexTestDatabase } from './fixtures/memory-index-db';
 
+const SOFT_DELETE_FLAG = 'SPECKIT_SOFT_DELETE_TOMBSTONES';
+
+function withSoftDeleteFlag<T>(value: string | undefined, fn: () => T): T {
+  const previous = process.env[SOFT_DELETE_FLAG];
+  if (value === undefined) {
+    delete process.env[SOFT_DELETE_FLAG];
+  } else {
+    process.env[SOFT_DELETE_FLAG] = value;
+  }
+
+  try {
+    return fn();
+  } finally {
+    if (previous === undefined) {
+      delete process.env[SOFT_DELETE_FLAG];
+    } else {
+      process.env[SOFT_DELETE_FLAG] = previous;
+    }
+  }
+}
+
 function isoOffset(ms: number): string {
   return new Date(Date.now() + ms).toISOString();
 }
@@ -87,6 +108,70 @@ describe('memory retention sweep', () => {
       retained: 2,
       dryRun: false,
       deletedIds: [1],
+    });
+    expect(memoryIds(db)).toEqual([2, 3]);
+  });
+
+  it('reaps expired active rows by default even when deleted_at is present', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+    db.exec(`
+      ALTER TABLE memory_index ADD COLUMN deleted_at TEXT;
+      CREATE INDEX idx_memory_purgeable_retention
+        ON memory_index(delete_after, deleted_at, id)
+        WHERE deleted_at IS NOT NULL;
+    `);
+    insertMemory(db, 1, isoOffset(-3_600_000), 'active expired');
+    insertMemory(db, 2, isoOffset(-3_600_000), 'tombstoned expired');
+    insertMemory(db, 3, isoOffset(3_600_000), 'future');
+    db.prepare('UPDATE memory_index SET deleted_at = ? WHERE id = 2').run('2026-06-10T00:00:00.000Z');
+
+    const result = withSoftDeleteFlag(undefined, () => runMemoryRetentionSweep(db));
+
+    expect(result).toMatchObject({
+      swept: 2,
+      deletedIds: [1, 2],
+      tombstoneState: {
+        usesPurgeablePartition: false,
+        usingPurgeableIndex: false,
+        candidateCount: 2,
+        deletedCount: 2,
+      },
+    });
+    expect(memoryIds(db)).toEqual([3]);
+  });
+
+  it('uses the purgeable tombstone partition when the tombstone flag is enabled', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+    db.exec(`
+      ALTER TABLE memory_index ADD COLUMN deleted_at TEXT;
+      CREATE INDEX idx_memory_purgeable_retention
+        ON memory_index(delete_after, deleted_at, id)
+        WHERE deleted_at IS NOT NULL;
+    `);
+    insertMemory(db, 1, isoOffset(-3_600_000), 'tombstoned expired');
+    insertMemory(db, 2, isoOffset(-3_600_000), 'active expired');
+    insertMemory(db, 3, isoOffset(3_600_000), 'future tombstone');
+    db.prepare('UPDATE memory_index SET deleted_at = ? WHERE id IN (1, 3)').run('2026-06-10T00:00:00.000Z');
+
+    const plan = db.prepare(`
+      EXPLAIN QUERY PLAN
+      SELECT id FROM memory_index INDEXED BY idx_memory_purgeable_retention
+      WHERE delete_after IS NOT NULL
+        AND deleted_at IS NOT NULL
+        AND datetime(delete_after) < datetime('now')
+    `).all() as Array<{ detail: string }>;
+    const result = withSoftDeleteFlag('true', () => runMemoryRetentionSweep(db));
+
+    expect(plan.some((row) => row.detail.includes('idx_memory_purgeable_retention'))).toBe(true);
+    expect(result).toMatchObject({
+      swept: 1,
+      deletedIds: [1],
+      tombstoneState: {
+        usesPurgeablePartition: true,
+        usingPurgeableIndex: true,
+        candidateCount: 1,
+        deletedCount: 1,
+      },
     });
     expect(memoryIds(db)).toEqual([2, 3]);
   });

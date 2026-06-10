@@ -69,6 +69,8 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
     'idx_save_parent_canonical_path',
     'idx_memory_chunk_identity',
     'idx_memory_chunk_fingerprint',
+    'idx_memory_active_recall',
+    'idx_memory_purgeable_retention',
     // Active-row uniqueness guard: every v30+ DB builds this unique index. Listing it
     // here lets the compatibility check detect a DB whose guard was dropped or never
     // built, instead of silently passing a database with a broken active-row invariant.
@@ -106,6 +108,8 @@ const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'near_duplicate_of',
   'last_dedup_checked_at',
   'source_kind',
+  'delete_after',
+  'deleted_at',
   'chunk_id',
   'chunk_fingerprint',
   'chunk_kind',
@@ -224,6 +228,16 @@ const MEMORY_CHUNK_FINGERPRINT_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_memory_chunk_fingerprint
   ON memory_index(chunk_fingerprint)
   WHERE chunk_fingerprint IS NOT NULL
+`;
+const MEMORY_ACTIVE_RECALL_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_active_recall
+  ON memory_index(spec_folder, document_type, updated_at DESC, id DESC)
+  WHERE deleted_at IS NULL
+`;
+const MEMORY_PURGEABLE_RETENTION_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_purgeable_retention
+  ON memory_index(delete_after, deleted_at, id)
+  WHERE deleted_at IS NOT NULL
 `;
 const MEMORY_TRIGGER_EMBEDDINGS_STATUS_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_memory_trigger_embeddings_status
@@ -606,8 +620,10 @@ function getMigrationAllowedBasePaths(): string[] {
 // V33: Add generated causal-edge provenance columns
 // V34: Add derived trigger embedding status table
 // V35: Add server-derived write provenance kind
+// V36: Add idempotency receipts and near-duplicate markers
+// V37: Add tombstone column and active/purgeable memory partitions
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 36;
+export const SCHEMA_VERSION = 37;
 
 const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
 const MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL = `
@@ -669,6 +685,13 @@ export function ensureIdempotencyReceiptSchema(database: Database.Database, cont
     database,
     'memory_index',
     columns,
+    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
+    context,
+  );
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
     { name: 'near_duplicate_of', sql: 'ALTER TABLE memory_index ADD COLUMN near_duplicate_of TEXT' },
     context,
   );
@@ -679,6 +702,24 @@ export function ensureIdempotencyReceiptSchema(database: Database.Database, cont
     { name: 'last_dedup_checked_at', sql: 'ALTER TABLE memory_index ADD COLUMN last_dedup_checked_at TEXT' },
     context,
   );
+}
+
+export function ensureMemoryIndexTombstonePartitions(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping tombstone partitions`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
+    { name: 'deleted_at', sql: 'ALTER TABLE memory_index ADD COLUMN deleted_at TEXT' },
+    context,
+  );
+  createRequiredIndex(database, 'idx_memory_active_recall', MEMORY_ACTIVE_RECALL_INDEX_SQL, context);
+  createRequiredIndex(database, 'idx_memory_purgeable_retention', MEMORY_PURGEABLE_RETENTION_INDEX_SQL, context);
 }
 
 function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
@@ -1914,6 +1955,11 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v36: Added idempotency receipts and near-duplicate markers');
   };
 
+  migrations[37] = () => {
+    ensureMemoryIndexTombstonePartitions(database, 'Migration v37');
+    logger.info('Migration v37: Added tombstone active and purgeable partitions');
+  };
+
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -2801,6 +2847,16 @@ export function create_common_indexes(database: Database.Database): void {
     }
   }
 
+  try {
+    ensureMemoryIndexTombstonePartitions(database, 'create_common_indexes');
+  } catch (err: unknown) {
+    console.warn('[vector-index] Failed to create tombstone partition indexes', {
+      operation: 'create_common_indexes',
+      indexes: ['idx_memory_active_recall', 'idx_memory_purgeable_retention'],
+      error: get_error_message(err),
+    });
+  }
+
   // H5 FIX: Add idx_history_timestamp index for memory_history table
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)`);
@@ -3042,6 +3098,7 @@ export function create_schema(
       governed_at TEXT,
       retention_policy TEXT DEFAULT 'keep',
       delete_after TEXT,
+      deleted_at TEXT,
       governance_metadata TEXT,
       expires_at DATETIME,
       confidence REAL DEFAULT 0.5,
@@ -3202,6 +3259,12 @@ export function create_schema(
     CREATE INDEX IF NOT EXISTS idx_memory_chunk_fingerprint
       ON memory_index(chunk_fingerprint)
       WHERE chunk_fingerprint IS NOT NULL;
+    CREATE INDEX IF NOT EXISTS idx_memory_active_recall
+      ON memory_index(spec_folder, document_type, updated_at DESC, id DESC)
+      WHERE deleted_at IS NULL;
+    CREATE INDEX IF NOT EXISTS idx_memory_purgeable_retention
+      ON memory_index(delete_after, deleted_at, id)
+      WHERE deleted_at IS NOT NULL;
   `);
 
   database.exec(`
