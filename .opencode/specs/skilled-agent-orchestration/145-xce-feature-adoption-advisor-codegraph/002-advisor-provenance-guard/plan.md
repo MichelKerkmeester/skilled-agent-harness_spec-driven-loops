@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 2: advisor-provenance-guard [template:level_1/plan.md]"
-description: "Planned adoption of the cited 027 feature; full problem/scope/requirements live in this phase's spec.md. Implementation is deferred (scaffold-only packet)."
+description: "Implemented advisor edge provenance guard: automated propagation stamps server-derived source_kind and preserves manual provenance while trusted-maintainer writes can update protected fields."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,19 +12,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T23:03:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented source_kind guard and verified advisor MCP server"
+    next_safe_action: "Keep future edge write changes inside guarded server derivation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/apply-graph-metadata-patch.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-advisor-provenance-guard"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Full-suite failures are outside the scoped advisor edge-write change; targeted suites pass."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 2: advisor-provenance-guard
@@ -53,7 +56,7 @@ FAILURE MODES:
 | **Testing** | vitest |
 
 ### Overview
-Planned adoption of the cited 027 feature; full problem/scope/requirements live in this phase's spec.md. Implementation is deferred (scaffold-only packet).
+The advisor MCP server now derives durable `source_kind` values when applying `edges.enhances[]` patches. Automated propagation remains idempotent by target, refuses to overwrite manual or trusted provenance, and a trusted-maintainer write intent can intentionally update protected edge fields.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +65,14 @@ Planned adoption of the cited 027 feature; full problem/scope/requirements live 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing for targeted guard, cross-skill, and skill-graph suites
+- [x] Docs updated with implementation and verification evidence
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +81,15 @@ Planned adoption of the cited 027 feature; full problem/scope/requirements live 
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Guarded JSON merge in the cross-skill edge apply path.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Apply patch helper**: Derives edge provenance, appends automated auto markers, and blocks automated overwrites of protected provenance.
+- **Propagation orchestrator**: Passes automated write intent from `skill_graph_propagate_enhances` into the apply helper.
+- **Guard tests**: Cover automated derivation, manual preservation, trusted update, and legacy edge tolerance.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+`skill_graph_propagate_enhances` detects missing inbound edges, filters selected candidates, then applies candidates through the guarded patch helper. The helper derives `source_kind` from server write intent, never from candidate payload fields.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +101,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `applyEnhanceEdge` | Owns graph-metadata edge writes | Updated | New guard tests in `tests/cross-skill-edges.vitest.ts` |
+| `propagateInboundEnhances` / handler | Supplies propagation write intent | Updated | Targeted skill-graph suite passed |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers checked through `applyEnhanceEdge` and propagation call sites.
+- Consumers checked through targeted cross-skill and skill-graph test suites.
+- Matrix axes covered: automated new edge, automated existing manual edge, trusted existing manual edge, and legacy missing provenance.
+- Algorithm invariant: candidate payloads cannot self-declare trusted or manual provenance.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +117,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read phase scaffold and existing advisor edge apply path
+- [x] Identified propagation handler and cross-skill test conventions
+- [x] Kept existing dependencies unchanged
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Added server-derived `source_kind` / write intent types
+- [x] Added automated manual-protection guard in the edge apply helper
+- [x] Passed automated write intent from the propagation handler
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Added and ran guard tests
+- [x] Ran typecheck, build, targeted suites, full suite observation, alignment drift, and comment hygiene
+- [x] Updated phase documentation
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +139,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Edge apply provenance guard | Vitest |
+| Integration | Cross-skill propagation and skill-graph handlers | Vitest |
+| Manual | Full suite observation for out-of-scope failures | Vitest output review |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +151,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| None | Internal | Green | No dependency blocker |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +159,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Advisor edge propagation starts rejecting valid automated additions or trusted-maintainer updates.
+- **Procedure**: Revert the guarded apply helper and propagation intent changes, then rerun the targeted cross-skill and skill-graph suites.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +171,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

@@ -9,6 +9,10 @@
 
 export type PropagationMode = 'report' | 'propose' | 'apply';
 
+export type EdgeSourceKind = 'automated' | 'manual' | 'trusted';
+
+export type EdgeWriteIntent = 'automated' | 'trusted-maintainer';
+
 // ───────────────────────────────────────────────────────────────
 // 2. CANDIDATE EVIDENCE
 // ───────────────────────────────────────────────────────────────
@@ -56,6 +60,7 @@ export interface DetectInboundEnhancesOptions {
 export interface PropagateEnhancesOptions {
   skillsRoot: string;
   mode: PropagationMode;
+  writeIntent?: EdgeWriteIntent;
   minConfidence?: number;
   targetSkillIds?: string[];
   sourceSkillIds?: string[];
@@ -91,7 +96,12 @@ export interface SkillMetadataRecord {
   filePath: string;
   contentHash: string;
   edges?: {
-    enhances?: Array<{ target: string; weight: number; context: string }>;
+    enhances?: Array<{
+      target: string;
+      weight: number;
+      context: string;
+      source_kind?: EdgeSourceKind;
+    }>;
     siblings?: Array<{ target: string; weight: number; context: string }>;
     depends_on?: Array<{ target: string; weight: number; context: string }>;
     conflicts_with?: Array<{ target: string; weight: number; context: string }>;

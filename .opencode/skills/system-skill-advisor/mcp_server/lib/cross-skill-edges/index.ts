@@ -59,10 +59,10 @@ export async function propagateInboundEnhances(options: PropagateEnhancesOptions
 
     for (const c of toApply) {
       // Pass skillsRoot to enforce path-boundary at write time
-      const r = await applyEnhanceEdge(c, options.skillsRoot);
+      const r = await applyEnhanceEdge(c, options.skillsRoot, options.writeIntent ?? 'automated');
       if (r.applied) {
         result.applied.push(c.id);
-      } else if (r.reason === 'edge already exists') {
+      } else if (r.reason.startsWith('edge already exists')) {
         result.skipped_existing.push(c.id);
       } else {
         result.errors.push({ skillId: c.sourceSkillId, error: r.reason });

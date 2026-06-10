@@ -2,12 +2,11 @@
 // MODULE: Cross-Skill Edges Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { detectInboundEnhances } from '../lib/cross-skill-edges/detect-inbound-enhances.js';
-import type { SkillMetadataRecord } from '../lib/cross-skill-edges/types.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. FIXTURE HELPERS
@@ -344,6 +343,7 @@ describe('cross-skill-edges detection', () => {
       expect(applied.auto_added_at).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/);
       expect(typeof applied.auto_added_reason).toBe('string');
       expect(applied.auto_added_reason.length).toBeGreaterThan(0);
+      expect(applied.source_kind).toBe('automated');
       expect(typeof applied.weight).toBe('number');
       expect(typeof applied.context).toBe('string');
     } finally {
@@ -431,6 +431,176 @@ describe('cross-skill-edges detection', () => {
       const result = await applyEnhanceEdge(candidate, skillRoot);
       expect(result.applied).toBe(false);
       expect(result.reason).toMatch(/path-boundary/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('derives automated provenance instead of accepting candidate provenance', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'cross-skill-edges-'));
+    const skillRoot = join(root, 'skills');
+    const sourcePath = join(skillRoot, 'skill-a', 'graph-metadata.json');
+
+    try {
+      writeGraphMetadata(skillRoot, 'skill-a', 'system');
+      writeGraphMetadata(skillRoot, 'skill-b', 'system');
+
+      const { applyEnhanceEdge } = await import('../lib/cross-skill-edges/apply-graph-metadata-patch.js');
+      const candidate = {
+        id: 'server-derived-provenance',
+        sourceSkillId: 'skill-a',
+        targetSkillId: 'skill-b',
+        edgeType: 'enhances' as const,
+        weight: 0.3,
+        context: 'automated context',
+        confidence: 0.9,
+        confidenceLabel: 'high' as const,
+        rules: [{ rule: 'asset-shape' as const, contribution: 0.3, detail: 'test' }],
+        sourcePath,
+        targetPath: join(skillRoot, 'skill-b', 'graph-metadata.json'),
+        applyable: true,
+        blockers: [],
+        source_kind: 'manual',
+      };
+
+      const result = await applyEnhanceEdge(candidate, skillRoot);
+      expect(result.applied).toBe(true);
+
+      const reparsed = JSON.parse(readFileSync(sourcePath, 'utf8'));
+      const edge = reparsed.edges.enhances.find((entry: { target?: string }) => entry.target === 'skill-b');
+      expect(edge.source_kind).toBe('automated');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('preserves manual provenance on automated reruns', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'cross-skill-edges-'));
+    const skillRoot = join(root, 'skills');
+    const sourcePath = join(skillRoot, 'skill-a', 'graph-metadata.json');
+
+    try {
+      writeGraphMetadata(skillRoot, 'skill-a', 'system', {
+        enhances: [{ target: 'skill-b', weight: 0.6, context: 'manual context', source_kind: 'manual' }],
+      });
+      writeGraphMetadata(skillRoot, 'skill-b', 'system');
+
+      const { applyEnhanceEdge } = await import('../lib/cross-skill-edges/apply-graph-metadata-patch.js');
+      const candidate = {
+        id: 'manual-protection',
+        sourceSkillId: 'skill-a',
+        targetSkillId: 'skill-b',
+        edgeType: 'enhances' as const,
+        weight: 0.3,
+        context: 'automated context',
+        confidence: 0.9,
+        confidenceLabel: 'high' as const,
+        rules: [{ rule: 'asset-shape' as const, contribution: 0.3, detail: 'test' }],
+        sourcePath,
+        targetPath: join(skillRoot, 'skill-b', 'graph-metadata.json'),
+        applyable: true,
+        blockers: [],
+      };
+
+      const result = await applyEnhanceEdge(candidate, skillRoot, 'automated');
+      expect(result.applied).toBe(false);
+      expect(result.reason).toMatch(/manual provenance protected/);
+
+      const reparsed = JSON.parse(readFileSync(sourcePath, 'utf8'));
+      const edge = reparsed.edges.enhances.find((entry: { target?: string }) => entry.target === 'skill-b');
+      expect(edge).toMatchObject({
+        target: 'skill-b',
+        weight: 0.6,
+        context: 'manual context',
+        source_kind: 'manual',
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('allows trusted maintainer writes over protected edge fields', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'cross-skill-edges-'));
+    const skillRoot = join(root, 'skills');
+    const sourcePath = join(skillRoot, 'skill-a', 'graph-metadata.json');
+
+    try {
+      writeGraphMetadata(skillRoot, 'skill-a', 'system', {
+        enhances: [{ target: 'skill-b', weight: 0.6, context: 'manual context', source_kind: 'manual' }],
+      });
+      writeGraphMetadata(skillRoot, 'skill-b', 'system');
+
+      const { applyEnhanceEdge } = await import('../lib/cross-skill-edges/apply-graph-metadata-patch.js');
+      const candidate = {
+        id: 'trusted-update',
+        sourceSkillId: 'skill-a',
+        targetSkillId: 'skill-b',
+        edgeType: 'enhances' as const,
+        weight: 0.4,
+        context: 'trusted context',
+        confidence: 0.9,
+        confidenceLabel: 'high' as const,
+        rules: [{ rule: 'asset-shape' as const, contribution: 0.3, detail: 'test' }],
+        sourcePath,
+        targetPath: join(skillRoot, 'skill-b', 'graph-metadata.json'),
+        applyable: true,
+        blockers: [],
+      };
+
+      const result = await applyEnhanceEdge(candidate, skillRoot, 'trusted-maintainer');
+      expect(result.applied).toBe(true);
+
+      const reparsed = JSON.parse(readFileSync(sourcePath, 'utf8'));
+      const edge = reparsed.edges.enhances.find((entry: { target?: string }) => entry.target === 'skill-b');
+      expect(edge).toMatchObject({
+        target: 'skill-b',
+        weight: 0.4,
+        context: 'trusted context',
+        source_kind: 'trusted',
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('tolerates legacy edges without source provenance', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'cross-skill-edges-'));
+    const skillRoot = join(root, 'skills');
+    const sourcePath = join(skillRoot, 'skill-a', 'graph-metadata.json');
+
+    try {
+      writeGraphMetadata(skillRoot, 'skill-a', 'system', {
+        enhances: [{ target: 'skill-b', weight: 0.6, context: 'legacy context' }],
+      });
+      writeGraphMetadata(skillRoot, 'skill-b', 'system');
+
+      const { applyEnhanceEdge } = await import('../lib/cross-skill-edges/apply-graph-metadata-patch.js');
+      const candidate = {
+        id: 'legacy-edge',
+        sourceSkillId: 'skill-a',
+        targetSkillId: 'skill-b',
+        edgeType: 'enhances' as const,
+        weight: 0.3,
+        context: 'automated context',
+        confidence: 0.9,
+        confidenceLabel: 'high' as const,
+        rules: [{ rule: 'asset-shape' as const, contribution: 0.3, detail: 'test' }],
+        sourcePath,
+        targetPath: join(skillRoot, 'skill-b', 'graph-metadata.json'),
+        applyable: true,
+        blockers: [],
+      };
+
+      const result = await applyEnhanceEdge(candidate, skillRoot, 'automated');
+      expect(result).toEqual({ applied: false, reason: 'edge already exists' });
+      const reparsed = JSON.parse(readFileSync(sourcePath, 'utf8'));
+      const edge = reparsed.edges.enhances.find((entry: { target?: string }) => entry.target === 'skill-b');
+      expect(edge).toMatchObject({
+        target: 'skill-b',
+        weight: 0.6,
+        context: 'legacy context',
+      });
+      expect(edge.source_kind).toBeUndefined();
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

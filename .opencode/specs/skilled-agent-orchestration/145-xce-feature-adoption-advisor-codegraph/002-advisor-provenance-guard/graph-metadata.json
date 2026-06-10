@@ -39,7 +39,7 @@
       "name"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 2** of the spec-027 feature adoption into the advisor and code-graph daemons. It hardens the advisor's auto edge-write path against clobbering manually-authored provenance.",
     "created_at": "2026-06-10T19:24:09Z",
-    "last_save_at": "2026-06-10T19:41:16.127Z",
+    "last_save_at": "2026-06-10T23:03:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

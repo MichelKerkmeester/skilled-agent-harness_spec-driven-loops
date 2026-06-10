@@ -61,6 +61,7 @@ export async function handleSkillGraphPropagateEnhances(
       applyCandidateIds: args.applyCandidateIds,
       applyAllHighConfidence: args.applyAllHighConfidence,
       dryRun: args.dryRun,
+      writeIntent: 'automated',
     });
 
     return okResponse({

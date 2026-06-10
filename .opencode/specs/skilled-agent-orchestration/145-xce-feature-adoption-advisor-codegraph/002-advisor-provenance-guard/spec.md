@@ -11,19 +11,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #3"
-    next_safe_action: "Plan the source_kind schema + guard implementation"
+    last_updated_at: "2026-06-10T23:03:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented advisor source_kind provenance guard and verification"
+    next_safe_action: "Use targeted guard tests when changing edge write behavior"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/apply-graph-metadata-patch.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/index.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-advisor-provenance-guard"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Use source_kind values automated/manual/trusted; the server maps trusted-maintainer write intent to trusted."
+      - "MCP propagation always derives automated provenance and does not accept source_kind from client payloads."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 2: advisor-provenance-guard
@@ -46,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -74,7 +81,7 @@ This is **Phase 2** of the spec-027 feature adoption into the advisor and code-g
 - A guard in the apply path that skips automated overwrites of protected (manually-authored) fields while still allowing legitimate trusted-maintainer writes.
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- Parent changelog refresh was not performed because it is outside the approved write paths for this phase execution.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -159,8 +166,8 @@ Adopt 027's automated-writers-never-overwrite-manual rule for the advisor's auto
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What is the `source_kind` enum - just `automated`/`manual`, or also `trusted`/`imported`?
-- How does the write path distinguish a trusted-maintainer write from an automated one - explicit caller flag, MCP mutation trust gate, or both?
+- Resolved: graph edge `source_kind` uses `automated`, `manual`, and `trusted`. Automated propagation derives `automated`; trusted-maintainer writes derive `trusted` through the server write intent.
+- Resolved: the MCP propagation handler always passes automated intent. Trusted-maintainer writes stay internal to the server apply API and are not accepted from MCP client payloads.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -170,20 +177,4 @@ CORE TEMPLATE (~80 lines)
 - Essential what/why/how only
 - No boilerplate sections
 - Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
 -->
