@@ -22,6 +22,7 @@ export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
 export const executorConfigSchema = z.object({
   kind: z.enum(EXECUTOR_KINDS).default('native'),
   model: z.string().min(1).nullable().default(null),
+  configDir: z.string().trim().min(1).nullable().default(null),
   reasoningEffort: z.enum(REASONING_EFFORTS).nullable().default(null),
   serviceTier: z.enum(SERVICE_TIERS).nullable().default(null),
   sandboxMode: z.enum(SANDBOX_MODES).nullable().default(null),
@@ -33,7 +34,7 @@ export type ExecutorConfig = z.infer<typeof executorConfigSchema>;
 export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof ExecutorConfig)[]> = {
   native: [],
   'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
-  'cli-claude-code': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
+  'cli-claude-code': ['model', 'configDir', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
   'cli-opencode': ['model', 'reasoningEffort', 'timeoutSeconds'],
 };
 
@@ -165,6 +166,7 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
   const unsupportedFields: string[] = [];
   const allOptionalFields: (keyof ExecutorConfig)[] = [
     'model',
+    'configDir',
     'reasoningEffort',
     'serviceTier',
     'sandboxMode',

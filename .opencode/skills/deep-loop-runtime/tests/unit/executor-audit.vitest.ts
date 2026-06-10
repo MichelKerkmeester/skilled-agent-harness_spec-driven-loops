@@ -41,6 +41,7 @@ function cliCodexExecutor(): ExecutorConfig {
   return {
     kind: 'cli-codex',
     model: 'gpt-5.4',
+    configDir: null,
     reasoningEffort: 'high',
     serviceTier: 'priority',
     sandboxMode: null,
@@ -53,6 +54,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4',
+      configDir: null,
       reasoningEffort: 'high',
       serviceTier: 'priority',
       sandboxMode: null,
@@ -71,6 +73,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'native',
       model: null,
+      configDir: null,
       reasoningEffort: null,
       serviceTier: null,
       sandboxMode: null,
@@ -90,6 +93,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4',
+      configDir: null,
       reasoningEffort: 'high',
       serviceTier: 'priority',
       sandboxMode: null,
@@ -119,6 +123,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4-mini',
+      configDir: null,
       reasoningEffort: 'medium',
       serviceTier: 'fast',
       sandboxMode: null,
@@ -169,6 +174,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4-mini',
+      configDir: null,
       reasoningEffort: 'low',
       serviceTier: 'fast',
       sandboxMode: null,
@@ -191,6 +197,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'native',
       model: null,
+      configDir: null,
       reasoningEffort: null,
       serviceTier: null,
       sandboxMode: null,
@@ -210,6 +217,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4',
+      configDir: null,
       reasoningEffort: 'medium',
       serviceTier: 'standard',
       sandboxMode: null,
@@ -238,6 +246,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4-mini',
+      configDir: null,
       reasoningEffort: 'low',
       serviceTier: 'fast',
       sandboxMode: null,
@@ -261,6 +270,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4',
+      configDir: null,
       reasoningEffort: 'high',
       serviceTier: 'priority',
       sandboxMode: null,
@@ -276,6 +286,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4',
+      configDir: null,
       reasoningEffort: 'high',
       serviceTier: 'priority',
       sandboxMode: null,
@@ -323,6 +334,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4',
+      configDir: null,
       reasoningEffort: 'medium',
       serviceTier: 'standard',
       sandboxMode: null,
@@ -343,6 +355,7 @@ describe('executor-audit', () => {
     const executor: ExecutorConfig = {
       kind: 'native',
       model: null,
+      configDir: null,
       reasoningEffort: null,
       serviceTier: null,
       sandboxMode: null,

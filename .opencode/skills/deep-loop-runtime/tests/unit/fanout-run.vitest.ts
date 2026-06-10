@@ -512,3 +512,62 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
     expect(detectSameKindFromStack(stack, 'cli-opencode')).toBe(false);
   });
 });
+
+describe('fanout-run.cjs — cli-claude-code configDir env', () => {
+  function writeClaudeEnvStub(binDir: string): string {
+    const stubPath = join(binDir, 'claude');
+    writeFileSync(
+      stubPath,
+      '#!/bin/sh\necho "ARGV: $@"\necho "CLAUDE_CONFIG_DIR=$CLAUDE_CONFIG_DIR"\nexit 0\n',
+      { mode: 0o755 },
+    );
+    return stubPath;
+  }
+
+  async function runClaudeSeat(lineage: Record<string, unknown>): Promise<string> {
+    const binDir = makeTempDir('fanout-run-claude-env-bin-');
+    writeClaudeEnvStub(binDir);
+    const baseDir = makeTempDir('fanout-run-claude-env-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'fable', kind: 'cli-claude-code', model: 'claude-fable-5', count: 1, ...lineage }],
+      concurrency: 1,
+    });
+
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` };
+    delete env['CLAUDE_CONFIG_DIR'];
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-claude-env',
+        '--loop-type',
+        'review',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env,
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    return readFileSync(join(baseDir, 'lineages', 'fable', 'logs', 'fanout-lineage.out'), 'utf8');
+  }
+
+  it('injects expanded CLAUDE_CONFIG_DIR for a cli-claude-code lineage with configDir', async () => {
+    const stdout = await runClaudeSeat({ configDir: '~/.claude-account2' });
+    expect(stdout).toContain(`CLAUDE_CONFIG_DIR=${join(process.env['HOME'] ?? '', '.claude-account2')}`);
+    expect(stdout).toContain('--model claude-fable-5');
+  });
+
+  it('leaves CLAUDE_CONFIG_DIR absent when configDir is unset', async () => {
+    const stdout = await runClaudeSeat({});
+    expect(stdout).toContain('CLAUDE_CONFIG_DIR=');
+    expect(stdout).not.toContain('.claude-account2');
+  });
+});

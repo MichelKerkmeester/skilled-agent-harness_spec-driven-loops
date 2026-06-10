@@ -774,6 +774,7 @@ workflow:
             const executor = {
               kind: 'cli-codex',
               model: '{config.executor.model}',
+              configDir: '{config.executor.configDir}' === 'null' ? null : '{config.executor.configDir}',
               reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
               serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
               sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
@@ -872,6 +873,7 @@ workflow:
             - "Large-prompt wrapper mode rewrites the prompt file at promptPath to include the TARGET AUTHORITY preamble (prefix + divider + original body); the argv becomes a bare @promptPath reference"
         if_cli_claude_code:
           command: |
+            if [ -n "{optional_claude_config_dir}" ]; then export CLAUDE_CONFIG_DIR="{optional_claude_config_dir}"; fi
             claude \
               -p "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
               --model "{config.executor.model}" \
@@ -882,11 +884,15 @@ workflow:
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
           render_hint:
+            optional_claude_config_dir: |
+              If config.executor.configDir is set and non-null, expand a leading ~ to HOME and bind that path.
+              Otherwise expand to empty string.
             optional_effort_flag: |
               If config.executor.reasoningEffort is set and non-null, expand to: --effort {config.executor.reasoningEffort}
               Otherwise expand to empty string.
           notes:
             - "claude-code default permission-mode is 'plan' (read-only); we override to 'acceptEdits' for iteration writes"
+            - "config.executor.configDir maps to CLAUDE_CONFIG_DIR for account-specific Claude Code routing"
             - "claude-code has no serviceTier flag"
             - "claude-code supports --effort for reasoning depth"
         if_cli_opencode:

@@ -112,6 +112,16 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
 };
 
+function expandHomeDir(inputPath) {
+  if (inputPath === '~') {
+    return os.homedir();
+  }
+  if (typeof inputPath === 'string' && inputPath.startsWith('~/')) {
+    return path.join(os.homedir(), inputPath.slice(2));
+  }
+  return inputPath;
+}
+
 /**
  * Build the "run the full loop" prompt text for a CLI lineage subprocess.
  * The subprocess reads this, loads the skill, and runs the loop to convergence
@@ -417,6 +427,9 @@ async function main() {
       const extraEnv = {
         SPECKIT_FANOUT_LINEAGE_ID: lineage.label,
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
+        ...(lineage.kind === 'cli-claude-code' && lineage.configDir
+          ? { CLAUDE_CONFIG_DIR: expandHomeDir(lineage.configDir) }
+          : {}),
       };
 
       // Recursion guard (fail closed): refuse to spawn when this executor kind is

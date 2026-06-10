@@ -1,0 +1,18 @@
+{
+  "specFolder": "144-deep-loop-executor-config-dir",
+  "description": "Deep loop executor config-dir override",
+  "keywords": [
+    "deep",
+    "loop",
+    "executor",
+    "config-dir",
+    "override"
+  ],
+  "lastUpdated": "2026-06-10T16:35:59.897Z",
+  "specId": "144",
+  "folderSlug": "deep-loop-executor-config-dir",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

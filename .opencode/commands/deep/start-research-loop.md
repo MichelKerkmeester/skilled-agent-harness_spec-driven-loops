@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
-argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--executor=<type> [--model=X] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--executor=<type> [--model=X] [--config-dir=PATH] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search, code_graph_query, code_graph_context
 ---
 
@@ -122,6 +122,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.05  # decimal 0..1
   executor: native  # native | cli-codex | cli-claude-code | cli-opencode
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
+  executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional reasoning effort
   executor_service_tier: ""  # optional service tier
   executor_timeout: 900  # optional positive integer seconds
@@ -141,11 +142,12 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
 | `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
 | `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
+| `executor_config_dir`   | N        | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default                                                                                                                        | none                               | N                                                       |
 | `executor_reasoning`    | N        | flag `--reasoning-effort`, marker `executor_reasoning`, or executor default                                                                                                                            | none                               | N                                                       |
 | `executor_service_tier` | N        | flag `--service-tier`, marker `executor_service_tier`, or executor default                                                                                                                             | none                               | N                                                       |
 | `executor_timeout`      | N        | flag `--executor-timeout`, marker `executor_timeout`, or default                                                                                                                                       | `900`                              | N                                                       |
 | `resource_map_emit`     | N        | flag `--no-resource-map`, marker `resource_map_emit`, or default                                                                                                                                       | `true`                             | N                                                       |
-| `fanout_executors`      | N        | repeatable `--executor=<type>` flags or `--executors=<json>`; each `--executor` group accepts `--model`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N                                                       |
+| `fanout_executors`      | N        | repeatable `--executor=<type>` flags or `--executors=<json>`; each `--executor` group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N                                                       |
 | `fanout_concurrency`    | N        | flag `--concurrency=N`                                                                                                                                                                                 | `2`                                | N                                                       |
 
 **Fan-out default policy:** 0–1 `--executor` flags and no `--executors` → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, `--executors`, or any `--count > 1` → `config.fanout`. Native fan-out (count N for `native` executor) runs N sequential `@deep-research` agent dispatches with isolated dirs. CLI fan-out runs N headless subprocesses concurrently in the capped pool.
@@ -171,11 +173,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode`)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
+   |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
    |-- --no-resource-map -> config.resource_map.emit = false
-   |-- --executor=<type> [--model=X] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
+   |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
    |     (repeatable; each occurrence adds one entry to config.fanout.executors)
    |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch for complex configs
    |-- --concurrency=N -> config.fanout.concurrency (default 2)
@@ -193,6 +196,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Parsing to config mapping:
    - `--executor` -> `config.executor.type`
    - `--model` -> `config.executor.model`
+   - `--config-dir` -> `config.executor.configDir`
    - `--reasoning-effort` -> `config.executor.reasoningEffort`
    - `--service-tier` -> `config.executor.serviceTier`
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
@@ -230,7 +234,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
      B) cli-codex — `codex exec` with --model X -c model_reasoning_effort -c service_tier.
-     C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort. No service-tier.
+      C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
 
    Reply format examples:
@@ -248,7 +252,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - maxIterations = [from Q3 or flag or default 10]
    - convergenceThreshold = [from flag or default 0.05]
-   - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
 

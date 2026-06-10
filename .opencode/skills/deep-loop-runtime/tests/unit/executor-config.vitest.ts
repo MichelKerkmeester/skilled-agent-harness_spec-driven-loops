@@ -17,6 +17,7 @@ describe('executor-config', () => {
     expect(parseExecutorConfig({ kind: 'native' })).toEqual({
       kind: 'native',
       model: null,
+      configDir: null,
       reasoningEffort: null,
       serviceTier: null,
       sandboxMode: null,
@@ -85,6 +86,28 @@ describe('executor-config', () => {
       model: 'claude-opus-4-6',
       reasoningEffort: 'high',
     });
+  });
+
+  it('accepts cli-claude-code configDir when it is a non-empty string path', () => {
+    expect(
+      parseExecutorConfig({ kind: 'cli-claude-code', model: 'claude-fable-5', configDir: '~/.claude-account2' }),
+    ).toMatchObject({
+      kind: 'cli-claude-code',
+      model: 'claude-fable-5',
+      configDir: '~/.claude-account2',
+    });
+  });
+
+  it('rejects blank configDir values', () => {
+    expect(() => parseExecutorConfig({ kind: 'cli-claude-code', model: 'claude-fable-5', configDir: '   ' })).toThrow(
+      ExecutorConfigError,
+    );
+  });
+
+  it('rejects configDir for non-Claude executor kinds', () => {
+    expect(() => parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4', configDir: '~/.claude-account2' })).toThrowError(
+      /configDir.*not supported by executor kind 'cli-codex'/,
+    );
   });
 
   it('rejects unknown executor kinds', () => {
@@ -195,6 +218,15 @@ describe('parseFanoutConfig', () => {
     expect(config.concurrency).toBe(2);
     expect(config.executors[0].count).toBe(1);
     expect(config.executors[0].iterations).toBeNull();
+  });
+
+  it('accepts per-lineage cli-claude-code configDir in fan-out config', () => {
+    const config = parseFanoutConfig({
+      executors: [
+        { kind: 'cli-claude-code', model: 'claude-fable-5', configDir: '~/.claude-account2', label: 'fable' },
+      ],
+    });
+    expect(config.executors[0].configDir).toBe('~/.claude-account2');
   });
 
   it('honors explicit concurrency, count, and per-lineage iterations', () => {
