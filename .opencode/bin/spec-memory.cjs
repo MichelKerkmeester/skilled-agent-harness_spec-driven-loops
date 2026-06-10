@@ -10,8 +10,13 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 
 const opencodeDir = path.resolve(__dirname, '..');
-const cliSource = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'spec-memory-cli.ts');
-const cliDist = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'dist', 'spec-memory-cli.js');
+const mcpServerDir = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server');
+const sourceFiles = [
+  path.join(mcpServerDir, 'spec-memory-cli.ts'),
+  path.join(mcpServerDir, 'tool-schemas.ts'),
+  path.join(mcpServerDir, 'schemas', 'tool-input-schemas.ts'),
+];
+const cliDist = path.join(mcpServerDir, 'dist', 'spec-memory-cli.js');
 const defaultSocketDir = '/tmp/mk-spec-memory';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE === '1';
@@ -25,11 +30,13 @@ function ensureFreshDist() {
   if (!fs.existsSync(cliDist)) {
     fail(`spec-memory dist entrypoint is missing: ${cliDist}. Run npm run build --workspace=@spec-kit/mcp-server.`);
   }
-  if (allowStale || !fs.existsSync(cliSource)) return;
-  const sourceMtime = fs.statSync(cliSource).mtimeMs;
+  if (allowStale) return;
+  const existingSources = sourceFiles.filter((filePath) => fs.existsSync(filePath));
+  if (existingSources.length === 0) return;
+  const newestSourceMtime = Math.max(...existingSources.map((filePath) => fs.statSync(filePath).mtimeMs));
   const distMtime = fs.statSync(cliDist).mtimeMs;
-  if (sourceMtime > distMtime) {
-    fail(`spec-memory dist entrypoint is stale. Run npm run build --workspace=@spec-kit/mcp-server.`);
+  if (newestSourceMtime > distMtime) {
+    fail('spec-memory dist entrypoint is stale. Run npm run build --workspace=@spec-kit/mcp-server.');
   }
 }
 

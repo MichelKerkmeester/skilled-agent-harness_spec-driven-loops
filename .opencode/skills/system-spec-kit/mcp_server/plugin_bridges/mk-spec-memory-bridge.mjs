@@ -227,11 +227,13 @@ async function runCli(input) {
       'json',
       '--timeout-ms',
       String(remainingMs),
+      '--warm-only',
     ], {
       cwd: typeof input.workspaceRoot === 'string' && input.workspaceRoot.trim() ? input.workspaceRoot.trim() : REPO_ROOT,
       env: {
         ...process.env,
         SPECKIT_IPC_SOCKET_DIR: process.env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR,
+        SPECKIT_SPEC_MEMORY_CLI_PROMPT_TIME: '1',
       },
       stdio: ['ignore', 'pipe', 'pipe'],
     });

@@ -4,7 +4,7 @@
 
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
-import { getDb, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
+import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
 import { scoreTokenOverlap, tokenize } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 
@@ -67,7 +67,12 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
   }
 
   try {
-    const database = getDb();
+    // Read-only access: recommend calls must never open the daemon-owned
+    // database read-write (dual-writer hazard) or create it when absent.
+    const database = getDbReadOnly();
+    if (!database) {
+      throw new Error('skill graph database is absent; shadow scoring disabled');
+    }
     const active = getActiveEmbedder(database);
     const adapter = getAdapter(active.name);
     if (!adapter) {

@@ -195,14 +195,23 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
-function resolveTrustedCaller(metadata: Record<string, unknown>): boolean {
+export function resolveTrustedCaller(metadata: Record<string, unknown>): boolean {
   if (metadata.trusted === false || metadata.callerAuthority === 'untrusted') {
     return false;
   }
-  return metadata.trusted === true || metadata.callerAuthority === 'trusted' || metadata.transport === undefined;
+  if (metadata.trusted === true || metadata.callerAuthority === 'trusted') {
+    return true;
+  }
+  // _meta is caller-supplied, so absent/unknown transport metadata must fail
+  // CLOSED (untrusted). The daemon owner can restore the legacy
+  // default-trusted behavior for native MCP surfaces (e.g. /doctor repair
+  // flows, whose clients send no _meta) by setting
+  // MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted in the daemon's own environment
+  // (MCP registration env block / launcher env), which callers cannot forge.
+  return process.env.MK_SKILL_ADVISOR_TRUST_DEFAULT === 'trusted';
 }
 
-function buildCallerContext(extra: unknown): MCPCallerContext {
+export function buildCallerContext(extra: unknown): MCPCallerContext {
   const metadata = isRecord(extra) ? { ...extra } : {};
   return {
     sessionId: typeof metadata.sessionId === 'string' ? metadata.sessionId : null,

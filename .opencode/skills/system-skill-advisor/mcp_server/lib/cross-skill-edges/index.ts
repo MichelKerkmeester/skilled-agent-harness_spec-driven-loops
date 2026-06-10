@@ -33,17 +33,22 @@ export async function propagateInboundEnhances(options: PropagateEnhancesOptions
   };
   const candidates = detectInboundEnhances(skills, detectOpts);
 
+  // Resolve once so the apply gate and the reported value can never diverge:
+  // writes happen only on an explicit dryRun:false, and the result reports
+  // exactly the value that gated the writes.
+  const dryRun = options.dryRun ?? true;
+
   const result: PropagateEnhancesResult = {
     candidates,
     applied: [],
     skipped_existing: [],
     errors: [...loaderErrors],
-    dryRun: options.dryRun ?? true,
+    dryRun,
     mode: options.mode,
   };
 
-  // Apply mode with optional dry run
-  if (options.mode === 'apply' && (options.dryRun !== true)) {
+  // Apply mode requires an explicit dryRun:false opt-in
+  if (options.mode === 'apply' && dryRun === false) {
     const toApply = candidates.filter(c => {
       // Apply if explicitly selected by ID
       if (options.applyCandidateIds?.includes(c.id)) return true;

@@ -47,7 +47,7 @@ const DEFAULT_UNCERTAINTY_THRESHOLD = COMPAT_CONTRACT.defaults.uncertaintyThresh
 const ADVISOR_LAUNCHER_PATH = fileURLToPath(new URL('../../../../bin/mk-skill-advisor-launcher.cjs', import.meta.url));
 const ADVISOR_CLI_PATH = fileURLToPath(new URL('../../../../bin/skill-advisor.cjs', import.meta.url));
 const ADVISOR_BRIDGE_HELPER_PATH = fileURLToPath(new URL('../../../../bin/lib/launcher-ipc-bridge.cjs', import.meta.url));
-const ADVISOR_DB_DIR = fileURLToPath(new URL('../database', import.meta.url));
+const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
 const ADVISOR_MCP_TIMEOUT_MS = 8000;
 const ADVISOR_CLI_TIMEOUT_MS = 250;
 const ADVISOR_CLI_PROBE_TIMEOUT_MS = 50;
@@ -193,22 +193,28 @@ function createChildEnv(sourceEnv = process.env) {
   );
 }
 
-function resolveAdvisorDbDir(env = process.env) {
-  return resolve(env.MK_SKILL_ADVISOR_DB_DIR ?? env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? ADVISOR_DB_DIR);
+function resolveCliSocketDir(env = process.env) {
+  // Default to the same short /tmp directory as the launcher and CLI shim.
+  // Defaulting to the database directory produced a socket path longer than
+  // Darwin's 103-byte sun_path limit, so the warm probe always failed and the
+  // CLI fallback could never engage. An explicit env override still wins.
+  return env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR;
 }
 
 function createCliChildEnv(sourceEnv = process.env) {
   return {
     ...createChildEnv(sourceEnv),
-    SPECKIT_IPC_SOCKET_DIR: sourceEnv.SPECKIT_IPC_SOCKET_DIR ?? resolveAdvisorDbDir(sourceEnv),
+    SPECKIT_IPC_SOCKET_DIR: resolveCliSocketDir(sourceEnv),
+    MK_SKILL_ADVISOR_CLI_PROMPT_TIME: '1',
   };
 }
 
 function resolveCliSocketPath(env = process.env) {
-  if (env.SPECKIT_IPC_SOCKET_DIR?.startsWith('tcp://')) {
-    return env.SPECKIT_IPC_SOCKET_DIR;
+  const socketDir = resolveCliSocketDir(env);
+  if (socketDir.startsWith('tcp://')) {
+    return socketDir;
   }
-  return resolve(env.SPECKIT_IPC_SOCKET_DIR ?? resolveAdvisorDbDir(env), SOCKET_FILE_NAME);
+  return resolve(socketDir, SOCKET_FILE_NAME);
 }
 
 function socketPathTooLong(socketPath) {
@@ -594,6 +600,7 @@ function runCliRecommend(input, env, timeoutMs) {
       'json',
       '--timeout-ms',
       String(timeoutMs),
+      '--warm-only',
     ], {
       cwd: input.workspaceRoot,
       env: createCliChildEnv(env),

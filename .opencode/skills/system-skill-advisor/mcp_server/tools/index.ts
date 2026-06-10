@@ -57,7 +57,7 @@ export async function dispatchTool(
     case 'advisor_recommend':
       return toMCP(await handleAdvisorRecommend(args));
     case 'advisor_rebuild':
-      return toMCP(await handleAdvisorRebuild(args));
+      return toMCP(await handleAdvisorRebuild(args, callerContext));
     case 'advisor_status':
       return toMCP(await handleAdvisorStatus(args));
     case 'advisor_validate':

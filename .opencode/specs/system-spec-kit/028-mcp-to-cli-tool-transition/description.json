@@ -32,12 +32,14 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.209Z",
+  "lastUpdated": "2026-06-09T20:29:34.690Z",
   "specId": "028",
   "folderSlug": "mcp-to-cli-tool-transition",
   "parentChain": [
     "system-spec-kit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "09-06-26_21-29__next-steps.md"
+  ]
 }

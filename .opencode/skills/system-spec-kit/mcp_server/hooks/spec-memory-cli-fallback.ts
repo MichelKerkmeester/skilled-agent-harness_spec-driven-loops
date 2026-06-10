@@ -14,6 +14,7 @@ const DEFAULT_SOCKET_DIR = '/tmp/mk-spec-memory';
 const DEFAULT_PROBE_TIMEOUT_MS = 80;
 const MIN_CLI_TIMEOUT_MS = 25;
 const MAX_STDIO_BYTES = 1024 * 1024;
+const EXIT_SETTLE_GRACE_MS = 25;
 
 interface RepoPaths {
   readonly repoRoot: string;
@@ -202,6 +203,7 @@ export async function runWarmSpecMemoryCliTool(
     'json',
     '--timeout-ms',
     String(Math.max(1, Math.trunc(remainingMs))),
+    '--warm-only',
   ];
   if (options.sessionId) {
     cliArgs.push('--session-id', options.sessionId);
@@ -213,19 +215,46 @@ export async function runWarmSpecMemoryCliTool(
       env: {
         ...process.env,
         SPECKIT_IPC_SOCKET_DIR: process.env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR,
+        SPECKIT_SPEC_MEMORY_CLI_PROMPT_TIME: '1',
       },
       stdio: ['ignore', 'pipe', 'pipe'],
+      detached: true,
     });
     let stdout = '';
     let stderr = '';
     let settled = false;
     let timedOut = false;
+    const killProcessGroup = (): void => {
+      const pid = child.pid;
+      if (typeof pid !== 'number') {
+        return;
+      }
+      try {
+        // The shim runs the dist CLI as a grandchild via spawnSync; killing
+        // only the shim leaves that grandchild holding the stdio pipes.
+        process.kill(-pid, 'SIGKILL');
+      } catch {
+        // ESRCH: the group already exited.
+      }
+    };
     const finish = (exitCode: number | null, reason?: string): void => {
       if (settled) {
         return;
       }
       settled = true;
       clearTimeout(timer);
+      try {
+        const stdoutRest = child.stdout?.read() as string | null | undefined;
+        if (stdoutRest) {
+          stdout = capOutput(stdout, stdoutRest);
+        }
+        const stderrRest = child.stderr?.read() as string | null | undefined;
+        if (stderrRest) {
+          stderr = capOutput(stderr, stderrRest);
+        }
+      } catch {
+        // Best-effort drain only.
+      }
       const payload = parseCliStdout(stdout);
       const status: WarmSpecMemoryCliResult['status'] = exitCode === 0 && payload
         ? 'ok'
@@ -242,12 +271,7 @@ export async function runWarmSpecMemoryCliTool(
     };
     const timer = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGTERM');
-      setTimeout(() => {
-        if (!settled) {
-          child.kill('SIGKILL');
-        }
-      }, 100).unref?.();
+      killProcessGroup();
     }, remainingMs);
     timer.unref?.();
 
@@ -261,6 +285,14 @@ export async function runWarmSpecMemoryCliTool(
     });
     child.on('error', (error) => {
       finish(null, error.message);
+    });
+    child.on('exit', (code) => {
+      // 'close' never fires while a surviving grandchild holds the stdio
+      // pipes; settle shortly after exit so a held pipe cannot block the
+      // hook. 'close' below still wins the race in the normal case.
+      setTimeout(() => {
+        finish(code, timedOut ? 'timeout' : undefined);
+      }, EXIT_SETTLE_GRACE_MS).unref?.();
     });
     child.on('close', (code) => {
       finish(code, timedOut ? 'timeout' : undefined);

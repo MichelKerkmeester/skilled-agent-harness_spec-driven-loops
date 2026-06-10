@@ -14,6 +14,7 @@ const DEFAULT_SOCKET_DIR = '/tmp/mk-code-index';
 const DEFAULT_PROBE_TIMEOUT_MS = 80;
 const MIN_CLI_TIMEOUT_MS = 25;
 const MAX_STDIO_BYTES = 1024 * 1024;
+const EXIT_SETTLE_GRACE_MS = 25;
 
 interface RepoPaths {
   readonly repoRoot: string;
@@ -218,17 +219,43 @@ export async function runWarmCodeIndexCliTool(
         SPECKIT_CODE_INDEX_CLI_PROMPT_TIME: '1',
       },
       stdio: ['ignore', 'pipe', 'pipe'],
+      detached: true,
     });
     let stdout = '';
     let stderr = '';
     let settled = false;
     let timedOut = false;
+    const killProcessGroup = (): void => {
+      const pid = child.pid;
+      if (typeof pid !== 'number') {
+        return;
+      }
+      try {
+        // The shim runs the dist CLI as a grandchild via spawnSync; killing
+        // only the shim leaves that grandchild holding the stdio pipes.
+        process.kill(-pid, 'SIGKILL');
+      } catch {
+        // ESRCH: the group already exited.
+      }
+    };
     const finish = (exitCode: number | null, reason?: string): void => {
       if (settled) {
         return;
       }
       settled = true;
       clearTimeout(timer);
+      try {
+        const stdoutRest = child.stdout?.read() as string | null | undefined;
+        if (stdoutRest) {
+          stdout = capOutput(stdout, stdoutRest);
+        }
+        const stderrRest = child.stderr?.read() as string | null | undefined;
+        if (stderrRest) {
+          stderr = capOutput(stderr, stderrRest);
+        }
+      } catch {
+        // Best-effort drain only.
+      }
       const payload = parseCliStdout(stdout);
       const status: WarmCodeIndexCliResult['status'] = exitCode === 0 && payload
         ? 'ok'
@@ -245,12 +272,7 @@ export async function runWarmCodeIndexCliTool(
     };
     const timer = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGTERM');
-      setTimeout(() => {
-        if (!settled) {
-          child.kill('SIGKILL');
-        }
-      }, 100).unref?.();
+      killProcessGroup();
     }, remainingMs);
     timer.unref?.();
 
@@ -264,6 +286,14 @@ export async function runWarmCodeIndexCliTool(
     });
     child.on('error', (error) => {
       finish(null, error.message);
+    });
+    child.on('exit', (code) => {
+      // 'close' never fires while a surviving grandchild holds the stdio
+      // pipes; settle shortly after exit so a held pipe cannot block the
+      // hook. 'close' below still wins the race in the normal case.
+      setTimeout(() => {
+        finish(code, timedOut ? 'timeout' : undefined);
+      }, EXIT_SETTLE_GRACE_MS).unref?.();
     });
     child.on('close', (code) => {
       finish(code, timedOut ? 'timeout' : undefined);

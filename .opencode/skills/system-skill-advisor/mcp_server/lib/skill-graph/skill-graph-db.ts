@@ -213,6 +213,7 @@ const SCHEMA_SQL = `
 
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
+let readOnlyDb: Database.Database | null = null;
 
 export function resolveSkillGraphDbDir(): string {
   const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
@@ -231,6 +232,28 @@ export function resolveSkillGraphDbDir(): string {
 
 export function getSkillGraphDbPath(): string {
   return dbPath ?? join(resolveSkillGraphDbDir(), DB_FILENAME);
+}
+
+const CORRUPTION_REASON_PATTERN = /SQLITE_CORRUPT|SQLITE_NOTADB|database disk image is malformed|file is not a database|malformed/i;
+const TRANSIENT_REASON_PATTERN = /database is locked|SQLITE_BUSY|SQLITE_LOCKED|SQLITE_PROTOCOL|EIO|EPERM|EACCES|EROFS|ENOSPC/i;
+
+/**
+ * Only genuine on-disk corruption may trigger destructive recovery.
+ *
+ * Transient conditions (lock contention from a concurrent daemon, I/O or
+ * permission errors) must never rename/delete the live database out from
+ * under its owner, so they fail this check and initDb proceeds to a normal
+ * open (busy_timeout handles contention).
+ */
+export function isGenuineCorruptionReason(reason: string): boolean {
+  if (reason.startsWith('SQLITE_CHECK_FAILED') || TRANSIENT_REASON_PATTERN.test(reason)) {
+    return false;
+  }
+  // quick_check completed and reported integrity violations
+  if (reason.startsWith('SQLITE_QUICK_CHECK_')) {
+    return true;
+  }
+  return CORRUPTION_REASON_PATTERN.test(reason);
 }
 
 function recoverMalformedDatabase(databasePath: string, reason: string): void {
@@ -290,7 +313,7 @@ export function initDb(dbDir: string): Database.Database {
     mkdirSync(dbDir, { recursive: true });
     dbPath = join(dbDir, DB_FILENAME);
     const integrity = checkSqliteIntegrity(dbPath);
-    if (!integrity.ok && integrity.reason !== 'SQLITE_ABSENT') {
+    if (!integrity.ok && integrity.reason !== 'SQLITE_ABSENT' && isGenuineCorruptionReason(integrity.reason)) {
       recoverMalformedDatabase(dbPath, integrity.reason);
     }
     db = new Database(dbPath);
@@ -334,12 +357,48 @@ export function getDb(): Database.Database {
   return db!;
 }
 
+/**
+ * Read-only database access for recommend-path consumers (semantic shadow
+ * lane). Never creates the database file, never runs schema migrations, and
+ * never triggers malformed-database recovery, so secondary/bridge processes
+ * cannot become a second writer on the daemon-owned skill graph. Reuses the
+ * read-write handle when this process already owns one (daemon path).
+ * Returns null when the database file is absent or unopenable; callers must
+ * degrade gracefully (no shadow scoring).
+ */
+export function getDbReadOnly(): Database.Database | null {
+  if (db) return db;
+  if (readOnlyDb) return readOnlyDb;
+
+  const databasePath = join(resolveSkillGraphDbDir(), DB_FILENAME);
+  if (!existsSync(databasePath)) {
+    return null;
+  }
+
+  try {
+    const handle = new Database(databasePath, { readonly: true, fileMustExist: true });
+    handle.pragma('busy_timeout = 5000');
+    readOnlyDb = handle;
+    return readOnlyDb;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[skill-graph] Read-only open failed (${message}); shadow scoring degraded for this process`);
+    return null;
+  }
+}
+
 /** Close the database connection. */
 export function closeDb(): void {
   if (db) {
     db.close();
     db = null;
     dbPath = null;
+  }
+  if (readOnlyDb) {
+    try {
+      readOnlyDb.close();
+    } catch { /* best effort: read-only handle teardown */ }
+    readOnlyDb = null;
   }
 }
 
@@ -1015,7 +1074,12 @@ async function refreshSkillEmbeddingsLegacy(
 }
 
 export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddingRow[] {
-  const database = getDb();
+  // Recommend-path read: must not lazily create or migrate the database.
+  // Absent database means no embeddings; the shadow lane degrades to empty.
+  const database = getDbReadOnly();
+  if (!database) {
+    return [];
+  }
   if (hasActiveEmbedderPointer(database)) {
     const active = getActiveEmbedder(database);
     const tableName = vecTableNameForDim(active.dim);

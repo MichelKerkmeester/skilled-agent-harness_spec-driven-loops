@@ -65,7 +65,10 @@ interface SkillAdvisorCliFallbackDependencies {
 const DEFAULT_CLI_FALLBACK_TIMEOUT_MS = 250;
 const DEFAULT_CLI_PROBE_TIMEOUT_MS = 50;
 const EXIT_RETRYABLE = 75;
+const EXIT_SETTLE_GRACE_MS = 25;
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
+const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
+const MAX_STDOUT_BYTES = 1024 * 1024;
 const require = createRequire(import.meta.url);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -137,12 +140,14 @@ function loadBridgeModule(bridgePath: string): BridgeModule | null {
   }
 }
 
-function resolveSocketPath(paths: CliFallbackPaths, env: NodeJS.ProcessEnv): string {
+function resolveSocketPath(env: NodeJS.ProcessEnv): string {
   const socketDir = env.SPECKIT_IPC_SOCKET_DIR;
   if (socketDir?.startsWith('tcp://')) {
     return socketDir;
   }
-  return join(resolve(socketDir ?? paths.dbDir), SOCKET_FILE_NAME);
+  // Hooks do not inherit SPECKIT_IPC_SOCKET_DIR; default to the same short
+  // /tmp directory the CLI shim uses so the probe targets the live socket.
+  return join(resolve(socketDir ?? DEFAULT_SOCKET_DIR), SOCKET_FILE_NAME);
 }
 
 function socketPathTooLong(socketPath: string): boolean {
@@ -151,7 +156,7 @@ function socketPathTooLong(socketPath: string): boolean {
 }
 
 async function probeWarmDaemon(paths: CliFallbackPaths, env: NodeJS.ProcessEnv, timeoutMs: number): Promise<{ readonly ok: boolean; readonly socketPath?: string; readonly reason?: string }> {
-  const socketPath = resolveSocketPath(paths, env);
+  const socketPath = resolveSocketPath(env);
   if (socketPathTooLong(socketPath)) {
     return { ok: false, socketPath, reason: 'CLI_SOCKET_PATH_TOO_LONG' };
   }
@@ -173,11 +178,19 @@ async function probeWarmDaemon(paths: CliFallbackPaths, env: NodeJS.ProcessEnv, 
   return { ok: false, socketPath, reason: probe.reason ?? probe.status };
 }
 
-function childEnvForCli(paths: CliFallbackPaths, env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+function childEnvForCli(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   return {
     ...env,
-    SPECKIT_IPC_SOCKET_DIR: env.SPECKIT_IPC_SOCKET_DIR ?? paths.dbDir,
+    SPECKIT_IPC_SOCKET_DIR: env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR,
+    MK_SKILL_ADVISOR_CLI_PROMPT_TIME: '1',
   };
+}
+
+function capStdout(current: string, chunk: string): string {
+  if (current.length >= MAX_STDOUT_BYTES) {
+    return current;
+  }
+  return (current + chunk).slice(0, MAX_STDOUT_BYTES);
 }
 
 function runCliRecommend(args: {
@@ -208,14 +221,27 @@ function runCliRecommend(args: {
       'json',
       '--timeout-ms',
       String(args.timeoutMs),
+      '--warm-only',
     ], {
       cwd: args.paths.repoRoot,
-      env: childEnvForCli(args.paths, args.env),
+      env: childEnvForCli(args.env),
       stdio: ['ignore', 'pipe', 'ignore'],
+      detached: true,
     });
+    const killProcessGroup = (): void => {
+      const pid = child.pid;
+      if (typeof pid !== 'number') return;
+      try {
+        // The shim runs the dist CLI as a grandchild via spawnSync; killing
+        // only the shim leaves that grandchild holding the stdout pipe.
+        process.kill(-pid, 'SIGKILL');
+      } catch {
+        // ESRCH: the group already exited.
+      }
+    };
     const timer = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGKILL');
+      killProcessGroup();
     }, args.timeoutMs);
     timer.unref?.();
     const finish = (result: CliProcessResult): void => {
@@ -224,12 +250,31 @@ function runCliRecommend(args: {
       clearTimeout(timer);
       resolvePromise(result);
     };
+    const drainStdout = (): void => {
+      try {
+        const rest = child.stdout?.read() as string | null | undefined;
+        if (rest) {
+          stdout = capStdout(stdout, rest);
+        }
+      } catch {
+        // Best-effort drain only.
+      }
+    };
     child.stdout?.setEncoding('utf8');
     child.stdout?.on('data', (chunk: string) => {
-      stdout += chunk;
+      stdout = capStdout(stdout, chunk);
     });
     child.once('error', (error: NodeJS.ErrnoException) => {
       finish({ stdout, exitCode: null, signal: null, timedOut, spawnError: error.code ?? error.message });
+    });
+    child.once('exit', (exitCode: number | null, signal: NodeJS.Signals | null) => {
+      // 'close' never fires while a surviving grandchild holds the stdout
+      // pipe; settle shortly after exit so a held pipe cannot block the
+      // hook. 'close' below still wins the race in the normal case.
+      setTimeout(() => {
+        drainStdout();
+        finish({ stdout, exitCode, signal, timedOut, spawnError: null });
+      }, EXIT_SETTLE_GRACE_MS).unref?.();
     });
     child.once('close', (exitCode: number | null, signal: NodeJS.Signals | null) => {
       finish({ stdout, exitCode, signal, timedOut, spawnError: null });

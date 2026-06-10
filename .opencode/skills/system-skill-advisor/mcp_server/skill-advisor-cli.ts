@@ -34,6 +34,7 @@ interface ParsedCommand {
   readonly format: OutputFormat;
   readonly timeoutMs: number;
   readonly sessionId?: string;
+  readonly warmOnly: boolean;
   readonly args: Record<string, unknown>;
   readonly help: boolean;
   readonly version: boolean;
@@ -278,6 +279,12 @@ function parseFormat(raw: string): OutputFormat {
   throw new CliUsageError('--format must be one of: json, text, jsonl');
 }
 
+function parseInlineBoolean(raw: string, flagName: string): boolean {
+  if (raw === 'true' || raw === '1') return true;
+  if (raw === 'false' || raw === '0') return false;
+  throw new CliUsageError(`${flagName} must be true or false`);
+}
+
 function readOptionValue(tokens: string[], index: number, flagName: string): { readonly value: string; readonly nextIndex: number } {
   const inline = tokens[index].match(/^--[^=]+=(.*)$/);
   if (inline) return { value: inline[1], nextIndex: index + 1 };
@@ -307,19 +314,38 @@ function envTrustedDefault(): boolean {
     || process.env.SPECKIT_SKILL_ADVISOR_CLI_TRUSTED === '1';
 }
 
+function envFlagEnabled(name: string): boolean {
+  const raw = process.env[name];
+  if (raw === undefined || raw === null) return false;
+  return ['1', 'true', 'yes', 'on'].includes(raw.trim().toLowerCase());
+}
+
+function defaultWarmOnly(): boolean {
+  return envFlagEnabled('MK_SKILL_ADVISOR_CLI_WARM_ONLY')
+    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY')
+    || envFlagEnabled('MK_SKILL_ADVISOR_CLI_PROMPT_TIME')
+    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME')
+    || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')
+    || envFlagEnabled('OPENCODE_PROMPT_TIME')
+    || envFlagEnabled('CODEX_PROMPT_TIME')
+    || envFlagEnabled('CLAUDE_CODE_PROMPT_TIME');
+}
+
 export function parseCliArgs(argv: string[]): ParsedCommand {
   const command = argv[0];
   const trustedDefault = envTrustedDefault();
+  const warmOnlyDefault = defaultWarmOnly();
   if (!command || command === '--help' || command === '-h') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, args: {}, help: true, version: false, trusted: trustedDefault };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: true, version: false, trusted: trustedDefault };
   }
   if (command === '--version' || command === '-v') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, args: {}, help: false, version: true, trusted: trustedDefault };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: false, version: true, trusted: trustedDefault };
   }
 
   let format: OutputFormat = 'json';
   let timeoutMs = DEFAULT_TIMEOUT_MS;
   let sessionId: string | undefined;
+  let warmOnly = warmOnlyDefault;
   let jsonPayload: Record<string, unknown> | null = null;
   let trusted = trustedDefault;
   const tool = getToolDefinition(command);
@@ -336,7 +362,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     const option = `--${rawFlag}`;
 
     if (rawFlag === 'help' || rawFlag === 'h') {
-      return { command, format: 'text', timeoutMs, sessionId, args: {}, help: true, version: false, trusted };
+      return { command, format: 'text', timeoutMs, sessionId, warmOnly, args: {}, help: true, version: false, trusted };
     }
     if (rawFlag === 'format') {
       const read = readOptionValue(tokens, index, option);
@@ -372,6 +398,17 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
       index += 1;
       continue;
     }
+    if (rawFlag === 'warm-only') {
+      const inline = token.match(/^--[^=]+=(.*)$/);
+      warmOnly = inline ? parseInlineBoolean(inline[1], option) : true;
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'no-warm-only') {
+      warmOnly = false;
+      index += 1;
+      continue;
+    }
 
     if (!tool) {
       throw new CliUsageError(`Unknown command: ${command}`);
@@ -404,6 +441,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     format,
     timeoutMs,
     sessionId,
+    warmOnly,
     args: jsonPayload ?? parsedArgs,
     help: false,
     version: false,
@@ -543,8 +581,20 @@ function formatValidationMessage(error: unknown): string {
   return String(error);
 }
 
+function applySchemaDefaults(schema: unknown, args: Record<string, unknown>): Record<string, unknown> {
+  if (!isRecord(schema) || !isRecord(schema.properties)) return args;
+  const withDefaults: Record<string, unknown> = { ...args };
+  for (const [key, propertySchema] of Object.entries(schema.properties)) {
+    if (Object.prototype.hasOwnProperty.call(withDefaults, key)) continue;
+    if (isRecord(propertySchema) && Object.prototype.hasOwnProperty.call(propertySchema, 'default')) {
+      withDefaults[key] = propertySchema.default;
+    }
+  }
+  return withDefaults;
+}
+
 function validateToolArgs(tool: SkillAdvisorCliToolDefinition, args: Record<string, unknown>): Record<string, unknown> {
-  const coerced = coerceObjectForSchema(tool.inputSchema, args);
+  const coerced = coerceObjectForSchema(tool.inputSchema, applySchemaDefaults(tool.inputSchema, args));
   try {
     validateJsonSchema(tool.inputSchema, coerced, tool.name);
   } catch (error: unknown) {
@@ -613,7 +663,7 @@ ${JSON.stringify(tool.inputSchema, null, 2)}`;
 
 Usage:
   skill-advisor list-tools [--format json|text|jsonl]
-  skill-advisor <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--trusted]
+  skill-advisor <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--trusted] [--warm-only]
   skill-advisor <tool_name> --param value [--another-param value]
 
 Commands:
@@ -936,7 +986,17 @@ function callerMeta(trusted: boolean): Record<string, unknown> {
   };
 }
 
-async function callTool(toolName: string, args: Record<string, unknown>, timeoutMs: number, trusted: boolean): Promise<unknown> {
+async function ensureDaemonReady(socketPath: string, bridge: BridgeModule, paths: RepoPaths, timeoutMs: number, warmOnly: boolean): Promise<void> {
+  const initialProbe = await bridge.probeDaemon(socketPath, { timeoutMs: Math.min(timeoutMs, 5000), deepProbe: true });
+  if (initialProbe.status === 'alive') return;
+  if (warmOnly) {
+    throw new CliRetryableError(`backend unavailable: ${initialProbe.reason ?? initialProbe.status}`);
+  }
+  spawnLauncher(paths);
+  await waitForDaemon(socketPath, bridge, timeoutMs);
+}
+
+async function callTool(toolName: string, args: Record<string, unknown>, timeoutMs: number, trusted: boolean, warmOnly: boolean): Promise<unknown> {
   ensureSocketEnvironment();
   const paths = findRepoPaths();
   const bridge = loadBridge(paths);
@@ -945,11 +1005,7 @@ async function callTool(toolName: string, args: Record<string, unknown>, timeout
     throw new CliProtocolError(`IPC socket path exceeds the Darwin sun_path limit: ${socketPath}`);
   }
 
-  const initialProbe = await bridge.probeDaemon(socketPath, { timeoutMs: Math.min(timeoutMs, 5000), deepProbe: true });
-  if (initialProbe.status !== 'alive') {
-    spawnLauncher(paths);
-    await waitForDaemon(socketPath, bridge, timeoutMs);
-  }
+  await ensureDaemonReady(socketPath, bridge, paths, timeoutMs, warmOnly);
 
   const client = await JsonRpcSocketClient.connect(socketPath, bridge, timeoutMs);
   try {
@@ -972,8 +1028,8 @@ async function callTool(toolName: string, args: Record<string, unknown>, timeout
   }
 }
 
-async function invokeToolPayload(toolName: string, args: Record<string, unknown>, timeoutMs: number, trusted: boolean): Promise<ToolPayloadResult> {
-  const result = await callTool(toolName, args, timeoutMs, trusted);
+async function invokeToolPayload(toolName: string, args: Record<string, unknown>, timeoutMs: number, trusted: boolean, warmOnly: boolean): Promise<ToolPayloadResult> {
+  const result = await callTool(toolName, args, timeoutMs, trusted, warmOnly);
   return extractToolPayload(toolName, result);
 }
 
@@ -981,11 +1037,11 @@ function generationFromPayload(payload: unknown): unknown {
   return getDataRecord(payload)?.generation ?? null;
 }
 
-async function runSkillGraphScanJob(args: Record<string, unknown>, timeoutMs: number, trusted: boolean): Promise<ToolPayloadResult> {
+async function runSkillGraphScanJob(args: Record<string, unknown>, timeoutMs: number, trusted: boolean, warmOnly: boolean): Promise<ToolPayloadResult> {
   const workspaceRoot = findRepoPaths().repoRoot;
-  const before = await invokeToolPayload('advisor_status', { workspaceRoot }, timeoutMs, false);
-  const scan = await invokeToolPayload('skill_graph_scan', args, timeoutMs, trusted);
-  const after = await invokeToolPayload('advisor_status', { workspaceRoot }, timeoutMs, false);
+  const before = await invokeToolPayload('advisor_status', { workspaceRoot }, timeoutMs, false, warmOnly);
+  const scan = await invokeToolPayload('skill_graph_scan', args, timeoutMs, trusted, warmOnly);
+  const after = await invokeToolPayload('advisor_status', { workspaceRoot }, timeoutMs, false, warmOnly);
   const status = isRecord(scan.payload) && typeof scan.payload.status === 'string' ? scan.payload.status : 'ok';
   const scanData = getDataRecord(scan.payload) ?? scan.payload;
 
@@ -1030,8 +1086,8 @@ export async function runSkillAdvisorCli(argv: string[], io: CliIo = { stdout: p
     }
 
     const invoked = validated.tool.name === 'skill_graph_scan'
-      ? await runSkillGraphScanJob(validated.args, parsed.timeoutMs, parsed.trusted)
-      : await invokeToolPayload(validated.tool.name, validated.args, parsed.timeoutMs, parsed.trusted);
+      ? await runSkillGraphScanJob(validated.args, parsed.timeoutMs, parsed.trusted, parsed.warmOnly)
+      : await invokeToolPayload(validated.tool.name, validated.args, parsed.timeoutMs, parsed.trusted, parsed.warmOnly);
     writeLine(io.stdout, renderPayload(invoked.payload, parsed.format, validated.tool.name));
     return invoked.isError ? EXIT_RUNTIME : EXIT_SUCCESS;
   } catch (error: unknown) {

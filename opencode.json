@@ -57,6 +57,8 @@
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-skill-advisor",
         "SPECKIT_ADVISOR_SHADOW_MODE": "0",
         "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0",
+        "MK_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
+        "_NOTE_TRUST_DEFAULT": "Daemon-owner trust grant for mutation tools (advisor_rebuild, skill_graph_scan, skill_graph_propagate_enhances). Callers whose _meta omits transport/trust markers default to UNTRUSTED unless this is 'trusted'. Native MCP clients (e.g. /doctor repair flows) send no _meta, so this grant keeps them working; remove it to fail-closed on every transport-absent caller. Explicit _meta trusted:false / callerAuthority:'untrusted' is always rejected.",
         "HF_EMBED_SERVER_URL": "unix:///tmp/mk-hf-embed/hf-embed.sock",
         "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket — identical to mk-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to mk-spec-memory's.)",
         "_NOTE_CONTEXT_BUDGET": "Tool-schema wire payload: ~2,200 tokens (9 tools).",

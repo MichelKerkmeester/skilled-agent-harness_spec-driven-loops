@@ -40,6 +40,7 @@ interface ParsedCommand {
   readonly format: OutputFormat;
   readonly timeoutMs: number;
   readonly sessionId?: string;
+  readonly warmOnly: boolean;
   readonly args: Record<string, unknown>;
   readonly help: boolean;
   readonly version: boolean;
@@ -174,7 +175,7 @@ function usageText(): string {
 
 Usage:
   spec-memory list-tools [--format json|text|jsonl]
-  spec-memory <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--session-id ID]
+  spec-memory <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--session-id ID] [--warm-only]
   spec-memory <tool_name> --param value [--another-param value]
 
 Examples:
@@ -265,6 +266,12 @@ function parseFormat(raw: string): OutputFormat {
   throw new CliUsageError('--format must be one of: json, text, jsonl');
 }
 
+function parseInlineBoolean(raw: string, flagName: string): boolean {
+  if (raw === 'true' || raw === '1') return true;
+  if (raw === 'false' || raw === '0') return false;
+  throw new CliUsageError(`${flagName} must be true or false`);
+}
+
 function readOptionValue(tokens: string[], index: number, flagName: string): { readonly value: string; readonly nextIndex: number } {
   const inline = tokens[index].match(/^--[^=]+=(.*)$/);
   if (inline) return { value: inline[1], nextIndex: index + 1 };
@@ -289,18 +296,35 @@ function parseJsonObject(raw: string): Record<string, unknown> {
   return parsed as Record<string, unknown>;
 }
 
+function envFlagEnabled(name: string): boolean {
+  const raw = process.env[name];
+  if (raw === undefined || raw === null) return false;
+  return ['1', 'true', 'yes', 'on'].includes(raw.trim().toLowerCase());
+}
+
+function defaultWarmOnly(): boolean {
+  return envFlagEnabled('SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY')
+    || envFlagEnabled('SPECKIT_SPEC_MEMORY_CLI_PROMPT_TIME')
+    || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')
+    || envFlagEnabled('OPENCODE_PROMPT_TIME')
+    || envFlagEnabled('CODEX_PROMPT_TIME')
+    || envFlagEnabled('CLAUDE_CODE_PROMPT_TIME');
+}
+
 export function parseCliArgs(argv: string[]): ParsedCommand {
   const command = argv[0];
+  const warmOnlyDefault = defaultWarmOnly();
   if (!command || command === '--help' || command === '-h') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, args: {}, help: true, version: false };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: true, version: false };
   }
   if (command === '--version' || command === '-v') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, args: {}, help: false, version: true };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: false, version: true };
   }
 
   let format: OutputFormat = 'json';
   let timeoutMs = DEFAULT_TIMEOUT_MS;
   let sessionId: string | undefined;
+  let warmOnly = warmOnlyDefault;
   let jsonPayload: Record<string, unknown> | null = null;
   const tool = getToolDefinition(command);
   const parsedArgs: Record<string, unknown> = {};
@@ -316,7 +340,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     const option = `--${rawFlag}`;
 
     if (rawFlag === 'help' || rawFlag === 'h') {
-      return { command, format: 'text', timeoutMs, sessionId, args: {}, help: true, version: false };
+      return { command, format: 'text', timeoutMs, sessionId, warmOnly, args: {}, help: true, version: false };
     }
     if (rawFlag === 'format') {
       const read = readOptionValue(tokens, index, option);
@@ -334,6 +358,17 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
       const read = readOptionValue(tokens, index, option);
       sessionId = read.value;
       index = read.nextIndex;
+      continue;
+    }
+    if (rawFlag === 'warm-only') {
+      const inline = token.match(/^--[^=]+=(.*)$/);
+      warmOnly = inline ? parseInlineBoolean(inline[1], option) : true;
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'no-warm-only') {
+      warmOnly = false;
+      index += 1;
       continue;
     }
     if (rawFlag === 'json') {
@@ -374,6 +409,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     format,
     timeoutMs,
     sessionId,
+    warmOnly,
     args: jsonPayload ?? parsedArgs,
     help: false,
     version: false,
@@ -655,7 +691,17 @@ class JsonRpcSocketClient {
   }
 }
 
-async function callTool(toolName: string, args: Record<string, unknown>, timeoutMs: number): Promise<unknown> {
+async function ensureDaemonReady(socketPath: string, bridge: BridgeModule, paths: RepoPaths, timeoutMs: number, warmOnly: boolean): Promise<void> {
+  const initialProbe = await bridge.probeDaemon(socketPath, { timeoutMs: Math.min(timeoutMs, 5000), deepProbe: true });
+  if (initialProbe.status === 'alive') return;
+  if (warmOnly) {
+    throw new CliRetryableError(`backend unavailable: ${initialProbe.reason ?? initialProbe.status}`);
+  }
+  spawnLauncher(paths);
+  await waitForDaemon(socketPath, bridge, timeoutMs);
+}
+
+async function callTool(toolName: string, args: Record<string, unknown>, timeoutMs: number, warmOnly: boolean): Promise<unknown> {
   ensureSocketEnvironment();
   const paths = findRepoPaths();
   const bridge = loadBridge(paths);
@@ -664,11 +710,7 @@ async function callTool(toolName: string, args: Record<string, unknown>, timeout
     throw new CliProtocolError(`IPC socket path exceeds the Darwin sun_path limit: ${socketPath}`);
   }
 
-  const initialProbe = await bridge.probeDaemon(socketPath, { timeoutMs: Math.min(timeoutMs, 5000), deepProbe: true });
-  if (initialProbe.status !== 'alive') {
-    spawnLauncher(paths);
-    await waitForDaemon(socketPath, bridge, timeoutMs);
-  }
+  await ensureDaemonReady(socketPath, bridge, paths, timeoutMs, warmOnly);
 
   const client = await JsonRpcSocketClient.connect(socketPath, bridge, timeoutMs);
   try {
@@ -707,7 +749,7 @@ export async function runSpecMemoryCli(argv: string[], io: CliIo = { stdout: pro
     if (!validated) {
       throw new CliUsageError(`Unknown command: ${parsed.command}`);
     }
-    const result = await callTool(validated.tool.name, validated.args, parsed.timeoutMs);
+    const result = await callTool(validated.tool.name, validated.args, parsed.timeoutMs, parsed.warmOnly);
     const { payload, isError } = extractToolPayload(validated.tool.name, result);
     writeLine(io.stdout, renderPayload(payload, parsed.format));
     return isError ? EXIT_RUNTIME : EXIT_SUCCESS;
