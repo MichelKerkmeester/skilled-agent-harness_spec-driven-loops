@@ -60,6 +60,8 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
     'idx_post_insert_enrichment_incomplete',
     'idx_save_parent_content_hash_scope',
     'idx_save_parent_canonical_path',
+    'idx_memory_chunk_identity',
+    'idx_memory_chunk_fingerprint',
     // Active-row uniqueness guard: every v30+ DB builds this unique index. Listing it
     // here lets the compatibility check detect a DB whose guard was dropped or never
     // built, instead of silently passing a database with a broken active-row invariant.
@@ -83,6 +85,11 @@ const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'post_insert_enrichment_state',
   'post_insert_enrichment_completed_at',
   'post_insert_enrichment_version',
+  'chunk_id',
+  'chunk_fingerprint',
+  'chunk_kind',
+  'chunk_start_line',
+  'chunk_end_line',
 ];
 const REQUIRED_MEMORY_CONFLICT_COLUMNS: readonly string[] = [
   'id',
@@ -149,6 +156,16 @@ const POST_INSERT_ENRICHMENT_INCOMPLETE_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_post_insert_enrichment_incomplete
   ON memory_index(post_insert_enrichment_status, id)
   WHERE post_insert_enrichment_status != 'complete'
+`;
+const MEMORY_CHUNK_IDENTITY_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_chunk_identity
+  ON memory_index(file_path, chunk_id)
+  WHERE chunk_id IS NOT NULL
+`;
+const MEMORY_CHUNK_FINGERPRINT_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_chunk_fingerprint
+  ON memory_index(chunk_fingerprint)
+  WHERE chunk_fingerprint IS NOT NULL
 `;
 
 function hasTable(database: Database.Database, tableName: string): boolean {
@@ -401,6 +418,90 @@ function logDuplicateColumnMigrationSkip(columnName: string, error: unknown): vo
   });
 }
 
+function ensureIncrementalIndexFoundationSchema(database: Database.Database, context: string): void {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memoization_records (
+      component_path TEXT NOT NULL,
+      input_fingerprint TEXT NOT NULL,
+      code_hash TEXT NOT NULL,
+      output_blob TEXT NOT NULL,
+      computed_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (component_path, input_fingerprint, code_hash)
+    )
+  `);
+
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS dependency_edges (
+      parent_path TEXT NOT NULL,
+      child_path TEXT NOT NULL,
+      kind TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (parent_path, child_path, kind),
+      CHECK(parent_path != child_path)
+    )
+  `);
+
+  createRequiredIndex(
+    database,
+    'idx_memoization_records_component',
+    'CREATE INDEX IF NOT EXISTS idx_memoization_records_component ON memoization_records(component_path)',
+    context,
+  );
+  createRequiredIndex(
+    database,
+    'idx_dependency_edges_parent',
+    'CREATE INDEX IF NOT EXISTS idx_dependency_edges_parent ON dependency_edges(parent_path)',
+    context,
+  );
+  createRequiredIndex(
+    database,
+    'idx_dependency_edges_child',
+    'CREATE INDEX IF NOT EXISTS idx_dependency_edges_child ON dependency_edges(child_path)',
+    context,
+  );
+  createRequiredIndex(
+    database,
+    'idx_dependency_edges_kind',
+    'CREATE INDEX IF NOT EXISTS idx_dependency_edges_kind ON dependency_edges(kind)',
+    context,
+  );
+}
+
+function ensureMemoryChunkMetadataColumns(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping chunk metadata columns`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  const chunkColumns: Array<{ name: string; sql: string }> = [
+    { name: 'chunk_id', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_id TEXT' },
+    { name: 'chunk_fingerprint', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_fingerprint TEXT' },
+    { name: 'chunk_kind', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_kind TEXT' },
+    { name: 'chunk_start_line', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_start_line INTEGER' },
+    { name: 'chunk_end_line', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_end_line INTEGER' },
+  ];
+
+  for (const column of chunkColumns) {
+    if (columns.has(column.name)) {
+      continue;
+    }
+    try {
+      database.exec(column.sql);
+      columns.add(column.name);
+      logger.info(`${context}: Added memory_index.${column.name}`);
+    } catch (error: unknown) {
+      if (!get_error_message(error).includes('duplicate column')) {
+        throw error;
+      }
+      logDuplicateColumnMigrationSkip(column.name, error);
+    }
+  }
+
+  createRequiredIndex(database, 'idx_memory_chunk_identity', MEMORY_CHUNK_IDENTITY_INDEX_SQL, context);
+  createRequiredIndex(database, 'idx_memory_chunk_fingerprint', MEMORY_CHUNK_FINGERPRINT_INDEX_SQL, context);
+}
+
 function getMigrationAllowedBasePaths(): string[] {
   const workspaceRoot = process.cwd();
   const envPaths = process.env.MEMORY_ALLOWED_PATHS
@@ -438,8 +539,9 @@ function getMigrationAllowedBasePaths(): string[] {
 // V23: One-time spec_folder re-canonicalization + session_state migration
 // V24: Add trigger-cache source and temporal contiguity indexes
 // V30: Add post-insert enrichment completion markers
+// V31: Add incremental-index memo tables and chunk metadata
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 30;
+export const SCHEMA_VERSION = 31;
 
 /**
  * Deprecate-before-create pre-pass for the active-row logical-key unique index.
@@ -1528,6 +1630,12 @@ export function run_migrations(database: Database.Database, from_version: number
       'Migration v30',
     );
     logger.info('Migration v30: Created post-insert enrichment repair index');
+  };
+
+  migrations[31] = () => {
+    ensureIncrementalIndexFoundationSchema(database, 'Migration v31');
+    ensureMemoryChunkMetadataColumns(database, 'Migration v31');
+    logger.info('Migration v31: Created incremental-index foundation schema');
   };
 
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
@@ -2641,6 +2749,11 @@ export function create_schema(
       parent_id INTEGER REFERENCES memory_index(id) ON DELETE CASCADE,
       chunk_index INTEGER,
       chunk_label TEXT,
+      chunk_id TEXT,
+      chunk_fingerprint TEXT,
+      chunk_kind TEXT,
+      chunk_start_line INTEGER,
+      chunk_end_line INTEGER,
       encoding_intent TEXT DEFAULT 'document',
       learned_triggers TEXT DEFAULT '[]',
       interference_score REAL DEFAULT 0,
@@ -2708,6 +2821,7 @@ export function create_schema(
   ensureCompanionTables(database);
   ensureLineageTables(database);
   ensureGovernanceTables(database);
+  ensureIncrementalIndexFoundationSchema(database, 'create_schema');
 
   // the rollout — create embedding_cache table
   ensureEmbeddingCacheSchema(database);
@@ -2762,6 +2876,12 @@ export function create_schema(
     CREATE INDEX IF NOT EXISTS idx_post_insert_enrichment_incomplete
       ON memory_index(post_insert_enrichment_status, id)
       WHERE post_insert_enrichment_status != 'complete';
+    CREATE INDEX IF NOT EXISTS idx_memory_chunk_identity
+      ON memory_index(file_path, chunk_id)
+      WHERE chunk_id IS NOT NULL;
+    CREATE INDEX IF NOT EXISTS idx_memory_chunk_fingerprint
+      ON memory_index(chunk_fingerprint)
+      WHERE chunk_fingerprint IS NOT NULL;
   `);
 
   database.exec(`

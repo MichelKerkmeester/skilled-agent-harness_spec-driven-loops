@@ -14,6 +14,8 @@ import type Database from 'better-sqlite3';
 // Internal modules
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
 import { extractSpecFolder, extractDocumentType } from '../parsing/memory-parser.js';
+import { canonicalFingerprint } from './canonical-fingerprint.js';
+import { createMemoStore } from './memo.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -509,6 +511,33 @@ interface ReconcileMovesResult {
   filteredToIndex: string[];
 }
 
+interface IncrementalChunkFingerprint {
+  chunkId: string;
+  chunkFingerprint: string;
+}
+
+interface MemoizedPlanningInput {
+  componentPath: string;
+  canonicalInput: unknown;
+  codeHash: string;
+  chunks?: IncrementalChunkFingerprint[];
+}
+
+interface MemoizedPlanningOptions {
+  invalidateDependents?: boolean;
+}
+
+interface MemoizedPlanningResult {
+  memoHits: number;
+  memoMisses: number;
+  chunkHits: number;
+  chunkMisses: number;
+  dependencyInvalidated: number;
+  changedComponentPaths: string[];
+  unchangedComponentPaths: string[];
+  invalidatedComponentPaths: string[];
+}
+
 function reconcileMoves(
   toDelete: string[],
   toIndex: string[],
@@ -653,6 +682,90 @@ function batchUpdateMtimes(filePaths: string[]): { updated: number; failed: numb
   return { updated, failed };
 }
 
+function countChunkFingerprintHits(database: Database.Database, input: MemoizedPlanningInput): { hits: number; misses: number } {
+  if (!input.chunks || input.chunks.length === 0) {
+    return { hits: 0, misses: 0 };
+  }
+
+  try {
+    const stmt = database.prepare(`
+      SELECT 1 AS hit
+      FROM memory_index
+      WHERE (canonical_file_path = ? OR file_path = ?)
+        AND chunk_id = ?
+        AND chunk_fingerprint = ?
+      LIMIT 1
+    `);
+    const canonicalPath = getCanonicalPathKey(input.componentPath);
+    let hits = 0;
+    let misses = 0;
+    for (const chunk of input.chunks) {
+      const row = stmt.get(canonicalPath, input.componentPath, chunk.chunkId, chunk.chunkFingerprint) as { hit?: number } | undefined;
+      if (row?.hit === 1) {
+        hits++;
+      } else {
+        misses++;
+      }
+    }
+    return { hits, misses };
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[incremental-index] countChunkFingerprintHits error: ${msg}`);
+    return { hits: 0, misses: input.chunks.length };
+  }
+}
+
+function planMemoizedIndexing(
+  inputs: readonly MemoizedPlanningInput[],
+  options: MemoizedPlanningOptions = {},
+  database: Database.Database | null = db,
+): MemoizedPlanningResult {
+  const result: MemoizedPlanningResult = {
+    memoHits: 0,
+    memoMisses: 0,
+    chunkHits: 0,
+    chunkMisses: 0,
+    dependencyInvalidated: 0,
+    changedComponentPaths: [],
+    unchangedComponentPaths: [],
+    invalidatedComponentPaths: [],
+  };
+
+  if (!database) {
+    result.changedComponentPaths = inputs.map((input) => input.componentPath);
+    result.memoMisses = inputs.length;
+    result.chunkMisses = inputs.reduce((count, input) => count + (input.chunks?.length ?? 0), 0);
+    return result;
+  }
+
+  const memoStore = createMemoStore(database);
+  const changedPaths: string[] = [];
+  for (const input of inputs) {
+    const inputFingerprint = canonicalFingerprint(input.canonicalInput);
+    const memo = memoStore.getMemoRecord(input.componentPath, inputFingerprint, input.codeHash);
+    if (memo) {
+      result.memoHits++;
+      result.unchangedComponentPaths.push(input.componentPath);
+    } else {
+      result.memoMisses++;
+      result.changedComponentPaths.push(input.componentPath);
+      changedPaths.push(input.componentPath);
+    }
+
+    const chunkCounts = countChunkFingerprintHits(database, input);
+    result.chunkHits += chunkCounts.hits;
+    result.chunkMisses += chunkCounts.misses;
+  }
+
+  if (options.invalidateDependents !== false && changedPaths.length > 0) {
+    const invalidation = memoStore.invalidateDependents(changedPaths);
+    result.invalidatedComponentPaths = invalidation.invalidatedPaths;
+    result.dependencyInvalidated = invalidation.invalidatedPaths.length;
+  }
+
+  return result;
+}
+
 /* ───────────────────────────────────────────────────────────────
    8. EXPORTS
 ----------------------------------------------------------------*/
@@ -672,6 +785,7 @@ export {
   sweepOrphanIndexRows,
   reconcileMoves,
   batchUpdateMtimes,
+  planMemoizedIndexing,
 };
 
 /**
@@ -686,4 +800,8 @@ export type {
   OrphanSweepResult,
   MoveReconcileCandidate,
   ReconcileMovesResult,
+  IncrementalChunkFingerprint,
+  MemoizedPlanningInput,
+  MemoizedPlanningOptions,
+  MemoizedPlanningResult,
 };

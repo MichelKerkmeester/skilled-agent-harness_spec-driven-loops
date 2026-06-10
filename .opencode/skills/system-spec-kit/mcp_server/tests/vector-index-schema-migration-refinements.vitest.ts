@@ -387,9 +387,9 @@ describe('vector-index schema migration refinements', () => {
     // Must NOT throw — the deprecate-before-create pre-pass clears the duplicate actives.
     expect(() => ensureSchemaVersion(database)).not.toThrow();
 
-    // Schema advanced fully to v30.
+    // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(30);
+    expect(versionRow.version).toBe(31);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)

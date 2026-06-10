@@ -51,7 +51,12 @@ describe('Vector index schema compatibility validator', () => {
           difficulty REAL,
           last_review TEXT,
           document_type TEXT,
-          quality_score REAL
+          quality_score REAL,
+          chunk_id TEXT,
+          chunk_fingerprint TEXT,
+          chunk_kind TEXT,
+          chunk_start_line INTEGER,
+          chunk_end_line INTEGER
         );
         CREATE INDEX idx_stability ON memory_index(stability DESC);
         CREATE INDEX idx_last_review ON memory_index(last_review);
@@ -88,6 +93,12 @@ describe('Vector index schema compatibility validator', () => {
             COALESCE(session_id, '')
           )
           WHERE COALESCE(importance_tier, 'normal') NOT IN ('constitutional', 'deprecated');
+        CREATE INDEX idx_memory_chunk_identity
+          ON memory_index(file_path, chunk_id)
+          WHERE chunk_id IS NOT NULL;
+        CREATE INDEX idx_memory_chunk_fingerprint
+          ON memory_index(chunk_fingerprint)
+          WHERE chunk_fingerprint IS NOT NULL;
 
         CREATE TABLE memory_history (
           id INTEGER PRIMARY KEY,

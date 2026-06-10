@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "specs/system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/001-incremental-index-foundation"
-    last_updated_at: "2026-06-04T00:00:00Z"
-    last_updated_by: "gpt-5-5"
-    recent_action: "Planning docs updated"
-    next_safe_action: "Fill evidence after implementation lands"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed foundation schema, memo, planner, and chunk APIs"
+    next_safe_action: "Start causal-edge tombstones after review"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-phase-003-research-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-incremental-index-foundation |
-| **Completed** | 2026-05-13 |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -56,12 +56,19 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The incremental-index foundation is now in place without changing handler scan behavior. The memory store can represent canonical input memo records, dependency edges, and durable chunk metadata so later phases can decide what changed before parsing or embedding.
 
-### [Feature Name]
+### Additive Storage Foundation
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The schema now creates `memoization_records` and `dependency_edges` on fresh databases and migrates existing databases additively. `memory_index` also carries `chunk_id`, `chunk_fingerprint`, `chunk_kind`, `chunk_start_line`, and `chunk_end_line`, with indexes for chunk identity and fingerprint lookups.
+
+### Deterministic Fingerprints and Memo DAG
+
+`canonical-fingerprint.ts` provides stable JSON canonicalization, input fingerprints, and code hashes. `memo.ts` provides memo CRUD, dependency-edge insertion, transitive invalidation, and cycle rejection against sandboxed SQLite databases.
+
+### Stable Chunk Metadata and Planning API
+
+`memory-parser.ts` now exposes an opt-in `extractStableMemoryChunks()` API. It prefers `anchor:<id>`, falls back to `heading:<slug>`, then fixed windows, and computes chunk fingerprints from chunk-local normalized content. `incremental-index.ts` now exports `planMemoizedIndexing()` so future handler work can report memo hits, chunk hits, and dependency-invalidated paths without changing the current scan flow.
 
 ### Files Changed
 
@@ -69,7 +76,17 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modified | Added v31 additive schema for memo tables, dependency edges, chunk metadata columns, and chunk indexes. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/canonical-fingerprint.ts` | Created | Added deterministic input and code-hash helpers. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts` | Created | Added memo CRUD, dependency traversal, invalidation, and cycle rejection. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` | Modified | Added stable chunk metadata extraction without changing existing parse output. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts` | Modified | Added memoized planning API while preserving existing categorization behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/canonical-fingerprint.vitest.ts` | Created | Covers canonical input and code-hash determinism. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memo-storage.vitest.ts` | Created | Covers memo CRUD, transitive invalidation, and cycle rejection. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-stable-chunks.vitest.ts` | Created | Covers anchor-first identity and chunk fingerprint stability. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-foundation.vitest.ts` | Created | Covers memo hits, chunk hits, code-hash misses, and dependency invalidation. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-incremental-foundation.vitest.ts` | Created | Covers fresh schema and existing DB additive migration. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-enrichment-v30.vitest.ts` | Modified | Kept the v30 marker test focused on marker behavior while allowing the current schema version to advance. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +100,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The implementation shipped as additive library and schema work only. Existing `memory_index_scan` handler behavior still uses the current file-level categorization path; later integration can call the new planner API when ready.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +113,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep handler scan behavior unchanged | The parent planning amendment scoped this child to foundation primitives before scan behavior changes. |
+| Store chunk line spans as metadata only | Chunk identity stays anchored to anchors/headings/fallback windows, so unrelated line insertions do not change fingerprints for untouched chunks. |
+| Reject dependency cycles at insertion time | DAG invalidation must be safe and bounded before it can drive scan behavior. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +128,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Focused Vitest suites | PASS: 9 files, 70 tests. |
+| `npm run build` | PASS: `tsc --build && node scripts/finalize-dist.mjs` exited 0. |
+| Strict spec validation | PASS: `validate.sh ... --strict` exited 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +143,8 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. Handler scan behavior is intentionally unchanged. The new planner API is ready for the follow-on integration phase.
+2. The parent changelog was not updated because it is outside the approved write paths for this task.
 <!-- /ANCHOR:limitations -->
 
 ---

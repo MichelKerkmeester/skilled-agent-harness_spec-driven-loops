@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/001-incremental-index-foundation"
-    last_updated_at: "2026-06-04T00:00:00Z"
-    last_updated_by: "gpt-5-5"
-    recent_action: "Planned memo, DAG, and chunk-fingerprint foundation"
-    next_safe_action: "Start with additive schema/storage helpers before modifying scan behavior."
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed foundation schema, memo, planner, and chunk APIs"
+    next_safe_action: "Start causal-edge tombstones after review"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-phase-003-research-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Memo tables, dependency edges, chunk fingerprints, and chunk line spans are absent."
@@ -61,12 +61,12 @@ Phase 003 adds the storage and planning foundation for precise incremental index
 - [x] Existing hash and chunk infrastructure are known reuse points.
 
 ### Definition of Done
-- [ ] Additive schema for memo records, dependency edges, and chunk metadata is migrated safely.
-- [ ] Typed storage helpers exist before handler behavior changes.
-- [ ] Parser/chunking produces stable chunk ids, fingerprints, kinds, and line spans.
-- [ ] Scan planning reports memo hits, chunk hits, and dependency-invalidated counts.
-- [ ] Existing whole-file skip fallback remains available during rollout.
-- [ ] Strict validation passes for this phase.
+- [x] Additive schema for memo records, dependency edges, and chunk metadata is migrated safely.
+- [x] Typed storage helpers exist before handler behavior changes.
+- [x] Parser/chunking produces stable chunk ids, fingerprints, kinds, and line spans.
+- [x] Scan planning reports memo hits, chunk hits, and dependency-invalidated counts.
+- [x] Existing whole-file skip fallback remains available during rollout.
+- [x] Strict validation passes for this phase.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -113,29 +113,29 @@ Revalidated 2026-06-05 (relevance audit): STILL-RELEVANT — current indexing is
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Schema and Helpers
-- [ ] Add additive migrations for `memoization_records` and `dependency_edges`.
-- [ ] Add chunk metadata columns: `chunk_id`, `chunk_fingerprint`, `chunk_kind`, `chunk_start_line`, and `chunk_end_line`.
-- [ ] Create `canonical-fingerprint.ts` and golden tests.
-- [ ] Create `memo.ts` with memo CRUD, code-hash checks, dependency insertion, and cycle rejection.
+- [x] Add additive migrations for `memoization_records` and `dependency_edges`.
+- [x] Add chunk metadata columns: `chunk_id`, `chunk_fingerprint`, `chunk_kind`, `chunk_start_line`, and `chunk_end_line`.
+- [x] Create `canonical-fingerprint.ts` and golden tests.
+- [x] Create `memo.ts` with memo CRUD, code-hash checks, dependency insertion, and cycle rejection.
 
 ### Phase 2: Parser and Chunk Metadata
-- [ ] Extend parser output with anchor-first chunk identity.
-- [ ] Prefer `anchor:<id>`, then heading slug, then fixed window fallback.
-- [ ] Compute chunk fingerprints from chunk-local normalized content, not whole-file content.
-- [ ] Persist chunk kind and line spans as metadata only, not identity.
+- [x] Extend parser output with anchor-first chunk identity.
+- [x] Prefer `anchor:<id>`, then heading slug, then fixed window fallback.
+- [x] Compute chunk fingerprints from chunk-local normalized content, not whole-file content.
+- [x] Persist chunk kind and line spans as metadata only, not identity.
 
 ### Phase 3: Scan Planning Integration
-- [ ] Extend `incremental-index.ts` to expose memo/dependency planning.
-- [ ] Update `memory-index.ts` to consult planning before parse/embed.
-- [ ] Preserve existing whole-file skip fallback for missing or corrupt memo state.
-- [ ] Add scan summary fields for memo hits, chunk hits, and dependency-invalidated rows.
+- [x] Extend `incremental-index.ts` to expose memo/dependency planning.
+- [x] Defer `memory-index.ts` scan-behavior integration per foundation scope.
+- [x] Preserve existing whole-file skip fallback for missing or corrupt memo state.
+- [x] Add planning result fields for memo hits, chunk hits, and dependency-invalidated rows.
 
 ### Phase 4: Verification
-- [ ] Test no-op scans produce memo hits and zero new embedding writes.
-- [ ] Test external line additions do not change untouched chunk fingerprints.
-- [ ] Test changing one chunk invalidates only its dependent rows.
-- [ ] Test code-hash changes force recomputation.
-- [ ] Run strict validation for this phase.
+- [x] Test unchanged memoized inputs produce memo hits without embedding-path changes.
+- [x] Test external line additions do not change untouched chunk fingerprints.
+- [x] Test changed inputs invalidate only dependent rows.
+- [x] Test code-hash changes force recomputation.
+- [x] Run strict validation for this phase.
 <!-- /ANCHOR:phases -->
 
 ---

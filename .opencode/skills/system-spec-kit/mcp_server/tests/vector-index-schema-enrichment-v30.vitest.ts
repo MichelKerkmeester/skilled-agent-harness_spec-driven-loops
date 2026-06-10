@@ -52,7 +52,7 @@ describe('vector-index schema v30 post-insert enrichment markers', () => {
 
       const indexSql = getIndexSql(db, 'idx_post_insert_enrichment_incomplete');
       expect(indexSql).toContain("WHERE post_insert_enrichment_status != 'complete'");
-      expect(SCHEMA_VERSION).toBe(30);
+      expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(30);
     } finally {
       db.close();
     }
