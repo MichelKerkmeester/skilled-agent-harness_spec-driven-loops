@@ -58,7 +58,7 @@ Before every non-diff `Read`, state the specific reason for that read in one sen
 
 ---
 
-## 3. CAPABILITY SCAN
+## 3. ROUTING SCAN
 
 ### Skills
 

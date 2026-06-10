@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:29:12Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned stale skill documentation and ENV_REFERENCE to shipped 027 reality"
+    next_safe_action: "Review validation evidence and proceed with release-cleanup sibling lanes"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-002-skill-docs-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -62,10 +62,10 @@ Align every skill SKILL.md, README, assets, and references with shipped flags an
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Inventory current claims on .opencode/skills/**
-- [ ] Align current-state claims to shipped 027 reality
-- [ ] Verify coherence and record evidence
-- [ ] Strict validation passes for this child phase
+- [x] Inventory current claims on .opencode/skills/**
+- [x] Align current-state claims to shipped 027 reality
+- [x] Verify coherence and record evidence
+- [x] Strict validation passes for this child phase
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,15 +94,15 @@ Documentation surface alignment with explicit ownership boundaries.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory .opencode/skills/**
+- [x] Inventory .opencode/skills/**
 
 ### Phase 2: Implementation
-- [ ] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
-- [ ] Preserve ownership boundary: Broadest phase; it is itself sub-phaseable by skill group.
+- [x] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
+- [x] Preserve ownership boundary: no agents, commands, root instructions, or source code edits
 
 ### Phase 3: Verification
-- [ ] Run strict spec validation
-- [ ] Run surface-specific coherence checks
+- [x] Run strict spec validation
+- [x] Run surface-specific coherence checks
 <!-- /ANCHOR:phases -->
 
 ---

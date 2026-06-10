@@ -23,7 +23,7 @@ These variables control memory system behavior, token budgets, script execution,
 | `MEMORY_BASE_PATH` | Current working directory | Workspace root path |
 | `MEMORY_ALLOWED_PATHS` | `specs/,.opencode/` (Note: effective read boundary also includes `process.cwd()` and `~/.claude/` at runtime. For tighter isolation, explicitly set this variable to restrict filesystem access.) | Additional allowed paths (colon-separated) |
 | `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger matching logs |
-| `SPECKIT_STRICT_SCHEMAS` | `true` | Enforce strict Zod MCP tool input validation for the 36-tool `mk-spec-memory` surface (`TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; `false` allows unknown passthrough keys and is development-only) |
+| `SPECKIT_STRICT_SCHEMAS` | `true` | Enforce strict Zod MCP tool input validation for the 37-tool `mk-spec-memory` surface (`TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; `false` allows unknown passthrough keys and is development-only) |
 | `SPECKIT_RESPONSE_TRACE` | `false` | Include provenance-rich `scores`/`source`/`trace` fields by default in search responses |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | Auto-detected | Fallback chain for database directory path. `SPEC_KIT_DB_DIR` checked first, then `SPECKIT_DB_DIR` |
 | `DISABLE_SESSION_DEDUP` | `false` | Disables session-level deduplication when set to `true` |
@@ -283,6 +283,23 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | ON | R-011 | Three-tier assistive reconsolidation: auto-merge (>=0.96), review (>=0.88), keep-separate (<0.88). Review-tier logs recommendation only |
 | `SPECKIT_RESULT_EXPLAIN_V1` | ON | R-011 | Two-tier result explainability: slim (summary + topSignals) and debug (per-channel breakdown). Set `false` to disable |
 | `SPECKIT_RESPONSE_PROFILE_V1` | ON | R-011 | Mode-aware response profiles: quick, research, resume, debug. Set `false` to disable. Original response when profile omitted |
+
+#### Default-Off Memory Hardening Flags
+
+These shipped safety flags are opt-in. They should be enabled deliberately, usually first in shadow, audit or advisory mode. `mcp_server/ENV_REFERENCE.md` remains the source of truth for exact defaults, aliases and source-file anchors.
+
+| Flag | Default | Purpose |
+|------|---------|---------|
+| `SPECKIT_SEMANTIC_TRIGGERS` | OFF | Enables shadow semantic trigger scoring while lexical trigger results remain primary. |
+| `SPECKIT_SEMANTIC_TRIGGERS_MODE` | `shadow` | Chooses `shadow` or `union`; `union` can affect results only when the master flag is enabled. |
+| `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | OFF | Runs deferred causal-edge inference from session trace feedback events. |
+| `SPECKIT_FEEDBACK_RETENTION_LEARNING` | OFF | Enables feedback-aware retention reducer decisions during retention sweeps. |
+| `SPECKIT_FEEDBACK_RETENTION_MODE` | `shadow` | Chooses retention reducer safety mode; `active` still requires the master flag and shadow-evaluation evidence. |
+| `SPECKIT_SOFT_DELETE_TOMBSTONES` | OFF | Enables tombstone-aware delete and purgeable retention partition behavior. |
+| `SPECKIT_MEMORY_IDEMPOTENCY` | OFF | Enables server-derived replay receipts and advisory `near_duplicate_of` hints for save/update paths. |
+| `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | OFF | Enables authored compact-hook continuity snapshots instead of relying only on transcript-derived fallback context. |
+| `SPECKIT_COMPLETION_FRESHNESS` | OFF | Enables strict-only completion freshness validation against stored continuity fingerprints. |
+| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | OFF | Promotes enabled completion-freshness stale findings from warning to error. |
 
 #### Observability & Evaluation
 

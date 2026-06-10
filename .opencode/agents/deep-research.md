@@ -51,7 +51,7 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
 
 ---
 

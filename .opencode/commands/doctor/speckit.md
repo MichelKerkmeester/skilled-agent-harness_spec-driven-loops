@@ -65,6 +65,10 @@ This router never modifies authored spec packet docs. Each routed target has its
 
 **Canonical data:** `.opencode/commands/doctor/_routes.yaml`. Use that file to add or remove targets.
 
+Memory diagnostics should reflect the shipped v37 indexed-continuity runtime: schema v34 trigger embeddings, v35 `source_kind` provenance, v36 idempotency receipts / near-duplicate hints, v37 tombstone partitions, degraded-vector health signals, maintenance counters, divergent aliases, stale-audit evidence, and tool-ownership lint signals when the YAML/tool output provides them. Do not imply default-off paths are active unless their flags are enabled.
+
+**Daemon-backed CLI front doors:** The three spec-kit daemons now also expose additive CLI surfaces over the same warm daemons: `spec-memory.cjs` (37 tools), `code-index.cjs` (8 tools), and `skill-advisor.cjs` (9 tools). MCP remains primary. Use CLI fallbacks only for transport-down recovery with `--warm-only`; exit `75` means retryable daemon/IPC unavailability.
+
 **Companion commands** (NOT routed through `/doctor`):
 - `/doctor:update` — multi-subsystem orchestrator (lock + DAG + snapshot + rollback). Use for "rebuild everything in dependency-safe order."
 - `/doctor:mcp install|debug` — MCP server install / repair. Use when MCP infrastructure (not subsystem databases) is broken.

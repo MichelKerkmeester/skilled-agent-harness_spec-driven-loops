@@ -416,6 +416,8 @@ The surface is dual-stack: alongside the `mk-spec-memory` MCP registration, all 
 
 `memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `mk-spec-memory` surface. It converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. It runs dry-run by default so operators can inspect the proposed changes before committing them.
 
+The current memory baseline is schema v37. The 027 hardening features ship behind conservative defaults: semantic-trigger shadow matching, session-trace causal inference, feedback-retention reducers, soft-delete tombstones, memory idempotency receipts, authored continuity snapshots, and completion freshness all stay opt-in. `source_kind` provenance, retrieval observability, stale-audit signals, and tool-ownership linting are documented in the memory and ENV references rather than duplicated here.
+
 ### Reranking (removed)
 
 Cross-encoder reranking was removed in the 014 deprecation: the spec-memory local rerank path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search returns fused vector/BM25/FTS/graph/degree results with no rerank stage; the `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.

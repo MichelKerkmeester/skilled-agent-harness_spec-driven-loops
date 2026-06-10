@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:30:42Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned agent runtime mirrors to shipped agent-io and verification doctrine"
+    next_safe_action: "No further action for this phase; restart runtimes to load changed agent definitions"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-007-agent-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | Strict spec validation plus surface-specific review |
 
 ### Overview
-Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine. This planned phase follows an inventory -> align -> verify flow and is scaffolded only.
+Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine. This phase followed an inventory -> align -> verify flow and is complete.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +62,10 @@ Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io c
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Inventory current claims on .opencode/agents/**, .claude/agents/**, .codex/agents/**
-- [ ] Align current-state claims to shipped 027 reality
-- [ ] Verify coherence and record evidence
-- [ ] Strict validation passes for this child phase
+- [x] Inventory current claims on .opencode/agents/**, .claude/agents/**, .codex/agents/**
+- [x] Align current-state claims to shipped doctrine
+- [x] Verify coherence and record evidence
+- [x] Strict validation passes for this child phase
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,15 +94,15 @@ Documentation surface alignment with explicit ownership boundaries.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory .opencode/agents/**, .claude/agents/**, .codex/agents/**
+- [x] Inventory .opencode/agents/**, .claude/agents/**, .codex/agents/**
 
 ### Phase 2: Implementation
-- [ ] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
-- [ ] Preserve ownership boundary: Keep three-mirror parity explicit.
+- [x] Align shipped agent I/O and peck verification doctrine where applicable
+- [x] Preserve ownership boundary: Keep three-mirror parity explicit.
 
 ### Phase 3: Verification
-- [ ] Run strict spec validation
-- [ ] Run surface-specific coherence checks
+- [x] Run strict spec validation
+- [x] Run surface-specific coherence checks
 <!-- /ANCHOR:phases -->
 
 ---

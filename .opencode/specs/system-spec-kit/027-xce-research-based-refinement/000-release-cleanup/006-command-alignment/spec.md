@@ -7,14 +7,14 @@ trigger_phrases:
   - "shipped 027 alignment"
 importance_tier: "important"
 contextType: "implementation"
-status: "spec-scaffolded"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:29:29Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned command-doc content to shipped 027 reality"
+    next_safe_action: "Defer structural split to 027/011"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-006-command-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -44,11 +44,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded / Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Completion** | 0% |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -77,18 +77,25 @@ Inventory the owned surface, align its current-state claims to shipped 027 reali
 - Note: Coordinate with 027/011, which owns the structural router and presentation split; this phase is content-only.
 
 ### Out of Scope
-- Source-code changes during this scaffold.
-- Command, agent, skill, or YAML edits during this scaffold.
+- Source-code changes.
+- Command route, command asset, agent, skill, or YAML structure edits.
 - Structural router or presentation split changes owned by 027/011.
 - Claiming implementation before verification evidence exists.
 
-### Files to Change
-Planned future implementation scope; this scaffold only creates spec docs and metadata.
+### Files Changed
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/commands/** | Future Review/Modify | Inventory, align, and verify current-state documentation claims |
-| implementation-summary.md | Created | Planned stub for strict validation |
+| .opencode/commands/memory/manage.md | Modified | Correct schema v37 health output and add retention, tombstone, idempotency, and observability notes |
+| .opencode/commands/memory/search.md | Modified | Add semantic-trigger shadow, trace/why_ranked, session-trace causal inference, and 37-tool CLI fallback notes |
+| .opencode/commands/memory/save.md | Modified | Add source_kind, idempotency, provenance, and retention flag notes; remove stale `shared` retention value |
+| .opencode/commands/speckit/complete.md | Modified | Replace stale validator list with current shipped validation surface |
+| .opencode/commands/speckit/implement.md | Modified | Replace stale post-save `memory_save` guidance with targeted `memory_index_scan` freshness guidance |
+| .opencode/commands/speckit/resume.md | Modified | Add restore-panel, authored continuity snapshot, and 37-tool CLI fallback notes |
+| .opencode/commands/doctor/speckit.md | Modified | Add v37 diagnostic and tri-daemon CLI front-door notes |
+| .opencode/commands/doctor/mcp.md | Modified | Clarify five MCP servers versus three daemon-backed CLI front doors |
+| .opencode/commands/doctor/update.md | Modified | Add tri-daemon CLI fallback and v37 readiness notes |
+| implementation-summary.md | Modified | Record drift inventory, evidence, and 027/011 coordination note |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -101,7 +108,7 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | R1 | Inventory before alignment | Existing outward claims are listed before edits begin |
-| R2 | Preserve scaffold scope | This phase does not edit source, command, agent, skill, or YAML files during scaffold creation |
+| R2 | Preserve command structure | This phase does not edit source, agents, skills, YAML, or command routing/structure |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -117,7 +124,7 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 ## 5. SUCCESS CRITERIA
 
 - The phase has a clear inventory -> align -> verify handoff.
-- Completion remains 0% until implementation changes and verification evidence exist.
+- Completion is 100% with verification evidence in `implementation-summary.md`.
 - The surface does not conflict with 027/011 ownership boundaries.
 <!-- /ANCHOR:success-criteria -->
 

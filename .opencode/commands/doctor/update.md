@@ -206,6 +206,8 @@ action: lock -> probe -> migrate -> snapshot -> dashboard -> execute DAG -> vali
 
 Use it after upgrading spec-kit, after large packet moves, after a stale startup graph warning, or when multiple doctor commands would otherwise need to be run by hand. The command is intentionally conservative because a partial rebuild can leave memory, graph, advisor, and eval state disagreeing with each other.
 
+Transport note: MCP remains the primary registered surface. If MCP transport is down while a daemon is warm, the shipped daemon-backed CLIs are the sanctioned fallback surfaces over the same daemons: `node .opencode/bin/spec-memory.cjs` (37 tools), `node .opencode/bin/code-index.cjs` (8 tools), and `node .opencode/bin/skill-advisor.cjs` (9 tools). Prompt-time or diagnostic fallback calls should use `--warm-only`; exit `75` is retryable daemon/IPC unavailability.
+
 ## SUBSYSTEM CONTRACT
 
 | Subsystem     | Database                                                           | Status/Health                        | Mutating Tool                          | Gold Battery                           |
@@ -218,6 +220,8 @@ Use it after upgrading spec-kit, after large packet moves, after a stale startup
 | advisor       | skill graph + advisor tables                                       | `advisor_status`, `advisor_validate` | `advisor_rebuild`                      | validation suite                       |
 | deep-loop     | `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite` | `node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "<spec-folder>" --loop-type "<research\|review>" --session-id "<session-id>"` | `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "<spec-folder>" --loop-type "<research\|review>" --session-id "<session-id>" --nodes '<nodes-json>' --edges '<edges-json>'` | `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "<spec-folder>" --loop-type "<research\|review>" --session-id "<session-id>"` |
 | eval          | `mcp_server/database/speckit-eval.db`                              | `session_health`, eval probes        | `eval_run_ablation`                    | ablation run completes                 |
+
+The active memory schema is v37. The update/readiness story should account for v34 trigger embeddings, v35 `source_kind`, v36 idempotency receipts / near-duplicate markers, and v37 tombstone partitions when interpreting health, scan, or retention diagnostics.
 
 ## DEPENDENCY DAG
 

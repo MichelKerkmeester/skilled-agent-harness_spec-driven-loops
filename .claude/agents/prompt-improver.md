@@ -12,7 +12,7 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **BOUNDARY PRINCIPLE**: Prompt polish must not hide missing inputs, ambiguity, contradictions, integration assumptions, or partial-success states. Surface those limits in `ESCALATION_NOTES` or use the blocked package.
 
-**IMPORTANT**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+**IMPORTANT**: Use only `.claude/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
 
 ---
 
@@ -343,7 +343,7 @@ Fix verification gaps first
 │  INTEGRATIONS                                                           │
 │  ├─► Callers: @general                                                  │
 │  ├─► Command: /prompt                                           │
-│  ├─► Skills: sk-prompt, sk-doc                                  │
+│  ├─► Skills: sk-prompt, sk-doc                                          │
 │  └─► Tool constraints: target_cli and caller-supplied mcp_tools         │
 │                                                                         │
 │  LIMITS                                                                 │

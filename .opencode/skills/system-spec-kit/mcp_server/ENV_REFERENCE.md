@@ -114,13 +114,16 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Semantic trigger margin | OFF | `SPECKIT_SEMANTIC_TRIGGER_MARGIN` | Minimum top-vs-second score gap for accepting shadow semantic trigger matches | semantic trigger fallback |
 | Semantic trigger max | OFF | `SPECKIT_SEMANTIC_TRIGGER_MAX` | Maximum shadow semantic trigger matches computed for comparison telemetry | semantic trigger fallback |
 | Semantic trigger cache TTL | OFF | `SPECKIT_SEMANTIC_TRIGGER_CACHE_TTL_MS` | In-memory ready trigger-embedding cache TTL for shadow semantic trigger scoring | semantic trigger fallback |
+| Authored continuity snapshot | OFF | `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | Opt-in compact-hook authored continuity snapshot path; default transcript-derived fallback remains unchanged | continuity resilience |
+| Completion freshness | OFF | `SPECKIT_COMPLETION_FRESHNESS` | Opt-in strict-validation freshness scan that compares stored continuity fingerprints with packet content | completion freshness |
+| Completion freshness enforcement | OFF | `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | Promotes enabled completion-freshness stale findings from warning to error | completion freshness |
 <!-- PHASE-007-ENV-SLOT: SPECKIT_CODE_GRAPH_INTENT_* flags inserted here (027/007) -->
 <!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
 <!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_CODE_GRAPH_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 176 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
+Total unique variables documented: 179 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
 
 ### Provisional Measurement Contract
 
@@ -379,6 +382,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_AC_COVERAGE` | `false` | boolean | Opt-in acceptance-criteria coverage scan during spec validation. When unset, the registered rule exits pass with no warnings, preserving strict-validation results for existing folders. | `scripts/rules/check-ac-coverage.sh` |
 | `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | boolean | Reserved enforcement switch for a later promotion. The current shipped rule is INFO/advisory even when coverage is below the configured floor. | `scripts/rules/check-ac-coverage.sh` |
 | `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | number | Minimum covered acceptance-criteria ratio for the advisory scan. Values outside `[0,1]` are clamped before the floor is calculated. | `scripts/rules/check-ac-coverage.sh` |
+| `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | `false` | flag (`"1"`) | Opt-in compact-hook authored continuity snapshot mode. When set, the hook can emit the authored snapshot path instead of relying only on transcript-derived fallback context. | `mcp_server/hooks/claude/compact-inject.ts` |
+| `SPECKIT_COMPLETION_FRESHNESS` | `false` | boolean | Enables the strict-only completion freshness validation rule. The rule recomputes the packet content fingerprint and compares it with stored continuity metadata; unset preserves existing validation output. | `scripts/validation/continuity-freshness.ts`, `mcp_server/tests/continuity-freshness.vitest.ts` |
+| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | boolean | When completion freshness is enabled, promotes stale freshness findings from warning to error. | `scripts/validation/continuity-freshness.ts`, `mcp_server/tests/continuity-freshness.vitest.ts` |
 
 ---
 

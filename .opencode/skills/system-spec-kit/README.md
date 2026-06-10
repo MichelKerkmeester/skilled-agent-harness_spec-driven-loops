@@ -362,17 +362,33 @@ Short decision-type memories can bypass the content-length gate when SPECKIT_SAV
 | `degraded_needs_repair` | Failed rows require `memory_embedding_reconcile` |
 | `unavailable` | Index state could not be read |
 
-#### Index Schema History (v28 -> v30) and the `.needs-rebuild` Sentinel
+#### Index Schema History (v34 -> v37) and the `.needs-rebuild` Sentinel
 
-The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 30`) advanced three migrations during the 013 roadmap. Each is additive and applied automatically at server boot:
+The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 37`) advanced four migrations during the shipped memory hardening work. Each is additive and applied automatically at server boot:
 
 | Migration | Adds | Effect |
 | --- | --- | --- |
-| **v28** | Active-row partial unique index `idx_memory_logical_key_active_unique` | Enforces one non-deprecated row per logical key (spec folder + canonical path + anchor + tenant/user/agent/session), excluding `constitutional` and `deprecated` tiers. Backs the deprecate-before-insert dedup guard so a re-index can no longer create a duplicate active row. |
-| **v29** | Checkpoint-v2 metadata columns `snapshot_format`, `snapshot_path` | Lets a checkpoint record a file-snapshot format and on-disk path so checkpoint-v2 can restore from a `VACUUM ... INTO` snapshot rather than an inline blob. |
-| **v30** | Enrichment marker columns `post_insert_enrichment_status`, `post_insert_enrichment_state`, `post_insert_enrichment_completed_at`, `post_insert_enrichment_version` + partial index `idx_post_insert_enrichment_incomplete` | Tracks whether the optional save-time enrichment bundle finished for a row, so incomplete enrichment can be found and resumed without re-saving. |
+| **v34** | `memory_trigger_embeddings` table and status index | Stores derived trigger-phrase embeddings for default-off semantic trigger shadow matching. Lexical trigger matching remains primary unless the semantic trigger flags are explicitly enabled. |
+| **v35** | `memory_index.source_kind` with provenance backfill | Normalizes saved row provenance into `human`, `agent`, `system`, `import` or `feedback` while preserving safe defaults for older rows. |
+| **v36** | `memory_idempotency_receipts`, `delete_after`, `near_duplicate_of`, `last_dedup_checked_at` | Adds server-derived replay receipts for save/update paths and advisory near-duplicate hints without making the feature active unless `SPECKIT_MEMORY_IDEMPOTENCY=true`. |
+| **v37** | `deleted_at`, active recall index, purgeable retention index | Adds tombstone-ready partitions so delete and retention paths can use soft-delete tombstones when `SPECKIT_SOFT_DELETE_TOMBSTONES=true`. |
 
 After a checkpoint restore that swaps the live DB files, the runtime writes a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME` in `mcp_server/lib/storage/checkpoints.ts`) beside the restored DB. The next boot detects it through `repairNeedsRebuildSentinel()` and rebuilds the derived indexes (FTS5/BM25 shadow and vector profile) before serving, so a restored snapshot never serves from a stale shadow. The sentinel is cleared once the rebuild completes.
+
+#### Memory Hardening and Observability
+
+The shipped memory-hardening surface is intentionally conservative. Semantic trigger scoring, feedback retention learning, session-trace causal inference, idempotency receipts, soft-delete tombstones and completion freshness all default OFF. When enabled, the first step is shadow, audit or advisory output so operators can compare behavior before changing live recall or retention.
+
+| Feature | Default | Operator-facing behavior |
+| --- | --- | --- |
+| Semantic-trigger shadow | OFF | Computes semantic trigger candidates while lexical triggers remain primary; `union` mode still requires the master flag. |
+| Idempotency and provenance | OFF for receipts; `source_kind` always present | Adds replay receipts and near-duplicate hints only when enabled; provenance is normalized as `human`, `agent`, `system`, `import` or `feedback`. |
+| Soft-delete tombstones | OFF | Adds tombstone-aware delete and retention partitions behind `SPECKIT_SOFT_DELETE_TOMBSTONES`. Keep OFF until recall filters tombstoned rows consistently. |
+| Retrieval observability | OFF by default | `SPECKIT_RESPONSE_TRACE=true` adds search trace payloads for debugging without changing the default concise response shape. |
+| Feedback reducers | OFF | Session-trace causal inference and feedback-aware retention run only behind explicit gates; retention is shadow-first unless active mode has evidence. |
+| Completion freshness | OFF | Strict validation can compare stored continuity fingerprints with packet content and optionally promote stale findings to errors. |
+
+Stale-audit and tool-ownership lint are live guardrails around this surface: health checks report stale conditions, and pre-commit compares the generated tool-ownership map against live `TOOL_DEFINITIONS` so command ownership cannot drift silently.
 
 #### MCP Front-Proxy and In-Place Daemon Recycle
 
@@ -1082,4 +1098,3 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [Model Context Protocol](https://modelcontextprotocol.io/)            | MCP specification                                     |
 | [FSRS algorithm](https://github.com/open-spaced-repetition/fsrs4anki) | Free Spaced Repetition Scheduler (memory decay model) |
 | [sqlite-vec](https://github.com/asg017/sqlite-vec)                    | SQLite vector search extension                        |
-

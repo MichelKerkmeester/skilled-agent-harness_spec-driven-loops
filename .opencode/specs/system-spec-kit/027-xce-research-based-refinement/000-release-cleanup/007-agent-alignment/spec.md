@@ -7,14 +7,14 @@ trigger_phrases:
   - "shipped 027 alignment"
 importance_tier: "important"
 contextType: "implementation"
-status: "spec-scaffolded"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:30:42Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned agent runtime mirrors to shipped agent-io and verification doctrine"
+    next_safe_action: "No further action for this phase; restart runtimes to load changed agent definitions"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-007-agent-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -44,11 +44,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded / Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Completion** | 0% |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -60,7 +60,7 @@ _memory:
 Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine.
 
 ### Purpose
-Inventory the owned surface, align its current-state claims to shipped 027 reality, and verify that the resulting surface is coherent with schema v37, default-off flags, CLI front doors, constitutional rules, memory features, and doctrine.
+Inventory the owned surface, align its current-state claims to shipped reality, and verify that the resulting surface is coherent with the agent I/O contract, peck verification discipline, runtime mirror parity, and hygiene constraints.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -70,25 +70,27 @@ Inventory the owned surface, align its current-state claims to shipped 027 reali
 
 ### In Scope
 - Inventory current claims on .opencode/agents/**, .claude/agents/**, .codex/agents/**.
-- Align references to schema v37 and the shipped default-off flags.
-- Align references to phase 010 CLI front doors where this surface mentions tooling.
-- Align references to the two new constitutional rules and shipped memory behaviors where applicable.
-- Verify that peck, gem, memclaw, and openltm doctrine is represented only where relevant.
-- Note: Keep three-mirror parity explicit.
+- Align agent I/O contract doctrine where each agent owns it.
+- Align peck verification discipline where each agent owns it.
+- Preserve runtime wrappers, routing, permissions, and identities.
+- Verify three-mirror parity and stale-doctrine cleanup.
 
 ### Out of Scope
-- Source-code changes during this scaffold.
-- Command, agent, skill, or YAML edits during this scaffold.
-- Structural router or presentation split changes owned by 027/011.
-- Claiming implementation before verification evidence exists.
+- Source-code, command, skill, or YAML edits.
+- Routing, permission, model, or identity changes in agent wrappers.
+- New agent behaviors beyond shipped doctrine.
+- Git commit creation.
 
 ### Files to Change
-Planned future implementation scope; this scaffold only creates spec docs and metadata.
+Implemented documentation scope.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/agents/**, .claude/agents/**, .codex/agents/** | Future Review/Modify | Inventory, align, and verify current-state documentation claims |
-| implementation-summary.md | Created | Planned stub for strict validation |
+| .opencode/agents/*.md | Modified | Canonical doctrine cleanup and mirror source bodies |
+| .claude/agents/*.md | Modified | Runtime mirror bodies synchronized from canonical doctrine |
+| .codex/agents/*.toml | Modified | Runtime mirror bodies synchronized from canonical doctrine; TOML wrappers preserved |
+| implementation-summary.md | Modified | Completion evidence and verification results |
+| tasks.md | Modified | Task completion and evidence |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -100,15 +102,15 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| R1 | Inventory before alignment | Existing outward claims are listed before edits begin |
-| R2 | Preserve scaffold scope | This phase does not edit source, command, agent, skill, or YAML files during scaffold creation |
+| R1 | Inventory before alignment | Existing outward claims are compared across .opencode, .claude, and .codex mirrors before edits |
+| R2 | Preserve approved scope | Only agent mirror files and this phase's spec docs are modified |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| R3 | Align shipped 027 claims | Surface mentions schema v37, default-off flags, CLI front doors, constitutional rules, memory features, and doctrine only when accurate |
-| R4 | Verify current-state coherence | Strict validation passes and implementation evidence names the checks used |
+| R3 | Align shipped doctrine | Agent I/O and peck verification doctrine are present only where each agent owns it |
+| R4 | Verify current-state coherence | Parity checks, stale-doctrine grep, TOML parsing, and strict validation pass |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -116,9 +118,9 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- The phase has a clear inventory -> align -> verify handoff.
-- Completion remains 0% until implementation changes and verification evidence exist.
-- The surface does not conflict with 027/011 ownership boundaries.
+- The phase has a clear inventory -> align -> verify record.
+- Completion is 100% with verification evidence in implementation-summary.md.
+- The surface does not change routing, permissions, identities, commands, skills, or source code.
 <!-- /ANCHOR:success-criteria -->
 
 ---

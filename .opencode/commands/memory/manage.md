@@ -64,7 +64,7 @@ Provide a unified interface for the indexed-continuity database **management** o
 - Retention sweep of expired governed records
 - Tier management and trigger editing
 - Validation feedback and deletion
-- Health checks and diagnostics
+- Health checks and diagnostics, including schema v37, degraded-vector state, maintenance counters, divergent aliases, and hard-exclusion audit signals
 - Checkpoint creation, restoration, listing, and deletion
 
 **Separation from `/memory:search`:**
@@ -416,6 +416,18 @@ Runs `memory_retention_sweep` to audit or delete governed spec-doc records whose
 4. Execute `mcp__mk_spec_memory__memory_retention_sweep({ dryRun: false })` only after confirmation.
 5. Report deleted count plus any retention audit metadata returned by the tool.
 
+### Shipped Retention Flags
+
+The retention sweep is live, while the 027 reducer and tombstone behaviors are default-off safety gates:
+
+| Flag | Default | Effect When Enabled |
+|------|---------|---------------------|
+| `SPECKIT_FEEDBACK_RETENTION_LEARNING` | off | Computes feedback-aware retention reducer decisions during sweep |
+| `SPECKIT_FEEDBACK_RETENTION_MODE` | `shadow` | `shadow` writes audit decisions only; `active` applies only with the master flag and shadow-evaluation evidence |
+| `SPECKIT_SOFT_DELETE_TOMBSTONES` | off | Uses tombstoned rows and purgeable partitions for delete/retention paths once recall surfaces filter deleted rows |
+
+If the sweep result includes `tombstoneState`, report it verbatim. Do not imply soft-delete is active unless `SPECKIT_SOFT_DELETE_TOMBSTONES=true`.
+
 ---
 
 ## 9. BULK DELETE MODE
@@ -486,6 +498,7 @@ STATUS=OK REMOVED=<N> TIER=<tier>
 - `memory_bulk_delete` auto-creates a checkpoint before deletion (unless `skipCheckpoint: true`)
 - The tool refuses unscoped deletion of constitutional/critical tiers at the MCP level as well
 - For fine-grained per-item review, use `/memory:manage cleanup` instead
+- When `SPECKIT_SOFT_DELETE_TOMBSTONES=true`, delete paths can tombstone affected rows/edges before purge; default-off behavior remains hard deletion.
 
 ---
 
@@ -649,18 +662,29 @@ MEMORY:HEALTH
 
   Status      <healthy|degraded|error>
   Size        <size>
-  Schema      v23
+  Schema      v37
   Total       <N>
 
+→ Index ────────────────────────────────────────────
+  Summary     <healthy_fresh|healthy_lagging_vectors|stale_needs_scan|degraded_needs_repair|unavailable>
+  Pending     <N>
+  Failed      <N>
+
 → Tables ───────────────────────────────────────────
-  PASS  memory_index (v23)
+  PASS  memory_index (v37)
   PASS  memory_history
   PASS  checkpoints
   PASS  memory_conflicts
   PASS  causal_edges
   PASS  memory_corrections
+  PASS  memory_idempotency_receipts
 
   Note: causal_edges stores explicit spec-doc record relationships for lineage tooling.
+
+→ Retrieval Observability ───────────────────────────
+  Vector      <available|degraded-vector>
+  Maintenance <maintenance-counters summary>
+  Exclusions  <hard-exclusion audit summary>
 
 → Checks ───────────────────────────────────────────
   PASS  DB accessible
@@ -672,8 +696,10 @@ MEMORY:HEALTH
   WARN  <N> spec-doc records without trigger phrases
   WARN  <N> spec-doc records older than 90 days
 
-STATUS=OK HEALTH=<healthy|degraded|error> SCHEMA=v13
+STATUS=OK HEALTH=<healthy|degraded|error> SCHEMA=v37
 ```
+
+Schema notes: v34 added trigger-embedding schema, v35 added `memory_index.source_kind`, v36 added idempotency receipts and near-duplicate markers, and v37 added tombstone columns plus active/purgeable memory partitions.
 
 ---
 
@@ -964,7 +990,7 @@ mcp__mk_spec_memory__memory_ingest_status({ jobId: "<jobId>" })
 mcp__mk_spec_memory__memory_ingest_cancel({ jobId: "<jobId>" })
 ```
 
-> **Feature Flag Behavior:** `SPECKIT_ADAPTIVE_FUSION` affects scan and search behavior: when enabled, index scans apply adaptive weight profiles during embedding and artifact-class routing during re-indexing. `SPECKIT_EXTENDED_TELEMETRY` enables detailed per-operation metrics for scan, search, and health calls. **Mutation Ledger:** cleanup and delete operations are recorded in the append-only mutation ledger, providing a full audit trail that can be reviewed when investigating unexpected state changes.
+> **Feature Flag Behavior:** `SPECKIT_ADAPTIVE_FUSION` affects search-time weighting and result fusion. `SPECKIT_EXTENDED_TELEMETRY` enables detailed per-operation metrics for scan, search, and health calls. Default-off 027 flags include semantic triggers, session-trace causal inference, feedback retention learning, soft-delete tombstones, memory idempotency, authored continuity snapshots, and completion freshness. **Mutation Ledger:** cleanup and delete operations are recorded in the append-only mutation ledger, providing a full audit trail that can be reviewed when investigating unexpected state changes.
 
 ### memory_index_scan Parameters
 
@@ -995,10 +1021,12 @@ mcp__mk_spec_memory__memory_ingest_cancel({ jobId: "<jobId>" })
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `reportMode` | string | `full` | `full` (system diagnostics) or `divergent_aliases` (compact alias triage) |
+| `includeFullReport` | boolean | false | Include detailed V8 heap, RSS, external memory, and cache byte estimates |
 | `limit` | number | 20 | Max divergent alias groups when `reportMode=divergent_aliases` (max 200) |
 | `specFolder` | string | - | Spec folder filter for divergent alias triage mode |
 | `autoRepair` | boolean | false | Attempt best-effort repair actions (e.g., FTS rebuild) |
 | `confirmed` | boolean | false | Required with `autoRepair:true` to execute repairs. Without it, returns confirmation-only response |
+| `cleanFiles` | boolean | false | Remove orphaned vector/index files surfaced by integrity checks |
 
 ### memory_list: Additional Parameters
 
@@ -1029,6 +1057,8 @@ mcp__mk_spec_memory__memory_ingest_cancel({ jobId: "<jobId>" })
 
 > Spec-doc records with high confidence and validation counts may be promoted to critical tier via learned feedback.
 
+When `SPECKIT_FEEDBACK_RETENTION_LEARNING=true`, validation and implicit feedback can also feed the retention reducer. The default mode remains `shadow`, so command output should describe reducer decisions as audit-only unless active mode is explicitly enabled and supported by shadow-evaluation evidence.
+
 ### memory_bulk_delete: Additional Parameters
 
 | Parameter | Type | Default | Description |
@@ -1045,6 +1075,17 @@ mcp__mk_spec_memory__memory_ingest_cancel({ jobId: "<jobId>" })
 | Bulk folder delete | `specFolder` + `confirm: true` | Delete all spec-doc records in a spec folder |
 
 The `confirm` parameter only accepts `true` (not `false`): it is a safety gate, not a toggle.
+
+### 027 Schema Additions
+
+The active indexed-continuity schema is v37:
+
+| Version | Addition | Command Surface Impact |
+|---------|----------|------------------------|
+| v34 | Trigger embedding tables | Enables default-off semantic-trigger shadow scoring telemetry |
+| v35 | `source_kind` provenance | Health and search diagnostics can distinguish human, agent, system, import, and feedback-origin rows |
+| v36 | Idempotency receipts and `near_duplicate_of` | Saves/updates can replay server-derived receipts when `SPECKIT_MEMORY_IDEMPOTENCY=true` |
+| v37 | Tombstone active/purgeable partitions | Delete and retention outputs may include tombstone state when `SPECKIT_SOFT_DELETE_TOMBSTONES=true` |
 
 ---
 

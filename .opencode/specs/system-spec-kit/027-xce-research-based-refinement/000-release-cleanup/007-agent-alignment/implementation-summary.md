@@ -1,19 +1,19 @@
 ---
 title: "Implementation Summary: Agent Alignment"
-description: "Planned - not yet implemented. Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine."
+description: "Completed agent mirror alignment across .opencode, .claude, and .codex with shipped agent-io and verification-discipline doctrine."
 trigger_phrases:
   - "agent alignment implementation summary"
   - "planned release cleanup scaffold"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:30:42Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned agent runtime mirrors to shipped agent-io and verification doctrine"
+    next_safe_action: "No further action for this phase; restart runtimes to load changed agent definitions"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-007-agent-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -42,10 +42,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment |
-| **Completed** | Planned - not yet implemented |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Planned |
-| **Completion** | 0% |
+| **Status** | Completed |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,30 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been implemented yet. This stub exists so strict validation can treat the child as a complete Planned scaffold while preserving completion at 0%.
+Aligned the three runtime agent mirrors to the shipped agent I/O and verification-discipline doctrine while preserving runtime wrappers, routing, permissions, and identities.
 
-### Planned Scope
+### Agents Touched
 
-Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine.
+All 12 runtime triplets were normalized for body parity: orchestrate, code, review, context, debug, deep-research, deep-review, deep-context, markdown, prompt-improver, ai-council, and deep-improvement.
+
+### Mirror Drift and Stale Doctrine Fixed
+
+- `.claude` and `.codex` stale bodies were synchronized from canonical `.opencode` bodies with runtime path-format substitutions only.
+- Canonical evergreen hygiene was corrected by removing mutable packet, task, and ADR labels from agent bodies and Codex wrapper comments.
+- `@orchestrate` gained explicit consume-only verdict wording while preserving the existing blocker-preservation behavior.
+- `@context`, `@debug`, `@deep-research`, `@deep-review`, `@deep-context`, `@markdown`, `@prompt-improver`, `@ai-council`, and `@deep-improvement` stale mirror drift was corrected.
+- `@code` was already normalized but was included in the parity verification set.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| implementation-summary.md | Created | Record Planned status for strict validation |
+| .opencode/agents/*.md | Modified | Canonical doctrine cleanup and mirror source bodies |
+| .claude/agents/*.md | Modified | Runtime mirror bodies synchronized from canonical doctrine |
+| .codex/agents/*.toml | Modified | Runtime mirror bodies synchronized from canonical doctrine; TOML wrappers preserved |
+| implementation-summary.md | Modified | Completion evidence and verification results |
+| tasks.md | Modified | Completion evidence for each task |
+| spec.md, plan.md, description.json, graph-metadata.json | Modified | Completion metadata reconciled |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +84,7 @@ Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io c
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This child phase has not been delivered. Future implementation must replace this stub content with actual changes and verification evidence.
+The implementation used an inventory-first flow: enumerate mirror triplets, read shipped doctrine references, compare normalized bodies, patch canonical stale doctrine, synchronize `.claude` and `.codex` bodies from `.opencode`, then verify parity and stale-doctrine absence.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +94,9 @@ This child phase has not been delivered. Future implementation must replace this
 
 | Decision | Why |
 |----------|-----|
-| Keep status Planned | The operator requested scaffolding only, with completion held at 0%. |
+| Preserve runtime wrappers | The user requested doctrine-body alignment only; model, sandbox, permissions, routing, and identity fields were left intact. |
+| Use canonical `.opencode` bodies as source | The user identified `.opencode/agents/*.md` as canonical; mirrors were regenerated from those bodies with runtime path-format substitutions. |
+| Remove mutable packet labels from agent bodies | Evergreen agent definitions should carry durable doctrine rather than perishable packet/task/ADR references. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,7 +106,13 @@ This child phase has not been delivered. Future implementation must replace this
 
 | Check | Result |
 |-------|--------|
-| Strict validation | Planned for this scaffold normalization pass |
+| 12-triplet inventory | PASS: all 12 agents exist in `.opencode`, `.claude`, and `.codex`; no missing mirror found. |
+| Normalized body parity | PASS: normalized body SHA comparison passed for all 12 agents across `.opencode`, `.claude`, and `.codex`. |
+| Shipped doctrine markers | PASS: owning agents contain expected markers for AGENT_IO groups, reviewer_focus/spec_drift, read-budget, status honesty, active-P0 verdict discipline, and consume-only verdict discipline. |
+| Stale doctrine grep | PASS: no matches for mutable packet/ADR/task labels, obsolete `/spec_kit:resume`, stale `CAPABILITY SCAN`, or Codex effort-calibration drift in agent mirrors. |
+| Codex TOML parse | PASS: `python3` with `tomli` parsed all `.codex/agents/*.toml`. |
+| Strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment --strict` exit 0. |
+| Diff scope | FLAGGED: global git status contains concurrent sibling-lane changes outside this task. This lane only edited agent mirror files and this phase's spec docs. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +120,5 @@ This child phase has not been delivered. Future implementation must replace this
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** This is a Planned scaffold only. No source, command, agent, skill, or YAML files have been changed.
+1. **Runtime reload required** Running OpenCode, Claude, or Codex sessions keep already-loaded agent definitions until restarted.
 <!-- /ANCHOR:limitations -->

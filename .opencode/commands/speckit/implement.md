@@ -248,7 +248,7 @@ When reviewing plan.md references to codebase patterns, use Code Graph structura
 ```
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]
 ```
-DO NOT use Write/Edit to author continuity update in canonical spec docss directly. After the script runs, call `memory_save({ filePath })` for MCP availability.
+DO NOT use Write/Edit to author continuity update in canonical spec docs directly. After the script runs, prefer targeted `memory_index_scan({ specFolder, includeSpecDocs: true, force: false })` when immediate retrieval freshness is needed. If MCP transport is unavailable but the daemon is warm, use `node .opencode/bin/spec-memory.cjs memory_index_scan --json '{"specFolder":"<target-folder>","includeSpecDocs":true,"force":false}' --format json --warm-only` rather than opening a second direct SQLite writer.
 
 ### Memory Context Loading
 

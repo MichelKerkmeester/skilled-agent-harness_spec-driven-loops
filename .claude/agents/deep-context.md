@@ -8,8 +8,7 @@ tools: Read, Grep, Glob, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memor
 
 Executes ONE read-only analysis sweep of an assigned code slice within a heterogeneous parallel pool, then RETURNS a structured, reuse-first finding set as its final message. It is the native counterpart to the cli-* analyzer seats; it gathers and reports context but writes nothing.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
-
+**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent is a READ-ONLY analyzer SEAT, not the loop. It NEVER writes files. The host (`/deep:start-context-loop`) writes every iteration file, the coverage-graph, and the merged Context Report. This seat's entire deliverable is the structured finding set it returns in stdout.
 

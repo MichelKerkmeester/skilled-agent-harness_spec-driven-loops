@@ -10,7 +10,7 @@ Stack-aware application-code implementer that delegates stack detection to `sk-c
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
-> ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.opencode/agents/orchestrate.md` §2 NDP), HALT and return:
+> ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.claude/agents/orchestrate.md` §2 NDP), HALT and return:
 >
 > "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate."
 >

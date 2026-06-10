@@ -207,6 +207,7 @@ STOP HERE - Wait for user answers before continuing.
 
 - Resume remains anchored to `handover.md -> _memory.continuity -> spec docs`.
 - When that canonical packet is thin, `graph-metadata.json` provides packet-level dependency and key-file hints without replacing the canonical ladder.
+- `session_bootstrap()` may return a bounded startup restore panel with restored and omitted counts. Treat it as an operator diagnostic that explains recovered working-memory context, not as a replacement for the canonical packet ladder.
 
 ---
 
@@ -395,6 +396,8 @@ Call MCP tools directly — NEVER through Code Mode.
 
 **Transport fallback:** if the `mk-spec-memory` MCP tools are missing from the runtime, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm, use the daemon-backed CLI instead: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000 --warm-only`. Warm-only never starts a daemon; exit 75 means retryable daemon/IPC unavailability — retry after MCP reconnect, daemon prewarm, or a short backoff. The canonical file-based recovery ladder (`handover.md` → `_memory.continuity` → spec docs) needs no MCP at all and remains the first resort.
 
+The full daemon-backed CLI exposes all 37 spec-memory tools over the same warm daemon as MCP. It is additive, not a replacement; use `--warm-only` in prompt-time recovery paths so a cold daemon returns exit `75` instead of spawning.
+
 ### Memory Tools
 
 | Tool                    | Purpose                                |
@@ -430,6 +433,7 @@ SEARCH ROUTING: when resume reveals code-search follow-up work, send semantic or
 - use `session_bootstrap()` or `memory_context({ mode: "resume", profile: "resume" })` only when the canonical packet is still thin
 - Parallel continuity saves are serialized by the spec-folder advisory lock in the memory-save path; if a save is busy, retry after the active save completes rather than writing around it.
 - Older handovers preserved for audit trail
+- `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` is default-off; when enabled, authored continuity snapshots can improve compaction/restart context but must be treated as supplemental to `handover.md`, `_memory.continuity`, and canonical spec docs.
 
 ### Compaction Continuation Safety
 

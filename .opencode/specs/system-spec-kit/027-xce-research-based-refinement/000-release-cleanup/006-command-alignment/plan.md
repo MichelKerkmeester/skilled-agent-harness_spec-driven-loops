@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:29:29Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Completed content-only command-doc alignment to shipped 027 reality"
+    next_safe_action: "Let phase 027/011 perform the later router/presentation split"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-006-command-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | Strict spec validation plus surface-specific review |
 
 ### Overview
-Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership. This planned phase follows an inventory -> align -> verify flow and is scaffolded only.
+Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership. This phase followed an inventory -> align -> verify flow and stayed content-only.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +62,10 @@ Align command-doc content accuracy for flags, behavior, and CLI front doors with
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Inventory current claims on .opencode/commands/**
-- [ ] Align current-state claims to shipped 027 reality
-- [ ] Verify coherence and record evidence
-- [ ] Strict validation passes for this child phase
+- [x] Inventory current claims on .opencode/commands/**
+- [x] Align current-state claims to shipped 027 reality
+- [x] Verify coherence and record evidence
+- [x] Strict validation passes for this child phase
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,15 +94,15 @@ Documentation surface alignment with explicit ownership boundaries.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory .opencode/commands/**
+- [x] Inventory .opencode/commands/**
 
 ### Phase 2: Implementation
-- [ ] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
-- [ ] Preserve ownership boundary: Coordinate with 027/011, which owns the structural router and presentation split; this phase is content-only.
+- [x] Align schema v37, flags, CLI front doors, constitutional rules, memory features, and doctrine where applicable
+- [x] Preserve ownership boundary: Coordinate with 027/011, which owns the structural router and presentation split; this phase is content-only.
 
 ### Phase 3: Verification
-- [ ] Run strict spec validation
-- [ ] Run surface-specific coherence checks
+- [x] Run strict spec validation
+- [x] Run surface-specific coherence checks
 <!-- /ANCHOR:phases -->
 
 ---

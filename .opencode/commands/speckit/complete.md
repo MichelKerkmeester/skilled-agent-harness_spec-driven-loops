@@ -422,7 +422,9 @@ If source context is insufficient for a section, write "N/A - insufficient sourc
 
 **Step 12 (Completion - MANDATORY Level 1+):** Validation runs automatically. Current taxonomy: exit 0=success, 1=user error such as bad flags or invalid input, 2=validation error, 3=system error. In strict mode, warnings are validation errors. Verify all tasks show `[x]`. Create implementation-summary.md with: files modified/created, verification steps, deviations from plan, testing results. When the target is a spec root or phase child, also generate the packet-local changelog with `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js [spec-folder-path] --write`.
 
-**Step 13 (Save Context):** Use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]`. DO NOT use Write/Edit tools to author continuity update in canonical spec docss directly; the script refreshes the indexed canonical spec document and the packet's `graph-metadata.json` while the canonical resume path stays in `handover.md`, `_memory.continuity`, and the packet spec docs.
+Validation rule surface includes the historic file/template checks plus shipped 027 rules: `AC_COVERAGE` is opt-in INFO when `SPECKIT_AC_COVERAGE=true`; `CONTINUITY_FRESHNESS` is strict-only and default-off behind `SPECKIT_COMPLETION_FRESHNESS`; `CURRENT_STATE_DISCIPLINE` is INFO guidance for current-state implementation summaries. If `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`, stale completion freshness is promoted from warning to error.
+
+**Step 13 (Save Context):** Use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]`. DO NOT use Write/Edit tools to author continuity update in canonical spec docs directly; the script refreshes the indexed canonical spec document and the packet's `graph-metadata.json` while the canonical resume path stays in `handover.md`, `_memory.continuity`, and the packet spec docs.
 
 **Step 14 (Workflow Finish):** Present the final closeout checkpoint. If the user wants to pause or refresh continuity again, use `/memory:save` before marking the workflow complete.
 
@@ -476,7 +478,7 @@ Validation runs automatically on the spec folder before marking complete.
 | `--quiet` | Suppress output except errors |
 | `--verbose` | Detailed output with timing |
 
-**7 Rules:** FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS_PRESENT, LEVEL_DECLARED, PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID
+**Core rules plus shipped extensions:** FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS_PRESENT, LEVEL_DECLARED, PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, FOLDER_NAMING, FRONTMATTER_VALID, LEVEL_MATCH, SECTION_COUNTS, PHASE_LINKS, PHASE_PARENT_CONTENT, CURRENT_STATE_DISCIPLINE, optional AC_COVERAGE, and optional CONTINUITY_FRESHNESS. The authoritative complete registry is `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json`.
 
 **Exit codes:** 0 = success, 1 = user error, 2 = validation error, 3 = system error. Non-strict warnings report without changing the success exit code; strict warnings exit as validation errors.
 

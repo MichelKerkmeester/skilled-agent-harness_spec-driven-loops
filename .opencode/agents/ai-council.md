@@ -44,7 +44,7 @@ Single-round council behavior remains the default for this agent. Iterative mult
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
 
 ---
 
@@ -71,7 +71,7 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 ### 9-Step Multi-AI Council Process
 
 0. **RESOLVE** -> Determine the target packet path BEFORE any seat dispatch. Persistence under `<packet>/ai-council/**` is mandatory; the packet path must be known before DIVERSIFY. Apply this resolution rule in order, stopping at the first match:
-   1. If the prompt names a spec folder explicitly (e.g., `skilled-agent-orchestration/100-ai-council-main-agent-write-enforcement`), use it.
+   1. If the prompt names a spec folder explicitly, use it.
    2. Else, check the active continuity ladder (`handover.md` -> `_memory.continuity` -> `spec.md` frontmatter `packet_pointer`) for an active packet.
    3. Else, scan the working directory for the nearest `specs/<track>/<NNN-name>/` ancestor and use that path.
    4. Else, HALT and ask the user a single, focused question: "Which spec folder should I persist `ai-council/` artifacts under?" List the resolution candidates you tried in (1)-(3). Do NOT dispatch council seats. Do NOT emit a chat-form Council Report. Wait for the user to provide a packet path.
@@ -667,7 +667,7 @@ Reference: `.opencode/skills/deep-ai-council/references/structure/state_format.m
 
 ## 14. STATE SCHEMA - JSONL EVENT TYPES
 
-Schema is convention-only for v1 per ADR-003; there is no runtime validator.
+Schema is convention-only for v1 under the council state contract; there is no runtime validator.
 
 ```ts
 type RoundStart = {event:"round_start"; round:number; timestamp:string; seats:string[]};

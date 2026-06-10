@@ -113,6 +113,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 `/doctor:mcp` bundles two MCP infrastructure operations:
 
 - **`debug`** — Diagnose and repair broken MCP servers. Runs `mcp-doctor.sh --json`, cross-references each failure with its install guide, offers targeted repair (`--fix`), re-verifies, and reports a final status.
+- **`install`** — Installs or reinstalls MCP server wiring from the install guides. The registered MCP set still includes five servers; three spec-kit daemons also have additive CLI front doors: `spec-memory.cjs` (37 tools), `code-index.cjs` (8 tools), and `skill-advisor.cjs` (9 tools).
 
 These are the only two operations on MCP infrastructure itself. Every other `/doctor*` workflow runs INSIDE the working MCP layer; if MCP is broken, run `/doctor:mcp debug --fix` first.
 
@@ -142,7 +143,7 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 
 ```
 # Install (fresh / reinstall)
-/doctor:mcp install                                  # Install all 5 MCP servers from scratch
+/doctor:mcp install                                  # Install all 5 MCP servers from scratch; three spec-kit daemons also expose CLI front doors
 /doctor:mcp install --server mk-spec-memory         # Install just mk-spec-memory
 /doctor:mcp install --server mk_code_index           # Install just System Code Graph
 /doctor:mcp install --server mk_skill_advisor        # Install just Skill Advisor

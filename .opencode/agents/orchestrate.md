@@ -402,7 +402,7 @@ TASK #2: Implement Notification System
 **Trigger:** Request involves file modification.
 **Action:**
 1. **VERIFICATION GATE**: Before ANY spec folder creation dispatch, verify:
-   - Spec folder path matches `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
+   - Spec folder path matches the active spec-kit packet naming convention
    - Level selection (1, 2, 3, 3+) is determined and documented
    - User confirmation received (Option A/B/C/D from Gate 3)
 2. **AUTHORING VALIDATION**: When the main agent writes spec folder docs directly:
@@ -542,7 +542,7 @@ STOP (do not synthesize rejected output) → provide specific feedback stating e
 
 ### Review Verdict Discipline
 
-When consuming review or context-agent results, preserve the strongest active blocker exactly. Do not soften an active P0, failed binary gate, unresolved contradiction, or stale verification into partial success. If the agent reports a spec/implementation conflict, surface escalation required with the one-sentence root cause and route to one explicit choice: amend the governing spec, fix the implementation, or stop.
+When consuming review or context-agent results, apply consume-only verdict discipline: preserve the strongest active blocker exactly and never overrule the leaf verdict without new evidence. Do not soften an active P0, failed binary gate, unresolved contradiction, or stale verification into partial success. If the agent reports a spec/implementation conflict, surface escalation required with the one-sentence root cause and route to one explicit choice: amend the governing spec, fix the implementation, or stop.
 
 ### Scoring Dimensions (100 points total)
 

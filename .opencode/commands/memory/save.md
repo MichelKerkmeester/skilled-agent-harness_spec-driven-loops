@@ -77,6 +77,7 @@ Save the current conversation context, including session summary, key decisions,
 - `generate-context.js` remains the primary save mechanism when the workflow also needs DB indexing, embedding generation, `description.json` refresh, `graph-metadata.json` refresh, or anchor-managed compatibility output.
 - Canonical save requests now default to **planner-first** behavior: return the routed target, proposed edit summary, blockers, advisories, and follow-up actions before any mutation-first apply path is requested.
 - Explicit fallback remains available with `plannerMode: "full-auto"` or CLI `--full-auto` when an operator wants the legacy atomic writer behavior.
+- Shipped schema v37 records `source_kind` provenance, idempotency receipt support, near-duplicate hints, and tombstone partitions. These are storage/runtime behaviors; the command should report them only when returned by the save/index tools or enabled flags.
 - Standalone spec-doc markdown is not the primary operator-facing destination for this command.
 - Retention cleanup is outside save scope. When saved records expire under governance metadata, use `/memory:manage retention-sweep`, which routes to `memory_retention_sweep` (`tool-schemas.ts:330`).
 - `/memory:*` commands are markdown-owned contracts. They intentionally do not
@@ -369,6 +370,8 @@ caller explicitly selects an apply action, `plannerMode:"full-auto"`, or the CLI
 > **026 Memory Quality (Post-Save Review):** After `generate-context.js` completes, it outputs a POST-SAVE QUALITY REVIEW. HIGH-severity issues (stale titles, weak trigger phrases, wrong importance tier) MUST be patched via Edit tool immediately. MEDIUM issues should be patched when practical. Trigger phrases are sanitized: generic phrases (e.g., "context", "session") are flagged for replacement with domain-specific terms per 026-003-009/010 trigger sanitization rules.
 
 > **Graph metadata refresh:** The same save pass refreshes `graph-metadata.json` with checklist-aware status fallback (`implementation-summary.md` presence + checklist completion), lowercase status normalization, sanitized `key_files`, deduplicated entities, and a 12-item cap on derived trigger phrases.
+
+> **027 write provenance and idempotency:** Schema v35 adds `memory_index.source_kind` (`human`, `agent`, `system`, `import`, `feedback`) derived from provenance context. Schema v36 adds server-derived idempotency receipts and `near_duplicate_of` hints, guarded by `SPECKIT_MEMORY_IDEMPOTENCY=false` by default. Ignore caller-forged idempotency tokens; when the tool reports a replay or near duplicate, surface it as advisory rather than inventing a second write.
 
 > **Auto-index of touched files (Step 11.5):** After the canonical save updates packet docs and `graph-metadata.json`, the workflow re-indexes touched canonical spec docs only when the standalone process is the sole SQLite writer. If the mk-spec-memory daemon is down, `generate-context.js` may run the direct incremental spec-doc index path. If the daemon is up, Step 11.5 must not open a second better-sqlite3 writer on `context-index.sqlite`; finish freshness through the daemon-owned MCP tool instead:
 >
@@ -724,14 +727,18 @@ The `memory_save` tool schema advertises advanced governance parameters for mult
 | `provenanceActor` | string | Required provenance actor when governance guardrails are enabled |
 | `governedAt` | string | ISO timestamp for governed ingest. Defaults to now when omitted |
 
+`source_kind` is persisted by the server from provenance context and may be reported as `human`, `agent`, `system`, `import`, or `feedback`. Do not ask callers to hand-author `source_kind` unless the active tool schema explicitly accepts it; prefer the governed provenance fields above.
+
 #### Retention
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `retentionPolicy` | string | Retention class: `keep` (permanent), `ephemeral` (short-lived), `shared` (reserved compatibility value) |
+| `retentionPolicy` | string | Retention class: `keep` (permanent) or `ephemeral` (short-lived) |
 | `deleteAfter` | string | Optional ISO timestamp after which retention sweep may delete the spec-doc record |
 
 > **Note:** Governance parameters (tenantId, userId, agentId, sessionId) are validated by the memorySaveSchema when provided. All governance fields must pass schema validation.
+
+Feedback-origin records and retention outcomes interact with default-off governance flags: `SPECKIT_FEEDBACK_RETENTION_LEARNING` and `SPECKIT_FEEDBACK_RETENTION_MODE` affect retention sweep decisions, while `SPECKIT_SOFT_DELETE_TOMBSTONES` controls whether delete/retention paths use tombstone partitions.
 
 #### Async Bulk Ingestion
 

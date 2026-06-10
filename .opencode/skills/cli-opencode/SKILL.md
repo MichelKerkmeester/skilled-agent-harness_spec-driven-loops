@@ -27,7 +27,7 @@ Orchestrate OpenCode's `opencode run` from external AI assistants (Claude Code, 
 
 - **Full plugin / skill / MCP runtime** (use case 1) — calling AI is Claude Code / Codex / Copilot / raw shell AND the task needs the project's full Spec Kit Memory database, Code Graph semantic index, structural code graph, or every plugin/skill/MCP tool in a one-shot dispatch. Includes `@deep-research` / `@deep-review` agent loops with externalized state under `.opencode/specs/`.
 - **Parallel detached session** (use case 2) — operator already inside OpenCode (TUI / web / serve / acp) AND wants a SEPARATE session with its own session id and state directory for ablation, worker farm, or parallel research. Prompt explicitly mentions "parallel detached", "ablation suite", "worker farm", "parallel research", "spawn detached", or "share URL".
-- **Cross-AI orchestration handback** (use case 3) — calling AI is non-Anthropic (Codex / Copilot), task targets a project-specific subsystem (spec-kit, memory, code-graph, advisor), and the non-Anthropic CLI cannot load the project's plugin/skill/MCP runtime on its own and needs OpenCode as a bridge.
+- **Cross-AI orchestration handback** (use case 3) — calling AI is non-Anthropic (Codex / Copilot), task targets a project-specific subsystem (spec-kit, memory, code-graph, advisor), and the non-Anthropic CLI cannot load the project's plugin/skill/MCP runtime on its own and needs OpenCode as a bridge. When the caller only needs a daemon-backed tool call, prefer the shipped front doors (`spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`) over a full `opencode run` delegation.
 - **Agent dispatch** — task matches a specialized OpenCode agent. Primary agents (directly invokable via `--agent`): `general`, `plan` (built-in), `orchestrate`, `ai-council`. Subagents dispatched via the orchestrate primary: `context`, `review`, `write`, `debug`, `deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`.
 - **Cross-repo dispatch** — session in repo A dispatches into repo B's plugin/skill/MCP runtime via `--dir <path>` or remote OpenCode server via `--attach <url>`.
 
@@ -347,6 +347,8 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 ### Memory Handback Protocol
 
 When the calling AI needs to preserve session context from an OpenCode CLI delegation, run the canonical 7-step procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file → `memory_index_scan`). Full procedure and caveats: [`system-spec-kit/references/cli/memory_handback.md`](../system-spec-kit/references/cli/memory_handback.md).
+
+For read-only or hook-style recovery, use the daemon-backed CLI front doors instead of spawning OpenCode: `node .opencode/bin/spec-memory.cjs <tool>`, `node .opencode/bin/code-index.cjs <tool>`, or `node .opencode/bin/skill-advisor.cjs <tool>`. Prompt-time paths must probe warm sockets or pass `--warm-only`; exit `75` is retryable daemon/IPC unavailability, not a model failure.
 
 OpenCode-specific Memory Epilogue template: see [assets/prompt_templates.md](./assets/prompt_templates.md) §14.
 

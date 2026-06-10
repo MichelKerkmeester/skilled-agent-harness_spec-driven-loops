@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:29:12Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned stale skill documentation and ENV_REFERENCE to shipped 027 reality"
+    next_safe_action: "Review validation evidence and proceed with release-cleanup sibling lanes"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-002-skill-docs-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## PHASE 1: SETUP
 
-- [ ] T001 Inventory current claims (.opencode/skills/**)
-- [ ] T002 List claims about schema, flags, CLI, constitutional rules, memory features, and doctrine (.opencode/skills/**)
+- [x] T001 Inventory current claims (.opencode/skills/**) Evidence: grep/read inventory found stale system-spec-kit schema/tool/ENV claims and missing cli-opencode front-door guidance.
+- [x] T002 List claims about schema, flags, CLI, constitutional rules, memory features, and doctrine (.opencode/skills/**) Evidence: implementation-summary.md records stale, aligned, and untouched skill sets.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,10 +62,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [ ] T003 [P] Align stale schema and flag references (.opencode/skills/**)
-- [ ] T004 [P] Align CLI front-door and memory-feature references (.opencode/skills/**)
-- [ ] T005 [P] Align constitutional-rule and doctrine references (.opencode/skills/**)
-- [ ] T006 Preserve ownership boundary: Broadest phase; it is itself sub-phaseable by skill group. (.opencode/skills/**)
+- [x] T003 [P] Align stale schema and flag references (.opencode/skills/**) Evidence: system-spec-kit SKILL, README, memory reference, config reference, and ENV_REFERENCE now reflect schema v37 and default-off 027 flags.
+- [x] T004 [P] Align CLI front-door and memory-feature references (.opencode/skills/**) Evidence: cli-opencode now points to spec-memory/code-index/skill-advisor CLI front doors when a full OpenCode dispatch is unnecessary.
+- [x] T005 [P] Align constitutional-rule and doctrine references (.opencode/skills/**) Evidence: inventory confirmed sk-code-review riskScore, deep-review VERDICT_LOCK, sk-code escalation, and system-skill-advisor CLI trust language were already current, so no stale doctrine docs were edited.
+- [x] T006 Preserve ownership boundary (.opencode/skills/**) Evidence: edits stayed within .opencode/skills/** docs, ENV_REFERENCE.md, and this phase folder; agents, commands, AGENTS.md, and source code were not edited.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,9 +73,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## PHASE 3: VERIFICATION
 
-- [ ] T007 Run strict validation for this child phase (.opencode/skills/system-spec-kit/scripts/spec/validate.sh)
-- [ ] T008 Record evidence in implementation-summary.md (implementation-summary.md)
-- [ ] T009 Confirm no out-of-scope source, command, agent, skill, or YAML edits were made (git diff)
+- [x] T007 Run strict validation for this child phase (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) Evidence: `validate.sh --strict` exit 0 after doc reconciliation.
+- [x] T008 Record evidence in implementation-summary.md (implementation-summary.md) Evidence: implementation-summary.md contains per-skill drift list and verification results.
+- [x] T009 Confirm no out-of-scope source, command, agent, or YAML edits were made (git diff) Evidence: touched paths are scoped to .opencode/skills/** docs, ENV_REFERENCE.md, and this phase folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,9 +83,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All planned tasks are complete or explicitly deferred with approval
-- [ ] No blocked tasks remain
-- [ ] Strict validation passes for this child phase
+- [x] All planned tasks are complete or explicitly deferred with approval
+- [x] No blocked tasks remain
+- [x] Strict validation passes for this child phase
 <!-- /ANCHOR:completion -->
 
 ---

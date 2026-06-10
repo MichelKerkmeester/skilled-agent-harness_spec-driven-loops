@@ -7,14 +7,14 @@ trigger_phrases:
   - "shipped 027 alignment"
 importance_tier: "important"
 contextType: "implementation"
-status: "spec-scaffolded"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:25:28Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned AGENTS.md with shipped governance reality and verified immutable governance sections"
+    next_safe_action: "No follow-up required for this child phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,9 +23,9 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-10-008-agents-md-alignment-planned"
+      session_id: "2026-06-10-008-agents-md-alignment-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -44,11 +44,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded / Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Completion** | 0% |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -83,12 +83,13 @@ Inventory the owned surface, align its current-state claims to shipped 027 reali
 - Claiming implementation before verification evidence exists.
 
 ### Files to Change
-Planned future implementation scope; this scaffold only creates spec docs and metadata.
+Implemented release-cleanup scope for root governance and this phase's own documentation.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| AGENTS.md | Future Review/Modify | Inventory, align, and verify current-state documentation claims |
-| implementation-summary.md | Created | Planned stub for strict validation |
+| AGENTS.md | Modified | Added schema/flag, CLI-front-door, and constitutional-rule pointers while preserving Four Laws and Gates byte-for-byte |
+| implementation-summary.md | Updated | Recorded delivered scope and verification evidence |
+| tasks.md | Updated | Marked all tasks complete with evidence |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -116,9 +117,9 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- The phase has a clear inventory -> align -> verify handoff.
-- Completion remains 0% until implementation changes and verification evidence exist.
-- The surface does not conflict with 027/011 ownership boundaries.
+- The phase completed the inventory -> align -> verify handoff.
+- Completion is 100% with implementation changes and verification evidence recorded.
+- The surface does not conflict with sibling release-cleanup ownership boundaries.
 <!-- /ANCHOR:success-criteria -->
 
 ---

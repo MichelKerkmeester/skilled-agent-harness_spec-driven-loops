@@ -83,6 +83,7 @@ Reinventing a workflow's core feature because you assumed friction you never che
 - **Spec Kit Memory MCP** - research, context recovery, saves. See Memory Save Rule below for save mechanics.
 - **System Code Graph MCP** - structural code search, impact analysis, and relationship queries. Use with Grep for concept discovery; `memory_search` indexes spec docs and saved memory, not arbitrary code.
 - **Git (sk-git)** - worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
+- **Daemon-backed CLI front doors** - The three daemon MCP systems remain primary MCP transports and also expose additive CLI fallbacks over the same warm daemons: `spec-memory.cjs` (37 tools), `code-index.cjs` (8 tools), and `skill-advisor.cjs` (9 tools, with trusted mutations gated). Prompt-time fallback is warm-only; exit `75` is retryable daemon/IPC unavailability.
 
 **CODE SEARCH DECISION TREE:**
 
@@ -119,6 +120,8 @@ Use `memory_search` only for spec docs, saved decisions, and memory context. It 
 ### Startup & Resume Recovery
 
 Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
+
+Current Spec Kit Memory rollout baseline: schema v37. Shipped default-off or opt-in gates to keep in view include `SPECKIT_SEMANTIC_TRIGGERS`, `SPECKIT_SEMANTIC_TRIGGERS_MODE`, `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE`, `SPECKIT_FEEDBACK_RETENTION_LEARNING`, `SPECKIT_FEEDBACK_RETENTION_MODE`, `SPECKIT_SOFT_DELETE_TOMBSTONES`, `SPECKIT_MEMORY_IDEMPOTENCY`, `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT`, and `SPECKIT_COMPLETION_FRESHNESS`; check `ENV_REFERENCE.md` and the relevant hook docs before enabling any results-affecting path.
 
 **Recovery flow when hooks are unavailable or fail:**
 
@@ -201,6 +204,8 @@ Use the CLI only when the `mk_skill_advisor` MCP tools are missing from the runt
 | **Doctor command surface** | `/doctor <target>` argv-router for subsystem diagnostics/repairs (memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget); `/doctor:mcp install\              | debug` for MCP infra; `/doctor:update` for dependency-ordered alignment (snapshot/validate/rollback/run log). Don't route to deleted legacy `/doctor:<name>` colon-forms |
 
 Acceptance coverage completion note: `AC_COVERAGE` is an opt-in INFO validation rule documented in `.opencode/skills/system-spec-kit/references/validation/validation_rules.md`. When `SPECKIT_AC_COVERAGE=true`, completion evidence should include covered/total acceptance criteria and the configured floor; unset defaults preserve existing strict-validation outcomes.
+
+Constitutional-rule pointer: advisory memory invariants live under `.opencode/skills/system-spec-kit/constitutional/`; current additions include `automated-writers-never-overwrite-manual.md` and `entity-cooccurrence-is-not-causal.md`.
 
 ---
 
@@ -391,6 +396,8 @@ Use the agent directory that matches the active runtime/provider profile:
    - Skill Advisor (`mk_skill_advisor`, 9 tools — 4 advisor + 5 skill_graph)
    - Code Graph (`mk_code_index`, 8 tools)
    - Code Mode
+
+   The Spec Kit Memory, Code Graph, and Skill Advisor daemons also have daemon-backed CLI front doors over the same tool surfaces. These CLIs are additive IPC clients, not separate MCP servers and not replacements for the registered MCP transports.
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Figma, Github, ClickUp, Chrome DevTools, etc.

@@ -7,14 +7,14 @@ trigger_phrases:
   - "shipped 027 alignment"
 importance_tier: "important"
 contextType: "implementation"
-status: "spec-scaffolded"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-10T15:29:12Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Prepared Planned scaffold for strict validation"
-    next_safe_action: "Implement child phase after scope approval"
+    recent_action: "Aligned stale skill documentation and ENV_REFERENCE to shipped 027 reality"
+    next_safe_action: "Review validation evidence and proceed with release-cleanup sibling lanes"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-002-skill-docs-alignment-planned"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved Planned release-cleanup scaffolds."
@@ -44,11 +44,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded / Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Completion** | 0% |
+| **Completion** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -77,18 +77,24 @@ Inventory the owned surface, align its current-state claims to shipped 027 reali
 - Note: Broadest phase; it is itself sub-phaseable by skill group.
 
 ### Out of Scope
-- Source-code changes during this scaffold.
-- Command, agent, skill, or YAML edits during this scaffold.
+- Source-code changes.
+- Command, agent, or YAML edits.
 - Structural router or presentation split changes owned by 027/011.
 - Claiming implementation before verification evidence exists.
 
-### Files to Change
-Planned future implementation scope; this scaffold only creates spec docs and metadata.
+### Files Changed
+Only stale documentation surfaces were updated. Candidate skills that already matched shipped 027 reality were left untouched.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skills/** | Future Review/Modify | Inventory, align, and verify current-state documentation claims |
-| implementation-summary.md | Created | Planned stub for strict validation |
+| .opencode/skills/system-spec-kit/SKILL.md | Modified | Added concise schema v37 and default-off hardening pointer |
+| .opencode/skills/system-spec-kit/README.md | Modified | Updated schema history and memory-hardening feature narrative |
+| .opencode/skills/system-spec-kit/references/memory/memory_system.md | Modified | Corrected schema baseline, 37-tool surface, tool table, and scan behavior |
+| .opencode/skills/system-spec-kit/references/config/environment_variables.md | Modified | Corrected 37-tool count and added default-off 027 flag table |
+| .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md | Modified | Added missing 027 flags and bumped documented variable count |
+| .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md | Modified | Updated current-state schema history from v30 to v37 |
+| .opencode/skills/cli-opencode/SKILL.md | Modified | Added daemon-backed CLI front-door guidance for Spec Kit runtime handback |
+| implementation-summary.md | Modified | Recorded drift inventory, evidence, and completion status |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -100,8 +106,8 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| R1 | Inventory before alignment | Existing outward claims are listed before edits begin |
-| R2 | Preserve scaffold scope | This phase does not edit source, command, agent, skill, or YAML files during scaffold creation |
+| R1 | Inventory before alignment | Existing outward claims were listed before edits began |
+| R2 | Preserve scope | No source, command, agent, or YAML files were edited |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -117,8 +123,8 @@ Planned future implementation scope; this scaffold only creates spec docs and me
 ## 5. SUCCESS CRITERIA
 
 - The phase has a clear inventory -> align -> verify handoff.
-- Completion remains 0% until implementation changes and verification evidence exist.
-- The surface does not conflict with 027/011 ownership boundaries.
+- Completion is 100% with implementation evidence recorded.
+- The surface does not conflict with sibling lane ownership boundaries.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -95,6 +95,7 @@ Provide a unified entry point that:
 - Applies task-specific weights for search optimization
 - Combines search + load in a single operation
 - Returns context with relevance explanation
+- When `includeTrace` is requested, can include `why_ranked` channel contribution traces and retrieval provenance for operator debugging
 - Enforces L1 token budget constraints (target: ~2000 tokens per call)
 - Handles session deduplication for cross-session queries
 - Targets canonical packet sources first: `handover.md`, `_memory.continuity`, then the packet spec docs
@@ -120,6 +121,8 @@ The unified context tool runs a hybrid retrieval pipeline with **graph-first rou
 - Stage 3 applies MMR diversity reranking plus MPAB chunk collapse; `applyLengthPenalty` remains on the API surface for compatibility but currently resolves to a neutral `1.0` multiplier for every document
 - Deep-mode query expansion for broader lexical coverage
 - Evidence-gap detection (026) to flag low-confidence retrievals with explicit gap warnings, enabling downstream reasoning to remain cautious and avoid acting on sparse evidence
+- Semantic trigger matching shipped as a default-off shadow path. When `SPECKIT_SEMANTIC_TRIGGERS=true`, lexical trigger results remain primary by default while semantic scores are computed for telemetry; `SPECKIT_SEMANTIC_TRIGGERS_MODE=union` can affect results only when the master flag is enabled.
+- Retrieval observability includes `why_ranked` on trace responses and memory-health degraded-vector signals; do not invent those fields in normal compact renderings unless the tool returned them.
 
 ### Canonical Retrieval Order
 
@@ -708,6 +711,8 @@ Shows statistics about the causal spec-doc graph. No parameters required.
 
 Target: 60% of spec-doc records linked (CHK-065).
 
+`SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` is default-off. When enabled, session-trace feedback can infer candidate causal edges asynchronously; this command should still label automatically inferred edges as candidates unless the underlying tool reports them as committed.
+
 ##### Output
 
 ```text
@@ -844,6 +849,8 @@ STATUS=OK ACTION=dashboard
 
 **CRITICAL:** Use the correct MCP tools for each step. This command owns 13 tools across L1, L2, L6, and L7 layers.
 
+The full spec-memory daemon exposes 37 MCP tools. The same 37-tool surface is also reachable through the additive daemon-backed CLI `node .opencode/bin/spec-memory.cjs`; use it only as a transport fallback when MCP is missing/down while the daemon is expected to be warm. `list-tools` works offline, and `--warm-only` exits `75` instead of cold-spawning.
+
 ### Enforcement Matrix
 
 | MODE | REQUIRED CALLS | PATTERN | ON FAILURE |
@@ -869,7 +876,7 @@ STATUS=OK ACTION=dashboard
 
 > **Note:** The dedicated `mcp__mk_spec_memory__memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, governed retrieval params (`tenantId`, `userId`, `agentId`), `limit`, `sessionId`, `enableDedup`, `includeContent`, `includeTrace`, `tokenUsage`, and `anchors`. `mcp__mk_spec_memory__memory_quick_search()` also supports governed retrieval via `tenantId`, `userId`, and `agentId`. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
 
-> **Adaptive Fusion, Hybrid Routing & Telemetry:** Retrieval combines vector, FTS5/BM25, and structural code graph channels, then applies intent-adaptive fusion and reranking. Results may be routed through artifact-class classification before scoring. When `SPECKIT_ADAPTIVE_FUSION` is enabled, weights adapt dynamically by intent, including the internal continuity profile (`0.52 / 0.18 / 0.07 / 0.23`) used for resume-style retrieval. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured (query timing, score distributions, fusion decisions) and written to the telemetry log.
+> **Adaptive Fusion, Hybrid Routing & Telemetry:** Retrieval combines vector, FTS5/BM25, and structural code graph channels, then applies intent-adaptive fusion and MMR diversity reranking. Results may be routed through artifact-class classification before scoring. When `SPECKIT_ADAPTIVE_FUSION` is enabled, weights adapt dynamically by intent, including the internal continuity profile (`0.52 / 0.18 / 0.07 / 0.23`) used for resume-style retrieval. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured (query timing, score distributions, fusion decisions) and written to the telemetry log. When `includeTrace` or `SPECKIT_RESPONSE_TRACE=true` is active, returned rows may include `scores`, `source`, `trace`, and `why_ranked` fields.
 >
 > **MMR and Evidence Gap Prevention:** Post-fusion MMR reduces redundant context chunks, and low-confidence retrieval can trigger an early evidence-gap warning so sparse results are treated cautiously.
 

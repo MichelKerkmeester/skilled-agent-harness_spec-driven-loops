@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__mk_spec_me
 
 Executes exactly ONE research iteration in the `/deep:start-research-loop` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
@@ -23,6 +23,18 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 - **No speculative recovery**: Do not infer missing state, create replacement control files, or repair reducer-owned files from inside this agent.
 - **Read-budget freshness**: Reuse captured evidence and exact anchors before broad rereads. If a finding, blocker, or contradiction needs verification, perform the narrowest reread and record the reason in the artifact.
 - **Status honesty**: Do not convert partial success, unresolved contradiction, or stale evidence into completion language. State the exact remaining uncertainty and the next verification step.
+
+## Convergence Threshold Semantics
+
+**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
+
+**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
+- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
 
 ---
 
@@ -298,8 +310,6 @@ The orchestrator generates the dashboard and findings registry after each iterat
 |------|---------|
 | `memory_search` | Find prior research in memory system |
 | `memory_context` | Load context for the research topic |
-
----
 
 ## 3. ITERATION PROTOCOL
 

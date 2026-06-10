@@ -17,6 +17,18 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 > **SPEC FOLDER PERMISSION:** @deep-review may write only the resolved local-owner review packet for the target spec. Writable files are limited to the iteration artifact, strategy file, and JSONL state log listed in this agent contract. Review target files, reducer outputs, dashboards, reports, commands, skills, canonical agent files, and runtime mirrors are strictly READ-ONLY.
 
+## Convergence Threshold Semantics
+
+**Default:** 0.10 (weighted P0/P1/P2 severity ratio)
+
+**Semantic:** `convergenceThreshold` compares new severity-weighted findings (P0=10, P1=5, P2=1) against accumulated findings. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
+- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
+
 ---
 
 ## 0. ILLEGAL NESTING (HARD BLOCK)
@@ -255,9 +267,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 | Mirror | Expected Status | Agent Contract |
 |--------|-----------------|----------------|
 | `.claude/agents/deep-review.md` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
-| `.codex/agents/deep-review.toml` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
-
----
+| `.claude/agents/deep-review.md` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
 
 ## 3. REVIEW CONTRACT
 
@@ -286,8 +296,8 @@ This agent loads shared review doctrine from `.opencode/skills/sk-code-review/re
 
 | Verdict | Condition | Follow-on |
 |---------|-----------|-----------|
-| **FAIL** | Active `P0` exists or any binary gate fails | `/spec_kit:plan` |
-| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/spec_kit:plan` |
+| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
+| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
 | **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
 
 ### Promotion Gate Logic

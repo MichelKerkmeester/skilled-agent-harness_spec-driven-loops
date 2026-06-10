@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*
 
 Dedicated LEAF executor for template-first documentation work. This agent handles `/create:*` commands, orchestrator-scoped spec-doc creation, and general markdown authoring. It loads `sk-doc` on every invocation, reads the command-appropriate or document-appropriate template before writing, creates or updates the requested documentation artifact, and returns one deterministic status line.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent may execute `/create:*` command workflows and scoped markdown/spec-doc authoring tasks. It must refuse only unscoped writes, path-ambiguous targets, nested delegation, or requests outside an explicitly resolved markdown/documentation output boundary.
 
