@@ -52,6 +52,10 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 **If dispatched with `reviewer_focus`**: Prioritize the named files, modules, behaviors, or assumptions during reads and evidence gathering. Missing focus means use normal scope derivation from target/files. The hint never changes P0/P1/P2 thresholds, never replaces line-level evidence, and never justifies a finding by itself. Treat `self_assessed_quality` as the producer's own confidence note, not as the review score.
 
+### Read-Budget Discipline
+
+Before every non-diff `Read`, state the specific reason for that read in one sentence. Do not re-read a new or full-content file; use the evidence already captured, a focused line-range read, or exact-search anchors for follow-up. If a repeat read is unavoidable to verify a blocker, narrow it to the smallest range and say why before reading.
+
 ---
 
 ## 3. CAPABILITY SCAN

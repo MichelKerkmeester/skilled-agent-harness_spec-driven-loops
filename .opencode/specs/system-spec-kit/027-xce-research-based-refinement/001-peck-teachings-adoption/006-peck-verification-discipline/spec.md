@@ -1,8 +1,8 @@
 ---
-title: "009 — Peck Verification Discipline"
-description: "Adopt the coherent net-new verification-discipline bundle peck implements in its agent prompts (T5-T9) that the 2026-06-02 README pass missed: completion-verdict freshness binding (anchor), escalation gates, anti-verdict-softening, reviewer read-budget, and a docs-only numeric-severity note. Every rule reuses an existing UX surface with a warn-first message and rides the proven warn->error env-flag rollout. Zero new infrastructure."
+title: "006 — Peck Verification Discipline"
+description: "Adopt the scoped agent-roster prompt-guidance slice of peck's verification-discipline bundle: reviewer read-budget discipline, adapted P0-safe reread guidance, and consume-only verdict/escalation awareness across OpenCode, Claude, and Codex mirrors."
 trigger_phrases:
-  - "027 phase 009"
+  - "027 phase 006"
   - "peck verification discipline"
   - "completion-verdict freshness"
   - "anti-verdict-softening"
@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 009 from research 006 proposal + integration-plan"
-    next_safe_action: "Land 010 fixtures, then implement Phase 1 freshness in WARN mode"
+    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Updated scoped agent mirror prompt guidance"
+    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 20
     open_questions:
       - "Clean-tree precondition scope: whole repo vs packet paths only (default packet-scoped)"
       - "Whether the clock_drift PASS path in continuity-freshness.ts must be tightened or kept as a legit exception"
@@ -30,7 +30,7 @@ _memory:
       - "Proposal Packet 009 confirmed as the verification-discipline bundle (T5-T9); T1 -> 011, fixtures -> 010"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: 009 — Peck Verification Discipline
+# Feature Specification: 006 — Peck Verification Discipline
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -55,7 +55,7 @@ The integration thesis is zero new infrastructure: every rule plugs into a surfa
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Scoped-Agent-Roster-Implemented |
 | **Parent Packet** | `001-peck-teachings-adoption` |
 | **Source** | `research/006-peck-source-deep-mining/sub-packet-proposal.md` §1 (Packet 009), §6, §7; `research/006-peck-source-deep-mining/integration-plan.md` (full); `research/006-peck-source-deep-mining/research.md` §2 (T5,T6,T7,T8,T9) |
 | **Depends on** | `010-reviewer-prompt-benchmark-substrate` (regression fixtures; land FIRST) |
@@ -85,6 +85,10 @@ Adopt the peck verification-discipline bundle as five warn-first rules that reus
 ## 3. SCOPE
 
 This packet is the peck "verification discipline" bundle. It represents the proposal's five phases as plan sections and task groups within this single packet (no nested phase-child folders).
+
+### Scope Update: Current Run
+
+This implementation run is limited to agent-roster prompt guidance. It ships the reviewer read-budget rule for `review`, P0-safe adapted reread guidance for `context`, `deep-research`, and `deep-review`, plus consume-only verdict/escalation awareness for `orchestrate`. The updates are mirrored across `.opencode/agents`, `.claude/agents`, and `.codex/agents`. Validator, command, skill, daemon, fixture, and package files remain planned source-proposal surfaces but were explicitly out of scope for this run.
 
 ### In Scope
 

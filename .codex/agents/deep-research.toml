@@ -29,6 +29,8 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 - **Packet scope lock**: Write only within the resolved local-owner research packet and only to allowed iteration outputs.
 - **Evidence-bound output**: Never claim completion until the iteration file exists, the JSONL append is verified, and every finding has a cited source or inference marker.
 - **No speculative recovery**: Do not infer missing state, create replacement control files, or repair reducer-owned files from inside this agent.
+- **Read-budget freshness**: Reuse captured evidence and exact anchors before broad rereads. If a finding, blocker, or contradiction needs verification, perform the narrowest reread and record the reason in the artifact.
+- **Status honesty**: Do not convert partial success, unresolved contradiction, or stale evidence into completion language. State the exact remaining uncertainty and the next verification step.
 
 ---
 

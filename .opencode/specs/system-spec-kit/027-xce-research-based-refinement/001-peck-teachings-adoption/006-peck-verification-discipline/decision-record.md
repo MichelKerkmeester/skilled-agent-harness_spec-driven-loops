@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: 009 — Peck Verification Discipline"
+title: "Decision Record: 006 — Peck Verification Discipline"
 description: "Architectural decisions for adopting the peck verification-discipline bundle (T5-T9) into spec-kit with zero new infrastructure, warn-first rollout, and UX+automation as top priorities."
 trigger_phrases:
   - "decision"

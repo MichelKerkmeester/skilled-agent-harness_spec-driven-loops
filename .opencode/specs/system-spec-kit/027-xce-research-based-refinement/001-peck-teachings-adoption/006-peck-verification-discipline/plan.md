@@ -1,8 +1,8 @@
 ---
-title: "Implementation Plan: 027/009 Peck Verification Discipline"
-description: "Plan for the five-rule peck verification-discipline bundle: completion-verdict freshness (anchor), escalation gates, anti-softening, reviewer read-budget, and a docs-only numeric-severity note. Every rule reuses an existing UX surface with a warn-first message and rides the SPECKIT_SAVE_QUALITY_GATE warn->error rollout precedent. Depends on 010 for regression fixtures."
+title: "Implementation Plan: 027/001/006 Peck Verification Discipline"
+description: "Plan for the scoped agent-roster prompt-guidance slice of the peck verification-discipline bundle. Broader validator, command, skill, and fixture work remains planned but out of scope for this run."
 trigger_phrases:
-  - "027 phase 009"
+  - "027 phase 006"
   - "peck verification discipline"
   - "completion-verdict freshness"
   - "anti-verdict-softening"
@@ -12,23 +12,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 009 from research 006 proposal + integration-plan"
-    next_safe_action: "Land 010 fixtures, then implement Phase 1 freshness in WARN mode"
+    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Updated scoped agent mirror prompt guidance"
+    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
     blockers: []
     key_files: ["spec.md", "tasks.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Clean-tree precondition scope: whole repo vs packet paths only (default packet-scoped)"
       - "Whether the clock_drift PASS path in continuity-freshness.ts must be tightened"
     answered_questions: []
 ---
-# Implementation Plan: 027/009 Peck Verification Discipline
+# Implementation Plan: 027/001/006 Peck Verification Discipline
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
@@ -49,7 +49,7 @@ _memory:
 
 ### Overview
 
-Phase 009 adopts the peck verification-discipline bundle (T5-T9) as five warn-first rules over existing surfaces. The integration thesis is zero new infrastructure: completion freshness rides `validate.sh`/`spec-doc-structure`; escalation/anti-softening/read-budget ride loop-state + structured-verdict enforcement; the numeric note is docs-only; rollout copies `SPECKIT_SAVE_QUALITY_GATE` verbatim. The five proposal phases are represented here as Implementation Phases A-E (single packet, no nested phase-child folders). UX and automation are first-class: every rule reuses a familiar surface with a `How to Fix` message, freshness is FULLY-AUTO, and the net-new opportunities (auto-fix hints, startup freshness indicator, one-command fingerprint refresh, single deep-review verdict, checklist quick-fill) are scheduled as tasks. The packet depends on 010 for the regression fixtures that gate any ERROR promotion.
+Phase 006 adopts the scoped agent-roster prompt-guidance slice of the peck verification-discipline bundle. This run lands Phase D read-budget guidance and consume-only verdict/escalation awareness in the OpenCode, Claude, and Codex runtime mirrors. The broader source proposal still contains validator, command, skill, fixture, and rollout work; those surfaces were explicitly out of scope for this implementation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -70,11 +70,11 @@ Phase 009 adopts the peck verification-discipline bundle (T5-T9) as five warn-fi
 - [ ] Phase A: freshness recomputes the content fingerprint + clean-tree precondition; strict-only `CONTINUITY_FRESHNESS`; warn-first behind `SPECKIT_COMPLETION_FRESHNESS` + `..._ENFORCE`.
 - [ ] Phase B: escalation gates added to `sk-code/SKILL.md` + `CLAUDE.md` Logic-Sync.
 - [ ] Phase C: anti-softening (always one parseable verdict; no Fail->conditional relabel) in the completion ritual + deep-review verdict line.
-- [ ] Phase D: reviewer read-budget ADOPTed for `@review`, ADAPTed for deep-*/`@context` (P0 rereads exempt), `.claude/agents/*` mirrors updated.
+- [x] Phase D: reviewer read-budget ADOPTed for `@review`, ADAPTed for deep-*/`@context` (P0 rereads exempt), `.claude/agents/*` and `.codex/agents/*` mirrors updated.
 - [ ] Phase E: docs-only numeric-severity note in `sk-code-review` (no `score>=4 blocks`).
 - [ ] Net-new UX/automation opportunities implemented (auto-fix hints, startup freshness indicator, one-command fingerprint refresh, single deep-review verdict, checklist quick-fill).
 - [ ] Each shipped rule references a green 010 fixture before any ERROR promotion.
-- [ ] Strict spec validation passes for this packet.
+- [x] Strict spec validation passes for this packet.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -167,9 +167,9 @@ Required inventories:
 
 ### Phase D: Reviewer read-budget (T8)
 
-- [ ] ADOPT in `.opencode/agents/review.md`: state the reason before each non-diff Read; never re-read a new/full-content file.
-- [ ] ADAPT in `.opencode/agents/{context,deep-research,deep-review}.md`: same discipline but P0 rereads explicitly exempt; add awareness in `orchestrate.md`.
-- [ ] Mirror every agent edit into `.claude/agents/{review,context,deep-research,deep-review,orchestrate}.md` (or record a mirror-lag decision).
+- [x] ADOPT in `.opencode/agents/review.md`: state the reason before each non-diff Read; never re-read a new/full-content file.
+- [x] ADAPT in `.opencode/agents/{context,deep-research,deep-review}.md`: same discipline but P0 rereads explicitly exempt; add awareness in `orchestrate.md`.
+- [x] Mirror every agent edit into `.claude/agents/{review,context,deep-research,deep-review,orchestrate}.md` and `.codex/agents/{review,context,deep-research,deep-review,orchestrate}.toml`.
 
 ### Phase E: Numeric-severity note (T9, docs only)
 
@@ -189,8 +189,8 @@ Required inventories:
 - [ ] Run each 010 fixture (stale-verdict, softened-Fail, over-read) against the shipped rules; confirm green before any ERROR promotion.
 - [ ] Confirm with flags off + non-strict, behavior is unchanged (preservation grep + clean run).
 - [ ] Grep-confirm no memory-subsystem file, no 010 fixture/scorer, and no 011 AC-gate file changed.
-- [ ] Confirm each `.opencode/agents/*` edit has a `.claude/agents/*` mirror.
-- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict`.
+- [x] Confirm each `.opencode/agents/*` edit has a `.claude/agents/*` and `.codex/agents/*` mirror.
+- [x] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict`.
 <!-- /ANCHOR:phases -->
 
 ---

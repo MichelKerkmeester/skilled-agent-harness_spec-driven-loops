@@ -175,6 +175,13 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - **Gate-relevant P1** -- run compact skeptic/referee pass in-iteration and document it in the finding.
 - **P2** -- no self-check required; document evidence and move on.
 
+#### Verification Discipline
+
+- Before broad or repeated non-diff reads, state the reason and prefer focused line ranges or exact anchors.
+- P0 rereads are mandatory when blocker status, counterevidence, or fix verification depends on current file content.
+- An active P0 keeps the verdict at FAIL. Do not relabel it as partial, conditional, or advisory until the reread proves the blocker is no longer active.
+- When implementation conflicts with the governing spec or review target, report escalation required with the one-sentence root cause and the available choices: amend the spec, fix the implementation, or stop.
+
 #### Step 7: Write Findings
 
 - Create `review/iterations/iteration-NNN.md` using one canonical template.

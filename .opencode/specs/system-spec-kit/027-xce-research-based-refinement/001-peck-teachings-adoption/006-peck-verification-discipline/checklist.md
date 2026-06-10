@@ -1,30 +1,30 @@
 ---
-title: "Verification Checklist: 009 — Peck Verification Discipline"
-description: "Verification checklist for the peck verification-discipline bundle (T5-T9). Planning scaffold — items are verified after implementation."
+title: "Verification Checklist: 027/001/006 Peck Verification Discipline"
+description: "Verification checklist for the scoped agent-roster prompt-guidance slice of the peck verification-discipline bundle."
 trigger_phrases:
   - "verification"
   - "checklist"
-  - "009 peck verification discipline"
+  - "006 peck verification discipline"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 009 checklist (not implemented)"
-    next_safe_action: "Verify items after implementing Phase 1 freshness in WARN mode"
+    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Updated scoped agent mirror prompt guidance"
+    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: 009 — Peck Verification Discipline
+# Verification Checklist: 027/001/006 Peck Verification Discipline
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -41,6 +41,8 @@ _memory:
 | **[P2]** | Optional | Can defer with documented reason |
 <!-- /ANCHOR:protocol -->
 
+Scope note: this checklist now records the scoped agent-roster run. Rows that describe validator, command, skill, daemon, fixture, or rollout surfaces remain unchecked because those paths were out of scope for this implementation.
+
 ---
 
 <!-- ANCHOR:pre-impl -->
@@ -56,10 +58,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Prompt/doc edits pass markdown + template validation
-- [ ] CHK-011 [P0] No console errors or warnings in `validate.sh`
+- [x] CHK-010 [P0] Prompt/doc edits pass markdown + template validation. Evidence: strict spec validation passed.
+- [x] CHK-011 [P0] No console errors or warnings in `validate.sh`. Evidence: strict spec validation passed with 0 warnings.
 - [ ] CHK-012 [P1] Freshness recompute reuses the existing fingerprint helper (no new infra)
-- [ ] CHK-013 [P1] Changes follow existing validator-registry + agent-prompt patterns
+- [x] CHK-013 [P1] Changes follow existing validator-registry + agent-prompt patterns. Evidence: additive prompt sections only; no routing, permission, severity, or schema contract changes.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -102,7 +104,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: docs now identify the current run as the scoped phase-006 agent-roster implementation.
 - [ ] CHK-041 [P1] Each new validator rule has `How to Fix` wording (no cryptic failures)
 - [ ] CHK-042 [P2] ENV_REFERENCE.md updated with the new flags
 <!-- /ANCHOR:docs -->
@@ -123,11 +125,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 0/11 |
-| P1 Items | 14 | 0/14 |
-| P2 Items | 6 | 0/6 |
+| P0 Items | 11 | 2/11 scoped |
+| P1 Items | 14 | 4/14 scoped |
+| P2 Items | 6 | 0/6 scoped |
 
-**Verification Date**: 2026-06-06
+**Verification Date**: 2026-06-10
 <!-- /ANCHOR:summary -->
 
 ---
@@ -169,7 +171,7 @@ _memory:
 <!-- ANCHOR:compliance-verify -->
 ## L3+: COMPLIANCE VERIFICATION
 
-- [ ] CHK-130 [P1] Comment-hygiene + honesty constitutional rules respected
+- [x] CHK-130 [P1] Comment-hygiene + honesty constitutional rules respected. Evidence: new agent guidance contains no packet IDs, task IDs, checklist IDs, or spec-folder pointers.
 - [ ] CHK-131 [P1] No regression in existing constitutional completion rules
 - [ ] CHK-132 [P2] Anti-softening rule reviewed against existing honesty rules
 - [ ] CHK-133 [P2] Data handling compliant
@@ -181,7 +183,7 @@ _memory:
 ## L3+: DOCUMENTATION VERIFICATION
 
 - [ ] CHK-140 [P1] All spec documents synchronized (incl. integration-plan cross-refs)
-- [ ] CHK-141 [P1] `.claude/agents/*` mirrors updated or mirror-lag recorded
+- [x] CHK-141 [P1] `.claude/agents/*` mirrors updated or mirror-lag recorded. Evidence: `.claude` and `.codex` mirrors updated for all five scoped agents.
 - [ ] CHK-142 [P2] User-facing message wording reviewed
 - [ ] CHK-143 [P2] Knowledge transfer documented
 <!-- /ANCHOR:docs-verify -->

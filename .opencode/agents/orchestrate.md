@@ -540,6 +540,10 @@ This keeps execution depth bounded and eliminates illegal nested delegation chai
 
 STOP (do not synthesize rejected output) → provide specific feedback stating exactly what failed → retry with explicit requirements, expected format, and additional context → escalate to user after 2 rejections.
 
+### Review Verdict Discipline
+
+When consuming review or context-agent results, preserve the strongest active blocker exactly. Do not soften an active P0, failed binary gate, unresolved contradiction, or stale verification into partial success. If the agent reports a spec/implementation conflict, surface escalation required with the one-sentence root cause and route to one explicit choice: amend the governing spec, fix the implementation, or stop.
+
 ### Scoring Dimensions (100 points total)
 
 | Dimension        | Weight | Criteria                                  |

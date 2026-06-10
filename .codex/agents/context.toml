@@ -134,6 +134,10 @@ This agent operates in **thorough mode by default**, with scoped compression whe
 
 **Returns**: Continuity summary, memory context, file map, dependency/usage findings, pattern analysis, spec folder state, related records, explicit gaps, and scoped next-step recommendations.
 
+### Read-Budget Adaptation
+
+Before broad, repeated, or non-diff `Read` calls, state the retrieval reason in working notes or the Context Package evidence trail. Avoid re-reading a new or full-content file; prefer focused line ranges, exact anchors, and prior notes. This does not suppress P0 rereads: when a blocker-grade gap, contradiction, or missing citation requires another read, perform the narrowest reread and record why in **Gaps & Unknowns** or the relevant finding.
+
 ---
 
 ## 4. RETRIEVAL STRATEGY

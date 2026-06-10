@@ -1,8 +1,8 @@
 ---
-title: "Tasks: 027/009 Peck Verification Discipline"
-description: "Task list for the five-rule peck verification-discipline bundle: completion-verdict freshness (anchor), escalation gates, anti-softening, reviewer read-budget, the docs-only numeric-severity note, plus the net-new UX/automation opportunities. Planning scaffold."
+title: "Tasks: 027/001/006 Peck Verification Discipline"
+description: "Scoped task list for the agent-roster prompt-guidance slice of the peck verification-discipline bundle. The source proposal calls this Packet 009; this implementation folder is phase 006."
 trigger_phrases:
-  - "027 phase 009"
+  - "027 phase 006"
   - "peck verification discipline"
   - "completion-verdict freshness"
   - "anti-verdict-softening"
@@ -12,21 +12,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 009 from research 006 proposal + integration-plan"
-    next_safe_action: "Land 010 fixtures, then implement Phase 2 freshness in WARN mode"
+    last_updated_at: "2026-06-10T06:45:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Updated scoped agent mirror prompt guidance"
+    next_safe_action: "Scoped run complete; broader surfaces remain deferred"
     blockers: []
     key_files: ["spec.md", "plan.md", "checklist.md", "decision-record.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-009-peck-verification-discipline-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Tasks: 027/009 Peck Verification Discipline
+# Tasks: 027/001/006 Peck Verification Discipline
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -46,6 +46,8 @@ _memory:
 **Task Format**: `T### [P?] Description (file path)`
 
 > Single packet, no nested phase-child folders. The proposal's five rules + UX/automation opportunities are implementation groups A-F under Phase 2; T6 freshness is the anchor (Group A).
+
+> Scope reconciliation: the current authorized run implements only the agent-roster prompt-guidance slice: read-budget discipline for `review`, adapted read-budget/freshness language for `context`, `deep-research`, and `deep-review`, plus consume-only verdict/escalation awareness for `orchestrate`. Validator, command, skill, daemon, fixture, and package files remain out of scope for this run.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -84,9 +86,9 @@ _memory:
 - [ ] T032 Enforce the single-verdict/no-softening rule in `deep_start-review-loop_auto.yaml` + `..._confirm.yaml` legal-stop/verdict gates.
 
 **Group D — Reviewer read-budget (T8):**
-- [ ] T040 ADOPT in `.opencode/agents/review.md`: state the reason before each non-diff Read; never re-read a new/full-content file.
-- [ ] T041 ADAPT in `.opencode/agents/context.md`, `deep-research.md`, `deep-review.md` (P0 rereads exempt); add awareness in `orchestrate.md`.
-- [ ] T042 Mirror T040/T041 into the `.claude/agents/*` equivalents (or record a mirror-lag decision).
+- [x] T040 ADOPT in `.opencode/agents/review.md`: state the reason before each non-diff Read; never re-read a new/full-content file. Evidence: Read-Budget Discipline section added.
+- [x] T041 ADAPT in `.opencode/agents/context.md`, `deep-research.md`, `deep-review.md` (P0 rereads exempt); add awareness in `orchestrate.md`. Evidence: Read-Budget Adaptation, read-budget freshness, Verification Discipline, and Review Verdict Discipline sections added.
+- [x] T042 Mirror T040/T041 into the `.claude/agents/*` equivalents (or record a mirror-lag decision). Evidence: matching `.claude` and `.codex` runtime mirrors updated for all five agents.
 
 **Group E — Numeric-severity note (T9, docs only):**
 - [ ] T050 [P] Add the `+/-2 context` note + optional advisory `riskScore` (explicitly non-gating) to `sk-code-review/SKILL.md` + `references/review_core.md`.
@@ -108,9 +110,9 @@ _memory:
 - [ ] T070 Run each 010 fixture (stale-verdict, softened-Fail, over-read) against the shipped rules; confirm green before any ERROR promotion.
 - [ ] T071 Confirm flags-off + non-strict behavior is unchanged (preservation grep + clean non-strict `validate.sh` run).
 - [ ] T072 Grep-confirm no memory-subsystem file, no 010 fixture/scorer, and no 011 AC-gate file changed.
-- [ ] T073 Confirm each `.opencode/agents/*` edit has a matching `.claude/agents/*` mirror (or a recorded mirror-lag decision).
+- [x] T073 Confirm each `.opencode/agents/*` edit has a matching `.claude/agents/*` mirror (or a recorded mirror-lag decision). Evidence: `.opencode`, `.claude`, and `.codex` mirrors changed for review, context, deep-research, deep-review, and orchestrate.
 - [ ] T074 Add manual test cases for verdict-lock + read-budget to the deep-review manual_testing_playbook.
-- [ ] T075 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline --strict`.
+- [x] T075 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline --strict`. Evidence: passed with 0 errors and 0 warnings.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -121,7 +123,7 @@ _memory:
 - [ ] All P0 requirements in `spec.md` are satisfied (freshness recompute + clean-tree + strict-only + warn-first flag; anti-softening one-verdict; each rule on an existing surface; automation classes documented; numeric note docs-only).
 - [ ] Freshness ships warn-first behind `SPECKIT_COMPLETION_FRESHNESS` + `..._ENFORCE` and is not promoted to ERROR before its 010 fixture is green.
 - [ ] The deep-review verdict line + completion ritual always emit one exact parseable verdict and never relabel a Fail.
-- [ ] Read-budget ADOPTed for `@review`, ADAPTed for deep-*/`@context` (P0 rereads exempt), `.claude/agents/*` mirrors updated.
+- [x] Read-budget ADOPTed for `@review`, ADAPTed for deep-*/`@context` (P0 rereads exempt), `.claude/agents/*` and `.codex/agents/*` mirrors updated.
 - [ ] Net-new UX/automation opportunities are implemented.
 - [ ] No files outside the spec.md Files-to-Change set changed; no memory-subsystem, 010, or 011 file touched.
 <!-- /ANCHOR:completion -->
