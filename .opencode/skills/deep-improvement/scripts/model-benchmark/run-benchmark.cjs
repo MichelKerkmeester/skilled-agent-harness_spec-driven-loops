@@ -547,9 +547,15 @@ async function main() {
     let phantomGap = null;
     if (profile.self_score_pattern) {
       const selfMax = Number(profile.self_score_max || 100);
-      const selfRe = new RegExp(String(profile.self_score_pattern).slice(0, MAX_PATTERN_LENGTH), 'i');
+      const selfSource = String(profile.self_score_pattern);
+      if (selfSource.length > MAX_PATTERN_LENGTH) {
+        throw new Error(`run-benchmark: self_score_pattern exceeds ${MAX_PATTERN_LENGTH} chars (len=${selfSource.length}); refusing to compile to avoid regex DoS`);
+      }
+      let selfRe = null;
+      try { selfRe = new RegExp(selfSource, 'i'); }
+      catch { process.stderr.write('run-benchmark: self_score_pattern is not a valid regex; skipping phantom-gap metric\n'); }
       const perFixture = [];
-      for (const entry of results) {
+      for (const entry of selfRe ? results : []) {
         // sampled runs may have only run-tagged outputs; fall back to sample 1
         const candidatePaths = [entry.outputPath];
         if (entry.sample_count) candidatePaths.push(fixtureSampleOutputPath(outputsDir, entry.id, 1));

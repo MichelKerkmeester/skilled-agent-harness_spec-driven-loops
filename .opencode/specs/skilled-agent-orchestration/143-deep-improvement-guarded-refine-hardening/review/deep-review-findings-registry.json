@@ -1,0 +1,1807 @@
+{
+  "sessionId": "2026-06-10T06:19:24Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "make_worktree() returns Copywriter/ subdir instead of packaging root",
+      "file": "Barter/Barter deals/_loop/loop.py",
+      "line": 596,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "readScoreDelta dual-shape handling fragile for future shapes",
+      "file": "scripts/shared/promote-candidate.cjs",
+      "line": 70,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "gates.py docstring says Copywriter instead of Barter deals",
+      "file": "Barter/Barter deals/_gates/gates.py",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "comment references Lane C but mode is Lane D",
+      "file": "scripts/shared/loop-host.cjs",
+      "line": 273,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "acquire_lock TOCTOU race window mitigated by retry loop",
+      "file": "Barter/Copywriter/_loop/loop.py",
+      "line": 109,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "phantom-gap regex compiles user-authored pattern with partial ReDoS guard",
+      "file": "scripts/model-benchmark/run-benchmark.cjs",
+      "line": 550,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-005",
+      "severity": "P2",
+      "title": "analyze_gap polish path uses less-readable min() syntax",
+      "file": "Barter/Copywriter/_loop/loop.py",
+      "line": 343,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "init_packaging.py template rendering lacks context-aware shell escaping",
+      "file": "scripts/non-dev-ai-system/init_packaging.py",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P2",
+      "title": "Schema validation gaps in init_packaging.py — harness sub-fields consumed by templates but unchecked",
+      "file": "scripts/non-dev-ai-system/init_packaging.py",
+      "line": 43,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "loop_contract.md missing LOOP_SKIP_PROBE env knob",
+      "file": "references/non_dev_ai_system/loop_contract.md",
+      "line": 39,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "loop_contract.md missing promote_skip journal event",
+      "file": "references/non_dev_ai_system/loop_contract.md",
+      "line": 54,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "operator_guide.md claims gauntlet 10/10 but gauntlet has 9 attacks",
+      "file": "references/non_dev_ai_system/operator_guide.md",
+      "line": 62,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-004",
+      "severity": "P2",
+      "title": "T6 conflates fixture-lint.cjs with loop.py lint_held_out()",
+      "file": "references/non_dev_ai_system/guardrails_teachings.md",
+      "line": 63,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-005",
+      "severity": "P2",
+      "title": "Schema does not require harness sub-fields that templates consume",
+      "file": "assets/non_dev_ai_system/packaging_config.schema.json",
+      "line": 188,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Template-instance divergence — live instances drifted 100+ lines from templates",
+      "file": "Barter/Copywriter/_loop/loop.py",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Near-identical duplication across Copywriter and Barter deals loop.py",
+      "file": "Barter/Copywriter/_loop/loop.py",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Dead schema fields — ci_compact_path, ci_full_path, skill_dir_name never consumed",
+      "file": "assets/non_dev_ai_system/packaging_config.schema.json",
+      "line": 208,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-004",
+      "severity": "P2",
+      "title": "Schema docs reference phantom scaffolding tokens {{CI_PATH}} and {{SKILL_DIR}}",
+      "file": "assets/non_dev_ai_system/packaging_config.schema.json",
+      "line": 195,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-005",
+      "severity": "P2",
+      "title": "Stale docstring in Barter deals gates.py claims Copywriter",
+      "file": "Barter/Barter deals/_gates/gates.py",
+      "line": 2,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-006",
+      "severity": "P2",
+      "title": "High change cost for a third packaging",
+      "file": "scripts/non-dev-ai-system/init_packaging.py",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "deterministic_lint.py.template applies re.I uniformly vs selective in live hvr_lint.py",
+      "file": "assets/non_dev_ai_system/templates/deterministic_lint.py.template",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "gauntlet.py.template A5 threshold is >= 2 vs live >= 3",
+      "file": "assets/non_dev_ai_system/templates/gauntlet.py.template",
+      "line": 95,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-003",
+      "severity": "P2",
+      "title": "regrade.py.template rubric() includes ALL frozen files vs live MEQT-only subset",
+      "file": "assets/non_dev_ai_system/templates/regrade.py.template",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-004",
+      "severity": "P2",
+      "title": "init_packaging.py does not validate benchmark_variant_preludes keys against fixtures.variants",
+      "file": "scripts/non-dev-ai-system/init_packaging.py",
+      "line": 109,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-005",
+      "severity": "P2",
+      "title": "gauntlet.py.template A1/A2/A8 use generic file-walking vs live hardcoded paths",
+      "file": "assets/non_dev_ai_system/templates/gauntlet.py.template",
+      "line": 146,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-006",
+      "severity": "P2",
+      "title": "init_packaging.py partial-write on failure lacks atomicity",
+      "file": "scripts/non-dev-ai-system/init_packaging.py",
+      "line": 243,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "Gauntlet attack count documented as 10/10 but code implements 9 (A1-A9)",
+      "file": "gauntlet.py",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-002",
+      "severity": "P2",
+      "title": "promote_skip missing from loop_contract.md journal events table",
+      "file": "loop_contract.md",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "_config_hash() omits HELD_OUT — safe-by-structure but not explicitly guarded",
+      "file": "Barter/Barter deals/_loop/loop.py",
+      "line": 148,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-002",
+      "severity": "P2",
+      "title": "lint_held_out() prefix collision class with overlapping fixture names",
+      "file": "Barter/Barter deals/_loop/loop.py",
+      "line": 495,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-003",
+      "severity": "P2",
+      "title": "cleanup_worktree dirname() assumes single-level packaging subdir",
+      "file": "Barter/Barter deals/_loop/loop.py",
+      "line": 600,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P2",
+      "title": "Schema validation gaps in init_packaging.py — harness sub-fields consumed by templates but unchecked",
+      "file": "scripts/non-dev-ai-system/init_packaging.py",
+      "line": 43,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "repeatedFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P2",
+      "title": "Schema validation gaps in init_packaging.py — harness sub-fields consumed by templates but unchecked",
+      "file": "scripts/non-dev-ai-system/init_packaging.py",
+      "line": 43,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 29
+  },
+  "openFindingsCount": 31,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [
+      "behavioral_divergence",
+      "catalog_overshoot",
+      "code_duplication",
+      "copy_paste_adaptation",
+      "cross_reference_integrity",
+      "cross_runtime_drift",
+      "dead_config",
+      "deliverable_injection",
+      "docs_code_drift",
+      "documentation_drift",
+      "edge_case",
+      "escalation_cluster_steelman",
+      "evidence_rot",
+      "grader_proposer_chain",
+      "guard_bypass",
+      "naming_consistency",
+      "path_traversal",
+      "playbook_unrunnable",
+      "prompt_injection",
+      "render_equivalence",
+      "schema_validation_gap",
+      "scoring_inflation",
+      "severity_downgrade_verification",
+      "spec_checklist_alignment",
+      "state_transition",
+      "subprocess_injection",
+      "template_instance_divergence"
+    ],
+    "ruledOut": [
+      "cross_reference_integrity",
+      "cross_runtime_drift",
+      "deliverable_injection",
+      "documentation_drift",
+      "evidence_rot",
+      "path_traversal",
+      "prompt_injection",
+      "race_condition",
+      "severity_downgrade_verification",
+      "state_transition",
+      "subprocess_injection"
+    ],
+    "deferred": [
+      "race_condition"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          6
+        ]
+      },
+      "copy_paste_adaptation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "guard_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "scoring_inflation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "race_condition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "docs_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "schema_validation_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "spec_checklist_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_reference_integrity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "template_instance_divergence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "code_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_config": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "naming_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "render_equivalence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "edge_case": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "behavioral_divergence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "prompt_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "subprocess_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "deliverable_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "grader_proposer_chain": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "documentation_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "cross_runtime_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "catalog_overshoot": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "playbook_unrunnable": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "severity_downgrade_verification": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "escalation_cluster_steelman": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "evidence_rot": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "Barter/Copywriter/_loop/loop.py",
+        "Barter/Barter deals/_loop/loop.py"
+      ],
+      "bugClass": "race_condition",
+      "disposition": "ruled_out",
+      "rationale": "known-acceptable tradeoff per deep-loop-runtime contract, mitigated by retry loop",
+      "evidenceRefs": [
+        "Barter/Copywriter/_loop/loop.py:109-129"
+      ],
+      "reason": "retry loop provides sufficient protection for single-writer use case"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "scripts/shared/loop-host.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "all lane sets properly checked with fallback",
+      "evidenceRefs": [
+        "scripts/shared/loop-host.cjs:144-160"
+      ],
+      "reason": "all 4 lanes have explicit sets; fallback covers shared scripts"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-T04",
+      "dimension": "traceability",
+      "targetRefs": [
+        "commands/deep/start-non-dev-ai-system-loop.md",
+        "scripts/shared/loop-host.cjs",
+        "scripts/non-dev-ai-system/run-non-dev-ai-system.cjs"
+      ],
+      "bugClass": "cross_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "all flags consistent across command, loop-host, and adapter",
+      "evidenceRefs": [
+        "start-non-dev-ai-system-loop.md:80-81",
+        "loop-host.cjs:84-93",
+        "run-non-dev-ai-system.cjs:39-46"
+      ],
+      "reason": "verified by cross-reference of all three surfaces"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/benchmark/run.sh",
+        "assets/non_dev_ai_system/templates/run.sh.template"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "fixture content operator-authored; BENCHMARK MODE soft guard adequate for trusted inputs; live-root dispatch is by design",
+      "evidenceRefs": [
+        "Barter/Copywriter/benchmark/run.sh:30,47,60"
+      ],
+      "reason": "trusted-operator threat model; propose step is worktree-isolated"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/benchmark/grader/regrade.py",
+        "assets/non_dev_ai_system/templates/regrade.py.template"
+      ],
+      "bugClass": "deliverable_injection",
+      "disposition": "ruled_out",
+      "rationale": "different-family grader limits cross-model injection; JSON output parser rejects non-JSON responses; grader has no file tools",
+      "evidenceRefs": [
+        "Barter/Copywriter/benchmark/grader/regrade.py:54-57",
+        "assets/non_dev_ai_system/templates/grader_prompt.md.template:7-9"
+      ],
+      "reason": "JSON parser + different-family grader + no file tools on grader"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/_loop/loop.py",
+        "assets/non_dev_ai_system/templates/loop.py.template"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "worktree isolation + gates.py frozen surface guard + different-family grader bounds the chain",
+      "evidenceRefs": [
+        "Barter/Copywriter/_loop/loop.py:344,372-386,404-411"
+      ],
+      "reason": "worktree + gates.py backstop + grader independence"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "config is operator-authored trust boundary; no untrusted runtime input reaches path construction",
+      "evidenceRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py:136,254,345"
+      ],
+      "reason": "operator-authored config is the trust boundary"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/_loop/loop.py",
+        "Barter/Copywriter/benchmark/grader/regrade.py",
+        "Barter/Copywriter/benchmark/grader/calibrate.py",
+        "scripts/shared/loop-host.cjs"
+      ],
+      "bugClass": "subprocess_injection",
+      "disposition": "ruled_out",
+      "rationale": "all subprocess calls use list/array args with shell=False; no user-controlled argv concatenation; stdin=DEVNULL on all opencode dispatches",
+      "evidenceRefs": [
+        "Barter/Copywriter/_loop/loop.py:72-74",
+        "Barter/Copywriter/benchmark/grader/regrade.py:56-58",
+        "Barter/Copywriter/benchmark/grader/calibrate.py:25-27",
+        "scripts/shared/loop-host.cjs:296"
+      ],
+      "reason": "comprehensive subprocess audit: clean across all surfaces"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "SKILL.md:32-38",
+        ".opencode/agents/deep-improvement.md:46"
+      ],
+      "bugClass": "documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "all mode ids, commands, and script paths match between SKILL.md and agent file",
+      "evidenceRefs": [
+        "SKILL.md:32-38",
+        ".opencode/agents/deep-improvement.md:46"
+      ],
+      "reason": "verified by direct read comparison"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents/deep-improvement.md",
+        ".claude/agents/deep-improvement.md"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "byte-for-byte identical files, zero drift",
+      "evidenceRefs": [
+        ".opencode/agents/deep-improvement.md",
+        ".claude/agents/deep-improvement.md"
+      ],
+      "reason": "verified by direct read comparison"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "Barter/Barter deals/_loop/loop.py"
+      ],
+      "bugClass": "severity_downgrade_verification",
+      "disposition": "ruled_out",
+      "rationale": "structurally correct for shared-repo layout; both loops access same Copywriter/ working dir",
+      "evidenceRefs": [
+        "Barter/Barter deals/_loop/loop.py:596",
+        "Barter/Barter deals/_loop/loop.py:600"
+      ],
+      "reason": "path is correct for the repo structure despite naming confusion"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py",
+        "assets/non_dev_ai_system/packaging_config.schema.json"
+      ],
+      "bugClass": "severity_downgrade_verification",
+      "disposition": "ruled_out",
+      "rationale": "optional fields produce warnings/tracebacks, not silent corruption",
+      "evidenceRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py:109-111",
+        "assets/non_dev_ai_system/packaging_config.schema.json:199-203"
+      ],
+      "reason": "immediate failure on bad config, no silent data corruption path"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "Barter/Copywriter/_loop/loop.py",
+        "Barter/Barter deals/_loop/loop.py"
+      ],
+      "bugClass": "race_condition",
+      "disposition": "ruled_out",
+      "rationale": "known-acceptable tradeoff per deep-loop-runtime contract, mitigated by retry loop",
+      "evidenceRefs": [
+        "Barter/Copywriter/_loop/loop.py:109-129"
+      ],
+      "proof": "retry loop provides sufficient protection for single-writer use case"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "scripts/shared/loop-host.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "all lane sets properly checked with fallback",
+      "evidenceRefs": [
+        "scripts/shared/loop-host.cjs:144-160"
+      ],
+      "proof": "all 4 lanes have explicit sets; fallback covers shared scripts"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-T04",
+      "dimension": "traceability",
+      "targetRefs": [
+        "commands/deep/start-non-dev-ai-system-loop.md",
+        "scripts/shared/loop-host.cjs",
+        "scripts/non-dev-ai-system/run-non-dev-ai-system.cjs"
+      ],
+      "bugClass": "cross_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "all flags consistent across command, loop-host, and adapter",
+      "evidenceRefs": [
+        "start-non-dev-ai-system-loop.md:80-81",
+        "loop-host.cjs:84-93",
+        "run-non-dev-ai-system.cjs:39-46"
+      ],
+      "proof": "verified by cross-reference of all three surfaces"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/benchmark/run.sh",
+        "assets/non_dev_ai_system/templates/run.sh.template"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "fixture content operator-authored; BENCHMARK MODE soft guard adequate for trusted inputs; live-root dispatch is by design",
+      "evidenceRefs": [
+        "Barter/Copywriter/benchmark/run.sh:30,47,60"
+      ],
+      "proof": "trusted-operator threat model; propose step is worktree-isolated"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/benchmark/grader/regrade.py",
+        "assets/non_dev_ai_system/templates/regrade.py.template"
+      ],
+      "bugClass": "deliverable_injection",
+      "disposition": "ruled_out",
+      "rationale": "different-family grader limits cross-model injection; JSON output parser rejects non-JSON responses; grader has no file tools",
+      "evidenceRefs": [
+        "Barter/Copywriter/benchmark/grader/regrade.py:54-57",
+        "assets/non_dev_ai_system/templates/grader_prompt.md.template:7-9"
+      ],
+      "proof": "JSON parser + different-family grader + no file tools on grader"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/_loop/loop.py",
+        "assets/non_dev_ai_system/templates/loop.py.template"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "worktree isolation + gates.py frozen surface guard + different-family grader bounds the chain",
+      "evidenceRefs": [
+        "Barter/Copywriter/_loop/loop.py:344,372-386,404-411"
+      ],
+      "proof": "worktree + gates.py backstop + grader independence"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "config is operator-authored trust boundary; no untrusted runtime input reaches path construction",
+      "evidenceRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py:136,254,345"
+      ],
+      "proof": "operator-authored config is the trust boundary"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "Barter/Copywriter/_loop/loop.py",
+        "Barter/Copywriter/benchmark/grader/regrade.py",
+        "Barter/Copywriter/benchmark/grader/calibrate.py",
+        "scripts/shared/loop-host.cjs"
+      ],
+      "bugClass": "subprocess_injection",
+      "disposition": "ruled_out",
+      "rationale": "all subprocess calls use list/array args with shell=False; no user-controlled argv concatenation; stdin=DEVNULL on all opencode dispatches",
+      "evidenceRefs": [
+        "Barter/Copywriter/_loop/loop.py:72-74",
+        "Barter/Copywriter/benchmark/grader/regrade.py:56-58",
+        "Barter/Copywriter/benchmark/grader/calibrate.py:25-27",
+        "scripts/shared/loop-host.cjs:296"
+      ],
+      "proof": "comprehensive subprocess audit: clean across all surfaces"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "SKILL.md:32-38",
+        ".opencode/agents/deep-improvement.md:46"
+      ],
+      "bugClass": "documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "all mode ids, commands, and script paths match between SKILL.md and agent file",
+      "evidenceRefs": [
+        "SKILL.md:32-38",
+        ".opencode/agents/deep-improvement.md:46"
+      ],
+      "proof": "verified by direct read comparison"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents/deep-improvement.md",
+        ".claude/agents/deep-improvement.md"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "byte-for-byte identical files, zero drift",
+      "evidenceRefs": [
+        ".opencode/agents/deep-improvement.md",
+        ".claude/agents/deep-improvement.md"
+      ],
+      "proof": "verified by direct read comparison"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "Barter/Barter deals/_loop/loop.py"
+      ],
+      "bugClass": "severity_downgrade_verification",
+      "disposition": "ruled_out",
+      "rationale": "structurally correct for shared-repo layout; both loops access same Copywriter/ working dir",
+      "evidenceRefs": [
+        "Barter/Barter deals/_loop/loop.py:596",
+        "Barter/Barter deals/_loop/loop.py:600"
+      ],
+      "proof": "path is correct for the repo structure despite naming confusion"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-10-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py",
+        "assets/non_dev_ai_system/packaging_config.schema.json"
+      ],
+      "bugClass": "severity_downgrade_verification",
+      "disposition": "ruled_out",
+      "rationale": "optional fields produce warnings/tracebacks, not silent corruption",
+      "evidenceRefs": [
+        "scripts/non-dev-ai-system/init_packaging.py:109-111",
+        "assets/non_dev_ai_system/packaging_config.schema.json:199-203"
+      ],
+      "proof": "immediate failure on bad config, no silent data corruption path"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "severity_downgrade_verification",
+      "escalation_cluster_steelman",
+      "evidence_rot"
+    ],
+    "covered": [
+      "severity_downgrade_verification",
+      "escalation_cluster_steelman",
+      "evidence_rot"
+    ],
+    "ruledOut": [
+      "evidence_rot"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 3,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 5,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 7,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 9,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 11,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 13,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 15,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 17,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 19,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

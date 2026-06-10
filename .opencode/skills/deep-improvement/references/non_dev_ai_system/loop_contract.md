@@ -46,6 +46,7 @@ The skill-side adapter (`scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`) m
 | `PROPOSER_MODEL` | Proposer model identifier | config `models.proposer` |
 | `GRADER_MODEL` | Grader model identifier (must differ from proposer family) | config `models.grader` |
 | `LOOP_ACCEPT_MARGIN` | Required held-out improvement beyond non-regression | 0 |
+| `LOOP_SKIP_PROBE` | Set to 1 to skip the T11 provider auth probes (tests/CI only) | unset |
 | `LOOP_POLISH` | When 1, targets the lowest-margin dimension when all floors pass | off (decline-when-clean) |
 | `LOOP_LOCK_TTL` | Seconds before a loop lock is considered stale | 7200 |
 | `LOOP_SKIP_PROBE` | When 1, skips auth pre-flight probes | off |
@@ -84,6 +85,7 @@ Stop reasons map onto the deep-improvement journal taxonomy:
 | `noTarget` | `converged` | No actionable gap found (decline-when-clean) |
 | `killSwitch` | `blockedStop` | Any kill-switch triggered |
 | `visibleUnmeasurable` | `error` | Visible sampling produced no gradeable output |
+| `promote_skip` | (event) | Promotion phase skipped: unmeasurable baseline or proposer dispatch failure, distinct from a quality rejection |
 | `stuckRecovery` | `stuckRecovery` | Below target and plateaued with no gap shrinkage |
 | `manualStop` | `manualStop` | Operator interruption |
 | `error` | `error` | Unhandled exception |

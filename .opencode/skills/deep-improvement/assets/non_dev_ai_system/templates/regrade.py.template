@@ -47,9 +47,11 @@ def self_score(raw):
     return int(m.group(1)) if m else None
 
 
+RUBRIC_FILES = {{RUBRIC_FROZEN_FILES}}   # R5-P2-003: scoring-rubric subset only (anchored frozen regions), not the full frozen surface
+
+
 def rubric():
-    return "\n".join(open(os.path.join(GATES, f), encoding="utf-8").read()
-                     for f in sorted(os.listdir(GATES)) if f.endswith(".frozen.md"))
+    return "\n".join(open(os.path.join(GATES, f), encoding="utf-8").read() for f in RUBRIC_FILES)
 
 
 def grade(deliverable):

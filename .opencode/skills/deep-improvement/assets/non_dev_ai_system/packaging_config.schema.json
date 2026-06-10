@@ -42,11 +42,20 @@
       "patternProperties": {
         "^[A-Z]$": {
           "type": "object",
-          "required": ["floor", "max"],
+          "required": [
+            "floor",
+            "max"
+          ],
           "additionalProperties": false,
           "properties": {
-            "floor": {"type": "integer", "minimum": 0},
-            "max": {"type": "integer", "minimum": 1}
+            "floor": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1
+            }
           }
         }
       },
@@ -72,21 +81,39 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["frozen_name", "live_relpath"],
+        "required": [
+          "frozen_name",
+          "live_relpath"
+        ],
         "additionalProperties": false,
         "properties": {
-          "frozen_name": {"type": "string", "description": "Filename in _gates/ for the frozen snapshot."},
-          "live_relpath": {"type": "string", "description": "Relative path from packaging root to the live doc."},
+          "frozen_name": {
+            "type": "string",
+            "description": "Filename in _gates/ for the frozen snapshot."
+          },
+          "live_relpath": {
+            "type": "string",
+            "description": "Relative path from packaging root to the live doc."
+          },
           "section_anchor": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "description": "Markdown heading that starts the section to freeze; null means freeze whole file."
+          },
+          "in_rubric": {
+            "type": "boolean",
+            "description": "Include this frozen file in the grader prompt rubric (default true). Set false for large rule docs (e.g. the full HVR doc) that would bloat or skew grading."
           }
         }
       }
     },
     "anchors": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "description": "Literal strings that must remain in the live scoring docs (cheap erosion tripwire).",
       "minItems": 1
     },
@@ -99,7 +126,9 @@
       "description": "Map from dimension key -> editable technique doc relpath (from packaging root). These are the ONLY docs the proposer may edit.",
       "additionalProperties": false,
       "patternProperties": {
-        "^[A-Z]$": {"type": "string"}
+        "^[A-Z]$": {
+          "type": "string"
+        }
       },
       "minProperties": 1
     },
@@ -108,21 +137,39 @@
       "description": "Verbatin-copy derivations (derive.py). Each entry maps a CLI source to one or more target copies.",
       "items": {
         "type": "object",
-        "required": ["src_relpath", "targets"],
+        "required": [
+          "src_relpath",
+          "targets"
+        ],
         "additionalProperties": false,
         "properties": {
-          "src_relpath": {"type": "string", "description": "Relative path from packaging root's knowledge base to the CLI source doc."},
+          "src_relpath": {
+            "type": "string",
+            "description": "Relative path from packaging root's knowledge base to the CLI source doc."
+          },
           "targets": {
             "type": "array",
             "minItems": 1,
             "items": {
               "type": "object",
-              "required": ["relpath"],
+              "required": [
+                "relpath"
+              ],
               "additionalProperties": false,
               "properties": {
-                "relpath": {"type": "string", "description": "Relative path from packaging root to the target copy."},
-                "is_skill_ref": {"type": "boolean", "default": false, "description": "True = this target gets sk-doc frontmatter prepended."},
-                "skill_ref_basename": {"type": "string", "description": "Key into skill_reference_frontmatter for this target's template frontmatter."}
+                "relpath": {
+                  "type": "string",
+                  "description": "Relative path from packaging root to the target copy."
+                },
+                "is_skill_ref": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "True = this target gets sk-doc frontmatter prepended."
+                },
+                "skill_ref_basename": {
+                  "type": "string",
+                  "description": "Key into skill_reference_frontmatter for this target's template frontmatter."
+                }
               }
             }
           }
@@ -131,7 +178,9 @@
     },
     "synthesized_surfaces": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "description": "Relative paths (from packaging root) of docs that require LLM/human re-derivation on source change; flagged at derive time, not auto-regenerated."
     },
     "skill_reference_frontmatter": {
@@ -141,35 +190,52 @@
       "patternProperties": {
         "^.+\\.md$": {
           "type": "object",
-          "required": ["title", "description"],
+          "required": [
+            "title",
+            "description"
+          ],
           "additionalProperties": false,
           "properties": {
-            "title": {"type": "string"},
-            "description": {"type": "string"}
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
           }
         }
       }
     },
     "fixtures": {
       "type": "object",
-      "required": ["visible", "held_out", "variants"],
+      "required": [
+        "visible",
+        "held_out",
+        "variants"
+      ],
       "additionalProperties": false,
       "properties": {
         "visible": {
           "type": "array",
-          "items": {"type": "string"},
+          "items": {
+            "type": "string"
+          },
           "description": "Visible optimization fixture IDs (env LOOP_FIXTURES default).",
           "minItems": 1
         },
         "held_out": {
           "type": "array",
-          "items": {"type": "string"},
+          "items": {
+            "type": "string"
+          },
           "description": "Held-out promotion-gate fixture IDs (env LOOP_HELD_OUT default).",
           "minItems": 1
         },
         "variants": {
           "type": "array",
-          "items": {"type": "string"},
+          "items": {
+            "type": "string"
+          },
           "description": "Benchmark variants to run (env LOOP_VARIANTS default).",
           "minItems": 1
         }
@@ -177,56 +243,68 @@
     },
     "models": {
       "type": "object",
-      "required": ["proposer", "grader", "proposer_family"],
+      "required": [
+        "proposer",
+        "grader",
+        "proposer_family"
+      ],
       "additionalProperties": false,
       "properties": {
-        "proposer": {"type": "string", "description": "Default proposer model (env PROPOSER_MODEL)."},
-        "grader": {"type": "string", "description": "Default grader model (env GRADER_MODEL); must differ from proposer family."},
-        "proposer_family": {"type": "string", "description": "Substring that identifies the proposer's model family; grader must NOT contain this."}
+        "proposer": {
+          "type": "string",
+          "description": "Default proposer model (env PROPOSER_MODEL)."
+        },
+        "grader": {
+          "type": "string",
+          "description": "Default grader model (env GRADER_MODEL); must differ from proposer family."
+        },
+        "proposer_family": {
+          "type": "string",
+          "description": "Substring that identifies the proposer's model family; grader must NOT contain this."
+        }
       }
     },
     "harness": {
       "type": "object",
-      "required": ["benchmark_mode_instructions"],
+      "required": [
+        "benchmark_mode_instructions"
+      ],
       "additionalProperties": false,
       "properties": {
         "benchmark_mode_instructions": {
           "type": "object",
-          "description": "Per-variant system prompt body for benchmark/run.sh. Key = variant name. May contain {{CW}} (replaced with $CW), {{CI_PATH}} (replaced with full CI load command), {{SKILL_DIR}} (replaced with $skill_dir).",
-          "additionalProperties": {"type": "string"},
+          "description": "Per-variant system prompt body for benchmark/run.sh. Key = variant name. May contain {{CW}} (replaced with $CW), (removed phantom token) (replaced with full CI load command), (removed phantom token) (replaced with $skill_dir).",
+          "additionalProperties": {
+            "type": "string"
+          },
           "minProperties": 1
         },
         "benchmark_variant_preludes": {
           "type": "object",
           "description": "Optional per-variant bash commands to execute BEFORE the SYS= assignment (e.g. CI variable loads). Key = variant name.",
-          "additionalProperties": {"type": "string"}
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "benchmark_combinator": {
           "type": "string",
           "description": "String interpolated into the benchmark system prompt after variant instructions (output contract + task)."
-        },
-        "ci_compact_path": {
-          "type": "string",
-          "description": "Relative path from packaging root to the compact Custom Instructions (for {{CI_COMPACT}} in instructions)."
-        },
-        "ci_full_path": {
-          "type": "string",
-          "description": "Relative path from packaging root to the full Custom Instructions (for {{CI_FULL}} in instructions)."
-        },
-        "skill_dir_name": {
-          "type": "string",
-          "description": "Directory name inside packaging root for the skill (for {{SKILL_DIR}} in instructions)."
         }
       }
     },
     "lexicon": {
       "type": "object",
-      "required": ["hard_blocker_words", "hard_blocker_patterns"],
+      "required": [
+        "hard_blocker_words",
+        "hard_blocker_patterns"
+      ],
       "additionalProperties": false,
       "properties": {
         "hard_blocker_words": {
           "type": "array",
-          "items": {"type": "string"},
+          "items": {
+            "type": "string"
+          },
           "description": "AI-vocabulary words that the deterministic linter flags as hard blockers.",
           "minItems": 1
         },
@@ -234,13 +312,37 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["label", "regex"],
+            "required": [
+              "label",
+              "regex"
+            ],
             "additionalProperties": false,
             "properties": {
-              "label": {"type": "string", "description": "Human-readable label for the lint violation."},
-              "regex": {"type": "string", "description": "Python regex pattern."},
-              "severity": {"type": "string", "enum": ["hard", "soft"], "default": "hard"},
-              "note": {"type": "string", "description": "Optional explanation."}
+              "label": {
+                "type": "string",
+                "description": "Human-readable label for the lint violation."
+              },
+              "regex": {
+                "type": "string",
+                "description": "Python regex pattern."
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "hard",
+                  "soft"
+                ],
+                "default": "hard"
+              },
+              "note": {
+                "type": "string",
+                "description": "Optional explanation."
+              },
+              "ignorecase": {
+                "type": "boolean",
+                "default": true,
+                "description": "Compile with re.I. Set false for case-sensitive rules (em dash, currency codes, semicolons)."
+              }
             }
           },
           "description": "Additional deterministic lint patterns beyond word matching.",
@@ -248,7 +350,9 @@
         },
         "soft_phrase_patterns": {
           "type": "array",
-          "items": {"type": "string"},
+          "items": {
+            "type": "string"
+          },
           "description": "Phrase patterns flagged as soft (lower confidence) by the linter."
         }
       }
@@ -264,6 +368,10 @@
     "packaging_root_env": {
       "type": "string",
       "description": "Environment variable name for packaging root override. Defaults to 'CW_ROOT'."
+    },
+    "kit_version": {
+      "type": "string",
+      "description": "Onboarding-kit version this packaging was last rendered from. Bump and re-render (then diff) when the kit advances."
     }
   }
 }

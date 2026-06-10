@@ -269,7 +269,7 @@ function planInvocation(mode, args) {
     if (!args['packaging-root']) {
       return { ok: false, error: 'non-dev-ai-system-refine: missing required --packaging-root=<path>' };
     }
-    // Single adapter step (Lane C shape): run-non-dev-ai-system.cjs validates the
+    // Single adapter step (same single-orchestrator plan shape as Lane C): run-non-dev-ai-system.cjs validates the
     // _loop/loop.py contract and spawns the packaging's own guarded loop host.
     // Lane D scripts use space-separated args. --live is a boolean: forwarded
     // bare so the adapter's parser keeps it a flag, not a key/value pair.

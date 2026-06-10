@@ -57,7 +57,8 @@ def lint(text: str):
             v.append({"type": kind, "severity": severity, "count": len(hits), "samples": samples(pat, text)})
 
     for entry in PATTERNS:
-        add(entry["label"], re.compile(entry["regex"], re.I), severity=entry.get("severity", "hard"))
+        flags = re.I if entry.get("ignorecase", True) else 0   # R5-P2-001: live linters keep em-dash/currency/semicolon case-sensitive
+        add(entry["label"], re.compile(entry["regex"], flags), severity=entry.get("severity", "hard"))
     for w in AI_VOCAB:
         add(f"ai_vocab:{w}", re.compile(r"\b" + re.escape(w) + r"\b", re.I))
     for p in SOFT_PHRASES:

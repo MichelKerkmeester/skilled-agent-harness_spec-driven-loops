@@ -46,7 +46,7 @@ Do not copy-edit a sibling packaging (a hand-port once disabled floor enforcemen
 2. Render: `python3 scripts/non-dev-ai-system/init_packaging.py --config <your-config.json> [--check-only]` writes `_loop/`, `_gates/` and `benchmark/` into the packaging root from `assets/non_dev_ai_system/templates/`.
 3. Author fixtures per `references/non_dev_ai_system/fixture_authoring.md`, then run the conformance checklist below.
 
-Template provenance: the templates parameterize the pilot implementations verbatim, including every deep-review guardrail fix. A packaging owns its rendered instance afterwards; re-render deliberately when the kit version advances.
+Template provenance and versioning: the templates parameterize the pilot implementations, including every deep-review guardrail fix, and carry a kit version (`kit_version` in the config, current 1.1.0). A packaging owns its rendered instance afterwards. The maintenance model is TEMPLATE-AS-SOURCE for new packagings and instance-owned thereafter: live instances may evolve ahead of the kit (the pilots do), and that drift is accepted, not a defect. When the kit advances: bump `kit_version` in your config, run `init_packaging.py --check-only` against it, and diff the temp render against your live instance to review what the new kit would change before adopting any of it. Fixes that harden guardrails should land in BOTH the kit and the live instances in the same change.
 
 ## 5. CONTRACT CONFORMANCE CHECKLIST
 
@@ -59,7 +59,7 @@ A new packaging is Lane-D-ready when every box checks. Verify each with the list
 - [ ] Benchmark fixtures produce a delimited deliverable (`<DELIVERABLE>` contract); held-out fixtures are non-interactive AND sensitive to the dimensions being optimized.
 - [ ] A deterministic code linter enforces the packaging's hard rules (never an LLM).
 - [ ] The grader model is a different family from the proposer; the loop refuses otherwise.
-- [ ] The red-team gauntlet (`_loop/gauntlet.py` or equivalent) passes 10/10 dispatch-free.
+- [ ] The red-team gauntlet (`_loop/gauntlet.py` or equivalent) passes its dispatch-free battery: 9 attacks producing 10 checks, all green.
 - [ ] Loop state (`_loop/state/`) is gitignored; the staleness guard covers the knowledge base AND the real targets of any symlinked shared docs.
 
 ## 6. PILOT

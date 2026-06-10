@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Lane D benchmarks an AI-system **packaging** (the same prompt system shipped as CLI runtime, claude.ai Project and native skill), then runs a **guarded autonomous refine loop**: propose a bounded edit to the packaging's technique docs, verify it against an independent grader on held-out fixtures inside an isolated git worktree, and promote or roll back. It exists because self-reported quality scores are not a safe optimization target — the pilot measured self-grades inflated by about +6 of 25 versus independent graders. Promotion-accept was proven via a synthetic-deficit run in an isolated worktree; the red-team gauntlet passes 10/10 dispatch-free.
+Lane D benchmarks an AI-system **packaging** (the same prompt system shipped as CLI runtime, claude.ai Project and native skill), then runs a **guarded autonomous refine loop**: propose a bounded edit to the packaging's technique docs, verify it against an independent grader on held-out fixtures inside an isolated git worktree, and promote or roll back. It exists because self-reported quality scores are not a safe optimization target — the pilot measured self-grades inflated by about +6 of 25 versus independent graders. Promotion-accept was proven via a synthetic-deficit run in an isolated worktree; the red-team gauntlet passes its dispatch-free battery (9 attacks, 10 checks).
 
 Unlike Lanes A–C, the loop host lives **with the packaging under test**, not in this skill. A packaging opts in by implementing the `_loop/loop.py` contract. The skill-side adapter (`scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`) is a thin shim that translates loop-host flags onto the packaging's env/argv surface and spawns `python3` — it owns no loop logic.
 
@@ -53,7 +53,7 @@ Scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker
 
 ### 2.4 Pilot evidence
 
-Barter Copywriter (`.../AI_Systems/Barter/Copywriter`) served as the pilot packaging — three packagings (CLI knowledge base as source of truth, `claude project/`, `barter-copywriter/` skill) with `_gates/` frozen scoring surface, `_gates/derive.py` 3-copy derivation, and a `benchmark/` harness with blind re-grader. The pilot confirmed the self-vs-independent phantom gap (~+6/25) and promotion-accept through a synthetic-deficit run injecting harmful guidance into an isolated worktree — the loop journaled a `promote_accept` lifting the deficit and restored the grade to baseline. The red-team gauntlet (`_loop/gauntlet.py`) passes 10/10 dispatch-free, covering frozen-surface edit, same-family grader, stale lock, and seven additional attack vectors.
+Barter Copywriter (`.../AI_Systems/Barter/Copywriter`) served as the pilot packaging — three packagings (CLI knowledge base as source of truth, `claude project/`, `barter-copywriter/` skill) with `_gates/` frozen scoring surface, `_gates/derive.py` 3-copy derivation, and a `benchmark/` harness with blind re-grader. The pilot confirmed the self-vs-independent phantom gap (~+6/25) and promotion-accept through a synthetic-deficit run injecting harmful guidance into an isolated worktree — the loop journaled a `promote_accept` lifting the deficit and restored the grade to baseline. The red-team gauntlet (`_loop/gauntlet.py`) passes its dispatch-free battery (9 attacks, 10 checks), covering frozen-surface edit, same-family grader, the lock pair, and six additional attack vectors.
 
 ---
 

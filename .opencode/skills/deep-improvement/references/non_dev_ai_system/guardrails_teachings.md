@@ -60,9 +60,9 @@ Fixtures must produce a delimited deliverable (`<DELIVERABLE>` contract) so the 
 
 Interactive fixtures that answer with a clarifying question cannot be graded. They turn into false gate failures.
 
-**Guardrail:** `lint_held_out()` in `loop.py` checks that every held-out fixture has at least one recorded output containing a `<DELIVERABLE>` region. Fixtures that fail this check halt the loop before any paid dispatch. Lists are gated with `scripts/shared/fixture-lint.cjs` before any paid dispatch.
+**Guardrail:** `lint_held_out()` in `loop.py` checks that every held-out fixture has at least one recorded output containing a `<DELIVERABLE>` region. Fixtures that fail this check halt the loop before any paid dispatch. Lists are gated with `scripts/shared/`scripts/shared/fixture-lint.cjs` (skill-side lint) and the packaging loop's own `lint_held_out()` pre-flight` before any paid dispatch.
 
-**Lives in:** `loop.py` (`lint_held_out`), `scripts/shared/fixture-lint.cjs`.
+**Lives in:** `loop.py` (`lint_held_out`), `scripts/shared/`scripts/shared/fixture-lint.cjs` (skill-side lint) and the packaging loop's own `lint_held_out()` pre-flight`.
 
 ## 7. T7 -- MEASUREMENT GAPS ARE NOT FAILURES
 
@@ -108,7 +108,7 @@ An expired credential must fail the run in one probe, not burn N benchmark or gr
 
 The promotion gate must be validated end-to-end before trusting it on real improvements. A synthetic deficit injects harmful guidance into an isolated worktree and confirms the loop detects, rejects and rolls back.
 
-**Guardrail:** The red-team gauntlet (`_loop/gauntlet.py`) passes 10/10 dispatch-free, covering frozen-surface edit, same-family grader, stale lock, and seven additional attack vectors. Promotion-accept was proven via a synthetic-deficit run in the pilot.
+**Guardrail:** The red-team gauntlet (`_loop/gauntlet.py`) runs 9 attacks producing 10 checks, all dispatch-free: frozen-surface edit, derived-copy or empty-derive integrity, same-family grader, unmeasurable held-out, hard-rule lint, synonym-laundering boundary, kill-switch cleanup, dirty tree, and the lock pair (concurrent refusal plus stale eviction). Promotion-accept was proven via a synthetic-deficit run in the pilot.
 
 **Lives in:** `_loop/gauntlet.py`, pilot evidence in `feature_catalog/06--non-dev-ai-system/guarded-refine-loop.md`.
 

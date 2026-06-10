@@ -86,7 +86,13 @@ def check():
             drift.append(f"{s['frozen']}: live region in '{s['live']}' extracts EMPTY (anchor gone)")
         elif sha(region) != s["sha256"]:
             drift.append(f"{s['frozen']}: live region in '{s['live']}' differs from frozen snapshot")
-    alltext = "".join(read(os.path.join(CW, s["live"])) for s in manifest["sources"])
+    alltext_parts = []
+    for s in manifest["sources"]:
+        try:
+            alltext_parts.append(read(os.path.join(CW, s["live"])))
+        except FileNotFoundError:
+            continue
+    alltext = "".join(alltext_parts)
     for a in manifest["anchors"]:
         if a not in alltext:
             drift.append(f"required anchor '{a}' missing from live scoring docs")

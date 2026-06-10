@@ -92,7 +92,7 @@ def main():
         open(bad, "w", encoding="utf-8").write("<DELIVERABLE>Reach influencers — leverage our platform; sign up.</DELIVERABLE>")
         r = shell(["python3", os.path.join(MAIN_CW, "benchmark", "grader", "deterministic_lint.py"), bad])
         d = json.loads(r.stdout)
-        check("A5 HVR violations flagged", d["clean"] is False and d["hard_violations"] >= 2,
+        check("A5 HVR violations flagged", d["clean"] is False and d["hard_violations"] >= 3,
               f"hard={d['hard_violations']}")
 
         print("== A6: synonym laundering (documented code-lint boundary) ==")

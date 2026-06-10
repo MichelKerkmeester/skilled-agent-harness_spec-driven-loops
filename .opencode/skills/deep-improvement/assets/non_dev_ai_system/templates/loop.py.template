@@ -29,7 +29,7 @@ or the iteration ceiling halts the loop and promotes nothing.
 Dispatch discipline (per run.sh / regrade.py): single dispatch per call, </dev/null, never
 pkill 'opencode run'.
 """
-import os, sys, json, time, argparse, hashlib, subprocess
+import os, re, sys, json, time, argparse, hashlib, subprocess
 
 CW = os.environ.get("{{PACKAGING_ROOT_ENV}}", "{{PACKAGING_ROOT}}")
 BARTER = os.path.dirname(CW)   # the repo (or worktree) root containing the packaging
@@ -135,7 +135,7 @@ def end_session(reason, **fields):
 
 
 def _config_hash():
-    blob = json.dumps([FIXTURES, VARIANTS, SAMPLES, GRADER_MODEL, PROPOSER_MODEL])
+    blob = json.dumps([FIXTURES, VARIANTS, HELD_OUT, SAMPLES, GRADER_MODEL, PROPOSER_MODEL])   # R8-P2-001
     return hashlib.sha256(blob.encode()).hexdigest()[:12]
 
 
@@ -329,7 +329,7 @@ def analyze_gap(grades):
                 margins[k] = (sum(vals) / len(vals) - FLOORS[k]) / MAXES[k]
         if not margins:
             return {"dimension": None, "rationale": "no per-dimension scores available for polish targeting"}
-        worst = min(margins, key=margins.get)
+        worst = min(margins, key=lambda dim: margins[dim])   # smallest normalised margin above floor
         themes = [g.get("grader_notes") for g in grades if g.get("grader_notes")]
         return {
             "dimension": worst, "doc": DIM_TO_DOC[worst], "deficit": 0.0, "polish": True,
@@ -480,7 +480,8 @@ def lint_held_out():
     for v in VARIANTS:
         for t in HELD_OUT:
             d = os.path.join(BENCH, "results", v)
-            outs = [f for f in os.listdir(d) if f.startswith(t + ".run")] if os.path.isdir(d) else []
+            run_re = re.compile(r"^" + re.escape(t) + r"\.run\d+\.")   # R8-P2-002
+            outs = [f for f in os.listdir(d) if run_re.match(f)] if os.path.isdir(d) else []
             if outs and not any("<DELIVERABLE>" in open(os.path.join(d, f), encoding="utf-8", errors="replace").read()
                                 for f in outs):
                 bad.append(f"{v}/{t}")
@@ -579,11 +580,16 @@ def run(max_iters):
 def make_worktree(i):
     base = os.path.join(BARTER, ".worktrees", f"{{WORKTREE_PREFIX}}{i}")
     sh(["git", "-C", BARTER, "worktree", "add", "-d", base, "HEAD"])
-    return os.path.join(base, "{{WORKTREE_SUBDIR}}")
+    # The packaging root inside the worktree, derived from CW so a renamed or relocated
+    # packaging can never point the loop at a sibling packaging (deep-review R1-P1-001).
+    return os.path.join(base, os.path.basename(CW))
 
 
 def cleanup_worktree(wt_cw, keep):
-    base = os.path.dirname(wt_cw)
+    # R8-P2-003: walk up to the directory whose PARENT is .worktrees instead of one dirname() hop.
+    base = wt_cw
+    while os.path.basename(os.path.dirname(base)) != ".worktrees" and base != os.path.dirname(base):
+        base = os.path.dirname(base)
     if keep:
         journal("worktree_kept", path=base); return
     sh(["git", "-C", BARTER, "worktree", "remove", "--force", base])

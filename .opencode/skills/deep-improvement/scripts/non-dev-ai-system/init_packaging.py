@@ -162,14 +162,25 @@ def build_placeholders(cfg, dest):
     variants_usage = "|".join(fixtures["variants"])
 
     # Benchmark variant cases (bash case statements)
+    def _sh_dq(text):
+        """R2-P2-001: escape for a double-quoted sh context (the SYS=\"...\" assignment).
+        Backslash, double quote and backtick are escaped; $ is preserved ONLY for the
+        deliberate $CW substitution below, so escape $ first and restore the token after."""
+        out = text.replace("\\", "\\\\").replace('"', '\\"').replace("`", "\\`").replace("$", "\\$")
+        return out
+
     variant_cases_lines = []
     bmi = harness["benchmark_mode_instructions"]
     preludes = harness.get("benchmark_variant_preludes", {})
+    # R5-P2-004: every prelude key must name a declared variant
+    unknown_preludes = sorted(set(preludes) - set(fixtures["variants"]))
+    if unknown_preludes:
+        sys.exit(f"init_packaging: benchmark_variant_preludes keys not in fixtures.variants: {unknown_preludes}")
     for v_name in fixtures["variants"]:
         prelude = preludes.get(v_name, "")
-        instruction = bmi.get(v_name, "")
-        # Replace template tokens with shell equivalents
-        instruction = instruction.replace("{{CW}}", "$CW")
+        instruction = _sh_dq(bmi.get(v_name, ""))
+        # Replace template tokens with shell equivalents (after escaping, restore the variable ref)
+        instruction = instruction.replace("\\${{CW}}", "$CW").replace("{{CW}}", "$CW")
         if prelude:
             variant_cases_lines.append(f'  {v_name})\n    {prelude}\n    SYS="{instruction}" ;;')
         else:
@@ -198,6 +209,9 @@ def build_placeholders(cfg, dest):
         "DIMENSIONS_FLOORS": json.dumps(floors),
         "DIMENSIONS_MAXES": json.dumps(maxes),
         "FROZEN_SURFACE": json.dumps(cfg["frozen_surface"]),
+        # R5-P2-003: the grader rubric is the anchored (scoring-section) subset of the frozen
+        # surface, never the full surface (which includes the large hard-rules doc).
+        "RUBRIC_FROZEN_FILES": json.dumps([e["frozen_name"] for e in cfg["frozen_surface"] if e.get("in_rubric", bool(e.get("section_anchor")))]),
         "ANCHORS": json.dumps(cfg["anchors"]),
         "TECHNIQUE_DOC_MAP": json.dumps(cfg["technique_doc_map"]),
         "DERIVED_COPIES": json.dumps(cfg["derived_copies"]),
@@ -241,7 +255,12 @@ def resolve_template(template_content, placeholders):
 
 
 def render_all(dest, placeholders, report_only=False):
-    """Render all templates into the destination directory."""
+    """Render all templates into the destination directory.
+
+    Two-phase for atomicity (deep-review R5-P2-006): phase 1 renders EVERY template
+    in memory, so any template or placeholder error aborts before a single file is
+    written; phase 2 writes the complete set. A re-run remains idempotent.
+    """
     rendered = {}
     for out_rel, tpl_name in TEMPLATE_FILES.items():
         tpl_path = os.path.join(TEMPLATES_DIR, tpl_name)
@@ -250,16 +269,16 @@ def render_all(dest, placeholders, report_only=False):
             continue
         with open(tpl_path, encoding="utf-8") as f:
             content = f.read()
-        rendered_content = resolve_template(content, placeholders)
-        out_path = os.path.join(dest, out_rel)
-        if not report_only:
+        rendered[out_rel] = resolve_template(content, placeholders)
+    if not report_only:
+        for out_rel, rendered_content in rendered.items():
+            out_path = os.path.join(dest, out_rel)
             os.makedirs(os.path.dirname(out_path), exist_ok=True)
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(rendered_content)
             # Make .py and .sh files executable
             if out_rel.endswith((".py", ".sh")):
                 os.chmod(out_path, 0o755)
-        rendered[out_rel] = rendered_content
     return rendered
 
 
@@ -299,7 +318,7 @@ def print_checklist_commands(cfg, dest):
     print("  - [ ] All fixtures produce <DELIVERABLE> blocks")
     print("  - [ ] deterministic_lint.py enforces hard rules")
     print(f"  - [ ] Grader model ({cfg['models']['grader']}) is different family from proposer ({cfg['models']['proposer_family']})")
-    print("  - [ ] _loop/gauntlet.py passes 10/10 dispatch-free")
+    print("  - [ ] _loop/gauntlet.py battery fully green (9 attacks, 10 checks, dispatch-free)")
     print("  - [ ] _loop/state/ is gitignored")
 
 
