@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase plan scaffolded from revalidation findings"
-    next_safe_action: "Start Phase 1 setup tasks when this phase is picked up"
+    last_updated_at: "2026-06-10T20:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Plan executed; BFS helper replaces recursive traversal consumers"
+    next_safe_action: "No phase follow-up required; out-of-scope alignment drift remains reported only"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-012-causal-traversal-bfs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -63,9 +63,9 @@ Build one shared BFS traversal helper (hop-capped weighted walk + directed unbou
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -102,18 +102,18 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Fixture corpus captured from live DB shapes
-- [ ] Equivalence harness runs current CTEs
+- [x] Fixture corpus captured from live DB shapes
+- [x] Equivalence harness runs current CTEs
 
 ### Phase 2: Core
-- [ ] Traversal helper with both modes
-- [ ] getNeighborBoosts cutover behind flag
-- [ ] memo.ts cutover + zero-row guards
+- [x] Traversal helper with both modes
+- [x] getNeighborBoosts cut over after equivalence suite passed
+- [x] memo.ts cutover + zero-row guards
 
 ### Phase 3: Verification
-- [ ] Equivalence suite green
-- [ ] Latency benchmark recorded
-- [ ] Flag removed
+- [x] Equivalence suite green
+- [x] Latency benchmark recorded
+- [x] Flag removed
 <!-- /ANCHOR:phases -->
 
 ---

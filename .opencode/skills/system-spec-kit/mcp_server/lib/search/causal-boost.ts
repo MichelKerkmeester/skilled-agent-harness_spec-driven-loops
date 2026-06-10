@@ -15,6 +15,7 @@
 // Both requirements are gated behind SPECKIT_TYPED_TRAVERSAL (default ON, graduated).
 import { isCausalBoostEnabled, isTypedTraversalEnabled as _isTypedTraversalEnabled, isGraphContextInjectionEnabled } from './search-flags.js';
 import { routeQueryConcepts } from './entity-linker.js';
+import { collectCausalWeightedNeighbors } from '../graph/bfs-traversal.js';
 
 import type Database from 'better-sqlite3';
 
@@ -421,68 +422,13 @@ function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map
   const ids = normalizeIds(memoryIds);
   if (ids.length === 0) return neighborBoosts;
 
-  const originIds = ids.map((value) => String(value));
-  const placeholders = originIds.map(() => '?').join(', ');
-
-  // Relation-weighted CTE — accumulates score with multiplier
-  // Based on edge relation type and edge strength column.
-  // 'supersedes' edges get 1.5x, 'contradicts' 0.8x, others 1.0x.
-  const query = `
-    WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (
-      SELECT ce.source_id, ce.target_id, 1,
-             (CASE WHEN ce.relation = 'supersedes' THEN 1.5
-                   WHEN ce.relation = 'contradicts' THEN 0.8
-                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
-      FROM causal_edges ce
-      WHERE ce.source_id IN (${placeholders})
-
-      UNION
-
-      SELECT ce.target_id, ce.source_id, 1,
-             (CASE WHEN ce.relation = 'supersedes' THEN 1.5
-                   WHEN ce.relation = 'contradicts' THEN 0.8
-                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
-      FROM causal_edges ce
-      WHERE ce.target_id IN (${placeholders})
-
-      UNION
-
-      SELECT cw.origin_id,
-             CASE
-               WHEN ce.source_id = cw.node_id THEN ce.target_id
-               ELSE ce.source_id
-             END,
-             cw.hop_distance + 1,
-             (cw.walk_score * CASE WHEN ce.relation = 'supersedes' THEN 1.5
-                                   WHEN ce.relation = 'contradicts' THEN 0.8
-                                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
-      FROM causal_walk cw
-      JOIN causal_edges ce
-        ON ce.source_id = cw.node_id OR ce.target_id = cw.node_id
-      WHERE cw.hop_distance < ?
-        AND (CASE WHEN ce.source_id = cw.node_id THEN ce.target_id ELSE ce.source_id END) != cw.origin_id
-    )
-    SELECT node_id, MIN(hop_distance) AS min_hop, MAX(walk_score) AS max_walk_score
-    FROM causal_walk
-    WHERE node_id NOT IN (${placeholders})
-    GROUP BY node_id
-  `;
-
   try {
-    const rows = (db.prepare(query) as Database.Statement).all(
-      ...originIds,
-      ...originIds,
-      maxHops,
-      ...originIds
-    ) as Array<{ node_id: string; min_hop: number; max_walk_score: number }>;
+    const rows = collectCausalWeightedNeighbors(db, ids, maxHops, RELATION_WEIGHT_MULTIPLIERS);
 
-    for (const row of rows) {
-      const neighborId = Number.parseInt(row.node_id, 10);
-      if (!Number.isFinite(neighborId)) continue;
-      // Combine hop-distance decay with relation-weighted walk score
-      const hopBoost = computeBoostByHop(row.min_hop);
-      const walkMultiplier = typeof row.max_walk_score === 'number' && Number.isFinite(row.max_walk_score)
-        ? Math.max(0.1, Math.min(2.0, row.max_walk_score))
+    for (const [neighborId, row] of rows) {
+      const hopBoost = computeBoostByHop(row.minHop);
+      const walkMultiplier = typeof row.maxWalkScore === 'number' && Number.isFinite(row.maxWalkScore)
+        ? Math.max(0.1, Math.min(2.0, row.maxWalkScore))
         : 1.0;
       const boost = hopBoost * walkMultiplier;
       if (boost <= 0) continue;
@@ -490,7 +436,7 @@ function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map
       if (!current || boost > current.boost) {
         neighborBoosts.set(neighborId, {
           boost,
-          hopCount: Math.max(1, Math.min(maxHops, row.min_hop)),
+          hopCount: Math.max(1, Math.min(maxHops, row.minHop)),
         });
       }
     }

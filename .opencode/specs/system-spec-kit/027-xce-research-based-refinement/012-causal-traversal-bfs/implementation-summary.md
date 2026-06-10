@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Planned phase, not started: Causal Traversal BFS Read Path. Scaffolded from the sqlite-to-turso revalidation findings; this summary is rewritten when the phase ships."
+description: "Shipped causal traversal BFS read path: shared BFS helper replaces recursive CTE traversal consumers, with exact equivalence and latency evidence."
 trigger_phrases:
   - "012-causal-traversal-bfs summary"
 importance_tier: "normal"
@@ -8,19 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs"
-    last_updated_at: "2026-06-10T19:30:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Phase scaffolded; implementation not started"
-    next_safe_action: "Start Phase 1 setup tasks when this phase is picked up"
+    last_updated_at: "2026-06-10T20:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shared BFS traversal helper shipped with equivalence and latency tests"
+    next_safe_action: "No in-scope implementation work remains; track out-of-scope alignment drift separately"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/bfs-traversal.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-012-causal-traversal-bfs"
-      parent_session_id: null
-    completion_pct: 0
+      session_id: "ship-012-causal-traversal-bfs"
+      parent_session_id: "scaffold-012-causal-traversal-bfs"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "BFS cutover proceeded after exact CTE equivalence passed in test."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -36,8 +41,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-causal-traversal-bfs |
-| **Completed** | Not started (scaffolded 2026-06-10) |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
+| **Status** | Shipped |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -45,17 +51,25 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Status: PLANNED, nothing implemented yet. The phase was scaffolded from the sqlite-to-turso revalidation findings; this document is rewritten at completion and makes no done-claims now.
+Shipped one shared app-level BFS traversal module for the two recursive traversal read paths in the memory backend.
 
-### Scaffolding only
+### Shared BFS Helper
 
-The phase contract (spec/plan/tasks) is in place with measured evidence anchors from the revalidation research; the implementation has not begun.
+`mcp_server/lib/graph/bfs-traversal.ts` now exposes two production modes:
 
-### Files Changed
+- `collectCausalWeightedNeighbors(database, seeds, maxHops, relationWeights)`: hop-capped weighted undirected walk for causal neighbor boosts. It uses separate indexed source and target reads per hop and preserves independent per-node min-hop and max-walk-score aggregation.
+- `collectDependencyReachability(database, roots)`: directed unbounded reachability for memo dependency invalidation and cycle checks.
 
-| File | Action | Purpose |
-|------|--------|---------|
-| spec.md, plan.md, tasks.md, implementation-summary.md, description.json | Created | Phase contract scaffold |
+### Call Site Cutover
+
+- `mcp_server/lib/search/causal-boost.ts`: `getNeighborBoosts` now calls the BFS helper; the recursive CTE was removed from production source.
+- `mcp_server/lib/storage/memo.ts`: `collectDependents` and cycle checks now call the directed reachability helper. The store caches dependency edge count at construction and skips traversal queries for the first insert when `dependency_edges` is empty.
+
+### Tests Added
+
+| File | Purpose |
+|------|---------|
+| `mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts` | Exact CTE-vs-BFS equivalence, call-site behavior, zero-row fast path, and benchmark coverage |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -63,7 +77,9 @@ The phase contract (spec/plan/tasks) is in place with measured evidence anchors 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet; scaffold only.
+The helper was implemented as a generic BFS core plus SQLite readers. For causal boosts, the reader avoids the old recursive join with `source_id = node OR target_id = node` by querying source and target directions separately. For memo storage, the directed reader walks `dependency_edges` from parent to child and returns sorted output at the call site to preserve the prior result order.
+
+The equivalence test kept the old recursive SQL in the test file only. It compares BFS output against current CTE output exactly for node membership, seed exclusion, per-node minimum hop, maximum walk score, and relation/strength weighting. A floating-point multiplication-order mismatch was caught by the test and fixed by matching SQLite's left-to-right multiplication order.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,7 +89,9 @@ Not delivered yet; scaffold only.
 
 | Decision | Why |
 |----------|-----|
-| Scaffolded as a 027 phase | The improvement derives from the research-based-refinement charter and the sqlite-to-turso revalidation evidence |
+| Keep recursive CTE SQL only in the equivalence test | The production source no longer depends on recursive SQL, while the test preserves the exact behavioral oracle |
+| Use count caching for memo zero-row fast path | The empty dependency table path avoids per-insert reachability queries and updates the count after successful inserts |
+| Remove the temporary cutover flag after green equivalence | The P0 equivalence suite passed exactly, so retaining a production CTE fallback would keep unnecessary complexity |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -83,8 +101,28 @@ Not delivered yet; scaffold only.
 
 | Check | Result |
 |-------|--------|
-| validate.sh at scaffold time | See parent session log |
-| Implementation gates | PENDING (phase not started) |
+| `npm run build` in `mcp_server` | PASS, exit 0 |
+| `npx vitest run tests/causal-traversal-bfs-equivalence.vitest.ts --reporter verbose` | PASS, 1 file, 4 tests |
+| `npx vitest run tests/causal-boost.vitest.ts tests/memo-storage.vitest.ts` | PASS, 2 files, 9 tests |
+| Source scan for production recursive CTEs | PASS, no `WITH RECURSIVE` matches in `mcp_server/lib` |
+| Comment hygiene on modified code/test files | PASS, no output from checker |
+| Alignment drift | In-scope files clean; out-of-scope `mcp_server/lib/storage/canonical-fingerprint.ts` still lacks a module header |
+
+### Equivalence Evidence
+
+The new suite passed exact equality for BFS output against the current recursive CTE output on a live-shaped fixture:
+
+- Fixture: 10,240 causal edges, max degree 20, 5 seeds, 2 hops.
+- Compared fields: node membership, seed exclusion, per-node minimum hop, per-node maximum walk score, relation weighting, and strength weighting.
+- Result: 4/4 tests passed, no divergences.
+
+### Latency Benchmark
+
+Recorded by the verbose new test run:
+
+| Fixture Edges | Max Degree | Seeds | Hops | Recursive CTE Mean | BFS Mean |
+|---------------|------------|-------|------|--------------------|----------|
+| 10,240 | 20 | 5 | 2 | 1.429ms | 1.117ms |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,7 +130,8 @@ Not delivered yet; scaffold only.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Nothing implemented.** All requirement and benchmark gates in spec.md are open.
+1. The benchmark fixture uses max degree 20, which stays under the measured live max degree 22 while preserving the 10,240 edge scale.
+2. Alignment drift still reports `mcp_server/lib/storage/canonical-fingerprint.ts` missing a module header. That file is outside this phase's allowed write paths and was not modified.
 <!-- /ANCHOR:limitations -->
 
 ---

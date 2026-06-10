@@ -1,4 +1,9 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Memo Storage
+// ───────────────────────────────────────────────────────────────
+
 import type Database from 'better-sqlite3';
+import { collectDependencyReachability } from '../graph/bfs-traversal.js';
 
 export interface MemoRecordInput {
   componentPath: string;
@@ -95,8 +100,29 @@ function mapEdgeRow(row: {
 }
 
 export class MemoStore {
+  private dependencyEdgeCount: number;
+
   constructor(private readonly database: Database.Database) {
     ensureMemoStorageSchema(database);
+    this.dependencyEdgeCount = this.countDependencyEdges();
+  }
+
+  private countDependencyEdges(): number {
+    const row = this.database.prepare(`
+      SELECT COUNT(*) AS edge_count
+      FROM dependency_edges
+    `).get() as { edge_count: number } | undefined;
+    return row?.edge_count ?? 0;
+  }
+
+  private insertDependencyEdge(edge: DependencyEdgeInput): void {
+    const result = this.database.prepare(`
+      INSERT OR IGNORE INTO dependency_edges (parent_path, child_path, kind)
+      VALUES (?, ?, ?)
+    `).run(edge.parentPath, edge.childPath, edge.kind) as { changes: number };
+    if (result.changes > 0) {
+      this.dependencyEdgeCount += result.changes;
+    }
   }
 
   getMemoRecord(componentPath: string, inputFingerprint: string, codeHash: string): MemoRecord | null {
@@ -171,39 +197,23 @@ export class MemoStore {
     assertPath(edge.parentPath, 'parentPath');
     assertPath(edge.childPath, 'childPath');
     assertPath(edge.kind, 'kind');
-    if (this.wouldCreateCycle(edge.parentPath, edge.childPath)) {
+    if (edge.parentPath === edge.childPath) {
+      throw new Error(`Dependency edge would create a cycle: ${edge.parentPath} -> ${edge.childPath}`);
+    }
+    if (this.dependencyEdgeCount > 0 && this.wouldCreateCycle(edge.parentPath, edge.childPath)) {
       throw new Error(`Dependency edge would create a cycle: ${edge.parentPath} -> ${edge.childPath}`);
     }
 
-    this.database.prepare(`
-      INSERT OR IGNORE INTO dependency_edges (parent_path, child_path, kind)
-      VALUES (?, ?, ?)
-    `).run(edge.parentPath, edge.childPath, edge.kind);
+    this.insertDependencyEdge(edge);
   }
 
   collectDependents(parentPaths: readonly string[]): string[] {
     const roots = Array.from(new Set(parentPaths.filter((value) => typeof value === 'string' && value.length > 0)));
-    if (roots.length === 0) {
+    if (roots.length === 0 || this.dependencyEdgeCount === 0) {
       return [];
     }
 
-    const placeholders = roots.map(() => '?').join(', ');
-    const rows = this.database.prepare(`
-      WITH RECURSIVE dependents(child_path) AS (
-        SELECT child_path
-        FROM dependency_edges
-        WHERE parent_path IN (${placeholders})
-        UNION
-        SELECT edge.child_path
-        FROM dependency_edges edge
-        JOIN dependents dep ON edge.parent_path = dep.child_path
-      )
-      SELECT DISTINCT child_path
-      FROM dependents
-      ORDER BY child_path
-    `).all(...roots) as Array<{ child_path: string }>;
-
-    return rows.map((row) => row.child_path);
+    return collectDependencyReachability(this.database, roots).sort();
   }
 
   invalidateDependents(parentPaths: readonly string[], includeSources = false): InvalidationResult {
