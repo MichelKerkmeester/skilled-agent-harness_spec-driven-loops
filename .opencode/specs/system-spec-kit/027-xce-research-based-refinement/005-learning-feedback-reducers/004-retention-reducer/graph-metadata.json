@@ -37,7 +37,7 @@
       "currently"
     ],
     "importance_tier": "important",
-    "status": "spec_scaffolded",
+    "status": "implemented",
     "key_files": [
       "spec.md",
       "plan.md",

@@ -8,13 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-10T11:40:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented gated feedback retention reducer."
+    next_safe_action: "Monitor shadow audits before active rollout."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Summary: Feedback Retention Reducer
 
@@ -28,9 +28,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `009-feedback-reducers/004-retention-reducer` |
+| **Spec Folder** | `004-retention-reducer` |
 | **Level** | 2 |
-| **Status** | Not implemented |
+| **Status** | Implemented |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,7 +38,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Expected files: `feedback-retention-reducer.ts` and `edge-tier-basement.ts`.
+- Added `feedback-retention-reducer.ts` with `delete`, `extend`, and `protect` decisions based on aggregated feedback summaries.
+- Added `edge-tier-basement.ts` with narrow edge-floor decisions that import the existing `STATE_LIMITS` production export.
+- Added a default-off retention sweep branch with dry-run, shadow, and double-gated active behavior.
+- Added vitest coverage for decision rules, edge-floor scope, dry-run immutability, shadow audit-only behavior, active gating, and active apply behavior.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -46,7 +49,9 @@ Pending. Expected files: `feedback-retention-reducer.ts` and `edge-tier-basement
 <!-- ANCHOR:how-delivered -->
 ## HOW IT WAS DELIVERED
 
-Delivery evidence will be recorded after the child work lands.
+- Default-off path keeps the existing retention sweep behavior and return shape.
+- Shadow mode writes `feedback_retention_learning` audit rows for extend/protect/delete without changing retention rows.
+- Active mode applies extend/protect/delete only when the master flag is enabled, mode is `active`, and the caller supplies shadow-evaluation evidence.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -54,7 +59,10 @@ Delivery evidence will be recorded after the child work lands.
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Use shadow-first retention decisions with narrow protection rules.
+- Reused `governance_audit` for feedback retention audit entries; no schema migration was needed.
+- `protect` clears expired `delete_after` only in gated active mode; dry-run and shadow leave rows unchanged.
+- Important-tier positive feedback can extend retention; normal/temporary exposure-only feedback remains deletable.
+- Auto-derived edges are never floored by the edge basement helper.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -68,7 +76,10 @@ Scaffold validation command:
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer --strict
 ```
 
-Implementation tests are recorded here after the child work lands.
+- `npx vitest run tests/feedback-retention-reducer.vitest.ts tests/memory-retention-feedback-learning.vitest.ts`: 2 files, 12 tests passed.
+- `npx vitest run tests/memory-retention-sweep.vitest.ts tests/batch-learning.vitest.ts`: 2 files, 82 tests passed.
+- `npm run build`: exited 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer --strict`: exited 0.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -76,7 +87,12 @@ Implementation tests are recorded here after the child work lands.
 <!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
-Pending.
+- Default-off: covered by sweep test that confirms no feedback report/audit and existing delete/protect behavior.
+- Dry-run: covered by test asserting row state and audit count are unchanged.
+- Shadow: covered by test asserting audit-only behavior and unchanged `delete_after` values.
+- Active: covered by tests for missing-gate block and gated extend/protect/delete apply.
+- Constitutional immunity: covered by reducer and retention sweep tests.
+- Narrow edge floor: covered by manual/authored, constitutional-chain, auto-derived, and single high-endpoint cases.
 <!-- /ANCHOR:nfr-verify -->
 
 ---
@@ -84,7 +100,7 @@ Pending.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Active retention changes require an evaluation gate.
+Active retention changes require external shadow-evaluation evidence. The parent packet still contains a stale precondition note about `STATE_LIMITS`; this child verified the export is already present and did not edit the parent.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -92,5 +108,5 @@ Active retention changes require an evaluation gate.
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None at scaffold time.
+No schema migration was added; existing `governance_audit` was sufficient.
 <!-- /ANCHOR:deviations -->

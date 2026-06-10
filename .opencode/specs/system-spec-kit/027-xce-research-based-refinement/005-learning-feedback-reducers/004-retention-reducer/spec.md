@@ -11,13 +11,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer"
-    last_updated_at: "2026-06-05T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Applied 2026-06-05 audit rescope: STATE_LIMITS export precondition"
-    next_safe_action: "Add STATE_LIMITS production export before implementing tasks.md."
+    last_updated_at: "2026-06-10T11:40:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented gated feedback retention reducer."
+    next_safe_action: "Monitor shadow audits before active rollout."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Feature Specification: Feedback Retention Reducer
 
@@ -33,7 +33,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Implemented |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers` |
 | **Depends On** | `system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator` |
 | **Estimated LOC** | ~385 production LOC |
@@ -56,7 +56,7 @@ Retention currently follows rule-based TTL behavior. This child adds a feedback-
 ### In Scope
 - Create `mcp_server/lib/feedback/feedback-retention-reducer.ts`.
 - Create `mcp_server/lib/feedback/edge-tier-basement.ts`.
-  - PRECONDITION (AUDIT 2026-06-05): `STATE_LIMITS` is currently non-exported (module-local const in `stage4-filter.ts`, only reachable via `__testables`); a production export must be added to `stage4-filter.ts` before this import is possible.
+  - Verified: `STATE_LIMITS` is already a production export in `stage4-filter.ts`; the helper imports it without changing that file.
 - Consume `001-aggregator` summaries and Phase 002's extended retention row shape.
 - Implement `RetentionDecision = delete | extend | protect`.
 - Add dry-run shadow path.

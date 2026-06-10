@@ -6,12 +6,34 @@ import * as vectorIndex from '../search/vector-index.js';
 import * as mutationLedger from '../storage/mutation-ledger.js';
 import { init as initHistory, recordHistory } from '../storage/history.js';
 import { recordGovernanceAudit } from './scope-governance.js';
+import { aggregateEvents, BATCH_WINDOW_MS } from '../feedback/batch-learning.js';
+import type { AggregatedSignal } from '../feedback/batch-learning.js';
+import {
+  evaluateFeedbackRetention,
+  isFeedbackRetentionLearningEnabled,
+  recordFeedbackRetentionAudit,
+  resolveFeedbackRetentionMode,
+} from '../feedback/feedback-retention-reducer.js';
+import type {
+  FeedbackRetentionDecisionResult,
+  FeedbackRetentionMode,
+} from '../feedback/feedback-retention-reducer.js';
 
 import type Database from 'better-sqlite3';
 
 /** Options for a governed memory retention sweep. */
 export interface MemoryRetentionSweepArgs {
   dryRun?: boolean;
+  feedbackRetention?: FeedbackRetentionSweepArgs;
+}
+
+/** Options for the feedback-aware retention learning branch. */
+export interface FeedbackRetentionSweepArgs {
+  runAt?: number;
+  windowMs?: number;
+  extendDays?: number;
+  shadowEvaluationPassed?: boolean;
+  signals?: AggregatedSignal[];
 }
 
 /**
@@ -52,7 +74,21 @@ export interface MemoryRetentionSweepResult extends MemoryRetentionSweepSummary 
   candidates: RetentionExpiredRow[];
   deletedIds: number[];
   protectedIds: number[];
+  extendedIds?: number[];
   ledgerRecorded: boolean | null;
+  feedbackRetention?: FeedbackRetentionSweepReport;
+}
+
+/** Feedback-retention learning summary included only when the feature is enabled. */
+export interface FeedbackRetentionSweepReport {
+  mode: FeedbackRetentionMode;
+  activeGatePassed: boolean;
+  activeBlocked: boolean;
+  auditCount: number;
+  decisions: FeedbackRetentionDecisionResult[];
+  extendedIds: number[];
+  protectedIds: number[];
+  deletedIds: number[];
 }
 
 function hasTable(database: Database.Database, tableName: string): boolean {
@@ -145,6 +181,57 @@ export const __retentionSweepTestables = { isStillExpired };
 function countRows(database: Database.Database): number {
   const row = database.prepare('SELECT COUNT(*) AS count FROM memory_index').get() as { count: number };
   return row.count;
+}
+
+function buildFeedbackRetentionReport(
+  database: Database.Database,
+  candidates: RetentionExpiredRow[],
+  dryRun: boolean,
+  args: FeedbackRetentionSweepArgs = {},
+): FeedbackRetentionSweepReport {
+  const mode = resolveFeedbackRetentionMode();
+  const activeGatePassed = mode === 'active' && args.shadowEvaluationPassed === true;
+  const signals = args.signals ?? (dryRun
+    ? []
+    : aggregateEvents(database, (args.runAt ?? Date.now()) - (args.windowMs ?? BATCH_WINDOW_MS), args.runAt ?? Date.now()));
+  const evaluation = evaluateFeedbackRetention(candidates, signals, {
+    runAt: args.runAt,
+    extendDays: args.extendDays,
+  });
+
+  return {
+    mode,
+    activeGatePassed,
+    activeBlocked: mode === 'active' && !activeGatePassed,
+    auditCount: 0,
+    decisions: evaluation.decisions,
+    extendedIds: [],
+    protectedIds: evaluation.decisions
+      .filter((decision) => decision.decision === 'protect')
+      .map((decision) => decision.memoryId),
+    deletedIds: [],
+  };
+}
+
+function recordFeedbackRetentionAudits(
+  database: Database.Database,
+  candidates: RetentionExpiredRow[],
+  report: FeedbackRetentionSweepReport,
+  applied: boolean,
+): number {
+  const rowsById = new Map(candidates.map((candidate) => [candidate.id, candidate]));
+  let auditCount = 0;
+  for (const decision of report.decisions) {
+    const row = rowsById.get(decision.memoryId);
+    if (!row) continue;
+    recordFeedbackRetentionAudit(database, row, decision, {
+      mode: report.mode,
+      applied,
+      activeGatePassed: report.activeGatePassed,
+    });
+    auditCount += 1;
+  }
+  return auditCount;
 }
 
 function appendRetentionLedger(
@@ -240,6 +327,9 @@ export function runMemoryRetentionSweep(
   }
 
   const candidates = selectExpiredRows(database);
+  const feedbackRetention = isFeedbackRetentionLearningEnabled()
+    ? buildFeedbackRetentionReport(database, candidates, dryRun, args.feedbackRetention)
+    : null;
 
   if (dryRun || candidates.length === 0) {
     const totalRows = countRows(database);
@@ -256,6 +346,33 @@ export function runMemoryRetentionSweep(
       deletedIds: [],
       protectedIds: dryRunProtectedIds,
       ledgerRecorded: null,
+      ...(feedbackRetention ? { feedbackRetention } : {}),
+    };
+  }
+
+  if (feedbackRetention && (feedbackRetention.mode === 'shadow' || feedbackRetention.activeBlocked)) {
+    const auditTx = database.transaction(() => {
+      feedbackRetention.auditCount = recordFeedbackRetentionAudits(
+        database,
+        candidates,
+        feedbackRetention,
+        false,
+      );
+    });
+    auditTx();
+
+    return {
+      swept: 0,
+      retained: countRows(database),
+      protectedCount: feedbackRetention.protectedIds.length,
+      dryRun,
+      durationMs: Date.now() - startTime,
+      candidates,
+      deletedIds: [],
+      protectedIds: feedbackRetention.protectedIds,
+      extendedIds: [],
+      ledgerRecorded: null,
+      feedbackRetention,
     };
   }
 
@@ -263,6 +380,7 @@ export function runMemoryRetentionSweep(
 
   const deletedIds: number[] = [];
   const protectedIds: number[] = [];
+  const extendedIds: number[] = [];
   let ledgerRecorded: boolean | null = null;
 
   const sweepTx = database.transaction(() => {
@@ -270,6 +388,46 @@ export function runMemoryRetentionSweep(
       // TOCTOU guard: skip rows un-expired by another writer since selection.
       if (!isStillExpired(database, candidate.id)) {
         continue;
+      }
+      if (feedbackRetention) {
+        const decision = feedbackRetention.decisions.find((entry) => entry.memoryId === candidate.id);
+        if (!decision) {
+          continue;
+        }
+
+        if (decision.decision === 'protect') {
+          database.prepare('UPDATE memory_index SET delete_after = NULL WHERE id = ?').run(candidate.id);
+          protectedIds.push(candidate.id);
+          recordFeedbackRetentionAudit(database, candidate, decision, {
+            mode: feedbackRetention.mode,
+            applied: true,
+            activeGatePassed: feedbackRetention.activeGatePassed,
+          });
+          feedbackRetention.auditCount += 1;
+          continue;
+        }
+
+        if (decision.decision === 'extend') {
+          database.prepare('UPDATE memory_index SET delete_after = ? WHERE id = ?').run(
+            decision.nextDeleteAfter,
+            candidate.id,
+          );
+          extendedIds.push(candidate.id);
+          recordFeedbackRetentionAudit(database, candidate, decision, {
+            mode: feedbackRetention.mode,
+            applied: true,
+            activeGatePassed: feedbackRetention.activeGatePassed,
+          });
+          feedbackRetention.auditCount += 1;
+          continue;
+        }
+
+        recordFeedbackRetentionAudit(database, candidate, decision, {
+          mode: feedbackRetention.mode,
+          applied: true,
+          activeGatePassed: feedbackRetention.activeGatePassed,
+        });
+        feedbackRetention.auditCount += 1;
       }
       // Tier basement: protected rows are never deleted on TTL expiry alone.
       // Audited as decision='deny' (the delete was denied) with a protection reason.
@@ -343,6 +501,11 @@ export function runMemoryRetentionSweep(
   if (deletedIds.length > 0) {
     runPostDeleteMaintenance(database);
   }
+  if (feedbackRetention) {
+    feedbackRetention.extendedIds = extendedIds;
+    feedbackRetention.protectedIds = protectedIds;
+    feedbackRetention.deletedIds = deletedIds;
+  }
 
   return {
     swept: deletedIds.length,
@@ -354,5 +517,7 @@ export function runMemoryRetentionSweep(
     deletedIds,
     protectedIds,
     ledgerRecorded,
+    ...(feedbackRetention ? { extendedIds } : {}),
+    ...(feedbackRetention ? { feedbackRetention } : {}),
   };
 }

@@ -87,6 +87,8 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Empty result recovery | ON | `SPECKIT_EMPTY_RESULT_RECOVERY_V1` | Empty and weak result recovery payloads | D5 REQ-D5-001 |
 | Result confidence | ON | `SPECKIT_RESULT_CONFIDENCE_V1` | Per-result calibrated confidence scoring | D5 REQ-D5-004 |
 | Batch learned feedback | ON | `SPECKIT_BATCH_LEARNED_FEEDBACK` | Weekly batch feedback learning pipeline | D4 REQ-D4-004 |
+| Feedback retention learning | OFF | `SPECKIT_FEEDBACK_RETENTION_LEARNING` | Default-off feedback-aware retention reducer; shadow-first and audit-only unless active mode is gated | current |
+| Feedback retention mode | OFF | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`; default `shadow`; active still requires the master flag and shadow-evaluation gate | current |
 | Session-trace causal inference | OFF | `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | Deferred session-trace causal edge inference from feedback events | current |
 | Assistive reconsolidation | ON | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | Near-duplicate detection and review routing | D4 REQ-D4-005 |
 | Result explainability | ON | `SPECKIT_RESULT_EXPLAIN_V1` | Two-tier result explainability | D5 REQ-D5-002 |
@@ -116,7 +118,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 172 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
+Total unique variables documented: 174 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
 
 ### Provisional Measurement Contract
 
@@ -349,6 +351,8 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_LEARNED_STAGE2_COMBINER` | `true` | boolean | Learned Stage 2 weight combiner in shadow mode (REQ-D1-006). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_LEARNED_STAGE2_MODEL` | (auto) | string | Custom file path for the learned Stage 2 model. Absolute or relative to cwd. | `lib/search/pipeline/stage2-fusion.ts` |
 | `SPECKIT_BATCH_LEARNED_FEEDBACK` | `true` | boolean | Weekly batch feedback learning pipeline (REQ-D4-004). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_FEEDBACK_RETENTION_LEARNING` | `false` | boolean | Master gate for feedback-aware retention learning. Default OFF; set `true` to compute retention reducer decisions during the retention sweep. | `lib/feedback/feedback-retention-reducer.ts`, `lib/governance/memory-retention-sweep.ts` |
+| `SPECKIT_FEEDBACK_RETENTION_MODE` | `shadow` | enum: `shadow`, `active` | Retention learning safety mode. `shadow` writes audit decisions only; `active` applies extend/protect/delete only when the master flag is enabled and the caller supplies shadow-evaluation evidence. | `lib/feedback/feedback-retention-reducer.ts`, `lib/governance/memory-retention-sweep.ts` |
 | `SPECKIT_RELATIONS` | `true` | boolean | Relational learning from correction events. Graduated ON. | `lib/learning/corrections.ts` |
 | `SPECKIT_CONSUMPTION_LOG` | `true` | boolean | Agent consumption event logging for analysis (G-NEW-2). Graduated ON. | `lib/telemetry/consumption-logger.ts` |
 | `SPECKIT_USAGE_RANKING` | `true` | boolean | Usage-weighted ranking signal (Phase D T036). Graduated ON. | `lib/search/search-flags.ts` |
