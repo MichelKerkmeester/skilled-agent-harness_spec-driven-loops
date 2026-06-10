@@ -1362,6 +1362,104 @@ describe('code-graph-query handler', () => {
     expect(parsed.data.affectedFiles).not.toContainEqual({ filePath: 'src/low.ts', depth: 1 });
   });
 
+  it('emits blast-radius why_included chains only when includeTrace is true', async () => {
+    mocks.resolveSubjectFilePath.mockReturnValue('src/a.ts');
+    mocks.getDb.mockReturnValue({
+      transaction: vi.fn((fn: (...args: unknown[]) => unknown) => fn),
+      prepare: vi.fn((sql: string) => ({
+        all: vi.fn(() => {
+          if (sql.includes('FROM code_edges edge')) {
+            return [
+              {
+                imported_file_path: 'src/a.ts',
+                importer_file_path: 'src/b.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.9 }),
+              },
+              {
+                imported_file_path: 'src/b.ts',
+                importer_file_path: 'src/c.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.8 }),
+              },
+              {
+                imported_file_path: 'src/c.ts',
+                importer_file_path: 'src/d.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.7 }),
+              },
+            ];
+          }
+          return [];
+        }),
+        get: vi.fn(() => undefined),
+      })),
+    });
+
+    const compactResult = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      includeTransitive: true,
+      maxDepth: 2,
+      minConfidence: 0.5,
+    });
+    const compactParsed = JSON.parse(compactResult.content[0].text);
+    expect(compactParsed.data.nodes[0]).not.toHaveProperty('why_included');
+    expect(compactParsed.data.affectedFiles[0]).not.toHaveProperty('why_included');
+
+    const tracedResult = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      includeTransitive: true,
+      includeTrace: true,
+      maxDepth: 2,
+      minConfidence: 0.5,
+    });
+    const tracedParsed = JSON.parse(tracedResult.content[0].text);
+
+    expect(tracedParsed.data.nodes[0]).toMatchObject({
+      filePath: 'src/a.ts',
+      depth: 0,
+      isSeed: true,
+      why_included: {
+        depth: 0,
+        edgeChain: [],
+        confidence: 1,
+        ambiguous: false,
+        truncationReason: null,
+      },
+    });
+    expect(tracedParsed.data.affectedFiles).toEqual([
+      {
+        filePath: 'src/b.ts',
+        depth: 1,
+        why_included: {
+          depth: 1,
+          edgeChain: [
+            { fromFile: 'src/a.ts', toFile: 'src/b.ts', edgeType: 'IMPORTS', confidence: 0.9 },
+          ],
+          confidence: 0.9,
+          ambiguous: false,
+          truncationReason: null,
+        },
+      },
+      {
+        filePath: 'src/c.ts',
+        depth: 2,
+        why_included: {
+          depth: 2,
+          edgeChain: [
+            { fromFile: 'src/a.ts', toFile: 'src/b.ts', edgeType: 'IMPORTS', confidence: 0.9 },
+            { fromFile: 'src/b.ts', toFile: 'src/c.ts', edgeType: 'IMPORTS', confidence: 0.8 },
+          ],
+          confidence: 0.8,
+          ambiguous: false,
+          truncationReason: 'max_depth',
+        },
+      },
+    ]);
+  });
+
   it('surfaces blast-radius ambiguity candidates without choosing a default node', async () => {
     mocks.getDb.mockReturnValue(createDb({
       byFq: [

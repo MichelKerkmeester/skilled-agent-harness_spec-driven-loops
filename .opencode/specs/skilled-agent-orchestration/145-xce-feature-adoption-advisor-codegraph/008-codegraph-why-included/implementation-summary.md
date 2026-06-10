@@ -1,29 +1,37 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: codegraph why_included breadcrumbs"
+description: "Phase 008 added opt-in why_included edge-chain breadcrumbs to code graph blast_radius and context output while preserving compact defaults."
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "template"
-  - "impl summary core"
+  - "codegraph why_included"
+  - "blast radius trace"
+  - "code_graph_context includeTrace"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T23:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed includeTrace-gated why_included breadcrumbs for code graph query/context output"
+    next_safe_action: "No phase 008 implementation follow-up required"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/bfs-traversal.vitest.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/008-codegraph-why-included"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Breadcrumbs use the shortest retained chain per file and stay gated behind includeTrace."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -48,28 +56,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+You can now opt into concrete edge-chain breadcrumbs that explain why a file was included in `blast_radius` and `code_graph_context`. The trace is debug-only: default payloads do not include `why_included`, preserving the existing compact response shape and token budget.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Blast-Radius Breadcrumbs
 
-### [Feature Name]
+`computeBlastRadius` now builds `why_included` from the shared BFS path data when `includeTrace` is true. Each seed and affected file can carry depth, an import `edgeChain`, minimum confidence across the chain, ambiguity state, and a truncation reason for max-depth or result-limit boundaries.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Context Breadcrumbs
+
+`buildContext` now adds `graphContext[].why_included` only for trace requests. Context breadcrumbs describe the anchor and one-hop call/import/export edges with confidence, provenance, evidence class, reason, step, and deadline or budget truncation when applicable.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts` | Modified | Retains BFS path and truncated frontier data for trace consumers |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts` | Modified | Emits `why_included` for `blast_radius` only when `includeTrace` is true |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts` | Modified | Emits context section breadcrumbs only when `includeTrace` is true |
+| `.opencode/skills/system-code-graph/mcp_server/tests/bfs-traversal.vitest.ts` | Modified | Covers BFS path and truncated frontier behavior |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts` | Modified | Covers blast-radius trace-on and default-off behavior |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts` | Modified | Covers context trace-on and default-off behavior |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +83,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The implementation reused phase 007 BFS traversal path data, added trace-only response fields at the two read surfaces, and verified that default payloads omit `why_included` unless `includeTrace` is true.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +91,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep breadcrumbs behind `includeTrace` | Default code graph responses must remain compact and unchanged for normal callers. |
+| Keep one retained chain per file | The shortest retained chain explains inclusion while avoiding unbounded all-path payload growth. |
+| Use traversal path data for blast radius | It ties breadcrumbs to the actual BFS edge chain instead of reconstructing or fabricating paths later. |
+| Cap context trace breadcrumbs per section | Trace requests can be larger, but they still need bounded payload behavior. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +104,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run typecheck` | PASS |
+| `npm run build` | PASS |
+| `npm test -- tests/bfs-traversal.vitest.ts tests/code-graph-query-handler.vitest.ts tests/code-graph-context-handler.vitest.ts` | PASS, 3 files and 47 tests |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +116,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Public query schema follow-up is out of scope.** The approved write list did not include `tool-schemas.ts`, so `code_graph_query` handler/runtime support accepts `includeTrace`, but public schema exposure needs a separately approved schema edit.
+2. **Parent changelog update is out of scope.** The phase scaffold mentions a parent changelog, but the approved write list only allowed the 008 phase docs.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

@@ -311,6 +311,95 @@ describe('code-graph-context handler', () => {
     });
     expect(result.textBrief).toContain('reason=heuristic-name-match');
     expect(result.textBrief).toContain('step=resolve');
+    expect(result.graphContext[0]).not.toHaveProperty('why_included');
+  });
+
+  it('emits context why_included edge chains only when includeTrace is true', async () => {
+    const { buildContext: actualBuildContext } = await vi.importActual<typeof import('../lib/code-graph-context.js')>(
+      '../lib/code-graph-context.js',
+    );
+
+    mocks.resolveSeeds.mockReturnValue([
+      {
+        filePath: 'src/alpha.ts',
+        startLine: 10,
+        endLine: 20,
+        symbolId: 'symbol-alpha',
+        fqName: 'Alpha.run',
+        kind: 'function',
+        confidence: 0.95,
+        resolution: 'exact',
+      },
+    ]);
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha',
+              targetId: 'callee-1',
+              edgeType: 'CALLS',
+              weight: 0.8,
+              metadata: {
+                confidence: 0.8,
+                detectorProvenance: 'heuristic',
+                evidenceClass: 'INFERRED',
+                reason: 'heuristic-name-match',
+                step: 'resolve',
+              },
+            },
+            targetNode: { fqName: 'callee.one', kind: 'function', filePath: 'src/dependency.ts', startLine: 5 },
+          },
+        ]
+        : []
+    ));
+    mocks.queryEdgesTo.mockReturnValue([]);
+
+    const compact = actualBuildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+    });
+    expect(compact.graphContext[0]).not.toHaveProperty('why_included');
+
+    const traced = actualBuildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+      includeTrace: true,
+    });
+
+    expect(traced.graphContext[0].why_included).toEqual([
+      {
+        filePath: 'src/alpha.ts',
+        depth: 0,
+        edgeChain: [],
+        confidence: 0.95,
+        ambiguous: false,
+        truncationReason: null,
+      },
+      {
+        filePath: 'src/dependency.ts',
+        depth: 1,
+        edgeChain: [
+          {
+            from: 'Alpha.run',
+            to: 'callee.one',
+            fromFile: 'src/alpha.ts',
+            toFile: 'src/dependency.ts',
+            edgeType: 'CALLS',
+            confidence: 0.8,
+            detectorProvenance: 'heuristic',
+            evidenceClass: 'INFERRED',
+            reason: 'heuristic-name-match',
+            step: 'resolve',
+          },
+        ],
+        confidence: 0.8,
+        ambiguous: false,
+        truncationReason: null,
+      },
+    ]);
   });
 
   it('surfaces omittedAnchors for multi-anchor deadline timeouts through the handler payload', async () => {

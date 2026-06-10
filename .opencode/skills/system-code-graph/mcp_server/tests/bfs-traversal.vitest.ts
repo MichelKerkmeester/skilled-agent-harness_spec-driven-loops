@@ -84,4 +84,37 @@ describe('traverseGraphBfs', () => {
     ]);
     expect(traversal.depthTruncated).toBe(false);
   });
+
+  it('retains shortest path breadcrumbs and truncated frontier data', () => {
+    const graph: Record<string, Array<GraphBfsNeighbor<string, { edge: string }>>> = {
+      root: [{ id: 'middle', payload: { edge: 'root->middle' } }],
+      middle: [{ id: 'beyond', payload: { edge: 'middle->beyond' } }],
+    };
+
+    const traversal = traverseGraphBfs<string, { edge: string }, string>({
+      startIds: ['root'],
+      maxDepth: 1,
+      inspectDepthBoundary: true,
+      getNeighbors: (item) => graph[item.id] ?? [],
+      mapResult: (visit) => visit.id,
+    });
+
+    expect(traversal.results).toEqual([
+      expect.objectContaining({
+        id: 'middle',
+        depth: 1,
+        value: 'middle',
+        path: [{ fromId: 'root', toId: 'middle', depth: 1, payload: { edge: 'root->middle' } }],
+      }),
+    ]);
+    expect(traversal.depthTruncated).toBe(true);
+    expect(traversal.truncated).toEqual([
+      expect.objectContaining({
+        id: 'beyond',
+        fromId: 'middle',
+        depth: 2,
+        reason: 'max_depth',
+      }),
+    ]);
+  });
 });

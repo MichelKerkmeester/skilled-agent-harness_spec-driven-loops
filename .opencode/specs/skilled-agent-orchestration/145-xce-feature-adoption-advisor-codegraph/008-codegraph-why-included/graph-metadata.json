@@ -39,12 +39,15 @@
       "name"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts"
     ],
     "entities": [
       {
@@ -192,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8** of the spec-027 feature adoption into the advisor and code-graph daemons. It adds per-file \"why included\" breadcrumbs to blast-radius and context output.",
+    "causal_summary": "Phase 8 implemented includeTrace-gated why_included breadcrumbs for blast-radius and context output while preserving compact default responses.",
     "created_at": "2026-06-10T19:24:13Z",
-    "last_save_at": "2026-06-10T19:41:16.133Z",
+    "last_save_at": "2026-06-10T23:30:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

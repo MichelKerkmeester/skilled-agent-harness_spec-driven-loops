@@ -20,7 +20,11 @@ import type {
   OutlineQueryNode,
   RelationshipQueryEdge,
 } from '../lib/query-result-adapter.js';
-import { traverseGraphBfs, type GraphBfsNeighbor } from '../lib/graph/bfs-traversal.js';
+import {
+  traverseGraphBfs,
+  type GraphBfsNeighbor,
+  type GraphBfsPathStep,
+} from '../lib/graph/bfs-traversal.js';
 // Emit a stable failure-counter metric so operators can distinguish DB /
 // compute failures from legitimately empty blast radii.
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../lib/shared/metrics-stub.js';
@@ -35,6 +39,7 @@ export interface QueryArgs {
   maxDepth?: number;
   unionMode?: 'single' | 'multi';
   minConfidence?: number;
+  includeTrace?: boolean;
   verificationGateBypass?: 'gold-query-verifier';
 }
 
@@ -158,10 +163,26 @@ interface BlastRadiusDependency {
   confidence: number;
 }
 
+interface WhyIncludedEdgeChainStep {
+  fromFile: string;
+  toFile: string;
+  edgeType: 'IMPORTS';
+  confidence: number;
+}
+
+interface BlastRadiusWhyIncluded {
+  depth: number;
+  edgeChain: WhyIncludedEdgeChainStep[];
+  confidence: number;
+  ambiguous: boolean;
+  truncationReason: 'max_depth' | 'result_limit' | null;
+}
+
 interface BlastRadiusAffectedFile {
   filePath: string;
   depth: number;
   hotFileBreadcrumb?: HotFileBreadcrumb;
+  why_included?: BlastRadiusWhyIncluded;
 }
 
 interface BlastRadiusFailureFallback {
@@ -949,8 +970,8 @@ function parseEdgeMetadataConfidence(metadataJson: unknown, weight: unknown): nu
   return clampNumericConfidence(weight);
 }
 
-function queryImportDependentsForBlastRadius(minConfidence: number): BlastRadiusDependency[] {
-  if (minConfidence <= 0) {
+function queryImportDependentsForBlastRadius(minConfidence: number, includeTrace = false): BlastRadiusDependency[] {
+  if (minConfidence <= 0 && !includeTrace) {
     return graphDb.queryFileImportDependents().map((edge) => ({
       ...edge,
       confidence: 1,
@@ -1045,40 +1066,86 @@ function computeBlastRadius(
   limit: number,
   minConfidence = 0,
   ambiguityCandidates: SubjectCandidateMetadata[] = [],
+  includeTrace = false,
 ) {
-  const importedBy = new Map<string, Set<string>>();
-  const importEdges = queryImportDependentsForBlastRadius(minConfidence);
+  const importedBy = new Map<string, BlastRadiusDependency[]>();
+  const importEdges = queryImportDependentsForBlastRadius(minConfidence, includeTrace);
   for (const edge of importEdges) {
-    const importers = importedBy.get(edge.importedFilePath) ?? new Set<string>();
-    importers.add(edge.importerFilePath);
+    const importers = importedBy.get(edge.importedFilePath) ?? [];
+    if (!importers.some((existing) => existing.importerFilePath === edge.importerFilePath)) {
+      importers.push(edge);
+    }
     importedBy.set(edge.importedFilePath, importers);
   }
 
-  const affectedByFile = new Map<string, number>();
+  const affectedByFile = new Map<string, { depth: number; why_included?: BlastRadiusWhyIncluded }>();
   const normalizedSources = [...new Set(sourceFiles)];
   let depthTruncated = false;
+  let overflowed = false;
+
+  const buildWhyIncluded = (
+    depth: number,
+    path: ReadonlyArray<GraphBfsPathStep<string, BlastRadiusDependency>>,
+    truncationReason: BlastRadiusWhyIncluded['truncationReason'],
+  ): BlastRadiusWhyIncluded => {
+    const edgeChain = path.map((step) => ({
+      fromFile: step.payload.importedFilePath,
+      toFile: step.payload.importerFilePath,
+      edgeType: 'IMPORTS' as const,
+      confidence: step.payload.confidence,
+    }));
+    const confidence = edgeChain.reduce(
+      (minimum, step) => Math.min(minimum, step.confidence),
+      edgeChain.length > 0 ? 1 : 1,
+    );
+    return {
+      depth,
+      edgeChain,
+      confidence,
+      ambiguous: ambiguityCandidates.length > 0,
+      truncationReason,
+    };
+  };
 
   for (const sourceFile of normalizedSources) {
-    const traversal = traverseGraphBfs<string, string, BlastRadiusAffectedFile>({
+    const traversal = traverseGraphBfs<string, BlastRadiusDependency, BlastRadiusAffectedFile>({
       startIds: [sourceFile],
       maxDepth,
       preVisitedIds: [sourceFile],
       visitTiming: 'enqueue',
       inspectDepthBoundary: true,
-      getNeighbors: (item) => [...(importedBy.get(item.id) ?? [])].map((importerFilePath) => ({
-        id: importerFilePath,
-        payload: importerFilePath,
-      })),
+      getNeighbors: (item) => [...(importedBy.get(item.id) ?? [])]
+        .sort((left, right) => left.importerFilePath.localeCompare(right.importerFilePath))
+        .map((edge) => ({
+          id: edge.importerFilePath,
+          payload: edge,
+        })),
       mapResult: (visit) => normalizedSources.includes(visit.id)
         ? null
-        : { filePath: visit.id, depth: visit.depth },
+        : {
+          filePath: visit.id,
+          depth: visit.depth,
+          ...(includeTrace
+            ? { why_included: buildWhyIncluded(visit.depth, visit.path, null) }
+            : {}),
+        },
     });
 
     depthTruncated ||= traversal.depthTruncated;
+    const maxDepthTruncatedFrom = new Set(traversal.truncated.map((entry) => entry.fromId));
     for (const affectedFile of traversal.results.map((entry) => entry.value)) {
-      const previousDepth = affectedByFile.get(affectedFile.filePath);
-      if (previousDepth === undefined || affectedFile.depth < previousDepth) {
-        affectedByFile.set(affectedFile.filePath, affectedFile.depth);
+      if (includeTrace && affectedFile.why_included && maxDepthTruncatedFrom.has(affectedFile.filePath)) {
+        affectedFile.why_included = {
+          ...affectedFile.why_included,
+          truncationReason: 'max_depth',
+        };
+      }
+      const previous = affectedByFile.get(affectedFile.filePath);
+      if (previous === undefined || affectedFile.depth < previous.depth) {
+        affectedByFile.set(affectedFile.filePath, {
+          depth: affectedFile.depth,
+          ...(affectedFile.why_included ? { why_included: affectedFile.why_included } : {}),
+        });
       }
     }
   }
@@ -1091,10 +1158,23 @@ function computeBlastRadius(
   // recording overflow.
   const totalAffectedBeforeSlice = affectedByFile.size;
   let affectedFiles = [...affectedByFile.entries()]
-    .map(([filePath, depth]) => ({ filePath, depth }))
+    .map(([filePath, entry]) => ({
+      filePath,
+      depth: entry.depth,
+      ...(entry.why_included ? { why_included: entry.why_included } : {}),
+    }))
     .sort((left, right) => left.depth - right.depth || left.filePath.localeCompare(right.filePath))
     .slice(0, limit);
-  const overflowed = totalAffectedBeforeSlice > limit;
+  overflowed = totalAffectedBeforeSlice > limit;
+  if (includeTrace && overflowed && affectedFiles.length > 0) {
+    const lastIncluded = affectedFiles[affectedFiles.length - 1];
+    if (lastIncluded.why_included && lastIncluded.why_included.truncationReason == null) {
+      lastIncluded.why_included = {
+        ...lastIncluded.why_included,
+        truncationReason: 'result_limit',
+      };
+    }
+  }
   const breadcrumbByFile = new Map(
     buildHotFileBreadcrumbs([
       ...normalizedSources,
@@ -1110,6 +1190,11 @@ function computeBlastRadius(
     filePath,
     depth: 0,
     isSeed: true,
+    ...(includeTrace
+      ? {
+        why_included: buildWhyIncluded(0, [], null),
+      }
+      : {}),
     ...(breadcrumbByFile.get(filePath) ? { hotFileBreadcrumb: breadcrumbByFile.get(filePath) } : {}),
   }));
   const depthGroups = buildDepthGroups(affectedFiles, maxDepth);
@@ -1405,7 +1490,14 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
 
     let blastRadius;
     try {
-      blastRadius = graphDb.getDb().transaction(() => computeBlastRadius(sourceFiles, effectiveDepth, limit, minConfidence, ambiguityCandidates))();
+      blastRadius = graphDb.getDb().transaction(() => computeBlastRadius(
+        sourceFiles,
+        effectiveDepth,
+        limit,
+        minConfidence,
+        ambiguityCandidates,
+        args.includeTrace === true,
+      ))();
     } catch (error) {
       const depthGroups = buildDepthGroups([], effectiveDepth);
       const reason = error instanceof Error ? error.message : String(error);

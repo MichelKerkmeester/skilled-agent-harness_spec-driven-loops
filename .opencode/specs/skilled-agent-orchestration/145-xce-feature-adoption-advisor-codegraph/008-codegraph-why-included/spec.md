@@ -11,17 +11,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold phase from 027 adoption analysis transfer #8"
-    next_safe_action: "Plan includeTrace-gated breadcrumb output"
+    last_updated_at: "2026-06-10T23:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented includeTrace-gated why_included breadcrumbs for blast_radius and code_graph_context"
+    next_safe_action: "Use includeTrace only for debugging payloads; keep default responses compact"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/008-codegraph-why-included"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +49,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -67,14 +70,14 @@ This is **Phase 8** of the spec-027 feature adoption into the advisor and code-g
 **Scope Boundary**: `computeBlastRadius` in `handlers/query.ts` and `lib/code-graph-context.ts`. Add `why_included` edge-chain breadcrumbs (depth, import/call path, confidence, ambiguity, truncation reason) behind an `includeTrace` flag. No change to the default payload.
 
 **Dependencies**:
-- None required. Pairs naturally with phase 007 (a shared traversal could compute breadcrumbs in one pass) but does not depend on it.
+- Phase 007's shared BFS helper is present and now carries optional path breadcrumbs for callers that opt into trace output.
 
 **Deliverables**:
 - An opt-in `why_included` trace per included file: depth, the import/call chain, confidence, ambiguity, and truncation reason.
 - `includeTrace` flag wiring on `blast_radius` and `code_graph_context`.
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- Completed 2026-06-10: trace breadcrumbs are available behind `includeTrace`; default payloads remain compact.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -159,31 +162,8 @@ Adopt 027's inline "why included" breadcrumbs: an opt-in per-file edge chain (de
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What is the breadcrumb cap/paging strategy for very large blast radii under includeTrace?
-- Should the trace expose only the shortest chain to each file, or all contributing chains up to a cap?
+- Answered: breadcrumbs are bounded by existing `limit`, `maxDepth`, context budget, and deadline caps. Overflow is surfaced through existing partial/fallback metadata plus per-breadcrumb truncation reason where applicable.
+- Answered: each file exposes the shortest retained chain only. This keeps debug output useful without multiplying payload size.
 <!-- /ANCHOR:questions -->
 
 ---
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
