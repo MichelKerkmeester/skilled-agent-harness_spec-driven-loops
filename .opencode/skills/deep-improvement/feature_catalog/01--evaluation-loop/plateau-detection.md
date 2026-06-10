@@ -39,7 +39,7 @@ That reducer stop check is not the only stability signal. `mutation-coverage.cjs
 | `.opencode/skills/deep-improvement/scripts/shared/mutation-coverage.cjs` | Coverage tracker | Records per-dimension score history and checks convergence eligibility from stable trajectories. |
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs` | Analysis helper | Refuses to analyze trade-offs until enough trajectory points exist and flags meaningful regressions when they do. |
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs` | Stability helper | Measures replay variance and refuses verdicts until the minimum replay count is met. |
-| `.opencode/skills/deep-improvement/assets/agent-improvement/improvement_config.json` | Runtime config | Supplies the plateau window and stop-rule thresholds consumed by the reducer. |
+| `.opencode/skills/deep-improvement/assets/agent_improvement/improvement_config.json` | Runtime config | Supplies the plateau window and stop-rule thresholds consumed by the reducer. |
 
 ### Validation And Tests
 

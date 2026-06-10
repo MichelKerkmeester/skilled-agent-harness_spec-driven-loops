@@ -1,0 +1,116 @@
+---
+title: Benchmark Operator Guide
+description: Step-by-step guide for running repeatable fixture benchmarks for deep-improvement target profiles.
+trigger_phrases:
+  - "run a fixture benchmark"
+  - "benchmark runner command"
+  - "benchmark repeatability"
+  - "benchmark output layout"
+---
+
+# Benchmark Operator Guide
+
+Operational guide for running deep-improvement benchmarks against packet-local outputs. Use it when you need deterministic evidence that a target profile still behaves consistently across repeated runs.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Explains how to run deterministic fixture benchmarks, where to store the resulting evidence, and how to interpret repeatability.
+
+### When to Use
+
+Use this reference when:
+- Running the benchmark runner for any dynamic-mode target
+- Building repeatability evidence for a promotion gate
+- Checking whether a target profile is stable enough to trust
+
+### Core Principle
+
+Benchmark truth is output-based. The runner judges produced packet-local artifacts, not just how a prompt file reads.
+
+The copied runtime templates use the `improvement_*` asset names, but the packet-local runtime files produced by the current workflow use the `agent-improvement-*` naming family.
+
+---
+
+## 2. RUNNER COMMAND
+
+```text
+node .opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs \
+  --profile .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json \
+  --outputs-dir {spec_folder}/improvement/benchmark-outputs
+
+node .opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs \
+  --profile .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json \
+  --outputs-dir {spec_folder}/improvement/benchmark-outputs
+```
+
+### Scorer Selection
+
+`run-benchmark.cjs` defaults to `--scorer pattern` (the byte-identical heading and pattern matcher). Add `--scorer 5dim` to route the materialized outputs through the five-dimension scorer (`scripts/model-benchmark/scorer/score-model-variant.cjs`), and `--grader noop|mock|llm` to pick the D4 grader (default `noop`, deterministic). The report and `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`.
+
+```text
+node .opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs \
+  --profile .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json \
+  --outputs-dir {spec_folder}/improvement/benchmark-outputs \
+  --scorer 5dim --grader noop
+```
+
+### Integration Benchmark
+
+When running with an integration report, add the `--integration-report` flag:
+
+```text
+node scripts/model-benchmark/run-benchmark.cjs --profile .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
+```
+
+The integration report adds `integrationScore` and `integrationDetails` to the benchmark output:
+- `mirrorScore` (0-100): deducts 30 per missing mirror, 20 per diverged mirror
+- `commandScore` (0/100): at least 1 command references the agent
+- `skillScore` (0/100): at least 1 skill references the agent
+- Weighted: 60% mirror + 20% command + 20% skill
+
+---
+
+## 3. REQUIRED LAYOUT
+
+```text
+{spec_folder}/improvement/benchmark-outputs/
+  fixture-baseline.md
+  fixture-improved.md
+  fixture-edge.md
+  report.json
+```
+
+---
+
+## 4. REPEATABILITY RULE
+
+- Run the same fixture or output set at least twice
+- Scores must remain identical when inputs are identical
+- If scores drift, stop and treat the harness as unstable
+
+---
+
+## 5. SUCCESS CRITERIA
+
+Benchmark success means:
+- aggregate score meets the profile threshold
+- no fixture falls below the profile minimum fixture score
+- forbidden placeholder or fabrication patterns do not appear
+- the benchmark record is appended to the packet-local ledger
+
+Benchmark success does not mean:
+- a mirror sync passed downstream checks
+- a prompt-surface score exists with no benchmark evidence
+- a benchmark run passed only once
+
+---
+
+## 6. RELATED RESOURCES
+
+- `evaluator_contract.md`
+- `../shared/loop_protocol.md`
+- `../shared/promotion_rules.md`

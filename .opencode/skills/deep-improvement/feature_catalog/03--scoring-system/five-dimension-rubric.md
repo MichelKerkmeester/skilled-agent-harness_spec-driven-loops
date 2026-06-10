@@ -35,10 +35,10 @@ The dynamic scorer is lenient in one important way: missing derived checks defau
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/references/model-benchmark/evaluator_contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
+| `.opencode/skills/deep-improvement/references/model_benchmark/evaluator_contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Implements the five dimension functions, weights, and recommendation threshold. |
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/generate-profile.cjs` | Profile builder | Supplies the derived structural, rule, output, integration, and mismatch checks that the rubric consumes. |
-| `.opencode/skills/deep-improvement/assets/agent-improvement/improvement_config.json` | Runtime config | Stores the default dimension weights and threshold delta. |
+| `.opencode/skills/deep-improvement/assets/agent_improvement/improvement_config.json` | Runtime config | Stores the default dimension weights and threshold delta. |
 
 ### Validation And Tests
 

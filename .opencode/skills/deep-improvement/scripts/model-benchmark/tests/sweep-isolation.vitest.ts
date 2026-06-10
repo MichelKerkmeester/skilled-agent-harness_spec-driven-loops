@@ -13,11 +13,11 @@ const MB_ROOT = path.join(
 );
 const FIXTURE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures',
+  '.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures',
 );
 const PROFILE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles',
+  '.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles',
 );
 
 // The runtime module is CommonJS; load it through a require bridge so the .cjs

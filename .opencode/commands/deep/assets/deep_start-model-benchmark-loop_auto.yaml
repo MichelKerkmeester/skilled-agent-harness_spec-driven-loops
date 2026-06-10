@@ -35,7 +35,7 @@ evaluation_philosophy:
 # USER INPUTS
 # ─────────────────────────────────────────────────────────────────
 user_inputs:
-  profile: "[PROFILE] - Path or ID of the benchmark profile. Default: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json."
+  profile: "[PROFILE] - Path or ID of the benchmark profile. Default: .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json."
   scoring_method: "[SCORING_METHOD] - 'pattern' for the default heading/pattern matcher, '5dim' for the ported 5-dimension scorer. Default: pattern."
   grader: "[GRADER] - 'noop' deterministic no-dispatch grader, 'mock', or 'llm' (model dispatch). Default: noop."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for benchmark runtime. REQUIRED."
@@ -48,7 +48,7 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    profile_empty: ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json"
+    profile_empty: ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json"
     scoring_method_empty: "pattern"
     grader_empty: "noop"
     max_iterations_empty: "5"
@@ -82,8 +82,8 @@ skill_reference:
   skill: deep-improvement
   skill_md: .opencode/skills/deep-improvement/SKILL.md
   templates:
-    config: .opencode/skills/deep-improvement/assets/agent-improvement/improvement_config.json
-    default_profile: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json
+    config: .opencode/skills/deep-improvement/assets/agent_improvement/improvement_config.json
+    default_profile: .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
   scripts:
     loop_host: .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs
     benchmark_materializer: .opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs
@@ -137,7 +137,7 @@ workflow:
           command: "Remove or close-with-release {state_paths.lock_file}; idempotent — safe to invoke when already released"
       step_resolve_profile:
         description: "Resolve the benchmark profile path or ID, defaulting to the bundled default profile"
-        action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
+        action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
       step_create_directories:
         description: "Create benchmark runtime directories including the outputs dir"
         command: "mkdir -p .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}"

@@ -80,7 +80,7 @@ model-benchmark/
 
 | Boundary | Rule |
 |---|---|
-| Imports | `run-benchmark.cjs` lazy-requires `./scorer/score-model-variant.cjs` only on the `5dim` path. `dispatch-model.cjs` reads config from `assets/agent-improvement/improvement_config.json` under `modelBenchmarkConfig`. |
+| Imports | `run-benchmark.cjs` lazy-requires `./scorer/score-model-variant.cjs` only on the `5dim` path. `dispatch-model.cjs` reads config from `assets/agent_improvement/improvement_config.json` under `modelBenchmarkConfig`. |
 | Exports | `dispatch-model.cjs` exports `dispatch`, `dispatchReal`, `dispatchMock`, `buildSpawnSpec`, `KNOWN_EXECUTORS`, and pause-sentinel helpers. `run-benchmark.cjs` runs as a CLI and its `main()` is not exported. |
 | Ownership | Lane B dispatch and fixture scoring live here. The 5-dimension engine lives in `scorer/`. Mode routing and lane-path resolution live in `../shared/loop-host.cjs`. |
 | Write policy | Dispatch is read-only by default. Write-capable executor runs require `DEEP_AGENT_DISPATCH_WRITE=1`. |

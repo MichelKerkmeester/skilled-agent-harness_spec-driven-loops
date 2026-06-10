@@ -50,5 +50,5 @@ const { verifyMirrorSync } = require('../lib/mirror-sync-verify.cjs');
 ## 4. RELATED RESOURCES
 
 - [Promotion Gate Contract](../../references/shared/promotion_gate_contract.md)
-- [Score Dimensions](../../references/agent-improvement/score_dimensions.md)
-- [Candidate Proposal Format](../../references/agent-improvement/candidate_proposal_format.md)
+- [Score Dimensions](../../references/agent_improvement/score_dimensions.md)
+- [Candidate Proposal Format](../../references/agent_improvement/candidate_proposal_format.md)

@@ -236,7 +236,7 @@ Produces the score and benchmark evidence that later gates consume.
 
 #### How It Works
 
-`score-candidate.cjs` always runs in `dynamic-5d` mode, regenerates the profile every run, allows optional weight overrides, and emits structured dimension details plus `candidate-acceptable` or `needs-improvement`. `run-benchmark.cjs` is also deterministic, but it still expects a profile JSON and fixture directory under `assets/agent-improvement/target-profiles`, so benchmark gating only becomes runnable when that profile-specific artifact set exists.
+`score-candidate.cjs` always runs in `dynamic-5d` mode, regenerates the profile every run, allows optional weight overrides, and emits structured dimension details plus `candidate-acceptable` or `needs-improvement`. `run-benchmark.cjs` is also deterministic, but it still expects a profile JSON and fixture directory under `assets/agent_improvement/target-profiles`, so benchmark gating only becomes runnable when that profile-specific artifact set exists.
 
 #### Source Files
 
@@ -400,7 +400,7 @@ Computes the five dimensions with a funnel whose largest single-stage drop is th
 
 #### How It Works
 
-`scripts/skill-benchmark/score-skill-benchmark.cjs` scores D1 inter+intra, D2 discovery, D3 efficiency, D5 connectivity, and reports D4 usefulness as `unscored` until live mode; the weights are hardcoded in the scorer, and `assets/skill-benchmark/default_profile.json` documents them but is a reference asset that is not consumed at runtime.
+`scripts/skill-benchmark/score-skill-benchmark.cjs` scores D1 inter+intra, D2 discovery, D3 efficiency, D5 connectivity, and reports D4 usefulness as `unscored` until live mode; the weights are hardcoded in the scorer, and `assets/skill_benchmark/default_profile.json` documents them but is a reference asset that is not consumed at runtime.
 
 #### Source Files
 
@@ -414,7 +414,7 @@ Emits a machine report plus a human report rendered from it (anti-drift), with r
 
 #### How It Works
 
-`scripts/skill-benchmark/build-report.cjs` renders `skill-benchmark-report.md` FROM `skill-benchmark-report.json` (anti-drift). `assets/skill-benchmark/remediation_taxonomy.json` documents how each finding class maps to a target file, locus, one-line fix, and hand-off lane; it is a reference asset (exercised by its own test) and is not yet imported by the report code.
+`scripts/skill-benchmark/build-report.cjs` renders `skill-benchmark-report.md` FROM `skill-benchmark-report.json` (anti-drift). `assets/skill_benchmark/remediation_taxonomy.json` documents how each finding class maps to a target file, locus, one-line fix, and hand-off lane; it is a reference asset (exercised by its own test) and is not yet imported by the report code.
 
 #### Source Files
 

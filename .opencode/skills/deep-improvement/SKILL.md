@@ -34,9 +34,9 @@ This skill supports four co-equal use-case lanes that share the same candidate, 
 | **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:start-agent-improvement-loop` |
 | **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:start-model-benchmark-loop` |
 | **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
-| **Lane D: Packaging-Benchmark-Refine** | You want to benchmark an AI-system packaging and auto-refine its technique docs behind hard guardrails | `/deep:start-packaging-refine-loop` |
+| **Lane D: Non-Dev-AI-System Refine** | You want to benchmark an AI-system packaging and auto-refine its technique docs behind hard guardrails | `/deep:start-non-dev-ai-system-loop` |
 
-Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill-benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. Lane D is documented in `references/packaging-benchmark-refine/operator_guide.md`; its guarded loop host lives with the packaging under test (`<packaging-root>/_loop/loop.py`) and loop-host only adapts to it. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill_benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. Lane D is documented in `references/non_dev_ai_system/operator_guide.md`; its guarded loop host lives with the packaging under test (`<packaging-root>/_loop/loop.py`) and loop-host only adapts to it. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
 
 ### Activation Triggers
 
@@ -70,11 +70,11 @@ Use Lane B (model-benchmark) when the thing under test is a model or prompt fram
 
 #### Skill Benchmarking
 
-Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See `references/skill-benchmark/operator_guide.md`.
+Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See `references/skill_benchmark/operator_guide.md`.
 
 #### Packaging Benchmark and Guarded Refine
 
-Use Lane D (packaging-benchmark-refine) when the thing under test is an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project and native skill) and the goal is to close measured quality gaps automatically. It benchmarks N-sample averaged outputs, re-grades them with an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. The frozen scoring surface, derivation and kill-switch logic live with the packaging (`_loop/loop.py` contract); dry-run is the default. See `references/packaging-benchmark-refine/operator_guide.md`.
+Use Lane D (non-dev-ai-system-refine) when the thing under test is an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project and native skill) and the goal is to close measured quality gaps automatically. It benchmarks N-sample averaged outputs, re-grades them with an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. The frozen scoring surface, derivation and kill-switch logic live with the packaging (`_loop/loop.py` contract); dry-run is the default. See `references/non_dev_ai_system/operator_guide.md`.
 
 ### When NOT to Use
 
@@ -97,7 +97,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/` for reusable runtime templates such as the charter and strategy markdown files
 - `scripts/` for deterministic benchmark, scoring, reduction, promotion, rollback, and drift-check helpers
 
-**Lane awareness**: resources are organized by lane. `references/agent-improvement/` + `assets/agent-improvement/` carry Lane A guidance, `references/model-benchmark/` + `assets/model-benchmark/` carry Lane B guidance, and `references/skill-benchmark/` + `assets/skill-benchmark/` carry Lane C guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` and `SKILL_BENCHMARK` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all three lanes.
+**Lane awareness**: resources are organized by lane. `references/agent_improvement/` + `assets/agent_improvement/` carry Lane A guidance, `references/model_benchmark/` + `assets/model_benchmark/` carry Lane B guidance, and `references/skill_benchmark/` + `assets/skill_benchmark/` carry Lane C guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` and `SKILL_BENCHMARK` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all three lanes.
 
 ### Resource Loading Levels
 
@@ -137,20 +137,20 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "QUICK_REFERENCE": ["references/shared/quick_reference.md"],
-    "LOOP_EXECUTION": ["references/shared/loop_protocol.md", "references/model-benchmark/benchmark_operator_guide.md"],
-    "EVALUATION_POLICY": ["references/model-benchmark/evaluator_contract.md", "references/shared/promotion_rules.md"],
-    "PROMOTION_OPERATIONS": ["references/shared/rollback_runbook.md", "references/agent-improvement/mirror_drift_policy.md", "references/shared/promotion_rules.md"],
-    "TARGET_ONBOARDING": ["references/agent-improvement/target_onboarding.md"],
-    "INTEGRATION_SCAN": ["references/agent-improvement/integration_scanning.md", "references/model-benchmark/evaluator_contract.md"],
-    "MODEL_BENCHMARK": ["references/model-benchmark/benchmark_operator_guide.md", "references/model-benchmark/evaluator_contract.md"],
-    "SKILL_BENCHMARK": ["references/skill-benchmark/operator_guide.md", "references/skill-benchmark/scoring_contract.md", "references/skill-benchmark/scenario_authoring.md"],
-    "FULL_SETUP": ["assets/agent-improvement/improvement_charter.md", "assets/agent-improvement/improvement_strategy.md"],
+    "LOOP_EXECUTION": ["references/shared/loop_protocol.md", "references/model_benchmark/benchmark_operator_guide.md"],
+    "EVALUATION_POLICY": ["references/model_benchmark/evaluator_contract.md", "references/shared/promotion_rules.md"],
+    "PROMOTION_OPERATIONS": ["references/shared/rollback_runbook.md", "references/agent_improvement/mirror_drift_policy.md", "references/shared/promotion_rules.md"],
+    "TARGET_ONBOARDING": ["references/agent_improvement/target_onboarding.md"],
+    "INTEGRATION_SCAN": ["references/agent_improvement/integration_scanning.md", "references/model_benchmark/evaluator_contract.md"],
+    "MODEL_BENCHMARK": ["references/model_benchmark/benchmark_operator_guide.md", "references/model_benchmark/evaluator_contract.md"],
+    "SKILL_BENCHMARK": ["references/skill_benchmark/operator_guide.md", "references/skill_benchmark/scoring_contract.md", "references/skill_benchmark/scenario_authoring.md"],
+    "FULL_SETUP": ["assets/agent_improvement/improvement_charter.md", "assets/agent_improvement/improvement_strategy.md"],
 }
 
 RUNTIME_ASSETS = {
-    "ALWAYS": ["assets/agent-improvement/improvement_config.json", "assets/agent-improvement/target_manifest.jsonc"],
-    "MODEL_BENCHMARK": ["assets/model-benchmark/benchmark-profiles/default.json"],
-    "SKILL_BENCHMARK": ["assets/skill-benchmark/default_profile.json"],
+    "ALWAYS": ["assets/agent_improvement/improvement_config.json", "assets/agent_improvement/target_manifest.jsonc"],
+    "MODEL_BENCHMARK": ["assets/model_benchmark/benchmark-profiles/default.json"],
+    "SKILL_BENCHMARK": ["assets/skill_benchmark/default_profile.json"],
 }
 
 ON_DEMAND_KEYWORDS = ["target profile", "score candidate", "proposal loop", "benchmark", "promotion gate", "mirror drift"]
@@ -316,7 +316,7 @@ For multi-iter evaluation sweeps, a mixed-executor split plus an adjudication pa
 - **Mixed-executor 8+2 split**: run breadth iterations on a breadth executor (e.g. cli-opencode or cli-codex with a fast model) and synthesis iterations on a synthesis executor (e.g. cli-codex gpt-5.5). For a 10-iter sweep, that is iters 1-8 breadth and iters 9-10 synthesis.
 - **Adjudication iter**: insert a false-positive filter pass before the synthesis iterations (typically the iter-7 mark) so only confirmed findings carry forward. In validation this delivers a 90%+ false-positive reduction, with one pass dropping 9 false-positive and 4 outdated items to take a 20-item queue down to 7.
 
-See `references/model-benchmark/mixed_executor_methodology.md` for the split mechanics, adjudication details, and the full validation evidence.
+See `references/model_benchmark/mixed_executor_methodology.md` for the split mechanics, adjudication details, and the full validation evidence.
 
 ---
 
@@ -358,12 +358,12 @@ Event types: `session_start`, `session_initialized`, `integration_scanned`, `can
 
 The reusable benchmark contract ships with the skill, not with each spec packet:
 
-- Profile: `assets/model-benchmark/benchmark-profiles/default.json`
-- Fixtures: `assets/model-benchmark/benchmark-fixtures/*.json`
+- Profile: `assets/model_benchmark/benchmark-profiles/default.json`
+- Fixtures: `assets/model_benchmark/benchmark-fixtures/*.json`
 - Materializer: `scripts/shared/materialize-benchmark-fixtures.cjs`
 - Runner: `scripts/model-benchmark/run-benchmark.cjs`
 
-The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
+The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
 
 Benchmark outputs are always written to the sk-prompt-small-model hub at `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. There is no spec-local output path. `run_label` is a required identifier that distinguishes benchmark runs in the hub (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`).
 
@@ -547,7 +547,7 @@ Core references: `README.md`, `references/shared/quick_reference.md`, `reference
 
 ## 11. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/shared/loop_protocol.md`, `references/shared/quick_reference.md`, `references/model-benchmark/benchmark_operator_guide.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, `references/agent-improvement/mirror_drift_policy.md`, `references/shared/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/shared/loop_protocol.md`, `references/shared/quick_reference.md`, `references/model_benchmark/benchmark_operator_guide.md`, `references/model_benchmark/evaluator_contract.md`, `references/agent_improvement/integration_scanning.md`, `references/agent_improvement/mirror_drift_policy.md`, `references/shared/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/agent-improvement/benchmark-stability.cjs` (repeatability and weight recommendations), `scripts/agent-improvement/candidate-lineage.cjs` (candidate parentage across waves), `scripts/agent-improvement/check-mirror-drift.cjs` (runtime mirror drift report), `scripts/agent-improvement/generate-profile.cjs` (dynamic target profile), `scripts/shared/improvement-journal.cjs` (append-only lifecycle journal), `scripts/shared/materialize-benchmark-fixtures.cjs` (static fixture materializer), `scripts/shared/mutation-coverage.cjs` (mutation coverage graph), `scripts/shared/promote-candidate.cjs` (guarded canonical promotion), `scripts/shared/reduce-state.cjs` (dashboard and registry reducer), `scripts/shared/loop-host.cjs` (deep-loop host entrypoint), `scripts/agent-improvement/rollback-candidate.cjs` (promotion rollback), `scripts/model-benchmark/run-benchmark.cjs` (Lane B fixture runner), `scripts/model-benchmark/sweep-benchmark.cjs` (Lane B matrix sweep and scoring), `scripts/agent-improvement/scan-integration.cjs` (integration surface scanner), `scripts/agent-improvement/score-candidate.cjs` (Lane A candidate scorer), `scripts/agent-improvement/trade-off-detector.cjs` (Pareto trade-off detector), `scripts/skill-benchmark/run-skill-benchmark.cjs` (Lane C orchestrator), `scripts/skill-benchmark/live-executor.cjs` (Lane C live dispatch executor), `scripts/skill-benchmark/score-skill-benchmark.cjs` (Lane C D1-D5 scorer), `scripts/skill-benchmark/d4-ablation.cjs` (D4 and D4-R ablation), `scripts/skill-benchmark/build-report.cjs` (Lane C markdown report renderer), `scripts/skill-benchmark/executor-dispatch.cjs` (Lane C executor router), `scripts/skill-benchmark/router-replay.cjs` (router-mode replay harness), `scripts/skill-benchmark/advisor-probe.cjs` (D1-inter deterministic advisor probe), `scripts/skill-benchmark/d5-connectivity.cjs` (D5 router-connectivity drift guard), `scripts/skill-benchmark/contamination-lint.cjs` (skill-off contamination linter), `scripts/skill-benchmark/load-playbook-scenarios.cjs` (playbook scenario loader), `scripts/skill-benchmark/playbook-generator.cjs` (playbook scenario generator), `scripts/skill-benchmark/browser-executor.cjs` (Lane C browser-trace executor), and `scripts/model-benchmark/dispatch-model.cjs` (Lane B per-cell dispatch envelope). This list names the lane-level scripts; per-lane `scorer/`, `lib/`, and `tests/` helpers are discovered dynamically and not all enumerated here.
 

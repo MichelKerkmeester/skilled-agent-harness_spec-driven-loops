@@ -87,7 +87,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
-  profile_path: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json  # optional; default profile when omitted
+  profile_path: .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json  # optional; default profile when omitted
   spec_folder: specs/121/008  # required spec folder path or explicit runtime folder
   run_label: minimax-tidd-ec  # required; identifies the benchmark run in the hub (e.g. "minimax-tidd-ec", "mimo-costar")
   execution_mode: AUTONOMOUS  # from :auto suffix
@@ -105,7 +105,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default,
 | Field | Required | Resolves Via | Default | Tier-2 Candidate |
 |-------|----------|--------------|---------|------------------|
 | `lane` | Y | fixed by command | `model-benchmark` | N |
-| `profile_path` | Y | `$ARGUMENTS` profile path, or marker `profile_path` | `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` | N |
+| `profile_path` | Y | `$ARGUMENTS` profile path, or marker `profile_path` | `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json` | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or requires-ask | none | Y |
 | `run_label` | Y | flag `--run-label`, marker `run_label`, or requires-ask | none | Y |
 | `outputs_dir` | Y | derived from `run_label` | `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}` | N |
@@ -149,7 +149,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ IF missing → scoring_method = pattern (default), grader = noop (default), max_iterations = 5 (default)
 
 6. List available benchmark profiles for Q0:
-   $ ls .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/*.json
+   $ ls .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/*.json
 
 7. List recent spec folders for Q1:
    $ ls -d specs/*/ 2>/dev/null | tail -10
@@ -161,7 +161,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q0. Benchmark Profile** (if not provided in command):         │
    │    Which benchmark profile should drive the fixtures?            │
-   │    A) Default - assets/model-benchmark/benchmark-profiles/default.json │
+   │    A) Default - assets/model_benchmark/benchmark-profiles/default.json │
    │    B) Other - paste a profile path                              │
    │                                                                │
    │ **Q1. Spec Folder** (if no --spec-folder flag):                 │
@@ -323,8 +323,8 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
 
 ### Default Profile and Fixtures
 
-- Default profile: `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json`
-- Fixtures: `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`)
+- Default profile: `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json`
+- Fixtures: `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`)
 
 ### User Input
 
@@ -377,7 +377,7 @@ Focus on §4 LANE B: MODEL-BENCHMARK for the canonical contract.
 
 Confirm `profile_path` exists. When the user did not supply one, use the default profile:
 ```bash
-ls .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json
+ls .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
 ```
 
 ### Step 3: Initialize Runtime
@@ -440,7 +440,7 @@ Uses the default profile, `--scorer pattern`, `--grader noop`. Outputs go to `.o
 ### Explicit Profile, 5-Dimension Scorer (Interactive)
 
 ```
-/deep:start-model-benchmark-loop ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim --run-label=mimo-costar
+/deep:start-model-benchmark-loop ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim --run-label=mimo-costar
 ```
 Setup asks the remaining questions. Grader stays `noop` unless changed. Outputs go to `.opencode/skills/sk-prompt-small-model/benchmarks/mimo-costar/`.
 
@@ -466,7 +466,7 @@ Setup phase lists available profiles, defaults the profile to `default.json`, an
 Model Benchmark Loop Complete
 ─────────────────────────────
 
-Profile: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json
+Profile: .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
 Scoring: pattern
 Grader:  noop
 Mode:    model-benchmark

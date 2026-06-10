@@ -86,10 +86,10 @@ skill_reference:
   skill: deep-improvement
   skill_md: .opencode/skills/deep-improvement/SKILL.md
   templates:
-    config: .opencode/skills/deep-improvement/assets/agent-improvement/improvement_config.json
-    strategy: .opencode/skills/deep-improvement/assets/agent-improvement/improvement_strategy.md
-    charter: .opencode/skills/deep-improvement/assets/agent-improvement/improvement_charter.md
-    manifest: .opencode/skills/deep-improvement/assets/agent-improvement/target_manifest.jsonc
+    config: .opencode/skills/deep-improvement/assets/agent_improvement/improvement_config.json
+    strategy: .opencode/skills/deep-improvement/assets/agent_improvement/improvement_strategy.md
+    charter: .opencode/skills/deep-improvement/assets/agent_improvement/improvement_charter.md
+    manifest: .opencode/skills/deep-improvement/assets/agent_improvement/target_manifest.jsonc
   scripts:
     scanner: .opencode/skills/deep-improvement/scripts/agent-improvement/scan-integration.cjs
     profiler: .opencode/skills/deep-improvement/scripts/agent-improvement/generate-profile.cjs
@@ -207,10 +207,10 @@ workflow:
         command: "node -e \"const fs=require('node:fs'); const coverage=require('./.opencode/skills/deep-improvement/scripts/shared/mutation-coverage.cjs'); const score=JSON.parse(fs.readFileSync('{score_output_path}','utf8')); const dimensions=Array.isArray(score.dimensions)?score.dimensions:[]; const scores=Object.fromEntries(dimensions.map((entry)=>[entry.name,entry.score])); coverage.recordMutation('{spec_folder}/improvement/mutation-coverage.json',{dimension:'composite',mutationType:'candidate-proposal',candidateId:'{candidate_id}',iteration:Number('{iteration}'),outcome:score.recommendation||'scored'}); coverage.recordTrajectory('{spec_folder}/improvement/mutation-coverage.json',{iteration:Number('{iteration}'),scores,weightedScore:Number('{weighted_score}')});\""
       step_materialize_benchmark_fixtures:
         description: "Materialize static benchmark fixtures into packet-local markdown outputs"
-        command: "node .opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs --profile .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
+        command: "node .opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs --profile .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
       step_run_benchmark:
         description: "Run fixture tests against packet-local outputs"
-        command: "node .opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs --profile .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
+        command: "node .opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs --profile .opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
         command: "test -f {spec_folder}/improvement/benchmark-outputs/report.json && node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"benchmarkOutputPath\":\"{spec_folder}/improvement/benchmark-outputs/report.json\",\"targetProfile\":\"{target_profile}\"}'"

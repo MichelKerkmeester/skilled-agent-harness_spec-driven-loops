@@ -56,8 +56,8 @@ Operators run the exact prompt and command sequence for `CP-034` and confirm the
 rm -rf /tmp/cp-034-sandbox /tmp/cp-034-sandbox-baseline /tmp/cp-034-spec
 mkdir -p /tmp/cp-034-spec/improvement/control /tmp/cp-034-spec/improvement/candidates
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-034-sandbox
-cp /tmp/cp-034-sandbox/.opencode/skills/deep-improvement/assets/agent-improvement/improvement_charter.md /tmp/cp-034-spec/improvement/control/improvement-charter.md
-cp /tmp/cp-034-sandbox/.opencode/skills/deep-improvement/assets/agent-improvement/target_manifest.jsonc /tmp/cp-034-spec/improvement/control/target-manifest.jsonc
+cp /tmp/cp-034-sandbox/.opencode/skills/deep-improvement/assets/agent_improvement/improvement_charter.md /tmp/cp-034-spec/improvement/control/improvement-charter.md
+cp /tmp/cp-034-sandbox/.opencode/skills/deep-improvement/assets/agent_improvement/target_manifest.jsonc /tmp/cp-034-spec/improvement/control/target-manifest.jsonc
 node /tmp/cp-034-sandbox/.opencode/skills/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent=cp-improve-target --repo-root=/tmp/cp-034-sandbox --output=/tmp/cp-034-spec/improvement/integration-report.json
 node /tmp/cp-034-sandbox/.opencode/skills/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent=/tmp/cp-034-sandbox/.opencode/agents/cp-improve-target.md --output=/tmp/cp-034-spec/improvement/dynamic-profile.json
 cp -a /tmp/cp-034-sandbox /tmp/cp-034-sandbox-baseline

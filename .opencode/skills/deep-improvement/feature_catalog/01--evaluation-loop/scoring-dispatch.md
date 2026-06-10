@@ -49,7 +49,7 @@ The benchmark runner exists as a real helper, but the YAML workflows currently d
 |---|---|---|
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies replay-stability thresholds, warnings, and insufficient-sample handling. |
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Automated test | Verifies trade-off detection thresholds and score-history extraction from journal events. |
-| `.opencode/skills/deep-improvement/references/model-benchmark/benchmark_operator_guide.md` | Operator reference | Documents the benchmark command shape and evidence expectations that sit beside the scorer output. |
+| `.opencode/skills/deep-improvement/references/model_benchmark/benchmark_operator_guide.md` | Operator reference | Documents the benchmark command shape and evidence expectations that sit beside the scorer output. |
 
 ---
 

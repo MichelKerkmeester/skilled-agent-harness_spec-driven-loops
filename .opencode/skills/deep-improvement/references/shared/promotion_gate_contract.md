@@ -68,7 +68,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 
 **Failure mode:** `benchmark_gate_failed` - candidate fails output-based validation.
 
-**Note:** Benchmark integration requires target-specific fixture set under `assets/model-benchmark/benchmark-fixtures/`. Not all targets have fixtures; this gate is conditional on fixture availability.
+**Note:** Benchmark integration requires target-specific fixture set under `assets/model_benchmark/benchmark-fixtures/`. Not all targets have fixtures; this gate is conditional on fixture availability.
 
 ---
 
@@ -93,7 +93,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 **Requirement:** Candidate path matches `target_manifest.jsonc` target definition.
 
 **Validation:**
-- Load `assets/agent-improvement/target_manifest.jsonc`
+- Load `assets/agent_improvement/target_manifest.jsonc`
 - Check candidate path matches `targets[].canonicalPath`
 - Verify target is marked `mutable: true`
 - Check candidate is under packet-local `candidates/` directory (not canonical)
@@ -276,6 +276,6 @@ node .opencode/skills/deep-improvement/scripts/agent-improvement/rollback-candid
 | `scripts/agent-improvement/score-candidate.cjs` | Prompt scoring gate |
 | `scripts/model-benchmark/run-benchmark.cjs` | Benchmark execution gate |
 | `scripts/agent-improvement/benchmark-stability.cjs` | Repeatability analysis |
-| `assets/agent-improvement/target_manifest.jsonc` | Target boundary definition |
+| `assets/agent_improvement/target_manifest.jsonc` | Target boundary definition |
 | `references/shared/promotion_rules.md` | Promotion policy documentation |
 | `feature_catalog/01--evaluation-loop/promotion-gates.md` | Feature catalog entry |

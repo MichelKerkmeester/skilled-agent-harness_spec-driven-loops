@@ -750,7 +750,7 @@ Expected signals: Default run (gate unset) executes the criterion: `per_criterio
 
 ## 16. SKILL-BENCHMARK MODE
 
-This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane C (Skill-Benchmark): the `loop-host.cjs --mode=skill-benchmark` arm, the contamination gate, router-replay (Mode A), the D5 connectivity hard gate, scoring against the private gold, and the dual report plus remediation taxonomy. See `SKILL.md` "Lane C: Skill-Benchmark" and `references/skill-benchmark/operator_guide.md` for the source-of-truth contract.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane C (Skill-Benchmark): the `loop-host.cjs --mode=skill-benchmark` arm, the contamination gate, router-replay (Mode A), the D5 connectivity hard gate, scoring against the private gold, and the dual report plus remediation taxonomy. See `SKILL.md` "Lane C: Skill-Benchmark" and `references/skill_benchmark/operator_guide.md` for the source-of-truth contract.
 
 ### SB-043 | Mode Wiring and Routing via loop-host
 
@@ -825,7 +825,7 @@ the orchestrator emits a machine `skill-benchmark-report.json` and a human `skil
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, validate that the run emits both reports, that re-rendering the markdown from the JSON is byte-identical, and that bottleneck classes map to the remediation taxonomy. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
-Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` and `.md`; re-rendering via `build-report.cjs --report <json>` reproduces the orchestrator markdown byte-for-byte (anti-drift); every bottleneck `class` is a member of `assets/skill-benchmark/remediation_taxonomy.json` (classes carry `severity`, `oneLineFix`, and `handoffLane`). Note: the taxonomy is a reference asset validated by test; the report code does not yet enrich bottlenecks with its fields.
+Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` and `.md`; re-rendering via `build-report.cjs --report <json>` reproduces the orchestrator markdown byte-for-byte (anti-drift); every bottleneck `class` is a member of `assets/skill_benchmark/remediation_taxonomy.json` (classes carry `severity`, `oneLineFix`, and `handoffLane`). Note: the taxonomy is a reference asset validated by test; the report code does not yet enrich bottlenecks with its fields.
 
 #### Test Execution
 > **Feature File:** [SB-048](10--skill-benchmark/dual-report-and-remediation.md)
@@ -863,4 +863,4 @@ The feature catalog root is `.opencode/skills/deep-improvement/feature_catalog/f
 | Model-Benchmark Mode | No one-to-one catalog file; validate against the Lane B contract in `.opencode/skills/deep-improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
 | Skill-Benchmark Mode | `.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
 
-Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.
+Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model_benchmark/evaluator_contract.md`, `references/agent_improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

@@ -199,11 +199,11 @@ The `feature_catalog/` covers every capability across five categories: evaluatio
 | [`references/shared/loop_protocol.md`](./references/shared/loop_protocol.md) | End-to-end operator workflow across setup, proposal, scoring and stop |
 | [`references/shared/promotion_rules.md`](./references/shared/promotion_rules.md) | Keep, reject and promote decision rules |
 | [`references/shared/rollback_runbook.md`](./references/shared/rollback_runbook.md) | The promotion rollback procedure |
-| [`references/agent-improvement/integration_scanning.md`](./references/agent-improvement/integration_scanning.md) | Integration scanner documentation and surface inventory |
-| [`references/agent-improvement/score_dimensions.md`](./references/agent-improvement/score_dimensions.md) | Per-dimension checker detail |
-| [`references/model-benchmark/benchmark_operator_guide.md`](./references/model-benchmark/benchmark_operator_guide.md) | Fixture benchmark execution |
-| [`references/skill-benchmark/operator_guide.md`](./references/skill-benchmark/operator_guide.md) | Skill-benchmark operator workflow |
-| [`references/skill-benchmark/scoring_contract.md`](./references/skill-benchmark/scoring_contract.md) | Skill-benchmark scoring and funnel contract |
+| [`references/agent_improvement/integration_scanning.md`](./references/agent_improvement/integration_scanning.md) | Integration scanner documentation and surface inventory |
+| [`references/agent_improvement/score_dimensions.md`](./references/agent_improvement/score_dimensions.md) | Per-dimension checker detail |
+| [`references/model_benchmark/benchmark_operator_guide.md`](./references/model_benchmark/benchmark_operator_guide.md) | Fixture benchmark execution |
+| [`references/skill_benchmark/operator_guide.md`](./references/skill_benchmark/operator_guide.md) | Skill-benchmark operator workflow |
+| [`references/skill_benchmark/scoring_contract.md`](./references/skill_benchmark/scoring_contract.md) | Skill-benchmark scoring and funnel contract |
 | [`scripts/shared/loop-host.cjs`](./scripts/shared/loop-host.cjs) | Shared loop host entry point for Lanes B and C |
 | [`scripts/agent-improvement/score-candidate.cjs`](./scripts/agent-improvement/score-candidate.cjs) | The five-dimension candidate scorer |
 | [`scripts/shared/promote-candidate.cjs`](./scripts/shared/promote-candidate.cjs) | Guarded canonical promotion |

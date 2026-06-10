@@ -72,7 +72,7 @@ Output excerpt:
 | `../../SKILL.md` | Skill entry point and operator contract for deep-improvement (Lane C: Skill-Benchmark) |
 | `../../scripts/shared/loop-host.cjs` | Mode-switching entry point; resolves `--mode=skill-benchmark` and plans the single orchestrator step |
 | `../../scripts/skill-benchmark/run-skill-benchmark.cjs` | Lane C orchestrator the skill-benchmark mode resolves to |
-| `../../references/skill-benchmark/operator_guide.md` | Canonical invocation + Mode A pipeline reference |
+| `../../references/skill_benchmark/operator_guide.md` | Canonical invocation + Mode A pipeline reference |
 
 ---
 

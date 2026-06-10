@@ -72,7 +72,7 @@ Output excerpt:
 | `../../SKILL.md` | Skill entry point and operator contract for deep-improvement (Lane C: Skill-Benchmark) |
 | `../../scripts/skill-benchmark/router-replay.cjs` | Mode A deterministic in-skill smart-router replay |
 | `../../scripts/skill-benchmark/run-skill-benchmark.cjs` | Orchestrator that calls `routeSkillResources()` per scenario |
-| `../../references/skill-benchmark/operator_guide.md` | Documents Mode A as the deterministic CI gate |
+| `../../references/skill_benchmark/operator_guide.md` | Documents Mode A as the deterministic CI gate |
 
 ---
 

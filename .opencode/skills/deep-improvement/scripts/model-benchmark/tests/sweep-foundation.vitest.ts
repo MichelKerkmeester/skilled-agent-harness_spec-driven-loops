@@ -16,11 +16,11 @@ const REGISTRY_PATH = path.join(
 );
 const FIXTURE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures',
+  '.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures',
 );
 const PROFILE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles',
+  '.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles',
 );
 
 // The foundation modules are CommonJS; load them through a require bridge so the

@@ -22,7 +22,7 @@ const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-improvement/scr
 const MATERIALIZE = path.join(SCRIPTS, 'shared/materialize-benchmark-fixtures.cjs');
 const DEFAULT_PROFILE = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json',
+  '.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json',
 );
 
 let work: string;

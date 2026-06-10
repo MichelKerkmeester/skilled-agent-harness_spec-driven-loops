@@ -33,7 +33,7 @@ SELF-CHECK: Are you operating as the @general agent?
 │   ├─ You can load skill references and execute defined logic
 │
 ├─ IF YES (all indicators present):
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-improvement/SKILL.md` and `references/skill-benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
 │
 └─ IF NO or UNCERTAIN:
     │
@@ -65,7 +65,7 @@ SELF-CHECK: Are you operating as the @general agent?
 Resolve:
 - **target skill** — the skill id or root to benchmark (must have an `INTENT_SIGNALS` + `RESOURCE_MAP` smart router for Mode A; e.g. the `cli-*` skills).
 - **outputs dir** — where `skill-benchmark-report.{json,md}` are written.
-- **fixtures dir** (optional) — defaults to `<skill>/assets/skill-benchmark/fixtures/<skill-id>/`.
+- **fixtures dir** (optional) — defaults to `<skill>/assets/skill_benchmark/fixtures/<skill-id>/`.
 - **trace mode** — `router` (Mode A, deterministic, default/CI) or `live` (Mode B, BUILT — playbook corpus dispatched through `cli-opencode`).
 
 ## Run

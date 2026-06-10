@@ -107,8 +107,8 @@ diff /tmp/cp-037-pre.txt /tmp/cp-037-post.txt > /tmp/cp-037-tripwire.diff; echo 
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Benchmark-completed event path |
 | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Benchmark-completed event path |
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` | Static benchmark profile |
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/*.json` | Static benchmark fixtures |
+| `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json` | Static benchmark profile |
+| `.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/*.json` | Static benchmark fixtures |
 | `.opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` | Fixture materializer |
 
 ## 5. SOURCE METADATA

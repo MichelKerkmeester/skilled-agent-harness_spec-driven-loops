@@ -13,7 +13,7 @@ const MB_ROOT = path.join(
 );
 const PROFILE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles',
+  '.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-profiles',
 );
 
 // The runtime modules are CommonJS; load them through a require bridge so the

@@ -36,15 +36,15 @@ The scanner uses signal matching instead of byte equality. It strips frontmatter
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/scan-integration.cjs` | Scanner | Defines the mirror templates and the 2-of-3 signal-matching parity check. |
-| `.opencode/skills/deep-improvement/references/agent-improvement/integration_scanning.md` | Reference | Describes the mirror sync statuses and signal-matching algorithm. |
-| `.opencode/skills/deep-improvement/references/agent-improvement/mirror_drift_policy.md` | Policy reference | Defines how mirror drift is reviewed after canonical change. |
+| `.opencode/skills/deep-improvement/references/agent_improvement/integration_scanning.md` | Reference | Describes the mirror sync statuses and signal-matching algorithm. |
+| `.opencode/skills/deep-improvement/references/agent_improvement/mirror_drift_policy.md` | Policy reference | Defines how mirror drift is reviewed after canonical change. |
 | `.opencode/skills/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scoring consumer | Converts missing or diverged mirrors into the integration score penalty. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/references/model-benchmark/benchmark_operator_guide.md` | Operator reference | Documents the mirror-score weighting used when benchmark runs include integration data. |
+| `.opencode/skills/deep-improvement/references/model_benchmark/benchmark_operator_guide.md` | Operator reference | Documents the mirror-score weighting used when benchmark runs include integration data. |
 | `.opencode/skills/deep-improvement/references/shared/promotion_rules.md` | Safety reference | Treats undocumented mirror drift as a blocker for safe loop expansion. |
 
 ---

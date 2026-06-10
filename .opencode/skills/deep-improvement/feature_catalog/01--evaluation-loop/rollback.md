@@ -43,7 +43,7 @@ The rollback helper is deliberately narrow. It does not emit journal rows, re-ru
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/references/agent-improvement/mirror_drift_policy.md` | Policy reference | Separates rollback from later mirror-review work. |
+| `.opencode/skills/deep-improvement/references/agent_improvement/mirror_drift_policy.md` | Policy reference | Separates rollback from later mirror-review work. |
 | `.opencode/skills/deep-improvement/references/shared/promotion_rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
 
 ---
