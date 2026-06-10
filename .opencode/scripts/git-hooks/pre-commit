@@ -75,4 +75,22 @@ if [ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]; then
   fi
 fi
 
+# --- Tool ownership map gate (blocking) ---
+# Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
+# Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ...
+if [ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]; then
+  OWNERSHIP_LINT="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/tests/tool-ownership-lint-runner.mjs"
+  if [ ! -f "$OWNERSHIP_LINT" ]; then
+    echo "BLOCKED: tool-ownership lint runner missing." >&2
+    exit 1
+  fi
+  if ! node "$OWNERSHIP_LINT" >/dev/null; then
+    echo "" >&2
+    echo "BLOCKED: tool-ownership drift detected." >&2
+    echo "Fix: regenerate mcp_server/tests/fixtures/tool-ownership-map.json from TOOL_DEFINITIONS." >&2
+    echo "Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ..." >&2
+    exit 1
+  fi
+fi
+
 exit 0

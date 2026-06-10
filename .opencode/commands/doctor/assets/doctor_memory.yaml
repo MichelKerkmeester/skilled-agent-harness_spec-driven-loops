@@ -134,6 +134,9 @@ staleness_signals:
   divergent_alias_groups:
     detection: "Same canonical name routed to different record IDs"
     severity: high
+  hard_exclusion_risk:
+    detection: "memory_health data.exclusionAudit diagnostics include hard-exclusion-risk or exclusion-unclassified"
+    severity: high
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -144,6 +147,7 @@ workflow:
     activities:
       - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
       - "Run: memory_health({reportMode: 'full'})"
+      - "Inspect memory_health.data.exclusionAudit; classify hard_exclusion_risk from diagnostics without changing recall"
       - "Run: memory_stats({})"
       - "Bash: stat -f '%m %z' database/context-index__*.sqlite (mtime + size for present profile DBs)"
       - "Interactive gate: before_phase_1_analysis"
@@ -176,6 +180,7 @@ workflow:
           trigger_phrase_drift: L
           embedding_provider_change: P
           divergent_alias_groups: Q
+          hard_exclusion_risk: R
       - sample_drift_explanations: [up to 5 entries]
       - severity_max: low|medium|high
     validation: analysis_complete

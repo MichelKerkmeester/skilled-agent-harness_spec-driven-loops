@@ -131,6 +131,66 @@ interface HybridSearchResult {
   [key: string]: unknown;
 }
 
+type HardExclusionSource = 'archived-tier' | 'deprecated-tier';
+type HardExclusionClassification = 'intended' | 'silent-risk' | 'unclassified';
+
+interface HardExclusionPredicate {
+  id: string;
+  source: HardExclusionSource;
+  channel: string;
+  predicate: string;
+  defaultApplied: boolean;
+  classification: HardExclusionClassification;
+}
+
+const HARD_EXCLUSION_PREDICATES: readonly HardExclusionPredicate[] = Object.freeze([
+  {
+    id: 'includeArchived-default',
+    source: 'archived-tier',
+    channel: 'vector/fts',
+    predicate: 'includeArchived defaults to false',
+    defaultApplied: true,
+    classification: 'intended',
+  },
+  {
+    id: 'fts-deprecated-tier',
+    source: 'deprecated-tier',
+    channel: 'fts',
+    predicate: "m.importance_tier IS NULL OR m.importance_tier != 'deprecated'",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+  {
+    id: 'bm25-deprecated-tier',
+    source: 'deprecated-tier',
+    channel: 'bm25',
+    predicate: "importance_tier != 'deprecated'",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+  {
+    id: 'trigger-deprecated-tier',
+    source: 'deprecated-tier',
+    channel: 'trigger',
+    predicate: "m.importance_tier IS NULL OR m.importance_tier != 'deprecated'",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+  {
+    id: 'structural-deprecated-archived-tier',
+    source: 'deprecated-tier',
+    channel: 'structural',
+    predicate: "importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived')",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+]);
+
+/** Return recall-path exclusion metadata without executing or changing search. */
+function getHardExclusionPredicates(): HardExclusionPredicate[] {
+  return HARD_EXCLUSION_PREDICATES.map((predicate) => ({ ...predicate }));
+}
+
 type Bm25MemoryMetadata = {
   specFolder: string | null;
   importanceTier: string | null;
@@ -2698,6 +2758,7 @@ function truncateToBudget(
 
 export const __testables = {
   canonicalResultId,
+  getHardExclusionPredicates,
   truncateChars,
   extractSpecSegments,
   injectContextualTree,
@@ -2722,6 +2783,7 @@ export {
   hybridSearch,
   hybridSearchEnhanced,
   searchWithFallback,
+  getHardExclusionPredicates,
   getGraphMetrics,
   resetGraphMetrics,
   // Token budget validation
@@ -2744,6 +2806,9 @@ export {
 export type {
   HybridSearchOptions,
   HybridSearchResult,
+  HardExclusionClassification,
+  HardExclusionPredicate,
+  HardExclusionSource,
   VectorSearchFn,
   // Token budget types
   OverflowLogEntry,

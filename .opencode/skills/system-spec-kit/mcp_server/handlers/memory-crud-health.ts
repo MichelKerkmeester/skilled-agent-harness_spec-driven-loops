@@ -43,6 +43,11 @@ import {
 } from '../lib/telemetry/heap-profiler.js';
 import { getBm25EngineStatus } from '../lib/search/bm25-index.js';
 import { getIpcBridgeStats, type IpcBridgeStats } from '../lib/ipc/socket-server.js';
+import {
+  getHardExclusionPredicates,
+  type HardExclusionPredicate,
+  type HardExclusionSource,
+} from '../lib/search/hybrid-search.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -188,6 +193,45 @@ interface FullMemoryReport {
   };
   recommended_action: string;
 }
+
+type ExclusionAuditStatus = 'ok' | 'risk' | 'unclassified' | 'unavailable';
+type ExclusionAuditClassification = 'intended' | 'silent-risk' | 'unclassified';
+
+interface IntendedExclusionPolicy {
+  version: string;
+  intendedSources: HardExclusionSource[];
+  silentRiskSources: HardExclusionSource[];
+}
+
+interface ExclusionAuditEntry {
+  predicateId: string;
+  source: HardExclusionSource;
+  channel: string;
+  classification: ExclusionAuditClassification;
+  candidateRows: number | null;
+}
+
+interface ExclusionAuditDiagnostic {
+  code: 'hard-exclusion-risk' | 'exclusion-unclassified' | 'exclusion-audit-unavailable';
+  severity: 'info' | 'medium' | 'high';
+  message: string;
+  predicateId?: string;
+  source?: HardExclusionSource;
+  candidateRows?: number | null;
+}
+
+interface ExclusionAuditReport {
+  status: ExclusionAuditStatus;
+  policyVersion: string | null;
+  entries: ExclusionAuditEntry[];
+  diagnostics: ExclusionAuditDiagnostic[];
+}
+
+const DEFAULT_INTENDED_EXCLUSION_POLICY: IntendedExclusionPolicy = Object.freeze({
+  version: 'hard-exclusion-v1',
+  intendedSources: ['archived-tier'] as HardExclusionSource[],
+  silentRiskSources: ['deprecated-tier'] as HardExclusionSource[],
+});
 
 function toNormalizedPath(filePath: string): string {
   return filePath.replace(/\\/g, '/');
@@ -357,6 +401,161 @@ function getFullMemoryReport(
       },
     },
     recommended_action: getRecommendedAction(snapshot),
+  };
+}
+
+function isValidExclusionPolicy(value: unknown): value is IntendedExclusionPolicy {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return false;
+  }
+  const candidate = value as Record<string, unknown>;
+  return (
+    typeof candidate.version === 'string' &&
+    Array.isArray(candidate.intendedSources) &&
+    Array.isArray(candidate.silentRiskSources) &&
+    candidate.intendedSources.every((item) => item === 'archived-tier' || item === 'deprecated-tier') &&
+    candidate.silentRiskSources.every((item) => item === 'archived-tier' || item === 'deprecated-tier')
+  );
+}
+
+function countExclusionCandidates(
+  database: Database.Database | null,
+  source: HardExclusionSource,
+): number | null {
+  if (!database) {
+    return null;
+  }
+
+  const tier = source === 'deprecated-tier' ? 'deprecated' : 'archived';
+  try {
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count
+      FROM memory_index
+      WHERE parent_id IS NULL
+        AND importance_tier = ?
+        AND (expires_at IS NULL OR expires_at > datetime('now'))
+        AND (
+          title IS NOT NULL OR
+          trigger_phrases IS NOT NULL OR
+          file_path IS NOT NULL OR
+          content IS NOT NULL
+        )
+    `).get(tier) as { count?: number } | undefined;
+    return row?.count ?? 0;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function classifyExclusionPredicate(
+  predicate: HardExclusionPredicate,
+  policy: IntendedExclusionPolicy,
+): ExclusionAuditClassification {
+  if (policy.intendedSources.includes(predicate.source)) {
+    return 'intended';
+  }
+  if (policy.silentRiskSources.includes(predicate.source)) {
+    return 'silent-risk';
+  }
+  return 'unclassified';
+}
+
+function auditHardExclusions(
+  database: Database.Database | null,
+  policy: unknown = DEFAULT_INTENDED_EXCLUSION_POLICY,
+  predicates: HardExclusionPredicate[] = getHardExclusionPredicates(),
+): ExclusionAuditReport {
+  if (!Array.isArray(predicates) || predicates.length === 0) {
+    return {
+      status: 'unclassified',
+      policyVersion: isValidExclusionPolicy(policy) ? policy.version : null,
+      entries: [],
+      diagnostics: [{
+        code: 'exclusion-unclassified',
+        severity: 'high',
+        message: 'exclusion unclassified: no hard-exclusion predicates were exposed for audit',
+      }],
+    };
+  }
+
+  if (!isValidExclusionPolicy(policy)) {
+    return {
+      status: 'unclassified',
+      policyVersion: null,
+      entries: predicates.map((predicate) => ({
+        predicateId: predicate.id,
+        source: predicate.source,
+        channel: predicate.channel,
+        classification: 'unclassified',
+        candidateRows: countExclusionCandidates(database, predicate.source),
+      })),
+      diagnostics: predicates.map((predicate) => ({
+        code: 'exclusion-unclassified',
+        severity: 'high',
+        predicateId: predicate.id,
+        source: predicate.source,
+        candidateRows: countExclusionCandidates(database, predicate.source),
+        message: `exclusion unclassified: intended-exclusion policy unavailable for ${predicate.id}`,
+      })),
+    };
+  }
+
+  const entries: ExclusionAuditEntry[] = [];
+  const diagnostics: ExclusionAuditDiagnostic[] = [];
+  for (const predicate of predicates) {
+    const classification = classifyExclusionPredicate(predicate, policy);
+    const candidateRows = countExclusionCandidates(database, predicate.source);
+    entries.push({
+      predicateId: predicate.id,
+      source: predicate.source,
+      channel: predicate.channel,
+      classification,
+      candidateRows,
+    });
+
+    if (classification === 'silent-risk' && (candidateRows ?? 0) > 0) {
+      diagnostics.push({
+        code: 'hard-exclusion-risk',
+        severity: 'medium',
+        predicateId: predicate.id,
+        source: predicate.source,
+        candidateRows,
+        message: `${candidateRows} row(s) match ${predicate.source} and can be silently hard-excluded by ${predicate.id}`,
+      });
+    }
+    if (classification === 'unclassified') {
+      diagnostics.push({
+        code: 'exclusion-unclassified',
+        severity: 'high',
+        predicateId: predicate.id,
+        source: predicate.source,
+        candidateRows,
+        message: `exclusion unclassified: no intended-exclusion policy entry for ${predicate.id}`,
+      });
+    }
+  }
+
+  const status: ExclusionAuditStatus = diagnostics.some((diagnostic) => diagnostic.code === 'exclusion-unclassified')
+    ? 'unclassified'
+    : diagnostics.some((diagnostic) => diagnostic.code === 'hard-exclusion-risk')
+      ? 'risk'
+      : database
+        ? 'ok'
+        : 'unavailable';
+
+  if (!database) {
+    diagnostics.push({
+      code: 'exclusion-audit-unavailable',
+      severity: 'info',
+      message: 'Hard-exclusion audit could not count candidate rows because the database is unavailable.',
+    });
+  }
+
+  return {
+    status,
+    policyVersion: policy.version,
+    entries,
+    diagnostics,
   };
 }
 
@@ -656,6 +855,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     vectorIndex.isVectorSearchAvailable(),
     Date.now(),
   );
+  const exclusionAudit = auditHardExclusions(database);
 
   if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
     const hints: string[] = [];
@@ -671,6 +871,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     if (aliasConflicts.divergentHashGroups > divergentAliasGroups.length) {
       hints.push(`More divergent alias groups available: increase limit above ${safeLimit}`);
     }
+    for (const diagnostic of exclusionAudit.diagnostics) {
+      hints.push(diagnostic.message);
+    }
 
     return createMCPSuccessResponse({
       tool: 'memory_health',
@@ -682,6 +885,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databaseConnected: !!database,
         process: processHealth,
         index: indexHealth,
+        exclusionAudit,
         embeddingRetry,
         specFolder: specFolder ?? null,
         limit: safeLimit,
@@ -699,6 +903,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   let providerMetadata = embeddings.getProviderMetadata() as PartialProviderMetadata;
   let profile = embeddings.getEmbeddingProfile() as EmbeddingProfile | null;
   const hints: string[] = [];
+  for (const diagnostic of exclusionAudit.diagnostics) {
+    hints.push(diagnostic.message);
+  }
   const consistency = {
     status: database ? 'healthy' : 'unknown',
     rowsTotal: memoryCount,
@@ -840,6 +1047,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         causalEdges: causalEdgeHealth,
         process: processHealth,
         index: indexHealth,
+        exclusionAudit,
         embeddingRetry,
         ...(fullMemoryReport ?? {}),
       },
@@ -1011,6 +1219,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       uptime: process.uptime(),
       process: processHealth,
       index: indexHealth,
+      exclusionAudit,
       version: SERVER_VERSION,
       reportMode: 'full',
       aliasConflicts,
@@ -1043,5 +1252,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 /* ───────────────────────────────────────────────────────────────
    EXPORTS
 ──────────────────────────────────────────────────────────────── */
+
+export const __testables = {
+  DEFAULT_INTENDED_EXCLUSION_POLICY,
+  auditHardExclusions,
+  classifyExclusionPredicate,
+  countExclusionCandidates,
+};
 
 export { handleMemoryHealth };

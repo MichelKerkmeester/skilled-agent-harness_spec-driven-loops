@@ -1,10 +1,10 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "PLANNED STUB for Phase 5 stale-exclusion audit + derived tool-ownership lint. Not implemented; plan only. No work has been done yet."
+title: "Implementation Summary: stale-audit-and-tool-ownership [template:level_1/implementation-summary.md]"
+description: "Completed read-only stale/status hard-exclusion audit plus derived TOOL_DEFINITIONS ownership lint. Recall behavior and stored data are unchanged."
 trigger_phrases:
   - "stale exclusion audit implementation status"
-  - "tool ownership lint planned stub"
-  - "phase 5 not implemented plan only"
+  - "tool ownership lint implemented"
+  - "phase 5 completed diagnostics governance"
   - "derived ownership map implementation summary"
   - "recall diagnostic planned not started"
 importance_tier: "normal"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership"
-    last_updated_at: "2026-06-06T10:10:50Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold Phase 5 planned-stub impl doc"
-    next_safe_action: "Implement T001 intended-exclusion policy"
+    last_updated_at: "2026-06-10T14:35:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shipped read-only audit and ownership lint"
+    next_safe_action: "Monitor health and ownership drift surfaces"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/005-stale-audit-and-tool-ownership"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,8 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-stale-audit-and-tool-ownership |
-| **Status** | Planned (not implemented) |
-| **Completed** | Not started — plan only |
+| **Status** | Completed |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -58,28 +58,31 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-Nothing has been built yet. This is a planning stub for Phase 5; the work below is planned and not implemented. No code, tests, or docs have changed. The two planned deliverables are a read-only stale/status hard-exclusion audit (distinguishing intended exclusion from silent drop of relevant rows) and a derived MCP tool-ownership lint generated from `TOOL_DEFINITIONS`, both wired into health, `/doctor`, and pre-commit.
+You can now inspect hard recall exclusions without changing recall. The implementation exposes the existing search exclusion predicates as read-only metadata, adds a health audit that classifies intended archived exclusions separately from deprecated-tier silent-risk exclusions, and adds a generated ownership map plus blocking drift gate derived from `TOOL_DEFINITIONS`.
 
-### Planned: Stale/Status Hard-Exclusion Audit (not implemented)
+### Stale/Status Hard-Exclusion Audit
 
-Once built, this read-only audit will let you see when default `memory_search` silently drops a deprecated-but-relevant row, surfaced as a diagnostic in startup health and `/doctor memory` — without changing recall policy. Not implemented yet.
+`hybrid-search.ts` now exposes hard-exclusion predicate metadata through `getHardExclusionPredicates()`. `memory_health` reads that metadata, applies an in-memory intended-exclusion policy, returns `data.exclusionAudit`, and appends diagnostic hints for silent-risk or unclassified exclusions. `/doctor memory` now registers `hard_exclusion_risk` from that health payload.
 
-### Planned: Derived Tool-Ownership Lint (not implemented)
+### Derived Tool-Ownership Lint
 
-Once built, the 37-tool MCP ownership/stability map will be generated from `TOOL_DEFINITIONS` rather than hand-maintained, and a pre-commit gate will hard-block ownership drift. Not implemented yet.
+`tool-schemas.ts` now derives a deterministic 37-tool ownership/stability map from `TOOL_DEFINITIONS`. The committed fixture under `mcp_server/tests/fixtures/tool-ownership-map.json` is generated output. The pre-commit hook runs a source-derived comparison and blocks on missing tools, extra tools, field drift, malformed map, or unreadable definitions.
 
-### Files Changed (planned)
+### Files Changed
 
 <!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `mcp_server/lib/search/hybrid-search.ts` | Modify (planned) | Expose intended-vs-actual exclusion predicates for the audit (no recall change) |
-| `mcp_server/handlers/memory-crud-health.ts` | Modify (planned) | Run the read-only stale-exclusion audit and emit diagnostics in health |
-| `.opencode/commands/doctor/assets/doctor_memory.yaml` | Modify (planned) | Extend `staleness_signals` with the hard-exclusion-risk diagnostic |
-| `mcp_server/tool-schemas.ts` | Modify (planned) | Derive the tool-ownership/stability map from `TOOL_DEFINITIONS` |
-| `.opencode/scripts/git-hooks/pre-commit` | Modify (planned) | Add a blocking tool-ownership drift gate to the existing chain |
-| `mcp_server/references/config/hook_system.md` | Modify (planned) | Document the audit + ownership-lint surfaces and where they fire |
+| `mcp_server/lib/search/hybrid-search.ts` | Modified | Exposed hard-exclusion predicate metadata without editing recall predicates |
+| `mcp_server/handlers/memory-crud-health.ts` | Modified | Added observe-only audit output and health hints |
+| `.opencode/commands/doctor/assets/doctor_memory.yaml` | Modified | Registered `hard_exclusion_risk` from `memory_health.data.exclusionAudit` |
+| `mcp_server/tool-schemas.ts` | Modified | Added deterministic ownership-map derivation and drift comparison helpers |
+| `.opencode/scripts/git-hooks/pre-commit` | Modified | Added blocking tool-ownership drift gate |
+| `mcp_server/tests/stale-audit-tool-ownership.vitest.ts` | Added | Covers exclusion audit and ownership lint edge cases |
+| `mcp_server/tests/tool-ownership-lint-runner.mjs` | Added | Source-derived pre-commit runner that fails closed |
+| `mcp_server/tests/fixtures/tool-ownership-map.json` | Added | Committed generated ownership map fixture |
+| `references/config/hook_system.md` | Modified | Documents audit and ownership-lint firing surfaces |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -93,7 +96,7 @@ Once built, the 37-tool MCP ownership/stability map will be generated from `TOOL
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-Not delivered. This phase is planned only. When implemented, the plan is vitest unit coverage on audit classification and lint drift detection, plus manual verification through `/doctor memory` and `/doctor skill-budget`, with the default `memory_search` result set confirmed unchanged.
+Delivered as source-only diagnostics and generated governance lint. The audit runs from the health path and only reads predicate metadata plus row counts. The lint runs from pre-commit and compares the committed generated map to a fresh source derivation. Verification used in-memory SQLite and source-level tests only; no build, daemon, git command, memory indexing, or stored-data mutation was used.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -108,6 +111,7 @@ Not delivered. This phase is planned only. When implemented, the plan is vitest 
 |----------|-----|
 | Audit reports exclusion risk but does not change recall policy | We do not want to silently widen recall; flag the risk and let a separate decision change behavior |
 | Derive the ownership map from `TOOL_DEFINITIONS`, treat docs as outputs | Hand-maintained docs drift; the normalized definitions are the only trustworthy source |
+| Use a source parser for the pre-commit runner | The hook must work without `npm run build` or compiled `dist` files |
 | Reject op-dispatch tool consolidation | Collapsing the 37-tool surface harms LLM tool discoverability, which matters more than tidiness here |
 | Reject SemVer / release-please governance | This is a single-user local system, not a public-versioned package; that governance adds cost with no payoff |
 | Keep runtime exclusion checks in health/`/doctor`, not pre-commit | A commit gate is not a runtime safety guarantee; pre-commit only gates ownership drift |
@@ -123,10 +127,13 @@ Not delivered. This phase is planned only. When implemented, the plan is vitest 
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict` on this spec folder | Not started — plan only |
-| vitest: stale-exclusion audit separates intended vs silent exclusion | Not started — plan only |
-| vitest: tool-ownership lint detects a synthetic ownership drift | Not started — plan only |
-| Manual: `/doctor memory` plus `/doctor skill-budget` surface the diagnostics | Not started — plan only |
+| `npx vitest run tests/stale-audit-tool-ownership.vitest.ts` | PASS: 1 file, 6 tests |
+| `npx vitest run tests/search-archival.vitest.ts tests/handler-memory-search.vitest.ts` | PASS: 2 files, 41 tests |
+| `npx vitest run tests/stale-audit-tool-ownership.vitest.ts tests/search-archival.vitest.ts tests/handler-memory-search.vitest.ts` | PASS: 3 files, 47 tests |
+| `npx tsc --noEmit -p tsconfig.json` | PASS: clean |
+| `node tests/tool-ownership-lint-runner.mjs` | PASS: clean 37-tool map |
+| Comment hygiene | PASS with `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` on changed code files |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership --strict` | PASS: 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -139,8 +146,8 @@ Not delivered. This phase is planned only. When implemented, the plan is vitest 
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **Not implemented.** This is a planning stub; no audit, lint, tests, or docs exist yet. Implementation starts at T001 (define the intended status-exclusion policy).
-2. **Recall policy is intentionally unchanged.** Even after implementation, the audit only reports exclusion risk; widening recall to include deprecated rows requires a separate policy decision, not this phase.
+1. **Recall policy is intentionally unchanged.** The audit only reports exclusion risk; widening recall to include deprecated rows requires a separate policy decision.
+2. **Direct skill-budget YAML was not edited.** It was outside the allowed write list, so ownership drift is enforced by pre-commit and documented in the hook reference rather than by modifying `doctor_skill-budget.yaml`.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -150,4 +157,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

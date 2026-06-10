@@ -33,6 +33,173 @@ export interface ToolDefinition {
   outputSchema?: Record<string, unknown>;
 }
 
+export type ToolOwnershipStability = 'stable' | 'deprecated';
+
+export interface ToolOwnershipEntry {
+  name: string;
+  owner: string;
+  stability: ToolOwnershipStability;
+  level: string;
+  category: string;
+}
+
+export interface ToolOwnershipMap {
+  schemaVersion: 1;
+  generatedFrom: 'TOOL_DEFINITIONS';
+  tools: ToolOwnershipEntry[];
+}
+
+export interface ToolOwnershipDriftReport {
+  ok: boolean;
+  missingFromCommitted: string[];
+  extraInCommitted: string[];
+  changed: Array<{
+    name: string;
+    field: keyof Omit<ToolOwnershipEntry, 'name'>;
+    expected: string;
+    actual: string;
+  }>;
+  expectedMap: ToolOwnershipMap;
+}
+
+const TOOL_OWNER_BY_CATEGORY: Record<string, string> = Object.freeze({
+  Orchestration: 'memory-orchestration',
+  Core: 'memory-core',
+  Discovery: 'memory-discovery',
+  Mutation: 'memory-mutation',
+  Lifecycle: 'memory-lifecycle',
+  Analysis: 'memory-analysis',
+  Maintenance: 'memory-maintenance',
+});
+
+function readToolContract(definition: ToolDefinition): { level: string; category: string } {
+  const match = /^\[([^:\]]+):([^\]]+)\]/.exec(definition.description);
+  if (!match) {
+    return { level: 'unclassified', category: 'unclassified' };
+  }
+  return {
+    level: match[1] ?? 'unclassified',
+    category: match[2] ?? 'unclassified',
+  };
+}
+
+function deriveToolOwnershipEntry(definition: ToolDefinition): ToolOwnershipEntry {
+  const contract = readToolContract(definition);
+  return {
+    name: definition.name,
+    owner: TOOL_OWNER_BY_CATEGORY[contract.category] ?? 'memory-unclassified',
+    stability: /^\[deprecated\]/i.test(definition.description) ? 'deprecated' : 'stable',
+    level: contract.level,
+    category: contract.category,
+  };
+}
+
+function normalizeToolOwnershipMap(map: ToolOwnershipMap): ToolOwnershipMap {
+  return {
+    schemaVersion: 1,
+    generatedFrom: 'TOOL_DEFINITIONS',
+    tools: [...map.tools].sort((a, b) => a.name.localeCompare(b.name)),
+  };
+}
+
+function isToolOwnershipEntry(value: unknown): value is ToolOwnershipEntry {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const record = value as Record<string, unknown>;
+  return (
+    typeof record.name === 'string' &&
+    typeof record.owner === 'string' &&
+    (record.stability === 'stable' || record.stability === 'deprecated') &&
+    typeof record.level === 'string' &&
+    typeof record.category === 'string'
+  );
+}
+
+function parseToolOwnershipMap(value: unknown): ToolOwnershipMap | null {
+  let parsed: unknown;
+  try {
+    parsed = typeof value === 'string' ? JSON.parse(value) as unknown : value;
+  } catch (_error: unknown) {
+    return null;
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+  const record = parsed as Record<string, unknown>;
+  if (record.schemaVersion !== 1 || record.generatedFrom !== 'TOOL_DEFINITIONS') return null;
+  if (!Array.isArray(record.tools) || !record.tools.every(isToolOwnershipEntry)) return null;
+  return normalizeToolOwnershipMap({
+    schemaVersion: 1,
+    generatedFrom: 'TOOL_DEFINITIONS',
+    tools: record.tools,
+  });
+}
+
+/** Derive the deterministic tool ownership map from live tool definitions. */
+export function deriveToolOwnershipMap(
+  toolDefinitions: readonly ToolDefinition[] = TOOL_DEFINITIONS,
+): ToolOwnershipMap {
+  return normalizeToolOwnershipMap({
+    schemaVersion: 1,
+    generatedFrom: 'TOOL_DEFINITIONS',
+    tools: toolDefinitions.map(deriveToolOwnershipEntry),
+  });
+}
+
+/** Serialize a derived ownership map for byte-identical generated output. */
+export function serializeToolOwnershipMap(map: ToolOwnershipMap = deriveToolOwnershipMap()): string {
+  return `${JSON.stringify(normalizeToolOwnershipMap(map), null, 2)}\n`;
+}
+
+/** Compare a committed ownership map with a fresh derivation. */
+export function lintToolOwnershipMapDrift(
+  committedMap: unknown,
+  toolDefinitions: readonly ToolDefinition[] = TOOL_DEFINITIONS,
+): ToolOwnershipDriftReport {
+  const expectedMap = deriveToolOwnershipMap(toolDefinitions);
+  const parsed = parseToolOwnershipMap(committedMap);
+  if (!parsed) {
+    return {
+      ok: false,
+      missingFromCommitted: expectedMap.tools.map((tool) => tool.name),
+      extraInCommitted: [],
+      changed: [],
+      expectedMap,
+    };
+  }
+
+  const expectedByName = new Map(expectedMap.tools.map((tool) => [tool.name, tool]));
+  const actualByName = new Map(parsed.tools.map((tool) => [tool.name, tool]));
+  const missingFromCommitted = expectedMap.tools
+    .filter((tool) => !actualByName.has(tool.name))
+    .map((tool) => tool.name);
+  const extraInCommitted = parsed.tools
+    .filter((tool) => !expectedByName.has(tool.name))
+    .map((tool) => tool.name);
+  const changed: ToolOwnershipDriftReport['changed'] = [];
+  const fields: Array<keyof Omit<ToolOwnershipEntry, 'name'>> = ['owner', 'stability', 'level', 'category'];
+
+  for (const expected of expectedMap.tools) {
+    const actual = actualByName.get(expected.name);
+    if (!actual) continue;
+    for (const field of fields) {
+      if (expected[field] !== actual[field]) {
+        changed.push({
+          name: expected.name,
+          field,
+          expected: expected[field],
+          actual: actual[field],
+        });
+      }
+    }
+  }
+
+  return {
+    ok: missingFromCommitted.length === 0 && extraInCommitted.length === 0 && changed.length === 0,
+    missingFromCommitted,
+    extraInCommitted,
+    changed,
+    expectedMap,
+  };
+}
+
 // ───────────────────────────────────────────────────────────────
 // 2. TOOL DEFINITIONS
 

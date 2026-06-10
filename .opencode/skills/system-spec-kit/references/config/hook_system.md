@@ -162,3 +162,12 @@ The same retrieval building blocks power both hook delivery and explicit recover
 3. `session_bootstrap()` / `session_resume()` — Session-oriented wrappers that layer health and structural context around resume retrieval
 
 ---
+
+## 13. READ-ONLY GOVERNANCE DIAGNOSTICS
+
+Two passive governance checks fire from existing surfaces and do not change recall or write stored memory data:
+
+- `memory_health` includes `data.exclusionAudit`, derived from the hard-exclusion predicates exposed by `hybrid-search.ts`. `/doctor memory` reads that block through the existing health call and raises `hard_exclusion_risk` when deprecated-tier exclusions are risky or when an exclusion source is unclassified.
+- The tool-ownership map is generated from `TOOL_DEFINITIONS` and checked by the project pre-commit hook. Drift between `mcp_server/tests/fixtures/tool-ownership-map.json` and the live definitions blocks commits; the map and this document are outputs, never inputs to the ownership source of truth.
+
+---

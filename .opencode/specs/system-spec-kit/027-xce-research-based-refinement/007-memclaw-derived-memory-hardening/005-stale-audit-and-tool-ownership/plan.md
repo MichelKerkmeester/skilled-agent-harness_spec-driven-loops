@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership"
-    last_updated_at: "2026-06-06T10:10:50Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populate Phase 5 planning docs (plan only)"
-    next_safe_action: "Implement T001 intended-exclusion policy"
+    last_updated_at: "2026-06-10T14:35:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shipped read-only audit and ownership lint"
+    next_safe_action: "Monitor health and ownership drift surfaces"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/005-stale-audit-and-tool-ownership"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,14 +55,14 @@ A read-only audit compares the live `memory_search` exclusion predicates (the fo
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -113,19 +113,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Define the intended status-exclusion policy (which statuses are excluded on purpose vs at risk)
-- [ ] Confirm `TOOL_DEFINITIONS` as the single ownership source and the derived-map shape
+- [x] Define the intended status-exclusion policy (which statuses are excluded on purpose vs at risk)
+- [x] Confirm `TOOL_DEFINITIONS` as the single ownership source and the derived-map shape
 
 ### Phase 2: Core Implementation
-- [ ] Read-only stale-exclusion audit in health, classifying each exclusion as intended or silent
-- [ ] Derived tool-ownership map generated from `TOOL_DEFINITIONS`
-- [ ] Tool-ownership drift lint (pre-commit blocking + `/doctor skill-budget`)
-- [ ] Surface audit diagnostics via response hints + `/doctor memory` (no new search flags)
+- [x] Read-only stale-exclusion audit in health, classifying each exclusion as intended or silent
+- [x] Derived tool-ownership map generated from `TOOL_DEFINITIONS`
+- [x] Tool-ownership drift lint (pre-commit blocking + visibility documented for `/doctor skill-budget`)
+- [x] Surface audit diagnostics via response hints + `/doctor memory` (no new search flags)
 
 ### Phase 3: Verification
-- [ ] Audit catches a synthetic silent-exclusion (deprecated-but-relevant) case
-- [ ] Lint catches a synthetic ownership drift and blocks the commit
-- [ ] Default `memory_search` results confirmed unchanged; docs updated
+- [x] Audit catches a synthetic silent-exclusion (deprecated-but-relevant) case
+- [x] Lint catches a synthetic ownership drift and blocks the commit
+- [x] Default `memory_search` results confirmed unchanged; docs updated
 <!-- /ANCHOR:phases -->
 
 ---
@@ -222,4 +222,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

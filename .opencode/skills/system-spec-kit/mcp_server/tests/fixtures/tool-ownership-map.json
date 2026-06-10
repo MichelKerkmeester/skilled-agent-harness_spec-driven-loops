@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "TOOL_DEFINITIONS",
+  "tools": [
+    {
+      "name": "checkpoint_create",
+      "owner": "memory-lifecycle",
+      "stability": "stable",
+      "level": "L5",
+      "category": "Lifecycle"
+    },
+    {
+      "name": "checkpoint_delete",
+      "owner": "memory-lifecycle",
+      "stability": "stable",
+      "level": "L5",
+      "category": "Lifecycle"
+    },
+    {
+      "name": "checkpoint_list",
+      "owner": "memory-lifecycle",
+      "stability": "stable",
+      "level": "L5",
+      "category": "Lifecycle"
+    },
+    {
+      "name": "checkpoint_restore",
+      "owner": "memory-lifecycle",
+      "stability": "stable",
+      "level": "L5",
+      "category": "Lifecycle"
+    },
+    {
+      "name": "embedder_list",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "embedder_set",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "embedder_status",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "eval_reporting_dashboard",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    },
+    {
+      "name": "eval_run_ablation",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    },
+    {
+      "name": "memory_bulk_delete",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
+      "name": "memory_causal_link",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    },
+    {
+      "name": "memory_causal_stats",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    },
+    {
+      "name": "memory_causal_unlink",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    },
+    {
+      "name": "memory_context",
+      "owner": "memory-orchestration",
+      "stability": "stable",
+      "level": "L1",
+      "category": "Orchestration"
+    },
+    {
+      "name": "memory_delete",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
+      "name": "memory_drift_why",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    },
+    {
+      "name": "memory_embedding_reconcile",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
+      "name": "memory_get_learning_history",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "memory_health",
+      "owner": "memory-discovery",
+      "stability": "stable",
+      "level": "L3",
+      "category": "Discovery"
+    },
+    {
+      "name": "memory_index_scan",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "memory_ingest_cancel",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "memory_ingest_start",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "memory_ingest_status",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "memory_list",
+      "owner": "memory-discovery",
+      "stability": "stable",
+      "level": "L3",
+      "category": "Discovery"
+    },
+    {
+      "name": "memory_match_triggers",
+      "owner": "memory-core",
+      "stability": "stable",
+      "level": "L2",
+      "category": "Core"
+    },
+    {
+      "name": "memory_quick_search",
+      "owner": "memory-core",
+      "stability": "stable",
+      "level": "L2",
+      "category": "Core"
+    },
+    {
+      "name": "memory_retention_sweep",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
+      "name": "memory_save",
+      "owner": "memory-core",
+      "stability": "stable",
+      "level": "L2",
+      "category": "Core"
+    },
+    {
+      "name": "memory_search",
+      "owner": "memory-core",
+      "stability": "stable",
+      "level": "L2",
+      "category": "Core"
+    },
+    {
+      "name": "memory_stats",
+      "owner": "memory-discovery",
+      "stability": "stable",
+      "level": "L3",
+      "category": "Discovery"
+    },
+    {
+      "name": "memory_update",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
+      "name": "memory_validate",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
+      "name": "session_bootstrap",
+      "owner": "memory-orchestration",
+      "stability": "stable",
+      "level": "L1",
+      "category": "Orchestration"
+    },
+    {
+      "name": "session_health",
+      "owner": "memory-discovery",
+      "stability": "stable",
+      "level": "L3",
+      "category": "Discovery"
+    },
+    {
+      "name": "session_resume",
+      "owner": "memory-orchestration",
+      "stability": "stable",
+      "level": "L1",
+      "category": "Orchestration"
+    },
+    {
+      "name": "task_postflight",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    },
+    {
+      "name": "task_preflight",
+      "owner": "memory-analysis",
+      "stability": "stable",
+      "level": "L6",
+      "category": "Analysis"
+    }
+  ]
+}
