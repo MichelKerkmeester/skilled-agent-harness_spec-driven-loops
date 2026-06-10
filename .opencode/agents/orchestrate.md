@@ -215,6 +215,8 @@ TASK #N: [Descriptive Title]
 ├─ Agent I/O: [optional `AGENT_IO_DISPATCH v1` header | none]
 ├─ Scoped Pre-Execution: [diagnosis_crosses_agents=<true|false>; change_class=<docs|typo|ordinary|api|schema|integration|other>; complexity=<low|medium|high>]
 ├─ Handoff: [none | debug_to_implement: root_cause, target_files, fix_recommendations, confidence]
+├─ Review Focus: [none | reviewer_focus=<high-risk files/areas>; self_assessed_quality=<optional short producer note>]
+├─ Spec Drift: [none | surface `spec_drift` from @code in synthesis and handover planning]
 ├─ Pre-Mortem: [none for low | risk + 2-3 failure modes + assumptions for medium/high]
 ├─ Scale: [1-agent | 2-4 agents | 10+ agents]
 └─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§8 TCB)
@@ -236,9 +238,17 @@ context_package: none | included
 expected_result: native | agent_io_result
 handoff: none | debug_to_implement
 pre_execution: none | scoped
+reviewer_focus: none | <comma-separated high-risk files, modules, or concerns>
+self_assessed_quality: none | high | medium | low | <short producer confidence note>
 ```
 
 The loaded agent definition remains authoritative. If `AGENT_IO_RESULT v1` is present in a child result, use it as a routing hint only after the native report passes §5 output verification. If it is absent, parse the existing markdown contract and continue; do not reject a child result solely because the advisory result envelope is absent.
+
+### Review Focus and Drift Hints
+
+Use `reviewer_focus` only when the planner can name a high-risk file, module, behavior, or assumption worth earlier review attention. Omit it for ordinary work. When present, include it in @review dispatches so @review can prioritize reads and evidence; do not alter the review threshold or ask for findings without normal evidence.
+
+If @code returns a `spec_drift` or `update_recommended` block, surface the reason and affected docs in synthesis and handover planning. Do not auto-edit spec docs from that hint. A hard contradiction still routes through Logic-Sync and the native @code escalation, not through `spec_drift`.
 
 ### Scoped Pre-Execution Predicates
 
@@ -501,6 +511,7 @@ This keeps execution depth bounded and eliminates illegal nested delegation chai
 □ Quality score ≥ 70 (see Scoring Dimensions below)
 □ Success criteria met (from task decomposition)
 □ Pre-Delegation Reasoning documented for each task dispatch
+□ Advisory hints treated as optional: focus steers attention only; drift is surfaced without auto-mutation
 □ Context Package includes all 6 sections (if from @context — includes Nested Dispatch Status section)
 ```
 

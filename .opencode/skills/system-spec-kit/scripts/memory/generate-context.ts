@@ -137,6 +137,7 @@ JSON Data Format (with preflight/postflight, session/git, and tool/exchange enri
 
   Structured JSON compatibility hints (JSON-mode only):
   - Top-level routeAs / mergeModeHint are accepted for compatibility with routed save workflows
+  - Top-level specDrift / reviewerFocus are accepted as optional advisory context; absence means none
   - Explicit CLI spec-folder targets remain authoritative over payload specFolder values
 
   Learning Delta Calculation:

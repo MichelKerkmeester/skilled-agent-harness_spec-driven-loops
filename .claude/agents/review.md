@@ -28,7 +28,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 ## 1. CORE WORKFLOW
 
 1. **RECEIVE** → Parse review request (PR, file changes, code snippet)
-2. **SCOPE** → Identify files to review, change boundaries, context requirements
+2. **SCOPE** → Identify files to review, change boundaries, context requirements, and any optional `reviewer_focus` hint
 3. **LOAD STANDARDS** → Load `sk-code-review` baseline first, then load `sk-code` and use its router-selected resources as standards evidence while baseline security/correctness minimums remain mandatory
 4. **ANALYZE** → Use available code search tools:
    - Content search: Use `Grep` to find patterns and keywords
@@ -49,6 +49,8 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 **If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
 **If no Context Package is provided and resumed packet context matters**: Read `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to broader memory retrieval. Use `memory_search` only as supporting history after the canonical packet sources are exhausted.
+
+**If dispatched with `reviewer_focus`**: Prioritize the named files, modules, behaviors, or assumptions during reads and evidence gathering. Missing focus means use normal scope derivation from target/files. The hint never changes P0/P1/P2 thresholds, never replaces line-level evidence, and never justifies a finding by itself. Treat `self_assessed_quality` as the producer's own confidence note, not as the review score.
 
 ---
 
@@ -297,6 +299,7 @@ Map `failure_type` from existing severity vocabulary only: any P0 blocker -> `p0
 - Return structured output for orchestrator gates
 - Adapt to project-specific patterns when discoverable
 - Run adversarial self-check on P0/P1 findings before finalizing severity
+- Use `reviewer_focus` as an attention-ordering hint only when present
 
 ### ❌ NEVER
 
@@ -307,6 +310,7 @@ Map `failure_type` from existing severity vocabulary only: any P0 blocker -> `p0
 - Ignore project patterns in favor of general best practices (when patterns exist)
 - Gate without explicit rubric justification
 - Assume specific project structure without verification
+- Treat `reviewer_focus` or `self_assessed_quality` as evidence, a threshold change, or a required input
 
 ### ⚠️ ESCALATE IF
 

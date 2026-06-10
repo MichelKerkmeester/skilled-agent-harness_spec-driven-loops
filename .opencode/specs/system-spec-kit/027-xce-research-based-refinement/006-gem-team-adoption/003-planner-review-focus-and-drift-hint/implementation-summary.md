@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 027/006/003 Planner Reviewer-Focus & Spec-Drift Hint"
-description: "Placeholder implementation summary for the two advisory fields (gem-team P3). Populate after code and tests land."
+description: "Completed implementation summary for optional planner reviewer-focus and spec-drift advisory fields."
 trigger_phrases:
   - "027 phase 006/003"
   - "planner reviewer focus"
@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/003-planner-review-focus-and-drift-hint"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 003 planning docs (not implemented)"
-    next_safe_action: "Land 001 envelope, then add reviewer_focus + spec_drift"
+    last_updated_at: "2026-06-10T06:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added advisory focus and drift fields"
+    next_safe_action: "Use hints only when useful; keep them optional"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-003-planner-review-focus-drift-hint-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,9 +40,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/003-planner-review-focus-and-drift-hint` |
-| **Completed** | Pending |
+| **Completed** | 2026-06-10 |
 | **Level** | 1 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Completed |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,17 +50,24 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending implementation. This packet adopts gem-team proposal P3 (research/007) per the integration plan (research/009): two ADVISORY fields — never gates, never mutations. The lowest-cost child; depends on child 001's envelope.
+Implemented two advisory-only additions on top of the existing agent I/O envelope: a planner-provided `reviewer_focus` hint for review attention and a `spec_drift` / `update_recommended` recommendation block for implementation returns. Both degrade to existing behavior when absent, do not create gates, and do not mutate spec docs automatically.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/agents/orchestrate.md` | Pending (ADD) | Optional `reviewer_focus` dispatch field + consume in output review |
-| `.opencode/agents/review.md` | Pending | Accept `reviewer_focus`; focused areas still need normal evidence |
-| `.opencode/agents/code.md` | Pending (ADD) | Optional `spec_drift` block in the RETURN body (not the first-line enum) |
-| `.opencode/commands/memory/save.md` | Pending | Docs: drift destination = `handover.md` |
-| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Pending (ADD) | Optional `specDrift`/`reviewerFocus` JSON keys, tolerate absence |
+| `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md` | Updated | Defines optional `reviewer_focus`, `self_assessed_quality`, and `spec_drift` advisory fields. |
+| `.opencode/agents/orchestrate.md` | Updated | Emits optional review-focus hints and surfaces drift hints during synthesis/handover planning. |
+| `.claude/agents/orchestrate.md` | Mirrored | Same orchestrator advisory guidance for Claude runtime. |
+| `.codex/agents/orchestrate.toml` | Mirrored | Same orchestrator advisory guidance for Codex runtime. |
+| `.opencode/agents/review.md` | Updated | Uses `reviewer_focus` only to prioritize reads/evidence; severity threshold unchanged. |
+| `.claude/agents/review.md` | Mirrored | Same review advisory guidance for Claude runtime. |
+| `.codex/agents/review.toml` | Mirrored | Same review advisory guidance for Codex runtime. |
+| `.opencode/agents/code.md` | Updated | Adds optional `spec_drift` block after the native RETURN body; first-line enum unchanged. |
+| `.claude/agents/code.md` | Mirrored | Same code RETURN-body guidance for Claude runtime. |
+| `.codex/agents/code.toml` | Mirrored | Same code RETURN-body guidance for Codex runtime. |
+| `.opencode/commands/memory/save.md` | Updated | Documents optional `specDrift`/`reviewerFocus` JSON keys and drift destination. |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Updated | Documents optional JSON keys in help text; parser remains open and absence-tolerant. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +75,9 @@ Pending implementation. This packet adopts gem-team proposal P3 (research/007) p
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. Advisory only: Logic-Sync remains the contradiction-halt authority; `_memory.continuity` schema stays unchanged for L1; `self_assessed_quality` avoids the existing `quality_score` name. Evidence should include backward-compat checks + strict spec validation.
+The implementation extends the shared advisory contract instead of rewriting Wave 1/2 dispatch, result, handoff, or pre-execution groups. Orchestrator, review, and code agents were updated in all three runtime mirrors with the same behavioral guidance while preserving runtime-specific frontmatter and path conventions. `/memory:save` and `generate-context.ts` now document the optional JSON keys; existing structured JSON remains valid because the parser already accepts unknown top-level keys and requires only the existing target-folder resolution.
+
+Mirror-parity note: `.opencode`, `.claude`, and `.codex` agent bodies received matching advisory wording for each edited agent. Frontmatter and runtime path references remain intentionally runtime-specific.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,9 +100,12 @@ Pending. Advisory only: Logic-Sync remains the contradiction-halt authority; `_m
 
 | Check | Result |
 |-------|--------|
-| No `reviewer_focus` ⇒ @review derives scope from target/files | Pending |
-| No `spec_drift` ⇒ recorded as `none`; contradictions still halt via Logic-Sync | Pending |
-| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/003-planner-review-focus-and-drift-hint --strict` | Pending |
+| No `reviewer_focus` ⇒ @review derives scope from target/files | PASSED: @review states missing focus uses normal scope derivation from target/files. |
+| Supplied `reviewer_focus` steers attention only | PASSED: @review states focus never changes P0/P1/P2 thresholds and never replaces evidence. |
+| No `spec_drift` ⇒ recorded as `none`; contradictions still halt via Logic-Sync | PASSED: contract states absent drift is `none`; @code and AGENTS.md retain LOGIC_SYNC authority. |
+| Optional JSON keys tolerated | PASSED: `generate-context.ts` structured payload remains open-object and documents optional keys. |
+| TOML parse for edited Codex agent files | PASSED: `tomllib` parsed the three edited `.toml` files. |
+| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/003-planner-review-focus-and-drift-hint --strict` | PASSED: exit 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,6 +113,7 @@ Pending. Advisory only: Logic-Sync remains the contradiction-halt authority; `_m
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented yet.** Scaffold placeholder; no behavior changes claimed.
-2. **Blocked on 001.** The advisory fields live inside child 001's envelope.
+1. **Advisory only.** The fields steer attention and preserve drift context; they do not enforce runtime behavior.
+2. **No raw continuity schema field.** `_memory.continuity` remains unchanged beyond existing completion metadata.
+3. **Level 1 packet.** No `checklist.md` is required by the level contract; task verification is recorded in `tasks.md` and this summary.
 <!-- /ANCHOR:limitations -->

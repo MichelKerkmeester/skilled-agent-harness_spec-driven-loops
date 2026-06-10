@@ -320,6 +320,12 @@ Content...
     "solution": "How it was solved",
     "patterns": "Key patterns or approaches used"
   },
+  "specDrift": {
+    "updateRecommended": false,
+    "reason": "none",
+    "affectedSpecDocs": []
+  },
+  "reviewerFocus": [],
   "toolCalls": [
     { "tool": "Read", "inputSummary": "Read scripts/dist/memory/generate-context.js", "outputSummary": "Runtime CLI entry point verified for JSON-mode saves", "status": "success", "durationEstimate": "fast" },
     { "tool": "Edit", "inputSummary": "Updated Memory Save Rule in CLAUDE.md", "outputSummary": "Changed JSON-primary wording", "status": "success" }
@@ -339,8 +345,12 @@ Content...
 | `filesModified`    | 0+ items   | Actual paths modified                                |
 | `triggerPhrases`   | 5-12 items | Keywords for semantic search. Parser-enforced cap at 12. |
 | `technicalContext` | Optional   | Additional technical details                         |
+| `specDrift`       | Optional   | Advisory drift recommendation routed to `handover.md` planning context; absent means none |
+| `reviewerFocus`   | Optional   | Advisory review-attention hints retained as context only |
 | `toolCalls`        | Optional   | AI-summarized tool calls (richer than DB extraction) |
 | `exchanges`        | Optional   | Key user-assistant exchanges during session          |
+
+`specDrift` and `reviewerFocus` are optional advisory inputs. Missing keys must not block save processing. A supplied drift reason is a recommendation for `handover.md` stop/resume context, not an automatic spec-doc mutation; hard contradictions still use Logic-Sync before save.
 
 ### Step 5: Produce Plan or Execute Processing Script
 

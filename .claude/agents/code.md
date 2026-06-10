@@ -294,11 +294,18 @@ RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|UNKNOWN_STACK|SCOPE_CONFLICT|LOW_
 
 ### Out Of Scope
 <P2 follow-ups noted but not implemented, mirroring @review Suggestions>
+
+### Spec Drift
+update_recommended: <true|false>
+reason: <one-line recommendation, or none>
+affected_spec_docs: <comma-separated docs, or none>
 ```
 
 **Required fields:** mode, files, verification, command, exit_code, rubric_score, escalation, confidence.
 
-**Conditional fields:** first_failing_assertion (when verification fails), adversarial_summary (when any P0/P1 disagreement occurred), out_of_scope (when P2 follow-ups were observed).
+**Conditional fields:** first_failing_assertion (when verification fails), adversarial_summary (when any P0/P1 disagreement occurred), out_of_scope (when P2 follow-ups were observed), spec_drift/update_recommended (when implementation reveals a non-blocking doc update recommendation).
+
+`spec_drift` is advisory. Use it only in the RETURN body, never in the first-line escalation enum. It does not edit spec docs automatically and does not absorb contradictions; a hard spec/code contradiction still returns `LOGIC_SYNC`.
 
 ### Optional Agent I/O Envelope
 

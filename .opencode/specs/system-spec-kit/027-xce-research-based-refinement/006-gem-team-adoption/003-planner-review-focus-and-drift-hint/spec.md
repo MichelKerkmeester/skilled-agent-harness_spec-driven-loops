@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/003-planner-review-focus-and-drift-hint"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 003 advisory fields from 007 P3 + 009"
-    next_safe_action: "Land 001 envelope, then add reviewer_focus + spec_drift"
+    last_updated_at: "2026-06-10T06:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added advisory focus and drift fields"
+    next_safe_action: "Use hints only when useful; keep them optional"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-003-planner-focus-drift-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "P3 of 007 sub-packet-proposals selected as L1 child 003"
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Spec-Scaffolded |
+| **Status** | Completed |
 | **Created** | 2026-06-06 |
 | **Branch** | `003-planner-review-focus-and-drift-hint` |
 | **Parent Packet** | `027-xce-research-based-refinement/006-gem-team-adoption` |
@@ -91,6 +91,9 @@ Add two advisory-only fields — `reviewer_focus` (with an optional `self_assess
 | `.opencode/agents/code.md` | Modify | ADD an optional `spec_drift` block in the RETURN body (NOT the first-line escalation enum). |
 | `.opencode/commands/memory/save.md` | Modify | Document drift destination = `handover.md`. |
 | `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | ADD optional `specDrift` / `reviewerFocus` JSON keys; tolerate absence. |
+| `.claude/agents/{orchestrate,review,code}.md` | Modify | Mirror the same advisory text for Claude runtime parity. |
+| `.codex/agents/{orchestrate,review,code}.toml` | Modify | Mirror the same advisory text for Codex runtime parity. |
+| `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md` | Modify | Replace the advisory placeholder with optional field definitions and compatibility rules. |
 <!-- /ANCHOR:scope -->
 
 ---

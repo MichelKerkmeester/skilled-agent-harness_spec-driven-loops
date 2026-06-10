@@ -110,13 +110,23 @@ Pre-execution rules:
 
 ## 6. Advisory Group
 
-Reserved for future planning/review focus hints. Current status: advisory placeholder only.
+Optional advisory fields route review attention and surface spec drift without creating gates, mutations, or new refusal reasons.
 
-```yaml
-advisory:
-  enabled: false
-  fields: optional
+```text
+AGENT_IO_ADVISORY v1
+schema_version: agent-io/v1
+reviewer_focus: none | <comma-separated high-risk files, modules, or concerns>
+self_assessed_quality: none | high | medium | low | <short producer confidence note>
+spec_drift: none | reason=<one-line recommendation>; affected_spec_docs=<comma-separated docs or none>; update_recommended=<true|false>
 ```
+
+Advisory rules:
+
+- `reviewer_focus` helps reviewers prioritize reads and evidence gathering. It never changes severity thresholds and never creates a finding without normal evidence.
+- `self_assessed_quality` is the producer's own confidence note for reviewer triage. It is not a review score and must not be named `quality_score`.
+- `spec_drift` is a recommendation to update packet docs later. It never edits spec docs automatically and never bypasses Logic-Sync for hard contradictions.
+- If `spec_drift` is absent, consumers should treat it as `none`.
+- Missing advisory fields in legacy or ordinary dispatches remain valid and must not block the receiver.
 
 ## Compatibility
 

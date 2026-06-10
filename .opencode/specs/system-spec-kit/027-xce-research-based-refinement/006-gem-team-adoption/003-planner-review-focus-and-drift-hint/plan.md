@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/003-planner-review-focus-and-drift-hint"
-    last_updated_at: "2026-06-06T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 003 advisory fields from 007 P3 + 009"
-    next_safe_action: "Land 001 envelope, then add reviewer_focus + spec_drift"
+    last_updated_at: "2026-06-10T06:30:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added advisory focus and drift fields"
+    next_safe_action: "Use hints only when useful; keep them optional"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-027-003-planner-focus-drift-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,12 +60,12 @@ Layer two advisory-only fields onto child 001's agent-IO envelope. `reviewer_foc
 - [x] Dependency on child 001 identified.
 
 ### Definition of Done
-- [ ] `reviewer_focus` steers `@review` attention only; threshold unchanged; no evidence-free findings.
-- [ ] `spec_drift` is an optional RETURN-body recommendation routed to `handover.md`; no spec doc auto-edited.
-- [ ] Logic-Sync remains authoritative for contradictions.
-- [ ] `ThinContinuityRecord` schema unchanged; `self_assessed_quality` name used (no `quality_score` collision).
-- [ ] `generate-context.ts` tolerates presence/absence of the optional JSON keys.
-- [ ] Docs updated (spec/plan/tasks); strict validation passes.
+- [x] `reviewer_focus` steers `@review` attention only; threshold unchanged; no evidence-free findings.
+- [x] `spec_drift` is an optional RETURN-body recommendation routed to `handover.md`; no spec doc auto-edited.
+- [x] Logic-Sync remains authoritative for contradictions.
+- [x] `ThinContinuityRecord` schema unchanged; `self_assessed_quality` name used (no `quality_score` collision).
+- [x] `generate-context.ts` tolerates presence/absence of the optional JSON keys.
+- [x] Docs updated (spec/plan/tasks/summary); strict validation passes.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -115,23 +115,23 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm child 001's agent-IO envelope is landed and read its `advisory` field group.
-- [ ] Re-read the five target surfaces and the current Logic-Sync wording.
-- [ ] Confirm the existing `quality_score` usage in the save path to lock the `self_assessed_quality` name.
+- [x] Confirm child 001's agent-IO envelope is landed and read its `advisory` field group.
+- [x] Re-read the five target surfaces and the current Logic-Sync wording.
+- [x] Confirm the existing `quality_score` usage in the save path to lock the `self_assessed_quality` name.
 
 ### Phase 2: Core Implementation
-- [ ] Add the optional `reviewer_focus` (+ `self_assessed_quality`) dispatch field to `orchestrate.md` and consume it on output review.
-- [ ] Update `review.md` to accept `reviewer_focus` for read/evidence prioritization, leaving the threshold and evidence requirement intact.
-- [ ] Add the optional `spec_drift` / `update_recommended` block to `code.md`'s §8 RETURN body (never the first-line enum).
-- [ ] Document the drift destination (`handover.md`) in `commands/memory/save.md`.
-- [ ] Add optional `specDrift` / `reviewerFocus` JSON keys to `generate-context.ts` with absence tolerated.
+- [x] Add the optional `reviewer_focus` (+ `self_assessed_quality`) dispatch field to `orchestrate.md` and consume it on output review.
+- [x] Update `review.md` to accept `reviewer_focus` for read/evidence prioritization, leaving the threshold and evidence requirement intact.
+- [x] Add the optional `spec_drift` / `update_recommended` block to `code.md`'s §8 RETURN body (never the first-line enum).
+- [x] Document the drift destination (`handover.md`) in `commands/memory/save.md`.
+- [x] Add optional `specDrift` / `reviewerFocus` JSON keys to `generate-context.ts` with absence tolerated.
 
 ### Phase 3: Verification
-- [ ] Walk through: no `reviewer_focus` ⇒ `@review` derives scope from target/files (SC-001).
-- [ ] Walk through: no `spec_drift` ⇒ save records `spec_drift: none` (SC-002).
-- [ ] Walk through: a contradiction still halts via Logic-Sync, unsoftened (SC-003).
-- [ ] Confirm `self_assessed_quality` introduces no `quality_score` collision; continuity schema unchanged.
-- [ ] Run strict spec validation for this packet.
+- [x] Walk through: no `reviewer_focus` ⇒ `@review` derives scope from target/files (SC-001).
+- [x] Walk through: no `spec_drift` ⇒ save records `spec_drift: none` (SC-002).
+- [x] Walk through: a contradiction still halts via Logic-Sync, unsoftened (SC-003).
+- [x] Confirm `self_assessed_quality` introduces no `quality_score` collision; continuity schema unchanged.
+- [x] Run strict spec validation for this packet.
 <!-- /ANCHOR:phases -->
 
 ---
