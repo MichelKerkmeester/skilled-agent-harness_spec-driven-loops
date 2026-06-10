@@ -5,6 +5,7 @@
 import { mkdtempSync, mkdirSync, utimesSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import Database from 'better-sqlite3';
 
 import { describe, expect, it } from 'vitest';
 
@@ -43,6 +44,58 @@ function writeDb(root: string): void {
   writeFileSync(join(root, ADVISOR_DB_RELATIVE_PATH), '', 'utf8');
 }
 
+function writeHealthDb(root: string): void {
+  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
+  try {
+    database.exec(`
+      CREATE TABLE skill_nodes (
+        id TEXT PRIMARY KEY,
+        embedding BLOB,
+        embedding_model_id TEXT,
+        embedding_content_hash TEXT
+      );
+      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+      CREATE TABLE vec_768 (
+        skill_id TEXT PRIMARY KEY,
+        embedding BLOB NOT NULL,
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        updated_at TEXT DEFAULT (datetime('now'))
+      );
+    `);
+    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('alpha');
+    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('beta');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '768');
+    database.prepare('INSERT INTO vec_768 (skill_id, embedding, model_id, content_hash, updated_at) VALUES (?, ?, ?, ?, ?)')
+      .run('alpha', Buffer.from([1, 2, 3]), 'nomic-embed-text-v1.5', 'hash-alpha', '2026-04-20T00:00:00.000Z');
+  } finally {
+    database.close();
+  }
+}
+
+function writeDimMismatchHealthDb(root: string): void {
+  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
+  try {
+    database.exec(`
+      CREATE TABLE skill_nodes (id TEXT PRIMARY KEY, embedding BLOB);
+      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+      CREATE TABLE vec_123 (
+        skill_id TEXT PRIMARY KEY,
+        embedding BLOB NOT NULL,
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        updated_at TEXT DEFAULT (datetime('now'))
+      );
+    `);
+    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('alpha');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '123');
+  } finally {
+    database.close();
+  }
+}
+
 describe('advisor_status handler', () => {
   // drift: verified against shipped behavior during Unit H
   it('reports live freshness', () => {
@@ -59,6 +112,53 @@ describe('advisor_status handler', () => {
     expect(status.lastScanAt).toBe('2026-04-20T00:00:00.000Z');
     expect(status.skillCount).toBe(1);
     expect(status.laneWeights.explicit_author).toBe(0.42);
+    expect(status.semanticLaneHealth).toBeUndefined();
+  });
+
+  it('reports semantic-lane health only when requested', () => {
+    const root = workspace('semantic-health');
+    writeHealthDb(root);
+    writeGeneration(root, 'live', 8);
+
+    const compact = readAdvisorStatus({ workspaceRoot: root });
+    const detailed = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+
+    expect(compact.semanticLaneHealth).toBeUndefined();
+    expect(detailed.semanticLaneHealth).toEqual(expect.objectContaining({
+      activeEmbedder: expect.objectContaining({
+        name: 'nomic-embed-text-v1.5',
+        dim: 768,
+        adapterDim: 768,
+      }),
+      vectorCoverage: {
+        embedded: 1,
+        total: 2,
+        ratio: 0.5,
+      },
+      dimMismatch: false,
+      lastRefresh: '2026-04-20T00:00:00.000Z',
+      disabledReason: null,
+      laneEnabled: true,
+    }));
+  });
+
+  it('surfaces semantic-lane dim mismatch as a disabled reason', () => {
+    const root = workspace('semantic-dim-mismatch');
+    writeDimMismatchHealthDb(root);
+    writeGeneration(root, 'live', 9);
+
+    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+
+    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
+      activeEmbedder: expect.objectContaining({
+        name: 'nomic-embed-text-v1.5',
+        dim: 123,
+        adapterDim: 768,
+      }),
+      dimMismatch: true,
+      disabledReason: 'dim_mismatch',
+      laneEnabled: false,
+    }));
   });
 
   // drift: verified against shipped behavior during Unit H

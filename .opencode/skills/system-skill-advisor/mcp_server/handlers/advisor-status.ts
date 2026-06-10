@@ -4,10 +4,13 @@
 
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import Database from 'better-sqlite3';
 
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
 import { createTrustState } from '../lib/freshness/trust-state.js';
+import { getAdapter } from '../lib/embedders/registry.js';
+import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SCORER_WEIGHTS } from '../lib/scorer/weights-config.js';
 import { errorMessage } from '../lib/utils/error-format.js';
 import { redactDiagnosticText } from './skill-graph/response-envelope.js';
@@ -30,6 +33,7 @@ const SKILL_GRAPH_DB = advisorDbDirOverride
   : join('.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database', 'skill-graph.sqlite');
 const SKILL_ROOT = join('.opencode', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;
+type SemanticLaneHealth = NonNullable<AdvisorStatusOutput['semanticLaneHealth']>;
 
 function isFreshness(value: string): value is AdvisorFreshness {
   return value === 'live' || value === 'stale' || value === 'absent' || value === 'unavailable';
@@ -58,6 +62,100 @@ function fileMtimeMs(path: string): number {
   if (!existsSync(path)) return 0;
   const stat = statSync(path);
   return stat.mtimeMs;
+}
+
+function tableExists(database: Database.Database, tableName: string): boolean {
+  const row = database.prepare(`
+    SELECT 1 AS present
+    FROM sqlite_master
+    WHERE type = 'table' AND name = ?
+    LIMIT 1
+  `).get(tableName) as { present: number } | undefined;
+  return Boolean(row);
+}
+
+function metadataValue(database: Database.Database, key: string): string | null {
+  if (!tableExists(database, 'vec_metadata')) return null;
+  const row = database.prepare('SELECT value FROM vec_metadata WHERE key = ?').get(key) as { value: string } | undefined;
+  return row?.value ?? null;
+}
+
+function countRows(database: Database.Database, sql: string): number {
+  const row = database.prepare(sql).get() as { c: number } | undefined;
+  return row?.c ?? 0;
+}
+
+function maxUpdatedAt(database: Database.Database, tableName: string): string | null {
+  const row = database.prepare(`SELECT MAX(updated_at) AS updatedAt FROM ${tableName}`).get() as { updatedAt: string | null } | undefined;
+  return row?.updatedAt ?? null;
+}
+
+function baseSemanticLaneHealth(disabledReason: string | null): SemanticLaneHealth {
+  return {
+    activeEmbedder: null,
+    vectorCoverage: { embedded: 0, total: 0, ratio: 0 },
+    dimMismatch: false,
+    lastRefresh: null,
+    disabledReason,
+    laneEnabled: false,
+    checkedAt: new Date().toISOString(),
+  };
+}
+
+function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
+  const runtime = getSemanticShadowRuntimeHealth();
+  if (!existsSync(dbPath)) {
+    return baseSemanticLaneHealth(runtime.disabledReason ?? 'database_absent');
+  }
+
+  let database: Database.Database | null = null;
+  try {
+    database = new Database(dbPath, { readonly: true, fileMustExist: true });
+    const total = tableExists(database, 'skill_nodes')
+      ? countRows(database, 'SELECT COUNT(*) AS c FROM skill_nodes')
+      : 0;
+    const activeName = metadataValue(database, 'active_embedder_name');
+    const activeDimRaw = metadataValue(database, 'active_embedder_dim');
+    const activeDim = activeDimRaw ? Number.parseInt(activeDimRaw, 10) : 0;
+    const hasActive = Boolean(activeName) && Number.isInteger(activeDim) && activeDim > 0;
+    const adapter = activeName ? getAdapter(activeName) : undefined;
+    const activeEmbedder = activeName
+      ? { name: activeName, dim: Number.isInteger(activeDim) && activeDim > 0 ? activeDim : 0, adapterDim: adapter?.dim ?? null }
+      : null;
+    const tableName = hasActive ? `vec_${activeDim}` : null;
+    const hasVecTable = tableName ? tableExists(database, tableName) : false;
+    const embedded = hasVecTable
+      ? countRows(database, `SELECT COUNT(*) AS c FROM ${tableName} WHERE embedding IS NOT NULL`)
+      : (tableExists(database, 'skill_nodes') ? countRows(database, 'SELECT COUNT(*) AS c FROM skill_nodes WHERE embedding IS NOT NULL') : 0);
+    const lastRefresh = hasVecTable && tableName ? maxUpdatedAt(database, tableName) : null;
+    const dimMismatch = Boolean(activeEmbedder && activeEmbedder.adapterDim !== null && activeEmbedder.dim !== activeEmbedder.adapterDim);
+    const disabledReason = dimMismatch
+      ? 'dim_mismatch'
+      : (!hasActive
+          ? 'active_embedder_unset'
+          : (!adapter
+              ? 'adapter_unavailable'
+              : (!hasVecTable
+                  ? 'vector_table_missing'
+                  : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason))));
+    return {
+      activeEmbedder,
+      vectorCoverage: {
+        embedded,
+        total,
+        ratio: total > 0 ? Math.round((embedded / total) * 1_000_000) / 1_000_000 : 0,
+      },
+      dimMismatch,
+      lastRefresh,
+      disabledReason,
+      laneEnabled: Boolean(hasActive && adapter && !dimMismatch && hasVecTable && embedded > 0 && !disabledReason),
+      checkedAt: new Date().toISOString(),
+    };
+  } catch {
+    return baseSemanticLaneHealth(runtime.disabledReason ?? 'health_unavailable');
+  } finally {
+    database?.close();
+  }
 }
 
 function scanSkillMetadataFiles(
@@ -156,6 +254,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       lastScanAt: generation.updatedAt === new Date(0).toISOString() ? null : generation.updatedAt,
       skillCount: sourceScan.count,
       laneWeights: DEFAULT_SCORER_WEIGHTS,
+      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
       ...(daemonPid ? { daemonPid } : {}),
       ...(errors.length > 0 ? { errors } : {}),
     };
@@ -179,6 +278,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       lastScanAt: null,
       skillCount: sourceScan.count,
       laneWeights: DEFAULT_SCORER_WEIGHTS,
+      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
       errors: [message],
     };
     return AdvisorStatusOutputSchema.parse(output);

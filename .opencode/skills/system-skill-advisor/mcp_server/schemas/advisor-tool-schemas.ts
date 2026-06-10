@@ -120,6 +120,39 @@ const laneBreakdownSchema = z.object({
   shadowOnly: z.boolean(),
 }).strict();
 
+const whyRecommendedLaneSchema = laneBreakdownSchema.extend({
+  evidenceTypes: z.array(z.string().min(1)),
+  evidenceCount: z.number().int().nonnegative(),
+}).strict();
+
+const whyRecommendedSchema = z.object({
+  reason: z.string().min(1),
+  dominantLane: AdvisorLaneSchema.nullable(),
+  topLanes: z.array(whyRecommendedLaneSchema),
+  matchedSkillFeatures: z.array(z.object({
+    lane: AdvisorLaneSchema,
+    feature: z.string().min(1),
+  }).strict()),
+}).strict();
+
+const semanticLaneHealthSchema = z.object({
+  activeEmbedder: z.object({
+    name: z.string().min(1),
+    dim: z.number().int().nonnegative(),
+    adapterDim: z.number().int().positive().nullable(),
+  }).strict().nullable(),
+  vectorCoverage: z.object({
+    embedded: z.number().int().nonnegative(),
+    total: z.number().int().nonnegative(),
+    ratio: z.number().min(0).max(1),
+  }).strict(),
+  dimMismatch: z.boolean(),
+  lastRefresh: z.string().nullable(),
+  disabledReason: z.string().nullable(),
+  laneEnabled: z.boolean(),
+  checkedAt: z.string().datetime(),
+}).strict();
+
 // NOTE (DEFER decision):
 // `AdvisorScoringOptions.affordances` (see `lib/scorer/types.ts:94`) is a
 // COMPILE-TIME-ONLY internal seam used by the scorer fusion path. Affordance
@@ -152,6 +185,7 @@ export const AdvisorRecommendationSchema = z.object({
   uncertainty: z.number().min(0).max(1),
   dominantLane: AdvisorLaneSchema.nullable(),
   laneBreakdown: z.array(laneBreakdownSchema).optional(),
+  why_recommended: whyRecommendedSchema.optional(),
   redirectFrom: z.array(z.string().min(1)).optional(),
   redirectTo: z.string().min(1).optional(),
   status: z.enum(['active', 'deprecated', 'archived', 'future']).optional(),
@@ -198,6 +232,8 @@ export const AdvisorStatusInputSchema = z.object({
   // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema,
   maxMetadataFiles: z.number().int().positive().max(10_000).optional(),
+  includeSemanticHealth: z.boolean().optional(),
+  debug: z.boolean().optional(),
 }).strict();
 
 export const AdvisorStatusOutputSchema = z.object({
@@ -214,6 +250,7 @@ export const AdvisorStatusOutputSchema = z.object({
   lastScanAt: z.string().datetime().nullable(),
   skillCount: z.number().int().nonnegative(),
   laneWeights: z.record(AdvisorLaneSchema, z.number().min(0)),
+  semanticLaneHealth: semanticLaneHealthSchema.optional(),
   daemonPid: z.number().int().positive().optional(),
   errors: z.array(z.string()).optional(),
 }).strict();

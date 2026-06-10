@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Advisor observability"
+description: "Skill advisor now exposes prompt-safe recommendation attribution on demand and semantic-lane health diagnostics through advisor_status."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/001-advisor-observability"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T22:36:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed advisor observability implementation"
+    next_safe_action: "Handle the unrelated Claude settings parity failure in a separate allowed scope if required"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-advisor-observability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,20 +48,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The advisor now makes routing decisions debuggable without exposing user prompt text. Operators can request `includeAttribution` to see `why_recommended` lane summaries, and they can request semantic health from `advisor_status` to diagnose vector-lane degradation without reading console logs.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Prompt-Safe Recommendation Attribution
 
-### [Feature Name]
+`advisor_recommend` keeps its default compact payload unchanged. When `options.includeAttribution` is true, each recommendation includes the existing numeric `laneBreakdown` plus `why_recommended`, which reports the dominant lane, top contributing lanes, and matched feature categories such as `phrase_match`, `token_match`, and `semantic_similarity`. It never returns matched prompt phrases, prompt tokens, raw scorer evidence strings, or the original prompt.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Semantic-Lane Health
+
+`advisor_status` now accepts `includeSemanticHealth` or `debug` and returns `semanticLaneHealth` with the active embedder, vector coverage, dimension mismatch flag, last vector refresh timestamp, disabled reason, and lane-enabled state. The semantic-shadow lane also records disabled reasons for database absence, adapter unavailability, dimension mismatch, prompt embedding failure, skill-vector load failure, and empty vector coverage.
 
 ### Files Changed
 
@@ -69,7 +64,12 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `handlers/advisor-recommend.ts` | Modified | Adds opt-in prompt-safe `why_recommended` without changing ranking fields |
+| `handlers/advisor-status.ts` | Modified | Adds opt-in semantic-lane health diagnostics |
+| `lib/scorer/lanes/semantic-shadow.ts` | Modified | Records degraded-vector disabled reasons for status consumers |
+| `schemas/advisor-tool-schemas.ts` | Modified | Validates the new optional attribution and health response fields |
+| `tests/handlers/advisor-recommend.vitest.ts` | Modified | Covers attribution gating, prompt safety, and no ranking drift |
+| `tests/handlers/advisor-status.vitest.ts` | Modified | Covers compact default status, semantic health fields, and dim mismatch disabled reason |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +77,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The rollout is additive and opt-in: default recommendation and status outputs remain compact, while debug callers can request the new fields. Typecheck, build, targeted tests, and full-suite rerun provide the verification record below.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +90,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Emit feature categories instead of raw scorer evidence | Raw evidence can include prompt-derived phrase or token values; category labels explain the lane source without leaking prompt text. |
+| Keep semantic health opt-in | Status remains compact for normal hook use while preserving a debug path for maintenance. |
+| Do not change scorer fusion or lane weights | The phase is observability-only; no ranking behavior should move. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +105,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run typecheck` | PASS |
+| `npx vitest run tests/handlers/advisor-recommend.vitest.ts tests/handlers/advisor-status.vitest.ts tests/scorer/semantic-lane-promotion.vitest.ts` | PASS: 3 files, 33 tests |
+| `npm run build` | PASS |
+| `npm test` after build | PARTIAL: 69 files passed, 1 failed file, 431 tests passed, 35 failed in `tests/hooks/settings-driven-invocation-parity.vitest.ts` because `.claude/settings.local.json` lacks the expected `hooks` block; this path is outside the allowed write scope |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +121,8 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Full suite residual** `tests/hooks/settings-driven-invocation-parity.vitest.ts` remains red because the checked `.claude/settings.local.json` hook shape is outside this phase's allowed write paths.
+2. **MCP descriptor text** Tool descriptor files are outside the allowed write paths, so the Zod schema and handler accept the new options but descriptor copy was not updated in this phase.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +132,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

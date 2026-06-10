@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 1: advisor-observability [template:level_1/plan.md]"
-description: "Planned adoption of the cited 027 feature; full problem/scope/requirements live in this phase's spec.md. Implementation is deferred (scaffold-only packet)."
+description: "Completed adoption of the cited 027 observability patterns into the skill advisor: prompt-safe recommendation attribution and semantic-lane health reporting."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/001-advisor-observability"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold planned approach for advisor observability"
-    next_safe_action: "Confirm attribution shape, then implement"
+    last_updated_at: "2026-06-10T22:36:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Delivered advisor observability with prompt-safe attribution and semantic-lane health"
+    next_safe_action: "Open a separate packet for the unrelated Claude settings parity failure if needed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-advisor-observability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Testing** | vitest |
 
 ### Overview
-Surface attribution the scorer already computes and add semantic-lane health counters. The approach is additive and read-only over existing internals: no scorer math changes, opt-in output only, and a queryable degraded-vector reason replacing the current console-only warn.
+Surface attribution the scorer already computes and add semantic-lane health counters. The approach is additive and read-only over existing internals: no scorer math changes, opt-in output only, and queryable degraded-vector reasons alongside the existing console warnings.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ Surface attribution the scorer already computes and add semantic-lane health cou
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Targeted tests passing; full suite has one unrelated hook-settings parity failure outside allowed write paths
+- [x] Docs updated (spec/plan/tasks/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,15 @@ Surface attribution the scorer already computes and add semantic-lane health cou
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Additive MCP handler/schema observability.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **advisor_recommend**: returns `why_recommended` only when attribution is requested.
+- **advisor_status**: returns `semanticLaneHealth` only when `includeSemanticHealth` or `debug` is set.
+- **semantic-shadow lane**: records prompt-embedding and vector degradation reasons for queryable diagnostics.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The scorer still computes recommendations exactly as before. The public handler sanitizes scorer evidence into category labels, while status reads the skill-graph database read-only to report active embedder, vector coverage, dimension mismatch, last refresh, and disabled reason.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +98,15 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `advisor-recommend.ts` | Public recommendation projection | Add opt-in prompt-safe `why_recommended` | `tests/handlers/advisor-recommend.vitest.ts` |
+| `advisor-status.ts` | Diagnostic status projection | Add opt-in semantic-lane health | `tests/handlers/advisor-status.vitest.ts` |
+| `semantic-shadow.ts` | Semantic lane runtime state | Record disabled reasons without changing scoring | Typecheck and status health tests |
+| `advisor-tool-schemas.ts` | Public input/output validation | Add strict schemas for new optional fields | Typecheck and handler tests |
 
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+Inventory evidence:
+- Same-class producers inspected: advisor recommend/status handlers, scorer fusion types, semantic-shadow lane, and schemas.
+- Consumers updated: handler tests and status tests cover new public fields and default compact behavior.
+- Algorithm invariant: recommendation order, scores, confidence, and uncertainty must not change when attribution is enabled.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +115,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Existing advisor handler, schema, scorer, and test surfaces inspected
+- [x] No new dependencies or package metadata changes required
+- [x] Allowed write paths confirmed before editing
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Added opt-in `why_recommended` with lane scores and evidence categories only
+- [x] Added opt-in `semanticLaneHealth` with active embedder, vector coverage, dim mismatch, last refresh, disabled reason, and lane-enabled state
+- [x] Recorded semantic-shadow disabled reasons for database, adapter, dimension, prompt embedding, skill vector, and empty-vector degradation paths
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Targeted vitest handler/scorer tests passed
+- [x] Full suite rerun after build; only `.claude/settings.local.json` hook-shape parity remains failing outside scope
+- [x] Documentation updated
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +137,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Attribution gating, prompt safety, ranking drift, semantic health | Vitest |
+| Type | Handler/schema/scorer compile safety | `npm run typecheck` |
+| Build | Dist freshness for CLI parity tests | `npm run build` |
+| Validation | Spec folder structure and completion docs | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +150,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Existing scorer intermediates | Internal | Green | Needed to avoid new scoring computation |
+| Skill-graph SQLite schema | Internal | Green | Needed for semantic health coverage counts |
+| Claude hook settings parity | External to phase scope | Red | Full advisor suite remains red until a separate allowed change restores `.claude/settings.local.json` hooks |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +160,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Attribution leaks raw prompt text, default output changes, or recommendation order/scores drift.
+- **Procedure**: Remove the optional public fields and semantic health read path while keeping scorer math untouched.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +172,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

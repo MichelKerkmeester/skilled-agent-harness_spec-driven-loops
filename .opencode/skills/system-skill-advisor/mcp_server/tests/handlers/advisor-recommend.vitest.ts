@@ -141,9 +141,81 @@ describe('advisor_recommend handler', () => {
         confidence: 0.92,
         dominantLane: 'explicit_author',
         laneBreakdown: expect.any(Array),
+        why_recommended: expect.objectContaining({
+          dominantLane: 'explicit_author',
+          matchedSkillFeatures: expect.arrayContaining([
+            { lane: 'explicit_author', feature: 'phrase_match' },
+          ]),
+        }),
       }),
     ]);
     expect(JSON.stringify(response.data.recommendations)).not.toContain('phrase:spec folder');
+  });
+
+  it('only emits prompt-safe why_recommended when attribution is requested', async () => {
+    const secretPromptToken = 'customer-secret-token-817263';
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult([
+      recommendation({
+        laneContributions: [{
+          lane: 'explicit_author',
+          rawScore: 1,
+          weightedScore: 0.42,
+          weight: 0.42,
+          evidence: [`phrase:${secretPromptToken}`, `token:${secretPromptToken}`],
+          shadowOnly: false,
+        }],
+      }),
+    ]));
+
+    const plain = parseResponse(await handleAdvisorRecommend({ prompt: `route ${secretPromptToken}` }));
+    const attributed = parseResponse(await handleAdvisorRecommend({
+      prompt: `route ${secretPromptToken}`,
+      options: { includeAttribution: true },
+    }));
+
+    expect(plain.data.recommendations).toEqual([
+      expect.not.objectContaining({
+        laneBreakdown: expect.anything(),
+        why_recommended: expect.anything(),
+      }),
+    ]);
+    expect(attributed.data.recommendations).toEqual([
+      expect.objectContaining({
+        laneBreakdown: expect.any(Array),
+        why_recommended: expect.objectContaining({
+          matchedSkillFeatures: expect.arrayContaining([
+            { lane: 'explicit_author', feature: 'phrase_match' },
+            { lane: 'explicit_author', feature: 'token_match' },
+          ]),
+        }),
+      }),
+    ]);
+    expect(JSON.stringify(attributed.data.recommendations)).not.toContain(secretPromptToken);
+  });
+
+  it('does not change recommendation order or scores when attribution is enabled', async () => {
+    const recommendations = [
+      recommendation({ skill: 'alpha', score: 0.72, confidence: 0.92, uncertainty: 0.12 }),
+      recommendation({ skill: 'beta', score: 0.61, confidence: 0.88, uncertainty: 0.18 }),
+    ];
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult(recommendations));
+
+    const plain = parseResponse(await handleAdvisorRecommend({ prompt: 'Implement ranking drift check' }));
+    const attributed = parseResponse(await handleAdvisorRecommend({
+      prompt: 'Implement ranking drift check',
+      options: { includeAttribution: true },
+    }));
+    const comparable = (data: Record<string, unknown>) => (data.recommendations as Array<Record<string, unknown>>)
+      .map((entry) => ({
+        skillId: entry.skillId,
+        score: entry.score,
+        confidence: entry.confidence,
+        uncertainty: entry.uncertainty,
+      }));
+
+    expect(comparable(attributed.data)).toEqual(comparable(plain.data));
   });
 
   it('marks ambiguous top-two cases without leaking prompts', async () => {

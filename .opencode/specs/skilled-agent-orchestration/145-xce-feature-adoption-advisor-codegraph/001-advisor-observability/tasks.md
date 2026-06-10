@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/001-advisor-observability"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-06-10T22:36:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed advisor observability implementation and verification"
+    next_safe_action: "Track the unrelated Claude settings parity failure in a separate scoped packet if needed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-advisor-observability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read phase scaffold before code inspection (`spec.md`, `plan.md`, `tasks.md`)
+- [x] T002 Inspect advisor recommend/status handlers, scorer types/fusion, semantic-shadow lane, schemas, and existing tests
+- [x] T003 [P] Confirm no dependency or package metadata changes are needed
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +60,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add prompt-safe `why_recommended` output behind `includeAttribution` (`advisor-recommend.ts`, `advisor-tool-schemas.ts`)
+- [x] T005 Preserve default recommendation payload and ranking fields when attribution is not requested (`advisor-recommend.ts`)
+- [x] T006 Add opt-in `semanticLaneHealth` to `advisor_status` (`advisor-status.ts`, `advisor-tool-schemas.ts`)
+- [x] T007 Record semantic-shadow disabled reasons for database, adapter, dim mismatch, prompt embedding, skill vectors, and empty-vector cases (`semantic-shadow.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Add attribution gating and prompt-safety tests (`tests/handlers/advisor-recommend.vitest.ts`)
+- [x] T009 Add no-ranking-drift and semantic-health tests (`tests/handlers/advisor-recommend.vitest.ts`, `tests/handlers/advisor-status.vitest.ts`)
+- [x] T010 Run `npm run typecheck` and `npm run build` in the advisor MCP server
+- [x] T011 Run targeted vitest: 3 files passed, 33 tests passed
+- [x] T012 Run full vitest: 69 files passed, 1 out-of-scope hook-settings parity file failed, 431 tests passed, 35 failed
+- [x] T013 Update spec, plan, tasks, implementation summary, and continuity metadata
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +84,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Required targeted verification passed; full-suite residual is out of allowed write scope
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +106,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

@@ -156,6 +156,58 @@ function safeMany(values: readonly string[] | undefined): string[] {
     .filter((value): value is string => Boolean(value));
 }
 
+function evidenceFeature(value: string): string {
+  const prefix = value.split(':', 1)[0];
+  switch (prefix) {
+    case 'phrase':
+      return 'phrase_match';
+    case 'token':
+      return 'token_match';
+    case 'hint':
+      return 'category_hint';
+    case 'derived':
+      return 'derived_skill_signal';
+    case 'cosine':
+      return 'semantic_similarity';
+    default:
+      if (value.includes('disambiguation')) return 'disambiguation_rule';
+      if (value.includes('surface')) return 'surface_signal';
+      if (value.includes('intent')) return 'intent_signal';
+      if (value.includes('loop')) return 'workflow_signal';
+      return 'scorer_signal';
+  }
+}
+
+function publicWhyRecommended(recommendation: ScoredRecommendation) {
+  const positiveLanes = recommendation.laneContributions
+    .filter((lane) => lane.rawScore > 0 || lane.weightedScore > 0)
+    .sort((left, right) => right.weightedScore - left.weightedScore)
+    .slice(0, 4);
+  const matchedSkillFeatures = positiveLanes.flatMap((lane) => (
+    Array.from(new Set(lane.evidence.map((entry) => evidenceFeature(entry)))).map((feature) => ({
+      lane: lane.lane,
+      feature,
+    }))
+  ));
+  const dominant = recommendation.dominantLane;
+  return {
+    reason: dominant
+      ? `Recommended from ranker signals: ${dominant} contributed the strongest live score.`
+      : 'Recommended from ranker signals without a single dominant live lane.',
+    dominantLane: dominant,
+    topLanes: positiveLanes.map((lane) => ({
+      lane: lane.lane,
+      rawScore: lane.rawScore,
+      weightedScore: lane.weightedScore,
+      weight: lane.weight,
+      shadowOnly: lane.shadowOnly,
+      evidenceTypes: Array.from(new Set(lane.evidence.map((entry) => evidenceFeature(entry)))),
+      evidenceCount: lane.evidence.length,
+    })),
+    matchedSkillFeatures,
+  };
+}
+
 function publicRecommendation(recommendation: ScoredRecommendation, includeAttribution: boolean) {
   const skillId = sanitizeSkillLabel(recommendation.skill);
   if (!skillId) return null;
@@ -182,6 +234,7 @@ function publicRecommendation(recommendation: ScoredRecommendation, includeAttri
         weight: lane.weight,
         shadowOnly: lane.shadowOnly,
       })),
+      why_recommended: publicWhyRecommended(recommendation),
     } : {}),
     ...(redirectFrom.length > 0 ? { redirectFrom } : {}),
     ...(redirectTo ? { redirectTo } : {}),
