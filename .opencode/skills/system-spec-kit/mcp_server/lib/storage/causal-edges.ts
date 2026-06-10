@@ -10,6 +10,8 @@ import { detectContradictions } from '../graph/contradiction-detection.js';
 import { ensureTemporalColumns } from '../graph/temporal-edges.js';
 import { isTemporalEdgesEnabled } from '../search/search-flags.js';
 import { runInTransaction } from './transaction-manager.js';
+import { sweepCausalEdges } from '../causal/sweep.js';
+import type { CausalEdgeSweepResult } from '../causal/sweep.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -148,6 +150,12 @@ interface GraphStats {
   avgStrength: number;
   uniqueSources: number;
   uniqueTargets: number;
+}
+
+interface DeleteEdgeOptions {
+  reason?: string;
+  command?: string;
+  restoreContext?: Record<string, unknown>;
 }
 
 interface CausalChainNode {
@@ -761,17 +769,21 @@ function updateEdge(
   }
 }
 
-function deleteEdge(edgeId: number): boolean {
+function deleteEdge(edgeId: number, options: DeleteEdgeOptions = {}): boolean {
   if (!db) return false;
 
   try {
-    const result = (db.prepare(
-      'DELETE FROM causal_edges WHERE id = ?'
-    ) as Database.Statement).run(edgeId);
-    if ((result as { changes: number }).changes > 0) {
+    const result = sweepCausalEdges(db, {
+      edgeIds: [edgeId],
+      reason: options.reason ?? 'causal edge unlink',
+      command: options.command ?? 'causal_edges.deleteEdge',
+      restoreContext: options.restoreContext,
+      invalidateCaches: false,
+    });
+    if (result.deleted > 0) {
       invalidateDegreeCache();
     }
-    return (result as { changes: number }).changes > 0;
+    return result.deleted > 0;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] deleteEdge error: ${msg}`);
@@ -782,17 +794,23 @@ function deleteEdge(edgeId: number): boolean {
 // Let errors propagate so callers inside transactions see failures.
 // Previously errors were caught and swallowed, which hid edge-cleanup failures
 // From transactional callers (e.g., memory-bulk-delete, memory-crud-delete).
-function deleteEdgesForMemory(memoryId: string): number {
+function deleteEdgesForMemory(memoryId: string, options: DeleteEdgeOptions = {}): number {
   if (!db) return 0;
 
-  const result = (db.prepare(`
-    DELETE FROM causal_edges
-    WHERE source_id = ? OR target_id = ?
-  `) as Database.Statement).run(memoryId, memoryId);
-  if ((result as { changes: number }).changes > 0) {
+  const result = sweepCausalEdges(db, {
+    memoryIds: [memoryId],
+    reason: options.reason ?? 'memory delete causal cleanup',
+    command: options.command ?? 'causal_edges.deleteEdgesForMemory',
+    restoreContext: {
+      memoryId,
+      ...(options.restoreContext ?? {}),
+    },
+    invalidateCaches: false,
+  });
+  if (result.deleted > 0) {
     invalidateDegreeCache();
   }
-  return (result as { changes: number }).changes;
+  return result.deleted;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -847,22 +865,36 @@ function findOrphanedEdges(): CausalEdge[] {
 }
 
 // Automated orphan edge cleanup
-function cleanupOrphanedEdges(): { deleted: number } {
-  if (!db) return { deleted: 0 };
+function cleanupOrphanedEdges(): { deleted: number; tombstoned: number; edgeIds: number[] } {
+  if (!db) return { deleted: 0, tombstoned: 0, edgeIds: [] };
   try {
     const orphaned = findOrphanedEdges();
-    const deleted = runInTransaction(db, () => {
-      let count = 0;
-      for (const edge of orphaned) {
-        if (deleteEdge(edge.id)) count++;
+    const result = runInTransaction(db, () => {
+      if (orphaned.length === 0) {
+        return { deleted: 0, tombstoned: 0, edgeIds: [] };
       }
-      return count;
+      return sweepCausalEdges(db!, {
+        edgeIds: orphaned.map((edge) => edge.id),
+        reason: 'orphan causal edge cleanup',
+        command: 'causal_edges.cleanupOrphanedEdges',
+        restoreContext: {
+          orphanedEndpoints: orphaned.map((edge) => ({
+            edgeId: edge.id,
+            sourceId: edge.source_id,
+            targetId: edge.target_id,
+          })),
+        },
+        invalidateCaches: false,
+      });
     });
-    return { deleted };
+    if (result.deleted > 0) {
+      invalidateDegreeCache();
+    }
+    return { deleted: result.deleted, tombstoned: result.tombstoned, edgeIds: result.edgeIds };
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] cleanupOrphanedEdges error: ${msg}`);
-    return { deleted: 0 };
+    return { deleted: 0, tombstoned: 0, edgeIds: [] };
   }
 }
 
@@ -1118,4 +1150,5 @@ export type {
   WeightHistoryEntry,
   GraphStats,
   CausalChainNode,
+  CausalEdgeSweepResult,
 };

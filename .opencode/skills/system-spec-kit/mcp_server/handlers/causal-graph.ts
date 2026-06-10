@@ -1137,7 +1137,13 @@ async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResp
     }
     causalEdges.init(db);
 
-    const result: { deleted: boolean } = { deleted: causalEdges.deleteEdge(edgeId) };
+    const result: { deleted: boolean } = {
+      deleted: causalEdges.deleteEdge(edgeId, {
+        reason: 'manual causal unlink',
+        command: 'memory_causal_unlink',
+        restoreContext: { edgeId },
+      }),
+    };
 
     // Removing an edge changes graph signals/degree/co-activation; invalidate the
     // graph-structure caches now so retrieval reflects the unlink without waiting

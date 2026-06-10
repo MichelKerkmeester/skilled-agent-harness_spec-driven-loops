@@ -54,7 +54,7 @@ describe('vector-index schema incremental foundation', () => {
       expect(getColumnNames(db, 'memory_index')).toEqual(expect.arrayContaining([...CHUNK_COLUMNS]));
       expect(hasIndex(db, 'idx_memory_chunk_identity')).toBe(true);
       expect(hasIndex(db, 'idx_memory_chunk_fingerprint')).toBe(true);
-      expect(SCHEMA_VERSION).toBe(31);
+      expect(SCHEMA_VERSION).toBe(32);
     } finally {
       db.close();
     }

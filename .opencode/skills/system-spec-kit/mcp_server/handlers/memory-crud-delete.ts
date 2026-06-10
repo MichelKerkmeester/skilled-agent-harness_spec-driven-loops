@@ -115,7 +115,11 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
         }
 
         causalEdges.init(database);
-        causalEdges.deleteEdgesForMemory(String(numericId));
+        causalEdges.deleteEdgesForMemory(String(numericId), {
+          reason: 'memory_delete single memory cleanup',
+          command: 'memory-crud-delete.handleMemoryDelete',
+          restoreContext: { memoryId: numericId, specFolder: singleSnapshot?.spec_folder ?? null },
+        });
         // H1 FIX: Use db-specific invalidation instead of the no-op global version
         clearDegreeCacheForDb(database);
 
@@ -210,7 +214,11 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
           }
           deletedCount++;
           deletedIds.push(memory.id);
-          causalEdges.deleteEdgesForMemory(String(memory.id));
+          causalEdges.deleteEdgesForMemory(String(memory.id), {
+            reason: 'memory_delete folder cleanup',
+            command: 'memory-crud-delete.handleMemoryDelete',
+            restoreContext: { memoryId: memory.id, specFolder, checkpointName },
+          });
         }
       }
 

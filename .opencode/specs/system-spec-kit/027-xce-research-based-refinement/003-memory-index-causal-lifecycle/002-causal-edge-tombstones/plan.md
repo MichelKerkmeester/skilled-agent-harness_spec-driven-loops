@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-phase-004-research-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Active causal-edge deletes still lack tombstones."
@@ -60,12 +60,12 @@ Phase 004 adds tombstone audit rows and routes every causal-edge deletion throug
 - [x] Phase 002 is recognized as a safety precondition for any reducer-origin edge creation.
 
 ### Definition of Done
-- [ ] Tombstone schema and indexes are additive.
-- [ ] A single sweep helper snapshots active edge data before deletion.
-- [ ] All active delete paths call the helper or explicitly document why they do not delete active causal rows.
-- [ ] Health auto-repair reports orphan edges before deleting them.
-- [ ] Manual unlink and stale cleanup produce tombstones with reasons.
-- [ ] Strict validation passes for this phase.
+- [x] Tombstone schema and indexes are additive.
+- [x] A single sweep helper snapshots active edge data before deletion.
+- [x] All active delete paths call the helper or explicitly document why they do not delete active causal rows.
+- [x] Health auto-repair reports orphan edges before deleting them.
+- [x] Manual unlink and stale cleanup produce tombstones with reasons.
+- [x] Strict validation passes for this phase.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -114,29 +114,29 @@ Delete caller identifies edge ids or memory ids, sweep helper reads matching act
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Delete Inventory
-- [ ] Search active code for `DELETE FROM causal_edges`, `deleteEdge`, `deleteEdgesForMemory`, and orphan cleanup callers.
-- [ ] Record every caller and whether it deletes active causal rows.
-- [ ] Confirm transaction boundaries for memory delete and bulk delete.
+- [x] Search active code for `DELETE FROM causal_edges`, `deleteEdge`, `deleteEdgesForMemory`, and orphan cleanup callers.
+- [x] Record every caller and whether it deletes active causal rows.
+- [x] Confirm transaction boundaries for memory delete and bulk delete.
 
 ### Phase 2: Tombstone Foundation
-- [ ] Add tombstone table and lifecycle generation migration.
-- [ ] Add active-edge read helpers needed to snapshot before deletion.
-- [ ] Create sweep helper with transactional tombstone insert and active delete.
+- [x] Add tombstone table and lifecycle generation migration.
+- [x] Add active-edge read helpers needed to snapshot before deletion.
+- [x] Create sweep helper with transactional tombstone insert and active delete.
 
 ### Phase 3: Caller Integration
-- [ ] Route memory delete through sweep helper.
-- [ ] Route bulk delete through sweep helper.
-- [ ] Route stale memory-index cleanup through sweep helper.
-- [ ] Route manual unlink through sweep helper.
-- [ ] Route health auto-repair orphan cleanup through sweep helper.
-- [ ] Confirm CLI bulk-delete uses the same underlying helper path.
+- [x] Route memory delete through sweep helper.
+- [x] Route bulk delete through sweep helper.
+- [x] Route stale memory-index cleanup through sweep helper.
+- [x] Route manual unlink through sweep helper.
+- [x] Route health auto-repair orphan cleanup through sweep helper.
+- [x] Confirm CLI bulk-delete uses the same underlying helper path.
 
 ### Phase 4: Verification
-- [ ] Test single-memory delete tombstones incoming and outgoing edges.
-- [ ] Test bulk delete creates one tombstone per removed edge.
-- [ ] Test manual unlink records reason and restore metadata.
-- [ ] Test health auto-repair reports before deletion and tombstones when confirmed.
-- [ ] Run strict validation for this phase.
+- [x] Test single-memory delete tombstones incoming and outgoing edges.
+- [x] Test bulk delete creates one tombstone per removed edge.
+- [x] Test manual unlink records reason and restore metadata.
+- [x] Test health auto-repair reports before deletion and tombstones when confirmed.
+- [x] Run strict validation for this phase.
 <!-- /ANCHOR:phases -->
 
 ---

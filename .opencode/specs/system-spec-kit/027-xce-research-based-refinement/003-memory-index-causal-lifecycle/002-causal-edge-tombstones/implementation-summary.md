@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: 027/004 Causal Edge Tombstones"
-description: "Implementation evidence placeholder for the causal edge tombstones phase. No implementation changes are claimed until this file is completed after code and tests land."
+title: "Implementation Summary: Causal Edge Tombstones"
+description: "Completed implementation evidence for tombstone-backed causal edge deletion and orphan cleanup."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "specs/system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/002-causal-edge-tombstones"
-    last_updated_at: "2026-06-04T00:00:00Z"
-    last_updated_by: "gpt-5-5"
-    recent_action: "Planning docs updated"
-    next_safe_action: "Fill evidence after implementation lands"
+    last_updated_at: "2026-06-10T07:10:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented tombstone-backed causal edge deletion"
+    next_safe_action: "Proceed to metadata-edge promoter phase"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-phase-004-research-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,8 +38,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-causal-edge-tombstones |
-| **Completed** | 2026-05-13 |
+| **Spec Folder** | 002-causal-edge-tombstones |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +48,39 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Active causal-edge deletion now leaves an audit trail before the active row disappears. The active `causal_edges` table stays simple for graph reads, while `causal_edge_tombstones` preserves enough restore metadata to diagnose or reverse a bad cleanup inside a retention workflow.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Tombstone Sweep Foundation
 
-### [Feature Name]
+`lib/causal/sweep.ts` now centralizes read-before-delete behavior. It snapshots matching active edges, writes tombstones with a monotonic lifecycle generation per source/target/relation, hard-deletes by active edge id, and clears graph caches after durable deletes.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Delete Path Integration
+
+Every active production delete path now routes through the sweep helper directly or through the updated causal-edge storage wrappers. This includes single memory delete, folder/tier bulk delete, stale memory-index cleanup, manual unlink, health orphan repair, CLI cleanup, vector-index mutation cleanup, checkpoint scoped restore cleanup, and correction undo cleanup.
+
+### Health Reporting
+
+`memory_health` now reports orphan causal edges with endpoint state before repair. Confirmed auto-repair tombstones and deletes orphan active rows, records repaired/tombstoned counts, and leaves unconfirmed health reads non-destructive.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts` | Created | Central tombstone-then-delete helper and tombstone schema setup. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modified | Added additive v32 tombstone migration and compatibility footprint. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modified | Routed storage delete helpers and orphan cleanup through tombstones. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` | Modified | Replaced mutation cleanup raw causal-edge delete with sweep helper. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts` | Modified | Tombstones active causal edges during scoped restore cleanup. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts` | Modified | Tombstones correction-owned edge deletes during undo. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts` | Modified | Passes delete reason and restore context into causal cleanup. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modified | Passes bulk delete reason and restore context into causal cleanup. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Reports orphan edge samples and tombstones on confirmed repair. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts` | Modified | Manual unlink records tombstone reason and restore context. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | Stale cleanup tombstones with scan-specific context before memory-row delete. |
+| `.opencode/skills/system-spec-kit/mcp_server/cli.ts` | Modified | CLI bulk delete preserves helper semantics and restore context. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts` | Created | Covers single delete, bulk delete, manual unlink, and health orphan repair tombstones. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts` | Modified | Updates minimal compatible footprint for tombstone schema. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts` | Modified | Pins terminal schema version 32 and verifies v32 migration. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +88,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The change shipped as an additive schema migration and wrapper-level routing update. Existing active-edge reads keep using `causal_edges` without tombstone filters, while deletion paths now snapshot first and then hard-delete inside the same SQLite transaction where practical.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +101,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep active edges hard-deleted | Active graph reads stay fast and simple; audit lives in a separate tombstone table. |
+| Store restore metadata as compact JSON | The fixed tombstone columns stay small while restore workflows still get anchors, evidence, strength, creator, timestamps, command, and context. |
+| Use v32 additive migration | Existing active edges survive migration and only gain tombstone history when a post-migration delete occurs. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +116,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run build` | PASS: `tsc --build && node scripts/finalize-dist.mjs` exited 0. |
+| `npm exec vitest run tests/*causal*.vitest.ts tests/secret-scrubber.vitest.ts tests/vector-index-schema-compatibility.vitest.ts tests/vector-index-schema-migration-refinements.vitest.ts tests/vector-index-schema-incremental-foundation.vitest.ts` | PASS: 16 files, 325 tests. |
+| `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <modified code files>` | PASS: no output, exit 0. |
+| `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` | FAIL outside scope: only pre-existing `lib/storage/canonical-fingerprint.ts` and `lib/storage/memo.ts` are missing module headers. |
+| Strict spec validation | PASS: strict validation passed with 0 errors and 0 warnings. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,13 +133,8 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. Historical active edges have no tombstone history for deletes that happened before v32. Audit begins at the first post-migration delete.
+2. The alignment drift checker still reports two out-of-scope module-header defects in files not touched by this phase.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->

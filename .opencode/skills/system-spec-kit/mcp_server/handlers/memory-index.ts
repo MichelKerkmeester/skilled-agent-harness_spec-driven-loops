@@ -24,6 +24,7 @@ import * as checkpoints from '../lib/storage/checkpoints.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import * as embeddings from '../lib/providers/embeddings.js';
 import * as incrementalIndex from '../lib/storage/incremental-index.js';
+import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
 import { repairIncompleteMarkers } from './save/enrichment-state.js';
@@ -466,9 +467,23 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
     for (const staleRecordId of recordIds) {
       try {
-        const staleSnapshot = vectorIndex.getDb()?.prepare(
+        const database = vectorIndex.getDb();
+        const staleSnapshot = database?.prepare(
           'SELECT spec_folder, file_path FROM memory_index WHERE id = ?'
         ).get(staleRecordId) as { spec_folder?: string | null; file_path?: string | null } | undefined;
+
+        if (database) {
+          causalEdges.init(database);
+          causalEdges.deleteEdgesForMemory(String(staleRecordId), {
+            reason: 'memory_index stale record cleanup',
+            command: 'memory-index.deleteIndexedRecordIds',
+            restoreContext: {
+              memoryId: staleRecordId,
+              specFolder: staleSnapshot?.spec_folder ?? null,
+              filePath: staleSnapshot?.file_path ?? null,
+            },
+          });
+        }
 
         if (vectorIndex.deleteMemory(staleRecordId)) {
           deleted++;

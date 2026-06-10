@@ -36,6 +36,7 @@ import { runLineageBackfill } from './lineage-state.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../utils/index-scope.js';
 import { reopenActiveDatabase } from '../search/vector-index-store.js';
 import { SCHEMA_VERSION } from '../search/vector-index-schema.js';
+import { sweepCausalEdges } from '../causal/sweep.js';
 
 function batchedInQuery<T>(db: Database.Database, sql: string, ids: (number | string)[], batchSize = 500): T[] {
   const results: T[] = [];
@@ -1641,6 +1642,28 @@ function clearTableForRestoreScope(
     return;
   }
 
+  if (tableName === 'causal_edges') {
+    if (!checkpointSpecFolder && !hasScope && allowFullTableFallback) {
+      sweepCausalEdges(database, {
+        whereSql: '1 = 1',
+        reason: 'checkpoint restore causal edge reset',
+        command: 'checkpoints.clearTableForRestoreScope',
+        restoreContext: { checkpointSpecFolder, scope: normalizedScope },
+      });
+      return;
+    }
+
+    if (memoryIds.length > 0) {
+      sweepCausalEdges(database, {
+        memoryIds,
+        reason: 'checkpoint restore scoped causal cleanup',
+        command: 'checkpoints.clearTableForRestoreScope',
+        restoreContext: { checkpointSpecFolder, scope: normalizedScope },
+      });
+    }
+    return;
+  }
+
   if (!checkpointSpecFolder && !hasScope && allowFullTableFallback) {
     clearTable(database, tableName);
     return;
@@ -1662,19 +1685,6 @@ function clearTableForRestoreScope(
 
   if (tableName === 'vec_memories') {
     deleteRowsByIds(database, 'vec_memories', 'rowid', memoryIds);
-    return;
-  }
-
-  if (tableName === 'causal_edges') {
-    // Use the passed `database` handle directly. Delegating through
-    // module-level `db` helpers in causal-edges.ts caused scoped restores to
-    // delete from the wrong database handle.
-    if (memoryIds.length > 0 && tableExists(database, 'causal_edges')) {
-      const idSet = Array.from(new Set(memoryIds.map(String)));
-      for (const memoryId of idSet) {
-        database.prepare('DELETE FROM causal_edges WHERE source_id = ? OR target_id = ?').run(memoryId, memoryId);
-      }
-    }
     return;
   }
 

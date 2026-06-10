@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "027-xce-research-based-refinement/003-memory-index-causal-lifecycle/002-causal-edge-tombstones"
-    last_updated_at: "2026-06-05T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Applied 2026-06-05 audit rescope: caller inventory + lifecycle note"
-    next_safe_action: "Inventory all delete paths then build tombstone schema"
+    last_updated_at: "2026-06-10T07:10:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented tombstone-backed causal edge deletion"
+    next_safe_action: "Proceed to metadata-edge promoter phase"
     blockers: []
     key_files:
       - "lib/search/vector-index-schema.ts"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-004-spec-authoring"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions:
       - "retention window"
     answered_questions:
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Target Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-13 |
 | **Branch** | `scaffold/004-causal-edge-tombstones` |
 | **Parent Spec** | ../spec.md |

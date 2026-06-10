@@ -5,6 +5,7 @@
 import type Database from 'better-sqlite3';
 import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { clearDegreeCacheForDb } from '../search/graph-search-fn.js';
+import { sweepCausalEdges } from '../causal/sweep.js';
 
 /* ───────────────────────────────────────────────────────────────
    TYPE DEFINITIONS
@@ -616,39 +617,54 @@ export function undo_correction(correction_id: number): UndoResult {
         const undoRelation = map_correction_type_to_relation(correction.correction_type);
         const ownedEdgeEvidencePrefix = `Correction#${correction_id}:`;
 
-        // Undo_correction throws when db is not initialized before creating this transaction
-        const deleteResult = db!.prepare(`
-          DELETE FROM causal_edges
-          WHERE source_id = ?
+        const deleteResult = sweepCausalEdges(db!, {
+          whereSql: `
+          source_id = ?
             AND target_id = ?
             AND relation = ?
             AND evidence LIKE ?
-        `).run(
-          String(correction.correction_memory_id),
-          String(correction.original_memory_id),
-          undoRelation,
-          `${ownedEdgeEvidencePrefix}%`
-        );
-        invalidateGraphCaches(db!);
-
-        if ((deleteResult as { changes: number }).changes === 0) {
-          const legacyEdgeEvidence = build_legacy_edge_evidence(correction.correction_type, correction.reason);
-
-          const legacyDeleteResult = db!.prepare(`
-            DELETE FROM causal_edges
-            WHERE source_id = ?
-              AND target_id = ?
-              AND relation = ?
-              AND evidence = ?
-          `).run(
+        `,
+          params: [
             String(correction.correction_memory_id),
             String(correction.original_memory_id),
             undoRelation,
-            legacyEdgeEvidence
-          );
+            `${ownedEdgeEvidencePrefix}%`,
+          ],
+          reason: 'correction undo causal cleanup',
+          command: 'corrections.undo_correction',
+          restoreContext: { correctionId: correction_id, legacyEvidence: false },
+          invalidateCaches: false,
+        });
+        if (deleteResult.deleted > 0) {
           invalidateGraphCaches(db!);
+        }
 
-          if ((legacyDeleteResult as { changes: number }).changes === 0) {
+        if (deleteResult.deleted === 0) {
+          const legacyEdgeEvidence = build_legacy_edge_evidence(correction.correction_type, correction.reason);
+
+          const legacyDeleteResult = sweepCausalEdges(db!, {
+            whereSql: `
+            source_id = ?
+              AND target_id = ?
+              AND relation = ?
+              AND evidence = ?
+          `,
+            params: [
+              String(correction.correction_memory_id),
+              String(correction.original_memory_id),
+              undoRelation,
+              legacyEdgeEvidence,
+            ],
+            reason: 'correction undo legacy causal cleanup',
+            command: 'corrections.undo_correction',
+            restoreContext: { correctionId: correction_id, legacyEvidence: true },
+            invalidateCaches: false,
+          });
+          if (legacyDeleteResult.deleted > 0) {
+            invalidateGraphCaches(db!);
+          }
+
+          if (legacyDeleteResult.deleted === 0) {
             console.warn(`[corrections] undo: no causal edge found for (${correction.correction_memory_id} → ${correction.original_memory_id}, relation=${undoRelation})`);
           }
         }

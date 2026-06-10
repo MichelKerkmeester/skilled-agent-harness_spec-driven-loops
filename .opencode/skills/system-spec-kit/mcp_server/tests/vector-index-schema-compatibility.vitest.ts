@@ -8,8 +8,9 @@ describe('Vector index schema compatibility validator', () => {
     try {
       const report = validateBackwardCompatibility(db);
       expect(report.compatible).toBe(false);
-      expect(report.missingTables).toEqual(['memory_index', 'schema_version']);
+      expect(report.missingTables).toEqual(['memory_index', 'schema_version', 'causal_edge_tombstones']);
       expect(report.missingColumns.memory_index).toContain('spec_folder');
+      expect(report.missingColumns.causal_edge_tombstones).toContain('restore_metadata');
     } finally {
       db.close();
     }
@@ -130,6 +131,23 @@ describe('Vector index schema compatibility validator', () => {
         );
         CREATE INDEX idx_conflicts_memory ON memory_conflicts(existing_memory_id);
         CREATE INDEX idx_conflicts_timestamp ON memory_conflicts(timestamp DESC);
+
+        CREATE TABLE causal_edge_tombstones (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          source_id TEXT NOT NULL,
+          target_id TEXT NOT NULL,
+          relation TEXT NOT NULL,
+          tombstoned_at TEXT NOT NULL,
+          reason TEXT NOT NULL,
+          lifecycle_generation INTEGER NOT NULL,
+          restore_metadata TEXT NOT NULL
+        );
+        CREATE INDEX idx_causal_edge_tombstones_identity
+          ON causal_edge_tombstones(source_id, target_id, relation, lifecycle_generation DESC);
+        CREATE INDEX idx_causal_edge_tombstones_tombstoned_at
+          ON causal_edge_tombstones(tombstoned_at DESC);
+        CREATE INDEX idx_causal_edge_tombstones_reason
+          ON causal_edge_tombstones(reason);
       `);
 
       const report = validateBackwardCompatibility(db);

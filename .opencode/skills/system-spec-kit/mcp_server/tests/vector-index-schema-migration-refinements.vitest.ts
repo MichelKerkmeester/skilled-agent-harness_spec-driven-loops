@@ -389,7 +389,7 @@ describe('vector-index schema migration refinements', () => {
 
     // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(31);
+    expect(versionRow.version).toBe(32);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
@@ -435,5 +435,50 @@ describe('vector-index schema migration refinements', () => {
     const degraded = validateBackwardCompatibility(database);
     expect(degraded.compatible).toBe(false);
     expect(degraded.missingIndexes).toContain('idx_memory_logical_key_active_unique');
+  });
+
+  it('creates causal edge tombstone schema during the v32 upgrade without touching active edges', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    database.exec('DROP TABLE IF EXISTS causal_edge_tombstones');
+    database.prepare('UPDATE schema_version SET version = 31 WHERE id = 1').run();
+    database.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, evidence, created_by)
+      VALUES (?, ?, ?, ?, ?)
+    `).run('101', '102', 'supports', 'active edge survives migration', 'vitest');
+
+    ensureSchemaVersion(database);
+
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(versionRow.version).toBe(32);
+
+    const columns = (database.prepare('PRAGMA table_info(causal_edge_tombstones)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining([
+      'id',
+      'source_id',
+      'target_id',
+      'relation',
+      'tombstoned_at',
+      'reason',
+      'lifecycle_generation',
+      'restore_metadata',
+    ]));
+
+    const indexes = (database.prepare(`
+      SELECT name FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'causal_edge_tombstones'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexes).toEqual(expect.arrayContaining([
+      'idx_causal_edge_tombstones_identity',
+      'idx_causal_edge_tombstones_tombstoned_at',
+      'idx_causal_edge_tombstones_reason',
+    ]));
+
+    const activeCount = database.prepare('SELECT COUNT(*) AS count FROM causal_edges').get() as { count: number };
+    const tombstoneCount = database.prepare('SELECT COUNT(*) AS count FROM causal_edge_tombstones').get() as { count: number };
+    expect(activeCount.count).toBe(1);
+    expect(tombstoneCount.count).toBe(0);
   });
 });

@@ -18,6 +18,7 @@ import {
 } from './vector-index-types.js';
 import { init as initHistory } from '../storage/history.js';
 import { getSpecsBasePaths } from './folder-discovery.js';
+import { ensureCausalEdgeTombstoneSchema } from '../causal/sweep.js';
 
 // Feature catalog: Database and schema safety
 // Feature catalog: Lineage state active projection and asOf resolution
@@ -48,7 +49,7 @@ const MEMORY_LINEAGE_TABLE = 'memory_lineage';
 const ACTIVE_MEMORY_PROJECTION_TABLE = 'active_memory_projection';
 const LEGACY_MEMORY_LINEAGE_TABLE = 'hydra_memory_lineage';
 const LEGACY_ACTIVE_MEMORY_PROJECTION_TABLE = 'hydra_active_memory_projection';
-const REQUIRED_TABLES: readonly string[] = ['memory_index', 'schema_version'];
+const REQUIRED_TABLES: readonly string[] = ['memory_index', 'schema_version', 'causal_edge_tombstones'];
 const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_index: [
     'idx_stability',
@@ -70,6 +71,11 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_conflicts: [
     'idx_conflicts_memory',
     'idx_conflicts_timestamp',
+  ],
+  causal_edge_tombstones: [
+    'idx_causal_edge_tombstones_identity',
+    'idx_causal_edge_tombstones_tombstoned_at',
+    'idx_causal_edge_tombstones_reason',
   ],
 };
 const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
@@ -106,6 +112,16 @@ const REQUIRED_MEMORY_CONFLICT_COLUMNS: readonly string[] = [
   'contradiction_type',
   'spec_folder',
   'created_at',
+];
+const REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS: readonly string[] = [
+  'id',
+  'source_id',
+  'target_id',
+  'relation',
+  'tombstoned_at',
+  'reason',
+  'lifecycle_generation',
+  'restore_metadata',
 ];
 const REQUIRED_LINEAGE_TABLES: readonly string[] = [
   MEMORY_LINEAGE_TABLE,
@@ -540,8 +556,9 @@ function getMigrationAllowedBasePaths(): string[] {
 // V24: Add trigger-cache source and temporal contiguity indexes
 // V30: Add post-insert enrichment completion markers
 // V31: Add incremental-index memo tables and chunk metadata
+// V32: Add causal edge tombstone audit table
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 31;
+export const SCHEMA_VERSION = 32;
 
 /**
  * Deprecate-before-create pre-pass for the active-row logical-key unique index.
@@ -1638,6 +1655,11 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v31: Created incremental-index foundation schema');
   };
 
+  migrations[32] = () => {
+    ensureCausalEdgeTombstoneSchema(database, 'Migration v32');
+    logger.info('Migration v32: Created causal edge tombstone schema');
+  };
+
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -1932,6 +1954,16 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       if (absentColumns.length > 0) {
         missingColumns.memory_conflicts = absentColumns;
       }
+    }
+
+    if (hasTable(database, 'causal_edge_tombstones')) {
+      const existingColumns = new Set(getTableColumns(database, 'causal_edge_tombstones'));
+      const absentColumns = REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.causal_edge_tombstones = absentColumns;
+      }
+    } else {
+      missingColumns.causal_edge_tombstones = [...REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS];
     }
 
     for (const [tableName, requiredIndexes] of Object.entries(REQUIRED_INDEXES_BY_TABLE)) {
@@ -2677,6 +2709,7 @@ export function create_schema(
     ensureCompanionTables(database);
     ensureLineageTables(database);
     ensureGovernanceTables(database);
+    ensureCausalEdgeTombstoneSchema(database, 'create_schema');
     const compatibility = validate_backward_compatibility(database);
     if (!compatibility.compatible) {
       logger.warn(
@@ -2822,6 +2855,7 @@ export function create_schema(
   ensureLineageTables(database);
   ensureGovernanceTables(database);
   ensureIncrementalIndexFoundationSchema(database, 'create_schema');
+  ensureCausalEdgeTombstoneSchema(database, 'create_schema');
 
   // the rollout — create embedding_cache table
   ensureEmbeddingCacheSchema(database);

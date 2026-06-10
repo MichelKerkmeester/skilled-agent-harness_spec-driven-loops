@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/002-causal-edge-tombstones",
   "description": "Feature Specification: 004 — Causal Edge Tombstones",
   "keywords": [
@@ -10,7 +10,7 @@
     "edge",
     "tombstones"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.196Z",
+  "lastUpdated": "2026-06-10T07:10:00.000Z",
   "specId": "002",
   "folderSlug": "causal-edge-tombstones",
   "parentChain": [

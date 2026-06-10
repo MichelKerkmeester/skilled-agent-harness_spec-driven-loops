@@ -19,6 +19,7 @@ import { isIndexableConstitutionalMemoryPath } from '../utils/index-scope.js';
 import { createLogger } from '../utils/logger.js';
 import { deleteByContentHash } from '../cache/embedding-cache.js';
 import { clearDegreeCacheForDb } from './graph-search-fn.js';
+import { sweepCausalEdges } from '../causal/sweep.js';
 import * as bm25Index from './bm25-index.js';
 import {
   clear_search_cache,
@@ -135,13 +136,16 @@ function deleteAncillaryMemoryRows(database: Database.Database, id: number): voi
   }
 
   try {
-    const memoryIdText = String(id);
-    database.prepare(`
-      DELETE FROM causal_edges
-      WHERE source_id IN (?, ?)
-         OR target_id IN (?, ?)
-    `).run(id, memoryIdText, id, memoryIdText);
-    invalidateGraphCaches(database);
+    const result = sweepCausalEdges(database, {
+      memoryIds: [id, String(id)],
+      reason: 'memory row mutation cleanup',
+      command: 'vector-index-mutations.deleteAncillaryMemoryRows',
+      restoreContext: { memoryId: id },
+      invalidateCaches: false,
+    });
+    if (result.deleted > 0) {
+      invalidateGraphCaches(database);
+    }
   } catch (_error: unknown) {
     // Best-effort for legacy databases that may not have causal edges yet.
   }

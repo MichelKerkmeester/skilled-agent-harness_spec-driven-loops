@@ -39,7 +39,7 @@
       "tombstone"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "completed",
     "key_files": [
       "handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",

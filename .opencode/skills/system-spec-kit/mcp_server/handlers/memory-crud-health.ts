@@ -706,6 +706,19 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     vecRowsTotal: null as number | null,
     mismatchedIds: [] as Array<string | number>,
   };
+  const causalEdgeHealth = {
+    orphanedEdges: 0,
+    sample: [] as Array<{
+      edgeId: number;
+      sourceId: string;
+      targetId: string;
+      relation: string;
+      sourceExists: boolean;
+      targetExists: boolean;
+    }>,
+    repaired: 0,
+    tombstoned: 0,
+  };
   const repair = {
     requested: autoRepair,
     attempted: false,
@@ -781,6 +794,32 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     }
   }
 
+  if (database) {
+    try {
+      causalEdges.init(database);
+      const orphanedEdges = causalEdges.findOrphanedEdges();
+      causalEdgeHealth.orphanedEdges = orphanedEdges.length;
+      if (orphanedEdges.length > 0) {
+        const memoryExistsStmt = database.prepare('SELECT 1 AS present FROM memory_index WHERE CAST(id AS TEXT) = ? LIMIT 1');
+        for (const edge of orphanedEdges.slice(0, safeLimit)) {
+          causalEdgeHealth.sample.push({
+            edgeId: edge.id,
+            sourceId: edge.source_id,
+            targetId: edge.target_id,
+            relation: edge.relation,
+            sourceExists: !!(memoryExistsStmt.get(edge.source_id) as { present?: number } | undefined),
+            targetExists: !!(memoryExistsStmt.get(edge.target_id) as { present?: number } | undefined),
+          });
+        }
+        consistency.status = 'degraded';
+        consistency.mismatchedIds.push(`orphan_causal_edges:${orphanedEdges.length}`);
+        hints.push(`${orphanedEdges.length} orphaned causal edge(s) detected; inspect data.causalEdges.sample.`);
+      }
+    } catch (error: unknown) {
+      hints.push(`Causal edge orphan check failed: ${sanitizeErrorForHint(toErrorMessage(error))}`);
+    }
+  }
+
   const status = database && consistency.status === 'healthy' ? 'healthy' : 'degraded';
   const summary = `Memory system ${status}: ${memoryCount} memories indexed`;
   if (consistency.status === 'degraded') {
@@ -798,6 +837,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         autoRepairRequested: true,
         needsConfirmation: true,
         actions: repairActions,
+        causalEdges: causalEdgeHealth,
         process: processHealth,
         index: indexHealth,
         embeddingRetry,
@@ -872,9 +912,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       causalEdges.init(database);
       const orphanResult = causalEdges.cleanupOrphanedEdges();
       if (orphanResult.deleted > 0) {
+        causalEdgeHealth.repaired = orphanResult.deleted;
+        causalEdgeHealth.tombstoned = orphanResult.tombstoned;
         trackRepairOutcome(true);
         repair.actions.push(`orphan_edges_cleaned:${orphanResult.deleted}`);
-        hints.push(`Auto-repair: removed ${orphanResult.deleted} orphaned causal edge(s)`);
+        repair.actions.push(`orphan_edges_tombstoned:${orphanResult.tombstoned}`);
+        hints.push(`Auto-repair: tombstoned and removed ${orphanResult.deleted} orphaned causal edge(s)`);
       }
     } catch (orphanError: unknown) {
       trackRepairOutcome(false);
@@ -972,6 +1015,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       reportMode: 'full',
       aliasConflicts,
       consistency,
+      causalEdges: causalEdgeHealth,
       repair,
       embeddingProvider: {
         provider: providerName,
