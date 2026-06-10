@@ -28,6 +28,7 @@ import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import { promoteMetadataEdges } from '../lib/causal/frontmatter-promoter.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
+import { createStatediffAction } from '../lib/storage/statediff.js';
 import { repairIncompleteMarkers } from './save/enrichment-state.js';
 import {
   findConstitutionalFiles,
@@ -53,6 +54,7 @@ import { validateGovernedIngest } from '../lib/governance/scope-governance.js';
 
 // Shared handler types
 import type { MCPResponse, EmbeddingProfile } from './types.js';
+import type { StatediffAction } from '../lib/storage/statediff.js';
 
 // Feature catalog: Workspace scanning and indexing (memory_index_scan)
 // Feature catalog: Async ingestion job lifecycle
@@ -192,6 +194,7 @@ interface ScanKeyOptions {
 interface RecordDeleteResult {
   deleted: number;
   failed: number;
+  actions: StatediffAction[];
 }
 
 interface OrphanSweepDeleteResult {
@@ -199,6 +202,7 @@ interface OrphanSweepDeleteResult {
   failed: number;
   scannedRows: number;
   nextCursor: number | null;
+  actions: StatediffAction[];
 }
 
 interface OrphanSweepCandidates {
@@ -469,11 +473,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   const deleteIndexedRecordIds = (recordIds: number[]): RecordDeleteResult => {
     if (recordIds.length === 0) {
-      return { deleted: 0, failed: 0 };
+      return { deleted: 0, failed: 0, actions: [] };
     }
 
     let deleted = 0;
     let failed = 0;
+    const actions: StatediffAction[] = [];
 
     for (const staleRecordId of recordIds) {
       try {
@@ -497,6 +502,17 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
         if (vectorIndex.deleteMemory(staleRecordId)) {
           deleted++;
+          actions.push(createStatediffAction('delete', {
+            target: 'memory_index',
+            key: String(staleRecordId),
+            sourceOperation: 'scan',
+            oldStateHash: null,
+            newStateHash: null,
+            metadata: {
+              filePath: staleSnapshot?.file_path ?? null,
+              specFolder: staleSnapshot?.spec_folder ?? null,
+            },
+          }));
           // Record DELETE history only after confirmed deletion.
           try {
             recordHistory(
@@ -518,12 +534,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       }
     }
 
-    return { deleted, failed };
+    return { deleted, failed, actions };
   };
 
   const deleteStaleIndexedRecords = (paths: string[]): RecordDeleteResult => {
     if (paths.length === 0) {
-      return { deleted: 0, failed: 0 };
+      return { deleted: 0, failed: 0, actions: [] };
     }
 
     return deleteIndexedRecordIds(incrementalIndex.listIndexedRecordIdsForDeletedPaths(paths));
@@ -531,7 +547,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   const runGlobalOrphanSweep = (): OrphanSweepDeleteResult => {
     if (!('sweepOrphanIndexRows' in incrementalIndex)) {
-      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null };
+      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
     }
 
     const sweepOrphanIndexRows = (incrementalIndex as {
@@ -539,7 +555,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }).sweepOrphanIndexRows;
 
     if (typeof sweepOrphanIndexRows !== 'function') {
-      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null };
+      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
     }
 
     const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT });
@@ -549,15 +565,24 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       failed: deleteResult.failed,
       scannedRows: sweep.scannedRows,
       nextCursor: sweep.nextCursor,
+      actions: deleteResult.actions,
     };
   };
 
-  const runScanInvalidationHooks = (context: Record<string, unknown>): void => {
+  const runScanInvalidationHooks = (context: Record<string, unknown>, actions: readonly StatediffAction[]): void => {
     try {
-      runPostMutationHooks('scan', context);
+      runPostMutationHooks('scan', { ...context, statediffActions: actions });
     } catch (error: unknown) {
       console.warn('[memory-index-scan] Post-mutation invalidation failed:', toErrorMessage(error));
     }
+  };
+
+  const runScanHygieneSubscribers = (actions: readonly StatediffAction[]): void => {
+    if (actions.length === 0) {
+      return;
+    }
+    results.aliasConflicts = detectAliasConflictsFromIndex();
+    results.divergenceReconcile = runDivergenceReconcileHooks(results.aliasConflicts);
   };
 
   const runPostInsertEnrichmentRepairBackfill = async (): Promise<number> => {
@@ -588,7 +613,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       staleDeleted = staleDeleteResult.deleted;
       staleDeleteFailed = staleDeleteResult.failed;
       if (staleDeleted > 0) {
-        runScanInvalidationHooks({ staleDeleted, staleDeleteFailed, operation: 'stale-delete' });
+        runScanInvalidationHooks({ staleDeleted, staleDeleteFailed, operation: 'stale-delete' }, staleDeleteResult.actions);
       }
     }
 
@@ -597,13 +622,18 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         orphanSwept: orphanSweepResult.swept,
         orphanSweepFailed: orphanSweepResult.failed,
         operation: 'orphan-sweep',
-      });
+      }, orphanSweepResult.actions);
     }
     if (postInsertEnrichmentRepaired > 0) {
       runScanInvalidationHooks({
         postInsertEnrichmentRepaired,
         operation: 'post-insert-enrichment-repair',
-      });
+      }, [createStatediffAction('upsert', {
+        target: 'graph_edge',
+        key: 'post-insert-enrichment-repair',
+        sourceOperation: 'scan',
+        metadata: { postInsertEnrichmentRepaired },
+      })]);
     }
 
     await releaseScanLease();
@@ -692,6 +722,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     warnings: walkerWarnings,
     capExceeded: walkerCapExceeded,
   };
+  const scanAppliedActions: StatediffAction[] = [];
 
   let filesToIndex: string[] = files;
   let filesToDelete: string[] = [];
@@ -731,6 +762,24 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       filesToIndex = moveResult.filteredToIndex;
       console.error(`[memory-index-scan] Move reconciled ${moveResult.reconciled.length} path(s) in place`);
     }
+  }
+
+  const plannedScanActions = [
+    ...filesToIndex.map((filePath) => createStatediffAction('upsert', {
+      target: 'memory_index',
+      key: getCachedKey(filePath),
+      sourceOperation: 'scan',
+      metadata: { filePath },
+    })),
+    ...filesToDelete.map((filePath) => createStatediffAction('delete', {
+      target: 'memory_index',
+      key: getCachedKey(filePath),
+      sourceOperation: 'scan',
+      metadata: { filePath },
+    })),
+  ];
+  if (plannedScanActions.length > 0) {
+    console.error(`[memory-index-scan] Statediff plan: ${plannedScanActions.length} action(s) before scan writes`);
   }
 
   // Track successfully indexed files for post-indexing mtime update.
@@ -793,15 +842,33 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         if (result.status === 'indexed') {
           results.indexed++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('insert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         } else if (result.status === 'updated') {
           results.updated++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('upsert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         } else if (result.status === 'unchanged') {
           results.unchanged++;
           successfullyIndexedFiles.push(filePath);
         } else if (result.status === 'reinforced') {
           results.updated++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('upsert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         } else if (result.status === 'duplicate') {
           results.unchanged++;
           successfullyIndexedFiles.push(filePath);
@@ -809,6 +876,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
           results.indexed++;
           results.deferred++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('insert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         }
 
         if (isConstitutional) {
@@ -901,6 +974,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       const staleDeleteResult = deleteStaleIndexedRecords(filesToDelete);
       results.staleDeleted = staleDeleteResult.deleted;
       results.staleDeleteFailed = staleDeleteResult.failed;
+      scanAppliedActions.push(...staleDeleteResult.actions);
     } else {
       console.warn('[memory-index-scan] Deferring stale cleanup because one or more replacement files failed to index');
     }
@@ -911,8 +985,17 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   results.orphanSweepFailed = orphanSweepResult.failed;
   results.orphanSweepScanned = orphanSweepResult.scannedRows;
   results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
+  scanAppliedActions.push(...orphanSweepResult.actions);
 
   results.postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
+  if (results.postInsertEnrichmentRepaired > 0) {
+    scanAppliedActions.push(createStatediffAction('upsert', {
+      target: 'graph_edge',
+      key: 'post-insert-enrichment-repair',
+      sourceOperation: 'scan',
+      metadata: { postInsertEnrichmentRepaired: results.postInsertEnrichmentRepaired },
+    }));
+  }
 
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
@@ -999,11 +1082,10 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
             orphanSweepFailed: results.orphanSweepFailed,
           }
         : {}),
-    });
+    }, scanAppliedActions);
   }
 
-  results.aliasConflicts = detectAliasConflictsFromIndex();
-  results.divergenceReconcile = runDivergenceReconcileHooks(results.aliasConflicts);
+  runScanHygieneSubscribers(scanAppliedActions);
 
   const summary = `Scan complete: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.orphanSwept} orphan swept, ${results.failed} failed`;
 

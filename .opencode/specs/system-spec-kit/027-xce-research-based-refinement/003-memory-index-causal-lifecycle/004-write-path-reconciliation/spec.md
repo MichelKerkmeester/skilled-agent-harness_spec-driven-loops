@@ -12,12 +12,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "027-xce-research-based-refinement/003-memory-index-causal-lifecycle/004-write-path-reconciliation"
-    last_updated_at: "2026-06-05T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Applied 2026-06-05 audit rescope: async post-insert enrichment"
-    next_safe_action: "Model durable statediff as same-response; enrichment via async marker"
-    blockers:
-      - "003"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Shipped statediff action batches and subscribers"
+    next_safe_action: "Use explicit action batches for future write paths"
+    blockers: []
     key_files:
       - "lib/storage/statediff.ts"
       - "handlers/memory-index.ts"
@@ -26,9 +25,8 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-006-spec-authoring"
       parent_session_id: null
-    completion_pct: 10
-    open_questions:
-      - "sink order"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "hooks become subscribers"
 ---
@@ -46,7 +44,7 @@ _memory:
 |-------|-------|
 | **Target Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-13 |
 | **Branch** | `scaffold/006-write-path-reconciliation` |
 | **Parent Spec** | ../spec.md |

@@ -15,6 +15,7 @@ import { appendMutationLedgerSafe } from '../memory-crud-utils.js';
 import { runPostMutationHooks } from '../mutation-hooks.js';
 import type { MCPResponse } from '../types.js';
 import { buildMutationHookFeedback } from '../../hooks/mutation-feedback.js';
+import { createStatediffAction } from '../../lib/storage/statediff.js';
 import type {
   AssistiveRecommendation,
   IndexResult,
@@ -630,7 +631,21 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
   if (shouldEmitPostMutationFeedback) {
     let postMutationHooks: import('../mutation-hooks.js').MutationHookResult;
     try {
-      postMutationHooks = runPostMutationHooks('save', { specFolder: result.specFolder, filePath });
+      postMutationHooks = runPostMutationHooks('save', {
+        specFolder: result.specFolder,
+        filePath,
+        memoryId: result.id,
+        statediffActions: [createStatediffAction('upsert', {
+          target: 'memory_index',
+          key: String(result.id),
+          sourceOperation: 'save',
+          metadata: {
+            specFolder: result.specFolder ?? null,
+            filePath: filePath ?? null,
+            status: result.status ?? null,
+          },
+        })],
+      });
     } catch (hookError: unknown) {
       const msg = hookError instanceof Error ? hookError.message : String(hookError);
       postMutationHooks = {

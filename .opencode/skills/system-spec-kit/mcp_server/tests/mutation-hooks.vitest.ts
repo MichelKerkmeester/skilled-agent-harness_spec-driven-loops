@@ -90,10 +90,10 @@ describe('Mutation hooks', () => {
     expect(result.constitutionalCacheCleared).toBe(true);
     expect(result.graphSignalsCacheCleared).toBe(true);
     expect(result.coactivationCacheCleared).toBe(true);
-    expect(result.errors).toEqual(['triggerMatcher.clearCache: trigger cache failure']);
+    expect(result.errors).toEqual(['trigger-cache: trigger cache failure']);
 
     expect(warnSpy).toHaveBeenCalledWith(
-      '[mutation-hooks] triggerMatcher.clearCache failed for operation="update":',
+      '[mutation-hooks] subscriber "trigger-cache" failed for operation="update":',
       'trigger cache failure'
     );
 
@@ -113,9 +113,9 @@ describe('Mutation hooks', () => {
     const result = runPostMutationHooks('delete', { memoryId: 99 });
 
     expect(result.graphSignalsCacheCleared).toBe(false);
-    expect(result.errors).toContain('graphCacheInvalidation: degree cache failure');
+    expect(result.errors).toContain('graph-cache: degree cache failure');
     expect(warnSpy).toHaveBeenCalledWith(
-      '[mutation-hooks] graph cache invalidation failed for operation="delete":',
+      '[mutation-hooks] subscriber "graph-cache" failed for operation="delete":',
       'degree cache failure'
     );
   });

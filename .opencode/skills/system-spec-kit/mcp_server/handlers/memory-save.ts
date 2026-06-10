@@ -46,7 +46,6 @@ import {
   isSaveReconsolidationEnabled,
   resolveSavePlannerMode,
 } from '../lib/search/search-flags.js';
-import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 
 import { getCanonicalPathKey, resolveCanonicalPath } from '../lib/utils/canonical-path.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../lib/utils/index-scope.js';
@@ -164,6 +163,7 @@ import {
   type PostSavePlan,
 } from '../lib/validation/spec-doc-structure.js';
 import { detectSpecLevelFromParsed } from './handler-utils.js';
+import { createStatediffAction } from '../lib/storage/statediff.js';
 
 // Extracted sub-modules
 import { withSpecFolderLock } from './save/spec-folder-mutex.js';
@@ -193,18 +193,20 @@ const MANUAL_FALLBACK_SOURCE_CLASSIFICATION = 'manual-fallback' as const;
 export const MEMORY_INDEX_SCOPE_EXCLUDED_ERROR_CODE = 'E_MEMORY_INDEX_SCOPE_EXCLUDED';
 const ROUTED_CONTINUITY_ANCHOR_ID = '_memory.continuity';
 const tier3RoutingCache = new InMemoryRouterCache();
-let warnedEntityDensityInvalidationFailure = false;
 
-function invalidateEntityDensityCacheAfterSave(): void {
+function emitPostInsertEnrichmentSubscribers(memoryId: number, sourceOperation: string): void {
   try {
-    invalidateEntityDensityCache();
+    runPostMutationHooks(sourceOperation, {
+      memoryId,
+      statediffActions: [createStatediffAction('upsert', {
+        target: 'graph_edge',
+        key: String(memoryId),
+        sourceOperation,
+      })],
+    });
   } catch (err: unknown) {
-    if (warnedEntityDensityInvalidationFailure) {
-      return;
-    }
-    warnedEntityDensityInvalidationFailure = true;
     const message = err instanceof Error ? err.message : String(err);
-    console.warn(`[memory-save] Entity-density cache invalidation failed after save: ${message}`);
+    console.warn(`[memory-save] Post-insert enrichment subscriber dispatch failed: ${message}`);
   }
 }
 
@@ -2699,9 +2701,9 @@ async function processPreparedMemory(
         { plannerMode },
       );
       recordEnrichmentResult(database, id, postInsertEnrichmentResult);
+      emitPostInsertEnrichmentSubscribers(id, 'post-insert-enrichment');
     }
     const { causalLinksResult, enrichmentStatus, executionStatus } = postInsertEnrichmentResult;
-    invalidateEntityDensityCacheAfterSave();
 
     if (reconResult.assistiveRecommendation) {
       reconResult.assistiveRecommendation.advisory_stale = true;
@@ -2879,7 +2881,7 @@ function scheduleBackgroundEnrichment(
         }
         const result = await runPostInsertEnrichment(db, memoryId, parsed);
         recordEnrichmentResult(db, memoryId, result);
-        invalidateEntityDensityCacheAfterSave();
+        emitPostInsertEnrichmentSubscribers(memoryId, 'post-insert-enrichment-async');
       } catch (bgErr: unknown) {
         console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${bgErr instanceof Error ? bgErr.message : String(bgErr)}`);
       } finally {
@@ -3675,6 +3677,16 @@ async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOpt
             filePath: routedTargetDocPath,
             specFolder: indexResult.specFolder,
             memoryId: indexResult.id,
+            statediffActions: [createStatediffAction('upsert', {
+              target: 'memory_index',
+              key: String(indexResult.id),
+              sourceOperation: 'atomic-save',
+              metadata: {
+                filePath: routedTargetDocPath ?? null,
+                specFolder: indexResult.specFolder ?? null,
+                status: indexResult.status ?? null,
+              },
+            })],
           });
         } catch (hookError: unknown) {
           const msg = hookError instanceof Error ? hookError.message : String(hookError);

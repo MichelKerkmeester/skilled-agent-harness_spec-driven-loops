@@ -93,6 +93,7 @@ interface MutationLedgerInput {
 /** Result returned by post-mutation hooks (cache invalidation, etc.). */
 interface MutationHookResult {
   latencyMs: number;
+  actionCount?: number;
   triggerCacheCleared: boolean;
   constitutionalCacheCleared: boolean;
   toolCacheInvalidated: number;
@@ -101,6 +102,12 @@ interface MutationHookResult {
   // Optional so existing handlers and fallback literals that omit it keep
   // typechecking; only the shared post-mutation hook populates it today.
   entityDensityCacheCleared?: boolean;
+  subscribers?: Array<{
+    name: string;
+    actionCount: number;
+    ok: boolean;
+    error?: string;
+  }>;
   errors: string[];
 }
 

@@ -61,7 +61,10 @@ describe('Memory-save dedup ordering regressions', () => {
     // branch preserves the pending-then-record ordering this test guards.
     const runPostInsertIndex = source.indexOf('postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(');
     const recordResultIndex = source.indexOf('recordEnrichmentResult(database, id, postInsertEnrichmentResult);', runPostInsertIndex);
-    const invalidateIndex = source.indexOf('invalidateEntityDensityCacheAfterSave();', recordResultIndex);
+    const subscriberDispatchIndex = source.indexOf(
+      "emitPostInsertEnrichmentSubscribers(id, 'post-insert-enrichment');",
+      recordResultIndex,
+    );
 
     expect(transactionIndex).toBeGreaterThan(-1);
     expect(markPendingIndex).toBeGreaterThan(transactionIndex);
@@ -69,6 +72,6 @@ describe('Memory-save dedup ordering regressions', () => {
 
     expect(runPostInsertIndex).toBeGreaterThan(-1);
     expect(recordResultIndex).toBeGreaterThan(runPostInsertIndex);
-    expect(recordResultIndex).toBeLessThan(invalidateIndex);
+    expect(recordResultIndex).toBeLessThan(subscriberDispatchIndex);
   });
 });

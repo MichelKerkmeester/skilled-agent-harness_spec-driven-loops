@@ -1,34 +1,34 @@
 ---
 title: "Implementation Summary: 027/006 Write Path Reconciliation"
-description: "Implementation evidence placeholder for the write path reconciliation phase. No implementation changes are claimed until this file is completed after code and tests land."
+description: "Completed explicit statediff action planning and subscriber-based write-path reconciliation for Spec Kit Memory."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "statediff action batches shipped"
+  - "write path reconciliation implementation"
+  - "subscriber based mutation hooks"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/004-write-path-reconciliation"
-    last_updated_at: "2026-06-04T00:00:00Z"
-    last_updated_by: "gpt-5-5"
-    recent_action: "Planning docs updated"
-    next_safe_action: "Fill evidence after implementation lands"
+    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed statediff write-path reconciliation"
+    next_safe_action: "Use action batches for future write-path sinks"
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
+    key_files: ["statediff.ts", "mutation-hooks.ts", "memory-index.ts"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-04-027-phase-006-research-planning"
+      session_id: "2026-06-10-027-003-004-write-path-reconciliation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Statediff is explicit action/subscriber aid, not semantic truth."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
@@ -38,8 +38,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-write-path-reconciliation |
-| **Completed** | 2026-05-13 |
+| **Spec Folder** | 004-write-path-reconciliation |
+| **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +48,36 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Spec Kit Memory now has an explicit statediff layer for write-path planning and post-mutation subscribers. The layer does not decide semantic truth; handlers still make policy decisions first, then pass durable row actions to subscribers for cache and hygiene effects.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Deterministic Action Model
 
-### [Feature Name]
+`lib/storage/statediff.ts` defines target rows, `insert` / `upsert` / `replace` / `delete` actions, composite parent-child targets, sink interfaces, and subscriber interfaces. It sorts target rows deterministically and handles incomplete prior knowledge with `upsert`, so callers can use statediff safely as a planning aid even when they do not own full prior state.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Subscriber-Based Mutation Hooks
+
+`mutation-hooks.ts` now consumes explicit action batches. Trigger, tool, constitutional, graph, degree, and coactivation caches subscribe fail-safe to any non-empty applied action batch; entity-density subscribes to memory and graph actions. Graph and coactivation clears are deliberately not gated on graph-targeted actions: batches are an advisory aid and under-report cascaded causal-edge deletes (memory deletes cascade `deleteEdgesForMemory` while emitting only `memory_index` actions), so skipping would leave stale degree/graph-signal/co-activation caches. `mutation-feedback.ts` reports subscriber outcomes and action counts while preserving legacy response fields.
+
+### Handler Wiring
+
+`memory-index.ts` builds a scan action plan before write batches and passes applied insert/update/delete actions to subscribers after successful mutations. Stale cleanup still only runs when replacement indexing has no failures. `memory-save.ts`, `save/response-builder.ts`, and `memory-bulk-delete.ts` now emit explicit actions for save, atomic-save, async enrichment, and bulk-delete paths instead of calling entity-density invalidation inline.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/statediff.ts` | Created | Adds deterministic statediff planning, composite targets, sink interfaces, and subscriber interfaces. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts` | Modified | Converts post-mutation cache work into action-aware subscribers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts` | Modified | Extends mutation hook result metadata with action counts and subscriber reports. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts` | Modified | Reports subscriber-based mutation feedback while preserving legacy fields. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | Adds scan plan-before-write logging and action-batch subscriber dispatch. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified | Routes enrichment and atomic-save cache effects through statediff action subscribers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` | Modified | Routes normal save cache effects through statediff action subscribers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modified | Emits delete action batches for successful bulk deletes and removes inline entity-density invalidation. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/statediff.vitest.ts` | Created | Covers action variants, deterministic ordering, incomplete prior, composite targets, and sink application. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks-statediff.vitest.ts` | Created | Covers fail-safe subscriber dispatch for memory-index and causal-edge action batches. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/write-path-reconciliation.vitest.ts` | Created | Guards scan plan-before-write and handler action-batch wiring. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-dedup-order.vitest.ts` | Modified | Updates enrichment ordering regression for subscriber dispatch. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +85,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The implementation stayed additive and schema-free. Existing storage mutation functions remain the source of durable writes, and statediff describes what the handler already decided to apply. That keeps the prior incremental-index, tombstone, and frontmatter-promoter behavior intact while making cache and hygiene effects explicit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +93,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep statediff outside semantic policy | Prediction-error, deduplication, reconsolidation, and manual causal commands already decide intent; statediff should not reinterpret those decisions. |
+| Avoid a schema bump | The phase only needed runtime action batches and subscribers, not persisted action-plan storage. Current schema remains v33. |
+| Keep existing storage writes as target sinks for now | This reduces regression risk while introducing typed sink interfaces that future write paths can adopt incrementally. |
+| Treat async enrichment as a graph-action subscriber source | Durable save rows commit synchronously, and enrichment remains on the pending-marker replay path. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +106,13 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run build` | PASS: `tsc --build && node scripts/finalize-dist.mjs` exited 0. |
+| Focused Vitest suites | PASS: 9 files, 66 tests. |
+| Comment hygiene | PASS: modified TypeScript files produced no comment-hygiene output. |
+| OpenCode alignment verifier | FAIL outside scope: `canonical-fingerprint.ts` and `memo.ts` still lack module headers from prior phases. |
+| Strict spec validation | PASS: strict validation exited 0 after checklist and summary reconciliation. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,18 +120,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. Existing lower-level mutation helpers still perform some best-effort cache invalidation for legacy callers. This phase removed the requested handler-level inline save and bulk-delete entity-density invalidations and introduced subscriber wiring for the owned handler paths.
+2. The alignment verifier still reports two pre-existing module-header defects outside this phase's allowed write scope.
 <!-- /ANCHOR:limitations -->
 
 ---
 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
+Write in human voice: active, direct, specific. No em dash, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
