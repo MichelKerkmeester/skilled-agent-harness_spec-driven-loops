@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 2: idempotency-and-near-duplicate [template:level_1/implementation-summary.md]"
-description: "PLANNED STUB — not started. Phase 2 will add a server-derived idempotency receipt + pre-mutation replay wrapper, an advisory near_duplicate_of, and a last_dedup_checked_at marker. Nothing is implemented yet; this summary is filled when work completes."
+description: "Implemented server-derived idempotency receipts, replay/fail-closed handling, advisory near_duplicate_of, and last_dedup_checked_at markers behind SPECKIT_MEMORY_IDEMPOTENCY."
 trigger_phrases:
   - "memory save idempotency receipt summary"
   - "retry-safe memory write replay"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate"
-    last_updated_at: "2026-06-06T10:10:47Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffold Phase 2 planned-stub impl doc"
-    next_safe_action: "Plan or implement T001 receipt table + schema columns"
+    last_updated_at: "2026-06-10T11:05:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented idempotency receipts and near-duplicate hints"
+    next_safe_action: "Run next phase after validation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-idempotency-and-near-duplicate"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-idempotency-and-near-duplicate |
-| **Status** | Planned (not implemented) |
+| **Status** | Implemented |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -57,30 +57,37 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-Nothing is implemented yet. This is a planned-stub summary for Phase 2; it is filled in once the work below ships. The plan is to make `memory_save`/`memory_update` retry-safe with a server-derived idempotency receipt, surface near-duplicates as a single non-blocking advisory hint, and stamp a `last_dedup_checked_at` marker so unchanged rows are not rescanned — all riding the existing response envelope with zero added friction.
+`memory_save` and `memory_update` now have a default-off, server-derived idempotency path. When `SPECKIT_MEMORY_IDEMPOTENCY=true`, identical retries replay the stored MCP response with `replayed:true`, changed-payload retries fail closed with `idempotency_key_conflict`, and near-duplicates can surface as one advisory `near_duplicate_of` hint without rejecting or merging the write.
 
-### Planned: idempotency receipt + replay wrapper
+### Idempotency receipt + replay wrapper
 
-A minimal SQLite idempotency receipt, keyed by a server-derived operation/content/request fingerprint, plus a pre-mutation replay wrapper for `memory_save`/`memory_update`. The intent: an identical retry will replay the prior response with `replayed:true` and create no duplicate row, while a same-key/changed-payload retry will fail closed instead of diverging. Not yet implemented.
+A new additive SQLite receipt table stores a server-derived receipt key, payload hash, and prior MCP response. The key ignores client-supplied idempotency-token fields and is derived from operation name, content hash, and a request fingerprint. Save and update handlers check the receipt before mutation: hit-match returns the stored response with `replayed:true`; hit-mismatch returns `idempotency_key_conflict` and writes nothing; miss proceeds normally. Receipt-store failure is best-effort and logs a warning while returning the normal successful write.
 
-### Planned: advisory near-duplicate + dedup marker
+### Advisory near-duplicate + dedup marker
 
-A deterministic advisory `near_duplicate_of` (with similarity metadata) computed against a fixed threshold only when an embedding already exists, surfaced as exactly one inline hint via the existing `response-builder.ts` advisory substrate — never a rejection or queue. A `last_dedup_checked_at` marker will short-circuit re-deduping rows whose content has not changed. Not yet implemented.
+A deterministic near-duplicate helper reuses the dedup threshold constant and computes only when an embedding is already available. It writes `near_duplicate_of` as JSON metadata plus `last_dedup_checked_at`, and response building surfaces exactly one advisory hint when present. Rows without embeddings are skipped silently, and index scan can repair unstamped success rows later. A marker short-circuits rescans while `updated_at <= last_dedup_checked_at`; content changes clear the short-circuit.
 
-### Files Changed (planned)
+### Rollout flag
+
+The runtime behavior is gated by `SPECKIT_MEMORY_IDEMPOTENCY`, default off. With the flag off, the new schema is present but receipt lookup, replay, fail-closed conflict, and near-duplicate advisory behavior are inert.
+
+### Files Changed
 
 <!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify (planned) | Add the idempotency-receipt table plus `near_duplicate_of` and `last_dedup_checked_at` columns on `memory_index` via idempotent numbered migrations. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify (planned) | Wire the pre-mutation receipt lookup/replay wrapper into the save path; emit `replayed:true` on identical retry. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` | Modify (planned) | Apply the same receipt replay + fail-closed-on-mismatch behavior to `memory_update`. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts` | Modify (planned) | Add retry-vs-content classification on top of the existing `content_hash` / `checkExistingRow` / `checkContentHashDedup` checks. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` | Modify (planned) | Suppress reconsolidation side effects on a replayed write. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts` | Modify (planned) | Record `last_dedup_checked_at` and skip rows unchanged since the marker. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` | Modify (planned) | Carry `replayed:true` and the single `near_duplicate_of` hint on the existing response envelope. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify (planned) | Compute `near_duplicate_of` post-embedding and repair deferred vectors via the existing index-scan path; honor `last_dedup_checked_at`. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modified | Bumped schema 35 to 36; added receipt table plus `near_duplicate_of` and `last_dedup_checked_at` columns with idempotent migration and compatibility checks. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts` | Added | Centralized flag, key derivation, receipt lookup/store, replay marker, and token stripping. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts` | Added | Centralized advisory computation, marker short-circuit, marker clearing, and hint parsing. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified | Added pre-mutation receipt lookup/replay/conflict path and post-write best-effort receipt store. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` | Modified | Added the same receipt replay and conflict handling at the guarded pre-mutation point. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts` | Modified | Added retry-vs-content classifier and near-duplicate threshold export. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts` | Modified | Exposed marker short-circuit and clear helpers through the enrichment state surface. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` | Modified | Carries `replayed:true` and `near_duplicate_of` on the existing response envelope. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | Adds best-effort index-scan repair for unstamped success rows when the flag is on. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/**` | Modified | Added focused idempotency/near-duplicate coverage and updated schema canaries. |
+| `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Documents `SPECKIT_MEMORY_IDEMPOTENCY`; count 174 to 175. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -94,7 +101,7 @@ A deterministic advisory `near_duplicate_of` (with similarity metadata) computed
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-Not started — plan only. The intended rollout puts the idempotency receipt behind a feature flag (default off until retry tests pass) and keeps the near-duplicate hint independently removable, so the write path can revert to pass-through at any point. Delivery details land here once Phase 2 ships.
+Delivered in one additive pass. Schema migration is always present and idempotent; runtime behavior stays behind `SPECKIT_MEMORY_IDEMPOTENCY=false` by default so existing writes remain byte-identical unless the rollout flag is enabled. Verification used TypeScript build plus targeted Vitest canaries for schema, save/update, dedup, and the new receipt/advisory suite.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -107,10 +114,11 @@ Not started — plan only. The intended rollout puts the idempotency receipt beh
 
 | Decision | Why |
 |----------|-----|
-| Keep the receipt minimal (one SQLite table + one transaction, server-derived key only) | Avoids drifting toward HTTP idempotency semantics (sentinel/TTL/poll) that this local single-user phase does not need. |
+| Keep the receipt minimal (one SQLite table, server-derived key only) | Avoids drifting toward HTTP idempotency semantics (sentinel/TTL/poll) that this local single-user phase does not need. |
 | Near-duplicate stays advisory-only and deterministic | A fixed-threshold hint never gates a write, so it adds value without friction and needs no LLM judge or review queue. |
 | Compute near-duplicate post-embedding only, gated by `last_dedup_checked_at` | Skipping rows without vectors and rows unchanged since the marker avoids noise and redundant rescans. |
 | Sequence after Phase 1 and share its pre-mutation guard | Receipt lookup must run before the write; reusing Phase 1's write-ingress hook avoids adding a second hook (`mutation-hooks.ts` is post-write). |
+| Make receipt persistence best-effort | A receipt-store failure must never block a legitimate write, so the successful write returns and logs a warning if receipt persistence fails. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -123,10 +131,15 @@ Not started — plan only. The intended rollout puts the idempotency receipt beh
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict` on this spec folder | Not started — plan only |
-| vitest: idempotency receipt replays identical retry (0 duplicate rows) | Not started — plan only |
-| vitest: same-key with changed-payload retry fails closed | Not started — plan only |
-| Manual: near-duplicate surfaces as one advisory hint, never a rejection | Not started — plan only |
+| `npm run build` | Pass |
+| Targeted Vitest suite | Pass: 16 files, 214 tests, 53 skipped |
+| vitest: idempotency receipt replays identical retry (0 duplicate rows) | Pass |
+| vitest: same-key with changed-payload retry fails closed | Pass |
+| vitest: forged client token cannot influence server-derived key | Pass |
+| vitest: near-duplicate advisory and no-embedding skip | Pass |
+| vitest: `last_dedup_checked_at` short-circuit and clear | Pass |
+| vitest: receipt-store failure fallback | Pass |
+| `validate.sh --strict` on this spec folder | Pending final validation run |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -139,9 +152,18 @@ Not started — plan only. The intended rollout puts the idempotency receipt beh
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **Not implemented.** This phase is planned only; nothing in the Files Changed table has been built. Treat every claim here as intended behavior, not shipped behavior.
-2. **Depends on Phase 1.** The replay wrapper needs the pre-mutation write-ingress guard introduced in `001-provenance-and-audit`; Phase 2 cannot land cleanly before that hook point exists.
-3. **Near-duplicate requires existing embeddings.** Rows without a vector yet are skipped silently; the advisory only appears once an embedding exists, and deferred vectors rely on the existing index-scan repair path.
+1. **Default off.** Runtime replay, conflict, and near-duplicate behavior only run when `SPECKIT_MEMORY_IDEMPOTENCY=true`.
+2. **Near-duplicate requires embeddings.** Rows without an embedding are skipped silently; index scan can stamp them later after embeddings exist.
+3. **Receipt persistence is best-effort.** If receipt storage fails after a valid write, the save/update still succeeds and logs a warning, so that specific write will not replay until a later successful receipt store.
+
+### Verification Matrix
+
+| Axis | Covered Values |
+|------|----------------|
+| Receipt state | miss, hit-match replay, hit-mismatch conflict |
+| Embedding state | present advisory, absent silent skip |
+| Operation | save receipt path, update receipt path |
+| Row changed since marker | unchanged short-circuit, changed clear/rescan path |
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -151,4 +173,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
-

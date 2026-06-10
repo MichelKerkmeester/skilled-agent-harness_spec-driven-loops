@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate"
-    last_updated_at: "2026-06-06T10:10:47Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Populate Phase 2 idempotency-and-near-duplicate plan"
-    next_safe_action: "Plan or implement T001 receipt table + schema columns"
+    last_updated_at: "2026-06-10T11:05:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented idempotency receipts and near-duplicate hints"
+    next_safe_action: "Run next phase after validation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-idempotency-and-near-duplicate"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,14 +55,14 @@ This phase adds a minimal SQLite idempotency receipt keyed by a server-derived o
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -117,21 +117,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Add the idempotency-receipt table to `vector-index-schema.ts` (server-derived operation/content/request fingerprint key + stored prior-response payload), via an idempotent numbered migration.
-- [ ] Add the `near_duplicate_of` and `last_dedup_checked_at` columns to `memory_index` in the same migration; confirm re-run safety against the live schema.
-- [ ] Confirm the existing `dedup.ts` symbols (`content_hash`, `checkExistingRow`, `checkContentHashDedup`) and the `response-builder.ts` advisory substrate (`assistiveRecommendation`, `related_ids`) against the current code before wiring.
+- [x] Add the idempotency-receipt table to `vector-index-schema.ts` (server-derived operation/content/request fingerprint key + stored prior-response payload), via an idempotent numbered migration.
+- [x] Add the `near_duplicate_of` and `last_dedup_checked_at` columns to `memory_index` in the same migration; confirm re-run safety against the live schema.
+- [x] Confirm the existing `dedup.ts` symbols (`content_hash`, `checkExistingRow`, `checkContentHashDedup`) and the `response-builder.ts` advisory substrate (`assistiveRecommendation`, `related_ids`) against the current code before wiring.
 
 ### Phase 2: Core Implementation
-- [ ] Add the pre-mutation replay wrapper to `memory-save.ts` and `memory-crud-update.ts`: derive the receipt key, look it up before the write, replay the prior response on a hit-match, fail closed on a hit-mismatch, proceed on a miss; record the receipt inside the write transaction.
-- [ ] Add retry-vs-content classification in `dedup.ts` on top of the existing checks: separate "same retry" from "same content already exists" from "same key, changed payload".
-- [ ] Compute the deterministic advisory `near_duplicate_of` + similarity metadata in `memory-index.ts` post-embedding only (skip silently when no embedding exists); stamp `last_dedup_checked_at` via `enrichment-state.ts` and skip rows unchanged since that marker.
-- [ ] Extend `response-builder.ts` to carry `replayed:true` and the single `near_duplicate_of` hint on the existing envelope; suppress reconsolidation on a replayed write in `reconsolidation-bridge.ts`.
+- [x] Add the pre-mutation replay wrapper to `memory-save.ts` and `memory-crud-update.ts`: derive the receipt key, look it up before the write, replay the prior response on a hit-match, fail closed on a hit-mismatch, proceed on a miss; record the receipt inside the write transaction.
+- [x] Add retry-vs-content classification in `dedup.ts` on top of the existing checks: separate "same retry" from "same content already exists" from "same key, changed payload".
+- [x] Compute the deterministic advisory `near_duplicate_of` + similarity metadata in `memory-index.ts` post-embedding only (skip silently when no embedding exists); stamp `last_dedup_checked_at` via `enrichment-state.ts` and skip rows unchanged since that marker.
+- [x] Extend `response-builder.ts` to carry `replayed:true` and the single `near_duplicate_of` hint on the existing envelope; suppress reconsolidation on a replayed write in `reconsolidation-bridge.ts`.
 
 ### Phase 3: Verification
-- [ ] vitest: a retried `memory_save`/`memory_update` creates 0 duplicate rows and the replay returns the prior success with `replayed:true`.
-- [ ] vitest: a same-key/changed-payload retry fails closed; the retry-vs-content classifier distinguishes same-retry / same-content / changed-payload.
-- [ ] vitest: `near_duplicate_of` appears as exactly one inline advisory hint, is skipped when no embedding exists, and is never a rejection; a row unchanged since `last_dedup_checked_at` is not rescanned.
-- [ ] Update the memory-system docs to describe the idempotency receipt, the `replayed:true` flag, and the advisory near-duplicate behavior.
+- [x] vitest: a retried `memory_save`/`memory_update` creates 0 duplicate rows and the replay returns the prior success with `replayed:true`.
+- [x] vitest: a same-key/changed-payload retry fails closed; the retry-vs-content classifier distinguishes same-retry / same-content / changed-payload.
+- [x] vitest: `near_duplicate_of` appears as exactly one inline advisory hint, is skipped when no embedding exists, and is never a rejection; a row unchanged since `last_dedup_checked_at` is not rescanned.
+- [x] Update the memory-system docs to describe the idempotency receipt, the `replayed:true` flag, and the advisory near-duplicate behavior.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -226,4 +226,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

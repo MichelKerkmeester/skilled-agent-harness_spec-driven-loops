@@ -18,6 +18,11 @@ import {
 
 export const POST_INSERT_ENRICHMENT_VERSION = 1;
 
+export {
+  clearNearDuplicateCheck,
+  shouldSkipNearDuplicateCheck,
+} from '../../lib/storage/near-duplicate.js';
+
 export type PostInsertEnrichmentMarkerStatus = 'pending' | 'complete' | 'partial' | 'failed' | 'deferred';
 
 export interface EnrichmentRepairDeps {

@@ -38,7 +38,7 @@
       "duplicate"
     ],
     "importance_tier": "normal",
-    "status": "planned_(not_implemented)",
+    "status": "implemented",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
@@ -48,6 +48,10 @@
       ".opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-idempotency-and-near-duplicate.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "handlers/save/dedup.ts",
       "handlers/save/response-builder.ts",
       "lib/search/vector-index-schema.ts",

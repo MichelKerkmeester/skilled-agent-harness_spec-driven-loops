@@ -10,6 +10,7 @@ import { runConsolidationCycleIfEnabled } from '../../lib/storage/consolidation.
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../../lib/response/envelope.js';
 import { assertNever } from '../../lib/utils/exhaustiveness.js';
 import { requireDb, toErrorMessage } from '../../utils/index.js';
+import { parseNearDuplicateHint } from '../../lib/storage/near-duplicate.js';
 
 import { appendMutationLedgerSafe } from '../memory-crud-utils.js';
 import { runPostMutationHooks } from '../mutation-hooks.js';
@@ -380,6 +381,13 @@ export function buildIndexResult({
     result.assistiveRecommendation = assistiveRecommendation;
   }
 
+  const nearDuplicateRow = database.prepare('SELECT near_duplicate_of FROM memory_index WHERE id = ?')
+    .get(id) as { near_duplicate_of?: string | null } | undefined;
+  const nearDuplicateOf = parseNearDuplicateHint(nearDuplicateRow?.near_duplicate_of);
+  if (nearDuplicateOf) {
+    result.nearDuplicateOf = nearDuplicateOf;
+  }
+
   if (peDecision.action !== predictionErrorGate.ACTION.CREATE) {
     result.pe_action = peDecision.action;
     result.pe_reason = peDecision.reason;
@@ -685,6 +693,12 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
   if (result.assistiveRecommendation) {
     response.assistiveRecommendation = result.assistiveRecommendation;
   }
+  if (result.nearDuplicateOf) {
+    response.near_duplicate_of = result.nearDuplicateOf;
+  }
+  if (result.replayed === true) {
+    response.replayed = true;
+  }
   if (postMutationFeedback) {
     response.postMutationHooks = postMutationFeedback.data;
   }
@@ -729,7 +743,6 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
     if (persistenceWarnings.length > 0) parts.push(`${persistenceWarnings.length} file-persistence warning(s)`);
     response.message = `${response.message} (with ${parts.join(', ')})`;
   }
-
   if (result.embeddingStatus) {
     response.embeddingStatus = result.embeddingStatus;
     if (result.embeddingStatus === 'pending') {
@@ -756,6 +769,11 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
   }
   if (result.warnings && result.warnings.length > 0) {
     hints.push('Review anchor warnings for better searchability');
+  }
+  if (result.nearDuplicateOf) {
+    hints.push(
+      `Near-duplicate advisory: memory #${result.nearDuplicateOf.id} similarity ${result.nearDuplicateOf.similarity.toFixed(3)}`,
+    );
   }
   if (result.embeddingStatus === 'pending') {
     hints.push('Memory will be fully indexed when embedding provider becomes available');

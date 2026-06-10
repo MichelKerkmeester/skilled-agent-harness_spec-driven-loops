@@ -34,6 +34,8 @@ import { promoteMetadataEdges } from '../lib/causal/frontmatter-promoter.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
 import { createStatediffAction } from '../lib/storage/statediff.js';
 import { repairIncompleteMarkers } from './save/enrichment-state.js';
+import { isMemoryIdempotencyEnabled } from '../lib/storage/idempotency-receipts.js';
+import { recordNearDuplicateCheck } from '../lib/storage/near-duplicate.js';
 import {
   findConstitutionalFiles,
   findGraphMetadataFiles,
@@ -606,11 +608,69 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   };
 
+  const runNearDuplicateRepairBackfill = async (): Promise<number> => {
+    if (!isMemoryIdempotencyEnabled()) {
+      return 0;
+    }
+    try {
+      const database = requireDb();
+      const rows = database.prepare(`
+        SELECT id, spec_folder, title, content_text, content_hash,
+               tenant_id, user_id, agent_id, session_id
+        FROM memory_index
+        WHERE parent_id IS NULL
+          AND embedding_status = 'success'
+          AND content_text IS NOT NULL
+          AND (last_dedup_checked_at IS NULL OR updated_at > last_dedup_checked_at)
+        ORDER BY id ASC
+        LIMIT ?
+      `).all(BATCH_SIZE) as Array<{
+        id: number;
+        spec_folder: string;
+        title: string | null;
+        content_text: string;
+        content_hash: string | null;
+        tenant_id: string | null;
+        user_id: string | null;
+        agent_id: string | null;
+        session_id: string | null;
+      }>;
+      let repaired = 0;
+      for (const row of rows) {
+        try {
+          const embeddingInput = row.title ? `${row.title}\n\n${row.content_text}` : row.content_text;
+          const embedding = await embeddings.generateDocumentEmbedding(embeddingInput);
+          recordNearDuplicateCheck({
+            database,
+            memoryId: row.id,
+            specFolder: row.spec_folder,
+            contentHash: row.content_hash,
+            embedding,
+            scope: {
+              tenantId: row.tenant_id,
+              userId: row.user_id,
+              agentId: row.agent_id,
+              sessionId: row.session_id,
+            },
+          });
+          repaired++;
+        } catch (error: unknown) {
+          console.warn(`[memory-index-scan] Near-duplicate repair skipped for memory ${row.id}: ${toErrorMessage(error)}`);
+        }
+      }
+      return repaired;
+    } catch (error: unknown) {
+      console.warn('[memory-index-scan] Near-duplicate repair skipped:', toErrorMessage(error));
+      return 0;
+    }
+  };
+
   if (files.length === 0) {
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
     const orphanSweepResult = runGlobalOrphanSweep();
     const postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
+    await runNearDuplicateRepairBackfill();
     const triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
 
     if (incremental && !force) {
@@ -1007,6 +1067,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
 
   results.triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
+  await runNearDuplicateRepairBackfill();
 
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.

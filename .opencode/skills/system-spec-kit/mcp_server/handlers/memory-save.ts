@@ -164,6 +164,14 @@ import {
 } from '../lib/validation/spec-doc-structure.js';
 import { detectSpecLevelFromParsed } from './handler-utils.js';
 import { createStatediffAction } from '../lib/storage/statediff.js';
+import {
+  extractMemoryIdFromResponse,
+  isMemoryIdempotencyEnabled,
+  lookupIdempotencyReceipt,
+  storeIdempotencyReceipt,
+  type IdempotencyReceiptKey,
+} from '../lib/storage/idempotency-receipts.js';
+import { recordNearDuplicateCheck } from '../lib/storage/near-duplicate.js';
 
 // Extracted sub-modules
 import { withSpecFolderLock } from './save/spec-folder-mutex.js';
@@ -2683,6 +2691,22 @@ async function processPreparedMemory(
       }
     }
 
+    if (embedding) {
+      try {
+        recordNearDuplicateCheck({
+          database,
+          memoryId: id,
+          specFolder: routedParsed.specFolder,
+          contentHash: routedParsed.contentHash,
+          embedding,
+          scope,
+        });
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[memory-save] Near-duplicate advisory skipped: ${message}`);
+      }
+    }
+
     // POST-INSERT ENRICHMENT: causal links, entities, summaries, entity linking.
     // When enrichment is enabled and async (default), run the bundle in the background so the
     // save returns immediately. The row was marked enrichment-pending inside the commit
@@ -3229,6 +3253,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
     agentId: governanceDecision.normalized.agentId ?? null,
     sessionId: governanceDecision.normalized.sessionId,
   };
+  let idempotencyKey: IdempotencyReceiptKey | null = null;
 
   // PRE-FLIGHT VALIDATION
   let parsedForPreflight: ReturnType<typeof memoryParser.parseMemoryFile> | null = null;
@@ -3386,6 +3411,49 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
     }
   }
 
+  if (!shouldPlanCanonicalSave && isMemoryIdempotencyEnabled()) {
+    try {
+      const parsedForIdempotency = parsedForPreflight ?? memoryParser.parseMemoryFile(validatedPath);
+      const lookup = lookupIdempotencyReceipt(database, {
+        operation: 'memory_save',
+        contentHash: parsedForIdempotency.contentHash,
+        requestFingerprint: {
+          filePath: canonicalValidatedPath,
+          contentHash: parsedForIdempotency.contentHash,
+          routeAs: routeAs ?? null,
+          mergeModeHint: mergeModeHint ?? null,
+          targetAnchorId: targetAnchorId ?? null,
+          scope: saveScope,
+        },
+        payload: {
+          ...(args as unknown as Record<string, unknown>),
+          filePath: canonicalValidatedPath,
+          contentHash: parsedForIdempotency.contentHash,
+        },
+      });
+      idempotencyKey = lookup.key;
+      if (lookup.status === 'replay') {
+        return lookup.response;
+      }
+      if (lookup.status === 'conflict') {
+        return createMCPErrorResponse({
+          tool: 'memory_save',
+          error: 'Idempotency key conflict: same server-derived key with changed payload',
+          code: 'idempotency_key_conflict',
+          details: { requestId, receiptKey: lookup.key.receiptKey },
+          recovery: {
+            hint: 'Retry the original byte-identical request or submit a fresh logical write.',
+            severity: 'warning',
+          },
+        });
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[memory-save] idempotency receipt lookup skipped: ${message}`);
+      idempotencyKey = null;
+    }
+  }
+
   if (shouldPlanCanonicalSave) {
     const plannerResult = await atomicSaveMemory({
       file_path: validatedPath,
@@ -3502,7 +3570,16 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
     }
   }
 
-  return buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });
+  const response = buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });
+  if (idempotencyKey && typeof result.id === 'number' && result.id > 0 && result.status !== 'duplicate' && result.status !== 'unchanged') {
+    try {
+      storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[memory-save] idempotency receipt store failed; continuing without replay receipt: ${message}`);
+    }
+  }
+  return response;
 }
 
 /* --- 10. ATOMIC MEMORY SAVE --- */

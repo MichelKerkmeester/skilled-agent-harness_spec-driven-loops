@@ -25,6 +25,13 @@ import {
 import { isConstitutionalPath } from '../lib/utils/index-scope.js';
 import { scrubSecrets, SecretScrubberError } from '../lib/parsing/secret-scrubber.js';
 import { toErrorMessage } from '../utils/index.js';
+import {
+  extractMemoryIdFromResponse,
+  isMemoryIdempotencyEnabled,
+  lookupIdempotencyReceipt,
+  storeIdempotencyReceipt,
+  type IdempotencyReceiptKey,
+} from '../lib/storage/idempotency-receipts.js';
 
 import { recordHistory } from '../lib/storage/history.js';
 import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils.js';
@@ -224,6 +231,49 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
 
   const guard = buildGuardedUpdateParams({ ...args, title, triggerPhrases }, existing as Record<string, unknown>);
   const updateParams = guard.updateParams;
+  let idempotencyKey: IdempotencyReceiptKey | null = null;
+
+  if (database && isMemoryIdempotencyEnabled()) {
+    try {
+      const contentHash = typeof existing.content_hash === 'string' ? existing.content_hash : null;
+      const lookup = lookupIdempotencyReceipt(database, {
+        operation: 'memory_update',
+        contentHash,
+        requestFingerprint: {
+          id,
+          contentHash,
+        },
+        payload: {
+          ...(args as unknown as Record<string, unknown>),
+          id,
+          title: updateParams.title ?? null,
+          triggerPhrases: updateParams.triggerPhrases ?? null,
+          importanceWeight: updateParams.importanceWeight ?? null,
+          importanceTier: updateParams.importanceTier ?? null,
+          contentHash,
+        },
+      });
+      idempotencyKey = lookup.key;
+      if (lookup.status === 'replay') {
+        return lookup.response;
+      }
+      if (lookup.status === 'conflict') {
+        return createMCPErrorResponse({
+          tool: 'memory_update',
+          error: 'Idempotency key conflict: same server-derived key with changed payload',
+          code: 'idempotency_key_conflict',
+          details: { requestId, receiptKey: lookup.key.receiptKey, id },
+          recovery: {
+            hint: 'Retry the original byte-identical request or submit a fresh logical update.',
+            severity: 'warning',
+          },
+        });
+      }
+    } catch (error: unknown) {
+      console.warn(`[memory-crud-update] idempotency receipt lookup skipped: ${toErrorMessage(error)}`);
+      idempotencyKey = null;
+    }
+  }
 
   let embeddingRegenerated = false;
   let embeddingMarkedForReindex = false;
@@ -499,12 +549,20 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     data.mutationLedgerWarning = mutationLedgerWarning;
   }
 
-  return createMCPSuccessResponse({
+  const response = createMCPSuccessResponse({
     tool: 'memory_update',
     summary,
     data,
     hints,
   });
+  if (database && idempotencyKey) {
+    try {
+      storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+    } catch (error: unknown) {
+      console.warn(`[memory-crud-update] idempotency receipt store failed; continuing without replay receipt: ${toErrorMessage(error)}`);
+    }
+  }
+  return response;
 }
 
 /* ───────────────────────────────────────────────────────────────

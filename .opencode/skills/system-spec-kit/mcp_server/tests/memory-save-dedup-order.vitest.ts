@@ -74,4 +74,19 @@ describe('Memory-save dedup ordering regressions', () => {
     expect(recordResultIndex).toBeGreaterThan(runPostInsertIndex);
     expect(recordResultIndex).toBeLessThan(subscriberDispatchIndex);
   });
+
+  it('checks receipt replay before indexing and response-side post-mutation hooks', () => {
+    const sourcePath = path.resolve(__dirname, '..', 'handlers', 'memory-save.ts');
+    const source = fs.readFileSync(sourcePath, 'utf8');
+
+    const lookupIndex = source.indexOf('const lookup = lookupIdempotencyReceipt(database, {');
+    const replayReturnIndex = source.indexOf('return lookup.response;', lookupIndex);
+    const indexCallIndex = source.indexOf('result = await indexMemoryFile(validatedPath, {');
+    const buildResponseIndex = source.indexOf('const response = buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });');
+
+    expect(lookupIndex).toBeGreaterThan(-1);
+    expect(replayReturnIndex).toBeGreaterThan(lookupIndex);
+    expect(replayReturnIndex).toBeLessThan(indexCallIndex);
+    expect(replayReturnIndex).toBeLessThan(buildResponseIndex);
+  });
 });

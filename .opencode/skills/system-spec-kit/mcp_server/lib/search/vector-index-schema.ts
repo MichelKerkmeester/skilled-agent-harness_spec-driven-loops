@@ -54,6 +54,7 @@ const REQUIRED_TABLES: readonly string[] = [
   'schema_version',
   'causal_edge_tombstones',
   'memory_trigger_embeddings',
+  'memory_idempotency_receipts',
 ];
 const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_index: [
@@ -85,6 +86,9 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_trigger_embeddings: [
     'idx_memory_trigger_embeddings_status',
   ],
+  memory_idempotency_receipts: [
+    'idx_memory_idempotency_receipts_operation',
+  ],
 };
 const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'id',
@@ -99,6 +103,8 @@ const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'post_insert_enrichment_state',
   'post_insert_enrichment_completed_at',
   'post_insert_enrichment_version',
+  'near_duplicate_of',
+  'last_dedup_checked_at',
   'source_kind',
   'chunk_id',
   'chunk_fingerprint',
@@ -141,6 +147,17 @@ const REQUIRED_TRIGGER_EMBEDDING_COLUMNS: readonly string[] = [
   'dimensions',
   'embedding_status',
   'failure_reason',
+  'created_at',
+  'updated_at',
+];
+const REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS: readonly string[] = [
+  'receipt_key',
+  'operation',
+  'content_hash',
+  'request_fingerprint',
+  'payload_hash',
+  'response_payload',
+  'memory_id',
   'created_at',
   'updated_at',
 ];
@@ -590,9 +607,79 @@ function getMigrationAllowedBasePaths(): string[] {
 // V34: Add derived trigger embedding status table
 // V35: Add server-derived write provenance kind
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 35;
+export const SCHEMA_VERSION = 36;
 
 const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
+const MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_idempotency_receipts_operation
+  ON memory_idempotency_receipts(operation, created_at DESC)
+`;
+
+function addColumnIfMissing(
+  database: Database.Database,
+  tableName: string,
+  columns: Set<string>,
+  column: { name: string; sql: string },
+  context: string,
+): void {
+  if (columns.has(column.name)) {
+    return;
+  }
+  try {
+    database.exec(column.sql);
+    columns.add(column.name);
+    logger.info(`${context}: Added ${tableName}.${column.name}`);
+  } catch (error: unknown) {
+    if (!get_error_message(error).includes('duplicate column')) {
+      throw error;
+    }
+    logDuplicateColumnMigrationSkip(column.name, error);
+  }
+}
+
+export function ensureIdempotencyReceiptSchema(database: Database.Database, context: string): void {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memory_idempotency_receipts (
+      receipt_key TEXT PRIMARY KEY,
+      operation TEXT NOT NULL,
+      content_hash TEXT,
+      request_fingerprint TEXT NOT NULL,
+      payload_hash TEXT NOT NULL,
+      response_payload TEXT NOT NULL,
+      memory_id INTEGER,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
+    )
+  `);
+  createRequiredIndex(
+    database,
+    'idx_memory_idempotency_receipts_operation',
+    MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL,
+    context,
+  );
+
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping near-duplicate columns`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
+    { name: 'near_duplicate_of', sql: 'ALTER TABLE memory_index ADD COLUMN near_duplicate_of TEXT' },
+    context,
+  );
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
+    { name: 'last_dedup_checked_at', sql: 'ALTER TABLE memory_index ADD COLUMN last_dedup_checked_at TEXT' },
+    context,
+  );
+}
 
 function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
   if (typeof value !== 'string' || value.trim().length === 0) {
@@ -1822,6 +1909,11 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v35: Added memory_index.source_kind provenance backfill');
   };
 
+  migrations[36] = () => {
+    ensureIdempotencyReceiptSchema(database, 'Migration v36');
+    logger.info('Migration v36: Added idempotency receipts and near-duplicate markers');
+  };
+
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -2139,6 +2231,16 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       }
     } else {
       missingColumns.memory_trigger_embeddings = [...REQUIRED_TRIGGER_EMBEDDING_COLUMNS];
+    }
+
+    if (hasTable(database, 'memory_idempotency_receipts')) {
+      const existingColumns = new Set(getTableColumns(database, 'memory_idempotency_receipts'));
+      const absentColumns = REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.memory_idempotency_receipts = absentColumns;
+      }
+    } else {
+      missingColumns.memory_idempotency_receipts = [...REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS];
     }
 
     for (const [tableName, requiredIndexes] of Object.entries(REQUIRED_INDEXES_BY_TABLE)) {
@@ -2973,7 +3075,9 @@ export function create_schema(
       post_insert_enrichment_status TEXT NOT NULL DEFAULT 'complete',
       post_insert_enrichment_state TEXT,
       post_insert_enrichment_completed_at TEXT,
-      post_insert_enrichment_version INTEGER
+      post_insert_enrichment_version INTEGER,
+      near_duplicate_of TEXT,
+      last_dedup_checked_at TEXT
     )
   `);
 
@@ -3037,6 +3141,7 @@ export function create_schema(
   ensureIncrementalIndexFoundationSchema(database, 'create_schema');
   ensureCausalEdgeTombstoneSchema(database, 'create_schema');
   ensureMemoryTriggerEmbeddingsSchema(database, 'create_schema');
+  ensureIdempotencyReceiptSchema(database, 'create_schema');
 
   // the rollout — create embedding_cache table
   ensureEmbeddingCacheSchema(database);
@@ -3118,3 +3223,4 @@ export { ensure_canonical_file_path_support as ensureCanonicalFilePathSupport };
 export { migrate_constitutional_tier as migrateConstitutionalTier };
 export { validate_backward_compatibility as validateBackwardCompatibility };
 export { ensureMemoryTriggerEmbeddingsSchema as ensureMemoryTriggerEmbeddingsSchemaForTests };
+export { ensureIdempotencyReceiptSchema as ensureIdempotencyReceiptSchemaForTests };

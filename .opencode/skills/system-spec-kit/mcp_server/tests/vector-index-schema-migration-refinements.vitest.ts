@@ -389,7 +389,7 @@ describe('vector-index schema migration refinements', () => {
 
     // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(35);
+    expect(versionRow.version).toBe(36);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
@@ -451,7 +451,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(35);
+    expect(versionRow.version).toBe(36);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edge_tombstones)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -522,7 +522,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(35);
+    expect(versionRow.version).toBe(36);
 
     const columns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -569,7 +569,7 @@ describe('vector-index schema migration refinements', () => {
     ensureSchemaVersion(database);
 
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(35);
+    expect(versionRow.version).toBe(36);
 
     const columns = (database.prepare('PRAGMA table_info(memory_trigger_embeddings)').all() as Array<{ name: string }>)
       .map((column) => column.name);
@@ -632,5 +632,51 @@ describe('vector-index schema migration refinements', () => {
       { id: 3, source_kind: 'feedback' },
       { id: 4, source_kind: 'system' },
     ]);
+  });
+
+  it('adds idempotency receipt schema and near-duplicate columns during the v36 upgrade idempotently', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        updated_at TEXT
+      );
+    `);
+
+    runMigrations(database, 35, 36);
+    runMigrations(database, 35, 36);
+
+    const columns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining([
+      'near_duplicate_of',
+      'last_dedup_checked_at',
+    ]));
+
+    const receiptColumns = (database.prepare('PRAGMA table_info(memory_idempotency_receipts)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(receiptColumns).toEqual(expect.arrayContaining([
+      'receipt_key',
+      'operation',
+      'content_hash',
+      'request_fingerprint',
+      'payload_hash',
+      'response_payload',
+      'memory_id',
+      'created_at',
+      'updated_at',
+    ]));
+
+    const indexes = (database.prepare(`
+      SELECT name FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'memory_idempotency_receipts'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexes).toContain('idx_memory_idempotency_receipts_operation');
+
+    const nearDuplicateColumns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .filter((column) => column.name === 'near_duplicate_of');
+    expect(nearDuplicateColumns).toHaveLength(1);
   });
 });

@@ -14,6 +14,7 @@ import type { IndexResult } from './types.js';
 
 const UNCHANGED_EMBEDDING_STATUSES = new Set(['success', 'pending', 'partial']);
 const DEDUP_ELIGIBLE_EMBEDDING_STATUSES = ['success', 'partial'] as const;
+export const NEAR_DUPLICATE_SIMILARITY_THRESHOLD = 0.88;
 const QUALITY_SCORE_EPSILON = 1e-9;
 const SCOPE_COLUMNS = [
   ['tenant_id', 'tenantId'],
@@ -53,6 +54,28 @@ interface CheckExistingRowArgs {
   targetAnchorId: string | null;
   warnings: string[] | undefined;
   scope: MemoryScopeMatch;
+}
+
+export type RetryVsContentClassification =
+  | 'same_retry'
+  | 'same_content_already_exists'
+  | 'same_key_changed_payload'
+  | 'fresh_write';
+
+export function classifyRetryVsContent(args: {
+  receiptStatus?: 'miss' | 'replay' | 'conflict' | null;
+  contentDedup: IndexResult | null;
+}): RetryVsContentClassification {
+  if (args.receiptStatus === 'replay') {
+    return 'same_retry';
+  }
+  if (args.receiptStatus === 'conflict') {
+    return 'same_key_changed_payload';
+  }
+  if (args.contentDedup?.status === 'duplicate' || args.contentDedup?.status === 'unchanged') {
+    return 'same_content_already_exists';
+  }
+  return 'fresh_write';
 }
 
 function buildScopedWhereClauses(scope: MemoryScopeMatch): {

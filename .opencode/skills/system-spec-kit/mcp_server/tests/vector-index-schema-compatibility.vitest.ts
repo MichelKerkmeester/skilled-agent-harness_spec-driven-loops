@@ -13,10 +13,12 @@ describe('Vector index schema compatibility validator', () => {
         'schema_version',
         'causal_edge_tombstones',
         'memory_trigger_embeddings',
+        'memory_idempotency_receipts',
       ]);
       expect(report.missingColumns.memory_index).toContain('spec_folder');
       expect(report.missingColumns.causal_edge_tombstones).toContain('restore_metadata');
       expect(report.missingColumns.memory_trigger_embeddings).toContain('phrase_hash');
+      expect(report.missingColumns.memory_idempotency_receipts).toContain('receipt_key');
     } finally {
       db.close();
     }
@@ -55,6 +57,8 @@ describe('Vector index schema compatibility validator', () => {
           post_insert_enrichment_state TEXT,
           post_insert_enrichment_completed_at TEXT,
           post_insert_enrichment_version INTEGER,
+          near_duplicate_of TEXT,
+          last_dedup_checked_at TEXT,
           stability REAL,
           difficulty REAL,
           last_review TEXT,
@@ -188,6 +192,20 @@ describe('Vector index schema compatibility validator', () => {
         );
         CREATE INDEX idx_memory_trigger_embeddings_status
           ON memory_trigger_embeddings(embedding_status, updated_at);
+
+        CREATE TABLE memory_idempotency_receipts (
+          receipt_key TEXT PRIMARY KEY,
+          operation TEXT NOT NULL,
+          content_hash TEXT,
+          request_fingerprint TEXT NOT NULL,
+          payload_hash TEXT NOT NULL,
+          response_payload TEXT NOT NULL,
+          memory_id INTEGER,
+          created_at TEXT NOT NULL DEFAULT (datetime('now')),
+          updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX idx_memory_idempotency_receipts_operation
+          ON memory_idempotency_receipts(operation, created_at DESC);
       `);
 
       const report = validateBackwardCompatibility(db);

@@ -91,6 +91,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Feedback retention mode | shadow | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`; default `shadow`; active still requires the master flag and shadow-evaluation gate | current |
 | Session-trace causal inference | OFF | `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | Deferred session-trace causal edge inference from feedback events | current |
 | Assistive reconsolidation | ON | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | Near-duplicate detection and review routing | D4 REQ-D4-005 |
+| Memory idempotency receipts | OFF | `SPECKIT_MEMORY_IDEMPOTENCY` | Default-off server-derived replay receipts for memory_save/memory_update plus advisory near_duplicate_of hints | memory hardening |
 | Result explainability | ON | `SPECKIT_RESULT_EXPLAIN_V1` | Two-tier result explainability | D5 REQ-D5-002 |
 | Response profile formatting | ON | `SPECKIT_RESPONSE_PROFILE_V1` | Mode-aware response profiles | D5 REQ-D5-003 |
 | Query concept expansion | ON | `SPECKIT_QUERY_CONCEPT_EXPANSION` | Alias-based query expansion for hybrid search | Phase B T016 |
@@ -118,7 +119,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 174 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
+Total unique variables documented: 175 (legacy HYDRA aliases removed in commit 6f2c2c939; 20 dual-stack CLI front-door variables added — see the "CLI front door" section).
 
 ### Provisional Measurement Contract
 
