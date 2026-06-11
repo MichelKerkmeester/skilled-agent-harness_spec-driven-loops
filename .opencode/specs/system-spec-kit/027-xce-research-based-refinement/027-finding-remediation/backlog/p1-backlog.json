@@ -237,7 +237,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "reviewer-scorer.cjs:46-53 checks only kind/prompt_template/expectedVerdict while reviewer-schema.md \u00a72 (lines 51-59) lists agent/input_kind/input/expectedFindings as required, and applyCase (line 103) defaults expectedFindings to [] \u2014 the laxity is real, but the whole path is inert by default (reviewer-scorer.cjs:275-279 exits unless SPECKIT_REVIEWER_BENCHMARKS is enabled) and affects only an opt-in benchmark substrate, not runtime behavior."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -253,7 +254,9 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "confirmed",
+   "v2_proof": "deep_start-model-benchmark-loop_auto.yaml:165 routes reviewer runs to --output .../reviewer-report.json (reviewer-scorer.cjs:280,300 writes only that path), while lines 168, 191, and 195 unconditionally gate the benchmark_completed journal event, scoringMethod read, and promote-candidate --benchmark-report on .../report.json, which a reviewer run never produces \u2014 line 198 shows the authors knew the reviewer path but left these three consumers unbranched.",
+   "v2_fix_sketch": "Branch steps 168/191/195 on scoring_method=reviewer to use state_paths.reviewer_report (or have the reviewer branch also write canonical report.json), mirroring in the confirm YAML."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -269,7 +272,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "The timing half is real \u2014 atomic-index-memory.ts:360-378 writes the pending file then calls indexPrepared (which runs validateCanonicalPreparedSave \u2192 POST_SAVE_FINGERPRINT, memory-save.ts:3751/3788) before promotePendingFile, while spec-doc-structure.ts:1105-1130 reads the final target path still holding old content, so content-changing saves would mismatch \u2014 but the guard only arms in opt-in full-auto planner mode (postSavePlan gated at memory-save.ts:1754; resolveSavePlannerMode defaults to plan-only per search-flags.vitest.ts:228-229), and the normalizer sub-claim is wrong: memory-save.ts:1023-1031 defines its own buildContinuityFingerprint with normalization identical to computeNormalizedFingerprint (spec-doc-structure.ts:574-580)."
   },
   {
    "phase": "002-memory-write-safety",
@@ -641,7 +645,8 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "changelog-005-004-feedback-retention-reducer.md:53 now lists lib/governance/memory-retention-sweep.ts ('the phase's mutation site') in Files Changed \u2014 the row was added by remediation commit ba3dddad1d (docs(027): epic deep-review remediation round 1)."
   },
   {
    "phase": "005-learning-feedback-reducers",
@@ -676,7 +681,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "memory-retention-sweep.ts:293-295 confirms signals = args.signals ?? (dryRun ? [] : aggregateEvents(...)), so an operator dry-run omits ledger feedback \u2014 real fidelity gap, but the branch only exists under default-off SPECKIT_FEEDBACK_RETENTION_LEARNING and the skip is consistent with the phase's documented zero-DB-writes dryRun contract (aggregateEvents calls initBatchLearning DDL, batch-learning.ts:262), making it a preview-fidelity improvement, not a live correctness defect."
   },
   {
    "phase": "006-gem-team-adoption",
@@ -1373,7 +1379,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "start-review-loop.md:77 (and start-research-loop.md:86, start-context-loop.md, ask-ai-council.md) deliberately declares the attached form the canonical synchronized entrypoint, the failure mode rests on the seat's own unverified conditional ('If OpenCode resolves slash commands by command file path'), the argument-hint (line 3) documents the working space-separated [:auto|:confirm] token form that reaches $ARGUMENTS regardless, and a missing suffix degrades to execution_mode=ASK (line 81), not failure."
   },
   {
    "phase": "011-command-presentation-workflow-separation",
@@ -1389,7 +1396,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "deep_start-context-loop_auto.yaml:51 explicitly types the required binding as 'Spec folder path (or standalone run dir)', line 161 fail-closes standalone only when a real spec folder is derivable, and line 697 skips the canonical continuity save when spec_folder is a standalone run dir ('hand the report path to /speckit:plan instead') \u2014 both claimed failure modes (start-condition failure, continuity refresh against a non-spec dir) are explicitly handled (confirm YAML lines 46/152/743 mirror this)."
   },
   {
    "phase": "011-command-presentation-workflow-separation",
@@ -1405,7 +1413,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "The changelog (changelog-011-...-root.md:50) claims 'at least five iterations plus a Fable synthesis check' \u2014 not five-family coverage \u2014 and review-report.md \u00a73 shows 4/12/12 iterations across three lineages; the spec.md claim 'CONDITIONAL remediated' is verifiably true: all three report P1s landed in current spec.md (status complete + completion_pct 100 for P1-1; Purpose line 75 now carries the exact presentation-only/missing-upstream refinement P1-2 demanded; the phase-transition rule now reads /speckit:resume for P1-3), with the report's CONDITIONAL being its point-in-time pre-remediation verdict."
   },
   {
    "phase": "011-command-presentation-workflow-separation",
@@ -1421,7 +1430,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "spec.md:16-23 confirms recent_action 'All 4 command families shipped' and key_files listing only 001-004 while the same doc's phase map (line ~122) lists 005-deep-commands as Complete \u2014 a real internal inconsistency, but with status complete, completion_pct 100, and next_safe_action 'None' the resume-recovery impact is negligible, making this a doc-consistency nit rather than a P1."
   },
   {
    "phase": "012-causal-traversal-bfs",
@@ -1773,7 +1783,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "All facts verify \u2014 fakes/storage-ports.ts:233 defaults minScore to NEGATIVE_INFINITY and cosineSimilarity (lines ~397-403) truncates to min(left,right) length, while the real port maps missing minScore to 0 (lib/storage/ports/vector-store.ts:173) and throws on dimension mismatch (line 189), and storage-ports-contract.vitest.ts always passes minScore: 0 (lines 295/323/351/357) \u2014 but this is test-double fidelity in test infrastructure only, with no production runtime behavior change."
   },
   {
    "phase": "015-storage-adapter-ports",
@@ -1789,7 +1800,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Confirmed in code \u2014 fakes/storage-ports.ts:287-339 computes delayMs and calls onRetry but never invokes options.sleep/sleepSync, while the real policy awaits (options.sleep ?? this.sleep)(delayMs) at contention-policy.ts:135 and the sync hook at line 163 \u2014 a genuine fake/real parity gap, but test-infrastructure-only (abort ordering is otherwise preserved), so no current runtime correctness impact."
   },
   {
    "phase": "016-cli-tooling-ux",
@@ -2157,7 +2169,9 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "confirmed",
+   "v2_proof": "git status shows 021-hybrid-search-scope-then-limit/description.json and graph-metadata.json as untracked (??) and git cat-file -e confirms neither exists in HEAD, while sibling phases 005/011/015 all have description.json committed and the committed implementation-summary.md:107 claims 'validate.sh ... --strict | PASS, exit 0' \u2014 the committed phase tree cannot reproduce its own shipped completion evidence and is invisible to memory/graph tooling from a clean checkout.",
+   "v2_fix_sketch": "Commit the working-tree description.json and graph-metadata.json for the 021 phase (scoped git commit --only) so the committed tree matches the shipped validation claim."
   },
   {
    "phase": "022-provenance-injection",

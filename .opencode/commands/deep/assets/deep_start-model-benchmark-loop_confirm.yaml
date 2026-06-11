@@ -187,7 +187,7 @@ workflow:
         command: "if [ \"{scoring_method}\" = \"reviewer\" ]; then SPECKIT_REVIEWER_BENCHMARKS=${SPECKIT_REVIEWER_BENCHMARKS:-0} node .opencode/skills/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}\" --output \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/reviewer-report.json\" --state-log \"{spec_folder}/improvement/agent-improvement-state.jsonl\" --grader \"{grader}\"; else node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}\" --scorer \"{scoring_method}\" --grader \"{grader}\"; fi"
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
-        command: "test -f .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json && node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json\",\"scoringMethod\":\"{scoring_method}\"}'"
+        command: "RPT=$([ \"{scoring_method}\" = \"reviewer\" ] && echo reviewer-report.json || echo report.json); test -f .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$RPT && node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$RPT\",\"scoringMethod\":\"{scoring_method}\"}'"
       step_append_ledger:
         description: "Verify the benchmark_run ledger row written by run-benchmark.cjs"
         ledger_ownership: "run-benchmark.cjs is the sole ledger writer. It appends the benchmark_run row (with mode, scoringMethod, and aggregate score) when it can infer the state-log path. This step VERIFIES that row exists. The orchestrator does NOT append a duplicate."
@@ -211,7 +211,7 @@ workflow:
         description: "Promote the accepted benchmark variant to canonical target (guarded, requires Lane B benchmark evidence)"
         condition: "gate_after_score == 'B' AND benchmark report recommendation == 'benchmark-pass' AND benchmark report status == 'benchmark-complete'"
         promotion_evidence: "The Lane B gate is the benchmark report (.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads recommendation, status, target, profileId, and aggregateScore from that report, and refuses promotion unless the benchmark gate passes. Lane B has no scored agent file, so --score is not passed."
-        command: "node .opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+        command: "node .opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$([ "{scoring_method}" = "reviewer" ] && echo reviewer-report.json || echo report.json) --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
 
   phase_synthesis:
     description: "After loop exits, summarize findings and recommend next action"
@@ -221,7 +221,7 @@ workflow:
         command: "node .opencode/skills/deep-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
       step_recommendation:
         description: "Recommend continue, promote, or stop based on reducer output and the benchmark report scoringMethod"
-        action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json"
+        action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json (reviewer runs write reviewer-report.json instead; read that file for reviewer scoring)"
       step_report_status:
         description: "Report STATUS with the benchmark outcome and scoring method"
         action: "Report STATUS=benchmark-complete with scoringMethod={scoring_method}, grader={grader}, and the final aggregate score. For reviewer runs, include any REVIEWER_BENCHMARK mismatch lines from reviewer-report.json."

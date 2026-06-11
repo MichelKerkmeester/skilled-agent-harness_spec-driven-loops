@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/021-hybrid-search-scope-then-limit",
+  "description": "Feature Specification: Hybrid Search Scope Then Limit",
+  "keywords": [
+    "feature",
+    "specification",
+    "hybrid",
+    "search",
+    "scope",
+    "limit"
+  ],
+  "lastUpdated": "2026-06-11T08:19:31.530Z",
+  "specId": "021",
+  "folderSlug": "hybrid-search-scope-then-limit",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
