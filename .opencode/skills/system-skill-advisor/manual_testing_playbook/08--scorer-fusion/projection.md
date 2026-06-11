@@ -38,15 +38,15 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttribution":true}})
 ```
 
-2. In the response, inspect the `graph_causal` lane attribution for a projected node list.
+2. In the response, inspect the lane attribution: laneBreakdown entries expose exactly lane, rawScore, weightedScore, weight, and shadowOnly (the strict schema; projected node ids and edge types are not part of the shipped response).
 3. Search the projected output for any fragment of the input prompt.
 4. Run `advisor_validate` and inspect the parity slice against Python fallback to confirm projection consistency.
 
 ### Expected Signals
 
-- Projection exposes only documented fields (node ids, edge types, weights).
+- Lane attribution exposes only the documented laneBreakdown fields (lane, rawScore, weightedScore, weight, shadowOnly).
 - No substring of the input prompt appears in projection metadata.
-- The number of projected nodes is bounded and consistent across equivalent calls.
+- The laneBreakdown is bounded and consistent across equivalent calls.
 - Parity slice in `advisor_validate` shows zero regressions on Python-correct prompts.
 
 ### Failure Modes
