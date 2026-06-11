@@ -58,18 +58,18 @@ Lower minState; disable cache and retry
 ### Prompt
 
 ```
-As a retrieval validation operator, validate the response-policy refusal contract on memory_search. With a deliberately weak query (high lexical noise, no real anchor), verify the response includes responsePolicy.noCanonicalPathClaims:true, safeResponse:true, and citationPolicy enumerated. Re-run with a high-quality query and assert noCanonicalPathClaims:false with citationPolicy.canonicalPathsAllowed:true. Return a concise pass/fail verdict.
+As a retrieval validation operator, validate the response-policy refusal contract on memory_search. With a deliberately weak query (high lexical noise, no real anchor), verify the response includes responsePolicy with noCanonicalPathClaims:true, a non-empty safeResponse guidance string, and citationPolicy:"do_not_cite_results". Re-run with a high-quality query and assert responsePolicy is absent with citationPolicy:"cite_results". Return a concise pass/fail verdict.
 ```
 
 ### Commands
 
-1. `memory_search({ query:"<gibberish-string-with-no-anchor>", limit:5 })` — assert `responsePolicy.noCanonicalPathClaims:true`, `safeResponse:true`, `citationPolicy` present
-2. `memory_search({ query:"<strong-spec-doc-anchor-keyword>", limit:5 })` — assert `responsePolicy.noCanonicalPathClaims:false`, `citationPolicy.canonicalPathsAllowed:true`
+1. `memory_search({ query:"<gibberish-string-with-no-anchor>", limit:5 })` — assert `responsePolicy.noCanonicalPathClaims:true`, a non-empty `responsePolicy.safeResponse` string, `citationPolicy:"do_not_cite_results"`
+2. `memory_search({ query:"<strong-spec-doc-anchor-keyword>", limit:5 })` — assert `responsePolicy` absent (good-quality queries carry no refusal block), `citationPolicy:"cite_results"`
 
 ### Expected
 
-Weak query: handler refuses canonical-path claims; `safeResponse:true`; client surface MUST display refusal, not citations.
-Strong query: refusal disabled; canonical paths allowed in response.
+Weak query: handler refuses canonical-path claims; `responsePolicy.safeResponse` carries the refusal guidance string; client surface MUST display refusal, not citations.
+Strong query: no responsePolicy block; `citationPolicy:"cite_results"` permits citing results.
 
 ### Evidence
 
@@ -82,7 +82,7 @@ memory_search responses for both queries showing the responsePolicy / citationPo
 
 ### Failure Triage
 
-Inspect `mcp_server/handlers/memory/search.ts` response-policy logic and confidence/recall thresholds; confirm packet 009 dist marker present
+Inspect `mcp_server/formatters/search-results.ts` response-policy and citation-policy derivation (deriveResponsePolicy / deriveCitationPolicy) and confidence/recall thresholds
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
