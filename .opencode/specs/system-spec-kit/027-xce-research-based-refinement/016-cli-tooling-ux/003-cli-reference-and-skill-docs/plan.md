@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/003-cli-reference-and-skill-docs"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 plan for unified reference + skill docs"
-    next_safe_action: "Draft the unified reference page and per-SKILL.md edits"
+    last_updated_at: "2026-06-11T01:21:47Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed the unified reference page and per-SKILL.md recovery/taxonomy links"
+    next_safe_action: "Run strict validation before completion claims"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-003-cli-reference-and-skill-docs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,14 +58,14 @@ Write one canonical Daemon CLI Reference page covering invocations, formats, exi
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -105,18 +105,18 @@ Documentation-only phase. Surfaces and verification live in the spec Files-to-Ch
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory the scattered CLI docs (`README.md:100-110`, `AGENTS.md:133-143`, `ENV_REFERENCE.md:538-559`, system READMEs)
-- [ ] Confirm the code-level exit-code taxonomy and `jsonl` parsing behavior
+- [x] Inventory the scattered CLI docs (`README.md:100-110`, `AGENTS.md:133-143`, `ENV_REFERENCE.md:538-559`, system READMEs)
+- [x] Confirm the code-level exit-code taxonomy and `jsonl` parsing behavior
 
 ### Phase 2: Core
-- [ ] Author the unified Daemon CLI Reference page (six topics)
-- [ ] Add recovery commands + exit-code taxonomy to code-index and skill-advisor SKILL.md, or link the unified page
-- [ ] Document `jsonl` as a single-line JSON payload in the reference and SKILL.md notes
+- [x] Author the unified Daemon CLI Reference page (six topics)
+- [x] Add recovery commands + exit-code taxonomy to code-index and skill-advisor SKILL.md, or link the unified page
+- [x] Document `jsonl` as a single-line JSON payload in the reference and SKILL.md notes
 
 ### Phase 3: Verification
-- [ ] Reference page covers all six topics with a code-matched exit taxonomy
-- [ ] Each SKILL.md contains or links the recovery/exit-code content
-- [ ] `jsonl` single-line-payload note matches `*-cli.ts:282-298`
+- [x] Reference page covers all six topics with a code-matched exit taxonomy
+- [x] Each SKILL.md contains or links the recovery/exit-code content
+- [x] `jsonl` single-line-payload note matches `*-cli.ts:282-298`
 <!-- /ANCHOR:phases -->
 
 ---

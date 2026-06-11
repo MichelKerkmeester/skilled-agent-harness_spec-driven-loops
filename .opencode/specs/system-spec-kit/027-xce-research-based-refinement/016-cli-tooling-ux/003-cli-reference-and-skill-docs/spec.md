@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/003-cli-reference-and-skill-docs"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 child from assessment rows 5, 6, 7"
-    next_safe_action: "Plan the unified reference page and per-system SKILL.md edits"
+    last_updated_at: "2026-06-11T01:21:47Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented the unified daemon CLI reference, per-SKILL.md links, and jsonl clarification"
+    next_safe_action: "Use the canonical daemon CLI reference for future CLI fallback documentation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-003-cli-reference-and-skill-docs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -83,7 +83,7 @@ Consolidate the daemon CLI documentation into one canonical reference, put the e
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| Unified Daemon CLI Reference page (new) | Create | Invocations, formats, exit codes, warm-only, examples, safety |
+| `.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md` | Create | Invocations, formats, exit codes, warm-only, examples, safety |
 | `system-code-graph/SKILL.md` | Modify | Add recovery commands + exit-code taxonomy or link the unified page |
 | `system-skill-advisor/SKILL.md` | Modify | Add recovery commands + exit-code taxonomy or link the unified page |
 | `system-spec-kit/SKILL.md` (`:413`) | Modify | Cross-link the unified reference (already has recovery content) |
@@ -136,8 +136,8 @@ Consolidate the daemon CLI documentation into one canonical reference, put the e
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the unified reference live under `system-spec-kit/` docs or at a cross-cutting top-level location, given it spans three skills?
-- Should the per-SKILL.md content be inlined or replaced entirely by a link to the unified page?
+- Answered: The unified reference lives under `system-spec-kit/references/cli/daemon_cli_reference.md`, a shared location allowed by this phase.
+- Answered: Each SKILL.md carries a concise recovery/taxonomy/jsonl note and links to the unified reference for full details.
 <!-- /ANCHOR:questions -->
 
 ---
