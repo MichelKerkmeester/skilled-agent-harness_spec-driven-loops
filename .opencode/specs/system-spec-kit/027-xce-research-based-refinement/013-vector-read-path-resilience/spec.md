@@ -108,7 +108,7 @@ Corrupted shards become a detected, quarantined, automatically rebuilt condition
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | Dimension discovery reads the embedder profile as the authoritative source; the regex fallback is removed or demoted to last-resort with a warning | Unit test covers profile, schema, and absent-shard cases |
-| REQ-003 | KNN shape benchmark (scalar JOIN vs vec0 MATCH) recorded at the live corpus size; winner adopted if >20% faster | Benchmark table in implementation-summary; query change gated on the threshold |
+| REQ-003 | KNN shape benchmark (scalar JOIN vs vec0 MATCH) recorded at the live corpus size; winner adopted if >20% faster | Benchmark table in implementation-summary; query change gated on the threshold. **Evidence-pending deferral:** the corpus-32 interim benchmark is recorded (scalar JOIN retained, `MATCH` not >20% faster); the live-corpus-size rerun is deferred — blocked by daemon E040. The scalar-JOIN decision is unchanged unless the live rerun shows `MATCH` >20% faster |
 <!-- /ANCHOR:requirements -->
 
 ---

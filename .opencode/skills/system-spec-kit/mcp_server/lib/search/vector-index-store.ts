@@ -303,7 +303,13 @@ function validate_embedding_dimension_for_connection(
     }
 
     if (existing.stored_dim !== current_dim) {
-      const source_label = existing.source === 'vec_metadata' ? 'vec_metadata' : 'vec_memories schema';
+      const SOURCE_LABELS = {
+        vec_metadata: 'vec_metadata',
+        active_embedder_profile: 'active embedder profile',
+        startup_profile: 'startup embedding profile',
+        vec_memories: 'vec_memories schema',
+      };
+      const source_label = existing.source ? SOURCE_LABELS[existing.source] : 'vec_memories schema';
       const warning = `EMBEDDING DIMENSION MISMATCH: Existing database stores ${existing.stored_dim}-dim vectors (${source_label}), ` +
         `but the active embedding configuration resolves to ${current_dim}. Refusing to bootstrap because vector search would fail. ` +
         `Solutions: 1) Delete database and re-index, 2) Set EMBEDDINGS_PROVIDER to match original, ` +

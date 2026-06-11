@@ -12,7 +12,8 @@ _memory:
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Implemented vector shard read-path resilience and benchmark coverage"
     next_safe_action: "Rerun live-corpus KNN benchmark after MCP health recovers"
-    blockers: []
+    blockers:
+      - "REQ-003 live-corpus KNN benchmark deferred (daemon E040); corpus-32 interim recorded"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts"
@@ -88,7 +89,7 @@ The fault-injection test corrupts a copied fixture shard under a temp directory.
 
 | Decision | Why |
 |----------|-----|
-| Keep scalar JOIN query shape | Isolated benchmark at corpus 32 measured scalar JOIN at 0.0201 ms and `MATCH` at 0.0220 ms; `MATCH` was not greater than 20 percent faster |
+| Keep scalar JOIN query shape | Isolated benchmark at corpus 32 measured scalar JOIN at 0.0201 ms and `MATCH` at 0.0220 ms; `MATCH` was not greater than 20 percent faster. REQ-003's live-corpus-size benchmark is **evidence-pending** — the corpus-32 run is interim; the live-corpus rerun is deferred (blocked by daemon E040). The scalar-JOIN decision holds unless the live-corpus rerun shows `MATCH` >20% faster |
 | Surface counters through existing health payload | `memory-crud-health.ts` is outside this lane's write list, so the observability helper embeds the new snapshot inside the existing `recallDegradation` response |
 | Retain quarantined shards | Quarantine files are retained beside the original shard for forensics; no deletion policy was introduced |
 <!-- /ANCHOR:decisions -->
