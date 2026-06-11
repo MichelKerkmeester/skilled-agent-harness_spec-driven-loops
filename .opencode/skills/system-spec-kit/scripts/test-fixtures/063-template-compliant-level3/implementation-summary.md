@@ -1,15 +1,24 @@
 ---
-title: "Implementation Summary [template:level_3/implementation-summary.md]"
-description: "Level 3 template compliance fixture summary."
+title: "Implementation Summary [template:examples/level_3/implementation-summary.md]"
+description: "Current-template Level 3 implementation summary fixture with concrete evidence."
 trigger_phrases:
   - "fixture"
+  - "implementation summary"
+  - "level 3"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/scripts/test-fixtures/063-template-compliant-level3"
+    last_updated_at: "2026-06-11T00:00:00Z"
+    last_updated_by: "validator-fixture"
+    recent_action: "Completed Level 3 fixture regeneration"
+    next_safe_action: "Use fixture 063 for clean strict validation regression coverage"
 ---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
 
 ---
 
@@ -18,68 +27,72 @@ contextType: "general"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 063-template-compliant-level3 |
-| **Completed** | 2026-03-16 |
+| **Spec Folder** | `063-template-compliant-level3` |
+| **Completed** | 2026-06-11 |
 | **Level** | 3 |
-<!-- /ANCHOR:metadata -->
+| **Actual Effort** | 80 minutes (estimated: 80 minutes) |
+| **LOC Added** | N/A - markdown fixture refresh |
 
+<!-- /ANCHOR:metadata -->
 ---
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This fixture gives the validator a fully compliant Level 3 folder so strict template comparison can be tested against the most feature-rich standard documentation level, including decision records, user stories, and complexity assessments.
+Regenerated fixture 063 as a current-template Level 3 packet for clean strict validation coverage. The fixture now includes current Level 3 headers, anchors, checklist evidence, ADR structure, and concrete validation commands.
 
-### Fixture Coverage
+### Files Changed
 
-You can now run `validate.sh --strict` against this fixture and verify that all Level 3 template contracts are exercised: 14 required spec headers, ADR dynamic pattern matching, CHK-NNN checklist format, and L2/L3 optional plan sections.
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/spec.md` | Regenerated | Level 3 specification template compliance |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md` | Regenerated | Level 3 plan template compliance |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md` | Regenerated | Level 3 task template compliance |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/checklist.md` | Regenerated | Level 3 checklist evidence compliance |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/decision-record.md` | Regenerated | Level 3 ADR template compliance |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/implementation-summary.md` | Regenerated | Level 3 sufficiency and verification evidence |
+
 <!-- /ANCHOR:what-built -->
-
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each file was created by copying the exact header and anchor structure from the Level 3 templates. Placeholder content was replaced with fixture-appropriate text. Strict validation was run iteratively until all rules passed with zero errors and zero warnings.
-<!-- /ANCHOR:how-delivered -->
+The fixture was delivered by reading the current Level 3 contract, regenerating all six Level 3 markdown files, preserving the intentionally broken 054 fixture, and validating fixture 063 with the strict validator command.
 
+<!-- /ANCHOR:how-delivered -->
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-| Decision | Why |
-|----------|-----|
-| Use Level 3 as the fixture level | It covers the maximum template features without requiring governance workflows |
-| Include all optional L2/L3 plan sections | Ensures optional section handling is tested |
-| Include all optional L3+ checklist sections | Ensures optional checklist section handling is tested |
-<!-- /ANCHOR:decisions -->
+| Decision | Rationale |
+|----------|-----------|
+| Keep fixture 063 clean | Its purpose is strict-mode valid Level 3 coverage |
+| Keep fixture 054 unchanged | It intentionally validates extra-header warning behavior |
+| Cite real fixture files | Sufficiency validation requires concrete file references |
+| Use one accepted ADR | One ADR is enough to exercise current decision-record structure |
 
+<!-- /ANCHOR:decisions -->
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Result |
-|-------|--------|
-| Strict validator run | PASS, fixture is structurally compliant |
-| Section counts check | PASS, all metrics meet Level 3 minimums |
-| Template headers check | PASS, all 14 spec headers match template order |
-| Anchors valid check | PASS, all required anchors present and ordered |
-<!-- /ANCHOR:verification -->
+| Test Type | Status | Notes |
+|-----------|--------|-------|
+| Strict validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --strict` |
+| Recursive phase validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive` |
+| Consuming tests | Pass | Run every test returned by `rg -l "valid-phase|053-template|063-template|054-" .opencode/skills/system-spec-kit/scripts/tests/ --glob '*.js' --glob '*.ts'` |
 
+<!-- /ANCHOR:verification -->
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Level 3 only.** This fixture does not cover Level 3+ governance sections (AI protocols, extended sign-offs). Those would require a separate Level 3+ fixture.
-2. **Static content.** Fixture content is minimal and fixture-appropriate, not representative of real project documentation.
+1. This fixture only proves standard Level 3 compliance; Level 3+ governance packet docs are out of scope.
+2. Warning behavior is intentionally excluded and remains in fixture 054.
+3. LOC totals are not meaningful for regenerated markdown fixtures.
+
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
--->

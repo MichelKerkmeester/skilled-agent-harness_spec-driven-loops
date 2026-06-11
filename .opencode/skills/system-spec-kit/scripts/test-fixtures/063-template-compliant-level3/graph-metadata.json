@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "packet_id": "063-template-compliant-level3",
+  "spec_folder": "system-spec-kit/scripts/test-fixtures/063-template-compliant-level3",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "053-template-compliant-level2"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fixture",
+      "template",
+      "level 3"
+    ],
+    "key_topics": [
+      "validator fixture",
+      "template compliance",
+      "decision records"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/spec.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/checklist.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/decision-record.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Fixture metadata keeps strict Level 3 validator regression warnings at zero.",
+    "created_at": "2026-06-11T00:00:00Z",
+    "last_save_at": "2026-06-11T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/spec.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/checklist.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/decision-record.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/implementation-summary.md"
+    ]
+  }
+}
