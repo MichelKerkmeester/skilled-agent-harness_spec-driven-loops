@@ -20,7 +20,14 @@
     "system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience",
     "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights",
     "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports",
-    "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux"
+    "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux",
+    "system-spec-kit/027-xce-research-based-refinement/017-bm25-warmup-churn-reduction",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph",
+    "system-spec-kit/027-xce-research-based-refinement/019-skill-advisor-cross-session-reconnect",
+    "system-spec-kit/027-xce-research-based-refinement/020-vector-resilience-durability",
+    "system-spec-kit/027-xce-research-based-refinement/021-hybrid-search-scope-then-limit",
+    "system-spec-kit/027-xce-research-based-refinement/022-provenance-injection",
+    "system-spec-kit/027-xce-research-based-refinement/023-idempotency-flag-on-correctness"
   ],
   "migrated": true,
   "migration_source": "legacy",

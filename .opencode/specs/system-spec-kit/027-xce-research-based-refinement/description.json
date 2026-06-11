@@ -46,9 +46,11 @@
     "018-xce-feature-adoption-advisor-codegraph",
     "019-skill-advisor-cross-session-reconnect",
     "020-vector-resilience-durability",
-    "021-hybrid-search-scope-then-limit"
+    "021-hybrid-search-scope-then-limit",
+    "022-provenance-injection",
+    "023-idempotency-flag-on-correctness"
   ],
-  "specFolder": "027-xce-research-based-refinement",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
   "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
   "keywords": [
     "feature",
@@ -60,7 +62,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-11T06:25:39.922Z",
+  "lastUpdated": "2026-06-11T06:34:49.134Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
   "parentChain": [
