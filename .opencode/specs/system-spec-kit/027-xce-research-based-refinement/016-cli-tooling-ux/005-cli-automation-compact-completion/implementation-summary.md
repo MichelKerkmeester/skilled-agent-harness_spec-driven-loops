@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Planned scaffold for compact/names-only list-tools output and generated shell completion across the three daemon CLIs; no implementation done yet."
+description: "Implemented compact/names-only list-tools output and generated bash/zsh shell completion across the three daemon CLIs."
 trigger_phrases:
   - "005-cli-automation-compact-completion summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded planned-state impl doc; no code written yet"
-    next_safe_action: "Implement compact output and completion generation"
+    last_updated_at: "2026-06-11T01:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented compact output and completion generation"
+    next_safe_action: "Use list-tools --compact or completion bash|zsh"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-005-cli-automation-compact-completion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,9 +36,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-cli-automation-compact-completion |
-| **Completed** | Not yet (planned) |
+| **Completed** | 2026-06-11 |
 | **Level** | 1 |
-| **Status** | Planned |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -46,12 +46,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This sub-phase is scaffold-only and planned. The list below is the intended outcome and the planned target files, not a record of shipped code.
-
-Planned deliverables and their target files:
-
-- A `--compact`/`--names-only` machine-friendly `list-tools --format json` mode added to `mcp_server/spec-memory-cli.ts` (`:463-481`), `system-code-graph/mcp_server/code-index-cli.ts` (`:542-562`), and `system-skill-advisor/mcp_server/skill-advisor-cli.ts` (`:705-725`).
-- Generated bash/zsh shell completion (new generator `.ts`/`.sh` artifacts) sourced from the existing `TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, and advisor manifest.
+- `list-tools --compact` now returns `status`, `data.count`, `data.mode`, and `data.tools[]` with `name`, command aliases, and `description`, omitting `inputSchema`.
+- `list-tools --names-only` now returns `status`, `data.count`, `data.mode`, and `data.names[]` with canonical tool names only.
+- `completion bash|zsh` now emits shell completion scripts for `spec-memory`, `code-index`, and `skill-advisor` from the existing tool registries.
+- Full `list-tools --format json` output is unchanged in coverage and still includes schemas for 37/8/9 tools.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -59,7 +57,7 @@ Planned deliverables and their target files:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. When implemented, the compact mode will return tool names plus light metadata without the full `inputSchema` while keeping the 37/8/9 counts, and the completion generator will read the same manifests so completion never drifts from the live tool set.
+The three CLI files use their existing registry sources for all new offline output. Compact output reuses the same alias derivation as full output, and completion generation reads the same manifest-backed tool arrays used by command dispatch. No daemon logic, tool schemas, host daemons, package manifests, parent phase docs, or unrelated sub-phases were changed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -71,6 +69,7 @@ Not yet delivered. When implemented, the compact mode will return tool names plu
 |----------|-----|
 | Generate completion from manifests rather than hand-maintain | The registries already enumerate tools dynamically; generation avoids drift |
 | Keep compact mode additive to full list-tools | Existing automation that reads full schemas is unaffected |
+| Support both compact and names-only modes | Automation can choose summary objects or the smallest canonical-name payload |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -80,11 +79,20 @@ Not yet delivered. When implemented, the compact mode will return tool names plu
 
 | Check | Result |
 |-------|--------|
-| Compact JSON omits full schema and keeps 37/8/9 counts | Pending |
-| Completion lists current tool names and reflects manifest changes | Pending |
-| Compact names consistent with sub-phase 002 alias map | Pending |
-
-Planned verification commands (run when implemented): `node .opencode/bin/spec-memory.cjs list-tools --compact --format json` keeps the 37 count with schemas omitted; generated completion `tested` against the live manifest via `npm --prefix .opencode/skills/system-spec-kit/mcp_server test`.
+| `npm run build` in `system-spec-kit/mcp_server` | Pass |
+| `npm run build` in `system-code-graph` | Pass |
+| `npm run build` in `system-skill-advisor/mcp_server` | Pass |
+| Focused compact/completion CLI tests for all three CLIs | Pass, 6 tests each |
+| Existing spec-memory CLI suite | Pass, 7 files / 23 tests |
+| Existing code-index CLI suite | Pass, 6 files / 23 tests |
+| Existing skill-advisor CLI suite | Pass, 5 files / 12 tests |
+| Built shim smoke: full list-tools schemas intact | Pass, 37/8/9 schemas present |
+| Built shim smoke: compact schemas omitted | Pass, 0 schemas in compact output |
+| Built shim smoke: compact size reduction | Pass, 74.0% spec-memory, 72.8% code-index, 54.6% skill-advisor |
+| Built shim smoke: bash/zsh completion includes tool names | Pass |
+| Comment hygiene on touched code/test files | Pass |
+| Alignment drift for `system-code-graph` and `system-skill-advisor` | Pass |
+| Alignment drift for `system-spec-kit` | Out-of-scope fail: unrelated files `mcp_server/lib/storage/canonical-fingerprint.ts` and `scripts/deploy-mcp.sh` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,7 +100,7 @@ Planned verification commands (run when implemented): `node .opencode/bin/spec-m
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. This document is a planned scaffold; all verification rows are pending until the sub-phase is implemented.
+1. `system-spec-kit` alignment drift still reports two unrelated out-of-scope files. They were not changed because the approved write scope excludes them.
 <!-- /ANCHOR:limitations -->
 
 ---

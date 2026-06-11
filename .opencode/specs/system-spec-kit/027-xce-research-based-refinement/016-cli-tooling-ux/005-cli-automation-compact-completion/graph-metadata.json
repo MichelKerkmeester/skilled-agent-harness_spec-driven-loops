@@ -34,7 +34,7 @@
       "manifests"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "mcp_server/spec-memory-cli.ts",
       "spec.md",
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "The `list-tools --format json` output includes the full `inputSchema` for every tool, so machine scripts must parse large payloads to get tool names: spec (`spec-memory-cli.ts:463-481`; the spec-memory JSON was over 75KB in the assessment run), code (`code-index-cli.ts:542-562`), advisor (`skill-advisor-cli.ts:705-725`). There is no compact or names-only JSON mode. Separately, no CLI has a `completion` command; the tool registries already exist (`TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, advisor manifest), so shell completion could be generated from the same source instead of hand-maintained.",
     "created_at": "2026-06-10T20:46:28.787Z",
-    "last_save_at": "2026-06-10T20:46:28.787Z",
+    "last_save_at": "2026-06-11T01:50:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

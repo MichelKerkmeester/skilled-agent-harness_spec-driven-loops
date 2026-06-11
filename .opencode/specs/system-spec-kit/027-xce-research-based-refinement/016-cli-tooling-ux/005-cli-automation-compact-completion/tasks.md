@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 task list (planned, unchecked)"
-    next_safe_action: "Begin Phase 1 manifest confirmation tasks"
+    last_updated_at: "2026-06-11T01:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed compact output and shell completion tasks"
+    next_safe_action: "Use automation-friendly CLI modes"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-005-cli-automation-compact-completion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the manifest sources (`TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, advisor manifest) as the single source for both compact output and completion.
-- [ ] T002 Define the compact JSON field set (names + light metadata, no full `inputSchema`).
+- [x] T001 Confirm the manifest sources (`TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, advisor manifest) as the single source for both compact output and completion.
+- [x] T002 Define the compact JSON field set (names + light metadata, no full `inputSchema`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,10 +56,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [P] Add `--compact`/`--names-only` list-tools mode to `spec-memory-cli.ts:463-481`.
-- [ ] T004 [P] Add `--compact`/`--names-only` list-tools mode to `code-index-cli.ts:542-562`.
-- [ ] T005 [P] Add `--compact`/`--names-only` list-tools mode to `skill-advisor-cli.ts:705-725`.
-- [ ] T006 Generate bash/zsh shell completion from the tool manifests.
+- [x] T003 [P] Add `--compact`/`--names-only` list-tools mode to `spec-memory-cli.ts:463-481`.
+- [x] T004 [P] Add `--compact`/`--names-only` list-tools mode to `code-index-cli.ts:542-562`.
+- [x] T005 [P] Add `--compact`/`--names-only` list-tools mode to `skill-advisor-cli.ts:705-725`.
+- [x] T006 Generate bash/zsh shell completion from the tool manifests.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,9 +67,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Verify compact JSON omits the full schema and keeps 37/8/9 counts.
-- [ ] T008 Verify completion lists current tool names per CLI and reflects manifest changes on regeneration.
-- [ ] T009 Verify compact names stay consistent with the sub-phase 002 alias map.
+- [x] T007 Verify compact JSON omits the full schema and keeps 37/8/9 counts.
+- [x] T008 Verify completion lists current tool names per CLI and reflects manifest changes on regeneration.
+- [x] T009 Verify compact names stay consistent with the existing alias map.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,9 +77,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

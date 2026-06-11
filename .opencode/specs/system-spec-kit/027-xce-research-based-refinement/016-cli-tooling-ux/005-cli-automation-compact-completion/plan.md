@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 plan for compact output + shell completion"
-    next_safe_action: "Implement compact list-tools and completion generation"
+    last_updated_at: "2026-06-11T01:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Delivered compact output and generated completion"
+    next_safe_action: "Adopt compact list-tools and completion in automation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-005-cli-automation-compact-completion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,14 +58,14 @@ Add a `--compact`/`--names-only` machine-friendly `list-tools --format json` mod
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -103,17 +103,17 @@ Surfaces and verification live in the spec Files-to-Change table and the tasks b
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the manifest sources (`TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, advisor manifest)
-- [ ] Define the compact JSON field set (names + light metadata, no full schema)
+- [x] Confirm the manifest sources (`TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, advisor manifest)
+- [x] Define the compact JSON field set (names + light metadata, no full schema)
 
 ### Phase 2: Core
-- [ ] Add `--compact`/`--names-only` list-tools mode to all three CLIs
-- [ ] Generate bash/zsh shell completion from the tool manifests
+- [x] Add `--compact`/`--names-only` list-tools mode to all three CLIs
+- [x] Generate bash/zsh shell completion from the tool manifests
 
 ### Phase 3: Verification
-- [ ] Compact JSON omits full schema and keeps 37/8/9 counts
-- [ ] Completion lists current tool names per CLI; regeneration reflects manifest changes
-- [ ] Compact names stay consistent with the sub-phase 002 alias map
+- [x] Compact JSON omits full schema and keeps 37/8/9 counts
+- [x] Completion lists current tool names per CLI; regeneration reflects manifest changes
+- [x] Compact names stay consistent with the existing alias map
 <!-- /ANCHOR:phases -->
 
 ---

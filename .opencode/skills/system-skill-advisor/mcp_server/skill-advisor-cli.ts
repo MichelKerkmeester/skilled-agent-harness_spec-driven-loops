@@ -19,7 +19,7 @@ import {
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const DEFAULT_TIMEOUT_MS = 30_000;
 const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
-const RESERVED_COMMANDS = new Set(['list-tools']);
+const RESERVED_COMMANDS = new Set(['list-tools', 'completion']);
 
 const EXIT_SUCCESS = 0;
 const EXIT_RUNTIME = 1;
@@ -28,6 +28,8 @@ const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
 
 type OutputFormat = 'json' | 'text' | 'jsonl';
+type ToolListMode = 'full' | 'compact' | 'names-only';
+type CompletionShell = 'bash' | 'zsh';
 
 interface ParsedCommand {
   readonly command: string;
@@ -35,6 +37,8 @@ interface ParsedCommand {
   readonly timeoutMs: number;
   readonly sessionId?: string;
   readonly warmOnly: boolean;
+  readonly toolListMode: ToolListMode;
+  readonly completionShell?: CompletionShell;
   readonly args: Record<string, unknown>;
   readonly help: boolean;
   readonly version: boolean;
@@ -362,16 +366,18 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
   const trustedDefault = envTrustedDefault();
   const warmOnlyDefault = defaultWarmOnly();
   if (!command || command === '--help' || command === '-h') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: true, version: false, trusted: trustedDefault };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: true, version: false, trusted: trustedDefault };
   }
   if (command === '--version' || command === '-v') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: false, version: true, trusted: trustedDefault };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: false, version: true, trusted: trustedDefault };
   }
 
   let format: OutputFormat = 'json';
   let timeoutMs = DEFAULT_TIMEOUT_MS;
   let sessionId: string | undefined;
   let warmOnly = warmOnlyDefault;
+  let toolListMode: ToolListMode = 'full';
+  let completionShell: CompletionShell | undefined;
   let jsonPayload: Record<string, unknown> | null = null;
   let trusted = trustedDefault;
   const tool = getToolDefinition(command);
@@ -381,6 +387,11 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
 
   while (index < tokens.length) {
     const token = tokens[index];
+    if (command === 'completion' && completionShell === undefined && !token.startsWith('--')) {
+      completionShell = parseCompletionShell(token);
+      index += 1;
+      continue;
+    }
     if (!token.startsWith('--')) {
       throw new CliUsageError(`Unexpected positional argument: ${token}`);
     }
@@ -388,7 +399,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     const option = `--${rawFlag}`;
 
     if (rawFlag === 'help' || rawFlag === 'h') {
-      return { command, format: 'text', timeoutMs, sessionId, warmOnly, args: {}, help: true, version: false, trusted };
+      return { command, format: 'text', timeoutMs, sessionId, warmOnly, toolListMode, completionShell, args: {}, help: true, version: false, trusted };
     }
     if (rawFlag === 'format') {
       const read = readOptionValue(tokens, index, option);
@@ -421,6 +432,16 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     }
     if (rawFlag === 'untrusted') {
       trusted = false;
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'compact') {
+      toolListMode = 'compact';
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'names-only') {
+      toolListMode = 'names-only';
       index += 1;
       continue;
     }
@@ -468,6 +489,8 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     timeoutMs,
     sessionId,
     warmOnly,
+    toolListMode,
+    completionShell,
     args: jsonPayload ?? parsedArgs,
     help: false,
     version: false,
@@ -688,7 +711,8 @@ ${JSON.stringify(tool.inputSchema, null, 2)}`;
   return `skill-advisor - daemon-backed CLI for mk-skill-advisor
 
 Usage:
-  skill-advisor list-tools [--format json|text|jsonl]
+  skill-advisor list-tools [--format json|text|jsonl] [--compact|--names-only]
+  skill-advisor completion bash|zsh
   skill-advisor <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--trusted] [--warm-only]
   skill-advisor <tool_name> --param value [--another-param value]
 
@@ -697,6 +721,8 @@ ${commands}
 
 Examples:
   skill-advisor list-tools --format text
+  skill-advisor list-tools --compact
+  skill-advisor completion zsh
   skill-advisor advisor_status --workspace-root "$PWD" --format text
   skill-advisor advisor_recommend --prompt "implement cli core"
   skill-advisor advisor_rebuild --trusted --force true
@@ -710,11 +736,28 @@ Exit codes:
   0 success, 1 runtime error, 64 usage/schema error, 69 protocol mismatch, 75 retryable daemon error`;
 }
 
-function renderToolList(format: OutputFormat): string {
+function parseCompletionShell(raw: string): CompletionShell {
+  if (raw === 'bash' || raw === 'zsh') return raw;
+  throw new CliUsageError('completion shell must be one of: bash, zsh');
+}
+
+function compactTool(tool: SkillAdvisorCliToolDefinition): Record<string, unknown> {
+  return {
+    name: tool.name,
+    command: tool.command,
+    kebabCommand: tool.kebabCommand,
+    camelCommand: tool.camelCommand,
+    aliases: tool.aliases,
+    description: tool.description,
+  };
+}
+
+function renderToolList(format: OutputFormat, mode: ToolListMode = 'full'): string {
   const payload = {
     status: 'ok',
     data: {
       count: SKILL_ADVISOR_CLI_TOOL_MANIFEST.length,
+      mode,
       tools: SKILL_ADVISOR_CLI_TOOL_MANIFEST.map((tool) => ({
         name: tool.name,
         command: tool.command,
@@ -725,11 +768,86 @@ function renderToolList(format: OutputFormat): string {
       })),
     },
   };
+  const compactPayload = {
+    status: 'ok',
+    data: {
+      count: SKILL_ADVISOR_CLI_TOOL_MANIFEST.length,
+      mode,
+      tools: SKILL_ADVISOR_CLI_TOOL_MANIFEST.map(compactTool),
+    },
+  };
+  const namesOnlyPayload = {
+    status: 'ok',
+    data: {
+      count: SKILL_ADVISOR_CLI_TOOL_MANIFEST.length,
+      mode,
+      names: SKILL_ADVISOR_CLI_TOOL_MANIFEST.map((tool) => tool.name),
+    },
+  };
 
   if (format === 'text') {
     return SKILL_ADVISOR_CLI_TOOL_MANIFEST.map((tool) => tool.name).join('\n');
   }
+  if (mode === 'compact') return renderJson(compactPayload, format);
+  if (mode === 'names-only') return renderJson(namesOnlyPayload, format);
   return renderJson(payload, format);
+}
+
+function completionWords(): string[] {
+  return ['list-tools', 'completion', ...SKILL_ADVISOR_CLI_TOOL_MANIFEST.map((tool) => tool.name)];
+}
+
+function shellWords(words: readonly string[]): string {
+  return words.join(' ');
+}
+
+function renderBashCompletion(): string {
+  const commands = shellWords(completionWords());
+  const commonFlags = shellWords(['--help', '--format', '--json', '--timeout-ms', '--session-id', '--trusted', '--untrusted', '--warm-only', '--no-warm-only']);
+  const listFlags = shellWords(['--help', '--format', '--compact', '--names-only']);
+  return `_skill_advisor_completion() {
+  local cur
+  COMPREPLY=()
+  cur="\${COMP_WORDS[COMP_CWORD]}"
+  if [[ \${COMP_CWORD} -eq 1 ]]; then
+    COMPREPLY=( $(compgen -W "${commands}" -- "\${cur}") )
+    return 0
+  fi
+  case "\${COMP_WORDS[1]}" in
+    completion) COMPREPLY=( $(compgen -W "bash zsh" -- "\${cur}") ) ;;
+    list-tools) COMPREPLY=( $(compgen -W "${listFlags}" -- "\${cur}") ) ;;
+    *) COMPREPLY=( $(compgen -W "${commonFlags}" -- "\${cur}") ) ;;
+  esac
+}
+complete -F _skill_advisor_completion skill-advisor`;
+}
+
+function renderZshCompletion(): string {
+  const commands = shellWords(completionWords());
+  const commonFlags = shellWords(['--help', '--format', '--json', '--timeout-ms', '--session-id', '--trusted', '--untrusted', '--warm-only', '--no-warm-only']);
+  const listFlags = shellWords(['--help', '--format', '--compact', '--names-only']);
+  return `#compdef skill-advisor
+_skill_advisor() {
+  local -a commands common_flags list_flags shells
+  commands=(${commands})
+  common_flags=(${commonFlags})
+  list_flags=(${listFlags})
+  shells=(bash zsh)
+  if (( CURRENT == 2 )); then
+    _describe 'commands' commands
+    return
+  fi
+  case \${words[2]} in
+    completion) _describe 'shells' shells ;;
+    list-tools) _describe 'flags' list_flags ;;
+    *) _describe 'flags' common_flags ;;
+  esac
+}
+_skill_advisor "$@"`;
+}
+
+function renderCompletion(shell: CompletionShell): string {
+  return shell === 'bash' ? renderBashCompletion() : renderZshCompletion();
 }
 
 function isErrorPayload(payload: unknown): boolean {
@@ -858,6 +976,7 @@ function levenshteinDistance(left: string, right: string): number {
 
 function closestCommand(command: string): string | undefined {
   const targets = new Map<string, string>([['list-tools', 'list-tools']]);
+  targets.set('completion', 'completion');
   for (const tool of SKILL_ADVISOR_CLI_TOOL_MANIFEST) {
     for (const alias of tool.aliases) {
       targets.set(alias, tool.name);
@@ -1152,7 +1271,14 @@ export async function runSkillAdvisorCli(argv: string[], io: CliIo = { stdout: p
       return EXIT_SUCCESS;
     }
     if (parsed.command === 'list-tools') {
-      await writeLine(io.stdout, renderToolList(parsed.format));
+      await writeLine(io.stdout, renderToolList(parsed.format, parsed.toolListMode));
+      return EXIT_SUCCESS;
+    }
+    if (parsed.command === 'completion') {
+      if (!parsed.completionShell) {
+        throw new CliUsageError('completion requires a shell: bash or zsh');
+      }
+      await writeLine(io.stdout, renderCompletion(parsed.completionShell));
       return EXIT_SUCCESS;
     }
 
@@ -1213,6 +1339,7 @@ export const __testing = {
   ensureSocketEnvironment,
   exitCodeForError,
   findRepoPaths,
+  renderCompletion,
   renderToolList,
   resolvePropertyName,
 };

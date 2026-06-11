@@ -77,12 +77,55 @@ describe('code-index CLI help, aliases, and unknown command recovery', () => {
 
     const exitCode = await runCodeIndexCli(['list-tools', '--format', 'json'], io);
     const payload = JSON.parse(io.output().stdout) as {
-      readonly data: { readonly count: number; readonly tools: Array<{ readonly name: string; readonly camelCommand?: string }> };
+      readonly data: { readonly count: number; readonly tools: Array<{ readonly name: string; readonly camelCommand?: string; readonly inputSchema?: unknown }> };
     };
 
     expect(exitCode).toBe(0);
     expect(payload.data.count).toBe(8);
     expect(payload.data.tools.find((tool) => tool.name === 'code_graph_query')?.camelCommand).toBe('codeGraphQuery');
+    expect(payload.data.tools.find((tool) => tool.name === 'code_graph_query')?.inputSchema).toBeTruthy();
+  });
+
+  it('renders compact and names-only list-tools JSON without schemas', async () => {
+    const fullIo = captureIo();
+    const compactIo = captureIo();
+    const namesIo = captureIo();
+
+    await runCodeIndexCli(['list-tools', '--format', 'json'], fullIo);
+    const compactExit = await runCodeIndexCli(['list-tools', '--compact'], compactIo);
+    const namesExit = await runCodeIndexCli(['list-tools', '--names-only'], namesIo);
+    const compact = JSON.parse(compactIo.output().stdout) as {
+      readonly data: { readonly count: number; readonly mode: string; readonly tools: Array<{ readonly name: string; readonly description: string; readonly inputSchema?: unknown }> };
+    };
+    const names = JSON.parse(namesIo.output().stdout) as { readonly data: { readonly count: number; readonly mode: string; readonly names: string[] } };
+
+    expect(compactExit).toBe(0);
+    expect(namesExit).toBe(0);
+    expect(compact.data.count).toBe(8);
+    expect(compact.data.mode).toBe('compact');
+    expect(compact.data.tools.find((tool) => tool.name === 'code_graph_query')?.description).toContain('Query structural relationships');
+    expect(compact.data.tools.some((tool) => Object.prototype.hasOwnProperty.call(tool, 'inputSchema'))).toBe(false);
+    expect(names.data.count).toBe(8);
+    expect(names.data.mode).toBe('names-only');
+    expect(names.data.names).toContain('code_graph_query');
+    expect(compactIo.output().stdout.length).toBeLessThan(fullIo.output().stdout.length / 2);
+  });
+
+  it('generates bash and zsh completion from the tool registry', async () => {
+    const bashIo = captureIo();
+    const zshIo = captureIo();
+
+    const bashExit = await runCodeIndexCli(['completion', 'bash'], bashIo);
+    const zshExit = await runCodeIndexCli(['completion', 'zsh'], zshIo);
+
+    expect(bashExit).toBe(0);
+    expect(zshExit).toBe(0);
+    expect(bashIo.output().stdout).toContain('complete -F _code_index_completion code-index');
+    expect(bashIo.output().stdout).toContain('code_graph_query');
+    expect(bashIo.output().stdout).toContain('--compact');
+    expect(zshIo.output().stdout).toContain('#compdef code-index');
+    expect(zshIo.output().stdout).toContain('code_graph_query');
+    expect(zshIo.output().stdout).toContain('--names-only');
   });
 
   it('returns a list-tools hint and closest command suggestion for unknown commands', async () => {

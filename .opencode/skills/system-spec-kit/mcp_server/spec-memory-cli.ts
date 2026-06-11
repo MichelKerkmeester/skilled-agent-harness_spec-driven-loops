@@ -25,7 +25,7 @@ const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const DEFAULT_TIMEOUT_MS = 30_000;
 const DEFAULT_SOCKET_DIR = '/tmp/mk-spec-memory';
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
-const RESERVED_COMMANDS = new Set(['list-tools']);
+const RESERVED_COMMANDS = new Set(['list-tools', 'completion']);
 
 const EXIT_SUCCESS = 0;
 const EXIT_RUNTIME = 1;
@@ -34,6 +34,8 @@ const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
 
 type OutputFormat = 'json' | 'text' | 'jsonl';
+type ToolListMode = 'full' | 'compact' | 'names-only';
+type CompletionShell = 'bash' | 'zsh';
 
 interface ParsedCommand {
   readonly command: string;
@@ -41,6 +43,8 @@ interface ParsedCommand {
   readonly timeoutMs: number;
   readonly sessionId?: string;
   readonly warmOnly: boolean;
+  readonly toolListMode: ToolListMode;
+  readonly completionShell?: CompletionShell;
   readonly args: Record<string, unknown>;
   readonly help: boolean;
   readonly version: boolean;
@@ -218,12 +222,15 @@ ${JSON.stringify(tool.inputSchema, null, 2)}`;
   return `spec-memory - daemon-backed CLI for mk-spec-memory
 
 Usage:
-  spec-memory list-tools [--format json|text|jsonl]
+  spec-memory list-tools [--format json|text|jsonl] [--compact|--names-only]
+  spec-memory completion bash|zsh
   spec-memory <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--session-id ID] [--warm-only]
   spec-memory <tool_name> --param value [--another-param value]
 
 Examples:
   spec-memory list-tools --format text
+  spec-memory list-tools --compact
+  spec-memory completion zsh
   spec-memory memory_stats --format json
   spec-memory memory_search --query "gold query battery" --limit 3
   spec-memory memory_context --json '{"input":"resume", "mode":"resume"}'
@@ -233,8 +240,13 @@ Exit codes:
 
 Exit 69 recovery:
   - Missing or stale dist entrypoint: run npm run build --workspace=@spec-kit/mcp-server.
-  - Backend protocol version changed: rebuild the CLI and daemon from the same checkout, then update any pinned client.
-  - Socket path or daemon config mismatch: check SPECKIT_IPC_SOCKET_DIR, socket length, and daemon config before retrying.`;
+    - Backend protocol version changed: rebuild the CLI and daemon from the same checkout, then update any pinned client.
+    - Socket path or daemon config mismatch: check SPECKIT_IPC_SOCKET_DIR, socket length, and daemon config before retrying.`;
+}
+
+function parseCompletionShell(raw: string): CompletionShell {
+  if (raw === 'bash' || raw === 'zsh') return raw;
+  throw new CliUsageError('completion shell must be one of: bash, zsh');
 }
 
 function normalizeName(value: string): string {
@@ -364,16 +376,18 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
   const command = argv[0];
   const warmOnlyDefault = defaultWarmOnly();
   if (!command || command === '--help' || command === '-h') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: true, version: false };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: true, version: false };
   }
   if (command === '--version' || command === '-v') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, args: {}, help: false, version: true };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: false, version: true };
   }
 
   let format: OutputFormat = 'json';
   let timeoutMs = DEFAULT_TIMEOUT_MS;
   let sessionId: string | undefined;
   let warmOnly = warmOnlyDefault;
+  let toolListMode: ToolListMode = 'full';
+  let completionShell: CompletionShell | undefined;
   let jsonPayload: Record<string, unknown> | null = null;
   const tool = getToolDefinition(command);
   const parsedArgs: Record<string, unknown> = {};
@@ -382,6 +396,11 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
 
   while (index < tokens.length) {
     const token = tokens[index];
+    if (command === 'completion' && completionShell === undefined && !token.startsWith('--')) {
+      completionShell = parseCompletionShell(token);
+      index += 1;
+      continue;
+    }
     if (!token.startsWith('--')) {
       throw new CliUsageError(`Unexpected positional argument: ${token}`);
     }
@@ -389,7 +408,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     const option = `--${rawFlag}`;
 
     if (rawFlag === 'help' || rawFlag === 'h') {
-      return { command, format: 'text', timeoutMs, sessionId, warmOnly, args: {}, help: true, version: false };
+      return { command, format: 'text', timeoutMs, sessionId, warmOnly, toolListMode, completionShell, args: {}, help: true, version: false };
     }
     if (rawFlag === 'format') {
       const read = readOptionValue(tokens, index, option);
@@ -417,6 +436,16 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     }
     if (rawFlag === 'no-warm-only') {
       warmOnly = false;
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'compact') {
+      toolListMode = 'compact';
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'names-only') {
+      toolListMode = 'names-only';
       index += 1;
       continue;
     }
@@ -459,6 +488,8 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     timeoutMs,
     sessionId,
     warmOnly,
+    toolListMode,
+    completionShell,
     args: jsonPayload ?? parsedArgs,
     help: false,
     version: false,
@@ -491,11 +522,23 @@ function renderJson(value: unknown, format: OutputFormat): string {
   return JSON.stringify(value, null, 2);
 }
 
-function renderToolList(format: OutputFormat): string {
+function compactTool(tool: ToolDefinition): Record<string, unknown> {
+  return {
+    name: tool.name,
+    command: tool.name,
+    kebabCommand: toKebabCommand(tool.name),
+    camelCommand: toCamelCommand(tool.name),
+    aliases: commandAliases(tool.name),
+    description: tool.description,
+  };
+}
+
+function renderToolList(format: OutputFormat, mode: ToolListMode = 'full'): string {
   const payload = {
     status: 'ok',
     data: {
       count: TOOL_DEFINITIONS.length,
+      mode,
       tools: TOOL_DEFINITIONS.map((tool) => ({
         name: tool.name,
         command: tool.name,
@@ -507,11 +550,86 @@ function renderToolList(format: OutputFormat): string {
       })),
     },
   };
+  const compactPayload = {
+    status: 'ok',
+    data: {
+      count: TOOL_DEFINITIONS.length,
+      mode,
+      tools: TOOL_DEFINITIONS.map(compactTool),
+    },
+  };
+  const namesOnlyPayload = {
+    status: 'ok',
+    data: {
+      count: TOOL_DEFINITIONS.length,
+      mode,
+      names: TOOL_DEFINITIONS.map((tool) => tool.name),
+    },
+  };
 
   if (format === 'text') {
     return TOOL_DEFINITIONS.map((tool) => tool.name).join('\n');
   }
+  if (mode === 'compact') return renderJson(compactPayload, format);
+  if (mode === 'names-only') return renderJson(namesOnlyPayload, format);
   return renderJson(payload, format);
+}
+
+function completionWords(): string[] {
+  return ['list-tools', 'completion', ...TOOL_DEFINITIONS.map((tool) => tool.name)];
+}
+
+function shellWords(words: readonly string[]): string {
+  return words.join(' ');
+}
+
+function renderBashCompletion(): string {
+  const commands = shellWords(completionWords());
+  const commonFlags = shellWords(['--help', '--format', '--json', '--timeout-ms', '--session-id', '--warm-only', '--no-warm-only']);
+  const listFlags = shellWords(['--help', '--format', '--compact', '--names-only']);
+  return `_spec_memory_completion() {
+  local cur
+  COMPREPLY=()
+  cur="\${COMP_WORDS[COMP_CWORD]}"
+  if [[ \${COMP_CWORD} -eq 1 ]]; then
+    COMPREPLY=( $(compgen -W "${commands}" -- "\${cur}") )
+    return 0
+  fi
+  case "\${COMP_WORDS[1]}" in
+    completion) COMPREPLY=( $(compgen -W "bash zsh" -- "\${cur}") ) ;;
+    list-tools) COMPREPLY=( $(compgen -W "${listFlags}" -- "\${cur}") ) ;;
+    *) COMPREPLY=( $(compgen -W "${commonFlags}" -- "\${cur}") ) ;;
+  esac
+}
+complete -F _spec_memory_completion spec-memory`;
+}
+
+function renderZshCompletion(): string {
+  const commands = shellWords(completionWords());
+  const commonFlags = shellWords(['--help', '--format', '--json', '--timeout-ms', '--session-id', '--warm-only', '--no-warm-only']);
+  const listFlags = shellWords(['--help', '--format', '--compact', '--names-only']);
+  return `#compdef spec-memory
+_spec_memory() {
+  local -a commands common_flags list_flags shells
+  commands=(${commands})
+  common_flags=(${commonFlags})
+  list_flags=(${listFlags})
+  shells=(bash zsh)
+  if (( CURRENT == 2 )); then
+    _describe 'commands' commands
+    return
+  fi
+  case \${words[2]} in
+    completion) _describe 'shells' shells ;;
+    list-tools) _describe 'flags' list_flags ;;
+    *) _describe 'flags' common_flags ;;
+  esac
+}
+_spec_memory "$@"`;
+}
+
+function renderCompletion(shell: CompletionShell): string {
+  return shell === 'bash' ? renderBashCompletion() : renderZshCompletion();
 }
 
 function extractToolPayload(toolName: string, result: unknown): { readonly payload: unknown; readonly isError: boolean } {
@@ -598,6 +716,7 @@ function levenshteinDistance(left: string, right: string): number {
 
 function closestCommand(command: string): string | undefined {
   const targets = new Map<string, string>([['list-tools', 'list-tools']]);
+  targets.set('completion', 'completion');
   for (const tool of TOOL_DEFINITIONS) {
     for (const alias of commandAliases(tool.name)) {
       targets.set(alias, tool.name);
@@ -842,7 +961,14 @@ export async function runSpecMemoryCli(argv: string[], io: CliIo = { stdout: pro
       return EXIT_SUCCESS;
     }
     if (parsed.command === 'list-tools') {
-      await writeLine(io.stdout, renderToolList(parsed.format));
+      await writeLine(io.stdout, renderToolList(parsed.format, parsed.toolListMode));
+      return EXIT_SUCCESS;
+    }
+    if (parsed.command === 'completion') {
+      if (!parsed.completionShell) {
+        throw new CliUsageError('completion requires a shell: bash or zsh');
+      }
+      await writeLine(io.stdout, renderCompletion(parsed.completionShell));
       return EXIT_SUCCESS;
     }
 
@@ -902,6 +1028,7 @@ export const __testing = {
   exitCodeForError,
   findRepoPaths,
   closestCommand,
+  renderCompletion,
   renderToolList,
   resolvePropertyName,
 };

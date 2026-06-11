@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 child from assessment rows 11, 12"
-    next_safe_action: "Plan compact list-tools output and completion generation"
+    last_updated_at: "2026-06-11T01:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented compact list-tools output and shell completion"
+    next_safe_action: "Use list-tools --compact or completion bash|zsh in automation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-005-cli-automation-compact-completion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -133,8 +133,8 @@ Add a machine-friendly compact (`--compact` or `--names-only`) `list-tools --for
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should completion be generated on demand via a `completion` subcommand, or pre-generated into a checked-in/CI artifact?
-- Should `--compact` and `--names-only` be distinct modes, or one flag with a documented field set?
+- Answered: completion is generated on demand through `completion bash|zsh`, sourced from each CLI's existing tool registry.
+- Answered: both `--compact` and `--names-only` are supported. `--compact` returns tool objects with aliases and descriptions but no schemas; `--names-only` returns only the canonical names.
 <!-- /ANCHOR:questions -->
 
 ---

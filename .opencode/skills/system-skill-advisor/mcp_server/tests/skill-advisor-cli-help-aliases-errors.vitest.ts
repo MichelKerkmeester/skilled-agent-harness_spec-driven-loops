@@ -75,10 +75,55 @@ describe('skill-advisor CLI aliases and unknown command recovery', () => {
     const io = captureIo();
 
     const exitCode = await runSkillAdvisorCli(['list-tools', '--format', 'json'], io);
-    const payload = JSON.parse(io.output().stdout) as { readonly data: { readonly count: number } };
+    const payload = JSON.parse(io.output().stdout) as {
+      readonly data: { readonly count: number; readonly tools: Array<{ readonly name: string; readonly inputSchema?: unknown }> };
+    };
 
     expect(exitCode).toBe(0);
     expect(payload.data.count).toBe(9);
+    expect(payload.data.tools.find((tool) => tool.name === 'advisor_recommend')?.inputSchema).toBeTruthy();
+  });
+
+  it('renders compact and names-only list-tools JSON without schemas', async () => {
+    const fullIo = captureIo();
+    const compactIo = captureIo();
+    const namesIo = captureIo();
+
+    await runSkillAdvisorCli(['list-tools', '--format', 'json'], fullIo);
+    const compactExit = await runSkillAdvisorCli(['list-tools', '--compact'], compactIo);
+    const namesExit = await runSkillAdvisorCli(['list-tools', '--names-only'], namesIo);
+    const compact = JSON.parse(compactIo.output().stdout) as {
+      readonly data: { readonly count: number; readonly mode: string; readonly tools: Array<{ readonly name: string; readonly description: string; readonly inputSchema?: unknown }> };
+    };
+    const names = JSON.parse(namesIo.output().stdout) as { readonly data: { readonly count: number; readonly mode: string; readonly names: string[] } };
+
+    expect(compactExit).toBe(0);
+    expect(namesExit).toBe(0);
+    expect(compact.data.count).toBe(9);
+    expect(compact.data.mode).toBe('compact');
+    expect(compact.data.tools.find((tool) => tool.name === 'advisor_recommend')?.description).toContain('Recommend skills');
+    expect(compact.data.tools.some((tool) => Object.prototype.hasOwnProperty.call(tool, 'inputSchema'))).toBe(false);
+    expect(names.data.count).toBe(9);
+    expect(names.data.mode).toBe('names-only');
+    expect(names.data.names).toContain('advisor_recommend');
+    expect(compactIo.output().stdout.length).toBeLessThan(fullIo.output().stdout.length / 2);
+  });
+
+  it('generates bash and zsh completion from the tool manifest', async () => {
+    const bashIo = captureIo();
+    const zshIo = captureIo();
+
+    const bashExit = await runSkillAdvisorCli(['completion', 'bash'], bashIo);
+    const zshExit = await runSkillAdvisorCli(['completion', 'zsh'], zshIo);
+
+    expect(bashExit).toBe(0);
+    expect(zshExit).toBe(0);
+    expect(bashIo.output().stdout).toContain('complete -F _skill_advisor_completion skill-advisor');
+    expect(bashIo.output().stdout).toContain('advisor_recommend');
+    expect(bashIo.output().stdout).toContain('--trusted');
+    expect(zshIo.output().stdout).toContain('#compdef skill-advisor');
+    expect(zshIo.output().stdout).toContain('advisor_recommend');
+    expect(zshIo.output().stdout).toContain('--names-only');
   });
 
   it('returns a list-tools hint and closest command suggestion for unknown commands', async () => {
