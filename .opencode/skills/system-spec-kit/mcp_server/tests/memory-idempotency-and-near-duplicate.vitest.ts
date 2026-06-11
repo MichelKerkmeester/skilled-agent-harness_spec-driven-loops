@@ -4,7 +4,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ensureIdempotencyReceiptSchemaForTests } from '../lib/search/vector-index-schema';
 import {
   deriveIdempotencyReceiptKey,
+  isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
+  lookupIdempotencyReceiptByKey,
+  shouldStoreMemorySaveReceipt,
   storeIdempotencyReceipt,
 } from '../lib/storage/idempotency-receipts';
 import {
@@ -49,6 +52,13 @@ function responseFor(id: number) {
   };
 }
 
+function insertMemoryRow(database: Database.Database, id: number, contentHash = `hash-${id}`): void {
+  database.prepare(`
+    INSERT INTO memory_index (id, spec_folder, content_hash, embedding_status, updated_at)
+    VALUES (?, 'specs/demo', ?, 'success', '2026-06-10T00:00:00.000Z')
+  `).run(id, contentHash);
+}
+
 describe('memory idempotency receipts and near-duplicate markers', () => {
   let database: Database.Database;
   const originalFlag = process.env.SPECKIT_MEMORY_IDEMPOTENCY;
@@ -65,7 +75,7 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
     vi.resetModules();
   });
 
-  it('replays an identical server-derived receipt without inserting another memory row', () => {
+  it('replays the original server-derived response without inserting another memory row', () => {
     const input = {
       operation: 'memory_save' as const,
       contentHash: 'hash-a',
@@ -73,11 +83,9 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
       payload: { filePath: '/tmp/spec.md', force: false },
     };
     const key = deriveIdempotencyReceiptKey(input);
-    database.prepare(`
-      INSERT INTO memory_index (id, spec_folder, content_hash, embedding_status, updated_at)
-      VALUES (1, 'specs/demo', 'hash-a', 'success', '2026-06-10T00:00:00.000Z')
-    `).run();
-    storeIdempotencyReceipt(database, key, responseFor(1), 1);
+    const originalResponse = responseFor(1);
+    insertMemoryRow(database, 1, 'hash-a');
+    storeIdempotencyReceipt(database, key, originalResponse, 1);
 
     const replay = lookupIdempotencyReceipt(database, input);
     const rowCount = database.prepare('SELECT COUNT(*) AS count FROM memory_index').get() as { count: number };
@@ -85,7 +93,66 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
     expect(replay.status).toBe('replay');
     expect(rowCount.count).toBe(1);
     if (replay.status === 'replay') {
-      expect(replay.response.content[0].text).toContain('"replayed": true');
+      expect(replay.response).toEqual(originalResponse);
+    }
+  });
+
+  it('preserves the first receipt response for a repeated store of the same key', () => {
+    const input = {
+      operation: 'memory_save' as const,
+      contentHash: 'hash-a',
+      requestFingerprint: { filePath: '/tmp/spec.md', contentHash: 'hash-a' },
+      payload: { filePath: '/tmp/spec.md', force: false },
+    };
+    const key = deriveIdempotencyReceiptKey(input);
+    const originalResponse = responseFor(1);
+    insertMemoryRow(database, 1, 'hash-a');
+    insertMemoryRow(database, 2, 'hash-a');
+    storeIdempotencyReceipt(database, key, originalResponse, 1);
+    storeIdempotencyReceipt(database, key, responseFor(2), 2);
+
+    const replay = lookupIdempotencyReceipt(database, input);
+
+    expect(replay.status).toBe('replay');
+    if (replay.status === 'replay') {
+      expect(replay.response).toEqual(originalResponse);
+    }
+  });
+
+  it('signals won/lost on store so a concurrent loser replays the winner by key', () => {
+    const input = {
+      operation: 'memory_save' as const,
+      contentHash: 'hash-race',
+      requestFingerprint: { filePath: '/tmp/race.md', contentHash: 'hash-race' },
+      payload: { filePath: '/tmp/race.md', force: false },
+    };
+    const key = deriveIdempotencyReceiptKey(input);
+    const winnerResponse = responseFor(1);
+    insertMemoryRow(database, 1, 'hash-race');
+    insertMemoryRow(database, 2, 'hash-race');
+
+    // First writer wins; the concurrent same-key writer loses via ON CONFLICT DO NOTHING.
+    expect(storeIdempotencyReceipt(database, key, winnerResponse, 1)).toBe(true);
+    expect(storeIdempotencyReceipt(database, key, responseFor(2), 2)).toBe(false);
+
+    // The loser replays the winner's response by key, not its own divergent result.
+    const replay = lookupIdempotencyReceiptByKey(database, key);
+    expect(replay.status).toBe('replay');
+    if (replay.status === 'replay') {
+      expect(replay.response).toEqual(winnerResponse);
+    }
+  });
+
+  it('is disabled by default so the flag-off save path is a no-op', () => {
+    const prev = process.env.SPECKIT_MEMORY_IDEMPOTENCY;
+    try {
+      delete process.env.SPECKIT_MEMORY_IDEMPOTENCY;
+      expect(isMemoryIdempotencyEnabled()).toBe(false);
+      process.env.SPECKIT_MEMORY_IDEMPOTENCY = 'true';
+      expect(isMemoryIdempotencyEnabled()).toBe(true);
+    } finally {
+      if (prev === undefined) delete process.env.SPECKIT_MEMORY_IDEMPOTENCY;
+      else process.env.SPECKIT_MEMORY_IDEMPOTENCY = prev;
     }
   });
 
@@ -122,6 +189,83 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
 
     expect(second.receiptKey).toBe(first.receiptKey);
     expect(second.payloadHash).toBe(first.payloadHash);
+  });
+
+  it('normalizes key order and undefined values without masking real payload changes', () => {
+    const original = {
+      operation: 'memory_save' as const,
+      contentHash: 'hash-a',
+      requestFingerprint: { scope: { userId: null, tenantId: 'tenant-a' }, filePath: '/tmp/spec.md' },
+      payload: {
+        options: { force: false, asyncEmbedding: undefined, routeAs: null },
+        filePath: '/tmp/spec.md',
+        client_idempotency_key: 'client-a',
+      },
+    };
+    insertMemoryRow(database, 1, 'hash-a');
+    storeIdempotencyReceipt(database, deriveIdempotencyReceiptKey(original), responseFor(1), 1);
+
+    const reordered = lookupIdempotencyReceipt(database, {
+      operation: 'memory_save' as const,
+      contentHash: 'hash-a',
+      requestFingerprint: { filePath: '/tmp/spec.md', scope: { tenantId: 'tenant-a', userId: null } },
+      payload: {
+        clientIdempotencyToken: 'client-b',
+        filePath: '/tmp/spec.md',
+        options: { routeAs: null, force: false },
+      },
+    });
+    const changed = lookupIdempotencyReceipt(database, {
+      ...original,
+      payload: {
+        options: { force: true, routeAs: null },
+        filePath: '/tmp/spec.md',
+      },
+    });
+
+    expect(reordered.status).toBe('replay');
+    expect(changed.status).toBe('conflict');
+  });
+
+  it('writes receipts only for successful mutating memory-save results', () => {
+    const input = {
+      operation: 'memory_save' as const,
+      contentHash: 'hash-a',
+      requestFingerprint: { filePath: '/tmp/spec.md', contentHash: 'hash-a' },
+      payload: { filePath: '/tmp/spec.md', force: false },
+    };
+    const key = deriveIdempotencyReceiptKey(input);
+    const response = responseFor(1);
+    insertMemoryRow(database, 1, 'hash-a');
+
+    if (shouldStoreMemorySaveReceipt({ id: 1, status: 'indexed' }, response)) {
+      storeIdempotencyReceipt(database, key, response, 1);
+    }
+    expect(lookupIdempotencyReceipt(database, input).status).toBe('replay');
+
+    const skippedCandidates = [
+      { id: 2, status: 'duplicate', isError: false },
+      { id: 3, status: 'unchanged', isError: false },
+      { id: 4, status: 'error', isError: true },
+      { id: 5, status: 'rejected', isError: false },
+      { id: 6, status: 'indexed', isError: true },
+      { id: 0, status: 'indexed', isError: false },
+    ];
+
+    for (const candidate of skippedCandidates) {
+      const skippedInput = {
+        operation: 'memory_save' as const,
+        contentHash: `hash-${candidate.id}`,
+        requestFingerprint: { filePath: `/tmp/spec-${candidate.id}.md`, contentHash: `hash-${candidate.id}` },
+        payload: { filePath: `/tmp/spec-${candidate.id}.md`, force: false },
+      };
+      const skippedResponse = { ...responseFor(candidate.id), isError: candidate.isError };
+      const skippedKey = deriveIdempotencyReceiptKey(skippedInput);
+      if (shouldStoreMemorySaveReceipt(candidate, skippedResponse)) {
+        storeIdempotencyReceipt(database, skippedKey, skippedResponse, candidate.id);
+      }
+      expect(lookupIdempotencyReceipt(database, skippedInput).status).toBe('miss');
+    }
   });
 
   it('short-circuits unchanged rows and clears the marker when requested', () => {

@@ -172,6 +172,8 @@ import {
   extractMemoryIdFromResponse,
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
+  lookupIdempotencyReceiptByKey,
+  shouldStoreMemorySaveReceipt,
   storeIdempotencyReceipt,
   type IdempotencyReceiptKey,
 } from '../lib/storage/idempotency-receipts.js';
@@ -3602,9 +3604,18 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   }
 
   const response = buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });
-  if (idempotencyKey && typeof result.id === 'number' && result.id > 0 && result.status !== 'duplicate' && result.status !== 'unchanged') {
+  if (idempotencyKey && shouldStoreMemorySaveReceipt(result, response)) {
     try {
-      storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+      const won = storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+      if (!won) {
+        // A concurrent same-key save already stored the canonical receipt. Replay the
+        // first winner's response so this loser returns the idempotent result instead
+        // of its own divergent (e.g. unchanged) outcome.
+        const winner = lookupIdempotencyReceiptByKey(database, idempotencyKey);
+        if (winner.status === 'replay') {
+          return winner.response;
+        }
+      }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       console.warn(`[memory-save] idempotency receipt store failed; continuing without replay receipt: ${message}`);

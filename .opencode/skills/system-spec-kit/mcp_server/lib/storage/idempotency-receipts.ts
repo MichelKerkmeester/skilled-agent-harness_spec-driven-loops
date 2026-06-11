@@ -33,6 +33,13 @@ interface ReceiptRow {
   response_payload: string;
 }
 
+interface MemorySaveReceiptCandidate {
+  id?: unknown;
+  status?: unknown;
+}
+
+const RECEIPT_WRITABLE_MEMORY_SAVE_STATUSES = new Set(['indexed', 'updated', 'deferred']);
+
 const CLIENT_TOKEN_KEYS = new Set([
   'idempotencykey',
   'idempotency_key',
@@ -94,40 +101,29 @@ export function deriveIdempotencyReceiptKey(input: IdempotencyReceiptInput): Ide
   };
 }
 
-function addReplayMarker(response: MCPResponse): MCPResponse {
-  const cloned = JSON.parse(JSON.stringify(response)) as MCPResponse;
-  const first = cloned.content?.[0];
-  if (!first || first.type !== 'text' || typeof first.text !== 'string') {
-    return cloned;
-  }
-
-  try {
-    const envelope = JSON.parse(first.text) as Record<string, unknown>;
-    const data = envelope.data && typeof envelope.data === 'object' && !Array.isArray(envelope.data)
-      ? envelope.data as Record<string, unknown>
-      : {};
-    data.replayed = true;
-    envelope.data = data;
-    const hints = Array.isArray(envelope.hints) ? envelope.hints : [];
-    envelope.hints = ['Replayed prior idempotent write result', ...hints];
-    const meta = envelope.meta && typeof envelope.meta === 'object' && !Array.isArray(envelope.meta)
-      ? envelope.meta as Record<string, unknown>
-      : {};
-    meta.replayed = true;
-    envelope.meta = meta;
-    first.text = JSON.stringify(envelope, null, 2);
-  } catch {
-    return cloned;
-  }
-
-  return cloned;
+export function shouldStoreMemorySaveReceipt(
+  result: MemorySaveReceiptCandidate,
+  response: MCPResponse,
+): result is MemorySaveReceiptCandidate & { id: number; status: string } {
+  return response.isError !== true
+    && typeof result.id === 'number'
+    && Number.isInteger(result.id)
+    && result.id > 0
+    && typeof result.status === 'string'
+    && RECEIPT_WRITABLE_MEMORY_SAVE_STATUSES.has(result.status);
 }
 
 export function lookupIdempotencyReceipt(
   database: BetterSqlite3.Database,
   input: IdempotencyReceiptInput,
 ): IdempotencyLookupResult {
-  const key = deriveIdempotencyReceiptKey(input);
+  return lookupIdempotencyReceiptByKey(database, deriveIdempotencyReceiptKey(input));
+}
+
+export function lookupIdempotencyReceiptByKey(
+  database: BetterSqlite3.Database,
+  key: IdempotencyReceiptKey,
+): IdempotencyLookupResult {
   const row = database.prepare(`
     SELECT payload_hash, response_payload
     FROM memory_idempotency_receipts
@@ -143,7 +139,7 @@ export function lookupIdempotencyReceipt(
   return {
     status: 'replay',
     key,
-    response: addReplayMarker(JSON.parse(row.response_payload) as MCPResponse),
+    response: JSON.parse(row.response_payload) as MCPResponse,
   };
 }
 
@@ -152,8 +148,8 @@ export function storeIdempotencyReceipt(
   key: IdempotencyReceiptKey,
   response: MCPResponse,
   memoryId?: number | null,
-): void {
-  database.prepare(`
+): boolean {
+  const info = database.prepare(`
     INSERT INTO memory_idempotency_receipts (
       receipt_key,
       operation,
@@ -164,10 +160,7 @@ export function storeIdempotencyReceipt(
       memory_id,
       updated_at
     ) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
-    ON CONFLICT(receipt_key) DO UPDATE SET
-      response_payload = excluded.response_payload,
-      memory_id = excluded.memory_id,
-      updated_at = datetime('now')
+    ON CONFLICT(receipt_key) DO NOTHING
   `).run(
     key.receiptKey,
     key.operation,
@@ -177,6 +170,9 @@ export function storeIdempotencyReceipt(
     JSON.stringify(response),
     memoryId ?? null,
   );
+  // changes === 0 means a concurrent caller already stored the canonical receipt
+  // for this key (ON CONFLICT DO NOTHING), so this writer lost the first-write race.
+  return info.changes > 0;
 }
 
 export function extractMemoryIdFromResponse(response: MCPResponse): number | null {

@@ -1,0 +1,15 @@
+{
+  "topic": "Review: 027/023 idempotency flag-ON correctness (replay-exact + immutable first-write + narrowed guard + loser-replay)",
+  "sessionId": "2026-06-11T12:10:00Z",
+  "parentSessionId": null, "lineageMode": "new", "generation": 1,
+  "maxIterations": 3, "convergenceThreshold": 0.05, "stuckThreshold": 2,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/023-idempotency-flag-on-correctness",
+  "createdAt": "2026-06-11T12:10:00Z", "status": "complete", "releaseReadinessState": "remediated", "executionMode": "auto",
+  "executor": { "kind": "cli-opencode", "model": "openai/gpt-5.5-fast", "reasoningEffort": "xhigh", "timeoutSeconds": 1000 },
+  "mode": "review", "reviewTarget": "027/023 idempotency flag-ON correctness", "reviewTargetType": "files",
+  "reviewDimensions": ["idempotency-correctness", "flagoff-scope-hygiene", "adversarial-tests"],
+  "severityThreshold": "P2", "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "reviewScopeFiles": ["/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts"],
+  "resource_map_present": false, "resource_map": { "emit": false },
+  "reducer": { "enabled": true, "inputs": ["latestJSONLDelta","newIterationFile","priorReducedState"], "outputs": ["findingsRegistry","dashboardMetrics","strategyUpdates"], "metrics": ["dimensionsCovered","findingsBySeverity","openFindings","resolvedFindings","convergenceScore"] }
+}
