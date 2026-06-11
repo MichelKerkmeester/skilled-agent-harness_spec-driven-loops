@@ -613,6 +613,11 @@ class BM25Index {
         if (pendingIds.length > 0) {
           this.warmupHandle = registerTimeout(processBatch, 0, { unref: true });
         } else {
+          // The queue drains on the last non-empty batch, so the empty-batch
+          // finalize above never runs on this path. Finalize here too, or the
+          // whole corpus stays in mutable number[] postings and the packed
+          // engine's RAM bound is lost until every term is searched.
+          this.finalizePackedPostings();
           this.warmupHandle = null;
         }
       };
@@ -736,6 +741,9 @@ class BM25Index {
       bodyTfs: Uint32Array.from(mutable.bodyTfs),
     };
     this.packedPostings.set(term, packed);
+    // Free the mutable copy once packed; ensurePackedMutablePostings rehydrates
+    // from the typed arrays on the next mutation, so keeping it only costs RAM.
+    this.packedMutablePostings.delete(term);
     this.packedDirtyTerms.delete(term);
     return packed;
   }

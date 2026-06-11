@@ -552,16 +552,18 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
   const hasPartialFailure = result.partialFailure === true;
   const hasPartialSuccess = !hasPartialFailure && (result.skipped > 0 || hasRestoreErrors);
 
-  // Rebuild search indexes after checkpoint restore
-  // Without this, restored memories are invisible to search until server restart.
-  // Matches the startup rebuild sequence in context-server.ts (lines 776-791).
+  // Rebuild search indexes after checkpoint restore — without this, restored
+  // memories are invisible to search until server restart. The BM25 rebuild
+  // uses the same engine-routing gate as boot warmup: when FTS5 serves lexical
+  // search (or BM25 is disabled), restore must not warm an in-memory index the
+  // runtime would never query.
   if (result.restored > 0 || result.workingMemoryRestored > 0) {
     try {
       vectorIndex.clearConstitutionalCache(null);
       vectorIndex.clearSearchCache(null);
 
       const database = vectorIndex.getDb();
-      if (database && bm25Index.isBm25Enabled()) {
+      if (database && bm25Index.shouldWarmInMemoryBm25(database)) {
         bm25Index.getIndex().rebuildFromDatabase(database);
       }
 

@@ -16,10 +16,55 @@ interface CorpusFixtureOptions {
   targetIndexedBytes?: number;
 }
 
-const FIXTURE_FILLER = [
-  'the and of to in on at by from is it as was are be has had have been',
-  'this that these those not no do does did so if then than too very',
-].join(' ');
+/**
+ * Synthetic corpus vocabulary for the RAM/warmup gates.
+ *
+ * The body filler must survive BM25 tokenization — stop-word text would index
+ * zero body postings and the memory gate would measure an empty postings
+ * store instead of a corpus-shaped one. Composing three vowel-terminated
+ * syllables yields 4,096 distinct words that are never stop words, never
+ * altered by the suffix stemmer, and never collide after stemming.
+ */
+const FIXTURE_SYLLABLES = [
+  'ba', 'ce', 'di', 'fo', 'gu', 'ha', 'ki', 'lo',
+  'mu', 'ne', 'po', 'ra', 'su', 'ta', 'vi', 'wo',
+] as const;
+
+const FIXTURE_VOCABULARY: string[] = (() => {
+  const words: string[] = [];
+  for (const first of FIXTURE_SYLLABLES) {
+    for (const second of FIXTURE_SYLLABLES) {
+      for (const third of FIXTURE_SYLLABLES) {
+        words.push(`${first}${second}${third}`);
+      }
+    }
+  }
+  return words;
+})();
+
+/**
+ * Each document draws from its own rotating vocabulary window so postings,
+ * document frequencies, and per-document distinct-term counts resemble a real
+ * corpus instead of one shared body. The stride is coprime with the vocabulary
+ * size, so consecutive documents get different (overlapping) windows.
+ */
+const CORPUS_DISTINCT_TERMS_PER_DOC = 256;
+const CORPUS_WINDOW_STRIDE = 89;
+
+function buildCorpusBody(docIndex: number, targetBytes: number): string {
+  const vocabularySize = FIXTURE_VOCABULARY.length;
+  const windowStart = (docIndex * CORPUS_WINDOW_STRIDE) % vocabularySize;
+  const words: string[] = [];
+  let bytes = 0;
+
+  for (let cursor = 0; bytes < targetBytes; cursor += 1) {
+    const word = FIXTURE_VOCABULARY[(windowStart + (cursor % CORPUS_DISTINCT_TERMS_PER_DOC)) % vocabularySize];
+    words.push(word);
+    bytes += word.length + 1;
+  }
+
+  return words.join(' ').slice(0, targetBytes);
+}
 
 const GOLDEN_DOCUMENTS: BM25PackedFixtureDocument[] = [
   {
@@ -94,26 +139,24 @@ const GOLDEN_QUERIES: BM25ComparisonQuery[] = [
   },
 ];
 
-function makeCorpusFiller(targetBytes: number): string {
-  const chunk = `${FIXTURE_FILLER} `;
-  return chunk.repeat(Math.max(1, Math.ceil(targetBytes / chunk.length))).slice(0, targetBytes);
+function makeCorpusDocument(docIndex: number, bytesPerDocument: number): BM25PackedFixtureDocument {
+  return {
+    id: 10_000 + docIndex,
+    title: `Corpus Fixture ${docIndex}`,
+    content_text: buildCorpusBody(docIndex, bytesPerDocument),
+    trigger_phrases: [`fixture-${docIndex % 97}`, 'packed bm25'],
+    file_path: `fixtures/corpus/${docIndex}.md`,
+  };
 }
 
 function createCorpusSizedDocuments(options: CorpusFixtureOptions = {}): BM25PackedFixtureDocument[] {
   const documentCount = options.documentCount ?? 10_245;
   const targetIndexedBytes = options.targetIndexedBytes ?? 69_200_000;
   const bytesPerDocument = Math.max(128, Math.floor(targetIndexedBytes / documentCount));
-  const sharedBody = makeCorpusFiller(bytesPerDocument);
   const docs: BM25PackedFixtureDocument[] = [];
 
   for (let i = 0; i < documentCount; i += 1) {
-    docs.push({
-      id: 10_000 + i,
-      title: `Corpus Fixture ${i}`,
-      content_text: sharedBody,
-      trigger_phrases: [`fixture-${i % 97}`, 'packed bm25'],
-      file_path: `fixtures/corpus/${i}.md`,
-    });
+    docs.push(makeCorpusDocument(i, bytesPerDocument));
   }
 
   return docs;
@@ -123,16 +166,9 @@ function* iterateCorpusSizedDocuments(options: CorpusFixtureOptions = {}): Gener
   const documentCount = options.documentCount ?? 10_245;
   const targetIndexedBytes = options.targetIndexedBytes ?? 69_200_000;
   const bytesPerDocument = Math.max(128, Math.floor(targetIndexedBytes / documentCount));
-  const sharedBody = makeCorpusFiller(bytesPerDocument);
 
   for (let i = 0; i < documentCount; i += 1) {
-    yield {
-      id: 10_000 + i,
-      title: `Corpus Fixture ${i}`,
-      content_text: sharedBody,
-      trigger_phrases: [`fixture-${i % 97}`, 'packed bm25'],
-      file_path: `fixtures/corpus/${i}.md`,
-    };
+    yield makeCorpusDocument(i, bytesPerDocument);
   }
 }
 

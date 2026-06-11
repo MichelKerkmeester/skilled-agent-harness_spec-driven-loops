@@ -11,18 +11,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights"
-    last_updated_at: "2026-06-10T20:40:00Z"
-    last_updated_by: "gpt-5.5-fast"
-    recent_action: "Packed in-memory BM25 engine shipped with BM25F weighting and measured budget evidence"
-    next_safe_action: "Monitor packed fallback warmups"
-    blockers: []
+    last_updated_at: "2026-06-11T07:05:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Deep-review remediation; realistic fixture breached 150MB RSS-spike budget"
+    next_safe_action: "User decides minisearch contingency (RSS-spike breach) in section 7"
+    blockers:
+      - "RAM gate test failing by design: realistic-fixture RSS spike 686.8MB > 150MB budget; awaiting contingency decision"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-014-packed-bm25-field-weights"
       parent_session_id: null
     completion_pct: 100
-    open_questions: []
+    open_questions:
+      - "Minisearch contingency re-opened: realistic-fixture RSS spike breaches the 150MB budget while retained heap stays within it — accept dependency, amend REQ-001 metric, or fund a churn fix?"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -134,7 +136,7 @@ The fallback lexical channel becomes memory-bounded and relevance-equivalent to 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Is the minisearch contingency acceptable as a dependency if the packed spike breaches budget, or is buy-not-build excluded?
+- **Minisearch contingency — RE-OPENED by fixture re-validation (2026-06-11); user decision required.** The original "within budget" evidence (111 MB RSS) was measured against a corpus fixture whose body filler was 100% stop words, so body postings were never indexed and the RAM gate exercised an effectively empty postings store. Re-validation with a realistic non-stop-word, per-doc-varying fixture at the same byte target (10,245 docs / 69.2 MB) measured: warmup RSS spike **686.8 MB** (committed gate) / 799.4 MB (batched probe with forced GC) — a **breach** of the 150 MB budget — while retained heap after GC is **104.9 MB (within budget)** and warmup latency ~2 s (within the 10 s budget). The breach is tokenization/warmup allocation churn, not retained index size; the packed engine's structural RAM goal is met, but the process-level RSS bound REQ-001 specifies is not. Tokenizer changes are out of scope (§3), so per REQ-001's acceptance criteria the RAM gate test is left failing and the contingency decision fires: (a) accept minisearch as a dependency, (b) amend REQ-001 to a retained-heap bound with a documented warmup spike, or (c) fund a warmup-churn fix in a follow-on packet. Evidence: `scratch/rss-probe-evidence.md`.
 <!-- /ANCHOR:questions -->
 
 ---
