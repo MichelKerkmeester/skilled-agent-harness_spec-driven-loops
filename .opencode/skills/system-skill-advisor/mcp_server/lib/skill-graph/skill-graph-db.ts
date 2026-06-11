@@ -26,6 +26,11 @@ import { getAdapter } from '../embedders/registry.js';
 import type { EmbedderAdapter } from '../embedders/adapter.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
+import {
+  isDocTriggerHarvestEnabled,
+  listSkillDocFiles,
+  parseDocFrontmatter,
+} from './doc-frontmatter.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -81,6 +86,15 @@ export interface SkillGraphIndexResult {
   rejectedEdges: number;
   deletedNodes: number;
   warnings: string[];
+  /** Present only when the doc-trigger harvest flag is enabled. */
+  docs?: SkillDocHarvestResult;
+}
+
+export interface SkillDocHarvestResult {
+  scannedDocs: number;
+  indexedDocs: number;
+  skippedDocs: number;
+  deletedDocs: number;
 }
 
 export interface SkillEmbeddingRefreshResult {
@@ -199,6 +213,22 @@ const SCHEMA_SQL = `
     created_at TEXT DEFAULT (datetime('now'))
   );
 
+  CREATE TABLE IF NOT EXISTS skill_docs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    skill_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+    doc_path TEXT NOT NULL,
+    title TEXT,
+    description TEXT,
+    trigger_phrases TEXT NOT NULL,
+    importance_tier TEXT NOT NULL DEFAULT 'normal',
+    context_type TEXT NOT NULL DEFAULT 'general',
+    content_hash TEXT NOT NULL,
+    indexed_at TEXT DEFAULT (datetime('now')),
+    UNIQUE(skill_id, doc_path)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_skill_docs_skill ON skill_docs(skill_id);
+
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_category ON skill_nodes(category);
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_hash ON skill_nodes(content_hash);
@@ -281,6 +311,20 @@ function ensureSchemaMigrations(database: Database.Database): void {
       value TEXT,
       updated_at TEXT DEFAULT (datetime('now'))
     );
+    CREATE TABLE IF NOT EXISTS skill_docs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      skill_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+      doc_path TEXT NOT NULL,
+      title TEXT,
+      description TEXT,
+      trigger_phrases TEXT NOT NULL,
+      importance_tier TEXT NOT NULL DEFAULT 'normal',
+      context_type TEXT NOT NULL DEFAULT 'general',
+      content_hash TEXT NOT NULL,
+      indexed_at TEXT DEFAULT (datetime('now')),
+      UNIQUE(skill_id, doc_path)
+    );
+    CREATE INDEX IF NOT EXISTS idx_skill_docs_skill ON skill_docs(skill_id);
     CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
     CREATE INDEX IF NOT EXISTS idx_skill_edges_source ON skill_edges(source_id, edge_type);
     CREATE INDEX IF NOT EXISTS idx_skill_edges_target ON skill_edges(target_id, edge_type);
@@ -666,6 +710,104 @@ function deleteMissingNodes(database: Database.Database, skillIds: string[]): nu
   return result.changes;
 }
 
+/**
+ * Harvest reference/asset doc frontmatter into skill_docs rows.
+ *
+ * Runs only when the doc-trigger flag is on. Unchanged docs are skipped
+ * via per-doc content hashes; docs that disappeared from disk (or lost
+ * their trigger_phrases) are deleted per skill so the table mirrors the
+ * harvestable surface exactly.
+ */
+function harvestSkillDocs(
+  database: Database.Database,
+  skills: ReadonlyArray<{ skillId: string; skillDir: string }>,
+  warnings: string[],
+): SkillDocHarvestResult {
+  const result: SkillDocHarvestResult = {
+    scannedDocs: 0,
+    indexedDocs: 0,
+    skippedDocs: 0,
+    deletedDocs: 0,
+  };
+
+  const selectExistingDoc = database.prepare(
+    'SELECT content_hash FROM skill_docs WHERE skill_id = ? AND doc_path = ?',
+  );
+  const upsertDoc = database.prepare(`
+    INSERT INTO skill_docs (
+      skill_id, doc_path, title, description, trigger_phrases,
+      importance_tier, context_type, content_hash, indexed_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(skill_id, doc_path) DO UPDATE SET
+      title = excluded.title,
+      description = excluded.description,
+      trigger_phrases = excluded.trigger_phrases,
+      importance_tier = excluded.importance_tier,
+      context_type = excluded.context_type,
+      content_hash = excluded.content_hash,
+      indexed_at = excluded.indexed_at
+  `);
+
+  const tx = database.transaction(() => {
+    for (const { skillId, skillDir } of skills) {
+      const docFiles = listSkillDocFiles(skillDir);
+      const keptPaths: string[] = [];
+
+      for (const absolutePath of docFiles) {
+        result.scannedDocs++;
+        let raw: string;
+        try {
+          raw = readFileSync(absolutePath, 'utf8');
+        } catch (error: unknown) {
+          warnings.push(`DOC-READ-FAILED: ${toDisplayPath(absolutePath)} (${error instanceof Error ? error.message : String(error)})`);
+          continue;
+        }
+
+        const parsed = parseDocFrontmatter(raw);
+        if (!parsed) continue;
+
+        const docPath = relative(skillDir, absolutePath);
+        keptPaths.push(docPath);
+
+        const contentHash = computeContentHash(raw);
+        const existing = selectExistingDoc.get(skillId, docPath) as { content_hash: string } | undefined;
+        if (existing && existing.content_hash === contentHash) {
+          result.skippedDocs++;
+          continue;
+        }
+
+        upsertDoc.run(
+          skillId,
+          docPath,
+          parsed.title,
+          parsed.description,
+          JSON.stringify(parsed.triggerPhrases),
+          parsed.importanceTier,
+          parsed.contextType,
+          contentHash,
+          new Date().toISOString(),
+        );
+        result.indexedDocs++;
+      }
+
+      if (keptPaths.length === 0) {
+        const deleted = database.prepare('DELETE FROM skill_docs WHERE skill_id = ?').run(skillId);
+        result.deletedDocs += deleted.changes;
+      } else {
+        const placeholders = keptPaths.map(() => '?').join(', ');
+        const deleted = database
+          .prepare(`DELETE FROM skill_docs WHERE skill_id = ? AND doc_path NOT IN (${placeholders})`)
+          .run(skillId, ...keptPaths);
+        result.deletedDocs += deleted.changes;
+      }
+    }
+  });
+
+  tx();
+  return result;
+}
+
 // ───────────────────────────────────────────────────────────────
 // 7. INDEXER
 // ───────────────────────────────────────────────────────────────
@@ -842,6 +984,22 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
 
   tx();
 
+  // Doc-trigger harvest runs after the node transaction and for EVERY
+  // skill (not just changed nodes): reference/asset edits never touch
+  // graph-metadata.json, so node content hashes cannot gate doc work.
+  // Per-doc content hashes keep unchanged docs cheap.
+  let docsResult: SkillDocHarvestResult | undefined;
+  if (isDocTriggerHarvestEnabled()) {
+    docsResult = harvestSkillDocs(
+      database,
+      parsedMetadata.map((entry) => ({
+        skillId: entry.node.id,
+        skillDir: dirname(entry.node.sourcePath),
+      })),
+      warnings,
+    );
+  }
+
   const summary: SkillGraphIndexResult = {
     scannedFiles: discoveredFiles.length,
     indexedFiles,
@@ -851,6 +1009,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
     rejectedEdges,
     deletedNodes,
     warnings,
+    ...(docsResult ? { docs: docsResult } : {}),
   };
 
   setMetadata('last_scan_timestamp', new Date().toISOString());

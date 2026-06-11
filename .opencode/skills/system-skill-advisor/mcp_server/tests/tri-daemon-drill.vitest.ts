@@ -38,6 +38,7 @@ interface TriSandbox {
   readonly codeChildPidFile: string;
   readonly advisorChildPidFile: string;
   readonly advisorDaemonLeaseFile: string;
+  readonly advisorOwnerLeaseFile: string;
 }
 
 const describeTriDaemon = process.env.SPECKIT_RUN_TRI_DAEMON_DRILL === '1' ? describe : describe.skip;
@@ -158,6 +159,7 @@ function createTriSandbox(): TriSandbox {
   const codeChildPidFile = join(root, 'runtime/code-index-child.pid');
   const advisorChildPidFile = join(root, 'runtime/skill-advisor-child.pid');
   const advisorDaemonLeaseFile = join(skillAdvisorDbDir, 'skill-graph-daemon-lease.sqlite');
+  const advisorOwnerLeaseFile = join(skillAdvisorDbDir, '.skill-advisor-owner.json');
   const advisorLeaseModulePath = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/lib/daemon/lease.js');
 
   for (const dir of [
@@ -229,6 +231,7 @@ function createTriSandbox(): TriSandbox {
     codeChildPidFile,
     advisorChildPidFile,
     advisorDaemonLeaseFile,
+    advisorOwnerLeaseFile,
   };
   sandboxes.push(sandbox);
   return sandbox;
@@ -313,6 +316,10 @@ function advisorLauncherLeasePath(sandbox: TriSandbox): string {
   return join(sandbox.skillAdvisorDbDir, '.mk-skill-advisor-launcher.json');
 }
 
+function advisorOwnerLeasePath(sandbox: TriSandbox): string {
+  return sandbox.advisorOwnerLeaseFile;
+}
+
 function leasePid(filePath: string, field: 'pid' | 'ownerPid' | 'childPid'): number | null {
   const lease = readJsonFile<Record<string, unknown>>(filePath);
   return typeof lease?.[field] === 'number' ? lease[field] : null;
@@ -330,6 +337,7 @@ async function cleanup(): Promise<void> {
       leasePid(codeLauncherLeasePath(sandbox), 'pid'),
       leasePid(codeOwnerLeasePath(sandbox), 'ownerPid'),
       leasePid(advisorLauncherLeasePath(sandbox), 'pid'),
+      leasePid(advisorOwnerLeasePath(sandbox), 'ownerPid'),
       readPidFile(sandbox.specChildPidFile),
       readPidFile(sandbox.codeChildPidFile),
       readPidFile(sandbox.advisorChildPidFile),
@@ -378,12 +386,13 @@ describeTriDaemon('tri-daemon-drill program gate', () => {
     await waitFor(() => existsSync(specOwnerLeasePath(sandbox)), 5000, 'spec-memory owner lease');
     await waitFor(() => existsSync(codeOwnerLeasePath(sandbox)), 5000, 'code-index owner lease');
     await waitFor(() => existsSync(advisorLauncherLeasePath(sandbox)), 5000, 'skill-advisor launcher lease');
+    await waitFor(() => existsSync(advisorOwnerLeasePath(sandbox)), 5000, 'skill-advisor owner lease');
     await waitFor(() => existsSync(sandbox.advisorDaemonLeaseFile), 5000, 'skill-advisor daemon lease');
 
     expect(leasePid(specOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
     expect(leasePid(codeOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
     expect(leasePid(advisorLauncherLeasePath(sandbox), 'pid')).toEqual(expect.any(Number));
-    expect(existsSync(join(sandbox.skillAdvisorDbDir, '.skill-advisor-owner.json'))).toBe(false);
+    expect(leasePid(advisorOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
     expect(existsSync(join(sandbox.specMemoryDbDir, '.mk-spec-memory-launcher.lockdir'))).toBe(false);
     expect(existsSync(join(sandbox.codeIndexDbDir, '.mk-code-index-launcher.lockdir'))).toBe(false);
     expect(existsSync(join(sandbox.skillAdvisorDbDir, '.mk-skill-advisor-launcher.lockdir'))).toBe(false);

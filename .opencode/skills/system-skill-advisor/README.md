@@ -120,6 +120,10 @@ Every response carries a trust state so the caller knows what to do next.
 
 The advisor ships a package-local SQLite database that stores cross-skill edges extracted from every skill's `graph-metadata.json`. The graph supports ten query types through `skill_graph_query`: `depends_on`, `dependents`, `enhances`, `enhanced_by`, `family_members`, `conflicts`, `transitive_path`, `hub_skills`, `orphans` and `subgraph`. A trusted-caller tool, `skill_graph_propagate_enhances`, detects and proposes missing inbound `enhances` declarations across skills.
 
+### Doc-Frontmatter Trigger Harvest (Flag-Gated)
+
+With `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` also harvests frontmatter (`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`) from every markdown file under each skill's `references/` and `assets/` (READMEs excluded) into a `skill_docs` table, and the watcher registers those docs so edits re-index the owning skill. Doc phrases score inside the `derived_generated` lane — top-3 docs per skill, tier-weighted, contribution capped at 0.45 — so they assist ranking but cannot hard-route alone. Matching recommendations carry an optional `matchedDocs` field (max 3 sanitized skill-relative paths) pointing at the exact doc to open. Flag unset (the default) changes nothing: no harvest, no watch targets, identical scoring. Deployment note: the launcher forwards only allowlisted env to the daemon child, so the flag works because it sits in `CHILD_ENV_ALLOWLIST` (`mk-skill-advisor-launcher.cjs`) — any future advisor env flag needs the same entry.
+
 ### The Embedder
 
 The `semantic_shadow` lane runs against a pluggable embedder layer shared with `mk-spec-memory`. The registry holds text-tuned embedding models and defaults through a local-first cascade to a local model when no embedder is explicitly set. For the full model registry, the cascade tier table and the swap workflow, see `INSTALL_GUIDE.md` §12.

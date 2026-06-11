@@ -29,7 +29,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 45 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 46 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `08--scorer-fusion` and `10--python-compat`. This mirrors the `feature_catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -126,7 +126,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 45 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 46 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -152,7 +152,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
-- **Wave 6**: `AI-001..AI-005` auto-indexing behavior.
+- **Wave 6**: `AI-001..AI-006` auto-indexing behavior.
 - **Wave 7**: `LC-001..LC-005` lifecycle routing.
 - **Wave 8**: `SC-001..SC-005` scorer fusion.
 - **Wave 9**: `PC-001..PC-005` Python compatibility.
@@ -231,7 +231,7 @@ This category validates auto update daemon scenarios `AU-001..AU-005`.
 
 ## 12. AUTO INDEXING
 
-This category validates auto indexing scenarios `AI-001..AI-005`.
+This category validates auto indexing scenarios `AI-001..AI-006`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -240,6 +240,7 @@ This category validates auto indexing scenarios `AI-001..AI-005`.
 | AI-003 | Provenance Fingerprints and Trust Lanes | [003-provenance-and-trust-lanes.md](06--auto-indexing/provenance-and-trust-lanes.md) |
 | AI-004 | DF/IDF Corpus Stats Active-Only | [004-corpus-df-idf.md](06--auto-indexing/corpus-df-idf.md) |
 | AI-005 | Anti-Stuffing and Cardinality Caps | [005-anti-stuffing.md](06--auto-indexing/anti-stuffing.md) |
+| AI-006 | Doc-Frontmatter Trigger Harvest | [006-doc-frontmatter-harvest.md](06--auto-indexing/doc-frontmatter-harvest.md) |
 
 ---
 

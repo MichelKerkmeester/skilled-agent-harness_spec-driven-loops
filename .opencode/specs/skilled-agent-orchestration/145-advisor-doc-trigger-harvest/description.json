@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/145-advisor-doc-trigger-harvest",
+  "description": "Feature Specification: Advisor Doc-Trigger Harvest",
+  "keywords": [
+    "feature",
+    "specification",
+    "advisor",
+    "doc-trigger",
+    "harvest"
+  ],
+  "lastUpdated": "2026-06-11T10:39:20.920Z",
+  "specId": "145",
+  "folderSlug": "advisor-doc-trigger-harvest",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-06-26_11-39__t020-smoke-caught-two-real-rollout-bugs-1-mk.md"
+  ]
+}

@@ -21,6 +21,19 @@ export {
   type SkillLifecycleStatus,
 };
 
+/**
+ * Doc-level trigger signal harvested from one reference/asset doc's
+ * frontmatter. Only present when the doc-trigger harvest flag is on and
+ * the sqlite projection carries skill_docs rows.
+ */
+export interface SkillDocTriggerProjection {
+  /** Path relative to the skill directory, e.g. 'references/foo.md'. */
+  readonly docPath: string;
+  readonly phrases: readonly string[];
+  /** Importance-tier dampening multiplier in (0, 1]. */
+  readonly tierWeight: number;
+}
+
 export interface SkillProjection {
   readonly id: string;
   readonly kind: 'skill' | 'command';
@@ -34,6 +47,7 @@ export interface SkillProjection {
   readonly derivedTriggers: readonly string[];
   readonly derivedKeywords: readonly string[];
   readonly derivedDemotion?: number;
+  readonly docTriggers?: readonly SkillDocTriggerProjection[];
   readonly sourcePath: string | null;
   readonly lifecycleStatus: SkillLifecycleStatus;
   readonly redirectTo?: string | null;

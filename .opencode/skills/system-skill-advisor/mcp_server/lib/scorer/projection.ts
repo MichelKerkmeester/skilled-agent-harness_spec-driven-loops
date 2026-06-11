@@ -8,9 +8,10 @@ import { dirname, join, resolve } from 'node:path';
 import Database from 'better-sqlite3';
 
 import { lifecycleStatusForPath } from '../lifecycle/archive-handling.js';
+import { docTierWeight, isDocTriggerHarvestEnabled } from '../skill-graph/doc-frontmatter.js';
 import { parseJsonObject, parseJsonStringArray, readJsonObject } from '../utils/json-guard.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
-import type { AdvisorProjection, SkillEdgeProjection, SkillLifecycleStatus, SkillProjection } from './types.js';
+import type { AdvisorProjection, SkillDocTriggerProjection, SkillEdgeProjection, SkillLifecycleStatus, SkillProjection } from './types.js';
 import { phraseVariants, unique } from './text.js';
 
 interface SkillNodeRow {
@@ -227,6 +228,46 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
   };
 }
 
+interface SkillDocRow {
+  readonly skill_id: string;
+  readonly doc_path: string;
+  readonly trigger_phrases: string;
+  readonly importance_tier: string | null;
+}
+
+/**
+ * Load doc-level trigger projections grouped by skill id. Tolerates a
+ * pre-migration database (missing skill_docs table) by returning an
+ * empty map — the read-only recommend path never runs migrations.
+ */
+function loadDocTriggersBySkill(db: Database.Database): Map<string, SkillDocTriggerProjection[]> {
+  const bySkill = new Map<string, SkillDocTriggerProjection[]>();
+  if (!isDocTriggerHarvestEnabled()) return bySkill;
+  let docRows: SkillDocRow[];
+  try {
+    docRows = db.prepare(`
+      SELECT skill_id, doc_path, trigger_phrases, importance_tier
+      FROM skill_docs
+      ORDER BY skill_id ASC, doc_path ASC
+    `).all() as SkillDocRow[];
+  } catch {
+    return bySkill;
+  }
+  for (const row of docRows) {
+    const phrases = unique(parseJsonStringArray(row.trigger_phrases).flatMap((entry) => phraseVariants(entry)));
+    if (phrases.length === 0) continue;
+    const entry: SkillDocTriggerProjection = {
+      docPath: row.doc_path,
+      phrases,
+      tierWeight: docTierWeight(row.importance_tier),
+    };
+    const existing = bySkill.get(row.skill_id);
+    if (existing) existing.push(entry);
+    else bySkill.set(row.skill_id, [entry]);
+  }
+  return bySkill;
+}
+
 function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
   const dbPath = join(workspaceRoot, SKILL_GRAPH_DB);
   if (!existsSync(dbPath)) return null;
@@ -242,8 +283,16 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
       FROM skill_edges
       ORDER BY source_id ASC, edge_type ASC, target_id ASC
     `).all() as SkillEdgeRow[];
+    const docTriggersBySkill = loadDocTriggersBySkill(db);
     return {
-      skills: [...rows.map(projectionFromRow), ...COMMAND_BRIDGES],
+      skills: [
+        ...rows.map((row) => {
+          const projection = projectionFromRow(row);
+          const docTriggers = docTriggersBySkill.get(row.id);
+          return docTriggers && docTriggers.length > 0 ? { ...projection, docTriggers } : projection;
+        }),
+        ...COMMAND_BRIDGES,
+      ],
       edges: edgeRows.map((row) => ({
         sourceId: row.source_id,
         targetId: row.target_id,

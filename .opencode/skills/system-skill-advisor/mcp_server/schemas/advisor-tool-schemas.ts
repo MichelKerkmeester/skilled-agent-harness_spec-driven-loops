@@ -186,6 +186,7 @@ export const AdvisorRecommendationSchema = z.object({
   dominantLane: AdvisorLaneSchema.nullable(),
   laneBreakdown: z.array(laneBreakdownSchema).optional(),
   why_recommended: whyRecommendedSchema.optional(),
+  matchedDocs: z.array(z.string().min(1)).max(3).optional(),
   redirectFrom: z.array(z.string().min(1)).optional(),
   redirectTo: z.string().min(1).optional(),
   status: z.enum(['active', 'deprecated', 'archived', 'future']).optional(),

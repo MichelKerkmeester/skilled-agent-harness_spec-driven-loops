@@ -594,6 +594,75 @@ def _source_metadata_health() -> Dict[str, Any]:
     }
 
 
+def _doc_trigger_harvest_enabled() -> bool:
+    """Opt-in gate mirroring the TS daemon's doc-frontmatter harvest flag."""
+    return (os.environ.get("SPECKIT_ADVISOR_DOC_TRIGGERS") or "").strip().lower() == "true"
+
+
+_DOC_HARVEST_SUBDIRS = ("references", "assets")
+_DOC_MAX_PHRASES_PER_DOC = 12
+_DOC_MAX_DOCS_PER_SKILL = 200
+
+
+def _parse_doc_trigger_phrases(raw: str) -> List[str]:
+    """Extract trigger_phrases entries from a doc's YAML-ish frontmatter block."""
+    if not raw.startswith("---\n") and not raw.startswith("---\r\n"):
+        return []
+    end = raw.find("\n---", 3)
+    if end <= 3:
+        return []
+    block = raw[raw.find("\n") + 1:end]
+
+    phrases: List[str] = []
+    in_phrase_list = False
+    for line in block.splitlines():
+        list_match = re.match(r"^\s+-\s+(.*)$", line)
+        if list_match:
+            if in_phrase_list and len(phrases) < _DOC_MAX_PHRASES_PER_DOC:
+                phrase = list_match.group(1).strip().strip("\"'").strip()
+                if phrase:
+                    phrases.append(phrase)
+            continue
+        key_match = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)
+        if not key_match:
+            continue
+        in_phrase_list = key_match.group(1) == "trigger_phrases"
+        if in_phrase_list and key_match.group(2).startswith("["):
+            for entry in key_match.group(2).strip("[]").split(","):
+                if len(phrases) >= _DOC_MAX_PHRASES_PER_DOC:
+                    break
+                phrase = entry.strip().strip("\"'").strip()
+                if phrase:
+                    phrases.append(phrase)
+            in_phrase_list = False
+    return phrases
+
+
+def _load_doc_trigger_phrases(skill_dir: str) -> List[str]:
+    """Harvest doc-frontmatter trigger phrases (references/assets, READMEs excluded)."""
+    phrases: List[str] = []
+    doc_count = 0
+    for subdir in _DOC_HARVEST_SUBDIRS:
+        root = os.path.join(skill_dir, subdir)
+        if not os.path.isdir(root):
+            continue
+        for dirpath, _dirnames, filenames in os.walk(root):
+            for filename in sorted(filenames):
+                if doc_count >= _DOC_MAX_DOCS_PER_SKILL:
+                    return phrases
+                lower = filename.lower()
+                if not lower.endswith(".md") or lower == "readme.md":
+                    continue
+                doc_count += 1
+                try:
+                    with open(os.path.join(dirpath, filename), "r", encoding="utf-8") as handle:
+                        raw = handle.read()
+                except OSError:
+                    continue
+                phrases.extend(_parse_doc_trigger_phrases(raw))
+    return phrases
+
+
 def _load_source_graph_signal_map() -> Dict[str, List[str]]:
     """Load intent signals and derived trigger phrases from source metadata files."""
     _SOURCE_METADATA_DIAGNOSTICS["signal_map"] = []
@@ -632,6 +701,9 @@ def _load_source_graph_signal_map() -> Dict[str, List[str]]:
             _extend_signal_map(signal_map, skill_id, derived.get("trigger_phrases"))
         elif derived is not None:
             _record_source_metadata_issue("signal_map", graph_metadata_path, "invalid_derived")
+
+        if _doc_trigger_harvest_enabled():
+            _extend_signal_map(signal_map, skill_id, _load_doc_trigger_phrases(entry.path))
 
     return signal_map
 
@@ -769,6 +841,13 @@ def _load_skill_graph_sqlite() -> Optional[Dict[str, Any]]:
 
         for family_name in families:
             families[family_name] = sorted(families[family_name])
+
+        # Source metadata supplements the stored columns on every load path:
+        # the JSON loader already merges it, and doc-frontmatter trigger
+        # phrases exist only on disk, never in skill_nodes rows.
+        source_signal_map = _load_source_graph_signal_map()
+        for skill_id, raw_signals in source_signal_map.items():
+            _extend_signal_map(signals, skill_id, raw_signals)
 
         generated_at = (
             str(generated_at_row["value"])

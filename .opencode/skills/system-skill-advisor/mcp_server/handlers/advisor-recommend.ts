@@ -167,6 +167,8 @@ function evidenceFeature(value: string): string {
       return 'category_hint';
     case 'derived':
       return 'derived_skill_signal';
+    case 'doc':
+      return 'doc_reference_signal';
     case 'cosine':
       return 'semantic_similarity';
     default:
@@ -208,9 +210,31 @@ function publicWhyRecommended(recommendation: ScoredRecommendation) {
   };
 }
 
+// Doc evidence entries are skill-relative markdown paths emitted by the
+// derived lane as `doc:<path>`. The allowlist rejects anything that
+// could smuggle prompt content or path traversal into the response.
+const SAFE_DOC_PATH = /^(references|assets)\/[A-Za-z0-9_./-]+\.md$/;
+
+export function matchedDocsFromContributions(
+  recommendation: { readonly laneContributions: ReadonlyArray<{ readonly evidence: readonly string[] }> },
+): string[] {
+  const docs: string[] = [];
+  for (const lane of recommendation.laneContributions) {
+    for (const entry of lane.evidence) {
+      if (!entry.startsWith('doc:')) continue;
+      const path = entry.slice(4);
+      if (!SAFE_DOC_PATH.test(path) || path.includes('..')) continue;
+      if (!docs.includes(path)) docs.push(path);
+      if (docs.length >= 3) return docs;
+    }
+  }
+  return docs;
+}
+
 function publicRecommendation(recommendation: ScoredRecommendation, includeAttribution: boolean) {
   const skillId = sanitizeSkillLabel(recommendation.skill);
   if (!skillId) return null;
+  const matchedDocs = matchedDocsFromContributions(recommendation);
   const redirectFrom = safeMany(recommendation.redirectFrom);
   const redirectTo = sanitizeSkillLabel(recommendation.redirectTo ?? '');
   const sanitizedStatus = sanitizeSkillLabel(recommendation.lifecycleStatus);
@@ -236,6 +260,7 @@ function publicRecommendation(recommendation: ScoredRecommendation, includeAttri
       })),
       why_recommended: publicWhyRecommended(recommendation),
     } : {}),
+    ...(matchedDocs.length > 0 ? { matchedDocs } : {}),
     ...(redirectFrom.length > 0 ? { redirectFrom } : {}),
     ...(redirectTo ? { redirectTo } : {}),
     ...(status ? { status } : {}),

@@ -130,6 +130,8 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Skill graph.** A SQLite database holds the cross-skill edges (depends_on, dependents, enhances, conflicts) plus per-skill metadata. The `skill_graph_query` tool exposes read-only graph traversal.
 
+**Doc-trigger harvest (flag-gated).** With `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, the scan harvests reference/asset doc frontmatter into a `skill_docs` table, the watcher tracks those docs for freshness, and the derived lane scores their trigger phrases (top-3 per skill, tier-weighted, 0.45 contribution cap), surfacing sanitized `matchedDocs` paths on recommendations. Default-off with byte-identical flag-off behavior; the Python shim harvests the same phrases under the same flag, and the launcher's `CHILD_ENV_ALLOWLIST` must carry the flag for it to reach the daemon child.
+
 **Compatibility shim.** `compat/skill_advisor.py` keeps scripts and hooks working when the native MCP path is not reachable. The shim wraps the same recommendation logic with a Python entrypoint.
 
 ---
