@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 
-import { createMemoStore } from '../lib/storage/memo';
+import { createMemoStore, MemoStore } from '../lib/storage/memo';
+import { FakeGraphTraversal } from './fakes/storage-ports';
 
 describe('memo storage foundation', () => {
   it('upserts memo records and reads them by input and code hash', () => {
@@ -63,5 +64,24 @@ describe('memo storage foundation', () => {
     } finally {
       db.close();
     }
+  });
+
+  it('uses an injected graph traversal port without opening SQLite', () => {
+    const fakeDatabase = {
+      exec: () => undefined,
+      prepare: () => ({
+        get: () => ({ edge_count: 1 }),
+      }),
+    } as unknown as Database.Database;
+    const graphTraversal = new FakeGraphTraversal({
+      dependencyEdges: [
+        { parentPath: 'root', childPath: 'child' },
+        { parentPath: 'child', childPath: 'grandchild' },
+      ],
+    });
+
+    const store = new MemoStore(fakeDatabase, graphTraversal);
+
+    expect(store.collectDependents(['root'])).toEqual(['child', 'grandchild']);
   });
 });
