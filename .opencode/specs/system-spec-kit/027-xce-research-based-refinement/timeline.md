@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-10T15:14:18Z"
+    last_updated_at: "2026-06-11T12:31:13Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-10T15:14:18Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-11T12:31:13Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `001-peck-teachings-adoption/006-peck-verification-discipline`
-> **Oldest live spec folder:** `000-release-cleanup/001-public-root-readme`
-> **Counts:** 83 live spec folders · 0 archived (`z_archive/`).
+> **Most recent live spec folder:** `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit`
+> **Oldest live spec folder:** `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit`
+> **Counts:** 132 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-10 16:13  001-peck-teachings-adoption/006-peck-verification-discipline
- 2. 2026-06-10 16:13  001-peck-teachings-adoption
- 3. 2026-06-10 16:12  008-openltm-retrieval-observability
- 4. 2026-06-10 14:50  009-openltm-continuity-resilience
- 5. 2026-06-10 14:50  007-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership
- 6. 2026-06-10 14:50  007-memclaw-derived-memory-hardening
- 7. 2026-06-10 14:49  007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion
- 8. 2026-06-10 13:39  007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe
- 9. 2026-06-10 13:39  005-learning-feedback-reducers/003-causal-reducer
-10. 2026-06-10 13:39  005-learning-feedback-reducers
-11. 2026-06-10 13:15  007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate
-12. 2026-06-10 12:45  007-memclaw-derived-memory-hardening/001-provenance-and-audit
-13. 2026-06-10 12:01  005-learning-feedback-reducers/005-env-tests-integration
-14. 2026-06-10 11:48  005-learning-feedback-reducers/004-retention-reducer
-15. 2026-06-10 11:12  005-learning-feedback-reducers/001-aggregator
+ 1. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
+ 2. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
+ 3. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
+ 4. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
+ 5. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt
+ 6. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git
+ 7. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc
+ 8. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review
+ 9. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code
+10. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode
+11. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up
+12. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools
+13. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review
+14. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research
+15. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime
 ```
 
 ---
@@ -73,18 +73,30 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-10 16:13 | 2026-06-02 | `001-peck-teachings-adoption/` |
-| 2 | 2026-06-10 16:12 | 2026-06-08 | `008-openltm-retrieval-observability/` |
-| 3 | 2026-06-10 14:50 | 2026-06-08 | `009-openltm-continuity-resilience/` |
-| 4 | 2026-06-10 14:50 | 2026-06-06 | `007-memclaw-derived-memory-hardening/` |
-| 5 | 2026-06-10 13:39 | 2026-05-09 | `005-learning-feedback-reducers/` |
-| 6 | 2026-06-10 11:00 | 2026-06-06 | `004-semantic-trigger-fallback/` |
-| 7 | 2026-06-10 09:15 | 2026-06-06 | `003-memory-index-causal-lifecycle/` |
-| 8 | 2026-06-10 08:24 | 2026-06-06 | `006-gem-team-adoption/` |
-| 9 | 2026-06-10 08:03 | 2026-06-06 | `010-mcp-to-cli-tool-transition/` |
-| 10 | 2026-06-10 07:38 | 2026-05-11 | `002-memory-write-safety/` |
-| 11 | 2026-05-31 09:56 | 2026-06-10 | `000-release-cleanup/` |
-| 12 | ??????????      | 2026-06-10 | `011-command-presentation-workflow-separation/` |
+| 1 | 2026-06-11 13:48 | 2026-06-10 | `000-release-cleanup/` |
+| 2 | 2026-06-11 13:40 | 2026-06-11 | `023-idempotency-flag-on-correctness/` |
+| 3 | 2026-06-11 12:20 | 2026-06-11 | `022-provenance-injection/` |
+| 4 | 2026-06-11 10:37 | 2026-06-11 | `021-hybrid-search-scope-then-limit/` |
+| 5 | 2026-06-11 10:32 | 2026-06-11 | `020-vector-resilience-durability/` |
+| 6 | 2026-06-11 10:28 | 2025-12-23 | `019-skill-advisor-cross-session-reconnect/` |
+| 7 | 2026-06-11 09:33 | 2026-06-11 | `017-bm25-warmup-churn-reduction/` |
+| 8 | 2026-06-11 07:51 | 2026-06-10 | `018-xce-feature-adoption-advisor-codegraph/` |
+| 9 | 2026-06-11 07:05 | 2026-06-10 | `014-packed-bm25-field-weights/` |
+| 10 | 2026-06-11 06:37 | 2026-06-10 | `013-vector-read-path-resilience/` |
+| 11 | 2026-06-11 06:30 | 2026-06-10 | `012-causal-traversal-bfs/` |
+| 12 | 2026-06-11 04:55 | 2026-06-10 | `016-cli-tooling-ux/` |
+| 13 | 2026-06-11 04:51 | 2026-06-10 | `015-storage-adapter-ports/` |
+| 14 | 2026-06-11 04:23 | 2026-06-10 | `011-command-presentation-workflow-separation/` |
+| 15 | 2026-06-10 16:13 | 2026-06-02 | `001-peck-teachings-adoption/` |
+| 16 | 2026-06-10 16:12 | 2026-06-08 | `008-openltm-retrieval-observability/` |
+| 17 | 2026-06-10 14:50 | 2026-06-08 | `009-openltm-continuity-resilience/` |
+| 18 | 2026-06-10 14:50 | 2026-06-06 | `007-memclaw-derived-memory-hardening/` |
+| 19 | 2026-06-10 13:39 | 2026-05-09 | `005-learning-feedback-reducers/` |
+| 20 | 2026-06-10 11:00 | 2026-06-06 | `004-semantic-trigger-fallback/` |
+| 21 | 2026-06-10 09:15 | 2026-06-06 | `003-memory-index-causal-lifecycle/` |
+| 22 | 2026-06-10 08:24 | 2026-06-06 | `006-gem-team-adoption/` |
+| 23 | 2026-06-10 08:03 | 2026-06-06 | `010-mcp-to-cli-tool-transition/` |
+| 24 | 2026-06-10 07:38 | 2026-05-11 | `002-memory-write-safety/` |
 
 > Note: `000-release-and-program-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
@@ -98,6 +110,85 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code
+2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation
+2026-06-11 13:48  born:2026-06-11        000-release-cleanup/009-skill-frontmatter-alignment
+2026-06-11 13:48  born:2026-06-10        000-release-cleanup
+2026-06-11 13:40  born:2026-06-11  impl  023-idempotency-flag-on-correctness
+2026-06-11 12:20  born:2026-06-11  impl  022-provenance-injection
+2026-06-11 10:37  born:2026-06-11  impl  021-hybrid-search-scope-then-limit
+2026-06-11 10:32  born:2026-06-11  impl  020-vector-resilience-durability
+2026-06-11 10:28  born:2026-06-11  impl  019-skill-advisor-cross-session-reconnect
+2026-06-11 09:33  born:2026-06-11  impl  017-bm25-warmup-churn-reduction
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard
+2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/001-advisor-observability
+2026-06-11 07:51  born:2026-06-10        018-xce-feature-adoption-advisor-codegraph
+2026-06-11 07:05  born:2026-06-10  impl  014-packed-bm25-field-weights
+2026-06-11 06:37  born:2026-06-10  impl  013-vector-read-path-resilience
+2026-06-11 06:30  born:2026-06-10  impl  012-causal-traversal-bfs
+2026-06-11 04:55  born:2026-06-10  impl  016-cli-tooling-ux/005-cli-automation-compact-completion
+2026-06-11 04:55  born:2026-06-10  impl  016-cli-tooling-ux/003-cli-reference-and-skill-docs
+2026-06-11 04:55  born:2026-06-10        016-cli-tooling-ux
+2026-06-11 04:51  born:2026-06-10  impl  015-storage-adapter-ports
+2026-06-11 04:23  born:2026-06-10        011-command-presentation-workflow-separation
+2026-06-11 03:37  born:2026-06-10  impl  016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge
+2026-06-11 03:15  born:2026-06-10  impl  016-cli-tooling-ux/002-cli-help-aliases-errors
+2026-06-11 03:01  born:2026-06-10  impl  016-cli-tooling-ux/001-cli-freshness-and-smoke
+2026-06-10 22:21  born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux
+2026-06-10 22:21  born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire
+2026-06-10 22:21  born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md
+2026-06-10 22:21  born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract
+2026-06-10 22:21  born:2026-06-10        011-command-presentation-workflow-separation/004-doctor-commands
+2026-06-10 22:03  born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux
+2026-06-10 22:03  born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/003-router-rewire
+2026-06-10 22:03  born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md
+2026-06-10 22:03  born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract
+2026-06-10 22:03  born:2026-06-10        011-command-presentation-workflow-separation/003-create-commands
+2026-06-10 22:00  born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux
+2026-06-10 22:00  born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire
+2026-06-10 22:00  born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md
+2026-06-10 22:00  born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract
+2026-06-10 22:00  born:2026-06-10        011-command-presentation-workflow-separation/002-speckit-commands
+2026-06-10 21:43  born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux
+2026-06-10 21:43  born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire
+2026-06-10 21:43  born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md
+2026-06-10 21:43  born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract
+2026-06-10 21:43  born:2026-06-10        011-command-presentation-workflow-separation/001-memory-commands
+2026-06-10 18:46  born:2026-06-10  impl  000-release-cleanup/001-public-root-readme
+2026-06-10 18:22  born:2026-06-10  impl  000-release-cleanup/005-mcp-cli-stress-tests
+2026-06-10 18:22  born:2026-06-10  impl  000-release-cleanup/004-skill-manual-playbook
+2026-06-10 18:22  born:2026-06-10  impl  000-release-cleanup/003-skill-feature-catalog
+2026-06-10 17:50  born:2026-06-10  impl  000-release-cleanup/008-agents-md-alignment
+2026-06-10 17:50  born:2026-06-10  impl  000-release-cleanup/007-agent-alignment
+2026-06-10 17:50  born:2026-06-10  impl  000-release-cleanup/006-command-alignment
+2026-06-10 17:50  born:2026-06-10  impl  000-release-cleanup/002-skill-docs-alignment
 2026-06-10 16:13  born:2026-06-06  impl  001-peck-teachings-adoption/006-peck-verification-discipline
 2026-06-10 16:13  born:2026-06-02        001-peck-teachings-adoption
 2026-06-10 16:12  born:2026-06-08  impl  008-openltm-retrieval-observability
@@ -151,36 +242,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-10 07:09  born:2026-06-06  impl  006-gem-team-adoption/001-typed-agent-io-adapter
 2026-06-10 06:59  born:2026-05-13  impl  003-memory-index-causal-lifecycle/001-incremental-index-foundation
 2026-06-05 21:56  born:2026-06-02  impl  001-peck-teachings-adoption/001-peck-teachings-for-spec-kit
-2026-05-31 09:56  born:2026-06-10        000-release-cleanup
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract
-??????????       born:2026-06-10        011-command-presentation-workflow-separation/004-doctor-commands
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/003-router-rewire
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract
-??????????       born:2026-06-10        011-command-presentation-workflow-separation/003-create-commands
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract
-??????????       born:2026-06-10        011-command-presentation-workflow-separation/002-speckit-commands
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md
-??????????       born:2026-06-10  impl  011-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract
-??????????       born:2026-06-10        011-command-presentation-workflow-separation/001-memory-commands
-??????????       born:2026-06-10        011-command-presentation-workflow-separation
-??????????       born:2026-06-10  impl  000-release-cleanup/008-agents-md-alignment
-??????????       born:2026-06-10  impl  000-release-cleanup/007-agent-alignment
-??????????       born:2026-06-10  impl  000-release-cleanup/006-command-alignment
-??????????       born:2026-06-10  impl  000-release-cleanup/005-mcp-cli-stress-tests
-??????????       born:2026-06-10  impl  000-release-cleanup/004-skill-manual-playbook
-??????????       born:2026-06-10  impl  000-release-cleanup/003-skill-feature-catalog
-??????????       born:2026-06-10  impl  000-release-cleanup/002-skill-docs-alignment
-??????????       born:2026-06-10  impl  000-release-cleanup/001-public-root-readme
 ```
 
 ---
@@ -206,6 +267,85 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
+| `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment` |  | (none) |
+| `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
+| `023-idempotency-flag-on-correctness` | impl | [changelog-023-idempotency-flag-on-correctness.md](./changelog/023-idempotency-flag-on-correctness/changelog-023-idempotency-flag-on-correctness.md) |
+| `022-provenance-injection` | impl | [changelog-022-provenance-injection.md](./changelog/022-provenance-injection/changelog-022-provenance-injection.md) |
+| `021-hybrid-search-scope-then-limit` | impl | [changelog-021-hybrid-search-scope-then-limit.md](./changelog/021-hybrid-search-scope-then-limit/changelog-021-hybrid-search-scope-then-limit.md) |
+| `020-vector-resilience-durability` | impl | [changelog-020-vector-resilience-durability.md](./changelog/020-vector-resilience-durability/changelog-020-vector-resilience-durability.md) |
+| `019-skill-advisor-cross-session-reconnect` | impl | [changelog-019-skill-advisor-cross-session-reconnect.md](./changelog/019-skill-advisor-cross-session-reconnect/changelog-019-skill-advisor-cross-session-reconnect.md) |
+| `017-bm25-warmup-churn-reduction` | impl | [changelog-017-bm25-warmup-churn-reduction.md](./changelog/017-bm25-warmup-churn-reduction/changelog-017-bm25-warmup-churn-reduction.md) |
+| `018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph` |  | [changelog-018-xce-feature-adoption-advisor-codegraph-root.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-xce-feature-adoption-advisor-codegraph-root.md) |
+| `014-packed-bm25-field-weights` | impl | [changelog-014-packed-bm25-field-weights.md](./changelog/014-packed-bm25-field-weights/changelog-014-packed-bm25-field-weights.md) |
+| `013-vector-read-path-resilience` | impl | [changelog-013-vector-read-path-resilience.md](./changelog/013-vector-read-path-resilience/changelog-013-vector-read-path-resilience.md) |
+| `012-causal-traversal-bfs` | impl | [changelog-012-causal-traversal-bfs.md](./changelog/012-causal-traversal-bfs/changelog-012-causal-traversal-bfs.md) |
+| `016-cli-tooling-ux/005-cli-automation-compact-completion` | impl | (none) |
+| `016-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | (none) |
+| `016-cli-tooling-ux` |  | [changelog-016-cli-tooling-ux-root.md](./changelog/016-cli-tooling-ux/changelog-016-cli-tooling-ux-root.md) |
+| `015-storage-adapter-ports` | impl | [changelog-015-storage-adapter-ports.md](./changelog/015-storage-adapter-ports/changelog-015-storage-adapter-ports.md) |
+| `011-command-presentation-workflow-separation` |  | [changelog-011-command-presentation-workflow-separation-root.md](./changelog/011-command-presentation-workflow-separation/changelog-011-command-presentation-workflow-separation-root.md) |
+| `016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | (none) |
+| `016-cli-tooling-ux/002-cli-help-aliases-errors` | impl | (none) |
+| `016-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | (none) |
+| `011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | (none) |
+| `011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | (none) |
+| `011-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md` | impl | (none) |
+| `011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract` | impl | (none) |
+| `011-command-presentation-workflow-separation/004-doctor-commands` |  | (none) |
+| `011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux` | impl | (none) |
+| `011-command-presentation-workflow-separation/003-create-commands/003-router-rewire` | impl | (none) |
+| `011-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md` | impl | (none) |
+| `011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract` | impl | (none) |
+| `011-command-presentation-workflow-separation/003-create-commands` |  | (none) |
+| `011-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux` | impl | (none) |
+| `011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire` | impl | (none) |
+| `011-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md` | impl | (none) |
+| `011-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract` | impl | (none) |
+| `011-command-presentation-workflow-separation/002-speckit-commands` |  | (none) |
+| `011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux` | impl | (none) |
+| `011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` | impl | (none) |
+| `011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md` | impl | (none) |
+| `011-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` | impl | (none) |
+| `011-command-presentation-workflow-separation/001-memory-commands` |  | (none) |
+| `000-release-cleanup/001-public-root-readme` | impl | (none) |
+| `000-release-cleanup/005-mcp-cli-stress-tests` | impl | (none) |
+| `000-release-cleanup/004-skill-manual-playbook` | impl | (none) |
+| `000-release-cleanup/003-skill-feature-catalog` | impl | (none) |
+| `000-release-cleanup/008-agents-md-alignment` | impl | (none) |
+| `000-release-cleanup/007-agent-alignment` | impl | (none) |
+| `000-release-cleanup/006-command-alignment` | impl | (none) |
+| `000-release-cleanup/002-skill-docs-alignment` | impl | (none) |
 | `001-peck-teachings-adoption/006-peck-verification-discipline` | impl | [changelog-001-006-peck-verification-discipline.md](./changelog/001-peck-teachings-adoption/changelog-001-006-peck-verification-discipline.md) |
 | `001-peck-teachings-adoption` |  | [changelog-001-peck-teachings-adoption-root.md](./changelog/001-peck-teachings-adoption/changelog-001-peck-teachings-adoption-root.md) |
 | `008-openltm-retrieval-observability` | impl | [changelog-008-openltm-retrieval-observability.md](./changelog/008-openltm-retrieval-observability/changelog-008-openltm-retrieval-observability.md) |
@@ -259,34 +399,4 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `006-gem-team-adoption/001-typed-agent-io-adapter` | impl | [changelog-006-001-typed-agent-io-adapter.md](./changelog/006-gem-team-adoption/changelog-006-001-typed-agent-io-adapter.md) |
 | `003-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | [changelog-003-001-incremental-index-foundation.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-001-incremental-index-foundation.md) |
 | `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | [changelog-001-001-peck-teachings-for-spec-kit.md](./changelog/001-peck-teachings-adoption/changelog-001-001-peck-teachings-for-spec-kit.md) |
-| `000-release-cleanup` |  | (none) |
-| `011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | (none) |
-| `011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | (none) |
-| `011-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md` | impl | (none) |
-| `011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/004-doctor-commands` |  | (none) |
-| `011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux` | impl | (none) |
-| `011-command-presentation-workflow-separation/003-create-commands/003-router-rewire` | impl | (none) |
-| `011-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md` | impl | (none) |
-| `011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/003-create-commands` |  | (none) |
-| `011-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux` | impl | (none) |
-| `011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire` | impl | (none) |
-| `011-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md` | impl | (none) |
-| `011-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/002-speckit-commands` |  | (none) |
-| `011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux` | impl | (none) |
-| `011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` | impl | (none) |
-| `011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md` | impl | (none) |
-| `011-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/001-memory-commands` |  | (none) |
-| `011-command-presentation-workflow-separation` |  | (none) |
-| `000-release-cleanup/008-agents-md-alignment` | impl | (none) |
-| `000-release-cleanup/007-agent-alignment` | impl | (none) |
-| `000-release-cleanup/006-command-alignment` | impl | (none) |
-| `000-release-cleanup/005-mcp-cli-stress-tests` | impl | (none) |
-| `000-release-cleanup/004-skill-manual-playbook` | impl | (none) |
-| `000-release-cleanup/003-skill-feature-catalog` | impl | (none) |
-| `000-release-cleanup/002-skill-docs-alignment` | impl | (none) |
-| `000-release-cleanup/001-public-root-readme` | impl | (none) |
 

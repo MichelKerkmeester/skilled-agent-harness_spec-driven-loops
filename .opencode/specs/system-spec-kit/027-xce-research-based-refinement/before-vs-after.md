@@ -48,6 +48,8 @@ Schema migration 35 added a `source_kind` column to the memory index. The server
 
 A write-ingress guard runs on every update. When the caller is classified as an automated actor (agent, system or import), the guard checks whether the fields being written are protected. Automated writes that would overwrite protected fields on human-authored rows are skipped at pre-mutation time. The response carries a skipped-hint so the caller knows what happened. Human writes and human-over-automated writes are not restricted.
 
+A later refinement phase (022) closed the remaining gap. The guard could only hold the line for writes that actually carried provenance, and the automated reducer and feedback writers were not tagging themselves, so their writes reached the store untagged. Those writers now inject provenance context at the source through a shared `write-provenance.ts` deriver that defaults to `human` when no tag is present, so a missing tag can never be treated as automated and allowed to overwrite a human edit. With the automated writers tagging themselves, the publication gate no longer excludes machine-authored rows for missing provenance. Two pre-existing guard-coverage gaps that this tagging unblocks are tracked as follow-ons: same-path reindex-retire, and feedback auto-promotion lacking a `source_kind` ingress check.
+
 **Impact**
 
 You can trust that a memory record you authored by hand stays authored by hand. Automated enrichment passes cannot accidentally or silently replace your titles, trigger phrases or content. The mutation ledger now records which actor made each change, keyed by a deduplicated SHA-256 hash so repeated identical mutations do not inflate the audit trail.
@@ -66,7 +68,9 @@ Retried saves and updates were not idempotent. If a session saved the same memor
 
 **After**
 
-Behind the `SPECKIT_MEMORY_IDEMPOTENCY` flag (default off), the memory server now manages idempotency receipts keyed by a server-derived fingerprint over the operation name, content hash and a request fingerprint. A retry of an identical save replays the stored MCP response with a `replayed: true` marker and writes nothing new. A retry with a changed payload fails closed with an `idempotency_key_conflict` response.
+Behind the `SPECKIT_MEMORY_IDEMPOTENCY` flag (default off), the memory server now manages idempotency receipts keyed by a server-derived fingerprint over the operation name, content hash and a request fingerprint. A retry of an identical save replays the original stored MCP response verbatim and writes nothing new. There is no `replayed: true` marker on the replayed response, so a replay is indistinguishable from the first call, which is the point of idempotency. A retry with a changed payload fails closed with an `idempotency_key_conflict` response.
+
+The flag-on correctness was hardened in a later refinement phase (023) before any enablement could be considered. Receipts are immutable first-writes: the store uses `ON CONFLICT(receipt_key) DO NOTHING` and reports whether it won the write, so a retry never overwrites the recorded response. The receipt-write guard never leaves behind a receipt that would block a legitimate retry, and when two concurrent first-writes race, the loser looks up the winner's receipt and replays the winner's response rather than diverging.
 
 Near-duplicate detection runs as an advisory check. When a new save matches an existing row above the similarity threshold, the response includes a `near_duplicate_of` hint. The write still proceeds. A `last_dedup_checked_at` short-circuit avoids re-running the check on rows that were recently evaluated.
 
@@ -76,7 +80,7 @@ When enabled, retries stop creating phantom duplicates. The hint surfaces silent
 
 **Why default-off**
 
-The idempotency receipt path requires the embedding coverage to be reliable for near-duplicate checks to be useful. The feature flag holds it back until embedding recall is confirmed healthy across the index. Near-duplicate detection is advisory rather than blocking because false positives on genuinely distinct records would suppress valid saves.
+The idempotency receipt path requires the embedding coverage to be reliable for near-duplicate checks to be useful. The feature flag holds it back until embedding recall is confirmed healthy across the index. Near-duplicate detection is advisory rather than blocking because false positives on genuinely distinct records would suppress valid saves. The flag-on correctness work in phase 023 was a prerequisite to any enablement, not the enablement itself: the flag stays off pending a dist rebuild and a deliberate enablement decision that still has to settle force-retry-conflict handling and receipt TTL.
 
 ---
 
@@ -340,10 +344,68 @@ The process improvements are additive to existing workflows. Constitutional rule
 
 ---
 
+## 14. Search Resilience: Vector Durability and the Lexical Fallback
+
+**Before**
+
+A live malformed vector shard was observed silently degrading search: the read path trusted a shard that could not actually answer, and returned thin results with no signal. The lexical fallback that backs search when the vector lane is unavailable carried a memory-hungry posting representation and had lost its per-field weighting, so a title or trigger hit ranked no higher than the same term buried in body text. And the BM25 lane truncated results to the caller's limit before it resolved the spec-folder and deprecated-tier filters, so a scoped query could return fewer in-scope results than actually existed.
+
+**After**
+
+The vector read path now detects a shard that fails its integrity and dimension checks, quarantines it rather than serving it, seeds degraded-vector state for observability, and schedules an auto-rebuild with hardened dimension discovery (phase 013). That repair is durable across a restart (phase 020): a repair-pending sentinel is persisted at quarantine, and boot uses a completeness check, the vector rowcount against the index success count rather than a file-exists probe, to decide between resuming a real repair and clearing a stale sentinel on an already-rebuilt shard. The quarantine rename is itself a durable marker, so repair resumes even when no sentinel write could land, and an in-flight guard stops a double boot-attach from scheduling the same rebuild twice.
+
+The lexical fallback was rebuilt as a packed in-memory BM25 engine with typed-array postings and restored BM25F field weighting (phase 014), so title and trigger matches outrank body noise, with ranking held byte-identical to the prior engine. The realistic-corpus re-validation exposed a 743MB warmup RSS spike against a 150MB budget, which phase 017 cut to a 136.5MB peak-sampled spike, under budget, through no-copy chunked packed postings and Uint8 to Uint16 to Uint32 width promotion, ranking still byte-identical, with the hard RSS gate re-enabled. The scope-then-limit bug was fixed in phase 021: the lane now over-fetches the candidate set when a scope or database filter is present, resolves the per-candidate metadata in batches that stay under the SQLite parameter limit, applies the filters, and only then truncates to the caller's limit.
+
+**Impact**
+
+A corrupted vector shard no longer silently degrades search, and a crash mid-repair resumes instead of permanently serving an empty shard with health reporting success. The lexical fallback ranks the way it should and warms under its memory budget on a realistic corpus. A scoped search returns its real result set rather than whatever survived an early truncation.
+
+**Why mostly always-on, repair durability inert until adopted**
+
+The detection, quarantine, ranking and scope fixes are corrections to existing behavior and ship as part of the read path. The vector repair durability source fix goes live only after a dist rebuild and daemon recycle, and is otherwise inert.
+
+---
+
+## 15. Daemon Launcher Resilience
+
+**Before**
+
+The skill-advisor launcher was the odd one out of the three daemon launchers. The spec-memory and code-index launchers had an owner lease and a reconnecting session proxy so a second session bridged the warm daemon instead of spawning a duplicate writer, but the advisor launcher's lease check only reported that a lease was held and did nothing about a dead socket. A hung advisor daemon could strand a session or invite a second writer.
+
+**After**
+
+Phase 019 brought the advisor launcher up to parity. A second session now bridges the live daemon through the session proxy, and a dead-socket respawn decision is acted on: the launcher reaps the dead owner and respawns a replacement under a bootstrap lock, rather than leaving the session stranded or starting a second writer. All three daemon launchers now share the same resilience bar.
+
+**Impact**
+
+The advisor survives a dropped transport the same way the spec-memory and code-index daemons already did. There is never a second writer to the skill graph.
+
+**Why fresh-session only**
+
+A running launcher process keeps its prior `.cjs` resident, so the fix activates on a fresh session. Live adoption is operator-gated.
+
+---
+
+## 16. Internal Seams and Cross-Subsystem Adoption
+
+These phases changed structure or carried existing patterns into other subsystems without changing user-facing behavior.
+
+**Causal traversal BFS (012).** Two recursive-CTE graph traversals whose join shape defeated index use were replaced by a single shared app-level BFS helper. Same traversal results, including multi-root fan-in, fewer full scans.
+
+**Storage adapter ports (015).** A five-port adapter seam (vector, lexical, traversal, maintenance, contention) now sits over the better-sqlite3 layer. A coupling-grep inventory trends residual direct access down toward the ports, with the hybrid lexical path, BM25 side-index maintenance, and vector-shard lifecycle pragmas kept as documented exceptions rather than forced through the ports. Testability today, room to move the persistence layer later, no caller-visible behavior change.
+
+**Command presentation and workflow separation (011).** The memory, speckit, create and doctor command families had their workflow routing split from their Markdown presentation contracts. A structural refactor with behavior and rendered output unchanged.
+
+**CLI tooling UX (016).** The daemon-CLI front doors gained a freshness-gate fix and offline smoke, per-command help with aliases and clear errors, a unified daemon CLI reference, a hardened fallback envelope and bridge allowlist, and compact output with shell completion. The CLI surface stays at full parity with the daemons (spec-memory 37, code-index 8, skill-advisor 9).
+
+**Cross-subsystem feature adoption (018).** The hardening that 027 landed first in spec-memory was carried into the skill-advisor and code-graph subsystems: observability attribution, a provenance guard, packed BM25, BFS consolidation, feedback calibration, a tombstone audit, `why_included`, and a BM25 symbol resolver. Results-affecting additions ship default-off or shadow-first.
+
+---
+
 ## Current State
 
 The schema sits at v37. All results-affecting and mutating features are default-off behind feature flags, with shadow modes available where relevant. The always-on protections, provenance guard, secret scrubber, retention-tier basement, manual-edge overwrite guard and causal-edge tombstones, are active in every deployment.
 
-Nothing about the default behavior of memory retrieval, storage or session startup changed for existing users. Enabling any of the flags is an explicit opt-in with documented environment variables in `ENV_REFERENCE.md`.
+The everyday call shape of memory retrieval, storage and session startup is unchanged for existing users, and enabling any of the flags is an explicit opt-in with documented environment variables in `ENV_REFERENCE.md`. The read path did get more resilient by default: a malformed vector shard is detected and quarantined rather than served, the lexical fallback ranks with restored field weights under its memory budget, and a scoped search resolves its filters before truncating. None of that needs a flag and none of it changes the response contract for the common path. The vector repair durability and the idempotency flag-on correctness are inert until a dist rebuild adopts them.
 
-The changelog index at `changelog/README.md` links every shipped phase to its detailed change record. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.
+The changelog index at `changelog/README.md` links all twenty-four phase tracks (000 through 023) to their detailed change records, and the chronological view lives in `timeline.md`. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.
