@@ -402,6 +402,8 @@ These phases changed structure or carried existing patterns into other subsystem
 
 **Autonomous dependency patching (024).** A packet-local shell entrypoint scans the OpenCode skill package roots, runs `npm audit` on each, applies supported override remediation, regenerates lockfiles without executing install scripts, and re-audits. The shipped run found all five roots clean; CI integration remains optional.
 
+**IPC client cap hardening (026).** The shared daemon IPC socket server capped concurrent clients at 8 and refused extras by accepting then instantly closing them — indistinguishable from a dead daemon to probes. Session fan-outs past 8 saturated the cap, so every new session's bridge probe failed with exit 75 and the plugin printed a skip banner that the TUI rendered into the input field. The cap is now 64 in both module copies and pinned in all nine daemon env blocks, and the plugin's skip diagnostic is silent by default (debug-gated, still inspectable via its status tool).
+
 **Code Mode orphan lifecycle (025).** The mcp-code-mode stdio MCP server previously had no session-lifetime handling, so a hard-killed session left it alive forever at PPID 1 — sixteen such orphans had accumulated and degraded shared daemon infrastructure. The server now exits on stdin EOF, on transport close, or when a 15-second watchdog observes reparenting to PID 1, and the accumulated orphans were reaped to a zero census.
 
 ---
@@ -412,4 +414,4 @@ The schema sits at v37. All results-affecting and mutating features are default-
 
 The everyday call shape of memory retrieval, storage and session startup is unchanged for existing users, and enabling any of the flags is an explicit opt-in with documented environment variables in `ENV_REFERENCE.md`. The read path did get more resilient by default: a malformed vector shard is detected and quarantined rather than served, the lexical fallback ranks with restored field weights under its memory budget, and a scoped search resolves its filters before truncating. None of that needs a flag and none of it changes the response contract for the common path. The vector repair durability and the idempotency flag-on correctness are inert until a dist rebuild adopts them.
 
-The changelog index at `changelog/README.md` links all twenty-six phase tracks (000 through 025) to their detailed change records, and the chronological view lives in `timeline.md`. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.
+The changelog index at `changelog/README.md` links all twenty-seven phase tracks (000 through 026) to their detailed change records, and the chronological view lives in `timeline.md`. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.

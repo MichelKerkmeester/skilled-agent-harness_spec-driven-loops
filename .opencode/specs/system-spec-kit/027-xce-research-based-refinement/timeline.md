@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-11T14:47:32Z"
+    last_updated_at: "2026-06-11T14:56:45Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-11T14:47:32Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-11T14:56:45Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -39,8 +39,8 @@ _memory:
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
 > **Most recent live spec folder:** `025-code-mode-orphan-lifecycle`
-> **Oldest live spec folder:** `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit`
-> **Counts:** 135 live spec folders · 0 archived (`z_archive/`).
+> **Oldest live spec folder:** `026-ipc-client-cap-hardening`
+> **Counts:** 136 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
@@ -99,6 +99,7 @@ traces through the reorg `git mv` history to each track's true origin.
 | 24 | 2026-06-10 08:24 | 2026-06-06 | `006-gem-team-adoption/` |
 | 25 | 2026-06-10 08:03 | 2026-06-06 | `010-mcp-to-cli-tool-transition/` |
 | 26 | 2026-06-10 07:38 | 2026-05-11 | `002-memory-write-safety/` |
+| 27 | ??????????      | 2026-06-11 | `026-ipc-client-cap-hardening/` |
 
 > Note: `000-release-and-program-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
@@ -247,6 +248,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-10 07:09  born:2026-06-06  impl  006-gem-team-adoption/001-typed-agent-io-adapter
 2026-06-10 06:59  born:2026-05-13  impl  003-memory-index-causal-lifecycle/001-incremental-index-foundation
 2026-06-05 21:56  born:2026-06-02  impl  001-peck-teachings-adoption/001-peck-teachings-for-spec-kit
+??????????       born:2026-06-11  impl  026-ipc-client-cap-hardening
 ```
 
 ---
@@ -407,4 +409,5 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `006-gem-team-adoption/001-typed-agent-io-adapter` | impl | [changelog-006-001-typed-agent-io-adapter.md](./changelog/006-gem-team-adoption/changelog-006-001-typed-agent-io-adapter.md) |
 | `003-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | [changelog-003-001-incremental-index-foundation.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-001-incremental-index-foundation.md) |
 | `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | [changelog-001-001-peck-teachings-for-spec-kit.md](./changelog/001-peck-teachings-adoption/changelog-001-001-peck-teachings-for-spec-kit.md) |
+| `026-ipc-client-cap-hardening` | impl | [changelog-026-ipc-client-cap-hardening.md](./changelog/026-ipc-client-cap-hardening/changelog-026-ipc-client-cap-hardening.md) |
 

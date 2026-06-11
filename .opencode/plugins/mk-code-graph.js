@@ -221,7 +221,14 @@ function diagnoseTransportPlanFailure(responseText) {
   }
 }
 
+// Raw stderr writes while the opencode TUI is active render into the user's
+// input field, so a bridge-skip diagnostic must stay silent by default. The
+// failure is non-fatal (injection no-ops) and remains inspectable as
+// last_runtime_error via the plugin's status tool.
 function emitRuntimeDiagnostic(message) {
+  if (!process.env.MK_CODE_GRAPH_DEBUG) {
+    return;
+  }
   process.stderr.write(`[${PLUGIN_ID}] ${message}\n`);
 }
 

@@ -14,7 +14,11 @@ import path from 'node:path';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
-const DEFAULT_MAX_SECONDARY_CLIENTS = 8;
+// Every live session's launcher holds one persistent slot, and multi-seat
+// fan-outs run well past 8 concurrent sessions. A refused connection is
+// accepted then closed, which probes cannot distinguish from a dead daemon,
+// so the cap must exceed any realistic session fleet.
+const DEFAULT_MAX_SECONDARY_CLIENTS = 64;
 const TCP_EADDRINUSE_RETRY_DELAYS_MS = [100, 250, 500, 1000, 1500] as const;
 
 interface IpcBridgeStats {

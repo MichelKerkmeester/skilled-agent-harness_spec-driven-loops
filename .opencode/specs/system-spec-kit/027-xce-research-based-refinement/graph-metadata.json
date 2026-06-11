@@ -29,7 +29,8 @@
     "system-spec-kit/027-xce-research-based-refinement/022-provenance-injection",
     "system-spec-kit/027-xce-research-based-refinement/023-idempotency-flag-on-correctness",
     "system-spec-kit/027-xce-research-based-refinement/024-autonomous-dependency-patching",
-    "system-spec-kit/027-xce-research-based-refinement/025-code-mode-orphan-lifecycle"
+    "system-spec-kit/027-xce-research-based-refinement/025-code-mode-orphan-lifecycle",
+    "system-spec-kit/027-xce-research-based-refinement/026-ipc-client-cap-hardening"
   ],
   "migrated": true,
   "migration_source": "legacy",

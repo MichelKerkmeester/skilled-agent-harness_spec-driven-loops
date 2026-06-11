@@ -63,6 +63,7 @@ args = [".opencode/bin/mk-spec-memory-launcher.cjs"]
 command = "node"
 
 [mcp_servers.mk-spec-memory.env]
+SPECKIT_MAX_SECONDARY_CLIENTS = "64"
 EMBEDDINGS_PROVIDER = "auto"
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-spec-memory"
 SPECKIT_DAEMON_REELECTION = "1"
@@ -91,6 +92,7 @@ args = [".opencode/bin/mk-code-index-launcher.cjs"]
 command = "node"
 
 [mcp_servers.mk_code_index.env]
+SPECKIT_MAX_SECONDARY_CLIENTS = "64"
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
 SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
 SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
@@ -108,11 +110,14 @@ args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
 command = "node"
 
 [mcp_servers.mk_skill_advisor.env]
+SPECKIT_MAX_SECONDARY_CLIENTS = "64"
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-skill-advisor"
 HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
 _NOTE_HF_EMBED_SOCKET = "Shared hf-local model-server socket — identical to mk-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to mk-spec-memory's.)"
 MK_SKILL_ADVISOR_DB_DIR = ".opencode/skills/system-skill-advisor/mcp_server/database"
 SPECKIT_ADVISOR_SHADOW_MODE = "0"
+SPECKIT_ADVISOR_DOC_TRIGGERS = "true"
+_NOTE_DOC_TRIGGERS = "Opt-in doc-frontmatter harvest: skill_graph_scan ingests references/assets trigger_phrases into skill_docs and advisor_recommend returns matchedDocs pointers (dampened derived-lane signal). Default-off in code; enabled for this repo. Unset/false to roll back."
 SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = "0"
 MK_SKILL_ADVISOR_TRUST_DEFAULT = "trusted"
 _NOTE_TRUST_DEFAULT = "Daemon-owner trust grant for mutation tools (advisor_rebuild, skill_graph_scan, skill_graph_propagate_enhances). Callers whose _meta omits transport/trust markers default to UNTRUSTED unless this is 'trusted'. Native MCP clients (e.g. /doctor repair flows) send no _meta, so this grant keeps them working; remove it to fail-closed on every transport-absent caller. Explicit _meta trusted:false / callerAuthority:'untrusted' is always rejected."
