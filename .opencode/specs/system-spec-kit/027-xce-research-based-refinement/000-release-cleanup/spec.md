@@ -7,13 +7,13 @@ trigger_phrases:
   - "schema v37 release docs"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup"
     last_updated_at: "2026-06-10T00:00:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Scaffolded release-cleanup phase-parent"
+    recent_action: "All 9 children shipped; statuses reconciled at epic close"
     next_safe_action: "Implement child phase 001-public-root-readme last"
     blockers: []
     key_files:
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-000-release-cleanup-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator fixed the child phase map at eight release-cleanup surfaces."
@@ -52,7 +52,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -83,7 +83,7 @@ Align every outward and governance surface to the shipped 027 reality without ch
 
 ### In Scope
 - Shipped schema alignment: v34 through v37 current-state references.
-- Default-off flags: SPECKIT_SEMANTIC_TRIGGERS, SPECKIT_SEMANTIC_TRIGGERS_MODE, SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE, SPECKIT_FEEDBACK_RETENTION_LEARNING, SPECKIT_FEEDBACK_RETENTION_LEARNING_MODE, SPECKIT_SOFT_DELETE_TOMBSTONES, SPECKIT_MEMORY_IDEMPOTENCY, SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT, and SPECKIT_COMPLETION_FRESHNESS.
+- Default-off flags: SPECKIT_SEMANTIC_TRIGGERS, SPECKIT_SEMANTIC_TRIGGERS_MODE, SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE, SPECKIT_FEEDBACK_RETENTION_LEARNING, SPECKIT_FEEDBACK_RETENTION_MODE, SPECKIT_SOFT_DELETE_TOMBSTONES, SPECKIT_MEMORY_IDEMPOTENCY, SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT, and SPECKIT_COMPLETION_FRESHNESS.
 - CLI front-door descriptions from phase 010.
 - Constitutional rules: automated-writers-never-overwrite-manual and entity-cooccurrence-is-not-causal.
 - Memory feature descriptions for semantic triggers, idempotency, provenance, tombstones, observability, continuity, reducers, freshness, stale audit, and tool ownership.
@@ -119,14 +119,15 @@ Planned future implementation scope for audit only. Per-phase detail lives in ea
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-public-root-readme/ | Rewrite the repo-root README to current shipped reality: MCP and CLI dual-stack, memory capabilities, skill, command, and agent surfaces. This is the capstone and should be authored last. | Planned |
-| 2 | 002-skill-docs-alignment/ | Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice. Reconcile ENV_REFERENCE flag completeness, including SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT. | Planned |
-| 3 | 003-skill-feature-catalog/ | Add one feature_catalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable. | Planned |
-| 4 | 004-skill-manual-playbook/ | Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check. | Planned |
-| 5 | 005-mcp-cli-stress-tests/ | Plan stress coverage for the three daemons, CLI front doors under schema v37, and the new gated flags. | Planned |
-| 6 | 006-command-alignment/ | Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership. | Planned |
-| 7 | 007-agent-alignment/ | Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine. | Planned |
-| 8 | 008-agents-md-alignment/ | Reconcile root AGENTS.md governance so Four Laws and Gates stay byte-stable while completion-freshness, Logic-Sync, and constitutional-rule references stay coherent. | Planned |
+| 1 | 001-public-root-readme/ | Rewrite the repo-root README to current shipped reality: MCP and CLI dual-stack, memory capabilities, skill, command, and agent surfaces. This is the capstone and should be authored last. | Complete |
+| 2 | 002-skill-docs-alignment/ | Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice. Reconcile ENV_REFERENCE flag completeness, including SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT. | Complete |
+| 3 | 003-skill-feature-catalog/ | Add one feature_catalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable. | Complete |
+| 4 | 004-skill-manual-playbook/ | Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check. | Complete |
+| 5 | 005-mcp-cli-stress-tests/ | Plan stress coverage for the three daemons, CLI front doors under schema v37, and the new gated flags. | Complete |
+| 6 | 006-command-alignment/ | Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership. | Complete |
+| 7 | 007-agent-alignment/ | Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine. | Complete |
+| 8 | 008-agents-md-alignment/ | Reconcile root AGENTS.md governance so Four Laws and Gates stay byte-stable while completion-freshness, Logic-Sync, and constitutional-rule references stay coherent. | Complete |
+| 9 | 009-skill-frontmatter-alignment/ | Standardize references/ and assets/ frontmatter across all 21 skills: an investigation child fixes the canonical contract, then one alignment child per skill applies it. | Complete |
 
 ### Phase Transition Rules
 
@@ -146,6 +147,7 @@ Planned future implementation scope for audit only. Per-phase detail lives in ea
 | 005-mcp-cli-stress-tests | 006-command-alignment | Prior phase validates and updates its handoff notes | strict validation for 005-mcp-cli-stress-tests |
 | 006-command-alignment | 007-agent-alignment | Prior phase validates and updates its handoff notes | strict validation for 006-command-alignment |
 | 007-agent-alignment | 008-agents-md-alignment | Prior phase validates and updates its handoff notes | strict validation for 007-agent-alignment |
+| 008-agents-md-alignment | 009-skill-frontmatter-alignment | Prior phase validates and updates its handoff notes | strict validation for 008-agents-md-alignment |
 <!-- /ANCHOR:phase-map -->
 
 ---

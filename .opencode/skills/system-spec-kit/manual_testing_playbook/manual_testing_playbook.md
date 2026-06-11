@@ -118,8 +118,11 @@ For each executed scenario, check:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
 - `FAIL`: expected behavior missing, contradictory output, or critical check failed
+- `SKIP`: a specific sandbox or runtime blocker prevented execution (document the blocker)
+- `UNAUTOMATABLE`: the scenario cannot be truthfully executed through the direct-handler runner (document why)
+
+`PARTIAL` is a packet-level summary classification only (core behavior observed, supporting evidence incomplete); it is not a valid per-scenario verdict.
 
 ### Feature Verdict Rules
 

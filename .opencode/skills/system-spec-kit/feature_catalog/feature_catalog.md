@@ -45,15 +45,15 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 
 ### Command-Surface Contract
 
-The Spec Kit Memory MCP server exposes **37 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 37-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/spec_kit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/spec_kit/resume.md`.
+The Spec Kit Memory MCP server exposes **37 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 37-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/speckit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/speckit/resume.md`.
 
 | Command | Tools | Ownership | Tool Names |
 |---------|-------|-----------|------------|
 | `/memory:search` | 13 | owns | `memory_context`, `memory_quick_search`, `memory_search`, `memory_match_triggers`, `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `eval_run_ablation`, `eval_reporting_dashboard`, `memory_get_learning_history` |
 | `/memory:learn` | 6 | shared | `memory_save`, `memory_search`, `memory_stats`, `memory_list`, `memory_delete`, `memory_index_scan` |
-| `/memory:manage` | 20 primary + 1 helper | owns + borrows | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_retention_sweep`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
+| `/memory:manage` | 16 primary + 1 helper | owns + borrows | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_retention_sweep`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
 | `/memory:save` | 4 | shared | `memory_save`, `memory_index_scan`, `memory_stats`, `memory_update` |
-| `/spec_kit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers |
+| `/speckit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers |
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
@@ -309,7 +309,7 @@ See [`01--retrieval/tool-result-extraction-to-working-memory.md`](01--retrieval/
 
 ---
 
-### Session recovery via /spec_kit:resume
+### Session recovery via /speckit:resume
 
 #### Description
 
@@ -317,7 +317,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 #### How It Works
 
-**SHIPPED.** `/spec_kit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and Code Graph helpers that support the broader recovery workflow.
+**SHIPPED.** `/speckit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and Code Graph helpers that support the broader recovery workflow.
 
 The primary recovery path calls `memory_context` in `resume` mode with anchors targeting `state`, `next-steps`, `summary`, and `blockers`. Resume mode uses a 1200-token budget with `minState=WARM`, `includeContent=true`, dedup and decay both disabled.
 
@@ -325,13 +325,13 @@ Two recovery modes are available: **auto** resolves the strongest session candid
 
 The recovery chain prioritizes: (1) fresh `handover.md` when present, (2) `memory_context` in resume mode, (3) `CONTINUE_SESSION.md` crash breadcrumb, (4) anchored `memory_search` for thin summaries, (5) `memory_list` for recent-candidate discovery, and (6) user confirmation as final fallback.
 
-After recovery, the command continues directly inside `/spec_kit:resume` for structured spec-folder work or routes to `/memory:search history` for broader historical analysis, depending on user intent.
+After recovery, the command continues directly inside `/speckit:resume` for structured spec-folder work or routes to `/memory:search history` for broader historical analysis, depending on user intent.
 
 #### Source Files
 
 | File | Role |
 |------|------|
-| `.opencode/commands/spec_kit/resume.md` | `/spec_kit:resume` command definition with continuation and recovery workflows |
+| `.opencode/commands/speckit/resume.md` | `/speckit:resume` command definition with continuation and recovery workflows |
 
 See [`01--retrieval/session-recovery-spec-kit-resume.md`](01--retrieval/session-recovery-spec-kit-resume.md) for full details.
 
@@ -349,7 +349,7 @@ This is how you add new knowledge to the system. You point it at a file and it r
 
 #### How It Works
 
-`memory_save` is the save entry point for the canonical packet continuity path. You point it at a packet document or other supported markdown input, and it routes the content through `contentRouter`, applies the selected merge behavior via `anchorMergeOperation`, and writes the result through `atomicIndexMemory` inside the existing spec-folder lock. `_memory.continuity` now lives as supporting frontmatter state inside the spec doc, and `/spec_kit:resume` remains the canonical recovery surface.
+`memory_save` is the save entry point for the canonical packet continuity path. You point it at a packet document or other supported markdown input, and it routes the content through `contentRouter`, applies the selected merge behavior via `anchorMergeOperation`, and writes the result through `atomicIndexMemory` inside the existing spec-folder lock. `_memory.continuity` now lives as supporting frontmatter state inside the spec doc, and `/speckit:resume` remains the canonical recovery surface.
 
 hardened the canonical save follow-up behavior. Successful canonical saves now refresh current metadata on every invocation instead of treating repeat saves as a structural no-op, and research spec folders can trigger metadata backfill for missing iteration metadata under the same workflow.
 
@@ -4864,7 +4864,7 @@ Shell script: `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`
 
 The `--phases <N>` option controls how many child phase folders are generated (default is determined by the phase scoring algorithm if `recommend-level.sh` was run first). The `--phase-names` option accepts a comma-separated list of descriptive names for each phase, which are used in both folder naming and the Phase Documentation Map entries. When `--phase-names` is omitted, child folders receive sequential numeric names. The parent folder receives the standard spec kit template files at the specified level, while each child phase folder receives its own independent set of template files.
 
-**Literal naming requirement**: Phase names must be LITERAL slugs describing the concrete work (e.g., `data-model-design`, `api-implementation`, `ui-integration`) — NOT generic placeholders like `phase-1` or `remediation`. When `--phase-names` is omitted, `create.sh` now emits `PROVIDE-DESCRIPTIVE-SLUG` placeholder names with stderr warnings. The YAML workflow P2 step in `/spec_kit:plan` and `/spec_kit:complete` enforces literal naming guidance, and SKILL.md rule 20 provides the full naming convention for AI-derived spec folders and phases.
+**Literal naming requirement**: Phase names must be LITERAL slugs describing the concrete work (e.g., `data-model-design`, `api-implementation`, `ui-integration`) — NOT generic placeholders like `phase-1` or `remediation`. When `--phase-names` is omitted, `create.sh` now emits `PROVIDE-DESCRIPTIVE-SLUG` placeholder names with stderr warnings. The YAML workflow P2 step in `/speckit:plan` and `/speckit:complete` enforces literal naming guidance, and SKILL.md rule 20 provides the full naming convention for AI-derived spec folders and phases.
 
 #### How It Works
 

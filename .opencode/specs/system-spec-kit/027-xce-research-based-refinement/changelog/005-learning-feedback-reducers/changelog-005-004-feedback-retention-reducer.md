@@ -50,6 +50,7 @@ This leaf added `feedback-retention-reducer.ts` and `edge-tier-basement.ts`. The
 |------|--------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-retention-reducer.ts` | New file: triple-gated feedback retention reducer. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/edge-tier-basement.ts` | New file: narrow edge-floor helper (manual and constitutional edges only). |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | Integrates the triple-gated reducer into the live retention sweep (the phase's mutation site). |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/feedback-retention-reducer.vitest.ts` | New file: gating, dry-run, shadow, and active apply tests. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-feedback-learning.vitest.ts` | New file: retention sweep integration and constitutional immunity tests. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Added `SPECKIT_FEEDBACK_RETENTION_LEARNING` and `SPECKIT_FEEDBACK_RETENTION_MODE` rows. |

@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-001-peck-adoption-source-phases"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -114,12 +114,12 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-peck-teachings-for-spec-kit/ | Source analysis (README pass): peck teachings vs spec-kit gaps; defines teachings T1-T4. | Complete |
-| 2 | 002-self-check-templates/ | Self-check + failure-mode guidance in the spec/plan/checklist manifest templates (T3). | Planned |
-| 3 | 003-current-state-discipline/ | Broaden the current-state-only content rule beyond phase parents, advisory severity (T4). | Planned |
-| 4 | 004-constitutional-rule-review/ | Read-only review surface listing constitutional rules with last-confirmed metadata (T2). | Planned |
-| 5 | 005-reviewer-prompt-benchmark-substrate/ | Reviewer-prompt fixture type + scorer in deep-improvement Lane B (T10) — the source-pass test substrate; lands first among 5-7. | Spec-scaffolded |
-| 6 | 006-peck-verification-discipline/ | Completion-freshness + escalation + anti-softening + reviewer read-budget + numeric-severity note (T5-T9). | Spec-scaffolded |
-| 7 | 007-acceptance-coverage-gate/ | Acceptance-criteria coverage gate (T1, now adopted): AC-format normalization + AC traceability table + `AC_COVERAGE` rule, warn-then-error. | Spec-scaffolded |
+| 2 | 002-self-check-templates/ | Self-check + failure-mode guidance in the spec/plan/checklist manifest templates (T3). | Complete |
+| 3 | 003-current-state-discipline/ | Broaden the current-state-only content rule beyond phase parents, advisory severity (T4). | Complete |
+| 4 | 004-constitutional-rule-review/ | Read-only review surface listing constitutional rules with last-confirmed metadata (T2). | Complete |
+| 5 | 005-reviewer-prompt-benchmark-substrate/ | Reviewer-prompt fixture type + scorer in deep-improvement Lane B (T10) — the source-pass test substrate; lands first among 5-7. | Complete |
+| 6 | 006-peck-verification-discipline/ | Completion-freshness + escalation + anti-softening + reviewer read-budget + numeric-severity note (T5-T9). | Complete |
+| 7 | 007-acceptance-coverage-gate/ | Acceptance-criteria coverage gate (T1, now adopted): AC-format normalization + AC traceability table + `AC_COVERAGE` rule, warn-then-error. | Complete |
 
 ### Phase Transition Rules
 

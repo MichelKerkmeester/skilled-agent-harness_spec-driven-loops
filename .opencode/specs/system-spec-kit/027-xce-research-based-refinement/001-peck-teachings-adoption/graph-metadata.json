@@ -40,7 +40,7 @@
       "research"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "completed",
     "key_files": [
       "mcp_server/ENV_REFERENCE.md",
       "001-peck-teachings-for-spec-kit/peck-teachings-analysis.md",

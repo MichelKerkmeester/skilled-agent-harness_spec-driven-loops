@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-006-gem-team-adoption-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -106,9 +106,9 @@ Aggregate file scope; per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Level | Status |
 |-------|--------|-------|-------|--------|
-| 001 | `001-typed-agent-io-adapter/` | Typed dispatch header + output-envelope adapter (gem-team P1) — the substrate | 2 | Spec-scaffolded |
-| 002 | `002-scoped-preexec-and-handoff-gates/` | Scoped debug-handoff schema + boundary contract-first + pre-mortem (gem-team P2) | 2 | Spec-scaffolded |
-| 003 | `003-planner-review-focus-and-drift-hint/` | Planner reviewer-focus + spec-drift advisory fields (gem-team P3) | 1 | Spec-scaffolded |
+| 001 | `001-typed-agent-io-adapter/` | Typed dispatch header + output-envelope adapter (gem-team P1) — the substrate | 2 | Complete |
+| 002 | `002-scoped-preexec-and-handoff-gates/` | Scoped debug-handoff schema + boundary contract-first + pre-mortem (gem-team P2) | 2 | Complete |
+| 003 | `003-planner-review-focus-and-drift-hint/` | Planner reviewer-focus + spec-drift advisory fields (gem-team P3) | 1 | Complete |
 
 ### Phase Transition Rules
 - **Phase 001 ships first** — it is the substrate; 002 and 003 reuse its envelope (`confidence`/`failure_type`/advisory fields).

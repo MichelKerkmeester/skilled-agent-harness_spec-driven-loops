@@ -29,7 +29,7 @@ The memory store can now represent canonical input memo records, dependency edge
 - `lib/storage/memo.ts`: memo CRUD, dependency-edge insertion, transitive invalidation, and cycle rejection against sandboxed SQLite databases
 - `extractStableMemoryChunks()` API on `lib/parsing/memory-parser.ts`: opt-in anchor-first chunk extraction with fallback to heading slugs and fixed windows, computing chunk fingerprints from chunk-local normalized content
 - `planMemoizedIndexing()` export on `lib/storage/incremental-index.ts`: planning API that reports memo hits, chunk hits, and dependency-invalidated paths without touching the current scan flow
-- Five new Vitest test files: `canonical-fingerprint.vitest.ts`, `memo-storage.vitest.ts`, `memory-parser-stable-chunks.vitest.ts`, `incremental-index-foundation.vitest.ts`, and `vector-index-schema-incremental-foundation.vitest.ts` covering 70 tests in total
+- Five new Vitest test files: `canonical-fingerprint.vitest.ts`, `memo-storage.vitest.ts`, `memory-parser-stable-chunks.vitest.ts`, `incremental-index-foundation.vitest.ts`, and `vector-index-schema-incremental-foundation.vitest.ts` contributing 13 focused tests; the verification run below exercises the wider 9-file suite at 70 tests
 
 ### Changed
 

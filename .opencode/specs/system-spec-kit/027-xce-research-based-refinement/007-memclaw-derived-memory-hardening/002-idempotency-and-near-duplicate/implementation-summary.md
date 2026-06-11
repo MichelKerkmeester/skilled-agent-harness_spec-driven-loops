@@ -57,11 +57,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-`memory_save` and `memory_update` now have a default-off, server-derived idempotency path. When `SPECKIT_MEMORY_IDEMPOTENCY=true`, identical retries replay the stored MCP response with `replayed:true`, changed-payload retries fail closed with `idempotency_key_conflict`, and near-duplicates can surface as one advisory `near_duplicate_of` hint without rejecting or merging the write.
+`memory_save` and `memory_update` now have a default-off, server-derived idempotency path. When `SPECKIT_MEMORY_IDEMPOTENCY=true`, identical retries replay the stored MCP response (originally with a `replayed:true` marker; phase 023 later removed the marker so replay returns the original response verbatim), changed-payload retries fail closed with `idempotency_key_conflict`, and near-duplicates can surface as one advisory `near_duplicate_of` hint without rejecting or merging the write.
 
 ### Idempotency receipt + replay wrapper
 
-A new additive SQLite receipt table stores a server-derived receipt key, payload hash, and prior MCP response. The key ignores client-supplied idempotency-token fields and is derived from operation name, content hash, and a request fingerprint. Save and update handlers check the receipt before mutation: hit-match returns the stored response with `replayed:true`; hit-mismatch returns `idempotency_key_conflict` and writes nothing; miss proceeds normally. Receipt-store failure is best-effort and logs a warning while returning the normal successful write.
+A new additive SQLite receipt table stores a server-derived receipt key, payload hash, and prior MCP response. The key ignores client-supplied idempotency-token fields and is derived from operation name, content hash, and a request fingerprint. Save and update handlers check the receipt before mutation: hit-match returns the stored response (the `replayed:true` marker this phase added was removed by phase 023 in favor of verbatim replay); hit-mismatch returns `idempotency_key_conflict` and writes nothing; miss proceeds normally. Receipt-store failure is best-effort and logs a warning while returning the normal successful write.
 
 ### Advisory near-duplicate + dedup marker
 
@@ -84,7 +84,7 @@ The runtime behavior is gated by `SPECKIT_MEMORY_IDEMPOTENCY`, default off. With
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` | Modified | Added the same receipt replay and conflict handling at the guarded pre-mutation point. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts` | Modified | Added retry-vs-content classifier and near-duplicate threshold export. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts` | Modified | Exposed marker short-circuit and clear helpers through the enrichment state surface. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` | Modified | Carries `replayed:true` and `near_duplicate_of` on the existing response envelope. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` | Modified | Carries `replayed:true` and `near_duplicate_of` on the existing response envelope (the marker was later removed by phase 023; `near_duplicate_of` remains). |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | Adds best-effort index-scan repair for unstamped success rows when the flag is on. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/**` | Modified | Added focused idempotency/near-duplicate coverage and updated schema canaries. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Documents `SPECKIT_MEMORY_IDEMPOTENCY`; count 174 to 175. |
