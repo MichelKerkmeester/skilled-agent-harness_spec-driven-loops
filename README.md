@@ -109,6 +109,8 @@ Three daemon systems also expose additive CLI front doors over the same warm dae
 
 These CLIs are not replacement servers. MCP remains the primary in-session transport. The CLIs are second IPC clients to the same daemons. Prompt-time fallback should use warm-only probing, and exit `75` means retryable daemon or IPC unavailability.
 
+Per-command help and aliases, the shared exit-code taxonomy (`0`/`1`/`64`/`69`/`75`), the `list-tools --compact` / `--names-only` discovery modes, generated `bash`/`zsh` completion and an offline smoke check (`.opencode/bin/cli-offline-smoke.cjs`) are documented in `.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md`.
+
 ### External Tool Bridge
 
 Code Mode reads `.utcp_config.json`. The current registered external providers are two isolated Chrome DevTools instances, official ClickUp MCP, Figma and GitHub. Code Mode loads tool schemas on demand through TypeScript execution instead of injecting every external tool schema into every prompt.
