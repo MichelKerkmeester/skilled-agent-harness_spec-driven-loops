@@ -2845,6 +2845,74 @@ CODE_EDIT_VERB_RE = re.compile(r"\b(update|edit|modify|fix|refactor|implement|wr
 CODE_SURFACE_NOUN_RE = re.compile(r"\b(script|file|module|function|class|handler|component|code|\.py|\.ts|\.js|\.tsx|\.mjs|\.cjs)\b")
 CLI_OPENCODE_EXPLICIT_RE = re.compile(r"\b(cli-opencode|opencode cli|delegate to opencode|use opencode)\b")
 
+# Git vocabulary is intentionally broad, but ownership boundaries still matter:
+# memory/context preservation belongs to system-spec-kit, and review phrases that
+# mention PRs or merge readiness belong to sk-code-review.
+MEMORY_PRESERVATION_INTENT_RE = re.compile(
+    r"\b(save|preserve|remember|store|capture|checkpoint)\b.{0,80}"
+    r"\b(memory|context|conversation|session|handover)\b"
+    r"|\b(memory|context|conversation|session|handover)\b.{0,80}"
+    r"\b(save|preserve|remember|store|capture|checkpoint)\b"
+    r"|/memory:save|\bmemory:save\b"
+)
+EXPLICIT_GIT_WORKFLOW_RE = re.compile(
+    r"\b(git|commit|branch|checkout|clone|conflict|diff|fetch|github|gh|pull request|push|rebase|stash|worktree)\b"
+)
+CODE_REVIEW_INTENT_RE = re.compile(
+    r"\b(code review|pr review|review this pr|request changes|merge readiness|ready to merge|quality gate|security review|code audit)\b"
+)
+GIT_REVIEW_OVERLAP_RE = re.compile(r"\b(pr|pull request|merge|changes)\b")
+
+
+def _find_recommendation(
+    recommendations: List[Dict[str, Any]],
+    skill_name: str,
+) -> Optional[Dict[str, Any]]:
+    return next((rec for rec in recommendations if rec.get("skill") == skill_name), None)
+
+
+def _append_reason_note(recommendation: Dict[str, Any], note: str) -> None:
+    reason = str(recommendation.get("reason", ""))
+    if note not in reason:
+        recommendation["reason"] = f"{reason} {note}".strip()
+
+
+def _apply_git_boundary_disambiguation(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Apply negative evidence when git overlap terms appear in another owner domain."""
+    if not prompt_lower or not recommendations:
+        return
+
+    sk_git = _find_recommendation(recommendations, "sk-git")
+    if sk_git is None:
+        return
+
+    if MEMORY_PRESERVATION_INTENT_RE.search(prompt_lower) and not EXPLICIT_GIT_WORKFLOW_RE.search(prompt_lower):
+        sk_git["confidence"] = min(float(sk_git.get("confidence", 0.0)), 0.74)
+        sk_git["uncertainty"] = max(float(sk_git.get("uncertainty", 0.0)), 0.42)
+        _append_reason_note(sk_git, "[boundary: memory/context preservation is not git work]")
+
+        system_spec = _find_recommendation(recommendations, "system-spec-kit")
+        if system_spec is not None:
+            system_spec["confidence"] = max(float(system_spec.get("confidence", 0.0)), 0.95)
+            system_spec["uncertainty"] = min(float(system_spec.get("uncertainty", 1.0)), 0.20)
+            _append_reason_note(system_spec, "[boundary: owns memory/context preservation]")
+
+    if CODE_REVIEW_INTENT_RE.search(prompt_lower) and GIT_REVIEW_OVERLAP_RE.search(prompt_lower):
+        sk_code_review = _find_recommendation(recommendations, "sk-code-review")
+        if sk_code_review is None:
+            return
+
+        review_confidence = float(sk_code_review.get("confidence", 0.0))
+        git_confidence = float(sk_git.get("confidence", 0.0))
+        capped = round(max(0.0, review_confidence - 0.03), 2)
+        if git_confidence >= review_confidence:
+            sk_git["confidence"] = min(git_confidence, capped)
+            _append_reason_note(sk_git, "[boundary: review phrasing is not git workflow ownership]")
+        sk_code_review["uncertainty"] = min(float(sk_code_review.get("uncertainty", 1.0)), 0.25)
+
 
 def _apply_code_edit_cli_disambiguation(
     recommendations: List[Dict[str, Any]],
@@ -3285,6 +3353,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     apply_confidence_calibration(recommendations)
     apply_graph_evidence_calibration(recommendations)
     _apply_memory_save_file_operation_cap(recommendations, prompt_lower)
+    _apply_git_boundary_disambiguation(recommendations, prompt_lower)
 
     # Disambiguate deep-research vs code-review and
     # deep-review vs code-review before the iteration-loop tiebreaker so the
