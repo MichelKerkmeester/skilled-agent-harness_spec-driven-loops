@@ -192,7 +192,12 @@ export function collectWeightedWalk<TNode extends TraversalNode>(
   return results;
 }
 
-/** Collect all nodes reachable from the given roots through directed edges. */
+/**
+ * Collect all nodes reachable from the given roots through directed edges.
+ * A root counts as reached when an edge from another root leads to it; only
+ * the initial roots themselves are never emitted unprompted, matching the
+ * recursive-CTE semantics of selecting every distinct traversed child.
+ */
 export function collectDirectedReachability<TNode extends TraversalNode>(
   options: DirectedReachabilityOptions<TNode>,
 ): TNode[] {
@@ -201,7 +206,6 @@ export function collectDirectedReachability<TNode extends TraversalNode>(
     return [];
   }
 
-  const rootSet = new Set(roots);
   const visited = new Set<TNode>();
   const reached: TNode[] = [];
   let frontier = roots;
@@ -215,9 +219,7 @@ export function collectDirectedReachability<TNode extends TraversalNode>(
         continue;
       }
       visited.add(edge.to);
-      if (!rootSet.has(edge.to)) {
-        reached.push(edge.to);
-      }
+      reached.push(edge.to);
       nextFrontier.push(edge.to);
     }
 

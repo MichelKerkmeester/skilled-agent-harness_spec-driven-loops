@@ -100,6 +100,8 @@ function mapEdgeRow(row: {
 }
 
 export class MemoStore {
+  // Counted once at construction and maintained on insert; correct only while
+  // this single MemoStore instance is the sole writer of dependency_edges.
   private dependencyEdgeCount: number;
   private readonly graphTraversal: GraphTraversal;
 
