@@ -927,7 +927,7 @@ export function validate_file_path_local(file_path: unknown): string | null {
   return validateFilePath(file_path, ALLOWED_BASE_PATHS);
 }
 
-// HIGH-004 FIX: Async version for non-blocking concurrent file reads
+// Async version for non-blocking concurrent file reads
 /**
  * Reads a file asynchronously after validating the path.
  * @param file_path - The file path to read.
@@ -1661,7 +1661,7 @@ const constitutional_cache = new Map<string, { data: MemoryRow[]; timestamp: num
 const CONSTITUTIONAL_CACHE_TTL = 300000;
 const CONSTITUTIONAL_CACHE_MAX_KEYS = 50;
 
-// BUG-012 FIX: Track which cache keys are currently being loaded
+// Track which cache keys are currently being loaded
 const constitutional_cache_loading = new Map<string, boolean>();
 
 let last_db_mod_time = 0;
@@ -1829,8 +1829,8 @@ export function clear_prepared_statements(database?: Database.Database): void {
    5. CONSTITUTIONAL MEMORIES CACHE
 ----------------------------------------------------------------*/
 
-// BUG-004 FIX: Checks external DB modifications before using cache
-// BUG-012 FIX: Prevent thundering herd when cache expires
+// Checks external DB modifications before using cache
+// Prevent thundering herd when cache expires
 /**
  * Gets cached constitutional memories from the index.
  * @param database - The database connection to query.
