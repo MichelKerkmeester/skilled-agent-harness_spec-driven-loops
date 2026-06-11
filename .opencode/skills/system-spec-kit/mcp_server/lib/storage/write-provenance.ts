@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Write Provenance
+// ───────────────────────────────────────────────────────────────
 import { normalizeScopeValue } from '../governance/scope-governance.js';
 import { scrubSecrets } from '../parsing/secret-scrubber.js';
 

@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Canonical Fingerprint
+// ───────────────────────────────────────────────────────────────
 import { createHash } from 'node:crypto';
 
 type CanonicalJson = null | boolean | number | string | CanonicalJson[] | { [key: string]: CanonicalJson };
