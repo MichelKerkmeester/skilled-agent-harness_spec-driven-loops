@@ -33,4 +33,8 @@ ALL LANES CLOSED (2026-06-11). Final program census across 132 P1 + 119 P2 clust
 | Waived with stated reason | - | 60 |
 | Already fixed by earlier rounds | (counted in Fixed) | 3 |
 
-Remediation commits: scaffold 6e24bee94c, I-wave 115decdf80, P2-wave 29ab194160, final verdicts 89747c0d9c, closure (this commit). Per-entry verdicts/proofs/reasons: backlog/*.json. Successor stage: manual-testing-playbook scenarios for system-spec-kit, system-code-graph, system-skill-advisor via cli-opencode with MiMo v2.5 Pro (xiaomi/mimo-v2.5-pro --variant high) as the test subject.
+Remediation commits: scaffold 6e24bee94c, I-wave 115decdf80, P2-wave 29ab194160, final verdicts 89747c0d9c, closure 8a08515d97. Per-entry verdicts/proofs/reasons: backlog/*.json.
+
+## Playbook + stress stage (CLOSED 2026-06-11)
+
+The successor stage ran to completion — see `playbook-report.md` for the full census, disposition tables, and incident note. Headline: 475/475 scenarios executed (MiMo v2.5 Pro subject), 61 FAILs re-verified by independent gpt-5.5 seats into 22 real defects (all fixed across ten commits: cbd59062f4, b510f37cec, 891310e726, 2ce26d094f, ea857be10c, 268ee4effc, 9b1fc48904, 28c2fb7178, 0504582b0e, 2c69e21741, dca74a8e7b), 22 sandbox-conditional, 17 subject errors. Stress stage: four gap-filling suites added; full stress config green twice (35 files / 118 tests). One operator-gated incident remains open: live main-DB B-tree corruption confined to derived/disposable structures (FTS shadow + telemetry tables), daemon down pending the repair decision.
