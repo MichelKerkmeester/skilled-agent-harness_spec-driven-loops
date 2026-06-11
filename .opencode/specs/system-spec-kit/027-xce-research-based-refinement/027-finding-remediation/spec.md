@@ -7,14 +7,14 @@ trigger_phrases:
   - "p1 p2 backlog lanes"
 importance_tier: "important"
 contextType: "implementation"
-status: "in-progress"
+status: "completed"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/027-finding-remediation"
     last_updated_at: "2026-06-11T19:10:00Z"
     last_updated_by: "claude-fable"
-    recent_action: "Scaffolded remediation phase parent + lane backlogs"
-    next_safe_action: "Run lane verification waves (Fable refute-first) then implement confirmed findings"
+    recent_action: "All 8 lanes closed: every P1/P2 entry terminally dispositioned"
+    next_safe_action: "Successor: MiMo v2.5 Pro playbook runs for the 3 system skills"
     blockers: []
     key_files:
       - "backlog/p1-backlog.json"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-11-027-finding-remediation"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Verify-first pipeline: single-seat claims refute ~50% historically, so nothing is fixed unverified."
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 (Phase Parent) |
 | **Priority** | P1 |
-| **Status** | In-Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-11 |
 | **Branch** | `028-mcp-to-cli-tool-transition` |
 | **Parent Spec** | `../spec.md` |
@@ -101,14 +101,14 @@ Per-lane; each child's plan enumerates its confirmed findings' target files from
 
 | Phase | Folder | Focus | P1 to verify | P2 | Status |
 |-------|--------|-------|--------------|----|--------|
-| 1 | `001-write-safety-and-guards/` | Retention/guard/provenance protections (write-safety, memclaw, provenance phases) | 13 | 12 | Planned |
-| 2 | `002-causal-and-memo/` | Causal graph, corrections, memo DAG multi-writer correctness | 10 | 5 | Planned |
-| 3 | `003-search-and-triggers/` | Trigger matching scope, retrieval observability consistency | 9 | 13 | Planned |
-| 4 | `004-vector-and-checkpoint-durability/` | Vector shard rebuild/attach integrity, checkpoint invalidation | 12 | 19 | Planned |
-| 5 | `005-bm25-indexing-fidelity/` | Packed BM25 incremental-indexing field fidelity, RSS gate realism | 4 | 1 | Planned |
-| 6 | `006-launchers-and-cli/` | Daemon launchers (advisor flags/trust/PID), CLI front-door correctness | 21 | 19 | Planned |
-| 7 | `007-continuity-and-save-concurrency/` | Parent-metadata concurrency, snapshot/receipt ordering, save schema | 13 | 15 | Planned |
-| 8 | `008-doc-truth-and-test-fidelity/` | Remaining doc-truth stragglers, benchmark/test fidelity, port fakes | 19 | 35 | Planned |
+| 1 | `001-write-safety-and-guards/` | Retention/guard/provenance protections (write-safety, memclaw, provenance phases) | 13 | 12 | Complete |
+| 2 | `002-causal-and-memo/` | Causal graph, corrections, memo DAG multi-writer correctness | 10 | 5 | Complete |
+| 3 | `003-search-and-triggers/` | Trigger matching scope, retrieval observability consistency | 9 | 13 | Complete |
+| 4 | `004-vector-and-checkpoint-durability/` | Vector shard rebuild/attach integrity, checkpoint invalidation | 12 | 19 | Complete |
+| 5 | `005-bm25-indexing-fidelity/` | Packed BM25 incremental-indexing field fidelity, RSS gate realism | 4 | 1 | Complete |
+| 6 | `006-launchers-and-cli/` | Daemon launchers (advisor flags/trust/PID), CLI front-door correctness | 21 | 19 | Complete |
+| 7 | `007-continuity-and-save-concurrency/` | Parent-metadata concurrency, snapshot/receipt ordering, save schema | 13 | 15 | Complete |
+| 8 | `008-doc-truth-and-test-fidelity/` | Remaining doc-truth stragglers, benchmark/test fidelity, port fakes | 19 | 35 | Complete |
 
 ### Phase Transition Rules
 - Lanes are independent and may run in parallel waves; each lane MUST pass `validate.sh` and its targeted test suites before its commit.

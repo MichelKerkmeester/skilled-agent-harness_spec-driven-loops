@@ -254,7 +254,7 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "confirmed",
+   "disposition": "fixed_direct",
    "v2_proof": "deep_start-model-benchmark-loop_auto.yaml:165 routes reviewer runs to --output .../reviewer-report.json (reviewer-scorer.cjs:280,300 writes only that path), while lines 168, 191, and 195 unconditionally gate the benchmark_completed journal event, scoringMethod read, and promote-candidate --benchmark-report on .../report.json, which a reviewer run never produces \u2014 line 198 shows the authors knew the reviewer path but left these three consumers unbranched.",
    "v2_fix_sketch": "Branch steps 168/191/195 on scoring_method=reviewer to use state_paths.reviewer_report (or have the reviewer branch also write canonical report.json), mirroring in the confirm YAML."
   },
@@ -2169,7 +2169,7 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "confirmed",
+   "disposition": "fixed_direct",
    "v2_proof": "git status shows 021-hybrid-search-scope-then-limit/description.json and graph-metadata.json as untracked (??) and git cat-file -e confirms neither exists in HEAD, while sibling phases 005/011/015 all have description.json committed and the committed implementation-summary.md:107 claims 'validate.sh ... --strict | PASS, exit 0' \u2014 the committed phase tree cannot reproduce its own shipped completion evidence and is invisible to memory/graph tooling from a clean checkout.",
    "v2_fix_sketch": "Commit the working-tree description.json and graph-metadata.json for the 021 phase (scoped git commit --only) so the committed tree matches the shipped validation claim."
   },

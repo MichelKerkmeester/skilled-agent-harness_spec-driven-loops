@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/027-finding-remediation/002-causal-and-memo"
     last_updated_at: "2026-06-11T19:10:00Z"
     last_updated_by: "claude-fable"
-    recent_action: "Lane tasks scaffolded"
-    next_safe_action: "Run the verification wave"
+    recent_action: "All tasks complete"
+    next_safe_action: "None; lane complete"
 ---
 # Tasks: Finding Remediation Lane: Causal And Memo
 
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Refute-first verification wave over the lane's P1 claims (Fable 5)
+- [x] T001 Refute-first verification wave over the lane's P1 claims (Fable 5)
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -48,8 +48,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Implement confirmed findings with regressions (gpt-5.5-fast high)
-- [ ] T003 P2 triage: fix-or-waive with reasons
+- [x] T002 Implement confirmed findings with regressions (gpt-5.5-fast high)
+- [x] T003 P2 triage: fix-or-waive with reasons
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -57,8 +57,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Fable implementation check; targeted suites + tsc
-- [ ] T005 Disposition ledger complete; strict validation; scoped commit
+- [x] T004 Fable implementation check; targeted suites + tsc
+- [x] T005 Disposition ledger complete; strict validation; scoped commit
 
 <!-- /ANCHOR:phase-3 -->
 ---
@@ -66,8 +66,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All lane entries terminally dispositioned with evidence
-- [ ] No `[B]` blocked tasks remaining
+- [x] All lane entries terminally dispositioned with evidence
+- [x] No `[B]` blocked tasks remaining
 
 <!-- /ANCHOR:completion -->
 ---

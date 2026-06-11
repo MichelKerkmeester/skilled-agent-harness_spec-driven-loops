@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/027-finding-remediation/005-bm25-indexing-fidelity"
     last_updated_at: "2026-06-11T19:10:00Z"
     last_updated_by: "claude-fable"
-    recent_action: "Lane plan scaffolded"
-    next_safe_action: "Run the verification wave"
+    recent_action: "Plan executed in full"
+    next_safe_action: "None; lane complete"
 ---
 # Implementation Plan: Finding Remediation Lane: Bm25 Indexing Fidelity
 
@@ -47,10 +47,10 @@ Nothing in this lane is fixed unverified. The verification wave splits the lane'
 - [x] Lane backlog extracted and lane-assigned from the epic-sweep registry
 
 ### Definition of Done
-- [ ] All lane P1 entries terminally dispositioned with evidence
-- [ ] Confirmed fixes implemented with regressions; suites and tsc pass
-- [ ] P2 entries fixed or waived with reasons
-- [ ] Strict validation passes; scoped commit landed
+- [x] All lane P1 entries terminally dispositioned with evidence
+- [x] Confirmed fixes implemented with regressions; suites and tsc pass
+- [x] P2 entries fixed or waived with reasons
+- [x] Strict validation passes; scoped commit landed
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -78,14 +78,14 @@ Refute-first adversarial verification feeding a minimal-fix implementation loop.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Verification wave over the lane's unverified P1 claims
+- [x] Verification wave over the lane's unverified P1 claims
 
 ### Phase 2: Core Implementation
-- [ ] Implement confirmed findings (minimal fix + regression each)
-- [ ] P2 triage: fix the real, waive convention-noise with reasons
+- [x] Implement confirmed findings (minimal fix + regression each)
+- [x] P2 triage: fix the real, waive convention-noise with reasons
 
 ### Phase 3: Verification
-- [ ] Fable implementation check; targeted suites + tsc; strict validation; scoped commit
+- [x] Fable implementation check; targeted suites + tsc; strict validation; scoped commit
 
 <!-- /ANCHOR:phases -->
 ---

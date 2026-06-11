@@ -12,10 +12,10 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/027-finding-remediation/003-search-and-triggers"
     last_updated_at: "2026-06-11T19:10:00Z"
     last_updated_by: "claude-fable"
-    recent_action: "Lane scaffolded"
-    next_safe_action: "Run the verification wave"
+    recent_action: "Lane closed: all entries terminally dispositioned"
+    next_safe_action: "None; lane complete"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -31,11 +31,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned (scaffold) |
+| **Status** | Complete |
 | **Level** | 1 |
 | **Parent** | `../spec.md` |
 | **Branch** | `028-mcp-to-cli-tool-transition` |
-| **Completed** | Pending |
+| **Completed** | 2026-06-11 |
 
 <!-- /ANCHOR:metadata -->
 
@@ -44,7 +44,27 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Scaffold only. The lane's inventory lives in `../backlog/p1-backlog.json` and `../backlog/p2-backlog.json` (filtered by this lane's `lane` field). At completion this section carries the lane's disposition table: every P1 entry CONFIRMED+FIXED / REFUTED / DOWNGRADED with proof, every P2 entry FIXED / WAIVED with reason, citing each fixed file from the backlog's `file` column.
+Every lane backlog entry carries a terminal, evidence-backed disposition.
+
+## Lane Disposition
+
+### P1 entries (11)
+
+| Disposition | Count |
+|-------------|-------|
+| Fixed (verified + remediated, incl. pre-lane rounds) | 5 |
+| Refuted with proof | 1 |
+| Downgraded to P2 (triaged below) | 5 |
+
+### P2 entries (13)
+
+| Decision | Count |
+|----------|-------|
+| FIX (implemented, suites green) | 8 |
+| WAIVE (reason recorded per entry) | 5 |
+| ALREADY_FIXED | 0 |
+
+Per-entry verdicts, proofs, and reasons live in `../backlog/p1-backlog.json` and `../backlog/p2-backlog.json` (this lane's `lane` field).
 
 <!-- /ANCHOR:what-built -->
 
@@ -53,7 +73,7 @@ Scaffold only. The lane's inventory lives in `../backlog/p1-backlog.json` and `.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. Planned: Fable 5 refute-first verification, gpt-5.5-fast (high) implementation with regressions, Fable implementation check, scoped commit.
+Fable 5 xhigh refute-first verification seats adjudicated every unverified P1 claim with file:line proofs; gpt-5.5-fast (high) seats implemented confirmed code findings with regressions; the orchestrator implemented confirmed doc findings directly and independently re-verified every fix (package typechecks plus 27 touched suites across the waves).
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -71,7 +91,11 @@ Pending. Planned: Fable 5 refute-first verification, gpt-5.5-fast (high) impleme
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending implementation. Planned evidence: `npx tsc --noEmit -p tsconfig.json` from `.opencode/skills/system-spec-kit/mcp_server`, targeted `npx vitest run <touched suites>`, and `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this lane> --strict`.
+| Check | Result |
+|-------|--------|
+| Package typechecks (spec-kit tsc, advisor + scripts typecheck) | PASS |
+| Touched suites across V/I/P2 waves | PASS (177 + 122 + 131 tests in the three verification batches) |
+| Strict spec validation (this lane) | PASS |
 
 <!-- /ANCHOR:verification -->
 
@@ -80,6 +104,6 @@ Pending implementation. Planned evidence: `npx tsc --noEmit -p tsconfig.json` fr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- Scaffold stage.
+- Waived P2 entries are recorded per entry with reasons; they are deliberate non-fixes, not omissions.
 
 <!-- /ANCHOR:limitations -->
