@@ -5,6 +5,7 @@
 import * as vectorIndex from '../search/vector-index.js';
 import * as mutationLedger from '../storage/mutation-ledger.js';
 import { init as initHistory, recordHistory } from '../storage/history.js';
+import { BetterSqliteMaintenance, type MaintenanceOperation } from '../storage/ports/index.js';
 import { recordGovernanceAudit } from './scope-governance.js';
 import { aggregateEvents, BATCH_WINDOW_MS } from '../feedback/batch-learning.js';
 import type { AggregatedSignal } from '../feedback/batch-learning.js';
@@ -346,28 +347,20 @@ function runPostDeleteMaintenance(database: Database.Database): void {
     console.warn(`[memory-retention-sweep] FTS optimize skipped: ${message}`);
   }
 
-  let shouldRunIncrementalVacuum = false;
-  try {
-    const autoVacuumMode = database.pragma('auto_vacuum', { simple: true });
-    shouldRunIncrementalVacuum = Number(autoVacuumMode) === 2;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
+  const maintenance = new BetterSqliteMaintenance(database, {
+    onMaintenanceError: reportRetentionMaintenanceError,
+  });
+  maintenance.vacuum();
+  maintenance.checkpoint({ mode: 'truncate' });
+}
+
+function reportRetentionMaintenanceError(operation: MaintenanceOperation, error: unknown): void {
+  const message = error instanceof Error ? error.message : String(error);
+  if (operation === 'auto_vacuum') {
     console.warn(`[memory-retention-sweep] auto_vacuum check skipped: ${message}`);
-  }
-
-  if (shouldRunIncrementalVacuum) {
-    try {
-      database.pragma('incremental_vacuum');
-    } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
-      console.warn(`[memory-retention-sweep] incremental vacuum skipped: ${message}`);
-    }
-  }
-
-  try {
-    database.pragma('wal_checkpoint(TRUNCATE)');
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
+  } else if (operation === 'incremental_vacuum') {
+    console.warn(`[memory-retention-sweep] incremental vacuum skipped: ${message}`);
+  } else if (operation === 'wal_checkpoint') {
     console.warn(`[memory-retention-sweep] WAL checkpoint skipped: ${message}`);
   }
 }

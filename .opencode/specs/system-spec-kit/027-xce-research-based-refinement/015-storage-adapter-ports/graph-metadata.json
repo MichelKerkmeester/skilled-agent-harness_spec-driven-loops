@@ -34,12 +34,14 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "description.json",
+      "graph-metadata.json"
     ],
     "entities": [
       {
@@ -171,7 +173,7 @@
     ],
     "causal_summary": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint family), and contention/retry idioms are implicit better-sqlite3 call sites rather than named seams. This makes storage policy untestable in isolation and turns ANY backend evolution into shotgun surgery. The sqlite-to-turso revalidation (research.md section 8, 004 section 1) identified exactly five genuine divergence seams and estimated a ports layer at 1,200-2,000 LOC; phases 012 (traversal helper) and 014 (packed lexical engine) produce two port implementations as natural byproducts.",
     "created_at": "2026-06-10T17:48:34Z",
-    "last_save_at": "2026-06-10T22:54:23.000Z",
+    "last_save_at": "2026-06-11T00:43:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

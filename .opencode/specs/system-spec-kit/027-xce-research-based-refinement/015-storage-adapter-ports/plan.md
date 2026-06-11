@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T23:20:56Z"
+    last_updated_at: "2026-06-11T00:43:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Slice 4 ContentionPolicy adapter completed and verified"
-    next_safe_action: "Proceed to Slice 5 for final scoped routing/coupling grep"
+    recent_action: "Slice 5 final conservative routing completed and verified"
+    next_safe_action: "No remaining 015 implementation work; preserve justified coupling exceptions"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,7 @@ FAILURE MODES:
 Extract five typed port interfaces (VectorStore, LexicalSearch, GraphTraversal, Maintenance, ContentionPolicy) with the current better-sqlite3 implementations behind them; no behavior change; port fakes enable storage-free unit tests. Planning starts with a split-vs-promote decision.
 
 ### Slice Updates
-Foundation slice is complete: the port module, two adopted adapters, fakes, and contract tests are in place. Slice 2 is complete: VectorStore now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slice 3 is complete: Maintenance now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slice 4 is complete: ContentionPolicy now has a better-sqlite3 adapter, fake parity, contract coverage, and scoped contention call-site routing. Slice 5 remains pending for final scoped routing/coupling work.
+Foundation slice is complete: the port module, two adopted adapters, fakes, and contract tests are in place. Slice 2 is complete: VectorStore now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slice 3 is complete: Maintenance now has a better-sqlite3 adapter and contract coverage against both the adapter and fake. Slice 4 is complete: ContentionPolicy now has a better-sqlite3 adapter, fake parity, contract coverage, and scoped contention call-site routing. Slice 5 is complete: final conservative routing moved straightforward GraphTraversal and Maintenance call sites through ports while leaving fragile hybrid lexical combining unchanged as a justified exception.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -66,9 +66,9 @@ Foundation slice is complete: the port module, two adopted adapters, fakes, and 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable) - targeted gates passed; broad suite has unrelated pre-existing failures recorded in implementation-summary.md
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -106,12 +106,12 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 
 ### Phase 1: Setup
 - [x] Planning decision: **PER-PORT SLICES within this phase** (not promoted to a standalone packet). Rationale: kept inside the 027 epic per operator direction; behavior-preserving seam extraction is the lowest-risk form of a large refactor when sliced small and gated on golden evals; phases 012 (traversal helper) and 014 (packed lexical engine) already supply two of the five port implementations. Execution = five sequential reviewable slices (VectorStore, LexicalSearch [adopt 014], GraphTraversal [adopt 012], Maintenance, ContentionPolicy), each green on the existing suites + golden evals before the next slice begins.
-- [ ] Call-site inventory per port - vector, maintenance, and contention inventories complete; final coupling grep deferred to Slice 5
+- [x] Call-site inventory per port - final coupling grep recorded with justified lexical/vector exceptions
 
 ### Phase 2: Core
 - [x] Ports defined (Slice 1 foundation)
 - [x] Implementations extracted for the two adopted helpers (GraphTraversal + LexicalSearch)
-- [ ] Call sites routed - VectorStore legacy class export, Maintenance retention/reindex, and scoped ContentionPolicy call sites routed through ports; remaining routing deferred to Slice 5
+- [x] Call sites routed - VectorStore legacy class export, Maintenance retention/reindex, scoped ContentionPolicy call sites, MemoStore dependency traversal, causal boost traversal, and retention post-delete maintenance routed through ports where behavior-preserving
 
 ### Phase 3: Verification
 - [x] Slice 1 targeted suites + local eval-channel checks green
@@ -119,7 +119,7 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 - [x] Slice 2 targeted vector/search/eval suites green with zero behavioral delta against the pre-change baseline
 - [x] Slice 3 targeted maintenance/storage/eval suites green with zero behavioral delta against the pre-change baseline
 - [x] Slice 4 targeted contention/storage/eval suites green with zero behavioral delta against the pre-change baseline
-- [ ] Coupling grep trends to ~0 outside ports - final phase gate deferred
+- [x] Coupling grep trends to ~0 outside ports - direct BFS helper callers routed; fragile hybrid lexical combining and vector-owned storage pragmas left as justified exceptions
 <!-- /ANCHOR:phases -->
 
 ---

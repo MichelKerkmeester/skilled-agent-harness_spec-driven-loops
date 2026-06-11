@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import type Database from 'better-sqlite3';
-import { collectDependencyReachability } from '../graph/bfs-traversal.js';
+import { BetterSqliteGraphTraversal, type GraphTraversal } from './ports/index.js';
 
 export interface MemoRecordInput {
   componentPath: string;
@@ -101,9 +101,14 @@ function mapEdgeRow(row: {
 
 export class MemoStore {
   private dependencyEdgeCount: number;
+  private readonly graphTraversal: GraphTraversal;
 
-  constructor(private readonly database: Database.Database) {
+  constructor(
+    private readonly database: Database.Database,
+    graphTraversal: GraphTraversal = new BetterSqliteGraphTraversal(database),
+  ) {
     ensureMemoStorageSchema(database);
+    this.graphTraversal = graphTraversal;
     this.dependencyEdgeCount = this.countDependencyEdges();
   }
 
@@ -213,7 +218,7 @@ export class MemoStore {
       return [];
     }
 
-    return collectDependencyReachability(this.database, roots).sort();
+    return this.graphTraversal.collectDependencyReachability(roots).sort();
   }
 
   invalidateDependents(parentPaths: readonly string[], includeSources = false): InvalidationResult {
@@ -233,6 +238,9 @@ export class MemoStore {
   }
 }
 
-export function createMemoStore(database: Database.Database): MemoStore {
-  return new MemoStore(database);
+export function createMemoStore(
+  database: Database.Database,
+  graphTraversal?: GraphTraversal,
+): MemoStore {
+  return new MemoStore(database, graphTraversal);
 }

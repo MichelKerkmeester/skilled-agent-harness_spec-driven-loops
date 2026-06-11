@@ -15,7 +15,7 @@
 // Both requirements are gated behind SPECKIT_TYPED_TRAVERSAL (default ON, graduated).
 import { isCausalBoostEnabled, isTypedTraversalEnabled as _isTypedTraversalEnabled, isGraphContextInjectionEnabled } from './search-flags.js';
 import { routeQueryConcepts } from './entity-linker.js';
-import { collectCausalWeightedNeighbors } from '../graph/bfs-traversal.js';
+import { BetterSqliteGraphTraversal, type GraphTraversal } from '../storage/ports/index.js';
 
 import type Database from 'better-sqlite3';
 
@@ -140,6 +140,7 @@ interface NeighborBoost {
 }
 
 let db: Database.Database | null = null;
+let graphTraversal: GraphTraversal | null = null;
 
 /**
  * Check whether the causal boost feature flag is enabled.
@@ -165,6 +166,7 @@ function isTypedTraversalEnabled(): boolean {
 /** Store the database reference used by causal edge traversal queries. */
 function init(database: Database.Database): void {
   db = database;
+  graphTraversal = new BetterSqliteGraphTraversal(database);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -417,13 +419,13 @@ function computeBoostByHop(hopDistance: number): number {
  */
 function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map<number, NeighborBoost> {
   const neighborBoosts = new Map<number, NeighborBoost>();
-  if (!db) return neighborBoosts;
+  if (!db || !graphTraversal) return neighborBoosts;
 
   const ids = normalizeIds(memoryIds);
   if (ids.length === 0) return neighborBoosts;
 
   try {
-    const rows = collectCausalWeightedNeighbors(db, ids, maxHops, RELATION_WEIGHT_MULTIPLIERS);
+    const rows = graphTraversal.collectCausalWeightedNeighbors(ids, maxHops, RELATION_WEIGHT_MULTIPLIERS);
 
     for (const [neighborId, row] of rows) {
       const hopBoost = computeBoostByHop(row.minHop);

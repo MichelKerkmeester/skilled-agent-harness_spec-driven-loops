@@ -12,6 +12,7 @@
 import path from 'node:path';
 import { requireDb, toErrorMessage } from '../../utils/index.js';
 import type { GovernanceDecision } from '../governance/scope-governance.js';
+import { BetterSqliteContentionPolicy } from '../storage/ports/contention-policy.js';
 
 // Feature catalog: Async ingestion job lifecycle
 
@@ -119,6 +120,7 @@ let shuttingDown = false;
 let processFileFn: ((filePath: string, governance?: GovernanceDecision | null) => Promise<unknown>) | null = null;
 const MAX_STORED_ERRORS = 50;
 const MAX_PENDING_INGEST_JOBS = parsePositiveIntEnv('SPECKIT_INGEST_QUEUE_MAX_PENDING', 1_000);
+const busyRetryPolicy = new BetterSqliteContentionPolicy({ retryable: isSqliteBusyError });
 
 /* ───────────────────────────────────────────────────────────────
    4. HELPERS
@@ -146,41 +148,21 @@ function isSqliteBusyError(error: unknown): boolean {
   return code === 'SQLITE_BUSY' || /SQLITE_BUSY/i.test(message);
 }
 
-// Async SQLITE_BUSY retry — yields to the event loop between retries
-// Instead of blocking with a synchronous busy-wait loop.
 async function withBusyRetry<T>(operation: () => T): Promise<T> {
-  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt += 1) {
-    try {
-      return operation();
-    } catch (error: unknown) {
-      const canRetry = isSqliteBusyError(error) && attempt < RETRY_DELAYS_MS.length;
-      if (!canRetry) {
-        throw error;
-      }
-      await sleep(RETRY_DELAYS_MS[attempt]);
-    }
-  }
-  throw new Error('withBusyRetry: unreachable');
+  return busyRetryPolicy.withRetry(operation, { retryDelaysMs: RETRY_DELAYS_MS }) as Promise<T>;
 }
 
-// Synchronous retry kept only for startup-path operations where the event
-// Loop is not yet serving requests (table creation, crash recovery reset).
 function withBusyRetrySync<T>(operation: () => T): T {
-  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt += 1) {
-    try {
-      return operation();
-    } catch (error: unknown) {
-      const canRetry = isSqliteBusyError(error) && attempt < RETRY_DELAYS_MS.length;
-      if (!canRetry) {
-        throw error;
-      }
-      // Short synchronous yield — acceptable at startup only.
-      const delay = RETRY_DELAYS_MS[attempt];
-      const end = Date.now() + delay;
-      while (Date.now() < end) { /* busy-wait */ }
-    }
-  }
-  throw new Error('withBusyRetrySync: unreachable');
+  return busyRetryPolicy.withRetry(operation, {
+    retryDelaysMs: RETRY_DELAYS_MS,
+    sleepSync: busyWait,
+    sync: true,
+  }) as T;
+}
+
+function busyWait(ms: number): void {
+  const end = Date.now() + ms;
+  while (Date.now() < end) { /* busy-wait */ }
 }
 
 function parseJsonArray<T>(value: string | null | undefined, fallback: T[]): T[] {

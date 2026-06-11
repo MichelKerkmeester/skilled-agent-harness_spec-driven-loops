@@ -9,6 +9,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { BetterSqliteContentionPolicy } from '../storage/ports/contention-policy.js';
 
 // Feature catalog: Real-time filesystem watching with chokidar
 // Feature catalog: Watcher delete/rename cleanup
@@ -49,6 +50,7 @@ interface ChokidarModule {
 const DEFAULT_DEBOUNCE_MS = 2000;
 const RETRY_DELAYS_MS = [1000, 2000, 4000];
 const MAX_BUSY_RETRIES = RETRY_DELAYS_MS.length;
+const busyRetryPolicy = new BetterSqliteContentionPolicy({ retryable: isSqliteBusyError });
 
 // Watcher metrics counters
 let filesReindexed = 0;
@@ -257,29 +259,12 @@ async function withBusyRetry(
   options: BusyRetryOptions = {},
 ): Promise<void> {
   const { shouldAbort, waker } = options;
-  let retryCount = 0;
-  while (true) {
-    if (shouldAbort?.()) {
-      return;
-    }
-    try {
-      await operation();
-      return;
-    } catch (error: unknown) {
-      const shouldRetry = isSqliteBusyError(error) && retryCount < MAX_BUSY_RETRIES;
-      if (!shouldRetry) {
-        throw error;
-      }
-      // Abort-aware backoff: the sleep can be woken early so a watcher
-      // shutdown is never gated on a non-cancellable retry timer. After
-      // waking, re-check the abort condition and bail out without retrying.
-      await abortableSleep(RETRY_DELAYS_MS[retryCount], waker);
-      if (shouldAbort?.()) {
-        return;
-      }
-      retryCount += 1;
-    }
-  }
+  await busyRetryPolicy.withRetry(operation, {
+    attempts: MAX_BUSY_RETRIES + 1,
+    retryDelaysMs: RETRY_DELAYS_MS,
+    shouldAbort,
+    sleep: (ms) => abortableSleep(ms, waker),
+  });
 }
 
 /* ───────────────────────────────────────────────────────────────

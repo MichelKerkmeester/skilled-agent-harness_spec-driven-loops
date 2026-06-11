@@ -12,6 +12,7 @@ import Database from 'better-sqlite3';
 import { DATABASE_DIR } from '../../core/config.js';
 import { parseTranscriptTurns, type TranscriptTurn } from '../../hooks/claude/claude-transcript.js';
 import type { HookState } from '../../hooks/claude/hook-state.js';
+import { BetterSqliteContentionPolicy } from '../storage/ports/index.js';
 
 export const SESSION_ANALYTICS_DB_FILENAME = 'speckit-session-analytics.db';
 
@@ -297,7 +298,7 @@ export function initSessionAnalyticsDb(dataDir?: string): Database.Database {
   fs.mkdirSync(path.dirname(dbPath), { recursive: true });
   const db = new Database(dbPath);
   db.pragma('journal_mode = WAL');
-  db.pragma('busy_timeout = 5000');
+  new BetterSqliteContentionPolicy().setBusyTimeout(db, 5000);
   db.pragma('foreign_keys = ON');
   db.exec(SESSION_ANALYTICS_SCHEMA_SQL);
   ensureSeedData(db);

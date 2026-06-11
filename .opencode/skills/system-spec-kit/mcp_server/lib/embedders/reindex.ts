@@ -25,6 +25,7 @@ import { getManifest } from './registry.js';
 import { parseBoundedEnv } from '../util/env.js';
 import { createLogger } from '../utils/logger.js';
 import { getRestoreBarrierStatus } from '../storage/checkpoints.js';
+import { BetterSqliteMaintenance } from '../storage/ports/maintenance.js';
 import {
   recordVectorShardRebuildCompleted,
   recordVectorShardRebuildFailed,
@@ -461,7 +462,7 @@ function writeVectorsToShard(
     // consistent at rest with an empty WAL — mirrors close_db's corruption-prevention.
     // better-sqlite3 .close() only does a passive checkpoint; an abrupt later kill could otherwise
     // corrupt un-checkpointed shard frames (vec0 / FTS segment writes). Best-effort; never block close.
-    try { shard.pragma('wal_checkpoint(TRUNCATE)'); } catch (_err: unknown) { /* best-effort */ }
+    new BetterSqliteMaintenance(shard).checkpoint({ mode: 'truncate' });
     shard.close();
   }
 }

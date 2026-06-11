@@ -11,6 +11,8 @@ import * as fs from 'fs';
 // External packages
 import Database from 'better-sqlite3';
 
+import { BetterSqliteContentionPolicy } from '../storage/ports/index.js';
+
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
@@ -145,7 +147,7 @@ function initEvalDb(dataDir?: string): Database.Database {
 
   // Enable WAL mode for better concurrent read performance
   db.pragma('journal_mode = WAL');
-  db.pragma('busy_timeout = 5000');
+  new BetterSqliteContentionPolicy().setBusyTimeout(db, 5000);
   db.pragma('foreign_keys = ON');
 
   // Create all 5 eval tables (idempotent via IF NOT EXISTS)

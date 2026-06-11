@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports"
-    last_updated_at: "2026-06-10T23:20:56Z"
+    last_updated_at: "2026-06-11T00:43:00Z"
     last_updated_by: "gpt-5.5-fast"
-    recent_action: "Slice 4 ContentionPolicy adapter implemented and verified"
-    next_safe_action: "Continue with Slice 5 final routing/coupling grep only"
+    recent_action: "Slice 5 final conservative routing completed and verified"
+    next_safe_action: "No remaining 015 implementation work; preserve justified coupling exceptions"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-storage-adapter-ports"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In progress - Slices 1-4 complete |
+| **Status** | Complete - Slices 1-5 verified |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -81,7 +81,7 @@ A thin, explicitly-typed five-port adapter makes storage behavior unit-testable 
 - Slice 2 complete: the better-sqlite3 VectorStore adapter now owns the legacy SQLiteVectorStore method bodies, the vector-index export surface routes the legacy class through that port, and VectorStore contract tests cover both the better-sqlite adapter and fake.
 - Slice 3 complete: the better-sqlite3 Maintenance adapter now owns the active maintenance pragma idioms for integrity checks, incremental-vacuum maintenance, and WAL checkpoints; retention/reindex call sites route through the port and Maintenance contract tests cover both the adapter and fake.
 - Slice 4 complete: the better-sqlite3 ContentionPolicy adapter now owns retry/backoff/write-lock and busy-timeout idioms; checkpoint creation, async busy-retry helpers, analytics DB, and eval DB setup route through the port with identical retry counts, delays, and timeout values.
-- Pending: final routing/coupling work remains deferred to Slice 5.
+- Slice 5 complete: final conservative routing moved straightforward GraphTraversal and Maintenance call sites through ports, left fragile hybrid lexical combining unchanged as a justified coupling exception, and recorded residual coupling plus verification evidence.
 
 ### Out of Scope
 - Any non-better-sqlite3 port implementation (Turso/libSQL pilots are explicitly out of scope here)
