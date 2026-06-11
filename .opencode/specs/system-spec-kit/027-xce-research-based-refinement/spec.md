@@ -166,6 +166,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | 17 | 017-bm25-warmup-churn-reduction/ | [Phase 17 scope] | Pending |
 | 18 | 018-xce-feature-adoption-advisor-codegraph/ | XCE feature transfers into the skill-advisor + code-graph skills (advisor observability / provenance guard / packed BM25 / feedback calibration; code-graph tombstone audit / why-included trace / BM25 symbol resolver) | Complete |
+| 19 | 019-skill-advisor-cross-session-reconnect/ | Owner-lease + reconnecting proxy so `mk_skill_advisor` survives MCP transport drops (mirrors the spec-memory + code-index launchers) | In Progress |
+| 20 | 020-vector-resilience-durability/ | Persist a shard-repair-pending sentinel across restart (resume repair + seed degraded at boot); clear stuck-degraded when a non-repair reindex completes | In Progress |
+| 21 | 021-hybrid-search-scope-then-limit/ | Resolve spec-folder/tier filters before truncating to `limit` so scoped search stops dropping real results | In Progress |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -189,6 +192,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 008-openltm-retrieval-observability | 009-openltm-continuity-resilience | Observability surfaces planned; continuity surfaces complement (never replace) the ladder. | Per-phase strict validation evidence. |
 | 016-cli-tooling-ux | 017-bm25-warmup-churn-reduction | [Criteria TBD] | [Verification TBD] |
 | 017-bm25-warmup-churn-reduction | 018-xce-feature-adoption-advisor-codegraph | All 9 advisor/code-graph transfers shipped + deep-reviewed (CONDITIONAL remediated) | Strict validation; zero stale path refs |
+| 018-xce-feature-adoption-advisor-codegraph | 019-skill-advisor-cross-session-reconnect | [Criteria TBD] | [Verification TBD] |
+| 019-skill-advisor-cross-session-reconnect | 020-vector-resilience-durability | [Criteria TBD] | [Verification TBD] |
+| 020-vector-resilience-durability | 021-hybrid-search-scope-then-limit | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
