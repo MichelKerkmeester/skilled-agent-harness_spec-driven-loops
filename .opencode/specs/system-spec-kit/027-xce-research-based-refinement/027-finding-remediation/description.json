@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/027-finding-remediation",
+  "description": "Feature Specification: Epic Finding Remediation (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "epic",
+    "finding",
+    "remediation",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-11T17:07:18.550Z",
+  "specId": "027",
+  "folderSlug": "finding-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
