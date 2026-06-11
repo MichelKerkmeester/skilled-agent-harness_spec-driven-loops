@@ -2747,6 +2747,9 @@ def filter_recommendations(
             uncert_threshold=uncertainty_threshold,
         )
         recommendation["passes_threshold"] = passes
+        # Mirror the native path's source tag so callers can tell which
+        # scorer produced a recommendation (native daemon vs local fallback).
+        recommendation.setdefault("source", "local")
 
         if confidence_only:
             if recommendation["confidence"] >= confidence_threshold:
