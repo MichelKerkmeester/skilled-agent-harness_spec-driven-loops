@@ -24,11 +24,18 @@ Each shim first checks its built CLI entrypoint, sets a default socket directory
 Common form:
 
 ```bash
-node .opencode/bin/<cli>.cjs list-tools [--format json|text|jsonl]
+node .opencode/bin/<cli>.cjs list-tools [--format json|text|jsonl] [--compact|--names-only]
+node .opencode/bin/<cli>.cjs completion bash|zsh
 node .opencode/bin/<cli>.cjs <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--warm-only]
 node .opencode/bin/<cli>.cjs <tool_name> --param value [--another-param value]
 node .opencode/bin/<cli>.cjs <tool_name> --help
 ```
+
+`list-tools --compact` returns names, aliases, descriptions, and counts only; it omits all `inputSchema` fields.
+
+`list-tools --names-only` returns canonical tool names and counts only; it omits all `inputSchema` fields.
+
+`completion bash|zsh` emits generated shell completion for the selected CLI and shell.
 
 Tool names accept the aliases exposed by the CLI. The memory and code-index CLIs expose snake_case, kebab-case, and camelCase aliases from the tool name; the advisor CLI exposes aliases from its manifest.
 
@@ -100,9 +107,12 @@ Use `list-tools` for offline surface discovery:
 node .opencode/bin/spec-memory.cjs list-tools --format json
 node .opencode/bin/code-index.cjs list-tools --format json
 node .opencode/bin/skill-advisor.cjs list-tools --format json
+node .opencode/bin/spec-memory.cjs list-tools --compact
+node .opencode/bin/code-index.cjs list-tools --names-only
+node .opencode/bin/skill-advisor.cjs completion zsh
 ```
 
-Expected counts are `37`, `8`, and `9` respectively.
+Expected counts are `37`, `8`, and `9` respectively. Compact and names-only output preserve those counts while returning zero `inputSchema` fields.
 
 Per-command help is available and prints the command description, aliases, and input schema:
 

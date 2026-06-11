@@ -37,6 +37,8 @@ The MCP registration stays untouched through the dual-stack window. The CLI is t
 
 `spec-memory list-tools --format json` enumerates the generated surface as `{ status: "ok", data: { count: 37, tools: [...] } }` straight from `TOOL_DEFINITIONS`, so surface parity against the MCP registration is a one-command check.
 
+The automation surface also supports `list-tools --compact` and `list-tools --names-only` across the three daemon CLIs. Compact mode keeps names, aliases, descriptions, and counts while omitting schemas; names-only mode keeps canonical tool names and counts only. Both modes preserve the 37 / 8 / 9 counts and return zero `inputSchema` fields. `completion bash|zsh` emits generated shell completion from the same registries for `spec-memory`, `code-index`, and `skill-advisor`.
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -46,6 +48,8 @@ The MCP registration stays untouched through the dual-stack window. The CLI is t
 | `.opencode/bin/spec-memory.cjs` | Script | Stable shim: socket-dir defaulting, Darwin socket-path guard, dist-freshness refusal (exit 69), spawn-failure mapping (exit 75) |
 | `mcp_server/spec-memory-cli.ts` | CLI entrypoint | Runtime command generation from `TOOL_DEFINITIONS`, Zod argv validation, IPC `tools/call` path, warm-only probe, exit taxonomy, output rendering |
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Auto-spawn target when the daemon probe fails outside warm-only mode |
+| `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts` | Sibling CLI entrypoint | Compact/names-only list-tools and generated completion for the code-index CLI |
+| `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts` | Sibling CLI entrypoint | Compact/names-only list-tools and generated completion for the skill-advisor CLI |
 
 ### Validation And Tests
 
@@ -53,6 +57,9 @@ The MCP registration stays untouched through the dual-stack window. The CLI is t
 |---|---|---|
 | `mcp_server/tests/spec-memory-cli.vitest.ts` | Automated test | Parser, IPC, retryable, and protocol-drift coverage |
 | `mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | Automated test | Locks 37-tool parity and CLI help behavior |
+| `mcp_server/tests/spec-memory-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for spec-memory |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-index-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for code-index |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for skill-advisor |
 | `mcp_server/tests/spec-memory-cli-dual-spawn-hardening.vitest.ts` | Automated test | Dual-spawn hardening with re-election on and off |
 | `mcp_server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Automated test | Real MCP and CLI clients running concurrently against one daemon |
 | `mcp_server/tests/spec-memory-cli-lifecycle-hardening.vitest.ts` | Automated test | N-probe reap gating and SIGTERM transparent-recycle behavior |

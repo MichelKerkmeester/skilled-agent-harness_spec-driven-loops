@@ -1,11 +1,12 @@
 ---
 title: "SC-004 Lane Contribution Attribution"
-description: "Manual validation that includeAttribution: true returns per-lane contribution metadata (lane, rawScore, weight, weightedScore, shadowOnly) without leaking prompt content."
+description: "Manual validation that includeAttribution: true returns per-lane contribution metadata and a prompt-safe why_recommended string without leaking prompt content."
 trigger_phrases:
   - "sc-004"
   - "lane attribution"
   - "includeAttribution"
   - "laneBreakdown"
+  - "why_recommended"
 ---
 
 # SC-004 Lane Contribution Attribution
@@ -16,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly` metadata via `lib/scorer/attribution.ts` and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
+Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly` metadata plus a prompt-safe `why_recommended` string, and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
 
 ---
 
@@ -37,15 +38,16 @@ Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `w
 advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"includeAttribution":true}})
 ```
 
-2. Inspect `laneBreakdown[]` for the top recommendation.
+2. Inspect `laneBreakdown[]` and `why_recommended` for the top recommendation.
 3. Call again with `includeAttribution: false` and confirm attribution is absent.
 4. Scan attribution JSON for any substring of the input prompt.
 
 ### Expected Signals
 
 - With `includeAttribution: true`, each lane entry carries exactly the documented fields: `lane`, `rawScore`, `weight`, `weightedScore`, `shadowOnly`.
+- With `includeAttribution: true`, the recommendation includes `why_recommended` as a short prompt-safe explanation that names contribution categories, not raw prompt phrases or tokens.
 - `semantic_shadow` reports `shadowOnly: false` (it is a live lane at registry weight 0.05; fusion derives the flag from lane liveness).
-- With `includeAttribution: false`, `laneBreakdown` is absent or empty.
+- With `includeAttribution: false`, `laneBreakdown` and `why_recommended` are absent or empty.
 - No raw prompt substring appears in attribution.
 
 ### Failure Modes
@@ -54,6 +56,7 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 | --- | --- | --- |
 | Extra fields in attribution | Evidence snippets or triggers present | Block release. Attribution is contribution-only. |
 | Prompt substring in attribution | Grep hits | Block release as privacy failure. |
+| `why_recommended` echoes the prompt | User words appear verbatim | Block release as prompt-safety failure. |
 | shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `attribution.ts` lane tagging. |
 
 ---
@@ -64,6 +67,7 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 - Scenario [SC-005](./ablation.md), ablation protocol.
 - Feature [`04--scorer-fusion/attribution.md`](../../feature_catalog/04--scorer-fusion/attribution.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/attribution.ts`.
+- Source: `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts`.
 
 ---
 

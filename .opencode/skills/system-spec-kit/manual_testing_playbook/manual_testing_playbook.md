@@ -137,7 +137,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 409 scenario files while the feature catalog contains 326 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 410 scenario files while the feature catalog contains 326 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count is zero (every scenario file is linked in Section 12).
 
@@ -163,14 +163,14 @@ count += sum(
 print(count)
 PY
 )
-if [ "$TOTAL_FEATURES" -ne 409 ]; then
-  echo "Expected 409 scenario files, found $TOTAL_FEATURES" >&2
+if [ "$TOTAL_FEATURES" -ne 410 ]; then
+  echo "Expected 410 scenario files, found $TOTAL_FEATURES" >&2
   exit 1
 fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-10, the deterministic file count is 409. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 are the 028 MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), and the 028 CLI stress set (434-438). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-11, the deterministic file count is 410. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -3850,3 +3850,4 @@ This split playbook keeps automated coverage references in three places:
 | 446 | Retrieval Enhancements | Retrieval observability trace and health | [446](15--retrieval-enhancements/retrieval-observability-trace-and-health.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
 | 447 | Governance | Source kind provenance guard | [447](17--governance/source-kind-provenance-guard.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
 | 448 | Governance | Stale-exclusion audit and tool-ownership lint | [448](17--governance/stale-exclusion-audit-and-tool-ownership-lint.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 449 | Tooling And Scripts | CLI compact list-tools and completion generation | [449](16--tooling-and-scripts/cli-compact-and-completion.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |

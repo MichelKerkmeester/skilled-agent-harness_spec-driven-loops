@@ -56,6 +56,8 @@ Telemetry is published as prompt-safe rollups rather than raw prompt content:
 
 `telemetry.outcomes.totals` reports durable outcome counts and `recordedThisRun` reflects any `outcomeEvents` supplied on the validating call.
 
+Default-off feedback calibration is available only when `SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW` is explicitly enabled. In that mode, `advisor_validate` writes bounded JSONL calibration reports from accepted/corrected/ignored outcome records, including proposed-vs-current lane-weight or threshold signals with no automatic promotion. The live recommendation scorer does not read those reports, and byte-identical live scoring is expected with the flag off or on.
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -64,12 +66,15 @@ Telemetry is published as prompt-safe rollups rather than raw prompt content:
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts` | Handler | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts` | Library | default-off shadow calibration reducer and report persistence |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/weights-config.ts` | Library | read-only proposal builder that leaves live defaults unchanged |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-validate.vitest.ts` | Automated test | Validation reference |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-feedback-calibration.vitest.ts` | Automated test | reducer guardrails and byte-identical live scoring |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/` | Automated test | Python/TS parity harness |
 | `Playbook scenario [NC-003](../../manual_testing_playbook/01--native-mcp-tools/native-validate-slices.md).` | Manual playbook | Source reference |
 

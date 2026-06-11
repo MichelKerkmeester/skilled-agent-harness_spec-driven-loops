@@ -1,9 +1,9 @@
 ---
 title: "Backend storage adapter abstraction"
-description: "Backend storage adapter abstraction now exists as a shipped vector-store seam while SQLite remains the concrete backend."
+description: "Backend storage adapter abstraction now exists as five typed storage ports while SQLite remains the concrete backend."
 trigger_phrases:
   - "backend storage adapter abstraction"
-  - "vector-store seam"
+  - "typed storage ports"
   - "storage adapter interface"
   - "sqlite concrete backend"
   - "swap storage backend"
@@ -15,15 +15,17 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Backend storage adapter abstraction now exists as a shipped vector-store seam while SQLite remains the concrete backend.
+Backend storage adapter abstraction now exists as five shipped typed storage ports while SQLite remains the concrete backend.
 
-The system is still SQLite-backed, but it is no longer hard-wired directly at every vector-search call site. A small adapter layer now defines the vector-store contract and keeps the storage implementation swappable at the vector boundary. It is like changing from plugging appliances straight into the wall to using a standardized socket adapter first. You still use the same power source today, but the coupling point is cleaner and easier to replace later if scale ever demands it.
+The system is still SQLite-backed, but it is no longer hard-wired directly at every storage boundary. A port layer now defines contracts for vector storage, lexical search, graph traversal, maintenance, and contention handling. Each port has a better-sqlite3-backed adapter for current production behavior and a storage-free fake for tests. It is like changing from plugging appliances straight into the wall to using standardized socket adapters first: the same power source remains, but the coupling points are cleaner and easier to replace if a real multi-backend need appears.
 
 ---
 
 ## 2. HOW IT WORKS
 
-**IMPLEMENTED (Sprint 019 closeout).** `IVectorStore` defines the vector-storage contract and `SQLiteVectorStore` provides the current production implementation. The broader graph/document storage stack still runs concretely on SQLite, so the shipped seam is intentionally scoped: vector storage is abstracted, while graph/document stores remain direct SQLite integrations until a real multi-backend need appears.
+**IMPLEMENTED.** The shipped port set is `VectorStore`, `LexicalSearch`, `GraphTraversal`, `Maintenance`, and `ContentionPolicy` under `mcp_server/lib/storage/ports/`. The current adapters are `BetterSqliteVectorStore`, `PackedBm25LexicalSearch`, `BetterSqliteGraphTraversal`, `BetterSqliteMaintenance`, and `BetterSqliteContentionPolicy`. The 012 traversal-helper work supplied the `GraphTraversal` adapter shape, and the 014 packed-BM25 work supplied the `LexicalSearch` adapter shape.
+
+The extraction is behavior-preserving. SQLite remains the concrete backend; the ports make current seams explicit without claiming that every storage call site has moved behind a backend-agnostic API. Contract tests run the same expectations against the better-sqlite3 adapters and the fakes in `mcp_server/tests/fakes/storage-ports.ts`, so new routing can be validated without opening SQLite where a fake is sufficient.
 
 ---
 
@@ -33,17 +35,21 @@ The system is still SQLite-backed, but it is no longer hard-wired directly at ev
 
 | File | Layer | Role |
 |------|-------|------|
-| `mcp_server/lib/interfaces/vector-store.ts` | Lib | Vector store contract consumed by the search/storage layer |
-| `mcp_server/lib/search/vector-index-store.ts` | Lib | SQLite implementation of the vector-store contract |
-| `mcp_server/lib/search/vector-index.ts` | Lib | Stable facade re-exporting the storage seam |
+| `mcp_server/lib/storage/ports/index.ts` | Lib | Barrel export for all five typed storage ports and their current adapters |
+| `mcp_server/lib/storage/ports/vector-store.ts` | Lib | `VectorStore` contract and `BetterSqliteVectorStore` adapter, with legacy vector-store export compatibility |
+| `mcp_server/lib/storage/ports/lexical-search.ts` | Lib | `LexicalSearch` contract and `PackedBm25LexicalSearch` adapter over the packed BM25 engine |
+| `mcp_server/lib/storage/ports/graph-traversal.ts` | Lib | `GraphTraversal` contract and `BetterSqliteGraphTraversal` adapter over the BFS traversal helper |
+| `mcp_server/lib/storage/ports/maintenance.ts` | Lib | `Maintenance` contract and `BetterSqliteMaintenance` adapter for integrity, vacuum, and checkpoint operations |
+| `mcp_server/lib/storage/ports/contention-policy.ts` | Lib | `ContentionPolicy` contract and `BetterSqliteContentionPolicy` adapter for retry/backoff/write-lock and busy-timeout operations |
+| `mcp_server/lib/search/vector-index-store.ts` | Lib | Legacy vector-store implementation body moved behind the port adapter and re-exported for compatibility |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/interfaces.vitest.ts` | Automated test | Interface contract coverage for `IVectorStore` |
-| `mcp_server/tests/pipeline-architecture-remediation.vitest.ts` | Automated test | Direct audit traceability coverage for the adapter seam |
-| `mcp_server/tests/vector-index-impl.vitest.ts` | Automated test | Vector-index implementation coverage through the storage facade |
+| `mcp_server/tests/storage-ports-contract.vitest.ts` | Automated test | Contract tests shared by the better-sqlite3 adapters and fake implementations |
+| `mcp_server/tests/fakes/storage-ports.ts` | Test support | Storage-free fakes for `VectorStore`, `LexicalSearch`, `GraphTraversal`, `Maintenance`, and `ContentionPolicy` |
+| `mcp_server/tests/memo-storage.vitest.ts` | Automated test | Fake `GraphTraversal` substitution coverage without opening SQLite |
 
 ---
 

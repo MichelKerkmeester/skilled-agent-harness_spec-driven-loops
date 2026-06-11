@@ -1,11 +1,12 @@
 ---
 title: "Provenance Fingerprints and Trust Lanes"
-description: "Per-entry provenance fingerprints plus trust-lane tagging (author / frontmatter / body / examples / local_docs / derived_local) that let scorers weight evidence by source."
+description: "Per-entry provenance fingerprints, trust-lane tagging and guarded skill-graph edge source_kind stamping that let operators trace evidence by source."
 trigger_phrases:
   - "provenance fingerprint"
   - "trust lanes derived"
   - "derived provenance"
   - "lane source tagging"
+  - "source_kind"
 ---
 
 # Provenance Fingerprints and Trust Lanes
@@ -31,6 +32,8 @@ Make derived entries inspectable and weighted by source. Every derived token car
 
 The scorer consumes the lane tag in `lib/scorer/lanes/derived.ts` and weights evidence accordingly.
 
+Skill-graph edge propagation also records write provenance. The guarded apply path derives `source_kind` server-side from write intent: automated `skill_graph_propagate_enhances` writes stamp `source_kind: "automated"`, while trusted-maintainer writes can stamp `source_kind: "trusted"`. Automated writes refuse to overwrite existing manual or trusted provenance, and legacy edges without `source_kind` remain valid for idempotent reads.
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -39,12 +42,17 @@ The scorer consumes the lane tag in `lib/scorer/lanes/derived.ts` and weights ev
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/provenance.ts` | Library | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/trust-lanes.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/apply-graph-metadata-patch.ts` | Library | derives `source_kind` and guards manual provenance |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/index.ts` | Library | passes write intent into guarded edge apply |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts` | Library | defines edge source and write-intent types |
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts` | Handler | forces automated server intent for propagation writes |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | lane assignment and fingerprint stability |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts` | Automated test | `source_kind`, manual protection, trusted update and legacy tolerance |
 | `Playbook scenario [AI-003](../../manual_testing_playbook/06--auto-indexing/provenance-and-trust-lanes.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
