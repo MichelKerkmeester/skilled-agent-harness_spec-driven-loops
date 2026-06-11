@@ -874,7 +874,7 @@ async function main(
     }
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
-    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|required a non-empty JSON object|JSON object payload|no longer supported|session-id requires/.test(errMsg);
+    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires/.test(errMsg);
 
     if (isExpected) {
       console.error(`\nError: ${errMsg}`);

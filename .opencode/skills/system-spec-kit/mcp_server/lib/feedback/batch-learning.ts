@@ -530,12 +530,13 @@ export function runBatchLearning(
     const { eligible, skipped } = applyMinSupportFilter(allSignals, minSupport);
 
     // Steps 4 + 5: Cap + shadow-apply each eligible signal
+    const cappedCandidates = eligible.map((signal) => ({
+      ...signal,
+      computedBoost: enforceBoostCap(signal.computedBoost, maxBoost),
+    }));
     let shadowApplied = 0;
-    for (const signal of eligible) {
-      // Re-cap with the caller-provided maxBoostDelta (may differ from default)
-      const cappedBoost = enforceBoostCap(signal.computedBoost, maxBoost);
-      const cappedSignal: AggregatedSignal = { ...signal, computedBoost: cappedBoost };
-      const logId = shadowApply(db, cappedSignal, runAt);
+    for (const signal of cappedCandidates) {
+      const logId = shadowApply(db, signal, runAt);
       if (logId !== null) shadowApplied++;
     }
 
@@ -546,7 +547,7 @@ export function runBatchLearning(
       candidatesEvaluated:  eligible.length,
       shadowApplied,
       skippedMinSupport:    skipped.length,
-      candidates:           eligible,
+      candidates:           cappedCandidates,
     };
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);

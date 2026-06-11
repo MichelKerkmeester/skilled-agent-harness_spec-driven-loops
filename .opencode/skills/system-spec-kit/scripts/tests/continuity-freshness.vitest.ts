@@ -29,7 +29,7 @@ function createSpecFolder(workspaceRoot: string, name: string): string {
     'description: "Fixture for continuity freshness validation."',
     'trigger_phrases: ["continuity freshness"]',
     'importance_tier: "important"',
-    'status: "planned"',
+    'status: "completed"',
     '---',
     '',
     '# Fixture',

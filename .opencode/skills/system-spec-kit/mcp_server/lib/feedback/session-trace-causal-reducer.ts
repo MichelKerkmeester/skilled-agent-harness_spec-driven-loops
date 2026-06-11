@@ -111,7 +111,13 @@ function selectPriorSearchSources(
     if (event.session_id !== citation.session_id) continue;
     if (event.memory_id === citation.memory_id) continue;
     const existing = deduped.get(event.memory_id);
-    if (!existing || event.timestamp > existing.timestamp || (event.timestamp === existing.timestamp && event.id > existing.id)) {
+    const existingSameQuery = existing?.query_id === citation.query_id;
+    const eventSameQuery = event.query_id === citation.query_id;
+    if (
+      !existing
+      || (eventSameQuery && !existingSameQuery)
+      || (eventSameQuery === existingSameQuery && (event.timestamp > existing.timestamp || (event.timestamp === existing.timestamp && event.id > existing.id)))
+    ) {
       deduped.set(event.memory_id, event);
     }
   }

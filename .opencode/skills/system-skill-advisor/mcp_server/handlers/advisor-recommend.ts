@@ -377,7 +377,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   const parsed = AdvisorRecommendOutputSchema.parse(output);
   for (const shadow of parsed._shadow?.recommendations ?? []) {
     recordShadowDelta({
-      prompt: input.prompt,
+      prompt: `hmac:${key}`,
       recommendation: shadow.skillId,
       liveScore: shadow.liveScore,
       shadowScore: shadow.shadowScore,

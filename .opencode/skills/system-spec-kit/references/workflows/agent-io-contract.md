@@ -45,6 +45,18 @@ expected_result: native | agent_io_result
 
 Receivers treat these fields as routing hints. If a field conflicts with the loaded agent definition, the agent definition and runtime safety rules win.
 
+Optional extended dispatch fields may also ride in this header when an orchestrator has useful advisory context:
+
+```text
+context_package: none | included
+handoff: none | debug_to_implement
+pre_execution: none | scoped
+reviewer_focus: none | <comma-separated high-risk files, modules, or concerns>
+self_assessed_quality: none | high | medium | low | <short producer confidence note>
+```
+
+Consumers must keep these fields advisory and ignore unknown values rather than rejecting an otherwise valid task prompt.
+
 ## 3. Result Group
 
 Leaf agents may append this envelope after their required native output:

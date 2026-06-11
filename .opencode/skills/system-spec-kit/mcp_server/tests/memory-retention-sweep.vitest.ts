@@ -189,6 +189,24 @@ describe('memory retention sweep', () => {
     expect(isStillExpired(db, 999)).toBe(false); // missing row -> not expired
   });
 
+  it('getCurrentExpiredRow re-reads protection metadata for the delete transaction', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+    insertMemory(db, 1, isoOffset(-3_600_000), 'expired');
+    db.prepare(`
+      UPDATE memory_index
+      SET importance_tier = 'critical', is_pinned = 1
+      WHERE id = 1
+    `).run();
+
+    const row = __retentionSweepTestables.getCurrentExpiredRow(db, 1);
+
+    expect(row).toMatchObject({
+      id: 1,
+      importanceTier: 'critical',
+      isPinned: 1,
+    });
+  });
+
   it('dry-run returns expired candidates without mutating rows or audit tables', () => {
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
     insertMemory(db, 1, isoOffset(-3_600_000), 'expired');

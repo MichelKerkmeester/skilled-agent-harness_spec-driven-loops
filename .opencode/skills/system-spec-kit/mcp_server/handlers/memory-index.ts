@@ -595,6 +595,21 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   };
 
+  const triggerBackfillChangedRows = (result: TriggerEmbeddingBackfillResult): boolean => (
+    result.readyRows > 0 || result.failedRows > 0 || result.pendingRows > 0
+  );
+
+  const createTriggerBackfillAction = (result: TriggerEmbeddingBackfillResult): StatediffAction => createStatediffAction('upsert', {
+    target: 'memory_index',
+    key: 'trigger-embedding-backfill',
+    sourceOperation: 'scan',
+    metadata: {
+      readyRows: result.readyRows,
+      failedRows: result.failedRows,
+      pendingRows: result.pendingRows,
+    },
+  });
+
   const runScanHygieneSubscribers = (actions: readonly StatediffAction[]): void => {
     if (actions.length === 0) {
       return;
@@ -682,7 +697,6 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     const orphanSweepResult = runGlobalOrphanSweep();
     const postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
     await runNearDuplicateRepairBackfill();
-    const triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
 
     if (incremental && !force) {
       const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing([]);
@@ -693,6 +707,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         runScanInvalidationHooks({ staleDeleted, staleDeleteFailed, operation: 'stale-delete' }, staleDeleteResult.actions);
       }
     }
+
+    const triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
 
     if (orphanSweepResult.swept > 0) {
       runScanInvalidationHooks({
@@ -711,6 +727,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         sourceOperation: 'scan',
         metadata: { postInsertEnrichmentRepaired },
       })]);
+    }
+    if (triggerBackfillChangedRows(triggerEmbeddingBackfill)) {
+      runScanInvalidationHooks({
+        triggerEmbeddingBackfill,
+        operation: 'trigger-embedding-backfill',
+      }, [createTriggerBackfillAction(triggerEmbeddingBackfill)]);
     }
 
     recordMaintenanceRun('memory_index_scan', {
@@ -1092,6 +1114,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
 
   results.triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
+  if (triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
+    scanAppliedActions.push(createTriggerBackfillAction(results.triggerEmbeddingBackfill));
+  }
   await runNearDuplicateRepairBackfill();
 
   // Create causal chains between spec folder documents.
@@ -1164,12 +1189,15 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   }
 
-  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0 || results.postInsertEnrichmentRepaired > 0) {
+  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0 || results.postInsertEnrichmentRepaired > 0 || triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
     runScanInvalidationHooks({
       indexed: results.indexed,
       updated: results.updated,
       staleDeleted: results.staleDeleted,
       staleDeleteFailed: results.staleDeleteFailed,
+      ...(triggerBackfillChangedRows(results.triggerEmbeddingBackfill)
+        ? { triggerEmbeddingBackfill: results.triggerEmbeddingBackfill }
+        : {}),
       ...(results.postInsertEnrichmentRepaired > 0
         ? { postInsertEnrichmentRepaired: results.postInsertEnrichmentRepaired }
         : {}),

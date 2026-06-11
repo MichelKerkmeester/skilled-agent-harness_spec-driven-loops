@@ -25,7 +25,7 @@ Use these CLIs when a runtime MCP transport is missing, failed, or not reconnect
 | `node .opencode/bin/code-index.cjs` | `mk-code-index` | 8 | Code graph status, scan, verify, query, context, apply-mode recovery, and diff impact fallback. |
 | `node .opencode/bin/skill-advisor.cjs` | `mk_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
-Each shim first checks its built CLI entrypoint, sets a default socket directory when needed, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
+Each shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
 
 ## CLI vs MCP — when to use which
 

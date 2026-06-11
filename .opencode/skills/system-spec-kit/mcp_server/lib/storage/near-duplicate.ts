@@ -144,7 +144,7 @@ export function recordNearDuplicateCheck(args: {
   args.database.prepare(`
     UPDATE memory_index
     SET near_duplicate_of = ?,
-        last_dedup_checked_at = datetime('now')
+        last_dedup_checked_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
     WHERE id = ?
   `).run(hint ? JSON.stringify(hint) : null, args.memoryId);
   return hint;

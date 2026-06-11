@@ -272,6 +272,7 @@ async function runCli(input) {
       '--warm-only',
     ], {
       cwd: typeof input.workspaceRoot === 'string' && input.workspaceRoot.trim() ? input.workspaceRoot.trim() : REPO_ROOT,
+      detached: true,
       env: {
         ...process.env,
         SPECKIT_IPC_SOCKET_DIR: process.env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR,
@@ -323,11 +324,22 @@ async function runCli(input) {
         },
       }));
     };
+    const terminateChild = (signal) => {
+      if (typeof child.pid === 'number') {
+        try {
+          process.kill(-child.pid, signal);
+          return;
+        } catch {
+          // Fall back to the direct child when process-group signaling is unavailable.
+        }
+      }
+      child.kill(signal);
+    };
     const timer = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGTERM');
+      terminateChild('SIGTERM');
       setTimeout(() => {
-        if (!settled) child.kill('SIGKILL');
+        if (!settled) terminateChild('SIGKILL');
       }, 100).unref?.();
     }, remainingMs);
     timer.unref?.();
@@ -340,6 +352,7 @@ async function runCli(input) {
       stderr = capOutput(stderr, chunk);
     });
     child.on('error', (error) => finish(null, error.message));
+    child.on('exit', (code) => finish(code, null));
     child.on('close', (code) => finish(code, null));
   });
 }

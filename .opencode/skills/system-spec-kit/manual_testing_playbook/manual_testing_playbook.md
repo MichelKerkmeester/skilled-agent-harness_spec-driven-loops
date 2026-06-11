@@ -1,7 +1,7 @@
 ---
 title: "Spec Kit Memory: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the Spec Kit Memory MCP server."
-last_updated: "2026-05-20"
+last_updated: "2026-06-11"
 ---
 
 # Spec Kit Memory: Manual Testing Playbook
@@ -140,7 +140,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 410 scenario files while the feature catalog contains 326 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 410 scenario files while the feature catalog contains 341 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count is zero (every scenario file is linked in Section 12).
 
@@ -3796,8 +3796,8 @@ This split playbook keeps automated coverage references in three places:
 | 272 | Features | Strict validation add-ons: continuity freshness and evidence markers | [272](16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) | [16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../feature_catalog/16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) |
 | 273 | Features | Session-resume caller binding and Unicode sanitization | [273](17--governance/session-resume-caller-binding-and-unicode-sanitization.md) | [17--governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature_catalog/17--governance/session-resume-caller-binding-and-unicode-sanitization.md) |
 | 276 | Features | Reconsolidation conflict transaction helper | [276](02--mutation/reconsolidation-conflict-transaction-helper.md) | [02--mutation/reconsolidation-conflict-transaction-helper.md](../feature_catalog/02--mutation/reconsolidation-conflict-transaction-helper.md) |
-| 278 | Features | Memory retention sweep basic flow | [278](04--maintenance/memory-retention-sweep-basic-flow.md) | [04--maintenance/memory-retention-sweep-basic-flow.md](04--maintenance/memory-retention-sweep-basic-flow.md) |
-| 280 | Features | CLI matrix adapter runner smoke | [280](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) | [16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) |
+| 278 | Features | Memory retention sweep basic flow | [278](04--maintenance/memory-retention-sweep-basic-flow.md) | [04--maintenance/memory-retention-sweep.md](../feature_catalog/04--maintenance/memory-retention-sweep.md) |
+| 280 | Features | CLI matrix adapter runner smoke | [280](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) | [16--tooling-and-scripts/cli-matrix-adapter-runners.md](../feature_catalog/16--tooling-and-scripts/cli-matrix-adapter-runners.md) |
 
 ---
 | 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](23--doctor-commands/doctor-memory-fresh-install.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |

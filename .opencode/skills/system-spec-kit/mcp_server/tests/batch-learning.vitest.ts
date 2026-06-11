@@ -768,6 +768,25 @@ describe('Batch Learning — runBatchLearning (integration)', () => {
     expect(result.candidates[0]).toHaveProperty('computedBoost');
   });
 
+  it('returns candidates capped by caller maxBoostDelta', () => {
+    process.env.SPECKIT_BATCH_LEARNED_FEEDBACK = 'true';
+    const db = createTestDb();
+
+    seedEvents(db, [
+      makeEvent({ sessionId: 's1', timestamp: BASE_TS }),
+      makeEvent({ sessionId: 's2', timestamp: BASE_TS }),
+      makeEvent({ sessionId: 's3', timestamp: BASE_TS }),
+    ]);
+
+    const result = runBatchLearning(db, {
+      runAt: BASE_TS + 1,
+      maxBoostDelta: 0.02,
+    });
+
+    expect(result.candidates[0]?.computedBoost).toBeCloseTo(0.02);
+    expect(getBatchLearningHistory(db, 'mem-1')[0]?.computed_boost).toBeCloseTo(0.02);
+  });
+
   it('multiple batch runs produce separate log entries per run', () => {
     process.env.SPECKIT_BATCH_LEARNED_FEEDBACK = 'true';
     const db = createTestDb();

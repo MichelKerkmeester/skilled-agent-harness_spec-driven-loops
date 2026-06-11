@@ -195,26 +195,51 @@ function isProtectedFromRetentionDelete(row: RetentionExpiredRow): boolean {
 // Re-validate inside the delete transaction: a concurrent writer can raise or
 // clear delete_after between candidate selection and deletion, so a row that is
 // no longer expired must not be swept. Mirrors the selectExpiredRows predicate.
-function isStillExpired(database: Database.Database, id: number, useSoftDeleteTombstones = isSoftDeleteTombstonesEnabled()): boolean {
+function getCurrentExpiredRow(
+  database: Database.Database,
+  id: number,
+  useSoftDeleteTombstones = isSoftDeleteTombstonesEnabled(),
+): RetentionExpiredRow | null {
   const presentColumns = new Set(
     (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
       .map((row) => row.name),
   );
+  const deletedAtSelect = presentColumns.has('deleted_at') ? 'deleted_at AS deletedAt' : 'NULL AS deletedAt';
   const tombstonePredicate = useSoftDeleteTombstones && presentColumns.has('deleted_at') ? 'AND deleted_at IS NOT NULL' : '';
+  const optionalSelects = OPTIONAL_RETENTION_COLUMNS
+    .map(({ column, alias }) => (presentColumns.has(column)
+      ? `${column} AS ${alias}`
+      : `NULL AS ${alias}`))
+    .join(',\n      ');
   const row = database.prepare(`
-    SELECT 1 AS expired
+    SELECT
+      id,
+      spec_folder AS specFolder,
+      file_path AS filePath,
+      content_hash AS contentHash,
+      tenant_id AS tenantId,
+      user_id AS userId,
+      agent_id AS agentId,
+      session_id AS sessionId,
+      delete_after AS deleteAfter,
+      ${deletedAtSelect},
+      ${optionalSelects}
     FROM memory_index
     WHERE id = ?
       AND delete_after IS NOT NULL
       ${tombstonePredicate}
       AND datetime(delete_after) < datetime('now')
     LIMIT 1
-  `).get(id) as { expired?: number } | undefined;
-  return row?.expired === 1;
+  `).get(id) as RetentionExpiredRow | undefined;
+  return row ?? null;
+}
+
+function isStillExpired(database: Database.Database, id: number, useSoftDeleteTombstones = isSoftDeleteTombstonesEnabled()): boolean {
+  return getCurrentExpiredRow(database, id, useSoftDeleteTombstones) !== null;
 }
 
 /** Test-only surface for the retention TOCTOU guard. */
-export const __retentionSweepTestables = { isStillExpired };
+export const __retentionSweepTestables = { getCurrentExpiredRow, isStillExpired };
 
 function countRows(database: Database.Database): number {
   const row = database.prepare('SELECT COUNT(*) AS count FROM memory_index').get() as { count: number };
@@ -468,9 +493,11 @@ export function runMemoryRetentionSweep(
   const sweepTx = database.transaction(() => {
     for (const candidate of candidates) {
       // TOCTOU guard: skip rows un-expired by another writer since selection.
-      if (!isStillExpired(database, candidate.id, useSoftDeleteTombstones)) {
+      const currentCandidate = getCurrentExpiredRow(database, candidate.id, useSoftDeleteTombstones);
+      if (!currentCandidate) {
         continue;
       }
+      let feedbackDeleteDecision: FeedbackRetentionDecisionResult | null = null;
       if (feedbackRetention) {
         const decision = feedbackRetention.decisions.find((entry) => entry.memoryId === candidate.id);
         if (!decision) {
@@ -480,7 +507,7 @@ export function runMemoryRetentionSweep(
         if (decision.decision === 'protect') {
           database.prepare('UPDATE memory_index SET delete_after = NULL WHERE id = ?').run(candidate.id);
           protectedIds.push(candidate.id);
-          recordFeedbackRetentionAudit(database, candidate, decision, {
+          recordFeedbackRetentionAudit(database, currentCandidate, decision, {
             mode: feedbackRetention.mode,
             applied: true,
             activeGatePassed: feedbackRetention.activeGatePassed,
@@ -495,7 +522,7 @@ export function runMemoryRetentionSweep(
             candidate.id,
           );
           extendedIds.push(candidate.id);
-          recordFeedbackRetentionAudit(database, candidate, decision, {
+          recordFeedbackRetentionAudit(database, currentCandidate, decision, {
             mode: feedbackRetention.mode,
             applied: true,
             activeGatePassed: feedbackRetention.activeGatePassed,
@@ -503,73 +530,83 @@ export function runMemoryRetentionSweep(
           feedbackRetention.auditCount += 1;
           continue;
         }
-
-        recordFeedbackRetentionAudit(database, candidate, decision, {
+        feedbackDeleteDecision = decision;
+      }
+      // Tier basement: protected rows are never deleted on TTL expiry alone.
+      // Audited as decision='deny' (the delete was denied) with a protection reason.
+      if (isProtectedFromRetentionDelete(currentCandidate)) {
+        if (feedbackRetention && feedbackDeleteDecision) {
+          recordFeedbackRetentionAudit(database, currentCandidate, feedbackDeleteDecision, {
+            mode: feedbackRetention.mode,
+            applied: false,
+            activeGatePassed: feedbackRetention.activeGatePassed,
+          });
+          feedbackRetention.auditCount += 1;
+        }
+        protectedIds.push(currentCandidate.id);
+        recordGovernanceAudit(database, {
+          action: 'retention_sweep',
+          decision: 'deny',
+          memoryId: currentCandidate.id,
+          logicalKey: currentCandidate.filePath,
+          tenantId: currentCandidate.tenantId ?? undefined,
+          userId: currentCandidate.userId ?? undefined,
+          agentId: currentCandidate.agentId ?? undefined,
+          sessionId: currentCandidate.sessionId ?? undefined,
+          reason: 'retention_tier_protected',
+          metadata: {
+            originalDeleteAfter: currentCandidate.deleteAfter,
+            importanceTier: currentCandidate.importanceTier,
+            isPinned: currentCandidate.isPinned,
+            specFolder: currentCandidate.specFolder,
+            filePath: currentCandidate.filePath,
+          },
+        });
+        continue;
+      }
+      if (feedbackRetention && feedbackDeleteDecision) {
+        recordFeedbackRetentionAudit(database, currentCandidate, feedbackDeleteDecision, {
           mode: feedbackRetention.mode,
           applied: true,
           activeGatePassed: feedbackRetention.activeGatePassed,
         });
         feedbackRetention.auditCount += 1;
       }
-      // Tier basement: protected rows are never deleted on TTL expiry alone.
-      // Audited as decision='deny' (the delete was denied) with a protection reason.
-      if (isProtectedFromRetentionDelete(candidate)) {
-        protectedIds.push(candidate.id);
-        recordGovernanceAudit(database, {
-          action: 'retention_sweep',
-          decision: 'deny',
-          memoryId: candidate.id,
-          logicalKey: candidate.filePath,
-          tenantId: candidate.tenantId ?? undefined,
-          userId: candidate.userId ?? undefined,
-          agentId: candidate.agentId ?? undefined,
-          sessionId: candidate.sessionId ?? undefined,
-          reason: 'retention_tier_protected',
-          metadata: {
-            originalDeleteAfter: candidate.deleteAfter,
-            importanceTier: candidate.importanceTier,
-            isPinned: candidate.isPinned,
-            specFolder: candidate.specFolder,
-            filePath: candidate.filePath,
-          },
-        });
-        continue;
-      }
-      const deleted = vectorIndex.deleteMemory(candidate.id, database);
+      const deleted = vectorIndex.deleteMemory(currentCandidate.id, database);
       if (!deleted) {
         continue;
       }
 
-      deletedIds.push(candidate.id);
+      deletedIds.push(currentCandidate.id);
 
       recordHistory(
-        candidate.id,
+        currentCandidate.id,
         'DELETE',
         {
           reason: 'retention_expired',
-          deleteAfter: candidate.deleteAfter,
-          filePath: candidate.filePath,
+          deleteAfter: currentCandidate.deleteAfter,
+          filePath: currentCandidate.filePath,
         },
         null,
         'mcp:memory_retention_sweep',
-        candidate.specFolder,
+        currentCandidate.specFolder,
       );
 
       recordGovernanceAudit(database, {
         action: 'retention_sweep',
         decision: 'delete',
-        memoryId: candidate.id,
-        logicalKey: candidate.filePath,
-        tenantId: candidate.tenantId ?? undefined,
-        userId: candidate.userId ?? undefined,
-        agentId: candidate.agentId ?? undefined,
-        sessionId: candidate.sessionId ?? undefined,
+        memoryId: currentCandidate.id,
+        logicalKey: currentCandidate.filePath,
+        tenantId: currentCandidate.tenantId ?? undefined,
+        userId: currentCandidate.userId ?? undefined,
+        agentId: currentCandidate.agentId ?? undefined,
+        sessionId: currentCandidate.sessionId ?? undefined,
         reason: 'retention_expired',
         metadata: {
-          originalDeleteAfter: candidate.deleteAfter,
-          delete_after: candidate.deleteAfter,
-          specFolder: candidate.specFolder,
-          filePath: candidate.filePath,
+          originalDeleteAfter: currentCandidate.deleteAfter,
+          delete_after: currentCandidate.deleteAfter,
+          specFolder: currentCandidate.specFolder,
+          filePath: currentCandidate.filePath,
         },
       });
     }

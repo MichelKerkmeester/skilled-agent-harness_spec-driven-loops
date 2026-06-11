@@ -52,6 +52,38 @@ function cleanScalar(raw: string): string {
   return raw.trim().replace(SURROUNDING_QUOTES, '').trim().slice(0, MAX_FIELD_LENGTH);
 }
 
+function splitInlineList(inner: string): string[] {
+  const entries: string[] = [];
+  let current = '';
+  let quote: '"' | "'" | null = null;
+  let escaped = false;
+  for (const char of inner) {
+    if (escaped) {
+      current += char;
+      escaped = false;
+      continue;
+    }
+    if (char === '\\' && quote) {
+      current += char;
+      escaped = true;
+      continue;
+    }
+    if ((char === '"' || char === "'") && (!quote || quote === char)) {
+      quote = quote ? null : char;
+      current += char;
+      continue;
+    }
+    if (char === ',' && !quote) {
+      entries.push(current);
+      current = '';
+      continue;
+    }
+    current += char;
+  }
+  if (current.trim()) entries.push(current);
+  return entries;
+}
+
 /**
  * Parse the YAML-ish frontmatter block of a skill reference/asset doc.
  *
@@ -88,7 +120,7 @@ export function parseDocFrontmatter(raw: string): ParsedDocFrontmatter | null {
     if (key === 'trigger_phrases' && value.startsWith('[')) {
       // Inline list form: trigger_phrases: ["a", "b"]
       const inner = value.replace(/^\[|\]$/g, '');
-      for (const entry of inner.split(',')) {
+      for (const entry of splitInlineList(inner)) {
         if (phrases.length >= MAX_PHRASES_PER_DOC) break;
         const phrase = cleanScalar(entry);
         if (phrase) phrases.push(phrase);

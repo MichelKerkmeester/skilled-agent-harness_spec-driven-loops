@@ -73,6 +73,26 @@ function createPacket(root: string): string {
   return folder;
 }
 
+function createPacketWithoutCompletionClaim(root: string): string {
+  const folder = path.join(root, '.opencode', 'specs', 'example-no-claim');
+  fs.mkdirSync(folder, { recursive: true });
+  fs.writeFileSync(path.join(folder, 'implementation-summary.md'), [
+    '---',
+    'title: "Implementation Summary"',
+    '_memory:',
+    '  continuity:',
+    '    last_updated_at: "2026-06-10T12:00:00Z"',
+    '---',
+    '# Implementation Summary',
+  ].join('\n'), 'utf8');
+  fs.writeFileSync(
+    path.join(folder, 'graph-metadata.json'),
+    JSON.stringify({ derived: { last_save_at: '2026-06-10T13:00:00Z' } }, null, 2),
+    'utf8',
+  );
+  return folder;
+}
+
 function runValidate(folder: string, env: Record<string, string | undefined> = {}): { status: number; stdout: string; stderr: string } {
   const childEnv: NodeJS.ProcessEnv = {
     ...process.env,
@@ -198,6 +218,61 @@ describe('completion continuity freshness', () => {
     expect(result.status).toBe('pass');
     expect(result.code).toBe('fresh_completion');
     expect(result.details.some((detail) => detail.includes('recomputed=sha256:'))).toBe(true);
+  });
+
+  it('returns early when no completion claim is present', () => {
+    const root = makeTempDir('speckit-freshness-no-claim-');
+    const folder = createPacketWithoutCompletionClaim(root);
+
+    const result = validateContinuityFreshness(folder);
+
+    expect(result.status).toBe('pass');
+    expect(result.code).toBe('no_completion_claim');
+  });
+
+  it('detects completion claims from metadata-table status and accepted evidence markers', () => {
+    const root = makeTempDir('speckit-freshness-table-status-');
+    const folder = createPacketWithoutCompletionClaim(root);
+    const specPath = path.join(folder, 'spec.md');
+    const checklistPath = path.join(folder, 'checklist.md');
+    fs.writeFileSync(
+      path.join(folder, 'graph-metadata.json'),
+      JSON.stringify({ derived: { last_save_at: '2026-06-10T12:00:00Z' } }, null, 2),
+      'utf8',
+    );
+    fs.writeFileSync(specPath, [
+      '---',
+      'title: "Spec"',
+      '_memory:',
+      '  continuity:',
+      '    session_dedup:',
+      '      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"',
+      '---',
+      '# Spec',
+      '',
+      '| Field | Value |',
+      '|---|---|',
+      '| **Status** | Completed |',
+    ].join('\n'), 'utf8');
+    writeWithFreshFingerprint(specPath, fs.readFileSync(specPath, 'utf8'));
+    fs.writeFileSync(checklistPath, [
+      '---',
+      'title: "Checklist"',
+      '_memory:',
+      '  continuity:',
+      '    session_dedup:',
+      '      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"',
+      '---',
+      '# Checklist',
+      '',
+      '- [x] Fixture check [EVIDENCE: vitest.]',
+    ].join('\n'), 'utf8');
+    writeWithFreshFingerprint(checklistPath, fs.readFileSync(checklistPath, 'utf8'));
+
+    const result = validateContinuityFreshness(folder);
+
+    expect(result.status).toBe('pass');
+    expect(result.code).toBe('fresh_completion');
   });
 
   it('keeps the clean-tree precondition scoped to packet paths', () => {

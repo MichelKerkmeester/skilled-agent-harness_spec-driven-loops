@@ -2,7 +2,7 @@
 // MODULE: Advisor Recommend Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -273,6 +273,20 @@ describe('advisor_recommend handler', () => {
         redirectFrom: ['legacy-x'],
       }),
     ]);
+  });
+
+  it('records shadow deltas without raw prompt text', async () => {
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult());
+    const prompt = 'private customer prompt acct-12345';
+
+    await handleAdvisorRecommend({ prompt, options: { topK: 1 } });
+
+    const logPath = process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
+    expect(logPath && existsSync(logPath)).toBe(true);
+    const record = JSON.parse(readFileSync(logPath!, 'utf8').trim()) as { prompt?: string };
+    expect(record.prompt).toMatch(/^hmac:[a-f0-9]{64}$/u);
+    expect(JSON.stringify(record)).not.toContain(prompt);
   });
 
   it('drops instruction-shaped labels and redirect metadata from public output', async () => {

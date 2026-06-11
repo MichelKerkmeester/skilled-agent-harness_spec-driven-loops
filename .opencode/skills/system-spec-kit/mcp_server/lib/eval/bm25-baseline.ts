@@ -264,7 +264,7 @@ async function runComparisonMetrics(
     }));
 
     totalMRR += computeMRR(evalResults, groundTruth, 5);
-    totalNDCG += computeNDCG(evalResults, groundTruth, 10);
+    totalNDCG += computeNDCG(evalResults, groundTruth, k);
     totalRecall += computeRecall(evalResults, groundTruth, k);
     totalHitRate += computeHitRate(evalResults, groundTruth, 1);
   }

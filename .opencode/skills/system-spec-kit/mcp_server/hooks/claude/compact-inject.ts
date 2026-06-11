@@ -398,16 +398,20 @@ async function main(): Promise<void> {
     hookLog('info', 'compact-inject', `Read ${transcriptLines.length} transcript lines`);
   }
 
-  const snapshotResult = refreshAuthoredContinuitySnapshot({
-    enabled: authoredSnapshotEnabled(input),
-    specFolder: detectSpecFolder(transcriptLines),
-    sessionId,
-    actor: 'precompact-hook',
-  });
-  if (snapshotResult.status === 'updated') {
-    hookLog('info', 'compact-inject', `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated.length} doc(s); memory records=${snapshotResult.createdMemoryRecords}; index mutations=${snapshotResult.indexMutations}`);
-  } else if (snapshotResult.status === 'skipped') {
-    hookLog('warn', 'compact-inject', `Authored continuity snapshot skipped: ${snapshotResult.reason}`);
+  try {
+    const snapshotResult = refreshAuthoredContinuitySnapshot({
+      enabled: authoredSnapshotEnabled(input),
+      specFolder: detectSpecFolder(transcriptLines),
+      sessionId,
+      actor: 'precompact-hook',
+    });
+    if (snapshotResult.status === 'updated') {
+      hookLog('info', 'compact-inject', `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated.length} doc(s); memory records=${snapshotResult.createdMemoryRecords}; index mutations=${snapshotResult.indexMutations}`);
+    } else if (snapshotResult.status === 'skipped') {
+      hookLog('warn', 'compact-inject', `Authored continuity snapshot skipped: ${snapshotResult.reason}`);
+    }
+  } catch (error: unknown) {
+    hookLog('warn', 'compact-inject', `Authored continuity snapshot failed: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   // Use the 3-source merge pipeline, falling back to legacy on error

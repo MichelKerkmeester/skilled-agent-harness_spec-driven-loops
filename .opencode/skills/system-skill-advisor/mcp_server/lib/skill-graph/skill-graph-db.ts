@@ -756,10 +756,12 @@ function harvestSkillDocs(
 
       for (const absolutePath of docFiles) {
         result.scannedDocs++;
+        const docPath = relative(skillDir, absolutePath);
         let raw: string;
         try {
           raw = readFileSync(absolutePath, 'utf8');
         } catch (error: unknown) {
+          keptPaths.push(docPath);
           warnings.push(`DOC-READ-FAILED: ${toDisplayPath(absolutePath)} (${error instanceof Error ? error.message : String(error)})`);
           continue;
         }
@@ -767,7 +769,6 @@ function harvestSkillDocs(
         const parsed = parseDocFrontmatter(raw);
         if (!parsed) continue;
 
-        const docPath = relative(skillDir, absolutePath);
         keptPaths.push(docPath);
 
         const contentHash = computeContentHash(raw);
@@ -1239,10 +1240,28 @@ export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddin
   if (!database) {
     return [];
   }
-  if (hasActiveEmbedderPointer(database)) {
-    const active = getActiveEmbedder(database);
-    const tableName = vecTableNameForDim(active.dim);
-    ensureVecTableForDim(database, active.dim);
+  const hasTable = (tableName: string): boolean => Boolean(database.prepare(`
+    SELECT 1 AS present
+    FROM sqlite_master
+    WHERE type = 'table' AND name = ?
+    LIMIT 1
+  `).get(tableName));
+
+  const activeRows = hasTable('vec_metadata')
+    ? database.prepare(`
+        SELECT key, value
+        FROM vec_metadata
+        WHERE key IN (?, ?)
+      `).all('active_embedder_name', 'active_embedder_dim') as Array<{ key: string; value: string }>
+    : [];
+  const activeValues = new Map(activeRows.map((row) => [row.key, row.value]));
+  const activeName = activeValues.get('active_embedder_name');
+  const activeDim = Number.parseInt(activeValues.get('active_embedder_dim') ?? '', 10);
+  if (activeName && Number.isInteger(activeDim) && activeDim > 0) {
+    const tableName = vecTableNameForDim(activeDim);
+    if (!hasTable(tableName)) {
+      return [];
+    }
 
     const activeRows = skillIds && skillIds.length > 0
       ? database.prepare(`

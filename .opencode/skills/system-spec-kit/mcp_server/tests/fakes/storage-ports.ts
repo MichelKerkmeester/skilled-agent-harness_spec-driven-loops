@@ -274,9 +274,19 @@ export class FakeMaintenance implements Maintenance {
 export class FakeContentionPolicy implements ContentionPolicy {
   readonly busyTimeouts: number[] = [];
 
-  async withRetry<T>(
+  withRetry<T>(
     operation: () => T | Promise<T>,
     options: ContentionOperationOptions = {},
+  ): T | Promise<T> {
+    if (options.sync) {
+      return this.withRetrySync(operation as () => T, options);
+    }
+    return this.withRetryAsync(operation, options);
+  }
+
+  private async withRetryAsync<T>(
+    operation: () => T | Promise<T>,
+    options: ContentionOperationOptions,
   ): Promise<T> {
     const attempts = Math.max(1, options.attempts ?? ((options.retryDelaysMs?.length ?? 0) + 1));
     const retryable = options.retryable ?? isSqliteContentionError;
@@ -301,10 +311,37 @@ export class FakeContentionPolicy implements ContentionPolicy {
     throw new Error('FakeContentionPolicy.withRetry: unreachable');
   }
 
+  private withRetrySync<T>(
+    operation: () => T,
+    options: ContentionOperationOptions,
+  ): T {
+    const attempts = Math.max(1, options.attempts ?? ((options.retryDelaysMs?.length ?? 0) + 1));
+    const retryable = options.retryable ?? isSqliteContentionError;
+    for (let attemptIndex = 0; attemptIndex < attempts; attemptIndex += 1) {
+      if (options.shouldAbort?.()) {
+        return undefined as T;
+      }
+      try {
+        return operation();
+      } catch (error: unknown) {
+        const canRetry = retryable(error) && attemptIndex < attempts - 1;
+        if (!canRetry) {
+          throw error;
+        }
+        const delayMs = resolveFakeDelayMs(options, attemptIndex);
+        options.onRetry?.(error, { attempt: attemptIndex + 1, delayMs, label: options.label });
+        if (options.shouldAbort?.()) {
+          return undefined as T;
+        }
+      }
+    }
+    throw new Error('FakeContentionPolicy.withRetrySync: unreachable');
+  }
+
   withWriteLock<T>(
     operation: () => T | Promise<T>,
     options: ContentionOperationOptions = {},
-  ): Promise<T> {
+  ): T | Promise<T> {
     return this.withRetry(operation, options);
   }
 

@@ -453,7 +453,7 @@ class BM25Index {
   private engine: InMemoryBm25Engine;
   private documents: Map<string, LegacyDocumentRecord>;
   private packedDocuments: Map<string, PackedDocumentRecord>;
-  private packedDocIds: string[];
+  private packedDocIds: Array<string | undefined>;
   private packedDocNumbersById: Map<string, number>;
   private packedMutablePostings: Map<string, PackedPostingMutable>;
   private packedPostings: Map<string, PackedPostingList>;
@@ -955,6 +955,8 @@ class BM25Index {
     }
 
     this.packedDocuments.delete(id);
+    this.packedDocIds[doc.numericId] = undefined;
+    this.packedDocNumbersById.delete(id);
     return true;
   }
 

@@ -112,6 +112,7 @@ function readContinuityFields(markdown: string): ContinuityFields {
     const sessionDedup = continuity?.session_dedup as Record<string, unknown> | undefined;
     const completionPct = continuity?.completion_pct;
     const rawStatus = parsed?.status;
+    const metadataStatus = extractMetadataTableStatus(markdown);
 
     return {
       timestamp: typeof continuity?.last_updated_at === 'string' ? continuity.last_updated_at : null,
@@ -125,7 +126,7 @@ function readContinuityFields(markdown: string): ContinuityFields {
         : typeof completionPct === 'string'
           ? Number.parseFloat(completionPct)
           : null,
-      status: typeof rawStatus === 'string' ? rawStatus : null,
+      status: typeof rawStatus === 'string' ? rawStatus : metadataStatus,
       parseError: null,
     };
   } catch (error: unknown) {
@@ -137,6 +138,11 @@ function readContinuityFields(markdown: string): ContinuityFields {
       parseError: toErrorMessage(error),
     };
   }
+}
+
+function extractMetadataTableStatus(markdown: string): string | null {
+  const match = markdown.match(/^\|\s*\*\*Status\*\*\s*\|\s*([^|]+?)\s*\|\s*$/im);
+  return match?.[1]?.trim() || null;
 }
 
 function readContinuityTimestamp(markdown: string): {
@@ -219,7 +225,8 @@ function isCompletionStatus(status: string | null): boolean {
 }
 
 function hasChecklistEvidenceClaim(basename: string, content: string): boolean {
-  return basename === 'checklist.md' && /^-\s+\[[xX]\].*\bEvidence:/m.test(content);
+  return basename === 'checklist.md'
+    && /^\s*-\s+\[[xX]\].*(?:\[EVIDENCE:|\|\s*Evidence:|[✓✔☑✅]|\((?:verified|tested|confirmed)\)|\[DEFERRED:)/im.test(content);
 }
 
 function hasCompletionClaim(basename: string, content: string, fields: ContinuityFields): boolean {
@@ -368,6 +375,9 @@ export function validateContinuityFreshness(
 
   const completionFreshness = evaluateCompletionFreshness(specFolderPath);
   if (completionFreshness && completionFreshness.status !== 'pass') {
+    return completionFreshness;
+  }
+  if (completionFreshness?.code === 'no_completion_claim') {
     return completionFreshness;
   }
 

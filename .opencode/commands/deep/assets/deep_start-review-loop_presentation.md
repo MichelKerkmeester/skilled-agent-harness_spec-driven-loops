@@ -16,7 +16,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -229,7 +229,7 @@ Conduct autonomous iterative code review with convergence detection. Each iterat
 - `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
 - `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 116 research at `.opencode/specs/skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
 ```yaml
 role: Deep Review Loop Manager
@@ -244,12 +244,12 @@ operating_mode:
 
 ### Purpose
 
-Run an iterative loop for code review: Initialize the review packet under `{artifact_dir}` (resolved via `resolveArtifactRoot()` — root specs use `{spec_folder}/review/`; child phases and sub-phases use `{spec_folder}/review/{packet}-pt-{NN}/`), dispatch `@deep-review` agent per iteration, evaluate convergence across review dimensions, synthesize findings into `{artifact_dir}/review-report.md`, and emit `{artifact_dir}/resource-map.md` at convergence unless `--no-resource-map` disables it. Use when auditing code, specs, skills, agents, or tracks for quality and release readiness.
+Run an iterative loop for code review: Initialize the review packet under `{artifact_dir}` (resolved via `resolveArtifactRoot()` — root specs use `{spec_folder}/review/`; child phases and sub-phases use the flat `{spec_folder}/review/` directory on the first matching run and `{spec_folder}/review/{packet}-pt-{NN}/` only when prior non-matching content requires a separate packet), dispatch `@deep-review` agent per iteration, evaluate convergence across review dimensions, synthesize findings into `{artifact_dir}/review-report.md`, and emit `{artifact_dir}/resource-map.md` at convergence unless `--no-resource-map` disables it. Use when auditing code, specs, skills, agents, or tracks for quality and release readiness.
 
 ### Contract
 
 **Inputs:** `$ARGUMENTS` -- Review target with optional flags and mode suffix
-**Outputs:** Spec folder with `{artifact_dir}/` packet (`{spec_folder}/review/` for root specs or `{spec_folder}/review/{packet}-pt-{NN}/` for nested phases), `review-report.md`, optional `resource-map.md`, state files, and `STATUS=<OK|FAIL|CANCELLED>`
+**Outputs:** Spec folder with `{artifact_dir}/` packet (flat-first `{spec_folder}/review/`, with `{spec_folder}/review/{packet}-pt-{NN}/` only for separated nested-phase packets), `review-report.md`, optional `resource-map.md`, state files, and `STATUS=<OK|FAIL|CANCELLED>`
 
 ### Workflow Overview
 
@@ -392,7 +392,7 @@ Convergence thresholds and recovery settings used by this command are a governed
 - Prompt optimization is deferred future work (Phase 4b) and will use generated prompt packs, never direct agent markdown mutation
 
 **References:**
-- Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json`
+- Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`, `compositeStopScore`
 - Convergence reference: `.opencode/skills/deep-review/references/convergence/convergence.md`
 

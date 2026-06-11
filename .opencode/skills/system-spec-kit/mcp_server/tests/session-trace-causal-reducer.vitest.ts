@@ -163,6 +163,18 @@ describe('Session trace causal reducer', () => {
     expect(selected[0]?.id).toBe(3);
   });
 
+  it('keeps a same-query source over a newer same-memory source from another query', () => {
+    const citation = { id: 9, type: 'result_cited', memory_id: 'T', query_id: 'q1', confidence: 'strong', timestamp: BASE_TS + 9, session_id: 's1' } as const;
+    const prior = [
+      { id: 1, type: 'search_shown', memory_id: 'A', query_id: 'q1', confidence: 'weak', timestamp: BASE_TS + 1, session_id: 's1' },
+      { id: 2, type: 'search_shown', memory_id: 'A', query_id: 'q2', confidence: 'weak', timestamp: BASE_TS + 8, session_id: 's1' },
+    ];
+
+    const selected = selectPriorSearchSources(prior, citation, 5);
+
+    expect(selected.map((event) => event.id)).toEqual([1]);
+  });
+
   it('writes enabled auto-session edges with weak strength and session/query evidence', () => {
     seedEvents(db, [
       makeEvent({ memoryId: '1', queryId: 'q1', timestamp: BASE_TS + 1 }),

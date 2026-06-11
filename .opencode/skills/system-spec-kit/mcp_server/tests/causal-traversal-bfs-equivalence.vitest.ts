@@ -262,9 +262,9 @@ describe('causal traversal BFS equivalence', () => {
 
       console.info(`BFS traversal benchmark: fixture_edges=10240 max_degree=20 seeds=5 hops=2 cte_mean_ms=${cte.mean} cte_p95_ms=${cte.p95} bfs_mean_ms=${bfs.mean} bfs_p95_ms=${bfs.p95}`);
       if (process.env.SPECKIT_BENCH_GATE === '1') {
-        expect(bfs.mean).toBeLessThanOrEqual(cte.mean);
-      } else if (bfs.mean > cte.mean) {
-        console.warn(`BFS traversal benchmark: bfs_mean_ms=${bfs.mean} exceeded cte_mean_ms=${cte.mean}; advisory only, set SPECKIT_BENCH_GATE=1 to enforce`);
+        expect(bfs.p95).toBeLessThanOrEqual(cte.p95);
+      } else if (bfs.p95 > cte.p95) {
+        console.warn(`BFS traversal benchmark: bfs_p95_ms=${bfs.p95} exceeded cte_p95_ms=${cte.p95}; advisory only, set SPECKIT_BENCH_GATE=1 to enforce`);
       }
     } finally {
       db.close();

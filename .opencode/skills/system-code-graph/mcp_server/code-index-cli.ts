@@ -62,6 +62,7 @@ interface RepoPaths {
   readonly launcherPath: string;
   readonly bridgePath: string;
   readonly dbDir: string;
+  readonly packageJsonPath: string;
   readonly packageLockPath: string;
 }
 
@@ -171,6 +172,7 @@ function findRepoPaths(startFile = currentModulePath()): RepoPaths {
         launcherPath,
         bridgePath,
         dbDir: path.join(directOpencodeDir, 'skills', 'system-code-graph', 'mcp_server', 'database'),
+        packageJsonPath: path.join(directOpencodeDir, 'skills', 'system-code-graph', 'package.json'),
         packageLockPath: path.join(directOpencodeDir, 'skills', 'system-code-graph', 'package-lock.json'),
       };
     }
@@ -189,6 +191,12 @@ function loadBridge(paths: RepoPaths): BridgeModule {
 }
 
 function readCliVersion(paths: RepoPaths): string {
+  try {
+    const parsed = JSON.parse(readFileSync(paths.packageJsonPath, 'utf8')) as { readonly version?: unknown };
+    if (typeof parsed.version === 'string') return parsed.version;
+  } catch {
+    // Fall back to package-lock for older local checkouts with no package.json.
+  }
   try {
     const parsed = JSON.parse(readFileSync(paths.packageLockPath, 'utf8')) as {
       readonly version?: unknown;

@@ -133,6 +133,10 @@ describe('OpenLTM continuity resilience surfaces', () => {
     expect(result.restorePanel.markdown).toContain('### Decision');
     expect(result.restorePanel.markdown).toContain('### Progress');
     expect(result.restorePanel.markdown).toContain('### Gotcha');
+    const renderedItems = result.restorePanel.markdown
+      .split('\n')
+      .filter((line) => line.startsWith('- ') && line !== '- None restored');
+    expect(renderedItems).toHaveLength(result.restorePanel.restoredCount);
   });
 
   it('surfaces the bounded restore panel during session bootstrap', async () => {

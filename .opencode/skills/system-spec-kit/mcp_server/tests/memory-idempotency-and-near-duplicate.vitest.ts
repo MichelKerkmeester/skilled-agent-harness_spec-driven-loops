@@ -311,6 +311,30 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
     expect(JSON.parse(row.near_duplicate_of ?? '{}')).toMatchObject({ id: 2 });
   });
 
+  it('stores near-duplicate checked timestamps in ISO format for lexical repair scans', async () => {
+    vi.resetModules();
+    vi.doMock('../lib/search/vector-index.js', () => ({
+      vectorSearch: vi.fn(() => []),
+    }));
+    const { recordNearDuplicateCheck } = await import('../lib/storage/near-duplicate');
+    database.prepare(`
+      INSERT INTO memory_index (id, spec_folder, content_hash, embedding_status, updated_at)
+      VALUES (1, 'specs/demo', 'hash-a', 'success', '2026-06-10T00:00:00.000Z')
+    `).run();
+
+    recordNearDuplicateCheck({
+      database,
+      memoryId: 1,
+      specFolder: 'specs/demo',
+      contentHash: 'hash-a',
+      embedding: new Float32Array([0.1, 0.2]),
+    });
+
+    const row = database.prepare('SELECT last_dedup_checked_at FROM memory_index WHERE id = 1')
+      .get() as { last_dedup_checked_at: string | null };
+    expect(row.last_dedup_checked_at).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+  });
+
   it('skips near-duplicate advisory silently when embedding is absent or the flag is off', async () => {
     vi.resetModules();
     const vectorSearch = vi.fn(() => [{ id: 2, similarity: 99 }]);

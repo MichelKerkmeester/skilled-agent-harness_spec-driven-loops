@@ -145,10 +145,7 @@ export async function runTriggerEmbeddingBackfill(
     const profile = embeddings.getEmbeddingProfile();
     const modelId = profile?.model ?? embeddings.getModelName();
     const dimensions = profile?.dim ?? embeddings.getEmbeddingDimension();
-    const metadataProfileKey = getActiveEmbeddingProfileKey(database);
-    const profileKey = metadataProfileKey || (profile
-      ? `${profile.provider}:${profile.model}:${profile.dim}`
-      : getActiveEmbeddingProfileKey(database, modelId, dimensions));
+    const profileKey = getActiveEmbeddingProfileKey(database, modelId, dimensions);
     const phraseByHash = new Map<string, string>();
 
     const sourceRows = database.prepare(`

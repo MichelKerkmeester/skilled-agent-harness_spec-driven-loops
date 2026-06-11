@@ -86,7 +86,7 @@ function createGraphFixtureDb(): Database.Database {
     VALUES (?, ?, ?, ?)
   `);
   insertCausal.run('1', '2', 'supports', 0.5);
-  insertCausal.run('2', '3', 'enabled', 0.25);
+  insertCausal.run('2', '3', 'enabled', 0.5);
 
   const insertDependency = database.prepare(`
     INSERT INTO dependency_edges (parent_path, child_path)
@@ -102,7 +102,7 @@ function createFakeGraphTraversal(): FakeGraphTraversal {
   return new FakeGraphTraversal({
     causalEdges: [
       { sourceId: 1, targetId: 2, relation: 'supports', strength: 0.5 },
-      { sourceId: 2, targetId: 3, relation: 'enabled', strength: 0.25 },
+      { sourceId: 2, targetId: 3, relation: 'enabled', strength: 0.5 },
     ],
     dependencyEdges: [
       { parentPath: 'root', childPath: 'child' },
@@ -177,7 +177,7 @@ function runGraphTraversalContract(
         );
 
         expect(results.get(2)).toEqual({ nodeId: 2, minHop: 1, maxWalkScore: 1 });
-        expect(results.get(3)).toEqual({ nodeId: 3, minHop: 2, maxWalkScore: 1 });
+        expect(results.get(3)).toEqual({ nodeId: 3, minHop: 2, maxWalkScore: 2 });
         expect(results.has(1)).toBe(false);
       } finally {
         subject.cleanup();
@@ -463,6 +463,18 @@ function runContentionPolicyContract(
 
         expect(result).toBeUndefined();
         expect(attempts).toBe(2);
+      } finally {
+        subject.cleanup();
+      }
+    });
+
+    it('returns a non-thenable value in sync mode', () => {
+      const subject = createSubject();
+      try {
+        const result = subject.port.withRetry(() => 'sync-ok', { sync: true });
+
+        expect(result).toBe('sync-ok');
+        expect(result).not.toHaveProperty('then');
       } finally {
         subject.cleanup();
       }

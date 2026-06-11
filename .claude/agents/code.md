@@ -315,7 +315,7 @@ When requested by the orchestrator, append this advisory envelope after the comp
 AGENT_IO_RESULT v1
 schema_version: agent-io/v1
 dispatch_id: <matching dispatch_id or none>
-status: pass | fail | blocked | partial
+status: pass | fail | blocked
 confidence_band: high | medium | low
 confidence_numeric: 0.90 | 0.70 | 0.30
 failure_type: none | unknown_stack | scope_conflict | low_confidence | logic_sync | verify_fail

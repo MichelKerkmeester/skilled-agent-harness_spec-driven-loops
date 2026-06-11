@@ -222,21 +222,25 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   if (database && isMemoryIdempotencyEnabled()) {
     try {
       const contentHash = typeof existing.content_hash === 'string' ? existing.content_hash : null;
+      const logicalMutation = {
+        id,
+        title: updateParams.title ?? null,
+        triggerPhrases: updateParams.triggerPhrases ?? null,
+        importanceWeight: updateParams.importanceWeight ?? null,
+        importanceTier: updateParams.importanceTier ?? null,
+        contentHash,
+      };
       const lookup = lookupIdempotencyReceipt(database, {
         operation: 'memory_update',
         contentHash,
         requestFingerprint: {
           id,
           contentHash,
+          logicalMutation,
         },
         payload: {
           ...(args as unknown as Record<string, unknown>),
-          id,
-          title: updateParams.title ?? null,
-          triggerPhrases: updateParams.triggerPhrases ?? null,
-          importanceWeight: updateParams.importanceWeight ?? null,
-          importanceTier: updateParams.importanceTier ?? null,
-          contentHash,
+          ...logicalMutation,
         },
       });
       idempotencyKey = lookup.key;

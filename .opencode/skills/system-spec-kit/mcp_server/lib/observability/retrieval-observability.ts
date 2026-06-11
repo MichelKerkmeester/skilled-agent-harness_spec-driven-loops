@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import type Database from 'better-sqlite3';
+import { resolveEffectiveScore as resolvePipelineEffectiveScore, type PipelineRow } from '../search/pipeline/types.js';
 
 type MaintenanceTool = 'memory_index_scan' | 'memory_embedding_reconcile' | 'memory_retention_sweep';
 
@@ -149,20 +150,28 @@ function channelScore(rawResult: Record<string, unknown>, channel: typeof CHANNE
 }
 
 function resolveEffectiveScore(rawResult: Record<string, unknown>): { score: number | null; source: string } {
+  const finalRankScore = finiteNumber(rawResult.finalRankScore);
+  if (finalRankScore !== null) {
+    return { score: Math.max(0, Math.min(1, finalRankScore)), source: 'finalRank' };
+  }
+
   for (const [field, source] of [
-    ['finalRankScore', 'finalRank'],
     ['intentAdjustedScore', 'intentAdjusted'],
     ['rrfScore', 'fusion'],
-    ['stage2Score', 'stage2'],
     ['score', 'score'],
     ['similarity', 'semantic'],
-    ['averageSimilarity', 'semantic'],
   ] as const) {
     const score = finiteNumber(rawResult[field]);
     if (score !== null) {
-      return { score: field === 'similarity' || field === 'averageSimilarity' ? score / 100 : score, source };
+      return { score: resolvePipelineEffectiveScore(rawResult as PipelineRow), source };
     }
   }
+
+  const averageSimilarity = finiteNumber(rawResult.averageSimilarity);
+  if (averageSimilarity !== null) {
+    return { score: Math.max(0, Math.min(1, averageSimilarity / 100)), source: 'semantic' };
+  }
+
   return { score: null, source: 'none' };
 }
 

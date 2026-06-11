@@ -7,7 +7,7 @@ trigger_phrases:
   - "spec kit MCP feature inventory"
   - "what does spec kit memory do"
   - "memory MCP feature catalog"
-last_updated: "2026-05-31"
+last_updated: "2026-06-11"
 ---
 
 # Spec Kit Memory: Feature Catalog

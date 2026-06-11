@@ -116,10 +116,9 @@ function buildReviewerPrompt(fixtureCase) {
 
 function extractVerdict(text) {
   const raw = String(text || '');
-  const explicit = raw.match(/\b(?:verdict|result|status)\s*[:=-]\s*(pass|fail|block)\b/i);
-  if (explicit) return { verdict: normalizeVerdict(explicit[1]), method: 'pattern' };
-  const standalone = raw.match(/\b(pass|fail|block)\b/i);
-  if (standalone) return { verdict: normalizeVerdict(standalone[1]), method: 'pattern' };
+  const matches = [...raw.matchAll(/^\s*(?:(?:verdict|result|status)\s*[:=-]\s*)?(pass|fail|block)\b\s*[.!]?\s*$/gim)];
+  const finalMatch = matches.at(-1);
+  if (finalMatch) return { verdict: normalizeVerdict(finalMatch[1]), method: 'pattern' };
   return { verdict: null, method: 'none' };
 }
 

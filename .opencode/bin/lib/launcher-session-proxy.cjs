@@ -665,7 +665,13 @@ function createSessionProxy(options) {
 
   async function attachFreshSocket({ replaySnapshotEntries = [] } = {}) {
     const freshSocket = await connectSocket(connect, socketPath);
-    const handshake = await internalHandshake(freshSocket, tracker.getCachedInitialize());
+    let handshake;
+    try {
+      handshake = await internalHandshake(freshSocket, tracker.getCachedInitialize());
+    } catch (error) {
+      freshSocket.destroy?.();
+      throw error;
+    }
     const expectedProtocolVersion = tracker.getNegotiatedProtocolVersion();
     if (handshake.handshakeObserved
         && expectedProtocolVersion !== null

@@ -87,6 +87,11 @@ describe('doc frontmatter parsing', () => {
     expect(parseDocFrontmatter(raw)?.triggerPhrases).toEqual(['alpha beta', 'gamma delta']);
   });
 
+  it('keeps commas inside quoted inline-list trigger phrases', () => {
+    const raw = '---\ntitle: "X"\ntrigger_phrases: ["alpha, beta", "gamma delta"]\n---\n# X\n';
+    expect(parseDocFrontmatter(raw)?.triggerPhrases).toEqual(['alpha, beta', 'gamma delta']);
+  });
+
   it('returns null without a frontmatter fence or without phrases', () => {
     expect(parseDocFrontmatter('# Plain doc\n')).toBeNull();
     expect(parseDocFrontmatter('---\ntitle: "X"\ndescription: "Y"\n---\n# X\n')).toBeNull();

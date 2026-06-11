@@ -54,7 +54,8 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 | `List` | Codebase | Directory listing | Inspect known directories without guessing file names |
 | `Glob` | Codebase | File discovery by pattern | Find files by name, extension, or scoped path pattern |
 | `Grep` | Codebase | Exact text/code pattern search | Find symbols, literals, function calls, imports, or known strings |
-| `code_graph_query` plus `Grep` | `memory_match_triggers` | Memory (L2) | Trigger phrase matching | Surface saved rules and likely relevant prior work quickly |
+| `code_graph_query` plus `Grep` | Structure | Semantic and exact discovery | Find implementation concepts, then verify with exact matches and reads |
+| `memory_match_triggers` | Memory (L2) | Trigger phrase matching | Surface saved rules and likely relevant prior work quickly |
 | `memory_context` | Memory (L1) | Unified context retrieval | Retrieve intent-aware prior context when packet-local continuity is incomplete |
 | `memory_search` | Memory (L2) | Hybrid search across indexed records | Deep memory retrieval with content and cross-packet evidence |
 | `memory_list` | Memory (L3) | Browse stored memories | Inspect records for a relevant spec folder |

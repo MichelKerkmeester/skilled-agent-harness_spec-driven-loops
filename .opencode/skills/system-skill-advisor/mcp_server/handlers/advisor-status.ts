@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { existsSync, readdirSync, statSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { isAbsolute, join, resolve } from 'node:path';
 import Database from 'better-sqlite3';
 
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
@@ -62,6 +62,10 @@ function fileMtimeMs(path: string): number {
   if (!existsSync(path)) return 0;
   const stat = statSync(path);
   return stat.mtimeMs;
+}
+
+function resolveSkillGraphDbPath(workspaceRoot: string): string {
+  return isAbsolute(SKILL_GRAPH_DB) ? SKILL_GRAPH_DB : join(workspaceRoot, SKILL_GRAPH_DB);
 }
 
 function tableExists(database: Database.Database, tableName: string): boolean {
@@ -195,7 +199,7 @@ function scanSkillMetadataFiles(
 export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutput {
   const args = AdvisorStatusInputSchema.parse(input);
   const workspaceRoot = resolve(args.workspaceRoot);
-  const dbPath = join(workspaceRoot, SKILL_GRAPH_DB);
+  const dbPath = resolveSkillGraphDbPath(workspaceRoot);
   const skillRoot = join(workspaceRoot, SKILL_ROOT);
   const errors: string[] = [];
 

@@ -202,7 +202,7 @@ For code review and quality auditing, see `/deep:start-review-loop`.
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 116 research at `.opencode/specs/skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
 ```yaml
 role: Deep Research Loop Manager
@@ -369,6 +369,6 @@ Convergence thresholds and recovery settings used by this command are a governed
 - Prompt optimization is deferred future work (Phase 4b) and will use generated prompt packs, never direct agent markdown mutation
 
 **References:**
-- Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json`
+- Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`
 - Convergence reference: `.opencode/skills/deep-research/references/convergence/convergence.md`

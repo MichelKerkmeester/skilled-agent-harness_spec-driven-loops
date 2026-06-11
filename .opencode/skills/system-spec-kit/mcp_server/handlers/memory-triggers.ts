@@ -446,8 +446,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
         results = results.filter(match => {
           const row = scopeMap.get(match.memoryId);
           if (!row) return false;
-          // H2 FIX: Require exact scope match — rows with NULL scope are excluded
-          // when the caller specifies a scope, not silently passed through.
+          // Scoped requests fail closed so unscoped rows cannot leak into scoped results.
           if (specFolder && row.spec_folder !== specFolder) return false;
           if (tenantId && row.tenant_id !== tenantId) return false;
           if (userId && row.user_id !== userId) return false;
@@ -590,6 +589,9 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       data: {
         matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
         degradedMatching: degradedTriggerMatching,
+        triggerSignals: detectedSignals,
+        ...(semanticTriggerShadow ? { semanticTriggerShadow } : {}),
+        ...(semanticTriggerUnion ? { semanticTriggerUnion } : {}),
         cognitive: useCognitive ? {
           enabled: true,
           sessionId,

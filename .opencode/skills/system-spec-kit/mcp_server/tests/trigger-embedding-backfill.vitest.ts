@@ -111,7 +111,7 @@ describe('trigger embedding backfill', () => {
       ...row,
       memory_id: 1,
       embedding_status: 'ready',
-      profile_key: 'test:test-model:3',
+      profile_key: 'test-model:3',
       input_kind: 'document',
       model_id: 'test-model',
       dimensions: 3,

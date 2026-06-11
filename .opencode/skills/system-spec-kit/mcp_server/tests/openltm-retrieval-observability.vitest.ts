@@ -124,6 +124,19 @@ describe('OpenLTM retrieval observability', () => {
     expect(secondWhy).toMatchObject({ rank: 2, effectiveScore: 0.5, scoreSource: 'finalRank' });
   });
 
+  it('normalizes raw vector similarity when source scores are unavailable', () => {
+    const whyRanked = buildWhyRankedTrace({
+      id: 51,
+      file_path: '/tmp/vector-only.md',
+      anchor_id: 'state',
+      similarity: 80,
+    }, 1);
+
+    expect(whyRanked.effectiveScore).toBe(0.8);
+    expect(whyRanked.scoreSource).toBe('semantic');
+    expect(whyRanked.channels.vector).toBe(0.8);
+  });
+
   it('surfaces one inline warning for a returned contradicts or supersedes pair', async () => {
     const db = vectorIndex.getDb();
     db.prepare(`

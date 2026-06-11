@@ -122,6 +122,7 @@ const LEDGER_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_ledger_actor ON mutation_ledger(actor);
   CREATE INDEX IF NOT EXISTS idx_ledger_timestamp ON mutation_ledger(timestamp);
   CREATE INDEX IF NOT EXISTS idx_ledger_session ON mutation_ledger(session_id);
+  CREATE INDEX IF NOT EXISTS idx_ledger_new_hash ON mutation_ledger(new_hash);
   CREATE INDEX IF NOT EXISTS idx_ledger_memory_type_created_at ON mutation_ledger(
     CAST(json_extract(linked_memory_ids, '$[0]') AS INTEGER),
     mutation_type,
@@ -185,10 +186,15 @@ function appendEntry(db: Database.Database, entry: AppendEntryInput): MutationLe
 }
 
 function buildAutomatedMutationEventKey(input: AutomatedMutationAuditInput): string {
+  const linkedMemoryIds = (input.linked_memory_ids ?? [])
+    .filter((id) => Number.isInteger(id) && id > 0)
+    .slice()
+    .sort((left, right) => left - right);
   return computeHash(JSON.stringify({
     actor: input.actor,
     source_kind: input.source_kind,
     reason: input.reason,
+    linked_memory_ids: linkedMemoryIds,
   }));
 }
 
@@ -196,7 +202,7 @@ function getAutomatedMutationAuditEntry(db: Database.Database, eventKey: string)
   const row = db.prepare(`
     SELECT *
     FROM mutation_ledger
-    WHERE json_extract(decision_meta, '$.eventKey') = ?
+    WHERE new_hash = ?
     ORDER BY id ASC
     LIMIT 1
   `).get(eventKey) as MutationLedgerEntry | undefined;

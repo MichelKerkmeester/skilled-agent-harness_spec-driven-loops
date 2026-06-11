@@ -906,8 +906,12 @@ function renderJobText(toolName: string, payload: unknown): string | null {
 
   if (toolName === 'skill_graph_scan') {
     const scan = isRecord(data.scan) ? data.scan : data;
+    const payloadStatus = isRecord(payload) && typeof payload.status === 'string' ? payload.status : null;
+    const progress = Array.isArray(data.progress) ? data.progress.filter(isRecord) : [];
+    const hasProgressFailure = progress.some((step) => step.ok === false);
+    const status = payloadStatus === 'error' || hasProgressFailure ? 'failed' : 'completed';
     return [
-      'skill_graph_scan: completed',
+      `skill_graph_scan: ${status}`,
       `generation: ${String(data.generationBefore ?? 'unknown')} -> ${String(data.generationAfter ?? 'unknown')}`,
       `scannedFiles: ${String(scan.scannedFiles ?? 'unknown')}`,
       `indexedFiles: ${String(scan.indexedFiles ?? 'unknown')}`,

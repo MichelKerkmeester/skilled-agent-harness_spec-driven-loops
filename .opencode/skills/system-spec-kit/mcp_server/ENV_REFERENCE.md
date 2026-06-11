@@ -114,6 +114,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Semantic trigger margin | OFF | `SPECKIT_SEMANTIC_TRIGGER_MARGIN` | Minimum top-vs-second score gap for accepting shadow semantic trigger matches | semantic trigger fallback |
 | Semantic trigger max | OFF | `SPECKIT_SEMANTIC_TRIGGER_MAX` | Maximum shadow semantic trigger matches computed for comparison telemetry | semantic trigger fallback |
 | Semantic trigger cache TTL | OFF | `SPECKIT_SEMANTIC_TRIGGER_CACHE_TTL_MS` | In-memory ready trigger-embedding cache TTL for shadow semantic trigger scoring | semantic trigger fallback |
+| Semantic trigger embedding backfill | OFF | `SPECKIT_TRIGGER_EMBEDDING_BACKFILL` | Opt-in population switch for derived trigger embeddings; disabled runs skip without writing rows | `mcp_server/lib/search/trigger-embedding-backfill.ts` |
 | Authored continuity snapshot | OFF | `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | Opt-in compact-hook authored continuity snapshot path; default transcript-derived fallback remains unchanged | continuity resilience |
 | Completion freshness | OFF | `SPECKIT_COMPLETION_FRESHNESS` | Opt-in strict-validation freshness scan that compares stored continuity fingerprints with packet content | completion freshness |
 | Completion freshness enforcement | OFF | `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | Promotes enabled completion-freshness stale findings from warning to error | completion freshness |
@@ -358,6 +359,7 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_BATCH_LEARNED_FEEDBACK` | `true` | boolean | Weekly batch feedback learning pipeline (REQ-D4-004). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_FEEDBACK_RETENTION_LEARNING` | `false` | boolean | Master gate for feedback-aware retention learning. Default OFF; set `true` to compute retention reducer decisions during the retention sweep. | `lib/feedback/feedback-retention-reducer.ts`, `lib/governance/memory-retention-sweep.ts` |
 | `SPECKIT_FEEDBACK_RETENTION_MODE` | `shadow` | enum: `shadow`, `active` | Retention learning safety mode. `shadow` writes audit decisions only; `active` applies extend/protect/delete only when the master flag is enabled and the caller supplies shadow-evaluation evidence. | `lib/feedback/feedback-retention-reducer.ts`, `lib/governance/memory-retention-sweep.ts` |
+| `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | `false` | boolean | Deferred session-trace causal edge inference from feedback events; shadow replay is available through the dry-run reducer entrypoint. | `lib/feedback/session-trace-causal-reducer.ts` |
 | `SPECKIT_RELATIONS` | `true` | boolean | Relational learning from correction events. Graduated ON. | `lib/learning/corrections.ts` |
 | `SPECKIT_CONSUMPTION_LOG` | `true` | boolean | Agent consumption event logging for analysis (G-NEW-2). Graduated ON. | `lib/telemetry/consumption-logger.ts` |
 | `SPECKIT_USAGE_RANKING` | `true` | boolean | Usage-weighted ranking signal (Phase D T036). Graduated ON. | `lib/search/search-flags.ts` |

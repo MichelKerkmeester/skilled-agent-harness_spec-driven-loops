@@ -313,6 +313,26 @@ describe('Mutation Ledger', () => {
     });
   });
 
+  it('keeps automated mutation audit dedupe scoped to linked memories', () => {
+    const first = appendAutomatedMutationAudit(db, {
+      actor: 'agent:enricher',
+      source_kind: 'agent',
+      reason: 'memory_update:title',
+      linked_memory_ids: [42],
+    });
+    const second = appendAutomatedMutationAudit(db, {
+      actor: 'agent:enricher',
+      source_kind: 'agent',
+      reason: 'memory_update:title',
+      linked_memory_ids: [43],
+    });
+
+    expect(first.appended).toBe(true);
+    expect(second.appended).toBe(true);
+    expect(second.eventKey).not.toBe(first.eventKey);
+    expect(getEntryCount(db)).toBe(2);
+  });
+
   it('escalates with payload when divergence retries are exhausted', () => {
     const normalizedPath = '/workspace/specs/system-spec-kit/701-test/memory/b.md';
     const variants = [

@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { applyWriteProvenance } from '../lib/storage/write-provenance.js';
+import { applyWriteProvenance, deriveSourceKindFromContext } from '../lib/storage/write-provenance.js';
 
 let database: Database.Database;
 
@@ -65,5 +65,11 @@ describe('write provenance tagging', () => {
         provenance_actor: 'async-ingest',
       },
     ]);
+  });
+
+  it('defaults untagged and path-only saves to human provenance', () => {
+    expect(deriveSourceKindFromContext()).toBe('human');
+    expect(deriveSourceKindFromContext({ filePath: '/tmp/indexed-notes/scan-plan.md' })).toBe('human');
+    expect(deriveSourceKindFromContext({ scope: { agentId: 'agent-a' } })).toBe('agent');
   });
 });

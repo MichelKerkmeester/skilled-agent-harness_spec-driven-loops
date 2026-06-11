@@ -250,11 +250,8 @@ function resolveTriggerProfile(database: Database.Database, options: SemanticTri
   const profile = embeddings.getEmbeddingProfile() as { provider?: string; model?: string; dim?: number } | null;
   const modelId = options.modelId ?? profile?.model ?? embeddings.getModelName();
   const dimensions = options.dimensions ?? profile?.dim ?? embeddings.getEmbeddingDimension();
-  const metadataProfileKey = getActiveEmbeddingProfileKey(database);
   const profileKey = options.profileKey
-    ?? (metadataProfileKey || (profile?.provider && profile?.model && profile?.dim
-      ? `${profile.provider}:${profile.model}:${profile.dim}`
-      : getActiveEmbeddingProfileKey(database, modelId, dimensions)));
+    ?? getActiveEmbeddingProfileKey(database, modelId, dimensions);
 
   return { profileKey, modelId, dimensions };
 }

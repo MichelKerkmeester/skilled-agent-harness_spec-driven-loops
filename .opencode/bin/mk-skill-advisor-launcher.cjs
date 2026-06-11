@@ -101,6 +101,8 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_RUNTIME',
   'SPECKIT_ADVISOR_FRESHNESS',
   'SPECKIT_ADVISOR_DOC_TRIGGERS',
+  'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
+  'SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW',
   'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
   'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
   'SPECKIT_CODEX_HOOK_TIMEOUT_MS',
@@ -417,6 +419,9 @@ async function reapOwnerBeforeRespawn(ownerPid) {
       if (error.code !== 'ESRCH') throw error;
     }
     await waitForPidExit(ownerPid, 1000);
+    if (processLiveness(ownerPid) !== 'dead') {
+      return { allowed: false, reason: 'owner-reap-timeout' };
+    }
   }
   return { allowed: true, reason: 'owner-reaped' };
 }
@@ -615,7 +620,7 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
 
   let bootstrapLockHeld = false;
   try {
-    bootstrapLockHeld = await acquireBootstrapLock({ requireLock: true });
+    bootstrapLockHeld = await acquireBootstrapLock();
     const currentLease = readLeaseFile(leaseResult.legacyPath || leasePath());
     const currentTargetPid = Number.isInteger(currentLease?.childPid) && currentLease.childPid > 0
       ? currentLease.childPid
@@ -635,7 +640,7 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
     }
 
     if (previousOwner?.ownerPid && previousOwner.ownerPid !== process.pid) {
-      await waitForPidExit(previousOwner.ownerPid, 1000);
+      await waitForPidExit(previousOwner.ownerPid, RESPAWN_REAP_GRACE_MS + 1000);
       if (processLiveness(previousOwner.ownerPid) === 'dead') {
         clearOwnerLeaseFileIfOwner(previousOwner.ownerPid);
       }

@@ -3610,8 +3610,8 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
       const won = storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
       if (!won) {
         // A concurrent same-key save already stored the canonical receipt. Replay the
-        // first winner's response so this loser returns the idempotent result instead
-        // of its own divergent (e.g. unchanged) outcome.
+        // first winner's response so this mutating loser returns the idempotent result
+        // instead of its own separately-created response.
         const winner = lookupIdempotencyReceiptByKey(database, idempotencyKey);
         if (winner.status === 'replay') {
           return winner.response;

@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, isAbsolute, join, resolve } from 'node:path';
 
 import Database from 'better-sqlite3';
 
@@ -269,7 +269,7 @@ function loadDocTriggersBySkill(db: Database.Database): Map<string, SkillDocTrig
 }
 
 function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
-  const dbPath = join(workspaceRoot, SKILL_GRAPH_DB);
+  const dbPath = isAbsolute(SKILL_GRAPH_DB) ? SKILL_GRAPH_DB : join(workspaceRoot, SKILL_GRAPH_DB);
   if (!existsSync(dbPath)) return null;
   const db = new Database(dbPath, { readonly: true, fileMustExist: true });
   try {

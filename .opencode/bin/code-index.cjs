@@ -84,10 +84,6 @@ function writeStoredSourceHash(sourceHash) {
 
 function ensureFreshDist() {
   if (!fs.existsSync(cliDist)) {
-    if (allowStale) {
-      process.stderr.write(`code-index dist entrypoint is missing but dev override is set: ${cliDist}\n`);
-      return;
-    }
     fail(`code-index dist entrypoint is missing: ${cliDist}. Run tsc -p .opencode/skills/system-code-graph/tsconfig.json.`);
   }
   if (allowStale) return;

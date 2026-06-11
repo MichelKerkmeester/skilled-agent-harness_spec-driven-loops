@@ -36,7 +36,10 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
   }
 
   try {
-    const result = runMemoryRetentionSweep(database, { dryRun: args?.dryRun === true });
+    const result = runMemoryRetentionSweep(database, {
+      dryRun: args?.dryRun === true,
+      feedbackRetention: args?.feedbackRetention,
+    });
     const protectedSuffix = result.protectedCount > 0
       ? `; protected ${result.protectedCount} high-tier/pinned row(s)`
       : '';

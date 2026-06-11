@@ -320,7 +320,7 @@ Replace placeholder text with actual content:
 
 ---
 
-## 6. SECTIONS_PRESENT
+## 7. SECTIONS_PRESENT
 
 **Severity:** WARNING  
 **Description:** Validates that required markdown sections exist in each file type.
@@ -376,7 +376,7 @@ Add the missing section headers. You can use numbered prefixes:
 
 ---
 
-## 7. LEVEL_DECLARED
+## 8. LEVEL_DECLARED
 
 **Severity:** INFO  
 **Description:** Checks if the documentation level is explicitly declared in spec.md metadata.
@@ -420,7 +420,7 @@ Add the Level field to your spec.md metadata table:
 
 ---
 
-## 8. PRIORITY_TAGS
+## 9. PRIORITY_TAGS
 
 **Severity:** WARNING  
 **Description:** Validates that checklist items use proper P0/P1/P2 priority tagging format.
@@ -502,7 +502,7 @@ Add priority headers or inline tags to all checklist items:
 
 ---
 
-## 9. EVIDENCE_CITED
+## 10. EVIDENCE_CITED
 
 **Severity:** WARNING  
 **Description:** Validates that non-P2 checklist items include evidence citations to support claims.
@@ -579,7 +579,7 @@ Add evidence to non-P2 items:
 
 ---
 
-## 10. ANCHORS_VALID
+## 11. ANCHORS_VALID
 
 **Severity:** ERROR  
 **Description:** Validates that generated continuity artifacts and other indexed support docs use proper ANCHOR format with matching open/close pairs.
@@ -664,7 +664,7 @@ Content here...
 
 ---
 
-## 11. FOLDER_NAMING
+## 12. FOLDER_NAMING
 
 **Severity:** ERROR
 **Description:** Validates that the spec folder follows the `###-short-name` naming convention.
@@ -708,7 +708,7 @@ mv specs/Feature specs/001-feature
 
 ---
 
-## 12. FRONTMATTER_VALID
+## 13. FRONTMATTER_VALID
 
 **Severity:** ERROR
 **Description:** Validates YAML frontmatter structure and required semantic values across the major spec documents.
@@ -764,7 +764,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path sp
 
 ---
 
-## 13. COMPLEXITY_MATCH
+## 14. COMPLEXITY_MATCH
 
 **Severity:** WARNING
 **Description:** Validates that declared complexity level matches actual content metrics (user stories, phases, tasks).
@@ -811,7 +811,7 @@ Either adjust the declared level or modify content to match:
 
 ---
 
-## 14. AI_PROTOCOLS
+## 15. AI_PROTOCOLS
 
 **Severity:** ERROR
 **Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance. For Level 3+, missing protocol components are reported as errors.
@@ -875,7 +875,7 @@ cat .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
 
 ---
 
-## 15. LEVEL_MATCH
+## 16. LEVEL_MATCH
 
 **Severity:** ERROR
 **Description:** Validates that the declared level is consistent across all spec folder files and required files exist.
@@ -930,7 +930,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path sp
 
 ---
 
-## 16. SECTION_COUNTS
+## 17. SECTION_COUNTS
 
 **Severity:** WARNING
 **Description:** Validates that section counts are within expected ranges for the declared documentation level.
@@ -973,7 +973,7 @@ Either expand content or reduce declared level:
 
 ---
 
-## 17. PHASE_LINKS
+## 18. PHASE_LINKS
 
 **Severity:** WARNING
 **Description:** Validates the integrity of parent-child phase relationships in phase-decomposed spec folders.
@@ -1056,7 +1056,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/042-payment
 
 ---
 
-## 18. CONFIGURATION
+## 19. CONFIGURATION
 
 ### Environment Variables
 
@@ -1089,7 +1089,7 @@ SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
 
 ---
 
-## 19. RELATED RESOURCES
+## 20. RELATED RESOURCES
 
 ### Reference Files
 

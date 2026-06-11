@@ -4,7 +4,7 @@
 // Feature catalog: Causal neighbor boost and injection
 // Graph-traversal score boosting via causal edge relationships.
 // Walks the causal_edges graph up to MAX_HOPS, amplifying scores
-// For results related to top seed results via weighted CTE.
+// For results related to top seed results via a weighted BFS walk.
 //
 // Sparse-First + Intent-Aware Traversal:
 // - Sparse-first policy — density < 0.5 disables community
@@ -78,13 +78,13 @@ const FRESHNESS_DECAY_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
 
 /**
  * Relation-type weight multipliers for causal edge traversal.
- * Applied during CTE accumulation so stronger relation types (supersedes)
+ * Applied during BFS walk accumulation so stronger relation types (supersedes)
  * amplify the boost while weaker ones (contradicts) attenuate it.
  *
  * These multipliers serve a DIFFERENT purpose from RELATION_WEIGHTS in
  * causal-edges.ts. causal-edges weights are applied during chain traversal
  * scoring (getCausalChain), while these are applied during the causal-boost
- * CTE walk (getNeighborBoosts) for search result amplification. The value
+ * BFS walk (getNeighborBoosts) for search result amplification. The value
  * ranges overlap but are tuned independently for their respective contexts:
  *   - causal-edges: traversal strength propagation (range 0.8–1.5)
  *   - causal-boost: search result boost amplitude (range 0.8–1.5)

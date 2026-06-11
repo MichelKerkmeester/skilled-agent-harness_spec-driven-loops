@@ -81,7 +81,7 @@ Q8. Phase Names, if phase decomposition is enabled and not provided: optional co
 
 If folder intake is required, include the intake interview in this same prompt.
 
-Reply format: "B, A, A, C, A" or "Add auth, B, A, C, A".
+Reply format covers Q0-Q8 in order, with `-` for omitted conditional answers: "Add auth, B, A, B-single, C, add_feature, A, -, -" or "B, A, A, -, A, fix_bug, B, 3, api,tests,docs".
 ```
 
 Never split these questions into separate visible prompts. If `--intake-only` is present, stop after intake emit and do not continue to planning steps.
@@ -103,7 +103,7 @@ Use this compact progress panel whenever the user needs workflow visibility.
 SPECKIT PLAN DASHBOARD
 Spec: [spec_path]
 Mode: [AUTONOMOUS|INTERACTIVE]
-Step: [current] / 8 - [step name]
+Step: [current] / 7 - [step name]
 Inputs: feature=[set|missing] folder=[set|missing] intent=[value]
 Optional flows: context=[on|off] phases=[on|off] intake_only=[on|off]
 Artifacts: spec.md [status] | plan.md [status] | tasks.md [status] | checklist.md [status]
@@ -132,7 +132,7 @@ Continue planning first child ([first_child_folder])? [Y/n/review]
 ### Success
 
 ```text
-SpecKit Planning Complete - All 8 steps executed.
+SpecKit Planning Complete - All 7 steps executed.
 Artifacts: spec.md, plan.md, tasks.md, checklist.md when Level 2+, graph-metadata.json scaffolded, continuity refreshed in canonical spec docs
 Ready for: /speckit:implement [spec-folder-path]
 STATUS=OK PATH=[spec-folder-path]
