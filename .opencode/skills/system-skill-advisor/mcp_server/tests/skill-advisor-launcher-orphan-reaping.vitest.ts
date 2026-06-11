@@ -25,6 +25,7 @@ interface LauncherRun {
 interface Workspace {
   readonly root: string;
   readonly launcherPath: string;
+  readonly advisorServerPath: string;
   readonly bridgePath: string;
   readonly sessionProxyPath: string;
   readonly dbDir: string;
@@ -43,6 +44,7 @@ interface FlakyDaemon {
 const launcherRuns: LauncherRun[] = [];
 const tempDirs: string[] = [];
 const servers: net.Server[] = [];
+const daemonSockets: net.Socket[] = [];
 
 function advisorServerSource(childPidFile: string): string {
   return `
@@ -51,6 +53,38 @@ fs.mkdirSync(${JSON.stringify(dirname(childPidFile))}, { recursive: true });
 fs.writeFileSync(${JSON.stringify(childPidFile)}, String(process.pid));
 process.on('SIGTERM', () => { process.exit(0); });
 process.on('SIGINT', () => { process.exit(0); });
+process.stdin.setEncoding('utf8');
+let buffer = '';
+let sawRequest = false;
+function handleFrame(line) {
+  if (!line.trim()) return;
+  sawRequest = true;
+  const request = JSON.parse(line);
+  if (request.method === 'initialize' && request.id !== undefined) {
+    process.stdout.write(JSON.stringify({
+      jsonrpc: '2.0',
+      id: request.id,
+      result: {
+        protocolVersion: '2025-06-18',
+        capabilities: {},
+        serverInfo: { name: 'respawned-advisor', version: 'fixture' },
+      },
+    }) + '\\n');
+  }
+}
+process.stdin.on('data', (chunk) => {
+  buffer += String(chunk);
+  let newlineIndex = buffer.indexOf('\\n');
+  while (newlineIndex !== -1) {
+    handleFrame(buffer.slice(0, newlineIndex));
+    buffer = buffer.slice(newlineIndex + 1);
+    newlineIndex = buffer.indexOf('\\n');
+  }
+});
+process.stdin.on('end', () => {
+  if (buffer.trim()) handleFrame(buffer);
+  if (sawRequest) process.exit(0);
+});
 setInterval(() => {}, 1000);
 `;
 }
@@ -88,14 +122,15 @@ function readLease(filePath) {
 
 function leaseHeldFromFile(filePath, legacyPath = null) {
   const lease = readLease(filePath);
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
   const startedAt = lease.startedAt ?? new Date(0).toISOString();
+  const socketPath = typeof lease.socketPath === 'string' && lease.socketPath.length > 0 ? lease.socketPath : null;
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
-    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath, socketPath };
+    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
     throw error;
   }
 }
@@ -132,6 +167,7 @@ function createWorkspace(): Workspace {
   return {
     root,
     launcherPath,
+    advisorServerPath: advisorServer,
     bridgePath,
     sessionProxyPath,
     dbDir,
@@ -280,7 +316,32 @@ async function startFlakyWarmDaemon(socketPath: string): Promise<FlakyDaemon> {
   return { server, attempts: () => attempts };
 }
 
+async function startHungDaemon(socketPath: string): Promise<FlakyDaemon> {
+  let attempts = 0;
+  const server = net.createServer((socket) => {
+    attempts += 1;
+    daemonSockets.push(socket);
+    socket.on('data', () => undefined);
+    socket.once('close', () => {
+      const index = daemonSockets.indexOf(socket);
+      if (index >= 0) daemonSockets.splice(index, 1);
+    });
+  });
+  await new Promise<void>((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(socketPath, () => {
+      server.off('error', reject);
+      resolve();
+    });
+  });
+  servers.push(server);
+  return { server, attempts: () => attempts };
+}
+
 async function cleanup(): Promise<void> {
+  while (daemonSockets.length > 0) {
+    daemonSockets.pop()?.destroy();
+  }
   while (servers.length > 0) {
     const server = servers.pop();
     if (!server) continue;
@@ -337,20 +398,107 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     expect(countProcessesMatching(workspace.launcherPath)).toBe(1);
   });
 
-  it('reclaims a stale launcher lease with no socket and leaves no extra launchers', async () => {
+  it('serializes two stale lease reclaimers and leaves one writer', async () => {
     const workspace = createWorkspace();
     const deadPid = await createDeadPid();
+    const staleTimestamp = new Date(Date.now() - 180_000).toISOString();
     writeFileSync(workspace.leaseFilePath, JSON.stringify({ pid: deadPid, startedAt: new Date().toISOString() }));
+    writeFileSync(workspace.ownerLeaseFilePath, JSON.stringify({
+      ownerPid: deadPid,
+      ppid: 1,
+      executablePath: process.execPath,
+      startedAtIso: staleTimestamp,
+      lastHeartbeatIso: staleTimestamp,
+      ttlMs: 1000,
+      canonicalDbDir: workspace.dbDir,
+    }));
 
-    const run = spawnLauncher(workspace);
-    await waitFor(() => /staleReclaimed: true/.test(run.stderr), 2000, 'stale reclaim log');
+    const first = spawnLauncher(workspace);
+    const second = spawnLauncher(workspace);
+    await waitFor(() => /staleReclaimed: true/.test(`${first.stderr}\n${second.stderr}`), 3000, 'stale reclaim log');
     await waitFor(() => readLeasePid(workspace) !== null && readLeasePid(workspace) !== deadPid, 2000, 'replacement lease');
     const ownerPid = readLeasePid(workspace);
 
     expect(ownerPid).not.toBe(deadPid);
-    expect(countProcessesMatching(workspace.launcherPath)).toBe(1);
+    await waitFor(() => countProcessesMatching(workspace.launcherPath) === 1, 5000, 'single stale-lease launcher');
+    expect(readOwnerLeasePid(workspace)).toBe(ownerPid);
+    expect(readChildPid(workspace)).toEqual(expect.any(Number));
     if (ownerPid) await terminatePidTree(ownerPid);
     await waitFor(() => countProcessesMatching(workspace.launcherPath) === 0, 3000, 'zero stale-lease launchers');
+  });
+
+  it('respawns after a lease holder socket fails the deep probe and serves the second client', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace);
+    await waitFor(() => readLeasePid(workspace) === first.child.pid, 2000, 'first launcher lease');
+    await waitFor(() => readOwnerLeasePid(workspace) === first.child.pid, 2000, 'first owner lease');
+    await waitFor(() => readChildPid(workspace) !== null, 2000, 'first daemon child');
+    const firstChildPid = readChildPid(workspace);
+    expect(firstChildPid).toEqual(expect.any(Number));
+    const daemon = await startHungDaemon(workspace.socketPath);
+
+    const second = spawnLauncher(workspace, {
+      SPECKIT_PROBE_TIMEOUT_MS: '50',
+      SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '50',
+      SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS: '5',
+    }, { interactive: true });
+    await waitFor(() => second.stderr.includes('failed 2 consecutive liveness probes'), 5000, 'dead socket probe failure');
+    await waitFor(() => second.stderr.includes('reaping recorded skill-advisor daemon pid'), 5000, 'respawn reap log');
+    await waitFor(() => readChildPid(workspace) !== null && readChildPid(workspace) !== firstChildPid, 5000, 'respawned daemon child');
+    expect(readLeasePid(workspace)).toBe(second.child.pid);
+    expect(readOwnerLeasePid(workspace)).toBe(second.child.pid);
+    second.child.stdin.write(`${JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'init-after-respawn',
+      method: 'initialize',
+      params: {
+        protocolVersion: '2025-06-18',
+        capabilities: {},
+        clientInfo: { name: 'advisor-respawn-test', version: '0' },
+      },
+    })}\n`);
+    second.child.stdin.end();
+
+    await waitFor(() => second.stdout.includes('respawned-advisor'), 5000, 'respawned advisor response');
+    const exit = await waitForExit(second.child, 5000);
+
+    expect(exit.code).toBe(0);
+    expect(daemon.attempts()).toBeGreaterThanOrEqual(2);
+    expect(processLive(firstChildPid)).toBe(false);
+    await waitFor(() => countProcessesMatching(workspace.launcherPath) === 0, 5000, 'zero respawn launchers after client close');
+  });
+
+  it('reaps a live wedged child from a stale launcher lease before replacement spawn', async () => {
+    const workspace = createWorkspace();
+    const deadPid = await createDeadPid();
+    const wedged = await createLivePid();
+    expect(wedged.pid).toEqual(expect.any(Number));
+    try {
+      writeFileSync(workspace.leaseFilePath, JSON.stringify({
+        pid: deadPid,
+        childPid: wedged.pid,
+        startedAt: new Date().toISOString(),
+        socketPath: workspace.socketPath,
+      }));
+      const daemon = await startHungDaemon(workspace.socketPath);
+
+      const run = spawnLauncher(workspace, {
+        SPECKIT_PROBE_TIMEOUT_MS: '50',
+        SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '50',
+        SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS: '5',
+      });
+      await waitFor(() => /staleReclaimed: true/.test(run.stderr), 2000, 'stale reclaim log');
+      await waitFor(() => !processLive(wedged.pid), 5000, 'wedged child reaped');
+      await waitFor(() => readChildPid(workspace) !== null && readChildPid(workspace) !== wedged.pid, 5000, 'replacement child');
+
+      expect(daemon.attempts()).toBeGreaterThanOrEqual(2);
+      expect(readLeasePid(workspace)).toBe(run.child.pid);
+      expect(readOwnerLeasePid(workspace)).toBe(run.child.pid);
+      expect(countProcessesMatching(workspace.launcherPath)).toBe(1);
+      expect(countProcessesMatching(workspace.advisorServerPath)).toBe(1);
+    } finally {
+      if (wedged.pid && processLive(wedged.pid)) await terminatePidTree(wedged.pid);
+    }
   });
 
   it('exits when the daemon child receives SIGTERM instead of recycling the child', async () => {

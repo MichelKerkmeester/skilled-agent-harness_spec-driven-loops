@@ -79,6 +79,8 @@ const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
 const BOOTSTRAP_LOCK_TIMEOUT_MS = 120000;
+const BOOTSTRAP_LOCK_STALE_MS = 300000;
+const RESPAWN_REAP_GRACE_MS = 7000;
 const SOURCE_DIRS = ['handlers', 'lib', 'schemas', 'tools'];
 const CHILD_ENV_ALLOWLIST = new Set([
   'PATH',
@@ -120,6 +122,7 @@ let ownerLeasePid = null;
 let ownerLeaseHeartbeatTimer = null;
 let ownerLeaseRequired = true;
 let launcherShutdownInProgress = false;
+let pendingBootstrapReapPid = null;
 
 function log(message) {
   process.stderr.write(`[mk-skill-advisor-launcher] ${message}\n`);
@@ -171,12 +174,15 @@ function loadSessionProxyModule() {
 const SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES = new Set([
   'advisor_recommend',
   'advisor_status',
-  'advisor_validate',
   'skill_graph_query',
   'skill_graph_status',
   'skill_graph_validate',
 ]);
 const SKILL_ADVISOR_UNSAFE_TOOL_NAMES = new Set([
+  // advisor_validate can persist outcome records when outcomeEvents is present, so it
+  // must not replay across reconnect. advisor_recommend stays replayable; one duplicate
+  // shadow delta is acceptable to keep routing available during backend recycle.
+  'advisor_validate',
   'advisor_rebuild',
   'skill_graph_scan',
   'skill_graph_propagate_enhances',
@@ -376,6 +382,43 @@ function processLiveness(pid) {
   }
 }
 
+async function waitForPidExit(pid, timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() <= deadline) {
+    if (processLiveness(pid) === 'dead') return true;
+    await sleep(100);
+  }
+  return processLiveness(pid) === 'dead';
+}
+
+async function reapOwnerBeforeRespawn(ownerPid) {
+  const liveness = processLiveness(ownerPid);
+  if (liveness === 'unknown-eperm') {
+    return { allowed: false, reason: 'owner-liveness-unknown-eperm' };
+  }
+  if (liveness === 'dead') {
+    return { allowed: true, reason: 'owner-already-dead' };
+  }
+
+  log(`confirmed-dead socket; reaping recorded skill-advisor daemon pid ${ownerPid} before respawn`);
+  try {
+    process.kill(ownerPid, 'SIGTERM');
+  } catch (error) {
+    if (error.code !== 'ESRCH') throw error;
+  }
+  const exitedAfterTerm = await waitForPidExit(ownerPid, RESPAWN_REAP_GRACE_MS);
+  if (!exitedAfterTerm) {
+    log(`skill-advisor daemon pid ${ownerPid} exceeded ${RESPAWN_REAP_GRACE_MS}ms reap grace; sending SIGKILL`);
+    try {
+      process.kill(ownerPid, 'SIGKILL');
+    } catch (error) {
+      if (error.code !== 'ESRCH') throw error;
+    }
+    await waitForPidExit(ownerPid, 1000);
+  }
+  return { allowed: true, reason: 'owner-reaped' };
+}
+
 function readParentPid(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return null;
   if (process.platform === 'linux') {
@@ -513,10 +556,115 @@ function clearOwnerLeaseFile() {
   }
 }
 
+function clearOwnerLeaseFileIfOwner(ownerPid) {
+  try {
+    const lease = readOwnerLeaseFile();
+    if (lease && lease.ownerPid === ownerPid
+        && readOwnerLeaseFile()?.ownerPid === ownerPid) {
+      fs.unlinkSync(ownerLeasePath());
+    }
+  } catch {
+    // Idempotent cleanup.
+  }
+}
+
 function reportLeaseHeld(leaseResult) {
   const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
   const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
   process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}\n`);
+}
+
+function writeLeaseHeldDiagnostic(leaseResult, suffix = '') {
+  const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+  const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
+  process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
+}
+
+function resolveRespawnTargetPid(leaseResult) {
+  const lease = readLeaseFile(leaseResult.legacyPath || leasePath());
+  if (Number.isInteger(lease?.childPid) && lease.childPid > 0) return lease.childPid;
+  return Number.isInteger(leaseResult.ownerPid) && leaseResult.ownerPid > 0 ? leaseResult.ownerPid : null;
+}
+
+function socketPathUsable(socketPath) {
+  return typeof socketPath === 'string'
+    && socketPath.length > 0
+    && (socketPath.startsWith('tcp://') || fs.existsSync(socketPath));
+}
+
+function scheduleBootstrapReap(pid) {
+  if (Number.isInteger(pid) && pid > 0) {
+    pendingBootstrapReapPid = pid;
+  }
+}
+
+async function respawnAfterDeadSocket(leaseResult, decision) {
+  if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED === '1') {
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-disabled)');
+    return { action: 'report', reason: 'respawn-disabled', socketPath: decision.socketPath };
+  }
+
+  const targetPid = resolveRespawnTargetPid(leaseResult);
+  if (!Number.isInteger(targetPid) || targetPid <= 0) {
+    log('confirmed-dead socket but no recorded skill-advisor daemon pid is available; respawn inert');
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-no-daemon-pid)');
+    return { action: 'report', reason: 'missing-daemon-pid', socketPath: decision.socketPath };
+  }
+
+  let bootstrapLockHeld = false;
+  try {
+    bootstrapLockHeld = await acquireBootstrapLock({ requireLock: true });
+    const currentLease = readLeaseFile(leaseResult.legacyPath || leasePath());
+    const currentTargetPid = Number.isInteger(currentLease?.childPid) && currentLease.childPid > 0
+      ? currentLease.childPid
+      : leaseResult.ownerPid;
+    if (Number.isInteger(currentTargetPid) && currentTargetPid > 0 && currentTargetPid !== targetPid) {
+      log('dead-socket respawn skipped; skill-advisor launcher lease changed while waiting for bootstrap lock');
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-superseded)');
+      return { action: 'report', reason: 'respawn-superseded', socketPath: decision.socketPath };
+    }
+
+    const previousOwner = readOwnerLeaseFile();
+    const reapResult = await reapOwnerBeforeRespawn(targetPid);
+    if (!reapResult.allowed) {
+      log(`dead-socket respawn skipped; ${reapResult.reason} for daemonPid=${targetPid}`);
+      writeLeaseHeldDiagnostic(leaseResult, ` (dead-socket-${reapResult.reason})`);
+      return { action: 'report', reason: reapResult.reason, socketPath: decision.socketPath };
+    }
+
+    if (previousOwner?.ownerPid && previousOwner.ownerPid !== process.pid) {
+      await waitForPidExit(previousOwner.ownerPid, 1000);
+      if (processLiveness(previousOwner.ownerPid) === 'dead') {
+        clearOwnerLeaseFileIfOwner(previousOwner.ownerPid);
+      }
+    }
+    clearOwnerLeaseFileIfOwner(targetPid);
+    if (ownsOwnerLeaseFile(process.pid)) {
+      clearOwnerLeaseFile();
+    }
+
+    const ownerLease = buildOwnerLease(process.pid);
+    if (!writeOwnerLeaseFileExclusive(ownerLease)) {
+      const holder = readOwnerLeaseFile();
+      log(`dead-socket respawn skipped; another launcher owns skill-advisor owner lease pid=${holder?.ownerPid ?? 'unknown'}`);
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-owned)');
+      return { action: 'report', reason: 'respawn-lock-held', socketPath: decision.socketPath };
+    }
+    ownerLeasePid = process.pid;
+    startOwnerLeaseHeartbeat(process.pid);
+
+    buildIfNeeded([]);
+    leaseStartedAt = new Date().toISOString();
+    writeLeaseFile();
+    const launched = launchServer();
+    return launched
+      ? { action: 'respawn', reason: 'spawned', socketPath: decision.socketPath }
+      : { action: 'report', reason: 'launch-skipped', socketPath: decision.socketPath };
+  } finally {
+    if (bootstrapLockHeld) {
+      fs.rmSync(lockDir, { recursive: true, force: true });
+    }
+  }
 }
 
 function leaseResultForOwnerLease(ownerLease) {
@@ -536,7 +684,7 @@ function leaseResultForOwnerLease(ownerLease) {
 
 async function bridgeOrReportLeaseHeld(leaseResult) {
   const { maybeBridgeLeaseHolder } = loadBridgeModule();
-  return maybeBridgeLeaseHolder({
+  const decision = await maybeBridgeLeaseHolder({
     serviceName: 'mk-skill-advisor',
     leaseResult,
     loggerPrefix: 'mk-skill-advisor-launcher',
@@ -544,6 +692,10 @@ async function bridgeOrReportLeaseHeld(leaseResult) {
     bridge: bridgeStdioThroughSessionProxy,
     legacyReport: reportLeaseHeld,
   });
+  if (decision && decision.action === 'respawn') {
+    return await respawnAfterDeadSocket(leaseResult, decision);
+  }
+  return decision;
 }
 
 async function checkStrictSingleWriter() {
@@ -563,6 +715,34 @@ async function checkStrictSingleWriter() {
   }
   if (launcherLease.staleReclaimable) {
     log('staleReclaimed: true');
+    const staleLease = readLeaseFile();
+    const staleChildPid = Number.isInteger(staleLease?.childPid) && staleLease.childPid > 0
+      ? staleLease.childPid
+      : null;
+    if (staleChildPid && processLiveness(staleChildPid) !== 'dead') {
+      const staleChildLeaseResult = {
+        held: true,
+        ownerPid: staleChildPid,
+        staleReclaimable: false,
+        startedAt: staleLease.startedAt ?? new Date(0).toISOString(),
+        legacyPath: null,
+        socketPath: typeof staleLease.socketPath === 'string' ? staleLease.socketPath : null,
+      };
+      if (socketPathUsable(staleChildLeaseResult.socketPath)) {
+        const decision = await bridgeOrReportLeaseHeld(staleChildLeaseResult);
+        if (decision?.action === 'bridge' || decision?.action === 'respawn') {
+          return true;
+        }
+        if (decision?.reason !== 'no-bridge-socket') {
+          clearOwnerLeaseFile();
+          return true;
+        }
+      }
+      scheduleBootstrapReap(staleChildPid);
+      log(`stale launcher lease recorded live childPid=${staleChildPid}; deferring reap until bootstrap lock is held`);
+    } else if (staleChildPid) {
+      scheduleBootstrapReap(staleChildPid);
+    }
   }
 
   try {
@@ -580,7 +760,7 @@ async function checkStrictSingleWriter() {
     }
   } catch (error) {
     if (error.code !== 'MODULE_NOT_FOUND') {
-      debug(`lease check failed: ${error.message}`);
+      log(`daemon lease check failed: ${error.message}`);
     }
   }
 
@@ -686,12 +866,16 @@ const hfControl = mss ? mss.createModelServerControl({
   opencodeDir,
   dbDir: () => systemSpecKitDbDir,
   getLauncherShutdownInProgress: () => launcherShutdownInProgress,
-  onRssBreach: () => {
-    hfControl.clearTimers();
-    const pid = hfControl.getPid();
-    if (pid) hfControl.reapProcessTree(pid);
-    void hfControl.stopDemandListener();
-    writeSharedModelServerPid(null);
+  onRssBreach: (cfg = {}) => {
+    void (async () => {
+      hfControl.clearTimers();
+      await hfControl.stopDemandListener();
+      await shutdownModelServerRoot('RSS ceiling sustained', cfg.graceMs);
+    })().catch((error) => {
+      log(`model-server RSS cleanup failed: ${error.message}`);
+      debug(error.stack || error.message);
+      writeSharedModelServerPid(null);
+    });
   },
   bridge: loadBridgeModule(),
   writeModelServerPid: writeSharedModelServerPid,
@@ -720,15 +904,53 @@ function waitForChildExit(child, timeoutMs) {
   });
 }
 
+function signalModelServerRoot(pid, signal) {
+  const child = hfControl?.getChild?.();
+  if (child?.pid === pid && isChildRunning(child)) {
+    child.kill(signal);
+    return;
+  }
+  try {
+    process.kill(pid, signal);
+  } catch (error) {
+    if (error.code !== 'ESRCH') throw error;
+  }
+}
+
+async function shutdownModelServerRoot(reason, graceMs = RESPAWN_REAP_GRACE_MS) {
+  if (!hfControl) return;
+  const child = hfControl.getChild?.();
+  const pid = child?.pid ?? hfControl.getPid() ?? readSharedModelServerPid();
+  if (!Number.isInteger(pid) || pid <= 0) {
+    writeSharedModelServerPid(null);
+    return;
+  }
+
+  log(`${reason}; sending SIGTERM to hf-model-server pid ${pid}`);
+  signalModelServerRoot(pid, 'SIGTERM');
+  hfControl.reapProcessTree(pid);
+  const exitedAfterTerm = child?.pid === pid
+    ? await waitForChildExit(child, graceMs)
+    : await waitForPidExit(pid, graceMs);
+  if (!exitedAfterTerm && processLiveness(pid) !== 'dead') {
+    log(`hf-model-server pid ${pid} exceeded ${graceMs}ms grace; sending SIGKILL`);
+    signalModelServerRoot(pid, 'SIGKILL');
+    if (child?.pid === pid) {
+      await waitForChildExit(child, 1000);
+    } else {
+      await waitForPidExit(pid, 1000);
+    }
+  }
+  writeSharedModelServerPid(null);
+}
+
 async function shutdownModelServerForLauncherExit() {
   if (!isModelServerEnabled()) return;
   if (!hfControl) throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
   launcherShutdownInProgress = true;
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
-  const pid = hfControl.getPid();
-  if (pid) hfControl.reapProcessTree(pid);
-  writeSharedModelServerPid(null);
+  await shutdownModelServerRoot('launcher exiting');
 }
 
 function run(command, args, options = {}) {
@@ -826,23 +1048,36 @@ function buildIfNeeded(actions) {
   }
 }
 
-function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_TIMEOUT_MS) {
+function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_STALE_MS) {
   if (!exists(lockDir)) {
     return false;
   }
-  const ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
+  let ageMs;
+  try {
+    ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
+  } catch (error) {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  }
   if (ageMs <= staleMs) {
     return false;
   }
-  fs.rmSync(lockDir, { recursive: true, force: true });
-  log(`removed stale bootstrap lock at ${rel(lockDir)} (${Math.round(ageMs / 1000)}s old)`);
-  return true;
+  const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
+  try {
+    fs.renameSync(lockDir, staleClaim);
+    fs.rmSync(staleClaim, { recursive: true, force: true });
+    log(`reclaimed stale bootstrap lock at ${rel(lockDir)} (${Math.round(ageMs / 1000)}s old)`);
+    return true;
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'ENOTEMPTY') return false;
+    throw error;
+  }
 }
 
 async function acquireBootstrapLock(options = {}) {
   fs.mkdirSync(dbDir, { recursive: true });
   const deadline = Date.now() + (options.timeoutMs ?? BOOTSTRAP_LOCK_TIMEOUT_MS);
-  const staleMs = options.staleMs ?? BOOTSTRAP_LOCK_TIMEOUT_MS;
+  const staleMs = options.staleMs ?? BOOTSTRAP_LOCK_STALE_MS;
   const retrySleepMs = options.retrySleepMs ?? 1000;
   while (true) {
     try {
@@ -960,6 +1195,17 @@ async function main() {
 
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
+      if (Number.isInteger(pendingBootstrapReapPid) && pendingBootstrapReapPid > 0) {
+        // The bootstrap lock is held through replacement launch, so stale-child cleanup
+        // and spawn share one serialization point without a separate respawn lock.
+        const reapResult = await reapOwnerBeforeRespawn(pendingBootstrapReapPid);
+        if (!reapResult.allowed) {
+          log(`stale launcher lease reap skipped; ${reapResult.reason} for daemonPid=${pendingBootstrapReapPid}`);
+          clearOwnerLeaseFile();
+          return;
+        }
+        pendingBootstrapReapPid = null;
+      }
       buildIfNeeded(actions);
       writeState({
         command: 'mk-skill-advisor-launcher',
