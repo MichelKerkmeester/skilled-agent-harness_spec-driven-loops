@@ -8,17 +8,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 plan for envelope normalization + bridge allowlist"
-    next_safe_action: "Define the shared envelope shape and the bridge allowlist"
+    last_updated_at: "2026-06-11T03:34:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented plan and verified targeted checks"
+    next_safe_action: "No implementation action pending"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/warm-cli-fallback-envelope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-004-cli-fallback-envelope-and-bridge"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,14 +60,14 @@ Define one normalized warm-fallback envelope with reason codes (`skipped`, `fail
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -104,18 +106,18 @@ Surfaces and verification live in the spec Files-to-Change table and the tasks b
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Compare current envelope shapes across the three helpers and identify the superset of fields
-- [ ] Capture the code-index denylist posture as the allowlist pattern to mirror
+- [x] Compare current envelope shapes across the three helpers and identify the field superset
+- [x] Capture the code-index denylist posture as the allowlist pattern to mirror
 
 ### Phase 2: Core
-- [ ] Define the normalized envelope + reason codes
-- [ ] Wire all three hook helpers to emit it additively (keep existing fields)
-- [ ] Add the prompt-time allowlist to the spec-memory plugin bridge
+- [x] Define the normalized envelope + reason codes
+- [x] Wire all three hook helpers to emit it additively (keep existing fields)
+- [x] Add the prompt-time allowlist to the spec-memory plugin bridge
 
 ### Phase 3: Verification
-- [ ] Envelope contract test asserts one shape across all three helpers
-- [ ] Existing consumer fields remain present (additive-only)
-- [ ] Bridge rejects any out-of-allowlist toolName
+- [x] Envelope contract test asserts one shape across all three helpers
+- [x] Existing consumer fields remain present (additive-only)
+- [x] Bridge rejects any out-of-allowlist toolName
 <!-- /ANCHOR:phases -->
 
 ---

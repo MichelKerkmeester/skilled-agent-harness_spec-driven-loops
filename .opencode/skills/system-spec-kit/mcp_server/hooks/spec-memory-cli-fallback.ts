@@ -9,6 +9,8 @@ import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { warmCliFallbackEnvelope, type WarmCliFallbackEnvelope } from './warm-cli-fallback-envelope.js';
+
 const SERVICE_NAME = 'mk-spec-memory';
 const DEFAULT_SOCKET_DIR = '/tmp/mk-spec-memory';
 const DEFAULT_PROBE_TIMEOUT_MS = 80;
@@ -28,14 +30,11 @@ interface BridgeModule {
   readonly probeDaemon: (socketPath: string, options?: { timeoutMs?: number; deepProbe?: boolean }) => Promise<{ status: string; reason?: string }>;
 }
 
-export interface WarmSpecMemoryCliResult {
-  readonly status: 'ok' | 'skipped' | 'fail_open';
+export interface WarmSpecMemoryCliResult extends WarmCliFallbackEnvelope {
   readonly payload: unknown | null;
   readonly stdout: string;
   readonly stderr: string;
-  readonly exitCode: number | null;
   readonly durationMs: number;
-  readonly reason?: string;
 }
 
 export interface WarmSpecMemoryCliOptions {
@@ -152,14 +151,13 @@ export async function runWarmSpecMemoryCliTool(
   const timeoutMs = Math.max(1, Math.trunc(options.timeoutMs));
   const paths = findRepoPaths();
   if (!paths) {
+    const envelope = warmCliFallbackEnvelope({ status: 'skipped', reason: 'repo_paths_unavailable', exitCode: null });
     return {
-      status: 'skipped',
+      ...envelope,
       payload: null,
       stdout: '',
       stderr: '',
-      exitCode: null,
       durationMs: Date.now() - startedAt,
-      reason: 'repo_paths_unavailable',
     };
   }
 
@@ -170,27 +168,25 @@ export async function runWarmSpecMemoryCliTool(
   const warm = await probeWarmDaemon(paths, probeTimeoutMs);
   const afterProbeMs = Date.now() - startedAt;
   if (!warm.warm) {
+    const envelope = warmCliFallbackEnvelope({ status: 'skipped', reason: warm.reason, exitCode: 75 });
     return {
-      status: 'skipped',
+      ...envelope,
       payload: null,
       stdout: '',
       stderr: '',
-      exitCode: warm.reason === 'socket_absent' ? 75 : null,
       durationMs: afterProbeMs,
-      reason: warm.reason,
     };
   }
 
   const remainingMs = Math.max(0, timeoutMs - afterProbeMs);
   if (remainingMs < MIN_CLI_TIMEOUT_MS) {
+    const envelope = warmCliFallbackEnvelope({ status: 'skipped', reason: 'budget_exhausted_before_cli', exitCode: 75 });
     return {
-      status: 'skipped',
+      ...envelope,
       payload: null,
       stdout: '',
       stderr: '',
-      exitCode: 75,
       durationMs: Date.now() - startedAt,
-      reason: 'budget_exhausted_before_cli',
     };
   }
 
@@ -259,14 +255,13 @@ export async function runWarmSpecMemoryCliTool(
       const status: WarmSpecMemoryCliResult['status'] = exitCode === 0 && payload
         ? 'ok'
         : 'fail_open';
+      const envelope = warmCliFallbackEnvelope({ status, reason, exitCode, timedOut });
       resolveResult({
-        status,
+        ...envelope,
         payload,
         stdout,
         stderr,
-        exitCode,
         durationMs: Date.now() - startedAt,
-        ...(reason ? { reason } : {}),
       });
     };
     const timer = setTimeout(() => {

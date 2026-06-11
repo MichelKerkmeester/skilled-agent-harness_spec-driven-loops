@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Planned scaffold for normalized warm-fallback envelopes across the three hook helpers and a spec-memory bridge allowlist; no implementation done yet."
+description: "Implemented normalized warm-fallback envelopes across the three hook helpers and a spec-memory bridge allowlist."
 trigger_phrases:
   - "004-cli-fallback-envelope-and-bridge summary"
 importance_tier: "normal"
@@ -8,17 +8,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded planned-state impl doc; no code written yet"
-    next_safe_action: "Implement the envelope normalization and bridge allowlist"
+    last_updated_at: "2026-06-11T03:34:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed envelope normalization and bridge allowlist"
+    next_safe_action: "No implementation action pending"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/warm-cli-fallback-envelope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts"
+      - ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-004-cli-fallback-envelope-and-bridge"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,9 +41,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-cli-fallback-envelope-and-bridge |
-| **Completed** | Not yet (planned) |
+| **Completed** | 2026-06-11 |
 | **Level** | 1 |
-| **Status** | Planned |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -46,12 +51,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This sub-phase is scaffold-only and planned. The list below is the intended outcome and the planned target files, not a record of shipped code.
-
-Planned deliverables and their target files:
-
-- A normalized warm-fallback envelope + reason codes (`skipped`, `fail_open`, `exitCode`, retryability) emitted by `mcp_server/hooks/spec-memory-cli-fallback.ts` (`:148-220`), `mcp_server/hooks/code-index-cli-fallback.ts` (`:151-220`), and `system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` (`:158-187`).
-- A prompt-time allowlist on `mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs` (`:206-230`), mirroring the code-index denylist at `mk-code-graph-bridge.mjs:18-25` and `:272-282`.
+- Added `mcp_server/hooks/warm-cli-fallback-envelope.ts` with the shared spec-kit envelope shape `{ status, reason, exitCode, retryable }`.
+- Updated `mcp_server/hooks/spec-memory-cli-fallback.ts` and `mcp_server/hooks/code-index-cli-fallback.ts` to emit the normalized envelope while retaining `payload`, `stdout`, `stderr`, and `durationMs`.
+- Updated `system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` to emit the same runtime envelope shape while preserving the existing `AdvisorHookResult` fields.
+- Added a prompt-time allowlist to `mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs` so only `brief` and `status` requests map to `session_resume` and `memory_health`; mutation tool names reject before warm probing.
+- Added vitest coverage for the envelope contract and bridge allowlist.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -59,7 +63,7 @@ Planned deliverables and their target files:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. When implemented, the normalized envelope will be defined once and emitted additively by all three helpers so existing consumer fields stay intact, and the spec-memory bridge will gate direct `toolName` calls through an explicit allowlist matching the plugin-called tools.
+The spec-kit hook helpers share one normalizer. The skill-advisor helper duplicates the small normalizer locally to preserve existing skill isolation. The bridge guard runs before `warmProbe`, so a direct prompt-time request for a mutation tool returns a structured `skipped` response with `route: prompt_safe_policy`, `retryable: false`, and no daemon interaction.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -69,7 +73,8 @@ Not yet delivered. When implemented, the normalized envelope will be defined onc
 
 | Decision | Why |
 |----------|-----|
-| Keep envelope changes additive | Assessment #8 guardrail: hook consumers may depend on current shapes |
+| Keep envelope changes additive | Hook consumers may depend on current shapes |
+| Duplicate the tiny advisor normalizer locally | Skill-advisor has explicit isolation rules against new system-spec-kit imports |
 | Use an allowlist (not a denylist) on the spec-memory bridge | The bridge only legitimately calls `brief/status`; an allowlist is the tighter default-deny posture |
 <!-- /ANCHOR:decisions -->
 
@@ -80,11 +85,15 @@ Not yet delivered. When implemented, the normalized envelope will be defined onc
 
 | Check | Result |
 |-------|--------|
-| Envelope contract test asserts one shape across all three helpers | Pending |
-| Existing consumer fields remain present (additive-only) | Pending |
-| Spec-memory bridge rejects out-of-allowlist toolName | Pending |
-
-Planned verification commands (run when implemented): envelope/reason-code contract test green via `npm --prefix .opencode/skills/system-spec-kit/mcp_server test`; bridge allowlist-rejection asserted with a `vitest` case proving an out-of-allowlist `toolName` is refused.
+| `npm run test:core --workspace=@spec-kit/mcp-server -- mcp_server/tests/warm-cli-fallback-envelope.vitest.ts mcp_server/tests/spec-memory-bridge-allowlist.vitest.ts` | Passed: 2 files, 4 tests |
+| `npm run test -- tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts` | Passed: 1 file, 1 test |
+| `npm run typecheck --workspace=@spec-kit/mcp-server` | Passed |
+| `npm run typecheck` in `system-skill-advisor/mcp_server` | Passed |
+| `npm run build --workspace=@spec-kit/mcp-server` | Passed |
+| `npm run build` in `system-skill-advisor/mcp_server` | Passed |
+| Existing spec-kit plugin bridge suite plus new tests | Passed: 3 files, 15 passed, 1 skipped |
+| Existing advisor hook/bridge suites excluding settings parity | Passed: 5 files, 30 tests |
+| Comment-hygiene checker with `python3` on all modified code/test files | Passed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,7 +101,7 @@ Planned verification commands (run when implemented): envelope/reason-code contr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. This document is a planned scaffold; all verification rows are pending until the sub-phase is implemented.
+1. `tests/hooks/settings-driven-invocation-parity.vitest.ts` is an out-of-scope existing environment-parity suite failure in this checkout: `SETTINGS.hooks` is undefined, causing 35 assertions to fail. Runtime settings and command configuration are outside this sub-phase's allowed write paths.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -11,17 +11,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 child from assessment rows 8, 9"
-    next_safe_action: "Plan the normalized envelope shape and bridge allowlist"
+    last_updated_at: "2026-06-11T03:34:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented normalized fallback envelopes and bridge allowlist"
+    next_safe_action: "No implementation action pending"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/warm-cli-fallback-envelope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts"
+      - ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-004-cli-fallback-envelope-and-bridge"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +51,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -134,8 +139,8 @@ Normalize the warm-fallback result envelope and reason codes (`skipped`, `fail_o
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the normalized envelope be defined in a shared module imported by all three helpers, or replicated per helper for ownership isolation?
-- Should the spec-memory allowlist be a static set or driven from the bridge's declared plugin entrypoints?
+- Answered: spec-kit hook helpers share `warm-cli-fallback-envelope.ts`; skill-advisor keeps a local duplicate to preserve skill isolation.
+- Answered: the spec-memory bridge uses a static prompt-time allowlist for the two plugin routes, `brief` and `status`, mapping to `session_resume` and `memory_health`.
 <!-- /ANCHOR:questions -->
 
 ---

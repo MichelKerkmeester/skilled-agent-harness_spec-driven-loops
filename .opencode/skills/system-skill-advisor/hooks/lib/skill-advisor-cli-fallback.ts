@@ -49,6 +49,22 @@ interface CliRecommendData {
   readonly warnings?: unknown;
 }
 
+export type WarmSkillAdvisorCliFallbackStatus = 'ok' | 'skipped' | 'fail_open';
+
+export interface WarmSkillAdvisorCliFallbackEnvelope {
+  readonly status: WarmSkillAdvisorCliFallbackStatus;
+  readonly reason: string;
+  readonly exitCode: number | null;
+  readonly retryable: boolean;
+}
+
+interface WarmSkillAdvisorCliFallbackEnvelopeInput {
+  readonly status: WarmSkillAdvisorCliFallbackStatus;
+  readonly reason?: string | null;
+  readonly exitCode?: number | null;
+  readonly timedOut?: boolean;
+}
+
 export interface SkillAdvisorCliFallbackOptions {
   readonly workspaceRoot: string;
   readonly runtime: AdvisorRuntime;
@@ -71,8 +87,49 @@ const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
 const MAX_STDOUT_BYTES = 1024 * 1024;
 const require = createRequire(import.meta.url);
 
+const RETRYABLE_REASONS = new Set([
+  'bad_json_response',
+  'cli_fallback_timed_out',
+  'cli_warm_socket_missing',
+  'warm_daemon_unavailable',
+]);
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function normalizeSkillAdvisorCliFallbackReason(reason: string | null | undefined, exitCode: number | null, status: WarmSkillAdvisorCliFallbackStatus): string {
+  const trimmed = typeof reason === 'string' ? reason.trim() : '';
+  if (trimmed) {
+    return trimmed
+      .replace(/^CLI_RETRYABLE_UNAVAILABLE\s+exit\s+75:\s*/i, '')
+      .replace(/^CLI_/i, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '') || 'unknown';
+  }
+  if (status === 'ok') {
+    return 'ok';
+  }
+  return exitCode === null ? 'exit_unknown' : `exit_${exitCode}`;
+}
+
+export function skillAdvisorCliFallbackEnvelope(input: WarmSkillAdvisorCliFallbackEnvelopeInput): WarmSkillAdvisorCliFallbackEnvelope {
+  const exitCode = input.exitCode ?? null;
+  const reason = normalizeSkillAdvisorCliFallbackReason(input.reason, exitCode, input.status);
+  return {
+    status: input.status,
+    reason,
+    exitCode,
+    retryable: input.status !== 'ok' && (input.timedOut === true || exitCode === EXIT_RETRYABLE || RETRYABLE_REASONS.has(reason)),
+  };
+}
+
+function withCliFallbackEnvelope(
+  result: AdvisorHookResult,
+  envelope: WarmSkillAdvisorCliFallbackEnvelope,
+): AdvisorHookResult & WarmSkillAdvisorCliFallbackEnvelope {
+  return { ...result, ...envelope };
 }
 
 function positiveIntFromEnv(value: string | undefined, fallback: number): number {
@@ -318,7 +375,7 @@ function cacheHitFrom(data: CliRecommendData): boolean {
   return isRecord(data.cache) && data.cache.hit === true;
 }
 
-function resultStatus(freshness: AdvisorHookFreshness, recommendations: readonly AdvisorRecommendation[]): AdvisorHookStatus {
+function resultStatus(freshness: AdvisorHookFreshness, recommendations: readonly AdvisorRecommendation[]): WarmSkillAdvisorCliFallbackStatus {
   if ((freshness === 'live' || freshness === 'stale') && recommendations.length > 0) {
     return 'ok';
   }
@@ -334,9 +391,12 @@ function failOpenResult(args: {
   readonly runtime: AdvisorRuntime;
   readonly tokenCap: number;
   readonly errorMessage: string;
+  readonly reason: string;
+  readonly exitCode: number | null;
+  readonly timedOut?: boolean;
   readonly subprocessInvoked: boolean;
 }): AdvisorHookResult {
-  return {
+  return withCliFallbackEnvelope({
     status: 'fail_open',
     freshness: 'unavailable',
     brief: null,
@@ -356,7 +416,12 @@ function failOpenResult(args: {
     },
     generatedAt: new Date().toISOString(),
     sharedPayload: null,
-  };
+  }, skillAdvisorCliFallbackEnvelope({
+    status: 'fail_open',
+    reason: args.reason,
+    exitCode: args.exitCode,
+    timedOut: args.timedOut,
+  }));
 }
 
 function resultFromCliData(args: {
@@ -377,7 +442,10 @@ function resultFromCliData(args: {
   const warnings = Array.isArray(args.data.warnings)
     ? args.data.warnings.filter((value): value is string => typeof value === 'string')
     : [];
-  return {
+  const reason = status === 'ok'
+    ? 'ok'
+    : (freshness === 'absent' ? 'advisor_absent' : 'advisor_unavailable');
+  return withCliFallbackEnvelope({
     status,
     freshness,
     brief: null,
@@ -399,7 +467,7 @@ function resultFromCliData(args: {
     },
     generatedAt: new Date().toISOString(),
     sharedPayload: null,
-  };
+  }, skillAdvisorCliFallbackEnvelope({ status, reason, exitCode: 0 }));
 }
 
 function parseCliPayload(stdout: string): CliRecommendData | null {
@@ -432,6 +500,8 @@ export async function buildSkillAdvisorBriefFromCli(
       runtime: options.runtime,
       tokenCap,
       errorMessage: 'CLI_RETRYABLE_UNAVAILABLE exit 75: CLI assets missing',
+      reason: 'repo_paths_unavailable',
+      exitCode: null,
       subprocessInvoked: false,
     });
   }
@@ -444,6 +514,8 @@ export async function buildSkillAdvisorBriefFromCli(
       runtime: options.runtime,
       tokenCap,
       errorMessage: `CLI_RETRYABLE_UNAVAILABLE exit 75: ${probe.reason ?? 'warm daemon unavailable'}`,
+      reason: probe.reason ?? 'warm_daemon_unavailable',
+      exitCode: EXIT_RETRYABLE,
       subprocessInvoked: false,
     });
   }
@@ -457,6 +529,9 @@ export async function buildSkillAdvisorBriefFromCli(
       runtime: options.runtime,
       tokenCap,
       errorMessage: 'CLI_RETRYABLE_UNAVAILABLE exit 75: CLI fallback timed out',
+      reason: 'timeout',
+      exitCode: EXIT_RETRYABLE,
+      timedOut: true,
       subprocessInvoked: true,
     });
   }
@@ -467,6 +542,8 @@ export async function buildSkillAdvisorBriefFromCli(
       runtime: options.runtime,
       tokenCap,
       errorMessage: `CLI_RETRYABLE_UNAVAILABLE exit 75: ${cli.spawnError}`,
+      reason: cli.spawnError,
+      exitCode: EXIT_RETRYABLE,
       subprocessInvoked: true,
     });
   }
@@ -479,6 +556,8 @@ export async function buildSkillAdvisorBriefFromCli(
       errorMessage: cli.exitCode === EXIT_RETRYABLE
         ? 'CLI_RETRYABLE_EXIT_75'
         : `CLI_EXIT_${cli.exitCode ?? 'SIGNAL'}`,
+      reason: cli.exitCode === EXIT_RETRYABLE ? 'exit_75' : `exit_${cli.exitCode ?? 'signal'}`,
+      exitCode: cli.exitCode,
       subprocessInvoked: true,
     });
   }
@@ -490,6 +569,8 @@ export async function buildSkillAdvisorBriefFromCli(
       runtime: options.runtime,
       tokenCap,
       errorMessage: 'CLI_RETRYABLE_UNAVAILABLE exit 75: bad JSON response',
+      reason: 'bad_json_response',
+      exitCode: EXIT_RETRYABLE,
       subprocessInvoked: true,
     });
   }

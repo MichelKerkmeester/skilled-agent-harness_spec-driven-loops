@@ -8,17 +8,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 task list (planned, unchecked)"
-    next_safe_action: "Begin Phase 1 envelope comparison tasks"
+    last_updated_at: "2026-06-11T03:34:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed implementation and verification tasks"
+    next_safe_action: "No implementation action pending"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/warm-cli-fallback-envelope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/warm-cli-fallback-envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-bridge-allowlist.vitest.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-004-cli-fallback-envelope-and-bridge"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,8 +51,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Compare current envelope shapes across `spec-memory-cli-fallback.ts:148-220`, `code-index-cli-fallback.ts:151-220`, `skill-advisor-cli-fallback.ts:158-187`; identify the field superset.
-- [ ] T002 Capture the code-index denylist posture (`mk-code-graph-bridge.mjs:18-25`, `:272-282`) as the allowlist pattern.
+- [x] T001 Compare current envelope shapes across `spec-memory-cli-fallback.ts:148-220`, `code-index-cli-fallback.ts:151-220`, `skill-advisor-cli-fallback.ts:158-187`; identify the field superset.
+- [x] T002 Capture the code-index denylist posture (`mk-code-graph-bridge.mjs:18-25`, `:272-282`) as the allowlist pattern.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +60,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Define the normalized warm-fallback envelope + reason codes (`skipped`, `fail_open`, `exitCode`, retryability).
-- [ ] T004 [P] Wire the three hook helpers to emit the normalized envelope additively (keep existing fields).
-- [ ] T005 Add the prompt-time allowlist to `mk-spec-memory-bridge.mjs:206-230`.
+- [x] T003 Define the normalized warm-fallback envelope + reason codes (`skipped`, `fail_open`, `exitCode`, retryability).
+- [x] T004 [P] Wire the three hook helpers to emit the normalized envelope additively (keep existing fields).
+- [x] T005 Add the prompt-time allowlist to `mk-spec-memory-bridge.mjs:206-230`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,9 +70,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Verify the envelope contract test asserts one shape across all three helpers.
-- [ ] T007 Verify existing consumer fields remain present (additive-only).
-- [ ] T008 Verify the spec-memory bridge rejects any out-of-allowlist toolName.
+- [x] T006 Verify the envelope contract test asserts one shape across all three helpers.
+- [x] T007 Verify existing consumer fields remain present (additive-only).
+- [x] T008 Verify the spec-memory bridge rejects any out-of-allowlist toolName.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

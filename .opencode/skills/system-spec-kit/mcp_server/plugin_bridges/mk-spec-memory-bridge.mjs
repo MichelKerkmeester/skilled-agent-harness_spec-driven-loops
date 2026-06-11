@@ -15,6 +15,8 @@ const CLI_SHIM = fileURLToPath(new URL('../../../../bin/spec-memory.cjs', import
 const BRIDGE_PATH = fileURLToPath(new URL('../../../../bin/lib/launcher-ipc-bridge.cjs', import.meta.url));
 const DB_DIR = fileURLToPath(new URL('../database', import.meta.url));
 const REPO_ROOT = fileURLToPath(new URL('../../../../..', import.meta.url));
+const PROMPT_SAFE_REQUESTS = new Set(['brief', 'status']);
+const PROMPT_SAFE_TOOLS = new Set(['session_resume', 'memory_health']);
 
 function response(args) {
   return {
@@ -216,6 +218,23 @@ async function runCli(input) {
   const startedAt = Date.now();
   const timeoutMs = positiveInt(Number(input.timeoutMs), DEFAULT_TIMEOUT_MS);
   const probeTimeoutMs = Math.min(positiveInt(Number(input.probeTimeoutMs), DEFAULT_PROBE_TIMEOUT_MS), timeoutMs);
+  const request = typeof input.request === 'string' && input.request.trim()
+    ? input.request.trim()
+    : 'brief';
+  const toolName = typeof input.toolName === 'string' && input.toolName.trim()
+    ? input.toolName.trim()
+    : (request === 'status' ? 'memory_health' : 'session_resume');
+  const promptSafePolicy = promptSafeSpecMemoryBridgePolicy({ request, toolName });
+  if (!promptSafePolicy.allowed) {
+    return skipped(promptSafePolicy.reason, {
+      route: 'prompt_safe_policy',
+      request,
+      toolName,
+      retryable: false,
+      durationMs: Date.now() - startedAt,
+    });
+  }
+
   const probe = await warmProbe(probeTimeoutMs);
   const afterProbeMs = Date.now() - startedAt;
   if (!probe.warm) {
@@ -229,9 +248,6 @@ async function runCli(input) {
   }
 
   const remainingMs = Math.max(1, timeoutMs - afterProbeMs);
-  const toolName = typeof input.toolName === 'string' && input.toolName.trim()
-    ? input.toolName.trim()
-    : (input.request === 'status' ? 'memory_health' : 'session_resume');
   const args = isRecord(input.args) ? { ...input.args } : {};
   if (toolName === 'session_resume') {
     args.minimal = args.minimal !== false;
@@ -328,6 +344,18 @@ async function runCli(input) {
   });
 }
 
+function promptSafeSpecMemoryBridgePolicy(input) {
+  const request = typeof input?.request === 'string' ? input.request.trim() : '';
+  const toolName = typeof input?.toolName === 'string' ? input.toolName.trim() : '';
+  if (!PROMPT_SAFE_REQUESTS.has(request)) {
+    return { allowed: false, reason: 'prompt_request_not_allowed' };
+  }
+  if (!PROMPT_SAFE_TOOLS.has(toolName)) {
+    return { allowed: false, reason: 'prompt_tool_not_allowed' };
+  }
+  return { allowed: true, reason: 'prompt_safe' };
+}
+
 async function main() {
   const input = parseInput(await readStdin());
   return runCli(input);
@@ -343,4 +371,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     });
 }
 
-export { classifyCliFailure, renderContinuityBrief, response, runCli, warmProbe };
+export { classifyCliFailure, promptSafeSpecMemoryBridgePolicy, renderContinuityBrief, response, runCli, warmProbe };
