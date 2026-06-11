@@ -12,11 +12,12 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-10T14:25:52.884Z",
-  "specId": "028",
+  "lastUpdated": "2026-06-11T02:48:52.876Z",
+  "specId": "011",
   "folderSlug": "command-presentation-workflow-separation",
   "parentChain": [
-    "system-spec-kit"
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

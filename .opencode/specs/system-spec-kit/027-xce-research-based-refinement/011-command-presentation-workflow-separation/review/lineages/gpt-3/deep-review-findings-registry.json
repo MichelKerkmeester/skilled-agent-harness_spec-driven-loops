@@ -1,0 +1,70 @@
+{
+  "sessionId": "fanout-gpt-3-1781143316976-btnnag",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Root phase parent still reports planned/future-only state after all family children completed",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md",
+      "line": 10,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:10",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:116-121",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/graph-metadata.json:37-40",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/spec.md:10",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/spec.md:10",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/spec.md:10",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/spec.md:10"
+      ],
+      "finding_class": "spec-code-drift",
+      "content_hash": "sha256:f001-root-parent-stale-planned-state",
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "claimAdjudication": {
+        "passed": true,
+        "confidence": 0.91,
+        "downgradeTrigger": "Downgrade to P2 if the parent is explicitly documented as immutable scaffold history and a separate aggregate status surface is generated elsewhere."
+      }
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.78,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

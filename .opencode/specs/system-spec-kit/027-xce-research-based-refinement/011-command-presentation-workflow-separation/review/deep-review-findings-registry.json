@@ -1,0 +1,117 @@
+{
+  "mergedFrom": [
+    "gpt-1",
+    "gpt-2",
+    "gpt-3"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Root phase parent still reports planned state after all family parents completed",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md",
+      "line": 56,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:56",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:118-121",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/spec.md:54-57",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/spec.md:54-57",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/spec.md:54-57",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/spec.md:54-57"
+      ],
+      "content_hash": "sha256:gpt1-f001",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "gpt-1",
+        "gpt-2",
+        "gpt-3"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Root contract promises workflow-asset separation but memory family has no workflow YAML",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md",
+      "line": 75,
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:75",
+        ".opencode/commands/memory/save.md:15",
+        ".opencode/commands/memory/search.md:15",
+        ".opencode/commands/memory/manage.md:15",
+        ".opencode/commands/memory/learn.md:15",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire/implementation-summary.md:56-63",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire/implementation-summary.md:101-104"
+      ],
+      "content_hash": "sha256:gpt1-f002",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "gpt-1"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Phase transition instructions point at stale `/spec_kit:resume` command spelling",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md",
+      "line": 128,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:128",
+        ".opencode/commands/speckit/resume.md:7-9",
+        ".opencode/commands/speckit/resume.md:17-23"
+      ],
+      "content_hash": "sha256:gpt1-f003",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "gpt-1"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 0
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 3,
+  "activeP2": 0
+}

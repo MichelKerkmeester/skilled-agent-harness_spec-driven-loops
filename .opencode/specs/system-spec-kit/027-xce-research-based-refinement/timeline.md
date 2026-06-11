@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-11T12:31:13Z"
+    last_updated_at: "2026-06-11T13:47:56Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-11T12:31:13Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-11T13:47:56Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit`
+> **Most recent live spec folder:** `011-command-presentation-workflow-separation/005-deep-commands`
 > **Oldest live spec folder:** `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit`
-> **Counts:** 132 live spec folders · 0 archived (`z_archive/`).
+> **Counts:** 133 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
- 2. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
- 3. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
- 4. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
- 5. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt
- 6. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git
- 7. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc
- 8. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review
- 9. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code
-10. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode
-11. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up
-12. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools
-13. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review
-14. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research
-15. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime
+ 1. 2026-06-11 15:47  011-command-presentation-workflow-separation/005-deep-commands
+ 2. 2026-06-11 15:47  011-command-presentation-workflow-separation
+ 3. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
+ 4. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
+ 5. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
+ 6. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
+ 7. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt
+ 8. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git
+ 9. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc
+10. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review
+11. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code
+12. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode
+13. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up
+14. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools
+15. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review
 ```
 
 ---
@@ -73,20 +73,20 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-11 13:48 | 2026-06-10 | `000-release-cleanup/` |
-| 2 | 2026-06-11 13:40 | 2026-06-11 | `023-idempotency-flag-on-correctness/` |
-| 3 | 2026-06-11 12:20 | 2026-06-11 | `022-provenance-injection/` |
-| 4 | 2026-06-11 10:37 | 2026-06-11 | `021-hybrid-search-scope-then-limit/` |
-| 5 | 2026-06-11 10:32 | 2026-06-11 | `020-vector-resilience-durability/` |
-| 6 | 2026-06-11 10:28 | 2025-12-23 | `019-skill-advisor-cross-session-reconnect/` |
-| 7 | 2026-06-11 09:33 | 2026-06-11 | `017-bm25-warmup-churn-reduction/` |
-| 8 | 2026-06-11 07:51 | 2026-06-10 | `018-xce-feature-adoption-advisor-codegraph/` |
-| 9 | 2026-06-11 07:05 | 2026-06-10 | `014-packed-bm25-field-weights/` |
-| 10 | 2026-06-11 06:37 | 2026-06-10 | `013-vector-read-path-resilience/` |
-| 11 | 2026-06-11 06:30 | 2026-06-10 | `012-causal-traversal-bfs/` |
-| 12 | 2026-06-11 04:55 | 2026-06-10 | `016-cli-tooling-ux/` |
-| 13 | 2026-06-11 04:51 | 2026-06-10 | `015-storage-adapter-ports/` |
-| 14 | 2026-06-11 04:23 | 2026-06-10 | `011-command-presentation-workflow-separation/` |
+| 1 | 2026-06-11 15:47 | 2026-06-10 | `011-command-presentation-workflow-separation/` |
+| 2 | 2026-06-11 13:48 | 2026-06-10 | `000-release-cleanup/` |
+| 3 | 2026-06-11 13:40 | 2026-06-11 | `023-idempotency-flag-on-correctness/` |
+| 4 | 2026-06-11 12:20 | 2026-06-11 | `022-provenance-injection/` |
+| 5 | 2026-06-11 10:37 | 2026-06-11 | `021-hybrid-search-scope-then-limit/` |
+| 6 | 2026-06-11 10:32 | 2026-06-11 | `020-vector-resilience-durability/` |
+| 7 | 2026-06-11 10:28 | 2025-12-23 | `019-skill-advisor-cross-session-reconnect/` |
+| 8 | 2026-06-11 09:33 | 2026-06-11 | `017-bm25-warmup-churn-reduction/` |
+| 9 | 2026-06-11 07:51 | 2026-06-10 | `018-xce-feature-adoption-advisor-codegraph/` |
+| 10 | 2026-06-11 07:05 | 2026-06-10 | `014-packed-bm25-field-weights/` |
+| 11 | 2026-06-11 06:37 | 2026-06-10 | `013-vector-read-path-resilience/` |
+| 12 | 2026-06-11 06:30 | 2026-06-10 | `012-causal-traversal-bfs/` |
+| 13 | 2026-06-11 04:55 | 2026-06-10 | `016-cli-tooling-ux/` |
+| 14 | 2026-06-11 04:51 | 2026-06-10 | `015-storage-adapter-ports/` |
 | 15 | 2026-06-10 16:13 | 2026-06-02 | `001-peck-teachings-adoption/` |
 | 16 | 2026-06-10 16:12 | 2026-06-08 | `008-openltm-retrieval-observability/` |
 | 17 | 2026-06-10 14:50 | 2026-06-08 | `009-openltm-continuity-resilience/` |
@@ -110,6 +110,8 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
+2026-06-11 15:47  born:2026-06-11  impl  011-command-presentation-workflow-separation/005-deep-commands
+2026-06-11 15:47  born:2026-06-10        011-command-presentation-workflow-separation
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
@@ -157,7 +159,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-11 04:55  born:2026-06-10  impl  016-cli-tooling-ux/003-cli-reference-and-skill-docs
 2026-06-11 04:55  born:2026-06-10        016-cli-tooling-ux
 2026-06-11 04:51  born:2026-06-10  impl  015-storage-adapter-ports
-2026-06-11 04:23  born:2026-06-10        011-command-presentation-workflow-separation
 2026-06-11 03:37  born:2026-06-10  impl  016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge
 2026-06-11 03:15  born:2026-06-10  impl  016-cli-tooling-ux/002-cli-help-aliases-errors
 2026-06-11 03:01  born:2026-06-10  impl  016-cli-tooling-ux/001-cli-freshness-and-smoke
@@ -267,6 +268,8 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
+| `011-command-presentation-workflow-separation/005-deep-commands` | impl | (none) |
+| `011-command-presentation-workflow-separation` |  | [changelog-011-command-presentation-workflow-separation-root.md](./changelog/011-command-presentation-workflow-separation/changelog-011-command-presentation-workflow-separation-root.md) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` | impl | (none) |
@@ -314,7 +317,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `016-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | (none) |
 | `016-cli-tooling-ux` |  | [changelog-016-cli-tooling-ux-root.md](./changelog/016-cli-tooling-ux/changelog-016-cli-tooling-ux-root.md) |
 | `015-storage-adapter-ports` | impl | [changelog-015-storage-adapter-ports.md](./changelog/015-storage-adapter-ports/changelog-015-storage-adapter-ports.md) |
-| `011-command-presentation-workflow-separation` |  | [changelog-011-command-presentation-workflow-separation-root.md](./changelog/011-command-presentation-workflow-separation/changelog-011-command-presentation-workflow-separation-root.md) |
 | `016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | (none) |
 | `016-cli-tooling-ux/002-cli-help-aliases-errors` | impl | (none) |
 | `016-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | (none) |
