@@ -8,19 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/002-cli-help-aliases-errors"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 plan for help, aliases, and error hints"
-    next_safe_action: "Implement per-command help and the collision-tested alias map"
+    last_updated_at: "2026-06-11T01:10:42Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed planned CLI help, alias, and error-hint work"
+    next_safe_action: "Sub-phase complete; continue with sibling CLI tooling UX phases as needed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-002-cli-help-aliases-errors"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The existing skill-advisor per-command help shape was mirrored into spec-memory and code-index."
+      - "Alias collision guardrails are covered by focused unit tests for all three CLIs."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: CLI Per-Command Help, Aliases, and Errors
@@ -58,14 +63,14 @@ Copy the skill-advisor per-command help pattern into spec-memory and code-index,
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -106,18 +111,18 @@ Surfaces and verification live in the spec Files-to-Change table and the tasks b
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Capture the skill-advisor per-command help shape as the pattern to mirror
-- [ ] Enumerate current aliases for all three CLIs and identify gaps
+- [x] Capture the skill-advisor per-command help shape as the pattern to mirror
+- [x] Enumerate current aliases for all three CLIs and identify gaps
 
 ### Phase 2: Core
-- [ ] Add per-command help/schema to spec-memory and code-index
-- [ ] Declare a unified snake/kebab/camel alias map across all three
-- [ ] Add list-tools hint + closest-match suggestion to unknown-command errors
+- [x] Add per-command help/schema to spec-memory and code-index
+- [x] Declare a unified snake/kebab/camel alias map across all three
+- [x] Add list-tools hint + closest-match suggestion to unknown-command errors
 
 ### Phase 3: Verification
-- [ ] Per-command help prints offline for spec-memory and code-index
-- [ ] Alias collision test is green
-- [ ] Unknown-command error includes hint + nearest match
+- [x] Per-command help prints offline for spec-memory and code-index
+- [x] Alias collision test is green
+- [x] Unknown-command error includes hint + nearest match
 <!-- /ANCHOR:phases -->
 
 ---

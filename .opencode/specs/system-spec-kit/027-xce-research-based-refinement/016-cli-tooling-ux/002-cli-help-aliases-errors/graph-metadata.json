@@ -34,9 +34,11 @@
       "discoverability"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "mcp_server/spec-memory-cli.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
+      ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -190,7 +192,7 @@
     ],
     "causal_summary": "The three daemon CLI front-doors are inconsistent in discoverability and error recovery. skill-advisor already offers per-command schema help (`skill-advisor-cli.ts:661-674`), but spec-memory always calls the global `usageText()` (`spec-memory-cli.ts:750-755`) and code-index does the same (`code-index-cli.ts:898-903`), so a user must read the giant `list-tools` JSON to learn one command's required args. Command aliasing is uneven: spec-memory maps snake+kebab only (`spec-memory-cli.ts:222-228`), code-index the same (`code-index-cli.ts:241-247`), while skill-advisor adds camel aliases (`skill-advisor-cli-manifest.ts:142-151`). Unknown-command handling emits structured JSON errors in shared catch paths (spec `spec-memory-cli.ts:774-793`, code `code-index-cli.ts:926-945`, advisor `skill-advisor-cli.ts:1111-1130`) but gives no \"try list-tools\" hint and no closest-match suggestion, so a typoed command is slow to recover from.",
     "created_at": "2026-06-10T20:46:28.784Z",
-    "last_save_at": "2026-06-10T20:46:28.784Z",
+    "last_save_at": "2026-06-11T01:10:42Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -197,7 +197,33 @@ function readCliVersion(paths: RepoPaths): string {
   }
 }
 
-function usageText(): string {
+function toKebabCommand(name: string): string {
+  return name.replace(/_/g, '-');
+}
+
+function toCamelCommand(name: string): string {
+  return name.replace(/_([a-z0-9])/g, (_match, char: string) => char.toUpperCase());
+}
+
+function commandAliases(name: string): string[] {
+  return Array.from(new Set([name, toKebabCommand(name), toCamelCommand(name)]));
+}
+
+function usageText(command?: string): string {
+  const tool = command ? getToolDefinition(command) : null;
+  if (tool) {
+    return `code-index ${tool.name}
+
+Description:
+  ${tool.description}
+
+Aliases:
+  ${commandAliases(tool.name).join(', ')}
+
+Input schema:
+${JSON.stringify(tool.inputSchema, null, 2)}`;
+  }
+
   return `code-index - daemon-backed CLI for mk-code-index
 
 Usage:
@@ -241,8 +267,13 @@ function toolDefinitions(): readonly ToolDefinition[] {
 function commandMap(): Map<string, ToolDefinition> {
   const map = new Map<string, ToolDefinition>();
   for (const tool of toolDefinitions()) {
-    map.set(tool.name, tool);
-    map.set(tool.name.replace(/_/g, '-'), tool);
+    for (const alias of commandAliases(tool.name)) {
+      const existing = map.get(alias);
+      if (existing && existing.name !== tool.name) {
+        throw new CliProtocolError(`Command alias collision: ${alias} maps to ${existing.name} and ${tool.name}`);
+      }
+      map.set(alias, tool);
+    }
   }
   return map;
 }
@@ -548,7 +579,9 @@ function renderToolList(format: OutputFormat): string {
       tools: tools.map((tool) => ({
         name: tool.name,
         command: tool.name,
-        kebabCommand: tool.name.replace(/_/g, '-'),
+        kebabCommand: toKebabCommand(tool.name),
+        camelCommand: toCamelCommand(tool.name),
+        aliases: commandAliases(tool.name),
         description: tool.description,
         inputSchema: tool.inputSchema,
       })),
@@ -689,6 +722,56 @@ function exitCodeForError(error: unknown): number {
   if (isRetryableError(error)) return EXIT_RETRYABLE;
   if (error instanceof JsonRpcError && error.code === -32602) return EXIT_USAGE;
   return EXIT_RUNTIME;
+}
+
+function levenshteinDistance(left: string, right: string): number {
+  const previous = Array.from({ length: right.length + 1 }, (_value, index) => index);
+  const current = new Array<number>(right.length + 1);
+
+  for (let leftIndex = 1; leftIndex <= left.length; leftIndex += 1) {
+    current[0] = leftIndex;
+    for (let rightIndex = 1; rightIndex <= right.length; rightIndex += 1) {
+      const cost = left[leftIndex - 1] === right[rightIndex - 1] ? 0 : 1;
+      current[rightIndex] = Math.min(
+        current[rightIndex - 1] + 1,
+        previous[rightIndex] + 1,
+        previous[rightIndex - 1] + cost,
+      );
+    }
+    previous.splice(0, previous.length, ...current);
+  }
+
+  return previous[right.length];
+}
+
+function closestCommand(command: string): string | undefined {
+  const targets = new Map<string, string>([['list-tools', 'list-tools']]);
+  for (const tool of toolDefinitions()) {
+    for (const alias of commandAliases(tool.name)) {
+      targets.set(alias, tool.name);
+    }
+  }
+
+  let best: { readonly command: string; readonly distance: number } | null = null;
+  for (const [alias, canonical] of targets) {
+    const distance = levenshteinDistance(normalizeName(command), normalizeName(alias));
+    if (!best || distance < best.distance || (distance === best.distance && canonical < best.command)) {
+      best = { command: canonical, distance };
+    }
+  }
+
+  if (!best) return undefined;
+  const threshold = Math.max(2, Math.floor(normalizeName(command).length * 0.4));
+  return best.distance <= threshold ? best.command : undefined;
+}
+
+function unknownCommandContext(message: string): { readonly hint: string; readonly suggestion?: string } | null {
+  const match = message.match(/^Unknown command: (.+)$/);
+  if (!match) return null;
+  return {
+    hint: 'Try `list-tools` to see available commands.',
+    suggestion: closestCommand(match[1]),
+  };
 }
 
 function socketPathTooLong(socketPath: string): boolean {
@@ -899,7 +982,7 @@ export async function runCodeIndexCli(argv: string[], io: CliIo = { stdout: proc
   try {
     const parsed = parseCliArgs(argv);
     if (parsed.help) {
-      await writeLine(io.stdout, usageText());
+      await writeLine(io.stdout, usageText(parsed.command || undefined));
       return EXIT_SUCCESS;
     }
     if (parsed.version) {
@@ -926,10 +1009,13 @@ export async function runCodeIndexCli(argv: string[], io: CliIo = { stdout: proc
   } catch (error: unknown) {
     const exitCode = exitCodeForError(error);
     const message = error instanceof Error ? error.message : String(error);
+    const unknownCommand = unknownCommandContext(message);
     const payload = {
       status: 'error',
       error: message,
       exitCode,
+      ...(unknownCommand ? { hint: unknownCommand.hint } : {}),
+      ...(unknownCommand?.suggestion ? { suggestion: unknownCommand.suggestion } : {}),
     };
     const format = (() => {
       try {
@@ -941,7 +1027,11 @@ export async function runCodeIndexCli(argv: string[], io: CliIo = { stdout: proc
     if (format === 'json' || format === 'jsonl') {
       await writeLine(io.stderr, renderJson(payload, format));
     } else {
-      await writeLine(io.stderr, `ERROR: ${message}`);
+      await writeLine(io.stderr, [
+        `ERROR: ${message}`,
+        unknownCommand ? `Hint: ${unknownCommand.hint}` : null,
+        unknownCommand?.suggestion ? `Did you mean \`${unknownCommand.suggestion}\`?` : null,
+      ].filter((line): line is string => Boolean(line)).join('\n'));
     }
     return exitCode;
   }
@@ -959,6 +1049,8 @@ export const __testing = {
   EXIT_RETRYABLE,
   EXIT_USAGE,
   commandMap,
+  commandAliases,
+  closestCommand,
   defaultWarmOnly,
   ensureSocketEnvironment,
   exitCodeForError,

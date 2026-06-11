@@ -226,12 +226,20 @@ function toCamelCaseFlag(value: string): string {
   return value.replace(/-([a-z0-9])/g, (_match, char: string) => char.toUpperCase());
 }
 
+function setCommandAlias(map: Map<string, SkillAdvisorCliToolDefinition>, alias: string, tool: SkillAdvisorCliToolDefinition): void {
+  const existing = map.get(alias);
+  if (existing && existing.name !== tool.name) {
+    throw new CliProtocolError(`Command alias collision: ${alias} maps to ${existing.name} and ${tool.name}`);
+  }
+  map.set(alias, tool);
+}
+
 function commandMap(): Map<string, SkillAdvisorCliToolDefinition> {
   const map = new Map<string, SkillAdvisorCliToolDefinition>();
   for (const tool of SKILL_ADVISOR_CLI_TOOL_MANIFEST) {
     for (const alias of tool.aliases) {
-      map.set(alias, tool);
-      map.set(normalizeName(alias), tool);
+      setCommandAlias(map, alias, tool);
+      setCommandAlias(map, normalizeName(alias), tool);
     }
   }
   return map;
@@ -828,6 +836,56 @@ function exitCodeForError(error: unknown): number {
   return EXIT_RUNTIME;
 }
 
+function levenshteinDistance(left: string, right: string): number {
+  const previous = Array.from({ length: right.length + 1 }, (_value, index) => index);
+  const current = new Array<number>(right.length + 1);
+
+  for (let leftIndex = 1; leftIndex <= left.length; leftIndex += 1) {
+    current[0] = leftIndex;
+    for (let rightIndex = 1; rightIndex <= right.length; rightIndex += 1) {
+      const cost = left[leftIndex - 1] === right[rightIndex - 1] ? 0 : 1;
+      current[rightIndex] = Math.min(
+        current[rightIndex - 1] + 1,
+        previous[rightIndex] + 1,
+        previous[rightIndex - 1] + cost,
+      );
+    }
+    previous.splice(0, previous.length, ...current);
+  }
+
+  return previous[right.length];
+}
+
+function closestCommand(command: string): string | undefined {
+  const targets = new Map<string, string>([['list-tools', 'list-tools']]);
+  for (const tool of SKILL_ADVISOR_CLI_TOOL_MANIFEST) {
+    for (const alias of tool.aliases) {
+      targets.set(alias, tool.name);
+    }
+  }
+
+  let best: { readonly command: string; readonly distance: number } | null = null;
+  for (const [alias, canonical] of targets) {
+    const distance = levenshteinDistance(normalizeName(command), normalizeName(alias));
+    if (!best || distance < best.distance || (distance === best.distance && canonical < best.command)) {
+      best = { command: canonical, distance };
+    }
+  }
+
+  if (!best) return undefined;
+  const threshold = Math.max(2, Math.floor(normalizeName(command).length * 0.4));
+  return best.distance <= threshold ? best.command : undefined;
+}
+
+function unknownCommandContext(message: string): { readonly hint: string; readonly suggestion?: string } | null {
+  const match = message.match(/^Unknown command: (.+)$/);
+  if (!match) return null;
+  return {
+    hint: 'Try `list-tools` to see available commands.',
+    suggestion: closestCommand(match[1]),
+  };
+}
+
 function socketPathTooLong(socketPath: string): boolean {
   if (socketPath.startsWith('tcp://')) return false;
   return process.platform === 'darwin' && Buffer.byteLength(socketPath) > 103;
@@ -1111,10 +1169,13 @@ export async function runSkillAdvisorCli(argv: string[], io: CliIo = { stdout: p
   } catch (error: unknown) {
     const exitCode = exitCodeForError(error);
     const message = error instanceof Error ? error.message : String(error);
+    const unknownCommand = unknownCommandContext(message);
     const payload = {
       status: 'error',
       error: message,
       exitCode,
+      ...(unknownCommand ? { hint: unknownCommand.hint } : {}),
+      ...(unknownCommand?.suggestion ? { suggestion: unknownCommand.suggestion } : {}),
     };
     const format = (() => {
       try {
@@ -1126,7 +1187,11 @@ export async function runSkillAdvisorCli(argv: string[], io: CliIo = { stdout: p
     if (format === 'json' || format === 'jsonl') {
       await writeLine(io.stderr, renderJson(payload, format));
     } else {
-      await writeLine(io.stderr, `ERROR: ${message}`);
+      await writeLine(io.stderr, [
+        `ERROR: ${message}`,
+        unknownCommand ? `Hint: ${unknownCommand.hint}` : null,
+        unknownCommand?.suggestion ? `Did you mean \`${unknownCommand.suggestion}\`?` : null,
+      ].filter((line): line is string => Boolean(line)).join('\n'));
     }
     return exitCode;
   }
@@ -1144,6 +1209,7 @@ export const __testing = {
   EXIT_RETRYABLE,
   EXIT_USAGE,
   commandMap,
+  closestCommand,
   ensureSocketEnvironment,
   exitCodeForError,
   findRepoPaths,

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Planned scaffold for per-command help, unified aliases, and improved unknown-command errors across the three daemon CLIs; no implementation done yet."
+description: "Completed per-command help, unified aliases, and improved unknown-command errors across the three daemon CLIs."
 trigger_phrases:
   - "002-cli-help-aliases-errors summary"
 importance_tier: "normal"
@@ -8,19 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/002-cli-help-aliases-errors"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded planned-state impl doc; no code written yet"
-    next_safe_action: "Implement per-command help, aliases, and error hints"
+    last_updated_at: "2026-06-11T01:10:42Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed CLI help, alias, and unknown-command UX consistency changes"
+    next_safe_action: "Sub-phase complete; continue with sibling CLI tooling UX phases as needed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-002-cli-help-aliases-errors"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Camel aliases are generated from canonical snake-case command names."
+      - "Closest-match suggestions use bounded edit distance and return canonical command names."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -36,9 +41,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-cli-help-aliases-errors |
-| **Completed** | Not yet (planned) |
+| **Completed** | 2026-06-11 |
 | **Level** | 1 |
-| **Status** | Planned |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -46,13 +51,12 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This sub-phase is scaffold-only and planned. The list below is the intended outcome and the planned target files, not a record of shipped code.
+Delivered the CLI UX consistency changes across the three daemon front-doors.
 
-Planned deliverables and their target files:
-
-- Per-command help/schema added to `mcp_server/spec-memory-cli.ts` (current global-only usage at `:750-755`) and `system-code-graph/mcp_server/code-index-cli.ts` (`:898-903`), mirroring the skill-advisor pattern at `skill-advisor-cli.ts:661-674`.
-- A unified snake/kebab/camel alias map across all three CLIs with a collision test, mirroring `skill-advisor-cli-manifest.ts:142-151`.
-- A "try list-tools" hint plus closest-match suggestion in the unknown-command catch paths (`spec-memory-cli.ts:774-793`, `code-index-cli.ts:926-945`, `skill-advisor-cli.ts:1111-1130`).
+- Per-command help/schema now prints offline for `spec-memory memory_search --help` and `code-index code_graph_query --help`, matching the existing skill-advisor shape.
+- spec-memory and code-index now generate snake, kebab, and camel command aliases from canonical command names; skill-advisor keeps its manifest aliases and now guards collisions at map build time.
+- Unknown-command JSON errors now include a `hint` telling users to try `list-tools` plus a closest canonical `suggestion` in all three CLIs.
+- `list-tools` still reports the expected command counts: spec-memory 37, code-index 8, skill-advisor 9.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -60,7 +64,7 @@ Planned deliverables and their target files:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. When implemented, the per-command help will print a tool-scoped schema from the existing registry, the alias map will declare snake/kebab/camel forms with a collision test that fails the build on overlap, and the shared catch path will append the list-tools hint and nearest-match suggestion to the existing structured JSON error.
+The implementation reuses each CLI's existing local tool registry. Help output resolves the requested command before any daemon/socket work, prints the command description, aliases, and JSON input schema, then exits `0`. Alias generation uses canonical snake-case command names and derives kebab/camel forms. Unknown-command handling keeps the existing structured error envelope and adds the list-tools hint and closest canonical suggestion.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -71,7 +75,8 @@ Not yet delivered. When implemented, the per-command help will print a tool-scop
 | Decision | Why |
 |----------|-----|
 | Mirror the skill-advisor help pattern rather than invent a new shape | Keeps the three CLIs consistent and reuses a proven offline help path |
-| Make alias collisions fail the build | Assessment #3 guardrail: a silent last-wins alias is a discoverability hazard |
+| Generate aliases from canonical snake-case command names | Keeps snake, kebab, and camel forms consistent for generated manifests |
+| Make alias collisions fail the build | A silent last-wins alias is a discoverability hazard |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -81,11 +86,14 @@ Not yet delivered. When implemented, the per-command help will print a tool-scop
 
 | Check | Result |
 |-------|--------|
-| Per-command help prints offline for spec-memory and code-index | Pending |
-| Alias collision test green | Pending |
-| Unknown-command error includes hint + nearest match | Pending |
+| Per-command help prints offline for spec-memory and code-index | Pass: `node .opencode/bin/spec-memory.cjs memory_search --help`; `node .opencode/bin/code-index.cjs code_graph_query --help` |
+| Alias collision test green | Pass: focused CLI UX tests for spec-memory, code-index, and skill-advisor |
+| Unknown-command error includes hint + nearest match | Pass: typoed commands exit `64` with hint and canonical suggestion in all three CLIs |
+| list-tools counts unchanged | Pass: spec-memory 37, code-index 8, skill-advisor 9 |
+| Existing CLI parity/help suites | Pass: spec-memory CLI parity/help and CLI daemon tests; code-index CLI parity; skill-advisor CLI parity |
+| Builds | Pass: `npm run build` in each touched server package |
 
-Planned verification commands (run when implemented): `node .opencode/bin/spec-memory.cjs <tool> --help` and `node .opencode/bin/code-index.cjs <tool> --help` exit `0` offline; alias-collision unit test green via `npm --prefix .opencode/skills/system-spec-kit/mcp_server test`.
+Additional focused checks: `npm run test:core -- tests/spec-memory-cli-help-aliases-errors.vitest.ts`; `npm test -- tests/code-index-cli-help-aliases-errors.vitest.ts`; `npm test -- tests/skill-advisor-cli-help-aliases-errors.vitest.ts`.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -93,7 +101,7 @@ Planned verification commands (run when implemented): `node .opencode/bin/spec-m
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. This document is a planned scaffold; all verification rows are pending until the sub-phase is implemented.
+1. No tool logic or schemas changed; this sub-phase only changed CLI presentation, routing aliases, and error recovery text.
 <!-- /ANCHOR:limitations -->
 
 ---

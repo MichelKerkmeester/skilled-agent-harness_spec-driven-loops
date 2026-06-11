@@ -11,19 +11,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/002-cli-help-aliases-errors"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 child from assessment rows 2, 3, 4"
-    next_safe_action: "Plan per-command help, alias map, and error-hint changes"
+    last_updated_at: "2026-06-11T01:10:42Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed CLI help, alias, and unknown-command UX consistency changes"
+    next_safe_action: "Sub-phase complete; continue with sibling CLI tooling UX phases as needed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-002-cli-help-aliases-errors"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Camel aliases are generated from canonical snake-case command names."
+      - "Closest-match suggestions use bounded edit distance and return canonical command names."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: CLI Per-Command Help, Aliases, and Errors
@@ -46,7 +51,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -135,8 +140,8 @@ Bring spec-memory and code-index up to the skill-advisor discoverability bar wit
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should camel-case aliases be generated from the snake form, or declared explicitly per tool to avoid ambiguous transforms?
-- What edit-distance threshold should gate the closest-match suggestion?
+- Camel-case aliases are generated from the canonical snake-case command name for spec-memory and code-index, matching the existing skill-advisor manifest shape.
+- Closest-match suggestions use bounded edit distance and return a single canonical command name when the typo is close enough.
 <!-- /ANCHOR:questions -->
 
 ---
