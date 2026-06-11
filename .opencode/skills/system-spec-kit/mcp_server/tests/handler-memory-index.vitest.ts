@@ -1253,3 +1253,119 @@ dbFixtureDescribe('Handler Memory Index (T520) [deferred - requires DB test fixt
     });
   });
 });
+
+describe('memory_index_scan provenance validation', () => {
+  it('allows an ungoverned scan while leaving default provenance out of governance', async () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test-index-governance-'));
+    const previousBasePath = process.env.MEMORY_BASE_PATH;
+
+    try {
+      const specFolder = path.join(root, '.opencode', 'specs', 'system-spec-kit', '999-governance-scan');
+      fs.mkdirSync(specFolder, { recursive: true });
+      fs.writeFileSync(path.join(specFolder, 'spec.md'), '# Governance Scan\n', 'utf8');
+
+      process.env.MEMORY_BASE_PATH = root;
+      vi.resetModules();
+
+      const indexMemoryFileMock = vi.fn(async () => ({
+        status: 'indexed',
+        id: 9901,
+        title: 'Governance Scan',
+      }));
+
+      vi.doMock('../handlers/memory-save.js', () => ({
+        indexMemoryFile: indexMemoryFileMock,
+      }));
+      vi.doMock('../core/index.js', () => ({
+        checkDatabaseUpdated: vi.fn(async () => {}),
+      }));
+      vi.doMock('../core/db-state.js', async (importOriginal) => {
+        const actual = await importOriginal<typeof import('../core/db-state.js')>();
+        return {
+          ...actual,
+          acquireIndexScanLease: vi.fn(async () => ({ acquired: true, waitSeconds: 0, reason: null })),
+          completeIndexScanLease: vi.fn(async () => {}),
+        };
+      });
+      vi.doMock('../lib/storage/checkpoints.js', () => ({
+        getRestoreBarrierStatus: vi.fn(() => null),
+        repairNeedsRebuildSentinel: vi.fn(() => ({
+          sentinelPresent: false,
+          attempted: false,
+          cleared: false,
+          summary: null,
+          error: null,
+        })),
+      }));
+      vi.doMock('../lib/providers/embeddings.js', () => ({
+        getEmbeddingProfile: vi.fn(() => null),
+      }));
+      vi.doMock('../handlers/mutation-hooks.js', () => ({
+        runPostMutationHooks: vi.fn(() => {}),
+      }));
+      vi.doMock('../handlers/memory-index-alias.js', () => ({
+        EMPTY_ALIAS_CONFLICT_SUMMARY: {
+          groups: 0,
+          rows: 0,
+          identicalHashGroups: 0,
+          divergentHashGroups: 0,
+          samples: [],
+        },
+        createDefaultDivergenceReconcileSummary: () => ({
+          retriesScheduled: 0,
+          escalated: 0,
+          errors: [],
+          attempted: 0,
+        }),
+        detectAliasConflictsFromIndex: vi.fn(() => ({
+          groups: 0,
+          rows: 0,
+          identicalHashGroups: 0,
+          divergentHashGroups: 0,
+          samples: [],
+        })),
+        summarizeAliasConflicts: vi.fn(() => ({
+          groups: 0,
+          rows: 0,
+          identicalHashGroups: 0,
+          divergentHashGroups: 0,
+          samples: [],
+        })),
+        runDivergenceReconcileHooks: vi.fn(() => ({
+          retriesScheduled: 0,
+          escalated: 0,
+          errors: [],
+          attempted: 0,
+        })),
+      }));
+
+      const isolatedHandler = await import('../handlers/memory-index');
+      const response = await isolatedHandler.handleMemoryIndexScan({
+        specFolder: 'system-spec-kit/999-governance-scan',
+        includeConstitutional: false,
+        includeSpecDocs: true,
+        incremental: false,
+      });
+
+      const envelope = JSON.parse((response as any).content[0].text) as { data: { failed: number } };
+      expect(envelope.data.failed).toBe(0);
+      expect(indexMemoryFileMock).toHaveBeenCalledTimes(1);
+      expect(indexMemoryFileMock).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          fromScan: true,
+          asyncEmbedding: true,
+          governance: undefined,
+        }),
+      );
+    } finally {
+      if (previousBasePath === undefined) {
+        delete process.env.MEMORY_BASE_PATH;
+      } else {
+        process.env.MEMORY_BASE_PATH = previousBasePath;
+      }
+      vi.resetModules();
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+});

@@ -25,6 +25,10 @@ import { calculateDocumentWeight, isSpecDocumentType } from './pe-gating.js';
 import { detectSpecLevelFromParsed } from './handler-utils.js';
 import { applyPostInsertMetadata as applyGuardedPostInsertMetadata } from '../lib/storage/post-insert-metadata.js';
 import type { MemoryScopeMatch } from './save/types.js';
+import {
+  applyWriteProvenance,
+  type WriteProvenanceContext,
+} from '../lib/storage/write-provenance.js';
 
 // Feature catalog: Chunking Orchestrator Safe Swap
 // Feature catalog: Memory indexing (memory_save)
@@ -82,6 +86,7 @@ interface PostInsertMetadataFields {
 interface ChunkingOptions {
   force?: boolean;
   scope?: MemoryScopeMatch;
+  provenance?: WriteProvenanceContext;
   applyPostInsertMetadata?: (
     db: BetterSqlite3.Database,
     memoryId: number,
@@ -138,10 +143,16 @@ export function shouldUseChunkedIndexing(
 async function indexChunkedMemoryFile(
   filePath: string,
   parsed: ParsedMemory,
-  { force = false, scope, applyPostInsertMetadata }: ChunkingOptions = {},
+  { force = false, scope, provenance, applyPostInsertMetadata }: ChunkingOptions = {},
 ): Promise<IndexResult> {
   const database = requireDb();
   const applyMetadata = applyPostInsertMetadata ?? applyPostInsertMetadataFallback;
+  const writeProvenance: WriteProvenanceContext = {
+    tool: 'memory_save',
+    filePath,
+    scope,
+    ...provenance,
+  };
   const canonicalFilePath = getCanonicalPathKey(filePath);
 
   const chunkResult = chunkLargeFile(parsed.content);
@@ -176,6 +187,7 @@ async function indexChunkedMemoryFile(
 
     if (existing && !force) {
       pid = existing.id;
+      applyWriteProvenance(database, pid, writeProvenance);
       // Safe-swap mode for re-chunking: keep existing children intact until
       // Replacement chunks are fully indexed and finalized in a transaction.
       return { parentId: pid, isUpdate: true };
@@ -224,6 +236,7 @@ async function indexChunkedMemoryFile(
         qualityFlags: parsed.qualityFlags,
         scope,
       });
+      applyWriteProvenance(database, pid, writeProvenance);
 
       const fileMetadata = incrementalIndex.getFileMetadata(filePath);
       const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
@@ -340,6 +353,7 @@ async function indexChunkedMemoryFile(
           stability: fsrsScheduler.DEFAULT_INITIAL_STABILITY,
           difficulty: fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
         });
+        applyWriteProvenance(database, childId, writeProvenance);
 
         return childId;
       });

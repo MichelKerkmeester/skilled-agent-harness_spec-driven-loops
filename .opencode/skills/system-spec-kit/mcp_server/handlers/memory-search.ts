@@ -535,6 +535,32 @@ function hasPublicationContractFields(result: Record<string, unknown>): boolean 
   ].some((field) => Object.prototype.hasOwnProperty.call(result, field));
 }
 
+function normalizePublicationProvenanceEntry(value: unknown): string | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function resolvePublicationProvenance(result: Record<string, unknown>): string[] {
+  const explicit = Array.isArray(result.provenance)
+    ? result.provenance
+        .map(normalizePublicationProvenanceEntry)
+        .filter((entry): entry is string => entry !== null)
+    : [];
+  if (explicit.length > 0) {
+    return [...new Set(explicit)];
+  }
+
+  return [...new Set([
+    result.provenance_source,
+    result.provenanceSource,
+    result.source_kind,
+    result.sourceKind,
+  ].map(normalizePublicationProvenanceEntry).filter((entry): entry is string => entry !== null))];
+}
+
 function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
   const parsed = parseResponseEnvelope(response);
   if (!parsed) {
@@ -557,21 +583,25 @@ function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
       return result;
     }
 
+    const provenance = resolvePublicationProvenance(result);
+    const resultWithProvenance = provenance.length > 0
+      ? { ...result, provenance }
+      : result;
     const gateResult = evaluatePublicationGate({
       certainty: result.certainty,
       methodologyStatus: result.methodologyStatus as 'provisional' | 'published' | null | undefined,
       schemaVersion: result.schemaVersion as string | null | undefined,
-      provenance: Array.isArray(result.provenance) ? result.provenance as string[] : null,
+      provenance,
       multiplierAuthorityFields: result.multiplierAuthorityFields as Record<string, unknown> | null | undefined,
     });
 
     return gateResult.publishable
       ? {
-        ...result,
+        ...resultWithProvenance,
         publishable: true,
       }
       : {
-        ...result,
+        ...resultWithProvenance,
         publishable: false,
         exclusionReason: gateResult.exclusionReason,
       };

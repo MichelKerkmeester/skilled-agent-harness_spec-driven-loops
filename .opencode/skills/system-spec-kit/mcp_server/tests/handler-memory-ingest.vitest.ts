@@ -103,6 +103,9 @@ describe('Handler Memory Ingest (Sprint 9 P0-3)', () => {
     });
 
     expect(mocks.mockCreateIngestJob).toHaveBeenCalledTimes(1);
+    expect(mocks.mockCreateIngestJob).toHaveBeenCalledWith(expect.objectContaining({
+      governance: null,
+    }));
     expect(mocks.mockEnqueueIngestJob).toHaveBeenCalledWith('job_test123');
 
     const envelope = parseEnvelope(result);

@@ -29,6 +29,8 @@ function createMinimalDb(): Database.Database {
       updated_at TEXT DEFAULT (datetime('now')),
       importance_tier TEXT DEFAULT 'normal',
       source_kind TEXT,
+      provenance_source TEXT,
+      provenance_actor TEXT,
       tenant_id TEXT,
       user_id TEXT,
       agent_id TEXT,
@@ -255,6 +257,50 @@ describe('create-record identity helpers', () => {
     const row = db.prepare('SELECT id, source_kind FROM memory_index WHERE id = ?')
       .get(id) as { id: number; source_kind: string | null };
     expect(row).toEqual({ id: 88, source_kind: 'human' });
+    db.close();
+  });
+
+  it('persists automated create provenance from the internal write context', () => {
+    const db = createMinimalDb();
+    vi.spyOn(vectorIndex, 'indexMemory').mockImplementation((params: any) => {
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, canonical_file_path, anchor_id, title, content_hash)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `).run(89, params.specFolder, params.filePath, params.filePath, params.anchorId ?? null, params.title ?? null, 'hash-before-provenance');
+      return 89;
+    });
+    vi.spyOn(bm25Index, 'isBm25Enabled').mockReturnValue(false);
+    vi.spyOn(incrementalIndex, 'getFileMetadata').mockReturnValue(null as any);
+    vi.spyOn(dbHelpers, 'applyPostInsertMetadata').mockImplementation(() => {});
+    vi.spyOn(lineageState, 'recordLineageTransition').mockImplementation(() => undefined);
+
+    const parsed = buildParsedMemory();
+    const id = createMemoryRecord(
+      db,
+      parsed,
+      parsed.filePath,
+      new Float32Array([0.1, 0.2, 0.3, 0.4]),
+      null,
+      {
+        action: 'CREATE',
+        similarity: 0,
+      },
+      {},
+      {},
+      {
+        provenanceSource: 'batch-learning-reducer',
+        provenanceActor: 'system-reducer',
+      },
+    );
+
+    const row = db.prepare('SELECT id, source_kind, provenance_source, provenance_actor FROM memory_index WHERE id = ?')
+      .get(id) as { id: number; source_kind: string | null; provenance_source: string | null; provenance_actor: string | null };
+    expect(row).toEqual({
+      id: 89,
+      source_kind: 'system',
+      provenance_source: 'batch-learning-reducer',
+      provenance_actor: 'system-reducer',
+    });
     db.close();
   });
 });

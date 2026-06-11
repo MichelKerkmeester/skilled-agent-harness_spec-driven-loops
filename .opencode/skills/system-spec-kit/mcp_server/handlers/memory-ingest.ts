@@ -24,7 +24,7 @@ import {
   type IngestJob,
 } from '../lib/ops/job-queue.js';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
-import { validateGovernedIngest } from '../lib/governance/scope-governance.js';
+import { requiresGovernedIngest, validateGovernedIngest } from '../lib/governance/scope-governance.js';
 
 import type { MCPResponse } from './types.js';
 
@@ -143,6 +143,7 @@ function mapJobForResponse(job: IngestJob): Record<string, unknown> {
 async function handleMemoryIngestStart(args: MemoryIngestStartArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_ingest_start');
   await checkDatabaseUpdated();
+  const governedIngest = requiresGovernedIngest(args);
   const governanceDecision = validateGovernedIngest(args);
   if (!governanceDecision.allowed) {
     throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
@@ -264,9 +265,7 @@ async function handleMemoryIngestStart(args: MemoryIngestStartArgs): Promise<MCP
     id: jobId,
     paths,
     specFolder: args.specFolder,
-    // Persist the validated governance decision so the async worker re-indexes
-    // each path under the same provenance/retention/scope as the sync path.
-    governance: governanceDecision,
+    governance: governedIngest ? governanceDecision : null,
   });
 
   enqueueIngestJob(job.id);

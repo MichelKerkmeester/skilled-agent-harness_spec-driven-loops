@@ -28,6 +28,8 @@ function createTestDatabase(): Database.Database {
       agent_id TEXT,
       session_id TEXT,
       source_kind TEXT,
+      provenance_source TEXT,
+      provenance_actor TEXT,
       delete_after TEXT
     );
 
@@ -236,14 +238,22 @@ describe('memory_update constitutional tier guard', () => {
     } as never);
 
     const row = database.prepare(`
-      SELECT title, importance_weight, source_kind
+      SELECT title, importance_weight, source_kind, provenance_source, provenance_actor
       FROM memory_index
       WHERE id = ?
-    `).get(memoryId) as { title: string; importance_weight: number; source_kind: string };
+    `).get(memoryId) as {
+      title: string;
+      importance_weight: number;
+      source_kind: string;
+      provenance_source: string | null;
+      provenance_actor: string | null;
+    };
     expect(row).toEqual({
       title: 'Wave 1 fixture',
       importance_weight: 0.8,
       source_kind: 'human',
+      provenance_source: 'memory_index_scan',
+      provenance_actor: 'system-scan',
     });
     expect(JSON.stringify(response)).toContain('skipped to protect manual data');
     expect(JSON.stringify(response)).toContain('title');

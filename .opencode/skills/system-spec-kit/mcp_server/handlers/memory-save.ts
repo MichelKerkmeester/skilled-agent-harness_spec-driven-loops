@@ -165,6 +165,10 @@ import {
 import { detectSpecLevelFromParsed } from './handler-utils.js';
 import { createStatediffAction } from '../lib/storage/statediff.js';
 import {
+  applyWriteProvenance,
+  type WriteProvenanceContext,
+} from '../lib/storage/write-provenance.js';
+import {
   extractMemoryIdFromResponse,
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
@@ -2149,6 +2153,7 @@ async function processPreparedMemory(
     scope?: MemoryScopeMatch;
     qualityGateMode?: 'enforce' | 'warn-only';
     routing?: RoutedSaveOptions;
+    provenance?: WriteProvenanceContext;
   } = {},
 ): Promise<IndexResult> {
   const {
@@ -2163,6 +2168,7 @@ async function processPreparedMemory(
     scope = {},
     qualityGateMode = 'enforce',
     routing = {},
+    provenance = {},
   } = options;
   const plannerMode = requestedPlannerMode ?? resolveSavePlannerMode();
   const indexingOrigin = resolveIndexingOrigin({ origin, fromScan });
@@ -2260,6 +2266,12 @@ async function processPreparedMemory(
       finalizedFileContent,
     } = activePrepared;
     const routedFilePath = routing.targetDocPath ?? filePath;
+    const writeProvenance: WriteProvenanceContext = {
+      tool: 'memory_save',
+      filePath: routedFilePath,
+      scope,
+      ...provenance,
+    };
     const routedParsed = Object.keys(routing).length > 0
       ? applyRoutedSaveHints(parsed, {
           ...routing,
@@ -2390,7 +2402,7 @@ async function processPreparedMemory(
 
     // PE GATING
     const peResult = evaluateAndApplyPeDecision(
-      database, routedParsed, embedding, force, validation.warnings, embeddingStatus, routedFilePath, scope,
+      database, routedParsed, embedding, force, validation.warnings, embeddingStatus, routedFilePath, scope, writeProvenance,
     );
     if (peResult.earlyReturn) return peResult.earlyReturn;
 
@@ -2413,7 +2425,7 @@ async function processPreparedMemory(
       force,
       embedding,
       scope,
-      { plannerMode },
+      { plannerMode, provenance: writeProvenance },
     );
     if (reconResult.earlyReturn) return reconResult.earlyReturn;
     if (reconResult.saveTimeReconsolidation.status === 'failed') {
@@ -2440,6 +2452,7 @@ async function processPreparedMemory(
       const chunkedResult = await indexChunkedMemoryFile(routedFilePath, routedParsed, {
         force,
         scope,
+        provenance: writeProvenance,
         applyPostInsertMetadata: (db, memoryId, fields) => {
           applyPostInsertMetadata(db, memoryId, fields);
           trackChunkedInsert(chunkedInsertTracker, memoryId, fields as Record<string, unknown>);
@@ -2622,7 +2635,12 @@ async function processPreparedMemory(
             peResult.decision,
             scope,
             recordIdentity,
+            writeProvenance,
           );
+
+      if (samePathSupersededPredecessorId != null) {
+        applyWriteProvenance(database, memoryId, writeProvenance);
+      }
 
       // F1.01 fix: Mark superseded memory AFTER new record creation, inside
       // the same transaction, so a creation failure rolls back both operations.
@@ -2777,6 +2795,7 @@ type BaseIndexMemoryFileOptions = {
   scope?: MemoryScopeMatch;
   qualityGateMode?: 'enforce' | 'warn-only';
   routing?: RoutedSaveOptions;
+  provenance?: WriteProvenanceContext;
   // Validated governance decision threaded from the bulk scan/ingest paths so
   // their indexed rows carry the same provenance/retention/scope metadata the
   // direct memory_save path applies post-insert. Omitted for ungoverned saves.
@@ -2804,6 +2823,7 @@ async function indexMemoryFile(
     scope = {} as MemoryScopeMatch,
     qualityGateMode = 'enforce' as 'enforce' | 'warn-only',
     routing,
+    provenance,
     governance,
     ...originOptions
   }: IndexMemoryFileOptions | LegacyIndexMemoryFileOptions = {},
@@ -2832,6 +2852,13 @@ async function indexMemoryFile(
         sessionId: governance.normalized.sessionId ?? null,
       }
     : scope;
+  const effectiveProvenance: WriteProvenanceContext | undefined = provenance ?? (governance || indexingOrigin === 'scan'
+    ? {
+        provenanceSource: governance?.normalized.provenanceSource || (indexingOrigin === 'scan' ? 'memory_index_scan' : undefined),
+        provenanceActor: governance?.normalized.provenanceActor || (indexingOrigin === 'scan' ? 'system-scan' : undefined),
+        tool: indexingOrigin === 'scan' ? 'memory_index_scan' : 'memory_save',
+      }
+    : undefined);
 
   const result = await processPreparedMemory(prepared, filePath, {
     force,
@@ -2843,6 +2870,7 @@ async function indexMemoryFile(
     scope: effectiveScope,
     qualityGateMode,
     routing,
+    provenance: effectiveProvenance,
   });
 
   // Apply provenance/retention/deleteAfter metadata post-insert, mirroring the
@@ -3495,6 +3523,9 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
       plannerMode,
       scope: saveScope,
       routing: buildRoutedSaveOptions(validatedPath, routeAs, mergeModeHint, targetAnchorId),
+      provenance: (provenanceSource || provenanceActor)
+        ? { provenanceSource, provenanceActor, tool: 'memory_save' }
+        : undefined,
     });
   } catch (error: unknown) {
     if (error instanceof VRuleUnavailableError) {

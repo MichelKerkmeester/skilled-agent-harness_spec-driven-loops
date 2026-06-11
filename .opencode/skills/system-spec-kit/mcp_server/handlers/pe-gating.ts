@@ -13,6 +13,7 @@ import { applyPostInsertMetadata } from '../lib/storage/post-insert-metadata.js'
 import { detectSpecLevelFromParsed } from '../lib/spec/spec-level.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
+import { applyWriteProvenance, type WriteProvenanceContext } from '../lib/storage/write-provenance.js';
 
 // Feature catalog: Prediction-error save arbitration
 // Feature catalog: Memory indexing (memory_save)
@@ -174,7 +175,11 @@ function findSimilarMemories(
 }
 
 /** Reinforce an existing memory's stability via FSRS scheduling instead of creating a duplicate */
-function reinforceExistingMemory(memoryId: number, parsed: ParsedMemory): IndexResult {
+function reinforceExistingMemory(
+  memoryId: number,
+  parsed: ParsedMemory,
+  provenance: WriteProvenanceContext = {},
+): IndexResult {
   const database = requireDb();
 
   try {
@@ -219,6 +224,12 @@ function reinforceExistingMemory(memoryId: number, parsed: ParsedMemory): IndexR
     if ((updateResult as { changes: number }).changes === 0) {
       throw new Error(`PE reinforcement UPDATE matched 0 rows for memory ${memoryId}`);
     }
+
+    applyWriteProvenance(database, memoryId, {
+      tool: 'memory_save',
+      filePath: parsed.filePath,
+      ...provenance,
+    });
 
     return {
       status: 'reinforced',
@@ -268,6 +279,7 @@ function updateExistingMemory(
   parsed: ParsedMemory,
   embedding: Float32Array,
   scope: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null } = {},
+  provenance: WriteProvenanceContext = {},
 ): IndexResult {
   const database = requireDb();
 
@@ -328,6 +340,12 @@ function updateExistingMemory(
       spec_level: specLevel,
       quality_score: parsed.qualityScore ?? 0,
       quality_flags: JSON.stringify(parsed.qualityFlags ?? []),
+    });
+    applyWriteProvenance(database, nextMemoryId, {
+      tool: 'memory_save',
+      filePath: parsed.filePath,
+      scope,
+      ...provenance,
     });
 
     recordLineageTransition(database, nextMemoryId, {

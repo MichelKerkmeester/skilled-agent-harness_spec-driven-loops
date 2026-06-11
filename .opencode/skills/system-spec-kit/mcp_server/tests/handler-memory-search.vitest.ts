@@ -302,6 +302,14 @@ describe('Packet 009 publication gate consumer', () => {
               cacheWriteTokens: { certainty: 'estimated', authority: 'estimated' },
             },
           },
+          {
+            id: 307,
+            certainty: 'exact',
+            methodologyStatus: 'published',
+            schemaVersion: 'measurement-contract/v1',
+            provenance_source: 'batch-learning-reducer',
+            source_kind: 'system',
+          },
         ],
       },
       hints: [],
@@ -319,6 +327,7 @@ describe('Packet 009 publication gate consumer', () => {
     expect(byId.get(304)).toMatchObject({ publishable: false, exclusionReason: 'missing_provenance' });
     expect(byId.get(305)).toMatchObject({ publishable: false, exclusionReason: 'unsupported_certainty' });
     expect(byId.get(306)).toMatchObject({ publishable: false, exclusionReason: 'unsupported_certainty' });
+    expect(byId.get(307)).toMatchObject({ publishable: true, provenance: ['batch-learning-reducer', 'system'] });
   });
 });
 

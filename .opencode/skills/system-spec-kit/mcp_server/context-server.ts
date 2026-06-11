@@ -2084,7 +2084,15 @@ async function main(): Promise<void> {
     try {
       const ingestInit = initIngestJobQueue({
         processFile: async (filePath: string, governance) => {
-          await indexSingleFile(filePath, false, governance ? { governance } : undefined);
+          await indexSingleFile(filePath, false, governance
+            ? { governance }
+            : {
+                provenance: {
+                  provenanceSource: 'memory_ingest_start',
+                  provenanceActor: 'async-ingest',
+                  tool: 'memory_ingest_start',
+                },
+              });
         },
       });
       if (ingestInit.resetCount > 0) {

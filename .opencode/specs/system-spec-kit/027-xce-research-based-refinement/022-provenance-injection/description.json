@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/022-provenance-injection",
+  "description": "Feature Specification: Provenance Injection",
+  "keywords": [
+    "feature",
+    "specification",
+    "provenance",
+    "injection",
+    "source_kind",
+    "governed",
+    "ingest"
+  ],
+  "lastUpdated": "2026-06-11T12:10:00.000Z",
+  "specId": "022",
+  "folderSlug": "provenance-injection",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

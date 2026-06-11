@@ -9,6 +9,10 @@
 //
 // Does NOT demote -- only promotes upward.
 import type { DatabaseExtended as Database } from '@spec-kit/shared/types';
+import {
+  persistProvenanceMetadata,
+  type WriteProvenanceContext,
+} from '../storage/write-provenance.js';
 
 // Feature catalog: Auto-promotion on validation
 
@@ -65,6 +69,12 @@ export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
   'temporary',
   'deprecated',
 ]);
+
+const AUTO_PROMOTION_PROVENANCE: WriteProvenanceContext = {
+  provenanceSource: 'auto-promotion',
+  provenanceActor: 'memory_validate',
+  tool: 'memory_validate',
+};
 
 function getNegativeValidationCount(db: Database, memoryId: number): number {
   try {
@@ -216,7 +226,11 @@ export function checkAutoPromotion(db: Database, memoryId: number): AutoPromotio
  * @param memoryId - ID of the memory to potentially promote
  * @returns Promotion result with details of what happened
  */
-export function executeAutoPromotion(db: Database, memoryId: number): AutoPromotionResult {
+export function executeAutoPromotion(
+  db: Database,
+  memoryId: number,
+  provenance: WriteProvenanceContext = AUTO_PROMOTION_PROVENANCE,
+): AutoPromotionResult {
   try {
     const check = checkAutoPromotion(db, memoryId);
 
@@ -245,6 +259,7 @@ export function executeAutoPromotion(db: Database, memoryId: number): AutoPromot
       db.prepare(
         'UPDATE memory_index SET importance_tier = ?, updated_at = ? WHERE id = ?'
       ).run(check.newTier, new Date().toISOString(), memoryId);
+      persistProvenanceMetadata(db, memoryId, provenance);
 
       db.prepare(`
         INSERT INTO memory_promotion_audit

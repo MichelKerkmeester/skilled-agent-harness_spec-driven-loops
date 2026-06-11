@@ -40,8 +40,10 @@ import { buildMutationHookFeedback } from '../hooks/mutation-feedback.js';
 import {
   deriveSourceKindFromContext,
   normalizeSourceKind,
+  persistProvenanceMetadata,
+  persistSourceKind,
   type SourceKind,
-} from './save/create-record.js';
+} from '../lib/storage/write-provenance.js';
 
 import type { MCPResponse } from './types.js';
 import type { UpdateArgs } from './memory-crud-types.js';
@@ -75,18 +77,6 @@ function getInternalProvenanceContext(args: UpdateArgs): Record<string, unknown>
   return context && typeof context === 'object' && !Array.isArray(context)
     ? context as Record<string, unknown>
     : {};
-}
-
-function hasSourceKindColumn(database: ReturnType<typeof vectorIndex.getDb>): boolean {
-  if (!database) {
-    return false;
-  }
-  try {
-    return (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
-      .some((column) => column.name === 'source_kind');
-  } catch {
-    return false;
-  }
 }
 
 function isProtectedExistingRow(existing: Record<string, unknown>): boolean {
@@ -150,13 +140,6 @@ function buildGuardedUpdateParams(
     storedSourceKind,
     hint: skippedFields.length > 0 ? SKIPPED_MANUAL_PROTECTION_HINT : null,
   };
-}
-
-function persistUpdateSourceKind(database: ReturnType<typeof vectorIndex.getDb>, id: number, sourceKind: SourceKind): void {
-  if (!hasSourceKindColumn(database)) {
-    return;
-  }
-  database?.prepare('UPDATE memory_index SET source_kind = ? WHERE id = ?').run(sourceKind, id);
 }
 
 /** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
@@ -338,7 +321,8 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
       if (fields.length > 0 || updateParams.embedding !== undefined) {
         vectorIndex.updateMemory(updateParams);
       }
-      persistUpdateSourceKind(database, id, guard.storedSourceKind);
+      persistSourceKind(database, id, guard.storedSourceKind);
+      persistProvenanceMetadata(database, id, getInternalProvenanceContext(args));
 
       if (updateParams.importanceTier !== undefined) {
         const updated = vectorIndex.getMemory(id) as (Record<string, unknown> | null);

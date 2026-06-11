@@ -56,7 +56,7 @@ import {
 
 // Standardized response structure
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
-import { validateGovernedIngest } from '../lib/governance/scope-governance.js';
+import { requiresGovernedIngest, validateGovernedIngest } from '../lib/governance/scope-governance.js';
 import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
 
 // Shared handler types
@@ -297,6 +297,7 @@ interface ScanArgs {
 
 import { indexMemoryFile } from './memory-save.js';
 import type { GovernanceDecision } from '../lib/governance/scope-governance.js';
+import type { WriteProvenanceContext } from '../lib/storage/write-provenance.js';
 
 /** Index a single memory file, delegating to the shared indexMemoryFile logic */
 async function indexSingleFile(
@@ -307,6 +308,7 @@ async function indexSingleFile(
     fromScan?: boolean;
     asyncEmbedding?: boolean;
     governance?: GovernanceDecision;
+    provenance?: WriteProvenanceContext;
   },
 ): Promise<IndexResult> {
   return indexMemoryFile(filePath, {
@@ -315,6 +317,7 @@ async function indexSingleFile(
     fromScan: options?.fromScan,
     asyncEmbedding: options?.asyncEmbedding,
     governance: options?.governance,
+    provenance: options?.provenance,
   });
 }
 
@@ -353,6 +356,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     include_constitutional,
     include_spec_docs,
   });
+  const governedIngest = requiresGovernedIngest(args);
   const governanceDecision = validateGovernedIngest(args);
   if (!governanceDecision.allowed) {
     throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
@@ -897,7 +901,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         ...(useWarnOnly ? { qualityGateMode: 'warn-only' as const } : {}),
         fromScan: true,
         asyncEmbedding: true,
-        governance: governanceDecision,
+        governance: governedIngest ? governanceDecision : undefined,
       });
     }, scanBatchSize);
 

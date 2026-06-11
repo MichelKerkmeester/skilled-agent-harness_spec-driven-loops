@@ -321,6 +321,9 @@ export async function executeMerge(
         document_type: getOptionalString(currentRow, 'document_type'),
         spec_level: getOptionalNumber(currentRow, 'spec_level'),
         bm25_repair_needed: 0,
+        source_kind: 'system',
+        provenance_source: 'reconsolidation',
+        provenance_actor: 'memory-save',
         created_at: now,
         updated_at: now,
       }, memoryIndexColumns);
@@ -350,6 +353,8 @@ export async function executeMerge(
         embedding_status: mergedEmbeddingStatus,
         document_type: getOptionalString(currentRow, 'document_type'),
         spec_level: getOptionalNumber(currentRow, 'spec_level'),
+        provenance_source: 'reconsolidation',
+        provenance_actor: 'memory-save',
       }, memoryIndexColumns);
 
       if (Object.keys(postInsertMetadata).length > 0) {
