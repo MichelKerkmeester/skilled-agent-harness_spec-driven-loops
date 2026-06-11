@@ -55,6 +55,10 @@ const SESSION_SCOPED_SAVE_CONTEXT_EXAMPLE = getSessionScopedSaveContextExample()
 const GRAPH_METADATA_FILE = 'graph-metadata.json';
 const CANONICAL_SAVE_LOCK_DIR = '.canonical-save.lock';
 const CANONICAL_SAVE_STALE_MS = 30_000;
+const CANONICAL_SAVE_HEARTBEAT_MS = 10_000;
+const canonicalSaveHeartbeats = new Map<string, ReturnType<typeof setInterval>>();
+
+type CanonicalSaveLockOwnerState = 'alive' | 'dead' | 'unknown';
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELP TEXT
@@ -398,6 +402,71 @@ function atomicWriteJson(filePath: string, value: unknown): void {
   fsSync.renameSync(tempPath, filePath);
 }
 
+function getNodeErrorCode(error: unknown): string | null {
+  return typeof error === 'object' && error !== null && 'code' in error
+    ? String((error as { code?: unknown }).code)
+    : null;
+}
+
+function getCanonicalSaveLockOwnerState(lockPath: string): CanonicalSaveLockOwnerState {
+  let ownerRaw: string;
+  try {
+    ownerRaw = fsSync.readFileSync(path.join(lockPath, 'owner'), 'utf8');
+  } catch (_error: unknown) {
+    return 'unknown';
+  }
+
+  const ownerPid = Number(ownerRaw.split(/\r?\n/, 1)[0]?.trim());
+  if (!Number.isInteger(ownerPid) || ownerPid <= 0) {
+    return 'unknown';
+  }
+
+  try {
+    process.kill(ownerPid, 0);
+    return 'alive';
+  } catch (error: unknown) {
+    const code = getNodeErrorCode(error);
+    if (code === 'ESRCH') {
+      return 'dead';
+    }
+    if (code === 'EPERM') {
+      return 'alive';
+    }
+    return 'unknown';
+  }
+}
+
+function stopCanonicalSaveLockHeartbeat(lockPath: string): void {
+  const heartbeat = canonicalSaveHeartbeats.get(lockPath);
+  if (!heartbeat) {
+    return;
+  }
+  clearInterval(heartbeat);
+  canonicalSaveHeartbeats.delete(lockPath);
+}
+
+function startCanonicalSaveLockHeartbeat(lockPath: string): void {
+  stopCanonicalSaveLockHeartbeat(lockPath);
+  const heartbeat = setInterval(() => {
+    try {
+      const now = new Date();
+      fsSync.utimesSync(lockPath, now, now);
+    } catch (_error: unknown) {
+      stopCanonicalSaveLockHeartbeat(lockPath);
+    }
+  }, CANONICAL_SAVE_HEARTBEAT_MS);
+  const unref = (heartbeat as { unref?: () => void }).unref;
+  unref?.call(heartbeat);
+  canonicalSaveHeartbeats.set(lockPath, heartbeat);
+}
+
+function createCanonicalSaveLock(lockPath: string): string {
+  fsSync.mkdirSync(lockPath);
+  fsSync.writeFileSync(path.join(lockPath, 'owner'), `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
+  startCanonicalSaveLockHeartbeat(lockPath);
+  return lockPath;
+}
+
 function acquireCanonicalSaveLock(specFolderPath: string | null): string | null {
   if (!specFolderPath) {
     return null;
@@ -405,21 +474,18 @@ function acquireCanonicalSaveLock(specFolderPath: string | null): string | null 
 
   const lockPath = path.join(specFolderPath, CANONICAL_SAVE_LOCK_DIR);
   try {
-    fsSync.mkdirSync(lockPath);
-    fsSync.writeFileSync(path.join(lockPath, 'owner'), `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
-    return lockPath;
+    return createCanonicalSaveLock(lockPath);
   } catch (error: unknown) {
     if (!fsSync.existsSync(lockPath)) {
       throw error;
     }
     const stat = fsSync.statSync(lockPath);
     const ageMs = Date.now() - stat.mtimeMs;
-    if (ageMs > CANONICAL_SAVE_STALE_MS) {
-      console.warn(`Warning: removing stale canonical save lock (${Math.round(ageMs)}ms): ${lockPath}`);
+    const ownerState = getCanonicalSaveLockOwnerState(lockPath);
+    if (ownerState === 'dead' || (ownerState === 'unknown' && ageMs > CANONICAL_SAVE_STALE_MS)) {
+      console.warn(`Warning: removing abandoned canonical save lock (${ownerState}, ${Math.round(ageMs)}ms): ${lockPath}`);
       fsSync.rmSync(lockPath, { recursive: true, force: true });
-      fsSync.mkdirSync(lockPath);
-      fsSync.writeFileSync(path.join(lockPath, 'owner'), `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
-      return lockPath;
+      return createCanonicalSaveLock(lockPath);
     }
     throw new Error(`Canonical save lock is active: ${lockPath}`);
   }
@@ -429,6 +495,7 @@ function releaseCanonicalSaveLock(lockPath: string | null): void {
   if (!lockPath) {
     return;
   }
+  stopCanonicalSaveLockHeartbeat(lockPath);
   fsSync.rmSync(lockPath, { recursive: true, force: true });
 }
 
@@ -843,4 +910,8 @@ export {
   validateArguments,
   isValidSpecFolder,
   extractPayloadSpecFolder,
+  acquireCanonicalSaveLock,
+  releaseCanonicalSaveLock,
+  CANONICAL_SAVE_HEARTBEAT_MS,
+  CANONICAL_SAVE_STALE_MS,
 };

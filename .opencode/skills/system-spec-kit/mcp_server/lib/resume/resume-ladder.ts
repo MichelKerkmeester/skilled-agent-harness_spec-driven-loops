@@ -318,6 +318,29 @@ function pushPanelCandidate(
   candidates.push({ ...item, text: normalized });
 }
 
+function buildRestoredFacets(restored: ResumeRestorePanelItem[]): ContinuityFacets {
+  const filtered: ContinuityFacets = {
+    goal: [],
+    decision: [],
+    progress: [],
+    gotcha: [],
+  };
+
+  for (const item of restored) {
+    filtered[item.facet].push(item.text);
+  }
+
+  return filtered;
+}
+
+function enforceMarkdownBudget(markdown: string, maxChars: number): string {
+  if (markdown.length <= maxChars) {
+    return markdown;
+  }
+
+  return markdown.slice(0, maxChars);
+}
+
 function buildRestorePanel(params: {
   source: ResumeLadderSource;
   summary: string;
@@ -380,6 +403,13 @@ function buildRestorePanel(params: {
     counts[item.reason] += 1;
     return counts;
   }, { 'item-budget': 0, 'char-budget': 0 });
+  const restoredFacets = buildRestoredFacets(restored);
+  const markdown = enforceMarkdownBudget([
+    `Restored: ${restored.length}`,
+    `Not restored: ${omitted.length}`,
+    '',
+    renderContinuityFacets(restoredFacets),
+  ].join('\n'), RESTORE_PANEL_MAX_CHARS);
 
   return {
     maxItems: RESTORE_PANEL_MAX_ITEMS,
@@ -387,15 +417,10 @@ function buildRestorePanel(params: {
     restoredCount: restored.length,
     omittedCount: omitted.length,
     omittedByReason,
-    facets,
+    facets: restoredFacets,
     restored,
     omitted,
-    markdown: [
-      `Restored: ${restored.length}`,
-      `Not restored: ${omitted.length}`,
-      '',
-      renderContinuityFacets(facets),
-    ].join('\n'),
+    markdown,
   };
 }
 

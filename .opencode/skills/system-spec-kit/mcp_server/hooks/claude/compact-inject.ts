@@ -112,15 +112,15 @@ function extractAttentionSignals(lines: string[]): string[] {
 }
 
 /** Detect active spec folder paths from transcript lines */
-function detectSpecFolder(lines: string[]): string | null {
-  const specFolderRe = /\.opencode\/specs\/[\w/-]+/g;
+export function detectSpecFolder(lines: string[]): string | null {
+  const specFolderRe = /\.opencode\/specs\/[^\s"'`]+/g;
   const freq = new Map<string, number>();
   for (const line of lines) {
     const matches = line.match(specFolderRe);
     if (matches) {
       for (const m of matches) {
-        // Normalize to folder (strip trailing file component if present)
-        const folder = m.replace(/\/[^/]+\.\w+$/, '');
+        const candidate = m.replace(/[),.;:!?]+$/u, '');
+        const folder = candidate.replace(/\/[^/]+\.[A-Za-z0-9]+$/u, '');
         freq.set(folder, (freq.get(folder) ?? 0) + 1);
       }
     }

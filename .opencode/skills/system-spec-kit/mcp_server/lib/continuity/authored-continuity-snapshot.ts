@@ -9,6 +9,7 @@ import { buildResumeLadder } from '../resume/resume-ladder.js';
 import type { ResumeLadderResult } from '../resume/resume-ladder.js';
 import {
   buildContinuityFacets,
+  readThinContinuityRecord,
   renderContinuityFacets,
   upsertThinContinuityInMarkdown,
   type ContinuityFacets,
@@ -111,19 +112,21 @@ function buildContinuityRecord(params: {
   specFolder: string;
   timestamp: string;
   actor: string;
+  currentRecord?: ThinContinuityRecord | null;
 }): ThinContinuityRecord {
-  const { ladder, specFolder, timestamp, actor } = params;
+  const { ladder, specFolder, timestamp, actor, currentRecord } = params;
   return {
     packet_pointer: specFolder,
     last_updated_at: timestamp,
     last_updated_by: actor,
     recent_action: compactAction(ladder.recentAction, 'Refreshed continuity snapshot'),
     next_safe_action: compactAction(ladder.nextSafeAction, 'Review continuity snapshot'),
-    blockers: ladder.blockers.slice(0, 3),
-    key_files: ladder.keyFiles.slice(0, 5),
-    completion_pct: 0,
-    open_questions: [],
-    answered_questions: [],
+    blockers: currentRecord?.blockers ?? ladder.blockers.slice(0, 3),
+    key_files: currentRecord?.key_files ?? ladder.keyFiles.slice(0, 5),
+    ...(currentRecord?.session_dedup ? { session_dedup: currentRecord.session_dedup } : {}),
+    completion_pct: currentRecord?.completion_pct ?? 0,
+    open_questions: currentRecord?.open_questions ?? [],
+    answered_questions: currentRecord?.answered_questions ?? [],
   };
 }
 
@@ -202,11 +205,13 @@ export function refreshAuthoredContinuitySnapshot(
   const implementationSummaryPath = path.join(folderPath, 'implementation-summary.md');
   if (fs.existsSync(implementationSummaryPath)) {
     const currentSummary = fs.readFileSync(implementationSummaryPath, 'utf8');
+    const currentContinuity = readThinContinuityRecord(currentSummary);
     const writeResult = upsertThinContinuityInMarkdown(currentSummary, buildContinuityRecord({
       ladder,
       specFolder,
       timestamp,
       actor: options.actor ?? 'precompact-hook',
+      currentRecord: currentContinuity.ok ? currentContinuity.record : null,
     }));
     if (writeResult.ok && writeResult.markdown && writeResult.markdown !== currentSummary) {
       fs.writeFileSync(implementationSummaryPath, writeResult.markdown, 'utf8');

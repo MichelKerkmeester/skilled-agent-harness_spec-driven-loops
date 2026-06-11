@@ -36,7 +36,7 @@ vi.mock('../lib/session/session-snapshot.js', () => ({
 
 import { handleSessionBootstrap } from '../handlers/session-bootstrap.js';
 import { refreshAuthoredContinuitySnapshot } from '../lib/continuity/authored-continuity-snapshot.js';
-import { buildContinuityFacets, renderContinuityFacets } from '../lib/continuity/thin-continuity-record.js';
+import { buildContinuityFacets, readThinContinuityRecord, renderContinuityFacets } from '../lib/continuity/thin-continuity-record.js';
 import { buildResumeLadder } from '../lib/resume/resume-ladder.js';
 
 function createWorkspace(): string {
@@ -214,6 +214,68 @@ describe('OpenLTM continuity resilience surfaces', () => {
     ]));
     expect(readDoc(workspacePath, specFolder, 'handover.md')).toContain('## Continuity Snapshot');
     expect(readDoc(workspacePath, specFolder, 'implementation-summary.md')).toContain('last_updated_by: "precompact-hook"');
+  });
+
+  it('preserves authored continuity fields during snapshot refresh', () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    const specFolder = 'system-spec-kit/027-parent/009-openltm-continuity';
+    const fingerprint = `sha256:${'b'.repeat(64)}`;
+    writeDoc(workspacePath, specFolder, 'handover.md', buildHandover());
+    writeDoc(workspacePath, specFolder, 'implementation-summary.md', [
+      '---',
+      'title: "OpenLTM implementation summary fixture"',
+      '_memory:',
+      '  continuity:',
+      `    packet_pointer: "${specFolder}"`,
+      '    last_updated_at: "2026-06-10T09:00:00Z"',
+      '    last_updated_by: "resume-test"',
+      '    recent_action: "Recorded authored continuity state"',
+      '    next_safe_action: "Review continuity handover"',
+      '    blockers:',
+      '      - "Hook cache unavailable"',
+      '    key_files:',
+      '      - "mcp_server/lib/resume/resume-ladder.ts"',
+      '    session_dedup:',
+      `      fingerprint: "${fingerprint}"`,
+      '      session_id: "precompact-session-001"',
+      '      parent_session_id: null',
+      '    completion_pct: 80',
+      '    open_questions:',
+      '      - "Q1"',
+      '    answered_questions:',
+      '      - "Q2"',
+      '---',
+      '# Implementation Summary',
+      '',
+      'Authored ladder body content.',
+      '',
+    ].join('\n'));
+
+    const result = refreshAuthoredContinuitySnapshot({
+      workspacePath,
+      specFolder,
+      enabled: true,
+      now: new Date('2026-06-10T12:00:00Z'),
+    });
+    const readBack = readThinContinuityRecord(readDoc(workspacePath, specFolder, 'implementation-summary.md'));
+
+    expect(result.status).toBe('updated');
+    expect(readBack.ok).toBe(true);
+    expect(readBack.record).toMatchObject({
+      last_updated_at: '2026-06-10T12:00:00Z',
+      last_updated_by: 'precompact-hook',
+      recent_action: 'Restored continuity ladder state',
+      next_safe_action: 'Run targeted continuity tests',
+      completion_pct: 80,
+      open_questions: ['Q1'],
+      answered_questions: ['Q2'],
+      session_dedup: {
+        fingerprint,
+        session_id: 'precompact-session-001',
+        parent_session_id: null,
+      },
+    });
   });
 
   it('recovers from markdown snapshot when hook cache is absent', () => {

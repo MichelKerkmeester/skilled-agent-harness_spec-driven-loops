@@ -5,6 +5,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { detectSpecFolder } from '../hooks/claude/compact-inject.js';
 import { ensureStateDir, loadState, updateState, getStatePath, type PersistedHookState } from '../hooks/claude/hook-state.js';
 import { truncateToTokenBudget, COMPACTION_TOKEN_BUDGET } from '../hooks/claude/shared.js';
 
@@ -83,6 +84,17 @@ describe('precompact hook', () => {
       }
       expect(paths.size).toBeGreaterThan(0);
       expect([...paths]).toContain('/src/hooks/shared.ts');
+    });
+
+    it('detects spec folders from file paths and bare folder mentions', () => {
+      const folder = '.opencode/specs/x/y';
+
+      expect(detectSpecFolder([
+        `Read ${folder}/implementation-summary.md during compaction`,
+      ])).toBe(folder);
+      expect(detectSpecFolder([
+        `Continue in ${folder}`,
+      ])).toBe(folder);
     });
   });
 });
