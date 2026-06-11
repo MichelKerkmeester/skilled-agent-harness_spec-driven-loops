@@ -21,10 +21,14 @@ const requiredArtifacts = [
   'api/index.js',
   'hooks/codex/session-start.js',
 ];
-const cliSourceFiles = [
+// Must stay in lock-step with the sourceCandidates() scan in
+// .opencode/bin/spec-memory.cjs: the shim treats this build-written hash as
+// proof that the dist matches these sources.
+const cliSourceCandidates = [
   'spec-memory-cli.ts',
   'tool-schemas.ts',
-  'schemas/tool-input-schemas.ts',
+  'tsconfig.json',
+  'schemas',
 ];
 const cliSourceHashState = path.join(distDir, '.spec-memory-cli-source-hash.json');
 
@@ -65,10 +69,30 @@ function assertNoStaleDistRoots() {
   }
 }
 
+function collectCliSourceFiles() {
+  const files = [];
+
+  const visit = (candidate) => {
+    if (!fs.existsSync(candidate)) return;
+    if (fs.statSync(candidate).isDirectory()) {
+      for (const entry of fs.readdirSync(candidate)) {
+        visit(path.join(candidate, entry));
+      }
+      return;
+    }
+    if (candidate.endsWith('.ts') || candidate.endsWith('.json')) {
+      files.push(candidate);
+    }
+  };
+
+  for (const candidate of cliSourceCandidates) {
+    visit(path.join(serverDir, candidate));
+  }
+  return files;
+}
+
 function writeCliSourceHash() {
-  const existingSources = cliSourceFiles
-    .map((filePath) => path.join(serverDir, filePath))
-    .filter((filePath) => fs.existsSync(filePath));
+  const existingSources = collectCliSourceFiles();
   if (existingSources.length === 0) return;
 
   const hash = crypto.createHash('sha256');

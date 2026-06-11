@@ -12,11 +12,6 @@ const { spawnSync } = require('child_process');
 
 const opencodeDir = path.resolve(__dirname, '..');
 const mcpServerDir = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server');
-const sourceFiles = [
-  path.join(mcpServerDir, 'spec-memory-cli.ts'),
-  path.join(mcpServerDir, 'tool-schemas.ts'),
-  path.join(mcpServerDir, 'schemas', 'tool-input-schemas.ts'),
-];
 const cliDist = path.join(mcpServerDir, 'dist', 'spec-memory-cli.js');
 const sourceHashState = path.join(path.dirname(cliDist), '.spec-memory-cli-source-hash.json');
 const defaultSocketDir = '/tmp/mk-spec-memory';
@@ -26,6 +21,37 @@ const allowStale = process.env.SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE === '1';
 function fail(message) {
   process.stderr.write(`${message}\n`);
   process.exit(69);
+}
+
+// Recursively collects the CLI's compiled-source surface (entry, local schema
+// imports, tsconfig) so new files under candidate directories are watched
+// without editing this list. Must stay in lock-step with
+// scripts/finalize-dist.mjs, which writes the matching hash at build time.
+function sourceCandidates() {
+  const candidates = [
+    path.join(mcpServerDir, 'spec-memory-cli.ts'),
+    path.join(mcpServerDir, 'tool-schemas.ts'),
+    path.join(mcpServerDir, 'tsconfig.json'),
+    path.join(mcpServerDir, 'schemas'),
+  ];
+  const files = [];
+
+  const visit = (candidate) => {
+    if (!fs.existsSync(candidate)) return;
+    const stat = fs.statSync(candidate);
+    if (stat.isDirectory()) {
+      for (const entry of fs.readdirSync(candidate)) {
+        visit(path.join(candidate, entry));
+      }
+      return;
+    }
+    if (candidate.endsWith('.ts') || candidate.endsWith('.json')) {
+      files.push(candidate);
+    }
+  };
+
+  for (const candidate of candidates) visit(candidate);
+  return files;
 }
 
 function hashSourceFiles(existingSources) {
@@ -62,7 +88,7 @@ function ensureFreshDist() {
     fail(`spec-memory dist entrypoint is missing: ${cliDist}. Run npm run build --workspace=@spec-kit/mcp-server.`);
   }
   if (allowStale) return;
-  const existingSources = sourceFiles.filter((filePath) => fs.existsSync(filePath));
+  const existingSources = sourceCandidates();
   if (existingSources.length === 0) return;
   const currentSourceHash = hashSourceFiles(existingSources);
   if (readStoredSourceHash() === currentSourceHash) return;

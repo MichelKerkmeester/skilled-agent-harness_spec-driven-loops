@@ -12,11 +12,6 @@ const { spawnSync } = require('child_process');
 
 const opencodeDir = path.resolve(__dirname, '..');
 const skillDir = path.join(opencodeDir, 'skills', 'system-code-graph');
-const sourceFiles = [
-  path.join(skillDir, 'mcp_server', 'code-index-cli.ts'),
-  path.join(skillDir, 'mcp_server', 'code-index-cli-manifest.ts'),
-  path.join(skillDir, 'mcp_server', 'tool-schemas.ts'),
-];
 const cliDist = path.join(skillDir, 'mcp_server', 'dist', 'code-index-cli.js');
 const sourceHashState = path.join(path.dirname(cliDist), '.code-index-cli-source-hash.json');
 const defaultSocketDir = '/tmp/mk-code-index';
@@ -26,6 +21,36 @@ const allowStale = process.env.SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE === '1';
 function fail(message) {
   process.stderr.write(`${message}\n`);
   process.exit(69);
+}
+
+// Recursively collects the CLI's compiled-source surface (entry, local
+// imports, build tsconfig) so new files under candidate directories are
+// watched without editing this list. node_modules and dist stay out of scope.
+function sourceCandidates() {
+  const candidates = [
+    path.join(skillDir, 'mcp_server', 'code-index-cli.ts'),
+    path.join(skillDir, 'mcp_server', 'code-index-cli-manifest.ts'),
+    path.join(skillDir, 'mcp_server', 'tool-schemas.ts'),
+    path.join(skillDir, 'tsconfig.json'),
+  ];
+  const files = [];
+
+  const visit = (candidate) => {
+    if (!fs.existsSync(candidate)) return;
+    const stat = fs.statSync(candidate);
+    if (stat.isDirectory()) {
+      for (const entry of fs.readdirSync(candidate)) {
+        visit(path.join(candidate, entry));
+      }
+      return;
+    }
+    if (candidate.endsWith('.ts') || candidate.endsWith('.json')) {
+      files.push(candidate);
+    }
+  };
+
+  for (const candidate of candidates) visit(candidate);
+  return files;
 }
 
 function hashSourceFiles(existingSources) {
@@ -66,7 +91,7 @@ function ensureFreshDist() {
     fail(`code-index dist entrypoint is missing: ${cliDist}. Run tsc -p .opencode/skills/system-code-graph/tsconfig.json.`);
   }
   if (allowStale) return;
-  const existingSources = sourceFiles.filter((filePath) => fs.existsSync(filePath));
+  const existingSources = sourceCandidates();
   if (existingSources.length === 0) return;
   const currentSourceHash = hashSourceFiles(existingSources);
   if (readStoredSourceHash() === currentSourceHash) return;

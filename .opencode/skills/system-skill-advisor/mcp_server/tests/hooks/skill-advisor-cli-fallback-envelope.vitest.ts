@@ -8,13 +8,13 @@ import { skillAdvisorCliFallbackEnvelope } from '../../../hooks/lib/skill-adviso
 
 describe('skill advisor CLI fallback envelope', () => {
   it('normalizes advisor fallback outcomes to the shared warm-fallback shape', () => {
-    const skipped = skillAdvisorCliFallbackEnvelope({ status: 'skipped', reason: 'CLI_WARM_SOCKET_MISSING', exitCode: 75 });
+    const skipped = skillAdvisorCliFallbackEnvelope({ status: 'skipped', reason: 'CLI_SOCKET_ABSENT', exitCode: 75 });
     const failed = skillAdvisorCliFallbackEnvelope({ status: 'fail_open', reason: 'CLI_EXIT_1', exitCode: 1 });
     const ok = skillAdvisorCliFallbackEnvelope({ status: 'ok', exitCode: 0 });
 
     expect(skipped).toEqual({
       status: 'skipped',
-      reason: 'warm_socket_missing',
+      reason: 'socket_absent',
       exitCode: 75,
       retryable: true,
     });

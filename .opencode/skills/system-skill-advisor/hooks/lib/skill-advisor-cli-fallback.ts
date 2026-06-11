@@ -87,10 +87,13 @@ const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
 const MAX_STDOUT_BYTES = 1024 * 1024;
 const require = createRequire(import.meta.url);
 
+// Reason codes here are post-normalization and shared with the spec-kit warm
+// CLI fallback envelope; 'socket_absent' and 'timeout' are the canonical
+// spellings for those conditions across the warm-fallback hook helpers.
 const RETRYABLE_REASONS = new Set([
   'bad_json_response',
-  'cli_fallback_timed_out',
-  'cli_warm_socket_missing',
+  'socket_absent',
+  'timeout',
   'warm_daemon_unavailable',
 ]);
 
@@ -218,7 +221,7 @@ async function probeWarmDaemon(paths: CliFallbackPaths, env: NodeJS.ProcessEnv, 
     return { ok: false, socketPath, reason: 'CLI_SOCKET_PATH_TOO_LONG' };
   }
   if (!socketPath.startsWith('tcp://') && !existsSync(socketPath)) {
-    return { ok: false, socketPath, reason: 'CLI_WARM_SOCKET_MISSING' };
+    return { ok: false, socketPath, reason: 'socket_absent' };
   }
   const bridge = loadBridgeModule(paths.bridgePath);
   if (!bridge) {
