@@ -7,7 +7,8 @@
     "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands",
     "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands",
     "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands",
-    "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands"
+    "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands",
+    "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/005-deep-commands"
   ],
   "manual": {
     "depends_on": [],

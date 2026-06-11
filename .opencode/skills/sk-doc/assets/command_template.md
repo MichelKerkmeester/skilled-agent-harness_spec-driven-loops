@@ -812,6 +812,21 @@ When resuming work in an existing spec folder, prompt to load prior session memo
 \`\`\`
 ```
 
+### Presentation / Router Split (Mode-Based Workflow Families)
+
+The memory, speckit, create, doctor, and deep command families use a stronger form of the mode-based pattern: each command is split into a **thin router** plus **owned assets**, so routing logic and presentation contracts evolve independently and long command files stay readable.
+
+| Asset | Owns |
+|-------|------|
+| `<command>.md` (thin router) | Mode resolution, owned-assets table, routing logic, and any Phase 0 / mandatory-input gate. Contains NO presentation content. |
+| `assets/<ns>_<command>_auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
+| `assets/<ns>_<command>_confirm.yaml` | Interactive-mode workflow. |
+| `assets/<ns>_<command>_presentation.md` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
+
+Router sections, in order: **Router Contract**, **Owned Assets** (table), **Mode Routing**, **Execution Targets**, **Presentation Boundary** (what lives only in the presentation asset), **Workflow Summary**. The router must contain no inline startup-question wording, dashboard templates, or result templates — those live only in the presentation asset.
+
+Reference shape: `.opencode/commands/speckit/plan.md` (router) and `.opencode/commands/speckit/assets/speckit_plan_presentation.md` (presentation contract). Skeleton: [`command_presentation_template.md`](command_presentation_template.md). The split is behavior-preserving — relocate display content, never change routing semantics.
+
 ---
 
 ## 12. ARGUMENT DISPATCH PATTERN

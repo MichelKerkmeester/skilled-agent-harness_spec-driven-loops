@@ -119,6 +119,7 @@ Summary of aggregate future file scope for audit only. Per-family detail lives i
 | 2 | 002-speckit-commands/ | presentation extraction for spec-kit planning, resume, implement, and completion command surfaces | Complete |
 | 3 | 003-create-commands/ | presentation extraction for create-command scaffolding surfaces | Complete |
 | 4 | 004-doctor-commands/ | presentation extraction for diagnostic and repair command surfaces | Complete |
+| 5 | 005-deep-commands/ | presentation extraction for the deep loop command family (six mode-based commands) plus sk-doc command-standard alignment | Complete |
 
 ### Phase Transition Rules
 

@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/005-deep-commands",
+  "description": "Feature Specification: Deep Commands Presentation Workflow Separation",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "commands",
+    "presentation",
+    "workflow",
+    "separation"
+  ],
+  "lastUpdated": "2026-06-11T12:55:35.621Z",
+  "specId": "005",
+  "folderSlug": "deep-commands",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "011-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

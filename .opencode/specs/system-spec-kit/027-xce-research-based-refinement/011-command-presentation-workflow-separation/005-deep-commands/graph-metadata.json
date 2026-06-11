@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/005-deep-commands",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/005-deep-commands",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep command presentation separation",
+      "deep commands thin router",
+      "deep presentation contract extraction"
+    ],
+    "key_topics": [
+      "deep",
+      "command",
+      "presentation",
+      "router",
+      "thin",
+      "split",
+      "auto",
+      "confirm",
+      "contract",
+      "extract"
+    ],
+    "importance_tier": "important",
+    "status": "completed",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep command routers own presentation instructions inline; the deep family was left half-split after 011 (workflow YAMLs exist, presentation not extracted).",
+    "created_at": "2026-06-11T00:00:00Z",
+    "last_save_at": "2026-06-11T13:30:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  },
+  "parent_packet": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation"
+}
