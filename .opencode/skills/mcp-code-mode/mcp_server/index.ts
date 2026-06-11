@@ -89,10 +89,34 @@ function getErrorCode(error: unknown): string | undefined {
     return undefined;
 }
 
+// A stdio MCP server's lifetime is its parent session. Without these exits the
+// process survives a hard session kill, reparents to PID 1, and orphans
+// accumulate until they exhaust shared infrastructure.
+function exitWhenSessionEnds(transport: StdioServerTransport) {
+    const shutdown = (reason: string) => {
+        console.error(`CodeMode-MCP shutting down: ${reason}`);
+        process.exit(0);
+    };
+
+    process.stdin.once("end", () => shutdown("stdin closed"));
+    process.stdin.once("close", () => shutdown("stdin closed"));
+    transport.onclose = () => shutdown("transport closed");
+
+    // Hard parent kills can leave the pipe open with no EOF delivered; polling
+    // for reparenting to PID 1 catches that case.
+    const watchdog = setInterval(() => {
+        if (process.ppid === 1) {
+            shutdown("parent process exited");
+        }
+    }, 15_000);
+    watchdog.unref();
+}
+
 async function main() {
     setupMcpTools();
     utcpClient = await initializeUtcpClient();
     const transport = new StdioServerTransport();
+    exitWhenSessionEnds(transport);
     await mcp.connect(transport);
 }
 
