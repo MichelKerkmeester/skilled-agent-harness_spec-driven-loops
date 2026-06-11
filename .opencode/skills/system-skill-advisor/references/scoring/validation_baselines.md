@@ -5,7 +5,8 @@ trigger_phrases:
   - "advisor validation baselines"
   - "validate baseline regression"
   - "advisor_validate troubleshooting"
-importance_tier: "important"
+importance_tier: "normal"
+contextType: "research"
 ---
 
 # Validation Baselines + Troubleshooting

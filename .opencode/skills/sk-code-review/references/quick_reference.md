@@ -1,6 +1,13 @@
 ---
 title: Code Review Quick Reference
 description: Lightweight index for review core doctrine and single-pass review UX guidance.
+trigger_phrases:
+  - "code review quick reference"
+  - "review reference map"
+  - "split review references index"
+  - "which review checklist to load"
+importance_tier: normal
+contextType: general
 ---
 
 # Code Review Quick Reference

@@ -6,6 +6,8 @@ trigger_phrases:
   - "candidate scoring rubric"
   - "benchmark runner inputs"
   - "infra failure vs weak candidate"
+importance_tier: important
+contextType: implementation
 ---
 
 # Evaluator Contract

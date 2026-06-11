@@ -1,6 +1,13 @@
 ---
 title: Skill Reference File Templates
 description: Comprehensive templates for creating effective reference files for AI agent skills with workflows, decision logic, and validation checkpoints.
+trigger_phrases:
+  - "skill reference templates"
+  - "reference file structure"
+  - "explicit reasoning references"
+  - "reference creation guidelines"
+importance_tier: normal
+contextType: general
 ---
 
 # Skill Reference File Templates - AI Agent Skills
@@ -53,6 +60,12 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 ---
 title: [Title]
 description: [One-line description - same as intro]
+trigger_phrases:
+  - "[distinctive phrase one]"
+  - "[distinctive phrase two]"
+  - "[distinctive phrase three]"
+importance_tier: normal
+contextType: general
 ---
 
 # [Title]
@@ -65,6 +78,8 @@ description: [One-line description - same as intro]
 [All detailed content goes here, NOT in the intro]
 
 ```
+
+Every reference file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content; `importance_tier` defaults to `normal`, `important` only for formal contract docs; `contextType` one of `planning|research|implementation|general`). See [frontmatter_templates.md](../frontmatter_templates.md) for field rules.
 
 > **WARNING: DO NOT duplicate content between intro and Section 1.**
 > The intro is a hook; Section 1 provides the details.

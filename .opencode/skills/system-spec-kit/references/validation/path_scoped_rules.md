@@ -1,6 +1,13 @@
 ---
 title: Path-Scoped Validation Rules
 description: Path-scoped validation system for differentiated validation based on file location, level, and type
+trigger_phrases:
+  - "path-scoped validation rules"
+  - "validation rule hierarchy"
+  - "placeholder pattern detection"
+  - "location-based validation"
+importance_tier: important
+contextType: implementation
 ---
 
 # Path-Scoped Validation Rules - Location-Based Validation

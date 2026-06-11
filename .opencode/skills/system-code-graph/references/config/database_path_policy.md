@@ -5,6 +5,9 @@ trigger_phrases:
   - "system code graph db path"
   - "code-graph.sqlite path"
   - "code graph database policy"
+  - "skill-local code graph database"
+importance_tier: "important"
+contextType: "implementation"
 ---
 
 # System Code Graph Database Path Policy

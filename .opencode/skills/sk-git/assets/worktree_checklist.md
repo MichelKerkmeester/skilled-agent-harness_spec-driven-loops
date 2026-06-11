@@ -1,6 +1,14 @@
 ---
 title: Worktree Creation Checklist
 description: Step-by-step checklist for creating git worktrees safely and reliably.
+trigger_phrases:
+  - "worktree creation checklist"
+  - "gitignore safety verification"
+  - "baseline test verification"
+  - "compute global worktree number"
+  - "worktree status report"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Worktree Creation Checklist - Branch Isolation Setup

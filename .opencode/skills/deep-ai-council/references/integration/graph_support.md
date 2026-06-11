@@ -4,10 +4,10 @@ description: "Derived council graph support boundaries, deep-loop-runtime CLI su
 trigger_phrases:
   - "deep-ai-council graph support"
   - "council graph"
-  - "council graph runtime CLI"
+  - "council graph runtime cli"
   - "derived council graph"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "implementation"
 ---
 
 # AI Council Graph Support

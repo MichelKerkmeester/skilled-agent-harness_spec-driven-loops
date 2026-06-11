@@ -1,9 +1,14 @@
 ---
 title: Format Guide -- Markdown
-description: >
-  Deep-dive formatting guide for Markdown output in prompt engineering.
-  Covers fundamentals, delivery standards, RCAF/CRAFT structures, advanced
-  patterns, syntax validation, and best practices for Markdown prompt output.
+description: Deep-dive formatting guide for Markdown prompt output, the default human-readable mode, covering fundamentals, delivery standards, RCAF/CRAFT structures, syntax validation, and best practices.
+trigger_phrases:
+  - "markdown prompt output mode"
+  - "rcaf markdown structure"
+  - "craft markdown structure"
+  - "single-line prompt header"
+  - "markdown delivery standards"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Format Guide -- Markdown

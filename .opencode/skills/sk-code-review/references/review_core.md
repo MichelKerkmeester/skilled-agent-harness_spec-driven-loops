@@ -1,6 +1,15 @@
 ---
 title: Review Core Doctrine
 description: Shared findings-first review doctrine for both single-pass and deep-review workflows.
+trigger_phrases:
+  - "findings first severity ordering"
+  - "review finding schema"
+  - "severity contract for merge decisions"
+  - "evidence file line citation"
+  - "baseline surface precedence"
+  - "baseline check families"
+importance_tier: important
+contextType: implementation
 ---
 
 # Review Core Doctrine

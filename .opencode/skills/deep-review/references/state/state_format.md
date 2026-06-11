@@ -1,6 +1,14 @@
 ---
 title: Deep Review State Format
 description: State file schemas for the autonomous deep review loop, config, JSONL log, strategy, iteration files, and review report.
+trigger_phrases:
+  - "deep review state format"
+  - "deep review config schema"
+  - "review severity weights"
+  - "file protection levels"
+  - "review iteration file structure"
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Review State Format

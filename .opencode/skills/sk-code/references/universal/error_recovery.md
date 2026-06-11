@@ -1,6 +1,13 @@
 ---
 title: Universal Error Recovery Decision Tree
 description: Surface-agnostic recovery procedure for build, deploy, test, and runtime failures across WEBFLOW and OPENCODE routes.
+trigger_phrases:
+  - "universal error recovery"
+  - "recovery decision tree"
+  - "build failure recovery steps"
+  - "retry verbose escalate"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Universal Error Recovery Decision Tree

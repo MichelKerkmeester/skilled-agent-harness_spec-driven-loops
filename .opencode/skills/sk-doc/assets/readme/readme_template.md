@@ -1,6 +1,13 @@
 ---
 title: README Template and Selection Guide
 description: Concise guidance for project, skill, feature and component README files, with routing to the code-folder README template when developer topology is the main need.
+trigger_phrases:
+  - "readme selection guide"
+  - "project readme template"
+  - "skill readme routing"
+  - "narrative readme structure"
+importance_tier: normal
+contextType: general
 ---
 
 # README Template and Selection Guide

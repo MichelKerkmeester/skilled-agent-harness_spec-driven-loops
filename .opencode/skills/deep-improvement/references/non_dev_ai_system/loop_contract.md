@@ -1,6 +1,14 @@
 ---
 title: "Lane D Loop Contract"
 description: "Formal contract for the packaging-owned benchmark/_loop/loop.py host: required files, argv surface, env knobs, journal events, kill-switches, lock and resume semantics, the CW_ROOT override, and how loop-host and the adapter invoke it."
+trigger_phrases:
+  - "lane d loop contract"
+  - "packaging-owned loop host"
+  - "loop journal events"
+  - "loop kill-switches"
+  - "lock and resume semantics"
+importance_tier: important
+contextType: implementation
 ---
 
 # Lane D Loop Contract

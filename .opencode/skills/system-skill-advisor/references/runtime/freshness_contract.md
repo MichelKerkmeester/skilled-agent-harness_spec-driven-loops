@@ -7,6 +7,7 @@ trigger_phrases:
   - "trust state contract"
   - "daemon contract"
 importance_tier: "important"
+contextType: "implementation"
 ---
 
 # Freshness Contract

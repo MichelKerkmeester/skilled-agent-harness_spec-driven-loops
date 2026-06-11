@@ -1,6 +1,14 @@
 ---
 title: Configuration Template
 description: Complete .utcp_config.json template for Code Mode UTCP setup with multiple MCP servers.
+trigger_phrases:
+  - "utcp config json template"
+  - "copy ready utcp config"
+  - "adding new mcp server"
+  - "multiple chrome devtools instances"
+  - "manual call templates array"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Configuration Template

@@ -1,6 +1,14 @@
 ---
 title: "Lane D Operator Guide"
 description: "Operational guide for the Non-Dev-AI-System (Lane D) loop: contract overview, invocation, non-negotiable guardrails, onboarding a new packaging, conformance checklist, and pilot notes."
+trigger_phrases:
+  - "lane d operator guide"
+  - "non-dev ai system loop"
+  - "dry-run gap analysis"
+  - "onboarding a new packaging"
+  - "non-negotiable guardrails"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Lane D Operator Guide
@@ -85,7 +93,7 @@ Do not copy-edit a sibling packaging (a hand-port once disabled floor enforcemen
 2. Render: `python3 scripts/non-dev-ai-system/init_packaging.py --config <your-config.json> [--check-only]` writes `benchmark/_loop/`, `benchmark/_gates/` and benchmark harness files into the packaging root from `assets/non_dev_ai_system/templates/`. Set `derive_source_root` when derived-copy `src_relpath` values resolve somewhere other than the default `knowledge base` (for example `skill/references`).
 3. Author fixtures per `references/non_dev_ai_system/fixture_authoring.md`, then run the conformance checklist below.
 
-Template provenance and versioning: the templates parameterize the pilot implementations, including every deep-review guardrail fix, and carry a kit version (`kit_version` in the config, current 1.2.0; 1.2.0 added derived-copy `mode: symlink` with `link_target` and the `transform: skill_strip` sk-doc alignment for skill copies). A packaging owns its rendered instance afterwards. The maintenance model is TEMPLATE-AS-SOURCE for new packagings and instance-owned thereafter: live instances may evolve ahead of the kit (the pilots do), and that drift is accepted, not a defect. When the kit advances: bump `kit_version` in your config, run `init_packaging.py --check-only` against it, and diff the temp render against your live instance to review what the new kit would change before adopting any of it. Fixes that harden guardrails should land in BOTH the kit and the live instances in the same change.
+Template provenance and versioning: the templates parameterize the pilot implementations, including every deep-review guardrail fix, and carry a kit version (`kit_version` in the config, current 1.3.0; 1.2.0 added derived-copy `mode: symlink` with `link_target` and the `transform: skill_strip` sk-doc alignment for skill copies; 1.3.0 added per-entry `src_root` overrides on `derived_copies` (asset mirrors, SKILL.md byte-mirrors) and the gauntlet's live-packaging overlay — the attack worktree now mirrors the live tree instead of git HEAD, so uncommitted layout changes are testable, with attack resets restoring from the live tree). A packaging owns its rendered instance afterwards. The maintenance model is TEMPLATE-AS-SOURCE for new packagings and instance-owned thereafter: live instances may evolve ahead of the kit (the pilots do), and that drift is accepted, not a defect. When the kit advances: bump `kit_version` in your config, run `init_packaging.py --check-only` against it, and diff the temp render against your live instance to review what the new kit would change before adopting any of it. Fixes that harden guardrails should land in BOTH the kit and the live instances in the same change.
 
 ---
 

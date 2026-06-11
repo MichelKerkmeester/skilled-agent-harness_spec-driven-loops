@@ -1,6 +1,13 @@
 ---
-title: "Small-Model Context Budget Engine"
-description: "Smallcode-derived token budget defaults, truncation marker syntax, and eviction rules for small-model dispatches (cli-opencode and any future executor)."
+title: Small-Model Context Budget Engine
+description: Smallcode-derived token budget defaults, truncation marker syntax, and eviction rules for small-model dispatches (cli-opencode and any future executor).
+trigger_phrases:
+  - "small model context budget"
+  - "token budget defaults"
+  - "truncation marker syntax"
+  - "context eviction order"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Small-Model Context Budget Engine

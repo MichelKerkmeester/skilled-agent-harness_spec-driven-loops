@@ -1,6 +1,13 @@
 ---
 title: Spec Folder Write Recipe
 description: Step-by-step recipe for writing a new spec folder that satisfies validate.sh --strict on first try.
+trigger_phrases:
+  - "spec folder write recipe"
+  - "scaffold spec folder steps"
+  - "level one docs authoring"
+  - "strict validate first try"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Spec Folder Write Recipe

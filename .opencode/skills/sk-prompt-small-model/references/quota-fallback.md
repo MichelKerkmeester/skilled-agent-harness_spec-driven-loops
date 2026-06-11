@@ -1,6 +1,13 @@
 ---
 title: Quota-Pool-Aware Fallback
 description: One-step small-model fallback rules for Cognition free, Cognition Pro, and Anthropic quota pools. Re-homed from cli-devin.
+trigger_phrases:
+  - "quota pool aware fallback"
+  - "small model fallback rules"
+  - "one step model fallback"
+  - "exhausted quota pool"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Quota-Pool-Aware Fallback

@@ -1,6 +1,14 @@
 ---
 title: Skill Creation Workflow
 description: Complete guide for creating, validating, and distributing AI agent skills with bundled resources.
+trigger_phrases:
+  - "skill creation workflow"
+  - "create new skill"
+  - "skill validation standards"
+  - "skill packaging distribution"
+  - "progressive disclosure skills"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Skill Creation Workflow - Complete Development Guide
@@ -171,6 +179,8 @@ Documentation loaded as needed to inform the agent's process and thinking.
 - Avoid duplication between SKILL.md and references
 - Keep only essential instructions in SKILL.md
 - Move detailed reference material to references files
+
+**Frontmatter contract**: every reference and asset markdown file carries the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`); `README.md` files are exempt. The Skill Advisor harvests these fields as routing signal — see [frontmatter_templates.md](../assets/frontmatter_templates.md) for the template and field rules.
 
 #### Assets Directory (`assets/`)
 

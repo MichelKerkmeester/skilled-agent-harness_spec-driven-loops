@@ -5,6 +5,8 @@ trigger_phrases:
   - "standalone advisor mcp shape"
   - "mk_skill_advisor topology"
   - "advisor mcp server boundary"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Standalone MCP Shape

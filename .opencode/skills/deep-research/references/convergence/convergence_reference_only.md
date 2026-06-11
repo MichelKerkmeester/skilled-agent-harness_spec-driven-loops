@@ -1,6 +1,14 @@
 ---
 title: Convergence Reference-Only Models
 description: Future or non-executable convergence concepts retained outside the live deep-research stop contract.
+trigger_phrases:
+  - "convergence reference only models"
+  - "research segment model"
+  - "research dead-end coverage"
+  - "semantic convergence signals"
+  - "optimizer managed convergence fields"
+importance_tier: normal
+contextType: planning
 ---
 
 # Convergence Reference-Only Models

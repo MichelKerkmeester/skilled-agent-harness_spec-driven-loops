@@ -1,6 +1,13 @@
 ---
 title: Optimization - Transformation Patterns for AI-Friendly Docs
 description: 16 proven patterns for converting documentation into AI-friendly question-answering format.
+trigger_phrases:
+  - "doc optimization patterns"
+  - "ai friendly documentation"
+  - "question answering format"
+  - "transformation patterns markdown"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Optimization - Transformation Patterns for AI-Friendly Docs

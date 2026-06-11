@@ -1,6 +1,13 @@
 ---
 title: "cli-opencode Context Budget Mirror"
 description: "Sentinel-style pointer for applying context-budget semantics to cli-opencode dispatches without duplicating the canonical small-model pattern."
+trigger_phrases:
+  - "opencode context budget"
+  - "cli-opencode budget mirror"
+  - "opencode model context windows"
+  - "opencode truncation marker"
+importance_tier: normal
+contextType: general
 ---
 
 # cli-opencode Context Budget Mirror

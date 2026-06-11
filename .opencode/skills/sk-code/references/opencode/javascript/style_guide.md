@@ -1,6 +1,13 @@
 ---
 title: JavaScript Style Guide
 description: Formatting standards and naming conventions for JavaScript files in the OpenCode development environment.
+trigger_phrases:
+  - "opencode javascript style guide"
+  - "javascript file header format"
+  - "use strict directive"
+  - "javascript section organization"
+importance_tier: normal
+contextType: implementation
 ---
 
 # JavaScript Style Guide

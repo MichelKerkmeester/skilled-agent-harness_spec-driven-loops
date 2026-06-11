@@ -6,6 +6,8 @@ trigger_phrases:
   - "skill graph tool ids"
   - "mk skill advisor tools"
   - "tool namespace convention"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Tool IDs Reference

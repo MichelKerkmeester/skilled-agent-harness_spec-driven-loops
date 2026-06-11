@@ -1,6 +1,13 @@
 ---
 title: Config Quality Standards
 description: Quality gates for JSON/JSONC configuration files in OpenCode, including comment policy, KISS/DRY, and SOLID-aligned boundary checks.
+trigger_phrases:
+  - "opencode config quality standards"
+  - "jsonc comment policy"
+  - "config quality gates"
+  - "json config validation rules"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Config Quality Standards

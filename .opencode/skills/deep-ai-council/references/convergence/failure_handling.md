@@ -8,7 +8,7 @@ trigger_phrases:
   - "contradiction without resolution"
   - "insufficient vantage diversity"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "planning"
 ---
 
 # AI Council Failure Handling

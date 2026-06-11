@@ -1,6 +1,14 @@
 ---
 title: Commit Message Template
 description: Templates and examples for writing professional commit messages following Conventional Commits specification.
+trigger_phrases:
+  - "conventional commit scopes"
+  - "commit message template"
+  - "imperative mood description"
+  - "breaking change footer"
+  - "commit subject length rules"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Commit Message Template - Conventional Format Guide

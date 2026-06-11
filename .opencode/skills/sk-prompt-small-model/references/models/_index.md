@@ -1,6 +1,13 @@
 ---
 title: Small-Model Prompt-Craft Profiles — Index
 description: Thin index of the per-model prompt-craft profiles that ARE this skill's hub content. One row per active small model — prompt framework + status — linking to each model's profile. Frameworks mirror sk-prompt-small-model/assets/model-profiles.json recommended_frameworks (the DATA source of truth); executor MECHANICS stay in cli-opencode.
+trigger_phrases:
+  - "small model profile index"
+  - "prompt craft profiles index"
+  - "per model framework table"
+  - "which framework for which model"
+importance_tier: normal
+contextType: general
 ---
 
 # Small-Model Prompt-Craft Profiles — Index

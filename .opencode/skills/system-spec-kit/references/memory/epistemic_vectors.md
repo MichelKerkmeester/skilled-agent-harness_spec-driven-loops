@@ -1,6 +1,13 @@
 ---
 title: Epistemic Vectors Reference
 description: Uncertainty tracking framework for measuring knowledge gaps separate from confidence scoring
+trigger_phrases:
+  - "epistemic uncertainty tracking"
+  - "four uncertainty factors"
+  - "knowledge gap measurement"
+  - "uncertainty weighted average"
+importance_tier: normal
+contextType: research
 ---
 
 # Epistemic Vectors Reference - Uncertainty Tracking

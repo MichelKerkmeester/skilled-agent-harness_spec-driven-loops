@@ -1,6 +1,14 @@
 ---
 title: Agent Creation - Standards and Workflow
 description: Standards and workflow guidance for creating OpenCode agents with runtime-aware placement, unified permission frontmatter, clear authority boundaries, and validation-first delivery.
+trigger_phrases:
+  - "agent creation standards"
+  - "create opencode agent"
+  - "agent permission frontmatter"
+  - "agent authority boundaries"
+  - "runtime agent placement"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Agent Creation - Standards and Workflow

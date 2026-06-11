@@ -5,7 +5,8 @@ trigger_phrases:
   - "deferred decisions skill-advisor"
   - "tier d decisions"
   - "skill-advisor architectural deferrals"
-importance_tier: "important"
+importance_tier: "normal"
+contextType: "general"
 ---
 
 # Deferred Decisions (Tier D)

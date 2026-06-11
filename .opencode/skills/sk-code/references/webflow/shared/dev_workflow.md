@@ -3,11 +3,12 @@ title: "Webflow Dev Workflow: Cross-Language Patterns"
 description: "DevTools, logging, testing, automation patterns, error handling, and browser compatibility for Webflow stack — applies to all languages."
 trigger_phrases:
   - "webflow dev workflow"
-  - "webflow devtools"
-  - "webflow testing"
-  - "webflow automation"
+  - "webflow devtools reference"
+  - "webflow testing automation"
   - "webflow error patterns"
-  - "browser compatibility"
+  - "browser compatibility webflow"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow Dev Workflow: Cross-Language Patterns

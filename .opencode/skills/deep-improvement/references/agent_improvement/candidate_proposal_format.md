@@ -2,12 +2,12 @@
 title: Deep Agent Improvement Candidate Proposal Format
 description: Formal format for packet-local candidate proposals in deep-improvement, including file structure, metadata, and mutation representation.
 trigger_phrases:
-  - "candidate proposal"
-  - "candidate format"
-  - "proposal format"
-  - "mutation format"
+  - "candidate proposal format"
+  - "packet-local candidate proposals"
+  - "proposal metadata fields"
+  - "mutation representation format"
 importance_tier: important
-contextType: reference
+contextType: implementation
 ---
 
 # Deep Agent Improvement Candidate Proposal Format

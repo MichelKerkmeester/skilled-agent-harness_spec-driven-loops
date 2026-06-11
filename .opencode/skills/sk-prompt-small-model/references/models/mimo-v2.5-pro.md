@@ -1,9 +1,14 @@
 ---
-title: "MiMo-V2.5-Pro Prompt-Craft Profile"
+title: MiMo-V2.5-Pro Prompt-Craft Profile
 model_id: "mimo-v2.5-pro"
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: empirical
-last_benchmarked: "2026 (benchmark 004)"
+description: How to prompt MiMo-V2.5-Pro via cli-opencode, benchmark-backed COSTAR framework with lean pre-planning, tuned scaffold, and dispatch gotchas.
+trigger_phrases:
+  - "mimo v2.5 pro prompt framework"
+  - "mimo costar scaffold"
+  - "xiaomi mimo prompting"
+  - "mimo dispatch gotchas"
+importance_tier: normal
+contextType: implementation
 ---
 
 # MiMo-V2.5-Pro Prompt-Craft Profile

@@ -1,6 +1,14 @@
 ---
 title: Daemon CLI Reference
 description: Canonical reference for the three daemon-backed CLI shims over mk-spec-memory, mk-code-index, and mk-skill-advisor.
+trigger_phrases:
+  - "daemon cli reference"
+  - "daemon-backed cli shims"
+  - "warm-only policy"
+  - "exit code taxonomy"
+  - "cli vs mcp transport"
+importance_tier: important
+contextType: implementation
 ---
 
 # Daemon CLI Reference

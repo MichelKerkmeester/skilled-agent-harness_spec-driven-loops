@@ -1,3 +1,14 @@
+---
+title: Approval Workflow with Loops - Multiple Reviewers and Revision Cycles
+description: Document approval flow with multiple reviewers, revision cycles, and escalation paths.
+trigger_phrases:
+  - "approval workflow flowchart"
+  - "revision cycle diagram"
+  - "multi reviewer escalation flow"
+importance_tier: normal
+contextType: general
+---
+
 # Approval Workflow with Loops - Multiple Reviewers and Revision Cycles
 
 Document approval flow with multiple reviewers, revision cycles, and escalation paths.

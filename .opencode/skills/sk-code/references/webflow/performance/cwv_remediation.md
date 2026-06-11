@@ -1,6 +1,13 @@
 ---
 title: Core Web Vitals Remediation Guide
 description: Actionable remediation patterns for LCP, FCP, TBT, and CLS issues in Webflow sites with custom JavaScript.
+trigger_phrases:
+  - "core web vitals remediation"
+  - "lcp fcp remediation webflow"
+  - "tbt cls fixes"
+  - "pagespeed evidence verification"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Core Web Vitals Remediation Guide

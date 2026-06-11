@@ -1,9 +1,14 @@
 ---
-title: "Kimi-k2.6 Prompt-Craft Profile"
+title: Kimi-k2.6 Prompt-Craft Profile
 model_id: "kimi-k2.6"
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: default-unverified
-last_benchmarked: "none"
+description: How to prompt Kimi-k2.6 via cli-opencode, RCAF framework with medium pre-planning over the 200k window, file-anchored context scaffold, and hang-rate gotchas.
+trigger_phrases:
+  - "kimi k2.6 prompt framework"
+  - "kimi dispatch scaffold"
+  - "kimi large context prompting"
+  - "kimi hang rate gotchas"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Kimi-k2.6 Prompt-Craft Profile

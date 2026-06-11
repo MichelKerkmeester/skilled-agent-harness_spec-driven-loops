@@ -1,6 +1,13 @@
 ---
 title: Deep Review Dashboard
 description: Auto-generated review session overview, refreshed after each iteration from JSONL state and strategy.
+trigger_phrases:
+  - "deep review dashboard"
+  - "review session overview"
+  - "review findings summary"
+  - "review coverage trend"
+importance_tier: normal
+contextType: general
 ---
 
 # Deep Review Dashboard - Session Overview

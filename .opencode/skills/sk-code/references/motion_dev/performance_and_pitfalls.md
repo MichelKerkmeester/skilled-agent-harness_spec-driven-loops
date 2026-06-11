@@ -1,6 +1,14 @@
 ---
 title: "Motion.dev Performance and Pitfalls"
 description: "Performance guidance for Motion animations, bundle sizing, reduced-motion compliance, and Core Web Vitals risk."
+trigger_phrases:
+  - "motion dev performance pitfalls"
+  - "gpu composited animation properties"
+  - "animation layout thrashing"
+  - "reduced motion compliance"
+  - "animation bundle size"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Performance and Pitfalls

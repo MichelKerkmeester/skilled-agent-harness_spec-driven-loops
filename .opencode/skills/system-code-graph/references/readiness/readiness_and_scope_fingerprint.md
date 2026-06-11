@@ -7,6 +7,8 @@ trigger_phrases:
   - "code-graph blocked"
   - "code-graph stale"
   - "trust state"
+importance_tier: "important"
+contextType: "implementation"
 ---
 
 # System Code Graph Readiness and Scope Fingerprint

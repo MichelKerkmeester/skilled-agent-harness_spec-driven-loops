@@ -1,6 +1,13 @@
 ---
 title: Recursive Agent Strategy Template
 description: Mutable runtime strategy template for deep-improvement sessions.
+trigger_phrases:
+  - "recursive agent strategy"
+  - "improvement strategy template"
+  - "operator-owned strategy fields"
+  - "machine-owned status fields"
+importance_tier: normal
+contextType: planning
 ---
 
 # Recursive Agent Strategy

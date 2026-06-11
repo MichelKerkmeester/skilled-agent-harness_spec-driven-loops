@@ -1,6 +1,14 @@
 ---
 title: Deep Review Quick Reference
 description: One-page cheat sheet for the autonomous deep review loop.
+trigger_phrases:
+  - "deep review quick reference"
+  - "review loop cheat sheet"
+  - "p0 p1 p2 severity ladder"
+  - "release readiness verdicts"
+  - "review loop troubleshooting"
+importance_tier: normal
+contextType: general
 ---
 
 # Deep Review Quick Reference

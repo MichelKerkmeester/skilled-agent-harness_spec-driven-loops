@@ -2,12 +2,13 @@
 title: "Webflow HTML Quality Standards"
 description: "HTML quality + enforcement for Webflow projects: data-attribute hygiene, ARIA state-sync validation, custom embed cleanup rules, head/footer custom code panel structure validation."
 trigger_phrases:
-  - "webflow html quality"
-  - "webflow html standards"
-  - "data-attribute hygiene"
+  - "webflow html quality standards"
+  - "data attribute hygiene"
   - "aria state sync"
   - "custom embed validation"
   - "head footer panel structure"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow HTML Quality Standards

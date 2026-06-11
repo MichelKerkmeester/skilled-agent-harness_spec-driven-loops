@@ -1,6 +1,13 @@
 ---
 title: Review UX - Single Pass
 description: Interactive single-pass review behavior for human-facing review sessions.
+trigger_phrases:
+  - "single pass review ux"
+  - "review first implement second"
+  - "next step options after findings"
+  - "pre commit review guidance"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Review UX - Single Pass

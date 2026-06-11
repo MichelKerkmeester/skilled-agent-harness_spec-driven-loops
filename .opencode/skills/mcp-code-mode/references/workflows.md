@@ -1,6 +1,14 @@
 ---
 title: Workflow Examples - Complex Multi-Tool Patterns
 description: Five workflow patterns for multi-tool orchestration, error handling, and state persistence.
+trigger_phrases:
+  - "call_tool_chain patterns"
+  - "multi tool orchestration"
+  - "code mode workflow examples"
+  - "error handling with fallbacks"
+  - "sandbox state persistence"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Workflow Examples - Complex Multi-Tool Patterns

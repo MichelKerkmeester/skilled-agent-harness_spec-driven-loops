@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor lease semantics"
   - "single writer lease"
 importance_tier: "important"
+contextType: "implementation"
 ---
 
 # Daemon Lease Contract

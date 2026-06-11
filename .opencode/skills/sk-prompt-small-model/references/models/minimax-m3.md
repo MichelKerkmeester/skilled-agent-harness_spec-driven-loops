@@ -1,9 +1,14 @@
 ---
-title: "MiniMax-M3 Prompt-Craft Profile"
+title: MiniMax-M3 Prompt-Craft Profile
 model_id: "minimax-m3"
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: "empirical"
-last_benchmarked: "2026 (benchmark 003 on M2.7; contract carried to M3)"
+description: How to prompt MiniMax-M3 via cli-opencode, TIDD-EC framework with dense pre-planning carried from benchmark 003, tuned scaffold, and dispatch gotchas.
+trigger_phrases:
+  - "minimax m3 prompt framework"
+  - "minimax tidd-ec scaffold"
+  - "minimax dense pre-planning"
+  - "minimax m3 dispatch gotchas"
+importance_tier: normal
+contextType: implementation
 ---
 
 # MiniMax-M3 Prompt-Craft Profile

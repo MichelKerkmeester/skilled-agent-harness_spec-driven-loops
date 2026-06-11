@@ -1,6 +1,13 @@
 ---
 title: Memory Handback Protocol for cli-* Skills
 description: Canonical 7-step Memory Handback procedure shared across the three cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
+trigger_phrases:
+  - "memory handback protocol"
+  - "memory handback extraction"
+  - "handback save gates"
+  - "structured json handback"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Memory Handback Protocol (cli-* family)

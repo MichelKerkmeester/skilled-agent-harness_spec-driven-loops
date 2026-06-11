@@ -1,6 +1,13 @@
 ---
 title: Deep Review Convergence Recovery and Reporting
 description: Stuck-recovery strategies, the convergence report format, and graph-aware review convergence for the deep review loop.
+trigger_phrases:
+  - "review convergence recovery"
+  - "least covered dimension pivot"
+  - "review convergence report"
+  - "graph aware review convergence"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Review Convergence Recovery and Reporting

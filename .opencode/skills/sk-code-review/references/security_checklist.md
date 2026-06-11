@@ -1,6 +1,15 @@
 ---
 title: Security and Reliability Checklist
 description: Structured risk checklist for security vulnerabilities, runtime reliability issues, and concurrent-behavior defects.
+trigger_phrases:
+  - "security review minimums"
+  - "input output safety checks"
+  - "authn authz review checklist"
+  - "secrets and privacy review"
+  - "concurrency race condition review"
+  - "dependency supply chain audit"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Security and Reliability Checklist

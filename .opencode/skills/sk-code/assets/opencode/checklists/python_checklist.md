@@ -1,6 +1,13 @@
 ---
 title: Python Code Quality Checklist
 description: Quality validation checklist for Python code in the OpenCode development environment.
+trigger_phrases:
+  - "opencode python checklist"
+  - "python quality validation checklist"
+  - "python shebang docstring check"
+  - "python naming checklist"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Python Code Quality Checklist

@@ -5,8 +5,8 @@ trigger_phrases:
   - "deep-ai-council output schema"
   - "council output format"
   - "persist-artifacts parser contract"
-importance_tier: "normal"
-contextType: "reference"
+importance_tier: "important"
+contextType: "implementation"
 ---
 
 # AI Council Output Schema

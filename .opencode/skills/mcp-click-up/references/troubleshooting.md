@@ -8,6 +8,8 @@ trigger_phrases:
   - "mcp connection failed"
   - "cupt done wrong status"
   - "team filter slow"
+importance_tier: "normal"
+contextType: "general"
 ---
 
 # mcp-click-up Troubleshooting Guide

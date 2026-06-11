@@ -1,6 +1,13 @@
 ---
 title: Skill Advisor Hook Validation Playbook
 description: Manual validation playbook for the shipped skill-advisor hook and MCP contract.
+trigger_phrases:
+  - "advisor hook validation playbook"
+  - "advisor recommend contract check"
+  - "durable jsonl diagnostics"
+  - "cross-runtime hook smoke"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Skill Advisor Hook Validation Playbook

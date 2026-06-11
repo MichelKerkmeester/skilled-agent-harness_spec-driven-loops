@@ -1,6 +1,14 @@
 ---
 title: "Motion.dev Integration Patterns"
 description: "Stack-aware integration patterns for CDN, ES modules, Webflow, non-Webflow stacks, and initialization safeguards."
+trigger_phrases:
+  - "motion dev integration patterns"
+  - "motion cdn script tag"
+  - "motion es module import"
+  - "motion webflow integration"
+  - "animation initialization safeguards"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Integration Patterns

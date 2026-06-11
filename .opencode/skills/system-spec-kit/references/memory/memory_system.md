@@ -1,6 +1,14 @@
 ---
 title: Memory System Reference
 description: Detailed documentation for Spec Kit Memory MCP tools, behavior notes, and configuration
+trigger_phrases:
+  - "memory system reference"
+  - "spec kit memory tools"
+  - "importance tier behavior"
+  - "memory search behavior"
+  - "indexable content sources"
+importance_tier: normal
+contextType: general
 ---
 
 # Memory System Reference - MCP Tools & Behavior

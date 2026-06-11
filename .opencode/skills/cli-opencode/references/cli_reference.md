@@ -1,6 +1,15 @@
 ---
 title: "OpenCode CLI - Complete Command Reference"
 description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Pinned to v1.3.17."
+trigger_phrases:
+  - "opencode cli reference"
+  - "opencode run flags"
+  - "opencode model selection"
+  - "opencode provider auth pre-flight"
+  - "opencode variant reasoning effort"
+  - "opencode version drift"
+importance_tier: important
+contextType: implementation
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -187,9 +196,11 @@ echo "default=$OPENCODE_GO_OK fallback=$DEEPSEEK_OK minimax_token=$MINIMAX_TOKEN
 
 | State | Condition | Action |
 |-------|-----------|--------|
-| MiMo requested (default) | `XIAOMI_OK=1` | Proceed with `--model xiaomi-token-plan-ams/mimo-v2.5-pro` — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models xiaomi-token-plan-ams` |
+| MiMo requested (default) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.5-pro` — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models xiaomi` |
+| MiMo speed variant ("ultraspeed", latency-sensitive) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.5-pro-ultraspeed` — low-latency MiMo-V2.5-Pro tier, same prompt contract |
+| Token Plan explicitly requested | `XIAOMI_OK=1` | `--model xiaomi-token-plan-ams/mimo-v2.5-pro` — NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead |
 | Token Plan not configured | `XIAOMI_OK=0` | **ASK user** to run `opencode auth login` → Xiaomi Token Plan (Europe) — never substitute silently |
-| Direct API explicitly requested | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.5-pro` (pay-per-token; confirm the live id via `opencode models xiaomi`) |
+| Direct API explicitly requested | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.5-pro` or `xiaomi/mimo-v2.5-pro-ultraspeed` (pay-per-token; confirm live ids via `opencode models xiaomi`) |
 | Direct API requested, not configured | `XIAOMI_DIRECT_OK=0` | **ASK user** to run `opencode providers login xiaomi` — never substitute silently |
 
 **Login / setup command shapes** (the AI surfaces these to the user; the user runs them in their own terminal):
@@ -222,7 +233,7 @@ opencode providers login xiaomi
 
 ## 5. MODEL SELECTION
 
-OpenCode resolves models through configured providers. The cli-opencode skill supports `opencode-go` (default), `deepseek`, `minimax-coding-plan` (MiniMax Token Plan — default MiniMax path), `minimax` (MiniMax Direct API — pay-per-token alternative), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe — MiMo, explicitly-selectable), and `xiaomi` (Xiaomi Direct API — MiMo, pay-per-token) — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
+OpenCode resolves models through configured providers. The cli-opencode skill supports `opencode-go` (default), `deepseek`, `minimax-coding-plan` (MiniMax Token Plan — default MiniMax path), `minimax` (MiniMax Direct API — pay-per-token alternative), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe — MiMo, explicitly-selectable; NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead), and `xiaomi` (Xiaomi Direct API — MiMo: `xiaomi/mimo-v2.5-pro` + low-latency `xiaomi/mimo-v2.5-pro-ultraspeed`, pay-per-token) — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
 
 | Provider | Example model id | Use case |
 |----------|------------------|----------|

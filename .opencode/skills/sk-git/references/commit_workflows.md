@@ -1,6 +1,15 @@
 ---
 title: Git Commit - Detailed Workflow Reference
 description: Complete workflow documentation for professional commit practices with Conventional Commits.
+trigger_phrases:
+  - "atomic commit strategy"
+  - "scoped staging discipline"
+  - "filter development artifacts"
+  - "commit type selection"
+  - "dirty working tree staging"
+  - "staged deny pattern assertion"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Git Commit - Detailed Workflow Reference

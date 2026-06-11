@@ -1,6 +1,13 @@
 ---
 title: Webflow Platform Patterns - Development Guide
 description: Complete platform constraints and collection list patterns for Webflow development.
+trigger_phrases:
+  - "webflow platform patterns"
+  - "webflow cms limits"
+  - "collection list patterns"
+  - "webflow api limits"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow Platform Patterns - Development Guide

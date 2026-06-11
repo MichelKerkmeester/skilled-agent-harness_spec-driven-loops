@@ -1,10 +1,14 @@
 ---
 title: Format Guide -- YAML
-description: >
-  Deep-dive formatting guide for YAML output in prompt engineering.
-  Covers fundamentals, data types, delivery standards, RCAF/CRAFT structures,
-  advanced patterns, templates, syntax validation, and best practices for
-  YAML prompt output.
+description: Deep-dive formatting guide for YAML prompt output covering fundamentals, data types, delivery standards, RCAF/CRAFT structures, anchor-based templates, syntax validation, and best practices.
+trigger_phrases:
+  - "yaml prompt output mode"
+  - "rcaf yaml structure"
+  - "yaml template anchors"
+  - "yaml indentation validation"
+  - "configuration-style prompt template"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Format Guide -- YAML

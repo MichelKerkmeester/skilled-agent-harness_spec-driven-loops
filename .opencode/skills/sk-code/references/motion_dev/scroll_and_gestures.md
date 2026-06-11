@@ -1,6 +1,13 @@
 ---
 title: "Motion.dev Scroll and Gestures"
 description: "Cross-stack guidance for scroll-linked animation, in-view triggers, hover/press gestures, and repo examples."
+trigger_phrases:
+  - "motion dev scroll linked"
+  - "motion inview viewport trigger"
+  - "scroll progress animation"
+  - "motion hover press gestures"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Scroll and Gestures

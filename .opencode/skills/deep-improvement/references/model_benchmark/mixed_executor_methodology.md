@@ -2,10 +2,12 @@
 title: "Mixed-Executor Methodology for Multi-Iter Evaluation Sweeps"
 description: "Guidance on using mixed-executor dispatch (breadth CLI executor breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter for DAI multi-iter evaluation sweeps."
 trigger_phrases:
-  - "mixed-executor"
-  - "adjudication"
-  - "multi-iter"
-  - "cli-codex"
+  - "mixed-executor methodology"
+  - "multi-iter evaluation sweep"
+  - "breadth and synthesis iters"
+  - "adjudication-iter false-positive filter"
+importance_tier: normal
+contextType: research
 ---
 
 # Mixed-Executor Methodology for Multi-Iter Evaluation Sweeps

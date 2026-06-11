@@ -1,6 +1,14 @@
 ---
 title: Deep Context Output Files Reference
 description: Markdown and report outputs for strategy, iterations, deltas, dashboard, and the Context Report.
+trigger_phrases:
+  - "context packet outputs"
+  - "deep-context strategy file"
+  - "iteration markdown narratives"
+  - "per-iteration delta stream"
+  - "context loop dashboard"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Context Output Files Reference

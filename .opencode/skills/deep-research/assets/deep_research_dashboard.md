@@ -1,6 +1,14 @@
 ---
 title: Deep Research Dashboard Template
 description: Template for the auto-generated dashboard file regenerated after every iteration from JSONL + strategy data. Provides human-readable session overview and recovery surface.
+trigger_phrases:
+  - "deep research dashboard"
+  - "research session overview"
+  - "research dashboard template"
+  - "research convergence trend"
+  - "research dead ends section"
+importance_tier: normal
+contextType: general
 ---
 
 # Deep Research Dashboard - Session Overview

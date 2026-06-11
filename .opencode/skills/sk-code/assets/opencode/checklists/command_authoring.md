@@ -1,6 +1,13 @@
 ---
 title: Command Authoring Checklist
 description: Checklist for authoring slash commands with execution-path YAML, runtime mirrors, and verification gates.
+trigger_phrases:
+  - "command authoring checklist"
+  - "slash command authoring"
+  - "execution path yaml"
+  - "command runtime mirrors"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Command Authoring Checklist

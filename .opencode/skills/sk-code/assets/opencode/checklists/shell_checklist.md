@@ -1,6 +1,13 @@
 ---
 title: Shell Code Quality Checklist
 description: Quality validation checklist for Bash scripts in the OpenCode development environment.
+trigger_phrases:
+  - "opencode shell checklist"
+  - "bash quality validation checklist"
+  - "bash strict mode check"
+  - "shell variable quoting check"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Shell Code Quality Checklist

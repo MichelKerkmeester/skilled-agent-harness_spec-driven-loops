@@ -1,6 +1,13 @@
 ---
 title: Template Compliance Contract
 description: Canonical structural contract defining exact heading and anchor requirements for all spec folder documents at each documentation level (L1-L3+).
+trigger_phrases:
+  - "template compliance contract"
+  - "heading anchor requirements"
+  - "canonical structural contract"
+  - "level contract headings"
+importance_tier: important
+contextType: implementation
 ---
 
 # Template Compliance Contract

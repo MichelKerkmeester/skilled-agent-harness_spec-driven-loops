@@ -1,6 +1,14 @@
 ---
 title: "cli-opencode permissions matrix"
 description: "Structured permissions-matrix schema, examples, RM-8 replay reasoning, and migration checklist for cli-opencode deep-loop dispatches."
+trigger_phrases:
+  - "opencode permissions matrix"
+  - "permissions matrix schema"
+  - "deep-loop permissions gate"
+  - "deny by default rules"
+  - "rm-8 replay walkthrough"
+importance_tier: normal
+contextType: implementation
 ---
 
 # cli-opencode permissions matrix

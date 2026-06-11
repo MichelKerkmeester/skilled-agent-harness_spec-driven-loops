@@ -1,6 +1,16 @@
 ---
 title: Git Worktrees - Detailed Workflow Reference
 description: Complete workflow documentation for creating isolated git workspaces with minimal branching.
+trigger_phrases:
+  - "numbered worktree branches"
+  - "worktree naming convention"
+  - "create a git worktree"
+  - "global worktree counter"
+  - "fast-merge worktree lifecycle"
+  - "detached experiment worktree"
+  - "ephemeral session worktrees"
+importance_tier: important
+contextType: implementation
 ---
 
 # Git Worktrees - Detailed Workflow Reference

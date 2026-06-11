@@ -6,6 +6,8 @@ trigger_phrases:
   - "runtime mirror sync"
   - "agent definition drift"
   - "packaging parity after promotion"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Mirror Drift Policy

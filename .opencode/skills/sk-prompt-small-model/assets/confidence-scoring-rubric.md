@@ -1,6 +1,13 @@
 ---
-title: "Confidence Scoring Rubric"
-description: "Compact rubric for opt-in output verification of small-model dispatch results. Re-homed from cli-devin."
+title: Confidence Scoring Rubric
+description: Compact rubric for opt-in output verification of small-model dispatch results. Re-homed from cli-devin.
+trigger_phrases:
+  - "confidence scoring rubric"
+  - "weighted output confidence score"
+  - "accept retry thresholds"
+  - "small model verification score"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Confidence Scoring Rubric

@@ -1,3 +1,16 @@
+---
+title: Held-Out and Gold Sets
+description: Shared evaluation convention for visible, held-out, and gold fixture tiers that keeps deep-improvement promotion evidence honest across lanes.
+trigger_phrases:
+  - "held-out and gold sets"
+  - "three fixture tiers"
+  - "gold set calibration"
+  - "held-out non-regression"
+  - "phantom gap convention"
+importance_tier: important
+contextType: general
+---
+
 # Held-Out and Gold Sets - Shared Evaluation Convention
 
 The pilot behind spec 143 proved two things about benchmark-driven improvement: self-reported scores inflate (~+6/25 measured against independent graders) and proposers overfit any fixture they can read (the pilot's adversarial fixture published its own seeds in-repo). This convention is how every deep-improvement lane keeps its evidence honest. It applies to Lane B profiles, Lane D packagings and any future loop that promotes on benchmark evidence.

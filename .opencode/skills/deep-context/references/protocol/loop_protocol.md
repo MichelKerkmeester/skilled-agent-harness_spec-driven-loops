@@ -1,6 +1,14 @@
 ---
 title: "Deep Context: Loop Protocol"
 description: Iteration lifecycle, parallel sweep mechanics, merge rules, and host-writes-state invariant for the deep-context loop.
+trigger_phrases:
+  - "context loop protocol"
+  - "parallel heterogeneous sweep"
+  - "frontier seeding"
+  - "agreement merge rules"
+  - "host writes state invariant"
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Context: Loop Protocol

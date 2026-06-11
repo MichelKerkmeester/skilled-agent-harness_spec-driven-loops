@@ -6,6 +6,8 @@ trigger_phrases:
   - "improvement workflow lifecycle"
   - "candidate score benchmark reduce promote"
   - "guarded promotion and stop decisions"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Loop Protocol

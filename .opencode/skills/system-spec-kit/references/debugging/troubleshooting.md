@@ -1,6 +1,14 @@
 ---
 title: Troubleshooting Reference
 description: Systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and MCP tool problems.
+trigger_phrases:
+  - "memory troubleshooting guide"
+  - "vector index issues"
+  - "mcp connection problems"
+  - "context retrieval failures"
+  - "hybrid search fallback"
+importance_tier: normal
+contextType: general
 ---
 
 # Troubleshooting Reference - Issue Resolution Guide

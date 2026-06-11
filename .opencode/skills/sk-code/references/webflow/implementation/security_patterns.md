@@ -1,6 +1,13 @@
 ---
 title: Security Patterns - OWASP Top 10 Integration
 description: Security hardening patterns covering XSS prevention, CSRF protection, and input validation.
+trigger_phrases:
+  - "webflow security patterns"
+  - "xss prevention frontend"
+  - "csrf protection checklist"
+  - "owasp top ten frontend"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Security Patterns - OWASP Top 10 Integration

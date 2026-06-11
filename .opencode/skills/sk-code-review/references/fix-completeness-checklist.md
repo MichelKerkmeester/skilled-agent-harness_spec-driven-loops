@@ -1,6 +1,14 @@
 ---
 title: Fix Completeness Checklist
 description: Checklist for turning review findings into complete fixes across same-class producers, consumers, algorithms, matrices, and hostile environments.
+trigger_phrases:
+  - "fix completeness checklist"
+  - "same class producer inventory"
+  - "cross consumer fix proof"
+  - "finding class classification"
+  - "instance only opt out"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Fix Completeness Checklist

@@ -1,6 +1,13 @@
 ---
 title: Skill Authoring Checklist
 description: Checklist for authoring or modifying sk-* skills under `.opencode/skills/` with correct metadata, resources, and validation.
+trigger_phrases:
+  - "skill authoring checklist"
+  - "opencode skill metadata"
+  - "skill resource layout"
+  - "skill validation path"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Skill Authoring Checklist

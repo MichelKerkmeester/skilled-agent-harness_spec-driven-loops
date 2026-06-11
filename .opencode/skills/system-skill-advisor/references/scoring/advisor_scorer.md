@@ -7,6 +7,8 @@ trigger_phrases:
   - "confidence thresholds"
   - "scorer calibration"
   - "prompt isolation safety"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration

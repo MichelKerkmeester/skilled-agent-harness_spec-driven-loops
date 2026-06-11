@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime",
+  "description": "Feature Specification: Phase 8: deep-loop-runtime Frontmatter Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "deep-loop-runtime",
+    "frontmatter",
+    "alignment"
+  ],
+  "lastUpdated": "2026-06-11T10:46:03.587Z",
+  "specId": "008",
+  "folderSlug": "deep-loop-runtime",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup",
+    "009-skill-frontmatter-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

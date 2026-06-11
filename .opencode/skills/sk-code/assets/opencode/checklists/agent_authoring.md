@@ -1,6 +1,13 @@
 ---
 title: Agent Authoring Checklist
 description: Checklist for authoring OpenCode agents with clear authority boundaries, permissions, dispatch contracts, and runtime mirrors.
+trigger_phrases:
+  - "agent authoring checklist"
+  - "opencode agent permissions"
+  - "leaf vs orchestrator"
+  - "runtime mirror parity"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Agent Authoring Checklist

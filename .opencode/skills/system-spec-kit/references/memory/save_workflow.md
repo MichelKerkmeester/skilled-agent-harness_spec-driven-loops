@@ -1,6 +1,13 @@
 ---
 title: Memory Save Workflow
 description: Complete guide to saving conversation context including execution methods, output format, and retrieval.
+trigger_phrases:
+  - "memory save workflow"
+  - "context save methods"
+  - "governed save boundaries"
+  - "save method selection"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Memory Save Workflow - Context Preservation Methods

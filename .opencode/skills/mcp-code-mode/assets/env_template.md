@@ -1,6 +1,14 @@
 ---
 title: Environment Variables Template
 description: Complete .env file template with placeholders for all MCP server credentials and API tokens.
+trigger_phrases:
+  - "code mode env template"
+  - "prefixed environment variables"
+  - "mcp server credentials"
+  - "variable not found error"
+  - "api token rotation"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Environment Variables Template

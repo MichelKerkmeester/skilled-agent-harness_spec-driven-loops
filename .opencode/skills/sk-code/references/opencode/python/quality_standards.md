@@ -1,6 +1,13 @@
 ---
 title: Python Quality Standards
 description: Code quality requirements, validation rules, and best practices for Python scripts in the OpenCode development environment.
+trigger_phrases:
+  - "opencode python quality standards"
+  - "python quality gates"
+  - "python module docstring rules"
+  - "snake case function naming"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Python Quality Standards

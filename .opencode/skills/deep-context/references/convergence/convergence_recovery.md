@@ -1,6 +1,14 @@
 ---
 title: "Deep Context: Convergence Recovery"
 description: How the loop recovers from a blocked stop or a stuck state — targeting the failing gate and widening the frontier.
+trigger_phrases:
+  - "blocked stop recovery"
+  - "stuck sweep recovery"
+  - "failing guard recovery focus"
+  - "widen the frontier"
+  - "terminal escalation after recovery"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Context: Convergence Recovery

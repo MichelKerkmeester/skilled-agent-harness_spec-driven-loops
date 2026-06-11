@@ -1,6 +1,14 @@
 ---
 title: CLI Prompt Quality Card
 description: Fast-path framework selection and CLEAR checks for CLI orchestrator prompt construction.
+trigger_phrases:
+  - "cli prompt quality card"
+  - "prompt framework selection table"
+  - "clear pre-dispatch check"
+  - "fast path prompt quality"
+  - "escalate to prompt improver"
+importance_tier: important
+contextType: general
 ---
 
 # CLI Prompt Quality Card

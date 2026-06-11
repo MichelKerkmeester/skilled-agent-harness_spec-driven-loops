@@ -1,6 +1,13 @@
 ---
 title: Deep Review State Transitions and Quality Gates
 description: State-transition rules, error handling, and review quality gates for the deep review loop.
+trigger_phrases:
+  - "review state transitions"
+  - "review quality gates"
+  - "tiered error recovery"
+  - "review iteration status enum"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Review State Transitions and Quality Gates

@@ -1,6 +1,13 @@
 ---
 title: Shell Style Guide
 description: Coding conventions and formatting standards for Bash scripts in the OpenCode development environment.
+trigger_phrases:
+  - "opencode shell style guide"
+  - "bash formatting standards"
+  - "shell shebang header"
+  - "bash naming conventions"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Shell Style Guide

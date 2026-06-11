@@ -1,6 +1,13 @@
 ---
 title: Feature Catalog Snippet Template
 description: Template for per-feature reference files stored directly under feature_catalog category directories.
+trigger_phrases:
+  - "feature catalog snippet"
+  - "per feature file template"
+  - "feature snippet scaffold"
+  - "split catalog feature file"
+importance_tier: normal
+contextType: general
 ---
 
 # Feature Catalog Snippet Template
@@ -29,8 +36,8 @@ All per-feature snippet files require this frontmatter block. Fields marked `# r
 ```yaml
 ---
 title: "{FEATURE_NAME}"                           # required — human-readable label, matches H3 in root catalog
-description: "{ONE_LINE_FEATURE_SUMMARY}"         # required — shown in catalog tables and memory search results
-trigger_phrases:                                   # required — drives skill-advisor routing and memory search
+description: "{ONE_LINE_FEATURE_SUMMARY}"         # required — shown in catalog tables and advisor doc matches
+trigger_phrases:                                   # required — drives skill-advisor routing (doc-trigger harvest; memory does not index skill docs)
   - "{primary trigger phrase}"
   - "{alternate phrasing}"
   - "{tool or command name}"
@@ -41,7 +48,7 @@ importance_tier: "important"                       # optional — omit unless th
 
 **Field notes:**
 - `trigger_phrases` must match the H3 feature heading used in the root `feature_catalog.md` (plus natural language alternates)
-- `importance_tier: "important"` is reserved for features that are always-surface in search routing — omit for standard entries
+- `importance_tier: "important"` is reserved for features that should rank as high-signal in skill-advisor routing — omit for standard entries
 - `title` and `description` should mirror the root catalog entry for this feature (same wording, same scope)
 
 ---

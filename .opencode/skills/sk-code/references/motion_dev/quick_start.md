@@ -1,6 +1,13 @@
 ---
 title: "Motion.dev Quick Start"
 description: "Cross-stack entry point for installing Motion, choosing import modes, and deciding when sk-code should recommend Motion.dev."
+trigger_phrases:
+  - "motion dev quick start"
+  - "install motion dev"
+  - "motion import modes"
+  - "when to recommend motion"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Quick Start

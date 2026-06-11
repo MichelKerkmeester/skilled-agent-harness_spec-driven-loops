@@ -3,11 +3,11 @@ title: "Lane C Skill-Benchmark Operator Guide"
 description: "How to run Lane C (skill-benchmark): invocation, the opt-in advisor probe, Mode A pipeline, dimension coverage, verdict bands, and target eligibility for benchmarking whether a skill is well-routed, discoverable, efficient, and useful in practice."
 trigger_phrases:
   - "skill-benchmark operator guide"
-  - "run Lane C"
-  - "start-skill-benchmark-loop"
+  - "run lane c"
   - "skill benchmark invocation"
-importance_tier: important
-contextType: reference
+  - "opt-in advisor probe"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Lane C Skill-Benchmark Operator Guide

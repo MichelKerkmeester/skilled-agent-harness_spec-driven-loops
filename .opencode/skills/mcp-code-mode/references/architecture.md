@@ -1,6 +1,14 @@
 ---
 title: System Architecture - Code Mode UTCP
 description: Architecture, data flow, and execution environment for Code Mode UTCP.
+trigger_phrases:
+  - "code mode utcp architecture"
+  - "progressive tool loading"
+  - "mcp server wall"
+  - "v8 isolate sandbox"
+  - "code mode token savings"
+importance_tier: normal
+contextType: general
 ---
 
 # System Architecture - Code Mode UTCP

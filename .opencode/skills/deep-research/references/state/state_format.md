@@ -1,6 +1,14 @@
 ---
 title: State Format Reference
 description: Live state packet hub for the deep-research loop.
+trigger_phrases:
+  - "research state format"
+  - "research state packet hub"
+  - "research file ownership model"
+  - "research file protection rules"
+  - "research packet location"
+importance_tier: important
+contextType: implementation
 ---
 
 # State Format Reference

@@ -1,6 +1,14 @@
 ---
 title: Deep Review State Log Records
 description: JSONL state-log record schemas (config, iteration, event, lineage) and the Review Depth Schema v2 for the deep review loop.
+trigger_phrases:
+  - "deep review state jsonl"
+  - "review jsonl record schemas"
+  - "review depth schema"
+  - "review traceability checks"
+  - "review graph events"
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Review State Log Records

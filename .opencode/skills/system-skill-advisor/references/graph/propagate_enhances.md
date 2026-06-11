@@ -5,6 +5,8 @@ trigger_phrases:
   - "propagate enhances"
   - "missing enhances edges"
   - "enhances edge propagation"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Skill Graph Propagate Enhances Tool

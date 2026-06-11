@@ -1,6 +1,13 @@
 ---
 title: CDN Deployment Guide
 description: Complete workflow for deploying minified JavaScript to Cloudflare R2 CDN.
+trigger_phrases:
+  - "webflow cdn deployment"
+  - "cloudflare r2 deploy"
+  - "cdn version cache busting"
+  - "minified js deploy"
+importance_tier: normal
+contextType: implementation
 ---
 
 # CDN Deployment Guide

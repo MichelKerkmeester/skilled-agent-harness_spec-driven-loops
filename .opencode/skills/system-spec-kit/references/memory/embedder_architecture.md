@@ -7,6 +7,8 @@ trigger_phrases:
   - "active_embedder_name"
   - "vec dim tables"
   - "embedder_set runbook"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Embedder Architecture

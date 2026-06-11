@@ -1,6 +1,13 @@
 ---
 title: Stack & Surface Detection
 description: Surface detection (WEBFLOW/OPENCODE/UNKNOWN) and OPENCODE language sub-detection. Primary routing key for sk-code.
+trigger_phrases:
+  - "sk-code surface detection"
+  - "webflow opencode detection"
+  - "stack detection routing key"
+  - "language sub detection"
+importance_tier: important
+contextType: general
 ---
 
 # Router Reference - Code Surface Detection

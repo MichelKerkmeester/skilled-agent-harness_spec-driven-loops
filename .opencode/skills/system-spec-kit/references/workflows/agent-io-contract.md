@@ -1,3 +1,15 @@
+---
+title: Agent I/O Contract
+description: Optional agent dispatch headers and result envelopes for agent exchanges; advisory metadata never blocks a valid exchange.
+trigger_phrases:
+  - "agent io contract"
+  - "dispatch result envelopes"
+  - "agent handoff group"
+  - "advisory metadata fields"
+importance_tier: important
+contextType: implementation
+---
+
 # Agent I/O Contract
 
 Shared advisory contract for structured agent dispatch and return metadata. This contract helps orchestrators and leaf agents exchange typed hints without making older prompts invalid.

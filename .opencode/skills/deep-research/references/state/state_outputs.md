@@ -1,6 +1,15 @@
 ---
 title: Deep Research Output Files Reference
 description: Markdown output structures for strategy, iterations, dashboard, synthesis, and resource-map artifacts.
+trigger_phrases:
+  - "research output files"
+  - "research iteration files"
+  - "research synthesis document"
+  - "research resource map"
+  - "research strategy file"
+  - "spec anchoring output"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Research Output Files Reference

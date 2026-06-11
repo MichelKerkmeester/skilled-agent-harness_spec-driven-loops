@@ -1,6 +1,13 @@
 ---
 title: Universal Verification Checklist
 description: Stack-agnostic verification gate to walk before any "done", "works", "complete", or "passing" claim.
+trigger_phrases:
+  - "universal verification checklist"
+  - "pre claim gate"
+  - "surface verification commands"
+  - "done works complete claims"
+importance_tier: important
+contextType: implementation
 ---
 
 # Universal Verification Checklist - The Pre-Claim Gate

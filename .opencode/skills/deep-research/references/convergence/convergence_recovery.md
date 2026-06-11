@@ -1,6 +1,14 @@
 ---
 title: Convergence Recovery Reference
 description: Stuck recovery, tiered error recovery, and escalation behavior for deep-research loops.
+trigger_phrases:
+  - "research stuck recovery"
+  - "research recovery strategies"
+  - "research tiered error recovery"
+  - "try opposites recovery"
+  - "research escalation conditions"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Convergence Recovery Reference

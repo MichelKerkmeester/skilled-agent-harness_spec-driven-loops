@@ -1,6 +1,14 @@
 ---
 title: Embedding Resilience
 description: Provider fallback, bootstrap probes, graceful degradation, and offline mode for reliable semantic search
+trigger_phrases:
+  - "embedding provider fallback"
+  - "bootstrap probe sequence"
+  - "degraded semantic search"
+  - "offline embedding mode"
+  - "embedding retry policy"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Embedding Resilience

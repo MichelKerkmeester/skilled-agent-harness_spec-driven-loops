@@ -1,6 +1,13 @@
 ---
 title: Manual Testing Playbook Creation - Templates and Standards
 description: Templates for creating feature-catalog-style manual testing playbooks with an integrated root playbook, root-level per-feature files, current frontmatter conventions, and orchestration guidance.
+trigger_phrases:
+  - "manual testing playbook template"
+  - "testing playbook scaffold"
+  - "deterministic scenario matrix"
+  - "playbook root structure"
+importance_tier: normal
+contextType: general
 ---
 
 # Manual Testing Playbook Creation - Templates and Standards

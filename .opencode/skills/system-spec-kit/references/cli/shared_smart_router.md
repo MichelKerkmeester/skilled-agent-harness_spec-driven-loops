@@ -1,6 +1,14 @@
 ---
 title: Shared Smart-Router Helpers for cli-* Skills
 description: Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+trigger_phrases:
+  - "shared smart router helpers"
+  - "intent signals dictionary"
+  - "loading level semantics"
+  - "unknown fallback checklist"
+  - "resource map scoring"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Shared Smart-Router Helpers (cli-* family)

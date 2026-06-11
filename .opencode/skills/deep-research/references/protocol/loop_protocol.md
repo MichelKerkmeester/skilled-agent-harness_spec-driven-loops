@@ -1,6 +1,15 @@
 ---
 title: Loop Protocol Reference
 description: Canonical specification for the deep research loop lifecycle with 4 phases, reference-only wave orchestration, and error handling.
+trigger_phrases:
+  - "research loop protocol"
+  - "research loop lifecycle"
+  - "research loop initialization"
+  - "research auto resume protocol"
+  - "research pause sentinel"
+  - "research synthesis phase"
+importance_tier: important
+contextType: implementation
 ---
 
 # Loop Protocol Reference

@@ -1,6 +1,14 @@
 ---
 title: Prompt Templates
 description: Copy-paste ready prompt templates for common Claude Code CLI tasks organized by category with placeholders and examples.
+trigger_phrases:
+  - "claude code prompt templates"
+  - "claude code dispatch templates"
+  - "copy-paste claude cli prompts"
+  - "claude code review prompt template"
+  - "claude code test generation prompt"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Prompt Templates - Claude Code CLI

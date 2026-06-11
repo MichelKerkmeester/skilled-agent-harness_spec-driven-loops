@@ -1,6 +1,14 @@
 ---
 title: Validation Rules Reference
 description: Complete reference for all validation rules used by the SpecKit validation system.
+trigger_phrases:
+  - "validation rule registry"
+  - "rule severity levels"
+  - "acceptance coverage rollout"
+  - "completion freshness rule"
+  - "continuity freshness fix"
+importance_tier: important
+contextType: implementation
 ---
 
 # Validation Rules Reference - Complete Rule Reference

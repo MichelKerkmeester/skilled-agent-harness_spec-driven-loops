@@ -5,6 +5,8 @@ trigger_phrases:
   - "council strategy template"
   - "ai council round strategy"
   - "deep ai council strategy"
+importance_tier: "normal"
+contextType: "planning"
 ---
 
 # Deep AI Council Strategy

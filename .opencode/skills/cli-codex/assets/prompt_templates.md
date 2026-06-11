@@ -1,6 +1,14 @@
 ---
 title: Prompt Templates
 description: Copy-paste ready prompt templates for common Codex CLI tasks organized by category with placeholders and examples.
+trigger_phrases:
+  - "codex prompt templates"
+  - "codex exec templates"
+  - "codex code generation template"
+  - "codex web research template"
+  - "codex review prompt template"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Prompt Templates - Codex CLI

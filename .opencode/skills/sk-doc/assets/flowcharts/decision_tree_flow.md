@@ -1,3 +1,14 @@
+---
+title: Decision Tree Flow Example - Complex Branching and Conditional Logic
+description: Complex decision tree with multiple branches and conditional logic.
+trigger_phrases:
+  - "decision tree flowchart"
+  - "conditional branching diagram"
+  - "order processing flow example"
+importance_tier: normal
+contextType: general
+---
+
 # Decision Tree Flow Example - Complex Branching and Conditional Logic
 
 Complex decision tree with multiple branches and conditional logic.

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research",
+  "description": "Feature Specification: Phase 9: deep-research Frontmatter Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "deep-research",
+    "frontmatter",
+    "alignment"
+  ],
+  "lastUpdated": "2026-06-11T10:46:03.592Z",
+  "specId": "009",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup",
+    "009-skill-frontmatter-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

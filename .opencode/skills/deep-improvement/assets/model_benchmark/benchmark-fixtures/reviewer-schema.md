@@ -5,6 +5,9 @@ trigger_phrases:
   - "reviewer fixture schema"
   - "reviewer prompt regression"
   - "expected verdict fixture"
+  - "deterministic fixture replay"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Reviewer Fixture Schema

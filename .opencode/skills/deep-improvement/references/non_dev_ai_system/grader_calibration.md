@@ -1,6 +1,14 @@
 ---
 title: "Lane D Grader Calibration"
 description: "The calibration protocol for independent graders: different-family requirement, calibrate.py two-grader agreement flow, the recorded first calibration, phantom-gap tracking, and the strict-JSON grader reply contract."
+trigger_phrases:
+  - "lane d grader calibration"
+  - "different-family grader requirement"
+  - "two-grader agreement flow"
+  - "phantom-gap tracking"
+  - "strict-json grader reply"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Lane D Grader Calibration

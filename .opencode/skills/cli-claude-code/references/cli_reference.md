@@ -1,6 +1,16 @@
 ---
 title: "Claude Code CLI - Complete Command Reference"
 description: "Comprehensive reference for Claude Code CLI flags, commands, models, configuration, authentication, permission modes, and troubleshooting."
+trigger_phrases:
+  - "claude code cli flags"
+  - "claude code non-interactive mode"
+  - "claude code model selection"
+  - "claude code permission modes"
+  - "claude code session resume flags"
+  - "claude code json schema output"
+  - "claude code troubleshooting"
+importance_tier: important
+contextType: implementation
 ---
 
 # Claude Code CLI - Complete Command Reference

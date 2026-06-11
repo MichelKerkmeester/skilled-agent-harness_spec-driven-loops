@@ -1,6 +1,15 @@
 ---
 title: "DEPTH Thinking Framework"
 description: "Five-phase thinking system (Discover, Engineer, Prototype, Test, Harmonize) with energy-level scaling, cognitive rigor techniques, CLEAR quality scoring, and proof-through-output transparency for prompt improvement work."
+trigger_phrases:
+  - "depth thinking rounds"
+  - "five-phase thinking system"
+  - "energy level routing"
+  - "perspective inversion technique"
+  - "depth phase exit criteria"
+  - "proof through output metadata"
+importance_tier: important
+contextType: implementation
 ---
 
 # DEPTH Thinking Framework

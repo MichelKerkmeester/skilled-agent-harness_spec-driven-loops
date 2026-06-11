@@ -1,6 +1,13 @@
 ---
 title: Interaction-Gated Loading
 description: Practical guidance for deferring non-critical script loading to first interaction, viewport entry, or idle time without hurting responsiveness.
+trigger_phrases:
+  - "interaction gated loading"
+  - "defer scripts first interaction"
+  - "viewport entry loading"
+  - "idle time script loading"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Interaction-Gated Loading

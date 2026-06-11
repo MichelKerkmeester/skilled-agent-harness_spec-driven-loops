@@ -1,6 +1,13 @@
 ---
 title: Markdown Optimizer - Quick Reference
 description: One-page cheat sheet for commands, quality gates, and transformation patterns.
+trigger_phrases:
+  - "sk-doc quick reference"
+  - "doc quality cheat sheet"
+  - "validation command reference"
+  - "quality gates at a glance"
+importance_tier: normal
+contextType: general
 ---
 
 # Markdown Optimizer - Quick Reference

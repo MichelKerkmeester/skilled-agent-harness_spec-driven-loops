@@ -1,6 +1,15 @@
 ---
 title: Shared Patterns - Cross-Workflow Reference
 description: Common patterns, commands, and conventions used across all git workflows.
+trigger_phrases:
+  - "branch naming conventions"
+  - "rename-heavy merge verification"
+  - "detached head recovery"
+  - "undo last commit"
+  - "stale worktree references"
+  - "failed push rejected remote"
+importance_tier: normal
+contextType: general
 ---
 
 # Shared Patterns - Cross-Workflow Reference

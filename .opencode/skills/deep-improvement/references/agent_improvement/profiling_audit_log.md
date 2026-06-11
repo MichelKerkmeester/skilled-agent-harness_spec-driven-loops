@@ -1,11 +1,13 @@
 ---
 title: "Profile-Selection Audit Log for DAI"
-description: "Documentation for profile-selection rationale logging in DAI, addressing DAI-004 (dynamic profiling auditability)."
+description: "Documentation for profile-selection rationale logging in deep-improvement, covering log location, entry shape, and retention."
 trigger_phrases:
-  - "profile-selection"
-  - "audit log"
-  - "DAI-004"
-  - "profiling"
+  - "profile-selection audit log"
+  - "profile selection rationale"
+  - "dynamic profiling auditability"
+  - "profiling log retention"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Profile-Selection Audit Log for DAI

@@ -1,9 +1,14 @@
 ---
-title: "Qwen3.6 Prompt-Craft Profile"
+title: Qwen3.6 Prompt-Craft Profile
 model_id: "qwen3.6"
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: "default-unverified"
-last_benchmarked: "none"
+description: How to prompt Qwen3.6 via cli-opencode, RCAF framework with medium pre-planning under a tight 32k window, prompt-economy scaffold, and dispatch gotchas.
+trigger_phrases:
+  - "qwen3.6 prompt framework"
+  - "qwen dispatch scaffold"
+  - "qwen 32k prompt economy"
+  - "qwen rcaf prompt"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Qwen3.6 — Prompt-Craft Profile

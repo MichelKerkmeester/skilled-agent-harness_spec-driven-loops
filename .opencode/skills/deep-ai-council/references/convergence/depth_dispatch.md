@@ -7,8 +7,8 @@ trigger_phrases:
   - "depth 1 council dispatch"
   - "sequential thinking council"
   - "ndp compliant council"
-importance_tier: "normal"
-contextType: "reference"
+importance_tier: "important"
+contextType: "planning"
 ---
 
 # AI Council Depth Dispatch

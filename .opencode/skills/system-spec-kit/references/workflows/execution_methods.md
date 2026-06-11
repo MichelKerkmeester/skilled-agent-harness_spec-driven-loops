@@ -1,6 +1,13 @@
 ---
 title: Execution Methods Reference
 description: How to execute spec folder operations - validation, completion checking, context saving, and template selection
+trigger_phrases:
+  - "execution methods reference"
+  - "spec validation commands"
+  - "completion checking script"
+  - "context saving commands"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Execution Methods Reference

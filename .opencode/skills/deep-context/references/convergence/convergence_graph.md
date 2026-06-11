@@ -1,6 +1,14 @@
 ---
 title: "Deep Context: Graph-Aware Convergence"
 description: How the loop_type=context coverage graph drives the stop decision — the upsert-to-convergence flow, node/edge endpoints, and the FK constraint.
+trigger_phrases:
+  - "context coverage graph"
+  - "upsert to convergence flow"
+  - "graph convergence event"
+  - "coverage graph fk constraint"
+  - "evaluatecontext stop path"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Context: Graph-Aware Convergence

@@ -1,6 +1,14 @@
 ---
 title: "OpenCode CLI - Unique Capabilities and Comparison"
 description: "Documents the value props that distinguish opencode run from raw model dispatch — full plugin/skill/MCP runtime context, parallel detached sessions, structured event stream, agent dispatch, and cross-repo working directory routing."
+trigger_phrases:
+  - "opencode unique capabilities"
+  - "opencode full runtime dispatch"
+  - "opencode structured event stream"
+  - "opencode cross-repo dispatch"
+  - "opencode vs sibling cli skills"
+importance_tier: normal
+contextType: general
 ---
 
 # OpenCode CLI - Unique Capabilities

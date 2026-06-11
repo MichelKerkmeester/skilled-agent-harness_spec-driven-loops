@@ -1,6 +1,13 @@
 ---
 title: Document Quality Workflows - Mode 1 Reference
 description: Execution modes, validation patterns, and phase interactions for Mode 1 document quality workflows.
+trigger_phrases:
+  - "document quality workflows"
+  - "doc improvement modes"
+  - "validation first workflow"
+  - "mode one document quality"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Document Quality Workflows - Mode 1 Reference

@@ -6,6 +6,8 @@ trigger_phrases:
   - "ai council operator guide"
   - "council cheat sheet"
   - "council validation"
+importance_tier: "normal"
+contextType: "general"
 ---
 
 # AI Council Quick Reference

@@ -1,6 +1,13 @@
 ---
 title: Folder Routing & Alignment
 description: Structured-first spec folder routing with alignment scoring for context preservation.
+trigger_phrases:
+  - "folder routing alignment"
+  - "structured-first routing"
+  - "alignment scoring logic"
+  - "spec folder detection"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Folder Routing & Alignment

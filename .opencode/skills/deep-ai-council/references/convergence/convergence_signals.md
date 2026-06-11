@@ -3,11 +3,11 @@ title: "AI Council Convergence Signals"
 description: "Convergence rules and escape hatches for AI Council planning rounds."
 trigger_phrases:
   - "deep-ai-council convergence"
-  - "two-of-three-agree"
+  - "two of three agree"
   - "council escape hatches"
   - "council validator graduation"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "planning"
 ---
 
 # AI Council Convergence Signals

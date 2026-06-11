@@ -1,6 +1,13 @@
 ---
 title: Spec Folder Authoring Checklist
 description: Checklist for writing spec folders that satisfy the Level contract, continuity frontmatter, metadata, and strict validation.
+trigger_phrases:
+  - "spec folder authoring checklist"
+  - "spec folder level contract"
+  - "continuity frontmatter checklist"
+  - "strict validation checklist"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Spec Folder Authoring Checklist

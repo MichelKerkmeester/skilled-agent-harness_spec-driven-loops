@@ -1,6 +1,13 @@
 ---
 title: Level Selection Guide
 description: Guide to selecting appropriate documentation levels based on task complexity.
+trigger_phrases:
+  - "level selection guide"
+  - "complexity scoring algorithm"
+  - "level scoring factors"
+  - "level mapping thresholds"
+importance_tier: normal
+contextType: planning
 ---
 
 # Level Selection Guide - Complexity Scoring Algorithm

@@ -2,13 +2,13 @@
 title: "Webflow CSS Style Guide"
 description: "CSS naming (BEM with kebab-case), custom property prefixes (font, vw, component, state, global), attribute-selector case-insensitivity, animation property restrictions, and file organization for the Webflow stack."
 trigger_phrases:
-  - "webflow css style"
   - "webflow css style guide"
-  - "BEM webflow"
-  - "css custom properties webflow"
-  - "css attribute selector i flag"
-  - "css will-change"
+  - "bem kebab case naming"
+  - "css custom property prefixes"
+  - "css attribute selector flag"
   - "css animation properties webflow"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow CSS Style Guide

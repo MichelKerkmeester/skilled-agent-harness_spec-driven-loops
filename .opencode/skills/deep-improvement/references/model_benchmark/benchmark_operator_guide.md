@@ -6,6 +6,8 @@ trigger_phrases:
   - "benchmark runner command"
   - "benchmark repeatability"
   - "benchmark output layout"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Benchmark Operator Guide

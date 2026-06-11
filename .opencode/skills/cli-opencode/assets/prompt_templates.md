@@ -1,6 +1,16 @@
 ---
 title: "OpenCode CLI - Prompt Templates"
 description: "Copy-paste ready prompt templates for the three documented use cases plus specialized agent dispatch, parallel detached sessions, ablation suites, worker farms, cross-AI handback, and Memory Epilogue."
+trigger_phrases:
+  - "opencode prompt templates"
+  - "opencode run dispatch template"
+  - "opencode memory epilogue"
+  - "opencode worker farm dispatch"
+  - "opencode ablation suite template"
+  - "minimax dispatch scaffold"
+  - "mimo dispatch scaffold"
+importance_tier: normal
+contextType: implementation
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -523,7 +533,7 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 
 ## 16. TEMPLATE 15 — MiMo (XIAOMI TOKEN PLAN + DIRECT API; COSTAR + LEAN)
 
-**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe) — primary slug `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`) — or via the Xiaomi Direct API — slug `xiaomi/mimo-v2.5-pro` (provider `xiaomi`, pay-per-token). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback); use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format + brevity, **not** guardrails — TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`** — opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13); high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). For cheap iteration / probing, the free gateway path `opencode/mimo-v2.5-free` (opencode-go credit pool; v2.5, not -pro tier) is available. Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
+**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe) — primary slug `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`) — or via the Xiaomi Direct API — slugs `xiaomi/mimo-v2.5-pro` and the low-latency `xiaomi/mimo-v2.5-pro-ultraspeed` (provider `xiaomi`, pay-per-token; pick UltraSpeed for latency-sensitive checks/smokes — same COSTAR contract). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback); use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format + brevity, **not** guardrails — TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`** — opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13); high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). For cheap iteration / probing, the free gateway path `opencode/mimo-v2.5-free` (opencode-go credit pool; v2.5, not -pro tier) is available. Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
 
 **Invocation (Token Plan)**:
 
@@ -537,7 +547,7 @@ opencode run \
   </dev/null
 ```
 
-**Invocation (Direct API — pay-per-token)**:
+**Invocation (Direct API — pay-per-token; swap in `xiaomi/mimo-v2.5-pro-ultraspeed` for the low-latency tier)**:
 
 ```bash
 opencode run \

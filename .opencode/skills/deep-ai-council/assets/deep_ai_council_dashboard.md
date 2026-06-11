@@ -5,6 +5,8 @@ trigger_phrases:
   - "council dashboard"
   - "ai council status"
   - "deep ai council dashboard"
+importance_tier: "normal"
+contextType: "planning"
 ---
 
 # Deep AI Council Dashboard

@@ -1,6 +1,14 @@
 ---
 title: "Deep Context: Convergence"
 description: Live stop contract (CONTINUE/STOP_ALLOWED/STOP_BLOCKED) and navigation hub for deep-context convergence.
+trigger_phrases:
+  - "deep-context stop contract"
+  - "stop allowed vs blocked"
+  - "stopreason values"
+  - "relevance-gated coverage saturation"
+  - "agreement and relevance guards"
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Context: Convergence

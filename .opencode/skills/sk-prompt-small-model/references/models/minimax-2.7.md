@@ -1,9 +1,13 @@
 ---
-title: "MiniMax-M2.7 Prompt-Craft Profile (Historical — see minimax-m3.md)"
+title: MiniMax-M2.7 Prompt-Craft Profile (Historical — see minimax-m3.md)
 model_id: "minimax-2.7"
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: "historical"
-last_benchmarked: "2026 (benchmark 003)"
+description: Historical record of the MiniMax-M2.7 benchmark findings (benchmark 003); the TIDD-EC contract carried forward to MiniMax-M3, the active profile.
+trigger_phrases:
+  - "minimax m2.7 historical profile"
+  - "minimax 2.7 benchmark record"
+  - "superseded minimax profile"
+importance_tier: deprecated
+contextType: research
 ---
 
 # MiniMax-M2.7 Prompt-Craft Profile — HISTORICAL

@@ -1,6 +1,14 @@
 ---
 title: "Deep Context: Context Report Template"
 description: Schema for the deep-context deliverable — a REUSE-catalog-first report of verified code pointers consumed by speckit:plan and speckit:implement.
+trigger_phrases:
+  - "context report template"
+  - "context report synthesis"
+  - "reuse catalog section"
+  - "touch list ordering"
+  - "verified code pointers"
+importance_tier: normal
+contextType: planning
 ---
 
 # Deep Context: Context Report Template

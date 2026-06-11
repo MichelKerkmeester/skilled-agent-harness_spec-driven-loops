@@ -1,6 +1,13 @@
 ---
 title: Alignment Verification Automation
 description: Repeatable verifier guidance for recurring OpenCode alignment drift checks.
+trigger_phrases:
+  - "alignment drift verification"
+  - "verify alignment drift script"
+  - "opencode alignment checks"
+  - "repeatable drift verifier"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Alignment Verification Automation

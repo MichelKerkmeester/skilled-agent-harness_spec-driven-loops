@@ -1,9 +1,14 @@
 ---
 title: GLM-5.1 Prompt-Craft Profile
 model_id: glm-5.1
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: default-unverified
-last_benchmarked: "none"
+description: How to prompt GLM-5.1 via cli-opencode, RCAF framework with medium pre-planning on a 128k window, scaffold shape, and quota-pool gotchas.
+trigger_phrases:
+  - "glm 5.1 prompt framework"
+  - "glm dispatch scaffold"
+  - "glm rcaf prompt"
+  - "glm quota pool gotchas"
+importance_tier: normal
+contextType: implementation
 ---
 
 # GLM-5.1 Prompt-Craft Profile

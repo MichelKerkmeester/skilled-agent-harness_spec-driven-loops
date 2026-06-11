@@ -1,3 +1,14 @@
+---
+title: Parallel Execution Example - Simultaneous Tasks with Synchronization
+description: Demonstrates multiple tasks running simultaneously with synchronization points.
+trigger_phrases:
+  - "parallel execution flowchart"
+  - "synchronization points diagram"
+  - "concurrent branch pipeline"
+importance_tier: normal
+contextType: general
+---
+
 # Parallel Execution Example - Simultaneous Tasks with Synchronization
 
 Demonstrates multiple tasks running simultaneously with synchronization points.

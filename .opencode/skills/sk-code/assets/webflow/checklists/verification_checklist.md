@@ -1,6 +1,13 @@
 ---
 title: Browser Verification Checklist
 description: Checklist for verifying work in browser before claiming completion
+trigger_phrases:
+  - "browser verification checklist"
+  - "verify in browser before claiming"
+  - "webflow browser testing matrix"
+  - "evidence before claims"
+importance_tier: important
+contextType: implementation
 ---
 
 # Browser Verification Checklist

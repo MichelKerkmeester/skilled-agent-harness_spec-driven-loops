@@ -1,6 +1,13 @@
 ---
-title: "Output Verification Pipeline"
-description: "SmallCode-derived verification pipeline for post-dispatch output validation, with code and research-output scoring modes. Re-homed from cli-devin."
+title: Output Verification Pipeline
+description: SmallCode-derived verification pipeline for post-dispatch output validation, with code and research-output scoring modes. Re-homed from cli-devin.
+trigger_phrases:
+  - "output verification pipeline"
+  - "post dispatch validation"
+  - "small model output verification"
+  - "verification hard fail policy"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Output Verification Pipeline

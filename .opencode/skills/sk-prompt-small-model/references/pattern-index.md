@@ -1,6 +1,13 @@
 ---
 title: Small-Model Pattern Index
 description: Authoritative index of small-model optimization patterns with their canonical executor-owned locations and ship status.
+trigger_phrases:
+  - "small model pattern index"
+  - "pattern canonical location"
+  - "small model pattern ship status"
+  - "where is the small model pattern"
+importance_tier: normal
+contextType: general
 ---
 
 # Small-Model Pattern Index

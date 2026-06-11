@@ -6,8 +6,8 @@ trigger_phrases:
   - "ai-council-state jsonl"
   - "council state events"
   - "council resume semantics"
-importance_tier: "normal"
-contextType: "reference"
+importance_tier: "important"
+contextType: "implementation"
 ---
 
 # AI Council State Format

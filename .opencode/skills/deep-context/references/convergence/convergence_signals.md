@@ -1,6 +1,14 @@
 ---
 title: "Deep Context: Convergence Signals"
 description: The five context signals, their blocking-vs-weighted roles, composite-score weights, and the threshold reference table.
+trigger_phrases:
+  - "five context signals"
+  - "blocking guards vs weighted signals"
+  - "composite convergence score"
+  - "agreement min threshold"
+  - "relevance gate tuning"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Context: Convergence Signals

@@ -1,6 +1,13 @@
 ---
 title: "Motion.dev Install Card"
 description: "Quick copy-paste install, import, version-pin, and verification reference for Motion.dev."
+trigger_phrases:
+  - "motion dev install card"
+  - "motion cdn npm install"
+  - "motion version pin"
+  - "motion import verification"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Install Card - Install and Import Snippets

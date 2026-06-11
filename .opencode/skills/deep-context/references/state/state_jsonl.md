@@ -1,6 +1,14 @@
 ---
 title: Deep Context JSONL State Reference
 description: Config, iteration, event, and lifecycle records for the deep-context state log.
+trigger_phrases:
+  - "deep-context state jsonl"
+  - "sweep settled event"
+  - "frontier seeded record"
+  - "context loop event records"
+  - "context config record"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Context JSONL State Reference

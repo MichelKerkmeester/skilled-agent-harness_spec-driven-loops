@@ -1,6 +1,13 @@
 ---
 title: Verification Workflows - Phase 3 (MANDATORY)
 description: Browser verification requirements for all completion claims - no exceptions.
+trigger_phrases:
+  - "webflow verification workflows"
+  - "browser verification mandatory"
+  - "iron law evidence"
+  - "gate function completion claims"
+importance_tier: important
+contextType: implementation
 ---
 
 # Verification Workflows - Phase 3 (MANDATORY)

@@ -1,6 +1,14 @@
 ---
 title: "Codex Agent Delegation Reference"
 description: "Reference for delegating tasks to 10 specialized Codex agents via the conductor/executor orchestration model."
+trigger_phrases:
+  - "codex agent delegation"
+  - "codex profile dispatch"
+  - "delegate task to codex"
+  - "codex conductor executor model"
+  - "codex agent catalog"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Codex Agent Delegation Reference

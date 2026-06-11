@@ -1,6 +1,13 @@
 ---
 title: Multi-Agent Research Patterns
 description: 10-agent specialization model for comprehensive codebase analysis and performance audits.
+trigger_phrases:
+  - "multi agent research patterns"
+  - "ten agent specialization"
+  - "parallel codebase analysis"
+  - "performance audit agents"
+importance_tier: normal
+contextType: research
 ---
 
 # Multi-Agent Research Patterns

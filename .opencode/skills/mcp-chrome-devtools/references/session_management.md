@@ -1,6 +1,15 @@
 ---
 title: Advanced Session Management
 description: Patterns for browser session lifecycle, concurrency, resumption, and state persistence with bdg.
+trigger_phrases:
+  - "bdg session lifecycle"
+  - "browser session cleanup trap"
+  - "bdg session health check"
+  - "multi session browser management"
+  - "bdg session resumption"
+  - "browser session state persistence"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Advanced Session Management

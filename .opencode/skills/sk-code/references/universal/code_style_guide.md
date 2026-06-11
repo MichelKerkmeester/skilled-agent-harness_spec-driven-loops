@@ -1,6 +1,13 @@
 ---
 title: Universal Code Style Guide
 description: Language-agnostic naming, file structure, commenting, and formatting principles for WEBFLOW and OPENCODE code surfaces.
+trigger_phrases:
+  - "universal code style guide"
+  - "language agnostic naming"
+  - "universal formatting principles"
+  - "commenting universal rules"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Universal Code Style Guide

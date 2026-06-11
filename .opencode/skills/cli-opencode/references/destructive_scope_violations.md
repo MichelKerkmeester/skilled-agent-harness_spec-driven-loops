@@ -1,6 +1,14 @@
 ---
 title: Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
 description: Root cause + prevention for destructive filesystem writes when cli-opencode dispatches a long-running model (e.g. deepseek-v4-pro under /deep:start-review-loop:auto) and the model hallucinates a cleanup action.
+trigger_phrases:
+  - "opencode destructive scope violation"
+  - "opencode deep-loop dispatch safety"
+  - "dangerously skip permissions risk"
+  - "opencode worktree isolation dispatch"
+  - "rm-8 prevention playbook"
+importance_tier: important
+contextType: implementation
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)

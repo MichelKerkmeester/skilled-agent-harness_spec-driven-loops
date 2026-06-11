@@ -7,8 +7,8 @@ trigger_phrases:
   - "atomic state"
   - "loop lock state"
   - "graphEvents"
-importance_tier: normal
-contextType: reference
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Loop Runtime State Format

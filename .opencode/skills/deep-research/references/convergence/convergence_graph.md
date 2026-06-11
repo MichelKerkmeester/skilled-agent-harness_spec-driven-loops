@@ -1,6 +1,14 @@
 ---
 title: Graph-Aware Convergence Reference
 description: Coverage graph signals and STOP blockers for deep-research convergence.
+trigger_phrases:
+  - "graph aware research convergence"
+  - "research coverage graph signals"
+  - "research graph stop blockers"
+  - "research graph event contract"
+  - "graph convergence graceful degradation"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Graph-Aware Convergence Reference

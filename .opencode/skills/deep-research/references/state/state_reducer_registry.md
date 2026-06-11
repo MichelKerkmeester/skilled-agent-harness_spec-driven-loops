@@ -1,6 +1,15 @@
 ---
 title: Deep Research Reducer And Registry Reference
 description: Reducer ownership, findings registry schema, validation, fault tolerance, and reconstruction rules.
+trigger_phrases:
+  - "research reducer registry"
+  - "research findings registry"
+  - "reducer ownership contract"
+  - "research registry fingerprint"
+  - "reducer fault tolerance"
+  - "research dashboard derivation"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Research Reducer And Registry Reference

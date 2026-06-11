@@ -1,6 +1,14 @@
 ---
 title: Deep Review Convergence
 description: Stop condition algorithms, quality guards, and recovery strategies for the autonomous deep review loop.
+trigger_phrases:
+  - "review convergence detection"
+  - "severity weighted stop ratio"
+  - "legal stop gate bundle"
+  - "review stuck detection"
+  - "composite convergence vote"
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Review Convergence

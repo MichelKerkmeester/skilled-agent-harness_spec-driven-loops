@@ -6,7 +6,8 @@ trigger_phrases:
   - "scorer weight change"
   - "advisor weight calibration"
   - "lane weight sweep"
-importance_tier: "important"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Lane Weight Tuning Guide

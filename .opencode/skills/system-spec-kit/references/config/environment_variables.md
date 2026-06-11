@@ -1,6 +1,13 @@
 ---
 title: Environment Variables Reference
 description: Configuration options via environment variables for the Spec Kit system
+trigger_phrases:
+  - "spec kit environment variables"
+  - "feature flag defaults"
+  - "embedding provider env vars"
+  - "token budget configuration"
+importance_tier: normal
+contextType: general
 ---
 
 # Environment Variables Reference

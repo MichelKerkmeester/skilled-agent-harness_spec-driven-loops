@@ -1,6 +1,15 @@
 ---
 title: CDP Patterns & Command Examples
 description: Chrome DevTools Protocol patterns, workflows, and Unix composability examples for bdg.
+trigger_phrases:
+  - "bdg cdp command examples"
+  - "chrome devtools protocol patterns"
+  - "cdp method discovery"
+  - "bdg dom screenshot"
+  - "bdg network har export"
+  - "pipe bdg output to jq"
+importance_tier: normal
+contextType: implementation
 ---
 
 # CDP Patterns & Command Examples

@@ -6,6 +6,8 @@ trigger_phrases:
   - "review findings registry"
   - "deep review reducer ownership"
   - "review state reconstruction"
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Review State Reducer And Registry

@@ -1,6 +1,13 @@
 ---
 title: Universal Code Quality Standards
 description: Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate.
+trigger_phrases:
+  - "universal code quality standards"
+  - "p0 p1 p2 severity tiers"
+  - "code quality gate severity"
+  - "stack agnostic quality contract"
+importance_tier: important
+contextType: implementation
 ---
 
 # Universal Code Quality Standards

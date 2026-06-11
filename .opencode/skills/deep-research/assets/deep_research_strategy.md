@@ -1,6 +1,15 @@
 ---
 title: Deep Research Strategy Template
 description: Runtime template copied to research/ during initialization to track research progress, focus decisions, and outcomes across iterations.
+trigger_phrases:
+  - "deep research strategy"
+  - "research strategy template"
+  - "research session tracking"
+  - "exhausted research approaches"
+  - "research stop conditions"
+  - "ruled out research directions"
+importance_tier: normal
+contextType: planning
 ---
 
 # Deep Research Strategy - Session Tracking Template

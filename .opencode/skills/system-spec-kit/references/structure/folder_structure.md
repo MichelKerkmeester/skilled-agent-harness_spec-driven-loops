@@ -1,6 +1,13 @@
 ---
 title: Folder Structure Reference
 description: Spec folder naming conventions, level requirements, and organization patterns
+trigger_phrases:
+  - "folder structure reference"
+  - "spec folder naming conventions"
+  - "level folder requirements"
+  - "scratch folder usage"
+importance_tier: normal
+contextType: general
 ---
 
 # Folder Structure Reference

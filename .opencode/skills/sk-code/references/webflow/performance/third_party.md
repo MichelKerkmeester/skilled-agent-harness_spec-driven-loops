@@ -1,6 +1,13 @@
 ---
 title: Third-Party Performance Optimization
 description: Deferral patterns for analytics, tag managers, and consent scripts to reduce main thread blocking.
+trigger_phrases:
+  - "third party performance webflow"
+  - "gtm delay requestidlecallback"
+  - "analytics deferral pattern"
+  - "consent script deferral"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Third-Party Performance Optimization

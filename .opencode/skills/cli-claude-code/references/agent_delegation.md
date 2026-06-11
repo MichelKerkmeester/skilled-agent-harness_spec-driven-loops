@@ -1,6 +1,14 @@
 ---
 title: "Claude Code Agent Delegation Reference"
 description: "Reference for delegating tasks to 10 specialized Claude Code agents via the conductor/executor orchestration model."
+trigger_phrases:
+  - "claude code agent delegation"
+  - "claude code agent flag routing"
+  - "claude code agent catalog"
+  - "delegate task to claude agent"
+  - "conductor executor agent model"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Claude Code Agent Delegation Reference

@@ -1,6 +1,13 @@
 ---
 title: TypeScript Quick Reference
 description: Copy-paste templates, naming cheat sheet, and common patterns for TypeScript development in OpenCode.
+trigger_phrases:
+  - "opencode typescript quick reference"
+  - "typescript file template"
+  - "type annotation patterns"
+  - "typescript naming cheat sheet"
+importance_tier: normal
+contextType: implementation
 ---
 
 # TypeScript Quick Reference

@@ -1,6 +1,13 @@
 ---
 title: State Format Reference
 description: Live state packet hub for the deep-context loop.
+trigger_phrases:
+  - "deep-context packet files"
+  - "context state file ownership"
+  - "context packet hub"
+  - "context file protection rules"
+importance_tier: normal
+contextType: implementation
 ---
 
 # State Format Reference

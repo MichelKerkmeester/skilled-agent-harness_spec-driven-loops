@@ -2,11 +2,13 @@
 title: "Webflow JavaScript Style Guide"
 description: "JavaScript naming conventions (snake_case), file structure (IIFE wrapper, file header banner, numbered sections), formatting (2-space indent, K&R braces, single quotes, trailing commas), function-purpose comments, JSDoc usage, and debug logging — for the Webflow stack."
 trigger_phrases:
-  - "webflow javascript style"
-  - "webflow js style guide"
-  - "snake_case javascript webflow"
-  - "IIFE wrapper webflow"
-  - "JSDoc webflow"
+  - "webflow javascript style guide"
+  - "snake case javascript webflow"
+  - "iife wrapper webflow"
+  - "jsdoc webflow usage"
+  - "numbered section banner"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow JavaScript Style Guide

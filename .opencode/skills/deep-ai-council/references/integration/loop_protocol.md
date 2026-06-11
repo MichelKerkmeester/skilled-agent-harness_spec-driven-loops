@@ -6,6 +6,8 @@ trigger_phrases:
   - "council workflow"
   - "council round protocol"
   - "council persistence flow"
+importance_tier: "normal"
+contextType: "planning"
 ---
 
 # AI Council Loop Protocol

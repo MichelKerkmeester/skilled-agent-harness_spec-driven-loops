@@ -1,6 +1,14 @@
 ---
 title: Recursive Agent Charter
 description: Fixed policy charter for a deep-improvement run.
+trigger_phrases:
+  - "recursive agent charter"
+  - "deep-improvement policy charter"
+  - "keep or discard rule"
+  - "journal emission protocol"
+  - "legal-stop gate bundles"
+importance_tier: normal
+contextType: planning
 ---
 
 # Recursive Agent Charter

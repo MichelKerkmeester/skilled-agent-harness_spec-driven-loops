@@ -1,6 +1,13 @@
 ---
 title: Command Template - OpenCode Slash Commands
 description: Templates and best practices for creating production-quality slash commands in OpenCode with proper frontmatter and structure.
+trigger_phrases:
+  - "slash command template"
+  - "command frontmatter structure"
+  - "opencode command scaffold"
+  - "argument hint patterns"
+importance_tier: normal
+contextType: general
 ---
 
 # Command Template - OpenCode Slash Commands

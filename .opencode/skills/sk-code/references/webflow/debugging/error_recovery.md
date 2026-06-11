@@ -1,7 +1,13 @@
 ---
 title: Error Recovery Workflows
 description: Recovery procedures for common deployment and build failures
-keywords: [error-recovery, cdn, minification, version-mismatch, troubleshooting]
+trigger_phrases:
+  - "webflow error recovery"
+  - "cdn upload failure recovery"
+  - "minification failure recovery"
+  - "version mismatch recovery"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Error Recovery Workflows

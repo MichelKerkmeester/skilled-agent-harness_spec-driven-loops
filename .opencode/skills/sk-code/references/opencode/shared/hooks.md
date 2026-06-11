@@ -1,6 +1,13 @@
 ---
 title: Runtime Hooks - Spec Kit MCP Hook Entrypoints
 description: Reference for the system-spec-kit runtime hook entrypoints (Claude, Codex, Copilot), the dynamic-load registration pattern, and maintenance rules for editing or adding hooks.
+trigger_phrases:
+  - "spec kit runtime hooks"
+  - "hook entrypoints registration"
+  - "dynamic load hook pattern"
+  - "claude codex copilot hooks"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Runtime Hooks - Spec Kit MCP Hook Entrypoints

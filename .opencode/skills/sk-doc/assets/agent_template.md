@@ -1,3 +1,15 @@
+---
+title: Agent Template - Specialist Agent Structure
+description: Template for creating OpenCode agent files with production frontmatter, permission boundaries, dispatch rules, and orchestration contracts.
+trigger_phrases:
+  - "opencode agent template"
+  - "agent frontmatter scaffold"
+  - "agent permission boundaries"
+  - "specialist agent structure"
+importance_tier: normal
+contextType: general
+---
+
 # Agent Template - Specialist Agent Structure
 
 > Template for creating OpenCode agent files with current production frontmatter, permission boundaries, dispatch rules, and grep-checkable orchestration contracts.

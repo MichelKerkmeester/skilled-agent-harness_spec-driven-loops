@@ -6,6 +6,8 @@ trigger_phrases:
   - "add deep-improvement target"
   - "classify canonical derived candidate target"
   - "target manifest guardrails"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Target Onboarding Guide

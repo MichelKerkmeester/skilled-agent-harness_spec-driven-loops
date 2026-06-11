@@ -7,6 +7,8 @@ trigger_phrases:
   - "mk_code_index naming"
   - "code graph plugin name"
   - "code graph hook location"
+importance_tier: "important"
+contextType: "general"
 ---
 
 # System Code Graph Naming Conventions

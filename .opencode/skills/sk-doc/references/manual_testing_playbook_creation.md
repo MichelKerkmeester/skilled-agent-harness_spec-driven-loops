@@ -1,6 +1,14 @@
 ---
 title: Manual Testing Playbook Creation - Standards and Workflow
 description: Standards and workflow guidance for creating integrated manual testing playbooks with root-level category folders, realistic orchestrator-led prompts, and evidence-driven release review.
+trigger_phrases:
+  - "manual testing playbook creation"
+  - "testing playbook standards"
+  - "operator validation matrix"
+  - "scenario evidence collection"
+  - "playbook release review"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Manual Testing Playbook Creation - Standards and Workflow

@@ -10,7 +10,7 @@ trigger_phrases:
   - "council task type auto-selection"
   - "council strategy count"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "planning"
 ---
 
 # AI Council Seat Diversity Patterns

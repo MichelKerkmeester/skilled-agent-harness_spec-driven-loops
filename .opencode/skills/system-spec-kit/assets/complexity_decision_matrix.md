@@ -1,6 +1,13 @@
 ---
 title: Complexity Decision Matrix
 description: Quick reference for complexity-based level selection and feature enabling.
+trigger_phrases:
+  - "complexity decision matrix"
+  - "level selection by score"
+  - "dimension scoring signals"
+  - "feature decision matrix"
+importance_tier: normal
+contextType: planning
 ---
 
 # Complexity Decision Matrix - Quick Reference for Level Selection

@@ -3,11 +3,11 @@ title: "Lane C Skill-Benchmark Scenario Authoring"
 description: "How to author Lane C fixtures: the public/private pair schema, the three anti-circularity tiers (auto-derived, hand-authored holdout, adversarial), the T1-T2 circularity meter, coverage targets, and empty-gold handling."
 trigger_phrases:
   - "skill-benchmark scenario authoring"
-  - "Lane C fixtures"
+  - "lane c fixtures"
   - "public private fixture"
   - "anti-circularity tiers"
-importance_tier: important
-contextType: reference
+importance_tier: normal
+contextType: implementation
 ---
 
 # Lane C Skill-Benchmark Scenario Authoring

@@ -1,6 +1,15 @@
 ---
 title: Deep Context Reducer And Registry Reference
 description: Reducer ownership, findings-registry schema, agreement weighting, contradiction surfacing, and runtime robustness.
+trigger_phrases:
+  - "findings registry schema"
+  - "reduce state reducer"
+  - "agreement weighting"
+  - "unit id dedup"
+  - "contradiction surfacing"
+  - "low confidence bucket"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Context Reducer And Registry Reference

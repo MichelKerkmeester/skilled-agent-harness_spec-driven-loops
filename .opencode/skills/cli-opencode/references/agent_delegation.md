@@ -1,6 +1,14 @@
 ---
 title: "OpenCode CLI - Agent Delegation"
 description: "Agent routing matrix for opencode run dispatches. Documents the agent slugs available via .opencode/agents/, the cli pattern As @<agent> for prompt-time routing, and the orchestration principle: calling AI decides WHAT, agent shapes HOW."
+trigger_phrases:
+  - "opencode agent delegation"
+  - "opencode agent routing matrix"
+  - "opencode agent slug selection"
+  - "opencode leaf agent constraints"
+  - "opencode multi-agent workflow"
+importance_tier: normal
+contextType: implementation
 ---
 
 # OpenCode CLI - Agent Delegation

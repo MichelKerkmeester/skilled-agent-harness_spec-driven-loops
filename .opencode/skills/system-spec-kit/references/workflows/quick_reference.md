@@ -1,6 +1,13 @@
 ---
 title: Quick Reference
 description: Fast lookup for commands, checklists, and troubleshooting using the progressive enhancement model.
+trigger_phrases:
+  - "speckit quick reference"
+  - "template copy commands"
+  - "level decision shortcuts"
+  - "quick troubleshooting lookup"
+importance_tier: normal
+contextType: general
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting

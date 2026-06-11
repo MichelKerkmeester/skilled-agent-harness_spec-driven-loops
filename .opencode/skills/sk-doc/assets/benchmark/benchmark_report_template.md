@@ -8,7 +8,7 @@ trigger_phrases:
   - "{{SKILL_NAME}} {{BENCHMARK_TOPIC}} {{ISO_DATE}}"
   - "{{FIXTURE_SLUG}} benchmark"
 importance_tier: "important"
-contextType: "reference"
+contextType: "general"
 ---
 
 <!--

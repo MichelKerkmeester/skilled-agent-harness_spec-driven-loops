@@ -9,8 +9,8 @@ trigger_phrases:
   - "any embedder works"
   - "embedder rollback"
   - "embedder device selection"
-importance_tier: "important"
-contextType: "reference"
+importance_tier: important
+contextType: implementation
 ---
 
 # Embedder Pluggability: mk-spec-memory

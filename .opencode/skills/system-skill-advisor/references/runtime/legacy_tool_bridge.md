@@ -5,6 +5,8 @@ trigger_phrases:
   - "legacy advisor tool bridge"
   - "advisor_* compatibility"
   - "stable advisor tool ids"
+importance_tier: "important"
+contextType: "implementation"
 ---
 
 # Legacy Tool Bridge

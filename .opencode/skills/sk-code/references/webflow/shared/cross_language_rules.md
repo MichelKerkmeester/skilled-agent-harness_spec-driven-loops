@@ -4,8 +4,10 @@ description: "File naming, comment principles, file-header banner format, and pl
 trigger_phrases:
   - "webflow cross language rules"
   - "webflow comment style"
-  - "webflow file header"
-  - "WHY not WHAT"
+  - "webflow file header banner"
+  - "why not what comments"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Cross-Language Rules: Webflow

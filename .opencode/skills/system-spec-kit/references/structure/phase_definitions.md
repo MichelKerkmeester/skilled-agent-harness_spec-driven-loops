@@ -1,6 +1,14 @@
 ---
 title: Phase Definitions
 description: Phase decomposition system for complex multi-session specifications, providing parallel work stream organization as a behavioral overlay on existing documentation levels.
+trigger_phrases:
+  - "phase decomposition system"
+  - "phase detection thresholds"
+  - "phase folder naming"
+  - "lean trio policy"
+  - "suggested phase counts"
+importance_tier: normal
+contextType: planning
 ---
 
 # Phase Definitions

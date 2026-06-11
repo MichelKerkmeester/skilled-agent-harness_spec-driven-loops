@@ -7,7 +7,7 @@ trigger_phrases:
   - "guarded promotion"
   - "promotion eligibility"
 importance_tier: important
-contextType: reference
+contextType: implementation
 ---
 
 # Deep Agent Improvement Promotion Gate Contract

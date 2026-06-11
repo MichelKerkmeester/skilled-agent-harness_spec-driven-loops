@@ -1,6 +1,13 @@
 ---
 title: Core Standards - Structure and Validation Rules
 description: Filename conventions, document type detection, and structural validation rules for markdown documentation.
+trigger_phrases:
+  - "core documentation standards"
+  - "filename conventions markdown"
+  - "document type detection"
+  - "structural validation rules"
+importance_tier: important
+contextType: general
 ---
 
 # Core Standards - Structure and Validation Rules

@@ -1,6 +1,13 @@
 ---
 title: Validation - Quality Assessment and Gates
 description: Quality gates, DQI scoring, and improvement recommendations for markdown documentation.
+trigger_phrases:
+  - "dqi scoring bands"
+  - "document quality gates"
+  - "quality assessment framework"
+  - "validation quality dimensions"
+importance_tier: important
+contextType: general
 ---
 
 # Validation - Quality Assessment and Gates

@@ -1,9 +1,14 @@
 ---
-title: "DeepSeek-v4-Pro Prompt-Craft Profile"
+title: DeepSeek-v4-Pro Prompt-Craft Profile
 model_id: "deepseek-v4-pro"
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: "default-unverified"
-last_benchmarked: "none"
+description: How to prompt DeepSeek-v4-pro via cli-opencode, RCAF framework with medium pre-planning, dispatch scaffold, and gotchas mirroring its model-profiles.json entry.
+trigger_phrases:
+  - "deepseek v4 pro prompt framework"
+  - "deepseek dispatch scaffold"
+  - "deepseek rcaf prompt"
+  - "deepseek dispatch gotchas"
+importance_tier: normal
+contextType: implementation
 ---
 
 # DeepSeek-v4-Pro Prompt-Craft Profile

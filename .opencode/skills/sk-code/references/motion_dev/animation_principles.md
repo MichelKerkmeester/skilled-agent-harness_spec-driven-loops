@@ -1,6 +1,14 @@
 ---
 title: "Motion.dev Animation Principles"
 description: "Design-principle layer for Motion.dev: timing, easing, stagger direction, anticipation, overshoot, arc, depth, and visual verification cues."
+trigger_phrases:
+  - "motion dev animation principles"
+  - "easing perceived physics"
+  - "stagger follow through"
+  - "animation timing vocabulary"
+  - "anticipation overshoot arc"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Animation Principles

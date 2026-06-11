@@ -1,6 +1,14 @@
 ---
 title: Tool Naming Convention - Complete Guide
 description: Critical naming pattern for MCP tool calls with troubleshooting guide.
+trigger_phrases:
+  - "code mode tool naming convention"
+  - "manual name prefix pattern"
+  - "tool not found error"
+  - "manual underscore tool name"
+  - "namespace dot notation"
+importance_tier: important
+contextType: implementation
 ---
 
 # Tool Naming Convention - Complete Guide

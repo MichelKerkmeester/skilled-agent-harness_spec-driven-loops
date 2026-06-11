@@ -5,7 +5,9 @@ trigger_phrases:
   - "integration scanning"
   - "agent integration surfaces"
   - "mirror drift detection"
-  - "scan-integration"
+  - "integration scan report"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Integration Scanning

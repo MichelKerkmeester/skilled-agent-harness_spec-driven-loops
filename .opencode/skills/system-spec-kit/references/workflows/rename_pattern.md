@@ -1,6 +1,13 @@
 ---
 title: "Rename Pattern — mechanical refactor template for skill/agent identity changes"
-description: "Reusable pattern + checklist for repo-wide rename refactors. First captured in 114/007 (sk-small-model → sk-prompt-small-model 2026-05-21), reused for 115 (deep-ai-council → sk-ai-council/ai-council). Addresses deep-review finding M-001."
+description: Reusable mechanical pattern and checklist for repo-wide skill and agent identity rename refactors.
+trigger_phrases:
+  - "rename pattern checklist"
+  - "mechanical rename refactor"
+  - "skill identity rename"
+  - "rename surface taxonomy"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Rename Pattern — mechanical refactor template

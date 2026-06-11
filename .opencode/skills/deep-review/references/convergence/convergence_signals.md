@@ -6,6 +6,8 @@ trigger_phrases:
   - "review stop signals"
   - "severity weighted convergence"
   - "review blocked stop"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Review Convergence Signals

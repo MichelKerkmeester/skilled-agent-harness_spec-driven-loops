@@ -1,6 +1,14 @@
 ---
 title: Install Guide Creation - Phase-Based Installation Documentation
 description: Standards and workflow for clear, reliable install guides with phase-based validation checkpoints.
+trigger_phrases:
+  - "install guide creation"
+  - "install guide standards"
+  - "phase based installation"
+  - "installation validation checkpoints"
+  - "install guide scaffold"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Install Guide Creation - Phase-Based Installation Documentation

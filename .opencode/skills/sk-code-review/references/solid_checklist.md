@@ -1,6 +1,13 @@
 ---
 title: SOLID and Architecture Checklist
 description: Review prompts and smell patterns for evaluating architecture cohesion, coupling, and extensibility risks.
+trigger_phrases:
+  - "solid architecture review"
+  - "single responsibility smell check"
+  - "coupling cohesion review prompts"
+  - "architecture smell patterns"
+importance_tier: normal
+contextType: implementation
 ---
 
 # SOLID and Architecture Checklist

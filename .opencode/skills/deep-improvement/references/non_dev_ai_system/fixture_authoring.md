@@ -1,6 +1,14 @@
 ---
 title: "Lane D Fixture Authoring"
 description: "How to author visible, held-out and gold fixtures for a Lane D packaging: deliverable-producing only, dimension-sensitivity, unpublished adversarial seeds, the DELIVERABLE output contract, fixture-lint gating, and N>=3 sampling."
+trigger_phrases:
+  - "lane d fixture authoring"
+  - "deliverable output contract"
+  - "unpublished adversarial seeds"
+  - "fixture-lint gating"
+  - "dimension-sensitive fixtures"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Lane D Fixture Authoring

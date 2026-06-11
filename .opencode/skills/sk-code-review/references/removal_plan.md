@@ -1,6 +1,13 @@
 ---
 title: Removal and Iteration Plan
 description: Template for identifying safe deletion candidates and planning deferred removals with rollback safeguards.
+trigger_phrases:
+  - "safe code removal plan"
+  - "deferred removal with rollback"
+  - "dead code deletion candidates"
+  - "removal usage evidence check"
+importance_tier: normal
+contextType: planning
 ---
 
 # Removal and Iteration Plan

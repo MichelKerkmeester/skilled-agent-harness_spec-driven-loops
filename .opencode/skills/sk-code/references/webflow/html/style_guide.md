@@ -2,10 +2,12 @@
 title: "Webflow HTML Style Guide"
 description: "Data-attribute naming conventions, semantic HTML preferences, and ARIA basics for Webflow projects. Most HTML in Webflow projects is managed by the Webflow Designer; this file covers the conventions that apply to custom embeds, data attributes used by JS, and accessibility patterns."
 trigger_phrases:
-  - "webflow html style"
-  - "webflow data attribute"
-  - "webflow custom embed"
-  - "webflow aria"
+  - "webflow html style guide"
+  - "webflow data attribute naming"
+  - "webflow custom embed conventions"
+  - "webflow aria basics"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow HTML Style Guide

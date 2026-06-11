@@ -3,11 +3,11 @@ title: "Lane C Skill-Benchmark Scoring Contract"
 description: "Authoritative D1-D5 computation for the Lane C Skill Benchmark Report: point weights, Mode A deterministic scoring, the opt-in advisor probe for D1-inter, deferred live-mode dimensions, and funnel/bottleneck ranking."
 trigger_phrases:
   - "skill-benchmark scoring contract"
-  - "Lane C scoring"
-  - "D1 D5 weights"
+  - "lane c scoring"
+  - "d1 d5 weights"
   - "skill benchmark dimensions"
 importance_tier: important
-contextType: reference
+contextType: implementation
 ---
 
 # Lane C Skill-Benchmark Scoring Contract

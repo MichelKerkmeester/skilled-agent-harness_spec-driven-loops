@@ -7,15 +7,11 @@ trigger_phrases:
   - "skill local benchmark folder"
   - "benchmark report shape"
   - "benchmark promotion workflow"
-  - "when to adopt benchmarks format"
   - "skill benchmark adoption"
-  - "mcp benchmarks case study"
   - "benchmarks decision aid"
-  - "should I add benchmarks folder"
   - "benchmark adoption criteria"
-  - "skill local benchmarks signal pattern"
 importance_tier: "important"
-contextType: "reference"
+contextType: "implementation"
 ---
 
 # Benchmark Creation: Standards and Workflow

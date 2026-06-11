@@ -1,6 +1,14 @@
 ---
 title: Runtime Capability Matrix
 description: Single source of truth for deep-research runtime parity, lifecycle guarantees, and provider adaptation requirements.
+trigger_phrases:
+  - "runtime capability matrix"
+  - "deep research runtime parity"
+  - "provider adaptation rules"
+  - "non-hook equivalence"
+  - "research parity baseline"
+importance_tier: important
+contextType: implementation
 ---
 
 # Runtime Capability Matrix

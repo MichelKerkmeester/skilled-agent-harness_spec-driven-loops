@@ -6,8 +6,8 @@ trigger_phrases:
   - "ai-council artifacts"
   - "council artifact tree"
   - "council report path"
-importance_tier: "normal"
-contextType: "reference"
+importance_tier: "important"
+contextType: "implementation"
 ---
 
 # AI Council Folder Layout

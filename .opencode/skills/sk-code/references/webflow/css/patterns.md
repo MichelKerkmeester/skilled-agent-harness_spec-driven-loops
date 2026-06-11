@@ -1,6 +1,13 @@
 ---
 title: CSS Patterns - Webflow Implementation Reference
 description: Comprehensive CSS patterns for Webflow development including state machines, validation architecture, accessibility, and design token systems.
+trigger_phrases:
+  - "webflow css patterns"
+  - "css state machines"
+  - "design token system webflow"
+  - "css validation architecture"
+importance_tier: normal
+contextType: implementation
 ---
 
 # CSS Patterns - Webflow Implementation Reference

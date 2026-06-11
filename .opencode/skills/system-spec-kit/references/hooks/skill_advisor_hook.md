@@ -1,6 +1,14 @@
 ---
 title: Skill Advisor Hook Reference
 description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Codex CLI, and the OpenCode plugin bridge.
+trigger_phrases:
+  - "skill advisor hook reference"
+  - "native-first advisor hooks"
+  - "advisor hook runtime matrix"
+  - "opencode plugin bridge"
+  - "advisor hook smoke tests"
+importance_tier: important
+contextType: implementation
 ---
 
 # Skill Advisor Hook Reference

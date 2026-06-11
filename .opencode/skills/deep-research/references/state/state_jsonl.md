@@ -1,6 +1,15 @@
 ---
 title: Deep Research JSONL State Reference
 description: Config, iteration, event, lineage, graph, and blocked-stop records for deep-research state logs.
+trigger_phrases:
+  - "research state jsonl"
+  - "research config record"
+  - "research iteration records"
+  - "research negative knowledge"
+  - "research graph events"
+  - "research event records"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Research JSONL State Reference

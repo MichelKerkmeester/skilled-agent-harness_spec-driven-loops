@@ -1,6 +1,13 @@
 ---
 title: Level Decision Matrix
 description: Quick reference for selecting the appropriate documentation level using progressive enhancement.
+trigger_phrases:
+  - "level decision matrix"
+  - "documentation level selection"
+  - "loc soft guidance"
+  - "secondary factors override"
+importance_tier: normal
+contextType: planning
 ---
 
 # Level Decision Matrix - Complexity Scoring Guide

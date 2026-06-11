@@ -8,6 +8,8 @@ trigger_phrases:
   - "cupt statuses"
   - "cupt time"
   - "cupt note"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # cupt CLI Reference

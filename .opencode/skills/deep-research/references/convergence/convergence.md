@@ -1,6 +1,14 @@
 ---
 title: Convergence Detection Reference
 description: Live stop contract and navigation hub for deep-research convergence.
+trigger_phrases:
+  - "research convergence detection"
+  - "research stop contract"
+  - "research stopreason values"
+  - "research legal stop gates"
+  - "research convergence decision order"
+importance_tier: important
+contextType: implementation
 ---
 
 # Convergence Detection Reference

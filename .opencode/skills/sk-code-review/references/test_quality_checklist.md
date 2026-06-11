@@ -1,6 +1,14 @@
 ---
 title: Test Quality Checklist
 description: Test adequacy, coverage quality, and anti-pattern detection checklist for identifying unreliable or misleading test suites.
+trigger_phrases:
+  - "test quality review checklist"
+  - "tests that cannot fail"
+  - "test smell detection"
+  - "coverage quality assessment"
+  - "test pyramid awareness"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Test Quality Checklist

@@ -6,6 +6,8 @@ trigger_phrases:
   - "promotion rollback steps"
   - "post-promotion verification"
   - "restore canonical target"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Rollback Runbook

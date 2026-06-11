@@ -1,6 +1,14 @@
 ---
 title: Smart Router - Routing Logic and Resource Maps
 description: Authoritative routing logic for sk-code's surface-based routing — intent classification, surface-to-resource maps for WEBFLOW + OPENCODE + MOTION_DEV, load tiers, verification commands, and UNKNOWN fallback.
+trigger_phrases:
+  - "sk-code smart routing"
+  - "surface resource maps"
+  - "intent classification routing"
+  - "load tier resource loading"
+  - "unknown surface fallback"
+importance_tier: important
+contextType: general
 ---
 
 # Smart Router - Routing Logic and Resource Maps

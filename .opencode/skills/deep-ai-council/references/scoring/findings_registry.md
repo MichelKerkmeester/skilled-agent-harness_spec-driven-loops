@@ -7,7 +7,7 @@ trigger_phrases:
   - "findings deduplication"
   - "registry fingerprint"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "implementation"
 ---
 
 # Findings Registry

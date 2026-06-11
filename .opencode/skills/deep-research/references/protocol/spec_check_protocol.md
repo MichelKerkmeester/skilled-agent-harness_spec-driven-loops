@@ -1,6 +1,14 @@
 ---
 title: Spec Check Protocol
 description: Canonical contract for late-INIT spec.md detection, bounded mutation, advisory locking, and post-synthesis write-back in deep-research.
+trigger_phrases:
+  - "spec check protocol"
+  - "research advisory lock"
+  - "spec folder state classification"
+  - "post-synthesis write-back"
+  - "research spec conflict detection"
+importance_tier: important
+contextType: implementation
 ---
 
 # Spec Check Protocol

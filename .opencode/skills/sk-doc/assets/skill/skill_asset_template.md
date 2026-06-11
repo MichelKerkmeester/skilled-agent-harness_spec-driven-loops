@@ -1,6 +1,13 @@
 ---
 title: Skill Asset File Templates
 description: Templates and guidelines for creating asset files in AI agent skills.
+trigger_phrases:
+  - "skill asset templates"
+  - "asset file guidelines"
+  - "asset document structure"
+  - "standard asset structure"
+importance_tier: normal
+contextType: general
 ---
 
 # Skill Asset File Templates - Creation Guidelines
@@ -124,6 +131,12 @@ Templates and guidelines for creating asset files in AI agent skills.
 ---
 title: [Title]
 description: [One-line description - same as intro]
+trigger_phrases:
+  - "[distinctive phrase one]"
+  - "[distinctive phrase two]"
+  - "[distinctive phrase three]"
+importance_tier: normal
+contextType: general
 ---
 
 # [Title]
@@ -153,6 +166,8 @@ description: [One-line description - same as intro]
 [Links to related files]
 
 ```
+
+Every asset file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content; `importance_tier` defaults to `normal`; `contextType` one of `planning|research|implementation|general`). See [frontmatter_templates.md](../frontmatter_templates.md) for field rules.
 
 > **WARNING: DO NOT duplicate content between intro and OVERVIEW section.**
 > The intro is a hook; OVERVIEW provides the details.
@@ -215,6 +230,17 @@ Atomic commits with clear intent = maintainable history.
 **Template**:
 
 ```markdown
+---
+title: Asset Title - Descriptive Subtitle
+description: One-line description of what this asset provides
+trigger_phrases:
+  - "[distinctive phrase one]"
+  - "[distinctive phrase two]"
+  - "[distinctive phrase three]"
+importance_tier: normal
+contextType: general
+---
+
 # Asset Title - Descriptive Subtitle
 
 Brief introduction (1-2 sentences) explaining what this asset provides and when to use it.
@@ -354,18 +380,21 @@ def detect_mode(request):
 Different document types have different frontmatter requirements:
 - SKILL.md files must have frontmatter with name, description, and allowed-tools
 - Command files must have frontmatter with description and argument-hint
-- Knowledge files should not have frontmatter
+- Skill reference/asset files must have the 5-field block
+- Knowledge files outside skill folders should not have frontmatter
 - Spec files typically don't have frontmatter
 ```
 
 **After (Markdown Decision Tree)**:
 ```
 Document type?
-├─> SKILL.md       → MUST have frontmatter (name, description, allowed-tools)
-├─> Command        → MUST have frontmatter (description, argument-hint, allowed-tools)
-├─> Knowledge      → MUST NOT have frontmatter (remove if present)
-├─> Spec           → SHOULD NOT have frontmatter (suggest removal)
-└─> README         → No specific requirement (usually none)
+├─> SKILL.md             → MUST have frontmatter (name, description, allowed-tools)
+├─> Command              → MUST have frontmatter (description, argument-hint, allowed-tools)
+├─> Skill Reference/Asset → MUST have the 5-field block (title, description,
+│                           trigger_phrases, importance_tier, contextType)
+├─> Knowledge (outside skills) → MUST NOT have frontmatter (remove if present)
+├─> Spec                 → SHOULD NOT have frontmatter (suggest removal)
+└─> README               → No specific requirement (usually none)
 ```
 
 ### Python Pseudo-Code: Validation Logic

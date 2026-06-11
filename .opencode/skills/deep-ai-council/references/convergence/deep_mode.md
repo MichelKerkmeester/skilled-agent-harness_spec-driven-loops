@@ -7,7 +7,7 @@ trigger_phrases:
   - "deep-ai-council state files"
   - "council cost guards"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "planning"
 ---
 
 # Deep Mode Session Hierarchy

@@ -5,7 +5,8 @@ trigger_phrases:
   - "skill graph query cookbook"
   - "skill_graph_query examples"
   - "advisor graph traversal"
-importance_tier: "important"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Skill Graph Query Cookbook

@@ -1,6 +1,14 @@
 ---
 title: Deep Review Loop Protocol
 description: Complete lifecycle specification for the autonomous deep review loop, initialization, iteration, convergence, synthesis, and save phases.
+trigger_phrases:
+  - "deep review loop protocol"
+  - "review iteration lifecycle"
+  - "review loop initialization"
+  - "review auto resume"
+  - "review synthesis phase"
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Review Loop Protocol

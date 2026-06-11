@@ -7,7 +7,7 @@ trigger_phrases:
   - "hunter skeptic referee"
   - "council comparison table"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "planning"
 ---
 
 # AI Council Scoring Rubric

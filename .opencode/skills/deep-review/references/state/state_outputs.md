@@ -6,6 +6,8 @@ trigger_phrases:
   - "review packet outputs"
   - "review dashboard output"
   - "review report output"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Deep Review State Outputs

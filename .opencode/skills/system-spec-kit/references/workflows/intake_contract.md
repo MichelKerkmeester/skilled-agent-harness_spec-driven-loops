@@ -1,6 +1,15 @@
 ---
 title: Intake Contract Reference
 description: Canonical spec-folder intake contract shared by /spec_kit:plan and /spec_kit:complete. Defines folder classification, repair-mode routing, staged trio publication, relationship capture, resume semantics, and the intake lock.
+trigger_phrases:
+  - "intake contract"
+  - "folder state classification"
+  - "repair-mode routing"
+  - "staged trio publication"
+  - "consolidated interview"
+  - "intake lock"
+importance_tier: important
+contextType: planning
 ---
 
 # Intake Contract Reference

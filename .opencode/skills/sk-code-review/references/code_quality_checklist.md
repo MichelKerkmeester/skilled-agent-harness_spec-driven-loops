@@ -1,6 +1,14 @@
 ---
 title: Code Quality Checklist
 description: Correctness, performance, and boundary-condition checklist for identifying production-impacting quality defects.
+trigger_phrases:
+  - "code quality review checklist"
+  - "silent failure data corruption risks"
+  - "boundary condition review pass"
+  - "kiss dry enforcement checks"
+  - "error handling review defects"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Code Quality Checklist

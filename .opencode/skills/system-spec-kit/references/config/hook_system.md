@@ -1,6 +1,14 @@
 ---
 title: Hook System Reference
 description: Current hook registration, runtime vocabulary, lifecycle behavior, and fallback contracts for Spec Kit prompt-time and session hooks.
+trigger_phrases:
+  - "hook system reference"
+  - "hook registration matrix"
+  - "runtime hook vocabulary"
+  - "hook lifecycle behavior"
+  - "codex timeout fallback"
+importance_tier: important
+contextType: implementation
 ---
 
 # Hook System Reference

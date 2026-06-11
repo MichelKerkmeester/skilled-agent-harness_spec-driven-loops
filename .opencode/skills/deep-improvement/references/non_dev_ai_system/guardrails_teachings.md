@@ -1,6 +1,14 @@
 ---
 title: "Lane D Guardrails and Teachings"
 description: "The twelve pilot teachings (T1-T12) with the guardrail that encodes each one and where it lives in the deep-improvement kit."
+trigger_phrases:
+  - "lane d guardrails"
+  - "twelve pilot teachings"
+  - "self-scores are unsafe"
+  - "frozen scoring surface"
+  - "n-sample averaging"
+importance_tier: normal
+contextType: research
 ---
 
 # Lane D Guardrails and Teachings

@@ -1,6 +1,15 @@
 ---
 title: Deep Research Quick Reference
 description: One-page cheat sheet for the autonomous deep research loop.
+trigger_phrases:
+  - "deep research quick reference"
+  - "research loop cheat sheet"
+  - "research iteration checklist"
+  - "research loop troubleshooting"
+  - "research tuning guide"
+  - "research progress visualization"
+importance_tier: normal
+contextType: general
 ---
 
 # Deep Research Quick Reference

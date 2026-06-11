@@ -1,6 +1,13 @@
 ---
 title: Deep Context Quick Reference
 description: One-page cheat sheet for the autonomous deep context loop.
+trigger_phrases:
+  - "deep context cheat sheet"
+  - "start context loop command"
+  - "context loop parameters"
+  - "when to run deep context"
+importance_tier: normal
+contextType: general
 ---
 
 # Deep Context Quick Reference

@@ -1,6 +1,16 @@
 ---
 title: Convergence Signals Reference
 description: Signal definitions, scoring rules, and reports for deep-research convergence.
+trigger_phrases:
+  - "research convergence signals"
+  - "research new info ratio"
+  - "research stuck count"
+  - "mad noise floor"
+  - "question entropy"
+  - "research composite score"
+  - "convergence threshold tuning"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Convergence Signals Reference

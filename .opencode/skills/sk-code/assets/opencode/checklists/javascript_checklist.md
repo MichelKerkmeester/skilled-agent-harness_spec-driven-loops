@@ -1,6 +1,13 @@
 ---
 title: JavaScript Code Quality Checklist
 description: Quality validation checklist for JavaScript code in the OpenCode development environment.
+trigger_phrases:
+  - "opencode javascript checklist"
+  - "javascript quality validation checklist"
+  - "js box header check"
+  - "use strict checklist"
+importance_tier: normal
+contextType: implementation
 ---
 
 # JavaScript Code Quality Checklist

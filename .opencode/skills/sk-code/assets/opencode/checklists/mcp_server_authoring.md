@@ -1,6 +1,13 @@
 ---
 title: MCP Server Authoring Checklist
 description: Checklist for authoring MCP servers with registration, schema validation, typed responses, and error envelopes.
+trigger_phrases:
+  - "mcp server authoring checklist"
+  - "mcp tool registration"
+  - "mcp schema validation"
+  - "mcp error envelopes"
+importance_tier: normal
+contextType: implementation
 ---
 
 # MCP Server Authoring Checklist

@@ -1,6 +1,13 @@
 ---
 title: Phase Detection and Lifecycle
 description: Phase 1/2/3 development lifecycle (Implementation / Testing+Debugging / Verification) with per-surface resource expectations.
+trigger_phrases:
+  - "sk-code phase lifecycle"
+  - "phase detection routing"
+  - "implementation testing verification phases"
+  - "per surface phase map"
+importance_tier: normal
+contextType: general
 ---
 
 # Router Reference - Phase Lifecycle

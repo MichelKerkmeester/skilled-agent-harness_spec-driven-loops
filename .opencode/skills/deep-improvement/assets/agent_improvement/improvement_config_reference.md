@@ -1,6 +1,14 @@
 ---
 title: Improvement Config Reference
 description: Field-level documentation for improvement_config.json runtime configuration.
+trigger_phrases:
+  - "improvement config reference"
+  - "improvement config fields"
+  - "dimension weight tuning"
+  - "stop rule thresholds"
+  - "model-benchmark mode config"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Improvement Config Reference

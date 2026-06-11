@@ -7,7 +7,7 @@ trigger_phrases:
   - "convergence sycophancy"
   - "recursive council"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "planning"
 ---
 
 # AI Council Anti-Patterns

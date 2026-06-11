@@ -6,6 +6,8 @@ trigger_phrases:
   - "agent improvement command"
   - "improvement runtime layout"
   - "dimension weights"
+importance_tier: normal
+contextType: general
 ---
 
 # Quick Reference

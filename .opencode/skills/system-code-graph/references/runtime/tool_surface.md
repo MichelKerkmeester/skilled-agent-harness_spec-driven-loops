@@ -6,6 +6,8 @@ trigger_phrases:
   - "code-graph tool surface"
   - "mk-code-index tools"
   - "code-graph tool contracts"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # System Code Graph Tool Surface

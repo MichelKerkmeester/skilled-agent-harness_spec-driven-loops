@@ -5,9 +5,9 @@ trigger_phrases:
   - "deep-ai-council command wiring"
   - "council persistence helper"
   - "persist council artifacts"
-  - "council YAML workflow"
+  - "council yaml workflow"
 importance_tier: "normal"
-contextType: "reference"
+contextType: "implementation"
 ---
 
 # AI Council Command Wiring

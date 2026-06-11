@@ -1,6 +1,14 @@
 ---
 title: Human Voice Rules (HVR) - Writing Standards Reference
 description: Linguistic standards that eliminate detectable AI patterns and enforce natural human writing across all documentation.
+trigger_phrases:
+  - "hvr voice rules"
+  - "human voice rules"
+  - "ai writing tells"
+  - "banned vocabulary list"
+  - "natural writing standards"
+importance_tier: important
+contextType: general
 ---
 
 # Human Voice Rules (HVR) - Writing Standards Reference

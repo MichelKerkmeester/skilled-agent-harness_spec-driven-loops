@@ -1,3 +1,15 @@
+---
+title: "Deep AI Council Round Prompt Pack"
+description: "Seat prompt template for one deep-ai-council round with role, context slots, critique steps, and the seat verdict footer."
+trigger_phrases:
+  - "council round prompt pack"
+  - "council seat prompt template"
+  - "seat recommendation sections"
+  - "council seat verdict"
+importance_tier: "normal"
+contextType: "planning"
+---
+
 # Deep-AI-Council Round Prompt Pack
 
 ## Role

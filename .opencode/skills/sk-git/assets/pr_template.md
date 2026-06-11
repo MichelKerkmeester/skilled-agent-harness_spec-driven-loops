@@ -1,6 +1,14 @@
 ---
 title: Pull Request Template
 description: Templates and examples for creating professional pull requests with clear summaries and test plans.
+trigger_phrases:
+  - "pull request template"
+  - "pr summary bullet points"
+  - "test plan checkboxes"
+  - "pr title conventions"
+  - "gh pr create body"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Pull Request Template - PR Description Standard

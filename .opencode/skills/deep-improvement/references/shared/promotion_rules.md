@@ -6,6 +6,8 @@ trigger_phrases:
   - "keep vs reject candidate"
   - "promotion prerequisites"
   - "no-go conditions"
+importance_tier: important
+contextType: implementation
 ---
 
 # Promotion Rules

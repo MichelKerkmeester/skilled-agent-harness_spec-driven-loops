@@ -1,6 +1,13 @@
 ---
-title: Code Graph Launcher Lease
-description: PID-file single-writer lease for the mk-code-index launcher.
+title: "Code Graph Launcher Lease"
+description: "PID-file single-writer lease for the mk-code-index launcher."
+trigger_phrases:
+  - "code graph launcher lease"
+  - "mk-code-index single writer"
+  - "lease held by pid"
+  - "stale lease reclaim"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Code Graph Launcher Lease
