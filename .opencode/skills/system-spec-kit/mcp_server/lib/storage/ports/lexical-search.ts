@@ -55,11 +55,24 @@ export interface LexicalSearch {
   clear(): void;
 }
 
-/** Packed BM25 lexical-search adapter over the shipped in-memory engine. */
+/**
+ * Packed BM25 lexical-search adapter over the shipped in-memory engine.
+ *
+ * No production caller adopts this port yet: the hybrid lexical search
+ * path calls the BM25 engine directly as a documented coupling
+ * exception, because routing it through this port regresses hybrid
+ * ranking behavior.
+ */
 export class PackedBm25LexicalSearch implements LexicalSearch {
   private readonly index: BM25Index;
 
-  constructor(engine: InMemoryBm25Engine = 'packed-inmemory') {
+  /**
+   * When no engine is supplied, BM25Index resolves it from the
+   * environment via resolveInMemoryBm25Engine() instead of hardcoding
+   * the packed engine, keeping this adapter aligned with engine
+   * selection everywhere else.
+   */
+  constructor(engine?: InMemoryBm25Engine) {
     this.index = new BM25Index(undefined, undefined, engine);
   }
 

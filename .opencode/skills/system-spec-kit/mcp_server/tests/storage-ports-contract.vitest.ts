@@ -307,7 +307,35 @@ function runVectorStoreContract(
       }
     });
 
-    it('clears stored vector records', async () => {
+    it('treats caller-supplied upsert ids as advisory and assigns canonical ids', async () => {
+      const subject = createSubject();
+      try {
+        await subject.port.upsert({
+          id: 'caller-chosen-id',
+          embedding: [0, 0, 1, 0],
+          metadata: {
+            spec_folder: 'specs/vector-port',
+            file_path: 'advisory.md',
+            title: 'Advisory id vector',
+          },
+        });
+
+        const results = await subject.port.search([0, 0, 1, 0], { limit: 1, minScore: 0 });
+        expect(results).toHaveLength(1);
+        const assignedId = String(results[0]?.id);
+        expect(assignedId).not.toBe('caller-chosen-id');
+
+        const stored = await subject.port.get(assignedId);
+        expect(stored?.metadata.title).toBe('Advisory id vector');
+        expect(String(stored?.id)).toBe(assignedId);
+
+        expect(await subject.port.get('caller-chosen-id')).toBeNull();
+      } finally {
+        subject.cleanup();
+      }
+    });
+
+    it('clears the full store scope, including lookups by assigned id', async () => {
       const subject = createSubject();
       try {
         await subject.port.upsert({
@@ -320,9 +348,14 @@ function runVectorStoreContract(
           },
         });
 
+        const before = await subject.port.search([1, 0, 0, 0], { limit: 1, minScore: 0 });
+        expect(before).toHaveLength(1);
+        const assignedId = String(before[0]?.id);
+
         await subject.port.clear();
 
         expect(await subject.port.search([1, 0, 0, 0], { limit: 5, minScore: 0 })).toEqual([]);
+        expect(await subject.port.get(assignedId)).toBeNull();
       } finally {
         subject.cleanup();
       }
@@ -393,6 +426,47 @@ function runContentionPolicyContract(
         subject.cleanup();
       }
     });
+
+    it('derives the attempt budget from the retry-delay schedule', async () => {
+      const subject = createSubject();
+      try {
+        let attempts = 0;
+
+        const result = await subject.port.withRetry(() => {
+          attempts += 1;
+          if (attempts < 3) {
+            const error = new Error('SQLITE_BUSY: database is locked');
+            (error as unknown as { code: string }).code = 'SQLITE_BUSY';
+            throw error;
+          }
+          return 'ok';
+        }, { retryDelaysMs: [0, 0] });
+
+        expect(result).toBe('ok');
+        expect(attempts).toBe(3);
+      } finally {
+        subject.cleanup();
+      }
+    });
+
+    it('honors shouldAbort between retries and resolves undefined', async () => {
+      const subject = createSubject();
+      try {
+        let attempts = 0;
+
+        const result = await subject.port.withRetry(() => {
+          attempts += 1;
+          const error = new Error('SQLITE_BUSY: database is locked');
+          (error as unknown as { code: string }).code = 'SQLITE_BUSY';
+          throw error;
+        }, { retryDelaysMs: [0, 0], shouldAbort: () => attempts >= 2 });
+
+        expect(result).toBeUndefined();
+        expect(attempts).toBe(2);
+      } finally {
+        subject.cleanup();
+      }
+    });
   });
 }
 
@@ -454,17 +528,41 @@ describe('BetterSqliteContentionPolicy', () => {
 });
 
 describe('storage port fakes', () => {
-  it('FakeVectorStore stores vectors and returns cosine-ranked matches', () => {
-    const store = new FakeVectorStore<{ readonly type: string }>();
-    store.upsert({ id: 'left', embedding: [1, 0], metadata: { type: 'axis' } });
-    store.upsert({ id: 'right', embedding: [0, 1], metadata: { type: 'axis' } });
+  it('FakeVectorStore assigns ids by metadata identity and returns cosine-ranked matches', () => {
+    const store = new FakeVectorStore<VectorFixtureMetadata & { readonly type: string }>();
+    const leftMetadata = {
+      spec_folder: 'specs/fake-vector',
+      file_path: 'left.md',
+      title: 'Left axis',
+      type: 'axis',
+    };
+    store.upsert({ id: 'left', embedding: [1, 0], metadata: leftMetadata });
+    store.upsert({
+      id: 'right',
+      embedding: [0, 1],
+      metadata: {
+        spec_folder: 'specs/fake-vector',
+        file_path: 'right.md',
+        title: 'Right axis',
+        type: 'axis',
+      },
+    });
 
     const results = store.search([1, 0], { limit: 2, minScore: 0 });
 
-    expect(results.map((result) => result.id)).toEqual(['left', 'right']);
-    expect(store.get('left')?.metadata.type).toBe('axis');
-    expect(store.delete('left')).toBe(true);
+    expect(results.map((result) => result.metadata.file_path)).toEqual(['left.md', 'right.md']);
+    const leftId = String(results[0]?.id);
+    expect(leftId).not.toBe('left');
     expect(store.get('left')).toBeNull();
+    expect(store.get(leftId)?.metadata.type).toBe('axis');
+
+    store.upsert({ id: 'ignored-replacement-id', embedding: [0.5, 0], metadata: leftMetadata });
+    expect(store.search([1, 0], { limit: 5, minScore: 0 })).toHaveLength(2);
+    expect(String(store.get(leftId)?.id)).toBe(leftId);
+
+    expect(store.delete('left')).toBe(false);
+    expect(store.delete(leftId)).toBe(true);
+    expect(store.get(leftId)).toBeNull();
   });
 
   it('FakeMaintenance records calls and returns configured results', () => {

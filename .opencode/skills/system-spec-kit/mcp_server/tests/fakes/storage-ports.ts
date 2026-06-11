@@ -181,20 +181,43 @@ export class FakeLexicalSearch implements LexicalSearch {
   }
 }
 
-/** Storage-free vector store test double. */
+/**
+ * Storage-free vector store test double.
+ *
+ * Mirrors the real adapter's identity contract: records are identified
+ * by (spec_folder, file_path, anchor_id) from the metadata and the store
+ * assigns the canonical id. A caller-supplied id on upsert is advisory
+ * and never honored, so get/delete by a caller-chosen id is not
+ * guaranteed to resolve.
+ */
 export class FakeVectorStore<TMetadata extends VectorMetadata = VectorMetadata> implements VectorStore<TMetadata> {
-  private readonly records = new Map<StorageId, VectorRecord<TMetadata>>();
+  private readonly records = new Map<string, VectorRecord<TMetadata>>();
+  private readonly idsByIdentity = new Map<string, string>();
+  private nextId = 1;
 
   upsert(record: VectorRecord<TMetadata>): void {
-    this.records.set(record.id, record);
+    const identity = vectorIdentityKey(record.metadata);
+    let id = this.idsByIdentity.get(identity);
+    if (id === undefined) {
+      id = String(this.nextId);
+      this.nextId += 1;
+      this.idsByIdentity.set(identity, id);
+    }
+    this.records.set(id, { ...record, id });
   }
 
   delete(id: StorageId): boolean {
-    return this.records.delete(id);
+    const key = String(id);
+    const record = this.records.get(key);
+    if (!record) {
+      return false;
+    }
+    this.idsByIdentity.delete(vectorIdentityKey(record.metadata));
+    return this.records.delete(key);
   }
 
   get(id: StorageId): VectorRecord<TMetadata> | null {
-    return this.records.get(id) ?? null;
+    return this.records.get(String(id)) ?? null;
   }
 
   search(
@@ -214,6 +237,7 @@ export class FakeVectorStore<TMetadata extends VectorMetadata = VectorMetadata> 
 
   clear(): void {
     this.records.clear();
+    this.idsByIdentity.clear();
   }
 }
 
@@ -239,7 +263,14 @@ export class FakeMaintenance implements Maintenance {
   }
 }
 
-/** Storage-free contention policy test double. */
+/**
+ * Storage-free contention policy test double.
+ *
+ * Mirrors the real policy's retry semantics: attempts default to one more
+ * than the configured retry-delay schedule, and shouldAbort is honored
+ * both before each attempt and after each delay (resolving to undefined
+ * when aborted).
+ */
 export class FakeContentionPolicy implements ContentionPolicy {
   readonly busyTimeouts: number[] = [];
 
@@ -247,9 +278,12 @@ export class FakeContentionPolicy implements ContentionPolicy {
     operation: () => T | Promise<T>,
     options: ContentionOperationOptions = {},
   ): Promise<T> {
-    const attempts = Math.max(1, options.attempts ?? 1);
+    const attempts = Math.max(1, options.attempts ?? ((options.retryDelaysMs?.length ?? 0) + 1));
     const retryable = options.retryable ?? isSqliteContentionError;
     for (let attemptIndex = 0; attemptIndex < attempts; attemptIndex += 1) {
+      if (options.shouldAbort?.()) {
+        return undefined as T;
+      }
       try {
         return await operation();
       } catch (error: unknown) {
@@ -259,6 +293,9 @@ export class FakeContentionPolicy implements ContentionPolicy {
         }
         const delayMs = resolveFakeDelayMs(options, attemptIndex);
         options.onRetry?.(error, { attempt: attemptIndex + 1, delayMs, label: options.label });
+        if (options.shouldAbort?.()) {
+          return undefined as T;
+        }
       }
     }
     throw new Error('FakeContentionPolicy.withRetry: unreachable');
@@ -283,6 +320,24 @@ function resolveFakeDelayMs(options: ContentionOperationOptions, attemptIndex: n
   const configuredDelay = options.retryDelaysMs?.[attemptIndex] ?? options.delayMs ?? 0;
   const delay = typeof configuredDelay === 'function' ? configuredDelay() : configuredDelay;
   return Math.max(0, delay);
+}
+
+function vectorIdentityKey(metadata: VectorMetadata): string {
+  const aliased = metadata as {
+    spec_folder?: string;
+    specFolder?: string;
+    file_path?: string;
+    filePath?: string;
+    anchor_id?: string;
+    anchorId?: string;
+  };
+  const specFolder = aliased.spec_folder || aliased.specFolder || '';
+  const filePath = aliased.file_path || aliased.filePath || '';
+  const anchorId = aliased.anchor_id || aliased.anchorId || null;
+  if (!specFolder || !filePath) {
+    throw new Error('metadata must include spec_folder and file_path');
+  }
+  return [specFolder, filePath, anchorId ?? ""].join("\u0000");
 }
 
 function fieldsToText(fields: LexicalDocumentFields): string {

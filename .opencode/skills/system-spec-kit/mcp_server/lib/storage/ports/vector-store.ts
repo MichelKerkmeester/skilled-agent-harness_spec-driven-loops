@@ -57,6 +57,14 @@ export type VectorMetadata = Readonly<Record<string, unknown>>;
 
 /** Persisted vector entry. */
 export interface VectorRecord<TMetadata extends VectorMetadata = VectorMetadata> {
+  /**
+   * Store-assigned canonical id. Record identity is derived from
+   * (spec_folder, file_path, anchor_id) in the metadata, never from this
+   * field: a caller-supplied id on upsert is advisory and ignored for
+   * identity resolution, so round-tripping a caller-chosen id through
+   * get/delete is not guaranteed. Read canonical ids back from
+   * search/get results.
+   */
   readonly id: StorageId;
   readonly embedding: readonly number[] | Float32Array;
   readonly metadata: TMetadata;
@@ -77,13 +85,27 @@ export interface VectorSearchOptions {
 
 /** Port for vector persistence and similarity retrieval. */
 export interface VectorStore<TMetadata extends VectorMetadata = VectorMetadata> {
-  /** Insert or replace one vector record. */
+  /**
+   * Insert or replace one vector record. Identity is resolved from
+   * (spec_folder, file_path, anchor_id) in the record metadata and the
+   * store assigns the canonical id; a caller-supplied `record.id` is
+   * advisory and ignored for identity resolution.
+   */
   upsert(record: VectorRecord<TMetadata>): Awaitable<void>;
 
-  /** Remove one vector record. */
+  /**
+   * Remove one vector record by its store-assigned id (as returned from
+   * search/get results). Deleting by a caller-invented id is not
+   * guaranteed to match, because upsert does not honor caller-supplied
+   * ids.
+   */
   delete(id: StorageId): Awaitable<boolean>;
 
-  /** Fetch one vector record by ID. */
+  /**
+   * Fetch one vector record by its store-assigned id (as returned from
+   * search results). Lookups by a caller-invented id are not guaranteed
+   * to resolve, because upsert does not honor caller-supplied ids.
+   */
   get(id: StorageId): Awaitable<VectorRecord<TMetadata> | null>;
 
   /** Return ranked vector matches for a query embedding. */
@@ -92,7 +114,12 @@ export interface VectorStore<TMetadata extends VectorMetadata = VectorMetadata> 
     options: VectorSearchOptions,
   ): Awaitable<VectorSearchResult<TMetadata>[]>;
 
-  /** Remove all vector records. */
+  /**
+   * Remove all vector records AND the associated projection and index
+   * metadata — a full memory-store reset, not a vectors-only purge.
+   * Narrowing this to vectors alone would orphan the metadata rows that
+   * share the records' lifecycle.
+   */
   clear(): Awaitable<void>;
 }
 
@@ -120,6 +147,13 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
     return initialize_db(this.dbPath);
   }
 
+  /**
+   * Port-shaped overload: forces `includeConstitutional: false`, unlike
+   * the legacy 3-arg path which defaults it to true. Port callers get
+   * pure similarity ranking without constitutional memories pinned into
+   * the results; legacy callers keep the constitutional-inclusive
+   * behavior they were built on.
+   */
   search(
     embedding: readonly number[] | Float32Array,
     options: VectorSearchOptions,
@@ -261,6 +295,12 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
     };
   }
 
+  /**
+   * Full memory-store reset: removes all vector records AND the
+   * projection + memory_index metadata that share their lifecycle.
+   * Deleting only the vectors would orphan that metadata, so the scope
+   * is intentionally store-wide rather than vectors-only.
+   */
   async clear(): Promise<void> {
     this._ensureInitialized();
     const database = this._getDatabase();
