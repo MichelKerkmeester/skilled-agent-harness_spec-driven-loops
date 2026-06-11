@@ -41,6 +41,7 @@ export type DegradedVectorRepairState = 'healthy' | 'detected' | 'quarantined' |
 export interface DegradedVectorHealthSnapshot {
   state: DegradedVectorRepairState;
   degraded: boolean;
+  sentinelPersisted: boolean;
   detections: number;
   quarantines: number;
   rebuildsStarted: number;
@@ -72,6 +73,7 @@ const maintenanceRuns: Record<MaintenanceTool, MaintenanceRunCounters> = {
 const degradedVectorHealth: DegradedVectorHealthSnapshot = {
   state: 'healthy',
   degraded: false,
+  sentinelPersisted: true,
   detections: 0,
   quarantines: 0,
   rebuildsStarted: 0,
@@ -222,10 +224,11 @@ export function recordVectorShardProbeFailure(input: { shardPath: string; reason
   });
 }
 
-export function recordVectorShardQuarantined(input: { shardPath: string; quarantinePath: string; reason: string }): void {
+export function recordVectorShardQuarantined(input: { shardPath: string; quarantinePath: string; reason: string; sentinelPersisted: boolean }): void {
   degradedVectorHealth.quarantines += 1;
   updateDegradedVectorHealth({
     state: 'quarantined',
+    sentinelPersisted: input.sentinelPersisted,
     lastReason: input.reason,
     lastShard: basenameOrNull(input.shardPath),
     lastQuarantine: basenameOrNull(input.quarantinePath),
@@ -247,6 +250,7 @@ export function recordVectorShardRebuildCompleted(input: { jobId: string; shardP
   degradedVectorHealth.rebuildsCompleted += 1;
   updateDegradedVectorHealth({
     state: 'healthy',
+    sentinelPersisted: true,
     activeJobId: degradedVectorHealth.activeJobId === input.jobId || degradedVectorHealth.lastShard === completedShard
       ? null
       : degradedVectorHealth.activeJobId,
@@ -273,6 +277,7 @@ export function resetDegradedVectorObservabilityForTest(): void {
   Object.assign(degradedVectorHealth, {
     state: 'healthy',
     degraded: false,
+    sentinelPersisted: true,
     detections: 0,
     quarantines: 0,
     rebuildsStarted: 0,

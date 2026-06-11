@@ -1,20 +1,22 @@
 ---
 title: "Feature Specification: Vector Resilience Durability"
-description: "Vector-shard quarantine repair intent must survive process restarts, and normal reindex completion must clear stale degraded-vector state when it rebuilds the affected shard. This phase makes the repair intent durable with a per-shard sentinel and verifies the stuck-degraded recovery path."
+description: "Vector-shard quarantine repair intent survives process restarts through completeness-based attach assessment, orphan-quarantine backstop scheduling, in-flight repair de-duplication, and degraded-health durability signals."
 trigger_phrases:
   - "vector shard repair sentinel"
   - "repair intent durability"
   - "degraded vector health"
   - "quarantine rebuild"
+  - "shard completeness oracle"
+  - "orphan quarantine backstop"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/020-vector-resilience-durability"
-    last_updated_at: "2026-06-11T08:50:00Z"
+    last_updated_at: "2026-06-11T08:10:00Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Completed durable vector repair sentinel"
-    next_safe_action: "Monitor vector repair regressions"
+    recent_action: "Remediated vector repair review findings"
+    next_safe_action: "Monitor vector repair durability signals"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts"
@@ -29,6 +31,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "Use a per-shard repair sentinel under the database checkpoints directory so active profiles do not collide."
+      - "Use shard completeness, not repair job id, to distinguish stale sentinels from unfinished repairs."
+      - "Keep same-shard non-repair reindex sentinel clear as intentional stuck-degraded recovery."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Vector Resilience Durability
@@ -70,9 +74,12 @@ This phase closes the vector-resilience durability gap in the System Spec Kit me
 
 **Deliverables**:
 - Per-shard repair-pending sentinel written before quarantine rename.
-- Boot attach resume that schedules the repair when the sentinel remains after restart.
+- Boot attach assessment that clears stale sentinels only when the active shard is complete.
+- Orphan-quarantine backstop scheduling when quarantine artifacts exist without a sentinel.
+- In-flight repair guard that prevents duplicate repair jobs for the same shard.
+- Degraded-vector health surface for failed sentinel persistence.
 - Reindex completion cleanup that clears stale degraded-vector state for the rebuilt shard.
-- Regression tests for restart durability and clear-on-reindex behavior.
+- Regression tests for restart durability, backstop recovery, de-duplication, and clear-on-reindex behavior.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -81,12 +88,12 @@ This phase closes the vector-resilience durability gap in the System Spec Kit me
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Vector-shard quarantine currently records the rebuild intent only in process memory. If the process exits after the shard is renamed aside but before the repair reindex is started or completed, the next process can attach a replacement shard while losing the explicit repair intent and degraded-health continuity.
+Vector-shard quarantine previously relied on process memory plus a per-shard sentinel. Review found three durability gaps: stale sentinels could be resumed even after a shard was complete, sentinel-write failure could leave only orphan quarantine artifacts for the next process, and repeated attach could queue duplicate repairs while the first repair was still running.
 
 The degraded-vector flag can also stay stuck after a successful normal reindex rebuilds the active profile shard. That leaves health reporting in degraded mode even though the shard has already been replaced with valid vector rows.
 
 ### Purpose
-Persist vector-shard repair intent across restarts and clear stale degraded state when a successful reindex has rebuilt the affected shard.
+Persist vector-shard repair intent across restarts, use shard completeness to distinguish stale sentinels from unfinished repairs, and clear stale degraded state when a successful same-shard reindex has rebuilt the affected shard.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -96,7 +103,11 @@ Persist vector-shard repair intent across restarts and clear stale degraded stat
 
 ### In Scope
 - Write a per-shard repair-pending sentinel before quarantining a corrupted shard.
-- Resume the pending repair during `attachActiveVectorShard` when the sentinel survives restart.
+- Resume the pending repair during `attachActiveVectorShard` only when the shard is incomplete.
+- Clear stale repair sentinels when the active shard's vector rowcount covers the successful memory count.
+- Schedule a repair from orphan quarantine artifacts when no sentinel survived.
+- Suppress duplicate in-flight repair jobs for the same shard path.
+- Surface `sentinelPersisted:false` in degraded-vector health when quarantine continues after sentinel write failure.
 - Clear the pending sentinel only when the rebuild-completed path runs for the affected shard.
 - Clear stale degraded-vector health after a normal, non-repair reindex completes for the same shard.
 - Add temp-fixture regression tests that do not touch live shard files or host daemon sockets.
@@ -111,11 +122,11 @@ Persist vector-shard repair intent across restarts and clear stale degraded stat
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` | Modify | Add per-shard repair sentinel write/read/clear helpers and boot attach resume. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts` | Modify | Clear sentinel and degraded state when repair or matching normal reindex completes. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts` | Modify | Clear stale active job id when a completion matches the degraded shard. |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts` | Modify | Add restart-durability and clear-degraded regression coverage. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/020-vector-resilience-durability/*` | Modify | Replace scaffold placeholders with phase documentation and evidence. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` | Modify | Add completeness-based attach assessment, orphan-quarantine backstop, sentinel failure escalation, and boot attach repair decisions. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts` | Modify | Add same-shard in-flight repair guard and preserve completion-based sentinel clearing. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts` | Modify | Surface sentinel persistence state in degraded-vector health. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts` | Modify | Add de-duplication, ordering, sentinel failure, completeness-clear, and same/different shard clear coverage. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/020-vector-resilience-durability/*` | Modify | Update phase documentation and verification evidence. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -127,17 +138,18 @@ Persist vector-shard repair intent across restarts and clear stale degraded stat
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| VRD-001 | Persist vector-shard repair intent before quarantine rename. | A repair-pending sentinel exists after quarantine starts and before repair completes. |
-| VRD-002 | Resume repair from persisted intent on boot attach. | A temp-fixture restart test with a pending sentinel schedules repair and rebuilds vector rows. |
-| VRD-003 | Clear repair sentinel only through rebuild completion. | The sentinel remains while rebuilding and is absent after repair completion. |
-| VRD-004 | Clear stale degraded-vector state after normal reindex. | A non-repair reindex for the same shard changes health from degraded to healthy. |
+| VRD-001 | Persist vector-shard repair intent before quarantine rename. | Rename-order coverage observes the repair sentinel rename before any quarantine rename. |
+| VRD-002 | Use shard completeness to classify pending repair state. | A complete shard with a stale sentinel clears the sentinel without a repair job; an incomplete missing shard resumes repair. |
+| VRD-003 | Backstop repair from orphan quarantine artifacts. | A sentinel-write failure still quarantines, schedules repair, surfaces `sentinelPersisted:false`, and schedules again after restart from orphan artifacts. |
+| VRD-004 | Avoid duplicate in-flight same-shard repair jobs. | Repeated attach while a repair is running leaves exactly one repair job row and one rebuild-start event. |
+| VRD-005 | Clear stale degraded-vector state after normal same-shard reindex. | A non-repair reindex for the same shard clears the active sentinel and health, while a different-shard sentinel survives. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| VRD-005 | Preserve existing quarantine, rebuild, and scoring behavior. | Existing read-path resilience test remains green with unchanged vector IDs. |
-| VRD-006 | Keep tests isolated from live shards and host daemons. | Tests use `os.tmpdir()` database roots, assert shard paths are outside `/mcp_server/database/`, and set `SPECKIT_IPC_SOCKET_DIR` under the temp root. |
+| VRD-006 | Preserve existing quarantine, rebuild, and scoring behavior. | Existing read-path resilience test remains green with unchanged vector IDs. |
+| VRD-007 | Keep tests isolated from live shards and host daemons. | Tests use `os.tmpdir()` database roots, assert shard paths are outside `/mcp_server/database/`, and set `SPECKIT_IPC_SOCKET_DIR` under the temp root. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -146,7 +158,7 @@ Persist vector-shard repair intent across restarts and clear stale degraded stat
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `npx tsc --noEmit` passes in `.opencode/skills/system-spec-kit/mcp_server`.
-- **SC-002**: `npx vitest run tests/vector-shard-read-path-resilience.vitest.ts` passes with the original resilience case plus restart-durability and clear-degraded cases.
+- **SC-002**: `npx vitest run tests/vector-shard-read-path-resilience.vitest.ts` passes with 8 tests covering repair, restart, ordering, de-duplication, backstop, completeness-clear, and intended same-shard clear semantics.
 - **SC-003**: Strict spec validation passes for this phase folder.
 - **SC-004**: Comment-hygiene grep finds no code comments containing spec paths, phase labels, or requirement IDs introduced by this work.
 <!-- /ANCHOR:success-criteria -->
@@ -158,10 +170,18 @@ Persist vector-shard repair intent across restarts and clear stale degraded stat
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Duplicate repair scheduling if attach is called repeatedly while a sentinel remains. | Extra work could be queued before the first repair clears the sentinel. | Keep behavior additive and rely on the existing completion path to clear the sentinel; do not add a new cross-module scheduler lock in this phase. |
+| Risk | Duplicate repair scheduling if attach is called repeatedly while a sentinel remains. | Extra work could be queued before the first repair clears the sentinel. | Guard repair scheduling by same shard path and return the existing queued/running job id. |
 | Risk | Normal reindex clearing the wrong degraded state. | Health could be marked healthy for an unrelated shard. | Clear only when the degraded snapshot basename matches the active shard path rebuilt by the reindex. |
+| Risk | Sentinel write fails before quarantine rename. | Restart durability could rely only on quarantine artifacts. | Continue quarantine and in-process rebuild, mark `sentinelPersisted:false`, and backstop from orphan quarantine artifacts on attach. |
 | Dependency | Existing `EmbeddingProfile.getVectorShardPath` layout. | Sentinel path depends on profile-specific shard filenames. | Store one sentinel per shard basename in the database `checkpoints/` directory. |
 | Dependency | Vitest mock embedder harness. | Tests must avoid network and real embedders. | Use the existing mocked registry and execution router. |
+
+### Known Decisions And Limitations
+
+- Same-shard non-repair reindex completion remains an intended stuck-degraded recovery path: it clears the sentinel only after the same active shard has been atomically rebuilt.
+- Different-shard sentinels are preserved across unrelated reindex completion.
+- Cosmetic rebuild counter skew remains deferred; this remediation does not change the completion counter semantics.
+- The completeness oracle uses successful memory rows as the expected vector set, so pending-only rows do not force repair before a completed reindex has committed vector ownership.
 <!-- /ANCHOR:risks -->
 
 ---

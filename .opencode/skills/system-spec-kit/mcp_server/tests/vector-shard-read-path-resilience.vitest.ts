@@ -13,6 +13,37 @@ const TEST_BACKEND = 'sentence-transformers' as const;
 type EmbedImpl = (texts: string[]) => Promise<Float32Array[]> | Float32Array[];
 let embedImpl: EmbedImpl = (texts) => texts.map(() => Float32Array.from([1, 1, 1, 1]));
 
+const fsRenameSpyState = vi.hoisted(() => ({
+  enabled: false,
+  events: [] as Array<{ from: string; to: string }>,
+}));
+
+vi.mock('fs', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('fs')>();
+  return {
+    ...actual,
+    renameSync: ((from: fs.PathLike, to: fs.PathLike) => {
+      if (fsRenameSpyState.enabled) {
+        fsRenameSpyState.events.push({ from: String(from), to: String(to) });
+      }
+      return actual.renameSync(from, to);
+    }) as typeof actual.renameSync,
+  };
+});
+
+vi.mock('node:fs', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('node:fs')>();
+  return {
+    ...actual,
+    renameSync: ((from: fs.PathLike, to: fs.PathLike) => {
+      if (fsRenameSpyState.enabled) {
+        fsRenameSpyState.events.push({ from: String(from), to: String(to) });
+      }
+      return actual.renameSync(from, to);
+    }) as typeof actual.renameSync,
+  };
+});
+
 vi.mock('../lib/embedders/registry.js', () => ({
   getManifest: (name: string) => (
     name === TEST_MODEL ? { name: TEST_MODEL, backend: TEST_BACKEND, dim: TEST_DIM } : null
@@ -113,6 +144,42 @@ function moveShardToQuarantine(shardPath: string, quarantinePath: string): void 
   }
 }
 
+function insertTwoMemories(db: Database.Database, label: string, status: 'pending' | 'success' = 'pending'): void {
+  const now = new Date().toISOString();
+  db.prepare(`
+    INSERT INTO memory_index (spec_folder, file_path, title, content_text, embedding_status, created_at, updated_at, trigger_phrases)
+    VALUES (?, ?, ?, ?, ?, ?, ?, '[]'), (?, ?, ?, ?, ?, ?, ?, '[]')
+  `).run(
+    'specs/tmp', `${label}-a.md`, `${label} A`, `${label} alpha`, status, now, now,
+    'specs/tmp', `${label}-b.md`, `${label} B`, `${label} beta`, status, now, now,
+  );
+}
+
+function embedderJobs(db: Database.Database): Array<{ id: string; status: string }> {
+  try {
+    return db.prepare('SELECT id, status FROM embedder_jobs ORDER BY started_at ASC, id ASC').all() as Array<{ id: string; status: string }>;
+  } catch (_error: unknown) {
+    return [];
+  }
+}
+
+async function waitForJobStatus(db: Database.Database, status: string, label: string): Promise<void> {
+  await waitUntil(() => embedderJobs(db).some((job) => job.status === status), label);
+}
+
+async function buildCompleteShard(db: Database.Database, activeProfile: EmbeddingProfile, databaseDir: string, label: string): Promise<string> {
+  setActiveEmbedder(db, TEST_MODEL, TEST_DIM, TEST_BACKEND);
+  attachActiveVectorShard(db, activeProfile);
+  insertTwoMemories(db, label);
+  const jobId = startReindexForTest({ toName: TEST_MODEL }, { db });
+  await waitUntil(() => getJobStatus(jobId, db)?.status === 'completed', `${label} reindex to complete`);
+  return activeProfile.getVectorShardPath(databaseDir);
+}
+
+function corruptShardFile(shardPath: string): void {
+  fs.writeFileSync(shardPath, Buffer.from('not a sqlite database'));
+}
+
 describe('vector shard read-path resilience', () => {
   const originalMemoryDbPath = process.env.MEMORY_DB_PATH;
   const originalAllowedPaths = process.env.MEMORY_ALLOWED_PATHS;
@@ -121,6 +188,7 @@ describe('vector shard read-path resilience', () => {
   let tempDir: string;
   let dbPath: string;
   let unmanagedDb: Database.Database | null = null;
+  let chmodRestorePaths: string[] = [];
 
   beforeEach(() => {
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), `vector-shard-resilience-${randomUUID().slice(0, 8)}-`));
@@ -151,6 +219,14 @@ describe('vector shard read-path resilience', () => {
     else process.env.EMBEDDER_REINDEX_BATCH_SIZE = originalBatchSize;
     if (originalSocketDir === undefined) delete process.env.SPECKIT_IPC_SOCKET_DIR;
     else process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+    for (const restorePath of chmodRestorePaths) {
+      try {
+        fs.chmodSync(restorePath, 0o700);
+      } catch (_error: unknown) {
+        /* best-effort */
+      }
+    }
+    chmodRestorePaths = [];
     fs.rmSync(tempDir, { recursive: true, force: true });
   });
 
@@ -220,7 +296,7 @@ describe('vector shard read-path resilience', () => {
     const now = new Date().toISOString();
     db.prepare(`
       INSERT INTO memory_index (spec_folder, file_path, title, content_text, embedding_status, created_at, updated_at, trigger_phrases)
-      VALUES (?, ?, ?, ?, 'pending', ?, ?, '[]'), (?, ?, ?, ?, 'pending', ?, ?, '[]')
+      VALUES (?, ?, ?, ?, 'success', ?, ?, '[]'), (?, ?, ?, ?, 'success', ?, ?, '[]')
     `).run(
       'specs/tmp', 'restart-a.md', 'Restart A', 'restart alpha', now, now,
       'specs/tmp', 'restart-b.md', 'Restart B', 'restart beta', now, now,
@@ -279,6 +355,7 @@ describe('vector shard read-path resilience', () => {
       shardPath,
       quarantinePath: `${shardPath}.quarantined-stale-test`,
       reason: 'stale degraded test',
+      sentinelPersisted: true,
     });
     recordVectorShardRebuildStarted({ jobId: 'lost-repair-job', shardPath, reason: 'stale degraded test' });
     expect(getDegradedVectorObservabilitySnapshot()).toMatchObject({
@@ -297,6 +374,204 @@ describe('vector shard read-path resilience', () => {
     expect(degradedVector.state).toBe('healthy');
     expect(degradedVector.activeJobId).toBeNull();
     expect(degradedVector.rebuildsCompleted).toBe(1);
+    expect(vectorIds(shardPath)).toEqual([1, 2]);
+  });
+
+  it('does not double-schedule a pending shard repair on repeated attach', async () => {
+    const db = initializeDb(dbPath);
+    const activeProfile = profile();
+    setActiveEmbedder(db, TEST_MODEL, TEST_DIM, TEST_BACKEND);
+    attachActiveVectorShard(db, activeProfile);
+    insertTwoMemories(db, 'double-schedule', 'success');
+
+    const shardPath = activeProfile.getVectorShardPath(tempDir);
+    const quarantinePath = `${shardPath}.quarantined-double-schedule`;
+    writeRepairPendingSentinel(shardPath, quarantinePath, 'double schedule test');
+    detachActiveVectorShard(db);
+    moveShardToQuarantine(shardPath, quarantinePath);
+
+    let releaseEmbedding: (() => void) | null = null;
+    embedImpl = async (texts) => {
+      await new Promise<void>((resolve) => {
+        releaseEmbedding = resolve;
+      });
+      return texts.map(() => Float32Array.from([4, 4, 4, 4]));
+    };
+
+    attachActiveVectorShard(db, activeProfile);
+    await waitUntil(() => getDegradedVectorObservabilitySnapshot().state === 'rebuilding', 'first repair job to start');
+    attachActiveVectorShard(db, activeProfile);
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    await new Promise<void>((resolve) => setImmediate(resolve));
+
+    expect(embedderJobs(db)).toHaveLength(1);
+    expect(getDegradedVectorObservabilitySnapshot().rebuildsStarted).toBe(1);
+
+    releaseEmbedding?.();
+    await waitUntil(() => getDegradedVectorObservabilitySnapshot().state === 'healthy', 'deduped repair job to complete');
+    expect(embedderJobs(db)).toHaveLength(1);
+    expect(vectorIds(shardPath)).toEqual([1, 2]);
+  });
+
+  it('writes the repair sentinel before quarantine rename', async () => {
+    const db = initializeDb(dbPath);
+    const activeProfile = profile();
+    setActiveEmbedder(db, TEST_MODEL, TEST_DIM, TEST_BACKEND);
+    attachActiveVectorShard(db, activeProfile);
+    insertTwoMemories(db, 'rename-order');
+
+    const shardPath = activeProfile.getVectorShardPath(tempDir);
+    const sentinelPath = repairSentinelPathFor(shardPath);
+    detachActiveVectorShard(db);
+    corruptShardFile(shardPath);
+
+    let releaseEmbedding: (() => void) | null = null;
+    embedImpl = async (texts) => {
+      await new Promise<void>((resolve) => {
+        releaseEmbedding = resolve;
+      });
+      return texts.map(() => Float32Array.from([5, 5, 5, 5]));
+    };
+
+    fsRenameSpyState.events = [];
+    fsRenameSpyState.enabled = true;
+    try {
+      attachActiveVectorShard(db, activeProfile);
+      await waitUntil(() => getDegradedVectorObservabilitySnapshot().state === 'rebuilding', 'ordered repair job to start');
+
+      const sentinelRenameIndex = fsRenameSpyState.events.findIndex((event) => path.basename(event.to) === path.basename(sentinelPath));
+      const quarantineRenameIndex = fsRenameSpyState.events.findIndex((event) => path.basename(event.to).startsWith(`${path.basename(shardPath)}.quarantined-`));
+      expect(sentinelRenameIndex).toBeGreaterThanOrEqual(0);
+      expect(quarantineRenameIndex).toBeGreaterThanOrEqual(0);
+      expect(sentinelRenameIndex).toBeLessThan(quarantineRenameIndex);
+    } finally {
+      fsRenameSpyState.enabled = false;
+      releaseEmbedding?.();
+    }
+    await waitUntil(() => getDegradedVectorObservabilitySnapshot().state === 'healthy', 'ordered repair job to complete');
+  });
+
+  it('quarantines and backstops repair when sentinel persistence fails', async () => {
+    const db = initializeDb(dbPath);
+    const activeProfile = profile();
+    setActiveEmbedder(db, TEST_MODEL, TEST_DIM, TEST_BACKEND);
+    attachActiveVectorShard(db, activeProfile);
+    insertTwoMemories(db, 'sentinel-failure', 'success');
+
+    const shardPath = activeProfile.getVectorShardPath(tempDir);
+    const sentinelPath = repairSentinelPathFor(shardPath);
+    const checkpointsDir = path.dirname(sentinelPath);
+    fs.mkdirSync(checkpointsDir, { recursive: true, mode: 0o700 });
+    fs.chmodSync(checkpointsDir, 0o500);
+    chmodRestorePaths.push(checkpointsDir);
+    detachActiveVectorShard(db);
+    corruptShardFile(shardPath);
+
+    let releaseEmbedding: (() => void) | null = null;
+    let failEmbedding = false;
+    embedImpl = async (texts) => {
+      await new Promise<void>((resolve) => {
+        releaseEmbedding = resolve;
+      });
+      if (failEmbedding) {
+        throw new Error('simulated interrupted repair');
+      }
+      return texts.map(() => Float32Array.from([6, 6, 6, 6]));
+    };
+
+    attachActiveVectorShard(db, activeProfile);
+    await waitUntil(() => getDegradedVectorObservabilitySnapshot().state === 'rebuilding', 'sentinel-failure repair job to start');
+    expect(fs.existsSync(sentinelPath)).toBe(false);
+    expect(fs.readdirSync(path.dirname(shardPath)).some((name) => name.startsWith(`${path.basename(shardPath)}.quarantined-`))).toBe(true);
+    expect(getDegradedVectorObservabilitySnapshot()).toMatchObject({
+      state: 'rebuilding',
+      sentinelPersisted: false,
+      rebuildsStarted: 1,
+    });
+
+    failEmbedding = true;
+    releaseEmbedding?.();
+    await waitForJobStatus(db, 'failed', 'interrupted sentinel-failure repair to fail');
+    fs.chmodSync(checkpointsDir, 0o700);
+
+    closeDb();
+    resetDegradedVectorObservabilityForTest();
+
+    let releaseRestartEmbedding: (() => void) | null = null;
+    embedImpl = async (texts) => {
+      await new Promise<void>((resolve) => {
+        releaseRestartEmbedding = resolve;
+      });
+      return texts.map(() => Float32Array.from([7, 7, 7, 7]));
+    };
+
+    unmanagedDb = new Database(dbPath);
+    setActiveEmbedder(unmanagedDb, TEST_MODEL, TEST_DIM, TEST_BACKEND);
+    attachActiveVectorShard(unmanagedDb, activeProfile);
+    await waitUntil(() => getDegradedVectorObservabilitySnapshot().state === 'rebuilding', 'orphan quarantine backstop to start');
+    expect(getDegradedVectorObservabilitySnapshot()).toMatchObject({
+      lastReason: 'orphan quarantine artifacts without sentinel',
+      rebuildsStarted: 1,
+    });
+
+    releaseRestartEmbedding?.();
+    await waitUntil(() => getDegradedVectorObservabilitySnapshot().state === 'healthy', 'orphan quarantine backstop to complete');
+    expect(vectorIds(shardPath)).toEqual([1, 2]);
+  });
+
+  it('clears a stale sentinel on a complete shard without re-repairing it', async () => {
+    const db = initializeDb(dbPath);
+    const activeProfile = profile();
+    const shardPath = await buildCompleteShard(db, activeProfile, tempDir, 'complete-stale-sentinel');
+    const sentinelPath = repairSentinelPathFor(shardPath);
+    writeRepairPendingSentinel(shardPath, `${shardPath}.quarantined-stale-complete`, 'stale complete sentinel');
+    const jobsBefore = embedderJobs(db).length;
+
+    resetDegradedVectorObservabilityForTest();
+    attachActiveVectorShard(db, activeProfile);
+    await new Promise<void>((resolve) => setImmediate(resolve));
+
+    expect(fs.existsSync(sentinelPath)).toBe(false);
+    expect(embedderJobs(db)).toHaveLength(jobsBefore);
+    expect(getDegradedVectorObservabilitySnapshot().rebuildsStarted).toBe(0);
+    expect(vectorIds(shardPath)).toEqual([1, 2]);
+  });
+
+  it('clears same-shard sentinels after normal reindex and preserves other-shard sentinels', async () => {
+    const db = initializeDb(dbPath);
+    const activeProfile = profile();
+    const shardPath = await buildCompleteShard(db, activeProfile, tempDir, 'same-shard-clear');
+    const sentinelPath = repairSentinelPathFor(shardPath);
+    writeRepairPendingSentinel(shardPath, `${shardPath}.quarantined-same-shard`, 'same shard degraded sentinel');
+    recordVectorShardProbeFailure({ shardPath, reason: 'same shard degraded sentinel' });
+    recordVectorShardQuarantined({
+      shardPath,
+      quarantinePath: `${shardPath}.quarantined-same-shard`,
+      reason: 'same shard degraded sentinel',
+      sentinelPersisted: true,
+    });
+    recordVectorShardRebuildStarted({ jobId: 'lost-same-shard-repair', shardPath, reason: 'same shard degraded sentinel' });
+
+    const otherProfile = new EmbeddingProfile({
+      provider: TEST_BACKEND,
+      model: `${TEST_MODEL}-other`,
+      dim: TEST_DIM + 1,
+      dtype: null,
+      baseUrl: null,
+    });
+    const otherShardPath = otherProfile.getVectorShardPath(tempDir);
+    const otherSentinelPath = repairSentinelPathFor(otherShardPath);
+    writeRepairPendingSentinel(otherShardPath, `${otherShardPath}.quarantined-other-shard`, 'other shard sentinel');
+
+    const jobId = startReindexForTest({ toName: TEST_MODEL }, { db });
+    await waitUntil(() => getJobStatus(jobId, db)?.status === 'completed', 'same-shard non-repair reindex to complete');
+
+    expect(fs.existsSync(sentinelPath)).toBe(false);
+    expect(fs.existsSync(otherSentinelPath)).toBe(true);
+    expect(getDegradedVectorObservabilitySnapshot()).toMatchObject({
+      state: 'healthy',
+      activeJobId: null,
+    });
     expect(vectorIds(shardPath)).toEqual([1, 2]);
   });
 });

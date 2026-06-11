@@ -803,10 +803,28 @@ export function startVectorShardRepairReindex(
   profile: EmbeddingProfile,
   runtimeOptions: ReindexRuntimeOptions & { readonly reason: string; readonly shardPath: string; readonly autoStart?: boolean },
 ): string {
+  const db = resolveDb(runtimeOptions.db);
+  requireDatabaseDir(db, 'startup');
+  const targetShardPath = path.resolve(runtimeOptions.shardPath);
+  for (const [jobId, repairContext] of vectorShardRepairJobs.entries()) {
+    if (path.resolve(repairContext.shardPath) !== targetShardPath) {
+      continue;
+    }
+    const status = readJobStatus(db, jobId);
+    if (status === 'queued' || status === 'running') {
+      logger.info('vector shard repair already in flight', {
+        event: 'vector_shard_repair_already_in_flight',
+        jobId,
+        shardPath: runtimeOptions.shardPath,
+      });
+      return jobId;
+    }
+  }
+
   return startReindexInternal(
     { toName: profile.model },
     {
-      db: runtimeOptions.db,
+      db,
       autoStart: runtimeOptions.autoStart,
       vectorShardRepair: {
         reason: runtimeOptions.reason,
