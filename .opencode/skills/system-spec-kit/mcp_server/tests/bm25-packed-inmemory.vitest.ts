@@ -234,7 +234,7 @@ describe('packed in-memory BM25 engine', () => {
   });
 
   it('keeps legacy, packed, and auto selection explicit and logged', () => {
-    const infoSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
+    const selectionLogSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
     process.env.ENABLE_BM25 = 'true';
     process.env.SPECKIT_BM25_ENGINE = 'legacy-inmemory';
@@ -251,9 +251,9 @@ describe('packed in-memory BM25 engine', () => {
     const auto = new BM25Index();
     expect((auto as unknown as { engine: string }).engine).toBe('packed-inmemory');
 
-    expect(infoSpy.mock.calls.some((call) => String(call[0]).includes('legacy-inmemory'))).toBe(true);
-    expect(infoSpy.mock.calls.some((call) => String(call[0]).includes('packed-inmemory'))).toBe(true);
-    expect(infoSpy.mock.calls.some((call) => String(call[0]).includes('auto mode fallback'))).toBe(true);
+    expect(selectionLogSpy.mock.calls.some((call) => String(call[0]).includes('legacy-inmemory'))).toBe(true);
+    expect(selectionLogSpy.mock.calls.some((call) => String(call[0]).includes('packed-inmemory'))).toBe(true);
+    expect(selectionLogSpy.mock.calls.some((call) => String(call[0]).includes('auto mode fallback'))).toBe(true);
   });
 
   it('passes packed-vs-legacy baseline comparison and matches FTS5 title intent', async () => {

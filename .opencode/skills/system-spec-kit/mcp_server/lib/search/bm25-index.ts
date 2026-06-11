@@ -385,7 +385,8 @@ function emitBm25EngineSelection(engine: Bm25Engine | InMemoryBm25Engine, reason
     return;
   }
   BM25_ENGINE_LOGGED.add(key);
-  console.info(`[bm25-index] BM25 engine selected: ${engine} (${reason})`);
+  // stderr keeps stdout clean for JSON-RPC frames under stdio transport.
+  console.warn(`[bm25-index] BM25 engine selected: ${engine} (${reason})`);
 }
 
 function resolveInMemoryBm25Engine(): InMemoryBm25Engine {

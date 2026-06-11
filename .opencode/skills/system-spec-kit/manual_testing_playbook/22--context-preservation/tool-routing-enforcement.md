@@ -122,19 +122,19 @@ Validate 267d runtime instruction routing tables
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "Code Graph|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md .codex/CODEX.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "Code Graph|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md AGENTS.md
 
 ### Expected
 
-All 4 runtime instruction files contain routing enforcement language for semantic vs structural queries
+All 3 runtime instruction files contain routing enforcement language for semantic vs structural queries (the Codex chain reads the root `AGENTS.md`; `.codex/AGENTS.md` is voice-only by design and defers framework matters to it)
 
 ### Evidence
 
-Grep output with matches from all 4 files
+Grep output with matches from all 3 files
 
 ### Pass / Fail
 
-- **Pass**: all 4 files contain routing enforcement
+- **Pass**: all 3 files contain routing enforcement
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
