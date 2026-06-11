@@ -7,14 +7,14 @@ trigger_phrases:
   - "startup questions dashboard results template"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Scaffold phase-parent and family leaves; no implementation"
-    next_safe_action: "Plan or implement child family phase 001-memory-commands/001-inventory-extract"
+    last_updated_at: "2026-06-11T02:15:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "All 4 command families shipped; deep-review CONDITIONAL remediated"
+    next_safe_action: "None; phase complete and review-remediated"
     blockers: []
     key_files:
       - "001-memory-commands/spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-028-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator locked presentation extraction format to Markdown."
@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -72,7 +72,7 @@ _memory:
 Command files under `.opencode/commands/<group>/<name>.md` currently mix workflow logic with presentation contracts. Startup questions, dashboard layouts, and results-display templates are buried inline in large instruction files, so assistants may skip questions, improvise dashboards, or return cluttered results instead of following a reliable display contract.
 
 ### Purpose
-Separate command workflow routing from display instructions by making each command Markdown file a thin router to two explicit assets: the existing owned workflow file and a dedicated Markdown presentation file. The presentation file becomes the single source of truth for startup questions, dashboard layout, and results-display templates.
+Separate command workflow routing from display instructions by making each command Markdown file a thin router to its routing assets: a dedicated Markdown presentation file (always) plus the command's owned workflow file where one exists. Families with an existing workflow asset (for example speckit) route to both; families without one yet (for example memory) route to the presentation file and keep workflow routing inline behind a documented missing-upstream placeholder, never inventing a workflow YAML. The presentation file is the single source of truth for startup questions, dashboard layout, and results-display templates.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, and continuity live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
@@ -115,17 +115,17 @@ Summary of aggregate future file scope for audit only. Per-family detail lives i
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-memory-commands/ | presentation extraction for memory command surfaces, especially startup-question and results-display contracts | Planned |
-| 2 | 002-speckit-commands/ | presentation extraction for spec-kit planning, resume, implement, and completion command surfaces | Planned |
-| 3 | 003-create-commands/ | presentation extraction for create-command scaffolding surfaces | Planned |
-| 4 | 004-doctor-commands/ | presentation extraction for diagnostic and repair command surfaces | Planned |
+| 1 | 001-memory-commands/ | presentation extraction for memory command surfaces, especially startup-question and results-display contracts | Complete |
+| 2 | 002-speckit-commands/ | presentation extraction for spec-kit planning, resume, implement, and completion command surfaces | Complete |
+| 3 | 003-create-commands/ | presentation extraction for create-command scaffolding surfaces | Complete |
+| 4 | 004-doctor-commands/ | presentation extraction for diagnostic and repair command surfaces | Complete |
 
 ### Phase Transition Rules
 
 - Each family parent MUST pass `validate.sh` independently before implementation begins.
 - Each leaf phase MUST pass `validate.sh` independently before implementation begins.
 - Parent spec tracks aggregate progress via this map.
-- Use `/spec_kit:resume [parent-folder]/[NNN-family]/[NNN-leaf]/` to resume a specific leaf.
+- Use `/speckit:resume [parent-folder]/[NNN-family]/[NNN-leaf]/` to resume a specific leaf.
 
 ### Phase Handoff Criteria
 
