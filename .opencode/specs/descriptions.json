@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-10T04:53:31.670Z",
+  "generated": "2026-06-11T05:34:53.523Z",
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
@@ -67,17 +67,167 @@
     },
     {
       "specFolder": "ai-systems/001-ai-system-architecture/005-rollout-to-remaining-systems",
-      "description": "Planned phase: roll the dual-runtime pattern out to the remaining in-scope systems via the template + Global Pack, with a workspace-wide drift audit; MCP-agent systems need an explicit scope ruling before any build",
+      "description": "Roll Out Projects Packaging to Remaining Systems",
       "keywords": [
-        "rollout",
-        "generalization",
-        "projects-packaging",
-        "drift-audit",
-        "mcp-agents-scope",
-        "workspace",
-        "planned"
+        "roll",
+        "projects",
+        "packaging",
+        "remaining",
+        "systems"
       ],
-      "lastUpdated": "2026-06-08T11:04:33Z"
+      "lastUpdated": "2026-06-10T21:52:41.570Z"
+    },
+    {
+      "specFolder": "ai-systems/001-ai-system-architecture/006-sales-dc-speed-optimization",
+      "description": "Sales DC Speed Optimization — Copywriter Playbook Port",
+      "keywords": [
+        "sales",
+        "speed",
+        "optimization",
+        "flight",
+        "manual"
+      ],
+      "lastUpdated": "2026-06-11T10:30:00.000Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit",
+      "description": "Skill-Port Quality Audit — Assets vs References + Trim Loss",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "assets",
+        "references",
+        "trim",
+        "loss"
+      ],
+      "lastUpdated": "2026-06-11T05:33:36.325Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/001-copywriter",
+      "description": "Skill-Port Quality Audit — Copywriter",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "copywriter"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.583Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/002-barter-deals",
+      "description": "Skill-Port Quality Audit — Barter Deals",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "barter",
+        "deals"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.587Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/003-sales-direct-communication",
+      "description": "Skill-Port Quality Audit — Sales - Direct Communication",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "sales",
+        "direct",
+        "communication"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.592Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/004-sales-hubspot-sequences",
+      "description": "Skill-Port Quality Audit — Sales - HubSpot Sequences",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "sales",
+        "hubspot",
+        "sequences"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.596Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/005-sales-process-automation",
+      "description": "Skill-Port Quality Audit — Sales - Process Automation",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "sales",
+        "process",
+        "automation"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.600Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/006-product-owner",
+      "description": "Skill-Port Quality Audit — Product Owner",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "product",
+        "owner"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.604Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/007-prompt-improver",
+      "description": "Skill-Port Quality Audit — Prompt Improver",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "prompt",
+        "improver"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.608Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/008-linkedin-nigel-de-lange",
+      "description": "Skill-Port Quality Audit — LinkedIn - Nigel de Lange",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "linkedin",
+        "nigel",
+        "lange"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.612Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/009-linkedin-pieter-bertram",
+      "description": "Skill-Port Quality Audit — LinkedIn - Pieter Bertram",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "linkedin",
+        "pieter",
+        "bertram"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.616Z"
+    },
+    {
+      "specFolder": "ai-systems/002-skill-port-quality-audit/010-tiktok-seo-creative-strategy",
+      "description": "Skill-Port Quality Audit — TikTok SEO & Creative Strategy",
+      "keywords": [
+        "skill-port",
+        "quality",
+        "audit",
+        "tiktok",
+        "seo",
+        "creative",
+        "strategy"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.620Z"
     },
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -144,22 +294,7 @@
       "lastUpdated": "2026-06-10T04:53:30.653Z"
     },
     {
-      "specFolder": "barter/002-feed-v2-ui-spec",
-      "description": "Feed v2 UI Surface Specification",
-      "keywords": [
-        "discovery",
-        "collections",
-        "feed",
-        "carousel",
-        "cards",
-        "filters",
-        "search",
-        "algorithm"
-      ],
-      "lastUpdated": "2026-06-09T12:38:42Z"
-    },
-    {
-      "specFolder": "barter/003-text-wrap-balance-react-native",
+      "specFolder": "barter/002-text-wrap-balance-react-native",
       "description": "Research Specification: Text-Wrap Balance in React Native (Expo)",
       "keywords": [
         "research",
@@ -171,6 +306,20 @@
         "expo"
       ],
       "lastUpdated": "2026-06-10T04:53:30.661Z"
+    },
+    {
+      "specFolder": "barter/003-feed-v2.5-weighted-ranking",
+      "description": "Research Specification: Feed v2.5 Weighted Ranking at Small Inventory",
+      "keywords": [
+        "research",
+        "specification",
+        "feed",
+        "weighted",
+        "ranking",
+        "small",
+        "inventory"
+      ],
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
@@ -607,7 +756,7 @@
         "doc",
         "rebuild"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
@@ -2189,6 +2338,141 @@
       "lastUpdated": "2026-06-10T04:53:30.907Z"
     },
     {
+      "specFolder": "skilled-agent-orchestration/144-deep-loop-executor-config-dir",
+      "description": "Feature Specification: Deep loop executor config-dir override",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep",
+        "loop",
+        "executor",
+        "config-dir",
+        "override"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.633Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph",
+      "description": "Completed phase parent: adopted proven spec-027 memory-system features into the skill advisor and code graph systems across nine implemented child phases",
+      "keywords": [
+        "feature",
+        "specification",
+        "adopt",
+        "proven",
+        "spec-027",
+        "memory-system",
+        "features",
+        "skill",
+        "advisor",
+        "code",
+        "graph",
+        "systems"
+      ],
+      "lastUpdated": "2026-06-11T00:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/001-advisor-observability",
+      "description": "Completed advisor observability phase: prompt-safe why_recommended attribution and semantic-lane health diagnostics.",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "advisor-observability"
+      ],
+      "lastUpdated": "2026-06-10T22:36:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard",
+      "description": "Completed advisor source-provenance guard for automated skill-graph edge writes",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "advisor-provenance-guard"
+      ],
+      "lastUpdated": "2026-06-10T23:03:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
+      "description": "Feature Specification: Phase 3: advisor-packed-bm25-lexical",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "advisor-packed-bm25-lexical"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.637Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation",
+      "description": "Feature Specification: Phase 4: advisor-bfs-consolidation",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "advisor-bfs-consolidation"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.641Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
+      "description": "Shadow-only advisor feedback calibration from advisor_validate outcomes",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "advisor-feedback-calibration"
+      ],
+      "lastUpdated": "2026-06-10T23:45:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
+      "description": "Completed bounded default-off code-graph tombstone audit lineage",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "codegraph-tombstone-audit"
+      ],
+      "lastUpdated": "2026-06-10T23:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation",
+      "description": "Completed code-graph BFS consolidation: transitive traversal and blast radius share one local helper with preserved behavior.",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "codegraph-bfs-consolidation",
+        "bfs-traversal",
+        "blast-radius",
+        "transitive-traversal"
+      ],
+      "lastUpdated": "2026-06-10T21:12:38Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included",
+      "description": "Feature Specification: Phase 8: codegraph-why-included",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "codegraph-why-included"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.645Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver",
+      "description": "Feature Specification: Phase 9: codegraph-bm25-symbol-resolver",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "codegraph-bm25-symbol-resolver"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.649Z"
+    },
+    {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
       "description": "Feature Specification: cli-gemini Skill",
       "keywords": [
@@ -3012,7 +3296,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -7668,7 +7952,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -7694,7 +7978,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -8756,7 +9040,7 @@
         "accuracy",
         "re-audit"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
@@ -8886,7 +9170,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
@@ -8900,7 +9184,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
@@ -8916,7 +9200,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
@@ -8930,7 +9214,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
@@ -8944,7 +9228,7 @@
         "verification",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
@@ -8959,7 +9243,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
@@ -8972,7 +9256,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
@@ -8985,7 +9269,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
@@ -9000,7 +9284,7 @@
         "deep-review",
         "audit"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
@@ -9805,7 +10089,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -10327,7 +10611,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -11972,7 +12256,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -15168,7 +15452,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -17044,7 +17328,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -17084,22 +17368,172 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-      "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
+      "description": "BM25 warmup churn reduction: bring packed-engine warmup RSS spike under the 150MB budget",
+      "keywords": [
+        "bm25",
+        "warmup",
+        "churn",
+        "reduction",
+        "bring",
+        "packed-engine",
+        "rss",
+        "spike",
+        "150mb",
+        "budget"
+      ],
+      "lastUpdated": "2026-06-11T05:11:29.555Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+      "description": "Phase parent for aligning outward and governance surfaces to the shipped 027 reality.",
+      "keywords": [
+        "027",
+        "release",
+        "cleanup",
+        "phase",
+        "parent",
+        "for",
+        "aligning",
+        "outward",
+        "and",
+        "governance",
+        "surfaces",
+        "the",
+        "shipped",
+        "reality"
+      ],
+      "lastUpdated": "2026-06-10T14:42:40.563Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
+      "description": "Feature Specification: Public Root README",
       "keywords": [
         "feature",
         "specification",
-        "xce-derived",
-        "spec",
-        "kit",
-        "refinement",
-        "phase",
-        "parent"
+        "public",
+        "root",
+        "readme"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.219Z"
+      "lastUpdated": "2026-06-10T16:42:09.623Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+      "description": "Feature Specification: Skill Docs Alignment",
+      "keywords": [
+        "feature",
+        "specification",
+        "skill",
+        "docs",
+        "alignment"
+      ],
+      "lastUpdated": "2026-06-10T16:42:09.629Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+      "description": "Feature Specification: Skill Feature Catalog",
+      "keywords": [
+        "feature",
+        "specification",
+        "skill",
+        "catalog"
+      ],
+      "lastUpdated": "2026-06-10T16:42:09.633Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
+      "description": "Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check.",
+      "keywords": [
+        "skill",
+        "manual",
+        "playbook",
+        "add",
+        "manual_testing_playbook",
+        "scenarios",
+        "for",
+        "each",
+        "027",
+        "feature",
+        "flag",
+        "and",
+        "cli",
+        "surface",
+        "then",
+        "bump"
+      ],
+      "lastUpdated": "2026-06-10T16:12:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
+      "description": "Feature Specification: MCP CLI Stress Tests",
+      "keywords": [
+        "feature",
+        "specification",
+        "mcp",
+        "cli",
+        "stress",
+        "tests"
+      ],
+      "lastUpdated": "2026-06-10T16:42:09.638Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+      "description": "Feature Specification: Command Alignment",
+      "keywords": [
+        "feature",
+        "specification",
+        "command",
+        "alignment"
+      ],
+      "lastUpdated": "2026-06-10T16:42:09.643Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
+      "description": "Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine.",
+      "keywords": [
+        "agent",
+        "alignment",
+        "reconcile",
+        "opencode",
+        "claude",
+        "and",
+        "codex",
+        "mirror",
+        "parity",
+        "with",
+        "the",
+        "agent-io",
+        "contract",
+        "verification-discipline",
+        "doctrine"
+      ],
+      "lastUpdated": "2026-06-10T15:30:42Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+      "description": "Reconcile root AGENTS.md governance so Four Laws and Gates stay byte-stable while completion-freshness, Logic-Sync, and constitutional-rule references",
+      "keywords": [
+        "agents",
+        "alignment",
+        "reconcile",
+        "root",
+        "governance",
+        "four",
+        "laws",
+        "and",
+        "gates",
+        "stay",
+        "byte-stable",
+        "while",
+        "completion-freshness",
+        "logic-sync",
+        "constitutional-rule",
+        "references"
+      ],
+      "lastUpdated": "2026-06-10T15:25:28Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
@@ -17153,7 +17587,7 @@
         "phase",
         "current-state-discipline"
       ],
-      "lastUpdated": "2026-06-07T14:08:18.180Z"
+      "lastUpdated": "2026-06-10T11:00:20.757Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review",
@@ -17164,7 +17598,7 @@
         "phase",
         "constitutional-rule-review"
       ],
-      "lastUpdated": "2026-06-04T12:33:53.310Z"
+      "lastUpdated": "2026-06-10T11:00:20.762Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
@@ -17177,20 +17611,21 @@
         "benchmark",
         "substrate"
       ],
-      "lastUpdated": "2026-06-06T11:00:06.296Z"
+      "lastUpdated": "2026-06-10T11:00:20.767Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline",
-      "description": "Feature Specification: 009 — Peck Verification Discipline",
+      "description": "Completion-freshness validator and governance slice for peck verification discipline.",
       "keywords": [
-        "feature",
-        "specification",
-        "009",
+        "completion-freshness",
+        "validator",
+        "governance",
+        "slice",
         "peck",
         "verification",
         "discipline"
       ],
-      "lastUpdated": "2026-06-06T11:00:06.451Z"
+      "lastUpdated": "2026-06-10T13:11:41.471Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate",
@@ -17203,7 +17638,7 @@
         "coverage",
         "gate"
       ],
-      "lastUpdated": "2026-06-06T11:00:06.606Z"
+      "lastUpdated": "2026-06-10T11:00:20.781Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
@@ -17259,7 +17694,7 @@
         "edge",
         "tombstones"
       ],
-      "lastUpdated": "2026-06-07T14:08:18.196Z"
+      "lastUpdated": "2026-06-10T07:10:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/003-metadata-edge-promoter",
@@ -17272,7 +17707,7 @@
         "edge",
         "promoter"
       ],
-      "lastUpdated": "2026-06-07T14:08:18.200Z"
+      "lastUpdated": "2026-06-10T11:00:20.786Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle/004-write-path-reconciliation",
@@ -17284,7 +17719,7 @@
         "write-path",
         "reconciliation"
       ],
-      "lastUpdated": "2026-06-07T14:08:18.204Z"
+      "lastUpdated": "2026-06-10T11:00:20.790Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback",
@@ -17303,7 +17738,7 @@
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/001-schema-backfill",
-      "description": "Feature Specification: 001 — Schema + Backfill",
+      "description": "Completed schema v34 and default-off trigger embedding backfill foundation",
       "keywords": [
         "feature",
         "specification",
@@ -17311,7 +17746,7 @@
         "schema",
         "backfill"
       ],
-      "lastUpdated": "2026-06-06T14:41:13.491Z"
+      "lastUpdated": "2026-06-10T07:29:23Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/002-semantic-matcher",
@@ -17323,7 +17758,7 @@
         "semantic",
         "matcher"
       ],
-      "lastUpdated": "2026-06-06T14:41:13.977Z"
+      "lastUpdated": "2026-06-10T11:00:20.795Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/003-hybrid-handler",
@@ -17336,11 +17771,11 @@
         "handler",
         "integration"
       ],
-      "lastUpdated": "2026-06-06T14:41:13.825Z"
+      "lastUpdated": "2026-06-10T10:25:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
-      "description": "Feature Specification: 004 — Tests, Goldens + Shadow Eval",
+      "description": "Completed synthetic trigger goldens, shadow telemetry, flag docs, and blocked union promotion gate",
       "keywords": [
         "feature",
         "specification",
@@ -17350,7 +17785,7 @@
         "shadow",
         "eval"
       ],
-      "lastUpdated": "2026-06-06T14:41:13.663Z"
+      "lastUpdated": "2026-06-10T10:52:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers",
@@ -17377,7 +17812,7 @@
         "feedback",
         "aggregation"
       ],
-      "lastUpdated": "2026-06-06T14:41:14.295Z"
+      "lastUpdated": "2026-06-10T11:06:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer",
@@ -17389,7 +17824,7 @@
         "causal",
         "reducer"
       ],
-      "lastUpdated": "2026-06-06T14:41:14.450Z"
+      "lastUpdated": "2026-06-10T11:00:20.800Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer",
@@ -17401,7 +17836,7 @@
         "retention",
         "reducer"
       ],
-      "lastUpdated": "2026-06-06T14:41:14.603Z"
+      "lastUpdated": "2026-06-10T11:40:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration",
@@ -17415,7 +17850,7 @@
         "integration",
         "closeout"
       ],
-      "lastUpdated": "2026-06-06T14:41:14.762Z"
+      "lastUpdated": "2026-06-10T11:55:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption",
@@ -17442,11 +17877,11 @@
         "agent",
         "adapter"
       ],
-      "lastUpdated": "2026-06-06T14:41:15.113Z"
+      "lastUpdated": "2026-06-10T11:00:20.806Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
-      "description": "Feature Specification: 002 — Scoped Pre-Execution & Handoff Gates",
+      "description": "Scoped pre-execution and handoff gates implemented at the approved contract and agent mirror surfaces.",
       "keywords": [
         "feature",
         "specification",
@@ -17456,11 +17891,11 @@
         "handoff",
         "gates"
       ],
-      "lastUpdated": "2026-06-06T14:41:15.448Z"
+      "lastUpdated": "2026-06-10T05:18:20Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/003-planner-review-focus-and-drift-hint",
-      "description": "Feature Specification: 003 — Planner Reviewer-Focus & Spec-Drift Hint",
+      "description": "Completed optional planner reviewer-focus and spec-drift advisory fields",
       "keywords": [
         "feature",
         "specification",
@@ -17470,7 +17905,7 @@
         "spec-drift",
         "hint"
       ],
-      "lastUpdated": "2026-06-06T14:41:15.283Z"
+      "lastUpdated": "2026-06-10T06:30:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening",
@@ -17488,86 +17923,120 @@
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/001-provenance-and-audit",
-      "description": "Feature Specification: Phase 1: provenance-and-audit",
+      "description": "Implemented provenance-and-audit hardening for source_kind, write-ingress protection, and automated mutation audit",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "provenance-and-audit"
       ],
-      "lastUpdated": "2026-06-06T14:41:15.910Z"
+      "lastUpdated": "2026-06-10T12:25:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
-      "description": "Feature Specification: Phase 2: idempotency-and-near-duplicate",
+      "description": "Implemented server-derived memory write idempotency receipts and near-duplicate advisory hints",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "idempotency-and-near-duplicate"
       ],
-      "lastUpdated": "2026-06-06T14:41:16.222Z"
+      "lastUpdated": "2026-06-10T11:05:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
-      "description": "Feature Specification: Phase 3: feedback-log-and-008-reframe",
+      "description": "Feedback safety posture: reserved feedback type guard, shadow-only assertions, fail-safe ledger, future reducer invariants, and diagnostics-first coordination.",
       "keywords": [
-        "feature",
-        "specification",
-        "phase",
-        "feedback-log-and-008-reframe"
+        "feedback",
+        "safety",
+        "posture",
+        "reserved",
+        "type",
+        "guard",
+        "shadow-only",
+        "assertions",
+        "fail-safe",
+        "ledger",
+        "future",
+        "reducer",
+        "invariants",
+        "diagnostics-first",
+        "coordination"
       ],
-      "lastUpdated": "2026-06-06T14:41:15.758Z"
+      "lastUpdated": "2026-06-10T11:27:28.370Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
-      "description": "Feature Specification: Phase 4: tombstones-and-edge-promotion",
+      "description": "Completed phase: default hard-delete remains active while SPECKIT_SOFT_DELETE_TOMBSTONES gates first-timestamp tombstones; skip-manual causal-edge promotion, active/purgeable partial indexes, and entity-not-causal advisory rule remain in place.",
       "keywords": [
-        "feature",
-        "specification",
-        "phase",
-        "tombstones-and-edge-promotion"
+        "SPECKIT_SOFT_DELETE_TOMBSTONES",
+        "hard-delete default",
+        "first-timestamp tombstones",
+        "skip-manual causal edges",
+        "active purgeable partial indexes",
+        "entity cooccurrence not causal"
       ],
-      "lastUpdated": "2026-06-06T14:41:16.376Z"
+      "lastUpdated": "2026-06-10T14:30:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
-      "description": "Feature Specification: Phase 5: stale-audit-and-tool-ownership",
+      "description": "Completed read-only stale/status hard-exclusion audit and derived TOOL_DEFINITIONS ownership lint with no recall or stored-data change.",
       "keywords": [
         "feature",
         "specification",
         "phase",
-        "stale-audit-and-tool-ownership"
+        "stale-audit-and-tool-ownership",
+        "hard-exclusion-audit",
+        "tool-ownership-lint",
+        "TOOL_DEFINITIONS"
       ],
-      "lastUpdated": "2026-06-06T14:41:16.066Z"
+      "lastUpdated": "2026-06-10T14:35:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability",
-      "description": "Feature Specification: 008 — OpenLTM Retrieval & Memory Observability",
+      "description": "OpenLTM-derived retrieval observability: why_ranked traces, inline conflict warnings, degraded-vector signals, and maintenance counters without rankin",
       "keywords": [
-        "feature",
-        "specification",
-        "008",
-        "openltm",
+        "openltm-derived",
         "retrieval",
-        "memory",
-        "observability"
+        "observability",
+        "traces",
+        "inline",
+        "conflict",
+        "warnings",
+        "degraded-vector",
+        "signals",
+        "maintenance",
+        "counters",
+        "without",
+        "ranking",
+        "schema",
+        "changes"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.264Z"
+      "lastUpdated": "2026-06-10T13:06:13.347Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience",
-      "description": "Feature Specification: 009 — OpenLTM Continuity & Session Resilience",
+      "description": "OpenLTM-derived continuity resilience: bounded startup restore panel, authored PreCompact continuity snapshot, and goal decision progress gotcha facet",
       "keywords": [
-        "feature",
-        "specification",
-        "009",
-        "openltm",
+        "openltm-derived",
         "continuity",
-        "session",
-        "resilience"
+        "resilience",
+        "bounded",
+        "startup",
+        "restore",
+        "panel",
+        "authored",
+        "precompact",
+        "snapshot",
+        "goal",
+        "decision",
+        "progress",
+        "gotcha",
+        "facets",
+        "markdown",
+        "ladder"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.269Z"
+      "lastUpdated": "2026-06-10T12:35:44.366Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
@@ -17582,7 +18051,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.276Z"
+      "lastUpdated": "2026-06-10T11:00:20.813Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli",
@@ -17783,6 +18252,450 @@
         "cleanup"
       ],
       "lastUpdated": "2026-06-10T04:53:31.325Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation",
+      "description": "Feature Specification: Command Presentation Workflow Separation (Phase Parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "command",
+        "presentation",
+        "workflow",
+        "separation",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-11T02:48:52.876Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands",
+      "description": "Feature Specification: Memory Commands Presentation Workflow Separation (Phase Parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "commands",
+        "presentation",
+        "workflow",
+        "separation",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.729Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract",
+      "description": "Feature Specification: Memory Commands - Inventory and Extract",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "commands",
+        "inventory",
+        "extract"
+      ],
+      "lastUpdated": "2026-06-10T19:14:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md",
+      "description": "Feature Specification: Memory Commands - Author Presentation Markdown",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "commands",
+        "author",
+        "presentation",
+        "markdown"
+      ],
+      "lastUpdated": "2026-06-10T19:14:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire",
+      "description": "Feature Specification: Memory Commands - Router Rewire",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "commands",
+        "router",
+        "rewire"
+      ],
+      "lastUpdated": "2026-06-10T19:14:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux",
+      "description": "Feature Specification: Memory Commands - Verify and UX",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "commands",
+        "verify"
+      ],
+      "lastUpdated": "2026-06-10T19:14:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands",
+      "description": "Feature Specification: Speckit Commands Presentation Workflow Separation (Phase Parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "speckit",
+        "commands",
+        "presentation",
+        "workflow",
+        "separation",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.735Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract",
+      "description": "Feature Specification: Speckit Commands - Inventory and Extract",
+      "keywords": [
+        "feature",
+        "specification",
+        "speckit",
+        "commands",
+        "inventory",
+        "extract"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.739Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md",
+      "description": "Feature Specification: Speckit Commands - Author Presentation Markdown",
+      "keywords": [
+        "feature",
+        "specification",
+        "speckit",
+        "commands",
+        "author",
+        "presentation",
+        "markdown"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.744Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire",
+      "description": "Feature Specification: Speckit Commands - Router Rewire",
+      "keywords": [
+        "feature",
+        "specification",
+        "speckit",
+        "commands",
+        "router",
+        "rewire"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.748Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux",
+      "description": "Feature Specification: Speckit Commands - Verify and UX",
+      "keywords": [
+        "feature",
+        "specification",
+        "speckit",
+        "commands",
+        "verify"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.752Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands",
+      "description": "Feature Specification: Create Commands Presentation Workflow Separation (Phase Parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "create",
+        "commands",
+        "presentation",
+        "workflow",
+        "separation",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.756Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract",
+      "description": "Feature Specification: Create Commands - Inventory and Extract",
+      "keywords": [
+        "feature",
+        "specification",
+        "create",
+        "commands",
+        "inventory",
+        "extract"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.760Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md",
+      "description": "Feature Specification: Create Commands - Author Presentation Markdown",
+      "keywords": [
+        "feature",
+        "specification",
+        "create",
+        "commands",
+        "author",
+        "presentation",
+        "markdown"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.764Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/003-router-rewire",
+      "description": "Feature Specification: Create Commands - Router Rewire",
+      "keywords": [
+        "feature",
+        "specification",
+        "create",
+        "commands",
+        "router",
+        "rewire"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.768Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux",
+      "description": "Feature Specification: Create Commands - Verify and UX",
+      "keywords": [
+        "feature",
+        "specification",
+        "create",
+        "commands",
+        "verify"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.772Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands",
+      "description": "Feature Specification: Doctor Commands Presentation Workflow Separation (Phase Parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "commands",
+        "presentation",
+        "workflow",
+        "separation",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.776Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract",
+      "description": "Feature Specification: Doctor Commands - Inventory and Extract",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "commands",
+        "inventory",
+        "extract"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.780Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md",
+      "description": "Feature Specification: Doctor Commands - Author Presentation Markdown",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "commands",
+        "author",
+        "presentation",
+        "markdown"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.785Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire",
+      "description": "Feature Specification: Doctor Commands - Router Rewire",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "commands",
+        "router",
+        "rewire"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.789Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux",
+      "description": "Feature Specification: Doctor Commands - Verify and UX",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "commands",
+        "verify"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.794Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs",
+      "description": "Feature Specification: Causal Traversal BFS Read Path",
+      "keywords": [
+        "feature",
+        "specification",
+        "causal",
+        "traversal",
+        "bfs",
+        "read",
+        "path"
+      ],
+      "lastUpdated": "2026-06-10T20:30:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience",
+      "description": "Feature Specification: Vector Read-Path Resilience & Performance",
+      "keywords": [
+        "feature",
+        "specification",
+        "vector",
+        "read-path",
+        "resilience",
+        "performance"
+      ],
+      "lastUpdated": "2026-06-11T05:33:36.376Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights",
+      "description": "Feature Specification: Packed In-Memory BM25 Engine with Field Weights",
+      "keywords": [
+        "feature",
+        "specification",
+        "packed",
+        "in-memory",
+        "bm25",
+        "engine",
+        "field",
+        "weights"
+      ],
+      "lastUpdated": "2026-06-11T05:33:36.380Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports",
+      "description": "Storage Adapter Ports complete: five storage seams, conservative routing, fakes, contracts, and justified coupling exceptions",
+      "keywords": [
+        "feature",
+        "specification",
+        "storage",
+        "adapter",
+        "ports",
+        "five",
+        "divergence",
+        "seams"
+      ],
+      "lastUpdated": "2026-06-11T00:43:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux",
+      "description": "Feature Specification: Daemon CLI Front-Door UX Hardening (Phase Parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "daemon",
+        "cli",
+        "front-door",
+        "hardening",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-11T05:33:36.385Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/001-cli-freshness-and-smoke",
+      "description": "Feature Specification: CLI Freshness Gate Fix and Offline Smoke",
+      "keywords": [
+        "feature",
+        "specification",
+        "cli",
+        "freshness",
+        "gate",
+        "fix",
+        "offline",
+        "smoke"
+      ],
+      "lastUpdated": "2026-06-11T01:57:23.160Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/002-cli-help-aliases-errors",
+      "description": "Feature Specification: CLI Per-Command Help, Aliases, and Errors",
+      "keywords": [
+        "feature",
+        "specification",
+        "cli",
+        "per-command",
+        "help",
+        "aliases",
+        "errors"
+      ],
+      "lastUpdated": "2026-06-11T01:10:42Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/003-cli-reference-and-skill-docs",
+      "description": "Feature Specification: Unified Daemon CLI Reference and Skill Docs",
+      "keywords": [
+        "feature",
+        "specification",
+        "unified",
+        "daemon",
+        "cli",
+        "reference",
+        "skill",
+        "docs"
+      ],
+      "lastUpdated": "2026-06-11T01:21:47Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
+      "description": "Feature Specification: CLI Fallback Envelope and Bridge Allowlist",
+      "keywords": [
+        "feature",
+        "specification",
+        "cli",
+        "fallback",
+        "envelope",
+        "bridge",
+        "allowlist"
+      ],
+      "lastUpdated": "2026-06-11T01:57:23.166Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion",
+      "description": "Feature Specification: CLI Compact Output and Shell Completion",
+      "keywords": [
+        "feature",
+        "specification",
+        "cli",
+        "compact",
+        "output",
+        "shell",
+        "completion"
+      ],
+      "lastUpdated": "2026-06-11T01:50:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/017-bm25-warmup-churn-reduction",
+      "description": "Feature Specification: BM25 Warmup Churn Reduction",
+      "keywords": [
+        "feature",
+        "specification",
+        "bm25",
+        "warmup",
+        "churn",
+        "reduction"
+      ],
+      "lastUpdated": "2026-06-11T05:33:36.388Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -22175,7 +23088,17 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.670Z"
+      "lastUpdated": "2026-06-11T05:34:53.523Z"
+    },
+    {
+      "specFolder": "z_future/sqlite-to-turso",
+      "description": "Feature Specification: sqlite-to-turso",
+      "keywords": [
+        "feature",
+        "specification",
+        "sqlite-to-turso"
+      ],
+      "lastUpdated": "2026-06-10T21:52:41.838Z"
     }
   ]
 }

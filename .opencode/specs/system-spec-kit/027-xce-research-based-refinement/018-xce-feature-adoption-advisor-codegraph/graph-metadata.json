@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph",
+  "parent_id": null,
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/001-advisor-observability",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included",
+    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018-xce-feature-adoption-advisor-codegraph",
+      "advisor 027 feature adoption",
+      "code graph 027 feature adoption",
+      "phase parent"
+    ],
+    "key_topics": [
+      "018-xce-feature-adoption-advisor-codegraph",
+      "advisor",
+      "027",
+      "feature",
+      "adoption",
+      "code",
+      "graph",
+      "phase",
+      "parent",
+      "spec-027",
+      "hardened",
+      "spec"
+    ],
+    "importance_tier": "important",
+    "status": "completed",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared app-level BFS traversal, shadow feedback reducers, and soft-delete tombstones. The sibling daemon systems (`mk_skill_advisor` and `mk_code_index`) carry the same gaps that 027 closed: the advisor strips ranker evidence at output, has no manual-provenance guard on auto-edge writes, runs a token-overlap lexical lane, hand-rolls BFS, and never reuses validate outcomes; the code graph hard-deletes nodes/edges without audit, hand-rolls two BFS paths, returns no per-file chain breadcrumbs, and matches symbols by exact equality only. A ranked read-only analysis identified the ten transfers worth doing and rejected the rest.",
+    "created_at": "2026-06-10T19:24:08Z",
+    "last_save_at": "2026-06-10T19:41:16.121Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

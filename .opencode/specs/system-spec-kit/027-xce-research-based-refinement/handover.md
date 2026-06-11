@@ -116,7 +116,7 @@ Brief MUST bake: "Spec folder <path> (pre-approved, skip Gate 3)", ALLOWED WRITE
 - Epic root: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/`
 - Review packet (done): `.../027.../review/` (review-report.md CONDITIONAL, merged registry, fanout-attribution.md, 6 lineage dirs)
 - New phases: `.../027.../{011-command-presentation-workflow-separation,012-causal-traversal-bfs,013-vector-read-path-resilience,014-packed-bm25-field-weights,015-storage-adapter-ports}/`
-- 145 packet: `.opencode/specs/skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/` (parent + 001-009)
+- 145 packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/` (parent + 001-009)
 - mcp_server: `.opencode/skills/system-spec-kit/mcp_server/` (build: `npm run build`; tests from here)
 - Command families: `.opencode/commands/{memory,speckit,create,doctor}/`
 - Briefs: `/tmp/impl-011-{speckit,create,doctor}.txt`, `/tmp/xce-adoption-analysis.md`

@@ -164,6 +164,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 - Phases 008-009 are owned by the OpenLTM study (`research/010-openltm-memory-architecture-teachings`): `008` adopts retrieval/memory observability and `009` adopts continuity/session resilience — both filtered through the spec-documentation-based vs row-based architecture (research §8). Secret redaction, content-fingerprint indexing, and reshaped opt-in capture from the same study are folded as amendments into `002`, `003`, and `005` respectively. Row-coupled mechanics (`learn/reinforce`, per-row provenance/audit, row dedup) are rejected as negative knowledge.
 - Phases 012-015 are owned by the sqlite-to-turso revalidation (`.opencode/specs/z_future/sqlite-to-turso/research/research.md` + `004 - gap-alternatives.md`): backend-agnostic improvements that pay off on the current better-sqlite3 stack — BFS traversal (`012`), vector shard self-healing (`013`; live shard corruption observed 2026-06-10), packed BM25 fallback (`014`), and the five-port adapter seam (`015`). Execution order: `012` and `014` are independent; `013` coordinates with `008`'s counters; `015` runs last (it adopts `012`/`014` outputs as port implementations). The Turso migration itself stays out of 027 — gated on upstream 1.0 signals per the revalidation verdict.
 
+| 17 | 017-bm25-warmup-churn-reduction/ | [Phase 17 scope] | Pending |
+| 18 | 018-xce-feature-adoption-advisor-codegraph/ | XCE feature transfers into the skill-advisor + code-graph skills (advisor observability / provenance guard / packed BM25 / feedback calibration; code-graph tombstone audit / why-included trace / BM25 symbol resolver) | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -185,6 +187,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 005-learning-feedback-reducers shadow consumers | 005-learning-feedback-reducers active mutation/ranking | Ledger quality, shadow replay, and consumer-specific promotion criteria pass for each consumer. | 005/005 integration gate evidence. |
 | 007-memclaw-derived-memory-hardening | 008-openltm-retrieval-observability | OpenLTM research phase 010 complete; observability surfaces are additive and read-only to ranking. | `research/010` deliverables (research.md §8) + per-phase strict validation. |
 | 008-openltm-retrieval-observability | 009-openltm-continuity-resilience | Observability surfaces planned; continuity surfaces complement (never replace) the ladder. | Per-phase strict validation evidence. |
+| 016-cli-tooling-ux | 017-bm25-warmup-churn-reduction | [Criteria TBD] | [Verification TBD] |
+| 017-bm25-warmup-churn-reduction | 018-xce-feature-adoption-advisor-codegraph | All 9 advisor/code-graph transfers shipped + deep-reviewed (CONDITIONAL remediated) | Strict validation; zero stale path refs |
 <!-- /ANCHOR:phase-map -->
 
 ---

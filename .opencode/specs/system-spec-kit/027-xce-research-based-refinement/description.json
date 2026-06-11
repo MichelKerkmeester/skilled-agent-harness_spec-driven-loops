@@ -41,26 +41,28 @@
     "013-vector-read-path-resilience",
     "014-packed-bm25-field-weights",
     "015-storage-adapter-ports",
-    "016-cli-tooling-ux"
+    "016-cli-tooling-ux",
+    "017-bm25-warmup-churn-reduction",
+    "018-xce-feature-adoption-advisor-codegraph"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
+  "specFolder": "027-xce-research-based-refinement",
+  "description": "BM25 warmup churn reduction: bring packed-engine warmup RSS spike under the 150MB budget",
   "keywords": [
-    "feature",
-    "specification",
-    "xce-derived",
-    "spec",
-    "kit",
-    "refinement",
-    "phase",
-    "parent"
+    "bm25",
+    "warmup",
+    "churn",
+    "reduction",
+    "bring",
+    "packed-engine",
+    "rss",
+    "spike",
+    "150mb",
+    "budget"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.219Z",
+  "lastUpdated": "2026-06-11T05:11:29.555Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
-  "parentChain": [
-    "system-spec-kit"
-  ],
+  "parentChain": [],
   "memorySequence": 5,
   "memoryNameHistory": [
     "08-05-26_16-41__2nd-pass-cross-validation-deep-research-run-via.md",
