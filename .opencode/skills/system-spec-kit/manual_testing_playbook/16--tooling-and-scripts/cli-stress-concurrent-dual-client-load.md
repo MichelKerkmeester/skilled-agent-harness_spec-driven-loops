@@ -40,7 +40,14 @@ for round in 1 2 3; do
   (cd .opencode/skills/system-skill-advisor/mcp_server && npx vitest run tests/skill-advisor-cli-dual-client.vitest.ts) &
   wait
 done
+# Sandbox daemons reap asynchronously after suite teardown, so the count can briefly
+# sit above BEFORE right after `wait`; poll up to ~15s for it to settle.
 AFTER=$(pgrep -f "mk-(spec-memory|code-index|skill-advisor)-launcher" | wc -l)
+for _ in $(seq 1 15); do
+  [ "$AFTER" -le "$BEFORE" ] && break
+  sleep 1
+  AFTER=$(pgrep -f "mk-(spec-memory|code-index|skill-advisor)-launcher" | wc -l)
+done
 echo "launchers before=$BEFORE after=$AFTER"
 ```
 
@@ -48,7 +55,7 @@ echo "launchers before=$BEFORE after=$AFTER"
 
 - Nine suite executions (3 systems x 3 rounds), all green.
 - No suite wedges; `wait` returns each round.
-- Launcher process count returns to the pre-run value (suites tear down their sandboxes; code-index additionally has a dedicated teardown suite asserting zero orphans).
+- Launcher process count returns to the pre-run value after the async-reap settle window (suites tear down their sandboxes; code-index additionally has a dedicated teardown suite asserting zero orphans). A transient count above BEFORE immediately after `wait` is expected reap lag, not an orphan — it must settle to `<= BEFORE` within the poll window.
 
 ### Evidence
 
@@ -61,7 +68,7 @@ Per-round vitest summaries and the launcher counts before/after.
 
 ### Failure Triage
 
-A failure that only appears under tri-system concurrency points at shared host resources (port/socket collisions in /tmp, file-descriptor pressure) rather than per-system logic — rerun the failing suite alone to discriminate. Orphan growth means a harness teardown was skipped after a failed assertion; reap manually and triage the assertion first.
+A failure that only appears under tri-system concurrency points at shared host resources (port/socket collisions in /tmp, file-descriptor pressure) rather than per-system logic — rerun the failing suite alone to discriminate. A launcher count that stays above BEFORE after the settle window means a harness teardown was skipped after a failed assertion (a real orphan); reap manually and triage the assertion first. A count that settled to `<= BEFORE` is clean — the suites' sandbox lease-holder daemons live in their own fresh socket dirs (e.g. `/var/folders/.../ci-*`), never the host daemon, so a bridge to such a socket during a run is expected, not a host-daemon touch.
 
 ## 4. SOURCE FILES
 

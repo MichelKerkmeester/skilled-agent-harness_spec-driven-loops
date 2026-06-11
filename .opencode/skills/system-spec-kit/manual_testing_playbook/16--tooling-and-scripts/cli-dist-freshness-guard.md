@@ -1,25 +1,25 @@
 ---
 title: "429 -- CLI Dist-Freshness Guard Trip"
-description: "Manual check that a CLI shim refuses a stale dist entrypoint with exit 69 and a rebuild instruction, that the per-system dev-override env restores pass-through, and that the trip is fully reversible via mtime restore."
+description: "Manual check that a CLI shim refuses a stale dist entrypoint with exit 69 and a rebuild instruction, that the per-system dev-override env restores pass-through, and that the trip is fully reversible via content restore."
 ---
 
 # 429 -- CLI Dist-Freshness Guard Trip
 
 ## 1. OVERVIEW
 
-This scenario verifies the dist-freshness guard in the CLI shims. Each shim compares the newest tracked TypeScript source mtime against the built dist entrypoint and refuses to run stale output with exit 69 (`EXIT_PROTOCOL`) plus a rebuild instruction, so an operator can never silently exercise an outdated CLI. Per-system development overrides (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`) turn the refusal into pass-through.
+This scenario verifies the dist-freshness guard in the CLI shims. Each shim computes a content hash (SHA256 over its sorted source surface) and compares it to the dist-side fingerprint written at build time; when they differ it refuses to run stale output with exit 69 (`EXIT_PROTOCOL`) plus a rebuild instruction, so an operator can never silently exercise an outdated CLI. When the fingerprint file is missing or corrupt, the guard falls back to a conservative source-vs-dist mtime check, fail-closed. Per-system development overrides (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`) turn the refusal into pass-through.
 
-The test trips the guard reversibly: it saves the source file's mtime to a reference file, touches the source so it is newer than dist, observes the refusal and the override, then restores the original mtime — no rebuild needed and no lasting host impact.
+The test trips the guard reversibly: it backs up the source file, appends a content change so its hash no longer matches the dist fingerprint, observes the refusal and the override, then restores the exact original content — no rebuild needed and no lasting host impact. An mtime-only `touch` does NOT trip the content-hash guard while a valid fingerprint exists; a real content change is required.
 
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the stale-dist refusal (exit 69), the dev-override pass-through, and clean restoration.
 - Real user request: `If I edit the CLI source and forget to rebuild, will the shim run the old build behind my back?`
 - Prompt: `Trip the spec-memory dist-freshness guard reversibly, confirm exit 69 plus the rebuild message, confirm the dev override, then restore.`
-- Expected execution process: Save mtime, touch source, run `list-tools` (refusal), rerun with the override env (pass), restore mtime, rerun clean (pass).
+- Expected execution process: Back up source, append a content change, run `list-tools` (refusal), rerun with the override env (pass), restore exact content, rerun clean (pass).
 - Expected signals: Exit 69 with `dist entrypoint is stale` on the tripped run; exit 0 under the override; exit 0 after restore.
 - Desired user-visible outcome: Stale builds are loudly refused with the exact rebuild command, never silently executed.
-- Pass/fail: PASS only when all three phases behave as expected and the source mtime is restored.
+- Pass/fail: PASS only when all three phases behave as expected and the source content is restored byte-exact.
 
 ## 3. TEST EXECUTION
 
@@ -33,13 +33,13 @@ Trip the spec-memory dist-freshness guard reversibly, confirm exit 69 plus the r
 
 ```bash
 SRC=.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts
-REF=$(mktemp); touch -r "$SRC" "$REF"          # save current mtime
-touch "$SRC"                                    # source now newer than dist
+BAK=$(mktemp); cp "$SRC" "$BAK"                                  # exact content backup
+printf '\n// freshness probe: content change to trip the hash gate (reverted below)\n' >> "$SRC"
 
 node .opencode/bin/spec-memory.cjs list-tools --format json >/dev/null; echo "tripped exit=$?"
 SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs list-tools --format json >/dev/null; echo "override exit=$?"
 
-touch -r "$REF" "$SRC"; rm -f "$REF"            # restore mtime
+cp "$BAK" "$SRC"; rm -f "$BAK"                                   # restore exact content (hash matches again)
 node .opencode/bin/spec-memory.cjs list-tools --format json >/dev/null; echo "restored exit=$?"
 ```
 
@@ -62,7 +62,7 @@ Shell transcript with the three exit codes and the stale-dist stderr line.
 
 ### Failure Triage
 
-A restored run that still exits 69 means another tracked source (for spec-memory: `tool-schemas.ts`, `schemas/tool-input-schemas.ts`) is genuinely newer than dist — rebuild instead of restoring. An untripped first run means the touch did not land or the override env leaked into the shell.
+A restored run that still exits 69 means the restore was not byte-exact, or another tracked source (for spec-memory: `tool-schemas.ts`, files under `schemas/`) genuinely differs from the dist fingerprint — rebuild instead of restoring. An untripped first run means the content append did not land (source hash unchanged) or the override env leaked into the shell.
 
 ## 4. SOURCE FILES
 
