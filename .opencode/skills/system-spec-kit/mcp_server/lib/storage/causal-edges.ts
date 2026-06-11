@@ -11,6 +11,7 @@ import { ensureTemporalColumns } from '../graph/temporal-edges.js';
 import { isTemporalEdgesEnabled } from '../search/search-flags.js';
 import { runInTransaction } from './transaction-manager.js';
 import { sweepCausalEdges } from '../causal/sweep.js';
+import { bumpCausalEdgesGeneration, getCausalEdgesGeneration } from './causal-generation.js';
 import type { CausalEdgeSweepResult } from '../causal/sweep.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -196,19 +197,8 @@ let lastInsertEdgeOutcome: InsertEdgeOutcome | null = null;
  *
  * targeted memory_search cache invalidation.
  */
-let causalEdgesGeneration = 0;
-
-function bumpCausalEdgesGeneration(): void {
-  // Wrap counter near MAX_SAFE_INTEGER to avoid overflow in ultra-long-lived
-  // Processes; consumers only compare for inequality, so wrapping is safe.
-  causalEdgesGeneration = causalEdgesGeneration >= Number.MAX_SAFE_INTEGER
-    ? 1
-    : causalEdgesGeneration + 1;
-}
-
-function getCausalEdgesGeneration(): number {
-  return causalEdgesGeneration;
-}
+// Counter lives in causal-generation.ts so the tombstone sweep (which this
+// module imports) can bump it without a circular import.
 
 function setLastInsertEdgeOutcome(outcome: InsertEdgeOutcome): void {
   lastInsertEdgeOutcome = outcome;
@@ -1209,6 +1199,7 @@ export {
 
   // Generation counter for memory_search cache invalidation
   getCausalEdgesGeneration,
+  bumpCausalEdgesGeneration,
 };
 
 /**

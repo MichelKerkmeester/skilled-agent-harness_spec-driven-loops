@@ -27,6 +27,7 @@ import {
 // Internal modules
 import { ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
+import { scrubSecretsDetailed } from '../lib/parsing/secret-scrubber.js';
 import { createFilePathValidator } from '../utils/validators.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import * as transactionManager from '../lib/storage/transaction-manager.js';
@@ -3635,6 +3636,19 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
  * is restored before the error is returned and before the lock is released.
  */
 async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOptions = {}): Promise<AtomicSaveResult> {
+  // Scrub once at the entry so every durably persisted artifact (canonical
+  // markdown, continuity merge, pending-file promotion) carries redacted text,
+  // not only the parsed/index copy the parser scrubs. Fail-closed: a scrubber
+  // failure throws and refuses the write rather than persisting raw content.
+  if (typeof params.content === 'string' && params.content.length > 0) {
+    const scrubResult = scrubSecretsDetailed(params.content);
+    if (scrubResult.redactions > 0) {
+      console.warn(
+        `[memory-save] Redacted ${scrubResult.redactions} secret(s) [${scrubResult.kinds.join(', ')}] before durable save`,
+      );
+      params = { ...params, content: scrubResult.text };
+    }
+  }
   const { file_path, routeAs, mergeModeHint, targetAnchorId } = params;
   const database = requireDb();
   const routing = buildRoutedSaveOptions(file_path, routeAs, mergeModeHint, targetAnchorId);

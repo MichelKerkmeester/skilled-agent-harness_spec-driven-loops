@@ -1,4 +1,5 @@
 import { normalizeScopeValue } from '../governance/scope-governance.js';
+import { scrubSecrets } from '../parsing/secret-scrubber.js';
 
 export type SourceKind = 'human' | 'agent' | 'system' | 'import' | 'feedback';
 
@@ -104,12 +105,18 @@ function getTableColumns(database: WriteProvenanceDatabase, tableName: string): 
   }
 }
 
+function scrubOptional(value: string | null | undefined): string | null | undefined {
+  return value == null ? value : scrubSecrets(value);
+}
+
 export function buildPostInsertProvenanceFields(context: WriteProvenanceContext): {
   provenance_source?: string;
   provenance_actor?: string;
 } {
-  const provenanceSource = normalizeOptionalString(context.provenanceSource ?? context.provenance_source);
-  const provenanceActor = normalizeOptionalString(context.provenanceActor ?? context.provenance_actor);
+  // Provenance labels are caller-supplied free text that lands in a persisted
+  // column, so they pass through the same fail-closed scrubber as content.
+  const provenanceSource = scrubOptional(normalizeOptionalString(context.provenanceSource ?? context.provenance_source));
+  const provenanceActor = scrubOptional(normalizeOptionalString(context.provenanceActor ?? context.provenance_actor));
   return {
     ...(provenanceSource ? { provenance_source: provenanceSource } : {}),
     ...(provenanceActor ? { provenance_actor: provenanceActor } : {}),

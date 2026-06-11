@@ -566,7 +566,8 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
         prompt,
         results.map((match) => match.memoryId),
       );
-      console.info('[memory_match_triggers] Semantic trigger shadow', semanticTriggerShadow);
+      // stderr, not stdout: under stdio transport stdout carries JSON-RPC frames.
+      console.error('[memory_match_triggers] Semantic trigger shadow', semanticTriggerShadow);
     }
   } catch (shadowErr: unknown) {
     semanticTriggerShadow = {

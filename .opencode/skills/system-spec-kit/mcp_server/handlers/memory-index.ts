@@ -330,6 +330,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_index_scan');
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
   if (restoreBarrier) {
+    recordMaintenanceRun('memory_index_scan', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_index_scan',
       error: restoreBarrier.message,

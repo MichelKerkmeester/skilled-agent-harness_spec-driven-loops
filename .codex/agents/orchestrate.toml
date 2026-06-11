@@ -197,7 +197,7 @@ TASK #N: [Descriptive Title]
 ├─ Boundary: [What this agent MUST NOT do]
 ├─ Agent: @code | @context | @markdown | @deep-research | @ai-council | @review | @debug
 ├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
-├─ Agent Definition: [.opencode/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general]
+├─ Agent Definition: [.codex/agents/<name>.toml — MUST be read and included in prompt | "built-in" for @general]
 ├─ Skills: [Specific skills the agent should use]
 ├─ Output Format: [Structured format with example]
 ├─ Output Size: [full | summary-only (30 lines) | minimal (3 lines)] ← CWB §8
@@ -279,7 +279,7 @@ PRE-DELEGATION REASONING [Task #N]:
 ├─ Intent: [What does this task accomplish?]
 ├─ Complexity: [low/medium/high] → Because: [cite criteria below]
 ├─ Agent: @[agent] → Because: [cite §2 (Agent Routing)]
-├─ Agent Def: [loaded | built-in | prior-session] → [.opencode/agents/<name>.md]
+├─ Agent Def: [loaded | built-in | prior-session] → [.codex/agents/<name>.toml]
 ├─ Depth: [N] → Tier: [ORCHESTRATOR|LEAF] (§2 NDP)
 ├─ Parallel: [Yes/No] → Because: [data dependency]
 ├─ Risk: [Low/Medium/High] → [If High: fallback agent]
@@ -822,7 +822,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - Single agents with too many sequential operations exceed system execution limits, returning "Tool execution aborted" and losing all progress. Always estimate tool calls before dispatch and split at 12+. See §8.
 
 ❌ **Never improvise custom agent instructions instead of loading their definition file**
-- Every custom agent has a definition file in `.opencode/agents/`. These files contain specialized templates, enforcement rules, and quality standards. Dispatching a generic agent with "you are @debug" in the prompt loses the specialized debugging workflow. ALWAYS read and include the actual agent definition file. See §2.
+- Every custom agent has a definition file in `.codex/agents/` (this runtime's mirror; the canonical source lives in `.opencode/agents/`). These files contain specialized templates, enforcement rules, and quality standards. Dispatching a generic agent with "you are @debug" in the prompt loses the specialized debugging workflow. ALWAYS read and include the actual agent definition file. See §2.
 
 ❌ **Never dispatch beyond maximum depth 2 (depth counter 0-1)**
 - Nested chains are illegal in this profile. Every dispatch must include `Depth: N` and respect single-hop NDP rules: only depth-0 orchestrator dispatches; depth-1 agents MUST NOT dispatch. If a task cannot be completed at depth 1, return partial results and escalate to the parent. See §2.

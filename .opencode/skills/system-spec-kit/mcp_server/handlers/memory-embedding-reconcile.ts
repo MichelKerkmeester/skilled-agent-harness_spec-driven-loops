@@ -21,6 +21,7 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
 
   const database = vectorIndex.getDb();
   if (!database) {
+    recordMaintenanceRun('memory_embedding_reconcile', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_embedding_reconcile',
       error: 'Embedding reconcile aborted: database unavailable',
@@ -45,6 +46,7 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
     vectorIndex.attachActiveVectorShardForActiveProfile(database);
   } catch (attachErr: unknown) {
     if (mode === 'apply') {
+      recordMaintenanceRun('memory_embedding_reconcile', { status: 'error' });
       return createMCPErrorResponse({
         tool: 'memory_embedding_reconcile',
         error: `Embedding reconcile aborted: could not attach the active vector shard (${toErrorMessage(attachErr)})`,
@@ -95,6 +97,9 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
       hints,
     });
   } catch (error: unknown) {
+    // Health reads last-run state; a failed run must be visible there, not
+    // only in the error response of the call that happened to observe it.
+    recordMaintenanceRun('memory_embedding_reconcile', { status: 'error' });
     if (error instanceof ActiveShardGuardError) {
       return createMCPErrorResponse({
         tool: 'memory_embedding_reconcile',

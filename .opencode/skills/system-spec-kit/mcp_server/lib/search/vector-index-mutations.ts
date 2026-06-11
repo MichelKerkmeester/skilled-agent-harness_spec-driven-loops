@@ -146,8 +146,14 @@ function deleteAncillaryMemoryRows(database: Database.Database, id: number): voi
     if (result.deleted > 0) {
       invalidateGraphCaches(database);
     }
-  } catch (_error: unknown) {
-    // Best-effort for legacy databases that may not have causal edges yet.
+  } catch (error: unknown) {
+    // Tolerate only legacy databases that predate causal-edge tables. Any other
+    // sweep failure must propagate so the surrounding delete transaction rolls
+    // back instead of committing a hard delete without its tombstone audit row.
+    const message = error instanceof Error ? error.message : String(error);
+    if (!/no such table/i.test(message)) {
+      throw error;
+    }
   }
 }
 

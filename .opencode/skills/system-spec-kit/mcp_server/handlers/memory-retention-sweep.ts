@@ -19,6 +19,7 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
 
   const database = vectorIndex.getDb();
   if (!database) {
+    recordMaintenanceRun('memory_retention_sweep', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_retention_sweep',
       error: 'Retention sweep aborted: database unavailable',
@@ -83,6 +84,7 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
       hints,
     });
   } catch (error: unknown) {
+    recordMaintenanceRun('memory_retention_sweep', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_retention_sweep',
       error: `Retention sweep failed: ${toErrorMessage(error)}`,

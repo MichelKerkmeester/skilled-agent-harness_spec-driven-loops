@@ -6,6 +6,7 @@ import type Database from 'better-sqlite3';
 
 import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { clearDegreeCacheForDb } from '../search/graph-search-fn.js';
+import { bumpCausalEdgesGeneration } from '../storage/causal-generation.js';
 import { runInTransaction } from '../storage/transaction-manager.js';
 
 type CausalEdgeSnapshot = {
@@ -209,6 +210,10 @@ function deleteEdgesByIds(database: Database.Database, edgeIds: readonly number[
 }
 
 function invalidateGraphCaches(database: Database.Database): void {
+  // Bump the generation FIRST so every cache key that includes it (e.g.
+  // memory_search with causal boost) goes stale before the per-db caches clear;
+  // without this, sweeps served stale causal-boosted search results.
+  bumpCausalEdgesGeneration();
   try {
     clearDegreeCacheForDb(database);
   } catch (_error: unknown) {
