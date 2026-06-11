@@ -4,6 +4,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const serverDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -20,6 +21,12 @@ const requiredArtifacts = [
   'api/index.js',
   'hooks/codex/session-start.js',
 ];
+const cliSourceFiles = [
+  'spec-memory-cli.ts',
+  'tool-schemas.ts',
+  'schemas/tool-input-schemas.ts',
+];
+const cliSourceHashState = path.join(distDir, '.spec-memory-cli-source-hash.json');
 
 function copyJsonFiles(sourceDir, targetDir) {
   if (!fs.existsSync(sourceDir)) {
@@ -58,9 +65,26 @@ function assertNoStaleDistRoots() {
   }
 }
 
+function writeCliSourceHash() {
+  const existingSources = cliSourceFiles
+    .map((filePath) => path.join(serverDir, filePath))
+    .filter((filePath) => fs.existsSync(filePath));
+  if (existingSources.length === 0) return;
+
+  const hash = crypto.createHash('sha256');
+  for (const filePath of existingSources.sort()) {
+    hash.update(path.relative(serverDir, filePath));
+    hash.update('\0');
+    hash.update(fs.readFileSync(filePath));
+    hash.update('\0');
+  }
+  fs.writeFileSync(cliSourceHashState, `${JSON.stringify({ version: 1, sourceHash: hash.digest('hex') })}\n`);
+}
+
 copyJsonFiles(path.join(serverDir, 'lib', 'eval', 'data'), path.join(distDir, 'lib', 'eval', 'data'));
 copyJsonFiles(path.join(serverDir, 'lib', 'routing'), path.join(distDir, 'lib', 'routing'));
 
 removeStaleDistRoots();
 assertRequiredArtifacts();
 assertNoStaleDistRoots();
+writeCliSourceHash();

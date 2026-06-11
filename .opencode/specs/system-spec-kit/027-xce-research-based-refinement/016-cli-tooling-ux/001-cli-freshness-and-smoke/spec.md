@@ -11,19 +11,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/001-cli-freshness-and-smoke"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 child from assessment rows 1, 10, 13"
-    next_safe_action: "Plan the durable freshness-gate fix and offline smoke script"
+    last_updated_at: "2026-06-11T03:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented hash freshness gates, stale-dist status, and offline smoke"
+    next_safe_action: "Proceed to sibling CLI tooling UX sub-phases if needed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/bin/spec-memory.cjs"
+      - ".opencode/bin/code-index.cjs"
+      - ".opencode/bin/skill-advisor.cjs"
+      - ".opencode/bin/cli-offline-smoke.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-001-cli-freshness-and-smoke"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Chose content-hash freshness metadata over removing the gate."
+      - "Placed the unified offline smoke command under .opencode/bin/."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: CLI Freshness Gate Fix and Offline Smoke
@@ -46,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

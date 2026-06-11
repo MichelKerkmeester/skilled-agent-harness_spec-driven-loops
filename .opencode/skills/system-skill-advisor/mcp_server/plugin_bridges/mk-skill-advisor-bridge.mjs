@@ -52,6 +52,8 @@ const ADVISOR_MCP_TIMEOUT_MS = 8000;
 const ADVISOR_CLI_TIMEOUT_MS = 250;
 const ADVISOR_CLI_PROBE_TIMEOUT_MS = 50;
 const ADVISOR_CLI_RETRYABLE_EXIT = 75;
+const ADVISOR_CLI_STALE_EXIT = 69;
+const MAX_CLI_STDERR_BYTES = 1024 * 1024;
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const require = createRequire(import.meta.url);
 const CHILD_ENV_ALLOWLIST = new Set([
@@ -553,7 +555,7 @@ function cliRecommendations(data, thresholds) {
     : [];
 }
 
-function cliFallbackResponse(input, reason, subprocessInvoked = false) {
+function cliFallbackResponse(input, reason, subprocessInvoked = false, metadata = {}) {
   const maxTokens = positiveInt(input.maxTokens, 80);
   const effectiveThresholds = {
     confidenceThreshold: threshold(input.thresholdConfidence),
@@ -568,14 +570,31 @@ function cliFallbackResponse(input, reason, subprocessInvoked = false) {
       route: 'cli',
       workspaceRoot: input.workspaceRoot,
       effectiveThresholds,
-      freshness: 'unavailable',
+      freshness: metadata.freshness ?? 'unavailable',
       recommendationCount: 0,
       tokenCap: maxTokens,
-      retryable: true,
-      exitCode: ADVISOR_CLI_RETRYABLE_EXIT,
+      retryable: metadata.retryable ?? true,
+      exitCode: metadata.exitCode ?? ADVISOR_CLI_RETRYABLE_EXIT,
       subprocessInvoked,
+      ...metadata,
     },
   });
+}
+
+function classifyCliStaleDist(exitCode, stderr) {
+  if (exitCode !== ADVISOR_CLI_STALE_EXIT || !/dist entrypoint is (stale|missing)/i.test(stderr)) {
+    return null;
+  }
+  return {
+    freshness: 'dist_stale',
+    retryable: false,
+    exitCode: ADVISOR_CLI_STALE_EXIT,
+    state: 'dist_stale_rebuild_required',
+    staleDist: true,
+    rebuildRequired: true,
+    action: 'run the skill-advisor TypeScript build',
+    stderr: stderr ? '[stderr-present]' : null,
+  };
 }
 
 function runCliRecommend(input, env, timeoutMs) {
@@ -589,6 +608,7 @@ function runCliRecommend(input, env, timeoutMs) {
   };
   return new Promise((resolvePromise) => {
     let stdout = '';
+    let stderr = '';
     let settled = false;
     let timedOut = false;
     const child = spawn(process.execPath, [
@@ -604,7 +624,7 @@ function runCliRecommend(input, env, timeoutMs) {
     ], {
       cwd: input.workspaceRoot,
       env: createCliChildEnv(env),
-      stdio: ['ignore', 'pipe', 'ignore'],
+      stdio: ['ignore', 'pipe', 'pipe'],
     });
     const timer = setTimeout(() => {
       timedOut = true;
@@ -621,11 +641,17 @@ function runCliRecommend(input, env, timeoutMs) {
     child.stdout?.on('data', (chunk) => {
       stdout += chunk;
     });
+    child.stderr?.setEncoding('utf8');
+    child.stderr?.on('data', (chunk) => {
+      if (stderr.length < MAX_CLI_STDERR_BYTES) {
+        stderr = (stderr + String(chunk)).slice(0, MAX_CLI_STDERR_BYTES);
+      }
+    });
     child.once('error', (error) => {
-      finish({ stdout, exitCode: null, signal: null, timedOut, error: error.code ?? error.message });
+      finish({ stdout, stderr, exitCode: null, signal: null, timedOut, error: error.code ?? error.message });
     });
     child.once('close', (exitCode, signal) => {
-      finish({ stdout, exitCode, signal, timedOut, error: null });
+      finish({ stdout, stderr, exitCode, signal, timedOut, error: null });
     });
   });
 }
@@ -646,6 +672,10 @@ async function buildCliBrief(input, dependencies = {}) {
     return cliFallbackResponse(input, `CLI_RETRYABLE_UNAVAILABLE:${cli.error}`, true);
   }
   if (cli.exitCode !== 0 || cli.signal !== null) {
+    const staleDist = classifyCliStaleDist(cli.exitCode, cli.stderr ?? '');
+    if (staleDist) {
+      return cliFallbackResponse(input, 'DIST_STALE_REBUILD_REQUIRED', true, staleDist);
+    }
     return cliFallbackResponse(
       input,
       cli.exitCode === ADVISOR_CLI_RETRYABLE_EXIT ? 'CLI_RETRYABLE_EXIT_75' : `CLI_EXIT_${cli.exitCode ?? 'SIGNAL'}`,
@@ -808,6 +838,7 @@ export {
   buildCliBrief,
   buildLegacyBrief,
   buildNativeBrief,
+  classifyCliStaleDist,
   createChildEnv,
   parseInput,
   renderAdvisorBrief,

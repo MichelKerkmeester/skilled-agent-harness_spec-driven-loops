@@ -8,17 +8,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/001-cli-freshness-and-smoke"
-    last_updated_at: "2026-06-10T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded Level-1 plan for freshness fix + offline smoke"
-    next_safe_action: "Implement the content-hash freshness gate and offline smoke check"
+    last_updated_at: "2026-06-11T03:00:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Delivered content-hash freshness gates, stale-dist status surfacing, and offline smoke"
+    next_safe_action: "Proceed to sibling CLI tooling UX sub-phases if needed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/bin/spec-memory.cjs"
+      - ".opencode/bin/code-index.cjs"
+      - ".opencode/bin/skill-advisor.cjs"
+      - ".opencode/bin/cli-offline-smoke.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-001-cli-freshness-and-smoke"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,14 +62,14 @@ Replace the mtime-based freshness gate with a content-hash gate (or make the bui
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -105,18 +109,18 @@ Surfaces and verification live in the spec Files-to-Change table and the tasks b
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Reproduce the mtime-only stale-`69` false-positive on a content-clean dist
-- [ ] Confirm `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` yields `count=37` (gate-bug confirmation)
+- [x] Reproduce the mtime-only stale-`69` false-positive on a content-clean dist
+- [x] Confirm `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` yields `count=37` (gate-bug confirmation)
 
 ### Phase 2: Core
-- [ ] Implement content-hash freshness gate (or build-touches-dist invariant)
-- [ ] Classify stale-dist into an actionable plugin status; keep stderr sanitized
-- [ ] Add the offline smoke command/script for 37/8/9 + stale-dist health
+- [x] Implement content-hash freshness gate (or build-touches-dist invariant)
+- [x] Classify stale-dist into an actionable plugin status; keep stderr sanitized
+- [x] Add the offline smoke command/script for 37/8/9 + stale-dist health
 
 ### Phase 3: Verification
-- [ ] Plain rebuild restores freshness; mtime-only touch does not trip the gate
-- [ ] Smoke run reports 37/8/9 + stale-dist verdict with no daemon/build/scan
-- [ ] Plugin status shows actionable stale-dist with sanitized stderr
+- [x] Plain rebuild restores freshness; mtime-only touch does not trip the gate
+- [x] Smoke run reports 37/8/9 + stale-dist verdict with no daemon/build/scan
+- [x] Plugin status shows actionable stale-dist with sanitized stderr
 <!-- /ANCHOR:phases -->
 
 ---

@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
 const opencodeDir = path.resolve(__dirname, '..');
@@ -17,6 +18,7 @@ const sourceFiles = [
   path.join(mcpServerDir, 'schemas', 'tool-input-schemas.ts'),
 ];
 const cliDist = path.join(mcpServerDir, 'dist', 'spec-memory-cli.js');
+const sourceHashState = path.join(path.dirname(cliDist), '.spec-memory-cli-source-hash.json');
 const defaultSocketDir = '/tmp/mk-spec-memory';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE === '1';
@@ -26,6 +28,35 @@ function fail(message) {
   process.exit(69);
 }
 
+function hashSourceFiles(existingSources) {
+  const hash = crypto.createHash('sha256');
+  for (const filePath of [...existingSources].sort()) {
+    hash.update(path.relative(mcpServerDir, filePath));
+    hash.update('\0');
+    hash.update(fs.readFileSync(filePath));
+    hash.update('\0');
+  }
+  return hash.digest('hex');
+}
+
+function readStoredSourceHash() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(sourceHashState, 'utf8'));
+    return typeof parsed?.sourceHash === 'string' ? parsed.sourceHash : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredSourceHash(sourceHash) {
+  try {
+    fs.mkdirSync(path.dirname(sourceHashState), { recursive: true });
+    fs.writeFileSync(sourceHashState, `${JSON.stringify({ version: 1, sourceHash })}\n`);
+  } catch {
+    // Freshness metadata is an optimization; stale detection remains conservative.
+  }
+}
+
 function ensureFreshDist() {
   if (!fs.existsSync(cliDist)) {
     fail(`spec-memory dist entrypoint is missing: ${cliDist}. Run npm run build --workspace=@spec-kit/mcp-server.`);
@@ -33,11 +64,14 @@ function ensureFreshDist() {
   if (allowStale) return;
   const existingSources = sourceFiles.filter((filePath) => fs.existsSync(filePath));
   if (existingSources.length === 0) return;
+  const currentSourceHash = hashSourceFiles(existingSources);
+  if (readStoredSourceHash() === currentSourceHash) return;
   const newestSourceMtime = Math.max(...existingSources.map((filePath) => fs.statSync(filePath).mtimeMs));
   const distMtime = fs.statSync(cliDist).mtimeMs;
   if (newestSourceMtime > distMtime) {
     fail('spec-memory dist entrypoint is stale. Run npm run build --workspace=@spec-kit/mcp-server.');
   }
+  writeStoredSourceHash(currentSourceHash);
 }
 
 function ensureSocketDir() {

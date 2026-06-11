@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
 const opencodeDir = path.resolve(__dirname, '..');
@@ -17,6 +18,7 @@ const sourceFiles = [
   path.join(skillDir, 'mcp_server', 'tool-schemas.ts'),
 ];
 const cliDist = path.join(skillDir, 'mcp_server', 'dist', 'code-index-cli.js');
+const sourceHashState = path.join(path.dirname(cliDist), '.code-index-cli-source-hash.json');
 const defaultSocketDir = '/tmp/mk-code-index';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE === '1';
@@ -24,6 +26,35 @@ const allowStale = process.env.SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE === '1';
 function fail(message) {
   process.stderr.write(`${message}\n`);
   process.exit(69);
+}
+
+function hashSourceFiles(existingSources) {
+  const hash = crypto.createHash('sha256');
+  for (const filePath of [...existingSources].sort()) {
+    hash.update(path.relative(skillDir, filePath));
+    hash.update('\0');
+    hash.update(fs.readFileSync(filePath));
+    hash.update('\0');
+  }
+  return hash.digest('hex');
+}
+
+function readStoredSourceHash() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(sourceHashState, 'utf8'));
+    return typeof parsed?.sourceHash === 'string' ? parsed.sourceHash : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredSourceHash(sourceHash) {
+  try {
+    fs.mkdirSync(path.dirname(sourceHashState), { recursive: true });
+    fs.writeFileSync(sourceHashState, `${JSON.stringify({ version: 1, sourceHash })}\n`);
+  } catch {
+    // Freshness metadata is an optimization; stale detection remains conservative.
+  }
 }
 
 function ensureFreshDist() {
@@ -37,11 +68,14 @@ function ensureFreshDist() {
   if (allowStale) return;
   const existingSources = sourceFiles.filter((filePath) => fs.existsSync(filePath));
   if (existingSources.length === 0) return;
+  const currentSourceHash = hashSourceFiles(existingSources);
+  if (readStoredSourceHash() === currentSourceHash) return;
   const newestSourceMtime = Math.max(...existingSources.map((filePath) => fs.statSync(filePath).mtimeMs));
   const distMtime = fs.statSync(cliDist).mtimeMs;
   if (newestSourceMtime > distMtime) {
     fail('code-index dist entrypoint is stale. Run tsc -p .opencode/skills/system-code-graph/tsconfig.json.');
   }
+  writeStoredSourceHash(currentSourceHash);
 }
 
 function ensureSocketDir() {

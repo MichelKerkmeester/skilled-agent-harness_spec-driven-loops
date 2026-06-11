@@ -186,6 +186,32 @@ function parseStdout(stdout) {
   }
 }
 
+function classifyCliFailure(exitCode, stderr, timedOut) {
+  const staleDist = exitCode === 69 && /dist entrypoint is (stale|missing)/i.test(stderr);
+  if (staleDist) {
+    return {
+      status: 'fail_open',
+      brief: 'dist stale, rebuild required',
+      error: 'dist_stale_rebuild_required',
+      retryable: false,
+      metadata: {
+        state: 'dist_stale_rebuild_required',
+        staleDist: true,
+        rebuildRequired: true,
+        action: 'run npm run build --workspace=@spec-kit/mcp-server',
+      },
+    };
+  }
+  const retryable = exitCode === 75 || timedOut;
+  return {
+    status: retryable ? 'skipped' : 'fail_open',
+    brief: null,
+    error: timedOut ? 'timeout' : `exit_${exitCode ?? 'unknown'}`,
+    retryable,
+    metadata: {},
+  };
+}
+
 async function runCli(input) {
   const startedAt = Date.now();
   const timeoutMs = positiveInt(Number(input.timeoutMs), DEFAULT_TIMEOUT_MS);
@@ -263,19 +289,20 @@ async function runCli(input) {
         }));
         return;
       }
-      const retryable = exitCode === 75 || timedOut;
+      const failure = classifyCliFailure(exitCode, stderr, timedOut);
       resolveResult(response({
-        status: retryable ? 'skipped' : 'fail_open',
-        brief: null,
+        status: failure.status,
+        brief: failure.brief,
         data: payload,
-        error: error ?? (timedOut ? 'timeout' : `exit_${exitCode ?? 'unknown'}`),
+        error: error ?? failure.error,
         metadata: {
           route: 'cli',
           toolName,
           warm: true,
           durationMs,
           exitCode,
-          retryable,
+          retryable: failure.retryable,
+          ...failure.metadata,
           stderr: stderr ? '[stderr-present]' : null,
         },
       }));
@@ -316,4 +343,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     });
 }
 
-export { renderContinuityBrief, response, runCli, warmProbe };
+export { classifyCliFailure, renderContinuityBrief, response, runCli, warmProbe };

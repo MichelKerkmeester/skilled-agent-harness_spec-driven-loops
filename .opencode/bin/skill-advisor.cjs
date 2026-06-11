@@ -3,11 +3,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
 const opencodeDir = path.resolve(__dirname, '..');
 const mcpServerDir = path.join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp_server');
 const cliDist = path.join(mcpServerDir, 'dist', 'mcp_server', 'skill-advisor-cli.js');
+const sourceHashState = path.join(path.dirname(cliDist), '.skill-advisor-cli-source-hash.json');
 const defaultSocketDir = '/tmp/mk-skill-advisor';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1'
@@ -18,8 +20,7 @@ function fail(message) {
   process.exit(69);
 }
 
-function latestSourceMtimeMs() {
-  let latest = 0;
+function sourceCandidates() {
   const candidates = [
     path.join(mcpServerDir, 'skill-advisor-cli.ts'),
     path.join(mcpServerDir, 'skill-advisor-cli-manifest.ts'),
@@ -28,6 +29,7 @@ function latestSourceMtimeMs() {
     path.join(mcpServerDir, 'schemas', 'advisor-tool-schemas.ts'),
     path.join(mcpServerDir, 'tools'),
   ];
+  const files = [];
 
   const visit = (candidate) => {
     if (!fs.existsSync(candidate)) return;
@@ -39,12 +41,41 @@ function latestSourceMtimeMs() {
       return;
     }
     if (candidate.endsWith('.ts') || candidate.endsWith('.json')) {
-      latest = Math.max(latest, stat.mtimeMs);
+      files.push(candidate);
     }
   };
 
   for (const candidate of candidates) visit(candidate);
-  return latest;
+  return files;
+}
+
+function hashSourceFiles(existingSources) {
+  const hash = crypto.createHash('sha256');
+  for (const filePath of [...existingSources].sort()) {
+    hash.update(path.relative(mcpServerDir, filePath));
+    hash.update('\0');
+    hash.update(fs.readFileSync(filePath));
+    hash.update('\0');
+  }
+  return hash.digest('hex');
+}
+
+function readStoredSourceHash() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(sourceHashState, 'utf8'));
+    return typeof parsed?.sourceHash === 'string' ? parsed.sourceHash : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredSourceHash(sourceHash) {
+  try {
+    fs.mkdirSync(path.dirname(sourceHashState), { recursive: true });
+    fs.writeFileSync(sourceHashState, `${JSON.stringify({ version: 1, sourceHash })}\n`);
+  } catch {
+    // Freshness metadata is an optimization; stale detection remains conservative.
+  }
 }
 
 function ensureFreshDist() {
@@ -52,11 +83,16 @@ function ensureFreshDist() {
     fail(`skill-advisor dist entrypoint is missing: ${cliDist}. Run the skill-advisor TypeScript build.`);
   }
   if (allowStale) return;
-  const sourceMtime = latestSourceMtimeMs();
+  const sources = sourceCandidates();
+  if (sources.length === 0) return;
+  const currentSourceHash = hashSourceFiles(sources);
+  if (readStoredSourceHash() === currentSourceHash) return;
+  const sourceMtime = Math.max(...sources.map((filePath) => fs.statSync(filePath).mtimeMs));
   const distMtime = fs.statSync(cliDist).mtimeMs;
   if (sourceMtime > distMtime) {
     fail('skill-advisor dist entrypoint is stale. Run the skill-advisor TypeScript build.');
   }
+  writeStoredSourceHash(currentSourceHash);
 }
 
 function ensureSocketDir() {
