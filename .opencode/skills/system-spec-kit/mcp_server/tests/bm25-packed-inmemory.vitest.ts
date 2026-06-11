@@ -129,19 +129,7 @@ describe('packed in-memory BM25 engine', () => {
 
     expect(index.getStats().documentCount).toBe(10_245);
     expect(index.getStats().termCount).toBeGreaterThan(100);
-    // RSS-spike check is advisory: the realistic-corpus warmup spike exceeds the budget
-    // from transient tokenizer/warmup allocation churn, while retained heap stays within
-    // budget. Opt in to the hard gate via SPECKIT_BM25_RSS_GATE once the churn is addressed.
-    if (rssSpike > RSS_BUDGET_BYTES) {
-      console.warn(
-        `[bm25-packed] RSS spike ${(rssSpike / (1024 * 1024)).toFixed(1)}MB exceeds the ` +
-        `${(RSS_BUDGET_BYTES / (1024 * 1024)).toFixed(0)}MB budget (transient warmup churn; ` +
-        `retained heap within budget) — contingency decision pending.`
-      );
-    }
-    if (process.env.SPECKIT_BM25_RSS_GATE === '1') {
-      expect(rssSpike).toBeLessThanOrEqual(RSS_BUDGET_BYTES);
-    }
+    expect(rssSpike).toBeLessThanOrEqual(RSS_BUDGET_BYTES);
     expect(warmupMs).toBeLessThanOrEqual(WARMUP_BUDGET_MS);
   });
 

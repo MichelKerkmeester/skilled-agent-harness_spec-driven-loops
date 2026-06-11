@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/017-bm25-warmup-churn-reduction",
+  "description": "Feature Specification: BM25 Warmup Churn Reduction",
+  "keywords": [
+    "feature",
+    "specification",
+    "bm25",
+    "warmup",
+    "churn",
+    "reduction"
+  ],
+  "lastUpdated": "2026-06-11T05:33:36.388Z",
+  "specId": "017",
+  "folderSlug": "bm25-warmup-churn-reduction",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

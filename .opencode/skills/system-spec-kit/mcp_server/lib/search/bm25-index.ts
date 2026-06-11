@@ -48,6 +48,16 @@ interface BM25DocumentSource {
 const DEFAULT_K1 = 1.2;
 const DEFAULT_B = 0.75;
 const BM25_WARMUP_BATCH_SIZE = 250;
+const PACKED_POSTING_CHUNK_SIZE = 128;
+const PACKED_POSTING_FIELD_WIDTH = 4;
+const PACKED_POSTING_MAX_BYTE_TF = 0xff;
+const PACKED_POSTING_MAX_NARROW_TF = 0xffff;
+const PACKED_POSTING_MAX_NARROW_DOC_ID = 0xffff;
+const PACKED_POSTING_MAX_NARROW_TERM_ID = 0xffff;
+const PACKED_POSTING_TITLE_OFFSET = 0;
+const PACKED_POSTING_TRIGGER_OFFSET = 1;
+const PACKED_POSTING_PATH_OFFSET = 2;
+const PACKED_POSTING_BODY_OFFSET = 3;
 const BM25_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'experimental', 'fallback']);
 const BM25_DISABLED_VALUES = new Set(['0', 'false', 'no', 'off']);
 const BM25_ENGINE_VALUES = ['auto', 'sqlite', 'packed-inmemory', 'legacy-inmemory'] as const;
@@ -99,35 +109,36 @@ interface LegacyDocumentRecord {
   termFreq: Map<string, number>;
 }
 
-interface PackedTermFrequency {
-  total: number;
-  fields: Record<BM25FieldName, number>;
-}
-
 interface PackedDocumentRecord {
   numericId: number;
   id: string;
   length: number;
-  terms: string[];
+  termIds: Uint16Array | Uint32Array;
 }
 
-interface PackedPostingMutable {
-  docIds: number[];
-  totalTfs: number[];
-  titleTfs: number[];
-  triggerTfs: number[];
-  pathTfs: number[];
-  bodyTfs: number[];
+type PackedFieldTfWidth = 1 | 2 | 4;
+
+interface PackedPostingStore {
+  docIdChunks: Array<Uint16Array | Uint32Array>;
+  fieldTfChunks: Array<Uint8Array | Uint16Array | Uint32Array>;
+  length: number;
+  sorted: boolean;
+  wideDocIds: boolean;
+  fieldTfWidth: PackedFieldTfWidth;
 }
 
-interface PackedPostingList {
-  docIds: Uint32Array;
-  totalTfs: Uint32Array;
-  titleTfs: Uint32Array;
-  triggerTfs: Uint32Array;
-  pathTfs: Uint32Array;
-  bodyTfs: Uint32Array;
+type PackedPostingMutable = PackedPostingStore;
+type PackedPostingList = PackedPostingStore;
+
+interface PackedPostingEntry {
+  docId: number;
+  titleTf: number;
+  triggerTf: number;
+  pathTf: number;
+  bodyTf: number;
 }
+
+type Bm25TokenInterns = Map<number, string[]>;
 
 /**
  * Check whether the in-memory BM25 index is enabled.
@@ -170,31 +181,163 @@ function getTermFrequencies(tokens: string[]): Map<string, number> {
   return freq;
 }
 
-function visitBm25Tokens(text: string, visitor: (token: string) => void): void {
+function stemNormalizedToken(word: string): string {
+  let stem = word;
+  let suffixRemoved = false;
+
+  if (stem.endsWith('ing') && stem.length > 5) { stem = stem.slice(0, -3); suffixRemoved = true; }
+  else if (stem.endsWith('tion') && stem.length > 6) { stem = stem.slice(0, -4); suffixRemoved = true; }
+  else if (stem.endsWith('ed') && stem.length > 4) { stem = stem.slice(0, -2); suffixRemoved = true; }
+  else if (stem.endsWith('ly') && stem.length > 4) { stem = stem.slice(0, -2); suffixRemoved = true; }
+  else if (stem.endsWith('es') && stem.length > 4) { stem = stem.slice(0, -2); suffixRemoved = true; }
+  else if (stem.endsWith('s') && stem.length > 3) { stem = stem.slice(0, -1); suffixRemoved = true; }
+
+  if (suffixRemoved && stem.length >= 3) {
+    const last = stem[stem.length - 1];
+    if (last === stem[stem.length - 2] && !/[aeiou]/.test(last)) {
+      stem = stem.slice(0, -1);
+    }
+  }
+
+  return stem;
+}
+
+function bm25ContentNeedsNormalization(content: string): boolean {
+  return (
+    content.trim() !== content ||
+    content.startsWith('---') ||
+    content.includes('<!--') ||
+    content.includes('```') ||
+    content.includes('|') ||
+    /(?:^|\n)\s*(?:[-*]\s+|\d+\.\s+|#{1,6}\s+)/.test(content) ||
+    /\n{3,}/.test(content)
+  );
+}
+
+function normalizeContentForBM25IfNeeded(content: string): string {
+  return bm25ContentNeedsNormalization(content) ? normalizeContentForBM25(content) : content;
+}
+
+function hashBm25TokenSpan(text: string, start: number, end: number): number {
+  let hash = 2166136261;
+  for (let i = start; i < end; i += 1) {
+    let code = text.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      code += 32;
+    }
+    hash ^= code;
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function equalsBm25TokenSpan(candidate: string, text: string, start: number, end: number): boolean {
+  if (candidate.length !== end - start) {
+    return false;
+  }
+
+  for (let i = start; i < end; i += 1) {
+    let code = text.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      code += 32;
+    }
+    if (candidate.charCodeAt(i - start) !== code) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function internBm25Token(
+  text: string,
+  start: number,
+  end: number,
+  hasUppercase: boolean,
+  interns?: Bm25TokenInterns
+): string {
+  if (!interns) {
+    return hasUppercase ? text.slice(start, end).toLowerCase() : text.slice(start, end);
+  }
+
+  const hash = hashBm25TokenSpan(text, start, end);
+  const bucket = interns.get(hash);
+  if (bucket) {
+    for (const candidate of bucket) {
+      if (equalsBm25TokenSpan(candidate, text, start, end)) {
+        return candidate;
+      }
+    }
+  }
+
+  const token = hasUppercase ? text.slice(start, end).toLowerCase() : text.slice(start, end);
+  if (bucket) {
+    bucket.push(token);
+  } else {
+    interns.set(hash, [token]);
+  }
+  return token;
+}
+
+function visitBm25Tokens(text: string, visitor: (token: string) => void, interns?: Bm25TokenInterns): void {
   if (!text || typeof text !== 'string') return;
 
-  let token = '';
-  const flush = () => {
-    if (token.length >= 2 && !STOP_WORDS.has(token)) {
-      visitor(simpleStem(token));
+  let tokenStart = -1;
+  let hasUppercase = false;
+  const flush = (tokenEnd: number) => {
+    if (tokenStart < 0) return;
+    if (tokenEnd - tokenStart >= 2) {
+      const token = internBm25Token(text, tokenStart, tokenEnd, hasUppercase, interns);
+      if (!STOP_WORDS.has(token)) {
+        visitor(stemNormalizedToken(token));
+      }
     }
-    token = '';
+    tokenStart = -1;
+    hasUppercase = false;
   };
 
   for (let i = 0; i < text.length; i += 1) {
     const code = text.charCodeAt(i);
     if (code >= 65 && code <= 90) {
-      token += String.fromCharCode(code + 32);
+      if (tokenStart < 0) tokenStart = i;
+      hasUppercase = true;
     } else if ((code >= 97 && code <= 122) || (code >= 48 && code <= 57) || code === 45 || code === 95) {
-      token += text[i];
-    } else if (token.length > 0) {
-      flush();
+      if (tokenStart < 0) tokenStart = i;
+    } else if (tokenStart >= 0) {
+      flush(i);
     }
   }
 
-  if (token.length > 0) {
-    flush();
+  flush(text.length);
+}
+
+function visitBm25FieldValue(
+  value: BM25DocumentFields[BM25FieldName],
+  visitor: (token: string) => void,
+  interns?: Bm25TokenInterns
+): void {
+  if (Array.isArray(value)) {
+    for (const entry of value) {
+      visitBm25Tokens(entry, visitor, interns);
+    }
+    return;
   }
+
+  visitBm25Tokens(value ?? '', visitor, interns);
+}
+
+function hasBm25DocumentText(fields: BM25DocumentFields): boolean {
+  for (const fieldName of BM25_FIELD_NAMES) {
+    const value = fields[fieldName];
+    if (Array.isArray(value)) {
+      if (value.some((entry) => typeof entry === 'string' && entry.trim().length > 0)) {
+        return true;
+      }
+    } else if (typeof value === 'string' && value.trim().length > 0) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function normalizeTriggerPhrasesForBM25(triggerPhrases: string | string[] | null | undefined): string {
@@ -225,18 +368,6 @@ function normalizeTriggerPhrasesForBM25(triggerPhrases: string | string[] | null
   }
 
   return trimmed;
-}
-
-function defaultPackedTermFrequency(): PackedTermFrequency {
-  return {
-    total: 0,
-    fields: {
-      title: 0,
-      trigger_phrases: 0,
-      content_generic: 0,
-      body: 0,
-    },
-  };
 }
 
 function resolveBm25FieldWeights(overrides: Partial<BM25FieldWeights> = {}): BM25FieldWeights {
@@ -282,7 +413,7 @@ function buildBm25DocumentFields(row: BM25DocumentSource): BM25DocumentFields {
   return {
     title: typeof row.title === 'string' && row.title.trim() ? row.title.trim() : '',
     body: typeof row.content_text === 'string' && row.content_text.trim()
-      ? normalizeContentForBM25(row.content_text)
+      ? normalizeContentForBM25IfNeeded(row.content_text)
       : '',
     trigger_phrases: normalizeTriggerPhrasesForBM25(row.trigger_phrases),
     content_generic: typeof row.file_path === 'string' && row.file_path.trim() ? row.file_path.trim() : '',
@@ -297,7 +428,7 @@ function buildBm25DocumentText(row: BM25DocumentSource): string {
   }
 
   if (typeof row.content_text === 'string' && row.content_text.trim()) {
-    textParts.push(normalizeContentForBM25(row.content_text));
+    textParts.push(normalizeContentForBM25IfNeeded(row.content_text));
   }
 
   const triggerPhrases = normalizeTriggerPhrasesForBM25(row.trigger_phrases);
@@ -327,6 +458,16 @@ class BM25Index {
   private packedMutablePostings: Map<string, PackedPostingMutable>;
   private packedPostings: Map<string, PackedPostingList>;
   private packedDirtyTerms: Set<string>;
+  private packedTokenInterns: Bm25TokenInterns;
+  private packedTermIdsByToken: Map<string, number>;
+  private packedTermsById: string[];
+  private packedScratchPositions: Int32Array;
+  private packedScratchTermIds: number[];
+  private packedScratchTotalTfs: number[];
+  private packedScratchTitleTfs: number[];
+  private packedScratchTriggerTfs: number[];
+  private packedScratchPathTfs: number[];
+  private packedScratchBodyTfs: number[];
   private documentFreq: Map<string, number>;
   private totalDocLength: number;
   private warmupHandle: ReturnType<typeof setTimeout> | null;
@@ -347,6 +488,17 @@ class BM25Index {
     this.packedMutablePostings = new Map();
     this.packedPostings = new Map();
     this.packedDirtyTerms = new Set();
+    this.packedTokenInterns = new Map();
+    this.packedTermIdsByToken = new Map();
+    this.packedTermsById = [];
+    this.packedScratchPositions = new Int32Array(16_384);
+    this.packedScratchPositions.fill(-1);
+    this.packedScratchTermIds = [];
+    this.packedScratchTotalTfs = [];
+    this.packedScratchTitleTfs = [];
+    this.packedScratchTriggerTfs = [];
+    this.packedScratchPathTfs = [];
+    this.packedScratchBodyTfs = [];
     this.documentFreq = new Map();
     this.totalDocLength = 0;
     this.warmupHandle = null;
@@ -385,21 +537,41 @@ class BM25Index {
       this.removeDocument(id);
     }
 
-    const termFreq = this.getPackedTermFrequencies(fields);
-    const length = Array.from(termFreq.values()).reduce((sum, freq) => sum + freq.total, 0);
-    if (length === 0) {
-      return;
-    }
+    this.collectPackedTermFrequencies(fields);
+    try {
+      let length = 0;
+      for (const totalTf of this.packedScratchTotalTfs) {
+        length += totalTf;
+      }
+      if (length === 0) {
+        return;
+      }
 
-    const numericId = this.getPackedNumericId(id);
-    this.packedDocuments.set(id, { numericId, id, length, terms: Array.from(termFreq.keys()) });
-    this.totalDocLength += length;
+      const numericId = this.getPackedNumericId(id);
+      this.packedDocuments.set(id, {
+        numericId,
+        id,
+        length,
+        termIds: this.createPackedDocumentTermIds(),
+      });
+      this.totalDocLength += length;
 
-    for (const [term, frequency] of termFreq) {
-      const postings = this.ensurePackedMutablePostings(term);
-      this.setPackedMutablePosting(postings, numericId, frequency);
-      this.packedDirtyTerms.add(term);
-      this.documentFreq.set(term, (this.documentFreq.get(term) || 0) + 1);
+      for (let i = 0; i < this.packedScratchTermIds.length; i += 1) {
+        const term = this.packedTermsById[this.packedScratchTermIds[i]];
+        const postings = this.ensurePackedMutablePostings(term);
+        this.setPackedMutablePosting(
+          postings,
+          numericId,
+          this.packedScratchTitleTfs[i],
+          this.packedScratchTriggerTfs[i],
+          this.packedScratchPathTfs[i],
+          this.packedScratchBodyTfs[i]
+        );
+        this.packedDirtyTerms.add(term);
+        this.documentFreq.set(term, (this.documentFreq.get(term) || 0) + 1);
+      }
+    } finally {
+      this.clearPackedFrequencyScratch();
     }
   }
 
@@ -497,6 +669,11 @@ class BM25Index {
     this.packedMutablePostings.clear();
     this.packedPostings.clear();
     this.packedDirtyTerms.clear();
+    this.packedTokenInterns.clear();
+    this.packedTermIdsByToken.clear();
+    this.packedTermsById = [];
+    this.packedScratchPositions.fill(-1);
+    this.clearPackedFrequencyScratch();
     this.documentFreq.clear();
     this.totalDocLength = 0;
   }
@@ -561,7 +738,7 @@ class BM25Index {
         }
 
         const fields = buildBm25DocumentFields(row);
-        if (this.joinDocumentFields(fields).trim()) {
+        if (hasBm25DocumentText(fields)) {
           this.addDocumentFields(String(row.id), fields);
         } else {
           this.removeDocument(String(row.id));
@@ -673,24 +850,86 @@ class BM25Index {
     return numericId;
   }
 
-  private getPackedTermFrequencies(fields: BM25DocumentFields): Map<string, PackedTermFrequency> {
-    const termFreq = new Map<string, PackedTermFrequency>();
-
+  private collectPackedTermFrequencies(fields: BM25DocumentFields): void {
     for (const fieldName of BM25_FIELD_NAMES) {
-      const rawValue = fields[fieldName];
-      const text = Array.isArray(rawValue) ? rawValue.join(' ') : (rawValue ?? '');
-      visitBm25Tokens(text, (token) => {
-        let frequency = termFreq.get(token);
-        if (!frequency) {
-          frequency = defaultPackedTermFrequency();
-          termFreq.set(token, frequency);
-        }
-        frequency.total += 1;
-        frequency.fields[fieldName] += 1;
-      });
+      visitBm25FieldValue(
+        fields[fieldName],
+        (token) => this.recordPackedTokenFrequency(token, fieldName),
+        this.packedTokenInterns
+      );
+    }
+  }
+
+  private recordPackedTokenFrequency(token: string, fieldName: BM25FieldName): void {
+    const termId = this.getPackedTermId(token);
+    let scratchIndex = this.packedScratchPositions[termId];
+    if (scratchIndex < 0) {
+      scratchIndex = this.packedScratchTermIds.length;
+      this.packedScratchPositions[termId] = scratchIndex;
+      this.packedScratchTermIds.push(termId);
+      this.packedScratchTotalTfs.push(0);
+      this.packedScratchTitleTfs.push(0);
+      this.packedScratchTriggerTfs.push(0);
+      this.packedScratchPathTfs.push(0);
+      this.packedScratchBodyTfs.push(0);
     }
 
-    return termFreq;
+    this.packedScratchTotalTfs[scratchIndex] += 1;
+    if (fieldName === 'title') this.packedScratchTitleTfs[scratchIndex] += 1;
+    else if (fieldName === 'trigger_phrases') this.packedScratchTriggerTfs[scratchIndex] += 1;
+    else if (fieldName === 'content_generic') this.packedScratchPathTfs[scratchIndex] += 1;
+    else this.packedScratchBodyTfs[scratchIndex] += 1;
+  }
+
+  private getPackedTermId(token: string): number {
+    const existing = this.packedTermIdsByToken.get(token);
+    if (existing !== undefined) {
+      return existing;
+    }
+
+    const termId = this.packedTermsById.length;
+    this.packedTermIdsByToken.set(token, termId);
+    this.packedTermsById.push(token);
+    this.ensurePackedScratchPositionCapacity(termId + 1);
+    return termId;
+  }
+
+  private ensurePackedScratchPositionCapacity(minimum: number): void {
+    if (this.packedScratchPositions.length >= minimum) {
+      return;
+    }
+
+    let capacity = this.packedScratchPositions.length;
+    while (capacity < minimum) {
+      capacity *= 2;
+    }
+
+    const next = new Int32Array(capacity);
+    next.fill(-1);
+    next.set(this.packedScratchPositions);
+    this.packedScratchPositions = next;
+  }
+
+  private clearPackedFrequencyScratch(): void {
+    for (const termId of this.packedScratchTermIds) {
+      this.packedScratchPositions[termId] = -1;
+    }
+    this.packedScratchTermIds.length = 0;
+    this.packedScratchTotalTfs.length = 0;
+    this.packedScratchTitleTfs.length = 0;
+    this.packedScratchTriggerTfs.length = 0;
+    this.packedScratchPathTfs.length = 0;
+    this.packedScratchBodyTfs.length = 0;
+  }
+
+  private createPackedDocumentTermIds(): Uint16Array | Uint32Array {
+    for (const termId of this.packedScratchTermIds) {
+      if (termId > PACKED_POSTING_MAX_NARROW_TERM_ID) {
+        return Uint32Array.from(this.packedScratchTermIds);
+      }
+    }
+
+    return Uint16Array.from(this.packedScratchTermIds);
   }
 
   private removePackedDocument(id: string): boolean {
@@ -699,7 +938,8 @@ class BM25Index {
 
     this.totalDocLength -= doc.length;
 
-    for (const term of doc.terms) {
+    for (const termId of doc.termIds) {
+      const term = this.packedTermsById[termId];
       const postings = this.ensurePackedMutablePostings(term);
       this.deletePackedMutablePosting(postings, doc.numericId);
       this.packedDirtyTerms.add(term);
@@ -724,28 +964,17 @@ class BM25Index {
     }
 
     const mutable = this.packedMutablePostings.get(term);
-    if (!mutable || mutable.docIds.length === 0) {
+    if (!mutable || mutable.length === 0) {
       this.packedDirtyTerms.delete(term);
       this.packedPostings.delete(term);
       return undefined;
     }
 
     this.sortPackedMutablePosting(mutable);
-
-    const packed: PackedPostingList = {
-      docIds: Uint32Array.from(mutable.docIds),
-      totalTfs: Uint32Array.from(mutable.totalTfs),
-      titleTfs: Uint32Array.from(mutable.titleTfs),
-      triggerTfs: Uint32Array.from(mutable.triggerTfs),
-      pathTfs: Uint32Array.from(mutable.pathTfs),
-      bodyTfs: Uint32Array.from(mutable.bodyTfs),
-    };
-    this.packedPostings.set(term, packed);
-    // Free the mutable copy once packed; ensurePackedMutablePostings rehydrates
-    // from the typed arrays on the next mutation, so keeping it only costs RAM.
+    this.packedPostings.set(term, mutable);
     this.packedMutablePostings.delete(term);
     this.packedDirtyTerms.delete(term);
-    return packed;
+    return mutable;
   }
 
   private ensurePackedMutablePostings(term: string): PackedPostingMutable {
@@ -754,76 +983,287 @@ class BM25Index {
       return existing;
     }
 
-    const hydrated: PackedPostingMutable = {
-      docIds: [],
-      totalTfs: [],
-      titleTfs: [],
-      triggerTfs: [],
-      pathTfs: [],
-      bodyTfs: [],
-    };
     const packed = this.packedPostings.get(term);
     if (packed) {
-      for (let i = 0; i < packed.docIds.length; i += 1) {
-        hydrated.docIds.push(packed.docIds[i]);
-        hydrated.totalTfs.push(packed.totalTfs[i]);
-        hydrated.titleTfs.push(packed.titleTfs[i]);
-        hydrated.triggerTfs.push(packed.triggerTfs[i]);
-        hydrated.pathTfs.push(packed.pathTfs[i]);
-        hydrated.bodyTfs.push(packed.bodyTfs[i]);
-      }
+      this.packedPostings.delete(term);
+      this.packedMutablePostings.set(term, packed);
+      return packed;
     }
 
+    const hydrated = this.createPackedMutablePosting();
     this.packedMutablePostings.set(term, hydrated);
     return hydrated;
+  }
+
+  private createPackedMutablePosting(): PackedPostingMutable {
+    return {
+      docIdChunks: [],
+      fieldTfChunks: [],
+      length: 0,
+      sorted: true,
+      wideDocIds: false,
+      fieldTfWidth: 1,
+    };
+  }
+
+  private ensurePackedDocIdChunk(
+    postings: PackedPostingMutable,
+    index: number
+  ): Uint16Array | Uint32Array {
+    const chunkIndex = Math.floor(index / PACKED_POSTING_CHUNK_SIZE);
+    let chunk = postings.docIdChunks[chunkIndex];
+    if (!chunk) {
+      chunk = postings.wideDocIds
+        ? new Uint32Array(PACKED_POSTING_CHUNK_SIZE)
+        : new Uint16Array(PACKED_POSTING_CHUNK_SIZE);
+      postings.docIdChunks[chunkIndex] = chunk;
+    }
+    return chunk;
+  }
+
+  private ensurePackedFieldTfChunk(
+    postings: PackedPostingMutable,
+    index: number
+  ): Uint8Array | Uint16Array | Uint32Array {
+    const chunkIndex = Math.floor(index / PACKED_POSTING_CHUNK_SIZE);
+    let chunk = postings.fieldTfChunks[chunkIndex];
+    if (!chunk) {
+      const length = PACKED_POSTING_CHUNK_SIZE * PACKED_POSTING_FIELD_WIDTH;
+      chunk = this.createPackedFieldTfChunk(length, postings.fieldTfWidth);
+      postings.fieldTfChunks[chunkIndex] = chunk;
+    }
+    return chunk;
+  }
+
+  private createPackedFieldTfChunk(
+    length: number,
+    width: PackedFieldTfWidth
+  ): Uint8Array | Uint16Array | Uint32Array {
+    if (width === 1) return new Uint8Array(length);
+    if (width === 2) return new Uint16Array(length);
+    return new Uint32Array(length);
+  }
+
+  private requiredPackedFieldTfWidth(
+    titleTf: number,
+    triggerTf: number,
+    pathTf: number,
+    bodyTf: number
+  ): PackedFieldTfWidth {
+    if (
+      titleTf > PACKED_POSTING_MAX_NARROW_TF ||
+      triggerTf > PACKED_POSTING_MAX_NARROW_TF ||
+      pathTf > PACKED_POSTING_MAX_NARROW_TF ||
+      bodyTf > PACKED_POSTING_MAX_NARROW_TF
+    ) {
+      return 4;
+    }
+
+    if (
+      titleTf > PACKED_POSTING_MAX_BYTE_TF ||
+      triggerTf > PACKED_POSTING_MAX_BYTE_TF ||
+      pathTf > PACKED_POSTING_MAX_BYTE_TF ||
+      bodyTf > PACKED_POSTING_MAX_BYTE_TF
+    ) {
+      return 2;
+    }
+
+    return 1;
+  }
+
+  private ensurePackedDocIdWidth(postings: PackedPostingMutable, docId: number): void {
+    if (postings.wideDocIds || docId <= PACKED_POSTING_MAX_NARROW_DOC_ID) {
+      return;
+    }
+
+    for (let i = 0; i < postings.docIdChunks.length; i += 1) {
+      const chunk = postings.docIdChunks[i];
+      if (!chunk) continue;
+      const widened = new Uint32Array(chunk.length);
+      widened.set(chunk);
+      postings.docIdChunks[i] = widened;
+    }
+    postings.wideDocIds = true;
+  }
+
+  private ensurePackedFieldTfWidth(
+    postings: PackedPostingMutable,
+    titleTf: number,
+    triggerTf: number,
+    pathTf: number,
+    bodyTf: number
+  ): void {
+    const requiredWidth = this.requiredPackedFieldTfWidth(
+      titleTf,
+      triggerTf,
+      pathTf,
+      bodyTf
+    );
+    if (postings.fieldTfWidth >= requiredWidth) {
+      return;
+    }
+
+    for (let i = 0; i < postings.fieldTfChunks.length; i += 1) {
+      const chunk = postings.fieldTfChunks[i];
+      if (!chunk) continue;
+      const widened = this.createPackedFieldTfChunk(chunk.length, requiredWidth);
+      widened.set(chunk);
+      postings.fieldTfChunks[i] = widened;
+    }
+    postings.fieldTfWidth = requiredWidth;
+  }
+
+  private getPackedPostingDocId(postings: PackedPostingList, index: number): number {
+    const chunk = postings.docIdChunks[Math.floor(index / PACKED_POSTING_CHUNK_SIZE)];
+    return chunk[index % PACKED_POSTING_CHUNK_SIZE];
+  }
+
+  private getPackedPostingFieldTf(
+    postings: PackedPostingList,
+    index: number,
+    fieldOffset: number
+  ): number {
+    const chunk = postings.fieldTfChunks[Math.floor(index / PACKED_POSTING_CHUNK_SIZE)];
+    const offset = (index % PACKED_POSTING_CHUNK_SIZE) * PACKED_POSTING_FIELD_WIDTH +
+      fieldOffset;
+    return chunk[offset];
+  }
+
+  private getPackedMutableEntry(
+    postings: PackedPostingMutable,
+    index: number
+  ): PackedPostingEntry {
+    const docIdChunk = postings.docIdChunks[Math.floor(index / PACKED_POSTING_CHUNK_SIZE)];
+    const fieldTfChunk = postings.fieldTfChunks[Math.floor(index / PACKED_POSTING_CHUNK_SIZE)];
+    const docOffset = index % PACKED_POSTING_CHUNK_SIZE;
+    const fieldOffset = docOffset * PACKED_POSTING_FIELD_WIDTH;
+    return {
+      docId: docIdChunk[docOffset],
+      titleTf: fieldTfChunk[fieldOffset + PACKED_POSTING_TITLE_OFFSET],
+      triggerTf: fieldTfChunk[fieldOffset + PACKED_POSTING_TRIGGER_OFFSET],
+      pathTf: fieldTfChunk[fieldOffset + PACKED_POSTING_PATH_OFFSET],
+      bodyTf: fieldTfChunk[fieldOffset + PACKED_POSTING_BODY_OFFSET],
+    };
+  }
+
+  private setPackedMutableEntry(
+    postings: PackedPostingMutable,
+    index: number,
+    entry: PackedPostingEntry
+  ): void {
+    this.ensurePackedDocIdWidth(postings, entry.docId);
+    this.ensurePackedFieldTfWidth(
+      postings,
+      entry.titleTf,
+      entry.triggerTf,
+      entry.pathTf,
+      entry.bodyTf
+    );
+    const docIdChunk = this.ensurePackedDocIdChunk(postings, index);
+    const fieldTfChunk = this.ensurePackedFieldTfChunk(postings, index);
+    const docOffset = index % PACKED_POSTING_CHUNK_SIZE;
+    const fieldOffset = docOffset * PACKED_POSTING_FIELD_WIDTH;
+    docIdChunk[docOffset] = entry.docId;
+    fieldTfChunk[fieldOffset + PACKED_POSTING_TITLE_OFFSET] = entry.titleTf;
+    fieldTfChunk[fieldOffset + PACKED_POSTING_TRIGGER_OFFSET] = entry.triggerTf;
+    fieldTfChunk[fieldOffset + PACKED_POSTING_PATH_OFFSET] = entry.pathTf;
+    fieldTfChunk[fieldOffset + PACKED_POSTING_BODY_OFFSET] = entry.bodyTf;
+  }
+
+  private appendPackedMutableEntry(
+    postings: PackedPostingMutable,
+    entry: PackedPostingEntry
+  ): void {
+    const lastDocId = postings.length > 0
+      ? this.getPackedPostingDocId(postings, postings.length - 1)
+      : -1;
+    if (lastDocId > entry.docId) {
+      postings.sorted = false;
+    }
+    this.setPackedMutableEntry(postings, postings.length, entry);
+    postings.length += 1;
   }
 
   private setPackedMutablePosting(
     postings: PackedPostingMutable,
     numericId: number,
-    frequency: PackedTermFrequency
+    titleTf: number,
+    triggerTf: number,
+    pathTf: number,
+    bodyTf: number
   ): void {
-    const existingIndex = postings.docIds.indexOf(numericId);
+    let existingIndex = -1;
+    for (let i = 0; i < postings.length; i += 1) {
+      if (this.getPackedPostingDocId(postings, i) === numericId) {
+        existingIndex = i;
+        break;
+      }
+    }
     if (existingIndex >= 0) {
-      postings.totalTfs[existingIndex] = frequency.total;
-      postings.titleTfs[existingIndex] = frequency.fields.title;
-      postings.triggerTfs[existingIndex] = frequency.fields.trigger_phrases;
-      postings.pathTfs[existingIndex] = frequency.fields.content_generic;
-      postings.bodyTfs[existingIndex] = frequency.fields.body;
+      this.setPackedMutableEntry(postings, existingIndex, {
+        docId: numericId,
+        titleTf,
+        triggerTf,
+        pathTf,
+        bodyTf,
+      });
       return;
     }
 
-    postings.docIds.push(numericId);
-    postings.totalTfs.push(frequency.total);
-    postings.titleTfs.push(frequency.fields.title);
-    postings.triggerTfs.push(frequency.fields.trigger_phrases);
-    postings.pathTfs.push(frequency.fields.content_generic);
-    postings.bodyTfs.push(frequency.fields.body);
+    this.appendPackedMutableEntry(postings, {
+      docId: numericId,
+      titleTf,
+      triggerTf,
+      pathTf,
+      bodyTf,
+    });
   }
 
   private deletePackedMutablePosting(postings: PackedPostingMutable, numericId: number): void {
-    const index = postings.docIds.indexOf(numericId);
+    let index = -1;
+    for (let i = 0; i < postings.length; i += 1) {
+      if (this.getPackedPostingDocId(postings, i) === numericId) {
+        index = i;
+        break;
+      }
+    }
     if (index < 0) {
       return;
     }
-    postings.docIds.splice(index, 1);
-    postings.totalTfs.splice(index, 1);
-    postings.titleTfs.splice(index, 1);
-    postings.triggerTfs.splice(index, 1);
-    postings.pathTfs.splice(index, 1);
-    postings.bodyTfs.splice(index, 1);
+    if (index < postings.length - 1) {
+      for (let i = index + 1; i < postings.length; i += 1) {
+        this.setPackedMutableEntry(
+          postings,
+          i - 1,
+          this.getPackedMutableEntry(postings, i)
+        );
+      }
+    }
+    postings.length -= 1;
   }
 
   private sortPackedMutablePosting(postings: PackedPostingMutable): void {
-    const order = postings.docIds.map((docId, index) => ({ docId, index }));
-    order.sort((a, b) => a.docId - b.docId);
+    if (postings.sorted) {
+      return;
+    }
 
-    postings.docIds = order.map((entry) => entry.docId);
-    postings.totalTfs = order.map((entry) => postings.totalTfs[entry.index]);
-    postings.titleTfs = order.map((entry) => postings.titleTfs[entry.index]);
-    postings.triggerTfs = order.map((entry) => postings.triggerTfs[entry.index]);
-    postings.pathTfs = order.map((entry) => postings.pathTfs[entry.index]);
-    postings.bodyTfs = order.map((entry) => postings.bodyTfs[entry.index]);
+    for (let i = 1; i < postings.length; i += 1) {
+      const entry = this.getPackedMutableEntry(postings, i);
+      let j = i - 1;
+
+      while (j >= 0 && this.getPackedPostingDocId(postings, j) > entry.docId) {
+        this.setPackedMutableEntry(
+          postings,
+          j + 1,
+          this.getPackedMutableEntry(postings, j)
+        );
+        j -= 1;
+      }
+
+      this.setPackedMutableEntry(postings, j + 1, entry);
+    }
+
+    postings.sorted = true;
   }
 
   private calculatePackedScore(
@@ -868,8 +1308,8 @@ class BM25Index {
       if (!postings) continue;
 
       const idf = this.calculateIdf(term);
-      for (let i = 0; i < postings.docIds.length; i += 1) {
-        const numericId = postings.docIds[i];
+      for (let i = 0; i < postings.length; i += 1) {
+        const numericId = this.getPackedPostingDocId(postings, i);
         const id = this.packedDocIds[numericId];
         if (!id) continue;
         const doc = this.packedDocuments.get(id);
@@ -895,20 +1335,25 @@ class BM25Index {
     index: number,
     weights: BM25FieldWeights
   ): number {
+    const titleTf = this.getPackedPostingFieldTf(postings, index, PACKED_POSTING_TITLE_OFFSET);
+    const triggerTf = this.getPackedPostingFieldTf(postings, index, PACKED_POSTING_TRIGGER_OFFSET);
+    const pathTf = this.getPackedPostingFieldTf(postings, index, PACKED_POSTING_PATH_OFFSET);
+    const bodyTf = this.getPackedPostingFieldTf(postings, index, PACKED_POSTING_BODY_OFFSET);
+
     return (
-      postings.titleTfs[index] * weights.title +
-      postings.triggerTfs[index] * weights.trigger_phrases +
-      postings.pathTfs[index] * weights.content_generic +
-      postings.bodyTfs[index] * weights.body
+      titleTf * weights.title +
+      triggerTf * weights.trigger_phrases +
+      pathTf * weights.content_generic +
+      bodyTf * weights.body
     );
   }
 
   private findPackedPostingIndex(postings: PackedPostingList, numericId: number): number {
     let low = 0;
-    let high = postings.docIds.length - 1;
+    let high = postings.length - 1;
     while (low <= high) {
       const mid = Math.floor((low + high) / 2);
-      const value = postings.docIds[mid];
+      const value = this.getPackedPostingDocId(postings, mid);
       if (value === numericId) return mid;
       if (value < numericId) {
         low = mid + 1;
