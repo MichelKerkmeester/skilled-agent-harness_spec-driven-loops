@@ -2,7 +2,7 @@ import { spawn, type ChildProcess, type ChildProcessByStdio } from 'node:child_p
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
 import { dirname, join } from 'node:path';
-import type { Readable } from 'node:stream';
+import type { Readable, Writable } from 'node:stream';
 import { StringDecoder } from 'node:string_decoder';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -17,7 +17,7 @@ import {
 } from './skill-advisor-cli-test-utils.js';
 
 interface LauncherRun {
-  readonly child: ChildProcessByStdio<null, Readable, Readable>;
+  readonly child: ChildProcessByStdio<Writable | null, Readable, Readable>;
   stdout: string;
   stderr: string;
 }
@@ -26,10 +26,12 @@ interface Workspace {
   readonly root: string;
   readonly launcherPath: string;
   readonly bridgePath: string;
+  readonly sessionProxyPath: string;
   readonly dbDir: string;
   readonly socketDir: string;
   readonly socketPath: string;
   readonly leaseFilePath: string;
+  readonly ownerLeaseFilePath: string;
   readonly childPidFile: string;
 }
 
@@ -109,15 +111,18 @@ function createWorkspace(): Workspace {
   tempDirs.push(root);
   const launcherPath = join(root, '.opencode/bin/mk-skill-advisor-launcher.cjs');
   const bridgePath = join(root, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
+  const sessionProxyPath = join(root, '.opencode/bin/lib/launcher-session-proxy.cjs');
   const childPidFile = join(root, 'runtime', 'advisor-child.pid');
   const advisorServer = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js');
   const leaseModule = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/lib/daemon/lease.js');
   mkdirSync(dirname(launcherPath), { recursive: true });
   mkdirSync(dirname(bridgePath), { recursive: true });
+  mkdirSync(dirname(sessionProxyPath), { recursive: true });
   mkdirSync(dirname(advisorServer), { recursive: true });
   mkdirSync(dirname(leaseModule), { recursive: true });
   copyFileSync(join(repoRoot, '.opencode/bin/mk-skill-advisor-launcher.cjs'), launcherPath);
   copyFileSync(join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs'), bridgePath);
+  copyFileSync(join(repoRoot, '.opencode/bin/lib/launcher-session-proxy.cjs'), sessionProxyPath);
   writeFileSync(advisorServer, advisorServerSource(childPidFile), 'utf8');
   writeFileSync(leaseModule, leaseModuleSource(), 'utf8');
   const dbDir = join(root, 'skill-advisor-db');
@@ -128,15 +133,17 @@ function createWorkspace(): Workspace {
     root,
     launcherPath,
     bridgePath,
+    sessionProxyPath,
     dbDir,
     socketDir,
     socketPath: join(socketDir, 'daemon-ipc.sock'),
     leaseFilePath: join(dbDir, '.mk-skill-advisor-launcher.json'),
+    ownerLeaseFilePath: join(dbDir, '.skill-advisor-owner.json'),
     childPidFile,
   };
 }
 
-function spawnLauncher(workspace: Workspace, env: NodeJS.ProcessEnv = {}): LauncherRun {
+function spawnLauncher(workspace: Workspace, env: NodeJS.ProcessEnv = {}, options: { interactive?: boolean } = {}): LauncherRun {
   const run: LauncherRun = {
     child: spawn(process.execPath, [workspace.launcherPath], {
       cwd: workspace.root,
@@ -151,8 +158,8 @@ function spawnLauncher(workspace: Workspace, env: NodeJS.ProcessEnv = {}): Launc
         SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS: '10',
         ...env,
       },
-      stdio: ['ignore', 'pipe', 'pipe'],
-    }),
+      stdio: [options.interactive ? 'pipe' : 'ignore', 'pipe', 'pipe'],
+    }) as ChildProcessByStdio<Writable | null, Readable, Readable>,
     stdout: '',
     stderr: '',
   };
@@ -216,6 +223,11 @@ async function createLivePid(): Promise<ChildProcess> {
 function readLeasePid(workspace: Workspace): number | null {
   const lease = readJsonFile<{ readonly pid?: unknown }>(workspace.leaseFilePath);
   return typeof lease?.pid === 'number' ? lease.pid : null;
+}
+
+function readOwnerLeasePid(workspace: Workspace): number | null {
+  const lease = readJsonFile<{ readonly ownerPid?: unknown }>(workspace.ownerLeaseFilePath);
+  return typeof lease?.ownerPid === 'number' ? lease.ownerPid : null;
 }
 
 function readChildPid(workspace: Workspace): number | null {
@@ -289,6 +301,42 @@ afterEach(async () => {
 });
 
 describe('skill-advisor launcher orphan reaping fixtures', () => {
+  it('bridges a second client through the lease-holder session proxy', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace);
+    await waitFor(() => readLeasePid(workspace) === first.child.pid, 2000, 'first launcher lease');
+    await waitFor(() => readOwnerLeasePid(workspace) === first.child.pid, 2000, 'first owner lease');
+    await waitFor(() => readChildPid(workspace) !== null, 2000, 'first daemon child');
+    const firstChildPid = readChildPid(workspace);
+    const daemon = await startFlakyWarmDaemon(workspace.socketPath);
+
+    const second = spawnLauncher(workspace, {}, { interactive: true });
+    await waitFor(() => second.stderr.includes('bridging to lease holder'), 3000, 'secondary bridge log');
+    await waitFor(() => daemon.attempts() >= 3, 3000, 'session proxy readiness probe');
+    second.child.stdin.write(`${JSON.stringify({
+      jsonrpc: '2.0',
+      id: 1,
+      method: 'initialize',
+      params: {
+        protocolVersion: '2025-06-18',
+        capabilities: {},
+        clientInfo: { name: 'advisor-reconnect-test', version: '0' },
+      },
+    })}\n`);
+    second.child.stdin.end();
+
+    await waitForStdoutClose(second);
+    const exit = await waitForExit(second.child, 5000);
+
+    expect(exit.code).toBe(0);
+    expect(second.stderr).toContain('liveOwnerDetected');
+    expect(second.stderr).toContain('bridging to lease holder');
+    expect(second.stdout).toContain('warm-advisor');
+    expect(daemon.attempts()).toBeGreaterThanOrEqual(3);
+    expect(readChildPid(workspace)).toBe(firstChildPid);
+    expect(countProcessesMatching(workspace.launcherPath)).toBe(1);
+  });
+
   it('reclaims a stale launcher lease with no socket and leaves no extra launchers', async () => {
     const workspace = createWorkspace();
     const deadPid = await createDeadPid();

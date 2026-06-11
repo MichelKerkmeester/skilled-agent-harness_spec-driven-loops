@@ -373,6 +373,7 @@ function createSessionProxy(options) {
   let clientEnded = false;
   let reattachRunning = false;
   let backendSplitter = createFrameSplitter(handleBackendFrame);
+  let socketHalfClosed = false;
   let keepaliveInterval = null;
   let keepaliveTimer = null;
   let keepaliveId = 0;
@@ -416,6 +417,7 @@ function createSessionProxy(options) {
     if (!socket) return;
     const oldSocket = socket;
     socket = null;
+    socketHalfClosed = false;
     // The backpressure 'drain' wait was bound to this now-discarded socket and its
     // handler short-circuits once the socket is swapped, so it can never reset the
     // flag. Clear it here (and drop the listener) or the next socket's pump stays
@@ -426,6 +428,20 @@ function createSessionProxy(options) {
     oldSocket.removeAllListeners?.('close');
     oldSocket.removeAllListeners?.('drain');
     if (destroy) oldSocket.destroy?.();
+  }
+
+  function finishIfClientEndedAndIdle() {
+    if (!clientEnded || stopped) return;
+    if (queuedClientFrames.length > 0 || socketWriteQueue.length > 0 || tracker.pendingRequests.size > 0) return;
+    requestOutputEnd();
+  }
+
+  function halfCloseSocketIfReady() {
+    if (!clientEnded || !socket || state !== 'CONNECTED' || socketHalfClosed) return;
+    if (socketDrainWaiting || socketWriteQueue.length > 0) return;
+    socketHalfClosed = true;
+    socket.end?.();
+    finishIfClientEndedAndIdle();
   }
 
   function stop() {
@@ -533,6 +549,7 @@ function createSessionProxy(options) {
         return;
       }
     }
+    halfCloseSocketIfReady();
     resumeClientInputIfReady();
   }
 
@@ -626,6 +643,7 @@ function createSessionProxy(options) {
     }
     tracker.handleBackendFrame(frame);
     enqueueOutputFrame(frame);
+    finishIfClientEndedAndIdle();
   }
 
   function replaySnapshot(snapshot) {
@@ -663,6 +681,7 @@ function createSessionProxy(options) {
       return;
     }
     socket = freshSocket;
+    socketHalfClosed = false;
     backendSplitter = createFrameSplitter(handleBackendFrame);
     if (handshake.residual.length > 0) backendSplitter.push(handshake.residual);
     socket.on('data', (chunk) => backendSplitter.push(chunk));
@@ -691,8 +710,7 @@ function createSessionProxy(options) {
     flushQueuedClientFrames();
     pumpSocketQueue();
     if (clientEnded) {
-      socket?.end?.();
-      stop();
+      halfCloseSocketIfReady();
       return;
     }
     resumeClientInputIfReady();
@@ -753,7 +771,11 @@ function createSessionProxy(options) {
       return;
     }
     if (clientEnded) {
-      stop();
+      if (tracker.pendingRequests.size > 0) {
+        failPendingAndEnd();
+      } else {
+        requestOutputEnd();
+      }
       return;
     }
     state = 'REATTACHING';
@@ -769,12 +791,14 @@ function createSessionProxy(options) {
 
   function onInputEnd() {
     clientEnded = true;
-    socket?.end?.();
+    halfCloseSocketIfReady();
+    finishIfClientEndedAndIdle();
   }
 
   function onInputClose() {
     clientEnded = true;
-    stop();
+    halfCloseSocketIfReady();
+    finishIfClientEndedAndIdle();
   }
 
   function onOutputError() {
