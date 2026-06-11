@@ -112,15 +112,28 @@ describe('packed in-memory BM25 engine', () => {
     process.env.SPECKIT_BM25_ENGINE = 'packed-inmemory';
     const index = new BM25Index(undefined, undefined, 'packed-inmemory');
     const beforeRss = process.memoryUsage().rss;
+    let peakRss = beforeRss;
     const start = performance.now();
 
+    // Sample RSS during warmup, not just after, so the gate measures the peak
+    // committed-page high-water-mark (the budgeted metric) rather than a
+    // post-finalize snapshot that a transient spike could slip under.
+    let processed = 0;
     for (const doc of iterateCorpusSizedDocuments()) {
       index.addDocumentFields(String(doc.id), toFields(doc));
+      if ((processed += 1) % 1024 === 0) {
+        const rss = process.memoryUsage().rss;
+        if (rss > peakRss) peakRss = rss;
+      }
     }
     index.finalizePackedPostings();
+    {
+      const rss = process.memoryUsage().rss;
+      if (rss > peakRss) peakRss = rss;
+    }
 
     const warmupMs = performance.now() - start;
-    const rssSpike = Math.max(0, process.memoryUsage().rss - beforeRss);
+    const rssSpike = Math.max(0, peakRss - beforeRss);
 
     console.info(
       `[bm25-packed] corpus warmup rssSpike=${(rssSpike / (1024 * 1024)).toFixed(1)}MB ` +
@@ -274,5 +287,95 @@ describe('packed in-memory BM25 engine', () => {
     } finally {
       ftsDb.close();
     }
+  });
+});
+
+// The corpus fixture stays below every packed-array promotion threshold (doc ids
+// <= ~10k, per-field tf single-digit, vocab ~15k), so the warmup tests never
+// drive the Uint8->16->32 width promotion. These cases force each boundary and
+// assert the widening copy is lossless — a silent truncation here would break
+// the byte-identical ranking guarantee in a production-reachable regime
+// (an index past 65,535 rows, or a token repeated >255 times in one document).
+describe('packed BM25 width promotion', () => {
+  const CHUNK = 128;
+  const FIELD_WIDTH = 4;
+  const BODY_OFFSET = 3;
+  const MAX_NARROW = 0xffff; // PACKED_POSTING_MAX_NARROW_{DOC_ID,TERM_ID}
+
+  interface PackedStoreInternals {
+    docIdChunks: Array<Uint16Array | Uint32Array>;
+    fieldTfChunks: Array<Uint8Array | Uint16Array | Uint32Array>;
+    length: number;
+    fieldTfWidth: 1 | 2 | 4;
+    wideDocIds: boolean;
+  }
+  interface PackedInternals {
+    packedPostings: Map<string, PackedStoreInternals>;
+    packedDocuments: Map<string, { numericId: number; termIds: Uint16Array | Uint32Array }>;
+  }
+  const asInternals = (index: BM25Index): PackedInternals =>
+    index as unknown as PackedInternals;
+  const bodyTfAt = (store: PackedStoreInternals, entry: number): number =>
+    store.fieldTfChunks[Math.floor(entry / CHUNK)][(entry % CHUNK) * FIELD_WIDTH + BODY_OFFSET];
+  const docIdAt = (store: PackedStoreInternals, entry: number): number =>
+    store.docIdChunks[Math.floor(entry / CHUNK)][entry % CHUNK];
+
+  it('promotes field-tf width across documents and preserves earlier values through the widening copy', () => {
+    const index = new BM25Index(undefined, undefined, 'packed-inmemory');
+    // Narrow doc first, so the tf chunk is allocated at Uint8 and must be widened
+    // twice (Uint8->Uint16 at tf 256, Uint16->Uint32 at tf 65536). A bug in the
+    // widened.set(chunk) copy would corrupt the earlier docs' stored term freq.
+    index.addDocumentFields('d-narrow', { body: 'alpha' });
+    index.addDocumentFields('d-mid', { body: 'alpha '.repeat(300).trim() });
+    index.addDocumentFields('d-wide', { body: 'alpha '.repeat(70000).trim() });
+    index.finalizePackedPostings();
+
+    const store = asInternals(index).packedPostings.get('alpha');
+    expect(store).toBeDefined();
+    expect(store!.length).toBe(3);
+    expect(store!.fieldTfWidth).toBe(4); // promoted past both narrow widths
+
+    // numericId == insertion order; finalized postings are docId-sorted -> 0,1,2.
+    expect(bodyTfAt(store!, 0)).toBe(1);
+    expect(bodyTfAt(store!, 1)).toBe(300); // 44 if truncated to Uint8
+    expect(bodyTfAt(store!, 2)).toBe(70000); // 4464 if truncated to Uint16
+
+    const ranked = index.search('alpha', 3).map((result) => result.id);
+    expect(new Set(ranked)).toEqual(new Set(['d-narrow', 'd-mid', 'd-wide']));
+    expect(ranked[0]).toBe('d-wide'); // highest tf scores highest
+    expect(ranked[ranked.length - 1]).toBe('d-narrow'); // lowest tf scores lowest
+  });
+
+  it('promotes doc-id width past the 16-bit boundary and stores high ids without truncation', () => {
+    const index = new BM25Index(undefined, undefined, 'packed-inmemory');
+    const total = MAX_NARROW + 5; // numericIds 0..65539 cross 0xffff
+    for (let i = 0; i < total; i += 1) {
+      index.addDocumentFields(`d${i}`, { body: 'common' });
+    }
+    index.finalizePackedPostings();
+
+    const store = asInternals(index).packedPostings.get('common');
+    expect(store).toBeDefined();
+    expect(store!.length).toBe(total);
+    expect(store!.wideDocIds).toBe(true);
+    // Entries are docId-sorted, so entry i holds numericId i. Ids past 65535 would
+    // wrap (65536 -> 0, 65539 -> 3) if a docId chunk were left at Uint16.
+    expect(docIdAt(store!, MAX_NARROW + 1)).toBe(MAX_NARROW + 1);
+    expect(docIdAt(store!, total - 1)).toBe(total - 1);
+  });
+
+  it('promotes document term-id width past the 16-bit boundary', () => {
+    const index = new BM25Index(undefined, undefined, 'packed-inmemory');
+    const termCount = MAX_NARROW + 5; // > 0xffff distinct terms -> ids cross 16-bit
+    const tokens: string[] = [];
+    for (let i = 0; i < termCount; i += 1) tokens.push(`wterm${i}`);
+    index.addDocumentFields('big', { body: tokens.join(' ') });
+    index.finalizePackedPostings();
+
+    const doc = asInternals(index).packedDocuments.get('big');
+    expect(doc).toBeDefined();
+    // A term id > 65535 forces the Uint32Array branch of createPackedDocumentTermIds.
+    expect(doc!.termIds).toBeInstanceOf(Uint32Array);
+    expect(doc!.termIds.length).toBeGreaterThan(MAX_NARROW);
   });
 });

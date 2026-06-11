@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/017-bm25-warmup-churn-reduction"
     last_updated_at: "2026-06-11T07:55:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Warmup RSS reduced to 134MB; hard RSS gate re-enabled; ranking byte-identical"
-    next_safe_action: "None; REQ-001 met — pending deep review"
+    recent_action: "Deep review applied: peak-sampled RSS gate + width-promotion tests; 136.5MB"
+    next_safe_action: "None; REQ-001 met and deep-review remediation committed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts"
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The packed in-memory BM25 engine now warms a realistic 10,245-doc / 69.2 MB corpus within a **134.3 MB** RSS spike — down from the 743 MB that the 014 realistic-fixture re-validation exposed, and under the 150 MB budget REQ-001 specifies. Ranking output is byte-identical to before: scores, ordering, and field weights are unchanged. This closes 014's REQ-001 on the original process-RSS metric (no metric amendment or external-dependency fallback was needed).
+The packed in-memory BM25 engine now warms a realistic 10,245-doc / 69.2 MB corpus within a **136.5 MB** peak warmup RSS spike — down from the 743 MB that the 014 realistic-fixture re-validation exposed, and under the 150 MB budget REQ-001 specifies. Ranking output is byte-identical to before: scores, ordering, and field weights are unchanged. This closes 014's REQ-001 on the original process-RSS metric (no metric amendment or external-dependency fallback was needed).
 
 ### Lower warmup memory high-water-mark
 
@@ -66,7 +66,7 @@ Two changes cut peak transient allocation during warmup. First, a prior pass rep
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Implemented by cli-opencode gpt-5.5-fast (xhigh) under a hard parity gate, then independently verified: the realistic-corpus warmup test runs with `SPECKIT_BM25_RSS_GATE=1` and the RSS assertion is unconditional (no longer advisory). Every change was parity-checked against the hybrid-search oracle so ranking could not drift.
+Implemented by cli-opencode gpt-5.5-fast (xhigh) under a hard parity gate, then independently verified: the realistic-corpus warmup test asserts the peak-sampled RSS spike unconditionally (no longer advisory, no env-var guard). Ranking was held to the packed engine's own warmed-vs-direct equality check (identical result ordering, scores equal to 1e-10) plus the packed-vs-legacy MRR baseline; the unchanged hybrid-search suite confirms the legacy engine and fusion layer are unaffected but does not itself exercise the packed engine.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,9 +88,11 @@ Implemented by cli-opencode gpt-5.5-fast (xhigh) under a hard parity gate, then 
 
 | Check | Result |
 |-------|--------|
-| `SPECKIT_BM25_RSS_GATE=1 vitest bm25-packed-inmemory` | PASS — 6/6; warmup RSS spike 134.3 MB ≤ 150 MB |
-| Ranking parity (`hybrid-search.vitest.ts`) | PASS — 94/94, byte-identical scores/order |
-| Warmup latency | 2.3 s ≤ 10 s budget |
+| `vitest bm25-packed-inmemory` (hard RSS gate, unconditional) | PASS — 9/9; peak-sampled warmup RSS spike 136.5 MB ≤ 150 MB |
+| Packed ranking parity (warmed-vs-direct, same file) | PASS — identical result ordering (`toEqual`) with scores equal to 1e-10; packed MRR@5 ≥ legacy on the eval set |
+| Width-promotion boundary tests | PASS — tf 256/65536 and doc-id/term-id past 65535 drive the Uint8→16→32 widening with stored values intact |
+| `hybrid-search.vitest.ts` | PASS — 94/94; confirms the legacy engine + fusion layer is unaffected (it pins `legacy-inmemory`); not packed-parity evidence |
+| Warmup latency | 2.2 s ≤ 10 s budget |
 | `tsc --noEmit` | PASS — 0 diagnostics |
 | Comment hygiene | PASS — no ephemeral labels |
 | `validate.sh --strict` (017) | PASS |

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/017-bm25-warmup-churn-reduction"
     last_updated_at: "2026-06-11T07:20:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Warmup RSS reduced to 134MB via chunked packed postings; ranking byte-identical"
-    next_safe_action: "None; REQ-001 met (134MB <= 150MB) — pending deep review"
+    recent_action: "Deep review applied: peak-sampled RSS gate + width-promotion tests; 136.5MB"
+    next_safe_action: "None; REQ-001 met and deep-review remediation committed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts"
@@ -160,7 +160,7 @@ Cut peak transient allocation during warmup so the committed-page high-water-mar
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- RESOLVED: ≤150MB was reached (134.3MB) by changing the packed-postings layout (no-copy chunked postings + Uint8→16→32 typed promotion) while keeping ranking byte-identical — the operator-sanctioned "may touch the frozen layout if parity holds" path. No metric amendment or minisearch dependency was needed.
+- RESOLVED: ≤150MB was reached (136.5MB peak-sampled) by changing the packed-postings layout (no-copy chunked postings + Uint8→16→32 typed promotion) while keeping ranking byte-identical — the operator-sanctioned "may touch the frozen layout if parity holds" path. No metric amendment or minisearch dependency was needed. Deep review added peak-sampling to the RSS gate and direct width-promotion boundary coverage.
 <!-- /ANCHOR:questions -->
 
 ---
