@@ -100,7 +100,7 @@ The FTS5 channel is unchanged. The packed fallback mirrors the FTS5 field-priori
 |-------|--------|
 | `npm run build` | PASS, exit 0 |
 | `npx vitest run tests/bm25-packed-inmemory.vitest.ts` | PASS, 1 test file, 4 tests |
-| Current corpus budget fixture | PASS: 10,245 docs, 69.2 MB indexed text, RSS spike 111,017,984 bytes, warmup 809.17 ms |
+| Current corpus budget fixture | SUPERSEDED: the original 111 MB spike measurement under-modeled warmup churn; the realistic-fixture re-validation breached the 150 MB budget (spike in the hundreds of MB, RAM gate left failing) and the budget was closed by phase 017 at a 136.5 MB peak-sampled spike |
 | 3x corpus projection | MEASURED: 30,735 docs, RSS spike 247,676,928 bytes, warmup 2,689 ms; exceeds 150 MB and is not the current P0 gate |
 | BM25 baseline comparison | PASS: packed MRR@5 1.0000, NDCG@10 1.0000, Recall@20 1.0000, HitRate@1 1.0000; legacy MRR@5 0.9000; FTS5 MRR@5 1.0000 |
 | Comment hygiene | PASS for all changed code and test files via `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` |
@@ -113,7 +113,7 @@ The FTS5 channel is unchanged. The packed fallback mirrors the FTS5 field-priori
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **3x projection exceeds 150 MB RSS.** The current corpus gate passed, so the minisearch contingency is not triggered for this phase. If 3x scale becomes a hard requirement, open a separate scale packet.
+1. **RSS budget closed by phase 017, not by this phase.** The original current-corpus gate measurement was repudiated by the realistic-fixture re-validation (budget breach, RAM gate left failing at phase close); phase 017 closed the budget at a 136.5 MB peak-sampled spike. The minisearch contingency was never triggered.
 2. **Live database was not touched.** Budget and relevance evidence used fixture DBs and generated fixture corpora only.
 <!-- /ANCHOR:limitations -->
 

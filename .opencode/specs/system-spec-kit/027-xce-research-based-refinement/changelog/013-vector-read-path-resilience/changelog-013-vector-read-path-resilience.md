@@ -57,4 +57,4 @@ A live malformed vector shard was observed silently degrading search — the rea
 
 ### Follow-Ups
 
-- Durability across a restart mid-repair is the deferred REQ-003 work, shipped in phase 020 (vector-resilience-durability).
+- Durability across a restart mid-repair shipped in phase 020 (vector-resilience-durability). The phase's own deferred requirement (the live-corpus KNN query-shape rerun) remains deferred and is unrelated to restart durability.

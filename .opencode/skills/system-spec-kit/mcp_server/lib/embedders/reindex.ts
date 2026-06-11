@@ -14,6 +14,7 @@ import { invalidateProviderSingleton } from '@spec-kit/shared/embeddings';
 
 import {
   attachActiveVectorShard,
+  detachActiveVectorShard,
   clear_vector_shard_repair_pending_sentinel,
   initializeDb,
 } from '../search/vector-index-store.js';
@@ -171,6 +172,18 @@ function jobFromRow(row: JobRow): ReindexJob {
 
 function ensureJobTable(db: Database.Database): void {
   db.exec(JOB_TABLE_SQL);
+  // Repair intent must survive a process restart: the in-memory repair map is
+  // rebuilt from these columns on resume, and the de-dup guard consults them,
+  // so a restart cannot schedule a second repair for the same shard.
+  const columns = new Set(
+    (db.prepare('PRAGMA table_info(embedder_jobs)').all() as Array<{ name: string }>).map((c) => c.name),
+  );
+  if (!columns.has('repair_reason')) {
+    db.exec('ALTER TABLE embedder_jobs ADD COLUMN repair_reason TEXT');
+  }
+  if (!columns.has('repair_shard_path')) {
+    db.exec('ALTER TABLE embedder_jobs ADD COLUMN repair_shard_path TEXT');
+  }
 }
 
 function selectJob(db: Database.Database, jobId: string): ReindexJob | null {
@@ -611,6 +624,15 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     // active shard either is the old file (failure) or the fully-staged new file (success),
     // never a half-written mix. If no batch produced a staging file (e.g. zero rows), skip.
     if (fs.existsSync(stagingShardPath)) {
+      // Detach BEFORE the rename: rename(2) preserves the attachment's inode,
+      // so a connection that stays attached keeps writing the orphaned
+      // pre-rename file while the path-string attach check still matches.
+      // The post-swap attach below then binds the new file.
+      try {
+        detachActiveVectorShard(jobDb);
+      } catch (_detachErr: unknown) {
+        // Not attached on this connection; the rename is still safe.
+      }
       // Drop any stale sidecars next to the active shard so the renamed WAL/SHM (already
       // TRUNCATE-checkpointed at staging close) is the authoritative pair.
       for (const suffix of ['-wal', '-shm']) {
@@ -741,6 +763,8 @@ function startReindexInternal(
 
   if (runtimeOptions.vectorShardRepair) {
     vectorShardRepairJobs.set(id, runtimeOptions.vectorShardRepair);
+    db.prepare('UPDATE embedder_jobs SET repair_reason = ?, repair_shard_path = ? WHERE id = ?')
+      .run(runtimeOptions.vectorShardRepair.reason, runtimeOptions.vectorShardRepair.shardPath, id);
   }
 
   if (runtimeOptions.autoStart !== false) {
@@ -786,6 +810,14 @@ export function resumeReindexJobs(db?: Database.Database): ReindexJob[] {
   `).all() as JobRow[];
 
   const jobs = rows.map(jobFromRow);
+  const repairRows = resolvedDb.prepare(
+    "SELECT id, repair_reason AS reason, repair_shard_path AS shardPath FROM embedder_jobs WHERE status IN ('queued', 'running') AND repair_shard_path IS NOT NULL",
+  ).all() as Array<{ id: string; reason: string | null; shardPath: string }>;
+  for (const row of repairRows) {
+    if (!vectorShardRepairJobs.has(row.id)) {
+      vectorShardRepairJobs.set(row.id, { reason: row.reason ?? 'resumed repair', shardPath: row.shardPath });
+    }
+  }
   for (const job of jobs) {
     enqueueJob(resolvedDb, job.id);
   }
@@ -806,6 +838,20 @@ export function startVectorShardRepairReindex(
   const db = resolveDb(runtimeOptions.db);
   requireDatabaseDir(db, 'startup');
   const targetShardPath = path.resolve(runtimeOptions.shardPath);
+  ensureJobTable(db);
+  const persisted = db.prepare(
+    "SELECT id, repair_shard_path AS shardPath FROM embedder_jobs WHERE status IN ('queued', 'running') AND repair_shard_path IS NOT NULL",
+  ).all() as Array<{ id: string; shardPath: string }>;
+  for (const row of persisted) {
+    if (path.resolve(row.shardPath) === targetShardPath) {
+      logger.info('vector shard repair already in flight', {
+        event: 'vector_shard_repair_already_in_flight',
+        jobId: row.id,
+        shardPath: runtimeOptions.shardPath,
+      });
+      return row.id;
+    }
+  }
   for (const [jobId, repairContext] of vectorShardRepairJobs.entries()) {
     if (path.resolve(repairContext.shardPath) !== targetShardPath) {
       continue;

@@ -115,10 +115,10 @@ The remediation was delivered as surgical MCP write-path edits plus focused temp
 | Check | Result |
 |-------|--------|
 | New/modified provenance regression tests | PASS, exit 0, 5 files passed, 18 tests passed, 28 skipped. |
-| `npx tsc --noEmit` from `.opencode/skills/system-spec-kit/mcp_server` | Pending final run. |
-| Requested provenance/guard vitest suite | Pending final run. |
-| `validate.sh --strict` for this phase | Pending final run. |
-| Changed-code comment-hygiene check | Pending final run. |
+| `npx tsc --noEmit` from `.opencode/skills/system-spec-kit/mcp_server` | PASS, exit 0 (rerun at epic review close, 2026-06-11). |
+| Requested provenance/guard vitest suite | PASS: 5 files, 18 tests passed, 28 env-gated skips (rerun at epic review close). |
+| `validate.sh --strict` for this phase | PASS: 0 errors, 0 warnings (rerun at epic review close). |
+| Changed-code comment-hygiene check | PASS: enforced by the pre-commit hygiene gate on the phase commit. |
 <!-- /ANCHOR:verification -->
 
 ---

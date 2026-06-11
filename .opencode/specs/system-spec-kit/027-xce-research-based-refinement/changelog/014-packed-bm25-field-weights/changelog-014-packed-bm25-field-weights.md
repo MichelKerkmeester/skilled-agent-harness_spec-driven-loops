@@ -1,6 +1,6 @@
 ---
 title: "Packed In-Memory BM25 Engine With BM25F Field Weights"
-description: "The memory-hungry lexical fallback was replaced by a packed in-memory BM25 engine with typed-array postings and restored BM25F per-field weighting, so title and trigger matches outrank body noise, with ranking held byte-identical to the prior engine."
+description: "The memory-hungry lexical fallback was replaced by a packed in-memory BM25 engine with typed-array postings and restored BM25F per-field weighting, so title and trigger matches outrank body noise, with packed ranking meeting or beating the legacy engine on the baseline metrics."
 trigger_phrases:
   - "014 packed bm25 field weights changelog"
   - "packed in-memory bm25 engine"
@@ -20,7 +20,7 @@ contextType: "implementation"
 
 ### Summary
 
-The lexical fallback that backs search when the vector lane is unavailable was carrying a memory-hungry posting representation and had lost its per-field weighting. This phase replaced it with a packed in-memory BM25 engine: typed-array postings instead of object-per-token structures, and restored BM25F field weighting so a hit in a document title or trigger phrase ranks above the same term buried in body text. Ranking output was held byte-identical to the prior engine against the existing oracle suites. The realistic-corpus re-validation then exposed a warmup RSS spike well over budget, which was carried as a finding and closed in phase 017.
+The lexical fallback that backs search when the vector lane is unavailable was carrying a memory-hungry posting representation and had lost its per-field weighting. This phase replaced it with a packed in-memory BM25 engine: typed-array postings instead of object-per-token structures, and restored BM25F field weighting so a hit in a document title or trigger phrase ranks above the same term buried in body text. Ranking quality was held to the baseline gates: the packed engine meets or beats the legacy engine on the oracle metrics (MRR, NDCG, recall, hit rate), and intentionally differs from legacy where the restored title and trigger weighting is the point of the phase; byte-identical parity holds within the packed engine itself (warmed versus direct). The realistic-corpus re-validation then exposed a warmup RSS spike well over budget, which was carried as a finding and closed in phase 017.
 
 ### Added
 
@@ -41,7 +41,7 @@ The lexical fallback that backs search when the vector lane is unavailable was c
 | Check | Result |
 |-------|--------|
 | Deep review | FAIL on first pass, CONDITIONAL after warmup-finalize fix |
-| Ranking parity | PASS: packed engine byte-identical to legacy engine on the oracle suites |
+| Ranking parity | PASS: packed meets-or-beats legacy on the baseline metrics; warmed-vs-direct packed output identical; the title/trigger weighting difference from legacy is by design |
 | BM25F field weighting | PASS: title and trigger hits outrank body hits |
 | Warmup RSS | OVER BUDGET at this phase, recorded as a finding and closed in phase 017 |
 

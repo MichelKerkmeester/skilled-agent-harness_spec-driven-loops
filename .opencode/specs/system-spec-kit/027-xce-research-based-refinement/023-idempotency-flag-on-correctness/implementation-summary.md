@@ -101,7 +101,7 @@ The fix was delivered as a focused receipt-layer correction plus one handler gua
 | Check | Result |
 |-------|--------|
 | Red-state flag-on idempotency test after adding replay/store regressions | FAIL as expected, exit 1, 1 file failed, 2 tests failed, 7 passed. |
-| Flag-on idempotency/near-duplicate suite after fixes | PASS, exit 0, 1 file passed, 10 tests passed. |
+| Flag-on idempotency/near-duplicate suite after fixes | PASS, exit 0, 1 file passed, 12 tests passed (includes the won/lost store-contract and concurrent-loser replay regressions added in deep-review remediation). |
 | Related memory-save suites with flag enabled | PASS, exit 0, 2 files passed, 17 tests passed, 51 skipped. |
 | Flag-off idempotency/near-duplicate suite | PASS, exit 0, 1 file passed, 10 tests passed. |
 | `npx tsc --noEmit` from `.opencode/skills/system-spec-kit/mcp_server` | PASS, exit 0, no output. |

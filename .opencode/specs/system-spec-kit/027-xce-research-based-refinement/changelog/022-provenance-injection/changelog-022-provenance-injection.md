@@ -1,6 +1,6 @@
 ---
 title: "Provenance Injection: Automated Writers Are Tagged at the Source"
-description: "Automated reducer and feedback writers now inject source-kind provenance, so the write-ingress guard enforces the constitutional rule that automated writers never overwrite manual or constitutional memory, and the publication gate stops excluding machine-authored rows for missing provenance."
+description: "Automated reducer and feedback writers now inject source-kind provenance, so the write-ingress guard's memory_update coverage can rely on accurate source kinds and the publication gate stops excluding machine-authored rows for missing provenance; the same-path reindex-retire and feedback auto-promotion ingress paths remain follow-ons."
 trigger_phrases:
   - "022 provenance injection changelog"
   - "automated writers source kind tagged"
@@ -20,7 +20,7 @@ contextType: "implementation"
 
 ### Summary
 
-The write-ingress guard could enforce the constitutional rule that an automated writer never overwrites a manual or constitutional field only if it knew which writes were automated, and the reducer and feedback writers were not tagging themselves. This phase added a source-kind deriver and schema-guarded persisters in a new `write-provenance.ts`, and threaded provenance context through the automated write paths so machine-authored rows carry their source kind. The guard now holds the line, and the publication gate no longer excludes machine-authored rows for missing provenance. The deriver defaults to `human` — the safe default, since a missing tag must never be treated as automated and allowed to overwrite a human edit. Two pre-existing guard-coverage gaps were documented as follow-ons that this tagging unblocks.
+The write-ingress guard could enforce the constitutional rule that an automated writer never overwrites a manual or constitutional field only if it knew which writes were automated, and the reducer and feedback writers were not tagging themselves. This phase added a source-kind deriver and schema-guarded persisters in a new `write-provenance.ts`, and threaded provenance context through the automated write paths so machine-authored rows carry their source kind. The guard's existing memory_update coverage now operates on accurate source kinds, and the publication gate no longer excludes machine-authored rows for missing provenance; enforcement on the same-path reindex-retire and feedback auto-promotion ingress paths remains a follow-on that this tagging unblocks. The deriver defaults to `human` — the safe default, since a missing tag must never be treated as automated and allowed to overwrite a human edit. Two pre-existing guard-coverage gaps were documented as follow-ons that this tagging unblocks.
 
 ### Added
 

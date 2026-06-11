@@ -87,10 +87,10 @@ export function deriveSourceKindFromContext(context: WriteProvenanceContext = {}
   if (hasAgent && !hasUser) {
     return 'agent';
   }
-  const filePath = normalizeOptionalString(context.filePath);
-  if (filePath && /\b(import|ingest|scan|index)\b/i.test(filePath)) {
-    return 'import';
-  }
+  // No filePath heuristic: a human save whose path merely contains a word
+  // like "index" or "scan" must not be classified as an automated import,
+  // because that strips the manual-overwrite protection from the row. Real
+  // scan/ingest writes are classified by their tool label or explicit tags.
   return 'human';
 }
 
