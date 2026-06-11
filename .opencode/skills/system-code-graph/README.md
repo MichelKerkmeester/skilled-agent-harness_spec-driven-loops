@@ -78,14 +78,14 @@ Returns the reverse import impact set: every file that imports the subject, tran
 
 TypeScript exits 0. The focused Vitest code-graph suite passes.
 
-**Prefer a shell?** The same eight tools are callable through the daemon-backed CLI, over the same daemon the MCP registration uses:
+**Prefer a shell?** The daemon-backed CLI has full parity with the MCP surface: the same 8 code-graph tools are callable through `node .opencode/bin/code-index.cjs`, over the same daemon the MCP registration uses:
 
 ```bash
 node .opencode/bin/code-index.cjs list-tools --format text     # offline, no daemon contact
 node .opencode/bin/code-index.cjs code_graph_status --format json
 ```
 
-Exit codes are `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error. The false-safe contract carries through: a `status: "blocked"` readiness refusal exits `0` deliberately — blocked is an actionable answer (run the surfaced `requiredAction`), not a CLI failure — while a malformed diff to `detect_changes` (`status: "parse_error"`) exits `64`. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn.
+Use MCP as the primary in-session transport today. Use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Exit codes are `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error. The false-safe contract carries through: a `status: "blocked"` readiness refusal exits `0` deliberately — blocked is an actionable answer (run the surfaced `requiredAction`), not a CLI failure — while a malformed diff to `detect_changes` (`status: "parse_error"`) exits `64`. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn. Because the CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan.
 
 ---
 

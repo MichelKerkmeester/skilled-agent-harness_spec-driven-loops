@@ -99,7 +99,7 @@ The native registered tool schema total is 62 when Code Mode and Sequential Thin
 
 ### Daemon-Backed CLI Front Doors
 
-Three daemon systems also expose additive CLI front doors over the same warm daemons:
+Three daemon systems also expose full-parity CLI front doors over the same warm daemons. The CLI surfaces match their MCP daemon tool surfaces exactly: `spec-memory.cjs` exposes the same 37 tools as `mk-spec-memory`, `code-index.cjs` exposes the same 8 tools as `mk_code_index`, and `skill-advisor.cjs` exposes the same 9 tools as `mk_skill_advisor`.
 
 | CLI | MCP daemon | Tool count | Use it for |
 |---|---|---:|---|
@@ -107,7 +107,7 @@ Three daemon systems also expose additive CLI front doors over the same warm dae
 | `.opencode/bin/code-index.cjs` | `mk_code_index` | 8 | Code-graph status and maintenance access when MCP transport is unavailable. |
 | `.opencode/bin/skill-advisor.cjs` | `mk_skill_advisor` | 9 | Advisor fallback, skill graph diagnostics and trusted maintenance commands. |
 
-These CLIs are not replacement servers. MCP remains the primary in-session transport. The CLIs are second IPC clients to the same daemons. Prompt-time fallback should use warm-only probing, and exit `75` means retryable daemon or IPC unavailability.
+Use MCP as the primary in-session transport today. Use the CLIs when the MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers should probe warm-only first, and exit `75` means retryable daemon or IPC unavailability. Because the CLIs already have full parity, a later evolution could consolidate them as the primary or sole transport, replacing MCP servers without breaking existing MCP workflows; that remains a possibility, not a committed plan.
 
 Per-command help and aliases, the shared exit-code taxonomy (`0`/`1`/`64`/`69`/`75`), the `list-tools --compact` / `--names-only` discovery modes, generated `bash`/`zsh` completion and an offline smoke check (`.opencode/bin/cli-offline-smoke.cjs`) are documented in `.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md`.
 

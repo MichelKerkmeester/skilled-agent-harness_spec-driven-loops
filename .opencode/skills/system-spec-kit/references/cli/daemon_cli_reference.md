@@ -19,6 +19,12 @@ Use these CLIs when a runtime MCP transport is missing, failed, or not reconnect
 
 Each shim first checks its built CLI entrypoint, sets a default socket directory when needed, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
 
+## CLI vs MCP — when to use which
+
+The CLI shims have full parity with their MCP daemon tool surfaces: `spec-memory.cjs` exposes the same 37 tools as `mk-spec-memory`, `code-index.cjs` exposes the same 8 tools as `mk-code-index`, and `skill-advisor.cjs` exposes the same 9 tools as `mk_skill_advisor`. Use MCP as the primary in-session transport today. Use the CLIs when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability.
+
+Because the CLIs already expose the same tools over the same daemon IPC path, a later evolution could consolidate them as the primary or sole transport, replacing MCP servers without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
+
 ## 2. Invocation Forms
 
 Common form:
@@ -132,7 +138,8 @@ The smoke check expects `spec-memory=37`, `code-index=8`, `skill-advisor=9`, and
 
 ## 8. Safety Rules
 
-- Keep MCP as the primary in-session transport; use CLIs as additive fallbacks and operator surfaces.
+- Keep MCP as the primary in-session transport today; use full-parity CLIs as additive fallbacks and operator surfaces.
+- We may consider making the CLIs the primary or sole transport later because they already have full parity, but do not treat that as a decided plan.
 - Prefer read-only recovery commands when transport fails: memory context/status, code graph status/query reads, advisor recommend/status.
 - Prompt-time hooks must probe warm daemons only. They must not cold-spawn daemons from prompt-time paths.
 - Treat exit `75` as retryable daemon/IPC unavailability. Retry after MCP reconnect, daemon prewarm, or short backoff.
