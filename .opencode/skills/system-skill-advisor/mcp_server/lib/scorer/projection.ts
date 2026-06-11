@@ -221,11 +221,17 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
     derivedTriggers,
     derivedKeywords,
     derivedDemotion: boundedDemotion(derived.demotion),
+    derivedGeneratedAt: isoTimestampOrNull(derived.last_updated_at ?? derived.created_at),
     sourcePath: row.source_path,
     lifecycleStatus: lifecycle,
     redirectTo,
     redirectFrom,
   };
+}
+
+function isoTimestampOrNull(value: unknown): string | null {
+  if (typeof value !== 'string' || value.trim().length === 0) return null;
+  return Number.isNaN(Date.parse(value)) ? null : value;
 }
 
 interface SkillDocRow {
@@ -351,6 +357,7 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       derivedTriggers,
       derivedKeywords,
       derivedDemotion: boundedDemotion(derived.demotion),
+      derivedGeneratedAt: isoTimestampOrNull(derived.last_updated_at ?? derived.created_at),
       sourcePath: metadataPath,
       lifecycleStatus: lifecycleStatus(metadata.lifecycle_status ?? derived.lifecycle_status, metadataPath),
       redirectTo: typeof metadata.redirect_to === 'string' ? metadata.redirect_to : undefined,

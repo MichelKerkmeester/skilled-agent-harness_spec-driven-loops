@@ -47,6 +47,11 @@ export interface SkillProjection {
   readonly derivedTriggers: readonly string[];
   readonly derivedKeywords: readonly string[];
   readonly derivedDemotion?: number;
+  // Per-skill derived-content freshness (graph-metadata last_updated_at /
+  // created_at). The age haircut must decay by THIS, not by when the
+  // projection itself was built — a projection is rebuilt constantly, so its
+  // own timestamp would exempt every skill from the haircut.
+  readonly derivedGeneratedAt?: string | null;
   readonly docTriggers?: readonly SkillDocTriggerProjection[];
   readonly sourcePath: string | null;
   readonly lifecycleStatus: SkillLifecycleStatus;
