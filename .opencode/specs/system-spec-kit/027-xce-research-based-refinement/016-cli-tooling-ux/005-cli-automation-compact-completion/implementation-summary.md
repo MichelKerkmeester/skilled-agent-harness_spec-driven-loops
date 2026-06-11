@@ -13,7 +13,10 @@ _memory:
     recent_action: "Implemented compact output and completion generation"
     next_safe_action: "Use list-tools --compact or completion bash|zsh"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-005-cli-automation-compact-completion"

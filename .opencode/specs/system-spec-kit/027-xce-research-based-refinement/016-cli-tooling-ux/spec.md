@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux"
-    last_updated_at: "2026-06-10T00:00:00Z"
+    last_updated_at: "2026-06-11T03:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded 016 phase parent + 5 planned child sub-phases from CLI tooling assessment"
-    next_safe_action: "Plan or resume sub-phase 001-cli-freshness-and-smoke"
+    recent_action: "All 5 CLI-tooling child phases shipped; deep-review CONDITIONAL remediated"
+    next_safe_action: "None; phase complete, deep-reviewed, and remediated"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-cli-tooling-ux"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "016 belongs inside 027 because the three daemon CLI front-doors were built by 027 phase 010 (mcp-to-cli-tool-transition)."
@@ -116,11 +116,11 @@ Summary of aggregate file scope across all sub-phases. Per-phase detail and exac
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-cli-freshness-and-smoke/` | Durable spec-memory stale-dist fix, actionable stale-dist plugin status, and a unified offline smoke check of the 37/8/9 list-tools counts (assessment #1 + #10 + #13) | Planned |
-| 002 | `002-cli-help-aliases-errors/` | Per-command help/schema for spec-memory + code-index, consistent snake/kebab/camel aliases across all three, and better unknown-command errors with a list-tools hint + closest-match suggestion (assessment #2 + #3 + #4) | Planned |
-| 003 | `003-cli-reference-and-skill-docs/` | One unified Daemon CLI Reference page, per-system SKILL.md recovery/exit-code docs, and `jsonl` single-line-payload clarification (assessment #5 + #6 + #7) | Planned |
-| 004 | `004-cli-fallback-envelope-and-bridge/` | Normalized warm-fallback result envelopes/reason codes across the three hook helpers and an explicit prompt-time allowlist on the spec-memory plugin bridge (assessment #8 + #9) | Planned |
-| 005 | `005-cli-automation-compact-completion/` | Machine-friendly compact/names-only list-tools output and generated bash/zsh shell completion across the three CLIs (assessment #11 + #12) | Planned |
+| 001 | `001-cli-freshness-and-smoke/` | Durable spec-memory stale-dist fix, actionable stale-dist plugin status, and a unified offline smoke check of the 37/8/9 list-tools counts (assessment #1 + #10 + #13) | Complete |
+| 002 | `002-cli-help-aliases-errors/` | Per-command help/schema for spec-memory + code-index, consistent snake/kebab/camel aliases across all three, and better unknown-command errors with a list-tools hint + closest-match suggestion (assessment #2 + #3 + #4) | Complete |
+| 003 | `003-cli-reference-and-skill-docs/` | One unified Daemon CLI Reference page, per-system SKILL.md recovery/exit-code docs, and `jsonl` single-line-payload clarification (assessment #5 + #6 + #7) | Complete |
+| 004 | `004-cli-fallback-envelope-and-bridge/` | Normalized warm-fallback result envelopes/reason codes across the three hook helpers and an explicit prompt-time allowlist on the spec-memory plugin bridge (assessment #8 + #9) | Complete |
+| 005 | `005-cli-automation-compact-completion/` | Machine-friendly compact/names-only list-tools output and generated bash/zsh shell completion across the three CLIs (assessment #11 + #12) | Complete |
 
 ### Phase Transition Rules
 

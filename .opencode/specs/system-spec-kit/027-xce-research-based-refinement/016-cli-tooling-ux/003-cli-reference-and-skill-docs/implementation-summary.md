@@ -13,7 +13,11 @@ _memory:
     recent_action: "Completed daemon CLI reference consolidation and verification"
     next_safe_action: "Use the unified reference as the canonical CLI fallback source"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md"
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-code-graph/SKILL.md"
+      - ".opencode/skills/system-skill-advisor/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-016-003-cli-reference-and-skill-docs"

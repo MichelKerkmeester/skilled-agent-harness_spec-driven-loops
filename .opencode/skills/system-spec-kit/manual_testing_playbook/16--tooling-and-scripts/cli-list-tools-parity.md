@@ -16,7 +16,7 @@ This scenario verifies the tool-surface parity contract of the three 028 CLIs. E
 - Objective: Confirm each CLI's `list-tools` count matches its system's registered MCP tool surface (37 / 8 / 9).
 - Real user request: `If the MCP transport drops mid-session, does the CLI fallback expose every tool I had over MCP?`
 - Prompt: `Validate list-tools parity for spec-memory, code-index, and skill-advisor against their schema sources.`
-- Expected execution process: Run `list-tools --format json` for all three CLIs in a sandboxed environment, extract `data.count`, and cross-check with the parity vitest suites.
+- Expected execution process: Run the unified offline smoke check (`node .opencode/bin/cli-offline-smoke.cjs`) as the primary daemon-free parity gate — it verifies the 37/8/9 counts plus dist freshness in one pass — then optionally cross-check per-CLI `list-tools --format json` counts and the parity vitest suites for granular evidence.
 - Expected signals: `status: "ok"` with `data.count` of 37 (spec-memory), 8 (code-index), and 9 (skill-advisor); parity suites green.
 - Desired user-visible outcome: The operator can state that the CLI fallback surface is tool-for-tool identical to the MCP surface for all three systems.
 - Pass/fail: PASS only when all three counts match and the parity suites pass.
@@ -36,6 +36,10 @@ SANDBOX=$(mktemp -d /tmp/cli-playbook.XXXXXX)
 export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SPECKIT_DAEMON_REELECTION=0
 
+# Primary: unified offline smoke check — verifies the 37/8/9 counts + dist freshness, daemon-free.
+node .opencode/bin/cli-offline-smoke.cjs
+
+# Granular cross-check: per-CLI list-tools counts.
 for cli in spec-memory code-index skill-advisor; do
   printf '%s: ' "$cli"
   node .opencode/bin/$cli.cjs list-tools --format json \
@@ -81,6 +85,7 @@ A count drift means a tool was added or removed in the schema source without the
 
 | File | Role |
 |---|---|
+| `.opencode/bin/cli-offline-smoke.cjs` | Unified offline smoke check (primary daemon-free 37/8/9 + freshness gate) |
 | `.opencode/bin/spec-memory.cjs` | spec-memory shim |
 | `.opencode/bin/code-index.cjs` | code-index shim |
 | `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
