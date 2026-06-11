@@ -75,12 +75,28 @@ type RestoreJournalFile = {
   liveShardPreexisted: boolean;
 };
 
+type VectorShardRepairPendingSentinelFile = {
+  formatVersion: 1;
+  createdAt: string;
+  source: 'vector_shard_quarantine';
+  reason: string;
+  shardPath: string;
+  quarantinePath: string;
+  profile: {
+    provider: string;
+    model: string;
+    dim: number;
+    dtype: string | null;
+  };
+};
+
 type InitializeDbOptions = {
   skipRestoreRecovery?: boolean;
 };
 
 const RESTORE_JOURNAL_NAME = '.restore-journal.json';
 const NEEDS_REBUILD_SENTINEL_NAME = '.needs-rebuild';
+const VECTOR_SHARD_REPAIR_PENDING_SENTINEL_SUFFIX = '.repair-pending';
 
 function loadSearchWeights(): SearchWeightsConfig {
   // SERVER_DIR points to dist/ at runtime; configs/ lives at the package root (dist/..)
@@ -523,9 +539,12 @@ function run_vector_shard_integrity_probe_at_path(
   }
 }
 
-function quarantine_vector_shard(shardPath: string, reason: string): string {
+function build_vector_shard_quarantine_path(shardPath: string): string {
   const stamp = new Date().toISOString().replace(/[^0-9A-Za-z]/g, '');
-  const quarantinePath = `${shardPath}.quarantined-${stamp}-${process.pid}`;
+  return `${shardPath}.quarantined-${stamp}-${process.pid}`;
+}
+
+function quarantine_vector_shard(shardPath: string, reason: string, quarantinePath = build_vector_shard_quarantine_path(shardPath)): string {
   for (const suffix of ['', '-wal', '-shm']) {
     const source = `${shardPath}${suffix}`;
     if (!fs.existsSync(source)) {
@@ -567,7 +586,9 @@ function quarantine_and_rebuild_vector_shard(
   reason: string,
 ): void {
   recordVectorShardProbeFailure({ shardPath, reason });
-  const quarantinePath = quarantine_vector_shard(shardPath, reason);
+  const quarantinePath = build_vector_shard_quarantine_path(shardPath);
+  write_vector_shard_repair_pending_sentinel(shardPath, profile, reason, quarantinePath);
+  quarantine_vector_shard(shardPath, reason, quarantinePath);
   schedule_vector_shard_rebuild(database, profile, shardPath, `${reason}; quarantined as ${path.basename(quarantinePath)}`);
 }
 
@@ -982,6 +1003,106 @@ function get_needs_rebuild_sentinel_path(target_path: string): string | null {
   return path.join(path.dirname(target_path), 'checkpoints', NEEDS_REBUILD_SENTINEL_NAME);
 }
 
+function get_vector_shard_repair_pending_sentinel_path(shardPath: string): string | null {
+  if (shardPath === ':memory:') {
+    return null;
+  }
+  const shardDir = path.dirname(shardPath);
+  const baseDir = path.basename(shardDir) === 'vectors' ? path.dirname(shardDir) : shardDir;
+  return path.join(
+    baseDir,
+    'checkpoints',
+    `.${path.basename(shardPath)}${VECTOR_SHARD_REPAIR_PENDING_SENTINEL_SUFFIX}`,
+  );
+}
+
+function write_vector_shard_repair_pending_sentinel(
+  shardPath: string,
+  profile: EmbeddingProfile,
+  reason: string,
+  quarantinePath: string,
+): void {
+  const sentinelPath = get_vector_shard_repair_pending_sentinel_path(shardPath);
+  if (!sentinelPath) {
+    return;
+  }
+  try {
+    const sentinelDir = path.dirname(sentinelPath);
+    fs.mkdirSync(sentinelDir, { recursive: true, mode: 0o700 });
+    const tempSentinelPath = `${sentinelPath}.tmp.${process.pid}`;
+    fs.writeFileSync(tempSentinelPath, `${JSON.stringify({
+      formatVersion: 1,
+      createdAt: new Date().toISOString(),
+      source: 'vector_shard_quarantine',
+      reason,
+      shardPath,
+      quarantinePath,
+      profile: {
+        provider: profile.provider,
+        model: profile.model,
+        dim: profile.dim,
+        dtype: profile.dtype,
+      },
+    } satisfies VectorShardRepairPendingSentinelFile, null, 2)}\n`, { mode: 0o600 });
+    fsync_file_if_possible(tempSentinelPath);
+    fs.renameSync(tempSentinelPath, sentinelPath);
+    fsync_directory_if_possible(sentinelDir);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to write vector shard repair sentinel: ${get_error_message(error)}`);
+  }
+}
+
+function read_vector_shard_repair_pending_sentinel(
+  shardPath: string,
+): { reason: string; quarantinePath: string | null } | null {
+  const sentinelPath = get_vector_shard_repair_pending_sentinel_path(shardPath);
+  if (!sentinelPath || !fs.existsSync(sentinelPath)) {
+    return null;
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(sentinelPath, 'utf-8')) as Partial<VectorShardRepairPendingSentinelFile>;
+    return {
+      reason: typeof parsed.reason === 'string' && parsed.reason.length > 0
+        ? parsed.reason
+        : 'pending vector shard repair sentinel',
+      quarantinePath: typeof parsed.quarantinePath === 'string' && parsed.quarantinePath.length > 0
+        ? parsed.quarantinePath
+        : null,
+    };
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Ignoring unreadable vector shard repair sentinel: ${get_error_message(error)}`);
+    return { reason: 'unreadable vector shard repair sentinel', quarantinePath: null };
+  }
+}
+
+export function clear_vector_shard_repair_pending_sentinel(shardPath: string): void {
+  const sentinelPath = get_vector_shard_repair_pending_sentinel_path(shardPath);
+  if (!sentinelPath || !fs.existsSync(sentinelPath)) {
+    return;
+  }
+  try {
+    fs.unlinkSync(sentinelPath);
+    fsync_directory_if_possible(path.dirname(sentinelPath));
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to clear vector shard repair sentinel: ${get_error_message(error)}`);
+  }
+}
+
+function resume_vector_shard_repair_from_sentinel(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+  sentinel: { reason: string; quarantinePath: string | null },
+): void {
+  const reason = `${sentinel.reason}; pending vector shard repair sentinel`;
+  recordVectorShardQuarantined({
+    shardPath,
+    quarantinePath: sentinel.quarantinePath ?? shardPath,
+    reason,
+  });
+  schedule_vector_shard_rebuild(database, profile, shardPath, reason);
+}
+
 function write_needs_rebuild_sentinel_for_recovered_restore(target_path: string, checkpoint_name: string): void {
   const sentinel_path = get_needs_rebuild_sentinel_path(target_path);
   if (!sentinel_path || fs.existsSync(sentinel_path)) {
@@ -1232,6 +1353,7 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
   const baseDir = resolve_database_base_dir(database);
   const shardPath = get_vector_shard_path(profile, baseDir);
   const attachedPath = get_attached_vector_path(database);
+  const pendingRepairSentinel = read_vector_shard_repair_pending_sentinel(shardPath);
 
   if (attachedPath && attachedPath !== path.resolve(shardPath)) {
     drop_legacy_temp_aliases(database);
@@ -1259,6 +1381,9 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
       };
       return;
     }
+    if (pendingRepairSentinel) {
+      resume_vector_shard_repair_from_sentinel(database, profile, shardPath, pendingRepairSentinel);
+    }
     ensure_vector_shard_schema(database, profile);
     drop_canonical_vector_payload_tables(database);
     create_legacy_temp_aliases(database, profile);
@@ -1282,6 +1407,8 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
   if (!preAttachProbe.ok) {
     quarantine_and_rebuild_vector_shard(database, profile, shardPath, preAttachProbe.reason);
     needsPostAttachProbe = false;
+  } else if (pendingRepairSentinel) {
+    resume_vector_shard_repair_from_sentinel(database, profile, shardPath, pendingRepairSentinel);
   }
 
   try {

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/020-vector-resilience-durability",
+  "description": "Durable vector-shard repair intent with per-shard sentinel, boot attach repair resume, and stale degraded-vector cleanup after reindex completion.",
+  "keywords": [
+    "vector-shard",
+    "repair-sentinel",
+    "restart-durability",
+    "degraded-vector-health",
+    "reindex-completion"
+  ],
+  "lastUpdated": "2026-06-11T08:50:00.000Z",
+  "specId": "020",
+  "folderSlug": "vector-resilience-durability",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

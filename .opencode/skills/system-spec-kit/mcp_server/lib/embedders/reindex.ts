@@ -12,7 +12,11 @@ import * as sqliteVec from 'sqlite-vec';
 import { EmbeddingProfile } from '@spec-kit/shared/embeddings/profile';
 import { invalidateProviderSingleton } from '@spec-kit/shared/embeddings';
 
-import { attachActiveVectorShard, initializeDb } from '../search/vector-index-store.js';
+import {
+  attachActiveVectorShard,
+  clear_vector_shard_repair_pending_sentinel,
+  initializeDb,
+} from '../search/vector-index-store.js';
 import { to_embedding_buffer } from '../search/vector-index-types.js';
 import {
   ensureVecTableForDim,
@@ -27,6 +31,7 @@ import { createLogger } from '../utils/logger.js';
 import { getRestoreBarrierStatus } from '../storage/checkpoints.js';
 import { BetterSqliteMaintenance } from '../storage/ports/maintenance.js';
 import {
+  getDegradedVectorObservabilitySnapshot,
   recordVectorShardRebuildCompleted,
   recordVectorShardRebuildFailed,
   recordVectorShardRebuildStarted,
@@ -135,6 +140,16 @@ function resolveDb(db?: Database.Database): Database.Database {
 
 function nowIso(): string {
   return new Date().toISOString();
+}
+
+function completeVectorShardRecovery(jobId: string, shardPath: string): void {
+  recordVectorShardRebuildCompleted({ jobId, shardPath });
+  clear_vector_shard_repair_pending_sentinel(shardPath);
+}
+
+function degradedVectorMatchesShard(shardPath: string): boolean {
+  const degradedVector = getDegradedVectorObservabilitySnapshot();
+  return degradedVector.degraded && degradedVector.lastShard === path.basename(shardPath);
 }
 
 function readJobStatus(db: Database.Database, jobId: string): ReindexJobStatus | null {
@@ -638,8 +653,10 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     });
     complete();
     if (repairContext) {
-      recordVectorShardRebuildCompleted({ jobId, shardPath: repairContext.shardPath });
+      completeVectorShardRecovery(jobId, repairContext.shardPath);
       vectorShardRepairJobs.delete(jobId);
+    } else if (degradedVectorMatchesShard(activeShardPath)) {
+      completeVectorShardRecovery(jobId, activeShardPath);
     }
     // The active-embedder pointer just flipped; drop the cached provider singleton so the
     // next embedding re-resolves against the new pointer instead of the stale model/dim.

@@ -243,12 +243,15 @@ export function recordVectorShardRebuildStarted(input: { jobId: string; shardPat
 }
 
 export function recordVectorShardRebuildCompleted(input: { jobId: string; shardPath: string }): void {
+  const completedShard = basenameOrNull(input.shardPath);
   degradedVectorHealth.rebuildsCompleted += 1;
   updateDegradedVectorHealth({
     state: 'healthy',
-    activeJobId: degradedVectorHealth.activeJobId === input.jobId ? null : degradedVectorHealth.activeJobId,
+    activeJobId: degradedVectorHealth.activeJobId === input.jobId || degradedVectorHealth.lastShard === completedShard
+      ? null
+      : degradedVectorHealth.activeJobId,
     lastReason: null,
-    lastShard: basenameOrNull(input.shardPath),
+    lastShard: completedShard,
   });
 }
 
