@@ -130,6 +130,14 @@ function resolveValidationQueryText(
     return null;
   }
 
+  // The clean consumption_log schema stores only a query fingerprint; raw
+  // query text exists solely on unmigrated legacy tables. Without the column
+  // there is nothing to resolve, and selecting it would throw.
+  const columns = database.prepare(`PRAGMA table_info(consumption_log)`).all() as Array<{ name: string }>;
+  if (!columns.some((column) => column.name === 'query_text')) {
+    return null;
+  }
+
   const row = database.prepare(`
     SELECT query_text
     FROM consumption_log

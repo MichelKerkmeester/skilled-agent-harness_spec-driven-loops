@@ -201,6 +201,15 @@ function loadRecentSearchQueries(
 ): ConsumptionQueryRow[] {
   initConsumptionLog(db);
 
+  // Shadow replay needs raw query text, but the clean consumption_log schema
+  // stores only a fingerprint — raw text is never durably persisted. Until a
+  // privacy-preserving replay pool exists, an empty pool (cycle skipped) is
+  // the correct outcome; selecting the absent column would throw.
+  const columns = db.prepare(`PRAGMA table_info(consumption_log)`).all() as Array<{ name: string }>;
+  if (!columns.some((column) => column.name === 'query_text')) {
+    return [];
+  }
+
   const sinceIso = new Date(now - queryLookbackMs).toISOString();
   return db.prepare(`
     SELECT MAX(id) AS id, query_text
