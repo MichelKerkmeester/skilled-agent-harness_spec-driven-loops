@@ -150,6 +150,7 @@ function channelScore(rawResult: Record<string, unknown>, channel: typeof CHANNE
 
 function resolveEffectiveScore(rawResult: Record<string, unknown>): { score: number | null; source: string } {
   for (const [field, source] of [
+    ['finalRankScore', 'finalRank'],
     ['intentAdjustedScore', 'intentAdjusted'],
     ['rrfScore', 'fusion'],
     ['stage2Score', 'stage2'],

@@ -7,7 +7,7 @@ description: "Validates that scaffold-debug-delegation.sh generates a well-forme
 
 ## 1. OVERVIEW
 
-This scenario validates the failure-threshold offer flow added by spec-folder `050-agent-debug-integration`. The flow has two pieces: (a) the y/n/skip prompt the workflow surfaces after 3+ task failures during `spec_kit:implement` / `spec_kit:complete`, and (b) the new `scaffold-debug-delegation.sh` helper that pre-fills `debug-delegation.md` on opt-in. The hard constraint enforced here is: the workflow must NEVER auto-invoke Task tool → @debug. The user opts in by running the Task-tool dispatch themselves with the scaffold as the structured handoff.
+This scenario validates the failure-threshold offer flow added by spec-folder `050-agent-debug-integration`. The flow has two pieces: (a) the y/n/skip prompt the workflow surfaces after 3+ task failures during `speckit:implement` / `speckit:complete`, and (b) the new `scaffold-debug-delegation.sh` helper that pre-fills `debug-delegation.md` on opt-in. The hard constraint enforced here is: the workflow must NEVER auto-invoke Task tool → @debug. The user opts in by running the Task-tool dispatch themselves with the scaffold as the structured handoff.
 
 ### Why This Matters
 
@@ -71,7 +71,7 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
    ```
 6. Confirm the YAML configs surface a y/n/skip prompt rather than auto-dispatch:
    ```bash
-   grep -A 5 "debug_delegation:\|debug_escalation:" .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml | grep -E "y / continue manually / skip|no_autonomous_routing|prompt_user_with_y_n_skip"  # expect at least 3 hits
+   grep -A 5 "debug_delegation:\|debug_escalation:" .opencode/commands/speckit/assets/spec_kit_implement_auto.yaml .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml | grep -E "y / continue manually / skip|no_autonomous_routing|prompt_user_with_y_n_skip"  # expect at least 3 hits
    ```
 7. Cleanup:
    ```bash
@@ -105,7 +105,7 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
 
 - Helper script: `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh`
 - Schema source: `.opencode/agents/debug.md` (Debug Context Handoff format, lines 60-89)
-- Workflow YAML: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` (debug_delegation block) and `.../spec_kit_complete_auto.yaml` (debug_escalation block)
+- Workflow YAML: `.opencode/commands/speckit/assets/spec_kit_implement_auto.yaml` (debug_delegation block) and `.../spec_kit_complete_auto.yaml` (debug_escalation block)
 - Spec folder: `<spec-folder>` (REQ-004, REQ-005)
 - User constraint memory: `feedback_debug_agent_user_invoked_only.md`
 

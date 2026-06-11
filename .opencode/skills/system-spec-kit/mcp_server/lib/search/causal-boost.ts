@@ -530,12 +530,19 @@ function applyCausalBoost(
       let dominantRelation = 'caused';
       if (db) {
         try {
+          const seedPlaceholders = seedIds.map(() => '?').join(',');
+          const seedIdParams = seedIds.map(String);
           const edgeRow = (db.prepare(`
             SELECT relation FROM causal_edges
-            WHERE source_id IN (${seedIds.map(() => '?').join(',')})
-              AND target_id = ?
+            WHERE (source_id IN (${seedPlaceholders}) AND target_id = ?)
+               OR (target_id IN (${seedPlaceholders}) AND source_id = ?)
             LIMIT 1
-          `) as Database.Statement).get(...seedIds.map(String), String(neighborId)) as
+          `) as Database.Statement).get(
+            ...seedIdParams,
+            String(neighborId),
+            ...seedIdParams,
+            String(neighborId),
+          ) as
             { relation: string } | undefined;
           if (edgeRow?.relation) dominantRelation = edgeRow.relation;
         } catch (_err: unknown) {

@@ -2,7 +2,7 @@
 title: "EX-001 -- Unified context retrieval (memory_context)"
 description: "This scenario validates Unified context retrieval (memory_context) for `EX-001`. It focuses on Intent-aware context pull."
 audited_post_018: true
-phase_018_change: Re-centered the resume path on `/spec_kit:resume`, `handover.md`, `_memory.continuity`, and supporting spec docs instead of legacy CONTINUE_SESSION wording.
+phase_018_change: Re-centered the resume path on `/speckit:resume`, `handover.md`, `_memory.continuity`, and supporting spec docs instead of legacy CONTINUE_SESSION wording.
 ---
 
 # EX-001 -- Unified context retrieval (memory_context)
@@ -16,9 +16,9 @@ This scenario validates Unified context retrieval (memory_context) for `EX-001`.
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Intent-aware context pull through the canonical `/spec_kit:resume` recovery surface, with `handover.md` first, then `_memory.continuity`, then supporting spec docs.
-- Real user request: `Please validate Unified context retrieval (memory_context) against /spec_kit:resume specs/<target-spec> and tell me whether the expected signals are present: Relevant bounded context returned; no empty response.`
-- Prompt: `Validate memory_context recovery via /spec_kit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
+- Objective: Intent-aware context pull through the canonical `/speckit:resume` recovery surface, with `handover.md` first, then `_memory.continuity`, then supporting spec docs.
+- Real user request: `Please validate Unified context retrieval (memory_context) against /speckit:resume specs/<target-spec> and tell me whether the expected signals are present: Relevant bounded context returned; no empty response.`
+- Prompt: `Validate memory_context recovery via /speckit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Relevant bounded context returned; no empty response
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,11 +30,11 @@ This scenario validates Unified context retrieval (memory_context) for `EX-001`.
 
 ### Prompt
 
-`Validate memory_context recovery via /spec_kit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
+`Validate memory_context recovery via /speckit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
 
 ### Commands
 
-1. /spec_kit:resume specs/<target-spec>
+1. /speckit:resume specs/<target-spec>
 2. memory_context({ input: "fix flaky index scan retry logic", mode: "resume", specFolder: "specs/<target-spec>", includeContent: true })
 3. memory_context({ input: "fix flaky index scan retry logic", mode: "focused", sessionId: "ex001" })
 

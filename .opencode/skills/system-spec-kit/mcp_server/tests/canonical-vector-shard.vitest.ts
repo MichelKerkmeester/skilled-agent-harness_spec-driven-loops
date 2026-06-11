@@ -15,6 +15,7 @@ import {
   detachActiveVectorShard,
   getActiveVectorSource,
 } from '../lib/search/vector-index-store';
+import { setActiveEmbedder } from '../lib/embedders/schema';
 import { create_schema, ensure_schema_version } from '../lib/search/vector-index-schema';
 import { migrateLegacySingleDbToShardSync } from '../lib/search/db-shard-migration';
 import { index_memory } from '../lib/search/vector-index-mutations';
@@ -253,9 +254,10 @@ describe('canonical metadata DB + active vector shard split', () => {
     db.close();
   });
 
-  it('indexes vector mutations into active_vec.vec_memories only', () => {
+  it('indexes active embedder vector mutations into both shard payload tables', () => {
     const profile = makeProfile();
     const db = createSchemaBackedDb(tempDir, profile);
+    setActiveEmbedder(db, profile.model, profile.dim, profile.provider);
 
     const id = index_memory({
       specFolder: 'specs/demo',
@@ -270,6 +272,11 @@ describe('canonical metadata DB + active vector shard split', () => {
     const shardCount = db.prepare(`SELECT COUNT(*) AS count FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`)
       .get(id) as { count: number };
     expect(shardCount.count).toBe(1);
+    const dimCount = db.prepare(`SELECT COUNT(*) AS count FROM ${activeVectorSource(`vec_${profile.dim}`)} WHERE id = ?`)
+      .get(id) as { count: number };
+    expect(dimCount.count).toBe(1);
+    expect(vector_search(makeEmbedding(), { limit: 5, includeConstitutional: false }, db).map((row) => row.id))
+      .toContain(id);
     expect(tableExists(db, 'main', 'vec_memories')).toBe(false);
 
     detachActiveVectorShard(db);

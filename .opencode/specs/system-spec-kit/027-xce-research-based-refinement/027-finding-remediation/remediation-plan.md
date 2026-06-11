@@ -25,14 +25,16 @@ Canonical inventory: `backlog/p1-backlog.json` (132 entries; disposition field i
 
 | Lane | P1 to verify | P2 | V-wave | I-wave | P2 triage | Committed |
 |------|--------------|----|--------|--------|-----------|-----------|
-| 001-write-safety-and-guards | 13 | 12 | pending | - | - | - |
-| 002-causal-and-memo | 10 | 5 | pending | - | - | - |
-| 003-search-and-triggers | 9 | 13 | pending | - | - | - |
-| 004-vector-and-checkpoint-durability | 12 | 19 | pending | - | - | - |
-| 005-bm25-indexing-fidelity | 4 | 1 | pending | - | - | - |
-| 006-launchers-and-cli | 21 | 19 | pending | - | - | - |
-| 007-continuity-and-save-concurrency | 13 | 15 | pending | - | - | - |
-| 008-doc-truth-and-test-fidelity | 19 | 35 | pending | - | - | - |
+| 001-write-safety-and-guards | 14 | 12 | done: 4 confirmed | running | - | - |
+| 002-causal-and-memo | 14 | 5 | done: 2 confirmed | running | - | - |
+| 003-search-and-triggers | 7 | 13 | done: 3 confirmed | running | - | - |
+| 004-vector-and-checkpoint-durability | 12 | 19 | done: 3 confirmed | running | - | - |
+| 005-bm25-indexing-fidelity | 4 | 1 | done: 0 confirmed | n/a | - | - |
+| 006-launchers-and-cli | 18 | 19 | done: 1 confirmed | running | - | - |
+| 007-continuity-and-save-concurrency | 9 | 15 | done: 0 confirmed | n/a | - | - |
+| 008-doc-truth-and-test-fidelity | 23 | 35 | a done: 3 confirmed (doc batch fixed directly); b re-running | doc batch done | - | - |
+
+V-wave totals (89/101 adjudicated; 12 with seat 008-b re-running): 16 confirmed, 19 refuted, 41 downgraded to P2, 13 already fixed by the pre-lane remediation rounds. Direct doc batch (orchestrator): /spec_kit namespace swept from 26 catalog/playbook tree files; 005 strict validation run and recorded; 007 parent statuses reconciled.
 
 ## Resume instructions (fresh session)
 

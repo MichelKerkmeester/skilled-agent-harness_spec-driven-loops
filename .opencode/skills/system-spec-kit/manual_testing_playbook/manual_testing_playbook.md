@@ -241,7 +241,7 @@ Use the per-feature files for feature-specific:
 Intent-aware context pull.
 
 #### Scenario Contract
-Prompt: `Validate memory_context recovery via /spec_kit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
+Prompt: `Validate memory_context recovery via /speckit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
 
 Relevant bounded context returned; auto-resume context stays within budget
 
@@ -3310,10 +3310,10 @@ Prompt: `Validate Phase link validation against bash .opencode/skills/system-spe
 ### PHASE-005 | Phase command workflow
 
 #### Description
-Execute `/spec_kit:plan :with-phases` command in auto mode and verify phase decomposition pre-workflow.
+Execute `/speckit:plan :with-phases` command in auto mode and verify phase decomposition pre-workflow.
 
 #### Scenario Contract
-Prompt: `Validate Phase command workflow against /spec_kit:plan :with-phases and report cited pass/fail evidence.`
+Prompt: `Validate Phase command workflow against /speckit:plan :with-phases and report cited pass/fail evidence.`
 
 All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths
 
@@ -3339,7 +3339,7 @@ Prompt: `Validate create.sh literal-naming fallback by running create.sh "litera
 Route an ambiguous spec task through multiple external CLI agents and confirm each agent proposes phase names with specific subject tokens per the `Generate LITERAL phase names` YAML activity added in Packet 012.
 
 #### Scenario Contract
-Prompt: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /spec_kit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
+Prompt: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /speckit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
 
 All 3 proposed slugs contain a specific subject token naming the concrete component or behavior; no slug matches the generic stoplist (phase-1, phase-2, phase-3, cleanup, remediation, fix, refactor, setup); aggregate PASS requires 2 or more CLIs to report PASS
 
@@ -3402,12 +3402,12 @@ These 30 catalog entries are explicitly documented here even when validation is 
 ### M-001 | Context Recovery and Continuation
 
 #### Description
-Canonical resume workflow through `/spec_kit:resume` and the packet recovery ladder.
+Canonical resume workflow through `/speckit:resume` and the packet recovery ladder.
 
 #### Scenario Contract
-Prompt: `Validate context recovery with /spec_kit:resume specs/<target-spec> and confirm the resume ladder returns actionable next steps.`
+Prompt: `Validate context recovery with /speckit:resume specs/<target-spec> and confirm the resume ladder returns actionable next steps.`
 
-Expected signals: Resume-ready state summary and next steps via `/spec_kit:resume` and the canonical packet ladder.
+Expected signals: Resume-ready state summary and next steps via `/speckit:resume` and the canonical packet ladder.
 
 #### Test Execution
 > **Feature File:** [M-001](01--retrieval/context-recovery-and-continuation.md)
@@ -3746,7 +3746,7 @@ This split playbook keeps automated coverage references in three places:
 | M-006 | Dedicated Memory/Spec-Kit Scenarios | Session Enrichment and Alignment Guardrails | [M-006](13--memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md) | [13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md](../feature_catalog/13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md) |
 | M-007 | Dedicated Memory/Spec-Kit Scenarios | Session Capturing Pipeline Quality | [M-007](16--tooling-and-scripts/session-capturing-pipeline-quality.md) | [16--tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/16--tooling-and-scripts/session-capturing-pipeline-quality.md) |
 | M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md) | [02--mutation/per-memory-history-log.md](../feature_catalog/02--mutation/per-memory-history-log.md) |
-| 190 | Features | Session recovery via /spec_kit:resume | [190](01--retrieval/session-recovery-spec-kit-resume.md) | [01--retrieval/session-recovery-spec-kit-resume.md](../feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md) |
+| 190 | Features | Session recovery via /speckit:resume | [190](01--retrieval/session-recovery-spec-kit-resume.md) | [01--retrieval/session-recovery-spec-kit-resume.md](../feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md) |
 | 125-map | Features | Audit phase mapping note (020) | — | [19--feature-flag-reference/audit-phase-020-mapping-note.md](../feature_catalog/19--feature-flag-reference/audit-phase-020-mapping-note.md) |
 | 020-stub | Features | Remediation and revalidation (stub) | — | [20--remediation-revalidation/category-stub.md](../feature_catalog/20--remediation-revalidation/category-stub.md) |
 | 021-stub | Features | Implement and remove deprecated (stub) | — | [21--implement-and-remove-deprecated-features/category-stub.md](../feature_catalog/21--implement-and-remove-deprecated-features/category-stub.md) |

@@ -23,7 +23,7 @@ This category documents the hybrid context injection system that preserves criti
 
 ## 2. HOW IT WORKS
 
-The shipped surface now includes hook scripts, code graph modules, MCP tools, budget allocator, tree-sitter parser with regex fallback, query-intent routing, auto-trigger, session health/resume/bootstrap tools, the structural ready/stale/missing contract, and startup-brief follow-ons. Recovery treats `/spec_kit:resume` as the canonical surface and follows `handover.md -> _memory.continuity -> spec docs` before widening to broader memory artifacts.
+The shipped surface now includes hook scripts, code graph modules, MCP tools, budget allocator, tree-sitter parser with regex fallback, query-intent routing, auto-trigger, session health/resume/bootstrap tools, the structural ready/stale/missing contract, and startup-brief follow-ons. Recovery treats `/speckit:resume` as the canonical surface and follows `handover.md -> _memory.continuity -> spec docs` before widening to broader memory artifacts.
 
 For runtime-package code-graph details, see `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`.
 

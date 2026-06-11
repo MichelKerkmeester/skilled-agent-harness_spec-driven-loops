@@ -1,22 +1,22 @@
 ---
 title: "PHASE-005 -- Phase command workflow"
-description: "This scenario validates Phase command workflow for `PHASE-005`. It focuses on Execute `/spec_kit:plan :with-phases` command in auto mode and verify 7-step workflow."
+description: "This scenario validates Phase command workflow for `PHASE-005`. It focuses on Execute `/speckit:plan :with-phases` command in auto mode and verify 7-step workflow."
 ---
 
 # PHASE-005 -- Phase command workflow
 
 ## 1. OVERVIEW
 
-This scenario validates Phase command workflow for `PHASE-005`. It focuses on Execute `/spec_kit:plan :with-phases` command in auto mode and verify 7-step workflow.
+This scenario validates Phase command workflow for `PHASE-005`. It focuses on Execute `/speckit:plan :with-phases` command in auto mode and verify 7-step workflow.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Execute `/spec_kit:plan :with-phases` command in auto mode and verify 7-step workflow.
-- Real user request: `Please validate Phase command workflow against /spec_kit:plan :with-phases and tell me whether the expected signals are present: All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths.`
-- Prompt: `Validate Phase command workflow against /spec_kit:plan :with-phases and report cited pass/fail evidence.`
+- Objective: Execute `/speckit:plan :with-phases` command in auto mode and verify 7-step workflow.
+- Real user request: `Please validate Phase command workflow against /speckit:plan :with-phases and tell me whether the expected signals are present: All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths.`
+- Prompt: `Validate Phase command workflow against /speckit:plan :with-phases and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,12 +29,12 @@ This scenario validates Phase command workflow for `PHASE-005`. It focuses on Ex
 ### Prompt
 
 ```
-Validate Phase command workflow against /spec_kit:plan :with-phases and report cited pass/fail evidence.
+Validate Phase command workflow against /speckit:plan :with-phases and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. Invoke `/spec_kit:plan :with-phases` in auto mode for a target spec folder
+1. Invoke `/speckit:plan :with-phases` in auto mode for a target spec folder
 2. Verify Step 1: Phase scoring runs (recommend-level.sh --recommend-phases)
 3. Verify Step 2: Phase count determination (from scoring or user input)
 4. Verify Step 3: Phase naming (auto-generated or user-provided)

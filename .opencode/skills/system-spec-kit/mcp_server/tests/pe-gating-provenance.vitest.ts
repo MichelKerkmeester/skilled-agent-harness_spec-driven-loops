@@ -185,7 +185,7 @@ describe('PE mutation provenance', () => {
     });
   });
 
-  it('tags PE reinforce rows with automated caller provenance', async () => {
+  it('preserves protected source_kind when PE reinforce records automated provenance', async () => {
     seedMemory();
     const { reinforceExistingMemory } = await loadPeGating();
 
@@ -202,7 +202,7 @@ describe('PE mutation provenance', () => {
       WHERE id = ?
     `).get(101) as { source_kind: string; provenance_source: string; provenance_actor: string };
     expect(row).toEqual({
-      source_kind: 'system',
+      source_kind: 'human',
       provenance_source: 'system-scheduler',
       provenance_actor: 'daemon-scheduler',
     });

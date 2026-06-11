@@ -40,6 +40,7 @@ import {
   sqlite_vec_available as get_sqlite_vec_available,
   activeVectorSource,
 } from './vector-index-store.js';
+import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder, vecTableNameForDim } from '../embedders/schema.js';
 import type {
   IndexMemoryParams as SharedIndexMemoryParams,
   MemoryScopeParams,
@@ -52,6 +53,49 @@ const logger = createLogger('VectorIndex');
 function isExpectedMissingVecMemoriesTable(error: unknown): boolean {
   const message = get_error_message(error).toLowerCase();
   return message.includes('no such table') && message.includes('vec_memories');
+}
+
+function activeVectorTableExists(database: Database.Database, tableName: string): boolean {
+  try {
+    const row = database.prepare(`
+      SELECT 1 AS found
+      FROM ${activeVectorSource('sqlite_master')}
+      WHERE type = 'table' AND name = ?
+      LIMIT 1
+    `).get(tableName) as { found?: number } | undefined;
+    return row?.found === 1;
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+function activeDimVectorSource(database: Database.Database): string | null {
+  const active = getActiveEmbedder(database);
+  if (active.name === DEFAULT_ACTIVE_EMBEDDER.name) {
+    return null;
+  }
+  const tableName = vecTableNameForDim(active.dim);
+  return activeVectorTableExists(database, tableName) ? activeVectorSource(tableName) : null;
+}
+
+function writeActiveVectorPayload(database: Database.Database, id: bigint, embeddingBuffer: Buffer): void {
+  database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(id);
+  database.prepare(`
+    INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
+  `).run(id, embeddingBuffer);
+
+  const dimSource = activeDimVectorSource(database);
+  if (dimSource) {
+    database.prepare(`INSERT OR REPLACE INTO ${dimSource} (id, vec) VALUES (?, ?)`).run(id, embeddingBuffer);
+  }
+}
+
+function deleteActiveVectorPayload(database: Database.Database, id: bigint): void {
+  database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(id);
+  const dimSource = activeDimVectorSource(database);
+  if (dimSource) {
+    database.prepare(`DELETE FROM ${dimSource} WHERE id = ?`).run(id);
+  }
 }
 
 function invalidateGraphCaches(database: Database.Database): void {
@@ -329,15 +373,10 @@ export function index_memory(
     upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, metadata_id, now, scope);
 
     if (sqlite_vec) {
-      // Remove orphaned vec_memories entry before insert
-      database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(row_id);
-      database.prepare(`
-        INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
-      `).run(row_id, embedding_buffer);
+      writeActiveVectorPayload(database, row_id, embedding_buffer);
     }
 
     refresh_interference_scores_for_folder(database, specFolder);
-    // H3 FIX: Invalidate search cache after insert
     clear_search_cache();
 
     return metadata_id;
@@ -575,7 +614,6 @@ export function update_memory(
     if (embedding) {
       updates.push('embedding_model = ?');
       updates.push('embedding_generated_at = ?');
-      // H1 FIX: Set 'pending' until vector write is confirmed
       updates.push('embedding_status = ?');
       values.push(embeddingsProvider.getModelName(), now, 'pending');
     }
@@ -603,11 +641,7 @@ export function update_memory(
       }
 
       const embedding_buffer = to_embedding_buffer(embedding);
-      database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(BigInt(id));
-      database.prepare(`
-        INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
-      `).run(BigInt(id), embedding_buffer);
-      // H1 FIX: Mark success only after vector write confirmed
+      writeActiveVectorPayload(database, BigInt(id), embedding_buffer);
       database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', id);
     }
 
@@ -626,7 +660,6 @@ export function update_memory(
     if (existingRow?.spec_folder) {
       refresh_interference_scores_for_folder(database, existingRow.spec_folder);
     }
-    // H3 FIX: Invalidate search cache after update
     clear_search_cache();
 
     return id;
@@ -672,7 +705,7 @@ export function delete_memory_from_database(database: Database.Database, id: num
 
     if (sqlite_vec) {
       try {
-        database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ? /* DELETE FROM vec_memories */`).run(BigInt(id));
+        deleteActiveVectorPayload(database, BigInt(id));
       } catch (e: unknown) {
         if (!isExpectedMissingVecMemoriesTable(e)) {
           throw new VectorIndexError(
@@ -814,7 +847,7 @@ export function delete_memories(
       try {
         if (sqlite_vec) {
           try {
-            database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(BigInt(id));
+            deleteActiveVectorPayload(database, BigInt(id));
           } catch (vec_error: unknown) {
             console.warn(`[VectorIndex] Failed to delete vector for memory ${id}: ${get_error_message(vec_error)}`);
           }

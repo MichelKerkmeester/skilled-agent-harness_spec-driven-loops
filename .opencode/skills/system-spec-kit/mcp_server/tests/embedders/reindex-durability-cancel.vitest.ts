@@ -163,6 +163,23 @@ function countShardVectors(): number {
   }
 }
 
+function shardTableExists(tableName: string): boolean {
+  const shardPath = activeShardPath();
+  if (!fs.existsSync(shardPath)) return false;
+  const shard = new Database(shardPath, { readonly: true });
+  try {
+    const row = shard.prepare(`
+      SELECT 1 AS found
+      FROM sqlite_master
+      WHERE type = 'table' AND name = ?
+      LIMIT 1
+    `).get(tableName) as { found?: number } | undefined;
+    return row?.found === 1;
+  } finally {
+    shard.close();
+  }
+}
+
 function shardVectorIds(): number[] {
   const shardPath = activeShardPath();
   if (!fs.existsSync(shardPath)) return [];
@@ -311,6 +328,7 @@ describe('reindex durability + cancel (C3 Family-4)', () => {
     // The active shard is now the swapped-in staged artifact: it holds the 3 reindexed rows
     // (the baseline sentinel/row 999 are gone because the new shard fully replaced the old).
     expect(countShardVectors()).toBe(3);
+    expect(shardTableExists('embedding_cache')).toBe(true);
     expect(readShardSentinel()).toBeNull();
 
     // embedding_status flipped to success for the reindexed rows.
@@ -322,6 +340,26 @@ describe('reindex durability + cancel (C3 Family-4)', () => {
     expect(successCount).toBe(3);
 
     // No staging leftovers after a successful swap.
+    const staging = `${activeShardPath()}.reindex-${jobId}.staging`;
+    expect(fs.existsSync(staging)).toBe(false);
+  });
+
+  it('resumed jobs rebuild from the full dataset after staging is recreated', async () => {
+    seedMemories(db, 3);
+    writeBaselineShard();
+    const jobId = startReindexForTest({ toName: TEST_MODEL }, { db, autoStart: false });
+    db.prepare(`UPDATE embedder_jobs SET processed = 2 WHERE id = ?`).run(jobId);
+
+    embedImpl = (texts) => texts.map(() => Float32Array.from([6, 6, 6, 6]));
+
+    resumeReindexJobs(db);
+    await settle();
+
+    const job = getJobStatus(jobId, db);
+    expect(job?.status).toBe('completed');
+    expect(job?.processed).toBe(3);
+    expect(shardVectorIds()).toEqual([1, 2, 3]);
+
     const staging = `${activeShardPath()}.reindex-${jobId}.staging`;
     expect(fs.existsSync(staging)).toBe(false);
   });

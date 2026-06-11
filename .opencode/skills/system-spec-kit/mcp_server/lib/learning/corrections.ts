@@ -6,6 +6,7 @@ import type Database from 'better-sqlite3';
 import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { clearDegreeCacheForDb } from '../search/graph-search-fn.js';
 import { sweepCausalEdges } from '../causal/sweep.js';
+import { bumpCausalEdgesGeneration } from '../storage/causal-generation.js';
 
 /* ───────────────────────────────────────────────────────────────
    TYPE DEFINITIONS
@@ -189,6 +190,8 @@ const MAX_CORRECTIONS_HISTORY: number = 10;
 let db: Database.Database | null = null;
 
 function invalidateGraphCaches(database: Database.Database): void {
+  bumpCausalEdgesGeneration();
+
   try {
     clearDegreeCacheForDb(database);
   } catch (_error: unknown) {
@@ -502,7 +505,7 @@ export function record_correction(params: RecordCorrectionParams): CorrectionRes
 
         // Record_correction validates db before starting this transaction
         // Undo_correction throws when db is not initialized before creating this transaction
-    db!.prepare(`
+        db!.prepare(`
           INSERT OR IGNORE INTO causal_edges (
             source_id, target_id, relation, strength, evidence, extracted_at
           ) VALUES (?, ?, ?, 1.0, ?, datetime('now'))

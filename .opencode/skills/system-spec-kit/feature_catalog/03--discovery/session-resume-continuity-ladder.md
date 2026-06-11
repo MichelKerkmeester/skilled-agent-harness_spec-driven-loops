@@ -29,7 +29,7 @@ The handler reads the target folder, walks the ladder, and returns a structured 
 - Layer ordering: handover, continuity frontmatter, canonical spec docs in that order
 - Phase-parent redirect: follows `derived.last_active_child_id` when present; lists children when absent
 
-The ladder is documented in the quick reference workflow doc and is the same path used by `/spec_kit:resume`. The two surfaces share semantics so operators get identical recovery via either path.
+The ladder is documented in the quick reference workflow doc and is the same path used by `/speckit:resume`. The two surfaces share semantics so operators get identical recovery via either path.
 
 ---
 

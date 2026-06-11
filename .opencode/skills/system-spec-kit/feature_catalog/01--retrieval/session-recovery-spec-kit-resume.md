@@ -1,27 +1,27 @@
 ---
-title: "Session recovery via /spec_kit:resume"
+title: "Session recovery via /speckit:resume"
 description: "Reconstructs interrupted session state through the unified spec-folder resume workflow."
 trigger_phrases:
   - "session recovery"
-  - "spec_kit:resume"
+  - "speckit:resume"
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
 ---
 
-# Session recovery via /spec_kit:resume
+# Session recovery via /speckit:resume
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
-When a session is interrupted by a crash, context compaction, timeout, or an ordinary handoff between sessions, `/spec_kit:resume` reconstructs the most likely previous state and routes the user to the best next step. Session recovery is owned by the spec-folder resume workflow, where the canonical continuity ladder is `handover.md -> _memory.continuity -> spec docs` and the wrapper exposes helper access only when the packet is still thin.
+When a session is interrupted by a crash, context compaction, timeout, or an ordinary handoff between sessions, `/speckit:resume` reconstructs the most likely previous state and routes the user to the best next step. Session recovery is owned by the spec-folder resume workflow, where the canonical continuity ladder is `handover.md -> _memory.continuity -> spec docs` and the wrapper exposes helper access only when the packet is still thin.
 
 ---
 
 ## 2. HOW IT WORKS
 
-**SHIPPED.** `/spec_kit:resume` owns both standard continuation and interrupted-session recovery. Its primary recovery chain uses 3 borrowed tools, while the live wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers:
+**SHIPPED.** `/speckit:resume` owns both standard continuation and interrupted-session recovery. Its primary recovery chain uses 3 borrowed tools, while the live wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers:
 
 - **`memory_context`** (from `/memory:search`) -- Helper recovery path in `resume` mode when the handover packet is thin. In `mcp_server/handlers/memory-context.ts`, resume mode is a dedicated `memory_search`-backed strategy with anchors `["state", "next-steps", "summary", "blockers"]`, default `limit=5`, a 1200-token budget, `minState=WARM`, `includeContent=true`, and both dedup and decay disabled. When auto-resume is enabled and the caller resumes a reusable working-memory session, `systemPromptContext` is injected before token-budget enforcement.
 - **`_memory.continuity`** (in `implementation-summary.md`) -- Supporting continuity state when `handover.md` is present but needs enrichment from the canonical packet.
@@ -49,7 +49,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 ### Post-Recovery Routing
 
 - Quick "what was I doing?" answer: stop after the recovery summary
-- Structured spec work: continue directly inside `/spec_kit:resume`
+- Structured spec work: continue directly inside `/speckit:resume`
 - Broader historical analysis: recommend `/memory:search history <spec-folder>`
 
 ---
@@ -60,9 +60,9 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 | File | Role |
 |------|------|
-| `.opencode/commands/spec_kit/resume.md` | `/spec_kit:resume` command: standard continuation plus interrupted-session recovery |
-| `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` | Autonomous resume and recovery workflow |
-| `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` | Interactive resume and recovery workflow |
+| `.opencode/commands/speckit/resume.md` | `/speckit:resume` command: standard continuation plus interrupted-session recovery |
+| `.opencode/commands/speckit/assets/spec_kit_resume_auto.yaml` | Autonomous resume and recovery workflow |
+| `.opencode/commands/speckit/assets/spec_kit_resume_confirm.yaml` | Interactive resume and recovery workflow |
 
 ### Related Implementation
 

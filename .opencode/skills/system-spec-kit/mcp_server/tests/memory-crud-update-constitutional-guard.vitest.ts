@@ -30,7 +30,8 @@ function createTestDatabase(): Database.Database {
       source_kind TEXT,
       provenance_source TEXT,
       provenance_actor TEXT,
-      delete_after TEXT
+      delete_after TEXT,
+      is_pinned INTEGER DEFAULT 0
     );
 
     CREATE TABLE active_memory_projection (
@@ -44,13 +45,13 @@ function createTestDatabase(): Database.Database {
   return db;
 }
 
-function seedMemory(filePath: string, sourceKind: string | null = 'human', tier = 'important'): number {
+function seedMemory(filePath: string, sourceKind: string | null = 'human', tier = 'important', isPinned = false): number {
   const now = new Date().toISOString();
   database.prepare(`
       INSERT INTO memory_index (
         id, spec_folder, file_path, canonical_file_path, anchor_id, title,
-        trigger_phrases, importance_weight, created_at, updated_at, importance_tier, source_kind
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        trigger_phrases, importance_weight, created_at, updated_at, importance_tier, source_kind, is_pinned
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     101,
     'system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants',
@@ -64,6 +65,7 @@ function seedMemory(filePath: string, sourceKind: string | null = 'human', tier 
     now,
     tier,
     sourceKind,
+    isPinned ? 1 : 0,
   );
   database.prepare(`
     INSERT INTO active_memory_projection (
@@ -331,6 +333,50 @@ describe('memory_update constitutional tier guard', () => {
     expect(row.importance_tier).toBe('constitutional');
     expect(row.importance_weight).toBe(0.9);
     expect(row.source_kind).toBe('system');
+    expect(JSON.stringify(response)).toContain('skipped to protect manual data');
+  });
+
+  it('skips automated protected-field overwrites on critical rows', async () => {
+    const filePath = '/workspace/.opencode/specs/system-spec-kit/critical-row/spec.md';
+    const memoryId = seedMemory(filePath, 'system', 'critical');
+    const { handleMemoryUpdate } = await loadHandler();
+
+    const response = await handleMemoryUpdate({
+      id: memoryId,
+      title: 'Automated critical retitle',
+      importanceTier: 'normal',
+      importanceWeight: 0.85,
+      __provenanceContext: { provenanceSource: 'agent-enrichment', provenanceActor: 'agent' },
+    } as never);
+
+    const row = database.prepare('SELECT title, importance_tier, importance_weight, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { title: string; importance_tier: string; importance_weight: number; source_kind: string };
+    expect(row.title).toBe('Wave 1 fixture');
+    expect(row.importance_tier).toBe('critical');
+    expect(row.importance_weight).toBe(0.85);
+    expect(row.source_kind).toBe('system');
+    expect(JSON.stringify(response)).toContain('skipped to protect manual data');
+  });
+
+  it('skips automated protected-field overwrites on pinned rows', async () => {
+    const filePath = '/workspace/.opencode/specs/system-spec-kit/pinned-row/spec.md';
+    const memoryId = seedMemory(filePath, 'agent', 'important', true);
+    const { handleMemoryUpdate } = await loadHandler();
+
+    const response = await handleMemoryUpdate({
+      id: memoryId,
+      title: 'Automated pinned retitle',
+      triggerPhrases: ['automated'],
+      importanceWeight: 0.75,
+      __provenanceContext: { provenanceSource: 'agent-enrichment', provenanceActor: 'agent' },
+    } as never);
+
+    const row = database.prepare('SELECT title, trigger_phrases, importance_weight, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { title: string; trigger_phrases: string; importance_weight: number; source_kind: string };
+    expect(row.title).toBe('Wave 1 fixture');
+    expect(JSON.parse(row.trigger_phrases)).toEqual(['wave-1']);
+    expect(row.importance_weight).toBe(0.75);
+    expect(row.source_kind).toBe('agent');
     expect(JSON.stringify(response)).toContain('skipped to protect manual data');
   });
 });

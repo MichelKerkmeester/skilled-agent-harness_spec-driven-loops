@@ -2,6 +2,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } 
 
 import { formatSearchResults } from '../formatters/search-results.js';
 import { handleMemoryHealth } from '../handlers/memory-crud-health.js';
+import { __testables as memorySearchTestables } from '../handlers/memory-search.js';
 import {
   buildVectorDegradationSignal,
   buildWhyRankedTrace,
@@ -83,6 +84,44 @@ describe('OpenLTM retrieval observability', () => {
       Object.values((results[1].why_ranked as Record<string, unknown>).channels as Record<string, number>)
         .reduce((sum, value) => sum + value, 0),
     );
+  });
+
+  it('reports the final folder-boost order as the effective why_ranked score', async () => {
+    const rows = [
+      {
+        id: 41,
+        file_path: '/tmp/other/doc-a.md',
+        anchor_id: 'state',
+        title: 'Doc A',
+        spec_folder: 'specs/test',
+        rrfScore: 0.9,
+        similarity: 0.7,
+      },
+      {
+        id: 42,
+        file_path: '/tmp/target/doc-b.md',
+        anchor_id: 'state',
+        title: 'Doc B',
+        spec_folder: 'specs/test',
+        rrfScore: 0.2,
+        similarity: 0.6,
+      },
+    ];
+
+    const boosted = memorySearchTestables.applyFolderBoostRanking(rows, {
+      folder: '/tmp/target',
+      factor: 1.3,
+    });
+    memorySearchTestables.stampFinalRankScores(rows);
+    const response = await formatSearchResults(rows, 'hybrid', false, null, null, null, {}, true);
+    const results = dataFrom(response).results as Array<Record<string, unknown>>;
+    const firstWhy = results[0].why_ranked as Record<string, unknown>;
+    const secondWhy = results[1].why_ranked as Record<string, unknown>;
+
+    expect(boosted).toBe(true);
+    expect(results.map((row) => row.filePath)).toEqual(['/tmp/target/doc-b.md', '/tmp/other/doc-a.md']);
+    expect(firstWhy).toMatchObject({ rank: 1, effectiveScore: 1, scoreSource: 'finalRank' });
+    expect(secondWhy).toMatchObject({ rank: 2, effectiveScore: 0.5, scoreSource: 'finalRank' });
   });
 
   it('surfaces one inline warning for a returned contradicts or supersedes pair', async () => {

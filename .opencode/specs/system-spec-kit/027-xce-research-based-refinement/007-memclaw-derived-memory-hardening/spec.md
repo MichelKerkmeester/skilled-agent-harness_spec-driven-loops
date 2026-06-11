@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-06-010-scaffold-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Structure is a phase-parent with 5 phase-children (operator choice)."
@@ -118,11 +118,11 @@ Summary of aggregate file scope for audit only. Per-phase detail lives in each c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-provenance-and-audit/ | Explicit `source_kind`; auto-cannot-overwrite-manual/constitutional; automated-mutation audit (reuse `mutation_ledger`) | Planned |
-| 2 | 002-idempotency-and-near-duplicate/ | Retry-safe idempotency receipts; advisory `near_duplicate_of`; `last_dedup_checked_at` marker | Planned |
-| 3 | 003-feedback-log-and-005-reframe/ | Scope 008 to event-capture + diagnostics; reserve feedback types; defer active reducers; symmetric-damping + constitutional immunity | Planned |
-| 4 | 004-tombstones-and-edge-promotion/ | First-timestamp-idempotent tombstones; active/purgeable index split; natural-key edge promotion that skips manual edges; entity≠causal | Planned |
-| 5 | 005-stale-audit-and-tool-ownership/ | Read-only stale/status hard-exclusion audit; derived MCP tool-ownership lint via doctor + pre-commit | Planned |
+| 1 | 001-provenance-and-audit/ | Explicit `source_kind`; auto-cannot-overwrite-manual/constitutional; automated-mutation audit (reuse `mutation_ledger`) | Complete |
+| 2 | 002-idempotency-and-near-duplicate/ | Retry-safe idempotency receipts; advisory `near_duplicate_of`; `last_dedup_checked_at` marker | Complete |
+| 3 | 003-feedback-log-and-005-reframe/ | Scope 008 to event-capture + diagnostics; reserve feedback types; defer active reducers; symmetric-damping + constitutional immunity | Complete |
+| 4 | 004-tombstones-and-edge-promotion/ | First-timestamp-idempotent tombstones; active/purgeable index split; natural-key edge promotion that skips manual edges; entity≠causal | Complete |
+| 5 | 005-stale-audit-and-tool-ownership/ | Read-only stale/status hard-exclusion audit; derived MCP tool-ownership lint via doctor + pre-commit | Complete |
 
 ### Phase Transition Rules
 

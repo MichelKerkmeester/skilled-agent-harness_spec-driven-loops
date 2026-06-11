@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeAll, beforeEach, afterAll, afterEach } 
 import * as handler from '../handlers/memory-search';
 import * as core from '../core';
 import * as toolCache from '../lib/cache/tool-cache';
+import * as sessionManager from '../lib/session/session-manager';
 import * as vectorIndex from '../lib/search/vector-index';
 
 type MemorySearchResponse = Awaited<ReturnType<typeof handler.handleMemorySearch>>;
@@ -328,6 +329,105 @@ describe('Packet 009 publication gate consumer', () => {
     expect(byId.get(305)).toMatchObject({ publishable: false, exclusionReason: 'unsupported_certainty' });
     expect(byId.get(306)).toMatchObject({ publishable: false, exclusionReason: 'unsupported_certainty' });
     expect(byId.get(307)).toMatchObject({ publishable: true, provenance: ['batch-learning-reducer', 'system'] });
+  });
+});
+
+describe('Post-format session dedup trace consistency', () => {
+  beforeEach(() => {
+    vi.spyOn(core, 'checkDatabaseUpdated').mockResolvedValue(false);
+    vi.spyOn(toolCache, 'isEnabled').mockReturnValue(true);
+    vi.spyOn(toolCache, 'generateCacheKey').mockReturnValue('dedup-trace-cache-key');
+    vi.spyOn(sessionManager, 'resolveTrustedSession').mockReturnValue({
+      requestedSessionId: 'dedup-trace-session',
+      effectiveSessionId: 'dedup-trace-session',
+      trusted: true,
+    } as ReturnType<typeof sessionManager.resolveTrustedSession>);
+    vi.spyOn(sessionManager, 'isEnabled').mockReturnValue(true);
+    vi.spyOn(sessionManager, 'markResultsSent').mockReturnValue({
+      success: true,
+      markedCount: 1,
+    } as ReturnType<typeof sessionManager.markResultsSent>);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('renumbers surviving why_ranked ranks and removes warnings for filtered pairs', async () => {
+    const keptResult = {
+      id: 402,
+      title: 'Kept result',
+      filePath: '/tmp/kept.md',
+      why_ranked: {
+        rank: 2,
+        document: { path: '/tmp/kept.md', anchor: 'state' },
+        effectiveScore: 0.6,
+        scoreSource: 'fusion',
+      },
+    };
+
+    vi.spyOn(toolCache, 'get').mockReturnValue({
+      summary: 'Found 2 memories',
+      data: {
+        count: 2,
+        results: [
+          {
+            id: 401,
+            title: 'Filtered result',
+            filePath: '/tmp/filtered.md',
+            why_ranked: {
+              rank: 1,
+              document: { path: '/tmp/filtered.md', anchor: 'state' },
+              effectiveScore: 0.9,
+              scoreSource: 'fusion',
+            },
+          },
+          keptResult,
+        ],
+        inlineWarnings: [
+          {
+            type: 'verify_before_applying',
+            relation: 'contradicts',
+            documents: [
+              { path: '/tmp/filtered.md', anchor: 'state' },
+              { path: '/tmp/kept.md', anchor: 'state' },
+            ],
+            message: 'Verify conflict before applying.',
+          },
+        ],
+        retrievalWarnings: [
+          {
+            type: 'verify_before_applying',
+            relation: 'contradicts',
+            documents: [
+              { path: '/tmp/filtered.md', anchor: 'state' },
+              { path: '/tmp/kept.md', anchor: 'state' },
+            ],
+            message: 'Verify conflict before applying.',
+          },
+        ],
+      },
+      hints: [],
+    });
+    vi.spyOn(sessionManager, 'filterSearchResults').mockReturnValue({
+      filtered: [keptResult],
+      dedupStats: { enabled: true, filtered: 1, total: 2 },
+    } as ReturnType<typeof sessionManager.filterSearchResults>);
+
+    const response = await handler.handleMemorySearch({
+      query: 'dedup trace consistency',
+      sessionId: 'dedup-trace-session',
+      includeTrace: true,
+    });
+    const payload = parseEnvelope(response);
+    const data = getNestedRecord(payload, 'data');
+    const results = data?.results as Array<Record<string, unknown>>;
+
+    expect(data?.count).toBe(1);
+    expect(results).toHaveLength(1);
+    expect((results[0].why_ranked as Record<string, unknown>).rank).toBe(1);
+    expect(data?.inlineWarnings).toBeUndefined();
+    expect(data?.retrievalWarnings).toBeUndefined();
   });
 });
 

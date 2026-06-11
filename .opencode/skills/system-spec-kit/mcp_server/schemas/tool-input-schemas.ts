@@ -144,6 +144,8 @@ const mergeModeHintEnum = z.enum([
   'append-section',
 ]);
 
+const plannerModeEnum = z.enum(['plan-only', 'hybrid', 'full-auto']);
+
 const skillGraphQueryTypeEnum = z.enum([
   'depends_on',
   'dependents',
@@ -247,6 +249,8 @@ const memorySaveSchema = getSchema({
   asyncEmbedding: z.boolean().optional(),
   routeAs: routeCategoryEnum.optional(),
   mergeModeHint: mergeModeHintEnum.optional(),
+  plannerMode: plannerModeEnum.optional(),
+  targetAnchorId: z.string().optional(),
   // Governance args — accepted by tool-schemas.ts tool definition and
   // validated at runtime by scope-governance.ts.
   tenantId: z.string().optional(),
@@ -607,7 +611,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
   memory_quick_search: ['query', 'limit', 'specFolder', 'tenantId', 'userId', 'agentId'],
   memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'plannerMode', 'targetAnchorId', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_list: ['limit', 'offset', 'specFolder', 'sortBy', 'includeChunks'],
   memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
   memory_health: ['reportMode', 'includeFullReport', 'limit', 'specFolder', 'autoRepair', 'confirmed', 'cleanFiles'],

@@ -426,6 +426,17 @@ function ensureShardSchema(shard: Database.Database, profile: EmbeddingProfile, 
       value TEXT NOT NULL,
       created_at TEXT DEFAULT (datetime('now'))
     );
+    CREATE TABLE IF NOT EXISTS embedding_cache (
+      content_hash TEXT NOT NULL,
+      profile_key TEXT NOT NULL DEFAULT '',
+      input_kind TEXT NOT NULL DEFAULT 'document' CHECK (input_kind IN ('document', 'query')),
+      model_id TEXT NOT NULL,
+      embedding BLOB NOT NULL,
+      dimensions INTEGER NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      last_used_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (content_hash, profile_key, input_kind, model_id, dimensions)
+    );
     CREATE TABLE IF NOT EXISTS ${tableName} (
       id INTEGER PRIMARY KEY,
       vec BLOB NOT NULL
@@ -440,6 +451,19 @@ function ensureShardSchema(shard: Database.Database, profile: EmbeddingProfile, 
     stmt.run('embedding_dim', String(profile.dim));
   });
   writeMetadata();
+}
+
+function countStagedShardRows(shardPath: string, tableName: string): number {
+  if (!fs.existsSync(shardPath)) {
+    return 0;
+  }
+  const shard = new Database(shardPath, { readonly: true, fileMustExist: true });
+  try {
+    const row = shard.prepare(`SELECT COUNT(*) AS count FROM ${tableName}`).get() as { count?: number } | undefined;
+    return Math.max(0, Number(row?.count ?? 0));
+  } finally {
+    shard.close();
+  }
 }
 
 function writeVectorsToShard(
@@ -578,6 +602,10 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     }
     // Start each run from a clean staging slate (a prior crashed run may have left one).
     cleanupStaging();
+    if (processed !== 0) {
+      processed = 0;
+      setJobStatus(jobDb, jobId, 'running', processed);
+    }
 
     while (processed < initialJob.total) {
       jobDb = resolveJobDb();
@@ -624,6 +652,10 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     // active shard either is the old file (failure) or the fully-staged new file (success),
     // never a half-written mix. If no batch produced a staging file (e.g. zero rows), skip.
     if (fs.existsSync(stagingShardPath)) {
+      const stagedRows = countStagedShardRows(stagingShardPath, tableName);
+      if (stagedRows < initialJob.total) {
+        throw new Error(`Incomplete staged vector shard: expected ${initialJob.total} rows, got ${stagedRows}`);
+      }
       // Detach BEFORE the rename: rename(2) preserves the attachment's inode,
       // so a connection that stays attached keeps writing the orphaned
       // pre-rename file while the path-string attach check still matches.
@@ -643,6 +675,8 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
         }
       }
       fs.renameSync(stagingShardPath, activeShardPath);
+    } else if (initialJob.total > 0) {
+      throw new Error(`Incomplete staged vector shard: expected ${initialJob.total} rows, got 0`);
     }
 
     const complete = jobDb.transaction(() => {

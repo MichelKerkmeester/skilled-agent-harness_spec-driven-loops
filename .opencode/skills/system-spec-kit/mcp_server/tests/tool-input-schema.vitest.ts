@@ -186,6 +186,18 @@ describe('Tool Input Schema Validation', () => {
     }).not.toThrow();
   });
 
+  it('public and runtime schemas accept routed memory_save follow-up arguments', () => {
+    const args = {
+      filePath: '/tmp/example.md',
+      routeAs: 'narrative_progress',
+      mergeModeHint: 'append-as-paragraph',
+      plannerMode: 'full-auto',
+      targetAnchorId: 'next-steps',
+    };
+
+    expectPublicAndRuntimeAccept('memory_save', args);
+  });
+
   it('rejects unknown canonical continuity mergeModeHint values for memory_save', () => {
     expect(() => {
       validateToolArgs('memory_save', {

@@ -315,6 +315,33 @@ describe('REQ-D3-002: Intent-Aware Edge Traversal', () => {
     localDb.close();
     delete process.env.SPECKIT_CAUSAL_BOOST;
   });
+
+  it('uses incoming first-hop relation for typed traversal scoring', () => {
+    const prevCausalFlag = process.env.SPECKIT_CAUSAL_BOOST;
+    process.env.SPECKIT_CAUSAL_BOOST = 'true';
+
+    const localDb = createDb();
+    try {
+      seedMemories(localDb, 3);
+      localDb.prepare(`
+        INSERT INTO causal_edges (source_id, target_id, relation, strength)
+        VALUES ('2', '1', 'supersedes', 1.0)
+      `).run();
+      causalBoost.init(localDb);
+
+      const { results: boosted } = causalBoost.applyCausalBoost(
+        [{ id: 1, score: 0.2 }] as RankedSearchResult[],
+        { intent: 'find_decision', graphDensity: 0.2 },
+      );
+
+      const injected = boosted.find((row) => row.id === 2);
+      expect(injected?.causalBoost).toBeCloseTo(0.15, 6);
+    } finally {
+      localDb.close();
+      if (prevCausalFlag === undefined) delete process.env.SPECKIT_CAUSAL_BOOST;
+      else process.env.SPECKIT_CAUSAL_BOOST = prevCausalFlag;
+    }
+  });
 });
 
 // ───────────────────────────────────────────────────────────────

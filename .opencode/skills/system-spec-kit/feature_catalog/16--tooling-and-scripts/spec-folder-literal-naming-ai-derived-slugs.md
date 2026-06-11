@@ -25,7 +25,7 @@ This is the AI-rule layer of the literal-naming discipline that complements the 
 
 ## 2. HOW IT WORKS
 
-The workflow side lives in four YAML assets at `.opencode/commands/spec_kit/assets/`. Each file contains a `Generate LITERAL phase names` activity that tells the active CLI agent to produce phase names with specific subject tokens drawn from the user request, naming the concrete component or behavior being changed. The activity explicitly forbids the generic stoplist (`phase-1`, `phase-2`, `remediation`, `cleanup`, `fix`, `refactor`, `setup`) when used standalone. The activity fires only when a `:with-phases` route is active, so the rule binds to the phase-decomposition entry point rather than every spec-kit command.
+The workflow side lives in four YAML assets at `.opencode/commands/speckit/assets/`. Each file contains a `Generate LITERAL phase names` activity that tells the active CLI agent to produce phase names with specific subject tokens drawn from the user request, naming the concrete component or behavior being changed. The activity explicitly forbids the generic stoplist (`phase-1`, `phase-2`, `remediation`, `cleanup`, `fix`, `refactor`, `setup`) when used standalone. The activity fires only when a `:with-phases` route is active, so the rule binds to the phase-decomposition entry point rather than every spec-kit command.
 
 The SKILL.md side adds ALWAYS rule 20, `REMEDIATION PACKET NAMING`. Rule 20 governs slugs proposed by an AI agent after a deep-review FAIL verdict or other AI-derived remediation event. The slug must follow `NNN-fix-<source>-for-<target>`, where the source names the trigger (such as `deep-review-p0-p1-findings`, `verdict-fail`, or `audit-finding-NN`) and the target names the specific component being fixed (such as `skill-local-benchmarks-format` or `mk-spec-memory-handler`). Bare slugs such as `remediation`, `cleanup`, `fix`, `phase-N`, `round-N`, and `review-remediation` are forbidden as standalone names. The rule is documentation-layer guidance and is not linted by `validate.sh`; enforcement currently happens through workflow surfacing and operator review.
 
@@ -39,10 +39,10 @@ Together these surfaces close the loop with the create.sh fallback. The fallback
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in auto mode |
-| `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in confirm mode |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in auto mode |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in confirm mode |
+| `.opencode/commands/speckit/assets/spec_kit_plan_auto.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in auto mode |
+| `.opencode/commands/speckit/assets/spec_kit_plan_confirm.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in confirm mode |
+| `.opencode/commands/speckit/assets/spec_kit_complete_auto.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in auto mode |
+| `.opencode/commands/speckit/assets/spec_kit_complete_confirm.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in confirm mode |
 | `.opencode/skills/system-spec-kit/SKILL.md` | Skill | ALWAYS rule 20 (REMEDIATION PACKET NAMING) defining source/target slug structure for AI-derived remediation packets |
 
 ### Validation And Tests

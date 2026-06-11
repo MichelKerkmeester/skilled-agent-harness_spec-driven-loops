@@ -163,6 +163,11 @@ interface DedupResult {
   dedupStats: Record<string, unknown>;
 }
 
+interface FolderBoost {
+  folder: string;
+  factor: number;
+}
+
 interface SearchCachePayload {
   summary: string;
   data: Record<string, unknown>;
@@ -317,7 +322,7 @@ interface SearchArgs {
   query?: string;
   concepts?: string[];
   specFolder?: string;
-  folderBoost?: { folder: string; factor: number };
+  folderBoost?: FolderBoost;
   tenantId?: string;
   userId?: string;
   agentId?: string;
@@ -631,6 +636,106 @@ function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
 /* ───────────────────────────────────────────────────────────────
    6. SESSION DEDUPLICATION UTILITIES
 ──────────────────────────────────────────────────────────────── */
+
+function stampFinalRankScores(results: Array<Record<string, unknown>>): void {
+  const total = results.length;
+  results.forEach((result, index) => {
+    result.finalRankScore = total > 0 ? (total - index) / total : null;
+  });
+}
+
+function applyFolderBoostRanking(results: SessionAwareResult[], folderBoost: FolderBoost | undefined): boolean {
+  if (!folderBoost || !folderBoost.folder || folderBoost.factor <= 1) {
+    return false;
+  }
+
+  let boostedCount = 0;
+  for (const r of results) {
+    const raw = r as Record<string, unknown>;
+    const filePath = raw.file_path as string | undefined;
+    if (filePath && filePath.includes(folderBoost.folder)) {
+      if (typeof raw.similarity === 'number') {
+        raw.similarity = Math.min(raw.similarity * folderBoost.factor, 1.0);
+        boostedCount++;
+      }
+    }
+  }
+
+  if (boostedCount === 0) {
+    return false;
+  }
+
+  results.sort((a, b) => {
+    const sa = ((a as Record<string, unknown>).similarity as number | undefined) ?? 0;
+    const sb = ((b as Record<string, unknown>).similarity as number | undefined) ?? 0;
+    return sb - sa;
+  });
+  return true;
+}
+
+function isPlainRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function documentKey(document: unknown): string | null {
+  if (!isPlainRecord(document) || typeof document.path !== 'string') {
+    return null;
+  }
+  const anchor = typeof document.anchor === 'string' ? document.anchor : '';
+  return `${document.path}\u0000${anchor}`;
+}
+
+function resultDocumentKey(result: Record<string, unknown>): string | null {
+  const whyRanked = isPlainRecord(result.why_ranked) ? result.why_ranked : null;
+  const fromWhyRanked = whyRanked ? documentKey(whyRanked.document) : null;
+  if (fromWhyRanked !== null) {
+    return fromWhyRanked;
+  }
+
+  const filePath = result.filePath ?? result.file_path;
+  return typeof filePath === 'string' ? `${filePath}\u0000` : null;
+}
+
+function warningStillApplies(warning: unknown, returnedDocumentKeys: Set<string>): boolean {
+  if (!isPlainRecord(warning) || !Array.isArray(warning.documents)) {
+    return true;
+  }
+  const keys = warning.documents.map(documentKey);
+  if (keys.length !== 2 || keys.some((key) => key === null)) {
+    return true;
+  }
+  return keys.every((key) => returnedDocumentKeys.has(key as string));
+}
+
+function reconcilePostFormatResultSet(data: Record<string, unknown>, results: Array<Record<string, unknown>>): void {
+  results.forEach((result, index) => {
+    if (isPlainRecord(result.why_ranked)) {
+      result.why_ranked.rank = index + 1;
+    }
+  });
+
+  data.results = results;
+  data.count = results.length;
+
+  const returnedDocumentKeys = new Set(
+    results
+      .map(resultDocumentKey)
+      .filter((key): key is string => key !== null),
+  );
+
+  for (const key of ['inlineWarnings', 'retrievalWarnings']) {
+    const warnings = data[key];
+    if (!Array.isArray(warnings)) {
+      continue;
+    }
+    const retained = warnings.filter((warning) => warningStillApplies(warning, returnedDocumentKeys));
+    if (retained.length > 0) {
+      data[key] = retained;
+    } else {
+      delete data[key];
+    }
+  }
+}
 
 function applySessionDedup(results: MemorySearchRow[], sessionId: string, enableDedup: boolean): DedupResult {
   if (!enableDedup || !sessionId || !sessionManager.isEnabled()) {
@@ -1114,28 +1219,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       }
     }
 
-    // Apply folder boost — multiply similarity for results matching discovered folder
-    if (folderBoost && folderBoost.folder && folderBoost.factor > 1) {
-      let boostedCount = 0;
-      for (const r of resultsForFormatting) {
-        const filePath = (r as Record<string, unknown>).file_path as string | undefined;
-        if (filePath && filePath.includes(folderBoost.folder)) {
-          const raw = (r as Record<string, unknown>);
-          if (typeof raw.similarity === 'number') {
-            raw.similarity = Math.min(raw.similarity * folderBoost.factor, 1.0);
-            boostedCount++;
-          }
-        }
-      }
-      // Re-sort by similarity after boosting
-      if (boostedCount > 0) {
-        resultsForFormatting.sort((a, b) => {
-          const sa = (a as Record<string, unknown>).similarity as number ?? 0;
-          const sb = (b as Record<string, unknown>).similarity as number ?? 0;
-          return sb - sa;
-        });
-      }
-    }
+    const folderBoostRankingApplied = applyFolderBoostRanking(resultsForFormatting, folderBoost);
 
     // Eval channel attribution should reflect the retrieval pipeline output
     // before canonical source filtering drops rows for response formatting.
@@ -1172,6 +1256,10 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         applied: goalRefinement.metadata.refined,
         boostedCount: goalRefinement.metadata.boostedCount,
       };
+    }
+
+    if (folderBoostRankingApplied) {
+      stampFinalRankScores(resultsForFormatting);
     }
 
     // Build extra data from pipeline metadata for response formatting
@@ -1365,8 +1453,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     if (parsedResponse && data && existingResults && existingResults.length > 0) {
       const deduped = deduplicateWithSessionState(existingResults, sessionId);
-      data.results = deduped.results as SessionAwareResult[];
-      data.count = deduped.results.length;
+      reconcilePostFormatResultSet(data, deduped.results as Array<Record<string, unknown>>);
       data.sessionDedup = deduped.metadata;
       parsedResponse.envelope.data = data;
       responseToReturn = replaceResponseEnvelope(responseToReturn, parsedResponse.firstEntry, parsedResponse.envelope);
@@ -1418,8 +1505,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         ? Math.round((filteredCount / originalCount) * 100)
         : 0;
 
-      data.results = dedupedResults;
-      data.count = dedupedCount;
+      reconcilePostFormatResultSet(data, dedupedResults as Array<Record<string, unknown>>);
 
       const dedupStats = {
         enabled: true,
@@ -1681,6 +1767,9 @@ export const __testables = {
   collectEvalChannelsFromRow,
   buildEvalChannelPayloads,
   filterCanonicalSourceRows,
+  stampFinalRankScores,
+  applyFolderBoostRanking,
+  reconcilePostFormatResultSet,
 };
 
 // Backward-compatible aliases (snake_case)

@@ -151,7 +151,7 @@ Validate 267e resume/bootstrap routing contract
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/spec_kit:resume|SEARCH ROUTING|code_graph_query|mcp__mk_code_index__code_graph_query" .opencode/commands/spec_kit/README.txt .opencode/commands/spec_kit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/tool-routing-enforcement.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/speckit:resume|SEARCH ROUTING|code_graph_query|mcp__mk_code_index__code_graph_query" .opencode/commands/speckit/README.txt .opencode/commands/speckit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/tool-routing-enforcement.md
 
 ### Expected
 

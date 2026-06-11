@@ -82,12 +82,15 @@ function getInternalProvenanceContext(args: UpdateArgs): Record<string, unknown>
 function isProtectedExistingRow(existing: Record<string, unknown>): boolean {
   const existingSourceKind = normalizeSourceKind(existing.source_kind);
   const importanceTier = typeof existing.importance_tier === 'string' ? existing.importance_tier : null;
+  const isPinned = existing.is_pinned === true || existing.is_pinned === 1;
   const pathCandidate = [existing.canonical_file_path, existing.file_path]
     .find((value) => typeof value === 'string' && value.length > 0);
   const rowPath = typeof pathCandidate === 'string' ? pathCandidate : null;
   return existingSourceKind === null
     || existingSourceKind === 'human'
     || importanceTier === 'constitutional'
+    || importanceTier === 'critical'
+    || isPinned
     || (rowPath !== null && isConstitutionalPath(rowPath));
 }
 

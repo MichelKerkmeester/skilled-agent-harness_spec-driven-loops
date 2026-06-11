@@ -45,5 +45,5 @@ The `vectorIndex` namespace is not a single function but a large facade re-expor
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--retrieval/search-api-surface.md`
 Related references:
-- [session-recovery-spec-kit-resume.md](session-recovery-spec-kit-resume.md) — Session recovery via /spec_kit:resume
+- [session-recovery-spec-kit-resume.md](session-recovery-spec-kit-resume.md) — Session recovery via /speckit:resume
 - [session-transition-trace-contract.md](session-transition-trace-contract.md) — Session transition trace contract

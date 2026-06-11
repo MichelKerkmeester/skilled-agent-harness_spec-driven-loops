@@ -13,7 +13,15 @@ import { applyPostInsertMetadata } from '../lib/storage/post-insert-metadata.js'
 import { detectSpecLevelFromParsed } from '../lib/spec/spec-level.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
-import { applyWriteProvenance, type WriteProvenanceContext } from '../lib/storage/write-provenance.js';
+import { isConstitutionalPath } from '../lib/utils/index-scope.js';
+import {
+  applyWriteProvenance,
+  deriveSourceKindFromContext,
+  normalizeSourceKind,
+  persistProvenanceMetadata,
+  persistSourceKind,
+  type WriteProvenanceContext,
+} from '../lib/storage/write-provenance.js';
 
 // Feature catalog: Prediction-error save arbitration
 // Feature catalog: Memory indexing (memory_save)
@@ -44,6 +52,34 @@ interface SimilarMemory {
   file_path: string;
   canonical_file_path?: string | null;
   [key: string]: unknown;
+}
+
+function isProtectedForReinforcement(memory: Record<string, unknown>): boolean {
+  const sourceKind = normalizeSourceKind(memory.source_kind);
+  const importanceTier = typeof memory.importance_tier === 'string' ? memory.importance_tier : null;
+  const pathCandidate = [memory.canonical_file_path, memory.file_path]
+    .find((value) => typeof value === 'string' && value.length > 0);
+  const rowPath = typeof pathCandidate === 'string' ? pathCandidate : null;
+
+  return sourceKind === null
+    || sourceKind === 'human'
+    || importanceTier === 'constitutional'
+    || (rowPath !== null && isConstitutionalPath(rowPath));
+}
+
+function applyReinforcementProvenance(
+  database: ReturnType<typeof requireDb>,
+  memoryId: number,
+  context: WriteProvenanceContext,
+  memory: Record<string, unknown>,
+): void {
+  if (isProtectedForReinforcement(memory)) {
+    persistProvenanceMetadata(database, memoryId, context);
+    return;
+  }
+
+  persistSourceKind(database, memoryId, deriveSourceKindFromContext(context));
+  persistProvenanceMetadata(database, memoryId, context);
 }
 
 import type { PeDecision } from './save/types.js';
@@ -184,7 +220,8 @@ function reinforceExistingMemory(
 
   try {
     const memory = database.prepare(`
-      SELECT id, stability, difficulty, last_review, review_count, title
+      SELECT id, stability, difficulty, last_review, review_count, title,
+             source_kind, importance_tier, canonical_file_path, file_path
       FROM memory_index
       WHERE id = ?
     `).get(memoryId) as Record<string, unknown> | undefined;
@@ -225,11 +262,11 @@ function reinforceExistingMemory(
       throw new Error(`PE reinforcement UPDATE matched 0 rows for memory ${memoryId}`);
     }
 
-    applyWriteProvenance(database, memoryId, {
+    applyReinforcementProvenance(database, memoryId, {
       tool: 'memory_save',
       filePath: parsed.filePath,
       ...provenance,
-    });
+    }, memory);
 
     return {
       status: 'reinforced',

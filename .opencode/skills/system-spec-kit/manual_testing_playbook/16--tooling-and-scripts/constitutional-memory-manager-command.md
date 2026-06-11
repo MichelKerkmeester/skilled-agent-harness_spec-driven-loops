@@ -39,7 +39,7 @@ Validate Constitutional memory manager command against /memory:learn and report 
 3. Invoke `/memory:learn budget` and verify per-file and total budget usage are shown against the shared `~2000` token limit
 4. Invoke `/memory:learn edit` with no filename and verify available constitutional files are listed before the command waits for a selection
 5. Invoke `/memory:learn remove` with no filename and verify the same guarded selection flow occurs before destructive confirmation
-6. Run `rg -n "/memory:learn | Constitutional memory manager | constitutional memories" .opencode/commands/README.txt .opencode/commands/memory/README.txt .opencode/commands/memory/search.md .opencode/commands/spec_kit/debug.md .opencode/commands/spec_kit/complete.md README.md .opencode/README.md .opencode/agents/speckit.md` and confirm no active doc describes `/memory:learn` as the retired learning/corrections command
+6. Run `rg -n "/memory:learn | Constitutional memory manager | constitutional memories" .opencode/commands/README.txt .opencode/commands/memory/README.txt .opencode/commands/memory/search.md .opencode/commands/speckit/debug.md .opencode/commands/speckit/complete.md README.md .opencode/README.md .opencode/agents/speckit.md` and confirm no active doc describes `/memory:learn` as the retired learning/corrections command
 
 ### Expected
 

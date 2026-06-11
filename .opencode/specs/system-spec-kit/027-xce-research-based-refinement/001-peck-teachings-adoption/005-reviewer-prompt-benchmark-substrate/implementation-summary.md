@@ -113,7 +113,7 @@ Existing defaults were preserved by leaving `run-benchmark.cjs`, `loop-host.cjs`
 | Seed fixtures present for stale-verdict, softened-Fail, over-read, and AC-coverage with a visible/hidden split | PASS: four fixtures added under `assets/model_benchmark/benchmark-fixtures/`. |
 | Existing Lane B/C scorer defaults unchanged; reviewer rules / completion gate / validators unchanged | PASS: no edits to those files. |
 | Exact `REVIEWER_BENCHMARK: ... — rule not safe to promote` message surfaced in the Lane B report path | PASS: scorer writes `reviewerBenchmarkMessages`; command/YAML report steps surface them. |
-| Strict spec validation | Pending final rerun after doc reconciliation. |
+| Strict spec validation | PASS: rerun at epic remediation close (2026-06-11), 0 errors, 0 warnings. |
 <!-- /ANCHOR:verification -->
 
 ---

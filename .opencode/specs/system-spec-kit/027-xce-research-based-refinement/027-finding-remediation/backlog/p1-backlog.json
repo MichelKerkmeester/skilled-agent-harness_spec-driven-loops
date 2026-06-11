@@ -16,7 +16,8 @@
     "gpt-docs-vs-code",
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "000-release-cleanup/spec.md:86 now lists SPECKIT_FEEDBACK_RETENTION_LEARNING and SPECKIT_FEEDBACK_RETENTION_MODE (matching ENV_REFERENCE.md:90-91); git log -S shows SPECKIT_FEEDBACK_RETENTION_LEARNING_MODE was removed by remediation commit ba3dddad1d."
   },
   {
    "phase": "000-release-cleanup",
@@ -32,7 +33,9 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "manual_testing_playbook.md:244,3313,3316,3342,3405,3408,3410,3749 still embed /spec_kit:* in literal operator prompts, and 10 catalog child files still publish the dead namespace/path (e.g. 01--retrieval/session-recovery-spec-kit-resume.md:2,12,18,63-64 cites /spec_kit:resume and .opencode/commands/spec_kit/resume.md, which does not exist \u2014 actual path is .opencode/commands/speckit/resume.md); only root feature_catalog.md was fixed in ba3dddad1d.",
+   "v2_fix_sketch": "Sweep-replace /spec_kit: with /speckit: and commands/spec_kit/ with commands/speckit/ across manual_testing_playbook.md and all feature_catalog/ child files, then re-run the grep-traceability check."
   },
   {
    "phase": "000-release-cleanup",
@@ -50,7 +53,8 @@
     "gpt-docs-vs-code",
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "000-release-cleanup/spec.md:10 status \"completed\", continuity says \"All 9 children shipped\" with completion_pct 100, and the phase map rows 129-130 list 008 and 009 as Complete; only a trivial residue at line 165 still says \"001-* through 008-*\"."
   },
   {
    "phase": "000-release-cleanup",
@@ -66,7 +70,9 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "Root feature_catalog.md was cleaned in ba3dddad1d, but the catalog tree still publishes the dead surface: 01--retrieval/session-recovery-spec-kit-resume.md:12,18,24,52 uses /spec_kit:resume and lines 63-64 point at .opencode/commands/spec_kit/resume.md, which does not exist (ls confirms only .opencode/commands/speckit/).",
+   "v2_fix_sketch": "Same sweep as idx 1: rename namespace and paths in all feature_catalog children and the playbook."
   },
   {
    "phase": "000-release-cleanup",
@@ -82,7 +88,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "feature_catalog.md:54 now reads \"16 primary + 1 helper\" and enumerates exactly 16 primary tools plus helper memory_search; git log -S \"20 primary\" shows the wrong count was removed in ba3dddad1d."
   },
   {
    "phase": "000-release-cleanup",
@@ -98,7 +105,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "The cited contradiction is fixed (manual_testing_playbook.md:120-125 now defines scenario verdicts as PASS/FAIL/SKIP/UNAUTOMATABLE and demotes PARTIAL to packet-level), but line 130 in Feature Verdict Rules still keys feature-PARTIAL to \"at least one mapped scenario is PARTIAL\" \u2014 a scenario verdict line 125 declares invalid \u2014 and no feature-level rule covers SKIP/UNAUTOMATABLE."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -114,7 +122,8 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "The major claims are fixed in ba3dddad1d (001-peck-teachings-adoption/spec.md phase map lines 116-122 now mark all 7 children Complete; continuity completion_pct is 100), but spec.md:17-18 still carries stale recent_action \"Added source-pass phases 005/006/007\" and next_safe_action \"Plan phase 005 (reviewer-benchmark) before 006/007 rules\", contradicting the completed state."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -147,7 +156,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "reviewer-scorer.cjs:117-123 confirms first-match-anywhere extraction (/\\b(?:verdict|result|status)\\s*[:=-]\\s*(pass|fail|block)\\b/i then a bare-word fallback) and all four shipped fixture prompt templates (reviewer-stale-verdict/softened-fail/ac-coverage/over-read.json) contain VERDICT: PASS, VERDICT: FAIL, and VERDICT: BLOCK tokens \u2014 but this is opt-in benchmark tooling (reviewer route is flag-gated, inert by default per the 005 verification record) and only mis-scores when a model echoes prompt text before its real verdict."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -163,7 +173,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "continuity-freshness.ts:370-372 only early-returns when status !== 'pass', so the buildPass('no_completion_claim') result at lines 290-294 falls through to the graph/timestamp stale checks (lines ~425-445), contradicting validation_rules.md:98 (\"Lifecycle predicate: ... with a completion claim present\") \u2014 but the rule is strict-only, default-off (validate.sh:831,1046 gate on SPECKIT_COMPLETION_FRESHNESS), and warn-only unless ENFORCE is set, so no default-configuration impact today."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -179,7 +190,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Same residual as idx 6: the phase map portion of the claim is already fixed (spec.md:116-122 all Complete), but spec.md:18 next_safe_action still says \"Plan phase 005 (reviewer-benchmark) before 006/007 rules\" against completion_pct 100, leaving a contradictory but weaker misrouting signal."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -195,7 +207,9 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "005-reviewer-prompt-benchmark-substrate/implementation-summary.md:25 says completion_pct: 100 and line 45 Status Completed, while the verification table row at line 116 still reads \"Strict spec validation | Pending final rerun after doc reconciliation.\" \u2014 untouched by the remediation commits (last change aabbc4c1de).",
+   "v2_fix_sketch": "Run validate.sh --strict on the 005 folder and replace the pending row with the actual pass/fail evidence (or downgrade the phase status if it fails)."
   },
   {
    "phase": "001-peck-teachings-adoption",
@@ -309,7 +323,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "memory-retention-sweep.ts:471 re-checks only expiry inside the tx while :516 calls isProtectedFromRetentionDelete(candidate) on pre-selection data \u2014 the gap is real, but runMemoryRetentionSweep is fully synchronous (better-sqlite3, single warm daemon), so no same-process writer can interleave; only a separate process hitting the same SQLite file in a sub-millisecond window could trigger it, which is not the default single-daemon configuration."
   },
   {
    "phase": "002-memory-write-safety",
@@ -325,7 +340,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "002-memory-write-safety/spec.md REQ-003 says 'Allow auto conflict updates ONLY WITHIN existing caps' and checklist CHK-023 tests update 'under cap' \u2014 rejecting at/above cap (causal-edges.ts:316-323) is the documented contract, not a violation of it; the code comment at :361-363 says 'under caps' consistently with that."
   },
   {
    "phase": "002-memory-write-safety",
@@ -341,7 +357,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Same code path as idx 0: memory-retention-sweep.ts:471 vs :516 \u2014 real hardening gap under the file's own TOCTOU comment, but unreachable on the default single synchronous daemon; cross-process-only race."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -357,7 +374,8 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "changelog-003-001-incremental-index-foundation.md Added bullet now reads 'contributing 13 focused tests; the verification run below exercises the wider 9-file suite at 70 tests' \u2014 matching the actual count (2+4+3+2+2=13 it() blocks, no it.each, verified across the five files); the inflated attribution the seat quoted is no longer in the file."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -407,7 +425,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "handlers/causal-graph.ts:594-611 fail-closes only the source memory and 636-645 filters only relatedMemories details, while 744-746 returns incoming/outgoing/allEdges with out-of-scope endpoint IDs/relations/strengths \u2014 but scope is opt-in per-call (lines 507-510), no memory content leaks, and this exact shape was a deliberate remediation design (commit c0da106b44), making the residual edge-metadata exposure a hardening item, not a default-config P1."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -423,7 +442,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "corrections.ts:604-610 sets is_undone=1 before the sweep, and the catch at 672-675 swallows sweep failures so the transaction commits with the owned edge still active \u2014 accurately described, but it mirrors the deliberately best-effort creation side ('Causal edge creation is optional', line 518), is warn-logged, and requires the tombstone sweep itself to throw, so it is an accepted fail-open inconsistency window, not a P1."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -439,7 +459,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "memo.ts:103-104 explicitly documents the single-writer invariant, and the only production instantiation is a short-lived per-call store inside planMemoizedIndexing (incremental-index.ts:741) that never calls addDependencyEdge \u2014 addDependencyEdge has zero non-test callers \u2014 and better-sqlite3's synchronous execution leaves no window for another writer during that store's lifetime, so the divergence scenario cannot occur today."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -455,7 +476,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Accurate that handlers/memory-index.ts:826 only calls categorizeFilesForIndexing and planMemoizedIndexing is unwired, but the deferral is a documented parent planning amendment \u2014 implementation-summary.md:59/103/116/146 and the changelog Follow-Ups state 'handler scan behavior intentionally unchanged' and checklist line 98 records it as intentional \u2014 leaving only a stale In-Scope bullet at spec.md:120 to amend, not a materially false completion claim."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -471,7 +493,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "Duplicate of idx 3: memo.ts:103-104 documents the single-writer constraint, no production code calls addDependencyEdge (tests only), and the sole production store (incremental-index.ts:741) is constructed, used synchronously, and discarded inside one call, so no second-writer scenario exists in shipped code."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -487,7 +510,9 @@
    "seats": [
     "mimo"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "corrections.ts:505-514 raw-INSERTs the causal edge then calls the module-local invalidateGraphCaches (corrections.ts:191-203) which omits bumpCausalEdgesGeneration \u2014 unlike sweep.ts:216 and causal-edges.ts invalidateDegreeCache:215 \u2014 while memory-search.ts:952-953 folds that generation into the search cache key under default-on SPECKIT_CAUSAL_BOOST, so cached causal-boosted searches stay stale after a correction creates its edge (the strength-1.0 sub-claim is weaker since corrections are user-initiated, manual-class).",
+   "v2_fix_sketch": "Make corrections.ts's invalidateGraphCaches call bumpCausalEdgesGeneration first (matching sweep.ts:212-227), or route the correction edge through insertEdge with a correction createdBy."
   },
   {
    "phase": "003-memory-index-causal-lifecycle",
@@ -503,7 +528,8 @@
    "seats": [
     "mimo"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "sweep.ts:204 prepares the DELETE statement once outside the loop and reuses it for every id inside the single sweep transaction (runInTransaction at 234), so the 'prepares and executes each statement' premise is false and per-primary-key deletes inside one better-sqlite3 transaction are a micro-cost perf nit with no correctness impact and no measurement showing a problem."
   },
   {
    "phase": "004-semantic-trigger-fallback",
@@ -553,7 +579,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "memory-triggers.ts:526-530 applies filterSemanticMatchesByScope only AFTER matchSemanticTriggers has run its margin gate and max slice (semantic-trigger-matcher.ts:433-442), and the shadow call at memory-triggers.ts:561-568 passes no scope args \u2014 both real, but the entire path is double-gated default-off (SPECKIT_SEMANTIC_TRIGGERS opt-in at semantic-trigger-matcher.ts:103-105, union additionally requires SPECKIT_SEMANTIC_TRIGGERS_MODE=union at memory-triggers.ts:182-186, and trigger embeddings only exist if the default-off backfill flag ran, trigger-embedding-backfill.ts:52-54), so no default-config runtime effect today."
   },
   {
    "phase": "004-semantic-trigger-fallback",
@@ -569,7 +596,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Backfill seeds from ALL memory_index rows with trigger_phrases (trigger-embedding-backfill.ts:154-161) and the semantic loader joins with no document_type/anchor_id/embedding_status predicates (semantic-trigger-matcher.ts:272-296), while the lexical corpus is restricted to embedding_status='success' canonical doc types with no anchor or the continuity anchor (lib/parsing/trigger-matcher.ts:209-219) \u2014 a real corpus mismatch, but inert on default config because both the backfill flag (trigger-embedding-backfill.ts:134-137, 'skipped_default_off') and SPECKIT_SEMANTIC_TRIGGERS are default-off."
   },
   {
    "phase": "005-learning-feedback-reducers",
@@ -634,7 +662,8 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "006-gem-team-adoption/spec.md:109-111 now lists all three phases as 'Complete' and spec.md:29 has completion_pct: 100 (fixed in remediation commit ba3dddad1d); parent graph-metadata.json derived status is 'completed' with all 3 children_ids present \u2014 only cosmetic residue remains (spec.md:17-18 recent_action/next_safe_action strings and the all-zeros fingerprint), and phase-parent resume follows graph-metadata.json, not the spec continuity block."
   },
   {
    "phase": "006-gem-team-adoption",
@@ -685,7 +714,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "generate-context.ts:852-853 locks only the saved child folder while updatePhaseParentPointer (generate-context.ts:532 read \u2192 :558 atomicWriteJson) does an unlocked read-modify-write on the shared parent graph-metadata.json \u2014 the lost-update race is real (the safety comment at :546-547 only covers same-child idempotency), but the window is milliseconds, children_ids are pre-populated at scaffold time, the append self-heals on the dropped child's next save, and last_active pointer last-writer-wins is acceptable, so it is not a today-default P1 integrity break."
   },
   {
    "phase": "006-gem-team-adoption",
@@ -701,7 +731,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": ".claude/agents/code.md:19,359,491 and .codex/agents/code.toml:23 plus orchestrate.md:411/orchestrate.toml:416 do enumerate only .opencode/** trigger paths, but the gate's categorical first sentence ('@code MUST NOT author skill, agent, or command components') at code.md:19 is path-independent and covers mirror files, the repo convention edits the .opencode canonical first with mirrors synced, and this is governance prose, not runtime code \u2014 an enumeration-completeness gap, not a behavior defect."
   },
   {
    "phase": "006-gem-team-adoption",
@@ -717,7 +748,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "002-scoped-preexec-and-handoff-gates/spec.md:63 sets Status 'Implemented with scope exceptions', spec.md:138 explicitly states the sk-code/template/scaffold edits were 'read and flagged, not modified', and tasks.md:56-82 (T003/T004/T009/T012/T015) plus checklist.md:77-111 (CHK-024/026/042) all record those REQ-005/REQ-009 surfaces as out of approved write scope \u2014 a documented deferral, consistently reconciled across every completion surface, not a false completion claim."
   },
   {
    "phase": "006-gem-team-adoption",
@@ -733,7 +765,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Duplicate of idx 1: generate-context.ts:852-853 (child-scoped lock) vs :532/:558 unlocked parent read-modify-write in updatePhaseParentPointer via updatePhaseParentPointersAfterSave (:561-580) \u2014 same real but narrow, self-healing lost-update race on parent graph-metadata.json."
   },
   {
    "phase": "007-memclaw-derived-memory-hardening",
@@ -799,7 +832,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Race structure is real (lookup at memory-crud-update.ts:222-241, await embedding at :275 yields the event loop, receipt stored at :544 with the ON-CONFLICT-DO-NOTHING boolean from idempotency-receipts.ts:163-175 ignored), but isMemoryIdempotencyEnabled (idempotency-receipts.ts:54-57) requires SPECKIT_MEMORY_IDEMPOTENCY to be explicitly set \u2014 the whole path is default-off, so no default-configuration impact."
   },
   {
    "phase": "007-memclaw-derived-memory-hardening",
@@ -815,7 +849,9 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "memorySaveSchema (tool-input-schemas.ts:242-261) and ALLOWED_PARAMETERS (:610) omit plannerMode/targetAnchorId; getSchema is strict by default (:29, SPECKIT_STRICT_SCHEMAS unset \u2192 .strict()); context-server.ts:1057-1058 validates every registered tool; memory-save.ts:1841-1846 emits the apply follow-up with plannerMode:'full-auto' (+targetAnchorId) and the handler consumes them at :3047/:3052; planner default is plan-only (search-flags.ts:126-134), so a schema-valid routed save (routeAs/mergeModeHint) returns follow-up args the same validation layer then rejects as unknown keys.",
+   "v2_fix_sketch": "Add plannerMode (enum plan-only|hybrid|full-auto) and targetAnchorId (string) to memorySaveSchema and ALLOWED_PARAMETERS['memory_save']."
   },
   {
    "phase": "007-memclaw-derived-memory-hardening",
@@ -831,7 +867,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "007/002 implementation-summary.md:60,64,87 now document that 'phase 023 later removed the marker so replay returns the original response verbatim' \u2014 the verbatim replay (memory-save.ts:3466-3468, memory-crud-update.ts:240-241) is the documented contract, and no changelog still advertises replayed:true (only unrelated MCP-proxy replay text in v3.5.0.4.md)."
   },
   {
    "phase": "007-memclaw-derived-memory-hardening",
@@ -847,7 +884,9 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "memory-crud-update.ts:88-91 protects only null/human source_kind, constitutional tier, or constitutional path \u2014 no importance_tier==='critical' and no is_pinned check anywhere in the file \u2014 while 007/001 implementation-summary.md Key Decisions row states the protected set is 'rows with importance_tier constitutional or critical, plus pinned data', so an automated caller can today retier/retitle a critical or pinned agent/system row.",
+   "v2_fix_sketch": "Add critical-tier and is_pinned checks to isProtectedExistingRow with regression tests, or amend the 001 decision row to the narrower shipped contract."
   },
   {
    "phase": "007-memclaw-derived-memory-hardening",
@@ -863,7 +902,9 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "007 parent spec.md:60 Status 'Draft (plan only \u2014 not implemented)', phase map rows all 'Planned' (:121-125), continuity completion_pct 0, and graph-metadata.json:42 status 'draft_(plan_only_\u2014_not_implemented)' with last_active_child_id null \u2014 while child 002 implementation-summary.md:43 says 'Implemented', child 005 says 'Completed', and the claimed code (provenance guard, idempotency receipts, retention protection) is verifiably in current source.",
+   "v2_fix_sketch": "Update the parent status, phase-map rows, continuity block, and graph-metadata derived status to reflect the implemented children."
   },
   {
    "phase": "007-memclaw-derived-memory-hardening",
@@ -879,7 +920,8 @@
    "seats": [
     "mimo"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "write-provenance.ts:84-94 plus the 007/001 implementation-summary Key Decision 'Default the unauthenticated MCP write surface to human\u2026 Automated callers must inject automated provenance context' show the human default is a documented, deliberate fail-protected decision on this single-user system, and the changelog's 'server-derived' claim remains true since derivation happens server-side."
   },
   {
    "phase": "008-openltm-retrieval-observability",
@@ -930,7 +972,9 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "memory-search.ts:1117-1138 mutates only `similarity` and re-sorts by it, while resolveEffectiveScore (retrieval-observability.ts:151-166) prefers intentAdjustedScore/rrfScore/stage2Score/score over similarity, so a boosted rank-1 row can report a lower why_ranked.effectiveScore than rank 2 \u2014 violating spec.md:117 REQ-001 ('the explanation cannot disagree with the ranking'); reachable on defaults since SPECKIT_FOLDER_DISCOVERY is graduated ON (ENV_REFERENCE.md:238) and memory-context.ts:1276-1279 sets factor 1.3.",
+   "v2_fix_sketch": "Stamp the final post-boost sort score (or a folderBoost ranker intermediate) onto each row before buildWhyRankedTrace so effectiveScore reflects the order actually returned."
   },
   {
    "phase": "008-openltm-retrieval-observability",
@@ -946,7 +990,9 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "search-results.ts:892 stamps why_ranked.rank from the pre-dedup array index and :1112-1127 embeds inlineWarnings computed over the full result set, then memory-search.ts:1367-1370 and :1405-1422 filter data.results/count post-format with no rank renumbering or warning pruning (zero why_ranked references in the handler); session dedup is on by default (enableDedup=true memory-search.ts:697; SESSION_CONFIG.enabled true unless DISABLE_SESSION_DEDUP, session-manager.ts:189).",
+   "v2_fix_sketch": "Run session dedup before formatSearchResults, or after dedup renumber surviving why_ranked.rank values and rebuild inlineWarnings against the final result set."
   },
   {
    "phase": "008-openltm-retrieval-observability",
@@ -962,7 +1008,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "retrieval-observability.ts:248-260 unconditionally sets state:'healthy' on any completion and only conditionally clears activeJobId, and concurrent repair jobs are reachable (enqueueJob runs each runJob async per jobId, reindex.ts:498-507; startup resume enqueues every queued/running repair job, reindex.ts:814-822) \u2014 a real race, but it requires two simultaneous rebuilds and only skews the in-memory memory_health/degraded-vector observability snapshot, not ranking or data."
   },
   {
    "phase": "008-openltm-retrieval-observability",
@@ -978,7 +1025,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "spec.md:60 scopes the rule to 'every surface here keys to a document path/anchor' and the Out-of-Scope table (spec.md \u00a73) limits it to 'Row-ID-keyed traces'; the phase's new surfaces comply (WhyRankedTrace.document is path+anchor, retrieval-observability.ts:14-22,180; warning documents likewise at :358-361), while the result `id` at search-results.ts:837 is a pre-existing non-trace field outside this additive phase \u2014 REQ-002 read in context is not materially false."
   },
   {
    "phase": "008-openltm-retrieval-observability",
@@ -994,7 +1042,9 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "Same defect as idx 3: rank stamped pre-dedup at search-results.ts:892 (index+1), post-cache dedup at memory-search.ts:1405-1422 filters data.results without recomputing ranks (no why_ranked handling anywhere in the handler), and dedup defaults on for session-scoped calls (memory-search.ts:697, session-manager.ts:189), so the first returned result can carry why_ranked.rank:2 under includeTrace.",
+   "v2_fix_sketch": "Move session dedup ahead of formatting or renumber why_ranked.rank after every post-format filter, with an includeTrace+dedup regression where the top result is filtered."
   },
   {
    "phase": "009-openltm-continuity-resilience",
@@ -1096,7 +1146,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "compact-inject.ts:401-406 calls refreshAuthoredContinuitySnapshot outside the try at :415, the function does unguarded sync IO (authored-continuity-snapshot.ts:197,201,207,217), and main().catch at compact-inject.ts:491-494 exits before the cache build \u2014 structurally confirmed, but the feature is opt-in (authoredSnapshotEnabled, compact-inject.ts:133-137 requires SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT=1 or an explicit input field) and the default path returns 'disabled' before any IO, so there is zero impact on a default configuration."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1112,7 +1163,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "session-stop.ts:113-126 does call read-only session_resume (handlers/session-resume.ts:627-643 builds a minimal payload, no writes) and returns 'deferred', but the primary failure is still logged first (session-stop.ts:142,176), the outcome is consumed by no one (main() at :568 discards the result; 'deferred' appears nowhere else in hooks/tests), and the summary stays recoverable in hook state \u2014 so it's a misleading status label, not lost persistence or changed behavior."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1128,7 +1180,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "schemas/tool-input-schemas.ts:41-51 \u2014 validateToolArgs runs every arg through safeNumericPreprocess Zod schemas that coerce numeric strings client-side at spec-memory-cli.ts:516 before dispatch; live run `spec-memory memory_search --query \"gold query battery\" --limit 3` succeeded with exit 0 and results."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1144,7 +1197,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "Two different drills: the phase-level T9xx drill passed with concrete evidence (003-runtime-integration/tasks.md:72 \u2014 Claude hook 9/9, Codex hook 9/9, fail-open 1/1; plan.md:59), while implementation-summary.md:104 tracks the separate FINAL program-level drill whose ownership is explicitly documented at 004-release-and-program-cleanup/spec.md:83 ('owned by the workstream phases and the program gate'); frontmatter completion_pct 95 + next_safe_action 'Run final multi-runtime transport-down drill' show consistent deferral tracking, not contradiction."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1160,7 +1214,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "ENV_REFERENCE.md:559 documents MK_SKILL_ADVISOR_TRUST_DEFAULT explicitly as '**Daemon-side** trust default... set in the committed MCP registrations; callers cannot forge it', and the daemon honors it (advisor-server.ts:211); the 004 summary's SC-002 claim is a documented-coverage tally ('0 missing, 0 phantom') that is true \u2014 no doc tells operators to set it for CLI-side trust, and skill-advisor-cli.ts:664 names the correct CLI vars in its refusal message."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1176,7 +1231,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Mechanics accurate \u2014 spec-memory-cli.ts:26,753-756 defaults SPECKIT_IPC_SOCKET_DIR to /tmp/mk-spec-memory, ensureDaemonReady (:914-922) accepts any alive daemon, and initialize (:937-944) checks only protocolVersion \u2014 but the identical global socket dirs are the committed repo convention pinned in all three runtime MCP registrations (opencode.json:27,58,79; .mcp.json:16,46,67; .codex/config.toml:68,96,114), so the CLI introduces no exposure beyond the deliberate shared-single-daemon architecture; missing daemon-identity verification is a hardening gap, not a new defect on default config."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1192,7 +1248,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "skill-advisor-cli.ts:910 hardcodes the 'skill_graph_scan: completed' first line, renderPayload (:922-927) prefers jobText over the error branch, and runSkillGraphScanJob (:1243-1257) always supplies a data record (progress array) even when status='error'/isError=true \u2014 so a daemon-side scan failure that returns a payload prints a success-looking text line; however the exit code is still nonzero (:1295) and --format json carries the true status/error, limiting this to a text-rendering defect."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1208,7 +1265,8 @@
    "seats": [
     "mimo"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "spec-memory-cli.ts:260-276 \u2014 the ~111-entry map is rebuilt 2\u00d7 per invocation of a one-shot CLI process (and closestCommand at :717-724 builds its own map only on the unknown-command error path); microseconds of allocation against a fresh node spawn + IPC round-trip is not a defect, changes no behavior, and the suggested memoization is a pure micro-optimization."
   },
   {
    "phase": "010-mcp-to-cli-tool-transition",
@@ -1224,7 +1282,8 @@
    "seats": [
     "mimo"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "All three CLIs achieve numeric correctness, just at different layers: skill-advisor in parseValue (skill-advisor-cli.ts:281-284), code-index in coerceArgsToSchema (code-index-cli.ts:~532 with an explicit rationale comment), and spec-memory via safeNumericPreprocess Zod coercion inside the shared validateToolArgs it calls client-side (tool-input-schemas.ts:41-51, spec-memory-cli.ts:516) \u2014 the 'if the daemon does not coerce' premise is false (same schemas daemon-side), and the live `--limit 3` invocation succeeded."
   },
   {
    "phase": "011-command-presentation-workflow-separation",
@@ -1324,7 +1383,8 @@
     "gpt-correctness",
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "causal-traversal-bfs-equivalence.vitest.ts:264-268 does assert bfs.mean<=cte.mean under SPECKIT_BENCH_GATE=1 while spec.md:119 SC-002 specifies p95 \u2014 mechanically true, but the gate is opt-in (never default/CI) and implementation-summary.md:84/124 explicitly documents the comparison as advisory-not-gated, so this is a test-alignment nit, not a runtime or verification-integrity defect."
   },
   {
    "phase": "012-causal-traversal-bfs",
@@ -1340,7 +1400,9 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "bfs-traversal.ts:232-278 reads causal edges as an explicitly undirected adjacency (incoming rows reversed at lines 268-277) so neighbors are discovered via neighbor\u2192seed edges, but causal-boost.ts:533-538 looks up the relation only as 'source_id IN (seedIds) AND target_id = neighborId', so incoming-edge neighbors miss and fall back to 'caused' (line 530), giving wrong intent edge-priors for incoming supersedes/contradicts edges under default-on SPECKIT_TYPED_TRAVERSAL + SPECKIT_CAUSAL_BOOST (flags default enabled per rollout-policy isFeatureEnabled, undefined\u2192true).",
+   "v2_fix_sketch": "Query the first-hop relation in both directions ((source IN seeds AND target=?) OR (target IN seeds AND source=?)) or carry relation evidence out of the BFS walk."
   },
   {
    "phase": "012-causal-traversal-bfs",
@@ -1356,7 +1418,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "Duplicate of idx 3/5: the single-writer invariant is documented at memo.ts:103-104 and no production path creates two concurrent MemoStore instances or calls addDependencyEdge at all (incremental-index.ts:741 is the only non-test instantiation, short-lived and synchronous), so the cycle-bypass requires a usage pattern absent from shipped code."
   },
   {
    "phase": "012-causal-traversal-bfs",
@@ -1372,7 +1435,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "applyCausalBoost's only production caller wraps it in try/catch at stage2-fusion.ts:1076-1092 (warn + metadata.causalBoostApplied='failed', results preserved), so a fetchNeighborRows throw degrades gracefully and cannot 'fail the whole search request'; injectable IDs are also bounded by the 2-hop walk from \u22645 seeds, far below SQLite's bind limit in practice."
   },
   {
    "phase": "012-causal-traversal-bfs",
@@ -1388,7 +1452,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "True that the gate asserts mean only (causal-traversal-bfs-equivalence.vitest.ts:264-265) and spec.md:119 keeps the p95 criterion under Status: Shipped, but implementation-summary.md:124/130 transparently discloses that the comparison is advisory and p95 overlapped run-to-run, and the changelog's 'Latency regression | PASS after de-flake' describes the test outcome \u2014 a stale SC-002 wording to amend, not a deceptive verification claim."
   },
   {
    "phase": "012-causal-traversal-bfs",
@@ -1404,7 +1469,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "Duplicate of idx 3/5/10: memo.ts:103-104 documents the single-writer assumption, addDependencyEdge/collectDependents have no production callers outside the per-call store created at incremental-index.ts:741 (planMemoizedIndexing, itself not yet wired into the scan handler), and better-sqlite3's synchronous single-process execution means the cached count cannot go stale within the only lifetime the store ever has today."
   },
   {
    "phase": "013-vector-read-path-resilience",
@@ -1437,7 +1503,8 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "reindex.ts:626-634 now calls detachActiveVectorShard(jobDb) BEFORE fs.renameSync (line 645), with a comment naming the exact inode hazard; added in remediation commit 8bf4c89813."
   },
   {
    "phase": "013-vector-read-path-resilience",
@@ -1453,7 +1520,9 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "reindex.ts:423-433 ensureShardSchema creates only vec_metadata + vec_<dim> (plus vec_memories at 477-481) while required_vector_shard_tables (vector-index-store.ts:483-490) demands embedding_cache, so the post-swap attach probe (vector-index-store.ts:1548-1551) quarantines the just-rebuilt shard \u2014 reproduced live: `npx vitest run tests/embedders/reindex-durability-cancel.vitest.ts` fails DR-020 happy path on HEAD (expected 3 shard rows, got 2, with the auto-scheduled repair loop churning).",
+   "v2_fix_sketch": "Create embedding_cache in ensureShardSchema using the ensure_embedding_cache_table shape (or drop it from required_vector_shard_tables), then re-green the DR-020 happy-path test."
   },
   {
    "phase": "013-vector-read-path-resilience",
@@ -1469,7 +1538,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "reindex.ts:626-634 detaches active_vec before the rename, so the post-swap attachActiveVectorShard call (reindex.ts:689-691) takes the fresh-attach branch, not the attachedPath===shardPath reuse branch at vector-index-store.ts:1501; fixed in 8bf4c89813."
   },
   {
    "phase": "013-vector-read-path-resilience",
@@ -1485,7 +1555,9 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "vector-index-queries.ts:103-121 selects active_vec.vec_<dim> as the query source (joined at 444-449) when a non-default embedder is active, but every runtime write path inserts only vec_memories \u2014 vector-index-mutations.ts:331-337 and 604-609, retry-manager.ts:762, reconsolidation.ts:345, lineage-state.ts:558 \u2014 and ensure_vector_shard_schema (vector-index-store.ts:802-808) guarantees vec_<dim> exists on every attach, so post-swap saves are invisible to vector search until the next reindex.",
+   "v2_fix_sketch": "Dual-write vec_memories and vec_<dim> in index/update/delete (or pin active-embedder reads to vec_memories), plus a regression test asserting index_memory\u2192vector_search round-trip under an active embedder."
   },
   {
    "phase": "013-vector-read-path-resilience",
@@ -1501,7 +1573,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "vector-index-queries.ts:1557-1567 computes missing_vectors/total_vectors solely from active_vec.vec_memories while the query source can be vec_<dim> (103-121); real mechanism but observability-only, manifests only under a non-default active embedder, and is a corollary of idx 3."
   },
   {
    "phase": "014-packed-bm25-field-weights",
@@ -1585,7 +1658,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "handlers/checkpoints.ts:560 gates cache/BM25/trigger invalidation on restored>0||workingMemoryRestored>0 while the clearExisting delete commits regardless (lib/storage/checkpoints.ts:3016-3043, full-table fallback at 1643-1652) and hints at 649-651 still claim 'Search indexes rebuilt'; mechanism real but requires the narrow zero-row-checkpoint + clearExisting=true combination."
   },
   {
    "phase": "014-packed-bm25-field-weights",
@@ -1601,7 +1675,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "014/implementation-summary.md:103 now reads 'SUPERSEDED: the original 111 MB spike measurement under-modeled warmup churn... budget was closed by phase 017 at a 136.5 MB peak-sampled spike' with the deviation note at line 116; the stale PASS|111,017,984 row no longer exists."
   },
   {
    "phase": "014-packed-bm25-field-weights",
@@ -1617,7 +1692,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "bm25-baseline.ts:237 uses `packed.hitRate1 >= legacy.hitRate1`, so a packed regression that ties legacy (0.9 vs 0.9 on the fixture where packed currently scores 1.0 vs legacy 0.9 per 014 summary line 105) still satisfies the only consumer, the test assertion at tests/bm25-packed-inmemory.vitest.ts:284; real eval-signal weakness but no runtime behavior change."
   },
   {
    "phase": "015-storage-adapter-ports",
@@ -1665,7 +1741,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Asymmetry confirmed \u2014 spec-memory's build runs finalize-dist.mjs which writes the hash (mcp_server/package.json:20, finalize-dist.mjs:33,105) while system-code-graph's build is bare `tsc --build` (package.json:7) with composite:true/incremental (tsconfig.json:14) so a shape-preserving edit to a watched source can skip re-emitting code-index-cli.js and wedge the mtime fallback (code-index.cjs:98-101) at exit 69 after the documented rebuild; but skill-advisor is essentially immune (tsconfig.build.json:4-7 sets composite:false/incremental:false \u2192 full re-emit refreshes the entrypoint mtime every build, letting the runtime self-heal at skill-advisor.cjs:95 write the hash), making this a conditional dev-loop fail-closed wedge, not a default-config runtime defect."
   },
   {
    "phase": "017-bm25-warmup-churn-reduction",
@@ -1681,7 +1758,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "bm25-packed-inmemory.vitest.ts:190-197 compares warmed-vs-direct runs of the SAME current packed implementation (scores via toBeCloseTo(...,10), i.e. 1e-10 tolerance, not byte equality) and :283-285 only asserts packed MRR >= legacy; no frozen pre-change golden exists anywhere (eval fixtures/baseline have none), so the 'byte-identical to before' headline (implementation-summary.md:50, changelog:23, spec.md:163) is indeed stronger than the shipped evidence \u2014 but the very same summary discloses the exact evidence basis at implementation-summary.md:69 and :92 ('warmed-vs-direct, same file', 'scores equal to 1e-10'), and the width-promotion tests at bm25-packed-inmemory.vitest.ts:323-380 prove lossless value storage, so the claim is plausibly true and the doc is not materially false to a full reader \u2014 a doc-precision P2, not P1."
   },
   {
    "phase": "017-bm25-warmup-churn-reduction",
@@ -1697,7 +1775,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "spec.md:68 and :107 do retain the frozen/out-of-scope layout text, but the seat's 'readers would believe the layout was not changed' fails: the SAME shipped spec records the change prominently at spec.md:163 ('RESOLVED: ... by changing the packed-postings layout ... operator-sanctioned may-touch-the-frozen-layout-if-parity-holds path') and implementation-summary.md:79 documents it as a Key Decision \u2014 real intra-document staleness in \u00a73 worth reconciling, not a materially false doc."
   },
   {
    "phase": "017-bm25-warmup-churn-reduction",
@@ -1713,7 +1792,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Code behavior confirmed and not fixed: bm25-index.ts:508-511 routes packed addDocument to addDocumentFields(id,{body:text}), production callers pass joined buildBm25DocumentText at create-record.ts:420 and memory-crud-update.ts:392-394 while warmup uses field-separated buildBm25DocumentFields at bm25-index.ts:740-742 \u2014 BUT on a default configuration this never reaches ranking: the standard schema creates the memory_fts FTS5 shadow + sync triggers (vector-index-schema.ts:3164-3192, present in the live context-index.sqlite), so auto mode routes lexical search to FTS5 (hybrid-search.ts:407 via shouldUseSqliteLexicalEngine, bm25-index.ts:1479-1481) and skips in-memory warmup entirely (bm25-index.ts:1458-1459); the routing also predates this phase (introduced in 014, commit e78430e7d2), so it manifests only under explicit SPECKIT_BM25_ENGINE=packed-inmemory or FTS5-less builds \u2014 real latent defect, non-default-path P2."
   },
   {
    "phase": "017-bm25-warmup-churn-reduction",
@@ -1729,7 +1809,8 @@
    "seats": [
     "mimo"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "True that the gate (bm25-packed-inmemory.vitest.ts:111-147) drives a synchronous addDocumentFields loop while production rebuildFromDatabase batches asynchronously (bm25-index.ts:760-803), but REQ-001 defines the budgeted metric AS this fixture test (spec.md:127: 'The realistic-corpus warmup test measures peak RSS spike <= 150MB'), the same methodology that produced the 743MB baseline; the async path only adds event-loop yields (GC opportunities) plus bounded per-batch row transients for the same indexing workload, making the sync loop the conservative variant, and the shipped docs describe exactly what is asserted (implementation-summary.md:69 'the realistic-corpus warmup test asserts the peak-sampled RSS spike unconditionally') \u2014 no runtime change, no materially false doc."
   },
   {
    "phase": "018-xce-feature-adoption-advisor-codegraph",
@@ -1762,7 +1843,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": ".opencode/bin/mk-skill-advisor-launcher.cjs:584-588 trusts lease childPid/ownerPid and :404-418 SIGTERM/SIGKILLs with only kill(pid,0) liveness checks (no executable/start-time identity validation), but firing requires a crash-stale lease + OS PID reuse to a same-user process + a confirmed-dead socket behind N-retry deep probes and the bootstrap-lock re-read at :618-626 \u2014 a hardening gap, not default-config behavior today."
   },
   {
    "phase": "018-xce-feature-adoption-advisor-codegraph",
@@ -1778,7 +1860,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "projection.ts:42-44 + :272 (join(workspaceRoot, SKILL_GRAPH_DB) mangles absolute overrides; write path skill-graph-db.ts:248-252 resolves them correctly), but the committed default override is RELATIVE (opencode.json:48 \".opencode/skills/.../database\") which joins correctly, and advisor-status.ts:31-33/:198 uses the same path so an absolute override yields a loud 'absent' refusal, not silent data drop \u2014 manifests only on non-default absolute overrides."
   },
   {
    "phase": "018-xce-feature-adoption-advisor-codegraph",
@@ -1794,7 +1877,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "CHILD_ENV_ALLOWLIST (mk-skill-advisor-launcher.cjs:85-119) omits both flags read from process.env at lanes/lexical.ts:43 and feedback-calibration.ts:145, and the child is spawned with createChildEnv() at :1110 \u2014 real plumbing gap, but both features are shadow/diagnostic-only (no live-scoring impact even when enabled) and default-off state is unchanged today."
   },
   {
    "phase": "018-xce-feature-adoption-advisor-codegraph",
@@ -1810,7 +1894,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "advisor-recommend.ts:379-387 passes prompt: input.prompt unconditionally and shadow-sink.ts:97-100 appends it to the default JSONL (file exists, gitignored at .gitignore:81), but the shipped redaction contract covers RESPONSES (README.md:35,59) which is upheld \u2014 local gitignored prompt telemetry in a local-first tool whose memory system already persists session content is a P2 retention/redaction improvement, not a P1 security regression."
   },
   {
    "phase": "018-xce-feature-adoption-advisor-codegraph",
@@ -1826,7 +1911,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Same defect as idx 1: projection.ts:42-44 + :272 vs the absolute-safe resolver at skill-graph-db.ts:248-252; committed config uses a relative override (opencode.json:48) so default behavior is correct \u2014 breaks only under non-default absolute MK_SKILL_ADVISOR_DB_DIR."
   },
   {
    "phase": "019-skill-advisor-cross-session-reconnect",
@@ -1842,7 +1928,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "mk-skill-advisor-launcher.cjs:732-741 does keep the owner lease after bridge-adoption, but the claimed blocking does not occur: launcher-ipc-bridge.cjs:393-399 falls back to getIpcSocketPath(serviceName,{dbDir}) when leaseResult.socketPath is null/unusable, so later sessions probe the daemon's well-known socket and bridge normally; holding the lease is the intended adoption semantics (prevents a competing launcher from stale-reclaiming and double-spawning over the live adopted daemon), and process.on('exit', clearAllLeaseFiles) at :1185 releases it when the proxy session ends."
   },
   {
    "phase": "019-skill-advisor-cross-session-reconnect",
@@ -1858,7 +1945,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "mk-skill-advisor-launcher.cjs:418-420 ignores the post-SIGKILL waitForPidExit result and returns {allowed:true}, but a SIGKILL'd pid can only linger as a zombie (which kill(pid,0) reports alive yet cannot write) or transient D-state, so the single-writer exposure is marginal and returning allowed:false on a zombie would wedge respawn permanently \u2014 hardening nit, not a P1."
   },
   {
    "phase": "019-skill-advisor-cross-session-reconnect",
@@ -1874,7 +1962,9 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "opencode.json:61 commits MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted for the server launched via .opencode/bin/mk-skill-advisor-launcher.cjs (opencode.json:43-45), but CHILD_ENV_ALLOWLIST (launcher:85-119) omits the key, createChildEnv strictly filters (:228-231), and the daemon is spawned with env: createChildEnv() (:1110); advisor-server.ts:211 reads process.env for the fail-closed default and mutations enforce requireTrustedCaller (advisor-rebuild.ts:121-130, skill-graph/scan.ts:34-36) \u2014 so native MCP advisor_rebuild/skill_graph_scan are rejected as untrusted on the default committed config, contradicting the config's own _NOTE_TRUST_DEFAULT.",
+   "v2_fix_sketch": "Add MK_SKILL_ADVISOR_TRUST_DEFAULT to CHILD_ENV_ALLOWLIST and add a launcher env-passthrough regression test asserting committed MCP env keys consumed by advisor-server.ts reach the spawned child."
   },
   {
    "phase": "019-skill-advisor-cross-session-reconnect",
@@ -1890,7 +1980,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "The asymmetry is real (mk-skill-advisor-launcher.cjs:636-641 waits 1000ms while the old launcher's exit path :1114-1124 awaits shutdownModelServerRoot's 7000ms grace :921-945), but it requires SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 which no committed config sets (default off per opencode.json _NOTE_HF_EMBED_SOCKET), and the outcome is a transient LEASE_HELD that self-heals once the old launcher exits and clears the lease."
   },
   {
    "phase": "020-vector-resilience-durability",
@@ -1906,7 +1997,9 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "reindex.ts:548 resumes processed from the persisted row, :580 cleanupStaging() deletes any prior staging, :592 selects batches with OFFSET processed, and :626-645 renames the staging shard over the active shard guarded only by fs.existsSync with no row-coverage check \u2014 so a job resumed via resumeReindexJobs (801-825) or the restore-pause requeue (693-701) with processed>0 swaps in a shard missing rows [0,processed) and completeVectorShardRecovery (677-682) still clears the repair sentinel.",
+   "v2_fix_sketch": "Reset processed to 0 whenever staging is recreated (or preserve/validate existing staging), and refuse the swap unless staged rowcount covers the full intended dataset."
   },
   {
    "phase": "020-vector-resilience-durability",
@@ -1923,7 +2016,8 @@
     "gpt-correctness",
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "reindex.ts:176-186 adds persisted repair_reason/repair_shard_path columns, :764-768 writes them at job creation, resumeReindexJobs rebuilds the in-memory map from them (:813-820), and startVectorShardRepairReindex de-dupes against persisted queued/running rows first (:842-854); fixed in 8bf4c89813."
   },
   {
    "phase": "020-vector-resilience-durability",
@@ -1939,7 +2033,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "The shipped 020 contract defines exactly two repair triggers \u2014 sentinel resume and the orphan-quarantine backstop (020/spec.md:76-78, implementation-summary.md:63), with completeness used only to discriminate stale sentinels from unfinished repairs \u2014 and handle_vector_shard_repair_assessment (vector-index-store.ts:677-691) implements precisely that documented set; marker-less detection was never claimed, and the cited tail-shard entry path is idx 8's defect, not this assessment's."
   },
   {
    "phase": "020-vector-resilience-durability",
@@ -1955,7 +2050,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "vector-index-store.ts:641 (`vecRows >= expected`, no ID coverage) and the sentinel clear at 678-681 are real, but the equal-count/wrong-ID shard needed to trigger it arises mainly through idx 3's vec_memories-only mutations under a non-default embedder (deletes at vector-index-mutations.ts:675 never touch vec_<dim>); edge-case oracle weakness whose root cause is tracked at idx 3."
   },
   {
    "phase": "021-hybrid-search-scope-then-limit",
@@ -1987,7 +2083,8 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "deriveSourceKindFromContext no longer tests filePath at all \u2014 write-provenance.ts:90-94 carries an explicit comment ('No filePath heuristic: a human save whose path merely contains a word like \"index\" or \"scan\" must not be classified as an automated import'), exactly the fix this finding proposed."
   },
   {
    "phase": "022-provenance-injection",
@@ -2003,7 +2100,8 @@
    "seats": [
     "fable"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "022 implementation-summary.md Verification table now records PASS for tsc, the vitest suite, validate.sh --strict, and comment-hygiene ('rerun at epic review close, 2026-06-11') so the headline 'gates never run' is no longer true; residual drift remains in checklist.md:77-83 where CHK-021/022/023 are still unchecked 'To be filled' while spec.md:46 says Complete \u2014 bookkeeping reconciliation only."
   },
   {
    "phase": "022-provenance-injection",
@@ -2037,7 +2135,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "buildPostInsertProvenanceFields routes both labels through scrubSecrets (write-provenance.ts:108-110 scrubOptional, :116-123 applied to provenanceSource/provenanceActor) with an in-code comment stating they 'pass through the same fail-closed scrubber as content'."
   },
   {
    "phase": "022-provenance-injection",
@@ -2053,7 +2152,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "already_fixed_v2",
+   "v2_proof": "The cited 'Pending final run' rows no longer exist \u2014 022 implementation-summary.md's Verification table now lists PASS results with exit codes and counts for all five checks (rerun at epic review close, 2026-06-11)."
   },
   {
    "phase": "022-provenance-injection",
@@ -2069,7 +2169,9 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "fixed_i_wave",
+   "v2_proof": "pe-gating.ts:228-232 calls applyWriteProvenance which unconditionally persists the newly derived source_kind (write-provenance.ts:162-171) with no protected-row check; tests/pe-gating-provenance.vitest.ts seeds source_kind 'human' (:42-63) and asserts the reinforced row becomes 'system' (:188-210), even though reinforce COALESCEs content_text (pe-gating.ts:216) so the row still holds the human-authored content \u2014 contradicting both constitutional/automated-writers-never-overwrite-manual.md ('Once a human edit lands, the memory row becomes protected from future automated overwrites') and memory-crud-update.ts:130-132, which deliberately preserves the existing source_kind for protected rows.",
+   "v2_fix_sketch": "In PE reinforce/update paths, preserve source_kind for human/null/constitutional rows (mirroring crud-update's storedSourceKind logic) while still persisting provenance_source/provenance_actor, and re-pin the test to assert preservation."
   },
   {
    "phase": "023-idempotency-flag-on-correctness",
@@ -2118,7 +2220,8 @@
    "seats": [
     "gpt-correctness"
    ],
-   "disposition": "to_verify"
+   "disposition": "refuted_v2",
+   "v2_proof": "memory-save.ts:3445-3468/3608-3619 implements a deliberate optimistic design documented in 023's implementation-summary.md:59-63 and spec.md REQ/NFR-R02 ('retry after failure is not blocked' \u2014 pre-reserving the key would block retries after failed saves, which the phase explicitly rejected); the concurrent loser's 'mutation' is a same-content re-index that dedupes to unchanged/duplicate with no integrity effect, and the whole path is default-off (idempotency-receipts.ts:54-57)."
   },
   {
    "phase": "023-idempotency-flag-on-correctness",
@@ -2134,7 +2237,8 @@
    "seats": [
     "gpt-docs-vs-code"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "memory-idempotency-and-near-duplicate.vitest.ts:66-68 confirms beforeEach unconditionally sets SPECKIT_MEMORY_IDEMPOTENCY='true', so the 'Flag-off suite PASS' row (implementation-summary.md:106) ran most tests flag-on with genuine flag-off coverage limited to the default-helper test (:146-157) and one near-duplicate case (:314-340) \u2014 but spec.md:144 REQ-007's literal acceptance criterion ('test file passes with the flag unset') was met and the summary records runs that actually happened, so this is a verification-coverage precision gap, not a materially false shipped doc."
   },
   {
    "phase": "023-idempotency-flag-on-correctness",
@@ -2150,7 +2254,8 @@
    "seats": [
     "gpt-regression"
    ],
-   "disposition": "to_verify"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "memory-save.ts:3608 gates the lost-race replay on shouldStoreMemorySaveReceipt whose allowlist (idempotency-receipts.ts:41,104-113) excludes duplicate/unchanged, so a concurrent loser that deduped against the winner returns its own divergent response \u2014 contradicting the in-code intent comment at memory-save.ts:3611-3614 ('instead of its own divergent (e.g. unchanged) outcome') \u2014 but SPECKIT_MEMORY_IDEMPOTENCY is default-off (idempotency-receipts.ts:54-57) and the data state converges, so it is a real flag-on response-stability gap, not a today-default P1."
   }
  ],
  "p2": []
