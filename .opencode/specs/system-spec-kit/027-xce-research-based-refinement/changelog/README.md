@@ -11,7 +11,7 @@ contextType: "implementation"
 
 # Spec 027 Changelog Index
 
-Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, search, resilience, and CLI hardening across twenty-four phase tracks (000 through 023). Every shipped phase has a packet-local changelog, and every phase parent has a rollup with an Included Phases table. This index links each track to its top rollup. The chronological view of the same folders lives in `../timeline.md`.
+Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, search, resilience, and CLI hardening across twenty-six phase tracks (000 through 025). Every shipped phase has a packet-local changelog, and every phase parent has a rollup with an Included Phases table. This index links each track to its top rollup. The chronological view of the same folders lives in `../timeline.md`.
 
 ## Tracks
 
@@ -41,10 +41,12 @@ Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, search, r
 | 021 hybrid search scope then limit | shipped | 1 | [changelog-021-hybrid-search-scope-then-limit.md](./021-hybrid-search-scope-then-limit/changelog-021-hybrid-search-scope-then-limit.md) |
 | 022 provenance injection | shipped | 1 | [changelog-022-provenance-injection.md](./022-provenance-injection/changelog-022-provenance-injection.md) |
 | 023 idempotency flag on correctness | shipped | 1 | [changelog-023-idempotency-flag-on-correctness.md](./023-idempotency-flag-on-correctness/changelog-023-idempotency-flag-on-correctness.md) |
+| 024 autonomous dependency patching | shipped | 1 | [changelog-024-autonomous-dependency-patching.md](./024-autonomous-dependency-patching/changelog-024-autonomous-dependency-patching.md) |
+| 025 code mode orphan lifecycle | shipped | 1 | [changelog-025-code-mode-orphan-lifecycle.md](./025-code-mode-orphan-lifecycle/changelog-025-code-mode-orphan-lifecycle.md) |
 
 ## How to read these
 
-Each track rollup has an Included Phases table linking to its leaf changelogs (and, for track 010, three nested sub-lane rollups for the spec-memory, code-index, and skill-advisor CLI lanes). Every leaf changelog follows the canonical phase template: Summary, Added, Changed, Fixed, Verification, Files Changed, Follow-Ups. Docs-only and process-only phases mark Added, Changed, and Fixed as None and put evidence under Verification. Single-leaf tracks (002, 008, 009, 012, 013, 014, 015, 017, 019, 020, 021, 022, 023) carry one changelog that doubles as the track entry, so they have no separate rollup.
+Each track rollup has an Included Phases table linking to its leaf changelogs (and, for track 010, three nested sub-lane rollups for the spec-memory, code-index, and skill-advisor CLI lanes). Every leaf changelog follows the canonical phase template: Summary, Added, Changed, Fixed, Verification, Files Changed, Follow-Ups. Docs-only and process-only phases mark Added, Changed, and Fixed as None and put evidence under Verification. Single-leaf tracks (002, 008, 009, 012, 013, 014, 015, 017, 019, 020, 021, 022, 023, 024, 025) carry one changelog that doubles as the track entry, so they have no separate rollup.
 
 The four parents added at epic close (000, 011, 016, 018) summarize their children inline in the rollup's Included Phases table, which links to each child's spec docs, rather than carrying separate per-child leaf changelogs. The pre-existing parents (001, 003 through 007, 010) retain separate per-child leaf changelogs. Both forms keep the rollup as the authoritative child inventory.
 
@@ -58,4 +60,5 @@ The 027 changelogs record the schema progression v34 to v37 (source_kind v35, id
 - One changelog per shipped phase. Multi-commit phases collapse into one entry.
 - Voice rules are non-negotiable: no em-dashes, no semicolons in narrative, no Oxford commas.
 - Per-directory rollups are the authoritative child inventory for each parent.
-- All twenty-four tracks (000 through 023) now have a changelog. Tracks 000, 011, 016, and 018 summarize children inline in their rollup; the others use separate leaf changelogs.
+- All twenty-six tracks (000 through 025) now have a changelog. Tracks 000, 011, 016, and 018 summarize children inline in their rollup; the others use separate leaf changelogs.
+- Tracks 024 and 025 were authored as standalone packets at epic close and relocated into 027 (formerly track-root 028-autonomous-dependency-patching and 029-code-mode-orphan-lifecycle); see `../context-index.md` for the relocation record.

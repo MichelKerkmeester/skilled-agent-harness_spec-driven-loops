@@ -42,3 +42,12 @@ On 2026-06-04, the same peck-derived phase was renumbered again to the first act
 ## MCP to CLI Workstream Placement
 
 028-mcp-to-cli-tool-transition relocated here as child phase 010 (history-preserving git mv); the dual-stack CLI transition is now a 027 workstream.
+
+## Epic-Close Infrastructure Placement
+
+On 2026-06-11, two standalone track-root packets were relocated under `027-xce-research-based-refinement/` as epic-close child phases (025 via history-preserving git mv; 024 was uncommitted and landed directly at its new path). Track-level registries were repointed and the dangling track children removed.
+
+| Old track-root folder | Current 027 child folder | Topic |
+|---|---|---|
+| `028-autonomous-dependency-patching/` | `027-xce-research-based-refinement/024-autonomous-dependency-patching/` | npm audit detection + lockfile-only remediation across skill package roots |
+| `029-code-mode-orphan-lifecycle/` | `027-xce-research-based-refinement/025-code-mode-orphan-lifecycle/` | mcp-code-mode stdio server exits with its session; PPID-1 orphan reap |

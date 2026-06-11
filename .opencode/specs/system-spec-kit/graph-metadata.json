@@ -5,10 +5,9 @@
   "parent_id": null,
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization",
-    "system-spec-kit/028-mcp-startup-stdio-fix",
+    "system-spec-kit/027-xce-research-based-refinement",
     "system-spec-kit/037-substrate-skip-not-fail-validation",
-    "system-spec-kit/038-substrate-harness-hardening",
-    "system-spec-kit/028-memory-mcp-cli-feasibility"
+    "system-spec-kit/038-substrate-harness-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -50,12 +49,12 @@
     "entities": [],
     "causal_summary": "Two-bug fix to mcp-coco-index daemon: (1) idempotent start_daemon() prevents leaked-zombie duplicates, (2) BrokenPipeError-safe error handler stops CP",
     "created_at": "2026-05-07T09:13:37.743Z",
-    "last_save_at": "2026-06-06T12:11:16.691Z",
+    "last_save_at": "2026-06-11T09:31:20.145Z",
     "last_accessed_at": null,
     "source_docs": [
       "description.json"
     ],
-    "last_active_child_id": "system-spec-kit/028-memory-mcp-cli-feasibility",
-    "last_active_at": "2026-06-06T12:11:16.691Z"
+    "last_active_child_id": "system-spec-kit/028-autonomous-dependency-patching",
+    "last_active_at": "2026-06-11T09:31:20.145Z"
   }
 }

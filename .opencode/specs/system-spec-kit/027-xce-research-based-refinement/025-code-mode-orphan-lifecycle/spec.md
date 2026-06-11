@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-mode-orphan-lifecycle"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/025-code-mode-orphan-lifecycle"
     last_updated_at: "2026-06-11T16:30:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Shipped lifecycle fix + reaped 16 accumulated orphans"
@@ -42,7 +42,8 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-11 |
 | **Branch** | `028-mcp-to-cli-tool-transition` |
-| **Parent Spec** | None |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | system-spec-kit/027-xce-research-based-refinement |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Server exits on stdin EOF; orphan census stays at zero across session churn |

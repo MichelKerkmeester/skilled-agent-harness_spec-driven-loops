@@ -1,0 +1,46 @@
+{
+  "title": "Autonomous Dependency Patching",
+  "trigger_phrases": [
+    "028 autonomous dependency patching",
+    "npm audit fix",
+    "dependency security patch",
+    "lockfile vulnerability remediation",
+    "hono security fix",
+    "autonomous audit"
+  ],
+  "status": "active",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "created_at": "2026-06-11T06:30:00Z",
+  "updated_at": "2026-06-11T09:30:00Z",
+  "owner": "opencode",
+  "tags": [
+    "security",
+    "npm",
+    "dependencies",
+    "automation",
+    "audit"
+  ],
+  "specFolder": "system-spec-kit/028-autonomous-dependency-patching",
+  "description": "Automates npm audit detection and lockfile-only remediation for OpenCode skill package roots.",
+  "keywords": [
+    "autonomous",
+    "dependency",
+    "patching",
+    "security",
+    "lockfile",
+    "npm"
+  ],
+  "lastUpdated": "2026-06-11T09:31:18.346Z",
+  "specId": "024",
+  "folderSlug": "autonomous-dependency-patching",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "11-06-26_10-29__these-github-hono-security-alerts-skip-spec-folder.md",
+    "11-06-26_10-31__optimized-system-spec-kit-028-autonomous.md"
+  ]
+}

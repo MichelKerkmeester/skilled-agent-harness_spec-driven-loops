@@ -12,10 +12,11 @@
     "fix"
   ],
   "lastUpdated": "2026-06-11T14:26:24.135Z",
-  "specId": "029",
+  "specId": "025",
   "folderSlug": "code-mode-orphan-lifecycle",
   "parentChain": [
-    "system-spec-kit"
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

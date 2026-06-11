@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-mode-orphan-lifecycle"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/025-code-mode-orphan-lifecycle"
     last_updated_at: "2026-06-11T16:30:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Plan executed in full"

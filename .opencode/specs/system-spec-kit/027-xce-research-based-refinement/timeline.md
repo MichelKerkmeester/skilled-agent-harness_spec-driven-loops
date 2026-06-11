@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-11T13:47:56Z"
+    last_updated_at: "2026-06-11T14:44:43Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-11T13:47:56Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-11T14:44:43Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,17 +38,17 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `011-command-presentation-workflow-separation/005-deep-commands`
-> **Oldest live spec folder:** `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit`
-> **Counts:** 133 live spec folders · 0 archived (`z_archive/`).
+> **Most recent live spec folder:** `011-command-presentation-workflow-separation`
+> **Oldest live spec folder:** `024-autonomous-dependency-patching`
+> **Counts:** 135 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-11 15:47  011-command-presentation-workflow-separation/005-deep-commands
- 2. 2026-06-11 15:47  011-command-presentation-workflow-separation
+ 1. 2026-06-11 15:48  011-command-presentation-workflow-separation
+ 2. 2026-06-11 15:47  011-command-presentation-workflow-separation/005-deep-commands
  3. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
  4. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
  5. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
@@ -73,7 +73,7 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-11 15:47 | 2026-06-10 | `011-command-presentation-workflow-separation/` |
+| 1 | 2026-06-11 15:48 | 2026-06-10 | `011-command-presentation-workflow-separation/` |
 | 2 | 2026-06-11 13:48 | 2026-06-10 | `000-release-cleanup/` |
 | 3 | 2026-06-11 13:40 | 2026-06-11 | `023-idempotency-flag-on-correctness/` |
 | 4 | 2026-06-11 12:20 | 2026-06-11 | `022-provenance-injection/` |
@@ -97,6 +97,8 @@ traces through the reorg `git mv` history to each track's true origin.
 | 22 | 2026-06-10 08:24 | 2026-06-06 | `006-gem-team-adoption/` |
 | 23 | 2026-06-10 08:03 | 2026-06-06 | `010-mcp-to-cli-tool-transition/` |
 | 24 | 2026-06-10 07:38 | 2026-05-11 | `002-memory-write-safety/` |
+| 25 | ??????????      | 2026-06-11 | `025-code-mode-orphan-lifecycle/` |
+| 26 | ??????????      | 2026-06-11 | `024-autonomous-dependency-patching/` |
 
 > Note: `000-release-and-program-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
@@ -110,8 +112,8 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
+2026-06-11 15:48  born:2026-06-10        011-command-presentation-workflow-separation
 2026-06-11 15:47  born:2026-06-11  impl  011-command-presentation-workflow-separation/005-deep-commands
-2026-06-11 15:47  born:2026-06-10        011-command-presentation-workflow-separation
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
@@ -243,6 +245,8 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-10 07:09  born:2026-06-06  impl  006-gem-team-adoption/001-typed-agent-io-adapter
 2026-06-10 06:59  born:2026-05-13  impl  003-memory-index-causal-lifecycle/001-incremental-index-foundation
 2026-06-05 21:56  born:2026-06-02  impl  001-peck-teachings-adoption/001-peck-teachings-for-spec-kit
+??????????       born:2026-06-11  impl  025-code-mode-orphan-lifecycle
+??????????       born:2026-06-11  impl  024-autonomous-dependency-patching
 ```
 
 ---
@@ -268,8 +272,8 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `011-command-presentation-workflow-separation/005-deep-commands` | impl | (none) |
 | `011-command-presentation-workflow-separation` |  | [changelog-011-command-presentation-workflow-separation-root.md](./changelog/011-command-presentation-workflow-separation/changelog-011-command-presentation-workflow-separation-root.md) |
+| `011-command-presentation-workflow-separation/005-deep-commands` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` | impl | (none) |
@@ -401,4 +405,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `006-gem-team-adoption/001-typed-agent-io-adapter` | impl | [changelog-006-001-typed-agent-io-adapter.md](./changelog/006-gem-team-adoption/changelog-006-001-typed-agent-io-adapter.md) |
 | `003-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | [changelog-003-001-incremental-index-foundation.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-001-incremental-index-foundation.md) |
 | `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | [changelog-001-001-peck-teachings-for-spec-kit.md](./changelog/001-peck-teachings-adoption/changelog-001-001-peck-teachings-for-spec-kit.md) |
+| `025-code-mode-orphan-lifecycle` | impl | [changelog-025-code-mode-orphan-lifecycle.md](./changelog/025-code-mode-orphan-lifecycle/changelog-025-code-mode-orphan-lifecycle.md) |
+| `024-autonomous-dependency-patching` | impl | [changelog-024-autonomous-dependency-patching.md](./changelog/024-autonomous-dependency-patching/changelog-024-autonomous-dependency-patching.md) |
 

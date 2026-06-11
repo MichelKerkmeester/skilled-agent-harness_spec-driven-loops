@@ -27,7 +27,9 @@
     "system-spec-kit/027-xce-research-based-refinement/020-vector-resilience-durability",
     "system-spec-kit/027-xce-research-based-refinement/021-hybrid-search-scope-then-limit",
     "system-spec-kit/027-xce-research-based-refinement/022-provenance-injection",
-    "system-spec-kit/027-xce-research-based-refinement/023-idempotency-flag-on-correctness"
+    "system-spec-kit/027-xce-research-based-refinement/023-idempotency-flag-on-correctness",
+    "system-spec-kit/027-xce-research-based-refinement/024-autonomous-dependency-patching",
+    "system-spec-kit/027-xce-research-based-refinement/025-code-mode-orphan-lifecycle"
   ],
   "migrated": true,
   "migration_source": "legacy",

@@ -400,6 +400,10 @@ These phases changed structure or carried existing patterns into other subsystem
 
 **Cross-subsystem feature adoption (018).** The hardening that 027 landed first in spec-memory was carried into the skill-advisor and code-graph subsystems: observability attribution, a provenance guard, packed BM25, BFS consolidation, feedback calibration, a tombstone audit, `why_included`, and a BM25 symbol resolver. Results-affecting additions ship default-off or shadow-first.
 
+**Autonomous dependency patching (024).** A packet-local shell entrypoint scans the OpenCode skill package roots, runs `npm audit` on each, applies supported override remediation, regenerates lockfiles without executing install scripts, and re-audits. The shipped run found all five roots clean; CI integration remains optional.
+
+**Code Mode orphan lifecycle (025).** The mcp-code-mode stdio MCP server previously had no session-lifetime handling, so a hard-killed session left it alive forever at PPID 1 — sixteen such orphans had accumulated and degraded shared daemon infrastructure. The server now exits on stdin EOF, on transport close, or when a 15-second watchdog observes reparenting to PID 1, and the accumulated orphans were reaped to a zero census.
+
 ---
 
 ## Current State
@@ -408,4 +412,4 @@ The schema sits at v37. All results-affecting and mutating features are default-
 
 The everyday call shape of memory retrieval, storage and session startup is unchanged for existing users, and enabling any of the flags is an explicit opt-in with documented environment variables in `ENV_REFERENCE.md`. The read path did get more resilient by default: a malformed vector shard is detected and quarantined rather than served, the lexical fallback ranks with restored field weights under its memory budget, and a scoped search resolves its filters before truncating. None of that needs a flag and none of it changes the response contract for the common path. The vector repair durability and the idempotency flag-on correctness are inert until a dist rebuild adopts them.
 
-The changelog index at `changelog/README.md` links all twenty-four phase tracks (000 through 023) to their detailed change records, and the chronological view lives in `timeline.md`. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.
+The changelog index at `changelog/README.md` links all twenty-six phase tracks (000 through 025) to their detailed change records, and the chronological view lives in `timeline.md`. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.
