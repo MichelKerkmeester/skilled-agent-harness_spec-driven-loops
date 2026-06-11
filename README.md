@@ -1,10 +1,10 @@
-# Skilled - Agent Orchestration with Spec Kit and Local Memory
+# Skilled - Agent Orchestration Loops w/ Integrated Spec Kit & Memory Framework
 
 [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/stargazers)
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-Skilled is a public AI-assistant framework for running software work with durable context, explicit documentation, verified tool routing and multi-runtime agent surfaces. It layers a Spec Kit workflow, local-first memory, structural code intelligence, skills, commands and agents on top of OpenCode, with mirrors for Claude Code and Codex CLI.
+Skilled is a public AI-assistant framework for running software work with durable context, explicit documentation, verified tool routing and multi-runtime agent surfaces. Its headline capability is **deep agent-orchestration loops** — autonomous, convergence-tracked multi-agent loops for deep research, code review, codebase context and agent self-improvement (the `/deep:start-*-loop` commands plus an `@ai-council` deliberation panel) that fan work out across diverse models, keep externalized per-iteration state with fresh context each pass, and iterate to a converged synthesis or verdict. Around those loops it layers a Spec Kit workflow, local-first memory, structural code intelligence, and a library of skills, commands and agents on top of OpenCode, with mirrors for Claude Code and Codex CLI.
 
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
