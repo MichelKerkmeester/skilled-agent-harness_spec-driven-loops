@@ -812,20 +812,30 @@ When resuming work in an existing spec folder, prompt to load prior session memo
 \`\`\`
 ```
 
-### Presentation / Router Split (Mode-Based Workflow Families)
+### Presentation / Router Split (Command Families)
 
-The memory, speckit, create, doctor, and deep command families use a stronger form of the mode-based pattern: each command is split into a **thin router** plus **owned assets**, so routing logic and presentation contracts evolve independently and long command files stay readable.
+The memory, speckit, create, doctor, and deep command families split each command into a **thin router** plus **owned assets**, so routing logic and presentation contracts evolve independently and long command files stay readable.
+
+**Common core — all split families:**
 
 | Asset | Owns |
 |-------|------|
 | `<command>.md` (thin router) | Mode resolution, owned-assets table, routing logic, and any Phase 0 / mandatory-input gate. Contains NO presentation content. |
-| `assets/<ns>_<command>_auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
-| `assets/<ns>_<command>_confirm.yaml` | Interactive-mode workflow. |
 | `assets/<ns>_<command>_presentation.txt` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
 
-Router sections, in order: **Router Contract**, **Owned Assets** (table), **Mode Routing**, **Execution Targets**, **Presentation Boundary** (what lives only in the presentation asset), **Workflow Summary**. The router must contain no inline startup-question wording, dashboard templates, or result templates — those live only in the presentation asset.
+- The router contains a **Presentation Boundary** section naming what lives only in the presentation asset; it must contain no inline startup-question wording, dashboard templates, or result templates. The split is behavior-preserving — relocate display content, never change routing semantics.
+- In `allowed-tools`, MCP tools use the fully-qualified `mcp__<server>__<tool>` form (e.g. `mcp__mk_spec_memory__memory_context`), matching the `opencode.json` MCP namespace. Bare tool IDs (e.g. `memory_context`) belong in instruction prose, never in `allowed-tools`.
 
-Reference shape: `.opencode/commands/speckit/plan.md` (router) and `.opencode/commands/speckit/assets/speckit_plan_presentation.txt` (presentation contract). Skeleton: [`command_presentation_template.md`](command_presentation_template.md). The split is behavior-preserving — relocate display content, never change routing semantics.
+**Workflow-backed families (speckit, create, deep)** additionally own `:auto` / `:confirm` workflow YAML that the router routes modes to:
+
+| Asset | Owns |
+|-------|------|
+| `assets/<ns>_<command>_auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
+| `assets/<ns>_<command>_confirm.yaml` | Interactive-mode workflow. |
+
+The **memory** and **doctor** families have NO workflow YAML — their routers dispatch directly to tools and scripts.
+
+**Reference shape for new mode-based workflow commands** — `.opencode/commands/speckit/plan.md` (router) + `speckit_plan_presentation.txt` (contract) — router sections in order: **Router Contract**, **Owned Assets**, **Mode Routing**, **Execution Targets**, **Presentation Boundary**, **Workflow Summary**. Existing families adapt this section set to their structure: direct-router families omit Mode Routing / Execution Targets / Workflow Summary, and the memory family uses its own vocabulary (`ROUTING ASSETS`, `EXECUTION ORDER`, per-mode sections, `HARD RULES`, `PRESENTATION BOUNDARY`, `RELATED COMMANDS`). The common-core invariants above always hold. Skeleton: [`command_presentation_template.md`](command_presentation_template.md).
 
 ---
 

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/008-router-consistency-hardening",
+  "description": "Feature Specification: Router Consistency Hardening",
+  "keywords": [
+    "feature",
+    "specification",
+    "router",
+    "consistency",
+    "hardening"
+  ],
+  "lastUpdated": "2026-06-12T13:08:25.633Z",
+  "specId": "008",
+  "folderSlug": "router-consistency-hardening",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "011-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
