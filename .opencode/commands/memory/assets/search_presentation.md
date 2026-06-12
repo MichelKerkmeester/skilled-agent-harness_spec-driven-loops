@@ -50,6 +50,33 @@ MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
 STATUS=OK RESULTS=<count> INTENT=<detected_intent>
 ```
 
+Filled example:
+
+```text
+MEMORY:SEARCH "deep research remediation handover" intent=find_spec results=3
+--------------------------------------------------
+L8-command-adherence/
+  0.91  #1842  Command adherence remediation handover
+  0.87  #1819  Dynamic presentation contract findings
+
+029-deep-research-remediation/
+  0.74  #1763  Research-based refinement implementation summary
+
+STATUS=OK RESULTS=3 INTENT=find_spec
+```
+
+Field mapping:
+
+| Source field | Template slot |
+| --- | --- |
+| User query or `memory_context.input` | `"<query>"` |
+| Detected or explicit intent | `intent=<detected_intent>` and `INTENT=<detected_intent>` |
+| Returned result count | `results=<count>` and `RESULTS=<count>` |
+| `result.specFolder` leaf | `<leaf-folder>/` |
+| `result.score`, `result.similarity`, or normalized relevance score | `<score>` |
+| `result.id` or `result.memory_id` | `#<id>` |
+| `result.title` | `<title>` |
+
 Folder display rules:
 - Group by spec folder.
 - Show only the leaf folder name unless two leaves collide.

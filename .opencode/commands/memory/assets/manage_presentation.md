@@ -35,6 +35,48 @@ Actions: scan | cleanup | health | checkpoint
 STATUS=OK ACTION=stats
 ```
 
+Filled example:
+
+```text
+MEMORY:STATS
+--------------------------------------------------
+Total       1284
+Size        42.6 MB
+Indexed     2026-06-12
+
+Tier distribution
+constitutional 18
+critical       42
+important      311
+normal         846
+temporary      51
+deprecated     16
+
+Top folders
+system-spec-kit 612
+skilled-agent-orchestration 244
+memory-upgrade 97
+
+Actions: scan | cleanup | health | checkpoint
+STATUS=OK ACTION=stats
+```
+
+Field mapping:
+
+| Source field | Template slot |
+| --- | --- |
+| `memory_stats.totalRecords` or total indexed record count | `Total <count>` |
+| `memory_stats.dbSize`, `dbFileSize`, or formatted store size | `Size <size>` |
+| `memory_stats.lastIndexed`, `lastScanAt`, or latest indexed timestamp | `Indexed <date>` |
+| `memory_stats.byTier.constitutional` | `constitutional <count>` |
+| `memory_stats.byTier.critical` | `critical <count>` |
+| `memory_stats.byTier.important` | `important <count>` |
+| `memory_stats.byTier.normal` | `normal <count>` |
+| `memory_stats.byTier.temporary` | `temporary <count>` |
+| `memory_stats.byTier.deprecated` | `deprecated <count>` |
+| `memory_stats.topFolders[].folder` | `<folder_n>` |
+| `memory_stats.topFolders[].count` | Top-folder `<count>` |
+
 ## 3. Scan Confirmation and Result
 
 ```text

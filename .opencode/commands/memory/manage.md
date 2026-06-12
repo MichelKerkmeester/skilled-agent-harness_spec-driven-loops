@@ -69,6 +69,7 @@ The following content lives only in `.opencode/commands/memory/assets/manage_pre
 - Stats, scan, cleanup, retention, bulk-delete, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays.
 - Confirmation prompts, protected-tier gates, dashboard layouts, result envelopes, and next-step text.
 - Valid-mode menu wording for unknown-mode recovery.
+- Stats dashboard render contract: `.opencode/commands/memory/assets/manage_presentation.md` Section 2.
 
 The router must not invent visible wording for those surfaces; it only resolves mode, tooling, and confirmation requirements.
 
