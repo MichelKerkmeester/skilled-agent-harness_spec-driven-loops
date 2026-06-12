@@ -536,14 +536,16 @@ Preserve review context to the memory system for future session recovery and cro
 
 ### Steps
 
-1. **Generate context**: Run the memory save script with the spec folder:
+1. **Compose context payload**: Create a structured JSON payload with the review summary, active findings, verdict, next action, and relevant artifacts. Use `specFolder` for the target packet and include curated `observations`, `recent_context`, `toolCalls`, and `exchanges` when available.
+
+2. **Generate context**: Run the memory save script with structured JSON via `--stdin`, `--json`, or a session-scoped JSON file:
    ```bash
-   node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js {spec_folder}
+   node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"{spec_folder}","sessionSummary":"Deep review completed; see review/review-report.md for verdict and findings."}' {spec_folder}
    ```
 
-2. **No extra indexing step in the live contract**: `generate-context.js` is the supported save boundary for this workflow.
+3. **No extra indexing step in the live contract**: `generate-context.js` is the supported save boundary for this workflow.
 
-3. **Verify**: Confirm `memory/*.md` file was created with proper anchors.
+4. **Verify**: Confirm the routed canonical spec document carries the review continuity update. Expected targets are `implementation-summary.md`, `decision-record.md`, or `handover.md`; standalone `memory/*.md` files are retired and should not be created.
 
 ### On Save Failure
 

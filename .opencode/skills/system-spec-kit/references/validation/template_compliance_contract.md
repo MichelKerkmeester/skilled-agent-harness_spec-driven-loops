@@ -260,7 +260,7 @@ Notes that bite if ignored:
 - **Section numbering is cosmetic** — the checker strips a leading `N. ` before matching, so renumbering headers never fixes (or breaks) order; only the relative sequence matters.
 - **Level-3 spec.md ordering gotcha:** `OPEN QUESTIONS` comes LAST (after `RISK MATRIX` and `USER STORIES`), even though the `questions` anchor is listed earlier in the gate set.
 - **decision-record.md** needs an `adr-001` wrapper anchor enclosing the per-ADR sub-anchors (`adr-001-context/-decision/-alternatives/-consequences/-five-checks/-impl`).
-- Put a `_memory.continuity` frontmatter block in **every** doc (plan/tasks/checklist included) or `FRONTMATTER_VALID` warns.
+- Put the maintained `_memory.continuity` frontmatter block in `implementation-summary.md` when that file exists; `spec.md` is the fallback host only when the implementation summary is absent. Resume reads the continuity tier from `implementation-summary.md`, so do not add stale continuity blocks to plan, tasks, or checklist files.
 - If a header looks correct yet still flags as out-of-order with the same message repeated, the file likely has hidden duplicated content — overwrite the whole doc with one clean write instead of chasing edits.
 
 ---

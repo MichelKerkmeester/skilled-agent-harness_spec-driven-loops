@@ -46,7 +46,7 @@ _memory:
 
 `memory_match_triggers` is lexical-only today (`trigger-matcher.ts:201-545`): it catches explicit phrases (`/memory:save`, `save context`) but misses paraphrases ("save the current state"). The pt-03 RQ-B1 verdict was ADAPT, not replace — trigger matches feed cognitive activation (`memory-triggers.ts:360-380`), so semantic false positives are expensive and the lexical control surface must stay bit-for-bit identical when the feature is off.
 
-This phase-parent decomposes that ADAPT into four independently executable children. The semantic stage runs only when lexical is empty/weak, reuses the active embedding profile's cache (default Ollama nomic-embed-text-v1.5, 768d; never embeds in the hot path), source-tags its hits, and activates them at reduced attention (`min(0.85, score)`). It ships default-off behind `SPECKIT_SEMANTIC_TRIGGERS`, shadow-first, and is promoted to union only on evidence.
+This phase-parent decomposes that ADAPT into four independently executable children. The semantic stage reuses the active embedding profile's cache (default Ollama nomic-embed-text-v1.5, 768d; never embeds in the hot path), source-tags its hits, and activates them at reduced attention (`min(0.85, score)`). It ships default-off behind `SPECKIT_SEMANTIC_TRIGGERS`. In current code, shadow mode observes prompts that do not have a strong lexical match, and union mode is selected by `SPECKIT_SEMANTIC_TRIGGERS_MODE=union`; promotion evidence is an operator rollout policy, not a runtime-enforced gate.
 
 The parent holds no implementation tasks. Cross-cutting architecture decisions live in `decision-record.md`; the full file inventory lives in `resource-map.md`.
 <!-- /ANCHOR:purpose -->
@@ -63,7 +63,7 @@ The parent holds no implementation tasks. Cross-cutting architecture decisions l
 | `003-hybrid-handler` | Feature-flagged Stage 2 UNION in `memory_match_triggers`: short-circuit, source-tag, reduced-activation guards; flag-off bit-identical. | `handlers/memory-triggers.ts` | `002-semantic-matcher` |
 | `004-tests-goldens-shadow-eval` | Goldens fixture, cold-start/latency/threshold/backfill tests, 5 ENV flags, shadow telemetry, shadow→union promotion gate. | `__tests__/triggers/*`, `__tests__/fixtures/trigger-goldens.json`, `ENV_REFERENCE.md` | `003-hybrid-handler` |
 
-> **Promotion note:** the `0.84` threshold / `0.04` margin / goldens were tuned for Voyage 1024d and MUST be re-tuned/re-validated for the active 768d Nomic profile before any union-mode rollout. Union stays blocked until false-positive, recall, latency, cost, and rollback evidence pass (owned by `004`).
+> **Promotion note:** the `0.84` threshold / `0.04` margin / goldens were tuned for Voyage 1024d and need re-tuning/re-validation for the active 768d Nomic profile before operators choose union-mode rollout. The current runtime does not store or enforce promotion evidence; starting a process with semantic triggers enabled and `SPECKIT_SEMANTIC_TRIGGERS_MODE=union` enables union behavior.
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -86,9 +86,9 @@ Some `004` work (goldens fixture, threshold-tuning scaffolding) can run in paral
 
 - Keep lexical matching the primary precision path; flag-off output must be bit-identical to current behavior.
 - Never embed in the trigger hot path; all embedding generation is out-of-band (index-scan + save-time), resumable, and fail-closed.
-- Run the semantic stage only when lexical is empty/weak; short-circuit strong command matches.
+- Keep union mode limited to weak lexical results; shadow mode currently observes any prompt without a strong lexical match.
 - Source-tag semantic-only hits and activate them at reduced attention so they cannot masquerade as exact triggers.
-- Keep the feature default-off and shadow-first; re-tune thresholds for 768d Nomic; promote to union only on evidence (FP, recall, latency, cost, rollback).
+- Keep the feature default-off; re-tune thresholds for 768d Nomic before any operator-directed union rollout, because promotion evidence is not enforced by the runtime.
 <!-- /ANCHOR:what-needs-done -->
 
 ---

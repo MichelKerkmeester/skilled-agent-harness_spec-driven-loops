@@ -975,6 +975,23 @@ workflow:
     purpose: Preserve research context to memory system
     steps:
 
+      step_compose_save_payload:
+        action: "Compose the structured JSON payload consumed by generate-context.js"
+        output: "/tmp/save-context-data-<session-id>.json"
+        requirements:
+          - "Write this file before invoking generate-context.js; the loader fails closed if the explicit JSON file is absent."
+          - "Include `specFolder`, a concise `sessionSummary`, curated `observations`, `recent_context`, `toolCalls`, and `exchanges` from the completed research loop."
+          - "Use a session-scoped temp filename; do not use the retired shared `/tmp/save-context-data.json` path."
+        example_payload: |
+          {
+            "specFolder": "{spec_folder}",
+            "sessionSummary": "Deep research completed; see research/research.md for synthesized findings.",
+            "observations": ["Summarize the final research conclusions and evidence."],
+            "recent_context": ["Point to the generated research artifacts and next action."],
+            "exchanges": [],
+            "toolCalls": []
+          }
+
       step_generate_context:
         action: "Route continuity content into the correct canonical spec document via generate-context.js"
         command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"

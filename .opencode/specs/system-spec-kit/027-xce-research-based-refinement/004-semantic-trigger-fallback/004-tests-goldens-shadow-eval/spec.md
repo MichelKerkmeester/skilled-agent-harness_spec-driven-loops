@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Completed; union promotion blocked |
+| **Status** | Completed; union promotion remains operator policy (env-driven mode, no code-enforced gate) |
 | **Created** | 2026-06-06 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -79,7 +79,7 @@ This is **Phase 4** (final) of the semantic trigger fallback decomposition (pare
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Without a goldens fixture, latency gate, and shadow telemetry, the semantic stage cannot be safely tuned or promoted from shadow to union. Thresholds tuned for 1024d Voyage must be re-validated for the active 768d Nomic profile, and union mode must stay blocked until evidence passes.
+Without a goldens fixture, latency gate, and shadow telemetry, the semantic stage cannot be safely tuned or promoted from shadow to union. Thresholds tuned for 1024d Voyage must be re-validated for the active 768d Nomic profile, and union mode stays off as operator policy until evidence passes — mode selection is env-driven (`SPECKIT_SEMANTIC_TRIGGERS_MODE`); no code-enforced promotion gate exists.
 
 ### Purpose
 Establish the evaluation harness, document the flags, capture shadow telemetry, and gate shadow→union promotion on false-positive, recall, latency, cost, and rollback evidence.
@@ -124,7 +124,7 @@ Establish the evaluation harness, document the flags, capture shadow telemetry, 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-012 | Trigger goldens fixture (~40 phrases × 3 variants) for threshold tuning | Fixture exists; tests load and verify all variants; CJK + Latin covered |
-| REQ-010 | Shadow telemetry + shadow→union promotion gate | Threshold-band buckets populated; union blocked until FP, recall, latency, cost, rollback evidence pass |
+| REQ-010 | Shadow telemetry + shadow→union promotion gate | Threshold-band buckets populated; union promotion is operator policy gated on FP, recall, latency, cost, rollback evidence (documented bar, not code-enforced) |
 
 ### P1 - Required (complete OR user-approved deferral)
 

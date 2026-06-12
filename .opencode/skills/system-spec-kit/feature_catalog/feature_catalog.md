@@ -3016,7 +3016,7 @@ Weekly batch feedback learning aggregates implicit feedback events from the ledg
 
 #### How It Works
 
-The batch learning pipeline runs on a 7-day window. It reads implicit feedback events and aggregates per-record signals with confidence-weighted scoring: strong = 1.0, medium = 0.5, weak = 0.1. Guards: minimum 3 distinct sessions required before a signal is eligible, max boost delta of 0.10 per cycle. Results are logged for auditability. Shadow-only: no live ranking columns are mutated. Default OFF, set `SPECKIT_BATCH_LEARNED_FEEDBACK=true` to enable.
+The batch learning pipeline runs on a 7-day window. It reads implicit feedback events and aggregates per-record signals with confidence-weighted scoring: strong = 1.0, medium = 0.5, weak = 0.1. Guards: minimum 3 distinct sessions required before a signal is eligible, max boost delta of 0.10 per cycle. Results are logged for auditability. Shadow-only: no live ranking columns are mutated. Default ON (graduated); set `SPECKIT_BATCH_LEARNED_FEEDBACK=false` to disable.
 
 
 ---

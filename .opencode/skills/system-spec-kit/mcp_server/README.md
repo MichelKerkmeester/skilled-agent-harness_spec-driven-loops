@@ -36,7 +36,7 @@ You rarely touch this server directly. Seven surfaces drive it for you:
 - **The daemon-backed CLI.** `node .opencode/bin/spec-memory.cjs <tool>` fronts all 37 tools over the daemon's IPC socket — the dual-stack surface for hooks, cron, CI and transport-down recovery. Exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes instead of spawning; `list-tools` answers offline. Source: `spec-memory-cli.ts`.
 - **The plugin bridge.** The OpenCode plugin (`.opencode/plugins/mk-spec-memory.js`) routes through `plugin_bridges/mk-spec-memory-bridge.mjs` using CLI transport only — it shells the same `spec-memory.cjs` front door rather than holding a second MCP connection.
 - **CLI scripts.** Maintenance, evaluation, and migration scripts live under `scripts/`.
-- **The compiled artifact.** `dist/context-server.js` is the entry your MCP client config points at after `npm run build`. The MCP registrations themselves are unchanged by the CLI: dual-stack means the CLI is additive.
+- **The compiled backend artifact.** `dist/context-server.js` is built by `npm run build` and spawned by the launcher. MCP client configs point at `.opencode/bin/mk-spec-memory-launcher.cjs`, which supervises the backend and owns the client-facing transport. The MCP registrations themselves are unchanged by the CLI: dual-stack means the CLI is additive.
 
 ### Embedding Provider Cascade
 
@@ -171,7 +171,7 @@ mcp_server/
 | `handlers/index.ts` | Collects handler modules for dispatcher use. |
 | `handlers/memory-index.ts` | Implements `memory_index_scan`. Overlapping scan calls return a `coalesced:true` success envelope rather than an error. Rows are committed BM25/FTS5-searchable as pending while vectors drain async. Status is `complete_with_pending_vectors` with a `pendingVectors` count when deferred work remains. |
 | `handlers/memory-embedding-reconcile.ts` | Implements `memory_embedding_reconcile`. Dry-run-default maintenance tool that converges `embedding_status` for vector-present stale rows and resets retry counters for genuinely missing-vector rows inside one guarded `BEGIN IMMEDIATE` transaction. |
-| `lib/search/vector-index-schema.ts` | Owns `SCHEMA_VERSION` (currently `30`) and the ordered migration map. Migrations 28-30 are additive: v28 active-row partial unique index `idx_memory_logical_key_active_unique` (one non-deprecated row per logical key); v29 checkpoint-v2 metadata columns `snapshot_format`/`snapshot_path`; v30 enrichment marker columns `post_insert_enrichment_*` plus `idx_post_insert_enrichment_incomplete`. |
+| `lib/search/vector-index-schema.ts` | Owns `SCHEMA_VERSION` (currently `37`) and the ordered migration map. Recent additive migrations cover active-row uniqueness, checkpoint-v2 metadata, enrichment markers, retention and deletion metadata, and retrieval/continuity support tables and indexes. |
 | `lib/storage/checkpoints.ts` | Checkpoint create/restore. `createCheckpoint()` routes to `createCheckpointV2()`, which writes file snapshots via `VACUUM main INTO` / `VACUUM active_vec INTO`; `restoreCheckpoint()` routes to `restoreCheckpointV2()` for v2 records. On a file-swap restore it drops a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME`) that `repairNeedsRebuildSentinel()` consumes on the next boot to rebuild derived indexes before serving. |
 | `handlers/memory-crud-health.ts` | Builds the `memory_health` `index` block: `summary`, `indexedRows`, `pendingVectors`, `retryVectors`, `failedVectors`, `orphanFiles`, `lastScanAgeMs`, `activeScanJob`, `activeEmbedderJob`. |
 | `tools/` | Groups tool definitions by domain. |
@@ -193,6 +193,8 @@ mcp_server/
 | Storage | SQLite access stays behind package modules that own schema and migration rules. |
 | Build output | `dist/` is generated output and should not be a source dependency. |
 | Docs | This README documents current code layout and links to packet history when operators need rollout context. |
+
+`session_resume` has a transport-bound session model. When a caller supplies `args.sessionId` and the transport has a caller-bound session ID, strict mode rejects mismatches; permissive mode logs and continues for rollout. Stdio callers may have no caller-bound session ID, so the handler accepts an explicit session ID in that transport shape instead of routing through the general trusted-session resolver. Use `MCP_SESSION_RESUME_AUTH_MODE` only to control strict-vs-permissive mismatch handling.
 
 Main tool flow:
 
@@ -234,7 +236,7 @@ Main tool flow:
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `context-server.ts` | Module | Starts the MCP server from source or compiled output. |
-| `dist/context-server.js` | Runtime artifact | Compiled MCP server used by client configuration. |
+| `dist/context-server.js` | Runtime artifact | Compiled backend server spawned and supervised by the launcher. Client configuration points at `.opencode/bin/mk-spec-memory-launcher.cjs`. |
 | `node .opencode/bin/spec-memory.cjs <tool>` | CLI | Daemon-backed front door for all 37 tools (shim guards dist freshness, exit `69`; runs `dist/spec-memory-cli.js`). |
 | `tool-schemas.ts` | Module | Source of MCP tool schema definitions. |
 | `handlers/*` | Modules | Execute memory, graph, advisor, evaluation, and maintenance tools. |
@@ -256,7 +258,7 @@ The Spec Kit Memory MCP process participates in the shared native MCP lifecycle 
 | Claude Stop cleanup | `.opencode/scripts/claude-session-cleanup.sh` kills only MCP helper descendants of the current Claude Code session — it requires explicit session identity and re-proves each candidate's ancestry at kill time — and is chained through the repo-local Claude Stop hook. |
 | LaunchAgent rollout | `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is a versioned template only. It is not installed or loaded by default. |
 | WAL durability | On close the server runs `PRAGMA wal_checkpoint(TRUNCATE)` on the main DB and the active vector shard. `wal_autocheckpoint=256` is set on both at open. A five-minute periodic checkpoint fires while the server is running. |
-| Boot FTS5 integrity check | On startup the server checks the FTS5 shadow index integrity when the `.unclean-shutdown` crash marker is present. A failed check is logged as corrupt. Detection only with no auto-rebuild at this level. |
+| Boot FTS5 integrity check | On startup the server checks the FTS5 shadow index integrity when the `.unclean-shutdown` crash marker is present. By default it attempts a non-destructive FTS shadow rebuild and re-verifies before serving. Set `SPECKIT_BOOT_FTS_AUTOHEAL=0` for detect-only mode. |
 | Post-crash whole-DB integrity gate | When the `.unclean-shutdown` marker is present at open, the store also runs `PRAGMA quick_check` against the main database. On failure it writes the checkpoint `.needs-rebuild` sentinel and refuses to serve rather than expose a corrupted index; clean shutdowns skip the probe entirely. |
 | RSS-ceiling watchdog | Opt-in (`SPECKIT_LAUNCHER_RSS_SELF_EXIT=1`): on a sustained RSS breach the launcher SIGTERMs the child and exits cleanly so the host can relaunch. Unexpected child exits route through a crash-loop-guarded supervisor with exponential backoff. |
 | MCP front-proxy recycle | The launcher fronts the backend with a session proxy (`bridgeStdioThroughSessionProxy` in `.opencode/bin/mk-spec-memory-launcher.cjs`; `.opencode/bin/lib/launcher-session-proxy.cjs`). It keeps one stable client session while the backend recycles in place (RSS restart, rebuild) and transparently replays read and idempotent-write tools across the recycle (`memory_save` is replayable because it relies on primary-row dedup). Known gap: a replay after the primary insert but before secondary-index writes can append duplicate secondary-index rows because that path is not yet keyed by an idempotency token. `SPECKIT_BACKEND_ONLY=1` makes a process run purely as that recyclable backend. |

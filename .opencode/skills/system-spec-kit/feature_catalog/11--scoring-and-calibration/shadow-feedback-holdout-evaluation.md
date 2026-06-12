@@ -1,6 +1,6 @@
 ---
 title: "Shadow scoring with holdout evaluation"
-description: "Shadow scoring compares would-have-changed rankings against live rankings on a deterministic holdout slice of queries, tracking weekly improvement cycles and gating promotion of learned signals to production via the SPECKIT_SHADOW_FEEDBACK flag."
+description: "Shadow scoring compares would-have-changed rankings against live rankings when an explicit replay pool is available; clean production schemas skip scheduled replay because raw query text is not durably stored."
 trigger_phrases:
   - "shadow scoring with holdout evaluation"
   - "SPECKIT_SHADOW_FEEDBACK"
@@ -15,19 +15,19 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Shadow scoring compares would-have-changed rankings against live rankings on a deterministic holdout slice of queries, tracking weekly improvement cycles and gating promotion of learned signals to production via the `SPECKIT_SHADOW_FEEDBACK` flag.
+Shadow scoring compares would-have-changed rankings against live rankings when replayable queries are supplied by an explicit test or replay pool. Clean production consumption logs store query fingerprints, not raw query text, so the scheduled replay runtime currently skips cycles instead of writing misleading shadow rows.
 
-Before switching to new ranking logic in production, you want proof that it actually improves results. This feature runs the new ranking in parallel on a random 20% of queries, compares what would have changed, and keeps a weekly scorecard. Only after two consecutive weeks of measurable improvement does it recommend promotion. Nothing changes for users until an explicit decision is made — it is purely observational.
+Before switching to new ranking logic in production, you want proof that it actually improves results. The library can compare live and shadow rankings for a deterministic holdout set and compute a scorecard, but the production scheduler has no privacy-preserving raw-query replay pool today. Until such a pool exists, an empty scheduled cycle on a clean schema is expected behavior, not a failure.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The shadow scoring module computes per-result rank deltas between live and shadow rankings, producing Kendall tau correlation, NDCG delta, and MRR delta metrics. Holdout queries are deterministically selected via a seed (default 20% holdout). Results are logged to the `shadow_scoring_log` table for auditability, with per-query comparison results and cycle-level aggregation stored in `shadow_cycle_results`.
+The shadow scoring module computes per-result rank deltas between live and shadow rankings, producing Kendall tau correlation, NDCG delta, and MRR delta metrics. When replayable query text is available to the evaluation helper, holdout queries are deterministically selected via a seed (default 20% holdout). Results are logged to the `shadow_scoring_log` table for auditability, with per-query comparison results and cycle-level aggregation stored in `shadow_cycle_results`.
 
 Promotion requires 2+ consecutive weeks of stable improvement (`PROMOTION_THRESHOLD_WEEKS = 2`). The evaluation window is 7 days (`EVALUATION_WINDOW_MS`). The promotion gate returns one of three recommendations: `promote`, `wait`, or `rollback`.
 
-Enabled by default (graduated). Set `SPECKIT_SHADOW_FEEDBACK=false` to disable. Key invariants: shadow-only (no live ranking columns are mutated), holdout queries are deterministically selected via seed, all results logged for auditability.
+Enabled by default (graduated). Set `SPECKIT_SHADOW_FEEDBACK=false` to disable. Key invariants: shadow-only (no live ranking columns are mutated), holdout queries are deterministic when a replay pool exists, and clean-schema scheduled runs may log a skipped cycle with no scoring rows.
 
 ---
 

@@ -99,8 +99,9 @@ Most "tweak it to match my setup" needs are signal additions, not lane-weight ch
    # Append phrases like "throw on missing", "add a flag" to the intent_signals array
    ```
 2. **Re-index the SQLite graph** (REQUIRED — without this, signal edits have ZERO effect on routing):
-   - Via your AI client's MCP tool list: call `skill_graph_scan({})`
-   - Or via Python compatibility: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --export-json --pretty` then call `skill_graph_scan({})`
+    - Via your AI client's MCP tool list: call `skill_graph_scan({})`
+    - Via the daemon-backed CLI: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`
+    - Or via Python compatibility: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --export-json --pretty` then re-index through MCP or the trusted CLI form above
 3. **Verify**: query `advisor_recommend({ prompt: "your test phrase", options: { topK: 3 } })` — your skill should now appear.
 
 **Why this is the recommended path for external users:**
@@ -146,7 +147,7 @@ The command rebuilds `dist/`, runs `skill_graph_scan`, and runs the advisor test
 
 **Never touches:** any `SKILL.md` content, `weights-config.ts`, fusion scorer, daemon code.
 
-> **Indexing follow-up**: After Phase 3 mutates these files, the doctor command runs `advisor_rebuild` + `skill_graph_scan` automatically. If you edit any of these files MANUALLY (e.g. via the Quick Tuning recipe in §3), you MUST call `skill_graph_scan({})` yourself — the SQLite graph is the runtime source of truth.
+> **Indexing follow-up**: After Phase 3 mutates these files, the doctor command runs `advisor_rebuild` + `skill_graph_scan` automatically. If you edit any of these files MANUALLY (e.g. via the Quick Tuning recipe in Section 3), you MUST re-index yourself — call `skill_graph_scan({})` through MCP, or use `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json` on the daemon-backed CLI. The SQLite graph is the runtime source of truth.
 
 ---
 
@@ -203,12 +204,12 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 | Problem | Fix |
 | --- | --- |
 | `"no skills found"` | Create at least one skill via `/create:skill` |
-| `"graph health: missing"` | Run `skill_graph_scan({})` once, then re-run the command |
+| `"graph health: missing"` | Run `skill_graph_scan({})` through MCP, or `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json` on the daemon-backed CLI, then re-run the command |
 | Build fails after apply | Rollback (see Section 7), inspect diff in `<spec-folder>/scratch/skill-advisor-proposal-*.md` (or `.opencode/scratch/...` outside a spec folder) |
 | Tests fail after apply | Rollback, then re-run with `--scope=derived` only |
 | Command not found | Verify `.opencode/commands/doctor/speckit.md` exists; restart your AI client |
-| Wrong skill in `advisor_recommend` | Stale graph index — run `skill_graph_scan({})` |
-| Edited `graph-metadata.json` but scores unchanged | Forgot to re-index — call `skill_graph_scan({})`. The advisor reads from `database/skill-graph.sqlite`, not the JSON file. |
+| Wrong skill in `advisor_recommend` | Stale graph index — run `skill_graph_scan({})` through MCP, or the trusted daemon-backed CLI form |
+| Edited `graph-metadata.json` but scores unchanged | Forgot to re-index — call `skill_graph_scan({})` through MCP, or `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`. The advisor reads from `database/skill-graph.sqlite`, not the JSON file. |
 | `skill_graph_scan` reports `scannedFiles: 20, indexedFiles: 18` | Normal — the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding, not real skills). The 18 is your real skill count. |
 | Cannot parse `explicit.ts` | `git restore --source=HEAD -- .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` (restores from HEAD without affecting unrelated WIP) |
 | MCP server missing | `npm --prefix .opencode/skills/system-spec-kit/mcp_server install && npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build` |
