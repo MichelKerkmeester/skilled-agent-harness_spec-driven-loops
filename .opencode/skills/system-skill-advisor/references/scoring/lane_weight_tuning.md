@@ -70,7 +70,7 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
 ```
 
-Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.topOne`, `slices.holdout.topOne`, `slices.parity`, `telemetry.lanesDominantCount`, `perSkill[]`.
+Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_corpus_top1`, `slices.corpus.unknown_count`, `slices.holdout.holdout_top1`, `slices.parity`, `slices.safety`, `slices.latency.regression_suite_status`, `telemetry`, `perSkill[]`.
 
 **Step 2: Run the lane-weight sweep.**
 

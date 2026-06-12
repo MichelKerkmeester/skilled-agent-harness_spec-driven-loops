@@ -16,6 +16,7 @@ For prior-work recovery, this agent follows the same canonical continuity order 
 
 **Path Convention**: Use only `.codex/agents/*.toml` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
 > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context to ensure continuity-first retrieval, structured output, and consistent Context Packages. @context itself is LEAF-only and must not dispatch sub-agents.
 

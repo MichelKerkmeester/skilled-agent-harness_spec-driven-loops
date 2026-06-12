@@ -42,6 +42,8 @@ export interface DetectChangesResult {
   readonly affectedSymbols: AffectedSymbol[];
   /** Populated when `status === 'blocked'` or `status === 'error'`. */
   readonly blockedReason?: string;
+  /** Concrete next step on refusal, present on every blocked/error payload. */
+  readonly requiredAction?: string;
   readonly timestamp: string;
   /** Per-file roll-up so callers can see which paths were touched. */
   readonly affectedFiles: string[];
@@ -66,6 +68,21 @@ function buildResponse(payload: DetectChangesResult): MCPResponse {
   };
 }
 
+// The refusal contract promises a concrete next step on every blocked or
+// error payload, transport-independent. Previously only the CLI inferred
+// this client-side, so MCP consumers got refusals with no recovery path.
+function deriveRequiredAction(reason: string, readiness: CodeGraphReadinessBlock): string {
+  const text = `${reason} ${readiness.action ?? ''} ${readiness.reason ?? ''}`.toLowerCase();
+  if (text.includes('readiness_check_crashed') || text.includes('scan_failed')) {
+    return 'rg';
+  }
+  if (readiness.action === 'full_scan' || readiness.action === 'selective_reindex'
+    || text.includes('stale') || text.includes('empty') || text.includes('code_graph_scan')) {
+    return 'code_graph_scan';
+  }
+  return 'code_graph_status';
+}
+
 function blockedResponse(
   reason: string,
   readiness: CodeGraphReadinessBlock,
@@ -75,6 +92,7 @@ function blockedResponse(
     affectedSymbols: [],
     affectedFiles: [],
     blockedReason: reason,
+    requiredAction: deriveRequiredAction(reason, readiness),
     timestamp: ts(),
     readiness,
   });
@@ -86,6 +104,7 @@ function errorResponse(reason: string, readiness: CodeGraphReadinessBlock): MCPR
     affectedSymbols: [],
     affectedFiles: [],
     blockedReason: reason,
+    requiredAction: deriveRequiredAction(reason, readiness),
     timestamp: ts(),
     readiness,
   });

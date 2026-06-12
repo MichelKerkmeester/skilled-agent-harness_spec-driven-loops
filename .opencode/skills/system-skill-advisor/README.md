@@ -105,7 +105,7 @@ Every public response strips raw prompt content. Attribution is per-lane only. T
 
 ### Freshness and the Trust Contract
 
-A daemon watches every `SKILL.md` and `graph-metadata.json` under `.opencode/skills/`. When a source changes the daemon bumps a generation counter and invalidates the recommendation cache. It holds a single-writer lease and does not rebuild on its own. Only `advisor_rebuild` mutates the SQLite database.
+A daemon watches every `SKILL.md` and `graph-metadata.json` under `.opencode/skills/`. When a source changes the daemon bumps a generation counter and invalidates the recommendation cache. It holds a single-writer lease and does not rebuild on its own. The trusted mutation paths that update the SQLite database are `advisor_rebuild` and `skill_graph_scan`; corrupt-database recovery may also move aside and recreate the database during lazy initialization.
 
 Every response carries a trust state so the caller knows what to do next.
 

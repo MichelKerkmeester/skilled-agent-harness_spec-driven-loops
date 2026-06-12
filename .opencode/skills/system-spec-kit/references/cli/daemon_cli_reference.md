@@ -17,6 +17,8 @@ The daemon CLI shims are additive IPC clients over the existing MCP daemons. The
 
 Use these CLIs when a runtime MCP transport is missing, failed, or not reconnecting while the daemon is expected to be warm, or when an operator needs shell diagnostics, CI checks, or scripted maintenance.
 
+Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.opencode/bin/*.cjs` shim instead.
+
 ## 1. CLI Surfaces
 
 | CLI shim | MCP daemon | Tool count | Primary use |
@@ -26,6 +28,8 @@ Use these CLIs when a runtime MCP transport is missing, failed, or not reconnect
 | `node .opencode/bin/skill-advisor.cjs` | `mk_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
 Each shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
+
+Launcher supervision is not uniform by design. The spec-memory launcher supervises the backend with crash-loop backoff, relaunch, and RSS-watchdog support. The code-index and skill-advisor launchers mirror child exit or signal state and expect the owning runtime or operator to restart them after a child crash.
 
 ## CLI vs MCP — when to use which
 

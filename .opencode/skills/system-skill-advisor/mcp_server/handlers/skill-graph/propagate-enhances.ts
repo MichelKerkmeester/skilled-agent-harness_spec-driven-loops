@@ -37,9 +37,16 @@ export async function handleSkillGraphPropagateEnhances(
   callerContext?: MCPCallerContext | null,
 ): Promise<HandlerResponse> {
   try {
-    const trustedCaller = requireTrustedCaller(callerContext);
-    if (!trustedCaller.ok) {
-      return errorResponse(trustedCaller.error, trustedCaller.code);
+    // Trust gates the MUTATING path only: report/propose and dry-run apply
+    // are read-safe and stay open to untrusted callers. This mirrors the
+    // CLI's documented predicate (real apply = mode apply with dryRun not
+    // true) exactly, so the two independent enforcement points agree.
+    const mode = args.mode ?? 'report';
+    if (mode === 'apply' && args.dryRun !== true) {
+      const trustedCaller = requireTrustedCaller(callerContext, 'skill_graph_propagate_enhances (mode=apply)');
+      if (!trustedCaller.ok) {
+        return errorResponse(trustedCaller.error, trustedCaller.code);
+      }
     }
 
     const cwd = process.cwd();

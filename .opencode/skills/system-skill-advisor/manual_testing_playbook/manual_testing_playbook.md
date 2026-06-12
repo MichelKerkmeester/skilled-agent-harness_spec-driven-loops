@@ -288,7 +288,7 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
-The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 41-scenario package count.
+The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 46-scenario package count.
 
 | Area | Automated test anchors |
 |---|---|

@@ -47,7 +47,7 @@ Baseline numbers as of remediation SHA `97a318d83`:
 |---|---:|---|
 | Full-corpus top-1 accuracy | 80.5% | `mcp_server/tests/scorer/corpus.vitest.ts` |
 | Holdout top-1 accuracy | 77.5% | `mcp_server/tests/scorer/holdout.vitest.ts` |
-| UNKNOWN count (full corpus) | <= 10 | `advisor_validate` `telemetry.unknownCount` |
+| UNKNOWN count (full corpus) | <= 10 | `advisor_validate` `slices.corpus.unknown_count.value` |
 | Python regression suite | full pass | `mcp_server/scripts/skill_advisor_regression.py` |
 | Advisor vitest tests | 167 across 23 files | `mcp_server/tests/` |
 | Watcher idle CPU | 0.031% | `mcp_server/lib/daemon/watcher.ts` benchmark |
@@ -76,13 +76,18 @@ mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true, "skillSlug": 
 Response fields to retain for baseline tracking:
 
 - `overallAccuracy` (float 0..1)
-- `slices.corpus.topOne` (float)
-- `slices.holdout.topOne` (float)
-- `slices.parity.passed` (boolean)
-- `slices.safety.violations` (integer count)
-- `slices.latency.cacheHitP95Ms` (float)
-- `telemetry.unknownCount` (integer)
-- `telemetry.lanesDominantCount` (object keyed by lane)
+- `slices.corpus.full_corpus_top1` (validation slice)
+- `slices.corpus.unknown_count.value` (integer)
+- `slices.corpus.gold_none_false_fire_count` (count plus baseline delta)
+- `slices.holdout.holdout_top1` (validation slice)
+- `slices.parity.explicit_skill_top1_regression.passed` (boolean)
+- `slices.parity.ambiguity_slice_stable.top2Within005` (boolean)
+- `slices.parity.derived_lane_attribution_complete` (boolean)
+- `slices.safety.adversarial_stuffing_blocked.passed` (boolean)
+- `slices.latency.regression_suite_status.cacheHitP95Ms` (float)
+- `slices.latency.regression_suite_status.uncachedP95Ms` (float)
+- `slices.latency.regression_suite_status.failedCount` (integer)
+- `telemetry` (prompt-safe outcome totals and run metadata)
 - `perSkill[]` (array of per-skill results)
 - `generatedAt` (ISO timestamp)
 

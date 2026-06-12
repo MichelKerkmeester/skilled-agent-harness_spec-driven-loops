@@ -240,7 +240,7 @@ If any required check fails, do not return `STATUS=OK`. Return `STATUS=FAIL ERRO
 
 ## 7. HOOK-INJECTED CONTEXT ROUTING
 
-Use hook-injected startup, graph, memory, or skill-advisor context as a routing hint.
+Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
 1. If hook context names an active spec folder, verify it against command setup before writing or claiming continuity.
 2. If hook context is stale, use command-owned setup and local file reads as runtime truth.

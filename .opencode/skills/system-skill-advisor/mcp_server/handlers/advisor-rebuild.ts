@@ -118,7 +118,7 @@ export async function handleAdvisorRebuild(
   args: unknown,
   callerContext?: MCPCallerContext | null,
 ): Promise<HandlerResponse> {
-  const trustedCaller = requireTrustedCaller(callerContext);
+  const trustedCaller = requireTrustedCaller(callerContext, 'advisor_rebuild');
   if (!trustedCaller.ok) {
     return {
       content: [{

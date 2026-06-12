@@ -789,6 +789,8 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
         "_NOTE_1_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides.",
         "_NOTE_2_TOOLS": "Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate. MCP namespace: mcp__mk_skill_advisor__*",
         "MK_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp_server/database",
+        "MK_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
+        "_NOTE_3_SHADOW_MODE": "SPECKIT_ADVISOR_SHADOW_MODE is currently inert: documented intent only, no runtime reader yet.",
         "SPECKIT_ADVISOR_SHADOW_MODE": "0",
         "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0"
       }

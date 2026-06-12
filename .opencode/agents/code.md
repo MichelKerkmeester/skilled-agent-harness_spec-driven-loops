@@ -25,6 +25,8 @@ Stack-aware application-code implementer that delegates stack detection to `sk-c
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
 > ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.opencode/agents/orchestrate.md` §2 NDP), HALT and return:
 >
 > "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate."

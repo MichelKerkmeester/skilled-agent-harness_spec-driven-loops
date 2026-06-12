@@ -131,7 +131,7 @@ The freshness daemon (`mcp_server/lib/daemon/`) is responsible for:
 
 The daemon is NOT responsible for:
 
-- Rebuilding the index automatically. Only `advisor_rebuild` mutates the SQLite database.
+- Rebuilding the index automatically. SQLite database writes happen through trusted maintenance paths such as `advisor_rebuild` and `skill_graph_scan`; corrupt-database recovery may also move aside and recreate the database during lazy initialization.
 - Validating skill content. Only `skill_graph_validate` checks edge integrity.
 - Caching MCP responses across processes. Each MCP server process maintains its own cache.
 

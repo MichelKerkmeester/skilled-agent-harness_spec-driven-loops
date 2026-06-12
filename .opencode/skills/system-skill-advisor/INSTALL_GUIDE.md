@@ -50,6 +50,7 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 - Node.js and npm available for the standalone system-skill-advisor MCP server.
 - Repository root as the working directory.
 - Runtime MCP configuration includes both `mk-spec-memory` and `mk_skill_advisor`.
+- Native MCP trusted mutations require `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon environment; callers cannot supply this trust grant per request.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
 - The local shared package at `.opencode/skills/system-spec-kit/shared` is present; `npm install` links it into `mcp_server/node_modules/@spec-kit/shared`.
 
@@ -85,7 +86,7 @@ Verify native tool registration through `mk_skill_advisor`:
 ```text
 mk_skill_advisor.advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 mk_skill_advisor.advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
-mk_skill_advisor.advisor_validate({"skillSlug":null})
+mk_skill_advisor.advisor_validate({"confirmHeavyRun":true,"skillSlug":null})
 ```
 
 Also verify the active runtime lists both MCP servers: `mk-spec-memory` for memory/context tools and `mk_skill_advisor` for advisor tools.
