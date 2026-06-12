@@ -44,15 +44,13 @@ Verifier follow-ons (recorded, not reopeners):
 
 ## Held — independent code items
 
-tri-013 CLOSED (verdict `../verify/code-wave2-verdict.md`): dry-run now aggregates the same real signal window as apply (pure read; the preview records no audits — early return traced).
+tri-013 CLOSED (verdict `../verify/code-wave2-verdict.md`): dry-run now aggregates the same real signal window as apply (pure read; the preview records no audits — early return traced). tri-078 and tri-091 CLOSED earlier with the advisor batch (verdict `../verify/l5-batch-verdict.md`).
 
 | Finding | One-line | Class |
 |---|---|---|
 | tri-022 | semantic-trigger shadow telemetry not durable — promotion criteria uncomputable; hot-path, fail-safe, env-gated | code-careful |
 | tri-029 | prune-excludes confidence artifact never wired from public handlers (all patterns `tier:'unknown'`); ship default artifact + gates together | code-small |
 | tri-031 | repair-nodes cannot actually reparse skip-listed files (sentinel short-circuit); collides with the manual-review-only crash-cohort invariant — bounded targeted retry or honest-doc rewrite | code-careful |
-| tri-078 | detect_changes blocked payload lacks `requiredAction` over MCP (CLI-only normalization); additive field | code-small |
-| tri-091 | CLI gates propagate-enhances trust on apply-only; daemon refuses ALL modes — pick one side, update both + catalog | code-small |
 | tri-145 | bare CLI `code_graph_apply` defaults to a mutating rescan on soft-stale; required-operation guard, opt-in gated | code-small |
 | tri-131 | no semantic-trigger stress suite; depends on tri-022 telemetry — sequence after it | code-careful |
 | tri-186 | offline CLI smoke is count-only; add exit-code/envelope taxonomy as a sibling script | code-small |
