@@ -398,7 +398,7 @@ These phases changed structure or carried existing patterns into other subsystem
 
 **CLI tooling UX (016).** The daemon-CLI front doors gained a freshness-gate fix and offline smoke, per-command help with aliases and clear errors, a unified daemon CLI reference, a hardened fallback envelope and bridge allowlist, and compact output with shell completion. The CLI surface stays at full parity with the daemons (spec-memory 37, code-index 8, skill-advisor 9).
 
-**Cross-subsystem feature adoption (018).** The hardening that 027 landed first in spec-memory was carried into the skill-advisor and code-graph subsystems: observability attribution, a provenance guard, packed BM25, BFS consolidation, feedback calibration, a tombstone audit, `why_included`, and a BM25 symbol resolver. Results-affecting additions ship default-off or shadow-first.
+**Cross-subsystem feature adoption (018).** The hardening that 027 landed first in spec-memory was carried into the skill-advisor and code-graph subsystems. The advisor gained prompt-safe attribution and semantic health diagnostics, an automated-edge provenance guard that protects manual and trusted edges, a packed BM25F lexical helper that stays shadow-only until a future promotion decision, one local BFS helper for `transitive_path` and `subgraph`, and default-off feedback calibration reports that are written for inspection rather than consumed by live scoring. Code graph gained default-off tombstone audit rows, one local BFS helper for transitive and blast-radius traversal, `includeTrace`-gated `why_included` breadcrumbs, and a default-off BM25 symbol resolver that suggests candidates only after exact structural matching misses. The pattern is the same as the memory system: observability and internal consolidation can ship directly, while ranking or result-shape changes stay default-off or trace-gated.
 
 **Autonomous dependency patching (024).** A packet-local shell entrypoint scans the OpenCode skill package roots, runs `npm audit` on each, applies supported override remediation, regenerates lockfiles without executing install scripts, and re-audits. The shipped run found all five roots clean; CI integration remains optional.
 
@@ -408,10 +408,36 @@ These phases changed structure or carried existing patterns into other subsystem
 
 ---
 
+## 17. Verification Pipelines, Finding Remediation, and Research Closure
+
+**Before**
+
+The epic had review and research evidence, but not every evidence source had been turned into a terminal work queue. The 120-seat epic sweep left 101 single-seat P1 claims and 119 P2 clusters that were inventoried but not individually verified. The tri-system state after phases 000 through 026 had not yet been swept as a whole across system-spec-kit, system-skill-advisor, and system-code-graph. The later command-adherence work also exposed a measurement hazard: a probe can look like it tested a command while actually sending raw slash text to a model and never loading the command template.
+
+**After**
+
+Phase 027 turned the remaining epic findings into an eight-lane verify-first remediation program. Every lane used the same rule: Fable verification with file and line evidence first, GPT-5.5 implementation only for confirmed findings, then fresh Fable verification of the fix. All eight lanes closed with terminal dispositions recorded in the backlogs: fixed, refuted, waived with a reason, downgraded and triaged, or already fixed. The source summaries record strict lane validation plus package typechecks and touched-suite runs across the remediation waves.
+
+Phase 028 then ran the broader tri-system research program. Fifty read-only research angles covered system-spec-kit, system-code-graph, system-skill-advisor, and cross-system concerns. The final summary records 50/50 iteration reports and 103 P0/P1 claims adjudicated: 48 confirmed, 53 downgraded, and 2 refuted. That registry became the input to the next remediation wave rather than being treated as already true.
+
+Phase 029 applied the stricter pipeline to the deep-research and command-adherence backlog. The highest-risk lane shipped the single-writer kernel lock before the main memory database opens, so a second writer now loses the lock and exits with code 86 instead of corrupting `context-index.sqlite`. The launcher bridges to the live owner. The CLI save lane now uses the shared fail-closed secret scrubber before generated context payloads persist. Query fingerprints became hash-only with legacy prefix rows purged. The command-dashboard lane corrected the probe protocol itself: `opencode run --command memory/search` delivers the command template, while raw slash text does not. Correctly dispatched probes passed the envelope contract 3/3, and the negative control preserved the old failure as a harness check. The code-graph apply lane then closed the destructive-apply safety cluster as one packet: confirm gates happen before snapshots, semantic refusals can happen before rollback churn, rollback target selection is shared, retention protects known-good artifacts, and dry-run previews use the same target selector.
+
+The 029 lane dispositions make the state explicit rather than pretending the program is magically finished. They record closed batches for the single-writer and scrubber work, the L8 command protocol, L3 idempotency, the L4 launcher cluster, multiple advisor and save-continuity waves, the L2 apply-pipeline packet, and the L9 doc/code waves. The latest continuity summary records waves 4 through 8 committed and Fable-verified, with about 186 of 198 items closed, while the remaining queues are named in the lane files.
+
+**Impact**
+
+Research outputs now become implementation work only after direct verification. False positives and measurement artifacts are filtered before they can drive code changes. The database corruption class that caused repeated loss is closed at the writer boundary, not papered over after the fact. Destructive code-graph operations have a safer apply pipeline, and command-dashboard behavior is measured against the actual command runtime instead of against raw prompt text.
+
+**Why this is still the same 027 principle**
+
+The principle did not change when the work moved from feature hardening to remediation. Anything that can change results, mutate state, or claim truth is gated by evidence. The remediation waves are not a second doctrine. They are the original doctrine applied to the epic's own findings.
+
+---
+
 ## Current State
 
-The schema sits at v37. All results-affecting and mutating features are default-off behind feature flags, with shadow modes available where relevant. The always-on protections, provenance guard, secret scrubber, retention-tier basement, manual-edge overwrite guard and causal-edge tombstones, are active in every deployment.
+The schema sits at v37. All results-affecting and mutating features are default-off behind feature flags, with shadow modes available where relevant. The always-on protections, provenance guard, secret scrubber, retention-tier basement, manual-edge overwrite guard and causal-edge tombstones, are active in every deployment. The later remediation work adds one more always-on protection at the process boundary: a default-on single-writer database lock with an emergency disable flag.
 
 The everyday call shape of memory retrieval, storage and session startup is unchanged for existing users, and enabling any of the flags is an explicit opt-in with documented environment variables in `ENV_REFERENCE.md`. The read path did get more resilient by default: a malformed vector shard is detected and quarantined rather than served, the lexical fallback ranks with restored field weights under its memory budget, and a scoped search resolves its filters before truncating. None of that needs a flag and none of it changes the response contract for the common path. The vector repair durability and the idempotency flag-on correctness are inert until a dist rebuild adopts them.
 
-The changelog index at `changelog/README.md` links all twenty-seven phase tracks (000 through 026) to their detailed change records, and the chronological view lives in `timeline.md`. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.
+The changelog index at `changelog/README.md` and the chronological view at `timeline.md` now cover the original 000 through 026 tracks plus the 027 finding-remediation, 028 tri-system deep-research, and 029 deep-research remediation follow-ons. The manual testing playbook covers the CLI stress scenarios and the new diagnostic surfaces.

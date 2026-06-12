@@ -274,11 +274,25 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
+| `011-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | [changelog-011-008-router-consistency-hardening.md](./changelog/011-command-presentation-workflow-separation/changelog-011-008-router-consistency-hardening.md) |
+| `029-deep-research-remediation` | impl | [changelog-029-deep-research-remediation-root.md](./changelog/029-deep-research-remediation/changelog-029-deep-research-remediation-root.md) |
+| `028-tri-system-deep-research` | impl | [changelog-028-tri-system-deep-research-root.md](./changelog/028-tri-system-deep-research/changelog-028-tri-system-deep-research-root.md) |
+| `011-command-presentation-workflow-separation/006-presentation-adherence-research` | impl | [changelog-011-006-presentation-adherence-research.md](./changelog/011-command-presentation-workflow-separation/changelog-011-006-presentation-adherence-research.md) |
+| `011-command-presentation-workflow-separation/007-presentation-asset-format` | impl | [changelog-011-007-presentation-asset-format.md](./changelog/011-command-presentation-workflow-separation/changelog-011-007-presentation-asset-format.md) |
+| `027-finding-remediation` |  | [changelog-027-finding-remediation-root.md](./changelog/027-finding-remediation/changelog-027-finding-remediation-root.md) |
+| `027-finding-remediation/001-write-safety-and-guards` | impl | [changelog-027-001-write-safety-and-guards.md](./changelog/027-finding-remediation/changelog-027-001-write-safety-and-guards.md) |
+| `027-finding-remediation/002-causal-and-memo` | impl | [changelog-027-002-causal-and-memo.md](./changelog/027-finding-remediation/changelog-027-002-causal-and-memo.md) |
+| `027-finding-remediation/003-search-and-triggers` | impl | [changelog-027-003-search-and-triggers.md](./changelog/027-finding-remediation/changelog-027-003-search-and-triggers.md) |
+| `027-finding-remediation/004-vector-and-checkpoint-durability` | impl | [changelog-027-004-vector-and-checkpoint-durability.md](./changelog/027-finding-remediation/changelog-027-004-vector-and-checkpoint-durability.md) |
+| `027-finding-remediation/005-bm25-indexing-fidelity` | impl | [changelog-027-005-bm25-indexing-fidelity.md](./changelog/027-finding-remediation/changelog-027-005-bm25-indexing-fidelity.md) |
+| `027-finding-remediation/006-launchers-and-cli` | impl | [changelog-027-006-launchers-and-cli.md](./changelog/027-finding-remediation/changelog-027-006-launchers-and-cli.md) |
+| `027-finding-remediation/007-continuity-and-save-concurrency` | impl | [changelog-027-007-continuity-and-save-concurrency.md](./changelog/027-finding-remediation/changelog-027-007-continuity-and-save-concurrency.md) |
+| `027-finding-remediation/008-doc-truth-and-test-fidelity` | impl | [changelog-027-008-doc-truth-and-test-fidelity.md](./changelog/027-finding-remediation/changelog-027-008-doc-truth-and-test-fidelity.md) |
 | `026-ipc-client-cap-hardening` | impl | [changelog-026-ipc-client-cap-hardening.md](./changelog/026-ipc-client-cap-hardening/changelog-026-ipc-client-cap-hardening.md) |
 | `025-code-mode-orphan-lifecycle` | impl | [changelog-025-code-mode-orphan-lifecycle.md](./changelog/025-code-mode-orphan-lifecycle/changelog-025-code-mode-orphan-lifecycle.md) |
 | `024-autonomous-dependency-patching` | impl | [changelog-024-autonomous-dependency-patching.md](./changelog/024-autonomous-dependency-patching/changelog-024-autonomous-dependency-patching.md) |
 | `011-command-presentation-workflow-separation` |  | [changelog-011-command-presentation-workflow-separation-root.md](./changelog/011-command-presentation-workflow-separation/changelog-011-command-presentation-workflow-separation-root.md) |
-| `011-command-presentation-workflow-separation/005-deep-commands` | impl | (none) |
+| `011-command-presentation-workflow-separation/005-deep-commands` | impl | [changelog-011-005-deep-commands.md](./changelog/011-command-presentation-workflow-separation/changelog-011-005-deep-commands.md) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` | impl | (none) |
@@ -301,7 +315,7 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment` |  | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment` |  | [changelog-000-009-skill-frontmatter-alignment.md](./changelog/000-release-cleanup/changelog-000-009-skill-frontmatter-alignment.md) |
 | `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
 | `023-idempotency-flag-on-correctness` | impl | [changelog-023-idempotency-flag-on-correctness.md](./changelog/023-idempotency-flag-on-correctness/changelog-023-idempotency-flag-on-correctness.md) |
 | `022-provenance-injection` | impl | [changelog-022-provenance-injection.md](./changelog/022-provenance-injection/changelog-022-provenance-injection.md) |
@@ -309,54 +323,54 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `020-vector-resilience-durability` | impl | [changelog-020-vector-resilience-durability.md](./changelog/020-vector-resilience-durability/changelog-020-vector-resilience-durability.md) |
 | `019-skill-advisor-cross-session-reconnect` | impl | [changelog-019-skill-advisor-cross-session-reconnect.md](./changelog/019-skill-advisor-cross-session-reconnect/changelog-019-skill-advisor-cross-session-reconnect.md) |
 | `017-bm25-warmup-churn-reduction` | impl | [changelog-017-bm25-warmup-churn-reduction.md](./changelog/017-bm25-warmup-churn-reduction/changelog-017-bm25-warmup-churn-reduction.md) |
-| `018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | (none) |
-| `018-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | (none) |
+| `018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` | impl | [changelog-018-009-codegraph-bm25-symbol-resolver.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-009-codegraph-bm25-symbol-resolver.md) |
+| `018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` | impl | [changelog-018-008-codegraph-why-included.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-008-codegraph-why-included.md) |
+| `018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation` | impl | [changelog-018-007-codegraph-bfs-consolidation.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-007-codegraph-bfs-consolidation.md) |
+| `018-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` | impl | [changelog-018-006-codegraph-tombstone-audit.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-006-codegraph-tombstone-audit.md) |
+| `018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration` | impl | [changelog-018-005-advisor-feedback-calibration.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-005-advisor-feedback-calibration.md) |
+| `018-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation` | impl | [changelog-018-004-advisor-bfs-consolidation.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-004-advisor-bfs-consolidation.md) |
+| `018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` | impl | [changelog-018-003-advisor-packed-bm25-lexical.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-003-advisor-packed-bm25-lexical.md) |
+| `018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | [changelog-018-002-advisor-provenance-guard.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-002-advisor-provenance-guard.md) |
+| `018-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | [changelog-018-001-advisor-observability.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-001-advisor-observability.md) |
 | `018-xce-feature-adoption-advisor-codegraph` |  | [changelog-018-xce-feature-adoption-advisor-codegraph-root.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-xce-feature-adoption-advisor-codegraph-root.md) |
 | `014-packed-bm25-field-weights` | impl | [changelog-014-packed-bm25-field-weights.md](./changelog/014-packed-bm25-field-weights/changelog-014-packed-bm25-field-weights.md) |
 | `013-vector-read-path-resilience` | impl | [changelog-013-vector-read-path-resilience.md](./changelog/013-vector-read-path-resilience/changelog-013-vector-read-path-resilience.md) |
 | `012-causal-traversal-bfs` | impl | [changelog-012-causal-traversal-bfs.md](./changelog/012-causal-traversal-bfs/changelog-012-causal-traversal-bfs.md) |
-| `016-cli-tooling-ux/005-cli-automation-compact-completion` | impl | (none) |
-| `016-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | (none) |
+| `016-cli-tooling-ux/005-cli-automation-compact-completion` | impl | [changelog-016-005-cli-automation-compact-completion.md](./changelog/016-cli-tooling-ux/changelog-016-005-cli-automation-compact-completion.md) |
+| `016-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | [changelog-016-003-cli-reference-and-skill-docs.md](./changelog/016-cli-tooling-ux/changelog-016-003-cli-reference-and-skill-docs.md) |
 | `016-cli-tooling-ux` |  | [changelog-016-cli-tooling-ux-root.md](./changelog/016-cli-tooling-ux/changelog-016-cli-tooling-ux-root.md) |
 | `015-storage-adapter-ports` | impl | [changelog-015-storage-adapter-ports.md](./changelog/015-storage-adapter-ports/changelog-015-storage-adapter-ports.md) |
-| `016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | (none) |
-| `016-cli-tooling-ux/002-cli-help-aliases-errors` | impl | (none) |
-| `016-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | (none) |
+| `016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | [changelog-016-004-cli-fallback-envelope-and-bridge.md](./changelog/016-cli-tooling-ux/changelog-016-004-cli-fallback-envelope-and-bridge.md) |
+| `016-cli-tooling-ux/002-cli-help-aliases-errors` | impl | [changelog-016-002-cli-help-aliases-errors.md](./changelog/016-cli-tooling-ux/changelog-016-002-cli-help-aliases-errors.md) |
+| `016-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | [changelog-016-001-cli-freshness-and-smoke.md](./changelog/016-cli-tooling-ux/changelog-016-001-cli-freshness-and-smoke.md) |
 | `011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | (none) |
 | `011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | (none) |
 | `011-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md` | impl | (none) |
 | `011-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/004-doctor-commands` |  | (none) |
+| `011-command-presentation-workflow-separation/004-doctor-commands` |  | [changelog-011-004-doctor-commands.md](./changelog/011-command-presentation-workflow-separation/changelog-011-004-doctor-commands.md) |
 | `011-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux` | impl | (none) |
 | `011-command-presentation-workflow-separation/003-create-commands/003-router-rewire` | impl | (none) |
 | `011-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md` | impl | (none) |
 | `011-command-presentation-workflow-separation/003-create-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/003-create-commands` |  | (none) |
+| `011-command-presentation-workflow-separation/003-create-commands` |  | [changelog-011-003-create-commands.md](./changelog/011-command-presentation-workflow-separation/changelog-011-003-create-commands.md) |
 | `011-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux` | impl | (none) |
 | `011-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire` | impl | (none) |
 | `011-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md` | impl | (none) |
 | `011-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/002-speckit-commands` |  | (none) |
+| `011-command-presentation-workflow-separation/002-speckit-commands` |  | [changelog-011-002-speckit-commands.md](./changelog/011-command-presentation-workflow-separation/changelog-011-002-speckit-commands.md) |
 | `011-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux` | impl | (none) |
 | `011-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` | impl | (none) |
 | `011-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md` | impl | (none) |
 | `011-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` | impl | (none) |
-| `011-command-presentation-workflow-separation/001-memory-commands` |  | (none) |
-| `000-release-cleanup/001-public-root-readme` | impl | (none) |
-| `000-release-cleanup/005-mcp-cli-stress-tests` | impl | (none) |
-| `000-release-cleanup/004-skill-manual-playbook` | impl | (none) |
-| `000-release-cleanup/003-skill-feature-catalog` | impl | (none) |
-| `000-release-cleanup/008-agents-md-alignment` | impl | (none) |
-| `000-release-cleanup/007-agent-alignment` | impl | (none) |
-| `000-release-cleanup/006-command-alignment` | impl | (none) |
-| `000-release-cleanup/002-skill-docs-alignment` | impl | (none) |
+| `011-command-presentation-workflow-separation/001-memory-commands` |  | [changelog-011-001-memory-commands.md](./changelog/011-command-presentation-workflow-separation/changelog-011-001-memory-commands.md) |
+| `000-release-cleanup/001-public-root-readme` | impl | [changelog-000-001-public-root-readme.md](./changelog/000-release-cleanup/changelog-000-001-public-root-readme.md) |
+| `000-release-cleanup/005-mcp-cli-stress-tests` | impl | [changelog-000-005-mcp-cli-stress-tests.md](./changelog/000-release-cleanup/changelog-000-005-mcp-cli-stress-tests.md) |
+| `000-release-cleanup/004-skill-manual-playbook` | impl | [changelog-000-004-skill-manual-playbook.md](./changelog/000-release-cleanup/changelog-000-004-skill-manual-playbook.md) |
+| `000-release-cleanup/003-skill-feature-catalog` | impl | [changelog-000-003-skill-feature-catalog.md](./changelog/000-release-cleanup/changelog-000-003-skill-feature-catalog.md) |
+| `000-release-cleanup/008-agents-md-alignment` | impl | [changelog-000-008-agents-md-alignment.md](./changelog/000-release-cleanup/changelog-000-008-agents-md-alignment.md) |
+| `000-release-cleanup/007-agent-alignment` | impl | [changelog-000-007-agent-alignment.md](./changelog/000-release-cleanup/changelog-000-007-agent-alignment.md) |
+| `000-release-cleanup/006-command-alignment` | impl | [changelog-000-006-command-alignment.md](./changelog/000-release-cleanup/changelog-000-006-command-alignment.md) |
+| `000-release-cleanup/002-skill-docs-alignment` | impl | [changelog-000-002-skill-docs-alignment.md](./changelog/000-release-cleanup/changelog-000-002-skill-docs-alignment.md) |
 | `001-peck-teachings-adoption/006-peck-verification-discipline` | impl | [changelog-001-006-peck-verification-discipline.md](./changelog/001-peck-teachings-adoption/changelog-001-006-peck-verification-discipline.md) |
 | `001-peck-teachings-adoption` |  | [changelog-001-peck-teachings-adoption-root.md](./changelog/001-peck-teachings-adoption/changelog-001-peck-teachings-adoption-root.md) |
 | `008-openltm-retrieval-observability` | impl | [changelog-008-openltm-retrieval-observability.md](./changelog/008-openltm-retrieval-observability/changelog-008-openltm-retrieval-observability.md) |
@@ -410,4 +424,3 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `006-gem-team-adoption/001-typed-agent-io-adapter` | impl | [changelog-006-001-typed-agent-io-adapter.md](./changelog/006-gem-team-adoption/changelog-006-001-typed-agent-io-adapter.md) |
 | `003-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | [changelog-003-001-incremental-index-foundation.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-001-incremental-index-foundation.md) |
 | `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | [changelog-001-001-peck-teachings-for-spec-kit.md](./changelog/001-peck-teachings-adoption/changelog-001-001-peck-teachings-for-spec-kit.md) |
-
