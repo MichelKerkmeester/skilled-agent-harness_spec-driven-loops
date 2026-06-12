@@ -156,7 +156,7 @@ const codeGraphApply: ToolDefinition = {
         enum: ['rescan', 'prune-excludes', 'repair-nodes', 'recover-sqlite-corruption', 'rollback-bad-apply'],
         description: 'Apply operation to run. Defaults to re-scan routing based on staleness state.',
       },
-      confirm: { type: 'boolean', description: 'Required for hard-stale recovery before any mutation.' },
+      confirm: { type: 'boolean', description: 'Required for hard-stale recovery AND for every destructive operation (recover-sqlite-corruption, rollback-bad-apply) regardless of staleness.' },
       dryRun: { type: 'boolean', description: 'Run pre/post batteries and classification, but skip operation dispatch.' },
       crashRootCauseAddressed: { type: 'boolean', description: 'Required true before repair-nodes re-parses parser_skip_list candidates.' },
       quarantineOlderThanDays: { type: 'number', minimum: 1, maximum: 365, description: 'Minimum parser_skip_list age for repair-nodes eligibility.' },

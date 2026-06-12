@@ -61,7 +61,7 @@ The code-graph database currently has no automatic `VACUUM` or checkpoint policy
 | 4 | `code_graph_context` | Read | Build LLM-oriented compact graph neighborhoods. Accepts manual seeds or graph seeds. Modes: `neighborhood`, `outline`, `impact`. | `readiness === "fresh"`. Returns `blocked` with `requiredAction: "code_graph_scan"` otherwise. | 1200 |
 | 5 | `code_graph_status` | Maintenance | Report graph health: totals, freshness, trust state, last scan, schema version, parse health, quality summary. Read-only. | None — always answerable. | 500 |
 | 6 | `code_graph_verify` | Maintenance | Run the persisted gold-query battery against the current graph. Supports category filter, fail-fast, baseline persistence. | `readiness === "fresh"`. Returns `blocked` otherwise. | 1000 |
-| 7 | `code_graph_apply` | Maintenance | Verification-gated recovery: `rescan`, `prune-excludes`, `repair-nodes`, `recover-sqlite-corruption`, `rollback-bad-apply`. Pre/post battery + JSONL audit log. | Hard-stale recovery requires `confirm: true`. `repair-nodes` requires `crashRootCauseAddressed: true`. | 1000 |
+| 7 | `code_graph_apply` | Maintenance | Verification-gated recovery: `rescan`, `prune-excludes`, `repair-nodes`, `recover-sqlite-corruption`, `rollback-bad-apply`. Pre/post battery + JSONL audit log. | Hard-stale recovery and ALL destructive operations (`recover-sqlite-corruption`, `rollback-bad-apply`) require `confirm: true` regardless of staleness. `repair-nodes` requires `crashRootCauseAddressed: true`. | 1000 |
 | 8 | `detect_changes` | Read | Map a unified-diff to affected symbols via line-range overlap. Refuses on non-fresh state (returns `blocked`, not empty `affectedSymbols[]`). | `readiness === "fresh"`. `diff` is required (unified-diff text). | 1200 |
 
 ---

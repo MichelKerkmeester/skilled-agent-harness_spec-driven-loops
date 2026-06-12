@@ -33,19 +33,14 @@ Doc-only contract drifts (fenced gpt-5.5-fast seats, host diff-reviewed + Fable 
 <!-- /ANCHOR:shipped -->
 
 <!-- ANCHOR:held -->
-## Held — the apply-pipeline packet (ship together, NOT piecemeal)
+## Apply-pipeline packet — SHIPPED + adversarially verified CLOSED 7/7
 
-The batch verifier flagged an interlock: these touch the same snapshot chain and a wrong partial fix regresses the others.
+Shipped as one unit with shared rollback-target-selection (commit `1cd7d104e5`; verdict `../verify/l2-pipeline-packet-verdict.md`): unconditional confirm gates for destructive ops BEFORE the snapshot, pre-dispatch repair-nodes refusal with requiredAction, run-scoped rollback target exclusion (operator rollback only — failure-path rollbacks deliberately restore the just-taken pre-dispatch snapshot), dry-run target preview via the same selection function, post-commit-only retention with protected dirs. The verifier enumerated every branch: no bypass path; 30/30 tests; tsc clean. The confirm-scope descriptions in tool-schemas.ts and tool_surface.md were updated to match (the verifier caught the understatement). Dist rebuilt 2026-06-12 so the fix is in the built artifact; the live daemon adopts it at its next respawn (the code-index launcher has no transparent recycle).
 
-| Finding | One-line | Class |
-|---|---|---|
-| tri-025/tri-027 | destructive ops (corruption recovery, rollback) confirm-gated only on hard-stale; gate must land BEFORE the pre-dispatch snapshot | code-small |
-| tri-026/tri-077 | repair-nodes skip path reports `committed`; needs pre-dispatch abort with `requiredAction`, audit-consistent | code-small |
-| tri-028 | rollback restores the snapshot it just took (lexicographic-latest selection); needs run-scoped exclusion in target selection | code-careful |
-| tri-075 | rollback dry-run can't name its target; must reuse the fixed target-selection logic | code-small |
-| tri-151 | no snapshot retention (~6x disk amplification); pruning must never delete the active rollback target — sequence WITH tri-028 | code-careful |
-
-Shared design requirement: one rollback-target-selection function (current-run snapshot excluded, retention-aware), used by live rollback, dry-run preview, and the pruner.
+Verifier follow-ons (recorded, not reopeners):
+- F2 (P2): the orchestrator never inspects `recovery.status` — a midway-failed operator rollback can surface as `committed` or trigger an unexcluded second rollback restoring run-start state; no data loss in any branch (quarantine + baseline survive as copies), strictly better than pre-fix.
+- F3 (P3): refusal-by-throw remnants (repair-nodes confirm-with-eligible-rows, prune-excludes tier gates) still produce snapshot/rollback churn + a misleading `rolled-back` status for semantic refusals — candidates for the pre-snapshot gate pattern.
+- P3s: cross-root known-good lexicographic sort quirk exploitable by legacy snapshot names; remaining doc nits listed in the verdict file.
 
 ## Held — independent code items
 
