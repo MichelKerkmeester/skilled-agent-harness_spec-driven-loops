@@ -10,12 +10,18 @@ const { cleanCloseAfterReap, uncleanShutdownMarkerPath, resolvedDbDir } = launch
 // F2 clean-close barrier: the launcher must be able to tell whether a reaped context-server child
 // handed off the DB cleanly (close_db ran, `.unclean-shutdown` removed) before respawning over it.
 describe('launcher clean-close barrier (F2)', () => {
-  const originalMemoryDbPath = process.env.MEMORY_DB_PATH;
+  const ENV_KEYS = ['MEMORY_DB_PATH', 'SPEC_KIT_DB_DIR', 'SPECKIT_DB_DIR'] as const;
+  const originalEnv: Partial<Record<string, string | undefined>> = {};
+  for (const key of ENV_KEYS) {
+    originalEnv[key] = process.env[key];
+  }
   afterEach(() => {
-    if (originalMemoryDbPath === undefined) {
-      delete process.env.MEMORY_DB_PATH;
-    } else {
-      process.env.MEMORY_DB_PATH = originalMemoryDbPath;
+    for (const key of ENV_KEYS) {
+      if (originalEnv[key] === undefined) {
+        delete process.env[key];
+      } else {
+        process.env[key] = originalEnv[key];
+      }
     }
   });
 
@@ -33,14 +39,31 @@ describe('launcher clean-close barrier (F2)', () => {
   });
 
   it('resolves the unclean-shutdown marker inside the resolved DB dir by default', () => {
-    delete process.env.MEMORY_DB_PATH;
+    for (const key of ENV_KEYS) delete process.env[key];
     const markerPath = uncleanShutdownMarkerPath();
     expect(path.basename(markerPath)).toBe('.unclean-shutdown');
     expect(path.dirname(markerPath)).toBe(resolvedDbDir());
   });
 
   it('honors a MEMORY_DB_PATH override by using its dirname', () => {
+    for (const key of ENV_KEYS) delete process.env[key];
     const override = path.join(path.sep, 'tmp', 'speckit-test-db', 'context-index.sqlite');
+    process.env.MEMORY_DB_PATH = override;
+    const markerPath = uncleanShutdownMarkerPath();
+    expect(markerPath).toBe(path.join(path.dirname(override), '.unclean-shutdown'));
+  });
+
+  it('honors a dir override the way the daemon does (marker follows the writer)', () => {
+    for (const key of ENV_KEYS) delete process.env[key];
+    process.env.SPEC_KIT_DB_DIR = path.join(path.sep, 'tmp', 'speckit-dir-override');
+    const markerPath = uncleanShutdownMarkerPath();
+    expect(markerPath).toBe(path.join(path.sep, 'tmp', 'speckit-dir-override', '.unclean-shutdown'));
+  });
+
+  it('MEMORY_DB_PATH wins over a dir override, matching daemon precedence', () => {
+    for (const key of ENV_KEYS) delete process.env[key];
+    process.env.SPEC_KIT_DB_DIR = path.join(path.sep, 'tmp', 'speckit-dir-override');
+    const override = path.join(path.sep, 'tmp', 'speckit-file-override', 'context-index.sqlite');
     process.env.MEMORY_DB_PATH = override;
     const markerPath = uncleanShutdownMarkerPath();
     expect(markerPath).toBe(path.join(path.dirname(override), '.unclean-shutdown'));

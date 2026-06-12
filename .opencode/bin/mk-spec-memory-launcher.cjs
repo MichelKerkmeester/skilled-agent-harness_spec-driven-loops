@@ -677,8 +677,17 @@ const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
 // DB dir, or — when MEMORY_DB_PATH relocates the DB — that path's dirname. Best-effort: a wrong
 // guess only forfeits the clean-close confirmation; the replacement daemon's boot still self-heals.
 function uncleanShutdownMarkerPath() {
-  const override = process.env.MEMORY_DB_PATH;
-  const dir = override ? path.dirname(override) : resolvedDbDir();
+  // Mirror the daemon's full path precedence, not just MEMORY_DB_PATH:
+  // the daemon resolves its database dir from SPEC_KIT_DB_DIR /
+  // SPECKIT_DB_DIR before falling back to the packaged default, and the
+  // marker lives beside whatever database it actually opened. Checking the
+  // static dir under a dir override silently forfeits clean-close detection.
+  const fileOverride = process.env.MEMORY_DB_PATH?.trim();
+  if (fileOverride) {
+    return path.join(path.dirname(fileOverride), UNCLEAN_SHUTDOWN_MARKER);
+  }
+  const dirOverride = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();
+  const dir = dirOverride ? path.resolve(root, dirOverride) : resolvedDbDir();
   return path.join(dir, UNCLEAN_SHUTDOWN_MARKER);
 }
 

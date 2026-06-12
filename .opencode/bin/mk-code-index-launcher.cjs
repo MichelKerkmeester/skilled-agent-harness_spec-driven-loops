@@ -323,6 +323,49 @@ function writeOwnerLeaseFileExclusive(lease) {
   }
 }
 
+// The socket path this owner's environment computes. Recording it in the
+// leases lets a secondary under a divergent SPECKIT_IPC_SOCKET_DIR bridge
+// to the REAL socket instead of probing a recomputed wrong one and
+// misreporting a healthy owner as no-bridge-socket.
+function ownerSocketPath() {
+  try {
+    const { getIpcSocketPath } = loadBridgeModule();
+    if (typeof getIpcSocketPath !== 'function') return null;
+    return getIpcSocketPath('mk-code-index', { dbDir: resolvedDbDir() }) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+let ownerLeaseHeartbeatTimer = null;
+
+function clearOwnerLeaseHeartbeat() {
+  if (ownerLeaseHeartbeatTimer) {
+    clearInterval(ownerLeaseHeartbeatTimer);
+    ownerLeaseHeartbeatTimer = null;
+  }
+}
+
+// Without a periodic refresh, every healthy long-running owner classifies
+// as stale-heartbeat-reclaim about two minutes after spawn, so each later
+// secondary start rewrites the owner lease before rediscovering the live
+// PID lease — churn plus reclaim-race exposure for nothing.
+function startOwnerLeaseHeartbeat(ownerPid) {
+  clearOwnerLeaseHeartbeat();
+  const lease = readOwnerLeaseFile();
+  const ttlMs = Number.isFinite(lease?.ttlMs) && lease.ttlMs > 0 ? lease.ttlMs : 60000;
+  const intervalMs = Math.max(1000, Math.floor(ttlMs / 2));
+  ownerLeaseHeartbeatTimer = setInterval(() => {
+    if (refreshOwnerLeaseFile(ownerPid)) return;
+    // A failed refresh means a concurrent reclaim superseded this owner;
+    // this launcher exits with its child rather than supervising relaunches,
+    // so stop heartbeating instead of fighting the new owner.
+    log('owner lease heartbeat refresh failed (superseded); stopping heartbeat');
+    clearOwnerLeaseHeartbeat();
+  }, intervalMs);
+  ownerLeaseHeartbeatTimer.unref?.();
+}
+
 function buildOwnerLease(ownerPid = process.pid) {
   return {
     ownerPid,
@@ -332,6 +375,7 @@ function buildOwnerLease(ownerPid = process.pid) {
     lastHeartbeatIso: new Date().toISOString(),
     ttlMs: 60000,
     canonicalDbDir: resolvedDbDir(),
+    socketPath: ownerSocketPath(),
   };
 }
 
@@ -495,27 +539,30 @@ function formerLocationOwnerLive(dir) {
 
 function leaseHeldFromFile(filePath, legacyPath = null) {
   const lease = readLeaseFile(filePath);
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
+  // Surface the owner-recorded socket path so the bridge prefers it over
+  // recomputing one that may diverge under a different SPECKIT_IPC_SOCKET_DIR.
+  const socketPath = typeof lease.socketPath === 'string' && lease.socketPath.length > 0 ? lease.socketPath : null;
   // Do not bridge to a LEGACY-location lease unless its lease file is owned by the
   // current user. A foreign-owned lease in a shared/former path could otherwise point this
   // client at a spoofed IPC socket.
   if (legacyPath && typeof process.getuid === 'function') {
     try {
       if (fs.statSync(filePath).uid !== process.getuid()) {
-        return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+        return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
       }
     } catch {
-      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
     }
   }
   const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath, socketPath };
     // Mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
-    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
     throw error;
   }
 }
@@ -645,7 +692,7 @@ async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
 function writeLeaseFile() {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), PID_FILE_NAME);
   const tmp = currentLeasePath + '.tmp.' + process.pid;
-  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2), { mode: 0o600 });
+  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString(), socketPath: ownerSocketPath() }, null, 2), { mode: 0o600 });
   fs.renameSync(tmp, currentLeasePath);
 }
 
@@ -659,6 +706,7 @@ function clearLeaseFile() {
 }
 
 function clearAllLeaseFiles() {
+  clearOwnerLeaseHeartbeat();
   clearLeaseFile();
   clearOwnerLeaseFile();
 }
@@ -826,6 +874,7 @@ function launchServer() {
     if (!refreshed) {
       log('owner lease refresh to child pid failed; launcher pid remains the recorded owner');
     }
+    startOwnerLeaseHeartbeat(refreshed ? childProcess.pid : process.pid);
   }
 
   childProcess.on('exit', (code, signal) => {
@@ -901,6 +950,7 @@ async function launcherMain() {
         await bridgeOrReportLeaseHeld({
           ownerPid: ownerLeaseResult.holder.ownerPid,
           startedAt: ownerLeaseResult.holder.startedAtIso,
+          socketPath: typeof ownerLeaseResult.holder.socketPath === 'string' ? ownerLeaseResult.holder.socketPath : null,
         }, {
           respawnChildPid: ownerLeaseResult.holder.ownerPid,
         });
