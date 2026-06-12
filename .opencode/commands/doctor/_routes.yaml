@@ -78,7 +78,7 @@ routes:
     setup_vars: [execution_mode, scope]
     allowed_flags:
       - "--scope=stale|missed|bloat|all|excludes"
-      - "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-run"
+      - "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-apply"
       - "--dry-run"
       - "--confirm"
     mutating: read-only

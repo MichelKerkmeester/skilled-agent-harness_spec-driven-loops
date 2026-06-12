@@ -38,7 +38,9 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
    - Content search: Use `Grep` to find patterns and keywords
    - File discovery: Use `Glob` to locate files by pattern
    - Detailed review: Use `Read` to examine implementations
+   - Structural impact for local diffs: Use `detect_changes` with the unified diff to identify affected symbols/files and readiness
    - Manual security review: Check for common vulnerability patterns
+   If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
 5. **EVALUATE** → Score against explicit rubrics (see Section 5)
 6. **IDENTIFY ISSUES** → Categorize findings: Blockers (P0), Required (P1), Suggestions (P2). Run adversarial self-check (§10) on all P0/P1 findings before finalizing
 7. **REPORT** → Deliver structured review with actionable feedback
@@ -83,6 +85,7 @@ Before every non-diff `Read`, state the specific reason for that read in one sen
 | `Glob` | File discovery      | Locate files by extension or pattern |
 | `Read` | File content access | Detailed line-by-line analysis       |
 | `Bash` | CLI commands        | `git diff`, `git log`, `gh pr view`  |
+| `detect_changes` | Structural impact | Review local diffs by feeding the unified diff and reading affected symbols/files plus readiness |
 
 ### Tool Access Patterns
 
@@ -479,4 +482,5 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 │  └─► No pass recommendation when blockers remain                        │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
+
 '''

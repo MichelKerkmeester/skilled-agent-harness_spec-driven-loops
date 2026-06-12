@@ -1,0 +1,65 @@
+---
+title: "L2 Code-Graph Apply Safety — Disposition"
+description: "Lane state: 28/28 batch-verified STILL-REAL; doc-only drifts shipped via fenced seats + hand fixes; the interlocking apply-pipeline cluster (confirm gates, rollback target selection, snapshot retention, skip-list honesty) is sequenced as one careful packet, not piecemeal."
+trigger_phrases:
+  - "L2 apply safety disposition"
+  - "code graph apply remediation"
+  - "rollback snapshot cluster"
+importance_tier: "important"
+contextType: "implementation"
+---
+# L2 Code-Graph Apply Safety — Disposition
+
+<!-- ANCHOR:verified -->
+## Batch verification (2026-06-12)
+
+Fresh Fable pass: **28/28 STILL-REAL** — none overtaken by the L1 lanes, none refuted. Full evidence: `../verify/l2-still-real-batch.md`. Triage: 12 doc-only, 11 code-small, 5 code-careful.
+<!-- /ANCHOR:verified -->
+
+<!-- ANCHOR:shipped -->
+## Shipped this pass
+
+Doc-only contract drifts (fenced gpt-5.5-fast seats, host diff-reviewed + Fable re-verified — verdict: `../verify/l2-docs-batch-verdict.md`, 9 CLOSED outright; 3 INCOMPLETE remedied in-commit: the `.claude` review tools whitelist, the deep-review permission-key naming, and the prune-excludes Expected text that promised tier data a dry-run response cannot contain):
+- tri-024 doctor YAML schema-invalid `detect_changes({})` step → status-based stale analysis.
+- tri-076 prune-excludes playbook now requires `dryRun: true` in classification and names the mutation contract.
+- tri-146 apply wall-clock guidance (30s CLI default vs pre+post battery cost; dry-run runs both).
+- tri-154 first step: documented the absence of any VACUUM/compaction policy and the manual maintenance path.
+- tri-147 `rollback-bad-run` → `rollback-bad-apply` route-token fix.
+- tri-157 spec-kit SKILL.md code-graph surface corrected (8 tools, per-family contracts).
+- tri-074/143/144 detect_changes adoption in review workflows (review + deep-review agents incl. runtime mirrors, sk-code-review SKILL + playbook scenario) with the degrade-gracefully rule: blocked/unavailable → caveat + continue plain diff review.
+- tri-014 generate-context relabeled as metadata+index save (no canonical doc content) in `commands/memory/save.md` AND the workspace AGENTS.md (hand).
+- tri-107 `repairSuccessCoverage` opt-in documented in INSTALL_GUIDE (troubleshooting row + reconcile section).
+- tri-150 (hand): apply-pipeline artifacts ignored database-locally (`apply-audit/`, `quarantine-*/`, `recovery-*/`, `known-good-*/`, `bad-apply-*/`) — worktree shows 0 untracked artifacts; rules deliberately NOT `database/**` so tracked docs stay visible.
+<!-- /ANCHOR:shipped -->
+
+<!-- ANCHOR:held -->
+## Held — the apply-pipeline packet (ship together, NOT piecemeal)
+
+The batch verifier flagged an interlock: these touch the same snapshot chain and a wrong partial fix regresses the others.
+
+| Finding | One-line | Class |
+|---|---|---|
+| tri-025/tri-027 | destructive ops (corruption recovery, rollback) confirm-gated only on hard-stale; gate must land BEFORE the pre-dispatch snapshot | code-small |
+| tri-026/tri-077 | repair-nodes skip path reports `committed`; needs pre-dispatch abort with `requiredAction`, audit-consistent | code-small |
+| tri-028 | rollback restores the snapshot it just took (lexicographic-latest selection); needs run-scoped exclusion in target selection | code-careful |
+| tri-075 | rollback dry-run can't name its target; must reuse the fixed target-selection logic | code-small |
+| tri-151 | no snapshot retention (~6x disk amplification); pruning must never delete the active rollback target — sequence WITH tri-028 | code-careful |
+
+Shared design requirement: one rollback-target-selection function (current-run snapshot excluded, retention-aware), used by live rollback, dry-run preview, and the pruner.
+
+## Held — independent code items
+
+| Finding | One-line | Class |
+|---|---|---|
+| tri-013 | retention-sweep dry-run evaluates an empty signal set (public schema hides `signals`); fix must not record audits from previews | code-small |
+| tri-022 | semantic-trigger shadow telemetry not durable — promotion criteria uncomputable; hot-path, fail-safe, env-gated | code-careful |
+| tri-029 | prune-excludes confidence artifact never wired from public handlers (all patterns `tier:'unknown'`); ship default artifact + gates together | code-small |
+| tri-031 | repair-nodes cannot actually reparse skip-listed files (sentinel short-circuit); collides with the manual-review-only crash-cohort invariant — bounded targeted retry or honest-doc rewrite | code-careful |
+| tri-078 | detect_changes blocked payload lacks `requiredAction` over MCP (CLI-only normalization); additive field | code-small |
+| tri-091 | CLI gates propagate-enhances trust on apply-only; daemon refuses ALL modes — pick one side, update both + catalog | code-small |
+| tri-145 | bare CLI `code_graph_apply` defaults to a mutating rescan on soft-stale; required-operation guard, opt-in gated | code-small |
+| tri-131 | no semantic-trigger stress suite; depends on tri-022 telemetry — sequence after it | code-careful |
+| tri-186 | offline CLI smoke is count-only; add exit-code/envelope taxonomy as a sibling script | code-small |
+
+Seat-quality notes for the record: one seat over-synced two runtime-adapted lines into the codex tomls (path convention; host-reverted) and fixed a pre-existing duplicated mirror-table row while doing so; the doc-batch verifier caught the `.claude` tools-whitelist gap and the lone `mcp__`-prefixed permission key that would have silently denied the documented preflight.
+<!-- /ANCHOR:held -->

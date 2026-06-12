@@ -155,7 +155,7 @@ workflow:
   phase_1_analysis:
     purpose: Compute stale + missed + bloat sets via code_graph_status + policy-aware filesystem walk
     activities:
-      - "If detect_changes available: invoke detect_changes({}) to obtain stale set"
+      - "If code_graph_status available: invoke code_graph_status({}) and derive stale set from freshness/manifest fields"
       - "Before stale/missed/bloat set construction, filter filesystem paths through active_scope_policy so default-excluded roots are intentionally absent unless opted in"
       - "Compute missed set: policy-included files-on-disk minus files-in-index"
       - "Compute bloat set: policy-included bloat_candidates intersected with files-in-index"

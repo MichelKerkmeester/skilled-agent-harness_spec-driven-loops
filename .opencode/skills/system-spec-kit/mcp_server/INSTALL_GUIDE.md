@@ -734,6 +734,8 @@ Query expansion activates automatically when you use `mode="deep"`.
 
 `memory_embedding_reconcile()` converges `embedding_status` for rows where a vector already exists but status is stale, and resets retry counters for rows that are genuinely missing their vector. All mutations run inside a single guarded `BEGIN IMMEDIATE` transaction. The default mode is dry-run: no writes occur unless you pass `mode: "apply"`. Use this tool after restoring a database or after an interrupted embedding run leaves the index in a partially-embedded state.
 
+Note: rows whose status reads `success` but whose active vector is missing are repaired only with the opt-in `repairSuccessCoverage: true` (default `false`) — the default invocation leaves them untouched. Run a dry-run first and inspect the coverage numbers before applying with the flag.
+
 ### Causal Lineage System
 
 Causal support in the current runtime is relationship-driven and runs in-process.
@@ -950,7 +952,7 @@ bash .opencode/skills/system-spec-kit/scripts/validate.sh \
 | Database appears stale after restore | Client still uses old MCP process with in-memory state | Fully restart OpenCode or Claude Code |
 | MCP server not in tools list | Configuration file error or path is wrong | Validate JSON syntax and verify binary path (see below) |
 | Wikilink validation fails | Broken `[[node-name]]` reference in a skill node file | Run `check-links.sh` and fix the reported broken links |
-| `memory_health` returns `index.summary: "degraded_needs_repair"` with `failedVectors > 0` | Vectors are missing or embedding runs were interrupted | Run `memory_embedding_reconcile({ mode: "apply" })` to converge status then recheck with `memory_health` |
+| `memory_health` returns `index.summary: "degraded_needs_repair"` with `failedVectors > 0` | Vectors are missing or embedding runs were interrupted | Run `memory_embedding_reconcile({ mode: "apply" })` to converge status; add `repairSuccessCoverage: true` when success-status rows are missing their active vector (dry-run first to inspect coverage), then recheck with `memory_health` |
 | Server logs `FTS5 SHADOW INDEX CORRUPTION DETECTED` at boot | Previous shutdown was unclean and the crash marker was found at startup | Run `memory_health` to confirm the `corrupt` boot FTS5 state; call `memory_health({ autoRepair: true })` or force-reindex via `memory_index_scan({ force: true })` to rebuild the FTS index |
 
 ### Detailed Fixes

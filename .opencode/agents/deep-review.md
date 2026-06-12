@@ -14,6 +14,7 @@ permission:
   memory: allow
   code_graph_query: allow
   code_graph_context: allow
+  detect_changes: allow
   chrome_devtools: deny
   task: deny
   list: allow
@@ -166,6 +167,8 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
 - Use Code Graph structural search only when exposed and exact symbols are unknown; verify hits with direct reads.
+- For local diff review, use `detect_changes` with the unified diff to identify affected symbols/files and readiness before narrowing evidence.
+- If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
 - Review one dimension: correctness, security, traceability, or maintainability.
 - Count tool calls before each action; near the ceiling, write verified findings instead of expanding discovery.
 - Do not use shell output as a substitute for file:line evidence.
@@ -256,6 +259,7 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Cod
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
 - `code_graph_query` / `code_graph_context`: structural navigation and traceability support; never a substitute for file:line evidence.
+- `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
 - `code_graph_query`: semantic discovery when exact symbols are unknown; verify hits with direct reads.
 
 ### Skills

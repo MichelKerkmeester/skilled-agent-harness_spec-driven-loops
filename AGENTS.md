@@ -260,9 +260,9 @@ Consolidate multiple questions into a SINGLE prompt before any analysis or tool 
 Trigger: "save context", "save memory", `/memory:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Full save (DB + embeddings + graph):** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Metadata + index save:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`.
-  - Also refreshes `graph-metadata.json` and `description.json` for the spec folder.
+  - Refreshes `graph-metadata.json` and `description.json` and hands off DB/embedding indexing; it writes NO canonical doc content — canonical spec-doc content is owned by the MCP `memory_save` content-router path.
 - **Quick continuity update:** AI may directly edit `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md` without running generate-context.js (per ADR-004). The resume ladder only reads continuity from `implementation-summary.md`.
 - **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
 - **Post-Save Review:** After `generate-context.js` completes, check the POST-SAVE QUALITY REVIEW output.

@@ -433,7 +433,7 @@ Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 ### Code Graph and Search Routing
 
-Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
+Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. The `system-code-graph` skill owns the full `mcp__mk_code_index__*` family split: `code_graph_status` is always answerable, `code_graph_classify_query_intent` is text-only, read tools (`code_graph_query`, `code_graph_context`, `detect_changes`) return blocked/degraded payloads under the readiness contract, and maintenance tools (`code_graph_scan`, `code_graph_apply`, `code_graph_verify`) handle recovery and verification, with verify blocking when graph state is not fresh.
 
 ---
 

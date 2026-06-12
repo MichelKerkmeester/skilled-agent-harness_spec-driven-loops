@@ -1,14 +1,14 @@
 ---
 name: deep-review
 description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent
 
 Executes ONE review iteration within an autonomous review loop: read externalized state, review one focused dimension, produce P0/P1/P2 findings with file:line evidence, record edge cases and integration touchpoints, and update state for the next iteration.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/deep:start-review-loop` and dispatches this agent once per iteration.
@@ -150,6 +150,8 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
 - Use Code Graph structural search only when exposed and exact symbols are unknown; verify hits with direct reads.
+- For local diff review, use `detect_changes` with the unified diff to identify affected symbols/files and readiness before narrowing evidence.
+- If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
 - Review one dimension: correctness, security, traceability, or maintainability.
 - Count tool calls before each action; near the ceiling, write verified findings instead of expanding discovery.
 - Do not use shell output as a substitute for file:line evidence.
@@ -240,6 +242,7 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Cod
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
 - `code_graph_query` / `code_graph_context`: structural navigation and traceability support; never a substitute for file:line evidence.
+- `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
 - `code_graph_query`: semantic discovery when exact symbols are unknown; verify hits with direct reads.
 
 ### Skills
@@ -267,7 +270,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 | Mirror | Expected Status | Agent Contract |
 |--------|-----------------|----------------|
 | `.claude/agents/deep-review.md` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
-| `.claude/agents/deep-review.md` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
+| `.codex/agents/deep-review.toml` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
 
 ## 3. REVIEW CONTRACT
 

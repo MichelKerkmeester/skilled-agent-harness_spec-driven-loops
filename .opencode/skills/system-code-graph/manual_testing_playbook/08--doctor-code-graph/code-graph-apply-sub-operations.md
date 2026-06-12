@@ -28,15 +28,16 @@ contextType: "verification"
    ```
    Expected: returns the gold-query battery pre-state without performing the rescan. `status:"dry_run_complete"` or equivalent.
 
-2. **prune-excludes classification** (no mutation; lists candidates):
+2. **prune-excludes classification dry-run** (no mutation):
    ```jsonc
    mcp__mk_code_index__code_graph_apply({
-     operation: "prune-excludes",
-     excludePatterns: ["**/__tests__/**", "**/*.test.ts"],
-     lowTierOptIn: false
-   })
-   ```
-   Expected: returns classification of supplied patterns (which files would be pruned, which are protected, tier ranking). Without `lowTierOptIn:true`, low-tier patterns are reported but not applied.
+      operation: "prune-excludes",
+      excludePatterns: ["**/__tests__/**", "**/*.test.ts"],
+      lowTierOptIn: false,
+      dryRun: true
+    })
+    ```
+   Expected: returns the generic dry-run payload (`status:"dry-run"`, operation, apply-state classification, battery pre-state, message) — the dry-run path returns BEFORE dispatch, so it contains no per-pattern tier data. Pattern classification (`excludeRules`) appears only on non-dry dispatch results, and on production MCP paths every pattern currently reports `tier:"unknown"` because no confidence artifact is wired. Without `dryRun:true`, classified patterns trigger a mutating exclusion rescan; without `lowTierOptIn:true`, low-tier patterns make the dispatch THROW and roll back rather than report-and-skip.
 
 3. **repair-nodes preflight** (without crash-root-cause flag):
    ```jsonc

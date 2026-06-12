@@ -41,6 +41,14 @@ The authoritative tool list lives in `mcp_server/tool-schemas.ts` as `CODE_GRAPH
 - **Read-path (3):** `code_graph_query`, `code_graph_context`, `detect_changes` — all gated by readiness.
 - **Maintenance (5):** `code_graph_scan`, `code_graph_status`, `code_graph_verify`, `code_graph_apply`, `code_graph_classify_query_intent`.
 
+### Durations and timeouts
+
+The daemon-backed CLI default timeout is 30s. `code_graph_apply` runs a preflight gold-query battery, the requested operation, and a postflight battery; `dryRun:true` also runs both batteries, so apply invocations routinely exceed 30s. For CLI apply calls, pass an explicit `--timeout-ms` such as `120000` or higher.
+
+### Compaction and maintenance
+
+The code-graph database currently has no automatic `VACUUM` or checkpoint policy beyond a rollback-path WAL truncate. Deletions and tombstones accumulate; manual maintenance, such as offline `VACUUM` with the daemon stopped, is the only compaction path today.
+
 ---
 
 ## 2. TOOL TABLE

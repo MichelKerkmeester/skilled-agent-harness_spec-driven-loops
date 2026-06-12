@@ -21,14 +21,15 @@ Canonical package artifacts:
 - `04--scope-and-precedence/`
 - `05--re-review-and-stale-context/`
 - `06--cross-cli-orchestration/`
+- `07--structural-impact-preflight/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 18 deterministic scenarios across 6 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 19 deterministic scenarios across 7 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-05-07): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, and external CLI handbacks through cli-codex and cli-opencode. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, and `.opencode/agents/` on disk.
+Coverage note (2026-05-07): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, and external CLI handbacks through cli-codex and cli-opencode. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, and `.opencode/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -54,7 +55,7 @@ Coverage note (2026-05-07): the playbook covers single-pass review flow, securit
 3. `.opencode/agents/review.md` and `.opencode/agents/deep-review.md` resolve on disk for native and iterative-review consumer checks.
 4. The operator can run `git diff`, `git status`, `rg`, and line-number inspection commands such as `nl -ba`.
 5. External CLI scenarios require the named CLI surface to be installed and authenticated; otherwise use SKIP with the exact missing binary or auth blocker.
-6. Destructive scenarios: none. All scenarios are read-only review tests. If an external CLI attempts implementation, the scenario fails.
+6. Review agents and external CLI delegates remain read-only. Scenario fixtures may create a reversible local diff only when the scenario explicitly requires it; the operator must restore the working tree before recording the final verdict.
 
 ---
 
@@ -126,7 +127,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 18`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 19`).
 4. No unresolved blocking triage item remains.
 5. External CLI handbacks preserve sk-code-review severity and evidence contracts.
 
@@ -140,7 +141,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 | Field | Required | Notes |
 |---|---|---|
-| Scenario ID | Yes | One of CR-001..CR-018 |
+| Scenario ID | Yes | One of CR-001..CR-019 |
 | Feature file | Yes | Relative path under this playbook root |
 | Runtime | Yes | Native, @review, cli-codex, cli-opencode, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
@@ -155,7 +156,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 18 files.
+2. Per-feature structural sweep checks all 19 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
@@ -171,7 +172,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 18-scenario review battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 19-scenario review battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -191,6 +192,7 @@ This section records wave planning and capacity guidance for executing the 18-sc
 | 2 | Security + evidence | CR-004..CR-009 | Exercises mandatory P0/P1 evidence and checklist discipline |
 | 3 | Re-review + stale context | CR-013..CR-015 | Requires prior findings, stale docs, or generated-code fixtures |
 | 4 | Cross-CLI | CR-016..CR-018 | Tool availability and handback reconciliation are isolated |
+| 5 | Structural impact | CR-019 | Isolates code-graph freshness and `detect_changes` caveat behavior |
 
 ### Cross-CLI Reconciliation Rules
 
@@ -542,7 +544,29 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ---
 
-## 13. AUTOMATED TEST CROSS-REFERENCE
+## 13. STRUCTURAL IMPACT PREFLIGHT (CR-019)
+
+This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+
+### CR-019 | detect_changes-assisted review
+
+#### Description
+
+Local-diff review that attempts structural-impact analysis and keeps reviewing when the graph is stale.
+
+#### Scenario Contract
+
+Prompt: `Review this small local diff and use detect_changes for structural-impact preflight; if the graph is stale, include the caveat and continue the git-diff review.`
+
+Desired user-visible outcome: A findings-first review artifact that records the structural-impact attempt, names stale or unavailable graph caveats when present, and preserves normal git-diff review coverage.
+
+#### Test Execution
+
+> **Feature File:** [CR-019](07--structural-impact-preflight/detect-changes-assisted-review.md)
+
+---
+
+## 14. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `sk-code-review/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
 
@@ -556,7 +580,7 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 ---
 
-## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -578,3 +602,4 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md) |
 | CR-017 | cli-codex delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md) |
 | CR-018 | cli-opencode and cli-codex handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-codex-handback.md) |
+| CR-019 | detect_changes-assisted review | STRUCTURAL IMPACT PREFLIGHT | [CR-019](07--structural-impact-preflight/detect-changes-assisted-review.md) |

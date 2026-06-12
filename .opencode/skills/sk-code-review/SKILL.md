@@ -266,8 +266,10 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 ### Phase 1: Scope and Baseline
 
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
-2. Load baseline standards from this skill (`sk-code-review`).
-3. Load `sk-code` surface standards evidence when a surface is detected.
+2. For local diffs, optionally run `detect_changes` with the unified diff to identify affected symbols/files and readiness before narrowing evidence.
+3. If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
+4. Load baseline standards from this skill (`sk-code-review`).
+5. Load `sk-code` surface standards evidence when a surface is detected.
 
 ### Phase 2: Surface Alignment
 

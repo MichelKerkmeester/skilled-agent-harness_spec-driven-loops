@@ -35,7 +35,7 @@ Outputs:
 3. Extract session summary, key decisions, modified files, trigger phrases, technical context, tool calls, and notable exchanges.
 4. Choose route category: `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, or `drop`.
 5. In default mode, return the save plan without mutating.
-6. In explicit apply/full-auto mode, execute the canonical save script, inspect the post-save quality review, patch HIGH issues when practical, then refresh index visibility through MCP.
+6. In explicit apply/full-auto mode, execute the metadata/description/graph-metadata refresh and index handoff script, inspect the post-save quality review, patch HIGH metadata issues when practical, then refresh index visibility through MCP. Canonical spec-doc content is owned by the MCP content-router save path.
 7. Render the result using the presentation asset.
 
 ## 4. HARD RULES
@@ -60,7 +60,7 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 | Need | Tool or Script |
 | --- | --- |
-| Canonical save apply | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
+| Metadata refresh and index handoff | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
 | Immediate index refresh | `mcp__mk_spec_memory__memory_index_scan` |
 | Single-file indexing fallback | `mcp__mk_spec_memory__memory_save` |
 | Trigger phrase correction | `mcp__mk_spec_memory__memory_update` |

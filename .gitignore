@@ -118,6 +118,13 @@ _sandbox
 .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite*
 .opencode/skills/system-code-graph/mcp_server/database/.code-graph-*
 .opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.*
+# Apply-pipeline runtime artifacts (audit journals, known-good/bad-apply snapshots,
+# quarantine/recovery triplets) — generated per apply run, database-local only.
+.opencode/skills/system-code-graph/mcp_server/database/apply-audit/
+.opencode/skills/system-code-graph/mcp_server/database/quarantine-*/
+.opencode/skills/system-code-graph/mcp_server/database/recovery-*/
+.opencode/skills/system-code-graph/mcp_server/database/known-good-*/
+.opencode/skills/system-code-graph/mcp_server/database/bad-apply-*/
 
 # ───────────────────────────────────────────
 # Log files
