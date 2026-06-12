@@ -388,22 +388,22 @@ const memorySaveProperties = memorySave.inputSchema.properties as Record<string,
 memorySaveProperties.plannerMode = { type: 'string', enum: ['plan-only', 'hybrid', 'full-auto'], description: 'Optional routed-save planner execution mode.' };
 memorySaveProperties.targetAnchorId = { type: 'string', description: 'Optional target anchor for routed continuity saves.' };
 
-// L3: Discovery - Browse and explore (Token Budget: 800)
+// L3: Discovery - Browse and explore (Token Budget: 1000)
 const memoryList: ToolDefinition = {
   name: 'memory_list',
-  description: '[L3:Discovery] Browse stored spec-doc records with pagination. Use to discover what is indexed and find IDs for delete/update. Token Budget: 800.',
+  description: '[L3:Discovery] Browse stored spec-doc records with pagination. Use to discover what is indexed and find IDs for delete/update. Token Budget: 1000.',
   inputSchema: { type: 'object', additionalProperties: false, properties: { limit: { type: 'number', default: 20, minimum: 1, maximum: 100, description: 'Maximum results to return (max 100)' }, offset: { type: 'number', default: 0, minimum: 0, description: 'Number of results to skip (for pagination)' }, specFolder: { type: 'string', description: 'Filter by spec folder' }, sortBy: { type: 'string', enum: ['created_at', 'updated_at', 'importance_weight'], description: 'Sort order (default: created_at DESC)' }, includeChunks: { type: 'boolean', default: false, description: 'Include chunk child rows. Default false returns parent spec-doc records only for cleaner browsing.' } } },
 };
 
 const memoryStats: ToolDefinition = {
   name: 'memory_stats',
-  description: '[L3:Discovery] Get indexed-continuity statistics. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring. Token Budget: 800.',
+  description: '[L3:Discovery] Get indexed-continuity statistics. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring. Token Budget: 1000.',
   inputSchema: { type: 'object', additionalProperties: false, properties: { folderRanking: { type: 'string', enum: ['count', 'recency', 'importance', 'composite'], description: 'How to rank folders: count (default, by indexed record count), recency (most recent first), importance (by tier), composite (weighted multi-factor score)', default: 'count' }, excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Regex patterns to exclude folders (e.g., ["z_archive", "scratch"])' }, includeScores: { type: 'boolean', description: 'Include score breakdown for each folder', default: false }, includeArchived: { type: 'boolean', description: 'Include archived/test/scratch folders in results', default: false }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum number of folders to return', default: 10 } } },
 };
 
 const memoryHealth: ToolDefinition = {
   name: 'memory_health',
-  description: '[L3:Discovery] Check health status of the indexed-continuity store. Token Budget: 800.',
+  description: '[L3:Discovery] Check health status of the indexed-continuity store. Token Budget: 1000.',
   inputSchema: {
     type: 'object',
     additionalProperties: false,
