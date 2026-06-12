@@ -20,7 +20,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 | Purpose | Asset |
 |---------|-------|
 | Route manifest | `.opencode/commands/doctor/_routes.yaml` |
-| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_speckit_presentation.md` |
+| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt` |
 
 ## Workflow Assets
 
@@ -40,7 +40,7 @@ No workflow-asset gap exists for this command.
 
 ## Execution Order
 
-1. Read `.opencode/commands/doctor/assets/doctor_speckit_presentation.md`.
+1. Read `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`.
 2. Read `.opencode/commands/doctor/_routes.yaml`.
 3. Parse the first positional token from `$ARGUMENTS` as `target`; support `list`, `?`, `--list`, and compatibility alias `--target=<name>`.
 4. If target is unresolved, ask the presentation contract's target-resolution prompt and wait.
@@ -64,7 +64,7 @@ No workflow-asset gap exists for this command.
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/doctor/assets/doctor_speckit_presentation.md`:
+The following content lives only in `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`:
 
 - Target-resolution menu, help text, accepted answers, and failure wording.
 - Per-target setup prompts for unresolved fields.

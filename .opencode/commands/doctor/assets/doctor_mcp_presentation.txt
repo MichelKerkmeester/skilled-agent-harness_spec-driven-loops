@@ -51,7 +51,7 @@ Workflow: .opencode/commands/doctor/assets/[doctor_mcp_install.yaml|doctor_mcp_d
 Server filter: [name|all]
 Runtime filter: [name|detected|n/a]
 Fix mode: [true|false|n/a]
-Presentation: .opencode/commands/doctor/assets/doctor_mcp_presentation.md
+Presentation: .opencode/commands/doctor/assets/doctor_mcp_presentation.txt
 Next: load workflow YAML
 ```
 

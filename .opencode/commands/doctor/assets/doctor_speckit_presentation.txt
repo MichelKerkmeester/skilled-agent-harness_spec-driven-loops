@@ -136,7 +136,7 @@ Workflow: .opencode/commands/doctor/assets/[yaml]
 Mutation class: [read-only|add-only|mutates]
 Execution mode: INTERACTIVE
 Setup values: [key=value list]
-Presentation: .opencode/commands/doctor/assets/doctor_speckit_presentation.md
+Presentation: .opencode/commands/doctor/assets/doctor_speckit_presentation.txt
 Next: load workflow YAML
 ```
 

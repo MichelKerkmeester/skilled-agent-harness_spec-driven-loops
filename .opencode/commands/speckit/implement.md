@@ -18,7 +18,7 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/speckit/assets/speckit_implement_presentation.md` |
+| Presentation source of truth | `.opencode/commands/speckit/assets/speckit_implement_presentation.txt` |
 | Auto workflow | `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` |
 | Confirm workflow | `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml` |
 
@@ -42,7 +42,7 @@ No workflow-asset gap exists for this command.
 
 ## 5. Presentation Boundary
 
-The following content lives only in `.opencode/commands/speckit/assets/speckit_implement_presentation.md`:
+The following content lives only in `.opencode/commands/speckit/assets/speckit_implement_presentation.txt`:
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.

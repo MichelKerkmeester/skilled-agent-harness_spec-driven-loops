@@ -26,16 +26,16 @@ Unknown fields warn. Malformed lines are parse errors. Marker values override fl
 
 ### Auto Resolution Table
 
-| Field | Required | Default | Tier 2 |
-|-------|----------|---------|--------|
-| `spec_folder` | Yes | none | Yes, when multiple viable folders are detected |
-| `phase_folder` | No | none | No |
-| `confirm_choice` | Yes | `yes` when prerequisites are valid | No |
-| `execution_mode` | Yes | `AUTONOMOUS` under `:auto` | No |
-| `dispatch_mode` | Yes | `single_agent` | No |
-| `memory_choice` | No | `skip` when no prior continuity exists | No |
-| `resume_choice` | No | none | Yes, only when an incomplete-session warning is present |
-| `prerequisites_valid` | Yes | auto-detect from artifacts | No |
+| Field                 | Required | Default                                | Tier 2                                                  |
+| -----------------------| ----------| ----------------------------------------| ---------------------------------------------------------|
+| `spec_folder`         | Yes      | none                                   | Yes, when multiple viable folders are detected          |
+| `phase_folder`        | No       | none                                   | No                                                      |
+| `confirm_choice`      | Yes      | `yes` when prerequisites are valid     | No                                                      |
+| `execution_mode`      | Yes      | `AUTONOMOUS` under `:auto`             | No                                                      |
+| `dispatch_mode`       | Yes      | `single_agent`                         | No                                                      |
+| `memory_choice`       | No       | `skip` when no prior continuity exists | No                                                      |
+| `resume_choice`       | No       | none                                   | Yes, only when an incomplete-session warning is present |
+| `prerequisites_valid` | Yes      | auto-detect from artifacts             | No                                                      |
 
 ### Consolidated Prompt Template
 

@@ -13,7 +13,7 @@ Thin router for constitutional rule management.
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |
 | Workflow | _No memory workflow YAML exists in this checkout_ | Missing upstream asset | Keep constitutional-rule routing in this file until a workflow YAML is introduced by a separate workflow-asset change. Do not invent or edit YAML from this command. |
-| Presentation | `.opencode/commands/memory/assets/learn_presentation.md` | Required | Overview, list, budget, create, edit, remove, confirmation, and result displays. |
+| Presentation | `.opencode/commands/memory/assets/learn_presentation.txt` | Required | Overview, list, budget, create, edit, remove, confirmation, and result displays. |
 
 Before rendering any dashboard, approval prompt, or result block, read the presentation asset and use it as the display source of truth.
 
@@ -53,7 +53,7 @@ Outputs:
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/memory/assets/learn_presentation.md`:
+The following content lives only in `.opencode/commands/memory/assets/learn_presentation.txt`:
 
 - Overview, list, budget, create, edit, remove, confirmation, and result displays.
 - Constitutional-rule qualification prompts, approval wording, cancellation wording, and error displays.

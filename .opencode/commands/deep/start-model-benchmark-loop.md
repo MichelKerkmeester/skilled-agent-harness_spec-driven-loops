@@ -118,7 +118,7 @@ VERIFICATION CHECK:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_presentation.md` |
+| Presentation source of truth | `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_presentation.txt` |
 | Auto workflow | `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_confirm.yaml` |
 
@@ -145,7 +145,7 @@ No workflow-asset gap exists for this command.
 
 ## 5. Presentation Boundary
 
-The following content lives only in `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_presentation.md`:
+The following content lives only in `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, and reply format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display references.

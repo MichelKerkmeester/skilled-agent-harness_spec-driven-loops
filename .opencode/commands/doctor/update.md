@@ -19,14 +19,14 @@ Load the presentation contract before showing startup questions, mid-run prompts
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_update_presentation.md` |
+| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_update_presentation.txt` |
 | Update workflow | `.opencode/commands/doctor/assets/doctor_update.yaml` |
 
 No workflow-asset gap exists for this command.
 
 ## Execution Order
 
-1. Read `.opencode/commands/doctor/assets/doctor_update_presentation.md`.
+1. Read `.opencode/commands/doctor/assets/doctor_update_presentation.txt`.
 2. Parse `$ARGUMENTS` for supported flags: `--force`, `--no-snapshot`, `--cleanup-legacy`, `--migrate`, `--keep-snapshots`, and `--resume-bootstrap`.
 3. Bind setup values: `execution_mode`, `intent`, `force`, `no_snapshot`, `cleanup_legacy`, `migrate`, `keep_snapshots`, `resume_bootstrap`, and `skip_status_check`.
 4. If `--force` is absent, ask the presentation contract's initial confirmation prompt and wait.
@@ -49,7 +49,7 @@ No workflow-asset gap exists for this command.
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/doctor/assets/doctor_update_presentation.md`:
+The following content lives only in `.opencode/commands/doctor/assets/doctor_update_presentation.txt`:
 
 - Initial confirmation and mid-run prompt catalog.
 - Cross-subsystem health dashboard layout.

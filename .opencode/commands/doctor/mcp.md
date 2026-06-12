@@ -19,7 +19,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_mcp_presentation.md` |
+| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_mcp_presentation.txt` |
 | Install workflow | `.opencode/commands/doctor/assets/doctor_mcp_install.yaml` |
 | Debug workflow | `.opencode/commands/doctor/assets/doctor_mcp_debug.yaml` |
 
@@ -27,7 +27,7 @@ No workflow-asset gap exists for this command.
 
 ## Execution Order
 
-1. Read `.opencode/commands/doctor/assets/doctor_mcp_presentation.md`.
+1. Read `.opencode/commands/doctor/assets/doctor_mcp_presentation.txt`.
 2. Parse the first positional token from `$ARGUMENTS` as `sub_action`.
 3. If `sub_action` is missing, ask the presentation contract's sub-action prompt and wait.
 4. If `sub_action` is not `install` or `debug`, render the presentation contract's unknown-sub-action failure and stop.
@@ -52,7 +52,7 @@ No workflow-asset gap exists for this command.
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/doctor/assets/doctor_mcp_presentation.md`:
+The following content lives only in `.opencode/commands/doctor/assets/doctor_mcp_presentation.txt`:
 
 - Sub-action menu, accepted answers, and cancellation display.
 - Unknown-sub-action and cross-sub-action flag errors.

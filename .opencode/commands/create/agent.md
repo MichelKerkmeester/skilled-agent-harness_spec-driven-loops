@@ -12,13 +12,13 @@ This command is a thin router. It separates execution routing from user-facing p
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_agent_presentation.md` | Startup questions, setup dashboard, and completion display |
+| Presentation contract | `.opencode/commands/create/assets/create_agent_presentation.txt` | Startup questions, setup dashboard, and completion display |
 | Auto workflow | `.opencode/commands/create/assets/create_agent_auto.yaml` | Autonomous workflow execution |
 | Confirm workflow | `.opencode/commands/create/assets/create_agent_confirm.yaml` | Interactive checkpointed workflow execution |
 
 ## Execution Order
 
-1. Read `.opencode/commands/create/assets/create_agent_presentation.md`.
+1. Read `.opencode/commands/create/assets/create_agent_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Load exactly one workflow YAML:
@@ -36,7 +36,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/create/assets/create_agent_presentation.md`:
+The following content lives only in `.opencode/commands/create/assets/create_agent_presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, confirmation prompts, status display, completion display, and next-step text.
 

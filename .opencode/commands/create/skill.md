@@ -12,13 +12,13 @@ This command is a thin router. It separates execution routing from user-facing p
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_skill_presentation.md` | Startup questions, setup dashboard, operation/status display, and completion template |
+| Presentation contract | `.opencode/commands/create/assets/create_skill_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
 | Auto workflow | `.opencode/commands/create/assets/create_sk_skill_auto.yaml` | Autonomous unified skill workflow execution |
 | Confirm workflow | `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` | Interactive checkpointed unified skill workflow execution |
 
 ## Execution Order
 
-1. Read `.opencode/commands/create/assets/create_skill_presentation.md`.
+1. Read `.opencode/commands/create/assets/create_skill_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve operation from setup: `full-create`, `full-update`, `reference-only`, or `asset-only`.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
@@ -37,7 +37,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/create/assets/create_skill_presentation.md`:
+The following content lives only in `.opencode/commands/create/assets/create_skill_presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 

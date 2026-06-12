@@ -12,13 +12,13 @@ This command is a thin router. It separates execution routing from user-facing p
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_folder_readme_presentation.md` | Startup questions, setup dashboard, README/install display contracts, and completion templates |
+| Presentation contract | `.opencode/commands/create/assets/create_folder_readme_presentation.txt` | Startup questions, setup dashboard, README/install display contracts, and completion templates |
 | Auto workflow | `.opencode/commands/create/assets/create_folder_readme_auto.yaml` | Autonomous README/install workflow execution |
 | Confirm workflow | `.opencode/commands/create/assets/create_folder_readme_confirm.yaml` | Interactive checkpointed README/install workflow execution |
 
 ## Execution Order
 
-1. Read `.opencode/commands/create/assets/create_folder_readme_presentation.md`.
+1. Read `.opencode/commands/create/assets/create_folder_readme_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve operation from `$ARGUMENTS` or setup: `readme` or `install`.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
@@ -37,7 +37,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/create/assets/create_folder_readme_presentation.md`:
+The following content lives only in `.opencode/commands/create/assets/create_folder_readme_presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, README/install display contracts, status display, completion templates, and next-step text.
 

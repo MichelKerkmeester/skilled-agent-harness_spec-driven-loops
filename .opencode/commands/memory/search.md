@@ -13,13 +13,13 @@ Thin router for memory retrieval and analysis.
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |
 | Workflow | _No memory workflow YAML exists in this checkout_ | Missing upstream asset | Keep retrieval and analysis routing in this file until a workflow YAML is introduced by a separate workflow-asset change. Do not invent or edit YAML from this command. |
-| Presentation | `.opencode/commands/memory/assets/search_presentation.md` | Required | Startup question policy, analysis overview, result tables, empty-result fallback, and clean GPT-via-opencode display rules. |
+| Presentation | `.opencode/commands/memory/assets/search_presentation.txt` | Required | Startup question policy, analysis overview, result tables, empty-result fallback, and clean GPT-via-opencode display rules. |
 
 Before asking startup questions or displaying results, read the presentation asset and use it as the display source of truth.
 
 ## 2. EXECUTION ORDER
 
-1. Read `.opencode/commands/memory/assets/search_presentation.md` before responding.
+1. Read `.opencode/commands/memory/assets/search_presentation.txt` before responding.
 2. Parse `$ARGUMENTS` into retrieval mode, analysis mode, or the empty-argument startup question.
 3. Execute the selected retrieval or analysis route.
 4. Render the response from the presentation contract; retrieval results must use the inline contract below.
@@ -104,7 +104,7 @@ Supported intents:
 
 ## 7. PRESENTATION BOUNDARY
 
-The full presentation contract lives in `.opencode/commands/memory/assets/search_presentation.md`. This router may only inline the compressed retrieval result shape above as a hard render reminder.
+The full presentation contract lives in `.opencode/commands/memory/assets/search_presentation.txt`. This router may only inline the compressed retrieval result shape above as a hard render reminder.
 
 The following content must come from the presentation asset, not from router prose:
 

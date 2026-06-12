@@ -121,7 +121,7 @@ Render after flag parsing and before YAML load.
 ```text
 DOCTOR UPDATE SETUP
 Workflow: .opencode/commands/doctor/assets/doctor_update.yaml
-Presentation: .opencode/commands/doctor/assets/doctor_update_presentation.md
+Presentation: .opencode/commands/doctor/assets/doctor_update_presentation.txt
 Mode: INTERACTIVE
 Flags: force=[true|false] no_snapshot=[true|false] cleanup_legacy=[true|false] migrate=[true|false] keep_snapshots=[true|false] resume_bootstrap=[true|false]
 Snapshots: [enabled|disabled]

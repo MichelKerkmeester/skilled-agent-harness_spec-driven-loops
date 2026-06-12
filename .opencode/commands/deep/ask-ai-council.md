@@ -79,7 +79,7 @@ SELF-CHECK: Are you operating as the @general agent?
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep_ask-ai-council_presentation.md` |
+| Presentation source of truth | `.opencode/commands/deep/assets/deep_ask-ai-council_presentation.txt` |
 | Auto workflow | `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml` |
 
@@ -103,7 +103,7 @@ No workflow-asset gap exists for this command.
 
 ## 5. Presentation Boundary
 
-The following content lives only in `.opencode/commands/deep/assets/deep_ask-ai-council_presentation.md`:
+The following content lives only in `.opencode/commands/deep/assets/deep_ask-ai-council_presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, question text, and reply-format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display behavior.

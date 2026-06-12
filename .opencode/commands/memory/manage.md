@@ -13,7 +13,7 @@ Thin router for indexed-continuity database management.
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |
 | Workflow | _No memory workflow YAML exists in this checkout_ | Missing upstream asset | Keep management routing in this file until a workflow YAML is introduced by a separate workflow-asset change. Do not invent or edit YAML from this command. |
-| Presentation | `.opencode/commands/memory/assets/manage_presentation.md` | Required | Stats, scan, cleanup, retention, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays. |
+| Presentation | `.opencode/commands/memory/assets/manage_presentation.txt` | Required | Stats, scan, cleanup, retention, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays. |
 
 Before rendering any dashboard, confirmation prompt, or result block, read the presentation asset and follow it as the display source of truth.
 
@@ -64,12 +64,12 @@ On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list t
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/memory/assets/manage_presentation.md`:
+The following content lives only in `.opencode/commands/memory/assets/manage_presentation.txt`:
 
 - Stats, scan, cleanup, retention, bulk-delete, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays.
 - Confirmation prompts, protected-tier gates, dashboard layouts, result envelopes, and next-step text.
 - Valid-mode menu wording for unknown-mode recovery.
-- Stats dashboard render contract: `.opencode/commands/memory/assets/manage_presentation.md` Section 2.
+- Stats dashboard render contract: `.opencode/commands/memory/assets/manage_presentation.txt` Section 2.
 
 The router must not invent visible wording for those surfaces; it only resolves mode, tooling, and confirmation requirements.
 

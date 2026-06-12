@@ -821,11 +821,11 @@ The memory, speckit, create, doctor, and deep command families use a stronger fo
 | `<command>.md` (thin router) | Mode resolution, owned-assets table, routing logic, and any Phase 0 / mandatory-input gate. Contains NO presentation content. |
 | `assets/<ns>_<command>_auto.yaml` | Autonomous-mode workflow: steps, agent dispatch, artifact writes. |
 | `assets/<ns>_<command>_confirm.yaml` | Interactive-mode workflow. |
-| `assets/<ns>_<command>_presentation.md` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
+| `assets/<ns>_<command>_presentation.txt` | Startup prompts, dashboards and checkpoints, result templates, and next-step wording. The display source of truth. |
 
 Router sections, in order: **Router Contract**, **Owned Assets** (table), **Mode Routing**, **Execution Targets**, **Presentation Boundary** (what lives only in the presentation asset), **Workflow Summary**. The router must contain no inline startup-question wording, dashboard templates, or result templates — those live only in the presentation asset.
 
-Reference shape: `.opencode/commands/speckit/plan.md` (router) and `.opencode/commands/speckit/assets/speckit_plan_presentation.md` (presentation contract). Skeleton: [`command_presentation_template.md`](command_presentation_template.md). The split is behavior-preserving — relocate display content, never change routing semantics.
+Reference shape: `.opencode/commands/speckit/plan.md` (router) and `.opencode/commands/speckit/assets/speckit_plan_presentation.txt` (presentation contract). Skeleton: [`command_presentation_template.md`](command_presentation_template.md). The split is behavior-preserving — relocate display content, never change routing semantics.
 
 ---
 

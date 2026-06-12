@@ -102,7 +102,7 @@ VERIFICATION CHECK:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_presentation.md` |
+| Presentation source of truth | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_presentation.txt` |
 | Auto workflow | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` |
 
@@ -132,7 +132,7 @@ If Lane B is selected, auto-route to `/deep:start-model-benchmark-loop` and its 
 
 ## 5. Presentation Boundary
 
-The following content lives only in `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_presentation.md`:
+The following content lives only in `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, question text, and reply-format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display references.

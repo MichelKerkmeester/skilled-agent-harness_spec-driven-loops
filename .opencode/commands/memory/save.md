@@ -13,7 +13,7 @@ Thin router for canonical continuity saves.
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |
 | Workflow | _No memory workflow YAML exists in this checkout_ | Missing upstream asset | Keep routing in this file until a workflow YAML is introduced by a separate workflow-asset change. Do not invent or edit YAML from this command. |
-| Presentation | `.opencode/commands/memory/assets/save_presentation.md` | Required | Startup questions, save dashboards, result envelopes, trigger-edit display, and error rendering. |
+| Presentation | `.opencode/commands/memory/assets/save_presentation.txt` | Required | Startup questions, save dashboards, result envelopes, trigger-edit display, and error rendering. |
 
 Before rendering any prompt, dashboard, or result block, read the presentation asset and follow it as the display source of truth.
 
@@ -48,7 +48,7 @@ Outputs:
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/memory/assets/save_presentation.md`:
+The following content lives only in `.opencode/commands/memory/assets/save_presentation.txt`:
 
 - Startup questions and active spec-folder resolution prompts.
 - Save plan, dashboard, approval, result-envelope, and error displays.

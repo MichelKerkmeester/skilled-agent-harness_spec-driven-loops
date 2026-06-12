@@ -1,6 +1,6 @@
 ---
 title: Command Presentation Contract Template
-description: Skeleton for the _presentation.md asset of a mode-based workflow command, the display source of truth that a thin command router loads.
+description: Skeleton for the _presentation.txt asset of a mode-based workflow command, the display source of truth that a thin command router loads.
 trigger_phrases:
   - "command presentation contract template"
   - "presentation router split asset"
@@ -12,7 +12,7 @@ contextType: general
 
 # Command Presentation Contract Template
 
-Skeleton for a `assets/<ns>_<command>_presentation.md` file. In the presentation/router split (see [`command_template.md`](command_template.md) § Mode-Based Command Template), the command `.md` is a thin router that owns mode resolution and routing, the `_auto.yaml` / `_confirm.yaml` assets own workflow execution, and this file owns everything the user sees. Copy the body below into the new asset and fill the bracketed parts. Keep all visible wording, reply formats, and templates here and nowhere else.
+Skeleton for a `assets/<ns>_<command>_presentation.txt` file. In the presentation/router split (see [`command_template.md`](command_template.md) § Mode-Based Command Template), the command `.md` is a thin router that owns mode resolution and routing, the `_auto.yaml` / `_confirm.yaml` assets own workflow execution, and this file owns everything the user sees. Copy the body below into the new asset and fill the bracketed parts. Keep all visible wording, reply formats, and templates here and nowhere else.
 
 ---
 
