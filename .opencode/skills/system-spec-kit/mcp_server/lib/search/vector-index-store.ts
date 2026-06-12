@@ -46,6 +46,10 @@ import {
   create_schema,
   ensure_schema_version,
 } from './vector-index-schema.js';
+import {
+  acquire_db_instance_lock,
+  release_db_instance_locks,
+} from './db-instance-lock.js';
 import { migrateLegacySingleDbToShardSync } from './db-shard-migration.js';
 import type { MemoryRow } from './vector-index-types.js';
 
@@ -1992,6 +1996,10 @@ export function initialize_db(custom_path: string | null = null, options: Initia
   const target_path = custom_path || resolve_database_path();
   const startupProfile = getStartupEmbeddingProfile();
   if (target_path !== ':memory:') {
+    // The single-writer guard MUST precede restore-recovery: that path
+    // performs on-disk file swaps a concurrent writer would tear. Reentrant
+    // per process, so a cached-connection re-entry below is a no-op.
+    acquire_db_instance_lock(target_path);
     if (!options.skipRestoreRecovery) {
       recover_interrupted_checkpoint_restore(target_path);
     }
@@ -2134,11 +2142,20 @@ export function initialize_db(custom_path: string | null = null, options: Initia
    7. DATABASE UTILITIES
 ----------------------------------------------------------------*/
 
+type CloseDbOptions = {
+  /**
+   * Keeps the single-writer locks held across the close. Used by
+   * reopenActiveDatabase so the on-disk swap window stays protected and the
+   * same-process reopen cannot deadlock against its own lock.
+   */
+  retainLocks?: boolean;
+};
+
 /**
  * Closes the shared vector-index database connection.
  * @returns Nothing.
  */
-export function close_db(): void {
+export function close_db(options: CloseDbOptions = {}): void {
   clear_prepared_statements();
   // C1 FIX: Close all tracked connections
   for (const [, conn] of db_connections) {
@@ -2186,6 +2203,11 @@ export function close_db(): void {
     }
     db = null;
   }
+  // Release AFTER the database is fully closed so no window exists where a
+  // second writer can open the file while frames are still being flushed.
+  if (!options.retainLocks) {
+    release_db_instance_locks();
+  }
 }
 
 /**
@@ -2204,7 +2226,7 @@ export function reopenActiveDatabase(targetMainPath: string, swapFn: () => void)
     detachActiveVectorShard(currentDb);
   }
 
-  close_db();
+  close_db({ retainLocks: true });
   swapFn();
   return initialize_db(targetMainPath, { skipRestoreRecovery: true });
 }

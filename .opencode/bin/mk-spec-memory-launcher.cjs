@@ -114,6 +114,14 @@ let ownerLeaseRequired = true;
 let lastKnownDescendantPids = [];
 const DURABLE_WRITE_UNAVAILABLE_CODES = new Set(['ENOSPC', 'EDQUOT', 'EROFS']);
 const durableWriteWarnings = new Set();
+// Daemon exit code meaning "another live process holds the database
+// single-writer lock". Never counts toward the crash loop: the right move is
+// bridging to the live owner (or a bounded retry while a maintenance script
+// finishes), not relaunching a doomed second writer. Mirrored in
+// mcp_server context-server (EXIT_DB_LOCK_HELD).
+const EXIT_DB_LOCK_HELD = 86;
+const DB_LOCK_HELD_MAX_RETRIES = 3;
+let dbLockHeldRetries = 0;
 
 function log(message) {
   process.stderr.write(`[mk-spec-memory-launcher] ${message}\n`);
@@ -1320,6 +1328,10 @@ function launchServer() {
     if (launcherShutdownInProgress) {
       return;
     }
+    if (code === EXIT_DB_LOCK_HELD) {
+      void handleDbLockHeldChildExit();
+      return;
+    }
     const result = superviseChildExit(
       { code, signal, childPid, intentional: false },
       {
@@ -1361,6 +1373,58 @@ function launchServer() {
     rssBreachSelfExitInProgress = false;
   }
   return true;
+}
+
+// Pure decision for the exit-86 flow (exported for tests). A lease whose
+// owner is THIS launcher is NOT a bridge target: in supervised mode the
+// pid-lease records the launcher's own pid, so after its child exits 86 the
+// lease still reads "held by a live owner" — us. Bridging would deep-probe
+// our own dead socket and route into a self-reap. Only a DIFFERENT live
+// owner is bridgeable; a self-held lease means a non-daemon process (e.g. a
+// standalone save mid-run) owns the database lock, so retry in place.
+function decideDbLockHeldAction({ leaseHeld, leaseOwnerPid, selfPid, attempt, maxRetries }) {
+  if (attempt > maxRetries + 2) return { action: 'report', reason: 'db-lock-held-persistent' };
+  if (leaseHeld && leaseOwnerPid !== selfPid) return { action: 'bridge' };
+  if (attempt <= maxRetries) return { action: 'retry', backoffMs: 2000 * 2 ** (attempt - 1) };
+  return { action: 'report', reason: 'db-lock-held' };
+}
+
+// The daemon refused to become a second writer on a database another live
+// process holds. Prefer bridging to that owner; when the holder is not a
+// bridgeable daemon (e.g. a maintenance script mid-run), retry the launch a
+// few times so a short-lived holder can finish, then report and exit clean.
+async function handleDbLockHeldChildExit() {
+  dbLockHeldRetries += 1;
+  const leaseResult = isLeaseHeld();
+  const decision = decideDbLockHeldAction({
+    leaseHeld: leaseResult.held,
+    leaseOwnerPid: leaseResult.ownerPid,
+    selfPid: process.pid,
+    attempt: dbLockHeldRetries,
+    maxRetries: DB_LOCK_HELD_MAX_RETRIES,
+  });
+  if (decision.action === 'bridge') {
+    log(`context-server exited: database single-writer lock held; bridging to live owner pid=${leaseResult.ownerPid}`);
+    await bridgeOrReportLeaseHeldAndExit(leaseResult);
+    return;
+  }
+  if (decision.action === 'retry') {
+    log(`database single-writer lock held by a non-bridgeable holder; retrying launch in ${decision.backoffMs}ms (attempt ${dbLockHeldRetries}/${DB_LOCK_HELD_MAX_RETRIES})`);
+    if (supervisorRelaunchTimer) clearTimeout(supervisorRelaunchTimer);
+    supervisorRelaunchTimer = setTimeout(() => {
+      if (launcherShutdownInProgress) return;
+      launchServer();
+    }, decision.backoffMs);
+    if (supervisorRelaunchTimer.unref) supervisorRelaunchTimer.unref();
+    return;
+  }
+  log('database single-writer lock still held after launch retries; reporting and exiting');
+  writeLeaseHeldJsonRpcError(
+    { ownerPid: leaseResult.ownerPid ?? 'unknown', startedAt: leaseResult.startedAt ?? new Date().toISOString() },
+    decision.reason,
+  );
+  clearAllLeaseFiles();
+  process.exit(0);
 }
 
 async function shutdownLauncherForSignal(signal) {
@@ -1616,6 +1680,8 @@ module.exports = {
   bridgeStdioThroughSessionProxy,
   buildLeaseObject,
   computeBackoffMs,
+  decideDbLockHeldAction,
+  EXIT_DB_LOCK_HELD,
   contextServerSpawnIo,
   createCrashLoopGuard,
   daemonReelectionEnabled,

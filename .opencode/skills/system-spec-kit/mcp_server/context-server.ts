@@ -77,6 +77,8 @@ import {
 
 // Lib modules (for initialization only)
 import * as vectorIndex from './lib/search/vector-index.js';
+import { acquireDbInstanceLock } from './lib/search/db-instance-lock.js';
+import { VectorIndexError, VectorIndexErrorCode } from './lib/search/vector-index-types.js';
 import * as _embeddings from './lib/providers/embeddings.js';
 import * as checkpointsLib from './lib/storage/checkpoints.js';
 import * as accessTracker from './lib/storage/access-tracker.js';
@@ -1545,6 +1547,15 @@ let launcherIdleMonitor: LauncherIdleMonitor | null = null;
 /** Maximum time (ms) to wait for async cleanup before force-exiting. */
 const SHUTDOWN_DEADLINE_MS = 5000;
 
+/**
+ * Exit code telling the launcher "another live process holds the database
+ * single-writer lock": bridge to that owner instead of counting this exit
+ * toward the crash loop. Chosen clear of the daemon's 0/1, the launcher's
+ * 0/1/128, and the CLI contract's 0/1/64/69/75. Mirrored in
+ * mk-spec-memory-launcher.cjs.
+ */
+const EXIT_DB_LOCK_HELD = 86;
+
 export const __testables = {
   runCleanupStep,
   runAsyncCleanupStep,
@@ -1722,9 +1733,34 @@ async function main(): Promise<void> {
 
   validateConfiguredEmbeddingsProvider();
 
+  // Refuse to boot as a second writer BEFORE anything else initializes. The
+  // kernel-held sidecar lock survives every crash mode; a losing cold-spawn
+  // must exit before it can touch the database, and the launcher converts
+  // this exit code into a bridge to the live owner.
+  try {
+    acquireDbInstanceLock(vectorIndex.getDbPath() || DATABASE_PATH);
+  } catch (error: unknown) {
+    if (error instanceof VectorIndexError && error.code === VectorIndexErrorCode.DB_LOCK_HELD) {
+      console.error(`[context-server] ${error.message}`);
+      process.exit(EXIT_DB_LOCK_HELD);
+    }
+    throw error;
+  }
+
   registerInitTasks(async () => {
     console.error('[context-server] Initializing database...');
-    const startupDb = vectorIndex.initializeDb();
+    let startupDb: Database.Database;
+    try {
+      startupDb = vectorIndex.initializeDb();
+    } catch (error: unknown) {
+      if (error instanceof VectorIndexError && error.code === VectorIndexErrorCode.DB_LOCK_HELD) {
+        // Fail this caller's request with a structured error, then exit with
+        // the lock-held code so the launcher bridges to the live owner
+        // instead of relaunching a doomed second writer.
+        setImmediate(() => { void fatalShutdown(error.message, EXIT_DB_LOCK_HELD); });
+      }
+      throw error;
+    }
     console.error('[context-server] Database initialized');
     console.error('[context-server] Database path: ' + DATABASE_PATH);
 

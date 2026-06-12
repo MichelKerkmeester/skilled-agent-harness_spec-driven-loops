@@ -21,6 +21,7 @@ import {
 } from '../../shared/dist/embeddings.js';
 import { resolveActiveProfileDbPath } from '../../shared/dist/embeddings/profile.js';
 import { normalizeContentForEmbedding } from '../dist/lib/parsing/content-normalizer.js';
+import { acquireDbInstanceLock, releaseDbInstanceLock } from '../dist/lib/search/db-instance-lock.js';
 
 const MODULE = '[repair-failed-embeddings]';
 const DEFAULT_BATCH_SIZE = 10;
@@ -94,6 +95,9 @@ function resolveDbPath(overridePath) {
 }
 
 function openDatabase(dbPath) {
+  // Single-writer guard: refuse to repair a database a live daemon (or
+  // another maintenance run) currently owns — stop the daemon first.
+  acquireDbInstanceLock(dbPath);
   const database = new Database(dbPath);
   database.pragma('busy_timeout = 10000');
   database.pragma('foreign_keys = ON');
@@ -353,6 +357,7 @@ async function main() {
     }
   } finally {
     database.close();
+    releaseDbInstanceLock(dbPath);
   }
 }
 

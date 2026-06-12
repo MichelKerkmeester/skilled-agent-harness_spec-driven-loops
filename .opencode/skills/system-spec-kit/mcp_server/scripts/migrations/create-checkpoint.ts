@@ -11,6 +11,7 @@ import Database from 'better-sqlite3';
 import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { DATABASE_DIR } from '../../core/config.js';
 import { getMemoryRoadmapDefaults } from '../../lib/config/capability-flags.js';
+import { acquire_db_instance_lock, release_db_instance_lock } from '../../lib/search/db-instance-lock.js';
 
 interface CliArgs {
   dbPath: string;
@@ -177,39 +178,46 @@ function runCreateCheckpoint(args: CliArgs): CreateCheckpointResult {
     throw new Error(`Database not found: ${args.dbPath}`);
   }
 
-  fs.mkdirSync(args.outputDir, { recursive: true });
+  // Copying a database file another live process is writing produces a torn
+  // snapshot; hold the single-writer lock for the whole copy + version read.
+  acquire_db_instance_lock(args.dbPath);
+  try {
+    fs.mkdirSync(args.outputDir, { recursive: true });
 
-  const now = new Date();
-  const fileStem = `${toTimestampId(now)}__${toSafeSlug(args.name)}`;
-  const checkpointPath = path.join(args.outputDir, `${fileStem}.sqlite`);
-  const metadataPath = path.join(args.outputDir, `${fileStem}.json`);
+    const now = new Date();
+    const fileStem = `${toTimestampId(now)}__${toSafeSlug(args.name)}`;
+    const checkpointPath = path.join(args.outputDir, `${fileStem}.sqlite`);
+    const metadataPath = path.join(args.outputDir, `${fileStem}.json`);
 
-  fs.copyFileSync(args.dbPath, checkpointPath);
-  const sizeBytes = fs.statSync(checkpointPath).size;
-  const schemaVersion = getSchemaVersion(args.dbPath);
-  const rollout = getMemoryRoadmapDefaults();
+    fs.copyFileSync(args.dbPath, checkpointPath);
+    const sizeBytes = fs.statSync(checkpointPath).size;
+    const schemaVersion = getSchemaVersion(args.dbPath);
+    const rollout = getMemoryRoadmapDefaults();
 
-  const metadata = {
-    createdAt: now.toISOString(),
-    sourceDbPath: args.dbPath,
-    checkpointPath,
-    schemaVersion,
-    sizeBytes,
-    phase: rollout.phase,
-    capabilities: rollout.capabilities,
-    scopeDimensionsTracked: rollout.scopeDimensionsTracked,
-    note: args.note,
-  };
+    const metadata = {
+      createdAt: now.toISOString(),
+      sourceDbPath: args.dbPath,
+      checkpointPath,
+      schemaVersion,
+      sizeBytes,
+      phase: rollout.phase,
+      capabilities: rollout.capabilities,
+      scopeDimensionsTracked: rollout.scopeDimensionsTracked,
+      note: args.note,
+    };
 
-  fs.writeFileSync(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`, 'utf8');
+    fs.writeFileSync(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`, 'utf8');
 
-  return {
-    ok: true,
-    checkpointPath,
-    metadataPath,
-    schemaVersion,
-    sizeBytes,
-  };
+    return {
+      ok: true,
+      checkpointPath,
+      metadataPath,
+      schemaVersion,
+      sizeBytes,
+    };
+  } finally {
+    release_db_instance_lock(args.dbPath);
+  }
 }
 
 /**

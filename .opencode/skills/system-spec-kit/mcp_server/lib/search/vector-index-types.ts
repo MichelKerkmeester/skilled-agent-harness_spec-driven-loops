@@ -15,6 +15,7 @@ export const VectorIndexErrorCode = {
   INTEGRITY_ERROR: 'INTEGRITY_ERROR',
   MUTATION_FAILED: 'MUTATION_FAILED',
   STORE_ERROR: 'STORE_ERROR',
+  DB_LOCK_HELD: 'DB_LOCK_HELD',
 } as const;
 
 /** Enumerates the string codes used by {@link VectorIndexError}. */
