@@ -175,6 +175,76 @@ export function storeIdempotencyReceipt(
   return info.changes > 0;
 }
 
+/**
+ * Marks a mutated loser's response with an explicit store-race conflict.
+ *
+ * When a writer loses the first-store race to a concurrent SAME-KEY,
+ * DIFFERENT-PAYLOAD request, neither honest option is silent: its mutation
+ * already landed (so an error response would lie), and the winner's stored
+ * response answers a different payload (so replaying it would lie too).
+ * Rolling the landed mutation back from this late window is the dangerous
+ * non-option. What remains is the loser's own response carrying a visible
+ * conflict block, so callers know the canonical receipt for this key
+ * belongs to a different concurrent request and a later retry may replay
+ * or conflict against it. Fail-open: if the envelope cannot be parsed, the
+ * original response is returned unmodified.
+ */
+export function markResponseWithReceiptStoreConflict(
+  response: MCPResponse,
+  key: IdempotencyReceiptKey,
+  storedPayloadHash: string | undefined,
+): MCPResponse {
+  const first = response.content?.[0];
+  if (!first || first.type !== 'text' || typeof first.text !== 'string') {
+    return response;
+  }
+  try {
+    const envelope = JSON.parse(first.text) as Record<string, unknown>;
+    const data = (envelope.data && typeof envelope.data === 'object')
+      ? envelope.data as Record<string, unknown>
+      : {};
+    data.idempotencyStoreConflict = {
+      receiptKey: key.receiptKey,
+      payloadHash: key.payloadHash,
+      storedPayloadHash: storedPayloadHash ?? null,
+    };
+    envelope.data = data;
+    const hints = Array.isArray(envelope.hints) ? envelope.hints as unknown[] : [];
+    hints.push('A concurrent same-key request with a different payload holds the canonical idempotency receipt; this write landed but will not replay.');
+    envelope.hints = hints;
+    return {
+      ...response,
+      content: [{ ...first, text: JSON.stringify(envelope) }, ...response.content.slice(1)],
+    };
+  } catch {
+    return response;
+  }
+}
+
+/**
+ * Deletes receipts older than the retention window. Receipts are replay
+ * caches, not durable records: unbounded growth plus indefinite stale
+ * replays (including against deleted memories) is the failure mode this
+ * sweep bounds. Best-effort by contract — callers must never let a sweep
+ * failure block serving.
+ */
+export function pruneExpiredIdempotencyReceipts(
+  database: BetterSqlite3.Database,
+  ttlDays?: number,
+): number {
+  const envRaw = Number.parseInt(process.env.SPECKIT_IDEMPOTENCY_RECEIPT_TTL_DAYS ?? '', 10);
+  const days = Math.max(1, ttlDays ?? (Number.isFinite(envRaw) && envRaw > 0 ? envRaw : 30));
+  try {
+    const info = database.prepare(`
+      DELETE FROM memory_idempotency_receipts
+      WHERE updated_at < datetime('now', ?)
+    `).run(`-${days} days`);
+    return info.changes;
+  } catch {
+    return 0;
+  }
+}
+
 export function extractMemoryIdFromResponse(response: MCPResponse): number | null {
   const first = response.content?.[0];
   if (!first || first.type !== 'text' || typeof first.text !== 'string') {

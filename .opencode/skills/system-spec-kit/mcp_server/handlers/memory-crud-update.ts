@@ -29,6 +29,8 @@ import {
   extractMemoryIdFromResponse,
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
+  lookupIdempotencyReceiptByKey,
+  markResponseWithReceiptStoreConflict,
   storeIdempotencyReceipt,
   type IdempotencyReceiptKey,
 } from '../lib/storage/idempotency-receipts.js';
@@ -548,7 +550,20 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   });
   if (database && idempotencyKey) {
     try {
-      storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+      const won = storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+      if (!won) {
+        // Same lost-store semantics as memory_save: a same-payload loser
+        // replays the canonical winner; a different-payload loser already
+        // mutated, so it returns its own response with the conflict made
+        // visible rather than silently diverging from the receipt.
+        const winner = lookupIdempotencyReceiptByKey(database, idempotencyKey);
+        if (winner.status === 'replay') {
+          return winner.response;
+        }
+        if (winner.status === 'conflict') {
+          return markResponseWithReceiptStoreConflict(response, idempotencyKey, winner.storedPayloadHash);
+        }
+      }
     } catch (error: unknown) {
       console.warn(`[memory-crud-update] idempotency receipt store failed; continuing without replay receipt: ${toErrorMessage(error)}`);
     }

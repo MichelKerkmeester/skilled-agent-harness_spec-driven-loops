@@ -47,6 +47,7 @@ import { validateInputLengths } from './utils/index.js';
 // History (audit trail for file-watcher deletes)
 import { recordHistory } from './lib/storage/history.js';
 import * as historyStore from './lib/storage/history.js';
+import { pruneExpiredIdempotencyReceipts } from './lib/storage/idempotency-receipts.js';
 
 // Hooks
 import {
@@ -1763,6 +1764,16 @@ async function main(): Promise<void> {
     }
     console.error('[context-server] Database initialized');
     console.error('[context-server] Database path: ' + DATABASE_PATH);
+
+    // Idempotency receipts are replay caches with no other expiry path;
+    // sweep expired rows at init so they cannot grow or replay stale
+    // responses indefinitely. Best-effort: a sweep failure never blocks boot.
+    try {
+      const prunedReceipts = pruneExpiredIdempotencyReceipts(startupDb);
+      if (prunedReceipts > 0) {
+        console.error(`[context-server] Pruned ${prunedReceipts} expired idempotency receipt(s)`);
+      }
+    } catch (_: unknown) { /* best-effort */ }
 
   try {
     const active = await ensureActiveEmbedder(startupDb, { timeoutMs: API_KEY_VALIDATION_TIMEOUT_MS });

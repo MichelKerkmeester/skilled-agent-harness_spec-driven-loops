@@ -176,6 +176,7 @@ import {
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
   lookupIdempotencyReceiptByKey,
+  markResponseWithReceiptStoreConflict,
   shouldStoreMemorySaveReceipt,
   storeIdempotencyReceipt,
   type IdempotencyReceiptKey,
@@ -3467,6 +3468,10 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
           mergeModeHint: mergeModeHint ?? null,
           targetAnchorId: targetAnchorId ?? null,
           scope: saveScope,
+          // A force-flipped retry is a DIFFERENT logical request: without
+          // force in the key material it collides with the stored receipt
+          // and the intentional forced write is rejected as a conflict.
+          force: force === true,
         },
         payload: {
           ...(args as unknown as Record<string, unknown>),
@@ -3627,6 +3632,13 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
         const winner = lookupIdempotencyReceiptByKey(database, idempotencyKey);
         if (winner.status === 'replay') {
           return winner.response;
+        }
+        if (winner.status === 'conflict') {
+          // Different-payload winner: this loser's mutation landed, so an
+          // error would lie and replaying the winner would answer a
+          // different request — return the loser's response with the
+          // conflict made visible instead of silent.
+          return markResponseWithReceiptStoreConflict(response, idempotencyKey, winner.storedPayloadHash);
         }
       }
     } catch (error: unknown) {

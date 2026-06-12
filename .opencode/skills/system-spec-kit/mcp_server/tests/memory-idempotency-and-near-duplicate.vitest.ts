@@ -7,6 +7,8 @@ import {
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
   lookupIdempotencyReceiptByKey,
+  markResponseWithReceiptStoreConflict,
+  pruneExpiredIdempotencyReceipts,
   shouldStoreMemorySaveReceipt,
   storeIdempotencyReceipt,
 } from '../lib/storage/idempotency-receipts';
@@ -376,6 +378,77 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
       expect(responseFor(1).isError).toBe(false);
     } finally {
       badDatabase.close();
+    }
+  });
+
+  it('derives a DIFFERENT receipt key when only force flips (forced retries must not conflict)', () => {
+    const base = {
+      operation: 'memory_save',
+      contentHash: 'hash-a',
+      payload: { filePath: '/tmp/spec.md', contentHash: 'hash-a' },
+    };
+    const plain = deriveIdempotencyReceiptKey({
+      ...base,
+      requestFingerprint: { filePath: '/tmp/spec.md', contentHash: 'hash-a', force: false },
+    });
+    const forced = deriveIdempotencyReceiptKey({
+      ...base,
+      requestFingerprint: { filePath: '/tmp/spec.md', contentHash: 'hash-a', force: true },
+    });
+    expect(forced.receiptKey).not.toBe(plain.receiptKey);
+  });
+
+  it('marks a lost-store conflict visibly on the loser response and fails open on opaque envelopes', () => {
+    const key = deriveIdempotencyReceiptKey({
+      operation: 'memory_save',
+      contentHash: 'hash-a',
+      requestFingerprint: { filePath: '/tmp/spec.md' },
+      payload: { filePath: '/tmp/spec.md', title: 'loser variant' },
+    });
+
+    const marked = markResponseWithReceiptStoreConflict(responseFor(7), key, 'stored-hash');
+    const envelope = JSON.parse(marked.content[0].text as string) as {
+      data?: { idempotencyStoreConflict?: { receiptKey?: string; storedPayloadHash?: string | null } };
+      hints?: string[];
+    };
+    expect(envelope.data?.idempotencyStoreConflict?.receiptKey).toBe(key.receiptKey);
+    expect(envelope.data?.idempotencyStoreConflict?.storedPayloadHash).toBe('stored-hash');
+    expect(envelope.hints?.some((hint) => hint.includes('canonical idempotency receipt'))).toBe(true);
+
+    const opaque = { content: [{ type: 'text' as const, text: 'not-json' }], isError: false };
+    expect(markResponseWithReceiptStoreConflict(opaque, key, undefined)).toBe(opaque);
+  });
+
+  it('prunes only receipts older than the retention window', () => {
+    const database = createDatabase();
+    try {
+      const oldKey = deriveIdempotencyReceiptKey({
+        operation: 'memory_save',
+        contentHash: 'hash-old',
+        requestFingerprint: { filePath: '/tmp/old.md' },
+        payload: { filePath: '/tmp/old.md' },
+      });
+      const freshKey = deriveIdempotencyReceiptKey({
+        operation: 'memory_save',
+        contentHash: 'hash-fresh',
+        requestFingerprint: { filePath: '/tmp/fresh.md' },
+        payload: { filePath: '/tmp/fresh.md' },
+      });
+      expect(storeIdempotencyReceipt(database, oldKey, responseFor(1), null)).toBe(true);
+      expect(storeIdempotencyReceipt(database, freshKey, responseFor(2), null)).toBe(true);
+      database.prepare(`
+        UPDATE memory_idempotency_receipts
+        SET updated_at = datetime('now', '-45 days')
+        WHERE receipt_key = ?
+      `).run(oldKey.receiptKey);
+
+      const pruned = pruneExpiredIdempotencyReceipts(database, 30);
+
+      expect(pruned).toBe(1);
+      expect(lookupIdempotencyReceiptByKey(database, oldKey).status).toBe('miss');
+      expect(lookupIdempotencyReceiptByKey(database, freshKey).status).toBe('replay');
+    } finally {
+      database.close();
     }
   });
 });
