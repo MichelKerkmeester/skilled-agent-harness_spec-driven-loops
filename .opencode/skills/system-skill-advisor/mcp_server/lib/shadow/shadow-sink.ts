@@ -118,7 +118,21 @@ function rotateIfNeeded(logPath: string, maxBytes: number, now: Date): boolean {
   return true;
 }
 
+/**
+ * Shadow-delta recording is opt-in: advisor_recommend is a read-style call
+ * and must not write durable telemetry unless the operator expressed intent —
+ * either by pointing the sink somewhere (SPECKIT_ADVISOR_SHADOW_DELTA_PATH)
+ * or by enabling collection at the default path
+ * (SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1/true).
+ */
+function shadowDeltaSinkEnabled(): boolean {
+  if (process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH) return true;
+  const flag = (process.env.SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED ?? '').trim().toLowerCase();
+  return flag === '1' || flag === 'true';
+}
+
 export {
   recordShadowDelta,
   resolveShadowDeltaPath,
+  shadowDeltaSinkEnabled,
 };

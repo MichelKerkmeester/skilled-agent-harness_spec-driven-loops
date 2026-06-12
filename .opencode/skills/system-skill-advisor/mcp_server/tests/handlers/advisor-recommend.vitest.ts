@@ -2,11 +2,12 @@
 // MODULE: Advisor Recommend Tests
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
+import { resolveShadowDeltaPath } from '../../lib/shadow/shadow-sink.js';
 
 const { mockScoreAdvisorPrompt, mockReadAdvisorStatus } = vi.hoisted(() => ({
   mockScoreAdvisorPrompt: vi.fn(),
@@ -287,6 +288,22 @@ describe('advisor_recommend handler', () => {
     const record = JSON.parse(readFileSync(logPath!, 'utf8').trim()) as { prompt?: string };
     expect(record.prompt).toMatch(/^hmac:[a-f0-9]{64}$/u);
     expect(JSON.stringify(record)).not.toContain(prompt);
+  });
+
+  it('writes no shadow deltas when the sink is not opted into', async () => {
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult());
+    delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
+    delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED;
+    const defaultSinkPath = resolveShadowDeltaPath({});
+    expect(defaultSinkPath.ok).toBe(true);
+    const sinkPath = (defaultSinkPath as { ok: true; path: string }).path;
+    const sizeBefore = existsSync(sinkPath) ? statSync(sinkPath).size : null;
+
+    await handleAdvisorRecommend({ prompt: 'route this prompt', options: { topK: 1 } });
+
+    const sizeAfter = existsSync(sinkPath) ? statSync(sinkPath).size : null;
+    expect(sizeAfter).toBe(sizeBefore);
   });
 
   it('drops instruction-shaped labels and redirect metadata from public output', async () => {

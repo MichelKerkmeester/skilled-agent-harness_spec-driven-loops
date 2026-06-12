@@ -1,6 +1,8 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Response Builder
 // ───────────────────────────────────────────────────────────────
+import path from 'node:path';
+
 import type BetterSqlite3 from 'better-sqlite3';
 import type * as memoryParser from '../../lib/parsing/memory-parser.js';
 
@@ -819,6 +821,23 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
       const message = err instanceof Error ? err.message : String(err);
       console.warn(`[memory-save] Opportunistic retry failed [requestId=${requestId}]:`, message);
     });
+  }
+
+  // memory_save indexes document content only; packet metadata
+  // (description.json / graph-metadata.json) is owned by the generate-context
+  // save lane and is NOT refreshed here. Surface that as a structured
+  // advisory so resume/graph consumers know the metadata may lag this save
+  // instead of assuming the packet files are current.
+  const savedBasename = filePath ? path.basename(filePath) : '';
+  const isPacketMetadataTarget = savedBasename === 'description.json' || savedBasename === 'graph-metadata.json';
+  const isConstitutionalTarget = typeof filePath === 'string' && filePath.includes('/constitutional/');
+  if (shouldEmitPostMutationFeedback && filePath && !isPacketMetadataTarget && !isConstitutionalTarget) {
+    response.metadataRefresh = {
+      refreshed: false,
+      files: ['description.json', 'graph-metadata.json'],
+      refreshedBy: 'generate-context save lane',
+    };
+    hints.push('Packet metadata (description.json/graph-metadata.json) was not refreshed by this save; run the generate-context save lane (/memory:save) when packet state changed');
   }
 
   // the rollout N3-lite runtime integration (flag-gated)

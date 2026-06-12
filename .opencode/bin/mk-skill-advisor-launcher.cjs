@@ -109,6 +109,7 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
   'SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST',
   'SPECKIT_ADVISOR_SHADOW_DELTA_PATH',
+  'SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED',
   // Documented lane-weight tuning override; without this allowlist entry the
   // scorer's env reader never sees it under normal daemon supervision and the
   // advertised tuning path is silently dead.

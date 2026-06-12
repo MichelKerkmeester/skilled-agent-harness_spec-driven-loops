@@ -13,7 +13,7 @@ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { withSemanticShadowPromptEmbedding } from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SHADOW_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { sanitizeSkillLabel } from '../lib/render.js';
-import { recordShadowDelta } from '../lib/shadow/shadow-sink.js';
+import { recordShadowDelta, shadowDeltaSinkEnabled } from '../lib/shadow/shadow-sink.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
   AdvisorRecommendInputSchema,
@@ -375,16 +375,18 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
       : {}),
   };
   const parsed = AdvisorRecommendOutputSchema.parse(output);
-  for (const shadow of parsed._shadow?.recommendations ?? []) {
-    recordShadowDelta({
-      prompt: `hmac:${key}`,
-      recommendation: shadow.skillId,
-      liveScore: shadow.liveScore,
-      shadowScore: shadow.shadowScore,
-      delta: shadow.delta,
-      dominantLane: shadow.dominantShadowLane,
-      timestamp: parsed.generatedAt,
-    });
+  if (shadowDeltaSinkEnabled()) {
+    for (const shadow of parsed._shadow?.recommendations ?? []) {
+      recordShadowDelta({
+        prompt: `hmac:${key}`,
+        recommendation: shadow.skillId,
+        liveScore: shadow.liveScore,
+        shadowScore: shadow.shadowScore,
+        delta: shadow.delta,
+        dominantLane: shadow.dominantShadowLane,
+        timestamp: parsed.generatedAt,
+      });
+    }
   }
   advisorPromptCache.set({
     key,

@@ -119,6 +119,82 @@ const SPEC_DOC_PRIORITY = [
 ] as const;
 const RESTORE_PANEL_MAX_ITEMS = 8;
 const RESTORE_PANEL_MAX_CHARS = 1200;
+const PHASE_PARENT_REDIRECT_MAX_DEPTH = 5;
+const PHASE_CHILD_NAME_RE = /^[0-9]{3}-[a-z0-9-]+$/u;
+
+/**
+ * Follow a phase parent's `derived.last_active_child_id` pointer down to the
+ * live child packet. Phase parents keep only the lean control trio at their
+ * root, so resuming on the parent itself recovers stale or empty context —
+ * the chronology pointer in graph-metadata.json names where work actually
+ * lives. Bounded depth + an existence/shape check on every hop keep a stale
+ * or malformed pointer from escaping the packet tree.
+ */
+function followPhaseParentRedirect(
+  startFolderPath: string,
+  startSpecFolder: string,
+  hints: string[],
+): { folderPath: string; specFolder: string } {
+  let folderPath = startFolderPath;
+  let specFolder = startSpecFolder;
+
+  for (let depth = 0; depth < PHASE_PARENT_REDIRECT_MAX_DEPTH; depth += 1) {
+    const metadataPath = path.join(folderPath, 'graph-metadata.json');
+    if (!fs.existsSync(metadataPath)) {
+      break;
+    }
+
+    let pointer: string | null = null;
+    try {
+      const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as {
+        derived?: { last_active_child_id?: unknown } | null;
+      };
+      const raw = metadata?.derived?.last_active_child_id;
+      pointer = typeof raw === 'string' && raw.trim().length > 0 ? raw.trim().replace(/\\/g, '/').replace(/\/+$/u, '') : null;
+    } catch {
+      hints.push(`Skipping phase-parent redirect: ${path.basename(folderPath)}/graph-metadata.json is unreadable.`);
+      break;
+    }
+
+    if (!pointer) {
+      break;
+    }
+
+    // The pointer ships in two shapes: a bare child id ("001-phase") or a
+    // track-relative spec-folder path that extends the current packet
+    // ("track/parent/001-phase"). Reduce both to child segments under the
+    // current folder and refuse anything that doesn't stay inside it.
+    let childSegments: string[] | null = null;
+    if (PHASE_CHILD_NAME_RE.test(pointer)) {
+      childSegments = [pointer];
+    } else if (pointer.startsWith(`${specFolder}/`)) {
+      childSegments = pointer.slice(specFolder.length + 1).split('/');
+    }
+    if (!childSegments
+      || childSegments.length === 0
+      || !childSegments.every((segment) => PHASE_CHILD_NAME_RE.test(segment))) {
+      if (pointer !== specFolder) {
+        hints.push(`Ignoring phase-parent pointer ${pointer}: it does not name a child phase of ${specFolder}.`);
+      }
+      break;
+    }
+
+    const childPath = path.join(folderPath, ...childSegments);
+    const childIsPacket = fs.existsSync(childPath)
+      && fs.statSync(childPath).isDirectory()
+      && (fs.existsSync(path.join(childPath, 'spec.md')) || fs.existsSync(path.join(childPath, 'description.json')));
+    if (!childIsPacket) {
+      hints.push(`Ignoring stale phase-parent pointer ${pointer}: child packet not found under ${specFolder}.`);
+      break;
+    }
+
+    folderPath = childPath;
+    specFolder = `${specFolder}/${childSegments.join('/')}`;
+    hints.push(`Phase-parent redirect: followed derived.last_active_child_id into ${specFolder}.`);
+  }
+
+  return { folderPath, specFolder };
+}
 
 function normalizeSpecFolder(specFolder: string | null | undefined): string | null {
   if (typeof specFolder !== 'string') {
@@ -805,6 +881,12 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
 
   if (!resolution.folderPath || !resolution.resolvedSpecFolder) {
     return buildNoRecoveryResult(resolution, hints);
+  }
+
+  const redirect = followPhaseParentRedirect(resolution.folderPath, resolution.resolvedSpecFolder, hints);
+  if (redirect.specFolder !== resolution.resolvedSpecFolder) {
+    resolution.folderPath = redirect.folderPath;
+    resolution.resolvedSpecFolder = redirect.specFolder;
   }
 
   const folderPath: string = resolution.folderPath;
