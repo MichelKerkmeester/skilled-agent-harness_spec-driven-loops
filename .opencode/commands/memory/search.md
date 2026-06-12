@@ -68,6 +68,8 @@ MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
 STATUS=OK RESULTS=<count> INTENT=<detected_intent>
 ```
 
+Slot rule: `<score>` is the 0–1 similarity rendered to two decimals (`0.79`, never `79.44` — divide percentage-scaled scores by 100).
+
 Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header and `STATUS` footer.
 
 Supported intents:

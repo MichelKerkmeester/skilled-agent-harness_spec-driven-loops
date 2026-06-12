@@ -42,4 +42,4 @@ The following content lives only in `.opencode/commands/create/assets/create_age
 
 The router must not invent visible wording for those surfaces; it only selects the workflow YAML and execution mode.
 
-User request: {{args}}
+User request: $ARGUMENTS

@@ -73,7 +73,7 @@ Field mapping:
 | Detected or explicit intent | `intent=<detected_intent>` and `INTENT=<detected_intent>` |
 | Returned result count | `results=<count>` and `RESULTS=<count>` |
 | `result.specFolder` leaf | `<leaf-folder>/` |
-| `result.score`, `result.similarity`, or normalized relevance score | `<score>` |
+| `result.score`, `result.similarity`, or normalized relevance score | `<score>` — render as 0–1 similarity with two decimals (`0.79`, never `79.44`; divide percentage-scaled scores by 100) |
 | `result.id` or `result.memory_id` | `#<id>` |
 | `result.title` | `<title>` |
 

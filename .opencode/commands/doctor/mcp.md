@@ -59,4 +59,4 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor_mcp
 - MCP assessment, install, repair, verification, and final-report display templates.
 - Examples, troubleshooting display, and next-step text.
 
-User request: {{args}}
+User request: $ARGUMENTS

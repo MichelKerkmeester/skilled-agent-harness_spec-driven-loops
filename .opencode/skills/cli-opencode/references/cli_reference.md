@@ -117,6 +117,8 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `--variant` | string | Provider-specific reasoning effort (`high`, `max`, `minimal`, etc.) |
 | `--thinking` | boolean | Show thinking blocks (default false) |
 
+> **`--command` semantics (verified on v1.17.4):** the `run` message is plain text — slash-command syntax inside it (`opencode run "/memory:search query"`) is NOT expanded, so the command's template never reaches the model. Executing a registered command non-interactively requires `--command <family>/<name>` with the args as the message (they become `$ARGUMENTS`). Registry names are slash-namespaced (`memory/search` for `/memory:search`); a wrong name fails with the full registry list. Behavior probes of slash commands MUST use `--command`; the raw-text form only measures the model freestyling without the contract.
+
 ### cli-opencode default invocation shape
 
 The skill builds every dispatch from a base shape and overlays use-case-specific flags:

@@ -56,4 +56,4 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor_upd
 - Status output, state-log, snapshot, restart-required, and failure display templates.
 - Related-command and next-step display text.
 
-User request: {{args}}
+User request: $ARGUMENTS

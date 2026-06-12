@@ -72,4 +72,4 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor_spe
 - Diagnostic dashboard and result-summary templates.
 - Troubleshooting and next-step display text.
 
-User request: {{args}}
+User request: $ARGUMENTS

@@ -43,4 +43,4 @@ The following content lives only in `.opencode/commands/create/assets/create_fea
 
 The router must not invent visible wording for those surfaces; it only resolves operation, execution mode, and workflow selection.
 
-User request: {{args}}
+User request: $ARGUMENTS
