@@ -111,6 +111,7 @@ If intent/stack detection is unclear, request:
 ### Smart Router Pseudocode
 
 ```python
+import re
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
@@ -175,12 +176,16 @@ def discover_markdown_resources() -> set[str]:
             docs.extend(path for path in base.rglob("*.md") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
+def keyword_present(keyword: str, text: str) -> bool:
+    """Boundary-aware match: bare substrings misroute ('pr' in 'improve prompt')."""
+    return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None
+
 def score_intents(task) -> dict[str, float]:
     text = _task_text(task)
     scores = {intent: 0.0 for intent in INTENT_SIGNALS}
     for intent, cfg in INTENT_SIGNALS.items():
         for keyword in cfg["keywords"]:
-            if keyword in text:
+            if keyword_present(keyword, text):
                 scores[intent] += cfg["weight"]
     return scores
 
@@ -197,9 +202,9 @@ def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> s
     text = _task_text(task)
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
-    if ".opencode/" in files or "jsonc" in text or "mcp" in text:
+    if ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
         return "sk-code:<surface>"
-    if any(term in text for term in ["frontend", "web", "css", "dom", "browser"]) or any(
+    if any(keyword_present(term, text) for term in ["frontend", "web", "css", "dom", "browser"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
         return "sk-code:<surface>"
@@ -237,7 +242,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path)
 
-    if any(keyword in text for keyword in ON_DEMAND_KEYWORDS):
+    if any(keyword_present(keyword, text) for keyword in ON_DEMAND_KEYWORDS):
         for paths in RESOURCE_MAP.values():
             for relative_path in paths:
                 load_if_available(relative_path)

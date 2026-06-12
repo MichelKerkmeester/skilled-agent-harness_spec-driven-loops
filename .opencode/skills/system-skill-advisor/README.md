@@ -95,7 +95,7 @@ The advisor scores every prompt against five independent lanes, each producing i
 | `derived_generated` | 0.12 | Sanitized derived metadata from prior runs |
 | `semantic_shadow` | 0.05 | Semantic embedding evidence, lowest fusion weight |
 
-The lane weights live in `mcp_server/lib/scorer/lane-registry.ts`. The scorer can read `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` when that variable reaches the daemon child, but today's launcher strips it because `CHILD_ENV_ALLOWLIST` does not include the key. In normal daemon use, tune by editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change, and ship the diff with doc updates across the feature catalog and the advisor scorer reference.
+The lane weights live in `mcp_server/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`, and the launcher allowlist passes it through to the daemon child (an env change needs a daemon restart to apply). Use it for experiments; durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change, and ship the diff with doc updates across the feature catalog and the advisor scorer reference.
 
 `advisor_recommend` accepts three options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns and `includeAbstainReasons` surfaces why lower-ranked candidates were not selected. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full corpus, holdout, parity, safety and latency bundle.
 
@@ -187,7 +187,7 @@ A: Routing is operationally distinct from memory. You can roll back, restart or 
 
 **Q: Can I change the lane weights?**
 
-A: Yes, with measured evidence. Today the launcher strips `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` because it is not in `CHILD_ENV_ALLOWLIST`, so the normal daemon path is a source edit in `mcp_server/lib/scorer/lane-registry.ts`. Run `advisor_validate` to capture a baseline, change the weights, re-run validate and ship the diff with doc updates in `references/scoring/advisor_scorer.md` and the feature catalog.
+A: Yes, with measured evidence. `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher for experiments (daemon restart required); the durable path is a source edit in `mcp_server/lib/scorer/lane-registry.ts`. Run `advisor_validate` to capture a baseline, change the weights, re-run validate and ship the diff with doc updates in `references/scoring/advisor_scorer.md` and the feature catalog.
 
 **Q: How does the advisor stay safe to call from hooks?**
 

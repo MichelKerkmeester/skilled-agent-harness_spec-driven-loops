@@ -185,6 +185,7 @@ export async function handleClaudeUserPromptSubmit(
     let result = await buildBrief(prompt, {
       runtime: 'claude',
       workspaceRoot,
+      subprocessTimeoutMs: claudeHookTimeoutMs(),
     });
 
     const buildCliBrief = dependencies.buildCliBrief ?? (dependencies.buildBrief ? null : buildSkillAdvisorBriefFromCli);

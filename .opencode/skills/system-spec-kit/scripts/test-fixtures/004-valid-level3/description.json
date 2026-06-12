@@ -1,0 +1,12 @@
+{
+  "name": "Tiny Catalog Sync",
+  "specFolder": ".opencode/skills/system-spec-kit/scripts/test-fixtures/004-valid-level3",
+  "description": "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision.",
+  "level": "3",
+  "status": "review",
+  "trigger_phrases": [
+    "tiny catalog sync",
+    "level 3 fixture",
+    "valid baseline"
+  ]
+}

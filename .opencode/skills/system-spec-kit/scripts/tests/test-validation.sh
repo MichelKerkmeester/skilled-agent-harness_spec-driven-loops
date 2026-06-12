@@ -123,6 +123,21 @@ contains_ci() {
     esac
 }
 
+validator_actual_result() {
+    local exit_code="$1"
+    local output="$2"
+
+    if [[ "$exit_code" -ge 2 ]]; then
+        echo "fail"
+    elif [[ "$exit_code" -eq 1 ]]; then
+        echo "fail"
+    elif printf '%s\n' "$output" | grep -Eq 'Summary: Errors: 0[[:space:]]+Warnings: [1-9][0-9]*|warnings=[1-9][0-9]*'; then
+        echo "warn"
+    else
+        echo "pass"
+    fi
+}
+
 save_category_summary() {
     if [[ -n "$CURRENT_CATEGORY" ]]; then
         local total=$((CURRENT_CAT_PASSED + CURRENT_CAT_FAILED + CURRENT_CAT_SKIPPED))
@@ -270,11 +285,7 @@ ${test_entry}"
     # Determine actual result based on exit code
     # Exit 0 = pass, Exit 1 = warn, Exit 2 = fail
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(validator_actual_result "$exit_code" "$output")
     
     # Compare
     if [[ "$actual" = "$expect" ]]; then
@@ -395,11 +406,7 @@ ${test_entry}"
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(validator_actual_result "$exit_code" "$output")
 
     if [[ "$actual" = "$expect" ]]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
@@ -472,11 +479,19 @@ ${test_entry}"
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(echo "$output" | python3 -c "
+import sys, json
+try:
+    d = json.load(sys.stdin)
+    if int(d.get('summary', {}).get('errors', 0)) > 0:
+        print('fail')
+    elif int(d.get('summary', {}).get('warnings', 0)) > 0:
+        print('warn')
+    else:
+        print('pass')
+except Exception:
+    print('fail')
+" 2>/dev/null || echo "fail")
 
     local json_valid=false
     echo "$output" | python3 -m json.tool > /dev/null 2>&1 && json_valid=true
@@ -487,7 +502,7 @@ ${test_entry}"
 import sys, json
 try:
     d = json.load(sys.stdin)
-    required = ['version', 'folder', 'passed', 'results', 'summary']
+    required = ['folder', 'level', 'passed', 'entries', 'summary']
     print('True' if all(k in d for k in required) else 'False')
 except: print('False')
 " 2>/dev/null || echo "False")
@@ -566,11 +581,7 @@ ${test_entry}"
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(validator_actual_result "$exit_code" "$output")
 
     local line_count
     line_count=$(echo -n "$output" | wc -l | tr -d ' ')
@@ -660,7 +671,7 @@ fi
 # ─────────────────────────────────────────────────────────────────
 if begin_category "Positive Tests (should PASS or WARN)"; then
     run_test "Compliant Level 2 template fixture" "053-template-compliant-level2" "pass"
-    run_test "Extra custom header warns without failing" "054-template-extra-header" "warn"
+    run_test "Extra-header fixture warns without failing" "054-template-extra-header" "warn"
 fi
 
 # ─────────────────────────────────────────────────────────────────
@@ -674,7 +685,7 @@ fi
 # WARNING TESTS
 # ─────────────────────────────────────────────────────────────────
 if begin_category "Warning Tests (should WARN)"; then
-    run_test "Template extra custom header warns" "054-template-extra-header" "warn"
+    run_test "Template extra-header fixture warns" "054-template-extra-header" "warn"
 fi
 
 # ─────────────────────────────────────────────────────────────────

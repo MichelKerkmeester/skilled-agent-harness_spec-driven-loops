@@ -52,6 +52,7 @@ Use this orchestrator when:
 The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
 
 ```python
+import re
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
@@ -112,17 +113,21 @@ def discover_markdown_resources() -> set[str]:
             docs.extend(p for p in base.rglob("*.md") if p.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
+def keyword_present(keyword: str, text: str) -> bool:
+    """Boundary-aware match: bare substrings misroute ('pr' in 'improve prompt')."""
+    return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None
+
 def score_intents(task) -> dict[str, float]:
     """Weighted intent scoring from request text and workflow flags."""
     text = _task_text(task)
     scores = {intent: 0.0 for intent in INTENT_SIGNALS}
     for intent, cfg in INTENT_SIGNALS.items():
         for keyword in cfg["keywords"]:
-            if keyword in text:
+            if keyword_present(keyword, text):
                 scores[intent] += cfg["weight"]
     for intent, synonyms in NOISY_SYNONYMS.items():
         for term, weight in synonyms.items():
-            if term in text:
+            if keyword_present(term, text):
                 scores[intent] += weight
     if getattr(task, "needs_isolated_workspace", False):
         scores["WORKSPACE_SETUP"] += 4
@@ -184,7 +189,7 @@ def route_git_resources(task):
             load_if_available(relative_path)
 
     text = _task_text(task)
-    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+    if any(keyword_present(keyword, text) for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
         for relative_path in LOADING_LEVELS["ON_DEMAND"]:
             load_if_available(relative_path)
 

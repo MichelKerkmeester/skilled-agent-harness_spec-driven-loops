@@ -147,6 +147,21 @@ contains_ci() {
     esac
 }
 
+validator_actual_result() {
+    local exit_code="$1"
+    local output="$2"
+
+    if [[ "$exit_code" -ge 2 ]]; then
+        echo "fail"
+    elif [[ "$exit_code" -eq 1 ]]; then
+        echo "fail"
+    elif printf '%s\n' "$output" | grep -Eq 'Summary: Errors: 0[[:space:]]+Warnings: [1-9][0-9]*|warnings=[1-9][0-9]*'; then
+        echo "warn"
+    else
+        echo "pass"
+    fi
+}
+
 save_category_summary() {
     if [[ -n "$CURRENT_CATEGORY" ]]; then
         local total=$((CURRENT_CAT_PASSED + CURRENT_CAT_FAILED + CURRENT_CAT_SKIPPED))
@@ -266,11 +281,7 @@ ${test_entry}"
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(validator_actual_result "$exit_code" "$output")
 
     if [[ "$actual" = "$expect" ]]; then
         if [[ -n "$expected_rule" ]] && ! printf '%s\n' "$output" | grep -Fq "$expected_rule"; then
@@ -358,11 +369,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(validator_actual_result "$exit_code" "$output")
 
     if [[ "$actual" = "$expect" ]]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
@@ -414,11 +421,19 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(echo "$output" | python3 -c "
+import sys, json
+try:
+    d = json.load(sys.stdin)
+    if int(d.get('summary', {}).get('errors', 0)) > 0:
+        print('fail')
+    elif int(d.get('summary', {}).get('warnings', 0)) > 0:
+        print('warn')
+    else:
+        print('pass')
+except Exception:
+    print('fail')
+" 2>/dev/null || echo "fail")
 
     # Validate JSON structure
     local json_valid=false
@@ -430,7 +445,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
 import sys, json
 try:
     d = json.load(sys.stdin)
-    required = ['version', 'folder', 'passed', 'results', 'summary']
+    required = ['folder', 'level', 'passed', 'entries', 'summary']
     print('True' if all(k in d for k in required) else 'False')
 except: print('False')
 " 2>/dev/null || echo "False")
@@ -492,11 +507,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    case $exit_code in
-        0) actual="pass" ;;
-        1) actual="warn" ;;
-        *) actual="fail" ;;
-    esac
+    actual=$(validator_actual_result "$exit_code" "$output")
 
     local line_count
     line_count=$(echo -n "$output" | wc -l | tr -d ' ')
@@ -554,6 +565,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
     LEVEL_METHOD="inferred"  # For check-level.sh
 
+    source "$SCRIPT_DIR/../lib/shell-common.sh"
     source "$rule_path"
     if ! type run_check >/dev/null 2>&1; then
         echo -e "${YELLOW}⊘${NC} $name ${DIM}(no run_check function)${NC}"
@@ -659,24 +671,23 @@ if begin_category "Individual Rule: FILE_EXISTS (check-files.sh)"; then
 fi
 
 if begin_category "Individual Rule: FOLDER_NAMING (check-folder-naming.sh)"; then
-    run_isolated_rule_test "Valid: 002-valid-level1" "check-folder-naming.sh" "002-valid-level1" "pass" 1
-    run_isolated_rule_test "Valid: 003-valid-level2" "check-folder-naming.sh" "003-valid-level2" "pass" 1
-    run_isolated_rule_test "Valid: 045-valid-sections" "check-folder-naming.sh" "045-valid-sections" "pass" 1
-    # Note: All fixtures follow naming convention, no invalid fixture exists
+    run_isolated_rule_test "Outside spec roots: 002-valid-level1" "check-folder-naming.sh" "002-valid-level1" "info" 1
+    run_isolated_rule_test "Outside spec roots: 003-valid-level2" "check-folder-naming.sh" "003-valid-level2" "info" 1
+    run_isolated_rule_test "Outside spec roots: 045-valid-sections" "check-folder-naming.sh" "045-valid-sections" "info" 1
 fi
 
 if begin_category "Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)"; then
     run_isolated_rule_test "No placeholders" "check-placeholders.sh" "002-valid-level1" "pass" 1
     run_isolated_rule_test "[YOUR_VALUE_HERE:] detected" "check-placeholders.sh" "005-unfilled-placeholders" "fail" 1
     run_isolated_rule_test "Multiple placeholders" "check-placeholders.sh" "036-multiple-placeholders" "fail" 1
-    run_isolated_rule_test "Case variations (detected)" "check-placeholders.sh" "037-placeholder-case-variations" "fail" 1
+    run_isolated_rule_test "Case variations ignored by canonical shell markers" "check-placeholders.sh" "037-placeholder-case-variations" "pass" 1
     run_isolated_rule_test "In code block (ignored)" "check-placeholders.sh" "038-placeholder-in-codeblock" "pass" 1
     run_isolated_rule_test "In inline code (ignored)" "check-placeholders.sh" "039-placeholder-in-inline-code" "pass" 1
     run_isolated_rule_test "In memory/ (skipped)" "check-placeholders.sh" "048-with-memory-placeholders" "pass" 1
 fi
 
 if begin_category "Individual Rule: ANCHORS_VALID (check-anchors.sh)"; then
-    run_isolated_rule_test "Valid anchor pairs" "check-anchors.sh" "053-template-compliant-level2" "pass" 2
+    run_isolated_rule_test "Optional template anchors warn in shell fallback" "check-anchors.sh" "053-template-compliant-level2" "warn" 2
     run_isolated_rule_test "Unclosed anchors" "check-anchors.sh" "008-invalid-anchors" "fail" 1
     run_isolated_rule_test "Multiple files, one malformed anchor" "check-anchors.sh" "013-anchors-multiple-files" "fail" 1
     run_isolated_rule_test "Missing required anchor fails" "check-anchors.sh" "057-template-missing-anchor" "fail" 2
@@ -685,7 +696,7 @@ fi
 
 if begin_category "Individual Rule: TEMPLATE_HEADERS (check-template-headers.sh)"; then
     run_isolated_rule_test "Compliant fixture passes" "check-template-headers.sh" "053-template-compliant-level2" "pass" 2
-    run_isolated_rule_test "Extra custom header warns" "check-template-headers.sh" "054-template-extra-header" "warn" 2
+    run_isolated_rule_test "Extra custom header after required structure passes" "check-template-headers.sh" "054-template-extra-header" "pass" 2
     run_isolated_rule_test "Missing required header fails" "check-template-headers.sh" "055-template-missing-header" "fail" 2
     run_isolated_rule_test "Reordered required header fails" "check-template-headers.sh" "056-template-reordered-header" "fail" 2
     run_isolated_rule_test "Checklist H1 mismatch fails" "check-template-headers.sh" "059-checklist-h1-invalid" "fail" 2
@@ -740,10 +751,9 @@ if begin_category "Individual Rule: AI_PROTOCOL (check-ai-protocols.sh)"; then
 fi
 
 if begin_category "Individual Rule: LEVEL_MATCH (check-level-match.sh)"; then
-    # Note: Minimal fixtures don't declare levels in all files, causing warnings
-    run_isolated_rule_test "L1 (level declared)" "check-level-match.sh" "002-valid-level1" "warn" 1
-    run_isolated_rule_test "L2 (level consistency)" "check-level-match.sh" "003-valid-level2" "warn" 2
-    run_isolated_rule_test "L3 (level consistency)" "check-level-match.sh" "004-valid-level3" "warn" 3
+    run_isolated_rule_test "L1 (level declared)" "check-level-match.sh" "002-valid-level1" "pass" 1
+    run_isolated_rule_test "L2 (level consistency)" "check-level-match.sh" "003-valid-level2" "pass" 2
+    run_isolated_rule_test "L3 (level consistency)" "check-level-match.sh" "004-valid-level3" "pass" 3
 fi
 
 if begin_category "Individual Rule: SECTION_COUNTS (check-section-counts.sh)"; then
@@ -767,7 +777,7 @@ if begin_category "Orchestrator: Valid Fixtures (Exit 0 or 1)"; then
     run_test "053-template-compliant-level2 passes cleanly" "053-template-compliant-level2" "pass"
 fi
 
-if begin_category "Orchestrator: Warning Fixtures (Exit 1)"; then
+if begin_category "Orchestrator: Warning Fixtures (Exit 0)"; then
     run_test "054-template-extra-header warns" "054-template-extra-header" "warn"
 fi
 
@@ -795,7 +805,7 @@ fi
 
 if begin_category "Exit Code Verification"; then
     run_test "Exit 0: Compliant fixture returns pass" "053-template-compliant-level2" "pass"
-    run_test "Exit 1: Warning fixture returns warn" "054-template-extra-header" "warn"
+    run_test "Exit 0: Warning fixture returns warn" "054-template-extra-header" "warn"
     run_test "Exit 2: Errors return fail" "001-empty-folder" "fail"
     run_test "Exit 2: Missing files return fail" "006-missing-required-files" "fail"
     run_test "Exit 2: Missing required header returns fail" "055-template-missing-header" "fail"

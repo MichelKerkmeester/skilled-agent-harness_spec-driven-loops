@@ -1338,8 +1338,9 @@ async function testJsonOutputMode() {
       return;
     }
 
-    // Test required JSON fields
-    const requiredFields = ['version', 'folder', 'passed', 'results', 'summary'];
+    // Test required JSON fields (current contract: entries replaced the old
+    // version/results pair while this suite was unrunnable under ESM).
+    const requiredFields = ['folder', 'level', 'passed', 'entries', 'summary'];
     const missingFields = requiredFields.filter(f => !(f in parsedJson));
 
     if (missingFields.length === 0) {
@@ -1348,23 +1349,16 @@ async function testJsonOutputMode() {
       fail('JSON has required fields', `Missing: ${missingFields.join(', ')}`);
     }
 
-    // Test JSON field types
-    if (typeof parsedJson.version === 'string') {
-      pass('JSON version is string', parsedJson.version);
-    } else {
-      fail('JSON version is string', `Type: ${typeof parsedJson.version}`);
-    }
-
     if (typeof parsedJson.passed === 'boolean') {
       pass('JSON passed is boolean', String(parsedJson.passed));
     } else {
       fail('JSON passed is boolean', `Type: ${typeof parsedJson.passed}`);
     }
 
-    if (Array.isArray(parsedJson.results)) {
-      pass('JSON results is array', `${parsedJson.results.length} results`);
+    if (Array.isArray(parsedJson.entries)) {
+      pass('JSON entries is array', `${parsedJson.entries.length} entries`);
     } else {
-      fail('JSON results is array', `Type: ${typeof parsedJson.results}`);
+      fail('JSON entries is array', `Type: ${typeof parsedJson.entries}`);
     }
 
     if (typeof parsedJson.summary === 'object') {

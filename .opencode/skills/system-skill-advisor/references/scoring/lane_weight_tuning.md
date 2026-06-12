@@ -83,7 +83,7 @@ This harness exercises each lane weight individually across a small grid plus re
 
 **Step 3: Make the change.**
 
-Edit `mcp_server/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`. The scorer can read `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` in a direct child process, but the normal launcher path strips that env var today because it is not present in `CHILD_ENV_ALLOWLIST`; do not rely on it for daemon tuning without changing the launcher allowlist.
+Edit `mcp_server/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`. For experiments, `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher and read by `lane-registry.ts`; it requires a daemon restart to apply and suits short-lived experiments only — durable tuning stays a source edit shipped with measured evidence.
 
 **Step 4: Capture the comparison.**
 

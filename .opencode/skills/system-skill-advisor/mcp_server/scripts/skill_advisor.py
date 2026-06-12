@@ -1581,7 +1581,7 @@ MULTI_SKILL_BOOSTERS = {
 # NOTE: INTENT_BOOSTERS only matches single-word tokens after
 # `all_tokens = re.findall(r'\b\w+\b', prompt_lower)` tokenizes the raw prompt.
 # PHRASE_INTENT_BOOSTERS matches multi-word phrases against the raw prompt text
-# before tokenization via `if phrase in prompt_lower`.
+# before tokenization while rejecting embedded alphanumeric substrings.
 # NEVER add keys containing spaces or hyphens to INTENT_BOOSTERS - the tokenizer
 # splits them, making those keys unreachable at runtime.
 # When in doubt, if the key has any whitespace OR hyphen, use
@@ -2003,10 +2003,10 @@ def _build_variants(skill_name: str) -> Set[str]:
 
 
 def _matches_phrase_boundary(text: str, phrase: str) -> bool:
-    """Return True when a keyword phrase appears on token boundaries."""
+    """Return True when a phrase is not embedded inside an alphanumeric token."""
     if not phrase:
         return False
-    pattern = re.compile(rf"(?<!\w){re.escape(phrase)}(?!\w)")
+    pattern = re.compile(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])")
     return pattern.search(text) is not None
 
 
@@ -2215,7 +2215,10 @@ def apply_intent_normalization(
     token_set = set(tokens)
 
     for intent_name, config in INTENT_NORMALIZATION_RULES.items():
-        matched = any(phrase in prompt_lower for phrase in config["phrases"]) or bool(token_set.intersection(config["tokens"]))
+        matched = any(
+            _matches_phrase_boundary(prompt_lower, phrase)
+            for phrase in config["phrases"]
+        ) or bool(token_set.intersection(config["tokens"]))
         if not matched:
             continue
 
@@ -2828,6 +2831,8 @@ TASK_INTENT_RE = re.compile(
 # Uncertainty floor applied to every member of a low-information ambiguity
 # cluster: above the default strict threshold so strict callers abstain, but
 # below 1 so confidence-only callers still surface the best guess.
+AMBIGUITY_MARGIN = 0.05
+AMBIGUITY_CONFIDENCE_MARGIN = 0.05
 LOW_INFO_AMBIGUITY_UNCERTAINTY_FLOOR = 0.42
 
 # Minimum share of the winner's matches that must be ambiguous multi-skill
@@ -2970,7 +2975,7 @@ def _apply_low_info_ambiguity_abstention(
     """Floor the uncertainty of a low-information ambiguity cluster (TS parity).
 
     A short, intent-less prompt that lands in a multi-candidate cluster (two or
-    more confidence-passing candidates within the ambiguity margin) is
+    more confidence-passing candidates within either ambiguity margin) is
     under-specified. Flooring uncertainty above the strict threshold makes
     strict callers abstain while confidence-only callers still surface the
     top-ranked best guess.
@@ -2980,14 +2985,31 @@ def _apply_low_info_ambiguity_abstention(
     meaningful = [token for token in re.findall(r"\b\w+\b", prompt_lower) if len(token) > 1]
     if len(meaningful) > 3 or TASK_INTENT_RE.search(prompt_lower) or "/" in prompt_lower:
         return
+    # Confidence-only membership on purpose: a candidate whose uncertainty
+    # already fails the strict threshold still belongs in the cluster — it is
+    # exactly the near-tie evidence that makes the prompt under-specified.
     passing_conf = [
         rec for rec in recommendations
         if float(rec.get("confidence", 0.0)) >= DEFAULT_CONFIDENCE_THRESHOLD
     ]
     if len(passing_conf) < 2:
         return
-    top_conf = max(float(rec["confidence"]) for rec in passing_conf)
-    cluster = [rec for rec in passing_conf if top_conf - float(rec["confidence"]) <= 0.05 + 1e-9]
+    # Confidence keys the top selection: the final ranking surfaces the
+    # highest-confidence passing candidate, so the abstention decision must
+    # judge that same candidate's match quality.
+    top = max(passing_conf, key=lambda rec: float(rec.get("confidence", 0.0)))
+    top_score = float(top.get("_score", 0.0))
+    top_confidence = float(top.get("confidence", 0.0))
+    # Union of the score-margin and confidence-margin clusters, mirroring the
+    # native scorer: a candidate is ambiguous when EITHER gap sits inside its
+    # margin; only "outside both margins" counts as unambiguously ranked.
+    cluster = [
+        rec for rec in passing_conf
+        if abs(top_score - float(rec.get("_score", 0.0)))
+        <= AMBIGUITY_MARGIN + sys.float_info.epsilon
+        or abs(top_confidence - float(rec.get("confidence", 0.0)))
+        <= AMBIGUITY_CONFIDENCE_MARGIN + sys.float_info.epsilon
+    ]
     if len(cluster) < 2:
         return
     # Only abstain when the winner's lead is built from ambiguous multi-skill
@@ -3194,7 +3216,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
                 boost_reasons[skill].append(f"!{token}(multi)")
 
     for phrase, boosts in PHRASE_INTENT_BOOSTERS.items():
-        if phrase in prompt_lower:
+        if _matches_phrase_boundary(prompt_lower, phrase):
             for skill, boost in boosts:
                 skill_boosts[skill] = skill_boosts.get(skill, 0) + boost
                 if skill not in boost_reasons:
@@ -3246,7 +3268,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # This protects routing in mixed prompts that also contain broad terms like "opencode".
     for skill_name, config in skills.items():
         variants = set(config.get("variants", set())) or _build_variants(skill_name)
-        matched_variants = sorted({v for v in variants if v in prompt_lower})
+        matched_variants = sorted({v for v in variants if _matches_phrase_boundary(prompt_lower, v)})
         if not matched_variants:
             continue
 

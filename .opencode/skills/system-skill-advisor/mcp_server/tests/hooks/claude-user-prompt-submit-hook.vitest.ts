@@ -7,6 +7,7 @@ import { performance } from 'node:perf_hooks';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  DEFAULT_CLAUDE_HOOK_TIMEOUT_MS,
   handleClaudeUserPromptSubmit,
   parseClaudeUserPromptSubmitInput,
   type ClaudeUserPromptSubmitInput,
@@ -68,6 +69,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(buildBrief).toHaveBeenCalledWith('implement a TypeScript hook', {
       runtime: 'claude',
       workspaceRoot: '/workspace/project',
+      subprocessTimeoutMs: DEFAULT_CLAUDE_HOOK_TIMEOUT_MS,
     });
     expect(diagnostics.records).toHaveLength(1);
     const diagnostic = parseDiagnostic(diagnostics.records[0] ?? '{}');

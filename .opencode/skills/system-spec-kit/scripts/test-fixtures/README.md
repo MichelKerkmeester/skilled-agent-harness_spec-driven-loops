@@ -63,7 +63,7 @@ Category map:
 
 | Category | Representative fixtures |
 | --- | --- |
-| Valid baselines | `002-valid-level1`, `003-valid-level2` |
+| Valid baselines | `002-valid-level1`, `003-valid-level2`, `004-valid-level3` |
 | Anchors | `007-valid-anchors`, `008-invalid-anchors` |
 | Evidence | `010-valid-evidence`, `031-missing-evidence` |
 | Priorities | `009-valid-priority-tags`, `021-invalid-priority-tags` |
@@ -78,9 +78,9 @@ Run from the repository root:
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  test-fixtures/002-valid-level1
+  .opencode/skills/system-spec-kit/scripts/test-fixtures/002-valid-level1
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  test-fixtures/007-valid-anchors
+  .opencode/skills/system-spec-kit/scripts/test-fixtures/007-valid-anchors
 bash .opencode/skills/system-spec-kit/scripts/tests/test-validation.sh
 ```
 
@@ -96,7 +96,7 @@ Use repository-root commands:
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/tests/test-validation.sh
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  test-fixtures/002-valid-level1 --strict
+  .opencode/skills/system-spec-kit/scripts/test-fixtures/002-valid-level1 --strict
 ```
 
 Expected behavior: the full fixture suite reports the configured pass/fail
