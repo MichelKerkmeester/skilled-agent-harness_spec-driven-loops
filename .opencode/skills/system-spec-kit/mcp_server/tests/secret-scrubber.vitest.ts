@@ -78,7 +78,11 @@ describe('secret scrubber', () => {
     });
 
     it('redacts Slack tokens', () => {
-      const result = scrubSecretsDetailed('xoxb-123456789012-abcdefABCDEF123456');
+      // Constructed at runtime so the source never contains a contiguous
+      // token-shaped literal — GitHub push protection flags the literal
+      // form even in test fixtures.
+      const planted = ['xoxb', '123456789012', 'abcdefABCDEF123456'].join('-');
+      const result = scrubSecretsDetailed(planted);
       expect(result.text).toBe('[REDACTED:slack-token]');
     });
 
