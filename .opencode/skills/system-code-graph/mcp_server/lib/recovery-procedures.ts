@@ -23,6 +23,32 @@ export interface RecoveryProcedureOptions {
   auditDir?: string;
   now?: () => Date;
   scan?: ScanFunction;
+  /**
+   * Known-good snapshot directories that must NOT be selected as a rollback
+   * restore target — above all the snapshot taken at the start of the
+   * current run. Without this exclusion a rollback restores the snapshot it
+   * just created from the very state being rolled back: a no-op restore of
+   * the suspect database.
+   */
+  excludeKnownGoodDirs?: string[];
+}
+
+export interface PruneApplyArtifactsOptions {
+  dbDir?: string;
+  auditDir?: string;
+  now?: () => Date;
+  /** Newest known-good snapshots to keep. */
+  keepKnownGood?: number;
+  /** Age threshold for quarantine/recovery/bad-apply directories. */
+  maxAgeDays?: number;
+  /** Directories that must never be pruned (e.g. the current run's snapshot). */
+  protectDirs?: string[];
+}
+
+export interface PruneApplyArtifactsResult {
+  prunedDirs: string[];
+  keptKnownGoodDirs: string[];
+  errors: string[];
 }
 
 export interface RecoveryProcedureResult {
@@ -132,7 +158,7 @@ function runIntegrityCheck(sqlitePath: string): string {
   }
 }
 
-function findLatestKnownGood(dbDir: string, auditDir: string): string | null {
+function listKnownGoodDirs(dbDir: string, auditDir: string): string[] {
   const roots = [auditDir, dbDir];
   const candidates: string[] = [];
   for (const root of roots) {
@@ -145,7 +171,25 @@ function findLatestKnownGood(dbDir: string, auditDir: string): string | null {
       }
     }
   }
-  return candidates.sort().at(-1) ?? null;
+  return candidates.sort();
+}
+
+function findLatestKnownGood(dbDir: string, auditDir: string, excludeDirs: string[] = []): string | null {
+  const excluded = new Set(excludeDirs.map((dir) => resolve(dir)));
+  return listKnownGoodDirs(dbDir, auditDir)
+    .filter((candidate) => !excluded.has(resolve(candidate)))
+    .at(-1) ?? null;
+}
+
+/**
+ * Resolves the directory a rollback WOULD restore, without mutating
+ * anything. Uses the same selection logic as the live rollback so a
+ * dry-run preview can never name a different target than the real run.
+ */
+export function previewRollbackTarget(options: RecoveryProcedureOptions = {}): string | null {
+  const dbDir = resolveDbDir(options.dbDir);
+  const auditDir = resolve(options.auditDir ?? join(dbDir, 'apply-audit'));
+  return findLatestKnownGood(dbDir, auditDir, options.excludeKnownGoodDirs ?? []);
 }
 
 export function snapshotKnownGoodTriplet(options: RecoveryProcedureOptions = {}): string {
@@ -261,7 +305,7 @@ export async function rollbackBadApply(
   try {
     closeDb();
     moveTriplet(dbDir, quarantineDir);
-    knownGoodDir = findLatestKnownGood(dbDir, auditDir);
+    knownGoodDir = findLatestKnownGood(dbDir, auditDir, options.excludeKnownGoodDirs ?? []);
     if (knownGoodDir) {
       assertInside(dbDir, knownGoodDir);
       restored = restoreTriplet(knownGoodDir, dbDir) > 0;
@@ -309,4 +353,91 @@ export async function rollbackBadApply(
 export function relativizeRecoveryPath(path: string, root: string = process.cwd()): string {
   const rel = relative(root, path);
   return rel.startsWith('..') ? path : rel;
+}
+
+function artifactDirAgeMs(dirPath: string, now: () => Date): number | null {
+  // Artifact directories embed their creation time in the name
+  // (e.g. bad-apply-2026-06-11T19-18-17-464Z); parse it back by undoing the
+  // timestamp() substitution. Unparseable names report null and are kept —
+  // retention must fail open, never delete what it cannot date.
+  const match = basename(dirPath).match(/(\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}-\d{3}Z)$/);
+  if (!match) {
+    return null;
+  }
+  const iso = match[1].replace(/T(\d{2})-(\d{2})-(\d{2})-(\d{3})Z$/, 'T$1:$2:$3.$4Z');
+  const created = Date.parse(iso);
+  if (!Number.isFinite(created)) {
+    return null;
+  }
+  return now().getTime() - created;
+}
+
+/**
+ * Best-effort retention for apply-pipeline artifacts. Disk evidence showed
+ * snapshot/quarantine/recovery directories amplifying to several times the
+ * live database with no pruning anywhere. Safety rules: protected
+ * directories are never touched (the current run's snapshot above all), the
+ * newest known-good snapshots are always kept, only age-dated directories
+ * are pruned, and every failure is collected instead of thrown — retention
+ * must never break the apply that triggered it.
+ */
+export function pruneApplyArtifacts(options: PruneApplyArtifactsOptions = {}): PruneApplyArtifactsResult {
+  const dbDir = resolveDbDir(options.dbDir);
+  const auditDir = resolve(options.auditDir ?? join(dbDir, 'apply-audit'));
+  const now = options.now ?? (() => new Date());
+  const keepKnownGood = Math.max(1, options.keepKnownGood ?? 3);
+  const maxAgeMs = Math.max(1, options.maxAgeDays ?? 14) * 24 * 60 * 60 * 1000;
+  const protectedDirs = new Set((options.protectDirs ?? []).map((dir) => resolve(dir)));
+  const prunedDirs: string[] = [];
+  const errors: string[] = [];
+
+  const removeDir = (dirPath: string): void => {
+    if (protectedDirs.has(resolve(dirPath))) {
+      return;
+    }
+    try {
+      rmSync(dirPath, { recursive: true, force: true });
+      prunedDirs.push(dirPath);
+    } catch (error) {
+      errors.push(`prune failed for ${dirPath}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  };
+
+  const knownGood = listKnownGoodDirs(dbDir, auditDir);
+  const keptKnownGoodDirs = knownGood.slice(-keepKnownGood);
+  const keepSet = new Set(keptKnownGoodDirs.map((dir) => resolve(dir)));
+  for (const dir of knownGood) {
+    if (!keepSet.has(resolve(dir))) {
+      removeDir(dir);
+    }
+  }
+
+  const ageScan: Array<{ root: string; prefixes: string[] }> = [
+    { root: auditDir, prefixes: ['bad-apply-'] },
+    { root: dbDir, prefixes: ['recovery-', 'quarantine-'] },
+  ];
+  for (const { root, prefixes } of ageScan) {
+    if (!existsSync(root)) {
+      continue;
+    }
+    let entries;
+    try {
+      entries = readdirSync(root, { withFileTypes: true });
+    } catch (error) {
+      errors.push(`prune scan failed for ${root}: ${error instanceof Error ? error.message : String(error)}`);
+      continue;
+    }
+    for (const entry of entries) {
+      if (!entry.isDirectory() || !prefixes.some((prefix) => entry.name.startsWith(prefix))) {
+        continue;
+      }
+      const dirPath = join(root, entry.name);
+      const ageMs = artifactDirAgeMs(dirPath, now);
+      if (ageMs !== null && ageMs > maxAgeMs) {
+        removeDir(dirPath);
+      }
+    }
+  }
+
+  return { prunedDirs, keptKnownGoodDirs, errors };
 }
