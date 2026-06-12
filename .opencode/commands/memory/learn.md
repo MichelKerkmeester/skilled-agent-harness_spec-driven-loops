@@ -51,7 +51,17 @@ Outputs:
 - For removal, validate filename is basename-only and wait for explicit confirmation.
 - Do not create or modify workflow YAML from this command.
 
-## 5. RELATED COMMANDS
+## 5. PRESENTATION BOUNDARY
+
+The following content lives only in `.opencode/commands/memory/assets/learn_presentation.md`:
+
+- Overview, list, budget, create, edit, remove, confirmation, and result displays.
+- Constitutional-rule qualification prompts, approval wording, cancellation wording, and error displays.
+- Visibility verification, token-budget, and next-step text.
+
+The router must not invent visible wording for those surfaces; it only resolves the operation and required safety gates.
+
+## 6. RELATED COMMANDS
 
 - `/memory:search`: Intent-aware context retrieval and analysis tools.
 - `/memory:save`: Save conversation context.

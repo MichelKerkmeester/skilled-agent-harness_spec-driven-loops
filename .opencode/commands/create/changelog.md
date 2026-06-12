@@ -34,4 +34,12 @@ This command is a thin router. It separates execution routing from user-facing p
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
+## Presentation Boundary
+
+The following content lives only in `.opencode/commands/create/assets/create_changelog_presentation.md`:
+
+- Startup questions, Phase 0 verification, setup dashboard, release prompt layout, status display, completion display, and next-step text.
+
+The router must not invent visible wording for those surfaces; it only selects the workflow YAML and execution mode.
+
 User request: {{args}}

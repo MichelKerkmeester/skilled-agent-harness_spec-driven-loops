@@ -62,7 +62,17 @@ On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list t
 - Protected tiers require the confirmation gates described in the presentation asset.
 - Do not create or modify workflow YAML from this command.
 
-## 5. RELATED COMMANDS
+## 5. PRESENTATION BOUNDARY
+
+The following content lives only in `.opencode/commands/memory/assets/manage_presentation.md`:
+
+- Stats, scan, cleanup, retention, bulk-delete, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays.
+- Confirmation prompts, protected-tier gates, dashboard layouts, result envelopes, and next-step text.
+- Valid-mode menu wording for unknown-mode recovery.
+
+The router must not invent visible wording for those surfaces; it only resolves mode, tooling, and confirmation requirements.
+
+## 6. RELATED COMMANDS
 
 - `/memory:search`: Intent-aware context retrieval and analysis tools.
 - `/memory:save`: Save conversation context.

@@ -88,6 +88,18 @@ The adapter (`scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`) validates th
 - The packaging's `_loop/state/loop-journal.jsonl` — append-only run journal (per-sample grades, promotion decisions, canonical stop reasons).
 - On `promote_accept`: the candidate edit lives in a **kept worktree (detached at the candidate state)** for deliberate operator merge — the loop never writes the live tree.
 
+## Presentation Boundary
+
+The following router-owned display must render verbatim when triggered:
+
+- Phase 0 general-agent-required failure block and `STATUS=FAIL ERROR="General agent required"`.
+- Setup blocked-state wording, resolved-input confirmation, and missing-input failure summary.
+
+The following content must not come from this router:
+
+- Loop-host progress, grades, promotion decisions, kill-switch details, journal rows, candidate worktree details, and final benchmark/refinement report wording.
+- Packaging-owned fixture, variant, held-out sample, and operator-guide descriptions beyond the setup fields named here.
+
 Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure, new floor breach, held-out regression (or below `LOOP_ACCEPT_MARGIN`), iteration ceiling, concurrent-run lock.
 
 ## Scope (current)

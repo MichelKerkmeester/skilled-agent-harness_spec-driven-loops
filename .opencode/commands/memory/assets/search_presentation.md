@@ -2,6 +2,16 @@
 
 Single source of truth for `/memory:search` startup questions, analysis dashboards, and result displays.
 
+## Template Index
+
+Start with the matching render contract before drafting any response:
+
+- Retrieval results: Section 2, `MEMORY:SEARCH "<query>" ... STATUS=OK RESULTS=<count>`.
+- Empty results: Section 3, trigger fallback and constitutional rows.
+- Analysis overview: Section 5.
+- Analysis subcommands: Section 6.
+- Errors: Section 7.
+
 ## 1. Startup Question Policy
 
 When `$ARGUMENTS` is empty, ask one open-ended question:

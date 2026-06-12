@@ -85,6 +85,18 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
 - `skill-benchmark-report.json` — machine report (verdict, D1–D5, funnel, ranked bottlenecks, scenario rows).
 - `skill-benchmark-report.md` — rendered FROM the JSON (anti-drift).
 
+## Presentation Boundary
+
+The following router-owned display must render verbatim when triggered:
+
+- Phase 0 general-agent-required failure block and `STATUS=FAIL ERROR="General agent required"`.
+- Setup blocked-state wording, resolved-input confirmation, and missing-input failure summary.
+
+The following content must not come from this router:
+
+- Loop-host progress, benchmark scores, verdicts, ranked bottlenecks, scenario rows, report wording, and remediation details.
+- Skill-owned fixture, playbook, live-routing, advisor, and browser-scenario descriptions beyond the setup fields named here.
+
 Lane C is **diagnostic by default** (no target-skill mutation). Findings hand off to Lane A (`/deep:start-agent-improvement-loop`) or a follow-up spec packet via the remediation taxonomy.
 
 ## Scope (current)

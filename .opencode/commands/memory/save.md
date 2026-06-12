@@ -46,7 +46,17 @@ Outputs:
 - Do not create or modify workflow YAML from this command.
 - Use `/memory:manage retention-sweep` for retention cleanup.
 
-## 5. TOOL MAP
+## 5. PRESENTATION BOUNDARY
+
+The following content lives only in `.opencode/commands/memory/assets/save_presentation.md`:
+
+- Startup questions and active spec-folder resolution prompts.
+- Save plan, dashboard, approval, result-envelope, and error displays.
+- Trigger-edit display, quality-review guidance, follow-up actions, and next-step text.
+
+The router must not invent visible wording for those surfaces; it only resolves routing and tooling.
+
+## 6. TOOL MAP
 
 | Need | Tool or Script |
 | --- | --- |
@@ -55,7 +65,7 @@ Outputs:
 | Single-file indexing fallback | `mcp__mk_spec_memory__memory_save` |
 | Trigger phrase correction | `mcp__mk_spec_memory__memory_update` |
 
-## 6. RELATED COMMANDS
+## 7. RELATED COMMANDS
 
 - `/memory:search`: Intent-aware context retrieval and analysis tools.
 - `/memory:manage`: Database management, checkpoints, ingest, retention, and health.
