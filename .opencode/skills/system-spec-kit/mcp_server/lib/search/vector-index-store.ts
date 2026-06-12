@@ -1734,6 +1734,8 @@ type PreparedStatements = {
     string,
     string,
     string,
+    string,
+    string,
     string | null,
     string | null,
     string | null,
@@ -1776,12 +1778,21 @@ export function init_prepared_statements(database: Database.Database): PreparedS
       JOIN active_memory_projection p ON p.active_memory_id = m.id
       WHERE m.file_path = ?
     `),
+    // No projection join here: the logical-key unique index spans every
+    // non-constitutional/deprecated row, so any row in its domain must be
+    // visible to this dedup lookup. A row that fell out of the active
+    // projection (e.g. after a file move) would otherwise be invisible yet
+    // still block the insert with a unique-constraint error. The third path
+    // term mirrors the index's key expression for the same reason.
     get_by_folder_and_path: database.prepare(`
       SELECT m.id
       FROM memory_index m
-      JOIN active_memory_projection p ON p.active_memory_id = m.id
       WHERE m.spec_folder = ?
-        AND (m.canonical_file_path = ? OR m.file_path = ?)
+        AND (
+          m.canonical_file_path = ?
+          OR m.file_path = ?
+          OR COALESCE(NULLIF(m.canonical_file_path, ''), m.file_path) = COALESCE(NULLIF(?, ''), ?)
+        )
         AND COALESCE(NULLIF(TRIM(m.anchor_id), ''), '_') = COALESCE(NULLIF(TRIM(?), ''), '_')
         AND COALESCE(m.tenant_id,'') = COALESCE(?, '')
         AND COALESCE(m.user_id,'') = COALESCE(?, '')

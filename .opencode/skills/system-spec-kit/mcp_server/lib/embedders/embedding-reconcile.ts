@@ -206,17 +206,49 @@ function emptyBuckets(): ReconcileBuckets {
 }
 
 /**
+ * The vec0 virtual table is the surface KNN queries actually read. Its shadow
+ * tables (vec_memories_rowids et al.) can survive a partial write while the
+ * virtual table itself cannot answer for the row — judging presence by the
+ * shadow alone would mark such rows "present" even though vector search can
+ * never return them. Probe queryability per connection: sqlite-vec may not be
+ * loaded everywhere, and presence checks must degrade to the shadow tables
+ * rather than throw "no such module".
+ */
+function vecVirtualTableQueryable(database: Database.Database): boolean {
+  try {
+    database.prepare(`SELECT rowid FROM ${ACTIVE_SCHEMA}.vec_memories LIMIT 1`).get();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function vec0PresentTerm(alias: string, includeVec0: boolean): string {
+  return includeVec0
+    ? `AND EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories vm WHERE vm.rowid = ${alias}.id)`
+    : '';
+}
+
+function vec0MissingTerm(alias: string, includeVec0: boolean): string {
+  return includeVec0
+    ? `OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories vm WHERE vm.rowid = ${alias}.id)`
+    : '';
+}
+
+/**
  * Count the four dry-run buckets. `dimTable` is a validated `vec_<int>` name
  * (interpolated only after the dim is confirmed to be a positive integer and
  * the table exists), so interpolation here is safe.
  */
-function computeBuckets(database: Database.Database, dimTable: string): ReconcileBuckets {
+function computeBuckets(database: Database.Database, dimTable: string, includeVec0: boolean): ReconcileBuckets {
   const presentPredicate = `
     EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id)
-    AND EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = m.id)`;
+    AND EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = m.id)
+    ${vec0PresentTerm('m', includeVec0)}`;
   const missingPredicate = `
     NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id)
-    OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = m.id)`;
+    OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = m.id)
+    ${vec0MissingTerm('m', includeVec0)}`;
 
   const staleRows = database.prepare(`
     SELECT m.embedding_status AS status, COUNT(*) AS n
@@ -283,13 +315,14 @@ function computeBuckets(database: Database.Database, dimTable: string): Reconcil
  * the active-dim vector row is absent; both surfaces are checked so this dry-run
  * count predicts exactly what the apply repair UPDATE will mutate.
  */
-function computeSuccessCoverage(database: Database.Database, dimTable: string): number {
+function computeSuccessCoverage(database: Database.Database, dimTable: string, includeVec0: boolean): number {
   return (database.prepare(`
     SELECT COUNT(*) AS n FROM memory_index m
     WHERE m.embedding_status = 'success'
       AND (
         NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id)
         OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = m.id)
+        ${vec0MissingTerm('m', includeVec0)}
       )
   `).get() as { n: number }).n;
 }
@@ -360,8 +393,12 @@ export function runMemoryEmbeddingReconcile(
   }
 
   const dimTable = verification.dimTable;
-  const buckets = computeBuckets(database, dimTable);
-  const coverage: ReconcileCoverage = { successMissingActiveVector: computeSuccessCoverage(database, dimTable) };
+  const vec0Active = vecVirtualTableQueryable(database);
+  safety.vectorPresenceSource = vec0Active
+    ? 'vec_memories+vec_memories_rowids'
+    : 'vec_memories_rowids';
+  const buckets = computeBuckets(database, dimTable, vec0Active);
+  const coverage: ReconcileCoverage = { successMissingActiveVector: computeSuccessCoverage(database, dimTable, vec0Active) };
   const plannedMutations: ReconcilePlannedMutation[] = [
     { name: 'reconcile_vector_present_to_success', rows: buckets.vector_present_status_stale.count },
     { name: 'reset_missing_active_vector_to_retry_eligible', rows: resetMissing ? buckets.missing_active_vector_retry_eligible.count : 0 },
@@ -388,6 +425,7 @@ export function runMemoryEmbeddingReconcile(
       WHERE embedding_status IN ('failed', 'pending', 'retry')
         AND EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = memory_index.id)
         AND EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = memory_index.id)
+        ${vec0PresentTerm('memory_index', vec0Active)}
     `).run();
     applied.reconciledToSuccess = reconcile.changes;
 
@@ -409,6 +447,7 @@ export function runMemoryEmbeddingReconcile(
           AND (
             NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = memory_index.id)
             OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = memory_index.id)
+            ${vec0MissingTerm('memory_index', vec0Active)}
           )
       `).run();
       applied.resetToRetry = reset.changes;
@@ -426,6 +465,7 @@ export function runMemoryEmbeddingReconcile(
           AND (
             NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = memory_index.id)
             OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = memory_index.id)
+            ${vec0MissingTerm('memory_index', vec0Active)}
           )
       `).run();
       applied.successCoverageReset = repair.changes;
@@ -434,8 +474,8 @@ export function runMemoryEmbeddingReconcile(
   reconcileTx.immediate();
 
   // Recompute buckets + coverage post-apply so the response reflects the converged state.
-  const postBuckets = computeBuckets(database, dimTable);
-  const postCoverage: ReconcileCoverage = { successMissingActiveVector: computeSuccessCoverage(database, dimTable) };
+  const postBuckets = computeBuckets(database, dimTable, vec0Active);
+  const postCoverage: ReconcileCoverage = { successMissingActiveVector: computeSuccessCoverage(database, dimTable, vec0Active) };
   return {
     mode,
     activeEmbedder,

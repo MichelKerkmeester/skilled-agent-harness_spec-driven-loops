@@ -243,6 +243,9 @@ type IndexMemoryDeferredParams = Omit<IndexMemoryParams, 'embedding'> & {
 };
 type UpdateMemoryParams = Readonly<SharedUpdateMemoryParams> & {
   readonly canonicalFilePath?: string;
+  // Set when the row's document now lives at a new on-disk location, so a
+  // moved file repoints its existing row instead of leaving a stale path.
+  readonly filePath?: string;
 };
 
 type NormalizedMemoryScope = {
@@ -323,6 +326,8 @@ export function index_memory(
         specFolder,
         canonicalFilePath,
         filePath,
+        canonicalFilePath,
+        filePath,
         anchorId,
         scope.tenant_id,
         scope.user_id,
@@ -344,6 +349,7 @@ export function index_memory(
       qualityScore,
       qualityFlags,
       canonicalFilePath,
+      filePath,
     }, database);
   }
 
@@ -425,6 +431,8 @@ export function index_memory_deferred(
         specFolder,
         canonicalFilePath,
         filePath,
+        canonicalFilePath,
+        filePath,
         anchorId,
         scope.tenant_id,
         scope.user_id,
@@ -439,6 +447,7 @@ export function index_memory_deferred(
         SET title = ?,
             trigger_phrases = ?,
             importance_weight = ?,
+            file_path = ?,
             canonical_file_path = ?,
             embedding_status = 'pending',
             failure_reason = ?,
@@ -452,7 +461,7 @@ export function index_memory_deferred(
             retry_count = 0,
             last_retry_at = NULL
         WHERE id = ?
-      `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
+      `).run(title, triggers_json, importanceWeight, filePath, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
       upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, existing.id, now, scope);
       refresh_interference_scores_for_folder(database, specFolder);
       return existing.id;
@@ -505,6 +514,7 @@ export function update_memory(
     importanceTier,
     embedding,
     canonicalFilePath,
+    filePath,
     encodingIntent,
     documentType,
     specLevel,
@@ -586,6 +596,10 @@ export function update_memory(
     if (canonicalFilePath !== undefined) {
       updates.push('canonical_file_path = ?');
       values.push(canonicalFilePath);
+    }
+    if (filePath !== undefined) {
+      updates.push('file_path = ?');
+      values.push(filePath);
     }
     if (encodingIntent !== undefined) {
       updates.push('encoding_intent = ?');

@@ -272,3 +272,64 @@ describe('memory_embedding_reconcile', () => {
     expect(secondDry.buckets.missing_active_vector_retry_eligible.count).toBe(0);
   });
 });
+
+// The vec0 virtual table is the surface KNN reads; its shadow tables can
+// survive a partial write the virtual table cannot answer for. When a table
+// named vec_memories is queryable on the shard, presence must require it —
+// otherwise rows invisible to vector search are judged "present" forever.
+describe('memory_embedding_reconcile vec0 presence surface', () => {
+  let db: Database.Database;
+  let dir: string;
+
+  afterEach(() => {
+    try { db?.close(); } catch { /* already closed */ }
+    if (dir) fs.rmSync(dir, { recursive: true, force: true });
+  });
+
+  function addVec0Table(database: Database.Database): void {
+    database.exec('CREATE TABLE active_vec.vec_memories (rowid INTEGER PRIMARY KEY)');
+  }
+
+  function markQueryable(database: Database.Database, id: number): void {
+    database.prepare('INSERT INTO active_vec.vec_memories (rowid) VALUES (?)').run(id);
+  }
+
+  it('reports the combined presence source when vec_memories is queryable', () => {
+    ({ db, dir } = createFixture());
+    addVec0Table(db);
+    const result = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
+    expect(result.safety.vectorPresenceSource).toBe('vec_memories+vec_memories_rowids');
+  });
+
+  it('treats shadow-present but vec0-absent success rows as missing and repairs them to retry', () => {
+    ({ db, dir } = createFixture());
+    addVec0Table(db);
+    // Row 1: complete on every surface — stays success.
+    addRow(db, { id: 1, status: 'success', hasVector: true });
+    markQueryable(db, 1);
+    // Row 2: shadow + dim rows exist but the vec0 surface cannot answer —
+    // the partial-write shape that previously stayed "present" forever.
+    addRow(db, { id: 2, status: 'success', hasVector: true });
+
+    const dry = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
+    expect(dry.coverage?.successMissingActiveVector).toBe(1);
+
+    const applied = runMemoryEmbeddingReconcile(db, { mode: 'apply', repairSuccessCoverage: true });
+    expect(applied.applied?.successCoverageReset).toBe(1);
+    expect(statusOf(db, 1).embedding_status).toBe('success');
+    expect(statusOf(db, 2).embedding_status).toBe('retry');
+  });
+
+  it('does not reconcile stale rows to success unless the vec0 surface can answer', () => {
+    ({ db, dir } = createFixture());
+    addVec0Table(db);
+    addRow(db, { id: 1, status: 'failed', hasVector: true });
+    markQueryable(db, 1);
+    addRow(db, { id: 2, status: 'failed', hasVector: true });
+
+    const applied = runMemoryEmbeddingReconcile(db, { mode: 'apply' });
+    expect(applied.applied?.reconciledToSuccess).toBe(1);
+    expect(statusOf(db, 1).embedding_status).toBe('success');
+    expect(statusOf(db, 2).embedding_status).toBe('failed');
+  });
+});
