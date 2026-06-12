@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/028-tri-system-deep-research"
     last_updated_at: "2026-06-12T00:55:00Z"
     last_updated_by: "orchestrator-session"
-    recent_action: "Scaffolded program; iterations pending dispatch"
-    next_safe_action: "Dispatch research iterations in pooled read-only seats"
+    recent_action: "50/50 iterations + 12-seat verification complete; registry synthesized"
+    next_safe_action: "Plan remediation lanes from the confirmed registry"
 ---
 # Implementation Summary
 
@@ -28,7 +28,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-tri-system-deep-research` |
-| **Completed** | In progress |
+| **Completed** | 2026-06-12 |
 | **Level** | 1 |
 
 <!-- /ANCHOR:metadata -->
@@ -76,8 +76,8 @@ The program was delivered by synthesizing the angles from everything the 027 epi
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| Strict validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/028-tri-system-deep-research --strict` |
-| Iteration completeness | Pending | 50/50 iteration reports with parseable findings |
+| Strict validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/028-tri-system-deep-research --strict` |
+| Iteration completeness | Pass | 50/50 reports; 103 P0/P1 claims adjudicated: 48 confirmed, 53 downgraded, 2 refuted |
 
 <!-- /ANCHOR:verification -->
 ---

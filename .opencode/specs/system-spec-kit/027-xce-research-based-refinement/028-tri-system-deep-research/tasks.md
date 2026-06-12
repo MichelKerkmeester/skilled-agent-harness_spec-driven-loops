@@ -50,10 +50,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Dispatch iterations 1-17: spec-kit substrate angles (`research/prompts/`, `research/iterations/`)
-- [ ] T005 [P] Dispatch iterations 18-36: remaining spec-kit and code-graph angles (`research/prompts/`, `research/iterations/`)
-- [ ] T006 [P] Dispatch iterations 37-50: advisor and cross-system angles (`research/prompts/`, `research/iterations/`)
-- [ ] T007 Persist deltas and state events per completed iteration (`research/deltas/`, `research/deep-research-state.jsonl`)
+- [x] T004 [P] Dispatch iterations 1-17: spec-kit substrate angles (`research/prompts/`, `research/iterations/`)
+- [x] T005 [P] Dispatch iterations 18-36: remaining spec-kit and code-graph angles (`research/prompts/`, `research/iterations/`)
+- [x] T006 [P] Dispatch iterations 37-50: advisor and cross-system angles (`research/prompts/`, `research/iterations/`)
+- [x] T007 Persist deltas and state events per completed iteration (`research/deltas/`, `research/deep-research-state.jsonl`)
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -61,9 +61,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Re-verify high-severity findings directly before registry entry (`research/research.md`)
-- [ ] T009 Synthesize the classified findings registry (`research/research.md`)
-- [ ] T010 Validate the packet strict (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/028-tri-system-deep-research --strict`)
+- [x] T008 Re-verify high-severity findings directly before registry entry (`research/research.md`)
+- [x] T009 Synthesize the classified findings registry (`research/research.md`)
+- [x] T010 Validate the packet strict (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/028-tri-system-deep-research --strict`)
 
 <!-- /ANCHOR:phase-3 -->
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining.
-- [ ] 50/50 iterations recorded with parseable findings.
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] 50/50 iterations recorded with parseable findings.
 
 <!-- /ANCHOR:completion -->
 ---
