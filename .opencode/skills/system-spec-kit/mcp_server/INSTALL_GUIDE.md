@@ -281,9 +281,20 @@ node mcp_server/dist/context-server.js
 # Press Ctrl+C to exit
 ```
 
+From the repository root, also verify the daemon-backed CLI front door that hooks and transport-down recovery use:
+
+```bash
+node .opencode/bin/spec-memory.cjs list-tools --format text
+node .opencode/bin/spec-memory.cjs memory_health --warm-only --format json --timeout-ms 3000
+```
+
+`list-tools` runs offline and should enumerate the memory tools without contacting the daemon. The `--warm-only` probe should return a normal `memory_health` payload when the daemon is warm, or exit `75` when prompt-time policy correctly refuses a cold spawn.
+
 Checklist:
 - [ ] Server starts without immediate crash
 - [ ] No `ERR_DLOPEN_FAILED` errors in output
+- [ ] `spec-memory.cjs list-tools` prints the expected tool list
+- [ ] `spec-memory.cjs memory_health --warm-only` returns health JSON or the expected retryable exit `75`
 
 ❌ **STOP if validation fails.** Run native module rebuild and see the Troubleshooting section.
 

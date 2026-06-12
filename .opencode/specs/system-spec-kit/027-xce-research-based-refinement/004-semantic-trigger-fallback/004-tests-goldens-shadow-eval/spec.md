@@ -131,7 +131,7 @@ Establish the evaluation harness, document the flags, capture shadow telemetry, 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-009 | Document the 5 `SPECKIT_SEMANTIC_TRIGGERS*` flags | All 5 in `ENV_REFERENCE.md` with defaults preserved |
-| REQ-011 | Cold-start handling — uncached phrases skipped silently; backfill on next scan | Missing embedding → no semantic hit; `semantic_trigger_skipped_uncached` logged |
+| REQ-011 | Cold-start handling — uncached phrases skipped silently; backfill on next scan | Missing embedding -> no semantic hit; semantic trigger shadow stats report `no_query_embedding` |
 | REQ-013 | Latency budget preserved with shadow stage active | p95 within 100ms WARN budget |
 | REQ-014 | CJK + Latin trigger phrases both covered (re-validate at 768d Nomic) | Fixture covers CJK paraphrases |
 <!-- /ANCHOR:requirements -->

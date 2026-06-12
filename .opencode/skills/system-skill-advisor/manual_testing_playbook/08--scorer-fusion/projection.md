@@ -54,7 +54,7 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Prompt fragment in projection | Grep for prompt substring hits | Block release as privacy failure. |
-| Unbounded projection | Graph_causal attribution grows with prompt length | Inspect projection caps in `projection.ts`. |
+| Unbounded projection | Graph_causal attribution grows with prompt length | Inspect traversal bounds in `mcp_server/lib/scorer/lanes/graph-causal.ts`; `projection.ts` only clamps stored edge weights. |
 | Parity regression | Python-correct cases now fail | Audit projection logic for divergence from Python expectation. |
 
 ---

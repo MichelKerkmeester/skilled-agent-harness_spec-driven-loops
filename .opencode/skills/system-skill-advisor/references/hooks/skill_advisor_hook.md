@@ -224,7 +224,7 @@ Current baseline:
 - 77.5% holdout.
 - UNKNOWN <= 10.
 - 0 regressions on Python-correct prompts.
-- 52/52 Python regression suite passed.
+- 50/50 Python regression suite passed.
 
 Manual scenarios live in the Skill Advisor playbook:
 

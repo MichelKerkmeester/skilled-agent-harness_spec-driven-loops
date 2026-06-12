@@ -81,7 +81,7 @@ Bring spec-memory and code-index up to the skill-advisor discoverability bar wit
 - Improved unknown-command errors with a "try list-tools" hint and a closest-match suggestion.
 
 ### Out of Scope
-- Tool coverage changes (the registries already auto-propagate new tools).
+- Tool coverage changes (the CLIs are registry-backed; code-index also has an explicit parity guard that must be manually accepted when the shared schema changes).
 - The freshness/smoke, documentation, envelope, and completion work owned by sibling sub-phases 001, 003, 004, 005.
 
 ### Files to Change

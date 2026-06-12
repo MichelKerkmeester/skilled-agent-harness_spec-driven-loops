@@ -170,6 +170,15 @@ Expected:
 
 Also verify the active runtime lists `mk_code_index` alongside `mk-spec-memory` and `mk_skill_advisor` (the three core native MCP servers shipped by this repository).
 
+Verify the daemon-backed CLI front door from the repository root:
+
+```bash
+node .opencode/bin/code-index.cjs list-tools --format text
+node .opencode/bin/code-index.cjs code_graph_status --warm-only --format json --timeout-ms 3000
+```
+
+`list-tools` runs offline and should print the eight code-graph tool ids. The `--warm-only` status probe should return JSON when the daemon is already warm, or exit `75` when prompt-time policy correctly refuses a cold spawn.
+
 ---
 
 ## 6. NATIVE PACKAGE CHECKS
@@ -188,6 +197,7 @@ Current code-graph baseline:
 | Metric | Expected |
 | --- | --- |
 | Active MCP tools | 8 |
+| CLI front door | `node .opencode/bin/code-index.cjs list-tools --format text` exits 0 and prints 8 tool ids; warm-only daemon probes use exit 75 for retryable cold-daemon state. |
 | TypeScript build | Exit 0 from `tsc --build` |
 | Vitest focused run | Pass on the `code-graph` suite (runtime-detection + structural-contract + handler suites) |
 | Standalone-storage guard | Launcher rejects DB paths outside the workspace |

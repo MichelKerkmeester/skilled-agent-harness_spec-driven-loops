@@ -48,7 +48,7 @@ One angle per iteration, 50 iterations, gpt-5.5-fast (high) read-only analysis s
 32. README/SKILL.md alignment with the shipped 8-tool surface, blocked payloads, and CLI fallback contract.
 33. Gold-query battery freshness: do the battery queries still represent the tree after the epic's renames and the agents/skills/commands pluralization?
 34. Language coverage honesty: which file types index, which silently skip, and what parser_skip_list accumulates.
-35. Cross-system linking: code-graph key_files vs spec-memory COVERED_BY edges — is the join surfaced anywhere useful?
+35. Cross-system linking: code-graph key_files vs deep-loop coverage-graph `COVERED_BY` links — is the join surfaced anywhere useful?
 36. Daemon supervision uniformity: launcher watchdog, lease, orphan-reap parity with the spec-memory launcher's hardened behavior.
 
 ### system-skill-advisor (37–46)

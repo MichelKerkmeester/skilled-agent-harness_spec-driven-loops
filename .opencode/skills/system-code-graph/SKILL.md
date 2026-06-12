@@ -20,6 +20,7 @@ This skill ships the structural half: a tree-sitter parser, a SQLite graph, a re
 ## Glossary
 
 - **Structural indexing.** AST-derived graph of files, symbols, calls, imports, and definitions. Distinct from text matching and from embedding-based semantic search.
+- **Doc lane coverage.** Markdown, JSON, YAML and TOML files are included as file inventory rows only. The current parser returns clean doc rows with zero symbol nodes and zero relationship edges, so doc file counts are not structural extraction coverage.
 - **Semantic search.** Vector-embedding lookup over code. Surfaces conceptually related code without requiring known names.
 - **Blast radius.** Reverse impact set of a symbol or file. Answers "what depends on this if I change it."
 - **Readiness.** Whether the graph reflects current workspace state. Freshness states are `fresh`, `stale`, `empty`, `error` (`absent` is not a freshness state — it is the companion trust-state projection of an `empty` graph). Read paths refuse to answer on non-fresh states.
@@ -291,7 +292,7 @@ The surface is dual-stack: every tool above is also callable through the full-pa
 - **Ambiguous intent scores:** load the top two resource domains and disclose the ambiguity instead of picking one silently.
 - **Known intent with no resources:** return a "no knowledge base found" notice naming the missing intent.
 - **Unclassifiable intent:** call `code_graph_classify_query_intent` first. If the classifier returns low confidence, ask for one concrete file path, symbol or error message before proceeding.
-- **`mk_code_index` MCP unavailable:** report the state and stop. Structural queries do not fall back to text search because ambiguous text-search results mislead more than they help.
+- **`mk_code_index` MCP unavailable:** if the daemon is warm, use the daemon-backed CLI recovery path documented above. If neither MCP nor the warm CLI path is available, report the state and stop. Structural queries do not fall back to text search because ambiguous text-search results mislead more than they help.
 - **Graph not ready (`status` returns `blocked`, `empty`, or `trustState: absent`):** call `code_graph_scan` first, then retry. Never return a stale or empty graph result as if it were authoritative.
 
 ### Anti-Patterns

@@ -112,7 +112,7 @@ mcp_server/handlers/
 | `memory-triggers.ts` | Matches trigger phrases and injects tiered content. |
 | `memory-save.ts` | Owns save entry validation and routes work into `save/`. Invalidates entity-density cache via `invalidateEntityDensityCache()` after successful single-row commit (warn-once on failure). |
 | `memory-crud.ts` | Provides the stable CRUD facade for list, delete, update, stats, and health. |
-| `memory-crud-health.ts` | `memory_health` handler. Exposes auto-repair, FTS rebuild stats, orphan cleanup, and `data.routing` telemetry block surfacing `graphChannelInvocationRate` and per-channel counts from `routing-telemetry.ts`. |
+| `memory-crud-health.ts` | `memory_health` handler. Exposes auto-repair, FTS rebuild stats, orphan cleanup, and a `data.routing` telemetry block with `graphChannelInvocationRate`, per-channel invocation rates, `totalRecorded`, and `windowSize`. It does not currently expose per-channel count fields. |
 | `memory-bulk-delete.ts` | Bulk delete by importance tier. Invalidates entity-density cache after successful bulk commit (also fires on partial-failure bulk paths to be safe). |
 | `mutation-hooks.ts` | Clears trigger, constitutional, graph, co-activation, tool, and degree caches after mutations. |
 | `memory-index.ts` | Runs `memory_index_scan` work. Coalesces concurrent scans onto an in-flight or recent scan, re-indexes changed spec docs, and runs a global orphan sweep over stale index rows. |

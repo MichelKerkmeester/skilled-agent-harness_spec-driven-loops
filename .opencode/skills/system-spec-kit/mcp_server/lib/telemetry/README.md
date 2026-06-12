@@ -1,6 +1,6 @@
 ---
 title: "Telemetry"
-description: "Retrieval telemetry, scoring observation, trace validation, eval channel tracking, and disabled consumption logging for the MCP server."
+description: "Retrieval telemetry, scoring observation, trace validation, eval channel tracking, and consumption logging for the MCP server."
 trigger_phrases:
   - "retrieval telemetry"
   - "latency metrics"
@@ -55,7 +55,7 @@ Maintenance role:
 | `trace-schema.ts` | Runtime validation and sanitization for canonical retrieval trace payloads. |
 | `scoring-observability.ts` | Sampled SQLite-backed scoring observations for N4 cold-start boost and TM-01 interference scoring. |
 | `eval-channel-tracking.ts` | Channel contribution telemetry used by eval and reporting paths. |
-| `consumption-logger.ts` | Deprecated consumption logging surface. `isConsumptionLogEnabled()` returns `false`. |
+| `consumption-logger.ts` | Active consumption event logging surface. `isConsumptionLogEnabled()` delegates to the `SPECKIT_CONSUMPTION_LOG` feature flag. |
 
 ## 4. BOUNDARIES
 
@@ -63,7 +63,7 @@ Owns:
 
 - Telemetry data contracts and trace validation.
 - Optional sampling for scoring diagnostics.
-- Safe disabled behavior for production request paths.
+- Safe, flag-gated behavior for production request paths.
 
 Does not own:
 
@@ -81,7 +81,7 @@ Does not own:
 | `isRetrievalTracePayload()` | Tests and runtime guards | Type guard for exact trace shape. |
 | `shouldSample()` and `logScoringObservation()` | Scoring paths | Sampling prevents hot-path write volume. |
 | `initEvalChannelTracking()` | Eval setup | Prepares channel telemetry storage. |
-| `isConsumptionLogEnabled()` | Legacy callers | Always false after audit. |
+| `isConsumptionLogEnabled()` | Retrieval handlers and tests | Returns the current `SPECKIT_CONSUMPTION_LOG` feature-flag state. |
 
 ### Key Environment Flags
 
@@ -90,7 +90,7 @@ Does not own:
 | `SPECKIT_EXTENDED_TELEMETRY` | `false` | Enables detailed retrieval metrics. |
 | `SPECKIT_NOVELTY_BOOST` | unset | Gates novelty scoring observation fields. |
 | `SPECKIT_INTERFERENCE_SCORE` | unset | Gates interference scoring observation fields. |
-| `SPECKIT_CONSUMPTION_LOG` | inert | Deprecated and disabled. |
+| `SPECKIT_CONSUMPTION_LOG` | `true` | Enables consumption event logging unless rollout policy or an explicit `false`/`0` disables it. |
 
 ## 6. VALIDATION
 

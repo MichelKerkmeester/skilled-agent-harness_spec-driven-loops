@@ -116,7 +116,7 @@ The advisor treats its SQLite skill graph as the durable record. Recommendations
 
 - `mcp_server/handlers/recommend.ts` owns the read path.
 - `mcp_server/lib/skill-graph/rebuild.ts` owns the write path.
-- `mcp_server/daemon/watcher.ts` owns the file-change loop.
+- `mcp_server/lib/daemon/watcher.ts` owns the file-change loop.
 
 ---
 

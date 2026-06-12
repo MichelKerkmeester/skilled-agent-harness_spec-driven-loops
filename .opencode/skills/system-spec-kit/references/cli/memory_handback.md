@@ -43,7 +43,7 @@ Canonical 7-step Memory Handback procedure shared across the three cli-* sibling
 
 **Structured JSON only**: Direct spec-folder-only invocation is no longer supported. Always call `generate-context.js` with `--stdin`, `--json`, or a JSON temp file.
 
-**MCP session scoping**: A dispatched cli sub-session that calls Spec Kit Memory tools (`memory_context`, `memory_search`, `memory_save` and the rest) must OMIT `sessionId`. A sub-session cannot corroborate a parent or foreign session id, so passing one returns `E_SESSION_SCOPE` ("not bound to a corroborated server identity"). Omit `sessionId` so the server generates one, then reuse the `effectiveSessionId` the server returns for the remaining calls in that dispatched session.
+**MCP session scoping**: A dispatched cli sub-session should omit `sessionId` on its first Spec Kit Memory call. The trusted-session rejection (`E_SESSION_SCOPE`) is enforced by `memory_context`, `memory_search`, and `memory_match_triggers`; do not assume every sessionId-accepting tool applies the same guard. Omit `sessionId` so the server generates one, then reuse the `effectiveSessionId` returned for calls that stay inside that dispatched session.
 
 **Explicit target precedence**: If you pass `[spec-folder]` on the CLI, that explicit target wins over any `specFolder` value inside the payload.
 

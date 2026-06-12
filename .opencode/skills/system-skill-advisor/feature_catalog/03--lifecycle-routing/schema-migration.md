@@ -18,7 +18,7 @@ Evolve graph metadata without breaking existing snapshots. Additive-only migrati
 
 ## 2. HOW IT WORKS
 
-`lib/lifecycle/schema-migration.ts` upgrades v1 graph-metadata to v2 by adding new fields (such as lifecycle lanes and derived provenance) while leaving v1 fields byte-identical. Rollback restores the pre-migration state cleanly so downgrades do not leak v2 residue. The migration runs internally during daemon bring-up. Errors fail open without exposing stack traces to MCP consumers.
+`lib/lifecycle/schema-migration.ts` upgrades v1 graph-metadata to v2 by adding new fields (such as lifecycle lanes and derived provenance) while leaving v1 fields byte-identical. Rollback restores the pre-migration state cleanly so downgrades do not leak v2 residue. The current daemon bring-up path watches source files, and its default reindex rewrites the SQLite skill graph from source metadata — but it never runs this migration module; graph-metadata version upgrades remain a manual maintenance step. Database writes happen through trusted maintenance paths such as `advisor_rebuild` and `skill_graph_scan`; the migration helper is covered by lifecycle validation tests.
 
 ## 3. SOURCE FILES
 

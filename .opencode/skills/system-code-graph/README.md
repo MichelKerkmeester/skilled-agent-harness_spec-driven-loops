@@ -93,7 +93,9 @@ Use MCP as the primary in-session transport today. Use the CLI when MCP transpor
 
 ### The Structural Index
 
-A tree-sitter parser walks your workspace and converts each source file into a graph node. Symbols, calls, imports and definitions become typed edges in a SQLite database. The indexer skips unchanged files by content hash, so incremental scans stay fast. Files that fail to parse land in a quarantine skip-list, surfaced through `code_graph_status` output under `parserHealth` and `parserSkipList`. They do not poison the graph but they do reduce coverage.
+A tree-sitter parser walks your workspace and converts each source file into a graph node. Symbols, calls, imports and definitions become typed edges in a SQLite database. The indexer skips unchanged files by content hash, so incremental scans stay fast. Parser crash cohorts classified as B1/B2 land in a quarantine skip-list, surfaced through `code_graph_status` output under `parserHealth` and `parserSkipList`. Syntax-error partial parses surface parse diagnostics without adding a skip-list row. They do not poison the graph but they do reduce coverage.
+
+The default scan globs include markdown, JSON, YAML and TOML as the `doc` lane, but that lane is file-row coverage only today: doc files are recorded with content hashes and clean parse health, while symbol nodes and relationship edges stay empty (`node_count: 0`, `edge_count: 0`). Treat file counts for those extensions as inventory coverage, not structural extraction.
 
 This structural model is what lets the tools answer "what calls this" with precision. The relationship is a first-class graph edge, not a text-match guess. A function call from file A to file B is an edge you can query, traverse transitively and surface in an impact report.
 
@@ -149,7 +151,7 @@ The boundary with text search is simple. Use Grep when you know the exact token 
 |---|---|---|
 | `status: "blocked"` with `requiredAction: "code_graph_scan"` | The graph is stale, empty or scope-mismatched | Run `code_graph_scan` with the intended scope. Use `incremental: false` for scope changes |
 | A tool returns `blocked` after you changed scan flags | The stored scope fingerprint differs from the current scan inputs | Run a full scan (`incremental: false`) so the fingerprint updates. Widening the scope allows an incremental rebuild, narrowing needs a fresh scan |
-| `parserHealth` shows quarantined files | One or more files failed parsing and landed in the skip-list | Inspect `parserSkipList.sample` from `code_graph_status`. Repair the file or accept the quarantine for this scan run |
+| `parserHealth` shows quarantined files | One or more parser crash cohorts landed in the skip-list | Inspect `parserSkipList.sample` from `code_graph_status`. Repair the file or accept the quarantine for this scan run |
 | Skill files do not appear in scan results | `.opencode/skills/**` is excluded by default | Set `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` or pass the `includeSkills` array on the scan call |
 | `code_graph_query` returns fewer results than expected | Some files are not indexed due to parse failures or scope exclusions | Check `parserHealth` and `nodesByKind` in `code_graph_status` output |
 | `code-index.cjs` exits 69 | The CLI dist entrypoint is missing or stale relative to its sources | Run `tsc -p .opencode/skills/system-code-graph/tsconfig.json` (dev loops can set `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`) |
