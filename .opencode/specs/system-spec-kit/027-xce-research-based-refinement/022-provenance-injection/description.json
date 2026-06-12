@@ -6,12 +6,9 @@
     "feature",
     "specification",
     "provenance",
-    "injection",
-    "source_kind",
-    "governed",
-    "ingest"
+    "injection"
   ],
-  "lastUpdated": "2026-06-11T12:10:00.000Z",
+  "lastUpdated": "2026-06-12T12:09:37.923Z",
   "specId": "022",
   "folderSlug": "provenance-injection",
   "parentChain": [
