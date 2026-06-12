@@ -197,8 +197,9 @@ function persistLauncherLogLine(line) {
 // so the configs are the single on-switch). When enabled the owner spawns the daemon detached and, on
 // its own shutdown, RELEASES the daemon (leaves it running for a live secondary to bridge to) instead
 // of killing it, so a session ending does not tear the shared backend out from under other sessions.
-// A fresh session that finds the released daemon under a stale lease reaps it before respawn, so the
-// database keeps a single writer. Flag off collapses every path below to the prior behavior (daemon
+// A fresh session that finds the released daemon under a stale lease ADOPTS it through the bridge
+// when the recorded child is alive and bridgeable; it reaps and respawns only when that daemon is
+// dead or unbridgeable, so the database keeps a single writer either way. Flag off collapses every path below to the prior behavior (daemon
 // tied to the owner, killed on shutdown). A released daemon reparents to pid 1, bounded by its idle
 // self-exit, so the orphan sweeper bounds any leak.
 function daemonReelectionEnabled(env = process.env) {

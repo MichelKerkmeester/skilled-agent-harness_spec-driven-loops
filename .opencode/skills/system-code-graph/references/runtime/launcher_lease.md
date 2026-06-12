@@ -34,7 +34,7 @@ One active launcher owns the code-graph SQLite writer path; stale owners can be 
 
 ### Key Sources
 
-If the recorded process is alive, the new launcher prints `LEASE_HELD_BY:<pid>` to stdout and exits with code `0`. If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
+If the owner lease is held by a live process, the new launcher first tries to bridge this client's stdio to the live owner's IPC socket through the session proxy, so secondary sessions and MCP reconnects share the one daemon. A `LEASE_HELD_BY:<pid>` diagnostic is now a fallback for missing/refused sockets or disabled bridging; if the socket is confirmed dead, the launcher can take the respawn path instead. If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
 
 ---
 

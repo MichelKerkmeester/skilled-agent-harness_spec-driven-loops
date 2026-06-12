@@ -22,7 +22,7 @@ Current state:
 - The three CLI shims run the built daemon-backed CLIs (`spec-memory` 37 tools, `code-index` 8 tools, `skill-advisor` 9 tools) against the **same unchanged daemons** the MCP registrations use — a dual-stack surface, not a replacement. Each shim enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
 - `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
-- Launcher reliability knobs — persistent log, lease-probe reap hardening, the mk-code-index reconnecting proxy, the Stop-hook orphan-sweep fallback, and an experimental default-off daemon re-election — are operator-tunable via `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION`; see the MCP server's [`ENV_REFERENCE.md`](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
+- Launcher reliability knobs — persistent log, lease-probe reap hardening, the mk-code-index reconnecting proxy, the Stop-hook orphan-sweep fallback, and default-on daemon re-election for mk-spec-memory — are operator-tunable via `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION`; see the MCP server's [`ENV_REFERENCE.md`](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
 ---
 
@@ -83,6 +83,8 @@ bin/
 | `code-index.cjs` | CLI shim for mk-code-index. Same guard pattern (`SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1` override), runs `mcp_server/dist/code-index-cli.js`. Blocked-read payloads render as actionable answers (exit `0`); `detect_changes` `parse_error` exits `64`. |
 | `skill-advisor.cjs` | CLI shim for mk-skill-advisor. Same guard pattern (`MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `mcp_server/dist/mcp_server/skill-advisor-cli.js`. Mutation tools require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`; calls are sent untrusted by default. |
 | `hf-model-server.cjs` | Loads a transformers embedding model and serves `/api/health` and `/api/embed`. Enforces the loopback bind perimeter guard, socket-dir ownership, request size limits and inference timeouts. |
+
+Lifecycle parity note: `mk-spec-memory-launcher.cjs` is the hardened reference for persistent launcher logging, detached daemon re-election/adoption, and owner-release-on-shutdown. `mk-code-index-launcher.cjs` and `mk-skill-advisor-launcher.cjs` currently stop with their child and rely on fresh-session reload plus bridge/respawn paths instead.
 
 ---
 
