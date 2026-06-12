@@ -3392,6 +3392,14 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # See CLAUDE.md / AGENTS.md Gate 4: SKILL-OWNED WORKFLOW ENFORCEMENT.
     _apply_iteration_loop_tiebreaker(recommendations, prompt_lower)
 
+    # A verbatim skill-name mention is the strongest routing signal the user
+    # can give. Without this relief, a busy prompt can leave the NAMED skill
+    # above the uncertainty gate while a sibling that merely lists that name
+    # as a keyword passes — strict callers then surface only the sibling.
+    for rec in recommendations:
+        if rec.get("_explicit_skill_match"):
+            rec["uncertainty"] = min(float(rec.get("uncertainty", 1.0)), 0.30)
+
     refresh_passes_threshold(recommendations)
     _apply_graph_conflict_penalty(recommendations)
     refresh_passes_threshold(recommendations)
