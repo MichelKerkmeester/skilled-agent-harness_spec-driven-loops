@@ -114,7 +114,7 @@ Same-class producer inventories and consumer greps are recorded per finding in t
 ### Phase 2: Core Implementation (by lane risk order)
 - [x] L1 security/safety (6/6 findings closed)
 - [x] L8 command adherence (true solution shipped; harness artifact resolved)
-- [ ] L2 code-graph apply safety (28)
+- [ ] L2 code-graph apply safety (28: batch-verified 28/28 still-real; 13 doc/hygiene fixes shipped; apply-pipeline cluster + 9 code items held with sequencing plan in the lane disposition)
 - [ ] L3 idempotency flag-ON blockers (5)
 - [ ] L4 launcher lifecycle parity (15)
 - [ ] L5 advisor correctness (35)

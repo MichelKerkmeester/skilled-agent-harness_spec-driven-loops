@@ -10,20 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
-    last_updated_at: "2026-06-12T12:10:00Z"
+    last_updated_at: "2026-06-12T13:20:00Z"
     last_updated_by: "claude-fable-orchestrator"
-    recent_action: "L1 (6/6) + L8 lanes shipped, Fable-verified, deployed live"
-    next_safe_action: "Continue Goal B at L2 code-graph apply safety"
+    recent_action: "L1 6/6 + L8 done; L2 28/28 verified, 13 doc fixes shipped"
+    next_safe_action: "Build L2 apply-pipeline packet (shared rollback-target logic)"
     blockers: []
     key_files:
+      - "L2-codegraph-apply-safety/disposition.md"
+      - "verify/l2-still-real-batch.md"
       - "L1-security-safety/disposition.md"
-      - "L8-command-adherence/disposition.md"
-      - "verify/live-237-fix-verdict.md"
     session_dedup:
       fingerprint: "sha256:2003d4aca44bb943b1eae69b36f1d9ebe8fe3f8a5e907a323dbee96013ac03b3"
       session_id: "029-remediation-resume-2026-06-12"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 13
     open_questions: []
     answered_questions: []
 ---
