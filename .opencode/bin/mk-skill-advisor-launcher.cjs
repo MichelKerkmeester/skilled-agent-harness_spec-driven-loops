@@ -1055,6 +1055,20 @@ function buildIfNeeded(actions) {
   }
 }
 
+const BOOTSTRAP_LOCK_OWNER_FILE = 'owner.pid';
+
+// Returns the pid recorded inside the lock dir, or null when no readable pid
+// stamp exists (legacy lock dirs, or a holder that died before stamping).
+function readBootstrapLockOwnerPid() {
+  try {
+    const raw = fs.readFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), 'utf8').trim();
+    const pid = Number.parseInt(raw, 10);
+    return Number.isInteger(pid) && pid > 0 ? pid : null;
+  } catch {
+    return null;
+  }
+}
+
 function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_STALE_MS) {
   if (!exists(lockDir)) {
     return false;
@@ -1066,14 +1080,22 @@ function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_STALE_MS) {
     if (error.code === 'ENOENT') return false;
     throw error;
   }
-  if (ageMs <= staleMs) {
+  // A lock dir is reclaimable as soon as its recorded holder is provably dead —
+  // an mtime TTL alone would otherwise wedge every new session for up to staleMs
+  // after a launcher is SIGKILLed or crashes while holding the lock. The mtime
+  // age stays as the fallback for lock dirs with no readable pid stamp (legacy
+  // dirs) and for a holder whose liveness cannot be determined.
+  const ownerPid = readBootstrapLockOwnerPid();
+  const ownerDead = ownerPid !== null && processLiveness(ownerPid) === 'dead';
+  if (!ownerDead && ageMs <= staleMs) {
     return false;
   }
   const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
   try {
     fs.renameSync(lockDir, staleClaim);
     fs.rmSync(staleClaim, { recursive: true, force: true });
-    log(`reclaimed stale bootstrap lock at ${rel(lockDir)} (${Math.round(ageMs / 1000)}s old)`);
+    const reason = ownerDead ? `dead holder pid=${ownerPid}` : `${Math.round(ageMs / 1000)}s old`;
+    log(`reclaimed stale bootstrap lock at ${rel(lockDir)} (${reason})`);
     return true;
   } catch (error) {
     if (error.code === 'ENOENT' || error.code === 'ENOTEMPTY') return false;
@@ -1089,6 +1111,12 @@ async function acquireBootstrapLock(options = {}) {
   while (true) {
     try {
       fs.mkdirSync(lockDir);
+      // Stamp the holder pid so a later launcher can reclaim this lock the
+      // instant we die, instead of waiting out the mtime TTL. Best-effort: a
+      // failed stamp degrades to the TTL path, never blocks acquisition.
+      try {
+        fs.writeFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), String(process.pid), { mode: 0o600 });
+      } catch { /* TTL fallback covers an unstamped lock */ }
       return true;
     } catch (error) {
       if (error.code !== 'EEXIST') {
