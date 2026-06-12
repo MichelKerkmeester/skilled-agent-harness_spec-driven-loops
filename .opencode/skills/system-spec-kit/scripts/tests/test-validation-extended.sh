@@ -2,25 +2,31 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: Extended Validation Tests
 # ───────────────────────────────────────────────────────────────
-# Comprehensive test suite covering the validation rule registry
-# (38 rules at last recount) and the numbered fixture corpus (66 fixtures,
-# last 067), exit codes, and JSON output mode. The lists below name the
-# original core rules; the registry is the authoritative inventory.
+# Extended suite for validator behavior against the registry-backed
+# validator and numbered fixture corpus. As of this revision, the registry
+# contains 38 rule entries and the fixture tree contains 66 numbered
+# directories (highest 067).
 #
-# RULES TESTED:
-#   1. check-files.sh         (FILE_EXISTS)
-#   2. check-folder-naming.sh (FOLDER_NAMING)
-#   3. check-frontmatter.sh   (FRONTMATTER_VALID)
-#   4. check-placeholders.sh  (PLACEHOLDER_FILLED)
-#   5. check-anchors.sh       (ANCHORS_VALID)
-#   6. check-evidence.sh      (EVIDENCE_CITED)
-#   7. check-priority-tags.sh (PRIORITY_TAGS)
-#   8. check-sections.sh      (SECTIONS_PRESENT)
-#   9. check-level.sh         (LEVEL_DECLARED)
-#  10. check-ai-protocols.sh  (AI_PROTOCOL)
-#  11. check-level-match.sh   (LEVEL_MATCH)
-#  12. check-section-counts.sh (SECTION_COUNTS)
-#  13. check-complexity.sh    (COMPLEXITY_MATCH)
+# COVERAGE FRAME:
+#   - Direct isolated coverage exercises 13 rule scripts listed below.
+#   - Orchestrator, exit-code, JSON, CLI option, and edge-case checks invoke
+#     validate.sh against selected fixtures; the registry remains the
+#     authoritative full rule inventory.
+#
+# DIRECT ISOLATED RULE SCRIPTS:
+#   1. check-ai-protocols.sh
+#   2. check-anchors.sh
+#   3. check-complexity.sh
+#   4. check-evidence.sh
+#   5. check-files.sh
+#   6. check-folder-naming.sh
+#   7. check-level-match.sh
+#   8. check-level.sh
+#   9. check-placeholders.sh
+#  10. check-priority-tags.sh
+#  11. check-section-counts.sh
+#  12. check-sections.sh
+#  13. check-template-headers.sh
 #
 # COMPATIBILITY: bash 3.2+ (macOS default)
 

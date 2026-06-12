@@ -20,8 +20,10 @@ tri-006, tri-179 and tri-182 were already CLOSED by code wave 1 (commit 7c8740a4
 ## Code wave 7 (implemented, in verification)
 tri-161: `code_graph_status` activeScope now exposes `includeGlobs`/`excludeGlobs` as structured fields and the label appends a "narrowed by includeGlobs: …" suffix, so a `*.ts`-only scan no longer reads as a full scan.
 
+## Code wave 8 (implemented via xhigh seats, in verification)
+tri-125 (extended-suite header states the real inventory — 38 registry entries, 66 fixtures, the TRUE 13 isolated rule scripts — and the fixtures README topology runs through 067; every count host-recounted, suite unchanged at 108/108). tri-158 (gold battery's 12 drifted line anchors re-anchored, anchor values only; static check 28/0/0/0).
+
 ## Code queue (open)
 Part A: tri-080 (silent indexer skip), tri-104 (unwired consumption stats), tri-105 (vec dual-write SSOT — code-careful), tri-108, tri-109 (ingest queue honesty — code-careful).
 Part C: tri-111, tri-113, tri-117, tri-121, tri-122, tri-123, tri-124, tri-129 (write-path stress — code-careful), tri-135 (live-dim eval harness — code-careful), tri-142.
-Carry-overs from the doc fence: tri-125 (.sh header count), tri-158 (.json gold anchors, 11 stale).
 Scoped follow-up: the ~39 undocumented env vars (tri-064 partial by design).
