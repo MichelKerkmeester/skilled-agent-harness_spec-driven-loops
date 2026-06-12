@@ -9,3 +9,8 @@
 {"event": "iteration_complete", "iteration": 6, "model": "deepseek-v4-pro", "findings": 1, "extraction": "prose"}
 {"event": "iteration_complete", "iteration": 7, "model": "deepseek-v4-pro", "findings": 1, "extraction": "prose"}
 {"event": "iteration_complete", "iteration": 8, "model": "deepseek-v4-pro", "findings": 1, "extraction": "prose"}
+{"event": "iteration_complete", "iteration": 11, "model": "gpt-5.5-fast-xhigh", "wave": 2, "findings": 6}
+{"event": "iteration_complete", "iteration": 12, "model": "gpt-5.5-fast-xhigh", "wave": 2, "findings": 7}
+{"event": "iteration_complete", "iteration": 13, "model": "gpt-5.5-fast-xhigh", "wave": 2, "findings": 5}
+{"event": "iteration_complete", "iteration": 14, "model": "gpt-5.5-fast-xhigh", "wave": 2, "findings": 7}
+{"event": "iteration_complete", "iteration": 15, "model": "gpt-5.5-fast-xhigh", "wave": 2, "findings": 6}
