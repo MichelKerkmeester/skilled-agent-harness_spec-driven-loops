@@ -140,8 +140,8 @@ The remediation was delivered as surgical MCP write-path edits plus focused temp
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Same-path retire guard coverage remains follow-on work.** Same-path save/reindex can retire a manual predecessor without a protected-source check. This phase tags provenance but does not extend guard enforcement.
-2. **Auto-promotion guard coverage remains follow-on work.** Automated tier promotion can still update `importance_tier` without a source-kind protection check. This phase documents the P0-class follow-on and preserves behavior.
+1. **Same-path retire guard coverage remains follow-on work.** Same-path save/reindex can retire a manual predecessor without a protected-source check. This phase tags provenance but does not extend guard enforcement. — **Addressed (2026-06-11, follow-on shipped):** retirement reads the predecessor's `source_kind` and returns a manual-tier carry (`lib/storage/lineage-state.ts`); the same-path reindex caller re-applies the carried tier and re-stamps `source_kind` on the successor (`handlers/memory-save.ts`).
+2. **Auto-promotion guard coverage remains follow-on work.** Automated tier promotion can still update `importance_tier` without a source-kind protection check. This phase documents the P0-class follow-on and preserves behavior. — **Addressed (2026-06-11, follow-on shipped):** auto-promotion refuses manual source kinds before selection and re-checks atomically in the update predicate (`lib/search/auto-promotion.ts`).
 3. **`memory_update` remains human-facing by default.** This is intentional after reachability verification; automated callers must continue using internal provenance context if they ever reach the handler.
 <!-- /ANCHOR:limitations -->
 

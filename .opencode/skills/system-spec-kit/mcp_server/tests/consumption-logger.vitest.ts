@@ -37,6 +37,12 @@ interface ConsumptionEvent {
   metadata?: Record<string, unknown> | null;
 }
 
+// Expected hash-only fingerprint for a query (mirrors computeQueryFingerprint).
+function fp(query: string): string {
+  const { createHash } = require('node:crypto') as typeof import('node:crypto');
+  return createHash('sha256').update(query).digest('hex').slice(0, 16);
+}
+
 function forceLogConsumptionEvent(db: Database.Database, event: ConsumptionEvent): void {
   const resultIdsJson = Array.isArray(event.result_ids) && event.result_ids.length > 0
     ? JSON.stringify(event.result_ids)
@@ -45,14 +51,9 @@ function forceLogConsumptionEvent(db: Database.Database, event: ConsumptionEvent
     ? JSON.stringify(event.metadata)
     : null;
 
-  // Compute fingerprint before INSERT — raw text must not reach SQL
-  let queryHash: string | null = null;
-  if (event.query) {
-    const { createHash } = require('node:crypto') as typeof import('node:crypto');
-    const prefix = event.query.slice(0, 8);
-    const hex = createHash('sha256').update(event.query).digest('hex').slice(0, 16);
-    queryHash = `${prefix}:${hex}`;
-  }
+  // Compute fingerprint before INSERT — raw text must not reach SQL.
+  // Hash-only, mirroring computeQueryFingerprint: no prefix is retained.
+  const queryHash: string | null = event.query ? fp(event.query) : null;
 
   db.prepare(`
     INSERT INTO consumption_log
@@ -382,8 +383,8 @@ describe('T004: getConsumptionPatterns — pattern detection', () => {
     const highFreq = patterns.find(p => p.category === 'high-frequency-query');
     expect(highFreq).toBeDefined();
     expect(highFreq!.count).toBeGreaterThan(0);
-    // examples contain fingerprints, not raw text; check fingerprint prefix
-    expect(highFreq!.examples.some(e => e.startsWith('fingerprint:repeated'))).toBe(true);
+    // examples contain hash-only fingerprints, never raw text
+    expect(highFreq!.examples.some(e => e.startsWith(`fingerprint:${fp('repeated query')}`))).toBe(true);
   });
 
   it('T004-C: detects zero-result queries', () => {
@@ -416,8 +417,8 @@ describe('T004: getConsumptionPatterns — pattern detection', () => {
     const lowSel = patterns.find(p => p.category === 'low-selection');
 
     expect(lowSel).toBeDefined();
-    // examples use fingerprint format; raw text is absent — check range suffix
-    expect(lowSel!.examples.some(e => e.startsWith('fingerprint:mixed sp') && e.includes('(1-2 results)'))).toBe(true);
+    // examples use hash-only fingerprint format; raw text is absent — check range suffix
+    expect(lowSel!.examples.some(e => e.startsWith(`fingerprint:${fp('mixed sparse')}`) && e.includes('(1-2 results)'))).toBe(true);
   });
 
   it('T004-E: detects intent-mismatch (same query, different intents)', () => {
@@ -430,8 +431,8 @@ describe('T004: getConsumptionPatterns — pattern detection', () => {
     const mismatch = patterns.find(p => p.category === 'intent-mismatch');
     expect(mismatch).toBeDefined();
     expect(mismatch!.count).toBe(1);
-    // examples use fingerprint format; raw text is absent — check fingerprint prefix
-    expect(mismatch!.examples.some(e => e.startsWith('fingerprint:fix the '))).toBe(true);
+    // examples use hash-only fingerprint format; raw text is absent
+    expect(mismatch!.examples.some(e => e.startsWith(`fingerprint:${fp('fix the bug')}`))).toBe(true);
   });
 
   it('T004-F: detects session-heavy (>10 queries per session)', () => {

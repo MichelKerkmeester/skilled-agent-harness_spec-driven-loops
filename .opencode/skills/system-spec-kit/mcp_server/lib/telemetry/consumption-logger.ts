@@ -10,7 +10,8 @@
 // Feature flag: SPECKIT_CONSUMPTION_LOG (graduated, default ON)
 //
 // PRIVACY: raw query text is never stored. Each query is reduced
-// to a short fingerprint (prefix:hash) before reaching the DB.
+// to a non-reversible hash fingerprint before reaching the DB —
+// no prefix, no substring, no recoverable content.
 import { createHash } from 'node:crypto';
 import Database from 'better-sqlite3';
 import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
@@ -102,18 +103,17 @@ function isConsumptionLogEnabled(): boolean {
 /**
  * Reduce a raw query string to a privacy-safe fingerprint.
  *
- * Format: <first-8-chars-of-query>:<first-16-hex-chars-of-sha256>
- *
- * The prefix makes fingerprints human-readable for diagnostics while the
- * hash enables exact deduplication without retaining query content.
+ * Format: <first-16-hex-chars-of-sha256> — hash only. A readable query
+ * prefix was deliberately removed: any retained substring IS retained
+ * query content, which can carry credentials or personal data and
+ * contradicts this module's privacy contract. The hash alone still
+ * supports exact deduplication and grouping.
  *
  * Returns null when the input is null/empty — no fingerprint is stored.
  */
 function computeQueryFingerprint(query: string | null | undefined): string | null {
   if (!query) return null;
-  const prefix = query.slice(0, 8);
-  const hex = createHash('sha256').update(query).digest('hex').slice(0, 16);
-  return `${prefix}:${hex}`;
+  return createHash('sha256').update(query).digest('hex').slice(0, 16);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -166,6 +166,13 @@ function initConsumptionLog(db: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_consumption_log_timestamp
       ON consumption_log (timestamp);
   `);
+
+  // Purge legacy fingerprints that retained a raw query prefix (the old
+  // `prefix:hash` format) — the prefix IS retained query content, and the
+  // pattern examples re-surface it verbatim. Rows are disposable
+  // instrumentation data, same remediation precedent as the query_text drop
+  // above. Current-format fingerprints are pure hex and never contain ':'.
+  db.exec(`DELETE FROM consumption_log WHERE query_hash LIKE '%:%'`);
 }
 
 /* ───────────────────────────────────────────────────────────────

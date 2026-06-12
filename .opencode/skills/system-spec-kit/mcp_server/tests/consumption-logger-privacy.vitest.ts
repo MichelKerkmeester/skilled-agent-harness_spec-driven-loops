@@ -21,11 +21,10 @@ function createTestDb(): Database.Database {
   return db;
 }
 
-// Helper: make computeQueryFingerprint deterministic for assertions
+// Helper: make computeQueryFingerprint deterministic for assertions.
+// Hash-only: a retained query prefix IS retained query content.
 function expectedFingerprint(query: string): string {
-  const prefix = query.slice(0, 8);
-  const hex = createHash('sha256').update(query).digest('hex').slice(0, 16);
-  return `${prefix}:${hex}`;
+  return createHash('sha256').update(query).digest('hex').slice(0, 16);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -227,6 +226,28 @@ describe('Privacy: migration drops old-schema (query_text) table', () => {
     const rows = db.prepare('SELECT * FROM consumption_log').all();
     // Row survives the second init
     expect(rows).toHaveLength(1);
+
+    db.close();
+  });
+
+  it('initConsumptionLog purges legacy prefix-bearing fingerprints, keeps hash-only rows', () => {
+    const db = new Database(':memory:');
+    initConsumptionLog(db);
+
+    // A legacy-format row retains the first 8 chars of the raw query — that
+    // prefix is persisted query content and must not survive an init.
+    db.prepare(`
+      INSERT INTO consumption_log (event_type, query_hash, result_count, timestamp)
+      VALUES ('search', 'Check co:0a78b1c2d3e4f5a6', 3, datetime('now'))
+    `).run();
+    logConsumptionEvent(db, { event_type: 'search', query: 'clean modern query', result_count: 2 });
+
+    initConsumptionLog(db);
+
+    const rows = db.prepare('SELECT query_hash FROM consumption_log').all() as Array<{ query_hash: string }>;
+    expect(rows).toHaveLength(1);
+    expect(rows[0].query_hash).toBe(expectedFingerprint('clean modern query'));
+    expect(rows[0].query_hash).not.toContain(':');
 
     db.close();
   });

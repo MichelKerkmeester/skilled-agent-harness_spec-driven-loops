@@ -397,7 +397,7 @@ Memory writes now carry server-derived provenance instead of trusting caller-aut
 
 #### How It Works
 
-Schema v35 adds `memory_index.source_kind` with a safe backfill. Create and update handlers derive the source kind from server-side provenance context, reject forged provenance input, skip protected automated overwrites before mutation, and append deterministic mutation-ledger records keyed by actor, source, and reason.
+Schema v35 adds `memory_index.source_kind` with a safe backfill. Create and update handlers derive the source kind from server-side provenance context, reject forged provenance input, skip protected automated overwrites before mutation, and append deterministic mutation-ledger records keyed by actor, source, and reason. The two ingress paths that originally bypassed the guard are now covered as well: same-path reindex retirement carries a manual predecessor's tier decision forward instead of silently deprecating it, and feedback auto-promotion refuses to overwrite a protected manual tier (checked before selection and atomically at update time). Guarded surfaces are the create/update handlers, same-path reindex retirement, and feedback auto-promotion; the prediction-error supersede/update and reconsolidation merge paths do not yet consult `source_kind` (tracked follow-on).
 
 #### Source Files
 
