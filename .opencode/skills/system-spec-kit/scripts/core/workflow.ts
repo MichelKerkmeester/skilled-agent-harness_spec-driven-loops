@@ -57,6 +57,7 @@ import {
 } from '@spec-kit/shared/parsing/memory-sufficiency';
 import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
 import { evaluateSpecDocHealth } from '@spec-kit/shared/parsing/spec-doc-health';
+import { scrubSecretsDetailed } from '@spec-kit/shared/parsing/secret-scrubber';
 import * as simFactory from '../lib/simulation-factory.js';
 import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader.js';
 import { applyTreeThinning } from './tree-thinning.js';
@@ -206,6 +207,17 @@ type WorkflowRetryBatchResult = {
   failed: number;
 };
 
+type WorkflowScrubWarn = (message: string) => void;
+
+type WorkflowSavePayloadTextFields = {
+  contentSlug: string;
+  rawCtxFilename: string;
+  memoryTitle: string;
+  memoryDescription: string;
+  sessionData: SessionData;
+  collectedData: CollectedDataFull;
+};
+
 interface WorkflowRetryManagerAdapter {
   getRetryStats(): WorkflowRetryStats;
   processRetryQueue(limit?: number): Promise<WorkflowRetryBatchResult>;
@@ -215,6 +227,49 @@ const FALLBACK_RETRY_MANAGER: WorkflowRetryManagerAdapter = {
   getRetryStats: () => ({ queue_size: 0 }),
   processRetryQueue: async () => ({ processed: 0, succeeded: 0, failed: 0 }),
 };
+
+function scrubWorkflowStringField(value: string, fieldPath: string, warn?: WorkflowScrubWarn): string {
+  const scrubResult = scrubSecretsDetailed(value);
+  if (scrubResult.redactions > 0) {
+    warn?.(`[workflow] Redacted ${scrubResult.redactions} secret(s) [${scrubResult.kinds.join(', ')}] from ${fieldPath} before durable save`);
+  }
+  return scrubResult.text;
+}
+
+function scrubWorkflowTextTree(value: unknown, fieldPath: string, warn?: WorkflowScrubWarn): unknown {
+  if (typeof value === 'string') {
+    return scrubWorkflowStringField(value, fieldPath, warn);
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item, index) => scrubWorkflowTextTree(item, `${fieldPath}[${index}]`, warn));
+  }
+
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, entry]) => [
+        key,
+        scrubWorkflowTextTree(entry, `${fieldPath}.${key}`, warn),
+      ]),
+    );
+  }
+
+  return value;
+}
+
+function scrubWorkflowSavePayloadTextFields(
+  fields: WorkflowSavePayloadTextFields,
+  warn?: WorkflowScrubWarn,
+): WorkflowSavePayloadTextFields {
+  return {
+    contentSlug: scrubWorkflowStringField(fields.contentSlug, 'contentSlug', warn),
+    rawCtxFilename: scrubWorkflowStringField(fields.rawCtxFilename, 'rawCtxFilename', warn),
+    memoryTitle: scrubWorkflowStringField(fields.memoryTitle, 'memoryTitle', warn),
+    memoryDescription: scrubWorkflowStringField(fields.memoryDescription, 'memoryDescription', warn),
+    sessionData: scrubWorkflowTextTree(fields.sessionData, 'sessionData', warn) as SessionData,
+    collectedData: scrubWorkflowTextTree(fields.collectedData, 'collectedData', warn) as CollectedDataFull,
+  };
+}
 
 /**
  * Shared helper for dynamic MCP-server API imports with consistent degradation.
@@ -558,6 +613,7 @@ function formatStep115DaemonSkipMessage(
 function isStep115DaemonContentionError(message: string): boolean {
   const normalized = message.toLowerCase();
   return normalized.includes('sqlite_busy')
+    || normalized.includes('single-writer lock')
     || normalized.includes('vector_index is null')
     || (normalized.includes('embedding_cache') && normalized.includes('unique'));
 }
@@ -1421,17 +1477,32 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       memoryNameHistoryForSlug = pfDesc.memoryNameHistory;
     }
   }
-  const contentSlug: string = generateContentSlug(preferredMemoryTask, folderBase, memoryNameHistoryForSlug);
-  const rawCtxFilename: string = `${sessionData.DATE}_${sessionData.TIME}__${contentSlug}.md`;
+  let contentSlug: string = generateContentSlug(preferredMemoryTask, folderBase, memoryNameHistoryForSlug);
+  let rawCtxFilename: string = `${sessionData.DATE}_${sessionData.TIME}__${contentSlug}.md`;
   const explicitMemoryText = readExplicitMemoryText(collectedData);
 
-  const memoryTitle = explicitMemoryText.title
+  let memoryTitle = explicitMemoryText.title
     ?? buildMemoryTitle(preferredMemoryTask, specFolderName, sessionData.DATE, contentSlug);
-  const memoryDescription = explicitMemoryText.description
+  let memoryDescription = explicitMemoryText.description
     ?? deriveMemoryDescription({
       summary: sessionData.SUMMARY,
       title: memoryTitle,
     });
+
+  const scrubbedSavePayloadFields = scrubWorkflowSavePayloadTextFields({
+    contentSlug,
+    rawCtxFilename,
+    memoryTitle,
+    memoryDescription,
+    sessionData,
+    collectedData,
+  }, warn);
+  contentSlug = scrubbedSavePayloadFields.contentSlug;
+  rawCtxFilename = scrubbedSavePayloadFields.rawCtxFilename;
+  memoryTitle = scrubbedSavePayloadFields.memoryTitle;
+  memoryDescription = scrubbedSavePayloadFields.memoryDescription;
+  Object.assign(sessionData, scrubbedSavePayloadFields.sessionData);
+  collectedData = scrubbedSavePayloadFields.collectedData;
 
   const currentSnakeCaseCausalLinks = (
     collectedData.causal_links
@@ -1451,7 +1522,10 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     const { findPredecessorMemory } = await import('./find-predecessor-memory.js');
     const predecessorSessionId = await findPredecessorMemory(specFolder, {
       title: memoryTitle,
-      description: explicitMemoryText.description ?? memoryDescription,
+      // memoryDescription already IS the explicit description when one was
+      // given — post-scrub. Reaching back to the pre-scrub explicit value
+      // would hand unredacted text to the predecessor matcher.
+      description: memoryDescription,
       summary: sessionData.SUMMARY,
       sessionId: sessionData.SESSION_ID,
       filename: rawCtxFilename,
@@ -1843,4 +1917,5 @@ export {
   releaseFilesystemLock,
   runStep115AutoIndex,
   runWorkflow,
+  scrubWorkflowSavePayloadTextFields,
 };
