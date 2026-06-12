@@ -2,8 +2,10 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: Extended Validation Tests
 # ───────────────────────────────────────────────────────────────
-# Comprehensive test suite covering all 13 validation rules,
-# 52 test fixtures, exit codes, and JSON output mode.
+# Comprehensive test suite covering the validation rule registry
+# (38 rules at last recount) and the numbered fixture corpus (66 fixtures,
+# last 067), exit codes, and JSON output mode. The lists below name the
+# original core rules; the registry is the authoritative inventory.
 #
 # RULES TESTED:
 #   1. check-files.sh         (FILE_EXISTS)

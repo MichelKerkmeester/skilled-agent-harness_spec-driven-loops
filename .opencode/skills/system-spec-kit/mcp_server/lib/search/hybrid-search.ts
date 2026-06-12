@@ -55,7 +55,7 @@ import {
   enrichResultsWithFolderScores,
   twoPhaseRetrieval,
 } from './folder-relevance.js';
-import { parse_trigger_phrases } from './vector-index-types.js';
+import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
 
 import { collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation.js';
 
@@ -694,8 +694,8 @@ function exactTriggerSearch(
   const params: unknown[] = tokens.map((token) => `%${token}%`);
 
   if (specFolder) {
-    conditions.push(`(m.spec_folder = ? OR m.spec_folder LIKE ?)`);
-    params.push(specFolder, `${specFolder}/%`);
+    conditions.push(`(m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')`);
+    params.push(specFolder, specFolderLikePattern(specFolder));
   }
 
   try {
@@ -2145,8 +2145,8 @@ function structuralSearch(
     const params: unknown[] = [];
 
     if (options.specFolder) {
-      conditions.push(`(spec_folder = ? OR spec_folder LIKE ?)`);
-      params.push(options.specFolder, `${options.specFolder}/%`);
+      conditions.push(`(spec_folder = ? OR spec_folder LIKE ? ESCAPE '\\')`);
+      params.push(options.specFolder, specFolderLikePattern(options.specFolder));
     }
 
     const whereClause = conditions.join(' AND ');

@@ -21,6 +21,20 @@ export const VectorIndexErrorCode = {
 /** Enumerates the string codes used by {@link VectorIndexError}. */
 export type VectorIndexErrorCode = typeof VectorIndexErrorCode[keyof typeof VectorIndexErrorCode];
 
+/**
+ * Escapes SQL LIKE metacharacters so a folder name containing % or _
+ * cannot widen a scoped query. Every scope clause built from this MUST
+ * pair with `ESCAPE '\'` in the SQL.
+ */
+export function escapeLikePattern(value: string): string {
+  return value.replace(/\\/g, '\\\\').replace(/%/g, '\\%').replace(/_/g, '\\_');
+}
+
+/** Builds the escaped `<folder>/%` LIKE pattern for spec-folder scoping. */
+export function specFolderLikePattern(specFolder: string): string {
+  return `${escapeLikePattern(specFolder)}/%`;
+}
+
 /** Structured error used by vector-index query, mutation, and store helpers. */
 export class VectorIndexError extends Error {
   code: VectorIndexErrorCode;

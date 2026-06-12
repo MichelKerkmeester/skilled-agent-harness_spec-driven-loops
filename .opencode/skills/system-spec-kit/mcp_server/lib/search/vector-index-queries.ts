@@ -25,6 +25,7 @@ import {
 import {
   get_error_message,
   parse_trigger_phrases,
+  specFolderLikePattern,
   to_embedding_buffer,
   VectorIndexError,
   VectorIndexErrorCode,
@@ -86,8 +87,8 @@ function appendSpecFolderScope(
   column = 'm.spec_folder',
 ): void {
   if (!specFolder) return;
-  clauses.push(`(${column} = ? OR ${column} LIKE ?)`);
-  params.push(specFolder, `${specFolder}/%`);
+  clauses.push(`(${column} = ? OR ${column} LIKE ? ESCAPE '\\')`);
+  params.push(specFolder, specFolderLikePattern(specFolder));
 }
 
 function tableExists(database: Database.Database, tableName: string): boolean {
@@ -276,9 +277,9 @@ export function get_memories_by_folder(
     SELECT m.*
     FROM memory_index m
     JOIN active_memory_projection p ON p.active_memory_id = m.id
-    WHERE (m.spec_folder = ? OR m.spec_folder LIKE ?)
+    WHERE (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')
     ORDER BY m.created_at DESC
-  `).all(spec_folder, `${spec_folder}/%`) as MemoryRow[];
+  `).all(spec_folder, specFolderLikePattern(spec_folder)) as MemoryRow[];
 
   return rows.map((row: MemoryRow) => {
     row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
@@ -537,7 +538,7 @@ export function multi_concept_search(
     `vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) <= ?`
   ).join(' AND ');
 
-  const folder_filter = specFolder ? 'AND (m.spec_folder = ? OR m.spec_folder LIKE ?)' : '';
+  const folder_filter = specFolder ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')" : '';
   const similarity_select = concept_buffers.map((_, i) =>
     `ROUND((1 - sub.dist_${i} / 2) * 100, 2) as similarity_${i}`
   ).join(', ');
@@ -567,7 +568,7 @@ export function multi_concept_search(
 
   const params = [
     ...concept_buffers,
-    ...(specFolder ? [specFolder, `${specFolder}/%`] : []),
+    ...(specFolder ? [specFolder, specFolderLikePattern(specFolder)] : []),
     ...concept_buffers.flatMap(b => [b, max_distance]),
     limit
   ];
@@ -858,8 +859,8 @@ export function keyword_search(
   const params: unknown[] = [];
 
   if (specFolder) {
-    where_clause += ' AND (spec_folder = ? OR spec_folder LIKE ?)';
-    params.push(specFolder, `${specFolder}/%`);
+    where_clause += " AND (spec_folder = ? OR spec_folder LIKE ? ESCAPE '\\')";
+    params.push(specFolder, specFolderLikePattern(specFolder));
   }
 
   const sql = `

@@ -7,6 +7,7 @@
 // Testing and future delegation.
 
 import { BM25_FTS5_WEIGHTS } from './bm25-index.js';
+import { specFolderLikePattern } from './vector-index-types.js';
 import { normalizeLexicalQueryTokens } from './lexical-normalizer.js';
 import type Database from 'better-sqlite3';
 
@@ -177,13 +178,13 @@ function fts5Bm25Search(
   }
 
   const folderFilter = specFolder
-    ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? || '/%')"
+    ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')"
     : '';
   const deprecatedTierFilter =
     "AND (m.importance_tier IS NULL OR m.importance_tier != 'deprecated')";
 
   const params: (string | number)[] = specFolder
-    ? [sanitized, specFolder, specFolder, limit]
+    ? [sanitized, specFolder, specFolderLikePattern(specFolder), limit]
     : [sanitized, limit];
 
   // Bm25() returns negative scores (lower = better), so we negate

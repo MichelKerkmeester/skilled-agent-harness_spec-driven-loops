@@ -334,6 +334,10 @@ export async function handleCodexUserPromptSubmit(
 
     const buildCliBrief = dependencies.buildCliBrief ?? (dependencies.buildBrief ? null : buildSkillAdvisorBriefFromCli);
     const cliFallbackAttempted = buildCliBrief !== null && shouldTrySkillAdvisorCliFallback(result);
+    // The fallback rewrites diagnostics (its failures surface as
+    // NON_ZERO_EXIT, never TIMEOUT), so the native timeout fact must be
+    // captured BEFORE the fallback overwrites it.
+    const nativeTimedOut = result.status === 'fail_open' && result.diagnostics?.errorCode === 'TIMEOUT';
     if (buildCliBrief && cliFallbackAttempted) {
       result = await buildCliBrief(prompt, {
         runtime: 'codex',
@@ -357,7 +361,12 @@ export async function handleCodexUserPromptSubmit(
         uncertaintyThreshold: DEFAULT_ADVISOR_UNCERTAINTY_THRESHOLD,
       },
     });
-    if (!cliFallbackAttempted && result.status === 'fail_open' && result.diagnostics?.errorCode === 'TIMEOUT') {
+    // Emit the timeout warning whenever the FINAL outcome is fail_open and
+    // a timeout occurred anywhere along the way: the final diagnostics for
+    // a fallback-that-also-failed read NON_ZERO_EXIT, so the captured
+    // native-timeout fact is what keeps this reachable on the default
+    // path. A successful fallback leaves fail_open and skips the branch.
+    if (result.status === 'fail_open' && (result.diagnostics?.errorCode === 'TIMEOUT' || nativeTimedOut)) {
       emitTimeoutFallbackWarning(workspaceRoot, result.metrics.durationMs, writeDiagnostic);
       emitDiagnostic({
         workspaceRoot,

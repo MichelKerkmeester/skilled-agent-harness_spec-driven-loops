@@ -4,6 +4,7 @@
 // TEST: Validates system stability when 6+ SPECKIT_* flags are
 // Activated simultaneously. Tests for flag interaction issues,
 // Initialization crashes, and mutual-exclusion conflicts.
+import { readFileSync } from 'node:fs';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   isMMREnabled,
@@ -27,8 +28,10 @@ import {
 } from '../lib/search/search-flags';
 
 /**
- * All SPECKIT_* feature flags from search-flags.ts.
- * The ceiling test activates ALL of them simultaneously.
+ * The original core SPECKIT_* flags this ceiling test activates
+ * simultaneously. search-flags.ts declares far more flags than this hand
+ * list; a drift guard below derives the live token set from the module
+ * source so silent coverage gaps fail loudly instead of passing quietly.
  */
 const ALL_SPECKIT_FLAGS = [
   'SPECKIT_MMR',
@@ -188,11 +191,88 @@ describe('Feature Flag Ceiling Test (A10-P2-2)', () => {
       }
     }
   });
+
+  it('drift guard: every live SPECKIT_* token in search-flags.ts is known to this suite', () => {
+    const source = readFileSync(
+      new URL('../lib/search/search-flags.ts', import.meta.url),
+      'utf8',
+    );
+    const liveTokens = new Set(source.match(/SPECKIT_[A-Z0-9_]+/g) ?? []);
+    const known = new Set<string>([...ALL_SPECKIT_FLAGS, ...ACKNOWLEDGED_UNCEILINGED_FLAGS]);
+    const unknown = [...liveTokens].filter((token) => !known.has(token)).sort();
+    // A new flag must either join the ceiling list or be explicitly
+    // acknowledged below — never drift in silently.
+    expect(unknown).toEqual([]);
+  });
 });
+
+/**
+ * Flags declared in search-flags.ts that this ceiling suite deliberately
+ * does not activate (different subsystems, rollout knobs, or non-boolean
+ * semantics). This is a FROZEN snapshot, not derived from the source —
+ * a newly added flag appears in neither list and fails the drift guard,
+ * forcing an explicit decision here.
+ */
+const ACKNOWLEDGED_UNCEILINGED_FLAGS: string[] = [
+  'SPECKIT_ASSISTIVE_RECONSOLIDATION',
+  'SPECKIT_AUTO_RESUME',
+  'SPECKIT_BATCH_LEARNED_FEEDBACK',
+  'SPECKIT_CALIBRATED_OVERLAP_BONUS',
+  'SPECKIT_CAUSAL_BOOST',
+  'SPECKIT_CHANNEL_MIN_REP',
+  'SPECKIT_COMMUNITY_SEARCH_FALLBACK',
+  'SPECKIT_COMMUNITY_SUMMARIES',
+  'SPECKIT_CONFIDENCE_TRUNCATION',
+  'SPECKIT_CONTEXT_HEADERS',
+  'SPECKIT_DUAL_RETRIEVAL',
+  'SPECKIT_DYNAMIC_INIT',
+  'SPECKIT_DYNAMIC_TOKEN_BUDGET',
+  'SPECKIT_EMPTY_RESULT_RECOVERY_V1',
+  'SPECKIT_FILE_WATCHER',
+  'SPECKIT_GRAPH_CALIBRATION_PROFILE',
+  'SPECKIT_GRAPH_CONCEPT_ROUTING',
+  'SPECKIT_GRAPH_CONTEXT_INJECTION',
+  'SPECKIT_GRAPH_FALLBACK',
+  'SPECKIT_GRAPH_REFRESH_MODE',
+  'SPECKIT_GRAPH_WALK_ROLLOUT',
+  'SPECKIT_HYBRID_DECAY_POLICY',
+  'SPECKIT_HYDE',
+  'SPECKIT_IMPLICIT_FEEDBACK_LOG',
+  'SPECKIT_INTENT_AUTO_PROFILE',
+  'SPECKIT_LEARNED_STAGE2_COMBINER',
+  'SPECKIT_LLM_GRAPH_BACKFILL',
+  'SPECKIT_LLM_REFORMULATION',
+  'SPECKIT_ONTOLOGY_HOOKS',
+  'SPECKIT_POST_INSERT_ENRICHMENT_ENABLED',
+  'SPECKIT_POST_INSERT_ENRICHMENT_SYNC',
+  'SPECKIT_PRESSURE_POLICY',
+  'SPECKIT_PROGRESSIVE_DISCLOSURE_V1',
+  'SPECKIT_QUALITY_AUTO_FIX',
+  'SPECKIT_QUALITY_LOOP',
+  'SPECKIT_QUERY_CONCEPT_EXPANSION',
+  'SPECKIT_QUERY_DECOMPOSITION',
+  'SPECKIT_QUERY_SURROGATES',
+  'SPECKIT_RECONSOLIDATION_ENABLED',
+  'SPECKIT_RESPONSE_PROFILE_V1',
+  'SPECKIT_RESULT_CONFIDENCE_V1',
+  'SPECKIT_RESULT_EXPLAIN_V1',
+  'SPECKIT_RESULT_PROVENANCE',
+  'SPECKIT_ROLLOUT_PERCENT',
+  'SPECKIT_RRF_K_EXPERIMENTAL',
+  'SPECKIT_SAVE_PLANNER_MODE',
+  'SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS',
+  'SPECKIT_SESSION_BOOST',
+  'SPECKIT_SESSION_RETRIEVAL_STATE_V1',
+  'SPECKIT_SHADOW_FEEDBACK',
+  'SPECKIT_TEMPORAL_CONTIGUITY',
+  'SPECKIT_TEMPORAL_EDGES',
+  'SPECKIT_TYPED_TRAVERSAL',
+  'SPECKIT_USAGE_RANKING',
+];
 
 // SELF-GOVERNANCE FOOTER (TCB 9+)
 // Agent: Opus-J | TCB: 9+
 // Scope: Feature flag ceiling test
 // Mutation surface: tests/flag-ceiling.vitest.ts (new file)
-// Verified: All active SPECKIT_* flags from search-flags.ts covered
+// Verified: ceiling list + frozen acknowledged list jointly cover search-flags.ts (drift guard enforces)
 // No production code modified by this test file
