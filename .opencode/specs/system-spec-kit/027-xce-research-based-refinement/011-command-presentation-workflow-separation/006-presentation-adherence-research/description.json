@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/006-presentation-adherence-research",
+  "description": "Feature Specification: Presentation Adherence Research",
+  "keywords": [
+    "feature",
+    "specification",
+    "presentation",
+    "adherence",
+    "research"
+  ],
+  "lastUpdated": "2026-06-12T06:12:47.954Z",
+  "specId": "006",
+  "folderSlug": "presentation-adherence-research",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "011-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
