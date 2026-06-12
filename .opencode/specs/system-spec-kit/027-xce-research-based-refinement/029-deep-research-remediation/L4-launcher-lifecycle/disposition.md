@@ -18,7 +18,8 @@ tri-030/tri-032/tri-043/tri-110 closed as one packet (verdict `../verify/l4-clus
 ## Code queue (open)
 | Finding | One-line | Class |
 |---|---|---|
-| tri-045 | playbook file-count self-check misses broken links/orphans | code-small |
 | tri-148 | code-index owner inherits stdio + exits with child — no front-proxy/transparent recycle (spec-memory parity) | code-careful |
+
+tri-045 CLOSED (verdict `../verify/code-wave2-verdict.md`): the deterministic check now proves root-index linkage and gates orphans on a mutation-tested ratchet baseline (85, may only go down) — the prior zero-orphans claim was false against 85 real orphans and one dead link.
 
 Note: the spec-memory single-writer DB lock module (lib/search/db-instance-lock.ts) is reusable for the mirrored code-graph dual-writer hazard recorded in the L1 disposition; natural companion to tri-148 work.

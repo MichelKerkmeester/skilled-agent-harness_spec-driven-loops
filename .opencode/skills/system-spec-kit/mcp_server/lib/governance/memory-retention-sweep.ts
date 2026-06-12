@@ -290,9 +290,15 @@ function buildFeedbackRetentionReport(
 ): FeedbackRetentionSweepReport {
   const mode = resolveFeedbackRetentionMode();
   const activeGatePassed = mode === 'active' && args.shadowEvaluationPassed === true;
-  const signals = args.signals ?? (dryRun
-    ? []
-    : aggregateEvents(database, (args.runAt ?? Date.now()) - (args.windowMs ?? BATCH_WINDOW_MS), args.runAt ?? Date.now()));
+  // Dry-run previews must evaluate the SAME real signal window the apply
+  // path would see — aggregation is a pure read, and an empty-signal preview
+  // told operators nothing about what apply would actually do. The audit
+  // write path stays unreachable in dry-run (the sweep returns before it).
+  const signals = args.signals ?? aggregateEvents(
+    database,
+    (args.runAt ?? Date.now()) - (args.windowMs ?? BATCH_WINDOW_MS),
+    args.runAt ?? Date.now(),
+  );
   const evaluation = evaluateFeedbackRetention(candidates, signals, {
     runAt: args.runAt,
     extendDays: args.extendDays,

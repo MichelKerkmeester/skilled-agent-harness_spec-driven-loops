@@ -142,34 +142,49 @@ Release is `READY` only when:
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
 4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 410 scenario files while the feature catalog contains 341 feature files.
 5. No unresolved blocking triage item remains.
-6. Orphan scenario count is zero (every scenario file is linked in Section 12).
+6. Orphan scenario count does not exceed the recorded reconciliation baseline (85 as of 2026-06-12 — legacy index debt; the baseline may only ratchet DOWN), and zero index links are broken.
 
 Otherwise release is `NOT READY`.
 
 Deterministic coverage check (run from repository root):
 
 ```bash
-TOTAL_FEATURES=$(python3 - <<'PY'
+python3 - <<'PY'
+import re
+import sys
 from pathlib import Path
 
 root = Path('.opencode/skills/system-spec-kit/manual_testing_playbook')
-count = sum(
-    1
-    for path in root.glob('[0-9][0-9]--*/*.md')
+index = root / 'manual_testing_playbook.md'
+
+scenario_files = {
+    path.relative_to(root).as_posix()
+    for pattern in ('[0-9][0-9]--*/*.md', '[0-9][0-9]--*/_deprecated/*.md')
+    for path in root.glob(pattern)
     if path.is_file()
-)
-count += sum(
-    1
-    for path in root.glob('[0-9][0-9]--*/_deprecated/*.md')
-    if path.is_file()
-)
-print(count)
+}
+
+linked = {
+    re.sub(r'^\./', '', target)
+    for target in re.findall(r'\]\(((?:\./)?[0-9][0-9]--[^)#]+\.md)', index.read_text())
+}
+
+failures = []
+if len(scenario_files) != 410:
+    failures.append(f'expected 410 scenario files, found {len(scenario_files)}')
+broken = sorted(linked - scenario_files)
+if broken:
+    failures.append(f'{len(broken)} index link(s) resolve to no file: {broken[:5]}')
+ORPHAN_RATCHET_BASELINE = 85
+orphans = sorted(f for f in scenario_files - linked if '/_deprecated/' not in f)
+if len(orphans) > ORPHAN_RATCHET_BASELINE:
+    failures.append(f'{len(orphans)} orphan scenario file(s) exceed the recorded baseline of {ORPHAN_RATCHET_BASELINE}: {orphans[:5]}')
+
+if failures:
+    print('\n'.join(failures), file=sys.stderr)
+    sys.exit(1)
+print(f'OK: {len(scenario_files)} files, {len(linked)} index links, 0 broken, {len(orphans)} orphans (baseline {ORPHAN_RATCHET_BASELINE})')
 PY
-)
-if [ "$TOTAL_FEATURES" -ne 410 ]; then
-  echo "Expected 410 scenario files, found $TOTAL_FEATURES" >&2
-  exit 1
-fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
@@ -2169,7 +2184,7 @@ Prompt: `Validate Ollama runtime optionalDependencies and graceful dynamic-impor
 Ollama runtime listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent
 
 #### Test Execution
-> **Feature File:** [102](11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md)
+> **Feature File:** *(102 consolidated — no standalone file; coverage lives in the scoring-and-calibration category)*
 > **Catalog:** *(Ollama runtime optionalDependencies — covered by `11--scoring-and-calibration/14`)*
 
 ### 103 | UX hook module coverage (`mutation-feedback`, `response-hints`)
@@ -3655,7 +3670,7 @@ This split playbook keeps automated coverage references in three places:
 | 097 | Features | Async ingestion job lifecycle (P0-3) | [097](05--lifecycle/async-ingestion-job-lifecycle-p0-3.md) | [05--lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/async-ingestion-job-lifecycle.md) |
 | 099 | Features | Real-time filesystem watching  | [099](16--tooling-and-scripts/real-time-filesystem-watching-p1-7.md) | [16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature_catalog/16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md) |
 | 101 | Features | memory_delete confirm schema tightening | [101](02--mutation/memory-delete-confirm-schema-tightening.md) | *(memory_delete confirm schema — covered by `02--mutation/03`)* |
-| 102 | Features | Ollama runtime optionalDependencies | [102](11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md) | *(Ollama runtime optionalDependencies — covered by `11--scoring-and-calibration/14`)* |
+| 102 | Features | Ollama runtime optionalDependencies | *(consolidated — no standalone file)* | *(Ollama runtime optionalDependencies — covered within `11--scoring-and-calibration`)* |
 | 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](18--ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md) | [18--ux-hooks/dedicated-ux-hook-modules.md](../feature_catalog/18--ux-hooks/dedicated-ux-hook-modules.md) |
 | 104 | Features | Mutation save-path UX parity and no-op hardening | [104](18--ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md) | [18--ux-hooks/duplicate-save-no-op-feedback-hardening.md](../feature_catalog/18--ux-hooks/duplicate-save-no-op-feedback-hardening.md) |
 | 105 | Features | Context-server success-envelope finalization | [105](18--ux-hooks/context-server-success-envelope-finalization.md) | [18--ux-hooks/context-server-success-hint-append.md](../feature_catalog/18--ux-hooks/context-server-success-hint-append.md) |

@@ -44,9 +44,10 @@ Verifier follow-ons (recorded, not reopeners):
 
 ## Held — independent code items
 
+tri-013 CLOSED (verdict `../verify/code-wave2-verdict.md`): dry-run now aggregates the same real signal window as apply (pure read; the preview records no audits — early return traced).
+
 | Finding | One-line | Class |
 |---|---|---|
-| tri-013 | retention-sweep dry-run evaluates an empty signal set (public schema hides `signals`); fix must not record audits from previews | code-small |
 | tri-022 | semantic-trigger shadow telemetry not durable — promotion criteria uncomputable; hot-path, fail-safe, env-gated | code-careful |
 | tri-029 | prune-excludes confidence artifact never wired from public handlers (all patterns `tier:'unknown'`); ship default artifact + gates together | code-small |
 | tri-031 | repair-nodes cannot actually reparse skip-listed files (sentinel short-circuit); collides with the manual-review-only crash-cohort invariant — bounded targeted retry or honest-doc rewrite | code-careful |
