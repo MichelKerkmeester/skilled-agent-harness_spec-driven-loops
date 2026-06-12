@@ -10,15 +10,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
-    last_updated_at: "2026-06-12T13:50:00Z"
+    last_updated_at: "2026-06-12T21:15:00Z"
     last_updated_by: "claude-fable-orchestrator"
-    recent_action: "~145 closed incl code wave 1 (LIKE-escape everywhere); ~50 code left"
-    next_safe_action: "Next units: L4 launcher cluster, L7 replay pool, L5 routing"
+    recent_action: "Waves 4-6 committed+pushed (~178 closed); wave 7 in Fable verify"
+    next_safe_action: "Wave-7 verdicts then commit; queue: L7 clusters, L2 four, L5 carefuls"
     blockers: []
     key_files:
-      - "verify/l2-pipeline-packet-verdict.md"
-      - "verify/l3-l4-batch-verdict.md"
-      - "L2-codegraph-apply-safety/disposition.md"
+      - "L5-advisor-correctness/disposition.md"
+      - "L6-save-continuity-truth/disposition.md"
+      - "L9-pxx-sweep/disposition.md"
     session_dedup:
       fingerprint: "sha256:2003d4aca44bb943b1eae69b36f1d9ebe8fe3f8a5e907a323dbee96013ac03b3"
       session_id: "029-remediation-resume-2026-06-12"

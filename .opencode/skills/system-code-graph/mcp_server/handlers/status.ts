@@ -360,6 +360,8 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
               includeCommands: activeScopePolicy.includeCommands,
               includeSpecs: activeScopePolicy.includeSpecs,
               includePlugins: activeScopePolicy.includePlugins,
+              includeGlobs: activeScopePolicy.includeGlobs,
+              excludeGlobs: activeScopePolicy.excludeGlobs,
               source: activeScopePolicy.source,
             },
             storedScope,

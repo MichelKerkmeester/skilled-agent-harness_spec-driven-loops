@@ -1273,9 +1273,36 @@ function registerContextServerHandlers(targetServer: Server): void {
           if (typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
             console.error(`[token-budget] ${name} response (${meta.tokenCount} tokens) exceeds budget (${budget})`);
 
-            // Attempt to truncate results array to fit within budget
+            // First-call session priming rides along in meta and can dwarf a
+            // small tool's own payload. Slim it BEFORE touching the tool's
+            // results: the tool's answer is the caller's data, the priming
+            // payload is recoverable via memory_search/memory_context.
+            if (isRecord(meta.sessionPriming)) {
+              const priming = meta.sessionPriming as Record<string, unknown>;
+              const alreadyTrimmed = priming.trimmed === true;
+              if (!alreadyTrimmed) {
+                const constitutionalCount = Array.isArray(priming.constitutional)
+                  ? priming.constitutional.length
+                  : 0;
+                meta.sessionPriming = {
+                  trimmed: true,
+                  constitutionalCount,
+                  ...(isRecord(priming.primePackage) ? { primePackage: priming.primePackage } : {}),
+                };
+                syncEnvelopeTokenCount(envelope);
+                if (Array.isArray(envelope.hints)) {
+                  envelope.hints.push(`Session priming trimmed to fit the ${budget} token budget; full constitutional content remains retrievable via memory_search`);
+                }
+                meta.sessionPrimingTrimmed = true;
+              }
+            }
+
+            // Attempt to truncate results array to fit within budget — only
+            // when still over after the priming slim above, because the loop
+            // below pops a result before it re-measures.
+            const stillOverBudget = typeof meta.tokenCount === 'number' && meta.tokenCount > budget;
             const innerResults = data?.results;
-            if (Array.isArray(innerResults) && innerResults.length > 1) {
+            if (stillOverBudget && Array.isArray(innerResults) && innerResults.length > 1) {
               const originalCount = innerResults.length;
               // Results are typically sorted by score (highest first)
               // Remove from end (lowest-scored) until within budget
@@ -1309,7 +1336,7 @@ function registerContextServerHandlers(targetServer: Server): void {
               meta.tokenBudgetTruncated = true;
               meta.originalResultCount = originalCount;
               meta.returnedResultCount = innerResults.length;
-            } else {
+            } else if (stillOverBudget) {
               // No truncatable results array — add warning hint only
               if (Array.isArray(envelope.hints)) {
                 envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);

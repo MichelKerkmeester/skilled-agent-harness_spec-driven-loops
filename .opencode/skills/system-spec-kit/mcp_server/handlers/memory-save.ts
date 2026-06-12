@@ -3108,7 +3108,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   if (!memoryParser.isMemoryFile(validatedPath)) {
     return createMCPErrorResponse({
       tool: 'memory_save',
-      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/',
+      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, review-report.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/',
       code: 'E089',
       details: { requestId, filePath: validatedPath },
       recovery: {

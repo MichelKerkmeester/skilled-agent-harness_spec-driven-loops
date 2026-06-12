@@ -183,7 +183,17 @@ function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): st
   const includedSuffix = includedFolders.length > 0
     ? `; opted-in .opencode folders: ${includedFolders.join(', ')}`
     : '; .opencode skill, agent, command, specs and plugins excluded';
-  return `end-user code only${includedSuffix}`;
+  // Glob narrowing changes what the graph can answer about; hiding it behind
+  // the generic folder summary made a *.ts-only scan read as a full scan.
+  const globSegments: string[] = [];
+  if (policy.includeGlobs.length > 0) {
+    globSegments.push(`includeGlobs: ${policy.includeGlobs.join(', ')}`);
+  }
+  if (policy.excludeGlobs.length > 0) {
+    globSegments.push(`excludeGlobs: ${policy.excludeGlobs.join(', ')}`);
+  }
+  const globSuffix = globSegments.length > 0 ? `; narrowed by ${globSegments.join('; ')}` : '';
+  return `end-user code only${includedSuffix}${globSuffix}`;
 }
 
 function buildIndexScopePolicy(input: {

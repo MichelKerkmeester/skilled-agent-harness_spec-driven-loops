@@ -105,8 +105,8 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
   });
 
   describe('T063: SPEC_DOCUMENT_CONFIGS completeness', () => {
-    it('Has exactly 11 entries', () => {
-      expect(SPEC_DOCUMENT_CONFIGS.length).toBe(11);
+    it('Has exactly 12 entries', () => {
+      expect(SPEC_DOCUMENT_CONFIGS.length).toBe(12);
     });
 
     it('Each config has required fields', () => {
@@ -184,13 +184,13 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
   });
 
   describe('SPEC_DOCUMENT_FILENAMES set', () => {
-    it('Has 10 entries', () => {
-      expect(SPEC_DOCUMENT_FILENAMES.size).toBe(10);
+    it('Has 11 entries', () => {
+      expect(SPEC_DOCUMENT_FILENAMES.size).toBe(11);
     });
 
     const expectedFilenames = [
       'spec.md', 'plan.md', 'tasks.md', 'checklist.md',
-      'decision-record.md', 'implementation-summary.md', 'research.md', 'handover.md', 'resource-map.md', 'description.json',
+      'decision-record.md', 'implementation-summary.md', 'research.md', 'handover.md', 'resource-map.md', 'review-report.md', 'description.json',
     ];
 
     for (const fn of expectedFilenames) {
