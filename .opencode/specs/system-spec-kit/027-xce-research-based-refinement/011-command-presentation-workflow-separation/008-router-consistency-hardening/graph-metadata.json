@@ -2,25 +2,216 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/008-router-consistency-hardening",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/008-router-consistency-hardening",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Router consistency hardening: qualify bare MCP tool names in 7 routers and correct sk-doc command_template section-11 accuracy",
+  "derived": {
+    "trigger_phrases": [
+      "router consistency hardening",
+      "qualify allowed-tools mcp names",
+      "command template router standard accuracy",
+      "router consistency hardening plan",
+      "qualify allowed-tools plan",
+      "command template accuracy plan",
+      "router consistency hardening tasks",
+      "qualify allowed-tools tasks",
+      "command template accuracy tasks",
+      "router consistency hardening summary",
+      "qualify allowed-tools summary",
+      "command template accuracy summary"
+    ],
+    "key_topics": [
+      "router",
+      "consistency",
+      "hardening",
+      "qualify",
+      "allowed-tools",
+      "mcp",
+      "names",
+      "command",
+      "template",
+      "standard",
+      "accuracy",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/ask-ai-council.md",
+      ".opencode/commands/deep/start-context-loop.md",
+      ".opencode/commands/deep/start-research-loop.md",
+      ".opencode/commands/deep/start-review-loop.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/skills/sk-doc/assets/command_template.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "ask-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ask-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-context-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-context-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-research-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-research-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-review-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-review-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "command_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/command_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Consistency Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Finish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Align",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A deeper audit of the command tree after the presentation/router split found two consistency defects. First, commit `493b3c822f` (#44) decided the canonical `allowed-tools` form is the fully-qualified `mcp__<server>__<tool>` prefix and applied it to `resume.md` + `search.md`, but seven routers still carry the same bare or mixed MCP names it fixed. Second, the sk-doc `command_template.md` §11 router standard claims all five split families use an identical six-section shape and own `_auto.yaml`/`_confirm.yaml`, which is false: `memory` and `doctor` have no workflow YAML and use different section vocabularies.",
     "created_at": "2026-06-12T13:01:21Z",
-    "last_save_at": "2026-06-12T13:01:21Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-12T20:27:38.890Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

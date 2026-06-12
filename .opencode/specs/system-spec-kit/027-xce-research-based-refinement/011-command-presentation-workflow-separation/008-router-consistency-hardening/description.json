@@ -8,7 +8,7 @@
     "consistency",
     "hardening"
   ],
-  "lastUpdated": "2026-06-12T13:08:25.633Z",
+  "lastUpdated": "2026-06-12T20:27:38.890Z",
   "specId": "008",
   "folderSlug": "router-consistency-hardening",
   "parentChain": [
@@ -16,6 +16,8 @@
     "027-xce-research-based-refinement",
     "011-command-presentation-workflow-separation"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-06-26_21-27__a-deep-static-audit-of-the-26-command-routers.md"
+  ]
 }
