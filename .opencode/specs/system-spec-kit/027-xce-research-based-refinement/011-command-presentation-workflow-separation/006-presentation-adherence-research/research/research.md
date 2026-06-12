@@ -4,6 +4,7 @@
 >
 > **Program:** 10 read-only research iterations (1–5 MiMo v2.5 Pro high, 6–10 DeepSeek v4 Pro high) over the live command tree, grounded in captured bare-command transcripts. 44 findings; three DeepSeek seats answered in prose and were distilled (their format miss is itself evidence for the diagnosis).
 
+<!-- ANCHOR:convergent-diagnosis -->
 ## 1. The convergent diagnosis
 
 Both models, independently, across ten angles, converged on the same five-part explanation:
@@ -18,6 +19,9 @@ Both models, independently, across ten angles, converged on the same five-part e
 
 The doctor router pairs a `Presentation Boundary` enumeration (what must render verbatim, and what must NOT come from the router) with short fenced blocks placed immediately where they are used. That combination — boundary contract + proximity + brevity + contrast phrasing — is the portable pattern.
 
+<!-- /ANCHOR:convergent-diagnosis -->
+
+<!-- ANCHOR:recommendations -->
 ## 3. Ranked recommendations
 
 | # | Recommendation | Cost | Expected gain |
@@ -31,6 +35,9 @@ The doctor router pairs a `Presentation Boundary` enumeration (what must render 
 | 7 | Give the memory family YAML workflow assets like every other family (architectural parity) | large | medium — removes the family's outlier status |
 | 8 | CI adherence lint: golden-output fixtures per command surface, in the spirit of the prompt-quality-card sync guard | medium | durable regression protection |
 
+<!-- /ANCHOR:recommendations -->
+
+<!-- ANCHOR:evidence-trail -->
 ## 4. Evidence trail
 
 Per-iteration reports: `iterations/iteration-001.md` … `iteration-010.md`; finding rows: `deltas/iter-001.jsonl` … `iter-010.jsonl`. Primary sources cited by the seats include `.opencode/commands/memory/search.md` (the buried step-7 render pointer), `.opencode/commands/memory/assets/search_presentation.md` (the ~243-line multi-template asset), `.opencode/commands/doctor/doctor.md` (the Presentation Boundary pattern that renders verbatim), and the family routers under `.opencode/commands/{speckit,create,deep}/`. The live transcripts that seeded the program are summarized in `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/027-finding-remediation/playbook-report.md`. Models agreed on every structural claim; the only divergence was emphasis (MiMo weighted phrasing/contrast, DeepSeek weighted architecture/fill-protocol).
@@ -38,3 +45,4 @@ Per-iteration reports: `iterations/iteration-001.md` … `iteration-010.md`; fin
 ## 5. Suggested next step
 
 Recommendations 1–5 fit one small implementation phase (touching the five family routers plus `search_presentation.md`), verifiable by re-running the same bare-command probes on gpt-5.5 medium and checking the search output against the parseable contract.
+<!-- /ANCHOR:evidence-trail -->
