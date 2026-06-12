@@ -126,6 +126,8 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Scorer.** Five lanes fuse into a single calibrated score: explicit author signals, lexical overlap, skill-graph causality, derived metadata, and a semantic shadow lane. The fusion respects per-lane weights and emits per-lane attribution alongside the final score. Tool detail and lane semantics live in `feature_catalog/feature_catalog.md`.
 
+**Shadow-delta sink.** `advisor_recommend` returns shadow comparison data without writing by default. Durable JSONL deltas are recorded only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` points to a workspace-contained file or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default sink; the launcher allowlist forwards both env names to the daemon child.
+
 **Daemon and freshness.** A chokidar watcher under `daemon/` observes `.opencode/skills/*/SKILL.md` and per-skill `graph-metadata.json` files. On change, it triggers an incremental rebuild and refreshes the trust-state vocabulary: `live`, `stale`, `absent`, `unavailable`.
 
 **Skill graph.** A SQLite database holds the cross-skill edges (depends_on, dependents, enhances, conflicts) plus per-skill metadata. The `skill_graph_query` tool exposes read-only graph traversal.
@@ -138,7 +140,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-The advisor ships matching prompt-submit hooks for Claude Code and Codex, plus an OpenCode plugin bridge. The hook payload is the same compact attribution-safe JSON across runtimes so callers can rely on consistent fields regardless of transport. The plugin bridge under `.opencode/plugins/` calls into `mcp_server/lib/hooks/` and emits the payload back to the runtime.
+The advisor ships matching prompt-submit hooks for Claude Code and Codex, plus an OpenCode plugin bridge. The hook payload is the same compact attribution-safe JSON across runtimes so callers can rely on consistent fields regardless of transport. The Claude hook applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to the native advisor subprocess and the remaining CLI fallback window. The plugin bridge under `.opencode/plugins/` calls into `mcp_server/lib/hooks/` and emits the payload back to the runtime.
 
 ---
 

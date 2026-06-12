@@ -103,6 +103,8 @@ The lane weights live in `mcp_server/lib/scorer/lane-registry.ts`. The scorer re
 
 Every public response strips raw prompt content. Attribution is per-lane only. The same safety contract applies to all runtime hooks and to the Python compatibility shim, so hook telemetry and script output stay safe to log at any scale.
 
+Shadow-delta JSONL recording is opt-in. `advisor_recommend` includes the prompt-safe `_shadow` comparison payload in its response, but it writes no durable shadow delta file unless `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` is set or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default sink. Both env names are forwarded by the advisor launcher allowlist.
+
 ### Freshness and the Trust Contract
 
 A daemon watches every `SKILL.md` and `graph-metadata.json` under `.opencode/skills/`. When a watched source changes, the daemon schedules an incremental reindex, publishes a fresh generation after the rebuild, and invalidates the recommendation cache. It still holds a single-writer lease; explicit trusted mutation paths remain `advisor_rebuild` and `skill_graph_scan`, and corrupt-database recovery may also move aside and recreate the database during lazy initialization.
@@ -141,7 +143,7 @@ The `mk_skill_advisor` server exposes nine tools under the `mcp__mk_skill_adviso
 | `skill_graph_scan` | Index every `graph-metadata.json` into the SQLite skill graph |
 | `skill_graph_query` | Traverse the skill graph (the ten query types above) |
 | `skill_graph_status` | Report graph health, counts and staleness |
-| `skill_graph_validate` | Validate schema drift, broken edges, reciprocal symmetry and dependency cycles |
+| `skill_graph_validate` | Validate schema drift, broken edges, dependency cycles, weight bands, reciprocal symmetry, orphan skills and derived-freshness warnings |
 | `skill_graph_propagate_enhances` | Detect, propose or apply missing inbound `enhances` edges (trusted-caller gated) |
 
 ---

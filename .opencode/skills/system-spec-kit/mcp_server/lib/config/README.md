@@ -19,7 +19,7 @@ Current state:
 
 - `memory-types.ts` defines memory decay types, spec document configs and document type helpers.
 - `type-inference.ts` resolves memory types from content, paths, tiers and keywords.
-- `spec-doc-paths.ts` filters canonical spec documents and graph metadata paths.
+- `spec-doc-paths.ts` filters canonical spec documents and graph metadata paths, including `<packet>/review/review-report.md` and backfilled iteration-pack metadata files.
 - `capability-flags.ts` resolves memory roadmap rollout state and parser environment names.
 
 ---
@@ -77,7 +77,7 @@ config/
 |---|---|
 | `memory-types.ts` | Defines `MemoryTypeName`, half-lives, document types, spec document configs and validation helpers |
 | `type-inference.ts` | Applies ordered inference from explicit frontmatter, spec document paths, importance tiers, path patterns and keywords |
-| `spec-doc-paths.ts` | Normalizes spec paths, excludes working artifacts and extracts spec folder labels |
+| `spec-doc-paths.ts` | Normalizes spec paths, excludes working artifacts, accepts canonical review reports and iteration metadata, and extracts spec folder labels |
 | `capability-flags.ts` | Resolves roadmap flags and exports `SPECKIT_PARSER_ENV` |
 
 Imports used by this folder:

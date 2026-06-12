@@ -18,7 +18,7 @@ Surface skill recommendations in Claude Code sessions at prompt time, without bl
 
 ## 2. HOW IT WORKS
 
-`hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor through `compat/index.ts` and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. Raw prompts never appear in diagnostics. Freshness vocabulary is `live / stale / absent / unavailable`. Status vocabulary is `ok / skipped / degraded / fail_open`.
+`hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` bounds the native advisor subprocess and the remaining CLI fallback window. Raw prompts never appear in diagnostics. Freshness vocabulary is `live / stale / absent / unavailable`. Status vocabulary is `ok / skipped / degraded / fail_open`.
 
 ## 3. SOURCE FILES
 
@@ -26,7 +26,7 @@ Surface skill recommendations in Claude Code sessions at prompt time, without bl
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` | Implementation | Source reference |
+| `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Implementation | Source reference |
 
 ### Validation And Tests
 

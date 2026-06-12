@@ -17,7 +17,7 @@ trigger_phrases:
 
 `session_resume` is the canonical recovery surface when hook-injected startup context is unavailable. The handler walks the documented continuity ladder for the target spec folder: `handover.md`, `_memory.continuity` frontmatter, then the canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`).
 
-When the target is a phase parent, the handler honors `graph-metadata.json.derived.last_active_child_id` and resolves to the named child. Missing, null, stale, or no-redirect cases list the children with their statuses so the caller can pick which phase to continue. The response surfaces each layer of the ladder explicitly so callers can audit recovery without re-reading source files.
+When the target is a phase parent, the handler honors `graph-metadata.json.derived.last_active_child_id` and resolves to the named child when the pointer is valid. The pointer may be a bare child id (`001-phase`) or a track-relative path under the current packet. Redirects are bounded and escape-safe; missing, null, malformed, or stale-to-missing-child pointers leave recovery on the requested folder rather than escaping the packet tree. The response surfaces each layer of the ladder explicitly so callers can audit recovery without re-reading source files.
 
 ---
 
@@ -27,7 +27,7 @@ The handler reads the target folder, walks the ladder, and returns a structured 
 
 - Target identification: explicit folder reference in the response
 - Layer ordering: handover, continuity frontmatter, canonical spec docs in that order
-- Phase-parent redirect: follows `derived.last_active_child_id` when present; lists children when absent
+- Phase-parent redirect: follows `derived.last_active_child_id` only when it names an existing child phase under the current packet
 
 The ladder is documented in the quick reference workflow doc and is the same path used by `/speckit:resume`. The two surfaces share semantics so operators get identical recovery via either path.
 

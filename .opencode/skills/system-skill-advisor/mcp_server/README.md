@@ -165,7 +165,7 @@ mcp_server/
 |   +-- skill-graph.sqlite
 |   +-- .mk-skill-advisor-launcher.json
 |   `-- README.md
-+-- data/                          # Runtime data (shadow deltas)
++-- data/                          # Runtime data (opt-in shadow deltas)
 |   +-- shadow-deltas.jsonl
 |   `-- README.md
 +-- compat/                        # Package-level compatibility export
@@ -208,7 +208,7 @@ mcp_server/
 |---|---|
 | `advisor-server.ts` | MCP transport entrypoint, tool registration, daemon startup, skill graph indexing via `indexSkillMetadata`, and the fail-closed trusted-caller resolution (`resolveTrustedCaller` honors `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` from the daemon env only). |
 | `skill-advisor-cli.ts` | Daemon-backed CLI over the same 9 tools (built to `dist/mcp_server/skill-advisor-cli.js`, fronted by `.opencode/bin/skill-advisor.cjs`). Untrusted-by-default `_meta` (`callerAuthority`), trusted-mutation gate for `advisor_rebuild` / `skill_graph_scan` / apply-mode `skill_graph_propagate_enhances`, warm-only probe support, launcher auto-spawn, exit taxonomy `0`/`1`/`64`/`69`/`75`. |
-| `skill-advisor-cli-manifest.ts` | CLI tool manifest asserted at CLI startup so the command list cannot drift from the tool registry. |
+| `skill-advisor-cli-manifest.ts` | Hand-maintained CLI tool manifest asserted at CLI startup and covered by the manifest parity suite so command schemas stay byte-identical to the tool registry. |
 | `tools/index.ts` (lines 1-70) | Tool descriptor registry (`TOOL_DEFINITIONS` at line 37) and dispatch router for 9 public tools. |
 | `tools/skill-graph-tools.ts` (lines 1-143) | Skill graph tool definitions for scan, query, status, validate and propagate_enhances. |
 | `handlers/index.ts` | Re-exports handler entrypoints for advisor and skill-graph operations. |
@@ -286,7 +286,7 @@ The server registers 9 public tools (4 advisor + 5 skill_graph) defined in `tool
 | `skill_graph_scan` | Tool | Indexes or re-indexes skill metadata into SQLite. |
 | `skill_graph_query` | Tool | Queries skill graph relationships (dependencies, enhances, hubs). |
 | `skill_graph_status` | Tool | Reports skill graph health and counts. |
-| `skill_graph_validate` | Tool | Validates skill graph for schema drift, broken edges and cycles. |
+| `skill_graph_validate` | Tool | Validates skill graph for schema drift, broken edges, cycles, weight bands, reciprocal symmetry, orphan skills and derived-freshness warnings. |
 | `skill_graph_propagate_enhances` | Tool | Detects and (opt-in) applies missing inbound enhance edges across skills. |
 | `node .opencode/bin/skill-advisor.cjs <tool>` | CLI | Daemon-backed front door for all 9 tools (shim guards dist freshness, exit `69`; `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` dev override; `list-tools` answers offline; `--trusted` for maintainer mutations). |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |

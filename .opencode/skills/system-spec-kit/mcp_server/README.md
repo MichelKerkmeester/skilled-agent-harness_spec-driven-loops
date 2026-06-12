@@ -162,7 +162,7 @@ mcp_server/
 
 | File | Responsibility |
 |---|---|
-| `context-server.ts` | Starts the MCP server and wires transport to the dispatcher. |
+| `context-server.ts` | Starts the MCP server, wires transport to the dispatcher, and enforces response token budgets. If first-call `meta.sessionPriming` pushes an envelope over budget, the server slims that metadata before dropping result rows. |
 | `spec-memory-cli.ts` | Daemon-backed CLI over the same 37 tools (built to `dist/spec-memory-cli.js`, fronted by `.opencode/bin/spec-memory.cjs`). Parses per-tool flags against `tool-schemas.ts`, probes the daemon (warm-only honors exit `75`), auto-spawns the launcher otherwise, and maps errors to the `0`/`1`/`64`/`69`/`75` exit taxonomy. |
 | `hooks/spec-memory-cli-fallback.ts` | Shared hook helper for bounded warm-only CLI recovery: probes the IPC socket first and calls the CLI only when the daemon is already warm, failing open otherwise. |
 | `hooks/code-index-cli-fallback.ts` | Same warm-only fallback contract for the mk-code-index CLI, used by the Claude/Codex hook adapters. |
@@ -180,6 +180,8 @@ mcp_server/
 | `formatters/` | Shapes search and response-profile output for clients. |
 | `ENV_REFERENCE.md` | Documents runtime environment variables. |
 | `INSTALL_GUIDE.md` | Documents package setup and MCP client registration. |
+
+Canonical spec-document discovery includes `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`. `graph-metadata.json` is discovered through the graph-metadata path gate, including metadata backfilled under `<packet>/iterations/`; `research/iterations/` and `review/iterations/` markdown remain working artifacts rather than canonical spec docs.
 
 ---
 
@@ -243,7 +245,7 @@ Main tool flow:
 | `hooks/*` | Modules | Produce startup, prompt, and compact-context payloads for runtime integrations. |
 | `handlers/memory-embedding-reconcile.ts` | Module | Net-new public `memory_embedding_reconcile` tool: dry-run-default embedding convergence and retry-counter reset under a guarded transaction. |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
-| `npm test` | Command | Runs package tests through the configured test runner. |
+| `npm test` | Command | Runs package tests through the configured runner, including `test:spec-validation` on the tracked validation suites. |
 
 ---
 
@@ -285,6 +287,7 @@ Run from `mcp_server/` unless noted.
 ```bash
 npm run build
 npm test
+npm run test:spec-validation
 ```
 
 Focused documentation checks from the repository root:

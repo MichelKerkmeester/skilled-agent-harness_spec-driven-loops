@@ -21,7 +21,7 @@ Current state:
 
 - Provides the Python `skill_advisor.py` CLI used by fallback routing checks.
 - Stores benchmark and regression scripts for advisor quality measurement.
-- Includes skill-graph generation utilities and generated graph data.
+- Includes skill-graph maintenance utilities. Runtime rebuilds target SQLite first; JSON export remains diagnostic-only data.
 
 ---
 
@@ -35,8 +35,8 @@ scripts/
 +-- skill_advisor_bench.py              # Benchmark runner
 +-- skill_advisor_regression.py         # Regression runner
 +-- skill_advisor_runtime.py            # Runtime support module
-+-- skill_graph_compiler.py             # Skill graph compiler
-+-- skill-graph.json                    # Generated graph data
++-- skill_graph_compiler.py             # Skill graph compiler and JSON diagnostic exporter
++-- skill-graph.json                    # Diagnostic graph export, ignored by the runtime
 +-- fixtures/                           # Script fixtures
 +-- routing-accuracy/                   # Routing accuracy inputs or outputs
 +-- out/                                # Generated script output
@@ -53,9 +53,9 @@ scripts/
 | `skill_advisor_runtime.py` | Runtime helpers shared by Python advisor scripts. |
 | `skill_advisor_regression.py` | Runs regression scenarios for advisor recommendations. |
 | `skill_advisor_bench.py` | Runs benchmark scenarios and reports timing or quality metrics. |
-| `skill_graph_compiler.py` | Builds skill graph metadata used by advisor routing. |
+| `skill_graph_compiler.py` | Validates graph metadata and exports diagnostic JSON. Runtime routing reads SQLite, not this export. |
 | `check-prompt-quality-card-sync.sh` | Checks prompt quality-card sync state. |
-| `skill-graph.json` | Generated graph input consumed by advisor tooling. |
+| `skill-graph.json` | Diagnostic JSON export for inspection; runtime routing consumes SQLite instead. |
 
 ---
 
@@ -73,7 +73,7 @@ Main flow:
 prompt, fixture or skill graph source
   -> script CLI
   -> advisor runtime or graph compiler
-  -> recommendation, metric report or generated graph data
+  -> recommendation, metric report, SQLite refresh or diagnostic graph export
 ```
 
 ---
@@ -85,7 +85,7 @@ prompt, fixture or skill graph source
 | `skill_advisor.py` | Python CLI | Returns skill recommendations for prompt text. |
 | `skill_advisor_regression.py` | Python CLI | Runs regression scenarios. |
 | `skill_advisor_bench.py` | Python CLI | Runs benchmark scenarios. |
-| `init-skill-graph.sh` | Shell script | Initializes generated skill graph data. |
+| `init-skill-graph.sh` | Shell script | Validates metadata, rebuilds runtime SQLite via warm trusted `skill_graph_scan` or direct `indexSkillMetadata`, then refreshes diagnostic JSON. |
 
 ---
 

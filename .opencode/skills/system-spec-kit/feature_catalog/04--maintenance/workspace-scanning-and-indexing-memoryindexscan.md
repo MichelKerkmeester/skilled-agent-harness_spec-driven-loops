@@ -27,11 +27,11 @@ This tool scans your project folders for new or changed files and adds them to t
 
 This is the tool that keeps the spec-doc record database synchronized with the filesystem. Without it, new or modified memory files would be invisible to search.
 
-Spec documents are still indexed by default. When a scan touches `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research/research.md`, or `handover.md`, it routes that save through `memory_save` in warn-only quality mode so validation problems remain visible without dropping the document out of retrieval.
+Spec documents are still indexed by default. When a scan touches `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, or `description.json`, it routes that save through `memory_save` in warn-only quality mode so validation problems remain visible without dropping the document out of retrieval.
 
 ### File Discovery
 
-The scanner discovers files from three sources: constitutional files under `.opencode/skills/*/constitutional/` (currently `.md`, excluding `README.md`/`README.txt`), canonical spec documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research/research.md`, `handover.md`), and graph metadata files (`graph-metadata.json`). The retired `specs/**/memory/*.md` surface is no longer discovered and the runtime rejects saves into it. Canonical path deduplication prevents the same file from being indexed twice under different paths (the `specs/` vs `.opencode/specs/` alias problem).
+The scanner discovers files from three sources: constitutional files under `.opencode/skills/*/constitutional/` (currently `.md`, excluding `README.md`/`README.txt`), canonical spec documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`), and graph metadata files (`graph-metadata.json`). Metadata files backfilled under `<packet>/iterations/` are discoverable, while `research/iterations/` and `review/iterations/` markdown remain working artifacts. The retired `specs/**/memory/*.md` surface is no longer discovered and the runtime rejects saves into it. Canonical path deduplication prevents the same file from being indexed twice under different paths (the `specs/` vs `.opencode/specs/` alias problem).
 
 ### Incremental Bucketing & Scan Throttling
 

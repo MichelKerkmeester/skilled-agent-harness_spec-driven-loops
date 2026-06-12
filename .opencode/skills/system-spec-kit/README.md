@@ -84,7 +84,7 @@ Or use the command shorthand:
 /memory:save 042-my-feature
 ```
 
-Every canonical save now refreshes `description.json.lastUpdated` and `graph-metadata.json.derived.*`, so the default `/memory:save` path is no longer a metadata no-op.
+The `/memory:save` command's generate-context lane refreshes `description.json.lastUpdated` and `graph-metadata.json.derived.*`. Direct MCP `memory_save({ filePath })` indexes content only; on mutating packet-doc saves it returns a `metadataRefresh` advisory with `refreshed:false` and points callers back to the generate-context save lane when packet metadata must be current.
 
 ### Resume Work From a Previous Session
 
@@ -94,7 +94,7 @@ Start a new session on work you did before:
 /speckit:resume
 ```
 
-The system first compares folder-local `handover.md` and `_memory.continuity` in `implementation-summary.md`, selects whichever is fresher, then falls back to the packet's canonical spec docs. It presents the current state, prior decisions, touched files and next steps before you start.
+The system first resolves the requested folder. If it is a phase parent with a valid `derived.last_active_child_id`, resume follows that pointer into the active child before comparing folder-local `handover.md` and `_memory.continuity` in `implementation-summary.md`; it then falls back to the packet's canonical spec docs. It presents the current state, prior decisions, touched files and next steps before you start.
 
 ### Search for Context
 
@@ -192,9 +192,9 @@ specs/<###-feature-name>/
 └── scratch/                     # Temporary workspace files (gitignored)
 ```
 
-`generate-context.js` updates the packet's continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated` and rewrites `graph-metadata.json` derived fields on every canonical save. Recovery then compares folder-local `handover.md` and `_memory.continuity` freshness, with packet docs as fallback.
+`generate-context.js` updates the packet's continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated` and rewrites `graph-metadata.json` derived fields on every generate-context save-lane run. Direct MCP `memory_save({ filePath })` does not refresh those metadata files; its success response includes a `metadataRefresh` advisory when packet metadata may now lag. Recovery then compares folder-local `handover.md` and `_memory.continuity` freshness, with packet docs as fallback.
 
-**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map. The parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`, child saves bubble up the child's `packet_id`). `/speckit:resume` reads the pointer first when the target is a phase parent. A fresh pointer (<24h) recurses directly into the active child. A stale or missing pointer falls back to listing children with statuses. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
+**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map. The parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`, child saves bubble up the child's `packet_id`). `/speckit:resume` reads `derived.last_active_child_id` first when the target is a phase parent and follows valid bare child ids (`001-phase`) or track-relative child paths under the parent. The redirect is bounded and escape-safe; missing, malformed, stale-to-missing-child, or non-child pointers leave resume on the requested folder instead of escaping the packet tree. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
 
 #### Checklist Priority System (Level 2+)
 

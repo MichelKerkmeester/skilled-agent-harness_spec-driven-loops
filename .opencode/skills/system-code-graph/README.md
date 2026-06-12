@@ -107,7 +107,7 @@ The four freshness values are `fresh`, `stale`, `empty` and `error`. `blocked` i
 
 A separate trust-state signal tracks whether the gold-query battery passed recently. A graph can be `fresh` while `goldVerificationTrust` is `absent` if nobody has run `code_graph_verify` since the last structural change. High-stakes queries should check both before acting on results.
 
-A scope fingerprint, a hash of the scan include and exclude globs plus feature flags, is compared on every read. A mismatch blocks the read and recommends a full rescan. Widening the scope allows an incremental rebuild. Narrowing it needs a full scan.
+A scope fingerprint, a hash of the scan include and exclude globs plus feature flags, is compared on every read. `code_graph_status.data.activeScope` exposes both the human label and structured `includeGlobs` / `excludeGlobs` arrays. When globs narrow the scan, the label says `narrowed by includeGlobs: ...` and/or `excludeGlobs: ...` so a `*.ts`-only scan does not look like full-workspace coverage. A mismatch blocks the read and recommends a full rescan. Widening the scope allows an incremental rebuild. Narrowing it needs a full scan.
 
 ### Blast Radius and Change Detection
 

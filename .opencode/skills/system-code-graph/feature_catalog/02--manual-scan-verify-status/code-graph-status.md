@@ -23,6 +23,8 @@ Manual diagnostic MCP call. Startup/resume surfaces may include status-like stru
 
 When tombstone auditing is enabled with `SPECKIT_CODE_GRAPH_TOMBSTONES=true`, status includes retained deletion lineage from the graph stats summary: counts by kind and reason plus recent retained tombstones. With the flag unset, the audit remains default-off and live graph queries continue to read only active nodes and edges.
 
+The successful status payload includes `data.activeScope` with structured `includeGlobs` and `excludeGlobs` arrays alongside the scope label. When either list narrows the scan, the label appends `narrowed by includeGlobs: ...` and/or `excludeGlobs: ...` so callers can see restricted coverage without parsing the fingerprint.
+
 ### Class
 
 manual diagnostic. Diagnostic freshness tools detect state. Explicit repair paths rebuild or scan.
@@ -37,9 +39,10 @@ Status can recommend `rg` or `code_graph_scan`. It does not perform either. Trea
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:197-208` | Handler | reads the readiness and scope snapshot before stats |
-| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:210-252` | Handler | returns a degraded envelope when stats are unavailable |
-| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:254-354` | Handler | assembles the successful status payload |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:212-248` | Handler | reads the readiness and scope snapshot before stats |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:250-298` | Handler | returns a degraded envelope when stats are unavailable |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:340-366` | Handler | assembles the successful status payload, including structured active-scope globs |
+| `.opencode/skills/system-code-graph/mcp_server/lib/index-scope-policy.ts:175-196` | Library | builds scope labels that call out glob narrowing |
 | `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Library | flag-gated tombstone schema, retention pruning and stats summary |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts` | Handler | includes explicit cleanup reasons and scan tombstone summary |
 | `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:66-70` | Schema | defines the public schema |

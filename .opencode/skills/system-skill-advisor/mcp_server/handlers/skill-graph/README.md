@@ -30,7 +30,7 @@ Current state:
 | `scan.ts` | Handles `skill_graph_scan` and publishes advisor freshness after indexing. |
 | `query.ts` | Handles relationship traversal queries such as dependencies, subgraphs, hubs and orphans. |
 | `status.ts` | Reports graph counts, schema versions, source staleness and validation summary. |
-| `validate.ts` | Checks schema versions, broken edges, cycles, weight bands, symmetry and orphan skills. |
+| `validate.ts` | Checks schema versions, broken edges, cycles, weight bands, symmetry, orphan skills and derived-freshness warnings for invalid/missing derived data, timestamp gaps and sanitizer-version drift. |
 | `response-envelope.ts` | Formats success and error payloads and redacts local paths. |
 
 ## 3. USAGE NOTES
