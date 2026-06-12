@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
     last_updated_at: "2026-06-12T13:50:00Z"
     last_updated_by: "claude-fable-orchestrator"
-    recent_action: "Doc class complete all lanes; 130+ findings closed; code queue ~70"
-    next_safe_action: "Work lane code queues per dispositions (L2/L4/L5/L6/L7/L9)"
+    recent_action: "~145 closed incl code wave 1 (LIKE-escape everywhere); ~50 code left"
+    next_safe_action: "Next units: L4 launcher cluster, L7 replay pool, L5 routing"
     blockers: []
     key_files:
       - "verify/l2-pipeline-packet-verdict.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:2003d4aca44bb943b1eae69b36f1d9ebe8fe3f8a5e907a323dbee96013ac03b3"
       session_id: "029-remediation-resume-2026-06-12"
       parent_session_id: null
-    completion_pct: 13
+    completion_pct: 73
     open_questions: []
     answered_questions: []
 ---
