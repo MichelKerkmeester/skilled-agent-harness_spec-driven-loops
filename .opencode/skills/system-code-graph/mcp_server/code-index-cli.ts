@@ -593,6 +593,21 @@ function validateCommand(parsed: ParsedCommand): { readonly tool: ToolDefinition
     throw new CliUsageError(`Missing required field${missing.length === 1 ? '' : 's'}: ${missing.join(', ')}`);
   }
 
+  // A bare apply defaults to rescan routing, which on a soft-stale graph is
+  // an incremental index mutation nobody explicitly asked for. From this CLI
+  // mutation intent must be spelled out: an operation, a dryRun preview, or
+  // the explicit default-routing opt-in used by doctor-style flows.
+  if (tool.name === 'code_graph_apply'
+    && args.operation === undefined
+    && args.dryRun !== true
+    && process.env.MK_CODE_INDEX_CLI_ALLOW_DEFAULT_APPLY !== '1') {
+    throw new CliUsageError(
+      'code_graph_apply without an operation mutates via default rescan routing; '
+      + 'pass --operation=<op>, preview with --dry-run=true, or set '
+      + 'MK_CODE_INDEX_CLI_ALLOW_DEFAULT_APPLY=1 to opt in to default routing.',
+    );
+  }
+
   try {
     return {
       tool,
