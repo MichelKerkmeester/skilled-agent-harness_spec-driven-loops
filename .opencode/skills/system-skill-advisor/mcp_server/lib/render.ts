@@ -117,6 +117,7 @@ function toScoredRecommendation(recommendation: RenderableRecommendation): Advis
   };
 }
 
+/** Detect whether the renderable recommendation set carries ambiguity evidence. */
 export function hasAdvisorAmbiguitySignal(
   recommendations: readonly AdvisorRecommendation[],
   precomputedAmbiguous = false,

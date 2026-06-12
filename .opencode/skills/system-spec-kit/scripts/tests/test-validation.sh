@@ -128,13 +128,13 @@ validator_actual_result() {
     local output="$2"
 
     if [[ "$exit_code" -ge 2 ]]; then
-        echo "fail"
+        printf '%s\n' "fail"
     elif [[ "$exit_code" -eq 1 ]]; then
-        echo "fail"
+        printf '%s\n' "fail"
     elif printf '%s\n' "$output" | grep -Eq 'Summary: Errors: 0[[:space:]]+Warnings: [1-9][0-9]*|warnings=[1-9][0-9]*'; then
-        echo "warn"
+        printf '%s\n' "warn"
     else
-        echo "pass"
+        printf '%s\n' "pass"
     fi
 }
 
@@ -282,8 +282,7 @@ ${test_entry}"
     CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
     
-    # Determine actual result based on exit code
-    # Exit 0 = pass, Exit 1 = warn, Exit 2 = fail
+    # Determine actual result from exit code plus validator warning summary.
     local actual
     actual=$(validator_actual_result "$exit_code" "$output")
     
@@ -479,7 +478,7 @@ ${test_entry}"
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
     local actual
-    actual=$(echo "$output" | python3 -c "
+    actual=$(printf '%s\n' "$output" | python3 -c "
 import sys, json
 try:
     d = json.load(sys.stdin)
@@ -491,21 +490,21 @@ try:
         print('pass')
 except Exception:
     print('fail')
-" 2>/dev/null || echo "fail")
+" 2>/dev/null || printf '%s\n' "fail")
 
     local json_valid=false
-    echo "$output" | python3 -m json.tool > /dev/null 2>&1 && json_valid=true
+    printf '%s\n' "$output" | python3 -m json.tool > /dev/null 2>&1 && json_valid=true
 
     local has_fields="False"
     if [[ "$json_valid" = true ]]; then
-        has_fields=$(echo "$output" | python3 -c "
+        has_fields=$(printf '%s\n' "$output" | python3 -c "
 import sys, json
 try:
     d = json.load(sys.stdin)
     required = ['folder', 'level', 'passed', 'entries', 'summary']
     print('True' if all(k in d for k in required) else 'False')
 except: print('False')
-" 2>/dev/null || echo "False")
+" 2>/dev/null || printf '%s\n' "False")
     fi
 
     if [[ "$actual" = "$expect" ]] && [[ "$json_valid" = true ]] && [[ "$has_fields" = "True" ]]; then

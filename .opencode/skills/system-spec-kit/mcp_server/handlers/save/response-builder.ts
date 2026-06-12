@@ -3,9 +3,6 @@
 // ───────────────────────────────────────────────────────────────
 import path from 'node:path';
 
-import type BetterSqlite3 from 'better-sqlite3';
-import type * as memoryParser from '../../lib/parsing/memory-parser.js';
-
 import * as predictionErrorGate from '../../lib/cognitive/prediction-error-gate.js';
 import * as retryManager from '../../lib/providers/retry-manager.js';
 import { runConsolidationCycleIfEnabled } from '../../lib/storage/consolidation.js';
@@ -16,9 +13,13 @@ import { parseNearDuplicateHint } from '../../lib/storage/near-duplicate.js';
 
 import { appendMutationLedgerSafe } from '../memory-crud-utils.js';
 import { runPostMutationHooks } from '../mutation-hooks.js';
-import type { MCPResponse } from '../types.js';
 import { buildMutationHookFeedback } from '../../hooks/mutation-feedback.js';
 import { createStatediffAction } from '../../lib/storage/statediff.js';
+import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
+
+import type BetterSqlite3 from 'better-sqlite3';
+import type * as memoryParser from '../../lib/parsing/memory-parser.js';
+import type { MCPResponse } from '../types.js';
 import type {
   AssistiveRecommendation,
   IndexResult,
@@ -34,7 +35,6 @@ import type {
   ReconsolidationOperationResult,
 } from './types.js';
 import type { EnrichmentStatus, PostInsertExecutionStatus } from './post-insert.js';
-import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
 
 // Feature catalog: Mutation response UX payload exposure
 // Feature catalog: Duplicate-save no-op feedback hardening
@@ -823,21 +823,31 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
     });
   }
 
-  // memory_save indexes document content only; packet metadata
+  // The memory_save tool indexes document content only; packet metadata
   // (description.json / graph-metadata.json) is owned by the generate-context
   // save lane and is NOT refreshed here. Surface that as a structured
   // advisory so resume/graph consumers know the metadata may lag this save
   // instead of assuming the packet files are current.
   const savedBasename = filePath ? path.basename(filePath) : '';
-  const isPacketMetadataTarget = savedBasename === 'description.json' || savedBasename === 'graph-metadata.json';
-  const isConstitutionalTarget = typeof filePath === 'string' && filePath.includes('/constitutional/');
-  if (shouldEmitPostMutationFeedback && filePath && !isPacketMetadataTarget && !isConstitutionalTarget) {
+  const isPacketMetadataTarget = savedBasename === 'description.json'
+    || savedBasename === 'graph-metadata.json';
+  const isConstitutionalTarget = typeof filePath === 'string'
+    && filePath.includes('/constitutional/');
+  if (
+    shouldEmitPostMutationFeedback
+    && filePath
+    && !isPacketMetadataTarget
+    && !isConstitutionalTarget
+  ) {
     response.metadataRefresh = {
       refreshed: false,
       files: ['description.json', 'graph-metadata.json'],
       refreshedBy: 'generate-context save lane',
     };
-    hints.push('Packet metadata (description.json/graph-metadata.json) was not refreshed by this save; run the generate-context save lane (/memory:save) when packet state changed');
+    hints.push(
+      'Packet metadata (description.json/graph-metadata.json) was not refreshed by this save; ' +
+      'run the generate-context save lane (/memory:save) when packet state changed',
+    );
   }
 
   // the rollout N3-lite runtime integration (flag-gated)

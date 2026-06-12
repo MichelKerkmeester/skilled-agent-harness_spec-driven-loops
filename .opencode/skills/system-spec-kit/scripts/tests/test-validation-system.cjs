@@ -1,7 +1,11 @@
-// ───────────────────────────────────────────────────────────────
-// 1. TEST: VALIDATION SYSTEM COMPREHENSIVE TESTS
-// ───────────────────────────────────────────────────────────────
-//
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Validation System Tests                                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Exercise validator behavior without requiring bash execution.  ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 // JavaScript-based tests for the SpecKit validation system.
 // Covers all 13 validation rules without requiring bash execution.
 //
@@ -20,10 +24,8 @@
 //  12. SECTION_COUNTS      - Section count ranges
 //  13. COMPLEXITY_MATCH    - Content metrics vs level
 //
-// Run with: node test-validation-system.js
+// Run with: node test-validation-system.cjs
 //
-
-'use strict';
 
 const path = require('path');
 const fs = require('fs');
