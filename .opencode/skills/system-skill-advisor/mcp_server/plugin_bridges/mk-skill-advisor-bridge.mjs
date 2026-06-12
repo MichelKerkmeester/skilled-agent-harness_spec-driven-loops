@@ -289,6 +289,13 @@ function withTimeout(operation, timeoutMs, label) {
 
 const HYGIENE_DIRECTIVE = '\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 
+function hasPrecomputedAmbiguity(result, recommendations) {
+  if (result?.ambiguous === true) return true;
+  return recommendations.some((recommendation) => (
+    Array.isArray(recommendation?.ambiguousWith) && recommendation.ambiguousWith.length > 0
+  ));
+}
+
 function renderAdvisorBrief(result, options = {}) {
   if (result.status !== 'ok') return null;
   if (result.freshness !== 'live' && result.freshness !== 'stale') return null;
@@ -308,10 +315,19 @@ function renderAdvisorBrief(result, options = {}) {
     ))
     : [];
   const top = recommendations[0];
+  const second = recommendations[1];
   if (!top) return null;
 
   const topLabel = sanitizeLabel(result.sharedPayload?.metadata?.skillLabel ?? top.skill);
   if (!topLabel) return null;
+  if (tokenCap > 80 && second && hasPrecomputedAmbiguity(result, recommendations)) {
+    const secondLabel = sanitizeLabel(second.skill);
+    if (!secondLabel) return null;
+    const text = `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`;
+    const charCap = Math.min(tokenCap, 120) * 4;
+    const brief = text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
+    return brief + HYGIENE_DIRECTIVE;
+  }
   const text = `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`;
   const charCap = Math.min(tokenCap, 80) * 4;
   const brief = text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
@@ -483,16 +499,20 @@ async function buildNativeBrief(input, dependencies = {}) {
       kind: 'skill',
       confidence: recommendation.confidence,
       uncertainty: recommendation.uncertainty,
+      score: Number.isFinite(recommendation.score) ? recommendation.score : recommendation.confidence,
       passes_threshold: recommendation.confidence >= effectiveThresholds.confidenceThreshold
         && recommendation.uncertainty <= effectiveThresholds.uncertaintyThreshold,
       reason: null,
+      ...(Array.isArray(recommendation.ambiguousWith) ? { ambiguousWith: recommendation.ambiguousWith.map(sanitizeLabel).filter(Boolean) } : {}),
     }))
     : [];
+  const renderedTokenCap = data?.ambiguous === true ? 120 : maxTokens;
   const rendered = modules.renderAdvisorBrief({
     status: recommendations.length > 0 ? 'ok' : 'skipped',
     freshness: data?.freshness ?? 'unavailable',
     brief: null,
     recommendations,
+    ambiguous: data?.ambiguous === true,
     diagnostics: null,
     metrics: {
       durationMs: 0,
@@ -500,7 +520,7 @@ async function buildNativeBrief(input, dependencies = {}) {
       subprocessInvoked: false,
       retriesAttempted: 0,
       recommendationCount: recommendations.length,
-      tokenCap: maxTokens,
+      tokenCap: renderedTokenCap,
     },
     generatedAt: new Date().toISOString(),
     sharedPayload: {
@@ -509,7 +529,7 @@ async function buildNativeBrief(input, dependencies = {}) {
       },
     },
   }, {
-    tokenCap: maxTokens,
+    tokenCap: renderedTokenCap,
     thresholdConfig: effectiveThresholds,
   });
 
@@ -524,7 +544,7 @@ async function buildNativeBrief(input, dependencies = {}) {
       generation: input.probe?.generation ?? 0,
       cacheHit: Boolean(data?.cache?.hit),
       recommendationCount: Array.isArray(data?.recommendations) ? data.recommendations.length : 0,
-      tokenCap: maxTokens,
+      tokenCap: renderedTokenCap,
       skillLabel,
       status: safeStatus,
       redirectTo,
@@ -546,9 +566,11 @@ function cliRecommendations(data, thresholds) {
           kind: 'skill',
           confidence,
           uncertainty,
+          score: Number.isFinite(recommendation?.score) ? recommendation.score : confidence,
           passes_threshold: confidence >= thresholds.confidenceThreshold
             && uncertainty <= thresholds.uncertaintyThreshold,
           reason: null,
+          ...(Array.isArray(recommendation?.ambiguousWith) ? { ambiguousWith: recommendation.ambiguousWith.map(sanitizeLabel).filter(Boolean) } : {}),
         };
       })
       .filter((recommendation) => recommendation?.passes_threshold === true)
@@ -702,6 +724,7 @@ async function buildCliBrief(input, dependencies = {}) {
   };
   const recommendations = cliRecommendations(data, effectiveThresholds);
   const top = recommendations[0] ?? null;
+  const renderedTokenCap = data.ambiguous === true ? 120 : maxTokens;
   const freshness = data.freshness === 'live' || data.freshness === 'stale'
     ? data.freshness
     : 'unavailable';
@@ -712,14 +735,15 @@ async function buildCliBrief(input, dependencies = {}) {
     status: recommendations.length > 0 ? 'ok' : 'skipped',
     freshness,
     recommendations,
-    metrics: { tokenCap: maxTokens },
+    ambiguous: data.ambiguous === true,
+    metrics: { tokenCap: renderedTokenCap },
     sharedPayload: {
       metadata: {
         skillLabel: top?.skill ?? null,
       },
     },
   }, {
-    tokenCap: maxTokens,
+    tokenCap: renderedTokenCap,
     thresholdConfig: effectiveThresholds,
   });
 
@@ -738,7 +762,7 @@ async function buildCliBrief(input, dependencies = {}) {
       freshness,
       cacheHit: Boolean(data.cache?.hit),
       recommendationCount: recommendations.length,
-      tokenCap: maxTokens,
+      tokenCap: renderedTokenCap,
       skillLabel: top?.skill ?? null,
       status: safeStatus,
       redirectTo,

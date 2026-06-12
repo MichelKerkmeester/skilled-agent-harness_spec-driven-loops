@@ -167,6 +167,44 @@ describe('buildSkillAdvisorBrief', () => {
     ]);
   });
 
+  it('uses the scorer ambiguity helper for score-near ties', async () => {
+    const recommendations = [
+      {
+        skill: 'sk-code',
+        confidence: 0.95,
+        uncertainty: 0.1,
+        score: 0.50,
+        passes_threshold: true,
+      },
+      {
+        skill: 'sk-doc',
+        confidence: 0.80,
+        uncertainty: 0.11,
+        score: 0.47,
+        passes_threshold: true,
+      },
+    ];
+
+    vi.mocked(runAdvisorSubprocess).mockResolvedValue({
+      ok: true,
+      recommendations,
+      errorCode: null,
+      exitCode: 0,
+      signal: null,
+      stderr: null,
+      durationMs: 5,
+      retriesAttempted: 0,
+    });
+
+    const result = await buildSkillAdvisorBrief('implement feature X', options);
+
+    expect(result.status).toBe('ok');
+    expect(result.metrics.tokenCap).toBe(120);
+    expect(result.brief).toBe(
+      expectedBrief('Advisor: live; ambiguous: sk-code 0.95/0.10 vs sk-doc 0.80/0.11 pass.'),
+    );
+  });
+
   it('AS4 fail-opens on subprocess timeout', async () => {
     vi.mocked(runAdvisorSubprocess).mockResolvedValue({
       ok: false,

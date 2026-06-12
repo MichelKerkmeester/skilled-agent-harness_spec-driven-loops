@@ -5,6 +5,7 @@
 // SQLite skill graph against schema, edge, and weight rules.
 
 import * as skillGraphDb from '../../lib/skill-graph/skill-graph-db.js';
+import { SKILL_DERIVED_SANITIZER_VERSION } from '../../schemas/skill-derived-v2.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -24,6 +25,7 @@ type HandlerResponse = { content: Array<{ type: string; text: string }> };
 interface SkillNodeRow {
   skillId: string;
   schemaVersion: number;
+  derived: string | null;
 }
 
 interface SkillEdgeRow {
@@ -44,7 +46,8 @@ export async function handleSkillGraphValidate(): Promise<HandlerResponse> {
     const nodes = db.prepare(`
       SELECT
         id AS skillId,
-        schema_version AS schemaVersion
+        schema_version AS schemaVersion,
+        derived
       FROM skill_nodes
       ORDER BY id
     `).all() as SkillNodeRow[];
@@ -96,6 +99,8 @@ export async function handleSkillGraphValidate(): Promise<HandlerResponse> {
       .filter((node) => !edges.some((edge) => edge.sourceId === node.skillId || edge.targetId === node.skillId))
       .map((node) => `ORPHAN: ${node.skillId} has zero edges`);
 
+    const derivedFreshnessWarnings = findDerivedFreshnessWarnings(nodes);
+
     const errors = [
       ...schemaVersionErrors,
       ...brokenEdgeErrors,
@@ -106,6 +111,7 @@ export async function handleSkillGraphValidate(): Promise<HandlerResponse> {
       ...symmetryWarnings,
       ...weightParityWarnings,
       ...orphanWarnings,
+      ...derivedFreshnessWarnings,
     ];
 
     return okResponse({
@@ -127,6 +133,40 @@ export async function handleSkillGraphValidate(): Promise<HandlerResponse> {
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────
+
+/**
+ * Derived-freshness warnings for schema-v2 nodes. The derived block feeds
+ * recency scoring (age haircut) and label sanitation; a node with no
+ * parseable sync timestamp scores as timestamp-less, and a stale sanitizer
+ * version means the derived labels predate the current sanitation rules.
+ */
+function findDerivedFreshnessWarnings(nodes: SkillNodeRow[]): string[] {
+  const warnings: string[] = [];
+  for (const node of nodes) {
+    if (node.schemaVersion < 2) continue;
+    let derived: Record<string, unknown> | null = null;
+    try {
+      derived = node.derived ? JSON.parse(node.derived) as Record<string, unknown> : null;
+    } catch {
+      warnings.push(`DERIVED-FRESHNESS: ${node.skillId} derived payload is not valid JSON`);
+      continue;
+    }
+    if (!derived || typeof derived !== 'object') {
+      warnings.push(`DERIVED-FRESHNESS: ${node.skillId} has no derived block`);
+      continue;
+    }
+    const timestamp = [derived.last_updated_at, derived.generated_at, derived.created_at]
+      .find((value) => typeof value === 'string' && value.trim().length > 0 && !Number.isNaN(Date.parse(value as string)));
+    if (!timestamp) {
+      warnings.push(`DERIVED-FRESHNESS: ${node.skillId} has no parseable sync timestamp (generated_at/last_updated_at/created_at)`);
+    }
+    const sanitizerVersion = derived.sanitizer_version;
+    if (typeof sanitizerVersion === 'string' && sanitizerVersion !== SKILL_DERIVED_SANITIZER_VERSION) {
+      warnings.push(`DERIVED-FRESHNESS: ${node.skillId} sanitizer_version ${sanitizerVersion} predates current ${SKILL_DERIVED_SANITIZER_VERSION}; re-run derived sync`);
+    }
+  }
+  return warnings;
+}
 
 function buildEdgeTargetMap(
   edges: SkillEdgeRow[],

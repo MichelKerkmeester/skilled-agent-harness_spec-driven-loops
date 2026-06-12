@@ -35,6 +35,7 @@ import {
   type AdvisorErrorClass,
 } from './error-diagnostics.js';
 import {
+  hasAdvisorAmbiguitySignal,
   renderAdvisorBrief,
   type AdvisorBriefRenderableResult,
 } from './render.js';
@@ -163,17 +164,6 @@ export function passingRecommendations(
   });
 }
 
-function hasAmbiguitySignal(recommendations: readonly AdvisorRecommendation[]): boolean {
-  if (recommendations.length < 2) {
-    return false;
-  }
-  const [first, second] = recommendations;
-  if (!first || !second) {
-    return false;
-  }
-  return Math.abs(first.confidence - second.confidence) <= 0.05;
-}
-
 function renderSharedBrief(
   recommendations: readonly AdvisorRecommendation[],
   freshness: AdvisorHookFreshness,
@@ -216,7 +206,7 @@ export function buildAdvisorHookResultFromRecommendations(args: {
   }
 
   const filteredRecommendations = passingRecommendations(args.recommendations, args.thresholdConfig);
-  const tokenCap = clampTokenCap(args.maxTokens, hasAmbiguitySignal(filteredRecommendations));
+  const tokenCap = clampTokenCap(args.maxTokens, hasAdvisorAmbiguitySignal(filteredRecommendations));
   const brief = renderSharedBrief(
     filteredRecommendations,
     freshness,
@@ -514,7 +504,7 @@ export async function buildSkillAdvisorBrief(
     }
 
     const recommendations = passingRecommendations(subprocess.recommendations, options.thresholdConfig);
-    const tokenCap = clampTokenCap(options.maxTokens, hasAmbiguitySignal(recommendations));
+    const tokenCap = clampTokenCap(options.maxTokens, hasAdvisorAmbiguitySignal(recommendations));
     const brief = renderSharedBrief(
       recommendations,
       freshness.state,
