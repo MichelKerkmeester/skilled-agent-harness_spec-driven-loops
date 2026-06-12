@@ -40,6 +40,14 @@ export function normalizeSourceKind(value: unknown): SourceKind | null {
   return SOURCE_KINDS.has(normalized as SourceKind) ? normalized as SourceKind : null;
 }
 
+export function isManualSourceKind(value: unknown): boolean {
+  if (typeof value !== 'string') {
+    return false;
+  }
+  const normalized = value.trim().toLowerCase();
+  return normalized === 'manual' || normalizeSourceKind(normalized) === 'human';
+}
+
 function normalizeOptionalString(value: unknown): string | null {
   if (typeof value !== 'string') {
     return null;

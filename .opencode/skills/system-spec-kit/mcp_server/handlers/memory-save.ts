@@ -167,6 +167,8 @@ import { detectSpecLevelFromParsed } from './handler-utils.js';
 import { createStatediffAction } from '../lib/storage/statediff.js';
 import {
   applyWriteProvenance,
+  persistSourceKind,
+  type SourceKind,
   type WriteProvenanceContext,
 } from '../lib/storage/write-provenance.js';
 import {
@@ -2610,9 +2612,9 @@ async function processPreparedMemory(
       // active-row uniqueness guard holds at insert time. Deprecating (not deleting)
       // keeps the predecessor row, its lineage chain, and its history intact while
       // removing it from the active-row guard; the new version supersedes it in place.
-      if (samePathSupersededPredecessorId != null) {
-        retirePredecessorForActiveReindex(database, samePathSupersededPredecessorId);
-      }
+      const reindexTierCarry = samePathSupersededPredecessorId != null
+        ? retirePredecessorForActiveReindex(database, samePathSupersededPredecessorId)
+        : null;
 
       const memoryId = samePathSupersededPredecessorId != null
         ? createAppendOnlyMemoryRecord({
@@ -2643,6 +2645,16 @@ async function processPreparedMemory(
 
       if (samePathSupersededPredecessorId != null) {
         applyWriteProvenance(database, memoryId, writeProvenance);
+      }
+
+      // A human's tier decision on the retired predecessor carries forward to the
+      // reindexed successor. Re-stamp after provenance so the manual tier and its
+      // human source-kind survive the reindex instead of resetting to the default.
+      if (reindexTierCarry != null) {
+        database
+          .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
+          .run(reindexTierCarry.importanceTier, memoryId);
+        persistSourceKind(database, memoryId, reindexTierCarry.sourceKind as SourceKind);
       }
 
       // F1.01 fix: Mark superseded memory AFTER new record creation, inside

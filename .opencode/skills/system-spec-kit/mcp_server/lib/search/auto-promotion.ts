@@ -10,6 +10,7 @@
 // Does NOT demote -- only promotes upward.
 import type { DatabaseExtended as Database } from '@spec-kit/shared/types';
 import {
+  isManualSourceKind,
   persistProvenanceMetadata,
   type WriteProvenanceContext,
 } from '../storage/write-provenance.js';
@@ -69,6 +70,8 @@ export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
   'temporary',
   'deprecated',
 ]);
+
+const MANUAL_SOURCE_KIND_VALUES = ['human', 'manual'] as const;
 
 const AUTO_PROMOTION_PROVENANCE: WriteProvenanceContext = {
   provenanceSource: 'auto-promotion',
@@ -138,11 +141,12 @@ function countRecentPromotions(db: Database, nowMs: number): number {
 export function checkAutoPromotion(db: Database, memoryId: number): AutoPromotionResult {
   try {
     const memory = db.prepare(
-      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
+      'SELECT importance_tier, validation_count, confidence, source_kind FROM memory_index WHERE id = ?'
     ).get(memoryId) as {
       importance_tier?: string;
       validation_count?: number;
       confidence?: number;
+      source_kind?: string | null;
     } | undefined;
 
     if (!memory) {
@@ -168,6 +172,16 @@ export function checkAutoPromotion(db: Database, memoryId: number): AutoPromotio
         newTier: tier,
         validationCount,
         reason: `tier_not_promotable: ${tier}`,
+      };
+    }
+
+    if (isManualSourceKind(memory.source_kind)) {
+      return {
+        promoted: false,
+        previousTier: tier,
+        newTier: tier,
+        validationCount,
+        reason: `source_kind_not_promotable: ${memory.source_kind}`,
       };
     }
 
@@ -256,9 +270,21 @@ export function executeAutoPromotion(
         };
       }
 
-      db.prepare(
-        'UPDATE memory_index SET importance_tier = ?, updated_at = ? WHERE id = ?'
-      ).run(check.newTier, new Date().toISOString(), memoryId);
+      const update = db.prepare(
+        `UPDATE memory_index
+         SET importance_tier = ?, updated_at = ?
+         WHERE id = ?
+           AND (source_kind IS NULL OR lower(source_kind) NOT IN (${MANUAL_SOURCE_KIND_VALUES.map(() => '?').join(', ')}))`
+      ).run(check.newTier, new Date().toISOString(), memoryId, ...MANUAL_SOURCE_KIND_VALUES);
+      if (update.changes === 0) {
+        return {
+          promoted: false,
+          previousTier: check.previousTier,
+          newTier: check.previousTier,
+          validationCount: check.validationCount,
+          reason: 'source_kind_not_promotable: concurrent_manual_guard',
+        };
+      }
       persistProvenanceMetadata(db, memoryId, provenance);
 
       db.prepare(`
@@ -310,7 +336,7 @@ export function executeAutoPromotion(
 export function scanForPromotions(db: Database): AutoPromotionResult[] {
   try {
     const rows = db.prepare(`
-      SELECT id, importance_tier, validation_count
+      SELECT id, importance_tier, validation_count, source_kind
       FROM memory_index
       WHERE importance_tier IN ('normal', 'important')
         AND validation_count >= ?
@@ -318,12 +344,14 @@ export function scanForPromotions(db: Database): AutoPromotionResult[] {
       id: number;
       importance_tier: string;
       validation_count: number;
+      source_kind?: string | null;
     }>;
 
     const eligible: AutoPromotionResult[] = [];
 
     for (const row of rows) {
       const tier = row.importance_tier?.toLowerCase() || 'normal';
+      if (isManualSourceKind(row.source_kind)) continue;
       const path = PROMOTION_PATHS[tier];
       if (!path) continue;
 

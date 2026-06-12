@@ -21,6 +21,7 @@ import { detectSpecLevelFromParsed } from '../spec/spec-level.js';
 import { getHistoryEventsForLineage, init as initHistory, recordHistory, type HistoryLineageEvent } from './history.js';
 import { calculateDocumentWeight, isSpecDocumentType } from './document-helpers.js';
 import { applyPostInsertMetadata } from './post-insert-metadata.js';
+import { isManualSourceKind } from './write-provenance.js';
 
 // Feature catalog: Lineage state active projection and asOf resolution
 const logger = createLogger('LineageState');
@@ -1358,27 +1359,47 @@ export function recordLineageVersion(
  * @param database - Database connection that stores lineage and index state.
  * @param predecessorMemoryId - Memory id being superseded by a same-key successor.
  */
+export interface RetiredPredecessorCarry {
+  /** Importance tier a human/manual writer set on the retired predecessor. */
+  importanceTier: string;
+  /** Source kind to re-stamp so the carried tier keeps its manual protection. */
+  sourceKind: string;
+}
+
 export function retirePredecessorForActiveReindex(
   database: Database.Database,
   predecessorMemoryId: number,
-): void {
+): RetiredPredecessorCarry | null {
   const predecessor = database
-    .prepare('SELECT importance_tier FROM memory_index WHERE id = ?')
-    .get(predecessorMemoryId) as { importance_tier: string | null } | undefined;
+    .prepare('SELECT importance_tier, source_kind FROM memory_index WHERE id = ?')
+    .get(predecessorMemoryId) as { importance_tier: string | null; source_kind: string | null } | undefined;
   if (!predecessor) {
-    return;
+    return null;
   }
   // Constitutional rows are exempt from the active-row guard and must keep their
   // always-surface tier — deprecating one would declassify it. Leave it active and
   // let the lineage transition supersede it without a tier change.
   if (predecessor.importance_tier === 'constitutional') {
-    return;
+    return null;
   }
+
+  // A manual/human tier decision must survive a reindex. The predecessor still
+  // has to be deprecated to free the active-row uniqueness slot for the incoming
+  // successor — skipping the retire would collide on the active unique index —
+  // so instead we surface the manual tier to the caller, which re-applies it to
+  // the successor. The human's classification carries forward rather than being
+  // silently reset to the reindexed default.
+  const carry: RetiredPredecessorCarry | null =
+    isManualSourceKind(predecessor.source_kind) && predecessor.importance_tier
+      ? { importanceTier: predecessor.importance_tier, sourceKind: 'human' }
+      : null;
 
   seedLineageFromCurrentState(database, predecessorMemoryId, { transitionEvent: 'BACKFILL' });
   database
     .prepare("UPDATE memory_index SET importance_tier = 'deprecated', updated_at = ? WHERE id = ?")
     .run(normalizeTimestamp(null), predecessorMemoryId);
+
+  return carry;
 }
 
 /**
