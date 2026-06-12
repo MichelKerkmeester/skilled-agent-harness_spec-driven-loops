@@ -48,7 +48,7 @@ Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the pus
 - Comment-hygiene HARD BLOCK: durable WHY only; never finding/spec/phase/ADR/REQ ids in code comments.
 - Commit trailer: `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`.
 - Verify-first: every fix gets a fresh adversarial Fable re-verify against its original proof before commit. Storage/security/launcher code is hand-implemented or hard-fenced. The verifiers caught 14+ real defects this program — including two seat deviations in the python ambiguity port that only the 50-case regression corpus exposed.
-- Implement = `cli-opencode openai/gpt-5.5-fast --variant high` (`AI_SESSION_CHILD=1 gtimeout -k 60 <secs> opencode run … </dev/null`); ≤3 concurrent opencode launches, staggered. Verify = Fable 5 via claude2 (`CLAUDE_CONFIG_DIR=~/.claude-account2 …/.superset/bin/claude -p "$(cat brief)" --model claude-fable-5 --permission-mode bypassPermissions`), run_in_background with a gtimeout.
+- Implement = `cli-opencode openai/gpt-5.5-fast --variant xhigh` for most tasks (operator policy 2026-06-12; keep seats narrow-sliced or budget gtimeout 1200s+ — xhigh exits 124 mid-read on broad scopes). EXCEPTION: testing through manual-testing playbooks dispatches to MiMo (`xiaomi/mimo-v2.5-pro --variant high`, COSTAR-lean prompts). Dispatch shape: `AI_SESSION_CHILD=1 gtimeout -k 60 <secs> opencode run … </dev/null`; ≤3 concurrent opencode launches, staggered. Verify = Fable 5 via claude2 (`CLAUDE_CONFIG_DIR=~/.claude-account2 …/.superset/bin/claude -p "$(cat brief)" --model claude-fable-5 --permission-mode bypassPermissions`), run_in_background with a gtimeout.
 
 ## 2. WHAT SHIPPED (commit trail, newest first)
 
