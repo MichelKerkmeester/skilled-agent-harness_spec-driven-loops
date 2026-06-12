@@ -1,0 +1,1 @@
+{"event":"init","ts":"2026-06-12T00:55:00Z","sessionId":"res-20260612-0045-tri","maxIterations":50,"angles":50,"executor":"cli-opencode/openai/gpt-5.5-fast/high","note":"orchestrator-written state; read-only seats"}
