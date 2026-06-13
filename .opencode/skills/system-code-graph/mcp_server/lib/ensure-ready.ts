@@ -177,7 +177,7 @@ function classifyHeadDriftScope(
 
 // ─── Candidate manifest for tracked-set drift detection ───
 //
-// BUG-02 (corrected scope): this manifest pins the cardinality + digest of the
+// This manifest pins the cardinality + digest of the
 // CURRENTLY-TRACKED file set (`getTrackedFiles()` == rows in `code_files`). It is
 // recorded from the tracked set after a scan and compared against the tracked
 // set on `detectState()`, so it detects changes WITHIN the tracked universe
@@ -311,7 +311,7 @@ export function recordCandidateManifest(filePaths: string[]): void {
  * checks already performed by `partitionTrackedFiles()`. The manifest pins the
  * cardinality + digest of the TRACKED set so a bulk rebuild that rewrites that
  * set (or removes tracked files) flips to stale even when per-file mtimes look
- * unchanged. Note (BUG-02): brand-new UNTRACKED files are NOT detected here —
+ * unchanged. Note: brand-new UNTRACKED files are NOT detected here —
  * they are absent from `getTrackedFiles()`, so they cannot diverge the digest;
  * they are indexed by the next full `code_graph_scan` (which walks the globs).
  */
@@ -408,11 +408,11 @@ function detectState(rootDir: string): {
 
   const activeScope = resolveIndexScopePolicy();
   const storedScope = graphDb.getStoredCodeGraphScope();
-  // FIX-009-v3: env-vs-stored drift only blocks reads when the prior scan
+  // Env-vs-stored drift only blocks reads when the prior scan
   // took its policy from env (`env`/`default`). When the prior scan was an
   // explicit per-call override (`scan-argument`), the index contains exactly
   // what the user just asked for — trust it and let reads proceed regardless
-  // of env drift. This preserves the FIX-009-v2 cross-session env-change
+  // of env drift. This preserves the cross-session env-change
   // contract while restoring read-after-scan semantics for explicit probes.
   const storedFromPerCall = storedScope.source === 'scan-argument';
   if (!storedFromPerCall && !scopeFingerprintsMatchOrLegacy(storedScope.fingerprint, activeScope.fingerprint)) {
@@ -538,7 +538,7 @@ async function indexWithTimeout(
 
   try {
     const results = await Promise.race([
-      // BUG-06: pass the deadline signal so indexFiles' phase runner can stop
+      // Pass the deadline signal so indexFiles' phase runner can stop
       // between phases on timeout instead of running to completion in the
       // background and discarding the result.
       indexFiles(config, { ...indexOptions, signal: controller.signal }),

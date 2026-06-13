@@ -55,7 +55,7 @@ function validationError(tool: string, missingKeys: string[]): MCPResponse {
 
 /** Dispatch a tool call. Returns null if tool name not handled. */
 export async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
-  // BUG-04 fix: enforce the published inputSchema (enum / additionalProperties /
+  // Enforce the published inputSchema (enum / additionalProperties /
   // minLength) before dispatch for known tools, so malformed calls are rejected
   // with a field-specific error rather than reaching handlers. Required-field
   // presence is still checked per-case below; numeric range stays handler-clamped.

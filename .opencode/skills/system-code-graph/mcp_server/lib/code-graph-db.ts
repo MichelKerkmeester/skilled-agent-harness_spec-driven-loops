@@ -956,7 +956,7 @@ export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
 
 export interface ReplaceEdgesOptions {
   /**
-   * BUG-03: when true, skip the inline dangling-target prune. During a full
+   * When true, skip the inline dangling-target prune. During a full
    * scan, files are persisted one at a time; a cross-file IMPORTS edge whose
    * target lives in a not-yet-persisted file would otherwise be deleted here
    * (its `target_id` is not yet in `code_nodes`) and is never restored, because
@@ -1019,7 +1019,7 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
 }
 
 /**
- * BUG-03: remove edges whose source or target symbol no longer exists in
+ * Remove edges whose source or target symbol no longer exists in
  * `code_nodes`. Run ONCE after a multi-file scan (all nodes persisted +
  * cross-file resolution complete) when per-file `replaceEdges` deferred its
  * inline prune. Returns the number of edges removed.

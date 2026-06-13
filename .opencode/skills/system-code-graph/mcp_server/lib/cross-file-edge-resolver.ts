@@ -10,7 +10,7 @@ import type { SymbolKind } from './indexer-types.js';
 
 const CALL_TARGET_KINDS = new Set<SymbolKind>(['function', 'method', 'class']);
 
-// FIX-011-FOLLOWUP-2-REFINE: when ambiguous between production code and a test
+// When ambiguous between production code and a test
 // fixture with the same name, prefer the production candidate. Test fixtures
 // frequently reuse production symbol names (e.g. `getDefaultConfig` defined
 // inside a vitest spec to exercise the resolver against itself), and treating

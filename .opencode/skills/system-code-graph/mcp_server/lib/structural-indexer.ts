@@ -74,7 +74,7 @@ interface WorkspaceCandidate {
 export interface IndexFilesOptions {
   skipFreshFiles?: boolean;
   specificFiles?: string[];
-  /** BUG-06: optional deadline signal; runPhases checks it between phases so a
+  /** Optional deadline signal; runPhases checks it between phases so a
    *  timed-out auto-index stops instead of running to completion in the background. */
   signal?: AbortSignal;
 }

@@ -24,7 +24,7 @@ import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.j
 import { addToSkipList, lookupSkipList, type SkipListEntry } from './parser-skip-list.js';
 
 // ── Types ──────────────────────────────────────────────────────
-// F043: RawCapture is now imported from structural-indexer.ts (single source of truth)
+// RawCapture is imported from structural-indexer.ts (single source of truth)
 
 /** ParserAdapter interface — mirrors structural-indexer.ts:16-18 */
 interface ParserAdapter {
@@ -122,7 +122,7 @@ function earlyReturnSentinel(
   };
 }
 
-// FIX-011-FOLLOWUP-3: resolve grammar path via the tree-sitter-wasms package
+// Resolve grammar path via the tree-sitter-wasms package
 // itself (Node module resolution) rather than a relative `../../` walk.
 // Pre-fix used `resolve(__dirname, '../../node_modules/tree-sitter-wasms/out', ...)`
 // which works when running from src (`mcp_server/lib/`) but fails from compiled
@@ -424,7 +424,7 @@ function resolveKind(node: TSNode, language: SupportedLanguage): SymbolKind | nu
       if (child.type === 'variable_declarator') {
         const value = child.childForFieldName('value');
         if (value) {
-          // F031-ext: Match all expression forms that resolveKind(variable_declarator) handles
+          // Match all expression forms that resolveKind(variable_declarator) handles
           if (value.type === 'arrow_function' || value.type === 'function_expression'
             || value.type === 'function' || value.type === 'generator_function') {
             return 'function';
@@ -445,7 +445,7 @@ function resolveKind(node: TSNode, language: SupportedLanguage): SymbolKind | nu
   return kindMap[node.type] ?? null;
 }
 
-// ── F032: Per-specifier import/export helpers ─────────────────
+// ── Per-specifier import/export helpers ─────────────────
 
 function emitImportCaptures(
   node: TSNode,
@@ -601,14 +601,14 @@ function walkAST(
       || nodeType === 'variable_declarator'
       || nodeType === 'lexical_declaration';
 
-    // F032: Emit one capture per import specifier / namespace import / default import
+    // Emit one capture per import specifier / namespace import / default import
     if (nodeType === 'import_statement' || nodeType === 'import_declaration'
       || nodeType === 'import_from_statement') {
       emitImportCaptures(node, language, lines, captures);
       return;
     }
 
-    // F032: Export with named_exports → emit one capture per export_specifier
+    // Export with named_exports → emit one capture per export_specifier
     if (nodeType === 'export_statement' || nodeType === 'export_declaration') {
       emitExportCaptures(node, language, lines, captures, parentClassName);
       // Also visit inner declaration (e.g. `export function foo()`)
@@ -721,7 +721,7 @@ function walkAST(
   return captures;
 }
 
-// F043: capturesToNodes and RawCapture are now imported from structural-indexer.ts
+// capturesToNodes and RawCapture are imported from structural-indexer.ts
 
 // ── TreeSitterParser class ─────────────────────────────────────
 

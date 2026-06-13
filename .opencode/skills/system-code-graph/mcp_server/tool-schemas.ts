@@ -199,7 +199,7 @@ export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[] = [
 export const TOOL_DEFINITIONS = CODE_GRAPH_TOOL_SCHEMAS;
 
 /**
- * Validate raw MCP input against a tool's published inputSchema (BUG-04 fix).
+ * Validate raw MCP input against a tool's published inputSchema.
  *
  * Previously this only checked tool existence and object-shape, so the
  * advertised `additionalProperties:false`, `enum`, and `minLength` constraints

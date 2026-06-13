@@ -901,7 +901,7 @@ function summarizeWeakestGraphEdgeEnrichment(
 }
 
 function shouldBlockReadPath(readiness: ReadyResult, verificationGateBypassed = false): boolean {
-  // False-safe contract (BUG-01 fix): answer ONLY on a fresh graph. Any
+  // False-safe contract: answer ONLY on a fresh graph. Any
   // non-fresh state must block rather than return a possibly-wrong structural
   // answer with status:'ok'. The previous predicate keyed only on
   // `action === 'full_scan' && !inlineIndexPerformed`, which let two non-fresh
@@ -1310,7 +1310,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
       content: [{
         type: 'text',
         text: JSON.stringify({
-          // BUG-07: align with code_graph_context + detect_changes — a non-fresh
+          // Align with code_graph_context + detect_changes — a non-fresh
           // / unavailable graph (here: readiness probe crashed) refuses with
           // status:'blocked', not 'error', so all three read handlers share one
           // refusal token. The structured readiness block + rg fallback are

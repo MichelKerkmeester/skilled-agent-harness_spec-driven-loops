@@ -273,7 +273,7 @@ export async function runPhases(phases: readonly Phase[], signal?: AbortSignal):
   for (const phase of phases) phaseNamesByOutputKey.set(outputKey(phase), phase.name);
 
   for (const phaseName of order) {
-    // BUG-06: cooperative cancellation. When the caller's deadline aborts (e.g.
+    // Cooperative cancellation. When the caller's deadline aborts (e.g.
     // ensure-ready's indexWithTimeout), stop before the next phase instead of
     // running the whole pipeline to completion in the background and discarding
     // the result. Checked at phase boundaries to keep it cheap and safe.

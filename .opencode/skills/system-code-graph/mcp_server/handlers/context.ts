@@ -65,7 +65,7 @@ function shouldBlockReadPath(readiness: ReadyResult): boolean {
   if (readiness.freshness === 'error') {
     return true;
   }
-  // False-safe contract (BUG-01 fix): block on ANY non-fresh graph, not just
+  // False-safe contract: block on ANY non-fresh graph, not just
   // `action === 'full_scan'`. A deleted-files-only `freshness:'stale', action:'none'`
   // result and a FAILED inline selective_reindex both previously fell through
   // to buildContext() and answered over a stale graph. Gate on freshness and a
