@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
-    last_updated_at: "2026-06-13T05:20:00Z"
+    last_updated_at: "2026-06-13T05:45:00Z"
     last_updated_by: "claude-opus-orchestrator"
-    recent_action: "Wave 10 committed+pushed: tri-040/041/156 (gpt-5.5 verified; Fable infra-down)"
-    next_safe_action: "Careful tail: tri-029 apply-pipeline confidence wiring, then L7 clusters"
+    recent_action: "Wave 11 pushed: tri-029 prune-excludes default artifact (gpt-5.5 verified)"
+    next_safe_action: "L2 tail tri-031/022/131; or tri-148 launcher front-proxy (high-risk .cjs)"
     blockers: []
     key_files:
       - "L5-advisor-correctness/disposition.md"

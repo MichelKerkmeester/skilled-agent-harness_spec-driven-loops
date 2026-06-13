@@ -51,7 +51,7 @@ tri-029 CLOSED (code wave 11, gpt-5.5 xhigh verified): the prune-excludes branch
 | Finding | One-line | Class |
 |---|---|---|
 | tri-022 | semantic-trigger shadow telemetry not durable — promotion criteria uncomputable; hot-path, fail-safe, env-gated | code-careful |
-| tri-031 | repair-nodes cannot actually reparse skip-listed files (sentinel short-circuit); collides with the manual-review-only crash-cohort invariant — bounded targeted retry or honest-doc rewrite | code-careful |
+| tri-031 | **LOGIC-SYNC** — the tool schema (`crashRootCauseAddressed` gates repair-nodes re-parsing skip-list candidates) contradicts a deliberate code invariant: the parser early-sentinels skip-listed files and `recordSuccess` is an intentional no-op ("manual-review-only; must not imply self-heal"). Retry-vs-honest-doc is a design decision; routed to the multi-model deep review to adjudicate rather than picked unilaterally. | code-careful |
 | tri-131 | no semantic-trigger stress suite; depends on tri-022 telemetry — sequence after it | code-careful |
 
 Seat-quality notes for the record: one seat over-synced two runtime-adapted lines into the codex tomls (path convention; host-reverted) and fixed a pre-existing duplicated mirror-table row while doing so; the doc-batch verifier caught the `.claude` tools-whitelist gap and the lone `mcp__`-prefixed permission key that would have silently denied the documented preflight.
