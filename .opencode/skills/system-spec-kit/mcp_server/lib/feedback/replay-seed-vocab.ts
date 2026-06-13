@@ -23,5 +23,7 @@ export const RESULT_COUNT_CLASSES = ['zero', 'low', 'mid', 'high'] as const;
 
 /** True only for intents that carry a static seed pool — the closed-vocab gate. */
 export function isKnownIntent(x: string): boolean {
-  return x in INTENT_REPLAY_SEEDS;
+  return Object.hasOwn(INTENT_REPLAY_SEEDS, x)
+    && Array.isArray(INTENT_REPLAY_SEEDS[x])
+    && INTENT_REPLAY_SEEDS[x].length > 0;
 }

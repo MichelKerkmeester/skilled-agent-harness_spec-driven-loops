@@ -72,7 +72,7 @@ export function buildSyntheticReplayCorpus(
     SELECT intent,
            COALESCE(result_count, 0) AS rc,
            COUNT(*) AS freq,
-           SUM(CAST('0x' || SUBSTR(query_hash,1,1) AS INTEGER)) AS hash_acc
+           SUM(instr('0123456789abcdef', substr(lower(query_hash), 1, 1)) - 1) AS hash_acc
     FROM consumption_log
     WHERE event_type = 'search' AND intent IS NOT NULL AND timestamp >= ?
     GROUP BY intent, (CASE WHEN COALESCE(result_count,0)<=0 THEN 0
@@ -101,6 +101,9 @@ export function buildSyntheticReplayCorpus(
    4. PRIVACY GUARD (fail-closed)
 ──────────────────────────────────────────────────────────────── */
 
+/** The complete, closed key shape of a SyntheticQueryClass. Any other key is a leak. */
+const ALLOWED_CLASS_KEYS = new Set(['classKey', 'intent', 'resultCountClass', 'syntheticQuery', 'weight']);
+
 /**
  * Fail-closed. Proves every synthetic string is reproducible from class signals
  * alone (therefore not smuggled text), and that no field carries a hash or raw
@@ -114,7 +117,10 @@ export function assertCorpusPrivacy(corpus: SyntheticReplayCorpus): void {
     const pool = INTENT_REPLAY_SEEDS[c.intent];
     if (!pool.includes(c.syntheticQuery)) throw new Error('corpus privacy: synthetic query not a static seed phrase');
     if (/[0-9a-f]{16}/i.test(c.classKey)) throw new Error('corpus privacy: class key carries a fingerprint');
-    if ('query_hash' in (c as object) || 'queryText' in (c as object) || 'rawQuery' in (c as object))
-      throw new Error('corpus privacy: forbidden raw-text field present');
+    // Own-key allowlist, fail-closed: any field beyond the closed class shape (a raw
+    // query_text, queryText, rawQuery, or query_hash leak from a future regression) throws.
+    for (const key of Object.keys(c as object)) {
+      if (!ALLOWED_CLASS_KEYS.has(key)) throw new Error('corpus privacy: forbidden raw-text field present');
+    }
   }
 }

@@ -1256,12 +1256,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         }
 
         if (chainsCreated > 0) {
-          console.error(`[memory-index-scan] Spec 126: Created ${chainsCreated} causal chain edges across ${foldersProcessed} spec folders`);
+          console.error(`[memory-index-scan] Created ${chainsCreated} causal chain edges across ${foldersProcessed} spec folders`);
         }
       }
     } catch (err: unknown) {
       const message = toErrorMessage(err);
-      console.warn('[memory-index-scan] Spec 126: Causal chain creation failed:', message);
+      console.warn('[memory-index-scan] Causal chain creation failed:', message);
     }
   }
 
@@ -1419,14 +1419,20 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         await setJobState(jobId, 'running');
         const response = await runIndexScan(args, {
           isCancelled: () => isCancelRequested(jobId),
-          onPhase: (phase) => { void setJobPhase(jobId, phase); },
-          onProgress: (progress) => { void setJobProgress(jobId, progress); },
+          onPhase: (phase) => { void setJobPhase(jobId, phase).catch(() => {}); },
+          onProgress: (progress) => { void setJobProgress(jobId, progress).catch(() => {}); },
         });
-        await completeJob(jobId, {
-          // A cancel observed mid-run lands the job in 'cancelled', not 'complete'.
-          state: isCancelRequested(jobId) ? 'cancelled' : 'complete',
-          result: extractEnvelopeData(response),
-        });
+        if (!isCancelRequested(jobId) && response.isError === true) {
+          // An error envelope (not a thrown error) still means the scan failed.
+          await appendJobError(jobId, '__scan__', extractEnvelopeData(response));
+          await setJobState(jobId, 'failed');
+        } else {
+          await completeJob(jobId, {
+            // A cancel observed mid-run lands the job in 'cancelled', not 'complete'.
+            state: isCancelRequested(jobId) ? 'cancelled' : 'complete',
+            result: extractEnvelopeData(response),
+          });
+        }
       } catch (error: unknown) {
         try {
           await appendJobError(jobId, '__job__', error);

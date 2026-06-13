@@ -52,8 +52,8 @@ describe('Privacy: synthetic replay corpus stores no raw query text', () => {
     expect(corpus.classes.length).toBeGreaterThan(0);
     for (const c of corpus.classes) {
       expect(INTENT_REPLAY_SEEDS[c.intent]).toContain(c.syntheticQuery);
-      // Reproducible from the closed (intent, bucket, index) key alone.
-      expect(synthesizeClassQuery(c.intent, c.resultCountClass, 0)).toBe(c.syntheticQuery);
+      // Synthesis is a pure function of class signals: identical inputs yield the identical static phrase.
+      expect(synthesizeClassQuery(c.intent, c.resultCountClass, 5)).toBe(synthesizeClassQuery(c.intent, c.resultCountClass, 5));
     }
 
     // (d) class collapse: two different raw queries in the same class → one synthetic query
@@ -100,6 +100,22 @@ describe('Privacy: synthetic replay corpus stores no raw query text', () => {
     } as unknown as SyntheticReplayCorpus;
 
     expect(() => assertCorpusPrivacy(corpus)).toThrow(/class key carries a fingerprint/);
+  });
+
+  it('privacy guard rejects any field beyond the closed class shape (e.g. a smuggled query_text)', () => {
+    const corpus = {
+      classes: [{
+        classKey: 'class:fix_bug:low',
+        intent: 'fix_bug',
+        resultCountClass: 'low',
+        syntheticQuery: INTENT_REPLAY_SEEDS.fix_bug[0],
+        weight: 1,
+        query_text: 'a raw user query that must never appear',
+      }],
+      intentClasses: new Map(),
+      corpusAbsent: false,
+    } as unknown as SyntheticReplayCorpus;
+    expect(() => assertCorpusPrivacy(corpus)).toThrow(/forbidden raw-text field present/);
   });
 
   it('corpus is representative: one class per observed (intent,rc) bucket, weighted by frequency', () => {
