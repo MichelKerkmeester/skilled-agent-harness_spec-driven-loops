@@ -142,7 +142,7 @@ def select_intents(scores: dict[str, float], task_text: str, ambiguity_delta: fl
     if not ranked or ranked[0][1] <= 0:
         return ["SHARED_PATTERNS"]
 
-    noisy_hits = sum(1 for term in ["dirty workspace", "half-staged", "hotfix", "minimal risk", "trunk"] if term in (task_text or ""))
+    noisy_hits = sum(1 for term in ["dirty workspace", "half-staged", "hotfix", "minimal risk", "trunk"] if keyword_present(term, task_text or ""))
     max_intents = adaptive_max_intents if noisy_hits >= 2 else base_max_intents
 
     selected = [ranked[0][0]]

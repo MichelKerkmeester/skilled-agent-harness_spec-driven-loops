@@ -84,6 +84,7 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
       { path: '/project/.opencode/specs/003/100-feature/research.md', expected: 'research', label: 'legacy research.md in specs/' },
       { path: '/project/.opencode/specs/003/100-feature/handover.md', expected: 'handover', label: 'handover.md in specs/' },
       { path: '/project/.opencode/specs/003/100-feature/resource-map.md', expected: 'resource_map', label: 'resource-map.md in specs/' },
+      { path: '/project/.opencode/specs/003/100-feature/review/review-report.md', expected: 'review_report', label: 'review/review-report.md in specs/' },
       { path: '/project/.opencode/specs/003/100-feature/description.json', expected: 'description_metadata', label: 'description.json in specs/' },
     ];
 

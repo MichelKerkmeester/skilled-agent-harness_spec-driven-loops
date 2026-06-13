@@ -2003,10 +2003,16 @@ def _build_variants(skill_name: str) -> Set[str]:
 
 
 def _matches_phrase_boundary(text: str, phrase: str) -> bool:
-    """Return True when a phrase is not embedded inside an alphanumeric token."""
+    """Return True when a phrase is not embedded inside a larger identifier.
+
+    The flank class includes '-' and '_' (not just alphanumerics) so a skill
+    name like 'sk-code' does not match inside the longer identifier
+    'sk-code-reviewer' (and 'sk_code' inside 'sk_code_review') — those are
+    distinct skills, not an explicit mention of the shorter one.
+    """
     if not phrase:
         return False
-    pattern = re.compile(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])")
+    pattern = re.compile(rf"(?<![a-z0-9_-]){re.escape(phrase)}(?![a-z0-9_-])")
     return pattern.search(text) is not None
 
 

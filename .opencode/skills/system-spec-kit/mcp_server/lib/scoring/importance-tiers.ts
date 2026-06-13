@@ -220,6 +220,7 @@ export function getDefaultTierForDocumentType(documentType: string): ImportanceT
     checklist: 'normal',
     implementation_summary: 'normal',
     research: 'normal',
+    review_report: 'normal',
     handover: 'normal',
     description_metadata: 'normal',
     graph_metadata: 'important',

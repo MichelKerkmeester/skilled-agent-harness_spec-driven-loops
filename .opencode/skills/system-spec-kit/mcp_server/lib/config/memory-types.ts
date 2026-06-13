@@ -428,6 +428,7 @@ export function inferDocumentTypeFromPath(filePath: string): DocumentType {
     research: 'research.md',
     handover: 'handover.md',
     resource_map: 'resource-map.md',
+    review_report: 'review-report.md',
     description_metadata: 'description.json',
     graph_metadata: 'graph-metadata.json',
   };

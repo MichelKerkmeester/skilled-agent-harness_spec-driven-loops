@@ -267,6 +267,7 @@ async function dispatchOperation(
   recovery?: RecoveryProcedureResult;
   excludeRules?: ClassifiedExcludeRule[];
   repairNodes?: ApplyRunResult['repairNodes'];
+  requiredAction?: string;
 }> {
   const scan = options.scan ?? runDefaultScan;
   const dbDir = options.dbDir ?? DATABASE_DIR;
@@ -306,7 +307,16 @@ async function dispatchOperation(
       // default degrades to the conservative unknown-everything no-op.
       const artifact = resolveExcludeRuleConfidence(options.excludeRuleConfidencePath);
       if (!artifact) {
-        return { excludeRules: patterns.map((pattern) => ({ pattern, tier: 'unknown' })) };
+        // With no artifact every pattern is 'unknown' and nothing is applied.
+        // Surface that as a requiredAction when the caller actually passed
+        // patterns, so a missing/stripped default artifact is not reported as
+        // a silent success with the exclusions quietly skipped.
+        return {
+          excludeRules: patterns.map((pattern) => ({ pattern, tier: 'unknown' })),
+          ...(patterns.length > 0
+            ? { requiredAction: 'No exclude-rule confidence artifact resolved, so all patterns are unclassified and no exclusions were applied. Restore the shipped default artifact or pass an explicit excludeRuleConfidencePath.' }
+            : {}),
+        };
       }
       const classified = classifyExcludeRules(artifact, patterns);
       const mediumBlocked = classified.some((entry) => entry.tier === 'medium') && args.confirm !== true;

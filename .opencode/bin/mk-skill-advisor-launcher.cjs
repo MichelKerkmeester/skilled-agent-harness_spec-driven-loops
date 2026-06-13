@@ -110,10 +110,12 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST',
   'SPECKIT_ADVISOR_SHADOW_DELTA_PATH',
   'SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED',
-  // Documented lane-weight tuning override; without this allowlist entry the
-  // scorer's env reader never sees it under normal daemon supervision and the
-  // advertised tuning path is silently dead.
+  // Documented lane-weight tuning overrides; without these allowlist entries
+  // the scorer's env reader never sees them under normal daemon supervision
+  // and the advertised tuning path is silently dead. Both the live and the
+  // shadow lane-weight overrides are read by lane-registry.
   'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
+  'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON',
   'SPECKIT_METRICS_ENABLED',
   'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
   'SPECKIT_IPC_SOCKET_DIR',

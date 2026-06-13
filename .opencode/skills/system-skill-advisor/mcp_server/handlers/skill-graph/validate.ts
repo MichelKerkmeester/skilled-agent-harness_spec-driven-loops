@@ -160,8 +160,13 @@ function findDerivedFreshnessWarnings(nodes: SkillNodeRow[]): string[] {
     if (!timestamp) {
       warnings.push(`DERIVED-FRESHNESS: ${node.skillId} has no parseable sync timestamp (generated_at/last_updated_at/created_at)`);
     }
+    // The V2 schema requires sanitizer_version, so a missing or non-string
+    // value is itself stale/invalid derived metadata — warn on it, not only
+    // on a present-but-outdated version.
     const sanitizerVersion = derived.sanitizer_version;
-    if (typeof sanitizerVersion === 'string' && sanitizerVersion !== SKILL_DERIVED_SANITIZER_VERSION) {
+    if (typeof sanitizerVersion !== 'string') {
+      warnings.push(`DERIVED-FRESHNESS: ${node.skillId} derived block has no sanitizer_version (schema v2 requires ${SKILL_DERIVED_SANITIZER_VERSION}); re-run derived sync`);
+    } else if (sanitizerVersion !== SKILL_DERIVED_SANITIZER_VERSION) {
       warnings.push(`DERIVED-FRESHNESS: ${node.skillId} sanitizer_version ${sanitizerVersion} predates current ${SKILL_DERIVED_SANITIZER_VERSION}; re-run derived sync`);
     }
   }

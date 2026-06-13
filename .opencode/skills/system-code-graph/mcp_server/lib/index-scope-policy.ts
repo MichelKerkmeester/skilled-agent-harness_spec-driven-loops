@@ -173,8 +173,16 @@ function buildFingerprint(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'
 }
 
 function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): string {
+  // A skills allowlist indexes a different surface than "all skills"; disclose
+  // the named subset so `includeSkills:['sk-code']` is not reported the same as
+  // `includeSkills:true`.
+  const skillsLabel = policy.includedSkillsList === 'all'
+    ? 'skills'
+    : Array.isArray(policy.includedSkillsList) && policy.includedSkillsList.length > 0
+      ? `skills: ${[...policy.includedSkillsList].sort().join(', ')}`
+      : null;
   const includedFolders = [
-    policy.includeSkills ? 'skills' : null,
+    skillsLabel,
     policy.includeAgents ? 'agents' : null,
     policy.includeCommands ? 'commands' : null,
     policy.includeSpecs ? 'specs' : null,

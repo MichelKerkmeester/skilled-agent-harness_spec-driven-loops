@@ -211,7 +211,12 @@ export function extractSpecFolderFromSpecDocumentPath(
   }
 
   const parent = segments[segments.length - 2] || '';
-  if (basename === 'research.md' && parent === 'research') {
+  // research.md and review-report.md live one level below the packet leaf
+  // (in research/ and review/), so strip that parent to resolve the doc to
+  // its owning packet rather than a phantom '<packet>/research'|'/review'
+  // folder that carries no metadata of its own.
+  if ((basename === 'research.md' || basename === 'review-report.md')
+    && (parent === 'research' || parent === 'review')) {
     return segments.slice(specsIndex + 1, segments.length - 2).join('/');
   }
 
