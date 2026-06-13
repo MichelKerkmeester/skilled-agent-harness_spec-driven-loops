@@ -85,9 +85,12 @@ export function scoreDerivedLane(
     }
     score += scoreTokenOverlap(tokens, phrases) * 0.45;
     score += scoreTokenOverlap(tokens, affordancePhrases) * 0.25;
-    // Decay by the skill's own derived-content age. The projection's
-    // generatedAt is when the projection was built (near-now on every run),
-    // which would exempt all skills from the haircut equally.
+    // Decay by the skill's own derived-content age — derivedGeneratedAt is the
+    // author/sync time of the derived block (author-time, not refreshed by
+    // rebuild; see SkillProjection.derivedGeneratedAt). The projection.generatedAt
+    // fallback is a last-resort, timestamp-less value (near-now on every run, so
+    // it exempts the skill from the haircut), used ONLY when a skill has no
+    // derived.generated_at — it is not a runtime freshness signal.
     const adjusted = applyAgeHaircutToLane(
       { trustLane: 'derived_generated', score: Math.min(score, 1) },
       {

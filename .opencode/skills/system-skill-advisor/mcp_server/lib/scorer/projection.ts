@@ -221,10 +221,13 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
     derivedTriggers,
     derivedKeywords,
     derivedDemotion: boundedDemotion(derived.demotion),
-    // V2 derived sync stamps generated_at; older shapes carried
-    // last_updated_at/created_at. Without generated_at in the chain the
-    // age haircut treats every V2-synced skill as timestamp-less.
-    derivedGeneratedAt: isoTimestampOrNull(derived.last_updated_at ?? derived.generated_at ?? derived.created_at),
+    // V2 derived sync stamps generated_at (the canonical author/sync time of
+    // the derived block); older shapes carried last_updated_at/created_at.
+    // generated_at leads the chain so a V2 block's real freshness wins over a
+    // stray legacy field. This value is AUTHOR-TIME, not runtime: rebuild
+    // re-indexes the existing block without re-stamping it; only a
+    // derived-content change through sync re-stamps generated_at.
+    derivedGeneratedAt: isoTimestampOrNull(derived.generated_at ?? derived.last_updated_at ?? derived.created_at),
     sourcePath: row.source_path,
     lifecycleStatus: lifecycle,
     redirectTo,
@@ -360,7 +363,9 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       derivedTriggers,
       derivedKeywords,
       derivedDemotion: boundedDemotion(derived.demotion),
-      derivedGeneratedAt: isoTimestampOrNull(derived.last_updated_at ?? derived.generated_at ?? derived.created_at),
+      // generated_at leads the chain (canonical V2 author/sync time); see the
+      // SQLite branch above for why this is author-time, not runtime.
+      derivedGeneratedAt: isoTimestampOrNull(derived.generated_at ?? derived.last_updated_at ?? derived.created_at),
       sourcePath: metadataPath,
       lifecycleStatus: lifecycleStatus(metadata.lifecycle_status ?? derived.lifecycle_status, metadataPath),
       redirectTo: typeof metadata.redirect_to === 'string' ? metadata.redirect_to : undefined,
