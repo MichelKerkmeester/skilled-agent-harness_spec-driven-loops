@@ -1,0 +1,17 @@
+{
+  "specFolder": "027-xce-research-based-refinement/030-residual-design-units",
+  "description": "Phase 1: residual-design-units",
+  "keywords": [
+    "phase",
+    "residual-design-units"
+  ],
+  "lastUpdated": "2026-06-13T12:15:34.855Z",
+  "specId": "030",
+  "folderSlug": "residual-design-units",
+  "parentChain": [
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

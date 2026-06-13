@@ -175,6 +175,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 - Phases 008-009 are owned by the OpenLTM study (`research/010-openltm-memory-architecture-teachings`): `008` adopts retrieval/memory observability and `009` adopts continuity/session resilience — both filtered through the spec-documentation-based vs row-based architecture (research §8). Secret redaction, content-fingerprint indexing, and reshaped opt-in capture from the same study are folded as amendments into `002`, `003`, and `005` respectively. Row-coupled mechanics (`learn/reinforce`, per-row provenance/audit, row dedup) are rejected as negative knowledge.
 - Phases 012-015 are owned by the sqlite-to-turso revalidation (`.opencode/specs/z_future/sqlite-to-turso/research/research.md` + `004 - gap-alternatives.md`): backend-agnostic improvements that pay off on the current better-sqlite3 stack — BFS traversal (`012`), vector shard self-healing (`013`; live shard corruption observed 2026-06-10), packed BM25 fallback (`014`), and the five-port adapter seam (`015`). Execution order: `012` and `014` are independent; `013` coordinates with `008`'s counters; `015` runs last (it adopts `012`/`014` outputs as port implementations). The Turso migration itself stays out of 027 — gated on upstream 1.0 signals per the revalidation verdict.
 
+| 30 | 030-residual-design-units/ | Residual 029 design units: vector reconcile, hash-class replay pool, launcher parity, defer-bucket | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -201,6 +202,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 018-xce-feature-adoption-advisor-codegraph | 019-skill-advisor-cross-session-reconnect | [Criteria TBD] | [Verification TBD] |
 | 019-skill-advisor-cross-session-reconnect | 020-vector-resilience-durability | [Criteria TBD] | [Verification TBD] |
 | 020-vector-resilience-durability | 021-hybrid-search-scope-then-limit | [Criteria TBD] | [Verification TBD] |
+| 029-deep-research-remediation | 030-residual-design-units | Each design unit ships with its safety gate: backup+quiesce (A), privacy invariant (B), live-adoption harness (C) | Per-unit gate evidence + strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
