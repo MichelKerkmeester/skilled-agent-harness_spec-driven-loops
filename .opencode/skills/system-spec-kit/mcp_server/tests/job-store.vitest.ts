@@ -96,8 +96,12 @@ describe('maintenance job store SQLITE_BUSY retry', () => {
     expect(writeCallCount).toBeGreaterThan(FAILURES_BEFORE_SUCCESS);
     expect(mod.getMaintenanceJob('job_busy')?.state).toBe('queued');
 
+    // Reset the failure budget so the UPDATE path (setJobState), not just the
+    // INSERT, is forced through the busy-retry loop and proven to land.
+    writeCallCount = 0;
     const updated = await mod.setJobState('job_busy', 'running');
     expect(updated.state).toBe('running');
+    expect(writeCallCount).toBeGreaterThan(FAILURES_BEFORE_SUCCESS);
     expect(mod.getMaintenanceJob('job_busy')?.state).toBe('running');
   });
 });

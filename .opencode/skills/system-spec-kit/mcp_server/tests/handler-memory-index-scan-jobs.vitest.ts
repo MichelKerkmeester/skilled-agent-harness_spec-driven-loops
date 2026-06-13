@@ -392,6 +392,8 @@ describe('memory_index_scan background dispatch', () => {
     release();
     await waitFor(() => jobStore.jobs.get(jobId)?.state === 'cancelled');
     expect(mocks.mockCompleteIndexScanLease).toHaveBeenCalled();
+    // Cancellation at the phase boundary must prevent the indexing work itself.
+    expect(mocks.mockIndexMemoryFile).not.toHaveBeenCalled();
 
     // Cancelling an already-terminal job is a no-op success.
     const again = await scanJobHandlers.handleMemoryIndexScanCancel({ jobId });

@@ -337,10 +337,15 @@ export async function completeJob(
 
   const updatedAt = nowIso();
   const resultJson = options.result === undefined ? null : JSON.stringify(options.result);
-  await withBusyRetry(() =>
-    db.prepare(`UPDATE maintenance_jobs SET state = ?, result_json = ?, updated_at = ? WHERE id = ?`)
-      .run(options.state, resultJson, updatedAt, jobId)
+  const completion = await withBusyRetry(() =>
+    db.prepare(`UPDATE maintenance_jobs SET state = ?, result_json = ?, updated_at = ? WHERE id = ? AND state = ?`)
+      .run(options.state, resultJson, updatedAt, jobId, current.state)
   );
+  if (completion.changes === 0) {
+    // The row moved out from under the read-then-check; refuse to clobber a state
+    // another writer set rather than overwriting it from a stale read.
+    throw new Error(`Maintenance job state changed concurrently: ${jobId}`);
+  }
 
   return { ...current, state: options.state, result: options.result ?? null, updatedAt };
 }
@@ -349,7 +354,9 @@ export async function completeJob(
 // re-run fresh, so they are reset to 'failed' rather than re-enqueued.
 export function resetRunningJobsForKind(
   kind: MaintenanceJobKind,
-  options: { to: JobLifecycleState },
+  // Crash recovery only moves interrupted jobs to a terminal state. Restricting the
+  // target keeps a caller from persisting an illegal transition past the guard.
+  options: { to: 'failed' | 'cancelled' },
 ): string[] {
   const db = requireDb();
   const rows = db.prepare(`

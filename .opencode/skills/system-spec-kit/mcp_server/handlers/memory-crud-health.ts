@@ -334,7 +334,7 @@ function getDivergentAliasGroups(rows: AliasConflictDbRow[], limit: number): Div
 
     groups.push({
       normalizedPath: redactPath(normalizedPath),
-      // Fix F21 — redact specFolders to prevent path disclosure.
+      // Redact specFolders to prevent path disclosure.
       specFolders: Array.from(bucket.specFolders).sort().map(sf => redactPath(sf)),
       distinctHashCount: bucket.hashes.size,
       variants,
