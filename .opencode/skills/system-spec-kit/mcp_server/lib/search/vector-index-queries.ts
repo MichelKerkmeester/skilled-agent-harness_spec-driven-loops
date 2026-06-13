@@ -1519,16 +1519,25 @@ export function verify_integrity(
   const { autoClean = false, cleanFiles = false } = options;
   const sqlite_vec = get_sqlite_vec_available();
 
+  // Measure the surface that live queries actually read. When a non-default
+  // embedder is active, that surface is the dimension-tagged BLOB table, not
+  // vec_memories; checking vec_memories there reports a clean graph while the
+  // active surface silently drops rows. The vec0 virtual table requires
+  // sqlite-vec; a plain dimension-tagged table does not.
+  const source = getActiveVectorSourceForQuery(database);
+  const sourceNeedsSqliteVec = source.tableName === activeVectorSchema('vec_memories');
+  const sourceQueryable = sqlite_vec || !sourceNeedsSqliteVec;
+
   const find_orphaned_vector_ids = () => {
-    if (!sqlite_vec) {
+    if (!sourceQueryable) {
       console.warn('[vector-index] find_orphaned_vector_ids: sqlite-vec not available');
       return [];
     }
     try {
       return (database.prepare(`
-	        SELECT v.rowid FROM ${activeVectorSchema('vec_memories')} v
-        WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.rowid)
-      `).all() as Array<{ rowid: number }>).map((r) => r.rowid);
+	        SELECT v.${source.idColumn} AS vid FROM ${source.tableName} v
+        WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.${source.idColumn})
+      `).all() as Array<{ vid: number }>).map((r) => r.vid);
     } catch (e: unknown) {
       console.warn('[vector-index] Could not query orphaned vectors:', get_error_message(e));
       return [];
@@ -1539,9 +1548,9 @@ export function verify_integrity(
   const orphaned_vectors = orphaned_vector_ids.length;
 
   let cleaned_vectors = 0;
-  if (autoClean && orphaned_vectors > 0 && sqlite_vec) {
+  if (autoClean && orphaned_vectors > 0 && sourceQueryable) {
     logger.info(`Auto-cleaning ${orphaned_vectors} orphaned vectors...`);
-    const delete_stmt = database.prepare(`DELETE FROM ${activeVectorSchema('vec_memories')} WHERE rowid = ?`);
+    const delete_stmt = database.prepare(`DELETE FROM ${source.tableName} WHERE ${source.idColumn} = ?`);
     for (const rowid of orphaned_vector_ids) {
       try {
         delete_stmt.run(BigInt(rowid));
@@ -1553,19 +1562,19 @@ export function verify_integrity(
     logger.info(`Cleaned ${cleaned_vectors} orphaned vectors`);
   }
 
-  // Guard vec_memories queries with sqlite_vec availability check.
-  // When sqlite-vec is not loaded, the vec_memories table does not exist.
-  const missing_vectors = sqlite_vec
+  // Guard the active vector surface queries by availability: the vec_memories
+  // vec0 virtual table requires sqlite-vec; a dimension-tagged BLOB table does not.
+  const missing_vectors = sourceQueryable
     ? (database.prepare(`
         SELECT COUNT(*) as count FROM memory_index m
         WHERE m.embedding_status = 'success'
-	        AND NOT EXISTS (SELECT 1 FROM ${activeVectorSchema('vec_memories')} v WHERE v.rowid = m.id)
+	        AND NOT EXISTS (SELECT 1 FROM ${source.tableName} v WHERE v.${source.idColumn} = m.id)
       `).get() as { count: number }).count
     : 0;
 
   const total_memories = (database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as { count: number }).count;
-  const total_vectors = sqlite_vec
-    ? (database.prepare(`SELECT COUNT(*) as count FROM ${activeVectorSchema('vec_memories')}`).get() as { count: number }).count
+  const total_vectors = sourceQueryable
+    ? (database.prepare(`SELECT COUNT(*) as count FROM ${source.tableName}`).get() as { count: number }).count
     : 0;
 
   const check_orphaned_files = () => {
