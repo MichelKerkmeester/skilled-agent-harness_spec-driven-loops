@@ -50,7 +50,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Resolved (units A/B + tail shipped; Unit C documented; tri-163 refuted; tri-129 deferred; tri-135 already-correct) |
 | **Created** | 2026-06-13 |
 | **Branch** | `028-mcp-to-cli-tool-transition` |
 | **Parent Spec** | ../spec.md |
