@@ -3621,7 +3621,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   }
 
   if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
-    // B13 + H5 FIX: Wrap governance metadata in a transaction with rollback on failure.
+    // Wrap governance metadata in a transaction with rollback on failure.
     // If governance application fails, delete the orphaned memory row to prevent
     // persisted rows without tenant/session/retention metadata.
     const applyGovernanceTx = database.transaction(() => {

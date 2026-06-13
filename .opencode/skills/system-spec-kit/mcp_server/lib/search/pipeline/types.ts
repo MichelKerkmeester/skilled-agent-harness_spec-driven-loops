@@ -217,7 +217,7 @@ export interface Stage1Output {
 
 /**
  * Tri-state for signal application metadata.
- * B6 FIX: Replaces boolean flags so callers can distinguish "feature disabled
+ * Replaces boolean flags so callers can distinguish "feature disabled
  * by config" ('off') from "feature crashed" ('failed') from "feature applied
  * successfully" ('applied').
  */
@@ -334,9 +334,9 @@ export interface PipelineResult {
     stage2: Stage2Output['metadata'];
     stage3: Stage3Output['metadata'];
     stage4: Stage4Output['metadata'];
-    /** B1: Per-stage and total timing in milliseconds for latency observability. */
+    /** Per-stage and total timing in milliseconds for latency observability. */
     timing?: Record<string, number>;
-    /** B1: True when one or more stages fell back to degraded output. */
+    /** True when one or more stages fell back to degraded output. */
     degraded?: boolean;
   };
   annotations: Stage4Output['annotations'];

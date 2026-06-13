@@ -628,7 +628,7 @@ function computeDegreeScores(
  * Call this on causal edge mutations (insert, update, delete)
  * to ensure stale scores are not served.
  */
-// H20 FIX: Clear degree cache — clears for all DB instances
+// Clear degree cache — clears for all DB instances
 function clearDegreeCache(): void {
   degreeCachePerDb = new WeakMap<Database.Database, DegreeCacheState>();
   ftsTableAvailabilityPerDb = new WeakMap<Database.Database, boolean>();

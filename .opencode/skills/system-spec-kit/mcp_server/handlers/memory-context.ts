@@ -51,7 +51,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 // Shared handler types
 import type { MCPResponse } from './types.js';
 
-// PI-B3: Folder discovery integration
+// Folder discovery integration
 import { discoverSpecFolder, getSpecsBasePaths } from '../lib/search/folder-discovery.js';
 import {
   isAutoResumeEnabled,
@@ -1485,7 +1485,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
           matchedKeywords: classification.matchedKeywords,
         };
 
-        // F050: Extract a symbol-like token from the query instead of passing
+        // Extract a symbol-like token from the query instead of passing
         // raw prose to buildContext({ subject }). resolveSubjectToRef() matches
         // against code_nodes.name / fq_name, so prose never resolves.
         // Heuristic: pick the first token that looks like a code identifier

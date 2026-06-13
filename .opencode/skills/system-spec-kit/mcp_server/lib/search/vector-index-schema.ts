@@ -927,7 +927,7 @@ function deprecateDuplicateActiveLogicalKeysBeforeUniqueIndex(database: Database
 
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
-// BUG-019 FIX: Wrap migrations in transaction for atomicity
+// Wrap migrations in transaction for atomicity
 /**
  * Runs schema migrations between two schema versions.
  * @param database - The database connection to migrate.
@@ -1960,7 +1960,7 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v37: Added tombstone active and purgeable partitions');
   };
 
-  // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
+  // Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
       if (migrations[v]) {
@@ -2857,7 +2857,7 @@ export function create_common_indexes(database: Database.Database): void {
     });
   }
 
-  // H5 FIX: Add idx_history_timestamp index for memory_history table
+  // Add idx_history_timestamp index for memory_history table
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)`);
     logger.info('Created idx_history_timestamp index');

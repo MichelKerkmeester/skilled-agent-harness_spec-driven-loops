@@ -153,7 +153,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
           command: 'memory-crud-delete.handleMemoryDelete',
           restoreContext: { memoryId: numericId, specFolder: singleSnapshot?.spec_folder ?? null },
         });
-        // H1 FIX: Use db-specific invalidation instead of the no-op global version
+        // Use db-specific invalidation instead of the no-op global version
         clearDegreeCacheForDb(database);
 
         const ledgerRecorded = appendMutationLedgerSafe(database, {

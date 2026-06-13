@@ -83,7 +83,7 @@ import { requireDb } from '../../../utils/db-helpers.js';
 import { computeRecencyScore } from '../../scoring/folder-scoring.js';
 import { enrichResultsWithAnchorMetadata } from '../anchor-metadata.js';
 import { enrichResultsWithValidationMetadata } from '../validation-metadata.js';
-// B4: Stage 2b enrichment extracted for decomposition clarity
+// Stage 2b enrichment extracted for decomposition clarity
 import { executeStage2bEnrichment } from './stage2b-enrichment.js';
 import { applyCommunityBoost } from '../../graph/community-detection.js';
 import { applyGraphSignals } from '../../graph/graph-signals.js';
@@ -1395,7 +1395,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
     results = results.slice(0, config.artifactRouting.strategy.maxResults);
   }
 
-  // -- Steps 8-9: Enrichment (B4 decomposition → stage2b-enrichment.ts) --
+  // -- Steps 8-9: Enrichment (extracted to stage2b-enrichment.ts) --
   // Pure annotation: anchor metadata + validation metadata.
   // Validation signal SCORING (applyValidationSignalScoring) stays here
   // because it's a scoring step, not a pure enrichment.

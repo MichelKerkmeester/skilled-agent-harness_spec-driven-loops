@@ -215,7 +215,7 @@ function invalidateDegreeCache(): void {
   bumpCausalEdgesGeneration();
 
   try {
-    // H1 FIX: Use db-specific cache invalidation instead of the no-op global version
+    // Use db-specific cache invalidation instead of the no-op global version
     if (db) {
       clearDegreeCacheForDb(db);
     }

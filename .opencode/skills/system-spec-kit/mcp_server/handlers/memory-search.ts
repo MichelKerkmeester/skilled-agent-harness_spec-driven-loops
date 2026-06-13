@@ -777,7 +777,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_search');
   const _searchStartTime = Date.now();
   resetLastLexicalCapabilitySnapshot();
-  // BUG-001: Check for external database updates before processing
+  // Check for external database updates before processing
   await checkDatabaseUpdated();
 
   const {
@@ -898,7 +898,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     ? Math.min(Math.floor(rawLimit), 100)
     : 10;
 
-  // BUG-007: Validate query first with proper error handling
+  // Validate query first with proper error handling
   let normalizedQuery: string | null = null;
   if (query !== undefined) {
     try {

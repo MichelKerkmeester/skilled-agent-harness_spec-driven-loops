@@ -496,7 +496,7 @@ export async function runReconsolidationIfEnabled(
   scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null },
   options: ReconsolidationBridgeOptions = {},
 ): Promise<ReconsolidationBridgeResult> {
-  // BUG-2 fix: Track reconsolidation warnings for structured MCP response (not just console.warn)
+  // Track reconsolidation warnings for structured MCP response (not just console.warn)
   const reconWarnings = [] as ReconWarningList;
   const plannerMode = options.plannerMode ?? 'plan-only';
   const allowSaveTimeReconsolidation = plannerMode === 'full-auto' || isSaveReconsolidationEnabled();

@@ -715,7 +715,7 @@ export function recordLineageTransition(
   if (cached) return cached;
 
   for (let attempt = 0; attempt <= MAX_LINEAGE_VERSION_RETRIES; attempt += 1) {
-    // A1/B14: Wrap predecessor UPDATE + lineage INSERT + projection UPSERT in a transaction.
+    // Wrap predecessor UPDATE + lineage INSERT + projection UPSERT in a transaction.
     const recordTransitionTx = database.transaction(() => {
       const row = getMemoryRow(database, memoryId);
       const rowLogicalKey = buildLogicalKey(row);
@@ -949,7 +949,7 @@ export function summarizeLineageInspection(
     if (row.version_number !== expectedVersion) {
       hasVersionGaps = true;
     }
-    // B7: Use version_number ordering for predecessor chain validation
+    // Use version_number ordering for predecessor chain validation
     // rather than assuming sequential array positions match predecessor IDs.
     if (index > 0) {
       const prevRow = rows[index - 1];
@@ -1157,7 +1157,7 @@ export function backfillLineageState(
       const predecessor = index > 0 ? group[index - 1] : null;
       const successor = index < group.length - 1 ? group[index + 1] : null;
       const existing = getLineageRow(database, row.id);
-      // B3: Align dry-run timestamp source with execution path.
+      // Align dry-run timestamp source with execution path.
       const historyEventsForDryRun = getSafeHistoryEvents(database, row.id);
       const expectedValidFrom = historyEventsForDryRun[0]?.timestamp
         ?? normalizeTimestamp(row.created_at ?? row.updated_at);
@@ -1323,7 +1323,7 @@ export function recordLineageVersion(
   },
 ): RecordedLineageTransition {
   if (typeof (database as Database.Database & { exec?: unknown }).exec !== 'function') {
-    // B6: Mock path returns memoryId as root — predecessor's root is unavailable
+    // Mock path returns memoryId as root — predecessor's root is unavailable
     // without DB access, and using predecessor ID itself is incorrect.
     return {
       logicalKey: `mock:${params.memoryId}`,

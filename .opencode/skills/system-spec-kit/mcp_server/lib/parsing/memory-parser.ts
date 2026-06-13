@@ -227,7 +227,7 @@ export function readFileWithEncoding(filePath: string): string {
   }
 
   // UTF-16 BE BOM: FE FF
-  // BUG-020 FIX: Node.js Buffer doesn't support 'utf16be' encoding natively.
+  // Node.js Buffer doesn't support 'utf16be' encoding natively.
   // Convert UTF-16 BE to LE by swapping bytes, then decode as utf16le.
   if (buffer.length >= 2 &&
       buffer[0] === 0xFE &&

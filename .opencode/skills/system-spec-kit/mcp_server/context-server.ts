@@ -1104,7 +1104,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // SK-004: Auto-surface memories before dispatch (after validation)
+    // Auto-surface memories before dispatch (after validation)
     let autoSurfacedContext: AutoSurfaceResult | null = null;
     const isCompactionLifecycleCall =
       name === 'memory_context' && validatedArgs.mode === 'resume';
@@ -1211,7 +1211,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // F057: Passive context enrichment pipeline — adds code graph symbols
+    // Passive context enrichment pipeline — adds code graph symbols
     // near mentioned file paths and session continuity warnings.
     if (result && !result.isError && result.content?.[0]?.text) {
       try {
@@ -1236,7 +1236,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // SK-004: Inject auto-surface hints before token-budget enforcement so
+    // Inject auto-surface hints before token-budget enforcement so
     // The final envelope metadata reflects the fully decorated response.
     if (autoSurfacedContext && result && !result.isError) {
       appendAutoSurfaceHints(result, autoSurfacedContext);
@@ -1422,7 +1422,7 @@ async function recoverPendingFiles(basePath: string): Promise<PendingRecoveryRes
   console.error('[context-server] Checking for pending memory files...');
 
   try {
-    // BUG-028 FIX: Restrict scan to known memory file locations to prevent OOM when scanning large workspaces.
+    // Restrict scan to known memory file locations to prevent OOM when scanning large workspaces.
     // Share the same allowed-root expansion that startup indexing uses.
     const existingScanLocations = getPendingRecoveryLocations(basePath);
 

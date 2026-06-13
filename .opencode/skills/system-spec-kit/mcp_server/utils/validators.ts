@@ -48,7 +48,7 @@ export const INPUT_LIMITS: Readonly<InputLimits> = {
   filePath: 500
 } as const;
 
-/** Maximum query length for search operations (BUG-007) */
+/** Maximum query length for search operations */
 export const MAX_QUERY_LENGTH: number = 10000;
 
 // ───────────────────────────────────────────────────────────────
@@ -56,8 +56,8 @@ export const MAX_QUERY_LENGTH: number = 10000;
 
 // ───────────────────────────────────────────────────────────────
 /**
- * Validate and normalize a search query
- * BUG-007: Properly rejects empty, null, and invalid queries.
+ * Validate and normalize a search query.
+ * Properly rejects empty, null, and invalid queries.
  */
 export function validateQuery(query: unknown): string {
   if (query === null || query === undefined) {

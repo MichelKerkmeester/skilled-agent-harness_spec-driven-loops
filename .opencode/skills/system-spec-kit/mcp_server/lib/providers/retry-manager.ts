@@ -686,7 +686,7 @@ async function retryEmbedding(
       return { success: false, error: 'Maximum retries exceeded', permanent: true };
     }
 
-    // BUG-1 fix: Normalize content before embedding to match sync save path (memory-save.ts:1119).
+    // Normalize content before embedding to match sync save path (memory-save.ts:1119).
     // Without this, async-saved memories get embeddings from raw markdown (YAML frontmatter, HTML
     // Comments, code fences) while sync-saved memories get clean normalized embeddings.
     const normalizedContent = normalizeContentForEmbedding(content);

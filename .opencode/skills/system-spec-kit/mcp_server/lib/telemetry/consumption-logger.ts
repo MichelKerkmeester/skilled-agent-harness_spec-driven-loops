@@ -2,16 +2,18 @@
 // MODULE: Consumption Logger (Agent Ux Instrumentation)
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Agent consumption instrumentation
-// Logs agent consumption events to a SQLite table for G-NEW-2
+// Logs agent consumption events to a SQLite table
 // Requirement analysis: what agents query, what results they get,
 // And (via hooks) which results they actually use.
 //
 // Table: consumption_log
 // Feature flag: SPECKIT_CONSUMPTION_LOG (graduated, default ON)
 //
-// PRIVACY: raw query text is never stored. Each query is reduced
-// to a non-reversible hash fingerprint before reaching the DB —
-// no prefix, no substring, no recoverable content.
+// PRIVACY: raw query text is never stored. Each non-empty query is
+// stored as the first 16 hex chars of SHA-256(query) — a 64-bit
+// truncated, unsalted fingerprint. This supports exact grouping of
+// identical queries but is NOT a strong non-reversibility guarantee:
+// low-entropy or guessable queries remain dictionary-testable.
 import { createHash } from 'node:crypto';
 import Database from 'better-sqlite3';
 import { isFeatureEnabled } from '../cognitive/rollout-policy.js';

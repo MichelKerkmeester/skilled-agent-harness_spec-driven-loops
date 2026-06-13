@@ -120,7 +120,7 @@ export interface DashboardReport {
  * Lazy DB accessor. Initializes eval DB if needed.
  * Safe to call repeatedly (initEvalDb is idempotent).
  */
-// H18 FIX: Use existing eval DB singleton first to avoid silently switching
+// Use existing eval DB singleton first to avoid silently switching
 // away from a non-default/test eval DB when generating a dashboard.
 function getDb(): Database.Database {
   try { return getEvalDb(); } catch (_: unknown) { /* not yet initialized */ }

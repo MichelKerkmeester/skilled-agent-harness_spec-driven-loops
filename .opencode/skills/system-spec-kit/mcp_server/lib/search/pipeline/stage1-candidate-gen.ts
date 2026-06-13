@@ -1263,7 +1263,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         : rawHydeCandidates;
       if (hydeCandidates.length > 0) {
         let newHydeCandidates = hydeCandidates;
-        // H11 FIX: Apply the same tier/context/quality filters as main candidates
+        // Apply the same tier/context/quality filters as main candidates
         if (contextType) {
           newHydeCandidates = newHydeCandidates.filter((r) => resolveRowContextType(r) === contextType);
         }

@@ -264,7 +264,7 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
         ? new Date(Date.now() + DEFAULT_EPHEMERAL_TTL_MS).toISOString()
         : null
     );
-    // B8: Return null instead of empty string for optional scope fields
+    // Return null instead of empty string for optional scope fields
     // when governance is not required, to avoid persisting false-y placeholders.
     return {
       allowed: true,
@@ -291,7 +291,7 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
   if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
     issues.push('deleteAfter must be later than governedAt');
   }
-  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
+  // Require valid future deleteAfter for ephemeral retention policy
   // The memory retention sweep enforces this field via memory_index.delete_after;
   // keep ephemeral rows paired with a concrete timestamp for auditability.
   if (retentionPolicy === 'ephemeral' && !deleteAfter) {

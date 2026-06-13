@@ -16,7 +16,7 @@ import {
 } from '../lib/search/session-transition.js';
 import { formatAgeString } from '../lib/utils/format-helpers.js';
 
-// Import memory parser for anchor extraction (SK-005)
+// Import memory parser for anchor extraction
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import { requireDb } from '../utils/index.js';
 
@@ -952,10 +952,10 @@ export async function formatSearchResults(
           return formattedResult;
         }
 
-        // SK-005: Anchor System Implementation
+        // Anchor System Implementation
         const parser: MemoryParserLike = parserOverride || memoryParser;
         if (anchors && Array.isArray(anchors) && anchors.length > 0 && parser && typeof content === 'string') {
-          // BUG-017 FIX: Capture original tokens BEFORE any content reassignment
+          // Capture original tokens BEFORE any content reassignment
           const originalTokens = estimateTokens(content);
 
           const extracted = parser.extractAnchors(content);
@@ -963,7 +963,7 @@ export async function formatSearchResults(
           let foundCount = 0;
 
           for (const anchorId of anchors) {
-            // SK-005 Prefix matching: try exact match first, then fall back to
+            // Prefix matching: try exact match first, then fall back to
             // Prefix match for composite anchor IDs (e.g. 'summary' matches
             // 'summary-session-1770903150838-...'). Prefers shortest match to
             // Select the most specific key when multiple keys share a prefix.
@@ -980,7 +980,7 @@ export async function formatSearchResults(
           }
 
           if (filteredParts.length > 0) {
-            // SK-005 Fix: Warn about missing anchors in partial match
+            // Warn about missing anchors in partial match
             // Use same prefix-matching logic for consistency
             const missingAnchors = anchors.filter(a => {
               if (extracted[a] !== undefined) return false;
@@ -1021,7 +1021,7 @@ export async function formatSearchResults(
       } catch (err: unknown) {
         formattedResult.content = null;
         const message = err instanceof Error ? err.message : String(err);
-        // BUG-023 FIX: Sanitize error messages to prevent information leakage
+        // Sanitize error messages to prevent information leakage
         formattedResult.contentError = message.includes('Access denied')
           ? 'Security: Access denied'
           : message.includes('ENOENT')

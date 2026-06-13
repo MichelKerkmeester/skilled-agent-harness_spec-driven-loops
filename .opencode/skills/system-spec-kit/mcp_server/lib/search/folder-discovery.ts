@@ -1061,7 +1061,7 @@ export function saveDescriptionCache(cache: DescriptionCache, cachePath: string)
 }
 
 // ───────────────────────────────────────────────────────────────
-// 8. INTEGRATION HELPERS (PI-B3)
+// 8. INTEGRATION HELPERS
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -1220,7 +1220,7 @@ export function discoverSpecFolder(
 
     return best.specFolder;
   } catch (_error: unknown) {
-    // CHK-PI-B3-004: Never throw — graceful degradation
+    // Never throw — graceful degradation
     return null;
   }
 }

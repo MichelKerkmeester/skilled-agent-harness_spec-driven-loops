@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // 4-stage pipeline execution with per-stage error handling and timeouts.
 //
-// B1 FIX: Each stage is wrapped in try/catch with withTimeout().
+// Each stage is wrapped in try/catch with withTimeout().
 // Stage 1 is mandatory (throws on failure — no candidates = no results).
 // Stages 2-4 fall back to previous stage output with degraded metadata.
 // Timing is recorded for latency observability.

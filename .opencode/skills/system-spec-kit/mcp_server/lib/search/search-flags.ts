@@ -110,7 +110,7 @@ export function isSearchFallbackEnabled(): boolean {
 }
 
 /**
- * PI-B3: Automatic spec folder discovery via description cache.
+ * Automatic spec folder discovery via description cache.
  * Default: TRUE (graduated). Set SPECKIT_FOLDER_DISCOVERY=false to disable.
  */
 export function isFolderDiscoveryEnabled(): boolean {

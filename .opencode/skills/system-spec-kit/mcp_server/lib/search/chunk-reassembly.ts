@@ -107,7 +107,7 @@ function collapseAndReassembleChunkResults(results: ChunkableSearchRow[]): Chunk
   let collapsedChunkHits = 0;
 
   for (const row of results) {
-    // H14 FIX: Support both snake_case and camelCase chunk field names
+    // Support both snake_case and camelCase chunk field names
     const parentId = parseNullableInt(row.parent_id ?? (row as Record<string, unknown>).parentId);
     if (parentId !== null) {
       if (seenParents.has(parentId)) {

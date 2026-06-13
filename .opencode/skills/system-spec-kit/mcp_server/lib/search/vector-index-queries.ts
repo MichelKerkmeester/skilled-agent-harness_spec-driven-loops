@@ -1183,7 +1183,7 @@ export function parse_quoted_terms(query: string): string[] {
    SMART RANKING AND DIVERSITY
 ----------------------------------------------------------------*/
 
-// BUG-012 FIX: Weights read from config instead of hardcoded
+// Weights read from config instead of hardcoded
 /**
  * Applies smart ranking weights to enriched results.
  * @param results - The results to rank.
@@ -1506,7 +1506,7 @@ export function get_memory_preview(memory_id: number, max_lines = 50): { id: num
    DATABASE INTEGRITY
 ----------------------------------------------------------------*/
 
-// BUG-013 FIX: Added autoClean option for automatic orphan cleanup
+// Added autoClean option for automatic orphan cleanup
 /**
  * Verifies vector-index consistency and optional cleanup results.
  * @param options - Integrity verification options.

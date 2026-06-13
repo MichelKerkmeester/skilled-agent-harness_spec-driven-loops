@@ -172,7 +172,7 @@ function deleteAncillaryMemoryRows(database: Database.Database, id: number): voi
     }
   }
 
-  // B10: Clean active_memory_projection rows referencing this memory.
+  // Clean active_memory_projection rows referencing this memory.
   try {
     database.prepare('DELETE FROM active_memory_projection WHERE active_memory_id = ?').run(id);
   } catch (_error: unknown) {
@@ -638,7 +638,7 @@ export function update_memory(
       UPDATE memory_index SET ${updates.join(', ')} WHERE id = ?
     `).run(...values);
 
-    // B11: Return early if the target row no longer exists.
+    // Return early if the target row no longer exists.
     if (updateResult.changes === 0) {
       return id;
     }

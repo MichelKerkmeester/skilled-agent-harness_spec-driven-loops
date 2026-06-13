@@ -2138,7 +2138,7 @@ function structuralSearch(
 
   try {
     // Build SQL with optional specFolder filter
-    // H13 FIX: Exclude archived rows unless explicitly requested
+    // Exclude archived rows unless explicitly requested
     const conditions = [
       `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
     ];

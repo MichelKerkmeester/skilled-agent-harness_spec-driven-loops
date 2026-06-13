@@ -160,7 +160,7 @@ function findSimilarMemories(
         if (!matchesScopedValue(tenantId, r.tenant_id)) continue;
         if (!matchesScopedValue(userId, r.user_id)) continue;
         if (!matchesScopedValue(agentId, r.agent_id)) continue;
-        // H9 FIX: Filter by sessionId to prevent false duplicate/supersede decisions across sessions
+        // Filter by sessionId to prevent false duplicate/supersede decisions across sessions
         if (!matchesScopedValue(sessionId, r.session_id)) continue;
         const candidateCanonicalPath = typeof r.canonical_file_path === 'string'
           ? getCanonicalPathKey(r.canonical_file_path)

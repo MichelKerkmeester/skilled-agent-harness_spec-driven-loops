@@ -136,7 +136,7 @@ export function lowConfidence(baseline: BaselineResult[]): boolean {
     return true;
   }
 
-  // H15 FIX: Use max score from baseline, not baseline[0], since callers
+  // Use max score from baseline, not baseline[0], since callers
   // don't guarantee sorted input.
   let maxScore = 0;
   for (const item of baseline) {
