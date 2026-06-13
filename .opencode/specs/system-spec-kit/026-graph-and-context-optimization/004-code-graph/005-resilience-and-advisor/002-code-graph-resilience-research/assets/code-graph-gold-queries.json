@@ -22,7 +22,7 @@
       "expected_count": 3,
       "expected_top_K_symbols": ["handleCodeGraphScan", "ScanArgs", "ScanResult"],
       "category": "mcp-tool",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:324"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:325"
     },
     {
       "id": "GQ-MCP-003",
@@ -54,7 +54,7 @@
       "expected_count": 4,
       "expected_top_K_symbols": ["handleAdvisorRecommend", "computeRecommendationOutput", "publicRecommendation"],
       "category": "mcp-tool",
-      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:400"
+      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:404"
     },
     {
       "id": "GQ-MCP-007",
