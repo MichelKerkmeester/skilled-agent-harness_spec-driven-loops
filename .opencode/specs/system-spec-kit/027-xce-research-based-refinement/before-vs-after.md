@@ -4,7 +4,7 @@
 
 ---
 
-## The Unifying Principle
+## THE UNIFYING PRINCIPLE
 
 027 came out of a cross-experiment synthesis pass over four research sources: peck (verification discipline), gem-team (agent I/O contracts), memclaw (derived-memory write safety) and OpenLTM (retrieval observability and session continuity). The research surfaced the same pattern repeatedly. New capabilities added to a live memory system carry tail risk, even when the individual change looks correct in isolation. A ranking tweak that breaks recall in an edge case. A retention heuristic that deletes something a user considers permanent. A near-duplicate filter that silently swallows an important write.
 
@@ -14,7 +14,11 @@ That rule shaped every section below.
 
 ---
 
-## 1. Memory Write Safety and Secret Redaction
+## 1. SYSTEM-SPEC-KIT — MEMORY STORE & WORKFLOW
+
+These changes land in the memory store, the retrieval path, and the Spec Kit workflow discipline that governs how that memory is written and verified.
+
+### 1. MEMORY WRITE SAFETY & SECRET REDACTION
 
 **Before**
 
@@ -34,9 +38,7 @@ Manual memory records you create or edit stay yours. Automated callers that read
 
 Each of these is a protection, not a feature. None of them enable new behavior. They prevent data loss and credential leakage. There is no valid use case for an automated caller overwriting a manual edge, or for deleting a constitutional row on a timer.
 
----
-
-## 2. Source Provenance Guard
+### 2. SOURCE PROVENANCE GUARD
 
 **Before**
 
@@ -58,9 +60,7 @@ You can trust that a memory record you authored by hand stays authored by hand. 
 
 Provenance is a structural property of every write. There is no scenario where automated overwrite of human-authored fields is the correct outcome. The guard is conservative by default and the human-over-automated write path remains fully open.
 
----
-
-## 3. Idempotency and Near-Duplicate Detection
+### 3. IDEMPOTENCY & NEAR-DUPLICATE DETECTION
 
 **Before**
 
@@ -82,9 +82,7 @@ When enabled, retries stop creating phantom duplicates. The hint surfaces silent
 
 The idempotency receipt path requires the embedding coverage to be reliable for near-duplicate checks to be useful. The feature flag holds it back until embedding recall is confirmed healthy across the index. Near-duplicate detection is advisory rather than blocking because false positives on genuinely distinct records would suppress valid saves. The flag-on correctness work in phase 023 was a prerequisite to any enablement, not the enablement itself: the flag stays off pending a dist rebuild and a deliberate enablement decision that still has to settle force-retry-conflict handling and receipt TTL.
 
----
-
-## 4. Soft-Delete Tombstones and Memory Lifecycle
+### 4. SOFT-DELETE TOMBSTONES & MEMORY LIFECYCLE
 
 **Before**
 
@@ -104,9 +102,7 @@ Causal edge deletes always leave an audit trail now, regardless of the flag sett
 
 Causal edge tombstones are purely additive. They add a row before removing one. There is no behavioral change and no recall impact. Memory-row tombstones require search, list, get, context and trigger handlers to filter `deleted_at IS NULL` before those paths are safe to enable, which is why that feature stays default-off.
 
----
-
-## 5. Semantic Trigger Fallback
+### 5. SEMANTIC TRIGGER FALLBACK
 
 **Before**
 
@@ -126,9 +122,7 @@ The machinery exists and the test suite confirms it works. Nothing changes in pr
 
 Semantic trigger matching can return false positives that would surface unrelated memories in a user's session context. The synthetic test suite proves the machinery is correct, but live behavior with real embedding distributions has not been measured. Union promotion is explicitly blocked until that evidence exists.
 
----
-
-## 6. Learning Feedback Reducers
+### 6. LEARNING FEEDBACK REDUCERS
 
 **Before**
 
@@ -152,9 +146,7 @@ The feedback loop infrastructure is in place. Shadow mode lets you see what deci
 
 The reducers touch retention and causal edge state. A miscalibrated retention reducer could shorten the life of frequently searched records or extend the life of ones that should expire. The shadow-first model means you can observe reducer decisions at scale before any of them take effect.
 
----
-
-## 7. Incremental Index and Causal Graph Foundation
+### 7. INCREMENTAL INDEX & CAUSAL GRAPH FOUNDATION
 
 **Before**
 
@@ -178,9 +170,7 @@ The incremental-index foundation is the prerequisite for future scan performance
 
 All three migrations are strictly additive. Existing databases can apply them safely. Existing scan behavior does not change until a caller opts into the planning API.
 
----
-
-## 8. Retrieval Observability
+### 8. RETRIEVAL OBSERVABILITY
 
 **Before**
 
@@ -206,9 +196,7 @@ When retrieval behavior looks wrong, you now have a way to check the score break
 
 Ranking, scoring and decay are unchanged. The observability surfaces are read-only. Opt-ins keep the default response payload compact for non-diagnostic calls.
 
----
-
-## 9. Session Continuity and Compaction Resilience
+### 9. SESSION CONTINUITY & COMPACTION RESILIENCE
 
 **Before**
 
@@ -232,9 +220,7 @@ Session handoffs are more compact and easier to scan. The compaction hook can no
 
 The ENV_REFERENCE documentation for `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` was deferred at user direction and the operator documentation is not yet published. The feature ships with tests and a working implementation, ready to enable when documented.
 
----
-
-## 10. Completion Verdict Freshness and Verification Discipline
+### 10. COMPLETION VERDICT FRESHNESS & VERIFICATION DISCIPLINE
 
 **Before**
 
@@ -256,9 +242,165 @@ A completion claim that was valid yesterday but would not be valid against today
 
 Both flags (`SPECKIT_COMPLETION_FRESHNESS` and `SPECKIT_AC_COVERAGE`) are opt-in. Enabling them on existing spec folders would produce warnings on folders that predate the rules. The opt-in model lets you apply them to new work first and expand coverage deliberately.
 
+### 11. SEARCH RESILIENCE — VECTOR DURABILITY & THE LEXICAL FALLBACK
+
+**Before**
+
+A live malformed vector shard was observed silently degrading search: the read path trusted a shard that could not actually answer, and returned thin results with no signal. The lexical fallback that backs search when the vector lane is unavailable carried a memory-hungry posting representation and had lost its per-field weighting, so a title or trigger hit ranked no higher than the same term buried in body text. And the BM25 lane truncated results to the caller's limit before it resolved the spec-folder and deprecated-tier filters, so a scoped query could return fewer in-scope results than actually existed.
+
+**After**
+
+The vector read path now detects a shard that fails its integrity and dimension checks, quarantines it rather than serving it, seeds degraded-vector state for observability, and schedules an auto-rebuild with hardened dimension discovery (phase 013). That repair is durable across a restart (phase 020): a repair-pending sentinel is persisted at quarantine, and boot uses a completeness check, the vector rowcount against the index success count rather than a file-exists probe, to decide between resuming a real repair and clearing a stale sentinel on an already-rebuilt shard. The quarantine rename is itself a durable marker, so repair resumes even when no sentinel write could land, and an in-flight guard stops a double boot-attach from scheduling the same rebuild twice.
+
+The lexical fallback was rebuilt as a packed in-memory BM25 engine with typed-array postings and restored BM25F field weighting (phase 014), so title and trigger matches outrank body noise, with packed ranking meeting or beating the legacy engine on the baseline metrics (the restored weighting intentionally re-orders results where the legacy engine had lost the title signal). The realistic-corpus re-validation exposed a 743MB warmup RSS spike against a 150MB budget, which phase 017 cut to a 136.5MB peak-sampled spike, under budget, through no-copy chunked packed postings and Uint8 to Uint16 to Uint32 width promotion, with the packed engine's ranking unchanged by the optimization (warmed-versus-direct identical) and the hard RSS gate re-enabled. The scope-then-limit bug was fixed in phase 021: the lane now over-fetches the candidate set when a scope or database filter is present, resolves the per-candidate metadata in batches that stay under the SQLite parameter limit, applies the filters, and only then truncates to the caller's limit.
+
+**Impact**
+
+A corrupted vector shard no longer silently degrades search, and a crash mid-repair resumes instead of permanently serving an empty shard with health reporting success. The lexical fallback ranks the way it should and warms under its memory budget on a realistic corpus. A scoped search returns its real result set rather than whatever survived an early truncation.
+
+**Why mostly always-on, repair durability inert until adopted**
+
+The detection, quarantine, ranking and scope fixes are corrections to existing behavior and ship as part of the read path. The vector repair durability source fix goes live only after a dist rebuild and daemon recycle, and is otherwise inert.
+
+### 12. SEARCH INTELLIGENCE — WHAT CHANGED AND WHETHER IT WAS WORTH IT
+
+The earlier sub-sections describe each search-related change in its own place — observability, the vector and lexical resilience work, semantic triggers, the incremental-index and metadata-edge foundation, and the BFS traversal consolidation. This sub-section pulls the whole search story into one before/after and answers the question directly: **was the search-intelligence work worth it?** The honest answer has two halves, because the work splits cleanly into resilience-and-correctness (already paying off, always-on) and smarter-ranking (built and staged, deliberately not yet enabled).
+
+**Before — what memory search actually did**
+
+Search was a single lexical lane with sharp edges. Trigger matching was substring-only: a session-context string had to literally contain a trigger phrase, so a rephrase or a synonym surfaced nothing. The vector lane trusted its shards blindly — a malformed shard that could not actually answer was still queried, returned thin results, and reported health as fine, so search silently degraded with no signal. The lexical fallback that backs search when the vector lane is down had lost its BM25F field weighting (a title or trigger hit ranked no higher than the same word buried in body text) and carried a memory-hungry posting representation. The BM25 lane truncated to the caller's limit *before* it applied the spec-folder and deprecated-tier filters, so a scoped query could return fewer in-scope rows than actually existed. Results came back with no explanation of why they ranked where they did, and contradiction or supersession relationships between results were invisible inline. Every index pass rescanned every file, and packet lineage from the spec tree never reached the causal graph.
+
+**After — the resilience and correctness half (always-on, no flag)**
+
+These are corrections to existing behavior. They ship in the read path and need no opt-in:
+
+- **A corrupt vector shard is detected and quarantined instead of served.** The read path runs integrity and dimension checks, quarantines a failing shard, seeds degraded-vector state for health to report, and schedules an auto-rebuild with hardened dimension discovery. The repair is durable across a restart — a persisted sentinel plus a rowcount-completeness check decides between resuming a real repair and clearing a stale one, and the quarantine rename is itself a durable marker so repair resumes even if no sentinel write landed. (The repair-durability source fix is inert until a dist rebuild and daemon recycle adopt it; the detection and quarantine are live now.)
+- **The lexical fallback ranks correctly again, under budget.** It was rebuilt as a packed in-memory BM25 engine with typed-array postings and restored BM25F field weighting, so title and trigger matches outrank body noise. Packed ranking meets or beats the legacy engine on the baseline metrics.
+- **Scoped search returns its real result set.** The scope-then-limit bug is fixed: the lane over-fetches when a scope or database filter is present, resolves per-candidate metadata in batches under the SQLite parameter limit, applies the filters, and only then truncates.
+- **Ranking is explainable.** With `includeTrace: true` (automatic in the `debug` profile), each result carries a `why_ranked` breakdown sourced from the ranker's own intermediates — the explanation matches the actual ranking rather than a parallel display formula. Contradiction and supersession edges between returned documents surface as a compact inline warning.
+- **Traversal got faster and lineage-aware.** Two recursive-CTE causal traversals whose join shape defeated the index were replaced by one shared app-level BFS helper (same results, fewer full scans), and the metadata-edge promoter now lifts packet parent/child/chain relationships from `graph-metadata.json` into the causal graph automatically, so spec-tree lineage shows up in search and traversal without hand-authored edges.
+
+**After — the smarter-ranking half (built, tested, staged behind evidence gates)**
+
+These add new intelligence to ranking and retention. Every one ships default-off with shadow mode, by the same doctrine that governs the whole epic:
+
+- **Semantic trigger fallback** computes cosine similarity between a query and stored 768-dimensional trigger embeddings as a second stage behind lexical matching. The machinery is built and the test suite passes. Union promotion (letting the semantic stage supplement weak lexical results) is explicitly blocked pending live false-positive, recall, latency and cost data on real embeddings.
+- **Learning feedback reducers** would let co-access patterns strengthen causal edges and let usage protect frequently retrieved rows from expiry. They run shadow-first, writing governance-audit rows without touching state, until evidence justifies activation.
+- **Idempotency and near-duplicate detection** stay flag-gated; near-duplicate detection is advisory (it hints, never blocks) and the idempotency receipt path waits on confirmed embedding-recall health.
+
+**Performance**
+
+- **Lexical fallback memory:** the realistic-corpus re-validation first exposed a **743MB warmup RSS spike against a 150MB budget**; the optimization pass cut it to a **136.5MB peak-sampled spike — under budget** — through no-copy chunked packed postings and Uint8→Uint16→Uint32 width promotion, with packed ranking unchanged by the optimization (warmed-versus-direct identical) and the hard RSS gate re-enabled.
+- **Ranking quality:** packed BM25F meets or beats the legacy engine on the baseline metrics; the restored field weighting intentionally re-orders results where the legacy engine had lost the title signal.
+- **Traversal:** the shared BFS helper removes the full-scan behavior of the old recursive CTEs while preserving results including multi-root fan-in.
+- **Concurrency headroom:** the shared daemon IPC client cap was raised from 8 to 64, so session fan-outs no longer saturate the socket and fail bridge probes with spurious exit 75.
+
+**The verdict — is it worth it?**
+
+For the resilience-and-correctness half: unambiguously yes, and it is already paying off in every deployment with no flag to flip. These are not speed-for-its-own-sake optimizations — they fix ways search was quietly *wrong*. A corrupted shard used to degrade recall while reporting healthy; now it is caught. A scoped query used to under-return; now it returns its real set. The fallback used to bury title matches; now it ranks them correctly and does so under a third of its former memory peak. Explainability turns "the ranking looks off" from a guess into a check. The cost was real engineering effort and a measurable RSS regression that had to be chased back under budget, but the payoff is correctness on the path every user already exercises.
+
+For the smarter-ranking half: the honest answer is *a measured bet not yet cashed in — deliberately.* Semantic triggers and learning reducers are the genuinely new intelligence, and they are exactly the kind of results-affecting change the epic's doctrine refuses to ship on faith. They are built, tested, and observable in shadow mode, but their production payoff is zero until live evidence justifies enabling them, because the downside of a miscalibrated semantic match (surfacing an unrelated memory mid-session) or a bad retention reducer (expiring a record you rely on) is worse than the upside of slightly better recall. So the upgrade that makes search *smarter* is staged behind the same gate as everything else; the upgrade that makes search *trustworthy* is live. That split is the whole point of the epic, applied to its own search work.
+
 ---
 
-## 11. Agent I/O Contract (gem-team Adoption)
+## 2. SYSTEM-SKILL-ADVISOR
+
+The advisor began the epic as the odd subsystem out — it lacked the launcher resilience the other two daemons already had, and it had not yet adopted the write-safety and observability patterns proven in the memory store. Both gaps were closed.
+
+### 1. DAEMON LAUNCHER RESILIENCE (ADVISOR PARITY)
+
+**Before**
+
+The skill-advisor launcher was the odd one out of the three daemon launchers. The spec-memory and code-index launchers had an owner lease and a reconnecting session proxy so a second session bridged the warm daemon instead of spawning a duplicate writer, but the advisor launcher's lease check only reported that a lease was held and did nothing about a dead socket. A hung advisor daemon could strand a session or invite a second writer.
+
+**After**
+
+Phase 019 brought the advisor launcher up to parity. A second session now bridges the live daemon through the session proxy, and a dead-socket respawn decision is acted on: the launcher reaps the dead owner and respawns a replacement under a bootstrap lock, rather than leaving the session stranded or starting a second writer. All three daemon launchers now share the same resilience bar.
+
+**Impact**
+
+The advisor survives a dropped transport the same way the spec-memory and code-index daemons already did. There is never a second writer to the skill graph.
+
+**Why fresh-session only**
+
+A running launcher process keeps its prior `.cjs` resident, so the fix activates on a fresh session. Live adoption is operator-gated.
+
+### 2. CROSS-SUBSYSTEM HARDENING ADOPTED INTO THE ADVISOR
+
+**Cross-subsystem feature adoption (018).** The hardening that 027 landed first in spec-memory was carried into the skill-advisor and code-graph subsystems. The advisor gained prompt-safe attribution and semantic health diagnostics, an automated-edge provenance guard that protects manual and trusted edges, a packed BM25F lexical helper that stays shadow-only until a future promotion decision, one local BFS helper for `transitive_path` and `subgraph`, and default-off feedback calibration reports that are written for inspection rather than consumed by live scoring.
+
+---
+
+## 3. SYSTEM-CODE-GRAPH
+
+The code graph picked up two kinds of work: an internal traversal consolidation that removed full-scan behavior, and the same cross-subsystem hardening pattern that reached the advisor.
+
+### 1. CAUSAL TRAVERSAL BFS
+
+**Causal traversal BFS (012).** Two recursive-CTE graph traversals whose join shape defeated index use were replaced by a single shared app-level BFS helper. Same traversal results, including multi-root fan-in, fewer full scans.
+
+### 2. CROSS-SUBSYSTEM HARDENING ADOPTED INTO CODE GRAPH
+
+Code graph gained default-off tombstone audit rows, one local BFS helper for transitive and blast-radius traversal, `includeTrace`-gated `why_included` breadcrumbs, and a default-off BM25 symbol resolver that suggests candidates only after exact structural matching misses. The pattern is the same as the memory system: observability and internal consolidation can ship directly, while ranking or result-shape changes stay default-off or trace-gated.
+
+---
+
+## 4. CROSS-CUTTING & SHARED INFRASTRUCTURE
+
+These changes span subsystems or live in the shared transport, command, and dependency layers that all three daemons rely on.
+
+### 1. THE SYSTEM-SKILL CLI FRONT-DOORS
+
+This is the headline structural change of the MCP-to-CLI transition, so it is worth being precise about what the CLI tools are, how they work, why they exist, and how they sit alongside MCP rather than replacing it.
+
+**Before**
+
+Three system skills each run a long-lived background daemon: spec-memory (37 tools, the memory store and search), code-index (8 tools, the structural code graph) and skill-advisor (9 tools, skill routing). All three were reachable only through MCP. MCP is the protocol an AI session speaks to those daemons. That meant: if the MCP transport was down, mid-reconnect, or simply not initialized yet, there was no second way in. A shell script could not call the tools. A prompt-time hook had no fallback. A `/doctor` repair command that needed to read memory health had to assume MCP was live. The 54 tools were real and warm in memory, but the only door to them was a door that is not always open.
+
+**After**
+
+Each daemon gained a CLI front-door — `spec-memory.cjs`, `code-index.cjs` and `skill-advisor.cjs` — shipped as stable shims under `.opencode/bin/`. The critical design point: **these are additive IPC clients over the same warm daemons, not new servers and not a reimplementation of the tools.** A CLI call connects to the exact daemon process the MCP session is already using, sends the same request over the same socket, and returns the same result. There is one source of truth (the daemon), now with two doors (MCP and CLI).
+
+How a call works, end to end:
+
+1. The CLI reads a tool manifest that mirrors the daemon's tool surface, so `spec-memory.cjs memory_context --json '{...}'` validates against the same schema the MCP tool uses.
+2. It opens the daemon's Unix-domain IPC socket and sends the request as an IPC client. No model, no MCP handshake, no AI session required.
+3. The daemon does the work and replies. The CLI prints the result as `json`, `jsonl` or compact `text`.
+4. Auto-spawn rules decide what happens when no daemon is warm — and this is where the safety model lives.
+
+The safety model has three rules that matter:
+
+- **Warm-only at prompt time.** When a prompt-time hook uses the CLI (for example, the Claude or Codex session-start and user-prompt hooks reaching for memory context), it probes the socket first and only calls the CLI if the daemon already answers. It never cold-spawns. Cold-spawning a daemon costs hundreds of milliseconds, and paying that on every keystroke-adjacent hook would tax every message. If the daemon is cold, the hook silently skips and the work happens later through the normal path.
+- **Cold spawn is allowed only from non-prompt contexts.** Session start, an explicit prewarm, a cron job or other maintenance entrypoints may start a daemon. Prompt-time paths may not.
+- **Mutations and maintenance are gated.** Heavy or destructive operations — `code_graph_scan`, `advisor_rebuild`, `skill_graph_scan` — are blocked from prompt-time paths entirely, and the advisor's trusted mutations require an explicit `--trusted` flag. The CLI cannot be used to sneak a rebuild into a hook.
+
+Exit code 75 is the retryable signal: it means the daemon or IPC is unavailable right now, not that the caller did anything wrong. A caller that sees 75 retries after a reconnect, a prewarm, or a short backoff rather than treating it as an error.
+
+The transition was built in stages per CLI — a feasibility pass, a core implementation with the manifest-backed IPC client and auto-spawn, a Vitest hardening suite that locks the safety contracts (warm-only, mutation-gating, single-owner), and a runtime integration pass that wired the warm-only fallback into the Claude and Codex prompt hooks. A tri-daemon spawn drill — all three launchers auto-spawning at once, each holding a single-owner lease with respawn-lock serialization, ending at zero orphan processes — was the program gate for the whole transition. The eleven CLI environment variables are documented in `ENV_REFERENCE.md`, and the MCP registrations were left unchanged throughout.
+
+**Intended use — when to reach for the CLI vs MCP**
+
+- **Inside a live AI session: use MCP.** It is the primary transport, it is already connected, and the tools are native. The CLI is not meant to replace native MCP tool calls in normal agent work.
+- **From a shell script, a CI step, or anything outside an AI session: use the CLI.** It is the only way to call the 54 tools without standing up an MCP session.
+- **From a prompt-time hook: use the CLI warm-only.** The hook gets memory context or a skill recommendation if the daemon is already warm, and gets out of the way instantly if it is not.
+- **As an MCP fallback: use the CLI when the MCP tools are missing, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm.** The project guidance spells out the exact recovery invocations for each daemon (for example `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}'`).
+
+**Benefits**
+
+- **No single point of failure on the transport.** MCP being down no longer means the tools are unreachable. Scripts, hooks, and doctor commands have a second door.
+- **One warm daemon, shared by both doors.** Because the CLI bridges the same process MCP uses, there is no duplicate writer, no second index, and no divergence between what a script sees and what the session sees.
+- **Fast hooks.** Warm-only means a hook never pays cold-spawn latency; it either answers from a warm daemon or skips.
+- **A stable, scriptable surface for all 54 tools** — the full spec-memory (37), code-index (8) and skill-advisor (9) surfaces, at parity with their MCP definitions.
+
+**How it integrates alongside MCP (not instead of it)**
+
+MCP and the CLI are two clients of the same daemons. MCP stays the primary, native transport for AI sessions; the CLI is the additive door for everything MCP cannot reach — scripts, hooks, fallback, and maintenance from the right contexts. They never fork the state: a single owner-leased daemon answers both, and a second session bridges the warm daemon rather than spawning a rival writer. The CLI did not change a single MCP registration. If you remove the CLI shims tomorrow, MCP behaves exactly as before; the CLI only ever added reach.
+
+**Why warm-only at prompt time**
+
+Cold-spawning a daemon from a prompt-time hook would add latency to every message. The warm-only policy keeps hooks fast and predictable. If the daemon is not warm, the hook skips and the next call that genuinely needs the daemon starts it through the normal initialization path, where paying that cost once is acceptable.
+
+### 2. AGENT I/O CONTRACT (GEM-TEAM ADOPTION)
 
 **Before**
 
@@ -280,35 +422,7 @@ Agent handoffs now carry structured context. A debug handoff to code includes th
 
 No runtime parser validates the contract. Advisory metadata that is missing or malformed does not block an otherwise valid agent exchange. Enforcement is a follow-on decision once the contract vocabulary is stable and the team has observed how agents use it in practice.
 
----
-
-## 12. The Dual-Stack CLI Front-Doors
-
-**Before**
-
-All three memory system daemons, spec-memory (37 tools), code-index (8 tools) and skill-advisor (9 tools), were accessible only through MCP. If the MCP transport was down, unavailable or not yet initialized, there was no way to call the daemons programmatically from a script, a hook or a fallback path.
-
-**After**
-
-Each daemon now has a CLI front-door: `spec-memory.cjs`, `code-index.cjs` and `skill-advisor.cjs` as stable shims under `.opencode/bin/`. Each CLI was built in four stages: a feasibility research pass, a core implementation with a manifest-backed IPC client and auto-spawn, a hardening suite locking critical safety contracts in Vitest, and a runtime integration pass wiring warm-only fallback into Claude and Codex prompt-time hooks.
-
-The CLI path is warm-only for prompt-time hooks: the hook probes the daemon socket first and only calls the CLI if the socket responds. Cold daemon spawning from prompt-time hooks is explicitly blocked. Maintenance operations like `code_graph_scan` and `advisor_rebuild` are blocked from prompt-time paths entirely.
-
-A tri-daemon spawn drill tests all three launchers auto-spawning simultaneously, confirms per-launcher single-owner and respawn-lock serialization and verifies zero orphan processes. This drill was the program gate for the CLI transition.
-
-Eleven new CLI environment variables are documented in `ENV_REFERENCE.md`. The MCP registrations were not changed during the transition window.
-
-**Impact**
-
-Automation scripts, doctor commands and hook fallback paths can now call memory, code-index and skill-advisor tooling without depending on an active MCP session. If MCP is down, the hook silently skips rather than failing. If you are scripting outside an AI session, you have a stable CLI surface for all 54 tools.
-
-**Why warm-only at prompt time**
-
-Cold-spawning a daemon from a prompt-time hook adds latency to every message. The warm-only policy keeps hooks fast. If the daemon is not warm, the hook skips and the next call that needs the daemon can start it through the normal MCP initialization path.
-
----
-
-## 13. Research-Derived Doctrine Adoptions
+### 3. RESEARCH-DERIVED DOCTRINE ADOPTIONS
 
 **Before**
 
@@ -330,85 +444,43 @@ Reviewer agents now carry explicit non-diff read-budget guidance: a reviewer rea
 
 Escalation discipline was added to the code skill: specific guidance for root-cause reporting, amendment-path routing and the three-strike escalation case.
 
-The acceptance-coverage gate and completion-freshness validator described in section 10 are the final two peck slices.
+The acceptance-coverage gate and completion-freshness validator described in section 1.10 are the final two peck slices.
 
-gem-team contributed the typed agent I/O contract described in section 11.
+gem-team contributed the typed agent I/O contract described in section 4.2.
 
-memclaw contributed the provenance guard, idempotency safety and tombstone soft-deletes described in sections 2, 3 and 4.
+memclaw contributed the provenance guard, idempotency safety and tombstone soft-deletes described in sections 1.2, 1.3 and 1.4.
 
-OpenLTM contributed the retrieval observability surfaces and session continuity improvements described in sections 8 and 9.
+OpenLTM contributed the retrieval observability surfaces and session continuity improvements described in sections 1.8 and 1.9.
 
 **Impact**
 
 The process improvements are additive to existing workflows. Constitutional rule review is a cadence recommendation, not an enforcement gate. The benchmark substrate gives the team a repeatable way to test reviewer prompt changes before shipping them.
 
----
-
-## 14. Search Resilience: Vector Durability and the Lexical Fallback
-
-**Before**
-
-A live malformed vector shard was observed silently degrading search: the read path trusted a shard that could not actually answer, and returned thin results with no signal. The lexical fallback that backs search when the vector lane is unavailable carried a memory-hungry posting representation and had lost its per-field weighting, so a title or trigger hit ranked no higher than the same term buried in body text. And the BM25 lane truncated results to the caller's limit before it resolved the spec-folder and deprecated-tier filters, so a scoped query could return fewer in-scope results than actually existed.
-
-**After**
-
-The vector read path now detects a shard that fails its integrity and dimension checks, quarantines it rather than serving it, seeds degraded-vector state for observability, and schedules an auto-rebuild with hardened dimension discovery (phase 013). That repair is durable across a restart (phase 020): a repair-pending sentinel is persisted at quarantine, and boot uses a completeness check, the vector rowcount against the index success count rather than a file-exists probe, to decide between resuming a real repair and clearing a stale sentinel on an already-rebuilt shard. The quarantine rename is itself a durable marker, so repair resumes even when no sentinel write could land, and an in-flight guard stops a double boot-attach from scheduling the same rebuild twice.
-
-The lexical fallback was rebuilt as a packed in-memory BM25 engine with typed-array postings and restored BM25F field weighting (phase 014), so title and trigger matches outrank body noise, with packed ranking meeting or beating the legacy engine on the baseline metrics (the restored weighting intentionally re-orders results where the legacy engine had lost the title signal). The realistic-corpus re-validation exposed a 743MB warmup RSS spike against a 150MB budget, which phase 017 cut to a 136.5MB peak-sampled spike, under budget, through no-copy chunked packed postings and Uint8 to Uint16 to Uint32 width promotion, with the packed engine's ranking unchanged by the optimization (warmed-versus-direct identical) and the hard RSS gate re-enabled. The scope-then-limit bug was fixed in phase 021: the lane now over-fetches the candidate set when a scope or database filter is present, resolves the per-candidate metadata in batches that stay under the SQLite parameter limit, applies the filters, and only then truncates to the caller's limit.
-
-**Impact**
-
-A corrupted vector shard no longer silently degrades search, and a crash mid-repair resumes instead of permanently serving an empty shard with health reporting success. The lexical fallback ranks the way it should and warms under its memory budget on a realistic corpus. A scoped search returns its real result set rather than whatever survived an early truncation.
-
-**Why mostly always-on, repair durability inert until adopted**
-
-The detection, quarantine, ranking and scope fixes are corrections to existing behavior and ship as part of the read path. The vector repair durability source fix goes live only after a dist rebuild and daemon recycle, and is otherwise inert.
-
----
-
-## 15. Daemon Launcher Resilience
-
-**Before**
-
-The skill-advisor launcher was the odd one out of the three daemon launchers. The spec-memory and code-index launchers had an owner lease and a reconnecting session proxy so a second session bridged the warm daemon instead of spawning a duplicate writer, but the advisor launcher's lease check only reported that a lease was held and did nothing about a dead socket. A hung advisor daemon could strand a session or invite a second writer.
-
-**After**
-
-Phase 019 brought the advisor launcher up to parity. A second session now bridges the live daemon through the session proxy, and a dead-socket respawn decision is acted on: the launcher reaps the dead owner and respawns a replacement under a bootstrap lock, rather than leaving the session stranded or starting a second writer. All three daemon launchers now share the same resilience bar.
-
-**Impact**
-
-The advisor survives a dropped transport the same way the spec-memory and code-index daemons already did. There is never a second writer to the skill graph.
-
-**Why fresh-session only**
-
-A running launcher process keeps its prior `.cjs` resident, so the fix activates on a fresh session. Live adoption is operator-gated.
-
----
-
-## 16. Internal Seams and Cross-Subsystem Adoption
-
-These phases changed structure or carried existing patterns into other subsystems without changing user-facing behavior.
-
-**Causal traversal BFS (012).** Two recursive-CTE graph traversals whose join shape defeated index use were replaced by a single shared app-level BFS helper. Same traversal results, including multi-root fan-in, fewer full scans.
+### 4. STORAGE ADAPTER PORTS
 
 **Storage adapter ports (015).** A five-port adapter seam (vector, lexical, traversal, maintenance, contention) now sits over the better-sqlite3 layer. A coupling-grep inventory trends residual direct access down toward the ports, with the hybrid lexical path, BM25 side-index maintenance, and vector-shard lifecycle pragmas kept as documented exceptions rather than forced through the ports. Testability today, room to move the persistence layer later, no caller-visible behavior change.
 
+### 5. COMMAND PRESENTATION & WORKFLOW SEPARATION
+
 **Command presentation and workflow separation (011).** The memory, speckit, create and doctor command families had their workflow routing split from their Markdown presentation contracts. A structural refactor with behavior and rendered output unchanged.
 
-**CLI tooling UX (016).** The daemon-CLI front doors gained a freshness-gate fix and offline smoke, per-command help with aliases and clear errors, a unified daemon CLI reference, a hardened fallback envelope and bridge allowlist, and compact output with shell completion. The CLI surface stays at full parity with the daemons (spec-memory 37, code-index 8, skill-advisor 9).
+Separately, the daemon-CLI front doors gained a UX hardening pass (016): a freshness-gate fix and offline smoke, per-command help with aliases and clear errors, a unified daemon CLI reference, a hardened fallback envelope and bridge allowlist, and compact output with shell completion. The CLI surface stays at full parity with the daemons (spec-memory 37, code-index 8, skill-advisor 9).
 
-**Cross-subsystem feature adoption (018).** The hardening that 027 landed first in spec-memory was carried into the skill-advisor and code-graph subsystems. The advisor gained prompt-safe attribution and semantic health diagnostics, an automated-edge provenance guard that protects manual and trusted edges, a packed BM25F lexical helper that stays shadow-only until a future promotion decision, one local BFS helper for `transitive_path` and `subgraph`, and default-off feedback calibration reports that are written for inspection rather than consumed by live scoring. Code graph gained default-off tombstone audit rows, one local BFS helper for transitive and blast-radius traversal, `includeTrace`-gated `why_included` breadcrumbs, and a default-off BM25 symbol resolver that suggests candidates only after exact structural matching misses. The pattern is the same as the memory system: observability and internal consolidation can ship directly, while ranking or result-shape changes stay default-off or trace-gated.
+### 6. AUTONOMOUS DEPENDENCY PATCHING
 
 **Autonomous dependency patching (024).** A packet-local shell entrypoint scans the OpenCode skill package roots, runs `npm audit` on each, applies supported override remediation, regenerates lockfiles without executing install scripts, and re-audits. The shipped run found all five roots clean; CI integration remains optional.
 
+### 7. IPC CLIENT CAP HARDENING
+
 **IPC client cap hardening (026).** The shared daemon IPC socket server capped concurrent clients at 8 and refused extras by accepting then instantly closing them — indistinguishable from a dead daemon to probes. Session fan-outs past 8 saturated the cap, so every new session's bridge probe failed with exit 75 and the plugin printed a skip banner that the TUI rendered into the input field. The cap is now 64 in both module copies and pinned in all nine daemon env blocks, and the plugin's skip diagnostic is silent by default (debug-gated, still inspectable via its status tool).
+
+### 8. CODE MODE ORPHAN LIFECYCLE
 
 **Code Mode orphan lifecycle (025).** The mcp-code-mode stdio MCP server previously had no session-lifetime handling, so a hard-killed session left it alive forever at PPID 1 — sixteen such orphans had accumulated and degraded shared daemon infrastructure. The server now exits on stdin EOF, on transport close, or when a 15-second watchdog observes reparenting to PID 1, and the accumulated orphans were reaped to a zero census.
 
 ---
 
-## 17. Verification Pipelines, Finding Remediation, and Research Closure
+## 5. THE VERIFICATION & REMEDIATION PROGRAM
 
 **Before**
 
@@ -434,7 +506,7 @@ The principle did not change when the work moved from feature hardening to remed
 
 ---
 
-## Current State
+## CURRENT STATE
 
 The schema sits at v37. All results-affecting and mutating features are default-off behind feature flags, with shadow modes available where relevant. The always-on protections, provenance guard, secret scrubber, retention-tier basement, manual-edge overwrite guard and causal-edge tombstones, are active in every deployment. The later remediation work adds one more always-on protection at the process boundary: a default-on single-writer database lock with an emergency disable flag.
 
