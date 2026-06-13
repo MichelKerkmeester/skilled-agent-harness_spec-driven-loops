@@ -728,6 +728,49 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
         db.prepare('DELETE FROM memory_index WHERE id = ?').run(memoryId);
       }
     });
+
+    it('T521-V7: an untrusted caller sessionId is not used as the adaptive-signal actor', async () => {
+      const db = vectorIndexMod.getDb();
+      const memoryId = 900053;
+      const now = new Date().toISOString();
+      const previousAdaptiveFlag = process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
+
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?)
+      `).run(memoryId, 'specs/test', `specs/test/memory-${memoryId}.md`, now, now);
+
+      try {
+        process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
+        const response = await handler.handleMemoryValidate({
+          id: memoryId,
+          wasUseful: true,
+          queryId: 'session-trust validation query',
+          sessionId: 'forged-untracked-session',
+        });
+        const signal = db.prepare(`
+          SELECT actor
+          FROM adaptive_signal_events
+          WHERE memory_id = ?
+          ORDER BY id DESC
+          LIMIT 1
+        `).get(memoryId) as { actor?: string | null } | undefined;
+
+        expect(response.isError).toBeFalsy();
+        // A forged or untracked sessionId must not become the attributed actor;
+        // it degrades to the default actor instead of spoofing another session.
+        expect(signal?.actor).toBe('memory_validate');
+        expect(signal?.actor).not.toBe('forged-untracked-session');
+      } finally {
+        if (previousAdaptiveFlag === undefined) {
+          delete process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
+        } else {
+          process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = previousAdaptiveFlag;
+        }
+        db.prepare('DELETE FROM adaptive_signal_events WHERE memory_id = ?').run(memoryId);
+        db.prepare('DELETE FROM memory_index WHERE id = ?').run(memoryId);
+      }
+    });
   });
 
   // ───────────────────────────────────────────────────────────────

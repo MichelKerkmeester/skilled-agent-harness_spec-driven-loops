@@ -19,6 +19,7 @@ import { recordAdaptiveSignal } from '../lib/cognitive/adaptive-ranking.js';
 import { checkDatabaseUpdated } from '../core/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
+import * as sessionManager from '../lib/session/session-manager.js';
 
 // Standardized response structure
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
@@ -766,6 +767,12 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
     ? queryId.trim()
     : null;
   const queryText = resolveValidationQueryText(database, normalizedQueryId ?? undefined);
+  // Validate the caller-supplied sessionId before using it for feedback
+  // attribution (adaptive-signal actor + ground-truth selection). A forged or
+  // untracked id must not attribute signals to another session; degrade to
+  // no-attribution rather than reject, since validation feedback is best-effort.
+  const trustedValidation = sessionManager.resolveTrustedSession(sessionId ?? null);
+  const trustedSessionId = trustedValidation.trusted ? trustedValidation.effectiveSessionId : undefined;
   const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
   try {
     recordAdaptiveSignal(database, {
@@ -773,7 +780,7 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
       signalType: wasUseful ? 'outcome' : 'correction',
       signalValue: 1,
       query: queryText,
-      actor: sessionId ?? 'memory_validate',
+      actor: trustedSessionId ?? 'memory_validate',
       metadata: {
         queryId: normalizedQueryId,
         queryText,
@@ -826,7 +833,7 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
       intent,
       selectedRank: resultRank,
       totalResultsShown,
-      sessionId,
+      sessionId: trustedSessionId,
       notes,
     });
 
