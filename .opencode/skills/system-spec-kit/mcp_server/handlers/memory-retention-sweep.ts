@@ -83,6 +83,18 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
         protectedCount: result.protectedCount,
         protectedIds: result.protectedIds,
         ledgerRecorded: result.ledgerRecorded,
+        ...(result.feedbackRetention ? {
+          feedbackRetention: {
+            mode: result.feedbackRetention.mode,
+            activeGatePassed: result.feedbackRetention.activeGatePassed,
+            activeBlocked: result.feedbackRetention.activeBlocked,
+            auditCount: result.feedbackRetention.auditCount,
+            protectedCount: result.feedbackRetention.protectedIds.length,
+            extendedCount: result.feedbackRetention.extendedIds.length,
+            deletedCount: result.feedbackRetention.deletedIds.length,
+          },
+          extendedIds: result.feedbackRetention.extendedIds,
+        } : {}),
       },
       hints,
     });
