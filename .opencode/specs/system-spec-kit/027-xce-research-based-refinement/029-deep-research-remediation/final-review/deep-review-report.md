@@ -51,8 +51,12 @@ Seats: 5× Opus 4.8 (claude2), 5× GPT-5.5 high, 3× DeepSeek v4 Pro (max thinki
 - **Doc/threat-model:** fingerprint "non-reversible" overstated for low-entropy queries (64-bit truncated, no salt); confirm tool-schema omits the prune medium-tier requirement.
 - **Minor refinements:** tri-040 status still creates the DB via `getDb()` (use `getDbReadOnly()`); `SecretScrubberError` missing `Object.setPrototypeOf`; operator-rollback known-good snapshot can be re-restored by a second rollback; acknowledged lease-cleanup TOCTOU.
 
-## Round-2 remediation plan (priority order)
-1. **Wave A — secret leak (now):** A1 scrubber regex + tests, A2 error-log sanitization, plus `SecretScrubberError` prototype.
+## Round-2 status
+- **Wave A — CLOSED (code wave 13, `101bfc1d57`, gpt-5.5 xhigh verified twice).** The leak was broader than opus-2 scoped: the completeness pass found the variable-length `-`-bearing patterns (anthropic, slack, jwt) leak at their minimum length too. All five vulnerable patterns (AWS-secret, Google, anthropic, slack, jwt) now use a negative-lookahead boundary; the word-char-only patterns and the no-trailing-`\b` patterns are exhaustively confirmed unaffected. A2 (error-log sanitize) and the `SecretScrubberError` prototype shipped with it. 30 scrubber + 88 error tests green.
+- **tri-022 — CLOSED (code wave 12, `e8dbf7c65e`):** durable semantic-trigger shadow telemetry (held out of the review snapshot, committed after).
+
+## Round-2 remediation plan (remaining, priority order)
+1. ~~**Wave A — secret leak.**~~ DONE.
 2. **Wave B — finish-the-edge (clean, high-confidence):** B1–B8 complete the tri-038/172/189/033/169/161/029 fixes.
 3. **Wave C — advisor surface/interlock:** C1–C5.
 4. **Wave D — apply-pipeline honesty:** D1 (gate inversion), D2 (recovery status), D3 (tri-031 schema), + the pipeline-safety tests.
