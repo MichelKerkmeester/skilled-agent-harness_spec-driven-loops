@@ -143,7 +143,7 @@ node .opencode/bin/mk-code-index-launcher.cjs --help
 
 The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first invocation and the checked-in runtime configs already point at them. There is no separate build step. Launcher reliability covers the owner-disposal relaunch gate, a persistent log, lease-probe reap hardening, mk-code-index reconnect, an opt-in orphan-process sweep and daemon re-election. Re-election is on by default in the committed runtime configs, so a disposing session releases the shared daemon for another live session to adopt instead of killing it, and an unadopted daemon is bounded by the idle timeout. A single-writer database lock completes the picture: each memory database accepts exactly one daemon writer, a second cold-spawn refuses with a dedicated exit code and the launcher bridges it to the live holder instead of letting two processes write the same SQLite file. The lock is a kernel-level lock that self-releases even on `kill -9`, with `SPECKIT_DB_LOCK_DISABLE=1` as the operator kill switch. All of it is operator-tunable and documented in [`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
-The three daemon systems also expose full-parity CLI front doors over the same warm daemons: `spec-memory.cjs` exposes the same 37 tools as `mk-spec-memory`, `code-index.cjs` the same 8 tools as `mk_code_index`, and `skill-advisor.cjs` the same 9 tools as `mk_skill_advisor` (mutations gated behind `--trusted`). Use MCP as the primary in-session transport today; use the CLIs when the MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers probe warm-only first, and exit `75` means retryable daemon or IPC unavailability. Per-command help and aliases, the shared exit-code taxonomy (`0`/`1`/`64`/`69`/`75`), discovery modes, shell completion and the offline smoke checks are documented in [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Because the CLIs already have full parity, a later evolution could consolidate them as the primary or sole transport; that remains a possibility, not a committed plan.
+The three daemon systems also expose full-parity CLI front doors over the same warm daemons: `spec-memory.cjs` exposes the same 39 tools as `mk-spec-memory`, `code-index.cjs` the same 8 tools as `mk_code_index`, and `skill-advisor.cjs` the same 9 tools as `mk_skill_advisor` (mutations gated behind `--trusted`). Use MCP as the primary in-session transport today; use the CLIs when the MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers probe warm-only first, and exit `75` means retryable daemon or IPC unavailability. Per-command help and aliases, the shared exit-code taxonomy (`0`/`1`/`64`/`69`/`75`), discovery modes, shell completion and the offline smoke checks are documented in [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Because the CLIs already have full parity, a later evolution could consolidate them as the primary or sole transport; that remains a possibility, not a committed plan.
 
 Runtime lifecycle guardrails are part of the native MCP stack. The servers share `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` for idle self-exit, and the repo ships a dry-run-first orphan process sweeper plus a LaunchAgent template under `.opencode/scripts/`. The LaunchAgent is not installed or loaded by default; activation is a separate operator-approved rollout. See [Repo Scripts Runbook](.opencode/scripts/README.md) and the [022 orphan MCP leak prevention packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md).
 
@@ -399,7 +399,7 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
 |        | **Total**       | **37** | **~8,300**   |                                                                              |
 
-Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 37 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
+Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 39 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
 
 &nbsp;
 #### Hybrid Search
@@ -874,7 +874,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 
 ### 🎯 Skills Library
 
-21 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+23 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -970,8 +970,16 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - **Manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing
 - **Agent-safe by design:** enforces per-list status resolution, dry-run before batch completion, `--json` output, and empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
 
+**mcp-magicpath**
+- **Find, install, and author MagicPath UI components from the assistant.** Drives the `magicpath-ai` CLI to search, inspect, and `add` design components into a React/TypeScript app, or author canvas components from local code with the `code` subcommands
+- **CLI-only surface** (no MCP server, the `mcp-` prefix is the external-tool family bucket): browser-session auth, an in-skill CLI vendor via `mcp-servers/`, and an `npx` fallback
+
 &nbsp;
 #### OTHER
+
+**sk-interface-design**
+- **Design UI that does not look templated.** Aesthetic direction (palette, typography, layout, motion) grounded in the brief, with a critique pass that kills the default AI looks before any code is written
+- **Pairs with `sk-code`:** this skill owns the look, sk-code builds and verifies it. Vendored from Anthropic's `frontend-design` skill (Apache-2.0)
 
 **sk-doc**
 - **Keep docs clean and on-template.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
@@ -1304,6 +1312,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
 | `sk-code-review`                                    | ✅ Codebase-agnostic baseline               | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts.                                                                                                          |
+| `sk-interface-design`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults. Pairs with `sk-code` for the build. Works for any project.                                              |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `deep-loop-runtime` / `deep-context` / `deep-research` / `deep-review` / `deep-ai-council` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
@@ -1311,6 +1320,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `cli-*` (codex/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
+| `mcp-magicpath`                                     | ✅ Codebase-agnostic                        | MagicPath UI-component CLI (find / inspect / install / author). CLI-only, no MCP server. Requires a MagicPath account (browser login). Stack-independent.                                                |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
@@ -1451,7 +1461,7 @@ After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` sh
 
 ## 5. FAQ
 
-**Q: Do I need all 21 skills installed to use the framework?**
+**Q: Do I need all 23 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core documentation skills - `system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional local tooling or API keys depending on the surface.
 &nbsp;
@@ -1531,4 +1541,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.16 | Last updated: 2026-06-12 | Framework: 12 agents, 21 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.16 | Last updated: 2026-06-12 | Framework: 12 agents, 23 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
