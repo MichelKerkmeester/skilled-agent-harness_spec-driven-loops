@@ -170,7 +170,7 @@ const INTENT_PATTERNS: Record<IntentType, RegExp[]> = {
  */
 const CENTROID_EMBED_DIM = 128;
 
-const INTENT_CENTROID_SEEDS: Record<IntentType, string[]> = {
+export const INTENT_CENTROID_SEEDS: Record<IntentType, string[]> = {
   add_feature: [
     'add new feature and implement capability',
     'create and build a new integration',
