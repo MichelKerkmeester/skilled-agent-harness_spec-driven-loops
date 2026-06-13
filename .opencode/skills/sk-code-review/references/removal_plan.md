@@ -45,6 +45,7 @@ Use this block when evidence indicates no active consumers.
 | Evidence | Search results, telemetry, flag status, ownership confirmation |
 | Impact | Expected impact (`None`, `Low`, or explicit risk) |
 | Deletion Steps | Ordered steps to remove code/tests/config/docs |
+| Replacement | What replaces the removed code: nothing, a standard-library API, a native platform feature, or a shorter equivalent expression |
 | Verification | Commands/tests to confirm no regression |
 
 Minimum checks before recommending immediate removal:

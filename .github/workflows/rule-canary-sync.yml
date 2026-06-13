@@ -1,0 +1,29 @@
+name: Rule Canary Sync
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  rule-canary:
+    name: Load-bearing rule wording stays in sync across copies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check that load-bearing rule wording has not drifted
+        run: |
+          set -euo pipefail
+          CANARY=".opencode/skills/sk-code-review/scripts/check-rule-copies.js"
+          # Fail closed in CI: a required guard must exist. A PR that deletes or
+          # moves the canary must not silently disable its own gate.
+          if [ ! -f "$CANARY" ]; then
+            echo "::error::Rule canary not found at $CANARY — failing closed."
+            exit 1
+          fi
+          if node "$CANARY"; then
+            echo "All clear — load-bearing rule wording is in sync."
+          else
+            echo "::error::Load-bearing rule wording drifted — restore the invariant strings so every copy agrees."
+            exit 1
+          fi

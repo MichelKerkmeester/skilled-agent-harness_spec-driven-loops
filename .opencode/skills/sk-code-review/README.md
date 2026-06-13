@@ -119,7 +119,7 @@ All findings publish in one message with a next-action prompt. Findings never dr
 
 ### PR-State Efficiency
 
-Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.opencode/.sk-code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
+Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.opencode/.sk-code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings. The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session: `ultra` biases toward the deep-dive reference set, `lite` maps to the conservative skip, and neither relaxes the security and correctness floor.
 
 ---
 
@@ -185,6 +185,7 @@ The skill ships a manual testing playbook with per-feature scenarios for finding
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code-review/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` |
+| Rule invariants | `node .opencode/skills/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
 | Behavior | Run the playbook scenarios under `manual_testing_playbook/<NN>--<topic>/` in a live session |
 
 ---

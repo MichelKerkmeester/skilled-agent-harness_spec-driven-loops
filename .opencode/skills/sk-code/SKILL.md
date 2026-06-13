@@ -37,7 +37,7 @@ Documentation-only edits to skill markdown route to `sk-doc`, even when the file
 | Phase | Purpose | Requirement |
 | --- | --- | --- |
 | Phase 0: Research | Understand unfamiliar code or risky changes | Optional, but required for complex work |
-| Phase 1: Implementation | Write or modify code using surface patterns | Read actual files first |
+| Phase 1: Implementation | Write or modify code using surface patterns | Read actual files first; apply the Design Restraint Ladder before writing new code. |
 | Phase 1.5: Code Quality Gate | Apply P0/P1/P2 checks and surface standards | Required before claiming implementation done |
 | Phase 2: Debugging | Trace symptom to root cause and fix one cause at a time | Required when tests/runtime fail |
 | Phase 3: Verification | Run surface verification commands and record evidence | Required before any done/works claim |
@@ -235,6 +235,7 @@ Ask for the runtime surface and required verification commands. Do not route gen
 6. Run surface verification commands and record evidence.
 7. For WEBFLOW, test relevant desktop and mobile browser behavior when runtime output changes.
 8. For OPENCODE, run `verify_alignment_drift.py` on the changed scope.
+9. Build the simplest correct implementation of the stated requirement and do not stall. If part of the requirement looks unnecessary (YAGNI), implement it as specified AND raise a scope-amendment recommendation in the same response — never silently cut scope (SCOPE-LOCK), and never block solely to ask when a safe minimal version already satisfies the requirement.
 
 ### ❌ NEVER
 

@@ -1,0 +1,38 @@
+name: Agent Mirror Sync
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  agent-mirror-sync:
+    name: Agent runtime mirrors stay in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check changed agent files for mirror drift
+        run: |
+          set -euo pipefail
+          CHECKER=".opencode/skills/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+          # Fail closed in CI: a required guard must exist. A PR that deletes or
+          # moves the checker must not silently disable its own gate.
+          if [ ! -f "$CHECKER" ]; then
+            echo "::error::Agent mirror-sync checker not found at $CHECKER — failing closed."
+            exit 1
+          fi
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          CHANGED=()
+          while IFS= read -r file; do
+            [ -n "$file" ] && CHANGED+=("$file")
+          done < <(git diff --name-only --diff-filter=ACMD "$BASE" "$HEAD" | grep -E '^\.(opencode|claude|codex)/agents/' || true)
+          if [ "${#CHANGED[@]}" -eq 0 ]; then
+            echo "No agent files changed — nothing to verify."
+            exit 0
+          fi
+          if ! node "$CHECKER" "${CHANGED[@]}"; then
+            echo "::error::Agent runtime mirrors are out of sync — see drift report above."
+            exit 1
+          fi
+          echo "All agent runtime mirrors are in sync."

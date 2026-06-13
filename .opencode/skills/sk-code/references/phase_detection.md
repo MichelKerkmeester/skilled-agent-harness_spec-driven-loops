@@ -93,7 +93,7 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ## 6. TRANSITIONS
 
-- 0 -> 1: enough context and plan exists.
+- 0 -> 1: enough context and plan exists, and — for implementation intent — the laziest viable rung of the Design Restraint Ladder (see universal code quality standards) has been selected.
 - 1 -> 1.5: code written or modified.
 - 1.5 -> 2: P0 quality issue or failing check found.
 - 2 -> 1.5: fix applied.

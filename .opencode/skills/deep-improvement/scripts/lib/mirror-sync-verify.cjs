@@ -70,8 +70,18 @@ function normalizeRuntimeSpecificText(body) {
   return String(body || '')
     .replace(/\.(?:opencode|claude)\/agents\/\*\.md/g, '<runtime-agent-path>')
     .replace(/\.codex\/agents\/\*\.toml/g, '<runtime-agent-path>')
-    .replace(/\.(?:opencode|claude)\/agents\/[A-Za-z0-9_-]+\.md/g, '<runtime-agent-file>')
-    .replace(/\.codex\/agents\/[A-Za-z0-9_-]+\.toml/g, '<runtime-agent-file>')
+    // Agent-file references include literal placeholders like `<name>`, so the
+    // name class allows < and >. This normalizes the per-runtime path AND its
+    // extension together — keeping the extension scoped to the agents-path
+    // construct, so a real body difference (e.g. "config.md" vs "config.toml")
+    // outside an agents path still registers as drift.
+    .replace(/\.(?:opencode|claude)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>')
+    .replace(/\.codex\/agents\/[A-Za-z0-9_<>-]+\.toml/g, '<runtime-agent-file>')
+    // Each mirror describes itself ("this runtime's mirror; the canonical source
+    // lives in .opencode/agents/") in a parenthetical the .opencode canonical
+    // omits. That is legitimate per-runtime self-description, not body drift, so
+    // drop the whole clause before comparing.
+    .replace(/\(this runtime.s mirror;[^)]*\)/gi, '')
     .replace(/\r\n/g, '\n')
     .replace(/[ \t]+$/gm, '')
     .trim();

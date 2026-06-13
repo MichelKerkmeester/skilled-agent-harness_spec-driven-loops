@@ -38,6 +38,19 @@ Severity tiers exist so reviewers and authors agree on what blocks "done". A rul
 - Surface checklists: `assets/webflow/checklists/code_quality_checklist.md` and `assets/opencode/checklists/`.
 - Findings-first review baseline: `sk-code-review` skill (severity model and review output contract).
 
+### Design Restraint Ladder (pre-write)
+
+Before writing NEW code for an implementation task, stop at the first rung that holds. This runs AFTER surface + intent routing, so the rung vocabulary matches the detected surface, and it is a POST-READ reflex — rungs 2-4 require reading what already exists, which reinforces read-first.
+
+1. **Does this need to exist at all? (YAGNI)** — if the requirement looks unnecessary, surface a scope-amendment recommendation in the same response; NEVER silently cut scope (SCOPE-LOCK / Logic-Sync HALT still apply).
+2. **Standard library / language built-in?**
+3. **Native platform or runtime feature?** — surface-flavored: CSS-over-JS or a DB/HTML constraint for WEBFLOW; a stdlib/native API for OPENCODE.
+4. **An already-installed dependency?** — never add a new dependency for what a few lines do.
+5. **Can it be one line?**
+6. **Only then: the minimum code that works.**
+
+The ladder consumes the detected surface; it does NOT change surface precedence (OPENCODE > WEBFLOW > UNKNOWN) or the Iron Law (Phase 3 verification is still required). For the over-engineering, gold-plating, and scope-creep detectors, see the repo `CLAUDE.md` "ANTI-PATTERNS" table.
+
 ---
 
 ## 2. SEVERITY TIERS

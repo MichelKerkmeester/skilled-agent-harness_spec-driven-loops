@@ -22,12 +22,13 @@ Canonical package artifacts:
 - `05--motion-dev-and-animation-regression/`
 - `06--cross-browser-and-performance-gates/`
 - `07--cross-stack-routing/`
+- `08--design-restraint/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 24 deterministic scenarios across 7 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 28 deterministic scenarios across 8 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -39,6 +40,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Motion.dev integration checks: pinned CDN/API smoke, reduced-motion behavior, animation regression baselines.
 - Cross-browser and performance gates: Chrome/Safari/Firefox behavior, LCP/CLS/INP thresholds, and compositor-friendly animation checks.
 - Cross-stack routing checks: Webflow plus Motion.dev, non-Webflow Motion.dev, OpenCode plus Motion.dev, decision-matrix use, snippet reuse, CWV dual loading, and reduced-motion guidance.
+- Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
 
 ### Realistic Test Model
 
@@ -137,7 +139,7 @@ Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Criti
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (24 / 24).
+3. Coverage is 100% of playbook scenarios (28 / 28).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -269,11 +271,27 @@ Per-feature files: see `07--cross-stack-routing/`.
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. DESIGN RESTRAINT (`DR-001..DR-004`)
+
+These scenarios validate the v3.4.0.0 ponytail-based refinement: the pre-write Design Restraint Ladder, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator. The first three run after surface and intent routing and change neither surface precedence nor the Iron Law; the fourth is a deterministic exit-code check.
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `DR-001` | Design Restraint Ladder | Verify sk-code walks the ladder and selects the laziest viable rung before writing new code | `Add a helper to .opencode/skills/system-spec-kit/mcp_server/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.` | advisor probe → invoke sk-code → capture surface then ladder trace | surface OPENCODE emitted before any ladder reasoning; ladder selects a one-line `new Set` rung over a custom loop; Phase 0 to 1 gate honored | `/tmp/skc-DR001-advisor.txt`, `/tmp/skc-DR001-ladder.txt` | PASS iff the ladder runs after routing AND the laziest viable rung is selected per `references/universal/code_quality_standards.md` AND the Phase 0 to 1 gate in `references/phase_detection.md` is honored | If the AI writes a custom loop, verify ladder rungs in `references/universal/code_quality_standards.md` |
+| `DR-002` | Implementer Anti-Stall | Verify sk-code implements the requirement and raises a scope-amendment note without stalling to ask | `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp_server/lib/config/load.ts. It only runs once at startup.` | advisor probe → invoke sk-code → capture the response shape | requirement implemented; scope-amendment recommendation raised in the same response; no stall-to-ask; SCOPE-LOCK held | `/tmp/skc-DR002-advisor.txt`, `/tmp/skc-DR002-response.txt` | PASS iff sk-code implements the requirement AND raises a scope-amendment note in one response without blocking to ask, per SKILL.md §4 ALWAYS anti-stall bullet | If the AI stalls to ask, verify the anti-stall ALWAYS bullet in SKILL.md §4 |
+| `DR-003` | Ceiling Comment Convention | Verify sk-code marks a deliberate shortcut with a neutral `ceiling:` comment that passes comment-hygiene without allow-listing | `Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.` | invoke sk-code in `/tmp/skc-DR003-sandbox/` → run check-comment-hygiene.sh on the result | `ceiling:` comment names shortcut, ceiling, and upgrade trigger as a plain WHY; hygiene exits 0; `ceiling:` not added to the allowed-pattern list | `/tmp/skc-DR003-hygiene.txt` | PASS iff the ceiling comment follows `references/universal/code_style_guide.md` §4 (neutral WHY, not allow-listed) AND comment-hygiene exits 0 | If hygiene fails, the comment likely embeds a forbidden id — rewrite as a durable WHY |
+| `DR-004` | STACK_FOLDERS Validator | Verify the validator passes clean and fails non-zero on an orphan surface folder | `Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets/<fake-surface> folder and confirm it fails.` | `python3 .../verify_stack_folders.py` (exit 0) → mkdir orphan `assets/zzz-fake-surface` → re-run (exit 1) → rmdir → re-run (exit 0) | clean run exits 0 listing declared surfaces; orphan run exits 1 naming the orphan; cleanup restores exit 0 | `/tmp/skc-DR004-clean.txt`, `/tmp/skc-DR004-orphan.txt` | PASS iff the clean run exits 0 AND an orphan folder in `references/` or `assets/` produces exit 1 naming the orphan, per `assets/scripts/verify_stack_folders.py` | If the orphan is not caught, verify both `references/` and `assets/` trees are scanned |
+
+Per-feature files: see `08--design-restraint/`.
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 The sk-code skill currently has these automated tests:
 
 - `.opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py` — Pytest suite for `verify_alignment_drift.py` (OPENCODE alignment verifier).
+- `.opencode/skills/sk-code/assets/scripts/verify_stack_folders.py` — STACK_FOLDERS-to-disk surface validator (deterministic exit-code check; exercised manually by DR-004).
 
 Tests NOT covered by automation (manual playbook is the only validation):
 - Surface detection routing decisions (SD-001, SD-002, SD-003).
@@ -285,10 +303,11 @@ Tests NOT covered by automation (manual playbook is the only validation):
 - Reduced-motion and animation regression baseline checks (MR-003, MR-004).
 - Cross-browser, Core Web Vitals, and GPU/compositing checks (CB-001, CB-002, CB-003).
 - Cross-stack Motion.dev smart-routing checks (CS-001, CS-002, CS-003, CS-004, CS-005, CS-006, CS-007).
+- Design restraint behaviors: ladder rung selection, anti-stall, and the `ceiling:` convention (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check.
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
@@ -316,7 +335,11 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Cross-Stack Routing | CS-005 | `07--cross-stack-routing/snippet-reuse-cross-stack.md` | No |
 | Cross-Stack Routing | CS-006 | `07--cross-stack-routing/cwv-gates-animation-heavy.md` | No |
 | Cross-Stack Routing | CS-007 | `07--cross-stack-routing/prefers-reduced-motion.md` | No |
+| Design Restraint | DR-001 | `08--design-restraint/design-restraint-ladder.md` | No |
+| Design Restraint | DR-002 | `08--design-restraint/implementer-anti-stall.md` | No |
+| Design Restraint | DR-003 | `08--design-restraint/ceiling-comment-convention.md` | No |
+| Design Restraint | DR-004 | `08--design-restraint/stack-folders-validator.md` | No |
 
-**Total scenarios**: 24
+**Total scenarios**: 28
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
-**Categories**: 7
+**Categories**: 8

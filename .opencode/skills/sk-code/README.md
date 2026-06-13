@@ -101,7 +101,7 @@ MOTION_DEV is not a surface. It is a cross-stack resource intent that supplement
 
 Work moves through a gated lifecycle, not a linear pipeline. Each phase has a defined entry condition and exit gate.
 
-Phase 0 is Research, optional but recommended for unfamiliar or risky work. Phase 1 is Implementation: read the real files first, then write or modify code using surface patterns. Phase 1.5 is the Code Quality Gate, required before claiming implementation is done. It applies P0, P1 and P2 checks and surface standards. For OPENCODE, this phase includes a comment-hygiene enforcement script that must exit with zero violations. Phase 2 is Debugging: trace one symptom to one root cause at a time, fix it and retest. Phase 3 is Verification: run the surface verification commands, collect fresh evidence and record it.
+Phase 0 is Research, optional but recommended for unfamiliar or risky work. Phase 1 is Implementation: read the real files first, then write or modify code using surface patterns. The Phase 0 to Phase 1 transition runs the Design Restraint Ladder, a pre-write gate that picks the laziest viable rung before any new code (YAGNI, then a standard-library primitive, a native platform feature, an installed dependency, a one-line expression and only then minimal custom code); it runs after surface and intent routing and changes neither surface precedence nor the Iron Law. Phase 1.5 is the Code Quality Gate, required before claiming implementation is done. It applies P0, P1 and P2 checks and surface standards. For OPENCODE, this phase includes a comment-hygiene enforcement script that must exit with zero violations. Phase 2 is Debugging: trace one symptom to one root cause at a time, fix it and retest. Phase 3 is Verification: run the surface verification commands, collect fresh evidence and record it.
 
 The five phases are distinct from the four-axis routing model. Routing decides what to load. Phases decide what to do and in what order.
 
@@ -175,6 +175,7 @@ A: Verification before completion is the gate that separates confident code from
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/README.md --type readme` reports zero issues |
 | OPENCODE alignment | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code/` exits 0 |
+| STACK_FOLDERS surfaces | `python3 .opencode/skills/sk-code/assets/scripts/verify_stack_folders.py` exits 0 (every declared surface resolves to on-disk references and assets folders) |
 | Comment hygiene | `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` reports zero violations |
 | WEBFLOW minification | `node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs` exits 0 |
 

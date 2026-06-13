@@ -114,6 +114,8 @@ Watch for:
 - Error messages that lack actionable context for debugging (missing what failed and what to try).
 - TODO, FIXME, or HACK comments in production code paths without an associated tracking reference (issue link or ticket number).
 - Hardcoded environment-specific values (URLs, ports, timeout thresholds) that should be externalized for deployment flexibility.
+- Hand-rolled standard-library behavior where the language or runtime already provides a clear, readable primitive — prefer the standard API when behavior and edge cases match.
+- Custom code or a dependency duplicating a native platform/runtime capability without a current requirement the native feature cannot satisfy.
 
 Decision cue: if reviewers cannot explain intent quickly, maintenance risk is likely at least P2.
 
@@ -128,6 +130,7 @@ Flag:
 - Generic helpers used in only one place.
 - Workflow complexity introduced "for future flexibility" without evidence.
 - Features, parameters, or configuration options added for speculative future use without a current requirement (YAGNI).
+- New code not traceable to a current requirement (a feature, parameter, branch, or config that nothing in the stated scope asked for) — recommend removal (see removal_plan.md), not just simplification. Ask: was this asked for? If the requirement were dropped, would anything break? If not, it is a removal candidate. P2 by default per the severity rule below; escalate to P1 only when the unneeded code adds attack surface, contract obligations, or regression/maintenance risk.
 
 ### DRY Checks
 
@@ -140,6 +143,9 @@ Flag:
 Severity guidance:
 - P2 default for stylistic duplication/complexity.
 - Escalate to P1 if duplication or complexity introduces behavior/regression risk.
+
+Intentional-simplification evidence:
+- A concrete `ceiling:` comment (naming the shortcut, its ceiling, and the upgrade path) is evidence that a "too simple" or "missing feature" KISS/YAGNI finding is deliberate — downgrade or suppress that P2 finding. This NEVER applies to security, auth, persistence, sandboxing, public-contract, or correctness findings; those are judged on their own contract regardless of any comment.
 
 ---
 

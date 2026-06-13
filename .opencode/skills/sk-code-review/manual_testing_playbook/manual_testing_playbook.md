@@ -22,14 +22,15 @@ Canonical package artifacts:
 - `05--re-review-and-stale-context/`
 - `06--cross-cli-orchestration/`
 - `07--structural-impact-preflight/`
+- `08--efficiency-and-restraint/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 19 deterministic scenarios across 7 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 24 deterministic scenarios across 8 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-05-07): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, and external CLI handbacks through cli-codex and cli-opencode. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, and `.opencode/agents/` on disk.
+Coverage note (2026-06-13): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-codex and cli-opencode, and the v1.4.0.0 efficiency-and-restraint behaviors: reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -127,7 +128,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 19`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 24`).
 4. No unresolved blocking triage item remains.
 5. External CLI handbacks preserve sk-code-review severity and evidence contracts.
 
@@ -141,7 +142,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 | Field | Required | Notes |
 |---|---|---|
-| Scenario ID | Yes | One of CR-001..CR-019 |
+| Scenario ID | Yes | One of CR-001..CR-024 |
 | Feature file | Yes | Relative path under this playbook root |
 | Runtime | Yes | Native, @review, cli-codex, cli-opencode, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
@@ -156,7 +157,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 19 files.
+2. Per-feature structural sweep checks all 24 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
@@ -172,7 +173,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 19-scenario review battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 24-scenario review battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -193,6 +194,7 @@ This section records wave planning and capacity guidance for executing the 19-sc
 | 3 | Re-review + stale context | CR-013..CR-015 | Requires prior findings, stale docs, or generated-code fixtures |
 | 4 | Cross-CLI | CR-016..CR-018 | Tool availability and handback reconciliation are isolated |
 | 5 | Structural impact | CR-019 | Isolates code-graph freshness and `detect_changes` caveat behavior |
+| 6 | Efficiency + restraint | CR-020..CR-024 | Restraint, needed-ness, ceiling evidence, depth alias, and the wording canary are read-only and isolate cleanly |
 
 ### Cross-CLI Reconciliation Rules
 
@@ -566,7 +568,93 @@ Desired user-visible outcome: A findings-first review artifact that records the 
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. EFFICIENCY AND RESTRAINT (CR-020..CR-024)
+
+This category covers 5 scenarios while the linked feature files remain the canonical execution contract. These scenarios validate the v1.4.0.0 ponytail-based refinement: maintainability restraint, needed-ness, intentional-simplification evidence, the review-depth alias, and the load-bearing-wording canary.
+
+### CR-020 | Reinvent-the-wheel detection
+
+#### Description
+
+Maintainability review that flags hand-rolled standard-library or native duplication and recommends the built-in.
+
+#### Scenario Contract
+
+Prompt: `Review this diff for code that re-implements standard-library or native platform behavior, and recommend the built-in primitive where the behavior and edge cases match.`
+
+Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
+
+#### Test Execution
+
+> **Feature File:** [CR-020](08--efficiency-and-restraint/reinvent-the-wheel-detection.md)
+
+### CR-021 | Unrequested-code removal prompt
+
+#### Description
+
+Needed-ness review that recommends removal, not just simplification, for code tracing to no stated requirement.
+
+#### Scenario Contract
+
+Prompt: `Review this diff for code that traces to no stated requirement, and recommend removal with a Replacement entry when nothing in scope asked for it.`
+
+Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
+
+#### Test Execution
+
+> **Feature File:** [CR-021](08--efficiency-and-restraint/unrequested-code-removal.md)
+
+### CR-022 | Ceiling-comment downgrade
+
+#### Description
+
+Intentional-simplification review that downgrades a too-simple finding on a concrete ceiling: comment but never a protected-class finding.
+
+#### Scenario Contract
+
+Prompt: `Review this diff where a deliberate shortcut carries a ceiling: comment; downgrade the matching too-simple KISS or YAGNI finding, but keep any security, auth, persistence, or correctness finding at full severity.`
+
+Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
+
+#### Test Execution
+
+> **Feature File:** [CR-022](08--efficiency-and-restraint/ceiling-comment-downgrade.md)
+
+### CR-023 | Review-depth alias
+
+#### Description
+
+Depth-routing check that resolves SK_CODE_REVIEW_DEPTH env over config over default without relaxing any floor or skipping a sensitive path.
+
+#### Scenario Contract
+
+Prompt: `Run a review with SK_CODE_REVIEW_DEPTH set to ultra, then lite, and confirm ultra pulls in the on-demand deep-dive references while lite maps to the conservative skip, and that neither lowers the security and correctness floor or skips a sensitive-path diff.`
+
+Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
+
+#### Test Execution
+
+> **Feature File:** [CR-023](08--efficiency-and-restraint/review-depth-alias.md)
+
+### CR-024 | Rule-invariant canary
+
+#### Description
+
+Deterministic guard run that proves the canary passes when wording agrees and fails closed when any copy drifts.
+
+#### Scenario Contract
+
+Prompt: `Run the rule-invariant canary and its self-test, confirm a clean pass, then tamper one Iron Law copy and confirm the canary fails loudly.`
+
+Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
+
+#### Test Execution
+
+> **Feature File:** [CR-024](08--efficiency-and-restraint/rule-invariant-canary.md)
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `sk-code-review/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
 
@@ -580,7 +668,7 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -603,3 +691,8 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-017 | cli-codex delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md) |
 | CR-018 | cli-opencode and cli-codex handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-codex-handback.md) |
 | CR-019 | detect_changes-assisted review | STRUCTURAL IMPACT PREFLIGHT | [CR-019](07--structural-impact-preflight/detect-changes-assisted-review.md) |
+| CR-020 | Reinvent-the-wheel detection | EFFICIENCY AND RESTRAINT | [CR-020](08--efficiency-and-restraint/reinvent-the-wheel-detection.md) |
+| CR-021 | Unrequested-code removal prompt | EFFICIENCY AND RESTRAINT | [CR-021](08--efficiency-and-restraint/unrequested-code-removal.md) |
+| CR-022 | Ceiling-comment downgrade | EFFICIENCY AND RESTRAINT | [CR-022](08--efficiency-and-restraint/ceiling-comment-downgrade.md) |
+| CR-023 | Review-depth alias | EFFICIENCY AND RESTRAINT | [CR-023](08--efficiency-and-restraint/review-depth-alias.md) |
+| CR-024 | Rule-invariant canary | EFFICIENCY AND RESTRAINT | [CR-024](08--efficiency-and-restraint/rule-invariant-canary.md) |

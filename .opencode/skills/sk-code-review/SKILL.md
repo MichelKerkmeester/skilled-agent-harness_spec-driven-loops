@@ -369,7 +369,7 @@ Review status: COMMENTED
 Review status: REQUESTED_CHANGES
 ```
 
-Downstream automation parses this final line via exact string match — do not vary the format, add trailing punctuation, or wrap in Markdown formatting.
+Downstream automation parses this final line via exact string match — do not vary the format, add trailing punctuation, or wrap in Markdown formatting. The sole exception is the documented M-1 / M-2 skip output (§9): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`. A normal review must still end with one of the three exact lines above.
 
 ---
 
@@ -508,6 +508,16 @@ Review status: COMMENTED (skipped: diff below evidence threshold of N lines, no 
 If sensitive paths ARE touched, the full review runs regardless of line count.
 
 **Gate is ALWAYS opt-in.** Without `SK_CODE_REVIEW_MIN_CHANGED_LINES` set, M-2 has zero effect — all diffs receive full reviews.
+
+### 9.3 SK_CODE_REVIEW_DEPTH (opt-in depth alias)
+
+`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > config > default) — exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
+
+- `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing.
+- `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
+- `lite`: maps to the existing M-2 conservative skip (§9.2) — it NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
+
+The depth alias is advisory routing only; it must never be read as permission to relax a floor.
 
 ---
 
