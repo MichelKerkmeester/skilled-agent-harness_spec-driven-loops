@@ -9,7 +9,7 @@ import * as graphDb from './code-graph-db.js';
 import { buildReadinessBlock } from './readiness-contract.js';
 import {
   classifyExcludeRules,
-  loadExcludeRuleConfidence,
+  resolveExcludeRuleConfidence,
   type ClassifiedExcludeRule,
 } from './exclude-rule-classifier.js';
 import {
@@ -298,12 +298,17 @@ async function dispatchOperation(
         }),
       };
     case 'prune-excludes': {
-      const artifactPath = options.excludeRuleConfidencePath;
       const patterns = args.excludePatterns ?? [];
-      if (!artifactPath) {
+      // Fall back to the shipped default confidence artifact when the caller
+      // supplies no explicit path, so real MCP requests are actually
+      // classified instead of every pattern collapsing to 'unknown' (which
+      // would silently apply nothing and never gate). A missing/unreadable
+      // default degrades to the conservative unknown-everything no-op.
+      const artifact = resolveExcludeRuleConfidence(options.excludeRuleConfidencePath);
+      if (!artifact) {
         return { excludeRules: patterns.map((pattern) => ({ pattern, tier: 'unknown' })) };
       }
-      const classified = classifyExcludeRules(loadExcludeRuleConfidence(artifactPath), patterns);
+      const classified = classifyExcludeRules(artifact, patterns);
       const mediumBlocked = classified.some((entry) => entry.tier === 'medium') && args.confirm !== true;
       const lowBlocked = classified.some((entry) => entry.tier === 'low') && args.lowTierOptIn !== true;
       if (mediumBlocked) {

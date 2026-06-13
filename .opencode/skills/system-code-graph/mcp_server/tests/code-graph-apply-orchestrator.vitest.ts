@@ -175,4 +175,53 @@ describe('code graph apply orchestrator', () => {
     expect(blocked.status).toBe('rolled-back');
     expect(blocked.message).toContain('failed');
   });
+
+  it('classifies prune-excludes against the shipped default artifact when no path is supplied', async () => {
+    const dbDir = mkdtempSync(join(tmpdir(), 'code-graph-prune-default-db-'));
+    writeFileSync(join(dbDir, 'code-graph.sqlite'), 'snapshot');
+    const scans: Array<{ excludeGlobs?: string[] }> = [];
+
+    // No excludeRuleConfidencePath: the orchestrator must fall back to the
+    // shipped default so a real request is classified instead of collapsing
+    // every pattern to 'unknown'. The default puts **/.git/** in the high tier.
+    const committed = await applyCodeGraph({
+      operation: 'prune-excludes',
+      excludePatterns: ['**/.git/**'],
+    }, {
+      dbDir,
+      auditDir: join(dbDir, 'apply-audit'),
+      battery: async () => battery(true),
+      status: async () => ({
+        freshness: 'fresh',
+        canonicalReadiness: 'ready',
+        trustState: 'live',
+        lastPersistedAt: '2026-05-08T00:00:00Z',
+      }),
+      scan: async (args) => { scans.push(args); },
+    });
+
+    expect(committed.status).toBe('committed');
+    expect(scans[0]?.excludeGlobs).toEqual(['**/.git/**']);
+
+    // A medium-tier default pattern (**/dist/**) still blocks without confirm,
+    // proving the gates ride along with the default artifact.
+    const blocked = await applyCodeGraph({
+      operation: 'prune-excludes',
+      excludePatterns: ['**/dist/**'],
+    }, {
+      dbDir,
+      auditDir: join(dbDir, 'apply-audit'),
+      battery: async () => battery(true),
+      status: async () => ({
+        freshness: 'fresh',
+        canonicalReadiness: 'ready',
+        trustState: 'live',
+        lastPersistedAt: '2026-05-08T00:00:00Z',
+      }),
+      scan: async () => undefined,
+    });
+
+    expect(blocked.status).toBe('rolled-back');
+    expect(blocked.message).toContain('failed');
+  });
 });

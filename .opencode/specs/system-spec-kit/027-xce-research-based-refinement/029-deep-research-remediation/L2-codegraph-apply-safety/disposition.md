@@ -46,10 +46,11 @@ Verifier follow-ons (recorded, not reopeners):
 
 tri-013 CLOSED (verdict `../verify/code-wave2-verdict.md`): dry-run now aggregates the same real signal window as apply (pure read; the preview records no audits — early return traced). tri-078 and tri-091 CLOSED earlier with the advisor batch (verdict `../verify/l5-batch-verdict.md`). tri-145 and tri-186 CLOSED (verdict `../verify/code-wave3-verdict.md`): bare CLI apply now refuses without explicit mutation intent (operation / dry-run / env opt-in, all three escape hatches proven), and the new exit-taxonomy smoke pins the 75/64 failure contract daemon-free, 8/8.
 
+tri-029 CLOSED (code wave 11, gpt-5.5 xhigh verified): the prune-excludes branch now falls back to a shipped curated default confidence artifact (`mcp_server/data/exclude-rule-confidence.json`) via `resolveExcludeRuleConfidence`, so real MCP requests are classified and gated instead of collapsing to `tier:'unknown'`. Blast radius stays conservative: only operator-passed patterns are classified, unmatched patterns stay unknown (dropped), medium needs confirm and low needs lowTierOptIn; only high-tier `.git`/`node_modules` auto-apply. An explicit-but-missing path still throws (operator error); a missing default degrades to the prior unknown no-op. The default path anchors on the on-path `.opencode` segment (config.ts pattern) so it resolves from dist or source with no build copy.
+
 | Finding | One-line | Class |
 |---|---|---|
 | tri-022 | semantic-trigger shadow telemetry not durable — promotion criteria uncomputable; hot-path, fail-safe, env-gated | code-careful |
-| tri-029 | prune-excludes confidence artifact never wired from public handlers (all patterns `tier:'unknown'`); ship default artifact + gates together | code-small |
 | tri-031 | repair-nodes cannot actually reparse skip-listed files (sentinel short-circuit); collides with the manual-review-only crash-cohort invariant — bounded targeted retry or honest-doc rewrite | code-careful |
 | tri-131 | no semantic-trigger stress suite; depends on tri-022 telemetry — sequence after it | code-careful |
 
