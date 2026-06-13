@@ -1,0 +1,12 @@
+{
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation",
+  "current_round": 1,
+  "max_rounds": 3,
+  "seats_per_round": 3,
+  "convergence_signal": "two-of-three-agree",
+  "created_at": "2026-06-13T00:00:00Z",
+  "updated_at": "2026-06-13T00:00:00Z",
+  "status": "complete",
+  "dispatch_mode": "sequential-depth-1-inline",
+  "vantage_integrity": "simulated strategy-lens seats (inline sequentialthinking); no external cli-* or Task dispatch occurred"
+}
