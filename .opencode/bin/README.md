@@ -65,7 +65,13 @@ bin/
 +-- spec-memory.cjs                # Daemon-backed CLI shim for mk-spec-memory (37 tools)
 +-- code-index.cjs                 # Daemon-backed CLI shim for mk-code-index (8 tools)
 +-- skill-advisor.cjs              # Daemon-backed CLI shim for mk-skill-advisor (9 tools)
++-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts (37/8/9), cwd-independent
++-- cli-exit-taxonomy-smoke.cjs    # Daemon-free smoke: CLI failure contract (exit 64/69/75, parseable envelopes)
++-- cli-offline-smoke.test.cjs     # Test runner asserting cli-offline-smoke.cjs passes
 +-- hf-model-server.cjs            # Local HTTP/UDS HuggingFace embedding server
++-- worktree-session.sh            # Launch an AI session in an isolated git worktree + branch + DBs
++-- worktree-reaper.sh             # Prune merged/clean per-session worktrees + stale socket dirs
++-- worktree-guard.sh              # SessionStart detect-and-warn when a top-level session is on shared main
 +-- lib/                           # Shared supervision, IPC bridge, env allowlist
 `-- README.md
 ```
@@ -184,12 +190,14 @@ node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
 node .opencode/bin/spec-memory.cjs list-tools --format text | head -3
 node .opencode/bin/code-index.cjs list-tools --format text | head -3
 node .opencode/bin/skill-advisor.cjs list-tools --format text | head -3
+node .opencode/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts 37/8/9, cwd-independent
+node .opencode/bin/cli-exit-taxonomy-smoke.cjs --format text    # daemon-free: CLI failure contract (exit 64/69/75)
 bash -n .opencode/bin/worktree-session.sh
 bash -n .opencode/bin/worktree-reaper.sh
 AI_SESSION_CHILD=1 bash .opencode/bin/worktree-session.sh --dry-run claude   # must report exec-in-place, no worktree
 ```
 
-Expected result: each `.cjs` module loads without throwing; each CLI shim lists tool names offline and exits 0; both shell scripts pass `bash -n`; the child dry-run reports it would exec in place without creating a worktree.
+Expected result: each `.cjs` module loads without throwing; each CLI shim lists tool names offline and exits 0; both daemon-free smokes pass (offline tool counts + the failure-contract exit taxonomy); both shell scripts pass `bash -n`; the child dry-run reports it would exec in place without creating a worktree.
 
 ---
 
