@@ -81,6 +81,7 @@ export interface IndexFilesOptions {
 
 export interface IndexFilesResult extends Array<ParseResult> {
   preParseSkippedCount: number;
+  unsupportedLanguageSkipped: number;
   warnings: string[];
   capExceeded: FileFindResult['capExceeded'];
 }
@@ -2075,8 +2076,18 @@ type FindCandidatesOutput = {
   warnings: string[];
   capExceeded: FileFindResult['capExceeded'];
 };
-type ParseCandidatesOutput = FindCandidatesOutput & { results: ParseResult[]; preParseSkippedCount: number };
-type FinalizeOutput = { finalizedResults: ParseResult[]; preParseSkippedCount: number; warnings: string[]; capExceeded: FileFindResult['capExceeded'] };
+type ParseCandidatesOutput = FindCandidatesOutput & {
+  results: ParseResult[];
+  preParseSkippedCount: number;
+  unsupportedLanguageSkipped: number;
+};
+type FinalizeOutput = {
+  finalizedResults: ParseResult[];
+  preParseSkippedCount: number;
+  unsupportedLanguageSkipped: number;
+  warnings: string[];
+  capExceeded: FileFindResult['capExceeded'];
+};
 
 function buildIndexPhases(
   config: IndexerConfig,
@@ -2133,6 +2144,7 @@ function buildIndexPhases(
       const { candidateFiles, warnings, capExceeded } = deps['find-candidates'];
       const results: ParseResult[] = [];
       let preParseSkippedCount = 0;
+      let unsupportedLanguageSkipped = 0;
 
       for (const file of candidateFiles) {
         // Cooperative cancellation runs inside the parse phase. runPhases only
@@ -2143,7 +2155,10 @@ function buildIndexPhases(
           throw new Error(`parse-candidates aborted (deadline signal) after ${results.length} parsed`);
         }
         const language = detectLanguage(file);
-        if (!language || !config.languages.includes(language)) continue;
+        if (!language || !config.languages.includes(language)) {
+          unsupportedLanguageSkipped++;
+          continue;
+        }
 
         // P1 perf: skip read+parse for files whose mtime matches the DB record.
         // isFileStale returns true when the file is absent from the DB or its
@@ -2160,7 +2175,11 @@ function buildIndexPhases(
         } catch { /* skip unreadable */ }
       }
 
-      return { candidateFiles, results, preParseSkippedCount, warnings, capExceeded };
+      if (unsupportedLanguageSkipped > 0) {
+        warnings.push(`[structural-indexer] Skipped ${unsupportedLanguageSkipped} candidate file(s) before parsing because their language is unsupported or disabled by config.languages`);
+      }
+
+      return { candidateFiles, results, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded };
     },
   };
 
@@ -2168,9 +2187,9 @@ function buildIndexPhases(
     name: 'finalize',
     inputs: ['parse-candidates'],
     run(deps) {
-      const { results, preParseSkippedCount, warnings, capExceeded } = deps['parse-candidates'];
+      const { results, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded } = deps['parse-candidates'];
       const finalizedResults = finalizeIndexResults(results, moduleResolver, config.edgeWeights);
-      return { finalizedResults, preParseSkippedCount, warnings, capExceeded };
+      return { finalizedResults, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded };
     },
   };
 
@@ -2218,11 +2237,12 @@ export async function indexFiles(config: IndexerConfig, options: IndexFilesOptio
     const outputs = await runPhases(phases, options.signal);
     const emitOutput = outputs['emit-metrics'] as FinalizeOutput;
 
-    // Preserve the array-with-preParseSkippedCount shape exported by the
+    // Preserve the array-with-scan-metadata shape exported by the
     // historical inline flow so existing callers (handlers/scan.ts,
     // ensure-ready.ts) keep working unchanged for backward compatibility.
     const finalizedResults = emitOutput.finalizedResults as IndexFilesResult;
     finalizedResults.preParseSkippedCount = emitOutput.preParseSkippedCount;
+    finalizedResults.unsupportedLanguageSkipped = emitOutput.unsupportedLanguageSkipped;
     finalizedResults.warnings = emitOutput.warnings;
     finalizedResults.capExceeded = emitOutput.capExceeded;
     return finalizedResults;

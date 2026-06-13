@@ -49,6 +49,7 @@ export interface ScanResult {
   filesScanned: number;
   filesIndexed: number;
   filesSkipped: number;
+  unsupportedLanguageSkipped: number;
   parserSkipListBypassCount: number;
   totalNodes: number;
   totalEdges: number;
@@ -396,6 +397,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const detectorProvenanceSummary = summarizeDetectorProvenance(results);
   let graphEdgeEnrichmentSummary = summarizeGraphEdgeEnrichment(results);
   const preParseSkippedCount = effectiveIncremental ? (results.preParseSkippedCount ?? 0) : 0;
+  const unsupportedLanguageSkipped = results.unsupportedLanguageSkipped ?? 0;
   const priorStats = graphDb.getStats();
   const priorNodeCount = priorStats.totalNodes;
   const candidatePersistableNodeCount = countPersistableNodes(results);
@@ -456,7 +458,8 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
           data: {
             filesScanned: results.length,
             filesIndexed: 0,
-            filesSkipped: preParseSkippedCount,
+            filesSkipped: preParseSkippedCount + unsupportedLanguageSkipped,
+            unsupportedLanguageSkipped,
             parserSkipListBypassCount,
             totalNodes: priorStats.totalNodes,
             totalEdges: priorStats.totalEdges,
@@ -532,7 +535,8 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
           data: {
             filesScanned: results.length,
             filesIndexed: 0,
-            filesSkipped: preParseSkippedCount,
+            filesSkipped: preParseSkippedCount + unsupportedLanguageSkipped,
+            unsupportedLanguageSkipped,
             parserSkipListBypassCount,
             totalNodes: priorStats.totalNodes,
             totalEdges: priorStats.totalEdges,
@@ -572,7 +576,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   }
 
   let filesIndexed = 0;
-  let filesSkipped = preParseSkippedCount;
+  let filesSkipped = preParseSkippedCount + unsupportedLanguageSkipped;
   let totalNodes = 0;
   let totalEdges = 0;
   const errors: string[] = [];
@@ -745,6 +749,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     filesScanned: results.length,
     filesIndexed,
     filesSkipped,
+    unsupportedLanguageSkipped,
     parserSkipListBypassCount,
     totalNodes: responseTotalNodes,
     totalEdges: responseTotalEdges,
