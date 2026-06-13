@@ -20,6 +20,11 @@ export class SecretScrubberError extends Error {
   constructor(message: string, options?: { cause?: unknown }) {
     super(message, options);
     this.name = 'SecretScrubberError';
+    // Restore the prototype chain so `instanceof SecretScrubberError` holds
+    // even when the class is transpiled to a target that breaks Error
+    // subclassing — a failed instanceof would let the fail-closed write be
+    // caught as a generic Error and the raw text persisted.
+    Object.setPrototypeOf(this, SecretScrubberError.prototype);
   }
 }
 
@@ -54,7 +59,13 @@ const SECRET_PATTERNS: SecretPattern[] = [
   },
   {
     kind: 'aws-secret-access-key',
-    regex: /\b(aws[_-]?secret[_-]?(?:access[_-]?)?key)((?:["']?\s*[:=]\s*|\s+)["']?)([A-Za-z0-9/+=]{40})\b/gi,
+    // The fixed-length value ends in the base64 alphabet (/, +, =), which is
+    // non-word — a trailing \b cannot fire when the key's last char is one of
+    // those and the terminator (JSON quote, newline, space) is also non-word,
+    // and the fixed {40} leaves no room to backtrack onto a word char. Assert
+    // "no value-class continuation" instead so a 40-char key ending in any
+    // char is still bounded and redacted.
+    regex: /\b(aws[_-]?secret[_-]?(?:access[_-]?)?key)((?:["']?\s*[:=]\s*|\s+)["']?)([A-Za-z0-9/+=]{40})(?![A-Za-z0-9/+=])/gi,
     replacement: '$1$2[REDACTED:aws-secret-access-key]',
   },
   {
@@ -70,8 +81,12 @@ const SECRET_PATTERNS: SecretPattern[] = [
     regex: /\bgithub_pat_[A-Za-z0-9_]{22,255}\b/g,
   },
   {
+    // The value class includes '-' (non-word). A trailing \b cannot fire when
+    // the key ends in '-' before a non-word terminator; at the {24} minimum
+    // there is no backtrack room so the whole key leaks, and beyond it the
+    // backtrack leaves a trailing '-'. Assert no value-class continuation.
     kind: 'anthropic-api-key',
-    regex: /\bsk-ant-[A-Za-z0-9_-]{24,}\b/g,
+    regex: /\bsk-ant-[A-Za-z0-9_-]{24,}(?![A-Za-z0-9_-])/g,
   },
   {
     // Requires the unbroken base62 tail plus at least one digit so
@@ -80,18 +95,26 @@ const SECRET_PATTERNS: SecretPattern[] = [
     regex: /\bsk-(?:proj-|svcacct-|admin-)?(?=[A-Za-z0-9]*\d)[A-Za-z0-9]{32,}\b/g,
   },
   {
+    // Fixed-length value can end in '-' (non-word); a trailing \b cannot fire
+    // before a non-word terminator and {35} can't backtrack — assert no
+    // value-class continuation instead so a key ending in '-' still redacts.
     kind: 'google-api-key',
-    regex: /\bAIza[0-9A-Za-z_-]{35}\b/g,
+    regex: /\bAIza[0-9A-Za-z_-]{35}(?![0-9A-Za-z_-])/g,
   },
   {
+    // Value class includes '-'; same trailing-\b leak as the anthropic key.
     kind: 'slack-token',
-    regex: /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g,
+    regex: /\bxox[baprs]-[A-Za-z0-9-]{10,}(?![A-Za-z0-9-])/g,
   },
   {
     kind: 'jwt',
     // Both header and payload segments must decode-start as '{"' (eyJ...)
     // for high confidence; bare base64 triplets are left alone.
-    regex: /\beyJ[A-Za-z0-9_-]{8,}\.eyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/g,
+    // The signature segment's value class includes '-'; the final trailing \b
+    // leaks a signature ending in '-' (fully at the {8} minimum). The two
+    // earlier segments end in a literal '.', so only the final \b needs the
+    // no-value-class-continuation guard.
+    regex: /\beyJ[A-Za-z0-9_-]{8,}\.eyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}(?![A-Za-z0-9_-])/g,
   },
   {
     kind: 'bearer-token',

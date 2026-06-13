@@ -193,9 +193,11 @@ export function userFriendlyError(error: Error): string {
     if (pattern.test(error.message)) return message;
   }
 
-  // Return generic message to avoid leaking internal details.
-  // Raw error is logged for debugging but not returned to the caller.
-  console.error('[errors] Unmatched error (debug):', error.message);
+  // Return generic message to avoid leaking internal details. The debug log
+  // is captured alongside server logs, so the raw message — which can carry
+  // prompt text, paths, or API keys from upstream errors — is sanitized
+  // before it is written, not just before it is returned to the caller.
+  console.error('[errors] Unmatched error (debug):', sanitizeErrorField(error.message));
   return 'An unexpected error occurred. Please check logs for details.';
 }
 

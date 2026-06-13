@@ -36,6 +36,13 @@ Live verification (2026-06-12): one daemon holds the kernel lock (`.lock-info.js
 - One daemon SIGBUS death occurred during the first deploy recycle; precedent exists in the pre-change launcher log (same morning, before any lock code), and the lock holds no mmap on its sidecar — not attributable to this change. The kernel lock released cleanly at that death and the respawn acquired it, which is the design working as intended.
 <!-- /ANCHOR:operational-notes -->
 
+<!-- ANCHOR:deep-review-remediation -->
+## Deep-review remediation (code wave 13, gpt-5.5 xhigh verified)
+
+The 15-seat multi-model deep review (`../final-review/deep-review-report.md`) found a real (if narrow) secret-leak the original scrubber tests missed: fixed-length AWS/Google and variable-length anthropic/slack/jwt patterns ended in a trailing `\b` that could not fire when the key's last char was a non-word base64/identifier char (`/ + = -`) before a non-word terminator (quote/newline/space) — at the minimum match length there was no backtrack room, so the whole key persisted to durable storage. Fixed by replacing every such trailing `\b` with a negative lookahead asserting no value-class continuation (`shared/parsing/secret-scrubber.ts`). The word-char-only patterns (aws-access-key-id, github, github_pat, openai) and the no-trailing-`\b` patterns (bearer, credential-assignment) are unaffected. Also: `userFriendlyError` now sanitizes the raw error message before the debug `console.error` (it bypassed the sanitize pipeline), and `SecretScrubberError` restores its prototype chain so a transpile can't break the `instanceof` that enforces fail-closed. Regression tests cover the trailing-char cases for all five patterns.
+
+<!-- /ANCHOR:deep-review-remediation -->
+
 <!-- ANCHOR:follow-ons -->
 ## Newly discovered follow-ons (same guard classes, found by adversarial verification — NOT yet remediated)
 

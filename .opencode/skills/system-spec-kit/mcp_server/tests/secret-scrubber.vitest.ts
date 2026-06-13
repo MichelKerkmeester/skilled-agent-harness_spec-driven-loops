@@ -67,6 +67,21 @@ describe('secret scrubber', () => {
       expect(result.text).toBe('aws_secret_access_key = [REDACTED:aws-secret-access-key]');
     });
 
+    it('redacts an AWS secret key ending in a base64 non-word char before a non-word terminator', () => {
+      // A 40-char key whose last char is '/', '+', or '=' followed by a JSON
+      // quote / newline / space: the old trailing \b could not fire and the
+      // full key leaked. Exactly 40 chars, last char '/'.
+      const key = `${'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'.slice(0, 39)}/`;
+      expect(scrubSecretsDetailed(`aws_secret_access_key="${key}"`).redactions).toBe(1);
+      expect(scrubSecretsDetailed(`aws_secret_access_key=${key}\nnext`).text).not.toContain(key);
+    });
+
+    it('redacts a Google API key ending in a hyphen before a non-word terminator', () => {
+      const key = `${'AIzaSyA1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q'.slice(0, 38)}-`;
+      expect(scrubSecretsDetailed(`{"k":"${key}"}`).redactions).toBe(1);
+      expect(scrubSecretsDetailed(`{"k":"${key}"}`).text).not.toContain(key);
+    });
+
     it('redacts JWTs', () => {
       const result = scrubSecretsDetailed(`session ${JWT_TOKEN} expired`);
       expect(result.text).toBe('session [REDACTED:jwt] expired');
@@ -75,6 +90,18 @@ describe('secret scrubber', () => {
     it('redacts bearer tokens but keeps the Bearer prefix', () => {
       const result = scrubSecretsDetailed('Authorization: Bearer abc123DEF456ghi789JKL012mno345');
       expect(result.text).toBe('Authorization: Bearer [REDACTED:bearer-token]');
+    });
+
+    it('redacts variable-length keys ending in a hyphen before a non-word terminator', () => {
+      // The '-'-bearing value classes leak the whole token at their minimum
+      // length (no backtrack room) when ending in '-' before a quote/newline.
+      const anthropicHyphen = `sk-ant-${'A'.repeat(23)}-`; // {24} min, ends '-'
+      const slackHyphen = `xoxb-${'1'.repeat(9)}-`;        // {10} min, ends '-'
+      const jwtHyphen = `eyJ${'a'.repeat(8)}.eyJ${'b'.repeat(8)}.${'c'.repeat(7)}-`; // sig {8} min ends '-'
+      for (const [tok, label] of [[anthropicHyphen, 'anthropic'], [slackHyphen, 'slack'], [jwtHyphen, 'jwt']] as const) {
+        expect(scrubSecretsDetailed(`"${tok}"`).redactions, label).toBe(1);
+        expect(scrubSecretsDetailed(`"${tok}"`).text, label).not.toContain(tok);
+      }
     });
 
     it('redacts Slack tokens', () => {
