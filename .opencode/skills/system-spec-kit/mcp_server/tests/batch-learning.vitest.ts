@@ -247,6 +247,25 @@ describe('Batch Learning — aggregateEvents', () => {
     expect(s.weakCount).toBe(1);
   });
 
+  it('gates duplicate events before scoring and counts them diagnostically', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ memoryId: 'mem-dup', queryId: 'q-dup', sessionId: 'sess-dup', timestamp: BASE_TS }),
+      makeEvent({ memoryId: 'mem-dup', queryId: 'q-dup', sessionId: 'sess-dup', timestamp: BASE_TS }),
+      makeEvent({ memoryId: 'mem-dup', queryId: 'q-next', sessionId: 'sess-next', timestamp: BASE_TS + 1 }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 2);
+    const signal = signals[0]!;
+
+    expect(signals).toHaveLength(1);
+    expect(signal.strongCount).toBe(2);
+    expect(signal.sessionCount).toBe(2);
+    expect(signal.queryCount).toBe(2);
+    expect(signal.duplicateCount).toBe(1);
+    expect(signal.weightedScore).toBeCloseTo(2);
+  });
+
   it('computes weighted score correctly', () => {
     const db = createTestDb();
     // 2 strong (1.0 each) + 1 medium (0.5) = 2.5

@@ -247,14 +247,18 @@ function runSessionTraceCausalReducer(
         };
         candidates.push(candidate);
 
-        if (dryRun) {
-          skipped.push({ reason: 'dry_run', sessionId: candidate.sessionId, queryId: candidate.queryId, sourceId: candidate.sourceId, targetId: candidate.targetId });
-          continue;
-        }
-
         const existing = readExistingEdge(db, candidate.sourceId, candidate.targetId, relation);
         if (existing?.created_by === CREATED_BY) {
           skipped.push({ reason: 'already_created', sessionId: candidate.sessionId, queryId: candidate.queryId, sourceId: candidate.sourceId, targetId: candidate.targetId });
+          continue;
+        }
+        if (existing) {
+          skipped.push({ reason: 'manual_protected', sessionId: candidate.sessionId, queryId: candidate.queryId, sourceId: candidate.sourceId, targetId: candidate.targetId });
+          continue;
+        }
+
+        if (dryRun) {
+          skipped.push({ reason: 'dry_run', sessionId: candidate.sessionId, queryId: candidate.queryId, sourceId: candidate.sourceId, targetId: candidate.targetId });
           continue;
         }
 
@@ -272,7 +276,7 @@ function runSessionTraceCausalReducer(
           edgesInserted++;
         } else {
           skipped.push({
-            reason: existing ? 'manual_protected' : 'insert_rejected',
+            reason: 'insert_rejected',
             sessionId: candidate.sessionId,
             queryId: candidate.queryId,
             sourceId: candidate.sourceId,

@@ -111,6 +111,8 @@ export interface AggregatedSignal {
   lastSeen?: number;
   /** Positive-signal hit count with reformulation damping and zero floor. */
   weightedHitCount?: number;
+  /** Semantic duplicates suppressed before reducer-facing scoring fields. */
+  duplicateCount?: number;
   /** Confidence-weighted composite score. */
   weightedScore: number;
   /**
@@ -131,6 +133,7 @@ interface AggregationBucket {
   firstSeen: number;
   lastSeen: number;
   typeCounts: FeedbackEventTypeCounts;
+  duplicateCount: number;
 }
 
 function createEventTypeCounts(): FeedbackEventTypeCounts {
@@ -141,6 +144,10 @@ function createEventTypeCounts(): FeedbackEventTypeCounts {
     same_topic_requery: 0,
     follow_on_tool_use: 0,
   };
+}
+
+function feedbackEventDedupKey(event: { type: FeedbackEventType; memory_id: string; query_id: string; confidence: FeedbackConfidence; timestamp: number; session_id: string | null }): string {
+  return [event.type, event.memory_id, event.query_id, event.confidence, String(event.timestamp), event.session_id ?? ''].join('\u0000');
 }
 
 /** Record written to batch_learning_log after a shadow-apply cycle. */
@@ -264,10 +271,17 @@ export function aggregateEvents(
     // Fetch all events in the window
     const events = getFeedbackEvents(db, { since, until });
 
-    // Group by memoryId
     const byMemory = new Map<string, AggregationBucket>();
+    const seenEvents = new Map<string, AggregationBucket>();
 
     for (const ev of events) {
+      const dedupKey = feedbackEventDedupKey(ev);
+      const original = seenEvents.get(dedupKey);
+      if (original) {
+        original.duplicateCount++;
+        continue;
+      }
+
       let entry = byMemory.get(ev.memory_id);
       if (!entry) {
         entry = {
@@ -279,9 +293,11 @@ export function aggregateEvents(
           firstSeen: ev.timestamp,
           lastSeen: ev.timestamp,
           typeCounts: createEventTypeCounts(),
+          duplicateCount: 0,
         };
         byMemory.set(ev.memory_id, entry);
       }
+      seenEvents.set(dedupKey, entry);
       // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
       const sessionKey = ev.session_id ?? `__null_${ev.id}`;
       entry.sessions.add(sessionKey);
@@ -326,6 +342,7 @@ export function aggregateEvents(
         firstSeen:     data.firstSeen,
         lastSeen:      data.lastSeen,
         weightedHitCount,
+        duplicateCount: data.duplicateCount,
         weightedScore,
         computedBoost,
       });

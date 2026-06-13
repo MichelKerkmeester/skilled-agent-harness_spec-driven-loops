@@ -302,4 +302,30 @@ describe('Session trace causal reducer', () => {
     expect(result.skipped.filter((skip) => skip.reason === 'dry_run')).toHaveLength(3);
     expect(countEdges(db)).toBe(0);
   });
+
+  it('classifies existing edges during shadow replay without invoking inserts', () => {
+    const insertSpy = vi.spyOn(causalEdges, 'insertEdge');
+    const manualId = causalEdges.insertEdge('1', '9', causalEdges.RELATION_TYPES.ENABLED, 0.9, 'curated', true, 'manual');
+    expect(manualId).not.toBeNull();
+    const autoId = causalEdges.insertEdge('2', '9', causalEdges.RELATION_TYPES.ENABLED, 0.3, 'auto', true, SESSION_TRACE_CAUSAL_CREATED_BY);
+    expect(autoId).not.toBeNull();
+    insertSpy.mockClear();
+
+    seedEvents(db, [
+      makeEvent({ memoryId: '1', queryId: 'q1', timestamp: BASE_TS + 1 }),
+      makeEvent({ memoryId: '2', queryId: 'q1', timestamp: BASE_TS + 2 }),
+      makeEvent({ memoryId: '3', queryId: 'q1', timestamp: BASE_TS + 3 }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4 }),
+    ]);
+
+    const result = runSessionTraceCausalShadowReplay(db, { runAt: BASE_TS + 10, windowMs: 100 });
+
+    expect(result.edgesInserted).toBe(0);
+    expect(result.skipped.some((skip) => skip.reason === 'manual_protected' && skip.sourceId === '1')).toBe(true);
+    expect(result.skipped.some((skip) => skip.reason === 'already_created' && skip.sourceId === '2')).toBe(true);
+    expect(result.skipped.some((skip) => skip.reason === 'dry_run' && skip.sourceId === '3')).toBe(true);
+    expect(insertSpy).not.toHaveBeenCalled();
+    expect(countEdges(db)).toBe(2);
+    insertSpy.mockRestore();
+  });
 });
