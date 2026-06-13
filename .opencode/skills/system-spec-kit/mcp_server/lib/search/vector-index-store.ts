@@ -1004,6 +1004,7 @@ let active_vector_source: ActiveVectorSourceTelemetry | null = null;
 // C1 FIX: Key connections by resolved DB path to prevent cross-store data corruption
 const db_connections = new Map<string, Database.Database>();
 const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
+const CRASH_PROBE_RECEIPT_FILE = '.crash-probe-receipt';
 type DatabaseConnectionListener = (
   database: Database.Database,
   change: {
@@ -1095,6 +1096,61 @@ function remove_unclean_shutdown_marker(target_path: string): void {
     fs.rmSync(marker_path, { force: true });
   } catch (_error: unknown) {
     // Best-effort: marker cleanup must not block DB close.
+  }
+}
+
+function get_crash_probe_receipt_path(target_path: string): string | null {
+  if (target_path === ':memory:') {
+    return null;
+  }
+  return path.join(path.dirname(target_path), CRASH_PROBE_RECEIPT_FILE);
+}
+
+// Fingerprint of the on-disk DB state (main + WAL file size/mtime). Any write,
+// checkpoint, or WAL change alters it, so a stale receipt can never mask a
+// post-write corruption: on-disk corruption requires a change that invalidates
+// this fingerprint, which forces a fresh probe.
+function compute_db_state_fingerprint(target_path: string): string | null {
+  try {
+    const main = fs.statSync(target_path);
+    let walPart = 'nowal';
+    try {
+      const wal = fs.statSync(`${target_path}-wal`);
+      walPart = `${wal.size}:${Math.floor(wal.mtimeMs)}`;
+    } catch (_walError: unknown) { /* WAL absent — fingerprint reflects that */ }
+    return `${main.size}:${Math.floor(main.mtimeMs)}|${walPart}`;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function read_crash_probe_receipt(target_path: string): { fingerprint: string; verdict: string } | null {
+  const receipt_path = get_crash_probe_receipt_path(target_path);
+  if (!receipt_path) {
+    return null;
+  }
+  try {
+    const raw = JSON.parse(fs.readFileSync(receipt_path, 'utf8')) as { fingerprint?: unknown; verdict?: unknown };
+    if (typeof raw.fingerprint === 'string' && typeof raw.verdict === 'string') {
+      return { fingerprint: raw.fingerprint, verdict: raw.verdict };
+    }
+  } catch (_error: unknown) { /* missing/corrupt receipt — treat as absent (probe runs) */ }
+  return null;
+}
+
+function write_crash_probe_receipt(target_path: string, fingerprint: string): void {
+  const receipt_path = get_crash_probe_receipt_path(target_path);
+  if (!receipt_path) {
+    return;
+  }
+  try {
+    fs.writeFileSync(
+      receipt_path,
+      `${JSON.stringify({ fingerprint, verdict: 'ok', probedAt: new Date().toISOString() })}\n`,
+      { mode: 0o600 },
+    );
+  } catch (_error: unknown) {
+    // Best-effort: receipt failure must not block DB startup (probe just reruns).
   }
 }
 
@@ -2073,21 +2129,40 @@ export function initialize_db(custom_path: string | null = null, options: Initia
   if (target_path !== ':memory:') {
     const prior_marker_path = get_unclean_shutdown_marker_path(target_path);
     if (prior_marker_path && fs.existsSync(prior_marker_path)) {
-      let probe_verdict = 'ok';
-      try {
-        const rows = new_db.pragma('quick_check(1)') as Array<Record<string, unknown>>;
-        const first = rows?.[0] ? Object.values(rows[0])[0] : undefined;
-        probe_verdict = typeof first === 'string' ? first : 'quick_check returned no verdict';
-      } catch (probe_error: unknown) {
-        probe_verdict = get_error_message(probe_error);
-      }
-      if (probe_verdict !== 'ok') {
-        const msg = `post-crash integrity probe failed: ${probe_verdict}`;
-        console.error(`[vector-index] FATAL: ${msg}`);
-        console.error('[vector-index] Wrote checkpoint needs-rebuild sentinel; the next boot rebuilds cleanly instead of serving corrupted data.');
-        write_needs_rebuild_sentinel_for_corruption(target_path, probe_verdict);
-        try { new_db.close(); } catch (_: unknown) { /* best-effort */ }
-        throw new VectorIndexError(msg, VectorIndexErrorCode.INTEGRITY_ERROR);
+      const db_fingerprint = compute_db_state_fingerprint(target_path);
+      const prior_receipt = read_crash_probe_receipt(target_path);
+      const probe_already_passed = db_fingerprint !== null
+        && prior_receipt !== null
+        && prior_receipt.verdict === 'ok'
+        && prior_receipt.fingerprint === db_fingerprint;
+      if (probe_already_passed) {
+        // A prior boot already passed quick_check for this exact on-disk state
+        // (identical main + WAL size/mtime), so a crash loop that never wrote a
+        // byte skips the expensive whole-DB probe instead of repeating it every
+        // boot. Any write or checkpoint changes the fingerprint and re-arms it.
+        console.warn('[vector-index] post-crash integrity probe skipped: DB unchanged since last passing probe');
+      } else {
+        let probe_verdict = 'ok';
+        try {
+          const rows = new_db.pragma('quick_check(1)') as Array<Record<string, unknown>>;
+          const first = rows?.[0] ? Object.values(rows[0])[0] : undefined;
+          probe_verdict = typeof first === 'string' ? first : 'quick_check returned no verdict';
+        } catch (probe_error: unknown) {
+          probe_verdict = get_error_message(probe_error);
+        }
+        if (probe_verdict !== 'ok') {
+          const msg = `post-crash integrity probe failed: ${probe_verdict}`;
+          console.error(`[vector-index] FATAL: ${msg}`);
+          console.error('[vector-index] Wrote checkpoint needs-rebuild sentinel; the next boot rebuilds cleanly instead of serving corrupted data.');
+          write_needs_rebuild_sentinel_for_corruption(target_path, probe_verdict);
+          try { new_db.close(); } catch (_: unknown) { /* best-effort */ }
+          throw new VectorIndexError(msg, VectorIndexErrorCode.INTEGRITY_ERROR);
+        }
+        // Record the passing probe for this on-disk state so a subsequent
+        // crash-loop boot can skip the repeat probe while the DB is unchanged.
+        if (db_fingerprint !== null) {
+          write_crash_probe_receipt(target_path, db_fingerprint);
+        }
       }
     }
   }
