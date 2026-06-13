@@ -334,26 +334,39 @@ let enrichFusedResultsObserver: (() => void) | null = null;
 interface GraphChannelMetrics {
   totalQueries: number;
   graphHits: number;
+  graphResultCount: number;
   graphOnlyResults: number;
+  graphMultiSourceResults: number;
   multiSourceResults: number;
+  degreeQueries: number;
+  degreeHits: number;
+  degreeResultCount: number;
 }
 
 const graphMetrics: GraphChannelMetrics = {
   totalQueries: 0,
   graphHits: 0,
+  graphResultCount: 0,
   graphOnlyResults: 0,
+  graphMultiSourceResults: 0,
   multiSourceResults: 0,
+  degreeQueries: 0,
+  degreeHits: 0,
+  degreeResultCount: 0,
 };
 
 /**
  * Return current graph channel metrics for health check reporting.
  * graphHitRate is computed as graphHits / totalQueries.
  */
-function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number } {
+function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number; degreeHitRate: number } {
   return {
     ...graphMetrics,
     graphHitRate: graphMetrics.totalQueries > 0
       ? graphMetrics.graphHits / graphMetrics.totalQueries
+      : 0,
+    degreeHitRate: graphMetrics.degreeQueries > 0
+      ? graphMetrics.degreeHits / graphMetrics.degreeQueries
       : 0,
   };
 }
@@ -362,8 +375,13 @@ function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number } {
 function resetGraphMetrics(): void {
   graphMetrics.totalQueries = 0;
   graphMetrics.graphHits = 0;
+  graphMetrics.graphResultCount = 0;
   graphMetrics.graphOnlyResults = 0;
+  graphMetrics.graphMultiSourceResults = 0;
   graphMetrics.multiSourceResults = 0;
+  graphMetrics.degreeQueries = 0;
+  graphMetrics.degreeHits = 0;
+  graphMetrics.degreeResultCount = 0;
 }
 
 // 7. INITIALIZATION
@@ -1165,6 +1183,7 @@ async function hybridSearch(
   // Graph search
   if (useGraph && graphSearchFn) {
     try {
+      graphMetrics.totalQueries++;
       const graphResults = graphSearchFn(query, { limit, specFolder });
       for (const r of graphResults) {
         results.push({
@@ -1173,6 +1192,10 @@ async function hybridSearch(
           score: (r.score as number) || 0,
           source: 'graph',
         });
+      }
+      if (graphResults.length > 0) {
+        graphMetrics.graphHits++;
+        graphMetrics.graphResultCount += graphResults.length;
       }
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : String(error);
@@ -1387,6 +1410,7 @@ async function collectAndFuseHybridResults(
         });
         if (graphResults.length > 0) {
           graphMetrics.graphHits++;
+          graphMetrics.graphResultCount += graphResults.length;
           lists.push({ source: 'graph', results: graphResults.map((r: Record<string, unknown>) => ({
             ...r,
             id: r.id as number | string,
@@ -1403,6 +1427,7 @@ async function collectAndFuseHybridResults(
     // Degree channel — also gated by query-complexity routing
     if (activeChannels.has('degree') && db && isDegreeBoostEnabled()) {
       try {
+        graphMetrics.degreeQueries++;
         // Collect all numeric IDs from existing channels
         const allResultIds = new Set<number>();
         for (const list of lists) {
@@ -1426,6 +1451,8 @@ async function collectAndFuseHybridResults(
           degreeItems.sort((a, b) => b.degreeScore - a.degreeScore);
 
           if (degreeItems.length > 0) {
+            graphMetrics.degreeHits++;
+            graphMetrics.degreeResultCount += degreeItems.length;
             lists.push({
               source: 'degree',
               results: degreeItems.map(item => ({
@@ -1479,6 +1506,7 @@ async function collectAndFuseHybridResults(
     }
     for (const [, sources] of sourceMap) {
       if (sources.size > 1) graphMetrics.multiSourceResults++;
+      if (sources.size > 1 && sources.has('graph')) graphMetrics.graphMultiSourceResults++;
       if (sources.size === 1 && sources.has('graph')) graphMetrics.graphOnlyResults++;
     }
 

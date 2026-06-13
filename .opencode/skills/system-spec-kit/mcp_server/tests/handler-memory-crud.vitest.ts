@@ -239,6 +239,34 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       expect(typeof parsed.data?.status).toBe('string');
     });
 
+    it('Health handler exposes graph routing contribution counters', async () => {
+      const result = await handler.handleMemoryHealth({});
+      const parsed = parseResponse(result);
+      const routing = parsed.data?.routing;
+
+      expect(result.isError).toBe(false);
+      expect(routing).toEqual(expect.objectContaining({
+        graphChannelInvocationRate: expect.any(Number),
+        channelInvocationCounts: expect.objectContaining({
+          graph: expect.any(Number),
+          degree: expect.any(Number),
+        }),
+        channelInvocationRates: expect.objectContaining({
+          graph: expect.any(Number),
+          degree: expect.any(Number),
+        }),
+        graphContributionCounters: expect.objectContaining({
+          graphHits: expect.any(Number),
+          graphResultCount: expect.any(Number),
+          graphMultiSourceResults: expect.any(Number),
+        }),
+        degreeContributionCounters: expect.objectContaining({
+          degreeHits: expect.any(Number),
+          degreeResultCount: expect.any(Number),
+        }),
+      }));
+    });
+
     it('T519-H3: Invalid reportMode returns error response', async () => {
       const result = await handler.handleMemoryHealth({ reportMode: 'not-valid' } as unknown as HealthArgs);
       const parsed = parseResponse(result);

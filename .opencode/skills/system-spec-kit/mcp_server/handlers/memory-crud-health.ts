@@ -45,6 +45,7 @@ import { getBm25EngineStatus } from '../lib/search/bm25-index.js';
 import { getIpcBridgeStats, type IpcBridgeStats } from '../lib/ipc/socket-server.js';
 import {
   getHardExclusionPredicates,
+  getGraphMetrics,
   type HardExclusionPredicate,
   type HardExclusionSource,
 } from '../lib/search/hybrid-search.js';
@@ -1241,13 +1242,15 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 
   let routingTelemetry: Pick<
     ReturnType<typeof getRoutingTelemetrySnapshot>,
-    'graphChannelInvocationRate' | 'channelInvocationRates' | 'totalRecorded' | 'windowSize'
+    'graphChannelInvocationRate' | 'channelInvocationCounts' | 'channelInvocationRates' | 'totalRecorded' | 'windowSize'
   >;
+  let graphChannelMetrics: ReturnType<typeof getGraphMetrics>;
   try {
     routingTelemetry = getRoutingTelemetrySnapshot();
   } catch (err: unknown) {
     routingTelemetry = {
       graphChannelInvocationRate: 0,
+      channelInvocationCounts: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0 },
       channelInvocationRates: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0 },
       totalRecorded: 0,
       windowSize: ROUTING_TELEMETRY_WINDOW_SIZE,
@@ -1255,6 +1258,27 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     const errClass = err instanceof Error ? err.constructor.name : typeof err;
     const errMsg = err instanceof Error ? err.message : String(err);
     const hint = `Routing telemetry unavailable (${errClass}: ${errMsg})`.slice(0, 160);
+    hints.push(hint);
+  }
+  try {
+    graphChannelMetrics = getGraphMetrics();
+  } catch (err: unknown) {
+    graphChannelMetrics = {
+      totalQueries: 0,
+      graphHits: 0,
+      graphResultCount: 0,
+      graphOnlyResults: 0,
+      graphMultiSourceResults: 0,
+      multiSourceResults: 0,
+      degreeQueries: 0,
+      degreeHits: 0,
+      degreeResultCount: 0,
+      graphHitRate: 0,
+      degreeHitRate: 0,
+    };
+    const errClass = err instanceof Error ? err.constructor.name : typeof err;
+    const errMsg = err instanceof Error ? err.message : String(err);
+    const hint = `Graph channel metrics unavailable (${errClass}: ${errMsg})`.slice(0, 160);
     hints.push(hint);
   }
   return createMCPSuccessResponse({
@@ -1289,7 +1313,23 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       embeddingRetry,
       routing: {
         graphChannelInvocationRate: routingTelemetry.graphChannelInvocationRate,
+        channelInvocationCounts: routingTelemetry.channelInvocationCounts,
         channelInvocationRates: routingTelemetry.channelInvocationRates,
+        graphContributionCounters: {
+          totalQueries: graphChannelMetrics.totalQueries,
+          graphHits: graphChannelMetrics.graphHits,
+          graphResultCount: graphChannelMetrics.graphResultCount,
+          graphOnlyResults: graphChannelMetrics.graphOnlyResults,
+          graphMultiSourceResults: graphChannelMetrics.graphMultiSourceResults,
+          multiSourceResults: graphChannelMetrics.multiSourceResults,
+          graphHitRate: graphChannelMetrics.graphHitRate,
+        },
+        degreeContributionCounters: {
+          degreeQueries: graphChannelMetrics.degreeQueries,
+          degreeHits: graphChannelMetrics.degreeHits,
+          degreeResultCount: graphChannelMetrics.degreeResultCount,
+          degreeHitRate: graphChannelMetrics.degreeHitRate,
+        },
         totalRecorded: routingTelemetry.totalRecorded,
         windowSize: routingTelemetry.windowSize,
       },
