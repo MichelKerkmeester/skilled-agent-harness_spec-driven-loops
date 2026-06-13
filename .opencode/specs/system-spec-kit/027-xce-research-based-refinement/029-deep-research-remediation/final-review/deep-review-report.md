@@ -1,6 +1,6 @@
 # 029 Program — 15-Seat Multi-Model Deep Review
 
-**Verdict: CONDITIONAL PASS.** No P0. The security and concurrency floors are independently confirmed solid; the destructive apply-pipeline core, the single-writer DB lock, the secret scrubber's fail-closed contract, and the tri-029 prune blast-radius are all sound. The review surfaced **18 P1 + 33 P2** — overwhelmingly honesty/completeness edges and incomplete corners of the verify-first fixes, not core defects. One P1 (a narrow secret-leak in the scrubber regex) has real production impact and is the only must-fix-now item; the rest are flag-gated, doc-honesty, test-gap, or finish-the-edge work.
+**Verdict: PASS (round-2 remediation complete).** No P0. All 18 P1 and 33 P2 findings are now CLOSED — see the round-2 status and remediation sections below for the per-wave commit hashes. The verdict moved from CONDITIONAL PASS to PASS once every P1 and P2 was remediated and re-verified. The original review (preserved below for provenance) surfaced **18 P1 + 33 P2** — overwhelmingly honesty/completeness edges and incomplete corners of the verify-first fixes, not core defects. The security and concurrency floors were independently confirmed solid; the destructive apply-pipeline core, the single-writer DB lock, the secret scrubber's fail-closed contract, and the tri-029 prune blast-radius were all sound. One P1 (a narrow secret-leak in the scrubber regex) had real production impact and was the only must-fix-now item; the rest were flag-gated, doc-honesty, test-gap, or finish-the-edge work.
 
 Seats: 5× Opus 4.8 (claude2), 5× GPT-5.5 high, 3× DeepSeek v4 Pro (max thinking), 2× MiMo v2.5 Pro (high) — all read-only, orchestrator-reduced. Per-seat raw output: the run logs; consolidated registry below.
 
@@ -51,16 +51,33 @@ Seats: 5× Opus 4.8 (claude2), 5× GPT-5.5 high, 3× DeepSeek v4 Pro (max thinki
 - **Doc/threat-model:** fingerprint "non-reversible" overstated for low-entropy queries (64-bit truncated, no salt); confirm tool-schema omits the prune medium-tier requirement.
 - **Minor refinements:** tri-040 status still creates the DB via `getDb()` (use `getDbReadOnly()`); `SecretScrubberError` missing `Object.setPrototypeOf`; operator-rollback known-good snapshot can be re-restored by a second rollback; acknowledged lease-cleanup TOCTOU.
 
-## Round-2 status
-- **Wave A — CLOSED (code wave 13, `101bfc1d57`, gpt-5.5 xhigh verified twice).** The leak was broader than opus-2 scoped: the completeness pass found the variable-length `-`-bearing patterns (anthropic, slack, jwt) leak at their minimum length too. All five vulnerable patterns (AWS-secret, Google, anthropic, slack, jwt) now use a negative-lookahead boundary; the word-char-only patterns and the no-trailing-`\b` patterns are exhaustively confirmed unaffected. A2 (error-log sanitize) and the `SecretScrubberError` prototype shipped with it. 30 scrubber + 88 error tests green.
-- **tri-022 — CLOSED (code wave 12, `e8dbf7c65e`):** durable semantic-trigger shadow telemetry (held out of the review snapshot, committed after).
+## Round-2 status — ALL CLOSED
 
-## Round-2 remediation plan (remaining, priority order)
-1. ~~**Wave A — secret leak.**~~ DONE.
-2. **Wave B — finish-the-edge (clean, high-confidence):** B1–B8 complete the tri-038/172/189/033/169/161/029 fixes.
-3. **Wave C — advisor surface/interlock:** C1–C5.
-4. **Wave D — apply-pipeline honesty:** D1 (gate inversion), D2 (recovery status), D3 (tri-031 schema), + the pipeline-safety tests.
-5. **Wave E — idempotency flag-ON (careful, blocks safe enablement):** E1/E2 + handler-level tests.
-6. **Wave F — comment-hygiene sweep + battery semantics (F1).**
+Every round-2 wave and follow-on shipped on branch `028-mcp-to-cli-tool-transition`. Each code wave got a fresh gpt-5.5-fast xhigh read-only verification before commit (Fable 5 retired); command alignment ran via MiMo v2.5 Pro. All 18 P1 and 33 P2 findings from the 15-seat review are now closed.
 
-Each wave gets a fresh gpt-5.5 xhigh read-only verification before commit (Fable 5 retired). The held tri-022 (durable shadow telemetry) commits with Wave B.
+| Item | Status | Commit | Result |
+|------|--------|--------|--------|
+| tri-022 — durable shadow telemetry | CLOSED | `e8dbf7c65e` | Durable semantic-trigger shadow telemetry (held out of the review snapshot, committed after). |
+| Wave A — secret-scrubber leak (A1+A2) | CLOSED | `101bfc1d57` | Five vulnerable patterns now use a negative-lookahead boundary; the leak was broader than opus-2 scoped (variable-length `-`-bearing patterns leak at minimum length too). A2 error-log sanitize + `SecretScrubberError` prototype shipped with it. 30 scrubber + 88 error tests green. |
+| Wave B — finish-the-edge (B1–B8) | CLOSED | `16b9a291ea` | Launcher shadow-weights allowlist; missing/non-string `sanitizer_version` warning; review-report path resolution + `review_report` doc type; advisor phrase-boundary identifier-aware; sk-git `noisy_hits` null-safe; index-scope label discloses the named-skill allowlist; apply emits `requiredAction` on missing artifact. |
+| Wave C — advisor corruption interlock (C1–C5) | CLOSED | `0ff0bfef45` | Integrity probe via the writer's live resolver; cached integrity on recommend; descriptor+manifest threshold parity + parity test; bridge threads thresholds; `code_graph_status` `scopeMismatch` vs resolved policy + `resolvedScope`. |
+| Wave D — apply-pipeline honesty (D1–D3) | CLOSED | `d4e9b7d3de` | Prune confirm/opt-in refusal hoisted pre-snapshot; `rollback-failed` on failed recovery at both sites; repair-nodes honest triage, `scan` dropped. |
+| Wave E — idempotency flag-ON (E1+E2) | CLOSED | `553aa93145` | Replay gated on live-index `content_hash` (E1); semantic-only conflict payload (E2); dead `classifyRetryVsContent` removed. |
+| Wave F / F1 — gold-query battery honesty | CLOSED | `b22bf1e613` | Vestigial probe machinery removed, working symbol-presence enforcement kept, broken-query control test added. |
+| P2 comment-hygiene sweep | CLOSED | `f33369d54d`, `88afbeedd1` | ~104 ephemeral tracking labels stripped (code-graph 12 files + spec-kit 37 files) + honest fingerprint privacy note. |
+| P2 minors cluster | CLOSED | `2beaad69f9` | Prune-confirm doc, read-only `skill_graph_status`, config-defaults hygiene. |
+| Command-md header alignment | CLOSED | `d35a3f9b44` | Deep + speckit command-md headers aligned to sk-doc ALL-CAPS. |
+| Doc restructure | CLOSED | `082b2bec6f` | Before-vs-after restructured by subsystem + search-intelligence verdict + CLI explainer. |
+
+## Round-2 remediation plan — COMPLETE
+
+All waves below are done; see the table above for commit hashes and results.
+
+1. ~~**Wave A — secret leak.**~~ DONE (`101bfc1d57`).
+2. ~~**Wave B — finish-the-edge (B1–B8).**~~ DONE (`16b9a291ea`).
+3. ~~**Wave C — advisor surface/interlock (C1–C5).**~~ DONE (`0ff0bfef45`).
+4. ~~**Wave D — apply-pipeline honesty (D1–D3 + pipeline-safety tests).**~~ DONE (`d4e9b7d3de`).
+5. ~~**Wave E — idempotency flag-ON (E1/E2 + handler-level tests).**~~ DONE (`553aa93145`).
+6. ~~**Wave F — comment-hygiene sweep + battery semantics (F1).**~~ DONE (`b22bf1e613` battery; `f33369d54d` + `88afbeedd1` hygiene sweep).
+
+Follow-ons beyond the wave plan also landed: P2 minors (`2beaad69f9`), command-md header alignment (`d35a3f9b44`), and the before-vs-after doc restructure (`082b2bec6f`). The held tri-022 (durable shadow telemetry) committed ahead of Wave A at `e8dbf7c65e`.

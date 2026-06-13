@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep-Research Remediation Program [template:level_1/implementation-summary.md]"
-description: "Progressive summary of the 029 remediation program: L1 security (single-writer DB lock, fail-closed CLI scrubbing, fingerprint redaction, truthful catalog) and L8 adherence (probe-harness artifact resolved, --command protocol codified) are shipped and Fable-verified; L2–L9 remain."
+description: "Progressive summary of the 029 remediation program: L1 security (single-writer DB lock, fail-closed CLI scrubbing, fingerprint redaction, truthful catalog) and L8 adherence are shipped and Fable-verified, and the 15-seat deep-review round-2 remediation is complete (Waves A-F closed; all 18 P1 + 33 P2 addressed; verdict PASS); several L2/L5/L7 lane code queues remain."
 trigger_phrases:
   - "029 implementation summary"
   - "remediation program summary"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
-    last_updated_at: "2026-06-13T06:50:00Z"
-    last_updated_by: "claude-opus-orchestrator"
-    recent_action: "15-seat deep review done (0 P0); waves 12 tri-022 + 13 secret-leak shipped"
-    next_safe_action: "Round-2 Wave B finish-the-edge (B1-B8), then C/D/E/F per review report"
+    last_updated_at: "2026-06-13T09:00:00Z"
+    last_updated_by: "orchestrate-round2"
+    recent_action: "Round-2 remediation complete: Waves A-F + follow-ons closed (18 P1 + 33 P2)"
+    next_safe_action: "Commit working-tree doc updates; verdict is PASS, no remediation open"
     blockers: []
     key_files:
       - "L5-advisor-correctness/disposition.md"
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 029-deep-research-remediation |
-| **Completed** | In progress (L1 + L8 lanes complete 2026-06-12) |
+| **Completed** | In progress (L1 + L8 lanes complete 2026-06-12; 15-seat deep-review round-2 remediation complete 2026-06-13) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -66,6 +66,10 @@ Query fingerprints are hash-only (the old format persisted raw 8-char query pref
 ### Dashboard render-contract true solution (L8)
 
 A fresh investigation proved the celebrated 3/3 envelope "failure" was a measurement artifact: `opencode run "/memory:search …"` never invokes the command runtime, so the contract never reached the model. Dispatched correctly (`opencode run --command memory/search`), gpt-5.5 medium emits the exact envelope 3/3 — independently re-verified by the host with a fresh gauntlet plus a negative control. The dispatch rule is codified in the cli-opencode skill, a canonical probe script guards against regression, and ten routers lost a stale `{{args}}` placeholder that was being injected literally.
+
+### 15-seat deep-review round-2 remediation complete
+
+The 15-seat multi-model deep review (5 Opus 4.8, 5 GPT-5.5 high, 3 DeepSeek v4 Pro, 2 MiMo v2.5 Pro) surfaced 18 P1 and 33 P2 findings on top of confirmed-solid security, concurrency, and apply-pipeline floors. Round-2 remediation closed all of them across Waves A through F plus follow-ons, moving the verdict from CONDITIONAL PASS to PASS. Wave A fixed the one live-impacting item, a narrow secret-scrubber trailing-character leak across five key patterns, with error-log sanitize and a fixed `SecretScrubberError` prototype. Wave B finished eight edges left by earlier fixes, Wave C closed the advisor corruption interlock, Wave D made the apply-pipeline refusal and recovery paths honest, Wave E gated idempotent replay on the live-index content hash, and Wave F replaced the gold-query battery's vestigial machinery with real symbol-presence enforcement. Follow-ons stripped roughly 104 ephemeral tracking labels from code comments, closed P2 minors, aligned the deep and speckit command-md headers to the sk-doc ALL-CAPS convention, and restructured the before-vs-after report by subsystem. Each code wave was verified read-only with gpt-5.5-fast xhigh (Fable 5 retired); command alignment ran via MiMo v2.5 Pro. Per-wave commit hashes are recorded in `final-review/deep-review-report.md` and the packet changelog.
 
 ### Files Changed
 

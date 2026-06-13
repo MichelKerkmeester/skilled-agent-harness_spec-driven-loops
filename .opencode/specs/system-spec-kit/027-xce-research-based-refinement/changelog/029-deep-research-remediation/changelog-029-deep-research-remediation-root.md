@@ -12,6 +12,43 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
+## 2026-06-13
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation` (Level 1, Phase Parent)
+
+### Summary
+
+Round-2 remediation of the 15-seat multi-model deep review is complete. All 18 P1 and 33 P2 findings are closed across Waves A through F plus follow-ons, and the review verdict moved from CONDITIONAL PASS to PASS. Each code wave was implemented and verified with gpt-5.5-fast xhigh (Fable 5 retired), and command-md alignment ran via MiMo v2.5 Pro. The one live-impacting item, a narrow secret-scrubber leak, shipped first.
+
+### Round-2 Waves
+
+| Wave | Closed | Commit | Result |
+|------|--------|--------|--------|
+| tri-022 shadow telemetry | yes | `e8dbf7c65e` | Durable semantic-trigger shadow telemetry, held out of the review snapshot and committed after. |
+| A secret-scrubber leak | yes | `101bfc1d57` | Five vulnerable key patterns moved to a negative-lookahead boundary so trailing-character keys redact. Error-log sanitize and the `SecretScrubberError` prototype shipped with it. |
+| B finish-the-edge | yes | `16b9a291ea` | B1 through B8 completed the launcher allowlist, sanitizer-version warning, review-report path and doc type, identifier-aware advisor matching, sk-git null-safety, index-scope label, and apply required-action. |
+| C advisor corruption interlock | yes | `0ff0bfef45` | C1 through C5 fixed the integrity-probe resolver, recommend-path integrity check, descriptor-manifest threshold parity, bridge threading, and code-graph scope-mismatch detection. |
+| D apply-pipeline honesty | yes | `d4e9b7d3de` | D1 through D3 hoisted the prune refusal pre-snapshot, reported rollback-failed on failed recovery, and rewrote repair-nodes to honest triage. |
+| E idempotency flag-on | yes | `553aa93145` | E1 gated replay on the live-index content hash and E2 narrowed the conflict payload to fingerprint fields. The dead reconciler was removed. |
+| F1 gold-query battery | yes | `b22bf1e613` | Replaced vestigial probe machinery with working symbol-presence enforcement and a broken-query control test. |
+
+### Follow-Ons
+
+| Item | Closed | Commit | Result |
+|------|--------|--------|--------|
+| Comment-hygiene sweep | yes | `f33369d54d`, `88afbeedd1` | Stripped roughly 104 ephemeral tracking labels across 12 code-graph and 37 spec-kit files, plus an honest fingerprint privacy note. |
+| P2 minors | yes | `2beaad69f9` | Prune-confirm doc, read-only skill-graph status, and config-defaults hygiene. |
+| Command-md header alignment | yes | `d35a3f9b44` | Deep and speckit command-md headers aligned to the sk-doc ALL-CAPS convention. |
+| Doc restructure | yes | `082b2bec6f` | Before-vs-after restructured by subsystem with a search-intelligence verdict and a CLI explainer. |
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| Per-wave read-only verification | gpt-5.5-fast xhigh before each commit |
+| Scrubber and error suites after Wave A | PASS: 30 scrubber and 88 error tests |
+| Deep-review verdict | Moved CONDITIONAL PASS to PASS, all P0/P1/P2 closed |
+
 ## 2026-06-12
 
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation` (Level 1, Phase Parent)
