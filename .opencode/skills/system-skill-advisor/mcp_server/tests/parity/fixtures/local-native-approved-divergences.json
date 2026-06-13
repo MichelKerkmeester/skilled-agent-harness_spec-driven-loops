@@ -1,0 +1,675 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "rr-iter2-001",
+      "corpus": "labeled",
+      "promptHash": "sha256:75d29012d0e7a40eda94935ac40f993346df000afa9302326590a09a2dbafcfc",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-003",
+      "corpus": "labeled",
+      "promptHash": "sha256:405ad5b9adac63bb962cb529d8487718ae67ffa78359a596de06e1651f45673f",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-005",
+      "corpus": "labeled",
+      "promptHash": "sha256:cc947e1c460b25d76a4884caceac1efd2dccf8be65762a9f4749d0b5bf5a57c3",
+      "gold": "system-spec-kit",
+      "localTop": "deep-context",
+      "nativeTop": "deep-research",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-context, native=deep-research)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-008",
+      "corpus": "labeled",
+      "promptHash": "sha256:67bcbd4806900684d2f0e8dc3276f36bcaf6b5af71105b26edd7a15e507485be",
+      "gold": "sk-doc",
+      "localTop": "command-create-feature-catalog",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=command-create-feature-catalog, native=sk-doc)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-009",
+      "corpus": "labeled",
+      "promptHash": "sha256:ade3e22f93c9ec8825f5b03d05f70817ee71945745262c33398dcf65ea38b839",
+      "gold": "sk-code",
+      "localTop": "mcp-code-mode",
+      "nativeTop": "system-code-graph",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-code-mode, native=system-code-graph)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-010",
+      "corpus": "labeled",
+      "promptHash": "sha256:09e87fd434f63627c6bfb96db9bf29b394af465dec20ce07193e91d17c2801cf",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-017",
+      "corpus": "labeled",
+      "promptHash": "sha256:a6d58b2f7cbbb25db486e2eab4c1e33e8b31b380c5e5800693f8242cd9c89584",
+      "gold": "sk-code-review",
+      "localTop": "none",
+      "nativeTop": "sk-code-review",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code-review",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-019",
+      "corpus": "labeled",
+      "promptHash": "sha256:ac281a8292165cbe79b7ea1584415d660aab2b66d8f7ea211363f361d8eb13f0",
+      "gold": "none",
+      "localTop": "cli-codex",
+      "nativeTop": "none",
+      "reason": "baseline divergence captured 2026-06-13: native abstains at strict thresholds where local routes to cli-codex",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-025",
+      "corpus": "labeled",
+      "promptHash": "sha256:43de25b4b33d11bd03e6b36e3746b74b10bd684481affb9622d9ebba8633f2ee",
+      "gold": "sk-deep-research",
+      "localTop": "none",
+      "nativeTop": "deep-research",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-research",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-028",
+      "corpus": "labeled",
+      "promptHash": "sha256:f9690ab10a2661b33c183c9981d910a50aa40f5f675e9559f7c9fcf4379b05e5",
+      "gold": "sk-deep-research",
+      "localTop": "none",
+      "nativeTop": "deep-research",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-research",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-030",
+      "corpus": "labeled",
+      "promptHash": "sha256:2993a157cc6bda8dd0047ea3e087ce51d537a35f37fccb66bc72875889171077",
+      "gold": "system-spec-kit",
+      "localTop": "sk-git",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-git, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-031",
+      "corpus": "labeled",
+      "promptHash": "sha256:0bfbc1e727a6dcea4954d1947742f37fff1d736078533889144eac894a32ff5d",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-032",
+      "corpus": "labeled",
+      "promptHash": "sha256:ffdf67ac1f92b74a771a7a1c9e98f7b63056c271493a027cbce3aa5a5c1657f1",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-034",
+      "corpus": "labeled",
+      "promptHash": "sha256:bd885aa14cb0efe12135a0005a7a8fbd4cb452edcf3d299227f832eb9c51d58c",
+      "gold": "system-spec-kit",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "sk-prompt",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-prompt)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-039",
+      "corpus": "labeled",
+      "promptHash": "sha256:29bc5a2dd483d42d2a0cda2ed84edca66906cdc259c3c9834b1aaca924a04547",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-040",
+      "corpus": "labeled",
+      "promptHash": "sha256:040bfab6a71918dd8a60c0cf4b88c9f68b8b12c62039efd4997d1e0f8af929b1",
+      "gold": "none",
+      "localTop": "system-spec-kit",
+      "nativeTop": "none",
+      "reason": "baseline divergence captured 2026-06-13: native abstains at strict thresholds where local routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-046",
+      "corpus": "labeled",
+      "promptHash": "sha256:565345fe2413c2a915d1448a744fb0e662fc563bfa5bbf9d4035e9fa5117fd8a",
+      "gold": "sk-deep-review",
+      "localTop": "deep-review",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-review, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-058",
+      "corpus": "labeled",
+      "promptHash": "sha256:d1e22c80dc055fc966cc794da3aabdf0ecb31b0a6b594fb4928c9cc8f67def3c",
+      "gold": "sk-doc",
+      "localTop": "create:testing-playbook",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:testing-playbook, native=sk-doc)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-060",
+      "corpus": "labeled",
+      "promptHash": "sha256:a29b1d14f01431eaa8a62dadef5b8820b0b14c040bc875bf99230d11d319b13c",
+      "gold": "system-code-graph",
+      "localTop": "deep-research",
+      "nativeTop": "system-code-graph",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-research, native=system-code-graph)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-061",
+      "corpus": "labeled",
+      "promptHash": "sha256:813c84a24e9260c88c4f1b8f71af17c984b5eed9376b72983aef4d38c919c32c",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-062",
+      "corpus": "labeled",
+      "promptHash": "sha256:e353fb9c08cf2f6e81de879a065bc453561494bb106a1934fd3c5c6fc0c27037",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "deep-research",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-research",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-063",
+      "corpus": "labeled",
+      "promptHash": "sha256:7e020c16f4cb598b9880d8843c137c5913ddca148e69adbbd63b220fb09c0c55",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-064",
+      "corpus": "labeled",
+      "promptHash": "sha256:22d0fa600312e45254025ad120cd45a6e98b8f514bd0917993b0d9e0053f62ed",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-066",
+      "corpus": "labeled",
+      "promptHash": "sha256:16a1968df998a78a4d4afc58d179218b2c035de8bd1a6c033f5ef2c6fe46f8c9",
+      "gold": "sk-doc",
+      "localTop": "none",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-067",
+      "corpus": "labeled",
+      "promptHash": "sha256:8ae26e8fec7ed49f809b99b23602f8e9225bc22a0ae1abfe2b10fa3a7d1d0579",
+      "gold": "system-spec-kit",
+      "localTop": "sk-code",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-code, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-069",
+      "corpus": "labeled",
+      "promptHash": "sha256:194dfc374d0a19713238047e9c4970dd8d3e012b0055a222ef472e355b99d31f",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-070",
+      "corpus": "labeled",
+      "promptHash": "sha256:d6f003a119d87306020a4b1ac54baed0fc551262b4a5159181699d94b07b6259",
+      "gold": "sk-code",
+      "localTop": "command-spec-kit-resume",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=command-spec-kit-resume, native=sk-code)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-071",
+      "corpus": "labeled",
+      "promptHash": "sha256:5b42cb697cf98b9e824fb24ab71a0205dcedcf07d6fcc869679cd4f5471c74a7",
+      "gold": "sk-doc",
+      "localTop": "sk-prompt",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-073",
+      "corpus": "labeled",
+      "promptHash": "sha256:f5661778448d3c2dc0b85d93246da115ddcdc000000002628029a97f7104e4f8",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-074",
+      "corpus": "labeled",
+      "promptHash": "sha256:37033eb1afb130976e86764f9ece3a26cb5370d72f5a00d1dfa9a058d45ec57a",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-076",
+      "corpus": "labeled",
+      "promptHash": "sha256:433b2a8def53d97bc86523b18cd64dd722c3001fb57b7620b548884d4b1e26df",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-077",
+      "corpus": "labeled",
+      "promptHash": "sha256:dd89e56b361965ce3805fbfc78b920ab49a8a6e03ba4fc210c7ce82c9f4bfa47",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-078",
+      "corpus": "labeled",
+      "promptHash": "sha256:e08b4feb6fbf8ade72fdb40f2faf6e73f158f25ce0a0444ca9fb7b4b250715b2",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-079",
+      "corpus": "labeled",
+      "promptHash": "sha256:b55835b24e972d3fa15adcb5d8a8ec0d6fad0c43cb3b7aa0ebd9e607bab51260",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-080",
+      "corpus": "labeled",
+      "promptHash": "sha256:8266a2bd7cbf5adb07b28894c39dccd4787165025d8bd77a795e492bf54da294",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-081",
+      "corpus": "labeled",
+      "promptHash": "sha256:354772e20f3781f5a469a986682dd8bed05ffc6b7f037aa8eda0767c6853c964",
+      "gold": "system-spec-kit",
+      "localTop": "sk-prompt",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-082",
+      "corpus": "labeled",
+      "promptHash": "sha256:735a55ceabd8407ae67cf2d3bb621d38d2e5e2d63092fa2b3ee3791e7728800f",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-085",
+      "corpus": "labeled",
+      "promptHash": "sha256:bb8a1034dea33d544c65e8a79919b9ac6b153b79630e3aaa223b1f23ca3e6a36",
+      "gold": "system-spec-kit",
+      "localTop": "memory:save",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=memory:save, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-086",
+      "corpus": "labeled",
+      "promptHash": "sha256:e6e0d089510be17b92f0e532620e15a0a67da265dc721aed34dd06586d6d1e6d",
+      "gold": "none",
+      "localTop": "sk-prompt",
+      "nativeTop": "sk-code-review",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=sk-code-review)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-088",
+      "corpus": "labeled",
+      "promptHash": "sha256:2367ae212ecf277f12e7e40e991471d1e5eb838b88c9e58a42d5562467dd0037",
+      "gold": "sk-code-review",
+      "localTop": "none",
+      "nativeTop": "sk-code-review",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code-review",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-092",
+      "corpus": "labeled",
+      "promptHash": "sha256:dc230c27fb610442238bdbce3065bab2034495d47daa5f335f45aabc3e3dda2c",
+      "gold": "none",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-code)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-094",
+      "corpus": "labeled",
+      "promptHash": "sha256:96b4b1686aca76b0402baaa0c44d4e66c534dcca55a515689962a7f3cb18eff8",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-097",
+      "corpus": "labeled",
+      "promptHash": "sha256:0669d4430dca4d0911007ecc7149587d7c07e129e065bafce6dd350d58bdc9dc",
+      "gold": "none",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-099",
+      "corpus": "labeled",
+      "promptHash": "sha256:bce428e713650d8b3a47bf4ebd48806cf17c7cee1764558e31bccc9de045e7db",
+      "gold": "sk-deep-research",
+      "localTop": "sk-prompt",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-100",
+      "corpus": "labeled",
+      "promptHash": "sha256:3a853ab7f72c2d60716485de9640be97c216ac090ea39777719e3bb9157ebe25",
+      "gold": "sk-code-review",
+      "localTop": "sk-prompt",
+      "nativeTop": "sk-code-review",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=sk-code-review)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-110",
+      "corpus": "labeled",
+      "promptHash": "sha256:4aea2da081bd8447f7721f64dbcf61ed0e9b7c646acb17036ed0f1108b15f464",
+      "gold": "sk-deep-research",
+      "localTop": "none",
+      "nativeTop": "deep-research",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-research",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-115",
+      "corpus": "labeled",
+      "promptHash": "sha256:da0715b308395796735a7212767be77b9376f0a1bf3bff3522fd771be1338650",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-119",
+      "corpus": "labeled",
+      "promptHash": "sha256:b0e07ccfcfdf4e8737e8d31839aaf531f63930e40261240fcd8e325baac96aab",
+      "gold": "sk-deep-research",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-125",
+      "corpus": "labeled",
+      "promptHash": "sha256:cf4b224328d8c77499c0302598a6533fe072d4a7fe5eab95206e399e574855be",
+      "gold": "sk-deep-research",
+      "localTop": "none",
+      "nativeTop": "deep-review",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-review",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-128",
+      "corpus": "labeled",
+      "promptHash": "sha256:ec64d18b9a73bede3e46ef06c6e61447a685eac1b8819c8266d8abe9b43f8c58",
+      "gold": "system-spec-kit",
+      "localTop": "sk-code-review",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-code-review, native=sk-doc)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-129",
+      "corpus": "labeled",
+      "promptHash": "sha256:ace041eb8e66b8c152f930136917a194479452ce4610f6f28360e7b4197db7d9",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "deep-research",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-research",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-130",
+      "corpus": "labeled",
+      "promptHash": "sha256:e3498c3f9db52c87e103b3849099a967c04a0a024315abc307c78da9c48a1336",
+      "gold": "system-spec-kit",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-131",
+      "corpus": "labeled",
+      "promptHash": "sha256:21dc01e6e771eb2bfd090fcf360b9fe126847c58bc6483c961123662f3bb90f8",
+      "gold": "sk-code",
+      "localTop": "none",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-134",
+      "corpus": "labeled",
+      "promptHash": "sha256:8d71b9e06b68a990f1bca13f6059f2d7c85804bd2ef1a5c0bf1506b1ed92fba4",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-137",
+      "corpus": "labeled",
+      "promptHash": "sha256:d1da320b251bba4aa5991b8f74257213485fdbb9b304e398dc10d811835e8196",
+      "gold": "system-spec-kit",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "sk-code",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-code)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-139",
+      "corpus": "labeled",
+      "promptHash": "sha256:761a85a382272dd6b9be7a7dd5379bbe96e85ff54f9f6a79068578ae7dfa345c",
+      "gold": "sk-doc",
+      "localTop": "none",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-141",
+      "corpus": "labeled",
+      "promptHash": "sha256:25b24661dcba212b7241b8a32d2171b9b7c402161de1c6ca8af43a3617683572",
+      "gold": "system-spec-kit",
+      "localTop": "sk-prompt",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-147",
+      "corpus": "labeled",
+      "promptHash": "sha256:9bd34b2be5a2f78514534b7087437a8864ab03d2ffb24ac68b483d099b220ef1",
+      "gold": "system-spec-kit",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-160",
+      "corpus": "labeled",
+      "promptHash": "sha256:9c0ef30e791f6058c04f75e92dae3ff2dc4c029a5e84ee8f78873fbaf995021e",
+      "gold": "sk-deep-research",
+      "localTop": "none",
+      "nativeTop": "deep-research",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-research",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-163",
+      "corpus": "labeled",
+      "promptHash": "sha256:fdbff56355f1f78508a39aca210cc297428bbc93c7803c31d45b13a9310ee4f2",
+      "gold": "sk-deep-research",
+      "localTop": "memory:save",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=memory:save, native=system-spec-kit)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-170",
+      "corpus": "labeled",
+      "promptHash": "sha256:881587736ed278087a3dd786c181efc5a57dc6d7c094e849e3fedd696441fb17",
+      "gold": "sk-deep-research",
+      "localTop": "sk-code-review",
+      "nativeTop": "deep-review",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-code-review, native=deep-review)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-184",
+      "corpus": "labeled",
+      "promptHash": "sha256:56b9b933673d3fa1fe9eb42e1ca8222beff0b18909ef416f12d82ad042956f34",
+      "gold": "sk-doc",
+      "localTop": "create:testing-playbook",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:testing-playbook, native=sk-doc)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:c4b5aa8603df",
+      "corpus": "harder",
+      "promptHash": "sha256:c4b5aa8603dfb6944f76c69c237017597a153fda1e79b3a19e476a2dbe577395",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:0627b7a965f0",
+      "corpus": "harder",
+      "promptHash": "sha256:0627b7a965f0ce8fd1d8fc1f1a50d51567dab591010c9a67b7f84c53843becf6",
+      "gold": "system-spec-kit",
+      "localTop": "system-spec-kit",
+      "nativeTop": "memory:save",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=system-spec-kit, native=memory:save)",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:b299699c3964",
+      "corpus": "harder",
+      "promptHash": "sha256:b299699c39642edb88ea3895ad7799d0cb5c153987e4c4e3aa85630798f17906",
+      "gold": "sk-doc",
+      "localTop": "none",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:eb10a4b1b288",
+      "corpus": "harder",
+      "promptHash": "sha256:eb10a4b1b288817423b6525eba5e74b846d7b38d972992d359b1a04111a92eaf",
+      "gold": "mcp-chrome-devtools",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "none",
+      "reason": "baseline divergence captured 2026-06-13: native abstains at strict thresholds where local routes to mcp-chrome-devtools",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:4798f04a4216",
+      "corpus": "harder",
+      "promptHash": "sha256:4798f04a421656a90c29b49d7b311ceb8a335d940e9f353b66fbd3df32baf5e0",
+      "gold": "deep-ai-council",
+      "localTop": "none",
+      "nativeTop": "deep-ai-council",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to deep-ai-council",
+      "approvedAt": "2026-06-13"
+    }
+  ]
+}
