@@ -403,7 +403,7 @@ const memoryStats: ToolDefinition = {
 
 const memoryHealth: ToolDefinition = {
   name: 'memory_health',
-  description: '[L3:Discovery] Check health status of the indexed-continuity store. Token Budget: 1000.',
+  description: '[L3:Discovery] Check health status of the indexed-continuity store. Token Budget: 1500.',
   inputSchema: {
     type: 'object',
     additionalProperties: false,

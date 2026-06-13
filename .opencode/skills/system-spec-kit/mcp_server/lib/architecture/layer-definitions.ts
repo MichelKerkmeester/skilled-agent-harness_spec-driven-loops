@@ -185,9 +185,25 @@ export function getLayerTokenBudget(toolName: string): number {
 }
 
 /**
+ * Per-tool token-budget overrides.
+ *
+ * memory_health emits a full system-diagnostic report (index, consistency,
+ * routing telemetry, exclusion audit) that is structurally larger than the
+ * browse output its layer budget is sized for: it sits in the browse layer by
+ * grouping, but its payload belongs to the analysis tier.
+ */
+const TOOL_BUDGET_OVERRIDES: Record<string, number> = {
+  memory_health: 1500,
+};
+
+/**
  * Get the token budget for a tool.
+ *
+ * A per-tool override wins over the tool's layer budget when present.
  */
 export function getTokenBudget(toolName: string): number {
+  const override = TOOL_BUDGET_OVERRIDES[toolName];
+  if (typeof override === 'number') return override;
   return getLayerTokenBudget(toolName);
 }
 

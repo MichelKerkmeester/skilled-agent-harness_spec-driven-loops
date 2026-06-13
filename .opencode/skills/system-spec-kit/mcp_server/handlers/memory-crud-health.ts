@@ -900,6 +900,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
   const maintenance = getMaintenanceObservabilitySnapshot();
   const exclusionAudit = auditHardExclusions(database);
+  // Per-predicate entries are a near-static enumeration; the actionable signal
+  // lives in diagnostics (also surfaced as hints). Keep entries in the opt-in
+  // full report only, so the default health payload stays within its budget.
+  const exclusionAuditOut = includeFullReport
+    ? exclusionAudit
+    : { status: exclusionAudit.status, policyVersion: exclusionAudit.policyVersion, diagnostics: exclusionAudit.diagnostics };
 
   if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
     const hints: string[] = [];
@@ -931,7 +937,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         index: indexHealth,
         recallDegradation: vectorDegradation,
         maintenance,
-        exclusionAudit,
+        exclusionAudit: exclusionAuditOut,
         embeddingRetry,
         specFolder: specFolder ?? null,
         limit: safeLimit,
@@ -1095,7 +1101,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         index: indexHealth,
         recallDegradation: vectorDegradation,
         maintenance,
-        exclusionAudit,
+        exclusionAudit: exclusionAuditOut,
         embeddingRetry,
         ...(fullMemoryReport ?? {}),
       },
@@ -1295,7 +1301,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       process: processHealth,
       index: indexHealth,
       maintenance,
-      exclusionAudit,
+      exclusionAudit: exclusionAuditOut,
       version: SERVER_VERSION,
       reportMode: 'full',
       aliasConflicts,
