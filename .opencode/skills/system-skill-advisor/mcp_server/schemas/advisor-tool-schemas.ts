@@ -285,6 +285,13 @@ export const AdvisorValidateInputSchema = z.object({
   // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema.optional(),
   skillSlug: z.string().min(1).nullable().optional(),
+  // Outcome events carry only skill ids + the accept/correct/ignore signal —
+  // never the prompt, scenario, or expected skill. This omission is deliberate
+  // prompt-safety: telemetry must not store routable prompt content. The
+  // consequence is that real misroutes cannot be harvested from telemetry into
+  // gold regression cases; gold cases are authored by hand, not reconstructed.
+  // Capturing prompts to close that gap would violate the prompt-safety
+  // invariant and is intentionally not supported.
   outcomeEvents: z.array(z.object({
     runtime: z.enum(['claude', 'copilot', 'codex']),
     outcome: z.enum(['accepted', 'corrected', 'ignored']),

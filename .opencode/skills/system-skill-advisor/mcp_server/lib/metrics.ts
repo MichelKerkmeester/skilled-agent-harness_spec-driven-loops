@@ -386,6 +386,11 @@ export function advisorHookDiagnosticsPath(workspaceRoot: string): string {
   return durableMetricsPath(workspaceRoot, 'diagnostics');
 }
 
+// Persists only sanitized skill labels + the accept/correct/ignore signal,
+// never the prompt or scenario — deliberate prompt-safety. Real misroutes
+// therefore cannot be reconstructed into gold cases from this telemetry; that
+// is an accepted capability tradeoff, not an omission to fix by capturing
+// prompts (which would breach the prompt-safety invariant).
 export function createAdvisorHookOutcomeRecord(input: {
   readonly runtime: AdvisorRuntime;
   readonly outcome: AdvisorOutcome;

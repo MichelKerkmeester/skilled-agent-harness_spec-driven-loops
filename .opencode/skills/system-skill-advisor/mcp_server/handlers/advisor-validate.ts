@@ -419,6 +419,13 @@ function countSlice(correct: number, total: number, threshold: number): {
   };
 }
 
+// Single synthetic two-skill STABILITY check: a known dead-tie must still
+// surface as ambiguous. This is NOT an empirical ambiguity false-positive /
+// false-negative rate — the labeled routing corpus carries no expected-ambiguous
+// advisor labels (only top-1 / unknown / false-fire), so an FP/FN slice cannot
+// be computed without a hand-labeled ambiguity set the corpus does not yet have.
+// The surfaced `ambiguity_slice_stable` metric reflects this fixture's stability
+// only; do not read it as ambiguity-rate coverage.
 function ambiguityStable(): boolean {
   const projection = createFixtureProjection([
     skill({ id: 'alpha', intentSignals: ['same route'] }),
