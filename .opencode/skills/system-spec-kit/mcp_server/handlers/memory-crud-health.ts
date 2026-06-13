@@ -119,7 +119,9 @@ const DEFAULT_DIVERGENT_ALIAS_LIMIT = 20;
 const MAX_DIVERGENT_ALIAS_LIMIT = 200;
 const DOT_OPENCODE_SPECS_SEGMENT = '/.opencode/specs/';
 const SPECS_SEGMENT = '/specs/';
+const DAY_MS = 24 * 60 * 60 * 1000;
 const INDEX_HEALTH_STALENESS_MS = 24 * 60 * 60 * 1000;
+const CHECKPOINT_FRESHNESS_STALENESS_MS = 7 * DAY_MS;
 const INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT = 200;
 const INDEX_SCAN_LEASE_EXPIRY_MS = INDEX_SCAN_COOLDOWN * 2;
 
@@ -147,6 +149,11 @@ interface AliasConflictDbRow {
   file_path: string;
   content_hash: string | null;
   spec_folder?: string | null;
+}
+
+interface CheckpointFreshnessRow {
+  count?: number;
+  newestCreatedAt?: string | null;
 }
 
 interface DivergentAliasVariant {
@@ -602,6 +609,36 @@ function hasActiveEmbedderJob(database: Database.Database): boolean {
     return (row?.count ?? 0) > 0;
   } catch (_error: unknown) {
     return false;
+  }
+}
+
+function addCheckpointFreshnessHint(database: Database.Database, hints: string[], now: number): void {
+  try {
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count, MAX(created_at) AS newestCreatedAt
+      FROM checkpoints
+    `).get() as CheckpointFreshnessRow | undefined;
+    const checkpointCount = row?.count ?? 0;
+    const newestCreatedAt = row?.newestCreatedAt ?? null;
+
+    if (checkpointCount === 0 || !newestCreatedAt) {
+      hints.push('No checkpoints found; create a checkpoint to keep a recent restore point available.');
+      return;
+    }
+
+    const newestCheckpointMs = Date.parse(newestCreatedAt);
+    if (!Number.isFinite(newestCheckpointMs)) {
+      hints.push('Checkpoint freshness unknown: newest checkpoint timestamp could not be parsed.');
+      return;
+    }
+
+    const checkpointAgeMs = Math.max(0, now - newestCheckpointMs);
+    if (checkpointAgeMs > CHECKPOINT_FRESHNESS_STALENESS_MS) {
+      const checkpointAgeDays = Math.floor(checkpointAgeMs / DAY_MS);
+      hints.push(`Newest checkpoint is ${checkpointAgeDays} day(s) old; create a fresh checkpoint to keep a recent restore point available.`);
+    }
+  } catch (error: unknown) {
+    hints.push(`Checkpoint freshness check failed: ${sanitizeErrorForHint(toErrorMessage(error))}`);
   }
 }
 
@@ -1070,6 +1107,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 
   if (!database) {
     hints.push('Database runtime has not initialized yet; the first memory-owning tool call will initialize it.');
+  }
+  if (database) {
+    addCheckpointFreshnessHint(database, hints, startTime);
   }
   if (!vectorIndex.isVectorSearchAvailable()) {
     hints.push('Vector search unavailable - fallback to BM25');

@@ -38,6 +38,7 @@ export type ItemProcessor<T, R> = (item: T) => Promise<R>;
 import { BATCH_SIZE, BATCH_DELAY_MS } from '../core/config.js';
 export { BATCH_SIZE, BATCH_DELAY_MS };
 export const MAX_BATCH_SIZE = 100;
+const COOPERATIVE_YIELD_EVERY = 50;
 
 /** Default retry configuration */
 export const DEFAULT_RETRY_OPTIONS: Readonly<RetryDefaults> = {
@@ -50,6 +51,10 @@ function normalizeRetryValue(value: number | undefined, fallback: number): numbe
     return fallback;
   }
   return Math.floor(value);
+}
+
+function cooperativeYield(): Promise<void> {
+  return new Promise<void>(resolve => setImmediate(resolve));
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -134,6 +139,7 @@ export async function processBatches<T, R>(
   const results: Array<R | RetryErrorResult> = [];
   const totalBatches = Math.ceil(items.length / effectiveBatchSize);
   let currentBatch = 0;
+  let processedSinceYield = 0;
 
   for (let i = 0; i < items.length; i += effectiveBatchSize) {
     currentBatch++;
@@ -141,9 +147,20 @@ export async function processBatches<T, R>(
 
     const batch = items.slice(i, i + effectiveBatchSize);
     const batchResults = await Promise.all(
-      batch.map(item => processWithRetry(item, processor, retryOptions))
+      batch.map(async (item, index) => {
+        if (index > 0 && index % COOPERATIVE_YIELD_EVERY === 0) {
+          await cooperativeYield();
+        }
+        return processWithRetry(item, processor, retryOptions);
+      })
     );
     results.push(...batchResults);
+    processedSinceYield += batchResults.length;
+
+    if (processedSinceYield >= COOPERATIVE_YIELD_EVERY) {
+      await cooperativeYield();
+      processedSinceYield %= COOPERATIVE_YIELD_EVERY;
+    }
 
     // Small delay between batches to prevent resource exhaustion
     if (i + effectiveBatchSize < items.length && delayMs > 0) {
