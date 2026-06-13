@@ -118,6 +118,21 @@ describe('Privacy: synthetic replay corpus stores no raw query text', () => {
     expect(() => assertCorpusPrivacy(corpus)).toThrow(/forbidden raw-text field present/);
   });
 
+  it('privacy guard rejects a non-canonical classKey (smuggled text)', () => {
+    const corpus = {
+      classes: [{
+        classKey: 'class:fix_bug:raw user text leaked here',
+        intent: 'fix_bug',
+        resultCountClass: 'low',
+        syntheticQuery: INTENT_REPLAY_SEEDS.fix_bug[0],
+        weight: 1,
+      }],
+      intentClasses: new Map(),
+      corpusAbsent: false,
+    } as unknown as SyntheticReplayCorpus;
+    expect(() => assertCorpusPrivacy(corpus)).toThrow(/canonical class/);
+  });
+
   it('corpus is representative: one class per observed (intent,rc) bucket, weighted by frequency', () => {
     const db = new Database(':memory:');
     initConsumptionLog(db);

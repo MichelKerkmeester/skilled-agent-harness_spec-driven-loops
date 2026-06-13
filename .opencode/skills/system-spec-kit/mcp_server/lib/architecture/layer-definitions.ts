@@ -112,7 +112,7 @@ export const LAYER_DEFINITIONS: Record<LayerId, LayerDefinition> = {
     tokenBudget: 1000,
     priority: 7,
     useCase: 'Re-index memories, view learning history, perform bulk operations.',
-    tools: ['memory_index_scan', 'memory_get_learning_history', 'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel', 'embedder_list', 'embedder_set', 'embedder_status', 'code_graph_scan', 'code_graph_status', 'code_graph_verify', 'skill_graph_scan', 'skill_graph_status', 'skill_graph_validate']
+    tools: ['memory_index_scan', 'memory_index_scan_status', 'memory_index_scan_cancel', 'memory_get_learning_history', 'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel', 'embedder_list', 'embedder_set', 'embedder_status', 'code_graph_scan', 'code_graph_status', 'code_graph_verify', 'skill_graph_scan', 'skill_graph_status', 'skill_graph_validate']
   }
 } as const;
 

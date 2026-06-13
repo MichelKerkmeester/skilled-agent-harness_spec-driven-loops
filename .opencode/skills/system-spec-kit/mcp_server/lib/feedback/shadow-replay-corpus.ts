@@ -117,6 +117,9 @@ export function assertCorpusPrivacy(corpus: SyntheticReplayCorpus): void {
     const pool = INTENT_REPLAY_SEEDS[c.intent];
     if (!pool.includes(c.syntheticQuery)) throw new Error('corpus privacy: synthetic query not a static seed phrase');
     if (/[0-9a-f]{16}/i.test(c.classKey)) throw new Error('corpus privacy: class key carries a fingerprint');
+    // The class key is purely a function of the already-validated closed-vocab signals,
+    // so anything other than the canonical shape means smuggled text reached it.
+    if (c.classKey !== `class:${c.intent}:${c.resultCountClass}`) throw new Error('corpus privacy: class key not in canonical class:<intent>:<bucket> form');
     // Own-key allowlist, fail-closed: any field beyond the closed class shape (a raw
     // query_text, queryText, rawQuery, or query_hash leak from a future regression) throws.
     for (const key of Object.keys(c as object)) {

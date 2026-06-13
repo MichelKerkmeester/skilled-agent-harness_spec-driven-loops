@@ -1422,16 +1422,19 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
           onPhase: (phase) => { void setJobPhase(jobId, phase).catch(() => {}); },
           onProgress: (progress) => { void setJobProgress(jobId, progress).catch(() => {}); },
         });
-        if (!isCancelRequested(jobId) && response.isError === true) {
+        const scanData = extractEnvelopeData(response);
+        const wasCancelled = !!(scanData && typeof scanData === 'object'
+          && (scanData as { cancelled?: unknown }).cancelled === true);
+        if (wasCancelled) {
+          // The run itself short-circuited on cancellation. A cancel that arrives
+          // after the scan already finished does not retroactively cancel it.
+          await completeJob(jobId, { state: 'cancelled', result: scanData });
+        } else if (response.isError === true) {
           // An error envelope (not a thrown error) still means the scan failed.
-          await appendJobError(jobId, '__scan__', extractEnvelopeData(response));
+          await appendJobError(jobId, '__scan__', scanData);
           await setJobState(jobId, 'failed');
         } else {
-          await completeJob(jobId, {
-            // A cancel observed mid-run lands the job in 'cancelled', not 'complete'.
-            state: isCancelRequested(jobId) ? 'cancelled' : 'complete',
-            result: extractEnvelopeData(response),
-          });
+          await completeJob(jobId, { state: 'complete', result: scanData });
         }
       } catch (error: unknown) {
         try {
