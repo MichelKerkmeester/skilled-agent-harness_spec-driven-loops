@@ -59,7 +59,9 @@ export async function handleSkillGraphStatus(): Promise<HandlerResponse> {
     // Report on-disk corruption read-only instead of letting getDb()'s
     // initDb recovery quarantine the database as a side effect of a status
     // request. Status is diagnostic: it names the problem and the repair
-    // action, leaving the destructive rebuild to advisor_rebuild.
+    // action, leaving the destructive rebuild to advisor_rebuild. The counts
+    // below read through getDbReadOnly() for the same reason — a status call
+    // must never create, migrate, or recover the database.
     const integrity = skillGraphDb.probeStatusIntegrity();
     if (integrity && !integrity.ok
       && integrity.reason !== 'SQLITE_ABSENT'
@@ -74,7 +76,17 @@ export async function handleSkillGraphStatus(): Promise<HandlerResponse> {
         message: 'Skill graph database failed an integrity check; run advisor_rebuild to repair it.',
       });
     }
-    const db = skillGraphDb.getDb();
+    const db = skillGraphDb.getDbReadOnly();
+    if (!db) {
+      return okResponse({
+        dbStatus: 'absent',
+        degraded: true,
+        requiredAction: 'advisor_rebuild',
+        totalSkills: 0,
+        totalEdges: 0,
+        message: 'Skill graph database is not present; run advisor_rebuild to build it.',
+      });
+    }
     const totalSkills = getCount(
       db.prepare('SELECT COUNT(*) AS count FROM skill_nodes').get() as CountRow | undefined,
     );
