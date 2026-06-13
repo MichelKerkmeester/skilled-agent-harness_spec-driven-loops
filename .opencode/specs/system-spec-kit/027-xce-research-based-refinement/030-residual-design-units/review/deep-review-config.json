@@ -1,0 +1,94 @@
+{
+  "topic": "Review: 030 residual design units shipped code",
+  "sessionId": "2026-06-13T16:49:52Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 13,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/030-residual-design-units",
+  "createdAt": "2026-06-13T16:49:52Z",
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 1200
+  },
+  "mode": "review",
+  "reviewTarget": "030 residual design units — this session's shipped + fixed code (tri-138, tri-109, Unit B)",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewScopeFiles": [
+    "lib/ops/job-store.ts",
+    "lib/ops/sqlite-busy-retry.ts",
+    "handlers/memory-index-scan-jobs.ts",
+    "handlers/memory-index.ts",
+    "lib/feedback/shadow-replay-corpus.ts",
+    "lib/feedback/replay-seed-vocab.ts",
+    "lib/feedback/shadow-evaluation-runtime.ts",
+    "lib/architecture/layer-definitions.ts",
+    "handlers/memory-crud-health.ts",
+    "tests/job-store.vitest.ts",
+    "tests/handler-memory-index-scan-jobs.vitest.ts",
+    "tests/shadow-replay-corpus-privacy.vitest.ts"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}
