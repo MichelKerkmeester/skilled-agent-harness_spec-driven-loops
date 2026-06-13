@@ -1515,7 +1515,7 @@ export function get_memory_preview(memory_id: number, max_lines = 50): { id: num
 export function verify_integrity(
   options: { autoClean?: boolean; cleanFiles?: boolean } = {},
   database: Database.Database = initialize_db(),
-): { totalMemories: number; totalVectors: number; orphanedVectors: number; missingVectors: number; orphanedFiles: Array<{ id: number; file_path: string; reason: string }>; orphanedChunks: number; isConsistent: boolean; cleaned?: { vectors: number; chunks: number; files: number } } {
+): { totalMemories: number; totalVectors: number; orphanedVectors: number; missingVectors: number; orphanedFiles: Array<{ id: number; file_path: string; reason: string }>; orphanedChunks: number; isConsistent: boolean; vectorSurfaceDivergence?: { activeSurface: string; activeCount: number; vecMemoriesCount: number; divergence: number }; cleaned?: { vectors: number; chunks: number; files: number } } {
   const { autoClean = false, cleanFiles = false } = options;
   const sqlite_vec = get_sqlite_vec_available();
 
@@ -1576,6 +1576,26 @@ export function verify_integrity(
   const total_vectors = sourceQueryable
     ? (database.prepare(`SELECT COUNT(*) as count FROM ${source.tableName}`).get() as { count: number }).count
     : 0;
+
+  // Cross-surface divergence health: when a dimension-tagged table is the active
+  // query surface, vec_memories (the vec0 index) is a parallel surface that
+  // should track it row-for-row. A persistent divergence signals dual-write or
+  // coverage drift between the two surfaces; it is reported for deliberate
+  // operator reconcile rather than auto-resolved here.
+  let vector_surface_divergence: { activeSurface: string; activeCount: number; vecMemoriesCount: number; divergence: number } | undefined;
+  if (sqlite_vec && source.tableName !== activeVectorSchema('vec_memories') && tableExists(database, 'vec_memories')) {
+    try {
+      const vec_memories_count = (database.prepare(`SELECT COUNT(*) as count FROM ${activeVectorSchema('vec_memories')}`).get() as { count: number }).count;
+      vector_surface_divergence = {
+        activeSurface: source.tableName,
+        activeCount: total_vectors,
+        vecMemoriesCount: vec_memories_count,
+        divergence: total_vectors - vec_memories_count,
+      };
+    } catch (e: unknown) {
+      console.warn('[vector-index] Could not compute vector surface divergence:', get_error_message(e));
+    }
+  }
 
   const check_orphaned_files = () => {
     const memories = database.prepare('SELECT id, file_path FROM memory_index').all() as Array<{ id: number; file_path?: string | null }>;
@@ -1682,6 +1702,7 @@ export function verify_integrity(
     orphanedFiles: orphaned_files,
     orphanedChunks: effective_orphaned_chunks,
     isConsistent: (orphaned_vectors - cleaned_vectors) === 0 && missing_vectors === 0 && orphaned_files.length === 0 && effective_orphaned_chunks === 0,
+    ...(vector_surface_divergence ? { vectorSurfaceDivergence: vector_surface_divergence } : {}),
     cleaned: (autoClean && (cleaned_vectors > 0 || cleaned_chunks > 0 || cleaned_files > 0))
       ? { vectors: cleaned_vectors, chunks: cleaned_chunks, files: cleaned_files }
       : undefined

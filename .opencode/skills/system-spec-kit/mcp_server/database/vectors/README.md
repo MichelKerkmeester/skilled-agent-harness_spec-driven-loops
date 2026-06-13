@@ -113,6 +113,8 @@ Every shard contains these storage and query surfaces, created lazily on first a
 
 The dim-tagged table name is derived from the profile's `dim` by `vector_table_name_for_profile` in `dist/lib/search/vector-index-store.js`. Queries read through the `active_vec` schema alias, so handler code refers to `active_vec.vec_768` rather than the physical shard filename.
 
+**Dual surfaces and divergence.** `vec_<dim>` (BLOB payload) and `vec_memories` (sqlite-vec `vec0` index) are dual-written and should track each other row-for-row. A persistent row-count divergence signals dual-write or coverage drift; `verify_integrity` / `memory_health` report it as `vectorSurfaceDivergence` (active-surface count, `vec_memories` count, and the difference) so an operator can act on it. Reconciliation is an operator-triggered maintenance step — resolve via `memory_embedding_reconcile` after taking a backup — not an automatic mutation on the read path.
+
 ---
 
 ## 6. BOUNDARIES AND FLOW
