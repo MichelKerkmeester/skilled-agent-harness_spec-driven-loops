@@ -498,7 +498,16 @@ const memoryIndexScanSchema = getSchema({
   includeConstitutional: z.boolean().optional(),
   includeSpecDocs: z.boolean().optional(),
   incremental: z.boolean().optional(),
+  background: z.boolean().optional(),
   ...governanceSchemaFields,
+});
+
+const memoryIndexScanStatusSchema = getSchema({
+  jobId: z.string().min(1),
+});
+
+const memoryIndexScanCancelSchema = getSchema({
+  jobId: z.string().min(1),
 });
 
 const memoryGetLearningHistorySchema = getSchema({
@@ -584,6 +593,8 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   eval_run_ablation: evalRunAblationSchema as unknown as ToolInputSchema,
   eval_reporting_dashboard: evalReportingDashboardSchema as unknown as ToolInputSchema,
   memory_index_scan: memoryIndexScanSchema as unknown as ToolInputSchema,
+  memory_index_scan_status: memoryIndexScanStatusSchema as unknown as ToolInputSchema,
+  memory_index_scan_cancel: memoryIndexScanCancelSchema as unknown as ToolInputSchema,
   memory_get_learning_history: memoryGetLearningHistorySchema as unknown as ToolInputSchema,
   memory_ingest_start: memoryIngestStartSchema as unknown as ToolInputSchema,
   memory_ingest_status: memoryIngestStatusSchema as unknown as ToolInputSchema,
@@ -633,7 +644,9 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_causal_unlink: ['edgeId'],
   eval_run_ablation: ['mode', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
   eval_reporting_dashboard: ['sprintFilter', 'channelFilter', 'metricFilter', 'limit', 'format'],
-  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental', 'background', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+  memory_index_scan_status: ['jobId'],
+  memory_index_scan_cancel: ['jobId'],
   memory_get_learning_history: ['specFolder', 'sessionId', 'limit', 'onlyComplete', 'includeSummary'],
   memory_ingest_start: ['paths', 'specFolder', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_ingest_status: ['jobId'],

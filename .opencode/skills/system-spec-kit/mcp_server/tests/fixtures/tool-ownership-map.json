@@ -143,6 +143,20 @@
       "category": "Maintenance"
     },
     {
+      "name": "memory_index_scan_cancel",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
+      "name": "memory_index_scan_status",
+      "owner": "memory-maintenance",
+      "stability": "stable",
+      "level": "L7",
+      "category": "Maintenance"
+    },
+    {
       "name": "memory_ingest_cancel",
       "owner": "memory-maintenance",
       "stability": "stable",

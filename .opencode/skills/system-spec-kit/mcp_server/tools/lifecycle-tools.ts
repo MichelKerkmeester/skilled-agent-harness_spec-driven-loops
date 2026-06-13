@@ -5,6 +5,8 @@
 // Postflight, learning_history.
 import {
   handleMemoryIndexScan,
+  handleMemoryIndexScanStatus,
+  handleMemoryIndexScanCancel,
   handleMemoryIngestStart,
   handleMemoryIngestStatus,
   handleMemoryIngestCancel,
@@ -31,6 +33,8 @@ import type {
   IngestStartArgs,
   IngestStatusArgs,
   IngestCancelArgs,
+  IndexScanStatusArgs,
+  IndexScanCancelArgs,
   SessionResumeArgs,
   SessionBootstrapArgs,
 } from './types.js';
@@ -38,6 +42,8 @@ import type {
 /** Tool names handled by this module */
 export const TOOL_NAMES = new Set([
   'memory_index_scan',
+  'memory_index_scan_status',
+  'memory_index_scan_cancel',
   'task_preflight',
   'task_postflight',
   'memory_get_learning_history',
@@ -55,6 +61,8 @@ export const TOOL_NAMES = new Set([
 export async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
   switch (name) {
     case 'memory_index_scan':          return handleMemoryIndexScan(parseArgs<ScanArgs>(validateToolArgs('memory_index_scan', args)));
+    case 'memory_index_scan_status':   return handleMemoryIndexScanStatus(parseArgs<IndexScanStatusArgs>(validateToolArgs('memory_index_scan_status', args)));
+    case 'memory_index_scan_cancel':   return handleMemoryIndexScanCancel(parseArgs<IndexScanCancelArgs>(validateToolArgs('memory_index_scan_cancel', args)));
     case 'task_preflight':             return handleTaskPreflight(parseArgs<PreflightArgs>(validateToolArgs('task_preflight', args)));
     case 'task_postflight':            return handleTaskPostflight(parseArgs<PostflightArgs>(validateToolArgs('task_postflight', args)));
     case 'memory_get_learning_history': return handleGetLearningHistory(parseArgs<LearningHistoryArgs>(validateToolArgs('memory_get_learning_history', args)));

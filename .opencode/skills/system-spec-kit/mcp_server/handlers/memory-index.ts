@@ -58,6 +58,16 @@ import {
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { requiresGovernedIngest, validateGovernedIngest } from '../lib/governance/scope-governance.js';
 import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
+import {
+  createJobId,
+  createMaintenanceJob,
+  setJobState,
+  setJobPhase,
+  setJobProgress,
+  appendJobError,
+  completeJob,
+  isCancelRequested,
+} from '../lib/ops/job-store.js';
 
 // Shared handler types
 import type { MCPResponse, EmbeddingProfile } from './types.js';
@@ -280,6 +290,8 @@ interface ScanArgs {
   includeConstitutional?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
+  // Opt-in: run the scan as a background job and return a jobId immediately.
+  background?: boolean;
   tenantId?: string;
   userId?: string;
   agentId?: string;
@@ -325,8 +337,49 @@ async function indexSingleFile(
    6. MEMORY INDEX SCAN HANDLER
 ──────────────────────────────────────────────────────────────── */
 
-/** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
-async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
+// Hooks let a background runner observe cancellation and report phase/progress.
+// On the synchronous path every hook is undefined, so behavior is identical.
+interface ScanRunContext {
+  isCancelled?: () => boolean;
+  onPhase?: (phase: string) => void;
+  onProgress?: (progress: { processed: number; total: number }) => void;
+}
+
+// Pull the envelope.data field back out of an MCP response so status can echo it.
+function extractEnvelopeData(response: MCPResponse): unknown {
+  try {
+    const text = (response as { content?: Array<{ text?: string }> })?.content?.[0]?.text;
+    if (typeof text !== 'string') return null;
+    const parsed = JSON.parse(text) as { data?: unknown };
+    return parsed?.data ?? null;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+// Persisted payload for debugging: scan shape only, no governance identifiers.
+function redactScanArgs(args: ScanArgs): Record<string, unknown> {
+  return {
+    specFolder: args.specFolder ?? null,
+    force: !!args.force,
+    includeConstitutional: args.includeConstitutional !== false,
+    includeSpecDocs: args.includeSpecDocs !== false,
+    incremental: args.incremental !== false,
+    background: true,
+  };
+}
+
+function cancelledScanEnvelope(scanKey: string): MCPResponse {
+  return createMCPSuccessResponse({
+    tool: 'memory_index_scan',
+    summary: 'Index scan cancelled before completion',
+    data: { status: 'cancelled', cancelled: true, scanKey },
+    hints: ['The scan was cancelled via memory_index_scan_cancel'],
+  });
+}
+
+/** Run the full memory_index_scan operation. Hooks are no-ops on the synchronous path. */
+async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_index_scan');
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
   if (restoreBarrier) {
@@ -439,6 +492,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     refreshScanLease();
   }, leaseHeartbeatMs);
   leaseHeartbeat.unref?.();
+
+  if (ctx.isCancelled?.()) {
+    await releaseScanLease();
+    return cancelledScanEnvelope(scanKey);
+  }
+  ctx.onPhase?.('discovering');
 
   const workspacePath: string = DEFAULT_BASE_PATH;
 
@@ -907,8 +966,17 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   const successfullyIndexedFiles: string[] = [];
   const scanBatchSize = BATCH_SIZE;
 
+  ctx.onPhase?.('indexing');
+  ctx.onProgress?.({ processed: 0, total: filesToIndex.length });
+
   if (filesToIndex.length > 0) {
+    let processedInScan = 0;
     const batchResults = await processBatches(filesToIndex, async (filePath: string) => {
+      // Cancellation is checked between files (mirrors ingest). A cancelled file is
+      // returned as a no-op so its mtime is never bumped, preserving retry on re-run.
+      if (ctx.isCancelled?.()) {
+        return { status: 'cancelled' } as IndexResult;
+      }
       const isSpecDoc = specDocKeySet.has(getCachedKey(filePath));
       // Constitutional markdown is policy text, not evidence-bearing memory.
       // It does not carry primary-evidence sections or ANCHOR tags by design, so the
@@ -920,12 +988,15 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       // everything that has valid frontmatter, not to enforce template contracts on
       // older files created before current templates were established.
       const useWarnOnly = force || isSpecDoc || isConstitutional;
-      return await indexSingleFile(filePath, force, {
+      const indexResult = await indexSingleFile(filePath, force, {
         ...(useWarnOnly ? { qualityGateMode: 'warn-only' as const } : {}),
         fromScan: true,
         asyncEmbedding: true,
         governance: governedIngest ? governanceDecision : undefined,
       });
+      processedInScan += 1;
+      ctx.onProgress?.({ processed: processedInScan, total: filesToIndex.length });
+      return indexResult;
     }, scanBatchSize);
 
     for (let i = 0; i < batchResults.length; i++) {
@@ -1084,6 +1155,11 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       }
     }
   }
+
+  if (ctx.isCancelled?.()) {
+    return cancelledScanEnvelope(scanKey);
+  }
+  ctx.onPhase?.('post-processing');
 
   if (filesToDelete.length > 0) {
     if (results.failed === 0) {
@@ -1325,6 +1401,52 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
     await releaseScanLease();
   }
+}
+
+/** Handle memory_index_scan tool — dispatches to a synchronous run or a background job.
+ *  Without background the call is byte-for-byte identical to the prior synchronous path. */
+async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
+  if (!args.background) {
+    return runIndexScan(args, {});
+  }
+
+  const jobId = createJobId();
+  await createMaintenanceJob({ id: jobId, kind: 'index_scan', payload: redactScanArgs(args) });
+
+  setImmediate(() => {
+    void (async () => {
+      try {
+        await setJobState(jobId, 'running');
+        const response = await runIndexScan(args, {
+          isCancelled: () => isCancelRequested(jobId),
+          onPhase: (phase) => { void setJobPhase(jobId, phase); },
+          onProgress: (progress) => { void setJobProgress(jobId, progress); },
+        });
+        await completeJob(jobId, {
+          // A cancel observed mid-run lands the job in 'cancelled', not 'complete'.
+          state: isCancelRequested(jobId) ? 'cancelled' : 'complete',
+          result: extractEnvelopeData(response),
+        });
+      } catch (error: unknown) {
+        try {
+          await appendJobError(jobId, '__job__', error);
+          await setJobState(jobId, 'failed');
+        } catch (_secondaryError: unknown) {
+          // Best-effort failure record; never surface a background unhandled rejection.
+        }
+      }
+    })();
+  });
+
+  return createMCPSuccessResponse({
+    tool: 'memory_index_scan',
+    summary: `Queued background index scan ${jobId}`,
+    data: { jobId, state: 'queued', background: true },
+    hints: [
+      'Use memory_index_scan_status with jobId to poll progress',
+      'Use memory_index_scan_cancel with jobId to stop the scan',
+    ],
+  });
 }
 
 /* ───────────────────────────────────────────────────────────────

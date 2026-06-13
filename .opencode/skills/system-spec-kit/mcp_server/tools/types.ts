@@ -211,6 +211,8 @@ export interface ScanArgs {
   includeConstitutional?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
+  // Opt-in: run the scan as a background job and return a jobId immediately.
+  background?: boolean;
   // Governed-ingest metadata, validated and threaded onto each indexed row so a
   // governed scan does not silently downgrade rows to ungoverned. Optional;
   // omitted for the default local single-user scan.
@@ -384,5 +386,15 @@ export interface IngestStatusArgs {
 
 /** Arguments for ingestion job cancellation requests. */
 export interface IngestCancelArgs {
+  jobId: string;
+}
+
+/** Arguments for background index scan status requests. */
+export interface IndexScanStatusArgs {
+  jobId: string;
+}
+
+/** Arguments for background index scan cancellation requests. */
+export interface IndexScanCancelArgs {
   jobId: string;
 }

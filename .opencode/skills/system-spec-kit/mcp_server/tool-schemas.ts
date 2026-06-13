@@ -709,7 +709,33 @@ const evalReportingDashboard: ToolDefinition = {
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
   description: '[L7:Maintenance] Scan workspace for new/changed spec-doc files and index them. Useful for bulk indexing after creating multiple spec-doc files. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: [] },
+  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' }, background: { type: 'boolean', default: false, description: 'Run the scan as a background job; returns a jobId immediately instead of blocking. Poll with memory_index_scan_status and stop with memory_index_scan_cancel.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: [] },
+};
+
+const memoryIndexScanStatus: ToolDefinition = {
+  name: 'memory_index_scan_status',
+  description: '[L7:Maintenance] Get current state and progress for a background memory_index_scan job started with background:true.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      jobId: { type: 'string', minLength: 1, description: 'Background index scan job identifier (required).' },
+    },
+    required: ['jobId'],
+  },
+};
+
+const memoryIndexScanCancel: ToolDefinition = {
+  name: 'memory_index_scan_cancel',
+  description: '[L7:Maintenance] Request cancellation of a running background memory_index_scan job. Cancellation is checked between files and at phase boundaries.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      jobId: { type: 'string', minLength: 1, description: 'Background index scan job identifier (required).' },
+    },
+    required: ['jobId'],
+  },
 };
 
 const memoryGetLearningHistory: ToolDefinition = {
@@ -915,6 +941,8 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   evalReportingDashboard,
   // L7: Maintenance
   memoryIndexScan,
+  memoryIndexScanStatus,
+  memoryIndexScanCancel,
   memoryGetLearningHistory,
   memoryIngestStart,
   memoryIngestStatus,

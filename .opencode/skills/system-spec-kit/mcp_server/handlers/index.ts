@@ -69,6 +69,7 @@ type PeGatingModule = typeof import('./pe-gating.js');
 type MemoryIngestModule = typeof import('./memory-ingest.js');
 type MemoryCrudModule = typeof import('./memory-crud.js');
 type MemoryIndexModule = typeof import('./memory-index.js');
+type MemoryIndexScanJobsModule = typeof import('./memory-index-scan-jobs.js');
 type MemoryBulkDeleteModule = typeof import('./memory-bulk-delete.js');
 type MemoryRetentionSweepModule = typeof import('./memory-retention-sweep.js');
 type MemoryEmbeddingReconcileModule = typeof import('./memory-embedding-reconcile.js');
@@ -91,6 +92,7 @@ let peGatingModule: Promise<PeGatingModule> | null = null;
 let memoryIngestModule: Promise<MemoryIngestModule> | null = null;
 let memoryCrudModule: Promise<MemoryCrudModule> | null = null;
 let memoryIndexModule: Promise<MemoryIndexModule> | null = null;
+let memoryIndexScanJobsModule: Promise<MemoryIndexScanJobsModule> | null = null;
 let memoryBulkDeleteModule: Promise<MemoryBulkDeleteModule> | null = null;
 let memoryRetentionSweepModule: Promise<MemoryRetentionSweepModule> | null = null;
 let memoryEmbeddingReconcileModule: Promise<MemoryEmbeddingReconcileModule> | null = null;
@@ -153,6 +155,13 @@ function getMemoryIndexModule(): Promise<MemoryIndexModule> {
     memoryIndexModule = loadHandlerModule<MemoryIndexModule>('memory-index');
   }
   return memoryIndexModule;
+}
+
+function getMemoryIndexScanJobsModule(): Promise<MemoryIndexScanJobsModule> {
+  if (!memoryIndexScanJobsModule) {
+    memoryIndexScanJobsModule = loadHandlerModule<MemoryIndexScanJobsModule>('memory-index-scan-jobs');
+  }
+  return memoryIndexScanJobsModule;
 }
 
 function getMemoryBulkDeleteModule(): Promise<MemoryBulkDeleteModule> {
@@ -307,6 +316,12 @@ export const findConstitutionalFiles = lazyFunction(getMemoryIndexModule, 'findC
 export const handle_memory_index_scan = lazyFunction(getMemoryIndexModule, 'handle_memory_index_scan');
 export const index_single_file = lazyFunction(getMemoryIndexModule, 'index_single_file');
 export const find_constitutional_files = lazyFunction(getMemoryIndexModule, 'find_constitutional_files');
+
+// Memory index scan job handlers (status/cancel)
+export const handleMemoryIndexScanStatus = lazyFunction(getMemoryIndexScanJobsModule, 'handleMemoryIndexScanStatus');
+export const handleMemoryIndexScanCancel = lazyFunction(getMemoryIndexScanJobsModule, 'handleMemoryIndexScanCancel');
+export const handle_memory_index_scan_status = lazyFunction(getMemoryIndexScanJobsModule, 'handle_memory_index_scan_status');
+export const handle_memory_index_scan_cancel = lazyFunction(getMemoryIndexScanJobsModule, 'handle_memory_index_scan_cancel');
 
 // Memory bulk delete handler
 export const handleMemoryBulkDelete = lazyFunction(getMemoryBulkDeleteModule, 'handleMemoryBulkDelete');

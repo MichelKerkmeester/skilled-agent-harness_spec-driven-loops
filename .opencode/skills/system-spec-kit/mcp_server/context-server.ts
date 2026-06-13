@@ -148,6 +148,7 @@ import { initExtractionAdapter, rebindExtractionAdapter } from './lib/extraction
 import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
 import { isLearnedFeedbackEnabled } from './lib/search/learned-feedback.js';
 import { initIngestJobQueue, stopWorker as stopIngestWorker } from './lib/ops/job-queue.js';
+import { ensureMaintenanceJobsTable, resetRunningJobsForKind } from './lib/ops/job-store.js';
 import { startFileWatcher, type FSWatcher } from './lib/ops/file-watcher.js';
 import { getCanonicalPathKey } from './lib/utils/canonical-path.js';
 import { runBatchLearning } from './lib/feedback/batch-learning.js';
@@ -253,6 +254,8 @@ const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
   'memory_retention_sweep',
   'memory_embedding_reconcile',
   'memory_index_scan',
+  'memory_index_scan_status',
+  'memory_index_scan_cancel',
   'memory_ingest_start',
   'memory_ingest_status',
   'memory_ingest_cancel',
@@ -2175,6 +2178,20 @@ async function main(): Promise<void> {
     } catch (ingestInitErr: unknown) {
       const message = ingestInitErr instanceof Error ? ingestInitErr.message : String(ingestInitErr);
       console.warn('[context-server] Ingest queue init failed:', message);
+    }
+
+    // Background index-scan job store init + crash-recovery reset. An interrupted
+    // scan re-runs fresh, so incomplete jobs are marked failed (never re-enqueued);
+    // a hard-crash scan lease is already reaped by the lease-expiry path.
+    try {
+      ensureMaintenanceJobsTable();
+      const resetScanJobs = resetRunningJobsForKind('index_scan', { to: 'failed' });
+      if (resetScanJobs.length > 0) {
+        console.error(`[context-server] Index scan crash recovery marked ${resetScanJobs.length} incomplete job(s) failed`);
+      }
+    } catch (scanJobInitErr: unknown) {
+      const message = scanJobInitErr instanceof Error ? scanJobInitErr.message : String(scanJobInitErr);
+      console.warn('[context-server] Maintenance job store init failed:', message);
     }
 
     // Optional real-time markdown watcher for automatic re-indexing.

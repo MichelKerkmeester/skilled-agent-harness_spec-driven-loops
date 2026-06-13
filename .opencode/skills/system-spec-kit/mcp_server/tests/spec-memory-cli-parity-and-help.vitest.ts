@@ -48,6 +48,8 @@ const expectedToolNames = [
   'eval_run_ablation',
   'eval_reporting_dashboard',
   'memory_index_scan',
+  'memory_index_scan_status',
+  'memory_index_scan_cancel',
   'memory_get_learning_history',
   'memory_ingest_start',
   'memory_ingest_status',
@@ -117,12 +119,12 @@ afterAll(() => {
 });
 
 describe('spec-memory CLI tool parity and help recovery docs', () => {
-  it('enumerates the canonical tool surface at exactly 37 tools', () => {
+  it('enumerates the canonical tool surface at exactly 39 tools', () => {
     createRuntimeScope();
     const toolNames = TOOL_DEFINITIONS.map((tool) => tool.name);
 
-    expect(toolNames).toHaveLength(37);
-    expect(new Set(toolNames).size).toBe(37);
+    expect(toolNames).toHaveLength(39);
+    expect(new Set(toolNames).size).toBe(39);
     expect(toolNames).toEqual(expectedToolNames);
   });
 

@@ -12,7 +12,7 @@
 import path from 'node:path';
 import { requireDb, toErrorMessage } from '../../utils/index.js';
 import type { GovernanceDecision } from '../governance/scope-governance.js';
-import { BetterSqliteContentionPolicy } from '../storage/ports/contention-policy.js';
+import { withBusyRetry, withBusyRetrySync } from './sqlite-busy-retry.js';
 
 // Feature catalog: Async ingestion job lifecycle
 
@@ -102,9 +102,6 @@ const ALLOWED_TRANSITIONS: Record<IngestJobState, Set<IngestJobState>> = {
   cancelled: new Set<IngestJobState>([]),
 };
 
-// SQLITE_BUSY retry delays that match the file-watcher pattern.
-const RETRY_DELAYS_MS = [50, 200, 500];
-
 /* ───────────────────────────────────────────────────────────────
    5. STATE MANAGEMENT
 ──────────────────────────────────────────────────────────────── */
@@ -120,7 +117,6 @@ let shuttingDown = false;
 let processFileFn: ((filePath: string, governance?: GovernanceDecision | null) => Promise<unknown>) | null = null;
 const MAX_STORED_ERRORS = 50;
 const MAX_PENDING_INGEST_JOBS = parsePositiveIntEnv('SPECKIT_INGEST_QUEUE_MAX_PENDING', 1_000);
-const busyRetryPolicy = new BetterSqliteContentionPolicy({ retryable: isSqliteBusyError });
 
 /* ───────────────────────────────────────────────────────────────
    4. HELPERS
@@ -140,29 +136,6 @@ function parsePositiveIntEnv(name: string, fallback: number): number {
 
   const parsed = Number.parseInt(raw, 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
-}
-
-function isSqliteBusyError(error: unknown): boolean {
-  const message = error instanceof Error ? error.message : String(error);
-  const code = (error as { code?: unknown })?.code;
-  return code === 'SQLITE_BUSY' || /SQLITE_BUSY/i.test(message);
-}
-
-async function withBusyRetry<T>(operation: () => T): Promise<T> {
-  return busyRetryPolicy.withRetry(operation, { retryDelaysMs: RETRY_DELAYS_MS }) as Promise<T>;
-}
-
-function withBusyRetrySync<T>(operation: () => T): T {
-  return busyRetryPolicy.withRetry(operation, {
-    retryDelaysMs: RETRY_DELAYS_MS,
-    sleepSync: busyWait,
-    sync: true,
-  }) as T;
-}
-
-function busyWait(ms: number): void {
-  const end = Date.now() + ms;
-  while (Date.now() < end) { /* busy-wait */ }
 }
 
 function parseJsonArray<T>(value: string | null | undefined, fallback: T[]): T[] {
