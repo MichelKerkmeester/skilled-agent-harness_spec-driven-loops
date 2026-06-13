@@ -1,6 +1,6 @@
 ---
 title: "Handover — 029 Deep-Research Remediation (careful-queue tail)"
-description: "Fresh-session handover after seven verified code waves: the DB-corruption class is structurally eliminated, the dashboard-adherence question is resolved as a harness artifact, ~184 of 198 findings are closed, and what remains is the enumerated careful queue (L7 shadow clusters, L2 interlocked four, L5 carefuls, L4 front-proxy parity, L9 write-path stress)."
+description: "Fresh-session handover after the original-backlog careful tail was ground out (10 further commits this session: L7 honesty + independents, L9 doc/code, tri-010/011/119, tri-105 divergence-health). Both original goals and the round-2 review are closed; the only remaining work is THREE packet-scale builds plus a defer-by-design bucket, all routed to a dedicated follow-on per operator decision: tri-105 vector reconcile, tri-148 launcher front-proxy port, and the hash-class synthetic replay pool."
 trigger_phrases:
   - "029 remediation handover"
   - "deep research remediation resume"
@@ -11,20 +11,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
-    last_updated_at: "2026-06-13T09:50:00Z"
-    last_updated_by: "orchestrate-round2"
-    recent_action: "Round-2 deep-review closed: 18 P1+33 P2 + L5 carefuls; verdict PASS"
-    next_safe_action: "Original-backlog tail open: L7/L2/L4/L9 dispositions; L5 queue empty"
+    last_updated_at: "2026-06-13T13:30:00Z"
+    last_updated_by: "orchestrate-tail-grind"
+    recent_action: "Original-backlog tail closed: 10 commits, verify-first"
+    next_safe_action: "Create follow-on packet: tri-105/tri-148/replay-pool + defer-bucket"
     blockers: []
     key_files:
-      - "L5-advisor-correctness/disposition.md"
       - "L7-shadow-feedback-honesty/disposition.md"
+      - "L9-pxx-sweep/disposition.md"
       - "backlog/remediation-backlog.json"
     session_dedup:
       fingerprint: "sha256:2003d4aca44bb943b1eae69b36f1d9ebe8fe3f8a5e907a323dbee96013ac03b3"
-      session_id: "029-remediation-resume-2026-06-12"
-      parent_session_id: null
-    completion_pct: 92
+      session_id: "029-remediation-tail-grind-2026-06-13"
+      parent_session_id: "029-remediation-resume-2026-06-12"
+    completion_pct: 97
     open_questions: []
     answered_questions: []
 ---
@@ -60,18 +60,40 @@ Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the pus
 - `9fea79bbbc` README restoration (operator-requested).
 - Earlier waves/sessions: the single-writer lock (live-237), shared secret scrubber + fail-closed CLI save lane (tri-016), idempotency receipts flag-ON correctness, LIKE-escape hardening (tri-006), apply-pipeline safety packet (L2, 7/7), exit-taxonomy smoke + bare-apply guard (tri-145/186), L8 `--command` protocol, and the program-wide doc class.
 
-## 3. REMAINING WORK — the careful queue (per-lane dispositions are the source of truth)
+## 2.5. THIS SESSION (original-backlog tail grind, 2026-06-13 — newest first)
 
-| Lane file | Open items |
+- `c86424df8a` tri-105 — vector surface divergence health (reconcile deferred to follow-on).
+- `4630de6c4b` tri-115 — surface feedback-retention report in the sweep MCP response.
+- `c5b2777530` tri-072/073 — causal-reducer dry-run guards + feedback dedup gate.
+- `5dc32c2ee1` tri-012/133 — feedback-retention active reachability + shadow criteria (doc).
+- `9804341ce2` tri-119 — trust-validate sessionId in memory_validate (IDOR + regression test).
+- `a4d3f2d5e6` tri-011 — shadow retention mode adjudicated by-design + ENV clarity.
+- `94cadd0c06` tri-010 — verify_integrity checks the active vector surface.
+- `6cbb7b457c` tri-007/008/009 — honest typed skip when no shadow replay pool exists.
+- `cb5bad82a4` tri-080 — count files skipped for unsupported language during scan.
+- `cab4ab1c1c` doc-wave — vector table roles, launcher lease, consumption telemetry honesty.
+
+Verify-first found tri-107/081/139 + L2-F4 ALREADY-CORRECT (no edit needed). The AI Council report (`ai-council/council-report.md`) set the roadmap; the operator routed the 3 packet-scale builds + the defer-by-design bucket to a dedicated follow-on.
+
+## 3. REMAINING WORK — all routed to a dedicated follow-on packet (operator decision 2026-06-13)
+
+This session ground out the original-backlog careful tail (10 commits, gpt-5.5-fast xhigh verify-first — see §2.5). What CLOSED:
+
+- **L7** — cluster A honesty half (tri-007/008/009: typed `no-replay-pool` skip + inert catalog claim); independents (tri-072 causal dry-run guards, tri-073 feedback dedup gate, tri-119 sessionId IDOR guard + regression test); cluster B (tri-012/133 documented / shadow-vs-union already distinguished); cluster C (tri-115 surface feedback-retention report; tri-011/136 adjudicated by-design — shadow is a tested observe-only contract — with the "silent" kernel closed via ENV doc).
+- **L9** — tri-080 (unsupported-language scan counter), tri-104 (telemetry doc); tri-106/107/081/139/149 verified ALREADY-CORRECT; tri-105 divergence-health shipped.
+- **L5** — tri-010 (verify_integrity now measures the active vector surface).
+
+What REMAINS — three packet-scale builds + a defer-by-design bucket, folded into ONE dedicated follow-on:
+
+| Item | Why follow-on |
 |---|---|
-| `L2-codegraph-apply-safety/disposition.md` | tri-022 (durable shadow telemetry), tri-029 (prune-excludes artifact), tri-031 (repair-nodes skip-list honesty), tri-131 (semantic-trigger stress; after tri-022) |
-| `L4-launcher-lifecycle/disposition.md` | tri-148 (code-index front-proxy parity) |
-| `L5-advisor-correctness/disposition.md` | CLOSED (round-2): tri-033, tri-036, tri-040/041, tri-083, tri-156 shipped; tri-173, tri-180 adjudicated by-design. L5 code queue empty; only tri-138 deferred by design. |
-| `L6-save-continuity-truth/disposition.md` | tri-163 (key_files↔COVERED_BY crosswalk — design first, don't patch) |
-| `L7-shadow-feedback-honesty/disposition.md` | clusters A (replay pool: 007/008/009/103), B (promotion: 012/133), C (shadow pause: 011/115/136), + 072/073/119 |
-| `L9-pxx-sweep/disposition.md` | Part A: 080, 104, 105 (careful), 108/109 (careful); Part C: 111, 113, 117, 121, 122, 123, 124, 129 (careful), 135 (careful), 142; carry-overs 125, 158; tri-064 scoped follow-up |
+| **tri-105 vector reconcile** | Live measure: active surface vec_768=10381 vs success/vec_memories=10072 — 6 orphans + 308 non-success-with-vectors + 5 missing-success. Resolving touches ~314 live rows in a corruption-history subsystem → needs backup + daemon-quiesced op. (Divergence HEALTH already shipped; only the data reconcile is deferred.) |
+| **tri-148 launcher front-proxy** | Not a wiring change — replicates spec-memory's full packet-140 supervision scaffold (crash-loop guard, owner-disposal-race guard, relaunch backoff, process-group reap) into mk-code-index-launcher.cjs; a subtle error reintroduces the SIGTERM/relaunch flap + DB corruption the epic fixed. Needs the live-daemon adoption harness. |
+| **Replay pool** (tri-007/009/103; feeds L2 tri-022/131) | Build a privacy-preserving hash-class synthetic corpus (NO raw query text — invariant) + shadow-eval integration. New subsystem; honesty half already shipped. |
+| **Defer-by-design bucket** | tri-138 (health budget — consumer-aware design; doctor reads data.routing), tri-163 (key_files↔COVERED_BY crosswalk — design-first, don't patch), tri-129/135 (write-path stress + live-dim eval harnesses — test-infra), L3 (replay-time validity of deleted-memory receipts), and the pre-existing `memory-save-extended:637` NULL content_text test (separate subsystem investigation, stash-proven not ours). |
+| **L9/L2 tail — verify-first each** | tri-108/109 (indexer skip / ingest-queue honesty), tri-111/113/117/121/122/124 (ranking/telemetry smalls), carry-overs 125/158, L2 tri-031 (repair-nodes skip-list honesty). Council-deprioritized + NOT individually re-verified this session — the stale-disposition pattern means several are likely already-fixed; re-confirm before implementing. |
 
-Recorded non-blocking nits from the verifiers (fix opportunistically): the tri-140 trimmed branch has regression-only test coverage; L2 F2/F3 follow-ons (orchestrator ignores recovery.status; refusal-by-throw remnants).
+Structure the follow-on as design units (vector-truth, shadow/feedback+replay, launcher parity) per the AI Council report at `ai-council/council-report.md`. Recorded non-blocking verifier nits carry too: tri-140 regression-only coverage; L2 F2/F3 (orchestrator ignores recovery.status; refusal-by-throw remnants).
 
 ## 4. OPERATIONAL NOTES
 
