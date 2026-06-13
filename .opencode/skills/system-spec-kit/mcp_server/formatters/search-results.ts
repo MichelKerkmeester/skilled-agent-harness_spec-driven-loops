@@ -302,6 +302,18 @@ function clampConfidence(value: unknown): number | null {
   return Math.max(0, Math.min(1, numeric));
 }
 
+function toExplainabilityRow(rawResult: RawSearchResult): Parameters<typeof attachExplainabilityToResults>[0][number] {
+  const finalRankScore = toNullableNumber(rawResult.finalRankScore);
+  if (finalRankScore === null) {
+    return rawResult as Parameters<typeof attachExplainabilityToResults>[0][number];
+  }
+
+  return {
+    ...rawResult,
+    intentAdjustedScore: Math.max(0, Math.min(1, finalRankScore)),
+  } as Parameters<typeof attachExplainabilityToResults>[0][number];
+}
+
 function deriveResponsePolicy(
   requestQuality: RequestQualityAssessment | null,
   recovery: RecoveryPayload | null,
@@ -1084,28 +1096,29 @@ export async function formatSearchResults(
     hints.push('Some files could not be read - check file paths');
   }
 
-  // Merge per-result confidence into the formatted result array (additive)
-  const resultsWithConfidence: Array<Record<string, unknown>> = formatted.map(
-    (r, i): Record<string, unknown> => {
-      if (!confidenceData) return r as unknown as Record<string, unknown>;
-      const conf = confidenceData[i];
-      if (!conf) return r as unknown as Record<string, unknown>;
-      return { ...(r as unknown as Record<string, unknown>), ...conf };
-    }
-  );
-
-  // Attach explainability (slim tier) to every result when flag is ON.
-  // Pass results as PipelineRow-compatible — they share the same Record<string,unknown> base.
-  // Debug tier is opt-in via SPECKIT_RESULT_EXPLAIN_DEBUG env var.
   const explainOptions: ExplainabilityOptions = {
     debugEnabled: process.env.SPECKIT_RESULT_EXPLAIN_DEBUG?.toLowerCase().trim() === 'true',
   };
-  const resultsWithExplain = isResultExplainEnabled()
+  const explainedRawResults = isResultExplainEnabled()
     ? attachExplainabilityToResults(
-        resultsWithConfidence as Parameters<typeof attachExplainabilityToResults>[0],
+        results.map(toExplainabilityRow),
         explainOptions
-      ) as Array<Record<string, unknown>>
-    : resultsWithConfidence;
+      )
+    : null;
+
+  // Merge per-result confidence into the formatted result array (additive)
+  const resultsWithConfidence: Array<Record<string, unknown>> = formatted.map(
+    (r, i): Record<string, unknown> => {
+      const explainedWhy = explainedRawResults?.[i]?.why;
+      const base = explainedWhy
+        ? { ...(r as unknown as Record<string, unknown>), why: explainedWhy }
+        : r as unknown as Record<string, unknown>;
+      if (!confidenceData) return base;
+      const conf = confidenceData[i];
+      if (!conf) return base;
+      return { ...base, ...conf };
+    }
+  );
 
   const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
   const citationPolicy = deriveCitationPolicy(requestQualityData);
@@ -1118,7 +1131,7 @@ export async function formatSearchResults(
     searchType: searchType,
     count: formatted.length,
     constitutionalCount: constitutionalCount,
-    results: resultsWithExplain,
+    results: resultsWithConfidence,
     // Request-level quality assessment (additive)
     ...(requestQualityData !== null ? requestQualityData : {}),
     // Recovery payload for weak/partial results (additive)

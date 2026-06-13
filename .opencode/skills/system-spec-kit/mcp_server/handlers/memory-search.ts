@@ -640,8 +640,12 @@ function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
 function stampFinalRankScores(results: Array<Record<string, unknown>>): void {
   const total = results.length;
   results.forEach((result, index) => {
-    result.finalRankScore = total > 0 ? (total - index) / total : null;
+    result.finalRankScore = calculateFinalRankScore(total, index);
   });
+}
+
+function calculateFinalRankScore(total: number, index: number): number | null {
+  return total > 0 ? (total - index) / total : null;
 }
 
 function applyFolderBoostRanking(results: SessionAwareResult[], folderBoost: FolderBoost | undefined): boolean {
@@ -708,9 +712,13 @@ function warningStillApplies(warning: unknown, returnedDocumentKeys: Set<string>
 }
 
 function reconcilePostFormatResultSet(data: Record<string, unknown>, results: Array<Record<string, unknown>>): void {
+  const total = results.length;
   results.forEach((result, index) => {
     if (isPlainRecord(result.why_ranked)) {
       result.why_ranked.rank = index + 1;
+      if (result.why_ranked.scoreSource === 'finalRank') {
+        result.why_ranked.effectiveScore = calculateFinalRankScore(total, index);
+      }
     }
   });
 
