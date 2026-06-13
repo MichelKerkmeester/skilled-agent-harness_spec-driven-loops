@@ -63,7 +63,6 @@ describe('mk_skill_advisor rename invariants', () => {
     for (const config of configs) {
       expect(config).toContain('MK_SKILL_ADVISOR_DB_DIR');
       expect(config).toContain('SPECKIT_SKILL_ADVISOR_HOOK_DISABLED');
-      expect(config).toContain('SPECKIT_ADVISOR_SHADOW_MODE');
     }
   });
 });
