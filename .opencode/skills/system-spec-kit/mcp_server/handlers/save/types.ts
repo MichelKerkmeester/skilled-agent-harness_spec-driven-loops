@@ -205,7 +205,6 @@ export interface IndexResult extends Record<string, unknown> {
   sufficiency?: MemorySufficiencyResult;
   assistiveRecommendation?: AssistiveRecommendation;
   nearDuplicateOf?: NearDuplicateHint;
-  replayed?: boolean;
   routeCategory?: RouteCategory;
   mergeMode?: MergeModeHint;
   targetDocPath?: string;

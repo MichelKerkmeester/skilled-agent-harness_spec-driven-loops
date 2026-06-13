@@ -698,9 +698,6 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
   if (result.nearDuplicateOf) {
     response.near_duplicate_of = result.nearDuplicateOf;
   }
-  if (result.replayed === true) {
-    response.replayed = true;
-  }
   if (postMutationFeedback) {
     response.postMutationHooks = postMutationFeedback.data;
   }
