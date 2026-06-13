@@ -67,9 +67,9 @@ _memory:
 - [ ] T005 Unit B — build privacy-preserving hash-class synthetic replay corpus (keys: `query_hash`/intent; NO raw query text) (shadow-evaluation corpus builder)
 - [ ] T006 Unit B — integrate the corpus into the shadow-evaluation scheduler + fold Cluster B/C remnants from the L7 disposition (shadow-evaluation scheduler)
 - [ ] T007 Unit C — port the packet-140 supervision scaffold (crash-loop guard, `shouldAbortRelaunchOnFire`, relaunch backoff, process-group reap) OR record document-the-asymmetry (`mk-code-index-launcher.cjs`)
-- [ ] T008 [P] Defer-by-design bucket — track tri-138 (health token budget), tri-163 (key_files<->COVERED_BY crosswalk, design-first), tri-129/135 (write-path stress + live-dim eval harnesses), L3 (deleted-memory receipt replay validity), and `memory-save-extended:637` NULL content_text (separate-subsystem investigation)
+- [ ] T008 [P] Defer-by-design bucket — track tri-138 (health token budget), tri-163 (key_files<->COVERED_BY crosswalk, design-first), tri-129/135 (write-path stress + live-dim eval harnesses), L3 (deleted-memory receipt replay validity). RESOLVED: memory-save-extended:637 was a test-fixture schema gap (missing source_kind/canonical_file_path), not a content_text bug — fixed 41e6f79cbe (46/46 pass)
 - [x] T009 [P] L9/L2 verify-first tail SWEPT (2026-06-13): FIXED tri-121/122 (finalRank explainability recompute post-dedup); ALREADY-CORRECT tri-124 (flag drift-guard), tri-125 (38 rules/66 fixtures), tri-031 (repair-nodes honest-doc — reports, does not reparse)
-- [ ] T009b [P] L9/L2 tail DEFERRED remainder (feature/policy/careful/out-of-scope): tri-108 (cooperative-yield perf), tri-109 (ingest-queue generalization — feature), tri-111 (crash-probe receipt — storage-careful), tri-113 (checkpoint cadence — operator policy), tri-117 (graph value-metrics — consumer-aware, cf tri-138), tri-158 (gold-battery line anchors — lives in the 026 resilience-research fixture, needs in-scope refresh)
+- [x] T009b [P] L9/L2 tail remainder — FIXED this session: tri-108 (cooperative batch yields), tri-113 (checkpoint-freshness hint), tri-158 (gold-battery anchors -> staleLinesCount 0). REMAINING: tri-109 (ingest-queue generalization — feature), tri-111 (crash-probe receipt — storage-careful), tri-117 (graph value-metrics — consumer-aware, cf tri-138)
 <!-- /ANCHOR:phase-2 -->
 
 ---
