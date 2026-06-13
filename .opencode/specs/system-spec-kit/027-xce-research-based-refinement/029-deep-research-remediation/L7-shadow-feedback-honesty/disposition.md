@@ -9,6 +9,8 @@ contextType: "implementation"
 ---
 # L7 Shadow/Feedback Honesty — Disposition
 
+> **Tail-grind update (2026-06-13):** the code queue below is now largely CLOSED — Cluster A honesty half (tri-007/008/009), Cluster B (tri-012/133), Cluster C tri-115, and independents tri-072/073/119 all shipped; tri-011/136 adjudicated by-design (shadow is a tested observe-only contract, "silent" kernel closed via ENV doc). Only the Cluster A *constructive* replay pool (tri-007/009/103, feeds tri-022/131) remains — routed to the dedicated follow-on. Current program state is authoritative in `../handover.md` §3.
+
 Batch verification 19/19 STILL-REAL (`../verify/l7-still-real-batch.md`); doc-only branches CLOSED (verdict `../verify/l6-l7-docs-verdict.md`). Deferred halves on record: dead replay plumbing trim (types + response-builder), physical repair-artifact ops move.
 
 ## Code queue (open, interlocked)

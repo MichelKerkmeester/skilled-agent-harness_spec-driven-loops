@@ -9,6 +9,8 @@ contextType: "implementation"
 ---
 # L9 P2/P3 Sweep — Disposition
 
+> **Tail-grind update (2026-06-13):** Part A doc/code closed — tri-080 (unsupported-language scan counter), tri-104 (telemetry doc); tri-106/107/081/139/149 verified ALREADY-CORRECT; tri-105 divergence-health shipped (data reconcile deferred). The remaining Part A/C smalls (tri-108/109/111/113/117/121/122/124, carry-overs 125/158) were council-deprioritized and routed to the dedicated follow-on — verify-first each (the stale-disposition pattern means several are likely already-fixed). Current program state is authoritative in `../handover.md` §3.
+
 Verification: parts A 17/17, B 17/17, C 15/17 (tri-114, tri-116 OVERTAKEN by this program's own shipped work), D 13/14 (tri-159 REFUTED by pre-existing test assertions). Host correction on record: tri-192 is SUPERSEDED cross-lane — its "3/3 prose" proof was the L8 probe-harness artifact; under correct `--command` dispatch the same inline template passes 3/3 (see L8 disposition). Doc sweep CLOSED 25 findings (verdict `../verify/l9-docs-batch-verdict.md`, three residues remedied in-commit; the env count now ships WITH its counting method).
 
 ## Closed in code wave 4 (commit b8c6371669, Fable-verified)
