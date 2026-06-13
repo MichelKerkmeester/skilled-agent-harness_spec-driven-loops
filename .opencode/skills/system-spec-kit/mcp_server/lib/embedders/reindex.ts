@@ -679,6 +679,19 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       throw new Error(`Incomplete staged vector shard: expected ${initialJob.total} rows, got 0`);
     }
 
+    // The completion transaction below reconciles embedding_status by reading the
+    // canonical vec_<dim> table via its unqualified name. The swap above detaches the
+    // active shard and drops the temp alias view, so that name now resolves to the
+    // canonical main-database table. That canonical table is best-effort "slimmed" away
+    // on every shard attach, so a concurrent attach during this run (e.g. a second
+    // attach that re-asserts a still-pending repair) can drop it out from under us,
+    // turning the reconciliation read into a fatal "no such table" and stranding the
+    // repair short of completion. Re-assert the (empty) canonical table immediately
+    // before reading it. This never touches shard data — the rebuilt vectors live in
+    // the freshly renamed active shard file — so it preserves repair completeness and
+    // the single-writer staging discipline.
+    ensureVecTableForDim(jobDb, initialJob.toDim);
+
     const complete = jobDb.transaction(() => {
       // Persist the active-embedder provider pointer too; omitting it leaves the pointer empty,
       // which readActiveEmbedderIfValid coerces to undefined and the next boot loses provider
