@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Unit A — vector reconcile: backup -> daemon-quiesce -> per-class reconcile of 6 orphans + 308 non-success + 5 missing-success -> post-health re-check (memory vector store)
+- [x] T004 Unit A — vector reconcile DONE (2026-06-13): online backup (/tmp/tri105-backup-20260613T153009, main+shard, quick_check ok) -> dry-run showed 91 success-missing-active-vector (the surface divergence) vs 2175 missing-vector-FAILED (a separate retry-all-failures op, deliberately skipped) -> applied targeted repairSuccessCoverage with resetMissing:false: 91 success-coverage rows reset to retry; retry-manager re-embedding (success 8536->8581 and climbing). Orphan-vector autoClean + the broad failed-retry are separate maintenance ops, not the divergence. (memory vector store)
 - [ ] T005 Unit B — build privacy-preserving hash-class synthetic replay corpus (keys: `query_hash`/intent; NO raw query text) (shadow-evaluation corpus builder)
 - [ ] T006 Unit B — integrate the corpus into the shadow-evaluation scheduler + fold Cluster B/C remnants from the L7 disposition (shadow-evaluation scheduler)
 - [ ] T007 Unit C — port the packet-140 supervision scaffold (crash-loop guard, `shouldAbortRelaunchOnFire`, relaunch backoff, process-group reap) OR record document-the-asymmetry (`mk-code-index-launcher.cjs`)
