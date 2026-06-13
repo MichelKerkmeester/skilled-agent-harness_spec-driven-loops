@@ -167,6 +167,45 @@ describe('code-graph verify', () => {
       });
     });
 
+    it('tolerates and ignores extra asset metadata fields (expected_count, probe)', () => {
+      // The shipped battery entries carry research metadata such as
+      // `expected_count` and historical `probe` hooks. The v1 loader keeps the
+      // fields it actually enforces and silently drops the rest, so a
+      // real-shaped entry loads cleanly without those keys leaking into GoldQuery.
+      const batteryPath = writeBatteryFile({
+        schema_version: 1,
+        pass_policy: {
+          overall_top_k_symbol_pass_floor: 0.9,
+          edge_focus_pass_floor: 0.8,
+        },
+        queries: [{
+          id: 'extra-1',
+          category: 'mcp-tool',
+          query: 'Find handler',
+          expected_count: 3,
+          'source_file:line': 'src/verify.ts:14',
+          expected_top_K_symbols: ['handleVerify'],
+          probe: { operation: 'outline', subject: 'src/verify.ts', expectedSymbolsPath: 'x' },
+        }],
+      }, 'extra-fields-battery.json');
+
+      expect(loadGoldBattery(batteryPath)).toEqual({
+        schema_version: 1,
+        pass_policy: {
+          overall_pass_rate: 0.9,
+          edge_focus_pass_rate: 0.8,
+        },
+        queries: [{
+          id: 'extra-1',
+          category: 'mcp-tool',
+          query: 'Find handler',
+          source_file: 'src/verify.ts',
+          source_line: 14,
+          expected_top_K_symbols: ['handleVerify'],
+        }],
+      });
+    });
+
     it('rejects unsupported schema versions', () => {
       const batteryPath = writeBatteryFile({
         schema_version: 2,

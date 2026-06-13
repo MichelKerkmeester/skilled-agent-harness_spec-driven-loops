@@ -80,4 +80,46 @@ describe('code graph gold battery runner', () => {
     expect(result.passed).toBe(false);
     expect(result.missingSymbols).toContain('betaSymbol');
   });
+
+  it('passes when a healthy graph surfaces every expected symbol', async () => {
+    const expectedBySubject: Record<string, string> = {
+      'src/alpha.ts': 'alphaSymbol',
+      'src/beta.ts': 'betaSymbol',
+    };
+    const result = await runGoldBattery({
+      batteryPath: writeBattery(),
+      query: async (args) => textPayload({
+        status: 'ok',
+        data: { nodes: [{ name: expectedBySubject[args.subject] }] },
+      }),
+      includeDetails: true,
+    });
+
+    expect(result.queryCount).toBe(2);
+    expect(result.overall_pass_rate).toBe(1);
+    expect(result.edge_focus_pass_rate).toBe(1);
+    expect(result.passed).toBe(true);
+    expect(result.missingSymbols).toEqual([]);
+  });
+
+  it('fails the gate when a broken query returns the wrong symbols', async () => {
+    // The gate must reject a regressed/wrong-ranking query. Returning a symbol
+    // that is not the expected one for every entry drives the pass rate below
+    // both the overall and edge-focus floors, so `passed` is false.
+    const result = await runGoldBattery({
+      batteryPath: writeBattery(),
+      query: async () => textPayload({
+        status: 'ok',
+        data: { nodes: [{ name: 'unrelatedSymbol' }] },
+      }),
+      includeDetails: true,
+    });
+
+    expect(result.queryCount).toBe(2);
+    expect(result.overall_pass_rate).toBe(0);
+    expect(result.passed).toBe(false);
+    expect(result.missingSymbols).toEqual(
+      expect.arrayContaining(['alphaSymbol', 'betaSymbol']),
+    );
+  });
 });
