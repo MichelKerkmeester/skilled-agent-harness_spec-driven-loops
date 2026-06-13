@@ -38,7 +38,7 @@ Enabled by default (graduated). Set `SPECKIT_SHADOW_FEEDBACK=false` to disable. 
 | File | Layer | Role |
 |------|-------|------|
 | `mcp_server/lib/feedback/shadow-scoring.ts` | Lib | Rank comparison, Kendall tau, NDCG/MRR deltas, cycle aggregation, promotion gate |
-| `mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Lib | Production runtime scheduler that replays holdout queries weekly, wired into `context-server.ts` |
+| `mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Lib | Production runtime scheduler wired into `context-server.ts`; scheduled replay currently does not execute on clean schemas because `consumption_log` retains no raw query text, so no replay pool exists |
 | `mcp_server/lib/search/search-flags.ts` | Lib | `isShadowFeedbackEnabled()` flag accessor |
 
 ### Validation And Tests

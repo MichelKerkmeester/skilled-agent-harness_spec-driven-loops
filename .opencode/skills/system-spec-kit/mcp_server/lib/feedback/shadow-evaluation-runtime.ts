@@ -36,6 +36,11 @@ interface ConsumptionQueryRow {
   query_text: string;
 }
 
+interface RecentSearchQueryPool {
+  rows: ConsumptionQueryRow[];
+  replayPoolAbsent: boolean;
+}
+
 interface ShadowReplayRanks {
   live: RankedItem[];
   shadow: RankedItem[];
@@ -198,7 +203,7 @@ function loadRecentSearchQueries(
   now: number,
   queryLookbackMs: number,
   maxQueryPoolSize: number,
-): ConsumptionQueryRow[] {
+): RecentSearchQueryPool {
   initConsumptionLog(db);
 
   // Shadow replay needs raw query text, but the clean consumption_log schema
@@ -207,11 +212,11 @@ function loadRecentSearchQueries(
   // the correct outcome; selecting the absent column would throw.
   const columns = db.prepare(`PRAGMA table_info(consumption_log)`).all() as Array<{ name: string }>;
   if (!columns.some((column) => column.name === 'query_text')) {
-    return [];
+    return { rows: [], replayPoolAbsent: true };
   }
 
   const sinceIso = new Date(now - queryLookbackMs).toISOString();
-  return db.prepare(`
+  const rows = db.prepare(`
     SELECT MAX(id) AS id, query_text
     FROM consumption_log
     WHERE event_type = 'search'
@@ -223,6 +228,8 @@ function loadRecentSearchQueries(
     ORDER BY MAX(timestamp) DESC
     LIMIT ?
   `).all(sinceIso, maxQueryPoolSize) as ConsumptionQueryRow[];
+
+  return { rows, replayPoolAbsent: false };
 }
 
 /**
@@ -420,7 +427,12 @@ async function runScheduledShadowEvaluationCycle(
   try {
     await checkDatabaseUpdated();
 
-    const queryRows = loadRecentSearchQueries(db, now, queryLookbackMs, maxQueryPoolSize);
+    const { rows: queryRows, replayPoolAbsent } = loadRecentSearchQueries(db, now, queryLookbackMs, maxQueryPoolSize);
+    if (replayPoolAbsent) {
+      console.warn('[shadow-evaluation-runtime] skipped cycle: no privacy-preserving replay pool (clean consumption_log retains no raw query text)');
+      return null;
+    }
+
     if (queryRows.length === 0) {
       console.warn('[shadow-evaluation-runtime] skipped cycle: no recent search queries available');
       return null;
@@ -536,6 +548,7 @@ export {
   DEFAULT_SEED,
   isShadowEvaluationDue,
   isShadowEvaluationSchedulerRunning,
+  loadRecentSearchQueries,
   runScheduledShadowEvaluationCycle,
   startShadowEvaluationScheduler,
   stopShadowEvaluationScheduler,

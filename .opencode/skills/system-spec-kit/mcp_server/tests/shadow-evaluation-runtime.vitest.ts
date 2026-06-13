@@ -13,6 +13,7 @@ import {
 import { initConsumptionLog } from '../lib/telemetry/consumption-logger.js';
 import {
   isShadowEvaluationSchedulerRunning,
+  loadRecentSearchQueries,
   runScheduledShadowEvaluationCycle,
   startShadowEvaluationScheduler,
   stopShadowEvaluationScheduler,
@@ -68,6 +69,74 @@ function hasShadowEvaluationFixtureSchema(): boolean {
 }
 
 const dbFixtureDescribe = hasShadowEvaluationFixtureSchema() ? describe : describe.skip;
+
+describe('shadow-evaluation-runtime clean consumption_log schema', () => {
+  let db: Database.Database;
+  let shadowFlag: string | undefined;
+
+  beforeEach(() => {
+    shadowFlag = process.env.SPECKIT_SHADOW_FEEDBACK;
+    process.env.SPECKIT_SHADOW_FEEDBACK = 'true';
+
+    db = new Database(':memory:');
+    initConsumptionLog(db);
+
+    vi.mocked(executePipeline).mockReset();
+    vi.mocked(buildAdaptiveShadowProposal).mockReset();
+    vi.mocked(getAdaptiveMode).mockReset();
+    vi.mocked(getAdaptiveMode).mockReturnValue('disabled');
+    vi.mocked(tuneAdaptiveThresholdsAfterEvaluation).mockReset();
+    stopShadowEvaluationScheduler();
+  });
+
+  afterEach(() => {
+    stopShadowEvaluationScheduler();
+    db.close();
+
+    if (shadowFlag === undefined) {
+      delete process.env.SPECKIT_SHADOW_FEEDBACK;
+    } else {
+      process.env.SPECKIT_SHADOW_FEEDBACK = shadowFlag;
+    }
+  });
+
+  it('reports an absent replay pool when clean telemetry retains no raw query text', () => {
+    const columns = db.prepare('PRAGMA table_info(consumption_log)').all() as TableInfoRow[];
+    expect(columns.some((column) => column.name === 'query_text')).toBe(false);
+
+    const result = loadRecentSearchQueries(
+      db,
+      Date.now(),
+      14 * 24 * 60 * 60 * 1000,
+      10,
+    );
+
+    expect(result).toEqual({ rows: [], replayPoolAbsent: true });
+  });
+
+  it('skips scheduled evaluation via the no-replay-pool path', async () => {
+    const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      const report = await runScheduledShadowEvaluationCycle(db, {
+        holdoutPercent: 1,
+        queryLookbackMs: 14 * 24 * 60 * 60 * 1000,
+        maxQueryPoolSize: 10,
+        searchLimit: 5,
+        seed: 42,
+      });
+
+      expect(report).toBeNull();
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        '[shadow-evaluation-runtime] skipped cycle: no privacy-preserving replay pool (clean consumption_log retains no raw query text)',
+      );
+      expect(vi.mocked(executePipeline)).not.toHaveBeenCalled();
+      expect(getCycleResults(db)).toHaveLength(0);
+    } finally {
+      consoleWarnSpy.mockRestore();
+    }
+  });
+});
 
 function initAdaptiveSignalEvents(db: Database.Database): void {
   db.exec(`
