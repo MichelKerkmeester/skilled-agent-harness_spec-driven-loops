@@ -125,6 +125,8 @@ function computeQueryFingerprint(query: string | null | undefined): string | nul
 /**
  * Create consumption_log table if it doesn't exist.
  * Safe to call multiple times (idempotent).
+ * Operational handlers only write this telemetry; analytics reads remain
+ * test/maintenance entry points until an operational read surface is added.
  *
  * Migration: if the table exists with the old `query_text` column, it is
  * dropped before recreation. All rows in that table are disposable telemetry;
@@ -236,6 +238,7 @@ function logConsumptionEvent(db: Database.Database, event: ConsumptionEvent): vo
 
 /**
  * Return aggregate statistics from consumption_log.
+ * Test/maintenance-only instrumentation; not wired to an operational read surface.
  * Returns default empty stats if the table doesn't exist or query fails.
  */
 function getConsumptionStats(db: Database.Database, options: ConsumptionStatsOptions = {}): ConsumptionStats {
@@ -329,6 +332,7 @@ function getConsumptionStats(db: Database.Database, options: ConsumptionStatsOpt
 
 /**
  * Identify consumption pattern categories from logged events.
+ * Test/maintenance-only instrumentation; not wired to an operational read surface.
  *
  * Returns at least 5 categories:
  * 1. high-frequency-query   — fingerprints repeated >3 times

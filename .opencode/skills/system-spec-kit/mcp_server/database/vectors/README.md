@@ -102,13 +102,14 @@ The double-underscore separator is load-bearing. Single underscores inside a tok
 
 ## 5. SHARD SCHEMA
 
-Every shard contains three logical sections, created lazily on first attach:
+Every shard contains these storage and query surfaces, created lazily on first attach:
 
 | Table | Type | Purpose |
 |---|---|---|
 | `vec_metadata` | Key/value | Stores `provider`, `model`, `dim` and `embedding_dim` for the shard. Used by attach-time integrity checks. |
 | `embedding_cache` | Plain table | Caches recent embeddings keyed by content hash and embedder profile. |
-| `vec_<dim>` | Plain table | Dim-tagged BLOB payload table sized to the embedder dimension. `vec_768` for 768-dim profiles, `vec_1024` for 1024-dim profiles, and so on. The sqlite-vec virtual table surface is `vec_memories` when sqlite-vec is available. |
+| `vec_<dim>` | Plain table | Dimension-tagged BLOB payload table sized to the embedder dimension. `vec_768` for 768-dim profiles, `vec_1024` for 1024-dim profiles, and so on. |
+| `vec_memories` | sqlite-vec `vec0` virtual table | Query/index surface for sqlite-vec nearest-neighbor operations when sqlite-vec is available. |
 
 The dim-tagged table name is derived from the profile's `dim` by `vector_table_name_for_profile` in `dist/lib/search/vector-index-store.js`. Queries read through the `active_vec` schema alias, so handler code refers to `active_vec.vec_768` rather than the physical shard filename.
 
