@@ -58,7 +58,7 @@ SELF-CHECK: Are you operating as the @general agent?
 
 ---
 
-## Setup
+## SETUP
 
 **STATUS: ☐ BLOCKED** — resolve ALL inputs below before the Run step. In `:confirm`/no-suffix, present the resolved inputs and wait for confirmation; in `:auto`, resolve confidently from arguments/defaults or fail fast naming the missing inputs. Do NOT run the loop-host command until inputs are resolved.
 
@@ -71,7 +71,9 @@ Resolve:
 
 Pre-flight before any `--live` run: verify no other loop run is active (single-writer lock), and probe provider auth before the batch (an expired credential fails the whole batch — pilot teaching T11).
 
-## Run
+---
+
+## RUN
 
 ```bash
 node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
@@ -83,12 +85,16 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
 
 The adapter (`scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`) validates the contract and spawns the packaging-owned loop host; all guarded-loop logic (frozen scoring surface, kill-switches, worktree promote-N, resume) lives with the packaging.
 
-## Output
+---
+
+## OUTPUT
 
 - The packaging's `_loop/state/loop-journal.jsonl` — append-only run journal (per-sample grades, promotion decisions, canonical stop reasons).
 - On `promote_accept`: the candidate edit lives in a **kept worktree (detached at the candidate state)** for deliberate operator merge — the loop never writes the live tree.
 
-## Presentation Boundary
+---
+
+## PRESENTATION BOUNDARY
 
 The following router-owned display must render verbatim when triggered:
 
@@ -102,6 +108,8 @@ The following content must not come from this router:
 
 Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure, new floor breach, held-out regression (or below `LOOP_ACCEPT_MARGIN`), iteration ceiling, concurrent-run lock.
 
-## Scope (current)
+---
+
+## SCOPE (CURRENT)
 
 Pilot packaging: Barter Copywriter (promotion-accept live-proven via a synthetic-deficit run; red-team gauntlet 10/10). A killed run resumes from its journal (config-hash + HEAD-sha guarded). `LOOP_POLISH=1` opts in to lowest-margin targeting when all floors pass; the default declines-when-clean. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.

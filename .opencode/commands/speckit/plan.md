@@ -8,13 +8,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__m
 
 Thin router for the SpecKit planning workflow. This command resolves the execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
 
 Load the presentation contract before showing startup questions, checkpoints, dashboards, success output, failure output, or next-step prompts.
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -24,7 +26,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
 2. Treat `:with-context`, `:with-phases`, `--intake-only`, `--phases`, `--phase-names`, `--phase-folder`, `--spec-folder`, `--level`, `--start-state`, `--repair-mode`, and relationship flags as workflow inputs, not execution modes.
@@ -32,14 +36,18 @@ No workflow-asset gap exists for this command.
 4. For `:auto`, resolve required setup inputs using the presentation contract's auto-resolution rules before loading YAML.
 5. Load the selected workflow asset and execute it step by step.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/speckit/assets/speckit_plan_presentation.txt`:
 
@@ -49,6 +57,8 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_p
 - Success and failure result templates.
 - Next-step suggestions and final user prompt wording.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs planning from intake through context refresh and terminates before implementation. If a user requests implementation after planning, route to `/speckit:implement`; do not start implementation from this command.

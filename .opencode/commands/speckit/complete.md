@@ -8,13 +8,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__m
 
 Thin router for the end-to-end SpecKit workflow. This command resolves mode and optional workflow flags, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, research/context/phase insertion, artifact writing, validation, and context-save behavior are owned by the workflow YAML assets.
 
 Load the presentation contract before showing startup questions, checkpoints, dashboards, success output, failure output, or next-step prompts.
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -24,7 +26,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
 2. Treat `:with-research`, `:with-context`, `:with-phases`, `--phases`, `--phase-names`, and `--phase-folder` as workflow inputs, not execution modes.
@@ -32,14 +36,18 @@ No workflow-asset gap exists for this command.
 4. For `:auto`, resolve required setup inputs using the presentation contract's auto-resolution rules before loading YAML.
 5. Load the selected workflow asset and execute it step by step.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/speckit/assets/speckit_complete_presentation.txt`:
 
@@ -49,6 +57,8 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_c
 - Success and failure result templates.
 - Next-step suggestions and final user prompt wording.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs the full lifecycle from specification through implementation, validation, context refresh, and workflow closeout. Optional research, context, and phase-decomposition flows are routed through the selected workflow asset.

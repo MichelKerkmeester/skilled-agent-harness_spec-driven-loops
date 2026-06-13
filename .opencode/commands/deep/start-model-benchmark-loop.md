@@ -8,7 +8,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 Thin router for the model-benchmark loop. This command verifies the runtime agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, artifact-writing behavior, benchmark execution, scoring, promotion, and state updates are owned by the workflow YAML assets.
 
@@ -27,7 +27,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 > This command is **general-agent based** - orchestrates deep-improvement skill invocation in model-benchmark mode.
 > This command is the dedicated Lane B entry. It sets `lane = model-benchmark` directly. It does NOT ask a lane question.
 
-### Phase 0: @general Agent Verification
+### PHASE 0: @GENERAL AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
@@ -65,7 +65,7 @@ SELF-CHECK: Are you operating as the @general agent?
 **Phase Output:**
 - `general_agent_verified = ________________`
 
-### Mandatory Input Gate
+### MANDATORY INPUT GATE
 
 - **DO NOT** dispatch any agent from this document.
 - **ALL** agent dispatching and loop execution are handled by the YAML workflow steps.
@@ -77,7 +77,7 @@ SELF-CHECK: Are you operating as the @general agent?
 
 For `:confirm` or no suffix, the consolidated setup prompt in the presentation contract MUST be the first visible response. For `:auto`, do not emit the consolidated setup prompt by default; use the auto setup resolution rules in the presentation contract and fail fast when required fields cannot be resolved.
 
-### Phase Status Verification (Blocking)
+### PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -105,7 +105,7 @@ VERIFICATION CHECK:
 │   └─ NO  → Re-prompt for missing values only
 ```
 
-### Routing Constraints
+### ROUTING CONSTRAINTS
 
 - **DO NOT** dispatch any agent from this document
 - **DO NOT** ask a lane question - this command fixes `lane = model-benchmark`
@@ -114,7 +114,9 @@ VERIFICATION CHECK:
 - **DO NOT** start the loop without all setup values resolved
 - **FIRST ACTION** is always: run Phase 0, run Setup, then load YAML workflow
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -124,7 +126,9 @@ VERIFICATION CHECK:
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat profile paths, `--spec-folder`, `--run-label`, `--scorer`, `--grader`, `--iterations`, `--executor`, and `--model` as workflow inputs, not execution modes.
@@ -136,14 +140,18 @@ No workflow-asset gap exists for this command.
 8. Lightweight read-only discovery for available benchmark profiles or recent spec folders may support setup, but it must feed the single consolidated prompt and never split setup questions.
 9. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_presentation.txt`:
 
@@ -153,7 +161,9 @@ The following content lives only in `.opencode/commands/deep/assets/deep_start-m
 - Success and failure result templates, benchmark report display, reviewer mismatch wording, and violation-recovery wording.
 - Next-step suggestions, promotion wording, related-command wording, and notes shown to users.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The selected YAML workflow invokes the deep-improvement model-benchmark lane, materializes benchmark fixtures before scoring, records mode-aware benchmark state, and writes benchmark outputs to `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. This command never mutates canonical agent files and never loads the agent-improvement workflow.
 

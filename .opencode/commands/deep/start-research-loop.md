@@ -8,7 +8,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, mcp__mk_spec
 
 Thin router for the deep-research loop. This command verifies the runtime agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, artifact-writing behavior, convergence detection, synthesis, and memory save behavior are owned by the workflow YAML assets.
 
@@ -35,7 +35,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 >
 > This command is **general-agent based** — it orchestrates the deep-research loop. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
 
-### Phase 0: @general Agent Verification
+### PHASE 0: @GENERAL AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
@@ -73,7 +73,7 @@ SELF-CHECK: Are you operating as the @general agent?
 **Phase Output:**
 - `general_agent_verified = ________________`
 
-### Mandatory Input Gate
+### MANDATORY INPUT GATE
 
 - **DO NOT** dispatch any agent from this document.
 - **ALL** agent dispatching is handled by the YAML workflow steps.
@@ -90,7 +90,9 @@ For `:confirm` or no suffix, the consolidated setup prompt in the presentation c
 > Acquire `{spec_folder}/research/.deep-research.lock` before `folder_state` classification and keep `research/research.md` as the source of truth for any generated findings sync.
 > Targeted strict validation after deep-research spec mutations uses the Node validation orchestrator; the current strict path is designed for fast packet checks and was measured at about 108ms for a fresh Level 3 packet on the local harness.
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -100,7 +102,9 @@ For `:confirm` or no suffix, the consolidated setup prompt in the presentation c
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat `--max-iterations`, `--convergence`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
@@ -111,14 +115,18 @@ No workflow-asset gap exists for this command.
 7. Lightweight read-only discovery for related spec folders or prior memory may support setup, but it must feed the single consolidated prompt and never split setup questions.
 8. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/deep/assets/deep_start-research-loop_presentation.txt`:
 
@@ -128,7 +136,9 @@ The following content lives only in `.opencode/commands/deep/assets/deep_start-r
 - Success and failure result templates, error-handling display, and memory-integration result wording.
 - Next-step suggestions, command-chain wording, skill-reference text, and offline optimization notes.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The selected YAML workflow initializes deep-research state, dispatches fresh `@deep-research` LEAF agents per iteration, evaluates convergence, synthesizes `{artifact_dir}/research.md`, optionally emits `{artifact_dir}/resource-map.md`, and refreshes continuity through canonical spec docs. This command does not proceed to implementation.
 

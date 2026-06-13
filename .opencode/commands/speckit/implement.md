@@ -8,13 +8,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__m
 
 Thin router for implementing an already planned SpecKit packet. This command resolves mode and target folder, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, implementation steps, debug offers, review gates, and context-save behavior are owned by the workflow YAML assets.
 
 Load the presentation contract before showing startup questions, checkpoints, dashboards, success output, failure output, or next-step prompts.
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -24,7 +26,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
 2. Treat `--phase-folder` and the positional spec-folder path as workflow inputs.
@@ -33,14 +37,18 @@ No workflow-asset gap exists for this command.
 5. Validate that the target has the required planning artifacts before executing the workflow asset.
 6. Load the selected workflow asset and execute it step by step.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/speckit/assets/speckit_implement_presentation.txt`:
 
@@ -50,6 +58,8 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_i
 - Success and failure result templates.
 - Next-step suggestions and final user prompt wording.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow requires prior planning artifacts, executes implementation tasks, verifies checklist evidence, writes completion artifacts, refreshes context, and closes the implementation pass.

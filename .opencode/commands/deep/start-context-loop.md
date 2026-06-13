@@ -8,7 +8,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__m
 
 Thin router for the deep-context loop. This command verifies the orchestrating agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
 
@@ -16,7 +16,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 
 This command is **general-agent based** and must pass the @general verification gate before setup routing continues. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
 
-### Phase 0: @general Agent Verification
+### PHASE 0: @GENERAL AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
@@ -54,7 +54,7 @@ SELF-CHECK: Are you operating as the @general agent?
 **Phase Output:**
 - `general_agent_verified = ________________`
 
-### Mandatory Input Gate
+### MANDATORY INPUT GATE
 
 - **DO NOT** dispatch any agent from this document
 - **ALL** agent dispatching is handled by the YAML workflow steps
@@ -63,7 +63,9 @@ SELF-CHECK: Are you operating as the @general agent?
   - `scope`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 - Resolve `executor_pool` before persisting config and entering the YAML workflow.
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -73,7 +75,9 @@ SELF-CHECK: Are you operating as the @general agent?
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:start-context-loop:auto` and `/deep:start-context-loop:confirm`; keep AGENTS, skills, and quick references synchronized to this entrypoint.
 2. Treat scope text, `--max-iterations`, `--convergence`, relevance/agreement flags, executor pool flags, and pre-bound setup answers as workflow inputs, not execution modes.
@@ -82,14 +86,18 @@ No workflow-asset gap exists for this command.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
 6. Load the selected workflow asset only after `scope`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, and `executor_pool` are bound.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_start-context-loop_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/deep/assets/deep_start-context-loop_presentation.txt`:
 
@@ -99,7 +107,9 @@ The following content lives only in `.opencode/commands/deep/assets/deep_start-c
 - Success and failure result templates, output formats, and error-handling displays.
 - Example invocations, executor-pool explanation display, and next-step suggestion wording.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs iterative codebase-context gathering by seeding a `SLICE` frontier from the scope, dispatching every executor over the same focus as a parallel sweep, merging findings by `file:symbol` with agreement counts, and synthesizing a reuse-first Context Report under `context/`. Convergence uses deep-context's relevance-gated coverage saturation with agreement and relevance as blocking guards; do not transfer sibling defaults from deep-research or deep-review. Code graph tool IDs remain stable as `code_graph_query` and `code_graph_context`; implementation and docs live under `.opencode/skills/system-code-graph/`.
 

@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__m
 
 Thin router for the deep-ai-council session loop. This command verifies the orchestrating agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
 
@@ -17,7 +17,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 
 This command is **general-agent based** and must pass the @general verification gate before setup routing continues. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
 
-### Phase 0: @general Agent Verification
+### PHASE 0: @GENERAL AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
@@ -55,7 +55,7 @@ SELF-CHECK: Are you operating as the @general agent?
 **Phase Output:**
 - `general_agent_verified = ________________`
 
-### Mandatory Input Gate
+### MANDATORY INPUT GATE
 
 - **DO NOT** dispatch any agent from this document.
 - **ALL** agent dispatching is handled by the YAML workflow steps.
@@ -75,7 +75,9 @@ SELF-CHECK: Are you operating as the @general agent?
 
 > **Canonical mode syntax:** use attached command suffixes (`/deep:ask-ai-council:auto`, `/deep:ask-ai-council:confirm`) and keep AGENTS, skills, command references, and runtime mirrors synchronized to this entrypoint.
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -85,7 +87,9 @@ SELF-CHECK: Are you operating as the @general agent?
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:ask-ai-council:auto` and `/deep:ask-ai-council:confirm`.
 2. Treat topic text, `--max-rounds-per-topic`, `--max-topics`, `--saturation`, `--convergence`, `--spec-folder`, executor flags, and pre-bound setup answers as workflow inputs, not execution modes.
@@ -94,14 +98,18 @@ No workflow-asset gap exists for this command.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
 6. Load the selected workflow asset only after `deliberation_topic` or `topics`, `max_rounds_per_topic`, `max_topics_per_session`, `saturation_threshold`, `convergenceThreshold`, `executor.*`, `spec_folder`, and `execution_mode` are bound.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/deep/assets/deep_ask-ai-council_presentation.txt`:
 
@@ -111,7 +119,9 @@ The following content lives only in `.opencode/commands/deep/assets/deep_ask-ai-
 - Success, failure, and cancelled result templates, output formats, and final status wording.
 - Example invocations, memory integration display wording, skill references, and next-step suggestion wording.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs a bounded multi-topic AI Council session under `{spec_folder}/ai-council/`: it initializes session state, runs topic loops with findings-registry priors, evaluates adjudicator-verdict stability, synthesizes per-topic and session reports, and refreshes packet continuity. Convergence uses the council-specific 0.20 default on adjudicator-verdict stability; do not transfer sibling defaults from deep-review or deep-research. Packet-local `ai-council/**` artifacts remain canonical, and derived council graph replay uses `deep-loop-runtime` CLI scripts with `--loop-type council`.
 

@@ -8,7 +8,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__m
 
 Thin router for the deep-review loop. This command verifies the orchestrating agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
 
@@ -16,7 +16,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 
 This command is **general-agent based** and must pass the @general verification gate before setup routing continues.
 
-### Phase 0: @general Agent Verification
+### PHASE 0: @GENERAL AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
@@ -54,7 +54,7 @@ SELF-CHECK: Are you operating as the @general agent?
 **Phase Output:**
 - `general_agent_verified = ________________`
 
-### Mandatory Input Gate
+### MANDATORY INPUT GATE
 
 - **DO NOT** dispatch any agent from this document.
 - **ALL** agent dispatching is handled by the YAML workflow steps.
@@ -62,7 +62,9 @@ SELF-CHECK: Are you operating as the @general agent?
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-## 2. Owned Assets
+---
+
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
@@ -72,7 +74,9 @@ SELF-CHECK: Are you operating as the @general agent?
 
 No workflow-asset gap exists for this command.
 
-## 3. Mode Routing
+---
+
+## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:start-review-loop:auto` and `/deep:start-review-loop:confirm`; keep AGENTS, skills, and quick references synchronized to this entrypoint.
 2. Treat target text, `--max-iterations`, `--convergence`, `--spec-folder`, executor flags, fan-out flags, and pre-bound setup answers as workflow inputs, not execution modes.
@@ -81,14 +85,18 @@ No workflow-asset gap exists for this command.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
 6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, and `convergenceThreshold` are bound.
 
-## 4. Execution Targets
+---
+
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` |
 
-## 5. Presentation Boundary
+---
+
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/deep/assets/deep_start-review-loop_presentation.txt`:
 
@@ -98,7 +106,9 @@ The following content lives only in `.opencode/commands/deep/assets/deep_start-r
 - Success and failure result templates, error-handling displays, and verdict wording.
 - Example invocations, fan-out explanation display, and next-step suggestion wording.
 
-## 6. Workflow Summary
+---
+
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs iterative code review by initializing a review packet under `{artifact_dir}`, dispatching fresh `@deep-review` LEAF agents, evaluating convergence across configured review dimensions, and synthesizing findings into `review-report.md` plus optional `resource-map.md`. Convergence uses the review-specific `convergenceThreshold` severity-weighted finding ratio; do not transfer sibling defaults from deep-research or deep-ai-council. Code graph tool IDs remain stable as `code_graph_query` and `code_graph_context`; implementation and docs live under `.opencode/skills/system-code-graph/`.
 

@@ -58,7 +58,7 @@ SELF-CHECK: Are you operating as the @general agent?
 
 ---
 
-## Setup
+## SETUP
 
 **STATUS: ☐ BLOCKED** — resolve ALL inputs below before the Run step. In `:confirm`/no-suffix, present the resolved inputs and wait for confirmation; in `:auto`, resolve confidently from arguments/defaults or fail fast naming the missing inputs. Do NOT run the loop-host command until inputs are resolved.
 
@@ -68,7 +68,9 @@ Resolve:
 - **fixtures dir** (optional) — defaults to `<skill>/assets/skill_benchmark/fixtures/<skill-id>/`.
 - **trace mode** — `router` (Mode A, deterministic, default/CI) or `live` (Mode B, BUILT — playbook corpus dispatched through `cli-opencode`).
 
-## Run
+---
+
+## RUN
 
 ```bash
 node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
@@ -80,12 +82,16 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
 
 `--advisor-mode=python` enables the built-but-opt-in D1-inter advisor probe (deterministic in-repo SQLite advisor, scored out-of-band; off by default and in CI). The orchestrator (`scripts/skill-benchmark/run-skill-benchmark.cjs`) runs the D5 hard gate first, then per-scenario contamination-lint → router-replay → score, then writes the dual report.
 
-## Output
+---
+
+## OUTPUT
 
 - `skill-benchmark-report.json` — machine report (verdict, D1–D5, funnel, ranked bottlenecks, scenario rows).
 - `skill-benchmark-report.md` — rendered FROM the JSON (anti-drift).
 
-## Presentation Boundary
+---
+
+## PRESENTATION BOUNDARY
 
 The following router-owned display must render verbatim when triggered:
 
@@ -99,7 +105,9 @@ The following content must not come from this router:
 
 Lane C is **diagnostic by default** (no target-skill mutation). Findings hand off to Lane A (`/deep:start-agent-improvement-loop`) or a follow-up spec packet via the remediation taxonomy.
 
-## Scope (current)
+---
+
+## SCOPE (CURRENT)
 
 Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically; D1-inter (advisor selection) is opt-in via `--advisor-mode=python`.
 
