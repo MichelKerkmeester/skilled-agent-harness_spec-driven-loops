@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
-    last_updated_at: "2026-06-12T21:25:00Z"
-    last_updated_by: "claude-fable-orchestrator"
-    recent_action: "Waves 4-7 committed+pushed, all Fable-verified; ~184/198 closed"
-    next_safe_action: "Pick next careful unit from lane dispositions (L7/L2/L5/L4)"
+    last_updated_at: "2026-06-13T09:50:00Z"
+    last_updated_by: "orchestrate-round2"
+    recent_action: "Round-2 deep-review closed: 18 P1+33 P2 + L5 carefuls; verdict PASS"
+    next_safe_action: "Original-backlog tail open: L7/L2/L4/L9 dispositions; L5 queue empty"
     blockers: []
     key_files:
       - "L5-advisor-correctness/disposition.md"
@@ -38,6 +38,7 @@ Both original goals are RESOLVED:
 
 - **Goal A (dashboard adherence)** — resolved as a measurement artifact, not a model limitation: raw slash text in an `opencode run` message never invokes the command runtime; with `--command <family>/<name>` dispatch, gpt-5.5 medium renders the envelope 3/3. Protocol codified in commit `41cd6907c7`; see `L8-command-adherence/disposition.md` and memory `natural-behavior-command-tests`.
 - **Goal B (verify-first remediation)** — seven code waves shipped, each adversarially Fable-verified pre-commit: ~184 of 198 findings CLOSED. The single-writer DB lock is live (a second daemon exits 86 naming the holder; the launcher bridges it) — the corruption class that opened this program is structurally eliminated and has not recurred since.
+- **15-seat deep review (round-2, 2026-06-13)** — a multi-model review of this program's OWN fixes surfaced 18 P1 + 33 P2. All are now CLOSED across Waves A–F plus follow-ons (each implemented and verified with gpt-5.5-fast xhigh; Fable retired), and the verdict moved CONDITIONAL PASS → PASS — see `final-review/deep-review-report.md`. The L5 advisor carefuls (tri-033/036/040/041/083/156/173/180) all shipped or were adjudicated by-design; the **L5 code queue is empty** (only tri-138 deferred by design). This is a distinct track from the original-backlog careful tail in §3 below, whose L7/L2/L4/L9 lanes remain open.
 
 Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the push gate was opened by the operator; the remote repo was renamed to `opencode--skilled-agent-loops-with-spec-kit-memory`). The root README was restored to the spec-memory-first framing and aligned with all 027 features (`9fea79bbbc`).
 
@@ -65,7 +66,7 @@ Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the pus
 |---|---|
 | `L2-codegraph-apply-safety/disposition.md` | tri-022 (durable shadow telemetry), tri-029 (prune-excludes artifact), tri-031 (repair-nodes skip-list honesty), tri-131 (semantic-trigger stress; after tri-022) |
 | `L4-launcher-lifecycle/disposition.md` | tri-148 (code-index front-proxy parity) |
-| `L5-advisor-correctness/disposition.md` | carefuls: tri-033 (explicit-name misroute FIRST), tri-036, tri-040/041 (interlocked), tri-083 (after 033/034), tri-156, tri-173, tri-180; tri-138 deferred by design |
+| `L5-advisor-correctness/disposition.md` | CLOSED (round-2): tri-033, tri-036, tri-040/041, tri-083, tri-156 shipped; tri-173, tri-180 adjudicated by-design. L5 code queue empty; only tri-138 deferred by design. |
 | `L6-save-continuity-truth/disposition.md` | tri-163 (key_files↔COVERED_BY crosswalk — design first, don't patch) |
 | `L7-shadow-feedback-honesty/disposition.md` | clusters A (replay pool: 007/008/009/103), B (promotion: 012/133), C (shadow pause: 011/115/136), + 072/073/119 |
 | `L9-pxx-sweep/disposition.md` | Part A: 080, 104, 105 (careful), 108/109 (careful); Part C: 111, 113, 117, 121, 122, 123, 124, 129 (careful), 135 (careful), 142; carry-overs 125, 158; tri-064 scoped follow-up |
