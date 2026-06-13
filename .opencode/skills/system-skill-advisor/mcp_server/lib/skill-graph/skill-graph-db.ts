@@ -402,6 +402,21 @@ export function getDb(): Database.Database {
 }
 
 /**
+ * Read-only corruption probe for status surfaces. Returns null when this
+ * process already owns a live read-write handle: the on-disk database is
+ * healthy by construction, because initDb would have recovered any genuine
+ * corruption before that handle opened. Otherwise probes the file with
+ * quick_check WITHOUT opening the read-write handle or running destructive
+ * recovery, so a read-only status call can REPORT corruption rather than
+ * silently quarantining the database as a side effect of being asked for
+ * counts.
+ */
+export function probeStatusIntegrity(): { ok: true } | { ok: false; reason: string } | null {
+  if (db) return null;
+  return checkSqliteIntegrity(getSkillGraphDbPath());
+}
+
+/**
  * Read-only database access for recommend-path consumers (semantic shadow
  * lane). Never creates the database file, never runs schema migrations, and
  * never triggers malformed-database recovery, so secondary/bridge processes

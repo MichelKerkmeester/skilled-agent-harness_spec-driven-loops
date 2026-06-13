@@ -61,6 +61,7 @@ const SKILL_ADVISOR_TOOL_DEFINITIONS: readonly ToolDefinition[] = [
       additionalProperties: false,
       properties: {
         workspaceRoot: { type: 'string', minLength: 1, description: 'Workspace root used to locate skill graph generation and daemon freshness state.' },
+        checkArtifactIntegrity: { type: 'boolean', description: 'Run a read-only SQLite quick_check so genuine on-disk corruption downgrades freshness to stale (advisor_rebuild then repairs it). Defaults on for this diagnostic tool.' },
       },
       required: ['workspaceRoot'],
     },

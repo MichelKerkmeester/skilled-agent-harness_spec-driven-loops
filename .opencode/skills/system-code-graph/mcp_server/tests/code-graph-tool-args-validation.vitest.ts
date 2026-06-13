@@ -3,6 +3,7 @@
 // query `limit`/`maxDepth` schema bounds match the handler clamps.
 import { describe, it, expect } from 'vitest';
 import { validateToolArgs, CODE_GRAPH_TOOL_SCHEMAS } from '../tool-schemas.js';
+import { TOOL_NAMES } from '../tools/code-graph-tools.js';
 
 describe('validateToolArgs (BUG-04 schema enforcement)', () => {
   it('rejects unknown properties (additionalProperties:false)', () => {
@@ -55,5 +56,13 @@ describe('validateToolArgs (BUG-04 schema enforcement)', () => {
     const props = (query!.inputSchema as { properties: Record<string, { maximum?: number }> }).properties;
     expect(props.limit.maximum).toBe(1000);
     expect(props.maxDepth.maximum).toBe(20);
+  });
+
+  // The dispatcher's membership gate must stay derived from the schema
+  // registry (no independent hardcoded tool list that can silently drift).
+  it('derives the dispatcher TOOL_NAMES gate from the schema registry', () => {
+    const schemaNames = [...CODE_GRAPH_TOOL_SCHEMAS.map((schema) => schema.name)].sort();
+    const gateNames = [...TOOL_NAMES].sort();
+    expect(gateNames).toEqual(schemaNames);
   });
 });

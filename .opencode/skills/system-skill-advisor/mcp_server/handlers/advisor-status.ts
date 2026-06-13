@@ -8,6 +8,8 @@ import Database from 'better-sqlite3';
 
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
+import { checkSqliteIntegrity } from '../lib/freshness/sqlite-integrity.js';
+import { isGenuineCorruptionReason } from '../lib/skill-graph/skill-graph-db.js';
 import { createTrustState } from '../lib/freshness/trust-state.js';
 import { getAdapter } from '../lib/embedders/registry.js';
 import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
@@ -207,6 +209,20 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
     const generation = readSkillGraphGeneration(workspaceRoot);
     const hasSources = existsSync(skillRoot);
     const hasArtifact = existsSync(dbPath);
+    // Existence alone lets a corrupt-on-disk artifact report 'live' from the
+    // generation counters, which makes advisor_rebuild skip the repair it
+    // exists to perform. A read-only quick_check turns genuine corruption
+    // into a stale signal so rebuild runs. Transient lock/IO failures are
+    // excluded so contention never forces a spurious rebuild.
+    const integrity = (hasArtifact && args.checkArtifactIntegrity === true) ? checkSqliteIntegrity(dbPath) : null;
+    const artifactCorrupt = Boolean(
+      integrity && !integrity.ok
+        && integrity.reason !== 'SQLITE_ABSENT'
+        && isGenuineCorruptionReason(integrity.reason),
+    );
+    if (artifactCorrupt && integrity && !integrity.ok) {
+      errors.push(`advisor_status skill graph integrity check failed (${integrity.reason}); run advisor_rebuild`);
+    }
     const sourceScan = scanSkillMetadataFiles(skillRoot, args.maxMetadataFiles ?? DEFAULT_MAX_METADATA_FILES);
     if (sourceScan.truncated) {
       errors.push(`advisor_status metadata scan capped at ${sourceScan.count} files`);
@@ -247,7 +263,8 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
     // `freshness` see artifact health independent of daemon availability.
     // When physical evidence shows sources are newer than the DB, downgrade
     // a 'live' generation to 'stale' regardless of signature noise.
-    const freshnessOutput: AdvisorFreshness = state === 'live' && (sourceChanged || (!generation.sourceSignature && sourcesNewerThanArtifact))
+    const freshnessOutput: AdvisorFreshness = state === 'live'
+      && (sourceChanged || artifactCorrupt || (!generation.sourceSignature && sourcesNewerThanArtifact))
       ? 'stale'
       : state;
     const output: AdvisorStatusOutput = {
@@ -291,7 +308,10 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
 
 /** Handle the advisor_status MCP tool request. */
 export async function handleAdvisorStatus(args: unknown): Promise<HandlerResponse> {
-  const data = readAdvisorStatus(AdvisorStatusInputSchema.parse(args));
+  // The diagnostic surface opts into the artifact integrity probe by default
+  // so operators see on-disk corruption; explicit input can still override it.
+  const parsed = AdvisorStatusInputSchema.parse(args);
+  const data = readAdvisorStatus({ ...parsed, checkArtifactIntegrity: parsed.checkArtifactIntegrity ?? true });
   return {
     content: [{
       type: 'text',

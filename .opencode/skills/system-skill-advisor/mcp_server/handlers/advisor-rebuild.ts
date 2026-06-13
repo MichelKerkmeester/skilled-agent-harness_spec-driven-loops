@@ -65,7 +65,9 @@ export function rebuildAdvisorIndex(
   const args = AdvisorRebuildInputSchema.parse(input);
   const workspaceRoot = resolve(args.workspaceRoot ?? dependencies.workspaceRoot ?? process.cwd());
   const readStatus = dependencies.readStatus ?? readAdvisorStatus;
-  const before = readStatus({ workspaceRoot });
+  // Opt into the artifact integrity probe so a corrupt-on-disk SQLite reads as
+  // stale and is repaired here rather than skipped on a 'live' generation.
+  const before = readStatus({ workspaceRoot, checkArtifactIntegrity: true });
   const reason = reasonFor(before.freshness, args.force === true);
 
   if (shouldSkipRebuild(before, args.force === true)) {

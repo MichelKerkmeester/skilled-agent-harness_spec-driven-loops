@@ -234,6 +234,11 @@ export const AdvisorStatusInputSchema = z.object({
   workspaceRoot: BoundedWorkspaceRootSchema,
   maxMetadataFiles: z.number().int().positive().max(10_000).optional(),
   includeSemanticHealth: z.boolean().optional(),
+  // Run a read-only SQLite quick_check on the artifact so genuine corruption
+  // downgrades freshness to stale (and advisor_rebuild repairs it). Off by
+  // default so the read-style advisor_recommend path pays no per-call probe;
+  // the advisor_status diagnostic and advisor_rebuild pre-read opt in.
+  checkArtifactIntegrity: z.boolean().optional(),
   debug: z.boolean().optional(),
 }).strict();
 

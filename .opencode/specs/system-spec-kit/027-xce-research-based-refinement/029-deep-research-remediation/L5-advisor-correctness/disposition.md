@@ -20,6 +20,11 @@ tri-037 + tri-089 (both render surfaces now consume the scorer's dual-margin amb
 ## Closed in code wave 9 (commit be4f4b662b, Fable-verified)
 tri-033 (a verbatim own-name mention now relieves uncertainty to 0.30 before threshold refresh — the named skill passes and ranks first instead of losing to a sibling crediting that name as a keyword; corpus 50/50, P0 12/12). tri-168 was Fable-CLOSED in wave 6.
 
+## Closed in code wave 10 (gpt-5.5 xhigh read-only verified; Fable infra-down this run)
+tri-040 (read-only skill_graph_status no longer triggers destructive recovery — probeStatusIntegrity reports `dbStatus:'corrupt'` + requiredAction instead of quarantining). tri-041 (readAdvisorStatus quick_checks the artifact and downgrades 'live'->'stale' on genuine corruption so advisor_rebuild repairs it; gated behind opt-in `checkArtifactIntegrity` — on for the diagnostic + rebuild pre-read, off for the per-recommendation path). tri-156 (the dispatcher's TOOL_NAMES gate is derived from CODE_GRAPH_TOOL_SCHEMAS, not a hardcoded duplicate; parity test pins it).
+
 ## Code queue (open)
-Code-careful: tri-036 (no runtime freshness refresh), tri-040/tri-041 (corrupt-DB status/rebuild honesty — interlocked), tri-083 (local/native parity gate; land after tri-033/034), tri-156 (code-graph tool exposure seam), tri-173 (validate corpus has no real-session source), tri-180 (metrics schema).
+Code-careful: tri-036 (no runtime freshness refresh — needs a design decision: scan-time source-file writes vs. honest author-time-contract doc), tri-083 (harder local/native parity — measurement-coverage gap; needs an honest ratchet baseline against the 193-prompt corpus, not forcing mismatches green), tri-173 (validate corpus has no real-session source — eval infra), tri-180 (metrics misroute payload schema — eval infra).
 tri-138 deferred pending consumer-aware design (memory_health budget enforcement; doctor flows read data.routing).
+
+Verifier follow-ons (recorded, not reopeners): the code-index CLI manifest keeps a separate hardcoded EXPECTED_TOOL_NAMES list — an intentional parity tripwire (it throws on mismatch), candidate to derive from CODE_GRAPH_TOOL_SCHEMAS too. The advisor_status descriptor + CLI manifest still under-advertise the pre-existing optional inputs (maxMetadataFiles, includeSemanticHealth, debug); only the newly-introduced checkArtifactIntegrity was added this wave to keep that change honest.

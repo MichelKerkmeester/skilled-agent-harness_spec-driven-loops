@@ -180,7 +180,7 @@ describe('advisor_rebuild handler', () => {
     });
 
     expect(result.rebuilt).toBe(true);
-    expect(readStatus).toHaveBeenNthCalledWith(1, { workspaceRoot: alternateRoot });
+    expect(readStatus).toHaveBeenNthCalledWith(1, { workspaceRoot: alternateRoot, checkArtifactIntegrity: true });
     // drift: 026 release
     expect(indexSkills).toHaveBeenCalledWith(`${alternateRoot}/.opencode/skills`);
     expect(publishGeneration).toHaveBeenCalledWith(expect.objectContaining({
