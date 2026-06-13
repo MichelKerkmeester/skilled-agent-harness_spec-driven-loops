@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
+  "spec_folder": "skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
+  "parent_id": "skilled-agent-orchestration/148-sk-interface-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ui-ux-pro-max merge",
+      "sk-interface-design data merge",
+      "adopt ui-ux-pro-max data"
+    ],
+    "key_topics": [
+      "ui-ux-pro-max",
+      "sk-interface-design",
+      "design data",
+      "skill merge",
+      "licensing",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase 003 implements the 002 research recommendation in three internal phases: adopt the quality-floor data + stand up licensing, add an optional zero-dep search script, then adopt the aesthetic data framed as a critique-against inventory with advisor routing. Keeps sk-interface-design lean and anti-default; design_principles.md stays untouched.",
+    "created_at": "2026-06-13T17:10:00Z",
+    "last_save_at": "2026-06-13T17:10:00Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

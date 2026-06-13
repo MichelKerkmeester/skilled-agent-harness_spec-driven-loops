@@ -1,0 +1,10 @@
+{"type":"iteration","iteration":3,"newInfoRatio":0.6,"status":"complete","focus":"Integration design into the house structure (Q2)"}
+{"type":"finding","id":"f-iter003-009","label":"Placement: assets/data/ for CSVs (0 skills use top-level data/; 15 use assets/), scripts/ for search (16 skills ship scripts/), two new references/ docs","iteration":3,"evidence":"file:.opencode/skills/ layout"}
+{"type":"finding","id":"f-iter003-010","label":"SKILL.md budget (186-466L across house skills) forbids inlining the ~660L external SKILL.md / Quick Reference; add a ~20-line routing block only","iteration":3,"evidence":"file:.opencode/skills/*/SKILL.md sizes"}
+{"type":"finding","id":"f-iter003-011","label":"core.py/search.py adaptation is small: rename, re-root DATA_DIR to assets/data, trim CSV_CONFIG to adopted domains, drop stacks; adds a Python3 prereq already met framework-wide","iteration":3,"evidence":"file:external/.../scripts/core.py:14,75; file:external/.../scripts/search.py:20"}
+{"type":"finding","id":"f-iter003-012","label":"Advisor routing extends with color/font/chart/ux-checklist signals but must avoid stack/impl signals owned by sk-code","iteration":3,"evidence":"file:.opencode/skills/sk-interface-design/graph-metadata.json:36-47"}
+{"type":"finding","id":"f-iter003-013","label":"design_system.py (1148L) is the weakest candidate: philosophy-conflicting generator + heavy persistence; default SKIP","iteration":3,"evidence":"file:external/.../scripts/design_system.py:1-90"}
+{"type":"edge","id":"e-iter003-001","relation":"PLACES","source":"f-iter002-004","target":"f-iter003-009","iteration":3}
+{"type":"ruled_out","direction":"Add a new top-level data/ dir","reason":"No house skill uses one; assets/data/ follows convention","iteration":3}
+{"type":"ruled_out","direction":"Inline adopted rules into SKILL.md","reason":"Would exceed the largest house SKILL.md; route to references + script","iteration":3}
+{"type":"ruled_out","direction":"Adopt design_system.py wholesale","reason":"1148L generator + persistence machinery beyond a design skill's needs and philosophy-conflicting","iteration":3}

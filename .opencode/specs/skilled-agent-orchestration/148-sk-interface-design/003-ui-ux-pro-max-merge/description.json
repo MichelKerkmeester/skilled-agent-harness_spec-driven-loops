@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
+  "description": "Feature Specification: ui-ux-pro-max-merge",
+  "keywords": [
+    "feature",
+    "specification",
+    "ui-ux-pro-max-merge",
+    "sk-interface-design",
+    "phase",
+    "data-merge"
+  ],
+  "lastUpdated": "2026-06-13T17:10:00Z",
+  "specId": "003",
+  "folderSlug": "ui-ux-pro-max-merge",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "148-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

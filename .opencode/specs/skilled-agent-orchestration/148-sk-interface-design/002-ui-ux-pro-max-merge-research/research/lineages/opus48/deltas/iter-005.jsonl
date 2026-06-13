@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":5,"newInfoRatio":0.35,"status":"complete","focus":"Consolidated merge recommendation + concrete steps + cross-check framing (Q5)"}
+{"type":"finding","id":"f-iter005-018","label":"Merge is worth doing but asymmetric: high-confidence win = objective quality-floor layer (fills a real gap, zero conflict); aesthetic/recommender data only via critique-against framing; all packaging SKIP","iteration":5,"evidence":"file:.opencode/specs/.../lineages/opus48/iterations/iteration-001.md..004.md"}
+{"type":"finding","id":"f-iter005-019","label":"Cross-lineage divergence to reconcile at merge: (1) aggressiveness of ui-reasoning/products adoption, (2) keep any design_system.py, (3) curated references doc vs raw-CSV-only","iteration":5,"classification":"real"}
+{"type":"edge","id":"e-iter005-001","relation":"ANSWERS","source":"f-iter005-018","target":"q-Q5","iteration":5}
+{"type":"edge","id":"e-iter005-002","relation":"ANSWERS","source":"f-iter005-018","target":"q-Q1","iteration":5}

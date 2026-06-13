@@ -1,0 +1,65 @@
+{
+  "topic": "Review: .opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
+  "sessionId": "fanout-gpt55high-rev-1781372998667-x2ju1q",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge/review/lineages/gpt55high-rev",
+  "createdAt": "2026-06-13T17:50:28Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "reviewScopeFiles": [
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge/tasks.md",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge/implementation-summary.md",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research/research/research.md",
+    ".opencode/skills/sk-interface-design/SKILL.md",
+    ".opencode/skills/sk-interface-design/graph-metadata.json",
+    ".opencode/skills/sk-interface-design/references/design_principles.md",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/LICENSE",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/core.py",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/search.py",
+    ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/design_system.py"
+  ],
+  "qualityGateThreshold": true
+}

@@ -1,0 +1,171 @@
+{
+  "sessionId": "fanout-gpt55fast-1781367602693-9nehlm",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "reason": "converged",
+    "iteration": 4,
+    "newInfoRatio": 0.03,
+    "threshold": 0.05,
+    "questionsAnswered": "5/5",
+    "timestamp": "2026-06-13T16:40:05Z"
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-asset-classification",
+      "text": "Which external asset classes should be ADOPTED, ADAPTED, or SKIPPED for sk-interface-design?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "answer": "Adopt core data references; adapt QA, landing, mobile, generated examples, quick-reference taxonomy, and optional search/generator tooling; skip direct icon-library preference, direct React performance merge, and external templates."
+    },
+    {
+      "id": "question-2-house-structure",
+      "text": "How should reusable external assets fit the house skill structure without making SKILL.md too large?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "answer": "Keep SKILL.md lean, keep design_principles.md primary, and add optional references/design_intelligence assets plus notices if implemented later."
+    },
+    {
+      "id": "question-3-stack-ownership",
+      "text": "Should stack-specific CSVs be adopted, adapted, or left to sk-code ownership?",
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 3,
+      "answer": "Skip direct stack CSV merge into sk-interface-design; adapt only cross-cutting design quality fragments and leave real implementation-stack adoption to future sk-code surface work."
+    },
+    {
+      "id": "question-4-license-attribution",
+      "text": "What license and attribution path is required for mixing MIT external content with the existing Apache-2.0 vendored Anthropic skill?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "answer": "Preserve existing Apache-2.0 attribution and add a separate MIT notice/license file for ui-ux-pro-max-derived content."
+    },
+    {
+      "id": "question-5-negative-knowledge",
+      "text": "What negative knowledge and merge risks should the final cross-lineage synthesis preserve?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "answer": "Skip platform plumbing, SKILL.md data dumps, replacing design_principles.md, mandatory generators, Phosphor defaults, stack-rule absorption, current sk-code overclaiming, deterministic reasoning data, and single-license collapse."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-asset-taxonomy",
+      "iteration": 1,
+      "summary": "External repo is a data-driven design intelligence toolkit with styles, colors, typography, UX, chart, stack, and reasoning datasets.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/README.md:151-159"
+    },
+    {
+      "id": "f-iter001-mit-license",
+      "iteration": 1,
+      "summary": "MIT content can be merged or adapted if copyright and permission notices are preserved.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/LICENSE:1-13"
+    },
+    {
+      "id": "f-iter002-adopt-core-data",
+      "iteration": 2,
+      "summary": "products, styles, colors, typography, ui-reasoning, and charts are strong ADOPT candidates as data references rather than SKILL.md prose.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/data/styles.csv:1-10"
+    },
+    {
+      "id": "f-iter002-adapt-qa-patterns",
+      "iteration": 2,
+      "summary": "ux-guidelines, landing, app-interface, design.csv, and quick-reference content are useful but need adaptation, compression, and house-style framing.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/templates/base/quick-reference.md:39-54"
+    },
+    {
+      "id": "f-iter002-scripts-optional",
+      "iteration": 2,
+      "summary": "search.py/core.py and design_system.py are useful optional lookup/generation tooling, not mandatory runtime workflow for every design task.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/search.py:56-114"
+    },
+    {
+      "id": "f-iter003-lean-layout",
+      "iteration": 3,
+      "summary": "Future merge should keep SKILL.md lean and add optional references/design_intelligence assets rather than replacing design_principles.md.",
+      "source": ".opencode/skills/sk-interface-design/SKILL.md:65-82"
+    },
+    {
+      "id": "f-iter003-stack-boundary",
+      "iteration": 3,
+      "summary": "Stack CSVs are mostly implementation checklists; skip direct merge into sk-interface-design and leave true stack adoption to future sk-code surface expansion.",
+      "source": ".opencode/skills/sk-code/SKILL.md:240-245"
+    },
+    {
+      "id": "f-iter003-license-path",
+      "iteration": 3,
+      "summary": "Mixed-source merge requires preserving the existing Apache-2.0 notice and adding a separate MIT notice/file for ui-ux-pro-max-derived content.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/external/ui-ux-pro-max-skill-main/LICENSE:1-13"
+    },
+    {
+      "id": "f-iter004-negative-knowledge-stable",
+      "iteration": 4,
+      "summary": "Final negative knowledge is stable: skip platform plumbing, data dumps, mandatory generators, icon preference, stack-rule absorption, current sk-code overclaim, and single-license collapse.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research/research/lineages/gpt55fast/iterations/iteration-004.md:29-41"
+    },
+    {
+      "id": "f-iter004-converged",
+      "iteration": 4,
+      "summary": "Lineage converged at iteration 4 with newInfoRatio 0.03 and all key questions answered.",
+      "source": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research/research/lineages/gpt55fast/iterations/iteration-004.md:45-51"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Installer/platform-template direct merge",
+      "iteration": 1,
+      "reason": "Packaging plumbing does not improve sk-interface-design guidance and conflicts with lean house packaging."
+    },
+    {
+      "direction": "Direct icon-library preference",
+      "iteration": 2,
+      "reason": "Phosphor-specific imports should not override the app's existing icon system."
+    },
+    {
+      "direction": "Direct React performance merge",
+      "iteration": 2,
+      "reason": "Performance/code implementation guidance belongs to sk-code."
+    },
+    {
+      "direction": "Wholesale generated design-system corpus merge",
+      "iteration": 2,
+      "reason": "The giant design.csv corpus would bloat the lean house skill and undermine brief-specific critique."
+    },
+    {
+      "direction": "Wholesale stack CSV merge",
+      "iteration": 3,
+      "reason": "Most stack guidance is framework implementation, not design direction."
+    },
+    {
+      "direction": "Single-license replacement",
+      "iteration": 3,
+      "reason": "Apache-2.0 and MIT notices both need preservation for mixed-source content."
+    },
+    {
+      "direction": "Iteration 5 without new evidence",
+      "iteration": 4,
+      "reason": "All key questions are answered and novelty is below threshold."
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 10,
+    "convergenceScore": 0.97,
+    "coverageBySources": {
+      "external-root-docs": 5,
+      "external-data-csv": 12,
+      "external-scripts": 3,
+      "external-templates": 3,
+      "target-skill": 5,
+      "target-license": 1,
+      "sk-code": 1,
+      "external-stack-csv": 8
+    }
+  },
+  "status": "SYNTHESIZED",
+  "corruptionWarnings": []
+}

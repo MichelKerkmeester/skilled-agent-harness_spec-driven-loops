@@ -1,0 +1,23 @@
+{
+  "executors": [
+    {
+      "label": "gpt55fast",
+      "kind": "cli-opencode",
+      "model": "openai/gpt-5.5-fast",
+      "reasoningEffort": "xhigh",
+      "iterations": 5,
+      "count": 1,
+      "timeoutSeconds": 900
+    },
+    {
+      "label": "opus48",
+      "kind": "cli-claude-code",
+      "model": "claude-opus-4-8",
+      "reasoningEffort": "xhigh",
+      "iterations": 5,
+      "count": 1,
+      "timeoutSeconds": 900
+    }
+  ],
+  "concurrency": 2
+}
