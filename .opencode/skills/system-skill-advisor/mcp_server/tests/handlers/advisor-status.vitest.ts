@@ -258,4 +258,49 @@ describe('advisor_status handler', () => {
       expect.stringContaining('metadata scan capped at 1 files'),
     ]);
   });
+
+  it('probes the env-override artifact path the writer uses, read live', () => {
+    // The probe must target the file the writing daemon actually opens. With an
+    // env override set, the writer resolves there; the probe must too, even
+    // when called with an unrelated workspaceRoot. A healthy DB under the
+    // workspace would mask a corrupt override DB if the probe used the wrong
+    // base.
+    const workspaceRootDir = workspace('override-probe-workspace');
+    writeDb(workspaceRootDir);
+    writeGeneration(workspaceRootDir, 'live', 11);
+
+    const overrideDir = mkdtempSync(join(tmpdir(), 'advisor-status-override-'));
+    writeFileSync(join(overrideDir, 'skill-graph.sqlite'), 'not-a-sqlite-database-file-at-all-this-is-corrupt', 'utf8');
+
+    const previous = process.env.MK_SKILL_ADVISOR_DB_DIR;
+    process.env.MK_SKILL_ADVISOR_DB_DIR = overrideDir;
+    try {
+      const status = readAdvisorStatus({ workspaceRoot: workspaceRootDir, checkArtifactIntegrity: true });
+      // Corruption is read from the OVERRIDE artifact, not the healthy
+      // workspace-relative DB, so freshness downgrades to stale.
+      expect(status.freshness).toBe('stale');
+      expect(status.errors?.some((message) => message.includes('integrity check failed'))).toBe(true);
+    } finally {
+      if (previous === undefined) {
+        delete process.env.MK_SKILL_ADVISOR_DB_DIR;
+      } else {
+        process.env.MK_SKILL_ADVISOR_DB_DIR = previous;
+      }
+    }
+  });
+
+  it('downgrades a corrupt artifact from live to stale only when integrity is checked', () => {
+    const root = workspace('corrupt-artifact');
+    writeFileSync(join(root, ADVISOR_DB_RELATIVE_PATH), 'definitely-not-a-valid-sqlite-database-header', 'utf8');
+    writeGeneration(root, 'live', 12);
+
+    // Without the integrity opt-in the generation counters alone report live.
+    const optimistic = readAdvisorStatus({ workspaceRoot: root });
+    expect(optimistic.freshness).toBe('live');
+
+    // The recommend path opts in, so the same corrupt artifact reads stale.
+    const guarded = readAdvisorStatus({ workspaceRoot: root, checkArtifactIntegrity: true });
+    expect(guarded.freshness).toBe('stale');
+    expect(guarded.errors?.some((message) => message.includes('integrity check failed'))).toBe(true);
+  });
 });

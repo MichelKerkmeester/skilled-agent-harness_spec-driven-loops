@@ -222,10 +222,12 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
   let snapshot: ReturnType<typeof getGraphReadinessSnapshot>;
   let storedScope: ReturnType<typeof graphDb.getStoredCodeGraphScope>;
   let activeScopePolicy: ReturnType<typeof resolveIndexScopePolicy>;
+  let resolvedScopePolicy: ReturnType<typeof resolveIndexScopePolicy>;
   try {
     snapshot = getGraphReadinessSnapshot(process.cwd());
     storedScope = graphDb.getStoredCodeGraphScope();
     activeScopePolicy = parseIndexScopePolicyFromFingerprint(storedScope) ?? resolveIndexScopePolicy();
+    resolvedScopePolicy = resolveIndexScopePolicy();
   } catch (err: unknown) {
     const readinessError = err instanceof Error ? err.message : String(err);
     return {
@@ -245,7 +247,13 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
     };
   }
   const freshness = snapshot.freshness;
-  const scopeMismatch = storedScope.fingerprint !== activeScopePolicy.fingerprint;
+  // Compare the index's stored scope against the scope the CURRENT runtime
+  // config resolves to. Deriving `activeScopePolicy` from the stored
+  // fingerprint (so it stays correct for the activeScope display and the
+  // excludedTrackedFiles count) round-trips that fingerprint, which made the
+  // mismatch flag a constant false. Resolving the live policy separately is
+  // what lets a drifted-config index actually surface as a mismatch.
+  const scopeMismatch = storedScope.fingerprint !== resolvedScopePolicy.fingerprint;
 
   // Stats is isolated so an unavailable DB never suppresses the readiness
   // snapshot. On failure we ship the snapshot + degraded envelope and
@@ -366,6 +374,11 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
             },
             storedScope,
             scopeMismatch,
+            resolvedScope: {
+              fingerprint: resolvedScopePolicy.fingerprint,
+              label: resolvedScopePolicy.label,
+              source: resolvedScopePolicy.source,
+            },
             excludedTrackedFiles: activeScopePolicy.includedSkillsList === 'all'
               ? 0
               : graphDb.countTrackedSkillFiles(),

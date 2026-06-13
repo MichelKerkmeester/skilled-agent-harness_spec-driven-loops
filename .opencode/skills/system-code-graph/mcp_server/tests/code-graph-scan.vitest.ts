@@ -604,6 +604,11 @@ describe('handleCodeGraphScan', () => {
           label: string;
         };
         scopeMismatch: boolean;
+        resolvedScope: {
+          fingerprint: string;
+          label: string;
+          source: string;
+        };
       };
     };
 
@@ -625,7 +630,13 @@ describe('handleCodeGraphScan', () => {
       includePlugins: payload.data.activeScope.includePlugins,
       source: payload.data.activeScope.source,
     });
-    expect(payload.data.scopeMismatch).toBe(false);
+    // The index was scanned with includeSkills:false (scan-argument) while the
+    // ambient env requests skills, so the stored scope no longer matches the
+    // currently-resolved policy: the mismatch flag must now fire and the
+    // resolved scope it compared against is surfaced for the operator.
+    expect(payload.data.scopeMismatch).toBe(true);
+    expect(payload.data.resolvedScope.fingerprint).not.toBe(payload.data.activeScope.fingerprint);
+    expect(typeof payload.data.resolvedScope.label).toBe('string');
   });
 
   it('passes the canonical rootDir into the indexer config', async () => {

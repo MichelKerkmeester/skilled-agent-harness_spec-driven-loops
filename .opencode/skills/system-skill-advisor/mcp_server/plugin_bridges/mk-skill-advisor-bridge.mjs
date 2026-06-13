@@ -620,12 +620,18 @@ function classifyCliStaleDist(exitCode, stderr) {
 }
 
 function runCliRecommend(input, env, timeoutMs) {
+  // Thread the caller's thresholds into the subprocess payload so the CLI
+  // scorer applies the same floor/ceiling as the in-process path. Omitting
+  // them made the scorer fall back to its built-in defaults while the response
+  // metadata still reported the caller-supplied thresholds.
   const payload = {
     prompt: input.prompt,
     options: {
       topK: 3,
       includeAttribution: false,
       includeAbstainReasons: true,
+      confidenceThreshold: threshold(input.thresholdConfidence),
+      uncertaintyThreshold: DEFAULT_UNCERTAINTY_THRESHOLD,
     },
   };
   return new Promise((resolvePromise) => {

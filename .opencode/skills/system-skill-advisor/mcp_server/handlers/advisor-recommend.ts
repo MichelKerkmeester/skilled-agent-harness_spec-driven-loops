@@ -306,7 +306,11 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
   });
-  const status = readAdvisorStatus({ workspaceRoot });
+  // Detect on-disk corruption here too: without it a malformed artifact reads
+  // 'live' from the generation counters and the recommend path would serve
+  // results as fresh. The verdict is cached per generation, so the quick_check
+  // runs at most once per rebuild rather than on every recommendation.
+  const status = readAdvisorStatus({ workspaceRoot, checkArtifactIntegrity: true });
   if (status.freshness === 'unavailable') {
     return unavailableOutput(status, workspaceRoot, effectiveThresholds);
   }

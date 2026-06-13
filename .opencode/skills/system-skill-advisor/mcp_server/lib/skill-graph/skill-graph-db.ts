@@ -245,13 +245,18 @@ let db: Database.Database | null = null;
 let dbPath: string | null = null;
 let readOnlyDb: Database.Database | null = null;
 
-export function resolveSkillGraphDbDir(): string {
+// The env override is read on every call (never captured at module load) so a
+// diagnostic probe and the writing daemon always agree on the artifact path
+// even if the override is set after either module first loaded. `baseRoot`
+// defaults to the writer's cwd; a caller resolving for a specific workspace
+// (e.g. the status probe) passes that root so both sides target one file.
+export function resolveSkillGraphDbDir(baseRoot: string = process.cwd()): string {
   const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   if (overrideDbDir) {
     return resolve(overrideDbDir);
   }
   return resolve(
-    process.cwd(),
+    baseRoot,
     '.opencode',
     'skills',
     'system-skill-advisor',

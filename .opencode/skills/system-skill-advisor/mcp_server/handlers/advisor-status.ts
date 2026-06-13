@@ -3,13 +3,13 @@
 // ───────────────────────────────────────────────────────────────
 
 import { existsSync, readdirSync, statSync } from 'node:fs';
-import { isAbsolute, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import Database from 'better-sqlite3';
 
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
 import { checkSqliteIntegrity } from '../lib/freshness/sqlite-integrity.js';
-import { isGenuineCorruptionReason } from '../lib/skill-graph/skill-graph-db.js';
+import { isGenuineCorruptionReason, resolveSkillGraphDbDir, DB_FILENAME } from '../lib/skill-graph/skill-graph-db.js';
 import { createTrustState } from '../lib/freshness/trust-state.js';
 import { getAdapter } from '../lib/embedders/registry.js';
 import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
@@ -29,10 +29,6 @@ import type {
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 
-const advisorDbDirOverride = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-const SKILL_GRAPH_DB = advisorDbDirOverride
-  ? join(advisorDbDirOverride, 'skill-graph.sqlite')
-  : join('.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database', 'skill-graph.sqlite');
 const SKILL_ROOT = join('.opencode', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;
 type SemanticLaneHealth = NonNullable<AdvisorStatusOutput['semanticLaneHealth']>;
@@ -67,7 +63,36 @@ function fileMtimeMs(path: string): number {
 }
 
 function resolveSkillGraphDbPath(workspaceRoot: string): string {
-  return isAbsolute(SKILL_GRAPH_DB) ? SKILL_GRAPH_DB : join(workspaceRoot, SKILL_GRAPH_DB);
+  // Resolve through the writer's own resolver so the integrity probe always
+  // targets the exact file the daemon writes. An env override wins for both;
+  // otherwise the workspace root stands in for the writer's cwd, which match
+  // in the normal single-root deployment.
+  return join(resolveSkillGraphDbDir(workspaceRoot), DB_FILENAME);
+}
+
+// Per-(dbPath, generation, mtime) integrity verdict cache. A full quick_check
+// scans the artifact, which is too costly to run on the recommend hot path;
+// caching it lets recommend opt into corruption detection while paying the
+// scan at most once per generation. The only events that can change on-disk
+// integrity — a generation bump or an mtime change — invalidate the entry.
+const integrityVerdictCache = new Map<string, { ok: true } | { ok: false; reason: string }>();
+
+function checkSqliteIntegrityCached(
+  dbPath: string,
+  generation: number,
+  mtimeMs: number,
+): { ok: true } | { ok: false; reason: string } {
+  const key = `${dbPath}::${generation}::${mtimeMs}`;
+  const cached = integrityVerdictCache.get(key);
+  if (cached) {
+    return cached;
+  }
+  const result = checkSqliteIntegrity(dbPath);
+  // Only the newest (path, generation, mtime) verdict is ever consulted, so a
+  // single-entry cache is sufficient and self-bounding.
+  integrityVerdictCache.clear();
+  integrityVerdictCache.set(key, result);
+  return result;
 }
 
 function tableExists(database: Database.Database, tableName: string): boolean {
@@ -214,7 +239,9 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
     // exists to perform. A read-only quick_check turns genuine corruption
     // into a stale signal so rebuild runs. Transient lock/IO failures are
     // excluded so contention never forces a spurious rebuild.
-    const integrity = (hasArtifact && args.checkArtifactIntegrity === true) ? checkSqliteIntegrity(dbPath) : null;
+    const integrity = (hasArtifact && args.checkArtifactIntegrity === true)
+      ? checkSqliteIntegrityCached(dbPath, generation.generation, fileMtimeMs(dbPath))
+      : null;
     const artifactCorrupt = Boolean(
       integrity && !integrity.ok
         && integrity.reason !== 'SQLITE_ABSENT'
