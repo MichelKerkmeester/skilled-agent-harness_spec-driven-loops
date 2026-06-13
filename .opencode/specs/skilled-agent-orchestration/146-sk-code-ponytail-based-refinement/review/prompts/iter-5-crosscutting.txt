@@ -1,0 +1,25 @@
+## CONTEXT
+READ-ONLY review. Do NOT edit/write. Spec folder ...146 pre-approved (Gate 3); read-only. Load sk-code-review + sk-code (OPENCODE). This is the cross-cutting / documentation-accuracy pass over the whole packet-146 change set.
+
+## OBJECTIVE (review dimension 5 of 5): docs accuracy + cross-cutting coherence
+Review for OVERCLAIM, INACCURACY, and INCOHERENCE across the change set:
+- The 3 new changelogs: sk-code-review/changelog/v1.4.0.0.md, sk-code/changelog/v3.4.0.0.md, deep-improvement/changelog/v1.17.0.0.md
+- The 3 README edits: `git diff` on sk-code-review/README.md, sk-code/README.md, deep-improvement/README.md
+- The canary's hard-coded invariant list inside check-rule-copies.js
+- The depth-alias §9.3 in sk-code-review/SKILL.md
+
+## STEPS
+Read the 3 changelogs + the README diffs. Cross-check each documented claim against the ACTUAL code/doc that shipped (read the real files). Read the canary's EXACT_INVARIANTS + IRON_LAW lists.
+
+## REVIEW FOR (cite file:line)
+- DOC ACCURACY: does each changelog "Files Changed" list match what actually changed? Does any changelog feature describe behavior that wasn't actually implemented (e.g. the README says check-rule-copies.js exits 0 — does it, and does the verification table command actually work as written)?
+- The canary's invariant lists: are the file paths + exact strings it asserts actually present in those files right now (so the canary is green AND meaningful)? Does it hard-code `changelog/v1.3.0.0.md` — is that brittle as new changelogs are added? Should the new v1.4.0.0 changelog also be guarded?
+- The depth-alias §9.3: is SK_CODE_REVIEW_DEPTH actually READ by any code, or is it documentation describing intended-but-unwired behavior? If unwired, is the doc honest about that, or does it imply a working feature?
+- Coherence: do the 6 phases' changes contradict each other or the existing skill contracts anywhere? Is the README "verification" guidance runnable as written?
+- Missing-coverage: is there an obvious gap the other 4 dimensions wouldn't catch (e.g. a referenced file/path that doesn't exist, a broken cross-reference)?
+
+## FORMAT
+Terse, evidence-led, cite file:line. End with the fenced ```json block EXACTLY:
+```json
+{"seat":"rv-5","dimension":"cross-cutting-and-docs-accuracy","findings":[{"id":"F1","severity":"P0|P1|P2","title":"","file":"path","line":"NN","evidence":"","recommendation":""}],"severityCounts":{"P0":0,"P1":0,"P2":0},"newInfoRatio":0.0}
+```

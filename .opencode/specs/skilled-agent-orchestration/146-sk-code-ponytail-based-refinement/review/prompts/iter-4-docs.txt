@@ -1,0 +1,26 @@
+## CONTEXT
+READ-ONLY review. Do NOT edit/write. Spec folder ...146 pre-approved (Gate 3); read-only. Load sk-code-review + sk-code (OPENCODE). This change adds rules/prose to two mature skills (sk-code, sk-code-review). Review the additions for correctness, contract drift, and internal contradiction — not prose taste.
+
+## OBJECTIVE (review dimension 4 of 5): doc/rule additions
+Review the ADDED content (use `git diff` on each):
+- sk-code SKILL.md (a Design Restraint Ladder note in the Phase Overview + an anti-stall ALWAYS bullet)
+- sk-code references/phase_detection.md (the 0->1 transition now requires the ladder)
+- sk-code references/universal/code_quality_standards.md (the ~13-line Design Restraint Ladder)
+- sk-code references/universal/code_style_guide.md (the neutral `ceiling:` comment convention)
+- sk-code-review SKILL.md (the §9.3 SK_CODE_REVIEW_DEPTH alias)
+- sk-code-review references/code_quality_checklist.md (stdlib/native rows + needed-ness prompt + ceiling-downgrade rule)
+- sk-code-review references/removal_plan.md (the Replacement field)
+
+## REVIEW FOR (cite file:section)
+- CONTRACT DRIFT: does anything change or weaken the P0/P1/P2 severity model, the "Review status: APPROVED|REQUESTED_CHANGES|COMMENTED" final-line contract, or sk-code's Iron Law? (It should NOT.)
+- The ceiling-comment convention vs the comment-hygiene HARD BLOCK: the convention says `ceiling:` is durable WHY (allowed) and must NOT be added to the hygiene allow-list. Is that internally consistent and actually safe? Could a `ceiling:` comment that ALSO contains a forbidden id slip past hygiene? Is the guidance correct about the allow-list bypass risk?
+- The depth-alias (§9.3) claims `lite` "maps to the existing M-2 safe-skip" and relaxes no floor — is that accurate vs how M-2 actually works (§9.2)? Is the alias purely advisory doc, or does it imply behavior that isn't wired?
+- The Design Restraint Ladder claims it "changes neither surface precedence nor the Iron Law" and runs "after surface+intent routing, gated to implementation intent" — is that consistent with how the phase model actually flows (phase_detection.md)?
+- Internal contradictions: does the anti-stall rule ("never block when a safe minimal version exists") conflict with the existing Escalation Discipline / SCOPE-LOCK / HALT rules?
+- The needed-ness prompt + removal recommendation: does it risk telling reviewers to recommend deleting required code?
+
+## FORMAT
+Terse, evidence-led, cite file:section. End with the fenced ```json block EXACTLY:
+```json
+{"seat":"rv-4","dimension":"doc-rule-additions","findings":[{"id":"F1","severity":"P0|P1|P2","title":"","file":"path#section","line":"","evidence":"","recommendation":""}],"severityCounts":{"P0":0,"P1":0,"P2":0},"newInfoRatio":0.0}
+```

@@ -1,0 +1,19 @@
+ROLE: Adversarial verifier (senior AI-tooling architect), READ-ONLY. Do NOT write/edit files. Spec folder ...146 pre-approved (Gate 3); read-only regardless.
+
+CRITICAL OUTPUT RULE: print your COMPLETE verdict narrative AND the JSON block to STDOUT as your final message. Do NOT write a plan file, do NOT call ExitPlanMode/AskUserQuestion. Stdout is the ONLY deliverable.
+
+TASK (Round 2 adversarial cross-verify): A 10-iteration deep-research loop produced recommendations for transplanting ponytail mechanisms into sk-code / sk-code-review. You are verifying the GPT-lane + synthesis recommendations. REFUTE-FIRST: for each claim default to "REFUTED / overstated" UNLESS the actual on-disk files confirm it. Read the real files; do not trust the iteration text.
+
+The orchestrator already FACT-CHECKED these and they PASSED (do not re-litigate): Lane B sweep "Correctness is a GATE" (deep-improvement SWEEP.md:14); sk-code benchmark verdicts FAIL 44/100 (router-final) + CONDITIONAL 71/100 (live-final); code_quality_checklist.md §7 KISS L130 YAGNI + L141-142 P2-default/P1-if-risk. Focus instead on whether the RECOMMENDATIONS are sound, non-duplicative, and correctly bucketed.
+
+CLAIMS TO VERIFY (read the cited files):
+1. iter-008 (gpt): add explicit "hand-rolled stdlib" + "native-duplication" + "shrink" rows to .opencode/skills/sk-code-review/references/code_quality_checklist.md, and a "Replacement" field to references/removal_plan.md. → Read both files. Is any of this ALREADY present (refute if so)? Are the proposed rows genuinely additive and non-overlapping with §7 KISS/§6 maintainability? Is "shrink" correctly bucketed ADOPT-LATER (style-churn risk)?
+2. iter-006 (gpt): fold `code_loc` + over-engineering markers into deep-improvement Lane B sweep (code-task-scorer.cjs / sweep-benchmark.cjs) behind the correctness gate — NOT a standalone clone. → Read .opencode/skills/deep-improvement/scripts/model-benchmark/ (code-task-scorer.cjs, sweep-benchmark.cjs). Does the sweep already emit code_loc/over-engineering markers (refute if so)? Is "behind correctness gate" actually achievable with the existing correctness-gate.cjs?
+3. iter-010 (gpt synthesis): the ADOPT-NOW bucket = {Phase-1 ladder, ladder-in-universal-doc, stdlib/native review rows, canary Review-status triplet, neutral ceiling comments, ceiling-as-P2-downgrade-evidence, needed-ness KISS prompt, removal_plan Replacement field}. → Is anything in ADOPT-NOW actually risky enough to be ADOPT-LATER, or anything in DO-NOT-ADOPT actually safe? Challenge the single "best" pick (Phase-1 Design Restraint Ladder) and the "most overrated" pick (verification intensity slider).
+
+For EACH: verdict = CONFIRMED | DOWNGRADED | REFUTED, with the file evidence and a one-line reason.
+
+OUTPUT (end with a fenced ```json block):
+```json
+{"seat":"round2-opus","verifies":"gpt-lane + synthesis","verdicts":[{"claim":"iter-008 stdlib/native/shrink rows","verdict":"CONFIRMED|DOWNGRADED|REFUTED","evidence":"file:line","reason":"","adjusted_bucket":"ADOPT-NOW|ADOPT-LATER|DO-NOT-ADOPT"}],"false_positives_found":[""],"net_assessment":""}
+```

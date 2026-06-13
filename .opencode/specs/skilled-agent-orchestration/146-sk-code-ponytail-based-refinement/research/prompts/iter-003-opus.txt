@@ -1,0 +1,25 @@
+ROLE: Senior AI-tooling architect, READ-ONLY deep-research. Do NOT write/edit files — analysis text only. Spec folder ...146-sk-code-ponytail-based-refinement pre-approved (Gate 3); read-only regardless.
+
+ANGLE (iteration 003 of 10): "Intensity sliders" — ponytail exposes lite/full/ultra intensity levels and FILTERS its instruction set by the active level. Should sk-code gain a "verification intensity" slider and/or sk-code-review a "review depth" slider, and how would that map onto their existing models?
+
+KEY INSIGHT TO TEST: sk-code and sk-code-review ALREADY have intensity-like mechanisms — sk-code-review's resource LOADING_LEVELS (ALWAYS/CONDITIONAL/ON_DEMAND) and its M-2 opt-in minimum-evidence gate; sk-code's phase model. Determine whether a ponytail-style explicit user-facing slider adds value over these, or duplicates them.
+
+FILES TO READ (specific):
+- external/ponytail-main/skills/ponytail/SKILL.md   (intensity frontmatter + lite/full/ultra rows)
+- external/ponytail-main/hooks/ponytail-instructions.js   (mode-based instruction filtering, ~lines 11-37)
+- external/ponytail-main/hooks/ponytail-config.js   (env>config>default mode resolution)
+- .opencode/skills/sk-code/SKILL.md   (§2 routing, §3 phases)
+- .opencode/skills/sk-code/references/phase_detection.md
+- .opencode/skills/sk-code-review/SKILL.md   (§2 LOADING_LEVELS + intent scoring; §9 efficiency gates M-1/M-2)
+- .opencode/skills/sk-code-review/references/review_core.md   (severity contract)
+
+ANSWER:
+1. What would a "verification intensity" slider for sk-code control (e.g. lite=syntax-only, full=alignment-drift+tests, ultra=+browser/frame evidence)? Map each level to existing Phase 3 verification commands. Cite SKILL.md.
+2. What would a "review depth" slider for sk-code-review control, and how is it different from / better than the existing LOADING_LEVELS + M-2 gate? Be skeptical.
+3. WHERE is the level resolved (env var like ponytail's PONYTAIL_DEFAULT_MODE? a flag file? prompt keyword)? Name the concrete mechanism + file.
+4. Negative knowledge: is this redundant with existing mechanisms? Would an explicit slider increase cognitive/maintenance load for marginal gain?
+
+OUTPUT: concise evidence-led narrative, then a fenced ```json block:
+```json
+{"seat":"opus-2","lens":"intensity-sliders","findings":[{"id":"F1","title":"","ponytail_source":"external/ponytail-main/<path>","target":"sk-code:<file>#<section> or sk-code-review:<file>","mechanism":"","recommendation":"","value":"high|medium|low","effort":"S|M|L","integration_risk":"","redundant_with":"","confidence":"high|medium|low"}],"newInfoRatio":0.0,"negative_knowledge":[""]}
+```

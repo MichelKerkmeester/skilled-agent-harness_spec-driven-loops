@@ -1,0 +1,30 @@
+ROLE: Senior AI-tooling architect, READ-ONLY deep-research. Do NOT write/edit files — analysis text only. Spec folder ...146-sk-code-ponytail-based-refinement pre-approved (Gate 3); read-only regardless.
+
+CRITICAL OUTPUT RULE: print your COMPLETE narrative AND the full JSON findings block to STDOUT as your final assistant message. Do NOT write to any plan file. Do NOT call ExitPlanMode or AskUserQuestion. Stdout is the ONLY deliverable — anything you place in a plan file or elsewhere is LOST.
+
+ANGLE (iteration 009 of 10): "Distribution & portability" — ponytail keeps ONE source of truth (skills/ponytail/SKILL.md) and generates THIN adapters for 9 agent platforms (Claude/Codex/OpenCode/Cursor/Windsurf/Cline/Copilot/Kiro/Pi), kept aligned by scripts/check-rule-copies.js. Our repo has a 3-runtime mirror convention (.opencode canonical + .claude + .codex) and sk-code's SKILL.md §1 declares sk-code "the only skill end users edit" when adopting the template, with STACK_FOLDERS + RESOURCE_MAP to retarget. What can our skills borrow from ponytail's portability model?
+
+### EMBEDDED PONYTAIL SOURCE (the ponytail tree is GITIGNORED — provided inline; do not search for it)
+ponytail's portability model (docs/agent-portability.md): "Ponytail is an agent-portable skill distribution. The skills in `skills/` hold the core behavior; host-specific files are ADAPTERS." ONE source (`skills/*/SKILL.md` + the compact `AGENTS.md`) feeds 9 host adapters:
+- Claude Code: `.claude-plugin/` + `commands/` + `hooks/` (plugin install).
+- Codex: `.codex-plugin/plugin.json` + `hooks/` + `skills/`.
+- OpenCode: `.opencode/plugins/ponytail.mjs` (server plugin injects the ruleset each turn via `experimental.chat.system.transform`; persists `/ponytail` switches; REUSES the shared instruction builder) + `.opencode/command/` + `hooks/` + `skills/`.
+- Cursor `.cursor/rules/ponytail.mdc`, Windsurf `.windsurf/rules/ponytail.md`, Cline `.clinerules/ponytail.md`, Copilot `.github/copilot-instructions.md`, Kiro `.kiro/steering/ponytail.md` — each a thin copied project-rule file kept aligned to `AGENTS.md`.
+- Generic: `AGENTS.md` (compact always-on instruction set for hosts without skill support).
+ADAPTER RULE: "Keep adapters thin. When a host supports skills or hooks, point it at the existing skills/ and hooks/ files. When a host only supports project instructions, keep its copied rule text aligned with AGENTS.md." Alignment is enforced by scripts/check-rule-copies.js (byte-equality for the compact copies + canary-phrase presence for the longer SKILL.md — see iter-005).
+
+FILES TO READ (on-disk; ponytail is embedded above):
+- .opencode/skills/sk-code/SKILL.md   (§1 template-customization surface — "the only skill end users edit"; §2 STACK_FOLDERS/RESOURCE_MAP)
+- .opencode/skills/sk-code/references/stack_detection.md
+- list the 3-runtime mirrors: `ls .opencode/agents .claude/agents .codex/agents 2>/dev/null` and read one example trio (e.g. review.md / review.md / review.toml) to judge byte-vs-canary alignment.
+
+ANSWER:
+1. Does sk-code's "single skill to customize + retarget STACK_FOLDERS/RESOURCE_MAP" already embody ponytail's single-source philosophy? What, if anything, is missing (e.g. a generator that emits/checks the .claude + .codex mirrors from the .opencode source)?
+2. Could the repo adopt a ponytail-style adapter-generation or adapter-sync-check step for skills that must exist across the 3 runtimes? Where would it live?
+3. Is there a concrete portability improvement for sk-code's template-customization (e.g. a "retarget checklist" or a validation that STACK_FOLDERS matches on-disk references/)? Cite SKILL.md §1/§2.
+4. Negative knowledge: ponytail supports 9 platforms because it's a tiny ruleset; sk-code is a large multi-file router. Which portability mechanisms do NOT scale to sk-code's size?
+
+OUTPUT: concise evidence-led narrative, then a fenced ```json block:
+```json
+{"seat":"opus-5","lens":"distribution-and-portability","findings":[{"id":"F1","title":"","ponytail_source":"external/ponytail-main/<path>","target":"sk-code:<file>#<section> or repo:<path>","mechanism":"","recommendation":"","value":"high|medium|low","effort":"S|M|L","integration_risk":"","redundant_with":"","confidence":"high|medium|low"}],"newInfoRatio":0.0,"negative_knowledge":[""]}
+```

@@ -1,0 +1,1 @@
+{"type":"iteration","iteration":2,"round":1,"phase":"review","seat":"rv-2","model":"openai/gpt-5.5-fast","dimension":"mirror-normalizer-and-context-fix","status":"complete","durationSec":132,"exitCode":0,"severityCounts":{"P0":0,"P1":1,"P2":0},"timestamp":"2026-06-13T15:06:42Z"}

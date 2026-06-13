@@ -1,0 +1,1 @@
+{"type":"iteration","iteration":12,"round":2,"phase":"verify","seat":"round2-gpt","model":"openai/gpt-5.5-fast","verifies":"opus-lane","status":"complete","durationSec":220,"exitCode":0,"verdict":"opus-lane CONFIRMED; DOWNGRADE canary scope: pr_state_dedup.md has only COMMENTED suffix not full triplet — canary exact strings per file","timestamp":"2026-06-13T11:13:26Z"}

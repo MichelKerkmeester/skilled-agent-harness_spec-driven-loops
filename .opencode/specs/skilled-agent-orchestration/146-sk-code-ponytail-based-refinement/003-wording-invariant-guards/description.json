@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
+  "description": "Phase 3: Exact-Wording Guards + Iron Law Cleanup",
+  "keywords": [
+    "phase",
+    "exact-wording",
+    "guards",
+    "iron",
+    "law",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-06-13T13:42:38.223Z",
+  "specId": "003",
+  "folderSlug": "wording-invariant-guards",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "146-sk-code-ponytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

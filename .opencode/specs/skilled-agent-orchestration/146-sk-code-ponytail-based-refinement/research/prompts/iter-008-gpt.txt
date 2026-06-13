@@ -1,0 +1,39 @@
+## CONTEXT
+READ-ONLY deep-research seat. Do NOT write/edit files — analysis text only. Spec folder ...146-sk-code-ponytail-based-refinement pre-approved (Gate 3); read-only regardless.
+
+NOTE: ponytail source is GITIGNORED (search/glob will NOT find external/ponytail-main). The full ponytail-review skill is EMBEDDED below. For sk-code-review, read the on-disk checklist files normally.
+
+### EMBEDDED PONYTAIL SOURCE — skills/ponytail-review/SKILL.md (full)
+Purpose: code review focused EXCLUSIVELY on over-engineering — finds what to DELETE. One line per finding: location, what to cut, what replaces it. "The diff's best outcome is getting shorter."
+Format: `L<line>: <tag> <what>. <replacement>.`
+Tags:
+- `delete:` dead code, unused flexibility, speculative feature. Replacement: nothing.
+- `stdlib:` hand-rolled thing the standard library ships. Name the function.
+- `native:` dependency or code doing what the platform already does. Name the feature.
+- `yagni:` abstraction with one implementation, config nobody sets, layer with one caller.
+- `shrink:` same logic, fewer lines. Show the shorter form.
+Examples: `L12-38: stdlib: 27-line validator class. "@" in email, 1 line.` / `L4: native: moment.js imported for one format call. Intl.DateTimeFormat, 0 deps.` / `repo.py:L88: yagni: AbstractRepository with one implementation. Inline it until a second one exists.` / `L52-71: delete: retry wrapper around an idempotent local call. Nothing replaces it.` / `L30-44: shrink: manual loop builds dict. dict(zip(keys, values)), 1 line.`
+Scoring: end with `net: -<N> lines possible.` If nothing to cut: `Lean already. Ship.`
+Boundaries: complexity ONLY — correctness bugs, security, performance go to a normal review pass. A single smoke test / assert-based self-check is the minimum, NOT bloat — never flag it for deletion. Lists fixes, does not apply them.
+
+## OBJECTIVE (iteration 008 of 10)
+Angle: "ponytail-review overlap" — which concrete ponytail-review checks/behaviors should be MERGED into sk-code-review's existing reference checklists (not added as a separate skill)?
+
+## STEPS (read these on-disk files)
+- .opencode/skills/sk-code-review/references/removal_plan.md
+- .opencode/skills/sk-code-review/references/code_quality_checklist.md
+- .opencode/skills/sk-code-review/references/solid_checklist.md
+- .opencode/skills/sk-code-review/references/fix-completeness-checklist.md
+- .opencode/skills/sk-code-review/SKILL.md   (severity P0/P1/P2; finding schema)
+
+## ANSWER
+1. Itemize ponytail-review's 5 tag-checks (delete/stdlib/native/yagni/shrink) + its `net: -N lines` metric. For EACH, say whether sk-code-review ALREADY covers it (cite checklist + row) or whether it's a gap worth adding.
+2. For genuine gaps, give the exact checklist file + the row text to add (e.g. a "reinvented-stdlib / could-be-deleted" row in code_quality_checklist.md or removal_plan.md).
+3. Merge into existing checklists (preferred per the repo's "one review baseline" rule) vs a new standalone skill — argue it.
+4. Negative knowledge: which ponytail-review items are too aggressive for our P0/P1/P2 model (e.g. severity — over-engineering is usually P2, never a merge blocker), and the `net: -N lines` metric — adopt or skip?
+
+## FORMAT
+Terse, cite file/section. End with a fenced ```json block:
+```json
+{"seat":"gpt-4","lens":"ponytail-review-overlap","findings":[{"id":"F1","title":"","ponytail_source":"external/ponytail-main/skills/ponytail-review/SKILL.md","target":"sk-code-review:<file>#<row>","mechanism":"","recommendation":"","value":"high|medium|low","effort":"S|M|L","integration_risk":"","redundant_with":"","confidence":"high|medium|low"}],"newInfoRatio":0.0,"negative_knowledge":[""]}
+```

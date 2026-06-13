@@ -1,0 +1,26 @@
+ROLE: Senior AI-tooling architect, READ-ONLY deep-research. Do NOT write/edit files — analysis text only. Spec folder ...146-sk-code-ponytail-based-refinement pre-approved (Gate 3); read-only regardless.
+
+CRITICAL OUTPUT RULE: print your COMPLETE narrative AND the full JSON findings block to STDOUT as your final assistant message. Do NOT write to any plan file. Do NOT call ExitPlanMode or AskUserQuestion. Stdout is the ONLY deliverable — anything you place in a plan file or elsewhere is LOST.
+
+ANGLE (iteration 007 of 10): "Ship-then-question & severity" — ponytail's behavioral rule is "ship the lazy version and question the requirement in the SAME response — never stall" plus a YAGNI-extremist stance (deletion before addition). How should this map onto sk-code-review's findings-first severity model — as a new finding class, a checklist item, or a behavioral rule?
+
+CONTEXT TO TEST: sk-code-review already has a code_quality_checklist (KISS/DRY) and a finding schema with findingClass (instance-only, class-of-bug, cross-consumer, algorithmic, ...). The repo CLAUDE.md already has an anti-pattern table (over-engineering, gold-plating, scope creep, wrong-abstraction). Determine what ponytail adds that's genuinely missing.
+
+FILES TO READ (specific):
+- external/ponytail-main/skills/ponytail/SKILL.md   (ship-then-question line; YAGNI/ultra rules)
+- external/ponytail-main/skills/ponytail-review/SKILL.md   (deletion-focused review behavior)
+- .opencode/skills/sk-code-review/references/review_core.md   (severity P0/P1/P2 + escalation)
+- .opencode/skills/sk-code-review/references/code_quality_checklist.md   (KISS/DRY coverage)
+- .opencode/skills/sk-code-review/SKILL.md   (finding schema, findingClass list)
+- CLAUDE.md (repo root)   (anti-pattern table — avoid duplicating it)
+
+ANSWER:
+1. Should sk-code-review gain a dedicated finding class or severity-lens for OVER-ENGINEERING / YAGNI-violation (code that should not exist), distinct from the existing KISS line? What would its severity be (P2 by default, P1 if it adds risk)? Cite review_core.md severity rules.
+2. Does the "ship-then-question" behavior belong in sk-code (the implementer) rather than sk-code-review (the reviewer)? Where exactly — a RULES bullet? Cite the file/section.
+3. Is this already covered by code_quality_checklist KISS + the CLAUDE.md anti-pattern table? If so, say so plainly (negative knowledge).
+4. Concrete: propose the exact checklist row / finding-class wording to add, and where.
+
+OUTPUT: concise evidence-led narrative, then a fenced ```json block:
+```json
+{"seat":"opus-4","lens":"ship-then-question-and-severity","findings":[{"id":"F1","title":"","ponytail_source":"external/ponytail-main/<path>","target":"sk-code-review:<file>#<section> or sk-code:<file>","mechanism":"","recommendation":"","value":"high|medium|low","effort":"S|M|L","integration_risk":"","redundant_with":"","confidence":"high|medium|low"}],"newInfoRatio":0.0,"negative_knowledge":[""]}
+```

@@ -1,0 +1,23 @@
+# Iteration 12 — Round 2 (adversarial cross-verify) — seat round2-gpt (openai/gpt-5.5-fast, variant high)
+
+- Verifies: opus-lane recommendations (refute-first)
+- Status: complete | exit=0 | duration=220s
+- Net: opus-lane recs CONFIRMED; one DOWNGRADE — canary triplet scope: pr_state_dedup.md only carries the COMMENTED skip suffix, not the full triplet; canary exact strings PER FILE, not a forced full-triplet.
+
+## Seat output
+
+1. `iter-001` ladder: CONFIRMED. No existing restraint ladder in `code_quality_standards.md` or `phase_detection.md`; `code_quality_standards.md` is in `DEFAULT_RESOURCE`, and new reference files would be caught if unmapped.
+Evidence: `.opencode/skills/sk-code/references/universal/code_quality_standards.md:43`, `.opencode/skills/sk-code/references/phase_detection.md:94`, `.opencode/skills/sk-code/references/smart_routing.md:311`, `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts:83`
+
+2. `iter-005` review-status canary: DOWNGRADED. Exact-string parsing is real, and standalone script+workflow matches proven patterns, but `pr_state_dedup.md` does not contain the full triplet; it only documents the `COMMENTED` skip suffix.
+Evidence: `.opencode/skills/sk-code-review/SKILL.md:345`, `.opencode/skills/sk-code-review/README.md:92`, `.opencode/skills/sk-code-review/changelog/v1.3.0.0.md:13`, `.opencode/skills/sk-code-review/references/pr_state_dedup.md:64`, `.github/workflows/prompt-card-sync.yml:12`
+
+3. `iter-009` mirror + stack-folder gates: CONFIRMED. Mirror verifier exists but is only used in deep-improvement promotion/tests, not CI/pre-commit; three-runtime mirror convention is real; no `verify_stack_folders.py` or equivalent exists, and router-sync checks `RESOURCE_MAP` paths, not `STACK_FOLDERS`.
+Evidence: `.opencode/skills/deep-improvement/scripts/lib/mirror-sync-verify.cjs:17`, `.opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs:304`, `README.md:994`, `.opencode/skills/sk-code/SKILL.md:73`, `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts:78`
+
+4. Ceiling comments: CONFIRMED. Neutral durable-WHY ceiling comments fit existing comment policy; adding `ceiling:` to `ALLOWED_PATTERNS` would be unsafe because allowed patterns skip violation checks. `hygiene-ok` is an escape hatch, not a redundant positive convention.
+Evidence: `.opencode/skills/sk-code/references/universal/code_style_guide.md:123`, `.opencode/skills/sk-code/references/universal/code_style_guide.md:134`, `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh:145`, `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh:190`
+
+```json
+{"seat":"round2-gpt","verifies":"opus-lane","verdicts":[{"claim":"iter-001 ladder in code_quality_standards.md","verdict":"CONFIRMED","evidence":".opencode/skills/sk-code/references/smart_routing.md:311","reason":"No existing ladder; the target doc is always-loaded and phase 0->1 is the right attachment point.","adjusted_bucket":"ADOPT-NOW"},{"claim":"iter-005 Review status triplet canary","verdict":"DOWNGRADED","evidence":".opencode/skills/sk-code-review/references/pr_state_dedup.md:64","reason":"Exact-string parsing is real, but pr_state_dedup.md only carries COMMENTED skip text, not the full triplet; scope the canary to actual invariant strings per file.","adjusted_bucket":"ADOPT-NOW"},{"claim":"iter-009 mirror-sync CI/pre-commit plus STACK_FOLDERS binding guard","verdict":"CONFIRMED","evidence":".opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs:304","reason":"Mirror sync is promotion-only today; three-runtime mirrors are documented; STACK_FOLDERS-to-disk binding is not enforced by the existing router-sync test.","adjusted_bucket":"ADOPT-NOW"},{"claim":"iter-004 plus iter-001-F6 neutral ceiling comments without ALLOWED_PATTERNS bypass","verdict":"CONFIRMED","evidence":".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:194","reason":"Allowed patterns skip violation detection, so ceiling must not be whitelisted; neutral durable-WHY content is already allowed by policy.","adjusted_bucket":"ADOPT-NOW"}],"false_positives_found":["iter-005 overstated that all four cited sk-code-review files contain the full Review status triplet; pr_state_dedup.md only contains the COMMENTED skip suffix."],"net_assessment":"Adopt the Opus lane with one scope correction: canary exact strings per actual file contract, not a forced full-triplet invariant in pr_state_dedup.md."}
+```

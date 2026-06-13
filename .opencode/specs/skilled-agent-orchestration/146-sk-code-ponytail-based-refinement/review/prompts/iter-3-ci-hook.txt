@@ -1,0 +1,26 @@
+## CONTEXT
+READ-ONLY code review. Do NOT edit/write. Spec folder ...146 pre-approved (Gate 3); read-only. Load sk-code-review + sk-code (OPENCODE). Two new CI workflows + an edit to the shared git pre-commit hook wire the new guards into commit/PR time.
+
+## OBJECTIVE (review dimension 3 of 5): CI workflows + the pre-commit hook edit
+Review:
+- .github/workflows/rule-canary-sync.yml (runs check-rule-copies.js on PR→main)
+- .github/workflows/agent-mirror-sync.yml (runs check-agent-mirror-sync.cjs over changed agent files on PR→main)
+- .opencode/hooks/pre-commit (EDITED — added a staged-agents-only mirror gate after the existing comment-hygiene gate)
+
+## STEPS
+- Read both .yml files fully.
+- `git diff .opencode/hooks/pre-commit` — read the added block in full file context; also read the whole pre-commit to confirm the existing comment-hygiene gate + final exit are intact.
+- Compare structure to the existing `.github/workflows/comment-hygiene.yml` (the pattern being mirrored).
+
+## REVIEW FOR (cite file:line)
+- YAML correctness: valid triggers, `runs-on`, steps; will the job actually run the script and fail on its non-zero exit?
+- Fail-safety: if node/the script is missing, do the workflow + the hook degrade to a warning (not a hard crash)? Is that the right call, or could it silently disable the gate?
+- SECURITY: do the workflows operate on PR-controlled input (filenames from `git diff`) in a way that allows command injection / shell-word-splitting? Are filenames with spaces/newlines/quotes handled safely when passed to the checker?
+- pre-commit correctness: is the existing comment-hygiene gate preserved EXACTLY? Does the combined hook still `exit 0` on clean and `exit 1` only on a real problem? Is the mirror gate truly scoped to STAGED agent files (so unrelated commits aren't blocked)? Any `set -euo pipefail` interaction (e.g. an unset var, a grep that exits 1 on no-match aborting the hook)?
+- Edge cases: no agent files staged; a deleted agent file; the array passed to node when empty.
+
+## FORMAT
+Terse, evidence-led, cite file:line. End with the fenced ```json block EXACTLY:
+```json
+{"seat":"rv-3","dimension":"ci-workflows-and-precommit","findings":[{"id":"F1","severity":"P0|P1|P2","title":"","file":"path","line":"NN","evidence":"","recommendation":""}],"severityCounts":{"P0":0,"P1":0,"P2":0},"newInfoRatio":0.0}
+```

@@ -1,0 +1,20 @@
+## CONTEXT
+Adversarial verifier, READ-ONLY. Do NOT write/edit files — analysis text only. Spec folder ...146 pre-approved (Gate 3); read-only regardless. ponytail tree is gitignored — but every claim below targets ON-DISK sk-code / sk-code-review / deep-improvement files you CAN read.
+
+TASK (Round 2 adversarial cross-verify): verify the OPUS-lane recommendations. REFUTE-FIRST: for each, default to "REFUTED / overstated" UNLESS the real on-disk file confirms it. Read the actual files; do not trust the iteration text.
+
+The orchestrator already FACT-CHECKED these Opus empirical claims and they PASSED (do not re-litigate, treat as given): Iron Law wording IS drifted 3 ways (sk-code/SKILL.md:45 "fresh verification evidence from the detected surface", :137 "surface-appropriate verification", CLAUDE.md:11 "stack-appropriate verification"); NO vitest runs in .github/workflows (router-sync vitest is NOT CI-gated); comment-hygiene.yml + prompt-card-sync.yml ARE the proven script-from-yml gate pattern; check-comment-hygiene.sh checks ALLOWED_PATTERNS BEFORE VIOLATION_PATTERNS (L194-199) so an allowed match skips violation detection; mirror-sync-verify.cjs exists and is NOT wired to CI/pre-commit. Focus on whether the RECOMMENDATIONS are sound, not already-done, and correctly scoped.
+
+## CLAIMS TO VERIFY (read the cited files)
+1. iter-001 (opus): add a ~15-line "Design Restraint Ladder" to .opencode/skills/sk-code/references/universal/code_quality_standards.md (already always-loaded), attach at the Phase 0->1 transition in references/phase_detection.md, gate to intent=IMPLEMENTATION; do NOT make a new references file (would trip router-sync). → Read code_quality_standards.md + phase_detection.md. Is a restraint/simplicity ladder ALREADY there (refute if so)? Is code_quality_standards.md actually always-loaded (check smart_routing.md DEFAULT_RESOURCE)?
+2. iter-005 (opus): canary-lock the exact "Review status: APPROVED|REQUESTED_CHANGES|COMMENTED" triplet across sk-code-review SKILL.md + README.md + changelog + references/pr_state_dedup.md; wire as a standalone script + new workflow (NOT vitest). → Read sk-code-review/SKILL.md around the final-line contract + references/pr_state_dedup.md. Do all cited files really contain the triplet? Is exact-string parsing real (so drift is genuinely dangerous)?
+3. iter-009 (opus): promote mirror-sync-verify.cjs from a deep-improvement promotion-only gate to a repo-wide agent-mirror pre-commit + CI gate; add a verify_stack_folders.py for sk-code's STACK_FOLDERS<->references/ binding. → Read .opencode/skills/sk-code/SKILL.md §1-2 (STACK_FOLDERS + "only skill end users edit"). Is the STACK_FOLDERS<->on-disk binding really unenforced today (refute if a check exists)? Is promoting the agent-mirror check sound given the 3-runtime mirror convention?
+4. iter-004 + iter-001-F6 (ceiling comments): adopt NEUTRAL "ceiling:" comment content (durable WHY, allowed) but NOT the literal "ponytail:" brand, and do NOT add "ceiling:" to ALLOWED_PATTERNS (bypass risk). → Given the confirmed L194-199 ordering, is "do not add to ALLOWED_PATTERNS" correct? Is there any case where a ceiling-comment convention is redundant with the existing hygiene-ok escape?
+
+For EACH: verdict = CONFIRMED | DOWNGRADED | REFUTED with file evidence + one-line reason.
+
+## FORMAT
+Terse, cite file:line. End with a fenced ```json block:
+```json
+{"seat":"round2-gpt","verifies":"opus-lane","verdicts":[{"claim":"iter-001 ladder in code_quality_standards.md","verdict":"CONFIRMED|DOWNGRADED|REFUTED","evidence":"file:line","reason":"","adjusted_bucket":"ADOPT-NOW|ADOPT-LATER|DO-NOT-ADOPT"}],"false_positives_found":[""],"net_assessment":""}
+```

@@ -1,0 +1,28 @@
+## CONTEXT
+READ-ONLY deep-research SYNTHESIS seat. Do NOT write/edit files — analysis text only. Spec folder ...146-sk-code-ponytail-based-refinement pre-approved (Gate 3); read-only regardless.
+
+This is the synthesis/integration-risk angle. Eight prior iterations (001-008) have analyzed individual ponytail mechanisms for transplant into sk-code / sk-code-review. Your job: read their outputs and produce the cross-cutting integration-risk + portability verdict.
+
+## OBJECTIVE (iteration 010 of 10)
+Angle: "Synthesis & integration-risk" — what is genuinely PORTABLE vs PHILOSOPHICALLY-INCOMPATIBLE, ranked by value/effort, with precedence-conflict flags and a clear NOT-TO-ADOPT list.
+
+### EMBEDDED PONYTAIL PHILOSOPHY (ponytail source is GITIGNORED — provided inline)
+ponytail's stance (skills/ponytail/SKILL.md): "The best code is the code never written." It GATES design UPFRONT via a 6-rung ladder (YAGNI -> stdlib -> native -> installed-dep -> one-line -> minimal custom) and is "a reflex, not a research project" — it does NOT iterate or verify in a loop; it short-circuits before writing. Intensity persists per-session (lite/full/ultra). Contrast: sk-code's Iron Law = "no completion without verification evidence" = an iterative verify LOOP (Phase 1 -> 1.5 -> 2 -> 3) — the opposite temporal stance (gate-before vs verify-after).
+
+## STEPS (read these on-disk files — prior iteration outputs are NOT gitignored)
+- .opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/research/iterations/iteration-001.md
+- ...iteration-002.md through ...iteration-008.md (read ALL that exist)
+- .opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/research/deep-research-strategy.md
+- .opencode/skills/sk-code/SKILL.md   (the Iron Law / phase model — read to ground the tension)
+
+## ANSWER
+1. THE CORE TENSION: ponytail's "decide upfront, no loop" vs sk-code's "Iron-Law verify loop". Are they incompatible, or complementary (ladder gates design at Phase 1; Iron Law verifies the result at Phase 3)? Resolve this explicitly — it determines whether the whole transplant is coherent.
+2. Rank ALL candidate recommendations from iters 001-008 by (value / effort), and bucket each as: ADOPT-NOW / ADOPT-LATER / DO-NOT-ADOPT. Cite the source iteration.
+3. Precedence/conflict flags: list every place a ponytail mechanism would collide with an existing invariant (comment-hygiene HARD BLOCK, surface-router precedence, P0/P1/P2 non-numeric gating, the "one review baseline" rule).
+4. The single highest-value, lowest-risk recommendation overall, and the single most-overrated one.
+
+## FORMAT
+Terse, cite iteration numbers + file/section. End with a fenced ```json block:
+```json
+{"seat":"gpt-5","lens":"synthesis-and-integration-risk","findings":[{"id":"F1","title":"","ponytail_source":"<mechanism>","target":"sk-code:<file> or sk-code-review:<file>","mechanism":"","recommendation":"","value":"high|medium|low","effort":"S|M|L","integration_risk":"","bucket":"ADOPT-NOW|ADOPT-LATER|DO-NOT-ADOPT","confidence":"high|medium|low"}],"newInfoRatio":0.0,"negative_knowledge":[""]}
+```

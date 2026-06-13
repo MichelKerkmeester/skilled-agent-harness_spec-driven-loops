@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement",
+  "description": "Research Specification: Ponytail-Based Refinement of sk-code / sk-code-review",
+  "keywords": [
+    "research",
+    "specification",
+    "ponytail-based",
+    "refinement",
+    "sk-code",
+    "sk-code-review"
+  ],
+  "lastUpdated": "2026-06-13T15:52:48.236Z",
+  "specId": "146",
+  "folderSlug": "sk-code-ponytail-based-refinement",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "13-06-26_12-19__orchestrated-waves-execution-orchestrator-owns.md",
+    "13-06-26_16-52__closed-out-the-packet-146-ponytail-based.md"
+  ]
+}

@@ -1,0 +1,51 @@
+ROLE: You are a senior AI-tooling architect doing READ-ONLY deep-research analysis. Do NOT write or edit any file. Spec folder .opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement is pre-approved (Gate 3 satisfied) — but this is read-only, produce analysis text only.
+
+CONTEXT: The repo has two mature skills we want to improve:
+- sk-code (.opencode/skills/sk-code) — a surface-aware code-standards "smart router": detects WEBFLOW vs OPENCODE surface, loads matching standards, enforces an Iron Law ("no completion without verification evidence") across phases (Phase 0 research -> 1 implement -> 1.5 quality gate w/ comment-hygiene -> 2 debug -> 3 verify).
+- sk-code-review (.opencode/skills/sk-code-review) — a findings-first P0/P1/P2 review baseline.
+
+The external reference project "ponytail" (.opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/external/ponytail-main) enforces a "lazy senior developer" discipline via a 6-rung decision ladder: (1) does this need to exist (YAGNI) -> (2) stdlib -> (3) native platform feature -> (4) already-installed dependency -> (5) one-liner -> (6) only then minimal custom code. It gates DESIGN decisions UPFRONT (no retry loop).
+
+YOUR ANGLE (iteration 001 of 10): "Decision-ladder transplant" — Can ponytail's 6-rung lazy ladder be encoded as a pre-implementation gate inside sk-code, and where exactly?
+
+FILES TO READ (read these specific files, do not broad-search):
+- external/ponytail-main/skills/ponytail/SKILL.md   (the ladder, rules, intensity)
+- external/ponytail-main/AGENTS.md                   (compact canonical ladder)
+- external/ponytail-main/skills/ponytail-review/SKILL.md
+- .opencode/skills/sk-code/SKILL.md                  (esp. sections 1-4: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES)
+- .opencode/skills/sk-code/references/phase_detection.md
+- .opencode/skills/sk-code/references/smart_routing.md  (skim; focus on phase model + RESOURCE_MAP)
+- CLAUDE.md (repo root) — note the existing "Prefer simplicity / avoid over-engineering" anti-pattern table and analysis lenses, to avoid recommending a duplicate.
+
+QUESTIONS TO ANSWER:
+1. WHERE would a ladder gate sit in sk-code's phase model (a new Phase 0.5? folded into Phase 1 pre-write? a checklist item)? Cite the exact SKILL.md section / phase_detection.md transition it would attach to.
+2. HOW would it interact with the surface router (OPENCODE>WEBFLOW>UNKNOWN precedence and intent scoring)? Does it run before or after surface detection? Any conflict?
+3. WHAT ARTIFACT encodes the ladder (a references/ doc? an assets checklist? SKILL.md prose?) and what is the minimal version?
+4. Does the repo ALREADY have an equivalent (the CLAUDE.md anti-over-engineering lenses, sk-code-review KISS/YAGNI)? If so, is the ladder redundant, or does it add a distinct UPFRONT gate the repo lacks? Be honest — negative knowledge is valuable.
+5. Integration-risk: does an upfront "don't write code" gate conflict with sk-code's Iron-Law verify loop or its "read real files first" mandate?
+
+OUTPUT CONTRACT — end your response with a fenced ```json block exactly in this shape:
+```json
+{
+  "seat": "opus-1",
+  "lens": "decision-ladder-transplant",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "<short>",
+      "ponytail_source": "external/ponytail-main/<path>",
+      "target": "sk-code:<file>#<section-or-phase>",
+      "mechanism": "<what ponytail does>",
+      "recommendation": "<concrete change to sk-code>",
+      "value": "high|medium|low",
+      "effort": "S|M|L",
+      "integration_risk": "<risk + any conflict with existing invariants>",
+      "redundant_with": "<existing repo mechanism or 'none'>",
+      "confidence": "high|medium|low"
+    }
+  ],
+  "newInfoRatio": 0.0,
+  "negative_knowledge": ["<what NOT to adopt for this angle, and why>"]
+}
+```
+Set newInfoRatio in [0,1] = fraction of your findings that are genuinely new/non-obvious vs restating the obvious. Keep the narrative above the JSON concise (cite file:line or file#section as evidence).

@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
+  "description": "Phase 1: sk-code-review Checklist Rows",
+  "keywords": [
+    "phase",
+    "sk-code-review",
+    "checklist",
+    "rows"
+  ],
+  "lastUpdated": "2026-06-13T13:42:38.214Z",
+  "specId": "001",
+  "folderSlug": "skreview-checklist-rows",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "146-sk-code-ponytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
