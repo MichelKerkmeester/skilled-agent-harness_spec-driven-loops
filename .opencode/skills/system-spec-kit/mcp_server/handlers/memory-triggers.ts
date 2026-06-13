@@ -805,6 +805,20 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
         result_ids: resultIds,
         session_id: sessionId ?? null,
         latency_ms: latencyMs,
+        // Persist the semantic-trigger shadow/union stats durably so the
+        // shadow->union promotion criteria (FP, recall, latency, threshold-band
+        // distribution) are computable over time from consumption_log. Without
+        // this they reach only stderr and the response meta, which are not
+        // durable. The logger is fail-safe and gated, so this never affects
+        // trigger matching.
+        ...((semanticTriggerShadow || semanticTriggerUnion)
+          ? {
+            metadata: {
+              ...(semanticTriggerShadow ? { semanticTriggerShadow } : {}),
+              ...(semanticTriggerUnion ? { semanticTriggerUnion } : {}),
+            },
+          }
+          : {}),
       });
     }
   } catch (_error: unknown) { /* instrumentation must never cause triggers handler to fail */ }

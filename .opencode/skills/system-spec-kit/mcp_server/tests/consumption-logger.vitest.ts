@@ -254,6 +254,40 @@ describe('T002: event logging mechanics (via forceLog)', () => {
     expect(parsed.nested.value).toBe(42);
   });
 
+  it('durably persists semantic-trigger shadow stats so promotion criteria are computable', () => {
+    // The trigger handler routes the shadow/union stats into this metadata so
+    // FP/recall/latency/threshold-band evidence survives in the table rather
+    // than reaching only stderr and the response meta.
+    forceLogConsumptionEvent(db, {
+      event_type: 'triggers',
+      query: 'please save context',
+      result_count: 1,
+      latency_ms: 4,
+      metadata: {
+        semanticTriggerShadow: {
+          enabled: true,
+          status: 'computed',
+          lexicalCount: 1,
+          semanticCount: 2,
+          overlapCount: 1,
+          topScore: 0.91,
+          latencyMs: 3,
+          thresholdBands: { high: 1, medium: 1, low: 0 },
+        },
+      },
+    });
+
+    const row = db.prepare(
+      `SELECT metadata, latency_ms FROM consumption_log WHERE event_type = 'triggers'`,
+    ).get() as { metadata: string; latency_ms: number };
+    const shadow = JSON.parse(row.metadata).semanticTriggerShadow;
+    expect(shadow.status).toBe('computed');
+    expect(shadow.overlapCount).toBe(1);
+    expect(shadow.semanticCount).toBe(2);
+    expect(shadow.thresholdBands).toEqual({ high: 1, medium: 1, low: 0 });
+    expect(row.latency_ms).toBe(4);
+  });
+
   it('T002-F: multiple events accumulate in table', () => {
     for (let i = 0; i < 5; i++) {
       forceLogConsumptionEvent(db, { event_type: 'search', query: `query ${i}`, result_count: i });

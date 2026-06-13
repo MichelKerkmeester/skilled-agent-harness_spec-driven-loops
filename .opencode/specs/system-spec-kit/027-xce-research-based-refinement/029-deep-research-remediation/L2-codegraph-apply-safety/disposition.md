@@ -48,9 +48,10 @@ tri-013 CLOSED (verdict `../verify/code-wave2-verdict.md`): dry-run now aggregat
 
 tri-029 CLOSED (code wave 11, gpt-5.5 xhigh verified): the prune-excludes branch now falls back to a shipped curated default confidence artifact (`mcp_server/data/exclude-rule-confidence.json`) via `resolveExcludeRuleConfidence`, so real MCP requests are classified and gated instead of collapsing to `tier:'unknown'`. Blast radius stays conservative: only operator-passed patterns are classified, unmatched patterns stay unknown (dropped), medium needs confirm and low needs lowTierOptIn; only high-tier `.git`/`node_modules` auto-apply. An explicit-but-missing path still throws (operator error); a missing default degrades to the prior unknown no-op. The default path anchors on the on-path `.opencode` segment (config.ts pattern) so it resolves from dist or source with no build copy.
 
+tri-022 CLOSED (code wave 12): the semantic-trigger shadow/union stats (status, lexical/semantic/overlap counts, topScore, latencyMs, thresholdBands — already computed, previously only stderr + response meta) now ride into the existing durable `consumption_log` metadata via the fail-safe, gated `logConsumptionEvent` 'triggers' call, so the shadow->union promotion criteria (FP, recall, latency, threshold-band) are computable over time. Additive, hot-path-safe (the logger is gated + never throws); a durability round-trip test pins the promotion-relevant fields.
+
 | Finding | One-line | Class |
 |---|---|---|
-| tri-022 | semantic-trigger shadow telemetry not durable — promotion criteria uncomputable; hot-path, fail-safe, env-gated | code-careful |
 | tri-031 | **LOGIC-SYNC** — the tool schema (`crashRootCauseAddressed` gates repair-nodes re-parsing skip-list candidates) contradicts a deliberate code invariant: the parser early-sentinels skip-listed files and `recordSuccess` is an intentional no-op ("manual-review-only; must not imply self-heal"). Retry-vs-honest-doc is a design decision; routed to the multi-model deep review to adjudicate rather than picked unilaterally. | code-careful |
 | tri-131 | no semantic-trigger stress suite; depends on tri-022 telemetry — sequence after it | code-careful |
 
