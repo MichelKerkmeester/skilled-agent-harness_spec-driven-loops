@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-11T14:57:33Z"
+    last_updated_at: "2026-06-13T16:18:37Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-11T14:57:33Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-13T16:18:37Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `026-ipc-client-cap-hardening`
-> **Oldest live spec folder:** `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit`
-> **Counts:** 136 live spec folders · 0 archived (`z_archive/`).
+> **Most recent live spec folder:** `030-residual-design-units`
+> **Oldest live spec folder:** `027-finding-remediation/sandbox-test`
+> **Counts:** 152 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-11 16:57  026-ipc-client-cap-hardening
- 2. 2026-06-11 16:47  025-code-mode-orphan-lifecycle
- 3. 2026-06-11 16:47  024-autonomous-dependency-patching
- 4. 2026-06-11 15:48  011-command-presentation-workflow-separation
- 5. 2026-06-11 15:47  011-command-presentation-workflow-separation/005-deep-commands
- 6. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
- 7. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
- 8. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph
- 9. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
-10. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt
-11. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git
-12. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc
-13. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review
-14. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code
-15. 2026-06-11 13:48  000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode
+ 1. 2026-06-13 18:15  030-residual-design-units
+ 2. 2026-06-13 13:51  029-deep-research-remediation
+ 3. 2026-06-12 22:29  011-command-presentation-workflow-separation/008-router-consistency-hardening
+ 4. 2026-06-12 22:29  011-command-presentation-workflow-separation
+ 5. 2026-06-12 16:39  021-hybrid-search-scope-then-limit
+ 6. 2026-06-12 16:11  028-tri-system-deep-research
+ 7. 2026-06-12 16:11  016-cli-tooling-ux/002-cli-help-aliases-errors
+ 8. 2026-06-12 16:11  016-cli-tooling-ux
+ 9. 2026-06-12 16:11  004-semantic-trigger-fallback/004-tests-goldens-shadow-eval
+10. 2026-06-12 16:11  004-semantic-trigger-fallback
+11. 2026-06-12 15:21  010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests
+12. 2026-06-12 15:21  010-mcp-to-cli-tool-transition/003-skill-advisor-cli
+13. 2026-06-12 15:21  010-mcp-to-cli-tool-transition
+14. 2026-06-12 14:13  022-provenance-injection
+15. 2026-06-12 14:03  011-command-presentation-workflow-separation/006-presentation-adherence-research
 ```
 
 ---
@@ -73,33 +73,37 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-11 16:57 | 2026-06-11 | `026-ipc-client-cap-hardening/` |
-| 2 | 2026-06-11 16:47 | 2026-06-11 | `024-autonomous-dependency-patching/` |
-| 3 | 2026-06-11 16:47 | 2026-06-11 | `025-code-mode-orphan-lifecycle/` |
-| 4 | 2026-06-11 15:48 | 2026-06-10 | `011-command-presentation-workflow-separation/` |
-| 5 | 2026-06-11 13:48 | 2026-06-10 | `000-release-cleanup/` |
-| 6 | 2026-06-11 13:40 | 2026-06-11 | `023-idempotency-flag-on-correctness/` |
-| 7 | 2026-06-11 12:20 | 2026-06-11 | `022-provenance-injection/` |
-| 8 | 2026-06-11 10:37 | 2026-06-11 | `021-hybrid-search-scope-then-limit/` |
-| 9 | 2026-06-11 10:32 | 2026-06-11 | `020-vector-resilience-durability/` |
-| 10 | 2026-06-11 10:28 | 2025-12-23 | `019-skill-advisor-cross-session-reconnect/` |
-| 11 | 2026-06-11 09:33 | 2026-06-11 | `017-bm25-warmup-churn-reduction/` |
-| 12 | 2026-06-11 07:51 | 2026-06-10 | `018-xce-feature-adoption-advisor-codegraph/` |
-| 13 | 2026-06-11 07:05 | 2026-06-10 | `014-packed-bm25-field-weights/` |
-| 14 | 2026-06-11 06:37 | 2026-06-10 | `013-vector-read-path-resilience/` |
-| 15 | 2026-06-11 06:30 | 2026-06-10 | `012-causal-traversal-bfs/` |
-| 16 | 2026-06-11 04:55 | 2026-06-10 | `016-cli-tooling-ux/` |
-| 17 | 2026-06-11 04:51 | 2026-06-10 | `015-storage-adapter-ports/` |
-| 18 | 2026-06-10 16:13 | 2026-06-02 | `001-peck-teachings-adoption/` |
-| 19 | 2026-06-10 16:12 | 2026-06-08 | `008-openltm-retrieval-observability/` |
-| 20 | 2026-06-10 14:50 | 2026-06-08 | `009-openltm-continuity-resilience/` |
-| 21 | 2026-06-10 14:50 | 2026-06-06 | `007-memclaw-derived-memory-hardening/` |
-| 22 | 2026-06-10 13:39 | 2026-05-09 | `005-learning-feedback-reducers/` |
-| 23 | 2026-06-10 11:00 | 2026-06-06 | `004-semantic-trigger-fallback/` |
-| 24 | 2026-06-10 09:15 | 2026-06-06 | `003-memory-index-causal-lifecycle/` |
-| 25 | 2026-06-10 08:24 | 2026-06-06 | `006-gem-team-adoption/` |
-| 26 | 2026-06-10 08:03 | 2026-06-06 | `010-mcp-to-cli-tool-transition/` |
-| 27 | 2026-06-10 07:38 | 2026-05-11 | `002-memory-write-safety/` |
+| 1 | 2026-06-13 18:15 | 2026-06-13 | `030-residual-design-units/` |
+| 2 | 2026-06-13 13:51 | 2026-06-12 | `029-deep-research-remediation/` |
+| 3 | 2026-06-12 22:29 | 2026-06-10 | `011-command-presentation-workflow-separation/` |
+| 4 | 2026-06-12 16:39 | 2026-06-11 | `021-hybrid-search-scope-then-limit/` |
+| 5 | 2026-06-12 16:11 | 2026-06-12 | `028-tri-system-deep-research/` |
+| 6 | 2026-06-12 16:11 | 2026-06-10 | `016-cli-tooling-ux/` |
+| 7 | 2026-06-12 16:11 | 2026-06-06 | `004-semantic-trigger-fallback/` |
+| 8 | 2026-06-12 15:21 | 2026-06-06 | `010-mcp-to-cli-tool-transition/` |
+| 9 | 2026-06-12 14:13 | 2026-06-11 | `022-provenance-injection/` |
+| 10 | 2026-06-11 22:49 | 2026-06-11 | `027-finding-remediation/` |
+| 11 | 2026-06-11 20:02 | 2026-06-06 | `007-memclaw-derived-memory-hardening/` |
+| 12 | 2026-06-11 20:02 | 2026-06-02 | `001-peck-teachings-adoption/` |
+| 13 | 2026-06-11 18:37 | 2026-06-11 | `023-idempotency-flag-on-correctness/` |
+| 14 | 2026-06-11 18:37 | 2026-06-10 | `014-packed-bm25-field-weights/` |
+| 15 | 2026-06-11 17:48 | 2026-06-10 | `000-release-cleanup/` |
+| 16 | 2026-06-11 17:48 | 2026-06-06 | `006-gem-team-adoption/` |
+| 17 | 2026-06-11 16:57 | 2026-06-11 | `026-ipc-client-cap-hardening/` |
+| 18 | 2026-06-11 16:47 | 2026-06-11 | `024-autonomous-dependency-patching/` |
+| 19 | 2026-06-11 16:47 | 2026-06-11 | `025-code-mode-orphan-lifecycle/` |
+| 20 | 2026-06-11 10:32 | 2026-06-11 | `020-vector-resilience-durability/` |
+| 21 | 2026-06-11 10:28 | 2025-12-23 | `019-skill-advisor-cross-session-reconnect/` |
+| 22 | 2026-06-11 09:33 | 2026-06-11 | `017-bm25-warmup-churn-reduction/` |
+| 23 | 2026-06-11 07:51 | 2026-06-10 | `018-xce-feature-adoption-advisor-codegraph/` |
+| 24 | 2026-06-11 06:37 | 2026-06-10 | `013-vector-read-path-resilience/` |
+| 25 | 2026-06-11 06:30 | 2026-06-10 | `012-causal-traversal-bfs/` |
+| 26 | 2026-06-11 04:51 | 2026-06-10 | `015-storage-adapter-ports/` |
+| 27 | 2026-06-10 16:12 | 2026-06-08 | `008-openltm-retrieval-observability/` |
+| 28 | 2026-06-10 14:50 | 2026-06-08 | `009-openltm-continuity-resilience/` |
+| 29 | 2026-06-10 13:39 | 2026-05-09 | `005-learning-feedback-reducers/` |
+| 30 | 2026-06-10 09:15 | 2026-06-06 | `003-memory-index-causal-lifecycle/` |
+| 31 | 2026-06-10 07:38 | 2026-05-11 | `002-memory-write-safety/` |
 
 > Note: `000-release-and-program-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
@@ -113,10 +117,42 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
+2026-06-13 18:15  born:2026-06-13  impl  030-residual-design-units
+2026-06-13 13:51  born:2026-06-12  impl  029-deep-research-remediation
+2026-06-12 22:29  born:2026-06-12  impl  011-command-presentation-workflow-separation/008-router-consistency-hardening
+2026-06-12 22:29  born:2026-06-10        011-command-presentation-workflow-separation
+2026-06-12 16:39  born:2026-06-11  impl  021-hybrid-search-scope-then-limit
+2026-06-12 16:11  born:2026-06-12  impl  028-tri-system-deep-research
+2026-06-12 16:11  born:2026-06-10  impl  016-cli-tooling-ux/002-cli-help-aliases-errors
+2026-06-12 16:11  born:2026-06-10        016-cli-tooling-ux
+2026-06-12 16:11  born:2026-06-06  impl  004-semantic-trigger-fallback/004-tests-goldens-shadow-eval
+2026-06-12 16:11  born:2026-05-09        004-semantic-trigger-fallback
+2026-06-12 15:21  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests
+2026-06-12 15:21  born:2026-06-06        010-mcp-to-cli-tool-transition/003-skill-advisor-cli
+2026-06-12 15:21  born:2026-06-06        010-mcp-to-cli-tool-transition
+2026-06-12 14:13  born:2026-06-11  impl  022-provenance-injection
+2026-06-12 14:03  born:2026-06-12  impl  011-command-presentation-workflow-separation/006-presentation-adherence-research
+2026-06-12 13:14  born:2026-06-12  impl  011-command-presentation-workflow-separation/007-presentation-asset-format
+2026-06-11 22:49  born:2026-06-11        027-finding-remediation
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/008-doc-truth-and-test-fidelity
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/007-continuity-and-save-concurrency
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/006-launchers-and-cli
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/005-bm25-indexing-fidelity
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/004-vector-and-checkpoint-durability
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/003-search-and-triggers
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/002-causal-and-memo
+2026-06-11 20:32  born:2026-06-11  impl  027-finding-remediation/001-write-safety-and-guards
+2026-06-11 20:02  born:2026-06-06  impl  001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate
+2026-06-11 20:02  born:2026-06-06        007-memclaw-derived-memory-hardening
+2026-06-11 20:02  born:2026-06-02        001-peck-teachings-adoption
+2026-06-11 18:37  born:2026-06-11  impl  023-idempotency-flag-on-correctness
+2026-06-11 18:37  born:2026-06-10  impl  014-packed-bm25-field-weights
+2026-06-11 17:48  born:2026-06-10        000-release-cleanup
+2026-06-11 17:48  born:2026-06-06        006-gem-team-adoption
+2026-06-11 17:48  born:2026-06-06  impl  007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate
 2026-06-11 16:57  born:2026-06-11  impl  026-ipc-client-cap-hardening
 2026-06-11 16:47  born:2026-06-11  impl  025-code-mode-orphan-lifecycle
 2026-06-11 16:47  born:2026-06-11  impl  024-autonomous-dependency-patching
-2026-06-11 15:48  born:2026-06-10        011-command-presentation-workflow-separation
 2026-06-11 15:47  born:2026-06-11  impl  011-command-presentation-workflow-separation/005-deep-commands
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor
@@ -141,10 +177,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code
 2026-06-11 13:48  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation
 2026-06-11 13:48  born:2026-06-11        000-release-cleanup/009-skill-frontmatter-alignment
-2026-06-11 13:48  born:2026-06-10        000-release-cleanup
-2026-06-11 13:40  born:2026-06-11  impl  023-idempotency-flag-on-correctness
-2026-06-11 12:20  born:2026-06-11  impl  022-provenance-injection
-2026-06-11 10:37  born:2026-06-11  impl  021-hybrid-search-scope-then-limit
 2026-06-11 10:32  born:2026-06-11  impl  020-vector-resilience-durability
 2026-06-11 10:28  born:2026-06-11  impl  019-skill-advisor-cross-session-reconnect
 2026-06-11 09:33  born:2026-06-11  impl  017-bm25-warmup-churn-reduction
@@ -158,15 +190,12 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard
 2026-06-11 07:51  born:2026-06-10  impl  018-xce-feature-adoption-advisor-codegraph/001-advisor-observability
 2026-06-11 07:51  born:2026-06-10        018-xce-feature-adoption-advisor-codegraph
-2026-06-11 07:05  born:2026-06-10  impl  014-packed-bm25-field-weights
 2026-06-11 06:37  born:2026-06-10  impl  013-vector-read-path-resilience
 2026-06-11 06:30  born:2026-06-10  impl  012-causal-traversal-bfs
 2026-06-11 04:55  born:2026-06-10  impl  016-cli-tooling-ux/005-cli-automation-compact-completion
 2026-06-11 04:55  born:2026-06-10  impl  016-cli-tooling-ux/003-cli-reference-and-skill-docs
-2026-06-11 04:55  born:2026-06-10        016-cli-tooling-ux
 2026-06-11 04:51  born:2026-06-10  impl  015-storage-adapter-ports
 2026-06-11 03:37  born:2026-06-10  impl  016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge
-2026-06-11 03:15  born:2026-06-10  impl  016-cli-tooling-ux/002-cli-help-aliases-errors
 2026-06-11 03:01  born:2026-06-10  impl  016-cli-tooling-ux/001-cli-freshness-and-smoke
 2026-06-10 22:21  born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux
 2026-06-10 22:21  born:2026-06-10  impl  011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire
@@ -197,37 +226,29 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-10 17:50  born:2026-06-10  impl  000-release-cleanup/006-command-alignment
 2026-06-10 17:50  born:2026-06-10  impl  000-release-cleanup/002-skill-docs-alignment
 2026-06-10 16:13  born:2026-06-06  impl  001-peck-teachings-adoption/006-peck-verification-discipline
-2026-06-10 16:13  born:2026-06-02        001-peck-teachings-adoption
 2026-06-10 16:12  born:2026-06-08  impl  008-openltm-retrieval-observability
 2026-06-10 14:50  born:2026-06-08  impl  009-openltm-continuity-resilience
 2026-06-10 14:50  born:2026-06-06  impl  007-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership
-2026-06-10 14:50  born:2026-06-06        007-memclaw-derived-memory-hardening
 2026-06-10 14:49  born:2026-06-06  impl  007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion
 2026-06-10 13:39  born:2026-06-06  impl  007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe
 2026-06-10 13:39  born:2026-05-12  impl  005-learning-feedback-reducers/003-causal-reducer
 2026-06-10 13:39  born:2026-05-09        005-learning-feedback-reducers
-2026-06-10 13:15  born:2026-06-06  impl  007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate
 2026-06-10 12:45  born:2026-06-06  impl  007-memclaw-derived-memory-hardening/001-provenance-and-audit
 2026-06-10 12:01  born:2026-05-12  impl  005-learning-feedback-reducers/005-env-tests-integration
 2026-06-10 11:48  born:2026-05-12  impl  005-learning-feedback-reducers/004-retention-reducer
 2026-06-10 11:12  born:2026-05-12  impl  005-learning-feedback-reducers/001-aggregator
-2026-06-10 11:00  born:2026-06-06  impl  004-semantic-trigger-fallback/004-tests-goldens-shadow-eval
-2026-06-10 11:00  born:2026-05-09        004-semantic-trigger-fallback
 2026-06-10 10:35  born:2026-06-06  impl  004-semantic-trigger-fallback/003-hybrid-handler
 2026-06-10 10:09  born:2026-06-06  impl  004-semantic-trigger-fallback/002-semantic-matcher
 2026-06-10 09:46  born:2026-06-06  impl  001-peck-teachings-adoption/007-acceptance-coverage-gate
 2026-06-10 09:45  born:2026-06-06  impl  004-semantic-trigger-fallback/001-schema-backfill
 2026-06-10 09:15  born:2026-06-06        003-memory-index-causal-lifecycle
 2026-06-10 09:15  born:2026-05-13  impl  003-memory-index-causal-lifecycle/004-write-path-reconciliation
-2026-06-10 09:12  born:2026-06-06  impl  001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate
 2026-06-10 08:44  born:2026-06-02  impl  001-peck-teachings-adoption/003-current-state-discipline
 2026-06-10 08:44  born:2026-05-13  impl  003-memory-index-causal-lifecycle/003-metadata-edge-promoter
 2026-06-10 08:32  born:2026-06-02  impl  001-peck-teachings-adoption/004-constitutional-rule-review
 2026-06-10 08:24  born:2026-06-06  impl  006-gem-team-adoption/003-planner-review-focus-and-drift-hint
-2026-06-10 08:24  born:2026-06-06        006-gem-team-adoption
 2026-06-10 08:03  born:2026-06-10  impl  010-mcp-to-cli-tool-transition/004-release-and-program-cleanup
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration
-2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests
@@ -236,12 +257,10 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research
-2026-06-10 08:03  born:2026-06-06        010-mcp-to-cli-tool-transition/003-skill-advisor-cli
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research
 2026-06-10 08:03  born:2026-06-06        010-mcp-to-cli-tool-transition/002-code-index-cli
 2026-06-10 08:03  born:2026-06-06  impl  010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research
 2026-06-10 08:03  born:2026-06-06        010-mcp-to-cli-tool-transition/001-spec-memory-cli
-2026-06-10 08:03  born:2026-06-06        010-mcp-to-cli-tool-transition
 2026-06-10 07:38  born:2026-06-02  impl  001-peck-teachings-adoption/002-self-check-templates
 2026-06-10 07:38  born:2026-05-11  impl  002-memory-write-safety
 2026-06-10 07:37  born:2026-06-06  impl  006-gem-team-adoption/002-scoped-preexec-and-handoff-gates
@@ -249,6 +268,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-10 07:09  born:2026-06-06  impl  006-gem-team-adoption/001-typed-agent-io-adapter
 2026-06-10 06:59  born:2026-05-13  impl  003-memory-index-causal-lifecycle/001-incremental-index-foundation
 2026-06-05 21:56  born:2026-06-02  impl  001-peck-teachings-adoption/001-peck-teachings-for-spec-kit
+??????????       born:??????????        027-finding-remediation/sandbox-test
 ```
 
 ---
@@ -274,24 +294,42 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `011-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | [changelog-011-008-router-consistency-hardening.md](./changelog/011-command-presentation-workflow-separation/changelog-011-008-router-consistency-hardening.md) |
+| `030-residual-design-units` | impl | [changelog-030-residual-design-units.md](./changelog/030-residual-design-units/changelog-030-residual-design-units.md) |
 | `029-deep-research-remediation` | impl | [changelog-029-deep-research-remediation-root.md](./changelog/029-deep-research-remediation/changelog-029-deep-research-remediation-root.md) |
+| `011-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | [changelog-011-008-router-consistency-hardening.md](./changelog/011-command-presentation-workflow-separation/changelog-011-008-router-consistency-hardening.md) |
+| `011-command-presentation-workflow-separation` |  | [changelog-011-command-presentation-workflow-separation-root.md](./changelog/011-command-presentation-workflow-separation/changelog-011-command-presentation-workflow-separation-root.md) |
+| `021-hybrid-search-scope-then-limit` | impl | [changelog-021-hybrid-search-scope-then-limit.md](./changelog/021-hybrid-search-scope-then-limit/changelog-021-hybrid-search-scope-then-limit.md) |
 | `028-tri-system-deep-research` | impl | [changelog-028-tri-system-deep-research-root.md](./changelog/028-tri-system-deep-research/changelog-028-tri-system-deep-research-root.md) |
+| `016-cli-tooling-ux/002-cli-help-aliases-errors` | impl | [changelog-016-002-cli-help-aliases-errors.md](./changelog/016-cli-tooling-ux/changelog-016-002-cli-help-aliases-errors.md) |
+| `016-cli-tooling-ux` |  | [changelog-016-cli-tooling-ux-root.md](./changelog/016-cli-tooling-ux/changelog-016-cli-tooling-ux-root.md) |
+| `004-semantic-trigger-fallback/004-tests-goldens-shadow-eval` | impl | [changelog-004-004-tests-goldens-shadow-eval.md](./changelog/004-semantic-trigger-fallback/changelog-004-004-tests-goldens-shadow-eval.md) |
+| `004-semantic-trigger-fallback` |  | [changelog-004-semantic-trigger-fallback-root.md](./changelog/004-semantic-trigger-fallback/changelog-004-semantic-trigger-fallback-root.md) |
+| `010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests` | impl | [changelog-010-003-002-skill-advisor-hardening.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-003-002-skill-advisor-hardening.md) |
+| `010-mcp-to-cli-tool-transition/003-skill-advisor-cli` |  | [changelog-010-003-skill-advisor-cli-root.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-003-skill-advisor-cli-root.md) |
+| `010-mcp-to-cli-tool-transition` |  | [changelog-010-mcp-to-cli-tool-transition-root.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-mcp-to-cli-tool-transition-root.md) |
+| `022-provenance-injection` | impl | [changelog-022-provenance-injection.md](./changelog/022-provenance-injection/changelog-022-provenance-injection.md) |
 | `011-command-presentation-workflow-separation/006-presentation-adherence-research` | impl | [changelog-011-006-presentation-adherence-research.md](./changelog/011-command-presentation-workflow-separation/changelog-011-006-presentation-adherence-research.md) |
 | `011-command-presentation-workflow-separation/007-presentation-asset-format` | impl | [changelog-011-007-presentation-asset-format.md](./changelog/011-command-presentation-workflow-separation/changelog-011-007-presentation-asset-format.md) |
 | `027-finding-remediation` |  | [changelog-027-finding-remediation-root.md](./changelog/027-finding-remediation/changelog-027-finding-remediation-root.md) |
-| `027-finding-remediation/001-write-safety-and-guards` | impl | [changelog-027-001-write-safety-and-guards.md](./changelog/027-finding-remediation/changelog-027-001-write-safety-and-guards.md) |
-| `027-finding-remediation/002-causal-and-memo` | impl | [changelog-027-002-causal-and-memo.md](./changelog/027-finding-remediation/changelog-027-002-causal-and-memo.md) |
-| `027-finding-remediation/003-search-and-triggers` | impl | [changelog-027-003-search-and-triggers.md](./changelog/027-finding-remediation/changelog-027-003-search-and-triggers.md) |
-| `027-finding-remediation/004-vector-and-checkpoint-durability` | impl | [changelog-027-004-vector-and-checkpoint-durability.md](./changelog/027-finding-remediation/changelog-027-004-vector-and-checkpoint-durability.md) |
-| `027-finding-remediation/005-bm25-indexing-fidelity` | impl | [changelog-027-005-bm25-indexing-fidelity.md](./changelog/027-finding-remediation/changelog-027-005-bm25-indexing-fidelity.md) |
-| `027-finding-remediation/006-launchers-and-cli` | impl | [changelog-027-006-launchers-and-cli.md](./changelog/027-finding-remediation/changelog-027-006-launchers-and-cli.md) |
-| `027-finding-remediation/007-continuity-and-save-concurrency` | impl | [changelog-027-007-continuity-and-save-concurrency.md](./changelog/027-finding-remediation/changelog-027-007-continuity-and-save-concurrency.md) |
 | `027-finding-remediation/008-doc-truth-and-test-fidelity` | impl | [changelog-027-008-doc-truth-and-test-fidelity.md](./changelog/027-finding-remediation/changelog-027-008-doc-truth-and-test-fidelity.md) |
+| `027-finding-remediation/007-continuity-and-save-concurrency` | impl | [changelog-027-007-continuity-and-save-concurrency.md](./changelog/027-finding-remediation/changelog-027-007-continuity-and-save-concurrency.md) |
+| `027-finding-remediation/006-launchers-and-cli` | impl | [changelog-027-006-launchers-and-cli.md](./changelog/027-finding-remediation/changelog-027-006-launchers-and-cli.md) |
+| `027-finding-remediation/005-bm25-indexing-fidelity` | impl | [changelog-027-005-bm25-indexing-fidelity.md](./changelog/027-finding-remediation/changelog-027-005-bm25-indexing-fidelity.md) |
+| `027-finding-remediation/004-vector-and-checkpoint-durability` | impl | [changelog-027-004-vector-and-checkpoint-durability.md](./changelog/027-finding-remediation/changelog-027-004-vector-and-checkpoint-durability.md) |
+| `027-finding-remediation/003-search-and-triggers` | impl | [changelog-027-003-search-and-triggers.md](./changelog/027-finding-remediation/changelog-027-003-search-and-triggers.md) |
+| `027-finding-remediation/002-causal-and-memo` | impl | [changelog-027-002-causal-and-memo.md](./changelog/027-finding-remediation/changelog-027-002-causal-and-memo.md) |
+| `027-finding-remediation/001-write-safety-and-guards` | impl | [changelog-027-001-write-safety-and-guards.md](./changelog/027-finding-remediation/changelog-027-001-write-safety-and-guards.md) |
+| `001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` | impl | [changelog-001-005-reviewer-prompt-benchmark-substrate.md](./changelog/001-peck-teachings-adoption/changelog-001-005-reviewer-prompt-benchmark-substrate.md) |
+| `007-memclaw-derived-memory-hardening` |  | [changelog-007-memclaw-derived-memory-hardening-root.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-memclaw-derived-memory-hardening-root.md) |
+| `001-peck-teachings-adoption` |  | [changelog-001-peck-teachings-adoption-root.md](./changelog/001-peck-teachings-adoption/changelog-001-peck-teachings-adoption-root.md) |
+| `023-idempotency-flag-on-correctness` | impl | [changelog-023-idempotency-flag-on-correctness.md](./changelog/023-idempotency-flag-on-correctness/changelog-023-idempotency-flag-on-correctness.md) |
+| `014-packed-bm25-field-weights` | impl | [changelog-014-packed-bm25-field-weights.md](./changelog/014-packed-bm25-field-weights/changelog-014-packed-bm25-field-weights.md) |
+| `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
+| `006-gem-team-adoption` |  | [changelog-006-gem-team-adoption-root.md](./changelog/006-gem-team-adoption/changelog-006-gem-team-adoption-root.md) |
+| `007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate` | impl | [changelog-007-002-idempotency-and-near-duplicate.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-002-idempotency-and-near-duplicate.md) |
 | `026-ipc-client-cap-hardening` | impl | [changelog-026-ipc-client-cap-hardening.md](./changelog/026-ipc-client-cap-hardening/changelog-026-ipc-client-cap-hardening.md) |
 | `025-code-mode-orphan-lifecycle` | impl | [changelog-025-code-mode-orphan-lifecycle.md](./changelog/025-code-mode-orphan-lifecycle/changelog-025-code-mode-orphan-lifecycle.md) |
 | `024-autonomous-dependency-patching` | impl | [changelog-024-autonomous-dependency-patching.md](./changelog/024-autonomous-dependency-patching/changelog-024-autonomous-dependency-patching.md) |
-| `011-command-presentation-workflow-separation` |  | [changelog-011-command-presentation-workflow-separation-root.md](./changelog/011-command-presentation-workflow-separation/changelog-011-command-presentation-workflow-separation-root.md) |
 | `011-command-presentation-workflow-separation/005-deep-commands` | impl | [changelog-011-005-deep-commands.md](./changelog/011-command-presentation-workflow-separation/changelog-011-005-deep-commands.md) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | (none) |
@@ -316,10 +354,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment` |  | [changelog-000-009-skill-frontmatter-alignment.md](./changelog/000-release-cleanup/changelog-000-009-skill-frontmatter-alignment.md) |
-| `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
-| `023-idempotency-flag-on-correctness` | impl | [changelog-023-idempotency-flag-on-correctness.md](./changelog/023-idempotency-flag-on-correctness/changelog-023-idempotency-flag-on-correctness.md) |
-| `022-provenance-injection` | impl | [changelog-022-provenance-injection.md](./changelog/022-provenance-injection/changelog-022-provenance-injection.md) |
-| `021-hybrid-search-scope-then-limit` | impl | [changelog-021-hybrid-search-scope-then-limit.md](./changelog/021-hybrid-search-scope-then-limit/changelog-021-hybrid-search-scope-then-limit.md) |
 | `020-vector-resilience-durability` | impl | [changelog-020-vector-resilience-durability.md](./changelog/020-vector-resilience-durability/changelog-020-vector-resilience-durability.md) |
 | `019-skill-advisor-cross-session-reconnect` | impl | [changelog-019-skill-advisor-cross-session-reconnect.md](./changelog/019-skill-advisor-cross-session-reconnect/changelog-019-skill-advisor-cross-session-reconnect.md) |
 | `017-bm25-warmup-churn-reduction` | impl | [changelog-017-bm25-warmup-churn-reduction.md](./changelog/017-bm25-warmup-churn-reduction/changelog-017-bm25-warmup-churn-reduction.md) |
@@ -333,15 +367,12 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | [changelog-018-002-advisor-provenance-guard.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-002-advisor-provenance-guard.md) |
 | `018-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | [changelog-018-001-advisor-observability.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-001-advisor-observability.md) |
 | `018-xce-feature-adoption-advisor-codegraph` |  | [changelog-018-xce-feature-adoption-advisor-codegraph-root.md](./changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-xce-feature-adoption-advisor-codegraph-root.md) |
-| `014-packed-bm25-field-weights` | impl | [changelog-014-packed-bm25-field-weights.md](./changelog/014-packed-bm25-field-weights/changelog-014-packed-bm25-field-weights.md) |
 | `013-vector-read-path-resilience` | impl | [changelog-013-vector-read-path-resilience.md](./changelog/013-vector-read-path-resilience/changelog-013-vector-read-path-resilience.md) |
 | `012-causal-traversal-bfs` | impl | [changelog-012-causal-traversal-bfs.md](./changelog/012-causal-traversal-bfs/changelog-012-causal-traversal-bfs.md) |
 | `016-cli-tooling-ux/005-cli-automation-compact-completion` | impl | [changelog-016-005-cli-automation-compact-completion.md](./changelog/016-cli-tooling-ux/changelog-016-005-cli-automation-compact-completion.md) |
 | `016-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | [changelog-016-003-cli-reference-and-skill-docs.md](./changelog/016-cli-tooling-ux/changelog-016-003-cli-reference-and-skill-docs.md) |
-| `016-cli-tooling-ux` |  | [changelog-016-cli-tooling-ux-root.md](./changelog/016-cli-tooling-ux/changelog-016-cli-tooling-ux-root.md) |
 | `015-storage-adapter-ports` | impl | [changelog-015-storage-adapter-ports.md](./changelog/015-storage-adapter-ports/changelog-015-storage-adapter-ports.md) |
 | `016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | [changelog-016-004-cli-fallback-envelope-and-bridge.md](./changelog/016-cli-tooling-ux/changelog-016-004-cli-fallback-envelope-and-bridge.md) |
-| `016-cli-tooling-ux/002-cli-help-aliases-errors` | impl | [changelog-016-002-cli-help-aliases-errors.md](./changelog/016-cli-tooling-ux/changelog-016-002-cli-help-aliases-errors.md) |
 | `016-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | [changelog-016-001-cli-freshness-and-smoke.md](./changelog/016-cli-tooling-ux/changelog-016-001-cli-freshness-and-smoke.md) |
 | `011-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | (none) |
 | `011-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | (none) |
@@ -372,37 +403,29 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-cleanup/006-command-alignment` | impl | [changelog-000-006-command-alignment.md](./changelog/000-release-cleanup/changelog-000-006-command-alignment.md) |
 | `000-release-cleanup/002-skill-docs-alignment` | impl | [changelog-000-002-skill-docs-alignment.md](./changelog/000-release-cleanup/changelog-000-002-skill-docs-alignment.md) |
 | `001-peck-teachings-adoption/006-peck-verification-discipline` | impl | [changelog-001-006-peck-verification-discipline.md](./changelog/001-peck-teachings-adoption/changelog-001-006-peck-verification-discipline.md) |
-| `001-peck-teachings-adoption` |  | [changelog-001-peck-teachings-adoption-root.md](./changelog/001-peck-teachings-adoption/changelog-001-peck-teachings-adoption-root.md) |
 | `008-openltm-retrieval-observability` | impl | [changelog-008-openltm-retrieval-observability.md](./changelog/008-openltm-retrieval-observability/changelog-008-openltm-retrieval-observability.md) |
 | `009-openltm-continuity-resilience` | impl | [changelog-009-openltm-continuity-resilience.md](./changelog/009-openltm-continuity-resilience/changelog-009-openltm-continuity-resilience.md) |
 | `007-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership` | impl | [changelog-007-005-stale-audit-and-tool-ownership.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-005-stale-audit-and-tool-ownership.md) |
-| `007-memclaw-derived-memory-hardening` |  | [changelog-007-memclaw-derived-memory-hardening-root.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-memclaw-derived-memory-hardening-root.md) |
 | `007-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion` | impl | [changelog-007-004-tombstones-and-edge-promotion.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-004-tombstones-and-edge-promotion.md) |
 | `007-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe` | impl | [changelog-007-003-feedback-log-and-005-reframe.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-003-feedback-log-and-005-reframe.md) |
 | `005-learning-feedback-reducers/003-causal-reducer` | impl | [changelog-005-003-session-trace-causal-reducer.md](./changelog/005-learning-feedback-reducers/changelog-005-003-session-trace-causal-reducer.md) |
 | `005-learning-feedback-reducers` |  | [changelog-005-learning-feedback-reducers-root.md](./changelog/005-learning-feedback-reducers/changelog-005-learning-feedback-reducers-root.md) |
-| `007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate` | impl | [changelog-007-002-idempotency-and-near-duplicate.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-002-idempotency-and-near-duplicate.md) |
 | `007-memclaw-derived-memory-hardening/001-provenance-and-audit` | impl | [changelog-007-001-provenance-and-audit.md](./changelog/007-memclaw-derived-memory-hardening/changelog-007-001-provenance-and-audit.md) |
 | `005-learning-feedback-reducers/005-env-tests-integration` | impl | [changelog-005-005-env-tests-integration.md](./changelog/005-learning-feedback-reducers/changelog-005-005-env-tests-integration.md) |
 | `005-learning-feedback-reducers/004-retention-reducer` | impl | [changelog-005-004-feedback-retention-reducer.md](./changelog/005-learning-feedback-reducers/changelog-005-004-feedback-retention-reducer.md) |
 | `005-learning-feedback-reducers/001-aggregator` | impl | [changelog-005-001-shared-feedback-aggregation.md](./changelog/005-learning-feedback-reducers/changelog-005-001-shared-feedback-aggregation.md) |
-| `004-semantic-trigger-fallback/004-tests-goldens-shadow-eval` | impl | [changelog-004-004-tests-goldens-shadow-eval.md](./changelog/004-semantic-trigger-fallback/changelog-004-004-tests-goldens-shadow-eval.md) |
-| `004-semantic-trigger-fallback` |  | [changelog-004-semantic-trigger-fallback-root.md](./changelog/004-semantic-trigger-fallback/changelog-004-semantic-trigger-fallback-root.md) |
 | `004-semantic-trigger-fallback/003-hybrid-handler` | impl | [changelog-004-003-hybrid-handler.md](./changelog/004-semantic-trigger-fallback/changelog-004-003-hybrid-handler.md) |
 | `004-semantic-trigger-fallback/002-semantic-matcher` | impl | [changelog-004-002-semantic-matcher.md](./changelog/004-semantic-trigger-fallback/changelog-004-002-semantic-matcher.md) |
 | `001-peck-teachings-adoption/007-acceptance-coverage-gate` | impl | [changelog-001-007-acceptance-coverage-gate.md](./changelog/001-peck-teachings-adoption/changelog-001-007-acceptance-coverage-gate.md) |
 | `004-semantic-trigger-fallback/001-schema-backfill` | impl | [changelog-004-001-schema-backfill.md](./changelog/004-semantic-trigger-fallback/changelog-004-001-schema-backfill.md) |
 | `003-memory-index-causal-lifecycle` |  | [changelog-003-memory-index-causal-lifecycle-root.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-memory-index-causal-lifecycle-root.md) |
 | `003-memory-index-causal-lifecycle/004-write-path-reconciliation` | impl | [changelog-003-004-write-path-reconciliation.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-004-write-path-reconciliation.md) |
-| `001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` | impl | [changelog-001-005-reviewer-prompt-benchmark-substrate.md](./changelog/001-peck-teachings-adoption/changelog-001-005-reviewer-prompt-benchmark-substrate.md) |
 | `001-peck-teachings-adoption/003-current-state-discipline` | impl | [changelog-001-003-current-state-discipline.md](./changelog/001-peck-teachings-adoption/changelog-001-003-current-state-discipline.md) |
 | `003-memory-index-causal-lifecycle/003-metadata-edge-promoter` | impl | [changelog-003-003-metadata-edge-promoter.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-003-metadata-edge-promoter.md) |
 | `001-peck-teachings-adoption/004-constitutional-rule-review` | impl | [changelog-001-004-constitutional-rule-review.md](./changelog/001-peck-teachings-adoption/changelog-001-004-constitutional-rule-review.md) |
 | `006-gem-team-adoption/003-planner-review-focus-and-drift-hint` | impl | [changelog-006-003-planner-review-focus-and-drift-hint.md](./changelog/006-gem-team-adoption/changelog-006-003-planner-review-focus-and-drift-hint.md) |
-| `006-gem-team-adoption` |  | [changelog-006-gem-team-adoption-root.md](./changelog/006-gem-team-adoption/changelog-006-gem-team-adoption-root.md) |
 | `010-mcp-to-cli-tool-transition/004-release-and-program-cleanup` | impl | [changelog-010-004-release-and-program-cleanup.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-004-release-and-program-cleanup.md) |
 | `010-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration` | impl | [changelog-010-003-003-skill-advisor-runtime-integration.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-003-003-skill-advisor-runtime-integration.md) |
-| `010-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests` | impl | [changelog-010-003-002-skill-advisor-hardening.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-003-002-skill-advisor-hardening.md) |
 | `010-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core` | impl | [changelog-010-003-001-skill-advisor-cli-core.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-003-001-skill-advisor-cli-core.md) |
 | `010-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration` | impl | [changelog-010-002-003-code-index-runtime-integration.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-002-003-code-index-runtime-integration.md) |
 | `010-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests` | impl | [changelog-010-002-002-code-index-hardening.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-002-002-code-index-hardening.md) |
@@ -411,12 +434,10 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `010-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests` | impl | [changelog-010-001-002-spec-memory-hardening.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-001-002-spec-memory-hardening.md) |
 | `010-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core` | impl | [changelog-010-001-001-spec-memory-cli-core.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-001-001-spec-memory-cli-core.md) |
 | `010-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research` | impl | [changelog-010-003-000-skill-advisor-cli-research.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-003-000-skill-advisor-cli-research.md) |
-| `010-mcp-to-cli-tool-transition/003-skill-advisor-cli` |  | [changelog-010-003-skill-advisor-cli-root.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-003-skill-advisor-cli-root.md) |
 | `010-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research` | impl | [changelog-010-002-000-code-index-cli-research.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-002-000-code-index-cli-research.md) |
 | `010-mcp-to-cli-tool-transition/002-code-index-cli` |  | [changelog-010-002-code-index-cli-root.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-002-code-index-cli-root.md) |
 | `010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research` | impl | [changelog-010-001-000-spec-memory-cli-research.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-001-000-spec-memory-cli-research.md) |
 | `010-mcp-to-cli-tool-transition/001-spec-memory-cli` |  | [changelog-010-001-spec-memory-cli-root.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-001-spec-memory-cli-root.md) |
-| `010-mcp-to-cli-tool-transition` |  | [changelog-010-mcp-to-cli-tool-transition-root.md](./changelog/010-mcp-to-cli-tool-transition/changelog-010-mcp-to-cli-tool-transition-root.md) |
 | `001-peck-teachings-adoption/002-self-check-templates` | impl | [changelog-001-002-self-check-templates.md](./changelog/001-peck-teachings-adoption/changelog-001-002-self-check-templates.md) |
 | `002-memory-write-safety` | impl | [changelog-002-memory-write-safety.md](./changelog/002-memory-write-safety/changelog-002-memory-write-safety.md) |
 | `006-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | [changelog-006-002-scoped-preexec-and-handoff-gates.md](./changelog/006-gem-team-adoption/changelog-006-002-scoped-preexec-and-handoff-gates.md) |
@@ -424,3 +445,5 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `006-gem-team-adoption/001-typed-agent-io-adapter` | impl | [changelog-006-001-typed-agent-io-adapter.md](./changelog/006-gem-team-adoption/changelog-006-001-typed-agent-io-adapter.md) |
 | `003-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | [changelog-003-001-incremental-index-foundation.md](./changelog/003-memory-index-causal-lifecycle/changelog-003-001-incremental-index-foundation.md) |
 | `001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | [changelog-001-001-peck-teachings-for-spec-kit.md](./changelog/001-peck-teachings-adoption/changelog-001-001-peck-teachings-for-spec-kit.md) |
+| `027-finding-remediation/sandbox-test` |  | (none) |
+

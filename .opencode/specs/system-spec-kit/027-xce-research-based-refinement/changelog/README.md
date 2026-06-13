@@ -45,6 +45,17 @@ Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, search, r
 | 025 code mode orphan lifecycle | shipped | 1 | [changelog-025-code-mode-orphan-lifecycle.md](./025-code-mode-orphan-lifecycle/changelog-025-code-mode-orphan-lifecycle.md) |
 | 026 ipc client cap hardening | shipped | 1 | [changelog-026-ipc-client-cap-hardening.md](./026-ipc-client-cap-hardening/changelog-026-ipc-client-cap-hardening.md) |
 
+## Follow-on phases
+
+Phases 027 through 030 were added after the original epic closed. They cover the verify-first remediation program, the tri-system deep-research and the residual design-unit work that 029 deferred for safety-gate reasons.
+
+| Phase | Status | Leaf changelogs | Top rollup |
+|-------|--------|-----------------|------------|
+| 027 finding remediation | complete | 0 (inline in rollup) | [changelog-027-finding-remediation-root.md](./027-finding-remediation/changelog-027-finding-remediation-root.md) |
+| 028 tri system deep research | complete | 0 (inline in rollup) | [changelog-028-tri-system-deep-research-root.md](./028-tri-system-deep-research/changelog-028-tri-system-deep-research-root.md) |
+| 029 deep research remediation | complete | 0 (inline in rollup) | [changelog-029-deep-research-remediation-root.md](./029-deep-research-remediation/changelog-029-deep-research-remediation-root.md) |
+| 030 residual design units | complete | 1 | [changelog-030-residual-design-units.md](./030-residual-design-units/changelog-030-residual-design-units.md) |
+
 ## How to read these
 
 Each track rollup has an Included Phases table linking to its leaf changelogs (and, for track 010, three nested sub-lane rollups for the spec-memory, code-index, and skill-advisor CLI lanes). Every leaf changelog follows the canonical phase template: Summary, Added, Changed, Fixed, Verification, Files Changed, Follow-Ups. Docs-only and process-only phases mark Added, Changed, and Fixed as None and put evidence under Verification. Single-leaf tracks (002, 008, 009, 012, 013, 014, 015, 017, 019, 020, 021, 022, 023, 024, 025, 026) carry one changelog that doubles as the track entry, so they have no separate rollup.
@@ -55,11 +66,13 @@ The four parents added at epic close (000, 011, 016, 018) summarize their childr
 
 The 027 changelogs record the schema progression v34 to v37 (source_kind v35, idempotency receipt v36, tombstone partitions v37), the new default-off flags (semantic triggers, session-trace causal inference, feedback retention learning, soft-delete tombstones, memory idempotency, authored continuity snapshot, completion freshness), the always-on write-ingress provenance guard, the two new advisory constitutional rules, the additive read-only retrieval observability, the markdown-native continuity resilience surfaces, and the dual-stack CLI front doors over the three MCP daemons. Every results-affecting addition ships default-off or shadow-first.
 
+The follow-on phases record the eight-lane verify-first remediation (027), the 50-angle tri-system deep-research and findings adjudication (028), the single-writer lock, secret scrubber, command-probe protocol and apply-pipeline safety cluster (029) and the memory_health budget re-tier, background maintenance-job store, synthetic replay corpus and three verify-first dispositions (030).
+
 ## Conventions
 
 - File names: `changelog-<phase>-<short-name>.md`. Phase-parent rollups use the `-root.md` suffix.
 - One changelog per shipped phase. Multi-commit phases collapse into one entry.
 - Voice rules are non-negotiable: no em-dashes, no semicolons in narrative, no Oxford commas.
 - Per-directory rollups are the authoritative child inventory for each parent.
-- All twenty-seven tracks (000 through 026) now have a changelog. Tracks 000, 011, 016, and 018 summarize children inline in their rollup; the others use separate leaf changelogs.
+- All twenty-seven original tracks (000 through 026) have a changelog, plus four follow-on phases (027 through 030). Tracks 000, 011, 016, and 018 summarize children inline in their rollup; the others use separate leaf changelogs. Phase 030 is a single-leaf entry (no rollup).
 - Tracks 024 and 025 were authored as standalone packets at epic close and relocated into 027 (formerly track-root 028-autonomous-dependency-patching and 029-code-mode-orphan-lifecycle); see `../context-index.md` for the relocation record.
