@@ -172,6 +172,7 @@ import {
   type WriteProvenanceContext,
 } from '../lib/storage/write-provenance.js';
 import {
+  deleteIdempotencyReceiptByKey,
   extractMemoryIdFromResponse,
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
@@ -3458,32 +3459,74 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   if (!shouldPlanCanonicalSave && isMemoryIdempotencyEnabled()) {
     try {
       const parsedForIdempotency = parsedForPreflight ?? memoryParser.parseMemoryFile(validatedPath);
+      // The compared payload is the SEMANTIC request material only, identical to
+      // the fingerprint that derives the receipt key. Spreading execution-mode
+      // flags (dryRun, skipPreflight, asyncEmbedding, plannerMode, ...) into the
+      // payload but not the key turns a benign flag flip into a same-key /
+      // different-payload mismatch and a false hard conflict.
+      const idempotencySemantics = {
+        filePath: canonicalValidatedPath,
+        contentHash: parsedForIdempotency.contentHash,
+        routeAs: routeAs ?? null,
+        mergeModeHint: mergeModeHint ?? null,
+        targetAnchorId: targetAnchorId ?? null,
+        scope: saveScope,
+        // A force-flipped retry is a DIFFERENT logical request: without
+        // force in the key material it collides with the stored receipt
+        // and the intentional forced write is rejected as a conflict.
+        force: force === true,
+      };
       const lookup = lookupIdempotencyReceipt(database, {
         operation: 'memory_save',
         contentHash: parsedForIdempotency.contentHash,
-        requestFingerprint: {
-          filePath: canonicalValidatedPath,
-          contentHash: parsedForIdempotency.contentHash,
-          routeAs: routeAs ?? null,
-          mergeModeHint: mergeModeHint ?? null,
-          targetAnchorId: targetAnchorId ?? null,
-          scope: saveScope,
-          // A force-flipped retry is a DIFFERENT logical request: without
-          // force in the key material it collides with the stored receipt
-          // and the intentional forced write is rejected as a conflict.
-          force: force === true,
-        },
-        payload: {
-          ...(args as unknown as Record<string, unknown>),
-          filePath: canonicalValidatedPath,
-          contentHash: parsedForIdempotency.contentHash,
-        },
+        requestFingerprint: idempotencySemantics,
+        payload: idempotencySemantics,
       });
       idempotencyKey = lookup.key;
       if (lookup.status === 'replay') {
-        return lookup.response;
-      }
-      if (lookup.status === 'conflict') {
+        // A receipt is a replay cache, not proof the cached response still
+        // describes the live state. After an A->B->A revert the receipt for A
+        // is intact but the active row now holds B (or, after deletion, a
+        // superseded row), so replaying A's old response would diverge from
+        // the index. Honor the replay ONLY when the active row for this logical
+        // identity still carries the receipt's content_hash. Mirror the
+        // handler's own active-row identity (findSamePathExistingMemory) and
+        // exclude retired tiers so a deprecated/archived predecessor cannot
+        // satisfy the match.
+        const activeRow = database.prepare(`
+          SELECT content_hash
+          FROM memory_index
+          WHERE spec_folder = ?
+            AND parent_id IS NULL
+            AND (canonical_file_path = ? OR file_path = ?)
+            AND ${targetAnchorId != null ? 'anchor_id = ?' : 'anchor_id IS NULL'}
+            AND ((? IS NULL AND tenant_id IS NULL) OR tenant_id = ?)
+            AND ((? IS NULL AND user_id IS NULL) OR user_id = ?)
+            AND ((? IS NULL AND agent_id IS NULL) OR agent_id = ?)
+            AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+            AND COALESCE(importance_tier, 'normal') NOT IN ('deprecated', 'archived')
+          ORDER BY id DESC
+          LIMIT 1
+        `).get(
+          parsedForIdempotency.specFolder,
+          canonicalValidatedPath,
+          validatedPath,
+          ...(targetAnchorId != null ? [targetAnchorId] : []),
+          saveScope.tenantId ?? null, saveScope.tenantId ?? null,
+          saveScope.userId ?? null, saveScope.userId ?? null,
+          saveScope.agentId ?? null, saveScope.agentId ?? null,
+          saveScope.sessionId ?? null, saveScope.sessionId ?? null,
+        ) as { content_hash: string } | undefined;
+
+        if (activeRow && activeRow.content_hash === lookup.key.contentHash) {
+          return lookup.response;
+        }
+        // Stale receipt for this attempt: drop the cache entry so the
+        // re-indexed write stores its current response (the post-write store
+        // uses ON CONFLICT DO NOTHING and would otherwise lose to and re-serve
+        // the stale receipt), then fall through to the normal save/reindex path.
+        deleteIdempotencyReceiptByKey(database, lookup.key);
+      } else if (lookup.status === 'conflict') {
         return createMCPErrorResponse({
           tool: 'memory_save',
           error: 'Idempotency key conflict: same server-derived key with changed payload',

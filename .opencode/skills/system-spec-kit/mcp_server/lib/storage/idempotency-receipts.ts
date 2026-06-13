@@ -143,6 +143,33 @@ export function lookupIdempotencyReceiptByKey(
   };
 }
 
+/**
+ * Drops the receipt for a key so a follow-up store writes fresh.
+ *
+ * A receipt is a replay cache keyed on (operation, contentHash, fingerprint),
+ * not a durable record. When a replay is rejected because the live index no
+ * longer matches the receipt's content_hash (the logical path moved on and
+ * came back, so the cached response now carries a superseded memory id), the
+ * cache entry is stale: leaving it lets the post-write store lose the
+ * ON CONFLICT DO NOTHING race and re-serve the superseded response. Clearing
+ * it first lets the re-indexed write store its current response and keeps the
+ * cache consistent with the active row. Best-effort: a delete failure must
+ * never block serving the live write.
+ */
+export function deleteIdempotencyReceiptByKey(
+  database: BetterSqlite3.Database,
+  key: IdempotencyReceiptKey,
+): void {
+  try {
+    database.prepare(`
+      DELETE FROM memory_idempotency_receipts
+      WHERE receipt_key = ?
+    `).run(key.receiptKey);
+  } catch {
+    // Best-effort cache eviction; serving the live write takes priority.
+  }
+}
+
 export function storeIdempotencyReceipt(
   database: BetterSqlite3.Database,
   key: IdempotencyReceiptKey,

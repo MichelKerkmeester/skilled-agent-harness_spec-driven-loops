@@ -26,6 +26,7 @@ import { isConstitutionalPath } from '../lib/utils/index-scope.js';
 import { scrubSecrets, SecretScrubberError } from '../lib/parsing/secret-scrubber.js';
 import { toErrorMessage } from '../utils/index.js';
 import {
+  deleteIdempotencyReceiptByKey,
   extractMemoryIdFromResponse,
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
@@ -240,16 +241,36 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
           contentHash,
           logicalMutation,
         },
+        // The compared payload is the SEMANTIC mutation material only, identical
+        // to the fingerprint that derives the receipt key. Spreading
+        // execution-mode flags (e.g. allowPartialUpdate) into the payload but
+        // not the key turns a benign flag flip into a same-key / different-payload
+        // mismatch and a false hard conflict.
         payload: {
-          ...(args as unknown as Record<string, unknown>),
-          ...logicalMutation,
+          id,
+          contentHash,
+          logicalMutation,
         },
       });
       idempotencyKey = lookup.key;
       if (lookup.status === 'replay') {
-        return lookup.response;
-      }
-      if (lookup.status === 'conflict') {
+        // A receipt is a replay cache, not proof the cached response still
+        // describes the live row. Re-read this id's current content_hash and
+        // honor the replay ONLY when it still matches the receipt's content_hash;
+        // an A->B->A content revert leaves the receipt for A intact while the row
+        // moved on, so replaying A's old response would diverge from the row.
+        const liveRow = database
+          .prepare('SELECT content_hash FROM memory_index WHERE id = ?')
+          .get(id) as { content_hash: string | null } | undefined;
+        if (liveRow && liveRow.content_hash === lookup.key.contentHash) {
+          return lookup.response;
+        }
+        // Stale receipt for this attempt: drop the cache entry so the live
+        // update stores its current response (the post-write store uses
+        // ON CONFLICT DO NOTHING and would otherwise lose to and re-serve the
+        // stale receipt), then fall through to the normal update path.
+        deleteIdempotencyReceiptByKey(database, lookup.key);
+      } else if (lookup.status === 'conflict') {
         return createMCPErrorResponse({
           tool: 'memory_update',
           error: 'Idempotency key conflict: same server-derived key with changed payload',

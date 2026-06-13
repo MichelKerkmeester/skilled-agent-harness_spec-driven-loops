@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ensureIdempotencyReceiptSchemaForTests } from '../lib/search/vector-index-schema';
 import {
+  deleteIdempotencyReceiptByKey,
   deriveIdempotencyReceiptKey,
   isMemoryIdempotencyEnabled,
   lookupIdempotencyReceipt,
@@ -449,6 +450,212 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
       expect(lookupIdempotencyReceiptByKey(database, freshKey).status).toBe('replay');
     } finally {
       database.close();
+    }
+  });
+
+  it('drops a stale receipt by key so a re-indexed write can store fresh', () => {
+    const key = deriveIdempotencyReceiptKey({
+      operation: 'memory_save',
+      contentHash: 'hash-a',
+      requestFingerprint: { filePath: '/tmp/spec.md', contentHash: 'hash-a' },
+      payload: { filePath: '/tmp/spec.md', contentHash: 'hash-a' },
+    });
+    // Receipt memory_id has a FK to memory_index(id); seed both referenced rows.
+    insertMemoryRow(database, 1, 'hash-a');
+    insertMemoryRow(database, 9, 'hash-a');
+    // A receipt for content A holding the original memory id.
+    expect(storeIdempotencyReceipt(database, key, responseFor(1), 1)).toBe(true);
+    // A second store loses to ON CONFLICT DO NOTHING while the receipt persists.
+    expect(storeIdempotencyReceipt(database, key, responseFor(9), 9)).toBe(false);
+
+    // Evicting the stale entry lets the re-indexed write win the store and
+    // record the current (new-id) response instead of re-serving the stale one.
+    deleteIdempotencyReceiptByKey(database, key);
+    expect(lookupIdempotencyReceiptByKey(database, key).status).toBe('miss');
+    expect(storeIdempotencyReceipt(database, key, responseFor(9), 9)).toBe(true);
+
+    const replay = lookupIdempotencyReceiptByKey(database, key);
+    expect(replay.status).toBe('replay');
+    if (replay.status === 'replay') {
+      expect(replay.response).toEqual(responseFor(9));
+    }
+  });
+
+  it('does not raise a conflict when a benign execution-mode flag flips (E2 semantic payload)', () => {
+    // Mirror the handler's now-semantic payload: fingerprint material only, with
+    // execution-mode flags (dryRun, skipPreflight, asyncEmbedding, plannerMode,
+    // allowPartialUpdate) deliberately excluded from BOTH fingerprint and payload.
+    const semantics = {
+      filePath: '/tmp/spec.md',
+      contentHash: 'hash-a',
+      routeAs: null,
+      mergeModeHint: null,
+      targetAnchorId: null,
+      scope: { tenantId: null, userId: null, agentId: null, sessionId: null },
+      force: false,
+    };
+    insertMemoryRow(database, 1, 'hash-a');
+    storeIdempotencyReceipt(
+      database,
+      deriveIdempotencyReceiptKey({
+        operation: 'memory_save',
+        contentHash: 'hash-a',
+        requestFingerprint: semantics,
+        payload: semantics,
+      }),
+      responseFor(1),
+      1,
+    );
+
+    // Same content + same semantic fields, only execution-mode flags differ at
+    // the call boundary. Because they are absent from the constructed payload,
+    // the second attempt replays the canonical receipt rather than conflicting.
+    const afterFlagFlip = lookupIdempotencyReceipt(database, {
+      operation: 'memory_save',
+      contentHash: 'hash-a',
+      requestFingerprint: semantics,
+      payload: semantics,
+    });
+
+    expect(afterFlagFlip.status).toBe('replay');
+    expect(afterFlagFlip.status).not.toBe('conflict');
+  });
+
+  it('does not raise a memory_update conflict when allowPartialUpdate flips (E2 semantic payload)', () => {
+    const logicalMutation = {
+      id: 1,
+      title: 'stable title',
+      triggerPhrases: null,
+      importanceWeight: null,
+      importanceTier: null,
+      contentHash: 'hash-a',
+    };
+    const semantics = { id: 1, contentHash: 'hash-a', logicalMutation };
+    // Receipt memory_id has a FK to memory_index(id); seed the referenced row.
+    insertMemoryRow(database, 1, 'hash-a');
+    storeIdempotencyReceipt(
+      database,
+      deriveIdempotencyReceiptKey({
+        operation: 'memory_update',
+        contentHash: 'hash-a',
+        requestFingerprint: semantics,
+        payload: semantics,
+      }),
+      responseFor(1),
+      1,
+    );
+
+    // allowPartialUpdate (execution-mode) is excluded from the payload, so an
+    // identical logical update with a flipped flag replays instead of conflicting.
+    const afterFlagFlip = lookupIdempotencyReceipt(database, {
+      operation: 'memory_update',
+      contentHash: 'hash-a',
+      requestFingerprint: semantics,
+      payload: semantics,
+    });
+
+    expect(afterFlagFlip.status).toBe('replay');
+    expect(afterFlagFlip.status).not.toBe('conflict');
+  });
+
+  it('A->B->A revert with the flag ON resolves the active row to A so a stale replay is rejected', () => {
+    // Richer schema mirroring the columns the handler's active-row guard reads.
+    const db = new Database(':memory:');
+    try {
+      db.exec(`
+        CREATE TABLE memory_index (
+          id INTEGER PRIMARY KEY,
+          spec_folder TEXT,
+          canonical_file_path TEXT,
+          file_path TEXT,
+          anchor_id TEXT,
+          content_hash TEXT,
+          importance_tier TEXT,
+          parent_id INTEGER,
+          tenant_id TEXT,
+          user_id TEXT,
+          agent_id TEXT,
+          session_id TEXT
+        );
+      `);
+      ensureIdempotencyReceiptSchemaForTests(db, 'vitest');
+
+      const specFolder = 'specs/demo';
+      const canonical = '/tmp/specs/demo/spec.md';
+
+      // Save A (active), receipt stored against A's content hash + old id.
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, canonical_file_path, file_path, content_hash, importance_tier, parent_id)
+        VALUES (1, ?, ?, ?, 'content-a', 'normal', NULL)
+      `).run(specFolder, canonical, canonical);
+      const key = deriveIdempotencyReceiptKey({
+        operation: 'memory_save',
+        contentHash: 'content-a',
+        requestFingerprint: { filePath: canonical, contentHash: 'content-a' },
+        payload: { filePath: canonical, contentHash: 'content-a' },
+      });
+      storeIdempotencyReceipt(db, key, responseFor(1), 1);
+
+      // Save B supersedes A: A is retired to deprecated (parent_id stays NULL,
+      // mirroring retirePredecessorForActiveReindex), B becomes the active row.
+      db.prepare("UPDATE memory_index SET importance_tier = 'deprecated' WHERE id = 1").run();
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, canonical_file_path, file_path, content_hash, importance_tier, parent_id)
+        VALUES (2, ?, ?, ?, 'content-b', 'normal', NULL)
+      `).run(specFolder, canonical, canonical);
+
+      // The handler's exact active-row guard (anchor IS NULL, scope all NULL,
+      // retired tiers excluded, newest id first) must resolve to B, not A.
+      const activeRow = db.prepare(`
+        SELECT content_hash
+        FROM memory_index
+        WHERE spec_folder = ?
+          AND parent_id IS NULL
+          AND (canonical_file_path = ? OR file_path = ?)
+          AND anchor_id IS NULL
+          AND ((? IS NULL AND tenant_id IS NULL) OR tenant_id = ?)
+          AND ((? IS NULL AND user_id IS NULL) OR user_id = ?)
+          AND ((? IS NULL AND agent_id IS NULL) OR agent_id = ?)
+          AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+          AND COALESCE(importance_tier, 'normal') NOT IN ('deprecated', 'archived')
+        ORDER BY id DESC
+        LIMIT 1
+      `).get(
+        specFolder, canonical, canonical,
+        null, null, null, null, null, null, null, null,
+      ) as { content_hash: string } | undefined;
+
+      // Receipt for A still replays at the key layer...
+      expect(lookupIdempotencyReceiptByKey(db, key).status).toBe('replay');
+      // ...but the live active row holds B, so the guard rejects the stale replay.
+      expect(activeRow?.content_hash).toBe('content-b');
+      expect(activeRow?.content_hash).not.toBe(key.contentHash);
+
+      // Save A again: B retired, A re-inserted as the newest active row. The guard
+      // now resolves A's content, so a fresh A save would legitimately re-index.
+      db.prepare("UPDATE memory_index SET importance_tier = 'deprecated' WHERE id = 2").run();
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, canonical_file_path, file_path, content_hash, importance_tier, parent_id)
+        VALUES (3, ?, ?, ?, 'content-a', 'normal', NULL)
+      `).run(specFolder, canonical, canonical);
+
+      const activeAfterRevert = db.prepare(`
+        SELECT id, content_hash
+        FROM memory_index
+        WHERE spec_folder = ?
+          AND parent_id IS NULL
+          AND (canonical_file_path = ? OR file_path = ?)
+          AND anchor_id IS NULL
+          AND COALESCE(importance_tier, 'normal') NOT IN ('deprecated', 'archived')
+        ORDER BY id DESC
+        LIMIT 1
+      `).get(specFolder, canonical, canonical) as { id: number; content_hash: string } | undefined;
+
+      // The live row ends with content A, under a NEW id (not the stale id 1).
+      expect(activeAfterRevert?.content_hash).toBe('content-a');
+      expect(activeAfterRevert?.id).toBe(3);
+    } finally {
+      db.close();
     }
   });
 });
