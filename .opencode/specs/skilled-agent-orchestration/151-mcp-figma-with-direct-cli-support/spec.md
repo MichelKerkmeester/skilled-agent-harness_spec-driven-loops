@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support"
-    last_updated_at: "2026-06-14T17:00:00Z"
-    last_updated_by: "orchestrate"
-    recent_action: "Authored 151 phase-parent governance docs for the shipped mcp-figma skill"
-    next_safe_action: "Operator reviews the record; both phases are complete"
+    last_updated_at: "2026-06-14T17:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Took over figma work: fixed token placeholder, dropped deleted-magicpath refs"
+    next_safe_action: "Allow figma token placeholder on GitHub, then push 027"
     blockers: []
     key_files: []
     session_dedup:
@@ -63,7 +63,7 @@ Make Figma Desktop drivable from the terminal through a new `mcp-figma` skill bu
 ## 3. SCOPE
 
 ### In Scope
-- A new `mcp-figma` skill that drives Figma Desktop from the terminal via the silships figma-cli, modeled on the sibling terminal-control skills (`mcp-open-design`, `mcp-chrome-devtools`, `mcp-magicpath`).
+- A new `mcp-figma` skill that drives Figma Desktop from the terminal via the silships figma-cli, modeled on the sibling terminal-control skills (`mcp-open-design`, `mcp-chrome-devtools`).
 - The install and safety scripting that selects the full CLI surface (repo build) over the minimal npm build, plus the safe and yolo connect modes and their rollback.
 - The optional Figma MCP path through Code Mode (the Framelink `figma` manual, exposing `get_figma_data` and `download_figma_images`).
 - Graph registration (skill graph metadata and reciprocal sibling edges) and live install plus verification.
@@ -114,5 +114,5 @@ Make Figma Desktop drivable from the terminal through a new `mcp-figma` skill bu
 
 - **Phase children**: see sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
 - **The mcp-figma skill**: `.opencode/skills/mcp-figma/` (the shipped deliverable).
-- **Sibling terminal-control skills**: `.opencode/skills/mcp-open-design/`, `.opencode/skills/mcp-chrome-devtools/`, `.opencode/skills/mcp-magicpath/`.
+- **Sibling terminal-control skills**: `.opencode/skills/mcp-open-design/`, `.opencode/skills/mcp-chrome-devtools/`.
 - **Graph Metadata**: see `graph-metadata.json` for the `derived.last_active_child_id` pointer.

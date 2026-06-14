@@ -76,7 +76,7 @@ The manual's config references `${FIGMA_API_KEY}`, but **Code Mode prefixes ever
 
 ```bash
 # .env (project root)
-figma_FIGMA_API_KEY=figd_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+figma_FIGMA_API_KEY=figd_your_token_here
 ```
 
 - The token is a **Figma personal access token** (begins `figd_`). Generate it in Figma → Settings → Security → personal access tokens. **[INFERRED — standard Figma token shape; verify in Figma]**

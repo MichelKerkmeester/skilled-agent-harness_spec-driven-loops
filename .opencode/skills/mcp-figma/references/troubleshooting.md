@@ -389,7 +389,7 @@ The optional Figma MCP is the community **Framelink `figma-developer-mcp`**, alr
 
 ```bash
 # In .env (illustrative — do not paste the token into chat output):
-figma_FIGMA_API_KEY=figd_xxxxxxxxxxxxxxxx
+figma_FIGMA_API_KEY=figd_your_token_here
 ```
 
 Set `figma_FIGMA_API_KEY` in `.env`, then restart Code Mode so the manual reloads. Never expose the token in user-facing output.
