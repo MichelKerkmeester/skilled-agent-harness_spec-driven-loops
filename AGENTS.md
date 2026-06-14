@@ -59,7 +59,7 @@ Reinventing a workflow's core feature because you assumed friction you never che
 
 #### Operating Discipline — Claim Legibility & Blast-Radius
 
-Extends the Four Laws (above) and the Completion Verification Rule (§2) — does not restate them.
+How to think, decide, build, and communicate on any non-trivial task: keep every load-bearing claim legible, size effort to its blast radius, and close out honestly.
 
 - **Confirmed vs inferred — make it legible.** For any load-bearing claim (behavior, type, version, API shape, "this works", "this is the cause"), the prose must let a reader tell confirmed from inferred. A confirmed claim names its evidence (file:line, the command run, the artifact read); an inferred claim says so and names what would confirm it. Hold your own plan to this bar before you run it.
 - **Baseline before "no regressions"; report the delta.** Capture the real starting numbers (test pass/fail counts + the names of the failing ones, base commit, fixture mtime) BEFORE the change. After each step re-run the WHOLE gate on a real exit code — not a grep scoped to your own files — and report the delta ("baseline 2 failing {a,b} → still 2"). A green suite says nothing about a path it never exercised; gate anything visual or stateful on a real observation.
