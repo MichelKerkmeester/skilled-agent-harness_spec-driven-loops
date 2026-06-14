@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-14T09:38:25Z"
+    last_updated_at: "2026-06-14T13:05:52Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-14T09:38:25Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-14T13:05:52Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,7 +38,7 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `004-shared-infrastructure/008-mcp-config-alignment-reelection-default`
+> **Most recent live spec folder:** `004-shared-infrastructure/009-code-graph-code-only-indexing`
 > **Oldest live spec folder:** `000-release-cleanup/001-public-root-readme`
 > **Counts:** 160 live spec folders · 0 archived (`z_archive/`).
 
@@ -47,21 +47,21 @@ _memory:
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-14 11:25  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
- 2. 2026-06-14 11:25  005-verification-and-remediation
- 3. 2026-06-14 11:25  004-shared-infrastructure
- 4. 2026-06-14 11:25  003-advisor-and-codegraph
- 5. 2026-06-14 11:25  002-memory-store-and-search
- 6. 2026-06-14 11:25  001-research-and-doctrine
- 7. 2026-06-14 11:25  004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening
- 8. 2026-06-14 11:25  005-verification-and-remediation/001-finding-remediation
- 9. 2026-06-14 11:25  002-memory-store-and-search/012-hybrid-search-scope-then-limit
-10. 2026-06-14 11:25  002-memory-store-and-search/011-vector-resilience-durability
-11. 2026-06-14 11:25  003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect
-12. 2026-06-14 11:25  002-memory-store-and-search/010-bm25-warmup-churn-reduction
-13. 2026-06-14 11:25  004-shared-infrastructure/004-cli-tooling-ux
-14. 2026-06-14 11:25  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph
-15. 2026-06-14 11:25  004-shared-infrastructure/003-storage-adapter-ports
+ 1. 2026-06-14 12:09  004-shared-infrastructure/009-code-graph-code-only-indexing
+ 2. 2026-06-14 12:09  004-shared-infrastructure
+ 3. 2026-06-14 11:25  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
+ 4. 2026-06-14 11:25  005-verification-and-remediation
+ 5. 2026-06-14 11:25  003-advisor-and-codegraph
+ 6. 2026-06-14 11:25  002-memory-store-and-search
+ 7. 2026-06-14 11:25  001-research-and-doctrine
+ 8. 2026-06-14 11:25  004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening
+ 9. 2026-06-14 11:25  005-verification-and-remediation/001-finding-remediation
+10. 2026-06-14 11:25  002-memory-store-and-search/012-hybrid-search-scope-then-limit
+11. 2026-06-14 11:25  002-memory-store-and-search/011-vector-resilience-durability
+12. 2026-06-14 11:25  003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect
+13. 2026-06-14 11:25  002-memory-store-and-search/010-bm25-warmup-churn-reduction
+14. 2026-06-14 11:25  004-shared-infrastructure/004-cli-tooling-ux
+15. 2026-06-14 11:25  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph
 ```
 
 ---
@@ -73,8 +73,8 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-14 11:25 | 2026-06-14 | `005-verification-and-remediation/` |
-| 2 | 2026-06-14 11:25 | 2026-06-14 | `004-shared-infrastructure/` |
+| 1 | 2026-06-14 12:09 | 2026-06-14 | `004-shared-infrastructure/` |
+| 2 | 2026-06-14 11:25 | 2026-06-14 | `005-verification-and-remediation/` |
 | 3 | 2026-06-14 11:25 | 2026-06-14 | `003-advisor-and-codegraph/` |
 | 4 | 2026-06-14 11:25 | 2026-06-14 | `002-memory-store-and-search/` |
 | 5 | 2026-06-14 11:25 | 2026-06-14 | `001-research-and-doctrine/` |
@@ -92,9 +92,10 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
+2026-06-14 12:09  born:2026-06-14  impl  004-shared-infrastructure/009-code-graph-code-only-indexing
+2026-06-14 12:09  born:2026-06-14        004-shared-infrastructure
 2026-06-14 11:25  born:2026-06-14  impl  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
 2026-06-14 11:25  born:2026-06-14        005-verification-and-remediation
-2026-06-14 11:25  born:2026-06-14        004-shared-infrastructure
 2026-06-14 11:25  born:2026-06-14        003-advisor-and-codegraph
 2026-06-14 11:25  born:2026-06-14        002-memory-store-and-search
 2026-06-14 11:25  born:2026-06-14        001-research-and-doctrine
@@ -121,7 +122,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 11:25  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones
 2026-06-14 11:25  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation
 2026-06-14 11:25  born:??????????        005-verification-and-remediation/001-finding-remediation/sandbox-test
-2026-06-14 10:56  born:2026-06-14  impl  004-shared-infrastructure/009-code-graph-code-only-indexing
 2026-06-14 10:48  born:2026-06-14  impl  000-release-cleanup/000-spec-tree-consolidation
 2026-06-14 10:48  born:2026-06-10        000-release-cleanup
 2026-06-14 08:55  born:2026-06-13  impl  005-verification-and-remediation/004-residual-design-units
@@ -277,135 +277,135 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `004-shared-infrastructure/008-mcp-config-alignment-reelection-default` | impl | (none) |
-| `005-verification-and-remediation` |  | (none) |
+| `004-shared-infrastructure/009-code-graph-code-only-indexing` | impl | [changelog-004-009-code-graph-code-only-indexing.md](./changelog/004-shared-infrastructure/changelog-004-009-code-graph-code-only-indexing.md) |
 | `004-shared-infrastructure` |  | (none) |
+| `004-shared-infrastructure/008-mcp-config-alignment-reelection-default` | impl | [changelog-004-008-mcp-config-alignment-reelection-default.md](./changelog/004-shared-infrastructure/changelog-004-008-mcp-config-alignment-reelection-default.md) |
+| `005-verification-and-remediation` |  | (none) |
 | `003-advisor-and-codegraph` |  | (none) |
 | `002-memory-store-and-search` |  | (none) |
 | `001-research-and-doctrine` |  | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation` |  | (none) |
-| `002-memory-store-and-search/012-hybrid-search-scope-then-limit` | impl | (none) |
-| `002-memory-store-and-search/011-vector-resilience-durability` | impl | (none) |
-| `003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` | impl | (none) |
-| `002-memory-store-and-search/010-bm25-warmup-churn-reduction` | impl | (none) |
-| `004-shared-infrastructure/004-cli-tooling-ux` |  | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` |  | (none) |
-| `004-shared-infrastructure/003-storage-adapter-ports` | impl | (none) |
-| `002-memory-store-and-search/009-packed-bm25-field-weights` | impl | (none) |
-| `002-memory-store-and-search/008-vector-read-path-resilience` | impl | (none) |
-| `003-advisor-and-codegraph/001-causal-traversal-bfs` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation` |  | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` | impl | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter` | impl | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption` |  | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle` |  | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation` | impl | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter` | impl | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` | impl | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | [changelog-004-002-008-router-consistency-hardening.md](./changelog/004-shared-infrastructure/changelog-004-002-008-router-consistency-hardening.md) |
+| `005-verification-and-remediation/001-finding-remediation` |  | [changelog-005-001-finding-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-001-finding-remediation-root.md) |
+| `002-memory-store-and-search/012-hybrid-search-scope-then-limit` | impl | [changelog-002-012-hybrid-search-scope-then-limit.md](./changelog/002-memory-store-and-search/changelog-002-012-hybrid-search-scope-then-limit.md) |
+| `002-memory-store-and-search/011-vector-resilience-durability` | impl | [changelog-002-011-vector-resilience-durability.md](./changelog/002-memory-store-and-search/changelog-002-011-vector-resilience-durability.md) |
+| `003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` | impl | [changelog-003-003-skill-advisor-cross-session-reconnect.md](./changelog/003-advisor-and-codegraph/changelog-003-003-skill-advisor-cross-session-reconnect.md) |
+| `002-memory-store-and-search/010-bm25-warmup-churn-reduction` | impl | [changelog-002-010-bm25-warmup-churn-reduction.md](./changelog/002-memory-store-and-search/changelog-002-010-bm25-warmup-churn-reduction.md) |
+| `004-shared-infrastructure/004-cli-tooling-ux` |  | [changelog-004-004-cli-tooling-ux-root.md](./changelog/004-shared-infrastructure/changelog-004-004-cli-tooling-ux-root.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` |  | [changelog-003-002-xce-feature-adoption-advisor-codegraph-root.md](./changelog/003-advisor-and-codegraph/changelog-003-002-xce-feature-adoption-advisor-codegraph-root.md) |
+| `004-shared-infrastructure/003-storage-adapter-ports` | impl | [changelog-004-003-storage-adapter-ports.md](./changelog/004-shared-infrastructure/changelog-004-003-storage-adapter-ports.md) |
+| `002-memory-store-and-search/009-packed-bm25-field-weights` | impl | [changelog-002-009-packed-bm25-field-weights.md](./changelog/002-memory-store-and-search/changelog-002-009-packed-bm25-field-weights.md) |
+| `002-memory-store-and-search/008-vector-read-path-resilience` | impl | [changelog-002-008-vector-read-path-resilience.md](./changelog/002-memory-store-and-search/changelog-002-008-vector-read-path-resilience.md) |
+| `003-advisor-and-codegraph/001-causal-traversal-bfs` | impl | [changelog-003-001-causal-traversal-bfs.md](./changelog/003-advisor-and-codegraph/changelog-003-001-causal-traversal-bfs.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation` |  | [changelog-004-002-command-presentation-workflow-separation-root.md](./changelog/004-shared-infrastructure/changelog-004-002-command-presentation-workflow-separation-root.md) |
+| `001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` | impl | [changelog-001-002-003-planner-review-focus-and-drift-hint.md](./changelog/001-research-and-doctrine/changelog-001-002-003-planner-review-focus-and-drift-hint.md) |
+| `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | [changelog-001-002-002-scoped-preexec-and-handoff-gates.md](./changelog/001-research-and-doctrine/changelog-001-002-002-scoped-preexec-and-handoff-gates.md) |
+| `001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter` | impl | [changelog-001-002-001-typed-agent-io-adapter.md](./changelog/001-research-and-doctrine/changelog-001-002-001-typed-agent-io-adapter.md) |
+| `001-research-and-doctrine/002-gem-team-adoption` |  | [changelog-001-002-gem-team-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-002-gem-team-adoption-root.md) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle` |  | [changelog-002-002-memory-index-causal-lifecycle-root.md](./changelog/002-memory-store-and-search/changelog-002-002-memory-index-causal-lifecycle-root.md) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation` | impl | [changelog-002-002-004-write-path-reconciliation.md](./changelog/002-memory-store-and-search/changelog-002-002-004-write-path-reconciliation.md) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter` | impl | [changelog-002-002-003-metadata-edge-promoter.md](./changelog/002-memory-store-and-search/changelog-002-002-003-metadata-edge-promoter.md) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` | impl | [changelog-002-002-002-causal-tombstone-sweep.md](./changelog/002-memory-store-and-search/changelog-002-002-002-causal-tombstone-sweep.md) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | [changelog-002-002-001-incremental-index-foundation.md](./changelog/002-memory-store-and-search/changelog-002-002-001-incremental-index-foundation.md) |
 | `005-verification-and-remediation/001-finding-remediation/sandbox-test` |  | (none) |
-| `004-shared-infrastructure/009-code-graph-code-only-indexing` | impl | (none) |
 | `000-release-cleanup/000-spec-tree-consolidation` | impl | (none) |
 | `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
-| `005-verification-and-remediation/004-residual-design-units` | impl | (none) |
-| `005-verification-and-remediation/003-deep-research-remediation` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research` | impl | (none) |
-| `005-verification-and-remediation/002-tri-system-deep-research` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/003-search-and-triggers` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/002-causal-and-memo` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation/001-write-safety-and-guards` | impl | (none) |
-| `004-shared-infrastructure/007-ipc-client-cap-hardening` | impl | (none) |
-| `004-shared-infrastructure/006-code-mode-orphan-lifecycle` | impl | (none) |
-| `002-memory-store-and-search/014-idempotency-flag-on-correctness` | impl | (none) |
-| `002-memory-store-and-search/013-provenance-injection` | impl | (none) |
-| `004-shared-infrastructure/005-autonomous-dependency-patching` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` | impl | (none) |
-| `004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion` | impl | (none) |
-| `004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | (none) |
-| `004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | (none) |
-| `004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors` | impl | (none) |
-| `004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | (none) |
+| `005-verification-and-remediation/004-residual-design-units` | impl | [changelog-005-004-residual-design-units.md](./changelog/005-verification-and-remediation/changelog-005-004-residual-design-units.md) |
+| `005-verification-and-remediation/003-deep-research-remediation` | impl | [changelog-005-003-deep-research-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-003-deep-research-remediation-root.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` | impl | [changelog-004-002-007-presentation-asset-format.md](./changelog/004-shared-infrastructure/changelog-004-002-007-presentation-asset-format.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research` | impl | [changelog-004-002-006-presentation-adherence-research.md](./changelog/004-shared-infrastructure/changelog-004-002-006-presentation-adherence-research.md) |
+| `005-verification-and-remediation/002-tri-system-deep-research` | impl | [changelog-005-002-tri-system-deep-research-root.md](./changelog/005-verification-and-remediation/changelog-005-002-tri-system-deep-research-root.md) |
+| `005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity` | impl | [changelog-005-001-008-doc-truth-and-test-fidelity.md](./changelog/005-verification-and-remediation/changelog-005-001-008-doc-truth-and-test-fidelity.md) |
+| `005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency` | impl | [changelog-005-001-007-continuity-and-save-concurrency.md](./changelog/005-verification-and-remediation/changelog-005-001-007-continuity-and-save-concurrency.md) |
+| `005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli` | impl | [changelog-005-001-006-launchers-and-cli.md](./changelog/005-verification-and-remediation/changelog-005-001-006-launchers-and-cli.md) |
+| `005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity` | impl | [changelog-005-001-005-bm25-indexing-fidelity.md](./changelog/005-verification-and-remediation/changelog-005-001-005-bm25-indexing-fidelity.md) |
+| `005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability` | impl | [changelog-005-001-004-vector-and-checkpoint-durability.md](./changelog/005-verification-and-remediation/changelog-005-001-004-vector-and-checkpoint-durability.md) |
+| `005-verification-and-remediation/001-finding-remediation/003-search-and-triggers` | impl | [changelog-005-001-003-search-and-triggers.md](./changelog/005-verification-and-remediation/changelog-005-001-003-search-and-triggers.md) |
+| `005-verification-and-remediation/001-finding-remediation/002-causal-and-memo` | impl | [changelog-005-001-002-causal-and-memo.md](./changelog/005-verification-and-remediation/changelog-005-001-002-causal-and-memo.md) |
+| `005-verification-and-remediation/001-finding-remediation/001-write-safety-and-guards` | impl | [changelog-005-001-001-write-safety-and-guards.md](./changelog/005-verification-and-remediation/changelog-005-001-001-write-safety-and-guards.md) |
+| `004-shared-infrastructure/007-ipc-client-cap-hardening` | impl | [changelog-004-007-ipc-client-cap-hardening.md](./changelog/004-shared-infrastructure/changelog-004-007-ipc-client-cap-hardening.md) |
+| `004-shared-infrastructure/006-code-mode-orphan-lifecycle` | impl | [changelog-004-006-code-mode-orphan-lifecycle.md](./changelog/004-shared-infrastructure/changelog-004-006-code-mode-orphan-lifecycle.md) |
+| `002-memory-store-and-search/014-idempotency-flag-on-correctness` | impl | [changelog-002-014-idempotency-flag-on-correctness.md](./changelog/002-memory-store-and-search/changelog-002-014-idempotency-flag-on-correctness.md) |
+| `002-memory-store-and-search/013-provenance-injection` | impl | [changelog-002-013-provenance-injection.md](./changelog/002-memory-store-and-search/changelog-002-013-provenance-injection.md) |
+| `004-shared-infrastructure/005-autonomous-dependency-patching` | impl | [changelog-004-005-autonomous-dependency-patching.md](./changelog/004-shared-infrastructure/changelog-004-005-autonomous-dependency-patching.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` | impl | [changelog-004-002-005-deep-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-005-deep-commands.md) |
+| `004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion` | impl | [changelog-004-004-005-cli-automation-compact-completion.md](./changelog/004-shared-infrastructure/changelog-004-004-005-cli-automation-compact-completion.md) |
+| `004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | [changelog-004-004-004-cli-fallback-envelope-and-bridge.md](./changelog/004-shared-infrastructure/changelog-004-004-004-cli-fallback-envelope-and-bridge.md) |
+| `004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | [changelog-004-004-003-cli-reference-and-skill-docs.md](./changelog/004-shared-infrastructure/changelog-004-004-003-cli-reference-and-skill-docs.md) |
+| `004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors` | impl | [changelog-004-004-002-cli-help-aliases-errors.md](./changelog/004-shared-infrastructure/changelog-004-004-002-cli-help-aliases-errors.md) |
+| `004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | [changelog-004-004-001-cli-freshness-and-smoke.md](./changelog/004-shared-infrastructure/changelog-004-004-001-cli-freshness-and-smoke.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` | impl | [changelog-003-002-009-codegraph-bm25-symbol-resolver.md](./changelog/003-advisor-and-codegraph/changelog-003-002-009-codegraph-bm25-symbol-resolver.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` | impl | [changelog-003-002-008-codegraph-why-included.md](./changelog/003-advisor-and-codegraph/changelog-003-002-008-codegraph-why-included.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation` | impl | [changelog-003-002-007-codegraph-bfs-consolidation.md](./changelog/003-advisor-and-codegraph/changelog-003-002-007-codegraph-bfs-consolidation.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` | impl | [changelog-003-002-006-codegraph-tombstone-audit.md](./changelog/003-advisor-and-codegraph/changelog-003-002-006-codegraph-tombstone-audit.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration` | impl | [changelog-003-002-005-advisor-feedback-calibration.md](./changelog/003-advisor-and-codegraph/changelog-003-002-005-advisor-feedback-calibration.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation` | impl | [changelog-003-002-004-advisor-bfs-consolidation.md](./changelog/003-advisor-and-codegraph/changelog-003-002-004-advisor-bfs-consolidation.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` | impl | [changelog-003-002-003-advisor-packed-bm25-lexical.md](./changelog/003-advisor-and-codegraph/changelog-003-002-003-advisor-packed-bm25-lexical.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | [changelog-003-002-002-advisor-provenance-guard.md](./changelog/003-advisor-and-codegraph/changelog-003-002-002-advisor-provenance-guard.md) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | [changelog-003-002-001-advisor-observability.md](./changelog/003-advisor-and-codegraph/changelog-003-002-001-advisor-observability.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands` |  | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands` |  | [changelog-004-002-004-doctor-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-004-doctor-commands.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/001-inventory-extract` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands` |  | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands` |  | [changelog-004-002-003-create-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-003-create-commands.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands` |  | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands` |  | [changelog-004-002-002-speckit-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-002-speckit-commands.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands` |  | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup` | impl | (none) |
-| `002-memory-store-and-search/007-openltm-continuity-resilience` | impl | (none) |
-| `002-memory-store-and-search/006-openltm-retrieval-observability` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli` |  | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli` |  | (none) |
-| `002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval` | impl | (none) |
-| `002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler` | impl | (none) |
-| `002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher` | impl | (none) |
-| `002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill` | impl | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate` | impl | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` | impl | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline` | impl | (none) |
-| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership` | impl | (none) |
-| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion` | impl | (none) |
-| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe` | impl | (none) |
-| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate` | impl | (none) |
-| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit` | impl | (none) |
-| `002-memory-store-and-search/005-memclaw-derived-memory-hardening` |  | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research` | impl | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli` |  | (none) |
-| `004-shared-infrastructure/001-mcp-to-cli-tool-transition` |  | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review` | impl | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline` | impl | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates` | impl | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption` |  | (none) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | (none) |
-| `002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration` | impl | (none) |
-| `002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` | impl | (none) |
-| `002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer` | impl | (none) |
-| `002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator` | impl | (none) |
-| `002-memory-store-and-search/001-memory-write-safety` | impl | (none) |
-| `002-memory-store-and-search/004-learning-feedback-reducers` |  | (none) |
-| `002-memory-store-and-search/003-semantic-trigger-fallback` |  | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands` |  | [changelog-004-002-001-memory-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-001-memory-commands.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup` | impl | [changelog-004-001-004-release-and-program-cleanup.md](./changelog/004-shared-infrastructure/changelog-004-001-004-release-and-program-cleanup.md) |
+| `002-memory-store-and-search/007-openltm-continuity-resilience` | impl | [changelog-002-007-openltm-continuity-resilience.md](./changelog/002-memory-store-and-search/changelog-002-007-openltm-continuity-resilience.md) |
+| `002-memory-store-and-search/006-openltm-retrieval-observability` | impl | [changelog-002-006-openltm-retrieval-observability.md](./changelog/002-memory-store-and-search/changelog-002-006-openltm-retrieval-observability.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration` | impl | [changelog-004-001-003-003-skill-advisor-runtime-integration.md](./changelog/004-shared-infrastructure/changelog-004-001-003-003-skill-advisor-runtime-integration.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests` | impl | [changelog-004-001-003-002-skill-advisor-hardening.md](./changelog/004-shared-infrastructure/changelog-004-001-003-002-skill-advisor-hardening.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core` | impl | [changelog-004-001-003-001-skill-advisor-cli-core.md](./changelog/004-shared-infrastructure/changelog-004-001-003-001-skill-advisor-cli-core.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration` | impl | [changelog-004-001-002-003-code-index-runtime-integration.md](./changelog/004-shared-infrastructure/changelog-004-001-002-003-code-index-runtime-integration.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests` | impl | [changelog-004-001-002-002-code-index-hardening.md](./changelog/004-shared-infrastructure/changelog-004-001-002-002-code-index-hardening.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core` | impl | [changelog-004-001-002-001-code-index-cli-core.md](./changelog/004-shared-infrastructure/changelog-004-001-002-001-code-index-cli-core.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration` | impl | [changelog-004-001-001-003-spec-memory-runtime-integration.md](./changelog/004-shared-infrastructure/changelog-004-001-001-003-spec-memory-runtime-integration.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests` | impl | [changelog-004-001-001-002-spec-memory-hardening.md](./changelog/004-shared-infrastructure/changelog-004-001-001-002-spec-memory-hardening.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core` | impl | [changelog-004-001-001-001-spec-memory-cli-core.md](./changelog/004-shared-infrastructure/changelog-004-001-001-001-spec-memory-cli-core.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research` | impl | [changelog-004-001-003-000-skill-advisor-cli-research.md](./changelog/004-shared-infrastructure/changelog-004-001-003-000-skill-advisor-cli-research.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli` |  | [changelog-004-001-003-skill-advisor-cli-root.md](./changelog/004-shared-infrastructure/changelog-004-001-003-skill-advisor-cli-root.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research` | impl | [changelog-004-001-002-000-code-index-cli-research.md](./changelog/004-shared-infrastructure/changelog-004-001-002-000-code-index-cli-research.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli` |  | [changelog-004-001-002-code-index-cli-root.md](./changelog/004-shared-infrastructure/changelog-004-001-002-code-index-cli-root.md) |
+| `002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval` | impl | [changelog-002-003-004-tests-goldens-shadow-eval.md](./changelog/002-memory-store-and-search/changelog-002-003-004-tests-goldens-shadow-eval.md) |
+| `002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler` | impl | [changelog-002-003-003-hybrid-handler.md](./changelog/002-memory-store-and-search/changelog-002-003-003-hybrid-handler.md) |
+| `002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher` | impl | [changelog-002-003-002-semantic-matcher.md](./changelog/002-memory-store-and-search/changelog-002-003-002-semantic-matcher.md) |
+| `002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill` | impl | [changelog-002-003-001-schema-backfill.md](./changelog/002-memory-store-and-search/changelog-002-003-001-schema-backfill.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate` | impl | [changelog-001-001-007-acceptance-coverage-gate.md](./changelog/001-research-and-doctrine/changelog-001-001-007-acceptance-coverage-gate.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` | impl | [changelog-001-001-005-reviewer-prompt-benchmark-substrate.md](./changelog/001-research-and-doctrine/changelog-001-001-005-reviewer-prompt-benchmark-substrate.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline` | impl | [changelog-001-001-006-peck-verification-discipline.md](./changelog/001-research-and-doctrine/changelog-001-001-006-peck-verification-discipline.md) |
+| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership` | impl | [changelog-002-005-005-stale-audit-and-tool-ownership.md](./changelog/002-memory-store-and-search/changelog-002-005-005-stale-audit-and-tool-ownership.md) |
+| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion` | impl | [changelog-002-005-004-tombstones-and-edge-promotion.md](./changelog/002-memory-store-and-search/changelog-002-005-004-tombstones-and-edge-promotion.md) |
+| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe` | impl | [changelog-002-005-003-feedback-log-and-005-reframe.md](./changelog/002-memory-store-and-search/changelog-002-005-003-feedback-log-and-005-reframe.md) |
+| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate` | impl | [changelog-002-005-002-idempotency-and-near-duplicate.md](./changelog/002-memory-store-and-search/changelog-002-005-002-idempotency-and-near-duplicate.md) |
+| `002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit` | impl | [changelog-002-005-001-provenance-and-audit.md](./changelog/002-memory-store-and-search/changelog-002-005-001-provenance-and-audit.md) |
+| `002-memory-store-and-search/005-memclaw-derived-memory-hardening` |  | [changelog-002-005-memclaw-derived-memory-hardening-root.md](./changelog/002-memory-store-and-search/changelog-002-005-memclaw-derived-memory-hardening-root.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research` | impl | [changelog-004-001-001-000-spec-memory-cli-research.md](./changelog/004-shared-infrastructure/changelog-004-001-001-000-spec-memory-cli-research.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli` |  | [changelog-004-001-001-spec-memory-cli-root.md](./changelog/004-shared-infrastructure/changelog-004-001-001-spec-memory-cli-root.md) |
+| `004-shared-infrastructure/001-mcp-to-cli-tool-transition` |  | [changelog-004-001-mcp-to-cli-tool-transition-root.md](./changelog/004-shared-infrastructure/changelog-004-001-mcp-to-cli-tool-transition-root.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review` | impl | [changelog-001-001-004-constitutional-rule-review.md](./changelog/001-research-and-doctrine/changelog-001-001-004-constitutional-rule-review.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline` | impl | [changelog-001-001-003-current-state-discipline.md](./changelog/001-research-and-doctrine/changelog-001-001-003-current-state-discipline.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates` | impl | [changelog-001-001-002-self-check-templates.md](./changelog/001-research-and-doctrine/changelog-001-001-002-self-check-templates.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption` |  | [changelog-001-001-peck-teachings-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-001-peck-teachings-adoption-root.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | [changelog-001-001-001-peck-teachings-for-spec-kit.md](./changelog/001-research-and-doctrine/changelog-001-001-001-peck-teachings-for-spec-kit.md) |
+| `002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration` | impl | [changelog-002-004-005-env-tests-integration.md](./changelog/002-memory-store-and-search/changelog-002-004-005-env-tests-integration.md) |
+| `002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` | impl | [changelog-002-004-004-feedback-retention-reducer.md](./changelog/002-memory-store-and-search/changelog-002-004-004-feedback-retention-reducer.md) |
+| `002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer` | impl | [changelog-002-004-003-session-trace-causal-reducer.md](./changelog/002-memory-store-and-search/changelog-002-004-003-session-trace-causal-reducer.md) |
+| `002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator` | impl | [changelog-002-004-001-shared-feedback-aggregation.md](./changelog/002-memory-store-and-search/changelog-002-004-001-shared-feedback-aggregation.md) |
+| `002-memory-store-and-search/001-memory-write-safety` | impl | [changelog-002-001-memory-write-safety.md](./changelog/002-memory-store-and-search/changelog-002-001-memory-write-safety.md) |
+| `002-memory-store-and-search/004-learning-feedback-reducers` |  | [changelog-002-004-learning-feedback-reducers-root.md](./changelog/002-memory-store-and-search/changelog-002-004-learning-feedback-reducers-root.md) |
+| `002-memory-store-and-search/003-semantic-trigger-fallback` |  | [changelog-002-003-semantic-trigger-fallback-root.md](./changelog/002-memory-store-and-search/changelog-002-003-semantic-trigger-fallback-root.md) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | (none) |
 | `000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` | impl | (none) |

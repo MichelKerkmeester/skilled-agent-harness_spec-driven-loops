@@ -21,7 +21,7 @@ Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, search, r
 | 001 research and doctrine | 10 | 3 | [changelog-001-research-and-doctrine-root.md](./001-research-and-doctrine/changelog-001-research-and-doctrine-root.md) |
 | 002 memory store and search | 27 | 5 | [changelog-002-memory-store-and-search-root.md](./002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
 | 003 advisor and code graph | 11 | 2 | [changelog-003-advisor-and-codegraph-root.md](./003-advisor-and-codegraph/changelog-003-advisor-and-codegraph-root.md) |
-| 004 shared infrastructure | 30 | 7 | [changelog-004-shared-infrastructure-root.md](./004-shared-infrastructure/changelog-004-shared-infrastructure-root.md) |
+| 004 shared infrastructure | 32 | 7 | [changelog-004-shared-infrastructure-root.md](./004-shared-infrastructure/changelog-004-shared-infrastructure-root.md) |
 | 005 verification and remediation | 9 | 4 | [changelog-005-verification-and-remediation-root.md](./005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
 
 ## How to read these
@@ -33,5 +33,4 @@ Each track's top rollup lists its phases and links to each phase changelog. Mult
 - File names: `changelog-<track>-<leaf>-<child>-<short-name>.md`; phase rollups use the `-root.md` suffix. Numbers reflect the current six-track spec-tree position.
 - One changelog per shipped phase. Multi-commit phases collapse into one entry.
 - Voice rules are non-negotiable: no em-dashes, no semicolons in narrative, no Oxford commas.
-- Track `004/008` (mcp config alignment + daemon re-election) was added after the regroup and links to its spec folder pending a dedicated changelog.
 - The directory layout mirrors `026-graph-and-context-optimization/changelog/` (flat per themed track).

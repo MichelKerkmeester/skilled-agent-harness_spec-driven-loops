@@ -13,4 +13,5 @@ Top rollup for the `004-shared-infrastructure/` themed track. Each row links to 
 | `004-shared-infrastructure/005` autonomous dependency patching | [changelog-004-005-autonomous-dependency-patching.md](./changelog-004-005-autonomous-dependency-patching.md) |
 | `004-shared-infrastructure/006` code mode orphan lifecycle | [changelog-004-006-code-mode-orphan-lifecycle.md](./changelog-004-006-code-mode-orphan-lifecycle.md) |
 | `004-shared-infrastructure/007` ipc client cap hardening | [changelog-004-007-ipc-client-cap-hardening.md](./changelog-004-007-ipc-client-cap-hardening.md) |
-| `004-shared-infrastructure/008` mcp config alignment reelection default | [../../004-shared-infrastructure/008-mcp-config-alignment-reelection-default/](../../004-shared-infrastructure/008-mcp-config-alignment-reelection-default/) |
+| `004-shared-infrastructure/008` mcp config alignment reelection default | [changelog-004-008-mcp-config-alignment-reelection-default.md](./changelog-004-008-mcp-config-alignment-reelection-default.md) |
+| `004-shared-infrastructure/009` code graph code only indexing | [changelog-004-009-code-graph-code-only-indexing.md](./changelog-004-009-code-graph-code-only-indexing.md) |
