@@ -16,17 +16,17 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-Commissions Open Design to spawn its own inner agent and build, the headless equivalent of the chat box, then fetches what it produced. This is the run direction, and it is gated.
+Commissions Open Design to spawn its own inner agent and build, the headless equivalent of the chat box, through a multi-turn flow, then fetches what it produced. This is the run direction, and it is gated.
 
-Generation and the other write verbs are the powerful half of the skill, so every one of them is a stop-and-confirm point. A run is described to the user with its effect and its rollback before it is launched, and a destructive verb needs more than that.
+Generation is multi-turn, not one-shot. Turn 1 returns a discovery question-form with zero files, and the design is built only after that form is answered. Generation and the other write verbs are the powerful half of the skill, so every one of them is a stop-and-confirm point. A run is described to the user with its effect and its rollback before it is launched, and a destructive verb needs more than that.
 
 ---
 
 ## 2. HOW IT WORKS
 
-### Commission a run and fetch the artifact
+### Commission a run and fetch the artifact (multi-turn)
 
-`start_run(prompt, [skill], [agent], ...)` commissions a generation run. The agent then polls `get_run(runId)` until the run finishes and fetches output with `get_artifact`. Other headless mutating verbs from the CLI include `od automation` (schedule or fire routines), `od ui respond` (answer a run's GenUI prompt headlessly), `od artifacts create`, and `od media generate`.
+`start_run(prompt, [skill], [agent], ...)` (MCP) or `od run start --project <id> --message "<brief>"` (CLI) fires turn 1, which returns a GenUI discovery question-form and zero files, ending `awaiting_input`. The agent answers the form with `od ui respond --run <runId> <surfaceId> --value ... | --value-json ... | --skip` (or a follow-up message), which fires the build run that writes the design files. Only then does the project gain an `entryFile` and a `previewUrl`. The agent polls `get_run(runId)` (`od run watch/info`) and fetches output with `get_artifact`. CLI run verbs are `od run start|watch|cancel|list|info`. Other headless mutating verbs include `od automation` (schedule or fire routines) and `od media generate`. `od artifacts create` only adds a file to a project, never a rendered design, so it is not part of the generation flow.
 
 ### The surface, gate, and omit policy
 

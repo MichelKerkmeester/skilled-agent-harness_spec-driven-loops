@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/007-mcp-open-design-generation-flow-correction",
+  "description": "Feature Specification: mcp-open-design generation-flow correction",
+  "keywords": [
+    "mcp-open-design",
+    "generation flow correction",
+    "multi-turn generation",
+    "od run start",
+    "phase",
+    "skill correction"
+  ],
+  "lastUpdated": "2026-06-14T16:30:00Z",
+  "specId": "007",
+  "folderSlug": "mcp-open-design-generation-flow-correction",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "150-open-design-terminal-and-interface-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

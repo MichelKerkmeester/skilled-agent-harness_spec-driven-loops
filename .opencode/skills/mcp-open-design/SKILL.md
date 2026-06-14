@@ -6,7 +6,7 @@ metadata:
   author: nexu-io (Open Design)
   source: https://github.com/nexu-io/open-design
 allowed-tools: [Read, Bash]
-version: 1.0.0
+version: 1.1.0
 user-invocable: true
 ---
 
@@ -38,7 +38,7 @@ Drive the installed **Open Design** desktop app (nexu-io/open-design, "the offic
 
 **Read direction (use local content).** List projects, read the active context, read a design system's `DESIGN.md`/`tokens.css`/`components.html`, search files, fetch artifacts - all read-only.
 
-**Run direction (commission work headlessly).** `start_run` → `get_run` → `get_artifact` commissions Open Design to spawn its own inner agent and produce artifacts, the headless equivalent of the chat box. Gated.
+**Run direction (commission work headlessly).** Generation is multi-turn. `start_run` (or `od run start`) fires turn 1, which returns a discovery question-form and zero files. Answer the form with `od ui respond` (or a follow-up message) to fire the build that writes the design and gives the project a `previewUrl`. Gated.
 
 ### When NOT to Use
 
@@ -73,8 +73,8 @@ TASK CONTEXT
     +- STEP 1: Score intent -> WIRE | READ | RUN
     +- Phase 1: Wire (od mcp install <agent>, or manual config) [WIRE]
     +- Phase 2: Read (list_projects / get_active_context / get_file / design-systems read) [READ]
-    +- Phase 3: Run (start_run -> get_run -> get_artifact, gated) [RUN]
-    +- Phase 4: Verify (tools/list reflects what you used; artifacts landed)
+    +- Phase 3: Run (turn 1 start_run -> answer discovery form -> build -> get_run / get_artifact, gated) [RUN]
+    +- Phase 4: Verify (tools/list reflects what you used, the build wrote files and the project has a previewUrl)
 ```
 
 ### Resource Loading Levels
@@ -189,7 +189,9 @@ node "$OD_BIN" --help
 ELECTRON_RUN_AS_NODE=1 "$APP/Contents/MacOS/Open Design" "$OD_BIN" --help
 ```
 
-There is **no global `od` on PATH** (bare `od` is the unrelated `/usr/bin/od` octal-dump tool). Every tool call proxies to a **local daemon that the desktop app runs**; the app must be open. The daemon is discovered over a Unix socket (`OD_SIDECAR_IPC_PATH=/tmp/open-design/ipc/release-stable/daemon.sock`) on an **ephemeral** loopback port, NOT a fixed `127.0.0.1:7456` (that port is only the default for a standalone `od --no-open` daemon).
+There is **no global `od` on PATH** (bare `od` is the unrelated `/usr/bin/od` octal-dump tool). Every tool call proxies to a **local daemon that the desktop app runs**, so the app must be open. The daemon is discovered over a Unix socket (`OD_SIDECAR_IPC_PATH=/tmp/open-design/ipc/release-stable/daemon.sock`) on an **ephemeral** loopback port, NOT a fixed `127.0.0.1:7456` (that port is only the default for a standalone `od --no-open` daemon).
+
+One daemon exposes **four interchangeable surfaces**: the `od` CLI, the stdio MCP server, an HTTP API (`http://127.0.0.1:<port>/api/*`), and the in-app Skills. The HTTP port is **ephemeral and rotates on every daemon restart**, so never hardcode it. Rediscover it from `GET /api/mcp/install-info` (the canonical config source) or the socket. The socket-based `od` CLI is stable across restarts, only the HTTP port moves. Full HTTP detail: [`references/od_cli_reference.md`](references/od_cli_reference.md).
 
 ### Wire Direction (od mcp install)
 
@@ -200,15 +202,30 @@ node "$OD_BIN" mcp install claude --print --json       # PREVIEW
 node "$OD_BIN" mcp install claude                       # runs: claude mcp add --scope user open-design ...
 ```
 
-The installed entry is `{"type":"local","command":["<electron>","<daemon-cli.mjs>","mcp"],"enabled":true,"environment":{"OD_DATA_DIR":"...","OD_SIDECAR_IPC_PATH":".../daemon.sock","ELECTRON_RUN_AS_NODE":"1"}}`. The MCP server re-discovers the live ephemeral daemon URL from the socket on each spawn, so the config stays valid across daemon restarts. Run `--print --json` first and read the exact `command`/`env` it will write. Full detail + manual config: [`references/mcp_wiring.md`](references/mcp_wiring.md).
+The installed entry is `{"type":"local","command":["<Open Design Helper electron>","<daemon-cli.mjs>","mcp"],"enabled":true,"environment":{"OD_DATA_DIR":"...","OD_SIDECAR_IPC_PATH":".../daemon.sock","ELECTRON_RUN_AS_NODE":"1"}}`. The canonical source for this entry is `GET /api/mcp/install-info`, where `command[0]` is the "Open Design Helper" Electron binary, `args` is `[<daemon-cli.mjs>, "mcp"]`, and `daemonUrl` is the live HTTP base. The MCP server re-discovers the live ephemeral daemon URL from the socket on each spawn, so the config stays valid across daemon restarts. Run `--print --json` first and read the exact `command`/`env` it will write. Full detail + manual config: [`references/mcp_wiring.md`](references/mcp_wiring.md).
 
 ### Read Direction (the safe default)
 
 After wiring, the agent calls Open Design's MCP tools. The **read-only** tools are always safe: `list_projects`, `get_active_context` (what the user has open now), `get_project`, `get_file`, `search_files`, `list_files`, `get_artifact`, `list_skills`, `list_plugins`, `list_agents`, `get_run`. From the terminal directly: `node "$OD_BIN" tools design-systems read --path <manifest-path>` reads a registered design system's pull-layer files. A design system is a `DESIGN.md` (9-section prose) + a paste-ready `tokens.css` (`:root` block) + an optional `components.html`.
 
-### Run Direction (gated)
+### Run Direction (gated, multi-turn)
 
-`start_run(prompt, [skill], [agent], ...)` commissions Open Design to spawn its own inner agent and build; poll `get_run(runId)`, then `get_artifact`. Headless verbs from the CLI: `od automation` (schedule/fire routines), `od ui respond` (answer a run's GenUI prompt), `od artifacts create`, `od media generate`. Every one of these is **mutating** and is a STOP-and-confirm point (see Rules + [`references/tool_surface.md`](references/tool_surface.md)).
+Generation is **multi-turn, not one-shot**. A single `start_run` (MCP) or `od run start` (CLI) fires **turn 1 only**, which returns a GenUI discovery question-form (the inner agent asking about fidelity, data, and behaviour, with recommended defaults) and ends `awaiting_input` with **zero files**. A run that stops here produces no design.
+
+```bash
+# Turn 1: commission the run. Returns a discovery question-form, 0 files, awaiting_input.
+node "$OD_BIN" run start --project <id> --message "<brief>" \
+  --plugin od-new-generation --agent claude --json
+# Answer the form to fire the BUILD that writes the design:
+node "$OD_BIN" ui list --run <runId> --json                 # find the surfaceId
+node "$OD_BIN" ui respond --run <runId> <surfaceId> --value "use the recommended defaults"
+#   --value-json <json> for structured answers, or --skip to accept the defaults.
+#   A follow-up message ("use the recommended defaults") works too.
+```
+
+Answering the form fires a **build run** that writes the design files (`index.html` and friends). Only then does the project gain an `entryFile` and a `previewUrl` and actually render. Poll `get_run(runId)` and fetch with `get_artifact`. CLI run verbs: `od run start|watch|cancel|list|info`. Other headless write verbs: `od automation` (schedule or fire routines) and `od media generate`. Every one is **mutating** and a STOP-and-confirm point (see Rules + [`references/tool_surface.md`](references/tool_surface.md)).
+
+> **Adding a file is not creating a design.** `od artifacts create --name <path> --input <file>` only **adds one file** to a project. It does NOT create a rendered design and does NOT update the project preview. To create a design that renders, use the multi-turn flow above, never `artifacts create`.
 
 ### Verify the live tool set
 
@@ -220,13 +237,14 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ### ALWAYS
 
-1. **ALWAYS locate the CLI as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`** (or the `ELECTRON_RUN_AS_NODE=1` form). Never assume a global `od` on PATH, and never hardcode `127.0.0.1:7456` - the desktop daemon is socket-discovered on an ephemeral port.
+1. **ALWAYS locate the CLI as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`** (or the `ELECTRON_RUN_AS_NODE=1` form). Never assume a global `od` on PATH, and never hardcode `127.0.0.1:7456` or any HTTP port - the desktop daemon is socket-discovered, and its HTTP port is ephemeral and rotates on every daemon restart. Rediscover it from `GET /api/mcp/install-info` (`daemonUrl`) or the socket.
 2. **ALWAYS confirm the Open Design desktop app is running first.** The daemon it hosts answers every tool call. If it is closed, the socket is gone and calls fail.
 3. **ALWAYS verify the live `tools/list`** before relying on a tool's name or read-only status. The help text undercounts; the real surface is ~18 tools and includes mutating and destructive ones.
 4. **ALWAYS gate every mutating or destructive verb** behind explicit user confirmation, an explicit target project/name, and a one-line rollback note. This covers `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, `delete_project`, and the `od artifacts/media/automation/ui/memory/plugin` write verbs.
 5. **ALWAYS apply `sk-interface-design` when an Open Design read or run feeds a design decision.** Load its `design_principles` and run ground -> token-system -> critique before deciding. This skill owns the transport; `sk-interface-design` owns the judgment.
 6. **ALWAYS read Open Design content live; NEVER copy or cache it into a repo.** Reusing a system's `tokens.css`/`components.html` happens at build time in the target app, not by vendoring Open Design's files (its per-source Apache-2.0/MIT licenses would attach).
 7. **ALWAYS run `mcp install ... --print --json` (dry-run) first** and read the exact `command`/`env` before writing an agent config.
+8. **ALWAYS treat generation as multi-turn.** Turn 1 (`start_run` / `od run start`) returns a discovery question-form with zero files. Answer it (`od ui respond` or a follow-up message) to fire the build that writes the design and gives the project a `previewUrl`. `od artifacts create` only adds a file and never produces a rendered design.
 
 ### NEVER
 
@@ -234,6 +252,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 2. **NEVER run a destructive verb** (`delete_file`, `delete_project`) without an explicit project and `confirm:true` plus user approval, and never via the active-project fallback.
 3. **NEVER surface Open Design's ~150 design-systems as a pick-a-vibe menu.** Resolve at most one system from the subject and brief (that is `sk-interface-design`'s job); a style chooser is the templated default the design skill resists.
 4. **NEVER pipe `https://open-design.ai/install.sh` to a shell.** Its contents are unverified; use the local `node "$OD_BIN" mcp install` form instead.
+5. **NEVER claim a single `start_run` or `od run start` produced a finished, visible design.** Turn 1 only returns the discovery form. A design exists only after the form is answered and the build run writes files. Never present `od artifacts create` as a way to create a rendered design.
 
 ### ESCALATE IF
 
@@ -268,7 +287,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 - ✅ The needed projects/files/design-systems were read with read-only tools; nothing was written.
 
 **Run complete when:**
-- ✅ The mutating verb was confirmed with an explicit target and rollback note, `start_run` finished via `get_run`, and the artifact was fetched.
+- ✅ The mutating verb was confirmed with an explicit target and rollback note, turn 1 returned the discovery form, the form was answered (`od ui respond` or a follow-up message), and the build run wrote files so the project has an `entryFile` and a `previewUrl`. A run left `awaiting_input` produced no design and is not complete.
 
 **Always:**
 - ✅ The desktop app (daemon) was confirmed running before acting.

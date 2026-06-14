@@ -70,11 +70,11 @@ See [`03--grounding/design-system-grounding.md`](03--grounding/design-system-gro
 
 ## 5. HEADLESS RUNS AND GATED MUTATING VERBS
 
-Commission Open Design to spawn its own inner agent and produce artifacts, the headless equivalent of the chat box. Every mutating and destructive verb is a stop-and-confirm point with an explicit target and a one-line rollback note.
+Commission Open Design to spawn its own inner agent and produce a rendered design through a multi-turn flow, the headless equivalent of the chat box. Every mutating and destructive verb is a stop-and-confirm point with an explicit target and a one-line rollback note.
 
 ### Headless runs and mutating verbs
 
-`start_run(prompt, [skill], [agent], ...)` commissions a generation run, then the agent polls `get_run(runId)` and fetches output with `get_artifact`. Headless mutating verbs from the CLI include `od automation` (schedule or fire routines), `od ui respond` (answer a run's GenUI prompt), `od artifacts create`, and `od media generate`. Each one is gated behind explicit user confirmation, an explicit target project or name, and a rollback note. Destructive verbs `delete_file` and `delete_project` additionally require `confirm:true` and are never reached through the active-project fallback.
+Generation is multi-turn. `start_run(prompt, [skill], [agent], ...)` (MCP) or `od run start` (CLI) fires turn 1, which returns a discovery question-form and zero files. Answering it with `od ui respond` (or a follow-up message) fires the build run that writes the design and gives the project a `previewUrl`, after which the agent polls `get_run(runId)` and fetches output with `get_artifact`. CLI run verbs are `od run start|watch|cancel|list|info`. Other headless mutating verbs include `od automation` (schedule or fire routines) and `od media generate`. `od artifacts create` only adds a file to a project and never produces a rendered design, so it is not the generation path. Each mutating verb is gated behind explicit user confirmation, an explicit target project or name, and a rollback note. Destructive verbs `delete_file` and `delete_project` additionally require `confirm:true` and are never reached through the active-project fallback.
 
 See [`04--runs/headless-runs.md`](04--runs/headless-runs.md) for the surface, gate, and omit policy.
 

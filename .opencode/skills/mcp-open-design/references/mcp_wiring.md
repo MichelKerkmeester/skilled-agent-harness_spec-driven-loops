@@ -55,13 +55,14 @@ Useful flags on `mcp install`: `--uninstall`, `--print` / `--dry-run`, `--json`,
 
 ### Where the launch spec comes from
 
-Both clients install a spec computed from the **live daemon** via `GET /api/mcp/install-info`. In sidecar mode (the desktop build, where `OD_SIDECAR_IPC_PATH` is set), the spec is:
+`GET /api/mcp/install-info` is the **canonical source** of the launch spec, and both clients install a spec computed from the **live daemon** through it. In sidecar mode (the desktop build, where `OD_SIDECAR_IPC_PATH` is set), the spec is:
 
-- `command` = the Electron runtime running the daemon now
+- `command[0]` = the **"Open Design Helper"** Electron binary running the daemon now (NOT `Contents/MacOS/Open Design`)
 - `args` = `[<daemon-cli.mjs>, "mcp"]`
 - `env` = `{ OD_DATA_DIR, OD_SIDECAR_IPC_PATH, ELECTRON_RUN_AS_NODE: "1" }`
+- `daemonUrl` = the live HTTP base (ephemeral, rotates on daemon restart)
 
-The MCP server then discovers the live ephemeral daemon URL from the socket at startup, so the config stays valid across daemon restarts. **[CONFIRMED - read. The exact `execPath`/`OD_DATA_DIR` strings are INFERRED, confirm with the dry-run]** If the daemon is down at install time, the installer falls back to a minimal `{command:"od", args:["mcp","--daemon-url",<base>], env:{}}` entry that assumes a PATH `od`. Prefer installing while the app is running so you get the socket-mode entry.
+The MCP server then discovers the live ephemeral daemon URL from the socket at startup, so the config stays valid across daemon restarts. This config shape is **[CONFIRMED - live-verified this session via `/api/mcp/install-info`]**, including that `command[0]` is the Helper binary. The exact `OD_DATA_DIR` string is still per-machine, so read it from the dry-run. If the daemon is down at install time, the installer falls back to a minimal `{command:"od", args:["mcp","--daemon-url",<base>], env:{}}` entry that assumes a PATH `od`. Prefer installing while the app is running so you get the socket-mode entry.
 
 ---
 

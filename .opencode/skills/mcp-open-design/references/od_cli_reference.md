@@ -95,6 +95,23 @@ The desktop daemon is **socket-discovered**, then speaks HTTP on an **ephemeral*
 
 So with `OD_SIDECAR_IPC_PATH` set, the ephemeral port is found automatically. Without it you depend on a `7456` daemon, which only a standalone `od --no-open` process provides. Each new `od mcp` spawn re-discovers the live URL, so configs survive daemon restarts. A long-running MCP server caches the URL and needs a client restart after a daemon restart.
 
+### The HTTP API surface (a first-class transport)
+
+The daemon exposes **four interchangeable surfaces** over the same store: the `od` CLI, the stdio MCP server, an HTTP API, and the in-app Skills. The HTTP base is `http://127.0.0.1:<port>/api/*`. **[CONFIRMED - live-verified this session]**
+
+| Endpoint | Method | What it does |
+|---|---|---|
+| `/api/health` | GET | Liveness check for the daemon. |
+| `/api/projects` | GET, POST | List projects, or create one. POST body `{name, metadata:{kind}, pendingPrompt, pluginId:"od-new-generation", autoSendFirstMessage:true}` creates a project plus a pending message. |
+| `/api/mcp/install-info` | GET | **Canonical config source.** Returns `command` (the "Open Design Helper" Electron binary), `args` (`[<daemon-cli.mjs>, "mcp"]`), `env` (`{OD_DATA_DIR, OD_SIDECAR_IPC_PATH, ELECTRON_RUN_AS_NODE:"1"}`), and `daemonUrl` (the live HTTP base). |
+| `/api/projects/:id/chat?conversationId=` | GET (SSE) | Server-sent event stream of a conversation. |
+
+Two cautions from the live session:
+
+- **The HTTP port is ephemeral and rotates on every daemon restart** (observed 53950 then 63292). Never hardcode it. Rediscover it from `/api/mcp/install-info` (`daemonUrl`) or the socket (`OD_SIDECAR_IPC_PATH`). The socket-based `od` CLI is stable across restarts, only the HTTP port moves. **[CONFIRMED - live-verified this session]**
+- **`autoSendFirstMessage:true` did NOT reliably fire the run** on this build. The project and pending message were created, but the design was not built until the run-start plus discovery-answer flow ran (see Section 5). Treat POST `/api/projects` as create-only, and use the multi-turn run flow to actually build. **[CONFIRMED - live-verified this session]**
+- **`od://app` is an internal alias** the daemon and CLI resolve. It does NOT resolve from a plain shell `curl`, so always use the `http://127.0.0.1:<port>` base for HTTP calls. **[CONFIRMED - live-verified this session]**
+
 ### Lifecycle: the daemon is a child of the desktop app
 
 The daemon sidecar is a child Electron helper of the desktop app. When the app quits, the daemon dies with it and the sockets are removed (stale sockets are cleaned on the next start). The packaged sidecar has no parent-PID self-monitor (that path is tools-dev only). So the daemon does **not** persist headlessly after the app quits. **[INFERRED - strong, needs the live close-the-app check]**
@@ -125,6 +142,7 @@ From `od --help`. Read-only verbs are safe to surface freely. Mutating verbs are
 | `od mcp [--daemon-url]` | stdio MCP server proxying project tools to the daemon. | read + write (tool-dependent) |
 | `od mcp install <agent>` | Register the Open Design MCP server into an agent's config. Flags: `--uninstall --print/--dry-run --json --name --daemon-url`. | **mutating** (writes config) |
 | `od mcp live-artifacts` | stdio MCP exposing live-artifact and connector tools (no `--help` output). | read + write |
+| `od run <start\|watch\|cancel\|list\|info>` | Commission and manage headless generation runs. `start --project <id> [--conversation <id>] --message "<brief>" [--plugin od-new-generation] [--agent claude\|codex\|gemini] [--follow] [--json]` fires turn 1, which returns a discovery question-form (0 files, `awaiting_input`). `watch`/`list`/`info` inspect runs. `cancel` aborts. | start = **mutating** (commissions a build); watch/list/info = **read-only**; cancel = **mutating** |
 | `od tools live-artifacts <create\|list\|update\|refresh>` | Live artifacts via daemon wrappers. | list = read; create/update/refresh = **mutating** |
 | `od tools connectors <list\|execute\|github-design-context\|local-design-context\|design-system-package-audit>` | Discover and run connectors, build design-context packs. | list = read; execute = **mutating / side-effecting** |
 | `od tools design-systems read --path <manifest-path> [--design-system <id>]` | Read a registered design system's pull-layer files (allowlisted). | **read-only** |
@@ -146,12 +164,21 @@ From `od --help`. Read-only verbs are safe to surface freely. Mutating verbs are
 
 ## 5. DRIVING THE APP'S WORK WITHOUT THE CHAT UI
 
-These are the headless equivalents of typing into the in-app chat box. The mutating members are STOP-and-confirm points: `start_run`, `cancel_run`, artifact writes (`od artifacts create`, MCP `write_file`/`create_artifact`), `od ui respond/revoke/prefill`, `od automation create/run/...`, and `od media generate`. The polling reads `get_run` and `get_artifact` are read-only and surface freely.
+These are the headless equivalents of typing into the in-app chat box. The mutating members are STOP-and-confirm points: `start_run` (`od run start`), `cancel_run` (`od run cancel`), artifact writes (`od artifacts create`, MCP `write_file`/`create_artifact`), `od ui respond/revoke/prefill`, `od automation create/run/...`, and `od media generate`. The polling reads `get_run` (`od run watch/info/list`) and `get_artifact` are read-only and surface freely.
 
-- **`start_run(prompt, [skill], [plugin], [inputs], [agent], [model])` plus `get_run(runId)` plus `get_artifact`** is the true headless equivalent of the chat box. Open Design spawns its own inner agent (`claude` / `codex` / `gemini`, per `list_agents`) to do the design work and returns files plus a `previewUrl`/`studioUrl`. `cancel_run` aborts. These are MCP tools (see [tool_surface.md](tool_surface.md)). **[CONFIRMED - read registry]**
+### Generation is multi-turn
+
+A visible, rendered design is produced by a **multi-turn** flow, never a single call. **[CONFIRMED - live-verified this session]**
+
+1. **Turn 1.** `start_run(prompt, [skill], [plugin], [inputs], [agent], [model])` (MCP) or `od run start --project <id> [--conversation <id>] --message "<brief>" [--plugin od-new-generation] [--agent claude|codex|gemini] [--follow] [--json]` (CLI) spawns the inner agent (`claude` / `codex` / `gemini`, per `list_agents`). It returns a **GenUI discovery question-form** (the inner agent asking about fidelity, data, and behaviour, with recommended defaults) and ends `awaiting_input` with **zero files**. A run that stops here has produced no design.
+2. **Answer the form.** `od ui list --run <runId>` and `od ui show` give the `surfaceId`; `od ui respond --run <runId> <surfaceId> --value <txt> | --value-json <json> | --skip` submits the answer (`--skip` accepts the recommended defaults). A follow-up message such as "use the recommended defaults" works too. This is what fires the **build run**.
+3. **Build and fetch.** The build run writes the design files (`index.html` and friends). The project then gains an `entryFile` and a `previewUrl` and renders. Poll `get_run(runId)` (`od run watch/info`), then fetch with `get_artifact`. `cancel_run` (`od run cancel`) aborts.
+
+Live proof this session: turn 1 produced a question-form (`awaiting_input`, 0 files); after it was answered, a build run wrote a 26 KB `index.html` and the project "Brackwater" rendered with a `previewUrl`.
+
 - **`od automation create/run/runs/…`** schedules or fires a routine and harvests results, the same store as the UI Automations tab, explicitly designed for external agents. Schedules use `hourly:` / `daily:` / `weekdays:` / `weekly:`. **[CONFIRMED - ran `--help`]**
-- **`od ui respond --run <runId> <surfaceId> --value… | --skip`** and **`od ui prefill`** answer the app's GenUI forms, confirmations, and oauth prompts from the terminal, so a run that blocks on a question can be unblocked headlessly. **[CONFIRMED - ran `--help`]**
-- **`od artifacts create`**, plus the MCP `write_file` and `create_artifact` tools, push files into a project without a zip export.
+- **`od ui respond --run <runId> <surfaceId> --value… | --value-json… | --skip`** and **`od ui prefill`** answer the app's GenUI forms, confirmations, and oauth prompts from the terminal, so a run blocked on the discovery question can be unblocked headlessly. This is the step that turns a `start_run` into an actual build. **[CONFIRMED - live-verified this session]**
+- **`od artifacts create --name <path> --input <file> [--project]`** adds **one file** to a project (the active one when `--project` is omitted). It does NOT spawn a run, does NOT render a design, and does NOT update the project preview. It is a file-add, not the generation flow. The MCP `write_file` and `create_artifact` tools are the same kind of file-add. **[CONFIRMED - live-verified this session]**
 - **`od media generate`** produces image, video, or audio into the active project.
 
 ---
@@ -180,6 +207,21 @@ node "$OD_BIN" memory tree list --json                                 # read-on
 node "$OD_BIN" ui list --project <projectId> --json                   # read-only
 # (the above need the Open Design app running so $SOCK exists)
 
+# ---- Discover the live HTTP base + MCP config (port rotates, never hardcode)
+# Read daemonUrl from install-info (the socket-stable CLI resolves the live port), then curl /api/*:
+#   DAEMON_URL=<daemonUrl from GET /api/mcp/install-info>
+#   curl -s "$DAEMON_URL/api/health"            # liveness
+#   curl -s "$DAEMON_URL/api/mcp/install-info"  # canonical command/env/daemonUrl
+#   curl -s "$DAEMON_URL/api/projects"          # list projects
+
+# ---- Commission a design (MULTI-TURN: turn 1 then answer the discovery form)
+node "$OD_BIN" run start --project <projectId> --message "<brief>" \
+  --plugin od-new-generation --agent claude --json        # turn 1: returns a form, 0 files
+node "$OD_BIN" ui list --run <runId> --json                # find the surfaceId
+node "$OD_BIN" ui respond --run <runId> <surfaceId> \
+  --value "use the recommended defaults"                   # fires the build that writes the design
+node "$OD_BIN" run watch --run <runId> --json              # read-only: poll the build to completion
+
 # ---- Standalone headless daemon (desktop app closed) -----------------------
 node "$OD_BIN" --no-open                # binds 127.0.0.1:7456 by default
 ```
@@ -192,7 +234,7 @@ node "$OD_BIN" --no-open                # binds 127.0.0.1:7456 by default
 
 Carry these forward and resolve them with a live, non-mutating check before relying on them. They were the open items the terminal-surface investigation could not close with `--help`/`--version` alone.
 
-1. **Exact `command[0]` (`process.execPath`) the installer writes.** The install code uses the *daemon's* `process.execPath`. The live daemon runs inside `Open Design Helper.app/Contents/MacOS/Open Design Helper`, so the auto-installed value may be the **Helper** path, not `Contents/MacOS/Open Design`. The main binary works as node (verified via `--help`). Confirm the installed string with `od mcp install opencode --print --json`.
+1. **[RESOLVED this session] Exact `command[0]` (`process.execPath`) the installer writes.** Live `/api/mcp/install-info` confirms `command[0]` is the **"Open Design Helper"** Electron binary (not `Contents/MacOS/Open Design`), with `args` = `[<daemon-cli.mjs>, "mcp"]`. The wiring config shape in [mcp_wiring.md](mcp_wiring.md) is correct. Still confirm `OD_DATA_DIR` per machine with the dry-run (item 2).
 2. **Exact `OD_DATA_DIR` value** in the installed `env` (under `~/Library/Application Support/Open Design/namespaces/release-stable/…`). Get it from the dry-run.
 3. **`curl https://open-design.ai/install.sh | sh -s <agent>` contents.** Not shipped in the bundle, and the global `od` shim it creates is unverified. Prefer the local `node "$OD_BIN" …` form.
 4. **Does the daemon truly die when the app quits?** Strongly inferred (Electron child, no packaged parent-monitor). Verify by closing the app and running `ls /tmp/open-design/ipc/release-stable/`.

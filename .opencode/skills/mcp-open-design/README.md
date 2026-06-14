@@ -34,7 +34,7 @@ Open Design is the official open-source, local-first Claude Design alternative, 
 
 ### What It Does
 
-The skill drives the installed Open Design app in three directions. The **wire direction** registers Open Design's stdio MCP server into opencode or Claude Code so its tools appear to the agent, always after a dry-run that prints the exact config first. The **read direction** is the safe default: list projects, read the active context, read a design system's `DESIGN.md` and `tokens.css`, search files, and fetch artifacts, all read-only. The **run direction** commissions Open Design to spawn its own inner agent and build, the headless equivalent of the chat box, behind explicit confirmation. Open Design's terminology is first-class throughout: a workspace is a **project**, a brand or style is a **design system**, a build is a **run**, and an output file is an **artifact**.
+The skill drives the installed Open Design app in three directions. The **wire direction** registers Open Design's stdio MCP server into opencode or Claude Code so its tools appear to the agent, always after a dry-run that prints the exact config first. The **read direction** is the safe default: list projects, read the active context, read a design system's `DESIGN.md` and `tokens.css`, search files, and fetch artifacts, all read-only. The **run direction** commissions Open Design to spawn its own inner agent through a multi-turn flow, the headless equivalent of the chat box, behind explicit confirmation: turn 1 returns a discovery question-form, and the design is built only after that form is answered. Open Design's terminology is first-class throughout: a workspace is a **project**, a brand or style is a **design system**, a build is a **run**, and an output file is an **artifact**.
 
 This is a real MCP surface, not a CLI-only one. The `od` CLI is `app/prebundled/daemon/daemon-cli.mjs` run under Node or the bundled Electron, and `od mcp install` wires its stdio server into your agent. The CLI and the MCP tools are two faces of the same daemon, so the skill uses whichever fits the step.
 
@@ -76,7 +76,7 @@ node "$OD_BIN" tools design-systems read --path <manifest-path>
 # Expected: a 9-section DESIGN.md and a :root tokens.css. Read live, never cached into a repo.
 ```
 
-For generation, `start_run` then `get_run` then `get_artifact` commissions a run. Every mutating verb is a stop-and-confirm point with an explicit target and a rollback note.
+For generation, the flow is multi-turn: `start_run` (or `od run start`) fires turn 1 and returns a discovery question-form with zero files, then `od ui respond` answers the form to fire the build, and `get_run` then `get_artifact` poll and fetch the result. Every mutating verb is a stop-and-confirm point with an explicit target and a rollback note.
 
 ---
 
@@ -96,7 +96,7 @@ After wiring, the read-only tools are always safe: `list_projects`, `get_active_
 
 ### The Run Direction
 
-`start_run(prompt, ...)` commissions Open Design to spawn its own inner agent and build, then the agent polls `get_run` and fetches output with `get_artifact`. Headless mutating verbs from the CLI include `od automation`, `od ui respond`, `od artifacts create`, and `od media generate`. Every mutating verb is surfaced but gated behind explicit confirmation, an explicit target, and a one-line rollback note. The destructive verbs `delete_file` and `delete_project` are stricter still, requiring `confirm:true` plus approval and never the active-project fallback. Some verbs can return an auth error, since local reads work without a cloud account but generation and media may need a `vela login` or configured providers.
+Generation is multi-turn. `start_run(prompt, ...)` (MCP) or `od run start` (CLI) fires turn 1, which returns a GenUI discovery question-form with zero files and ends `awaiting_input`. Answering the form with `od ui respond` (or a follow-up message such as "use the recommended defaults") fires the build run that writes the design files, after which the project gains an `entryFile` and a `previewUrl` and renders. The agent then polls `get_run` and fetches with `get_artifact`. CLI run verbs are `od run start|watch|cancel|list|info`. `od artifacts create` only adds a file to a project and never produces a rendered design, so it is not the generation path. Other headless mutating verbs include `od automation` and `od media generate`. Every mutating verb is surfaced but gated behind explicit confirmation, an explicit target, and a one-line rollback note. The destructive verbs `delete_file` and `delete_project` are stricter still, requiring `confirm:true` plus approval and never the active-project fallback. Some verbs can return an auth error, since local reads work without a cloud account but generation and media may need a `vela login` or configured providers.
 
 ### Design Grounding And Reuse
 
@@ -131,6 +131,8 @@ Reach for this skill whenever a user mentions Open Design, wants to wire it into
 | `curl 127.0.0.1:7456` refused while the app is open | The desktop daemon is socket-discovered on an ephemeral port, not the fixed `:7456` | Use the socket at `OD_SIDECAR_IPC_PATH`. The `:7456` port is only the default for a standalone `od --no-open` daemon |
 | A verb returns an auth error | Local reads work without a cloud account, but generation, media, or plugin-publish may need credentials | Surface the requirement (for example a `vela login` or configured providers). Never paste credentials into prompts |
 | A mutating verb ran without you confirming | A gate was skipped | Every mutating verb requires confirmation plus an explicit target plus a rollback note. Destructive verbs also require `confirm:true` |
+| `start_run` / `od run start` returned but no design rendered | Generation is multi-turn. Turn 1 only returns a discovery question-form with zero files (`awaiting_input`) | Answer the form with `od ui respond --run <runId> <surfaceId> --value ...` (or a follow-up message). That fires the build that writes the design and gives the project a `previewUrl`. `od artifacts create` only adds a file, it never renders a design |
+| An HTTP `/api/*` call worked earlier but now connection-refused | The daemon's HTTP port is ephemeral and rotates on every daemon restart | Rediscover the live port from `GET /api/mcp/install-info` (`daemonUrl`) or the socket. Never hardcode the port. The socket-based `od` CLI is stable across restarts |
 
 ---
 
@@ -151,6 +153,10 @@ A: The `od mcp --help` text shows a documentation subset. The running stdio serv
 **Q: Can it run without the desktop app open?**
 
 A: The desktop daemon is a child of the app and dies with it, so normally the app must be open. For a headless path, a standalone `od --no-open` daemon binds `127.0.0.1:7456` and answers calls without the app.
+
+**Q: I commissioned a run but no design appeared. What went wrong?**
+
+A: Generation is multi-turn, not one-shot. A single `start_run` or `od run start` fires turn 1 only, which returns a GenUI discovery question-form and zero files, ending `awaiting_input`. You answer that form with `od ui respond` (or a follow-up message like "use the recommended defaults"), and that is what fires the build run that writes the design files and gives the project a `previewUrl`. Do not use `od artifacts create` to "make a design": it only adds a single file and never renders one.
 
 **Q: How does this relate to `sk-interface-design`?**
 

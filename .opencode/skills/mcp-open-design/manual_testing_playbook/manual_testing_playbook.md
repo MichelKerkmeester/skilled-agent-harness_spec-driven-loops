@@ -174,10 +174,10 @@ Expected: `node "$OD_BIN" tools design-systems read --path <manifest-path>` retu
 
 ### RUN-001 | Gated Verb Requires Confirmation (with Negative Control)
 
-Verify a mutating verb runs only after explicit confirmation with a throwaway target, and that an unconfirmed mutating call is refused.
+Verify a mutating verb runs only after explicit confirmation with a throwaway target, that the multi-turn generation flow builds a design only after the discovery form is answered, and that an unconfirmed mutating call is refused.
 
 Prompt: `"Commission an Open Design run into a throwaway test project."`
-Expected: the agent first describes the effect and a rollback note and stops for confirmation, the confirmed call proceeds against the named throwaway target, and the negative control (a mutating call without confirmation, or a destructive verb without `confirm:true`) is refused rather than executed.
+Expected: the agent first describes the effect and a rollback note and stops for confirmation, then fires turn 1 (`start_run` / `od run start`) which returns a discovery question-form with zero files, answers the form (`od ui respond` or a follow-up message) to fire the build that writes files and yields a `previewUrl`, and refuses the negative control (a mutating call without confirmation, or a destructive verb without `confirm:true`). Turn 1 alone, or `od artifacts create`, must not be claimed to produce a finished design.
 
 > **Feature File:** [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md)
 > **Catalog:** [04--runs/headless-runs.md](../feature_catalog/04--runs/headless-runs.md)

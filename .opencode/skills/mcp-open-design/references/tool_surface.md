@@ -48,7 +48,9 @@ These are always safe to surface. `get_active_context` returns what the user has
 
 `create_artifact` (rejects an existing target), `write_file` (overwrites or tolerates an existing file), `create_project`, `start_run`, `cancel_run`.
 
-`start_run` is the most significant: it is the headless equivalent of the in-app chat box. It commissions Open Design to spawn its own inner agent (`claude` / `codex` / `gemini`, per `list_agents`) and build, returning files plus a `previewUrl`/`studioUrl`. Poll `get_run(runId)`, then fetch with `get_artifact`. `cancel_run` aborts. **[CONFIRMED - read registry]**
+`start_run` is the most significant: it is the headless equivalent of the in-app chat box, and it is **multi-turn**. Calling it fires **turn 1 only**, which spawns the inner agent (`claude` / `codex` / `gemini`, per `list_agents`) and returns a GenUI discovery question-form, ending `awaiting_input` with **zero files**. Answering the form (with `od ui respond` or a follow-up message) fires the **build run** that writes the design files and gives the project an `entryFile` plus a `previewUrl`. Poll `get_run(runId)`, then fetch with `get_artifact`. `cancel_run` aborts. **[CONFIRMED - live-verified this session]**
+
+`create_artifact` and the CLI `od artifacts create` only **add a single file** to a project. They do NOT spawn a run, do NOT produce a rendered design, and do NOT update the project preview. The visible-design path is the multi-turn `start_run` flow above, never an artifact write. **[CONFIRMED - live-verified this session]**
 
 ### Destructive (2)
 
@@ -96,18 +98,23 @@ The three biggest accuracy risks for this surface are CLI naming (there is no `o
 
 ---
 
-## 5. THE GENERATION FLOW (GATED)
+## 5. THE GENERATION FLOW (GATED, MULTI-TURN)
 
-The headless generation loop runs entirely over the MCP tools once wired:
+Generation is **multi-turn, not one-shot**. The headless loop runs over the MCP tools (plus `od ui` to answer the form) once wired:
 
 ```text
 create_project        # (gated) only if the user wants a new project
-  -> start_run(prompt, [skill], [agent], [model], [inputs])   # (gated) commission a build
-  -> get_run(runId)   # (read-only) poll until complete
-  -> get_artifact     # (read-only) fetch the result
+  -> start_run(prompt, [skill], [agent], [model], [inputs])   # (gated) TURN 1: returns a
+  |                                                            #   discovery question-form, 0 files, awaiting_input
+  -> answer the form                                          # (gated) od ui list/show -> od ui respond,
+  |                                                            #   or send a follow-up message. THIS fires the build.
+  -> get_run(runId)   # (read-only) poll the build run until complete
+  -> get_artifact     # (read-only) fetch the result; the project now has entryFile + previewUrl
 ```
 
-Confirm the mutating steps (`create_project`, `start_run`) with an explicit target and a rollback note before running them. Polling and fetching are read-only and safe. If a run blocks on a question, answer it headlessly with `od ui respond` (gated). See [od_cli_reference.md](od_cli_reference.md) Section 5.
+Turn 1 alone produces **no design**. A run left `awaiting_input` is unfinished. The build that writes `index.html` and gives the project its `previewUrl` only fires once the discovery form is answered (`od ui respond --run <runId> <surfaceId> --value ... | --value-json ... | --skip`, or a follow-up message). `od artifacts create` is not part of this flow: it adds a file but never renders a design.
+
+Confirm the mutating steps (`create_project`, `start_run`, and the `od ui respond` that fires the build) with an explicit target and a rollback note before running them. Polling and fetching are read-only and safe. See [od_cli_reference.md](od_cli_reference.md) Section 5.
 
 ---
 
