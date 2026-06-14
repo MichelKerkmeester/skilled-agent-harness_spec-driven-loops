@@ -24,6 +24,8 @@ This skill owns the look and ends at the design decision. Implementation belongs
 
 For the self-critique step, the screenshot is captured by a real-browser tool so the result can be inspected rather than imagined. React implementation performance is also pushed to `sk-code` rather than absorbed into the quality floor. When a non-visual task arrives, such as pure logic or documentation, the skill routes it away to `sk-code` or `sk-doc` instead of producing a design plan.
 
+When the work runs through a canvas and CLI, this boundary is operated by the Claude Design parity loop, where `mcp-magicpath` owns the canvas and CLI and this skill still owns the judgment. The parity loop's handoff manifest routes its next steps to `sk-code`, so the boundary holds even when the path to a verified result goes through the canvas.
+
 ---
 
 ## 3. SOURCE FILES
@@ -51,5 +53,6 @@ For the self-critique step, the screenshot is captured by a real-browser tool so
 - Feature file path: `05--integration-boundary/design-and-implementation-boundary.md`
 
 Related references:
+- [../07--claude-design-parity/handoff-and-parity-guardrails.md](../07--claude-design-parity/handoff-and-parity-guardrails.md) - Handoff and parity guardrails
 - [../04--interface-writing/interface-writing.md](../04--interface-writing/interface-writing.md) - Interface writing as design material
 - [../02--quality-floor/objective-quality-floor.md](../02--quality-floor/objective-quality-floor.md) - Objective quality floor

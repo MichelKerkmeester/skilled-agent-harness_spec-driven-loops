@@ -10,7 +10,7 @@ last_updated: "2026-06-13"
 
 # sk-interface-design: Feature Catalog
 
-This document combines the current feature inventory for the `sk-interface-design` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, the critique-against data inventory, interface writing, and the integration boundary, and it points to the per-feature files that carry the deeper behavior and source anchors.
+This document combines the current feature inventory for the `sk-interface-design` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, the critique-against data inventory, interface writing, the integration boundary, and the Claude Design parity loop, and it points to the per-feature files that carry the deeper behavior and source anchors.
 
 ---
 
@@ -25,6 +25,7 @@ Use this catalog as the canonical inventory for the live `sk-interface-design` f
 | Critique-against data inventory | 3 features | `references/design_inventory.md`, `assets/data/*.csv`, `scripts/design_search.py` |
 | Interface writing | 1 feature | `references/design_principles.md` (Section 6) |
 | Integration boundary | 1 feature | `SKILL.md` (Sections 2 and 7) |
+| Claude Design parity loop | 3 features | `references/claude_design_parity.md`, `SKILL.md` (Sections 2 and 5) |
 
 ---
 
@@ -200,8 +201,60 @@ The boundary where this skill decides the look and hands implementation and veri
 
 #### Current Reality
 
-This skill owns the look and stops at the design decision. Implementation belongs to `sk-code`, which builds the direction to the detected web surface's standards and verifies it, and `sk-code-review` can audit the built UI against those standards. The screenshot step in the self-critique uses a real-browser tool. The skill itself does not write or run application code.
+This skill owns the look and stops at the design decision. Implementation belongs to `sk-code`, which builds the direction to the detected web surface's standards and verifies it, and `sk-code-review` can audit the built UI against those standards. The screenshot step in the self-critique uses a real-browser tool. The skill itself does not write or run application code. When the work runs through the canvas and CLI, the Claude Design parity loop in Section 7 governs how this skill's judgment reaches a verified, handed-off result.
 
 #### Source Files
 
 See [`05--integration-boundary/design-and-implementation-boundary.md`](05--integration-boundary/design-and-implementation-boundary.md) for full implementation and validation file listings.
+
+---
+
+## 7. CLAUDE DESIGN PARITY LOOP
+
+These entries cover the shared cross-skill protocol that moves this skill's judgment closer to Claude Design without becoming a templated generator. The protocol is a loop, not a product: ground, reuse before generate, render, check the real render, revise, then hand off. This skill owns the judgment and `mcp-magicpath` owns the canvas and CLI, and the single source for the protocol is `references/claude_design_parity.md`. The entries below summarize it and never duplicate its content.
+
+### Ground and reuse before generate
+
+#### Description
+
+Captures the design-context snapshot and builds from a present design system before authoring anything net-new.
+
+#### Current Reality
+
+Before choosing anything, the loop captures the subject, audience, page job, any existing design system, supplied reference material, and the target viewport as intake rather than a chooser. When a design system is present, it reuses a fitting component or token before authoring net-new and flags adherence violations such as raw color values, one-off spacing, inline overrides, and hand-rolled replacements for system components. On a free axis with no system, the anti-default process still governs and reuse applies only to what the system provides.
+
+#### Source Files
+
+See [`07--claude-design-parity/ground-and-reuse-before-generate.md`](07--claude-design-parity/ground-and-reuse-before-generate.md) for full implementation and validation file listings.
+
+---
+
+### Fidelity check and revision grammar
+
+#### Description
+
+Checks the real render against the quality floor and anti-default critique, then scopes revisions with an element-target grammar.
+
+#### Current Reality
+
+The loop checks the latest render rather than treating "compiles" as done. On a MagicPath canvas it uses the backend-rendered `previewImageUrl` with `code status`, and on a local dev-server UI it uses a real-browser screenshot, never the auth-gated hosted canvas. The render must clear the quality floor and survive the anti-default critique, and because automated comparison is unreliable for subtle differences, the check is judgment over a render rather than pixel diffing. Revisions name the target, the visual evidence, the change, the scope, the expected verification, and whether the feedback is broad, which re-plans, or targeted, which scopes one edit.
+
+#### Source Files
+
+See [`07--claude-design-parity/fidelity-check-and-revision-grammar.md`](07--claude-design-parity/fidelity-check-and-revision-grammar.md) for full implementation and validation file listings.
+
+---
+
+### Handoff and parity guardrails
+
+#### Description
+
+Keeps generated source separate, emits an optional handoff manifest, and holds the line against style presets and scope the protocol refuses to add.
+
+#### Current Reality
+
+The loop keeps generated source, wrapper or adaptation files, and business logic distinct, imports installed components rather than copying them, and treats generated source as one-way. At the end it can emit one small handoff block covering the token system, files changed, key interactions, the checks run, open risks, and the next `sk-code` steps. A guarded direction gate may sketch a few brief-specific directions only when each is grounded in the subject, and the protocol holds a hard line against style presets, named aesthetic dials, turning the design inventory into a generator, multi-format export, hosted canvas, comment threads, theme write-back, backend or deploy ownership, and any heavyweight visual-regression engine.
+
+#### Source Files
+
+See [`07--claude-design-parity/handoff-and-parity-guardrails.md`](07--claude-design-parity/handoff-and-parity-guardrails.md) for full implementation and validation file listings.

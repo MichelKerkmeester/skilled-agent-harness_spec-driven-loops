@@ -102,6 +102,10 @@ The `code` subcommands let an agent author or edit a MagicPath canvas component 
 
 The editable-file boundary is strict. The API accepts full-file replacements only for `src/App.tsx`, `src/index.css`, files under `src/components/generated/**`, and temporary image assets under `assets/**`. It rejects dependency installs, `package.json` edits, `src/main.tsx`, Vite config and lockfile changes. Tailwind v4 rules apply: keep `@import 'tailwindcss';`, never use the old `@tailwind base/components/utilities;` directives, and append to `src/index.css` rather than replacing it.
 
+### Design Parity On Canvas
+
+Canvas authoring follows a shared parity loop so the output approaches a real design system instead of drifting into AI defaults. Reuse before generating: `search` and `inspect` the active theme's registered components first, and author net-new only when nothing fits. After `code submit --wait`, judge the result against the backend-rendered `previewImageUrl` rather than a `view`/`share` browser screenshot, which is auth-gated and redirects to sign-in. The `scripts/design_fidelity.py` helper fetches and downloads that preview for the check. Build failures are self-healed inside the editable boundary, broad feedback re-plans the direction while targeted feedback routes one edit to `code start --component --revision`, and generated source stays distinct from wrapper and business logic. The full loop and its quality bar live in the cross-skill [`claude_design_parity.md`](../sk-interface-design/references/claude_design_parity.md) protocol that `sk-interface-design` owns.
+
 ### Teams, Themes and Images
 
 Users belong to teams (workspaces) that own shared projects and themes. By default `search` and `list-projects` span all workspaces; `--team <nameOrId>` and `--personal` narrow the scope, and `list-teams` / `list-members` resolve names to IDs. "Themes" are MagicPath design systems — `list-themes` and `get-theme` return CSS variable maps (light/dark), fonts and a natural-language styling prompt to apply to components. The `image` subcommands list and add standalone images on a project canvas, distinct from the `assets/` build inputs in the `code` flow.
@@ -188,5 +192,7 @@ A: The `mcp-` prefix is this framework's family bucket for external tool surface
 | [`references/working_with_repositories.md`](./references/working_with_repositories.md) | Importing or recreating UI from a local path or a GitHub/GitLab/Bitbucket repo into MagicPath |
 | [`references/working_with_embedded_browsers.md`](./references/working_with_embedded_browsers.md) | Using a MagicPath project as a persistent visual canvas in hosts with an embedded browser |
 | [`scripts/install.sh`](./scripts/install.sh) | Installs the `magicpath-ai` CLI globally; `--check-only` reports status, `--force` reinstalls |
+| [`scripts/design_fidelity.py`](./scripts/design_fidelity.py) | Fetches a component's backend-rendered `previewImageUrl` for the parity fidelity check, stdlib-only and query-only |
+| [`claude_design_parity.md`](../sk-interface-design/references/claude_design_parity.md) | The shared reuse-before-generate, fidelity-check and revision-grammar protocol that canvas authoring follows |
 | [`mcp-servers/magicpath-cli/`](./mcp-servers/magicpath-cli/README.md) | Vendors the `magicpath-ai` CLI into the skill (`package.json` + `setup.sh`); local `npm install` alternative to the global installer |
 | [Skills Library](../README.md) | The skill catalog and routing front door |
