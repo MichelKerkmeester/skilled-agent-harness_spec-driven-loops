@@ -327,12 +327,12 @@ _memory:
 
 ## A. Tracks — newest activity → oldest
 
-The eight top-level themed tracks, ordered by most recent git activity. `Born` uses `--follow` so it
+The six top-level themed tracks, ordered by most recent git activity. `Born` uses `--follow` so it
 traces through the reorg `git mv` history to each track's true origin.
 
 {tracks_table(last_map)}
 
-> Note: `000-release-and-program-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
+> Note: `000-release-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
 
 ---

@@ -27,11 +27,11 @@ This rollup is the authoritative child inventory for 011. The five children are 
 
 | Phase | Outcome |
 |-------|---------|
-| [001-memory-commands](../../011-command-presentation-workflow-separation/001-memory-commands/spec.md) | Memory command family: workflow routing split from the Markdown presentation contract |
-| [002-speckit-commands](../../011-command-presentation-workflow-separation/002-speckit-commands/spec.md) | Speckit command family: workflow routing split from the Markdown presentation contract |
-| [003-create-commands](../../011-command-presentation-workflow-separation/003-create-commands/spec.md) | Create command family: workflow routing split from the Markdown presentation contract |
-| [004-doctor-commands](../../011-command-presentation-workflow-separation/004-doctor-commands/spec.md) | Doctor command family: workflow routing split from the Markdown presentation contract |
-| [005-deep-commands](../../011-command-presentation-workflow-separation/005-deep-commands/spec.md) | Deep command family: six mode-based commands split into thin routers plus `_presentation.md` assets, Fable-parity-verified, plus sk-doc command-standard alignment |
+| [001-memory-commands](../../004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/spec.md) | Memory command family: workflow routing split from the Markdown presentation contract |
+| [002-speckit-commands](../../004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/spec.md) | Speckit command family: workflow routing split from the Markdown presentation contract |
+| [003-create-commands](../../004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/spec.md) | Create command family: workflow routing split from the Markdown presentation contract |
+| [004-doctor-commands](../../004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/spec.md) | Doctor command family: workflow routing split from the Markdown presentation contract |
+| [005-deep-commands](../../004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands/spec.md) | Deep command family: six mode-based commands split into thin routers plus `_presentation.md` assets, Fable-parity-verified, plus sk-doc command-standard alignment |
 
 ### Added
 

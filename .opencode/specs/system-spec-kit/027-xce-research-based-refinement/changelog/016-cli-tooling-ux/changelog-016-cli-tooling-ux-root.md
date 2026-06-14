@@ -27,11 +27,11 @@ This rollup is the authoritative child inventory for 016. The five children are 
 
 | Phase | Outcome |
 |-------|---------|
-| [001-cli-freshness-and-smoke](../../016-cli-tooling-ux/001-cli-freshness-and-smoke/spec.md) | Freshness-gate fix plus an offline smoke check over the CLI surface |
-| [002-cli-help-aliases-errors](../../016-cli-tooling-ux/002-cli-help-aliases-errors/spec.md) | Per-command help, command aliases, and clear error messages |
-| [003-cli-reference-and-skill-docs](../../016-cli-tooling-ux/003-cli-reference-and-skill-docs/spec.md) | A unified daemon CLI reference and aligned skill docs |
-| [004-cli-fallback-envelope-and-bridge](../../016-cli-tooling-ux/004-cli-fallback-envelope-and-bridge/spec.md) | Hardened CLI fallback envelope and the bridge environment allowlist |
-| [005-cli-automation-compact-completion](../../016-cli-tooling-ux/005-cli-automation-compact-completion/spec.md) | Compact machine-readable output and shell completion for automation |
+| [001-cli-freshness-and-smoke](../../004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke/spec.md) | Freshness-gate fix plus an offline smoke check over the CLI surface |
+| [002-cli-help-aliases-errors](../../004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors/spec.md) | Per-command help, command aliases, and clear error messages |
+| [003-cli-reference-and-skill-docs](../../004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs/spec.md) | A unified daemon CLI reference and aligned skill docs |
+| [004-cli-fallback-envelope-and-bridge](../../004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge/spec.md) | Hardened CLI fallback envelope and the bridge environment allowlist |
+| [005-cli-automation-compact-completion](../../004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion/spec.md) | Compact machine-readable output and shell completion for automation |
 
 ### Added
 

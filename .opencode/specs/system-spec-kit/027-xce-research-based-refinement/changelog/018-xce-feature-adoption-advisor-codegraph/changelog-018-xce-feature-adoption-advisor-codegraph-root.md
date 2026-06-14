@@ -27,15 +27,15 @@ This rollup is the authoritative child inventory for 018, which is the relocated
 
 | Phase | Outcome |
 |-------|---------|
-| [001-advisor-observability](../../018-xce-feature-adoption-advisor-codegraph/001-advisor-observability/spec.md) | Prompt-safe `why_recommended` attribution and semantic-lane health diagnostics for the advisor |
-| [002-advisor-provenance-guard](../../018-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard/spec.md) | Source-provenance guard for automated skill-graph edge writes |
-| [003-advisor-packed-bm25-lexical](../../018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical/spec.md) | Packed BM25 lexical engine adopted into the advisor lane |
-| [004-advisor-bfs-consolidation](../../018-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation/spec.md) | Advisor graph walks consolidated onto a shared BFS helper, behavior preserved |
-| [005-advisor-feedback-calibration](../../018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration/spec.md) | Shadow-only advisor feedback calibration from `advisor_validate` outcomes |
-| [006-codegraph-tombstone-audit](../../018-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit/spec.md) | Bounded default-off code-graph tombstone audit lineage |
-| [007-codegraph-bfs-consolidation](../../018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation/spec.md) | Transitive traversal and blast radius share one local BFS helper, behavior preserved |
-| [008-codegraph-why-included](../../018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included/spec.md) | `why_included` attribution for code-graph results |
-| [009-codegraph-bm25-symbol-resolver](../../018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver/spec.md) | BM25 symbol resolver for code-graph |
+| [001-advisor-observability](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability/spec.md) | Prompt-safe `why_recommended` attribution and semantic-lane health diagnostics for the advisor |
+| [002-advisor-provenance-guard](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard/spec.md) | Source-provenance guard for automated skill-graph edge writes |
+| [003-advisor-packed-bm25-lexical](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical/spec.md) | Packed BM25 lexical engine adopted into the advisor lane |
+| [004-advisor-bfs-consolidation](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation/spec.md) | Advisor graph walks consolidated onto a shared BFS helper, behavior preserved |
+| [005-advisor-feedback-calibration](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration/spec.md) | Shadow-only advisor feedback calibration from `advisor_validate` outcomes |
+| [006-codegraph-tombstone-audit](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit/spec.md) | Bounded default-off code-graph tombstone audit lineage |
+| [007-codegraph-bfs-consolidation](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation/spec.md) | Transitive traversal and blast radius share one local BFS helper, behavior preserved |
+| [008-codegraph-why-included](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included/spec.md) | `why_included` attribution for code-graph results |
+| [009-codegraph-bm25-symbol-resolver](../../003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver/spec.md) | BM25 symbol resolver for code-graph |
 
 ### Added
 

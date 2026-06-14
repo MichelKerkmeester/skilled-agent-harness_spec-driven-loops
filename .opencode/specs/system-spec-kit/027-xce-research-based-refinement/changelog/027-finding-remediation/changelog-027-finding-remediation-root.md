@@ -26,14 +26,14 @@ The successor playbook/stress stage also completed: 475 manual-testing-playbook 
 
 | Phase | Outcome |
 |-------|---------|
-| [001-write-safety-and-guards](../../027-finding-remediation/001-write-safety-and-guards/implementation-summary.md) | 21 P1 and 12 P2 entries terminally dispositioned |
-| [002-causal-and-memo](../../027-finding-remediation/002-causal-and-memo/implementation-summary.md) | 16 P1 and 5 P2 entries terminally dispositioned |
-| [003-search-and-triggers](../../027-finding-remediation/003-search-and-triggers/implementation-summary.md) | 11 P1 and 13 P2 entries terminally dispositioned |
-| [004-vector-and-checkpoint-durability](../../027-finding-remediation/004-vector-and-checkpoint-durability/implementation-summary.md) | 17 P1 and 19 P2 entries terminally dispositioned |
-| [005-bm25-indexing-fidelity](../../027-finding-remediation/005-bm25-indexing-fidelity/implementation-summary.md) | 4 P1 and 1 P2 entries terminally dispositioned |
-| [006-launchers-and-cli](../../027-finding-remediation/006-launchers-and-cli/implementation-summary.md) | 19 P1 and 19 P2 entries terminally dispositioned |
-| [007-continuity-and-save-concurrency](../../027-finding-remediation/007-continuity-and-save-concurrency/implementation-summary.md) | 18 P1 and 15 P2 entries terminally dispositioned |
-| [008-doc-truth-and-test-fidelity](../../027-finding-remediation/008-doc-truth-and-test-fidelity/implementation-summary.md) | 26 P1 and 35 P2 entries terminally dispositioned |
+| [001-write-safety-and-guards](../../005-verification-and-remediation/001-finding-remediation/001-write-safety-and-guards/implementation-summary.md) | 21 P1 and 12 P2 entries terminally dispositioned |
+| [002-causal-and-memo](../../005-verification-and-remediation/001-finding-remediation/002-causal-and-memo/implementation-summary.md) | 16 P1 and 5 P2 entries terminally dispositioned |
+| [003-search-and-triggers](../../005-verification-and-remediation/001-finding-remediation/003-search-and-triggers/implementation-summary.md) | 11 P1 and 13 P2 entries terminally dispositioned |
+| [004-vector-and-checkpoint-durability](../../005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability/implementation-summary.md) | 17 P1 and 19 P2 entries terminally dispositioned |
+| [005-bm25-indexing-fidelity](../../005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity/implementation-summary.md) | 4 P1 and 1 P2 entries terminally dispositioned |
+| [006-launchers-and-cli](../../005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli/implementation-summary.md) | 19 P1 and 19 P2 entries terminally dispositioned |
+| [007-continuity-and-save-concurrency](../../005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency/implementation-summary.md) | 18 P1 and 15 P2 entries terminally dispositioned |
+| [008-doc-truth-and-test-fidelity](../../005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity/implementation-summary.md) | 26 P1 and 35 P2 entries terminally dispositioned |
 
 ### Added
 

@@ -30,10 +30,10 @@ _memory:
 - **Total references**: 27
 - **By category**: Documents=0, Skills=16, Specs=11, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: point-in-time snapshot (2026-06-04) of the renumbered metadata and the peck-derived feature under `001-peck-teachings-adoption/`. It is NOT a live epic-wide ledger and does not enumerate the later-shipped phases (002-011) or the planned 011 track.
+- **Scope**: point-in-time snapshot (2026-06-04) of the renumbered metadata and the peck-derived feature now under `001-research-and-doctrine/001-peck-teachings-adoption/`. It is NOT a live epic-wide ledger and does not enumerate the later-shipped phases, now grouped under the six themed tracks (000-005).
 - **Generated**: 2026-06-04T00:00:00Z
 
-> **Current authority:** for the live phase inventory and status (phases 000-011), see the `spec.md` PHASE DOCUMENTATION MAP and `graph-metadata.json`. Per-phase resource maps and the committed `changelog/` cover 002-011 scope. This snapshot is retained only as historical provenance for the renumbering work.
+> **Current authority:** for the live phase inventory and status (the six themed tracks 000-005), see the `spec.md` PHASE DOCUMENTATION MAP and `graph-metadata.json`. Per-phase resource maps and the committed `changelog/` cover the shipped scope. This snapshot is retained only as historical provenance for the early renumbering work; see `context-index.md` for the old-to-new path bridge.
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` (exists on disk) · `MISSING` (referenced but absent) · `PLANNED` (intentional future path).
@@ -71,15 +71,15 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md` | Updated | OK | Parent control doc now lists peck as phase 001 and memory phases as 002-008. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md` | Updated | OK | Parent control doc now lists the six themed tracks (000-005); peck lives under `001-research-and-doctrine`. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json` | Updated | OK | Parent child list now reflects the desired phase order. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | Updated | OK | Parent children, key files, source docs; last active child is `002-memory-write-safety`. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | Updated | OK | Parent children, key files, source docs; last active child is now `002-memory-store-and-search/001-memory-write-safety`. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md` | Updated | OK | Historical renumbering record lives here instead of the lean parent spec. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | Created | OK | This template-shaped parent-aggregate resource map. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/spec.md` | Updated | OK | Phase-parent metadata now points at the 001 peck folder. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/description.json` | Updated | OK | Pecks child metadata uses the 001 folder path. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/graph-metadata.json` | Updated | OK | Pecks graph metadata and children ids use the 001 folder path. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/{001-peck-teachings-for-spec-kit,002-self-check-templates,003-current-state-discipline,004-constitutional-rule-review}/{spec.md,plan.md,tasks.md,implementation-summary.md}` | Updated | OK | Child frontmatter packet pointers and explicit self paths were aligned with `001-peck-teachings-adoption`. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/{001-peck-teachings-for-spec-kit,002-self-check-templates,003-current-state-discipline,004-constitutional-rule-review}/{spec.md,plan.md,tasks.md,implementation-summary.md}` | Updated | OK | Child frontmatter packet pointers and explicit self paths were aligned with `001-research-and-doctrine/001-peck-teachings-adoption`. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/{001-peck-teachings-for-spec-kit,002-self-check-templates,003-current-state-discipline,004-constitutional-rule-review}/{description.json,graph-metadata.json}` | Updated | OK | Child JSON metadata now references current folder names. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/{peck-teachings-analysis.md,research/**}` | Updated | OK | Research/provenance docs now cite current peck folder paths except historical notes in `context-index.md`. |
 
