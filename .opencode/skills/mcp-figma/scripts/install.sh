@@ -99,9 +99,9 @@ install_repo() {
     fi
   else
     info "Cloning $REPO_URL -> $INSTALL_ROOT (outside this repo; not vendored)"
-    git clone --depth 1 "$REPO_URL" "$INSTALL_ROOT" >/dev/null 2>&1
+    git clone --depth 1 "$REPO_URL" "$INSTALL_ROOT" >/dev/null 2>&1 || { err "git clone of $REPO_URL failed (check network/access); cannot build the full figma-ds-cli surface."; exit 1; }
   fi
-  ( cd "$INSTALL_ROOT" && npm_q install && npm_q install -g . )
+  ( cd "$INSTALL_ROOT" && npm_q install && npm_q install -g . ) || { err "npm build/install of the silships repo in $INSTALL_ROOT failed; re-run with --verbose to see the error."; exit 1; }
 }
 
 verify_install() {

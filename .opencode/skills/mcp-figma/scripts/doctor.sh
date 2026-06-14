@@ -26,6 +26,7 @@ if b="$(figma_bin)"; then ok "Resolved skill binary: $b"; else err "No silships 
 # Figma Desktop
 log "-- Figma Desktop --"
 if p="$(figma_desktop_path)"; then ok "Found: $p"; else warn "Not found in /Applications or ~/Applications"; fi
+if pgrep -x Figma >/dev/null 2>&1; then ok "Figma Desktop: running"; else info "Figma Desktop: not running (CLI ops need it open with a file)"; fi
 
 # Daemon
 log "-- Daemon --"
