@@ -1,0 +1,120 @@
+---
+title: "Feature Specification: Open Design terminal control and interface integration"
+description: "Make the installed Open Design desktop app drivable from the terminal via a new mcp-open-design skill, then de-vendor and integrate sk-interface-design with it. Research (phase 001) is complete; build, evolution, and validation phases follow."
+trigger_phrases:
+  - "open design terminal control"
+  - "mcp-open-design skill"
+  - "sk-interface-design open design integration"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration"
+    last_updated_at: "2026-06-14T12:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase 001 research complete; phases 002-004 planned"
+    next_safe_action: "Start phase 002: build the mcp-open-design skill"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-150-open-design-terminal-and-interface-integration"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Open Design terminal control and interface integration
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | Phase Parent |
+| **Priority** | P1 |
+| **Status** | In Progress |
+| **Created** | 2026-06-14 |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Handoff Criteria** | Each child phase ships and validates independently; both skills stay advisor-routable and house-conformant |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. There is no terminal path. Separately, the `sk-interface-design` skill still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and AI-default patterns the skill exists to resist. Both gaps want closing together: a terminal control surface for Open Design, and a de-vendored design skill that reads from the user's own app instead.
+
+### Purpose
+Make Open Design drivable from the terminal through a new `mcp-open-design` skill, then de-vendor `sk-interface-design` and integrate it with that skill so design work draws on live, locally owned sources under a clean license.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the phase children listed in the Phase Documentation Map below.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- A new `mcp-open-design` skill that controls the Open Design desktop app from the terminal, modeled on `mcp-magicpath`.
+- The `sk-interface-design` skill: de-vendoring it from `ui-ux-pro-max` and integrating it with `mcp-open-design`.
+- The ordered licensing cleanup for the de-vendor: data first, MIT notices second, with the Apache-2.0 base retained.
+- Validation, feature catalog, manual testing playbook, and changelog for the shipped work.
+
+### Out of Scope
+- Changes to the Open Design app itself or its upstream repo (it is read-only third-party input).
+- The standalone `mcp-magicpath` skill (its own packet, `147-mcp-magicpath`), used here only as a structural model.
+- Re-deriving or caching Open Design content into the repo; the skill reads live and caches nothing.
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | `001-terminal-control-and-integration-research/` | Research Open Design's terminal/MCP/CLI surface and design both skills plus the de-vendor/integration/licensing path | Complete |
+| 2 | `002-mcp-open-design-skill-build/` | Build the `mcp-open-design` skill (terminal control of Open Design), modeled on `mcp-magicpath` | Planned |
+| 3 | `003-sk-interface-design-evolution/` | De-vendor `sk-interface-design` from ui-ux-pro-max, integrate with `mcp-open-design`, remove the MIT notices (ordered: data then notices, keep the Apache-2.0 base) | Planned |
+| 4 | `004-validation-and-docs/` | Live-wire `od mcp install opencode` and verify `tools/list`; feature_catalog, manual_testing_playbook, changelog; validate | Planned |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- The parent spec tracks aggregate progress via this map.
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
+- Run `validate.sh --recursive` on the parent to validate all phases as an integrated unit.
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001 | 002 | Research synthesized; terminal surface, skill design, and de-vendor sequence documented | `research/research.md` present; `validate.sh --strict` green |
+<!-- /ANCHOR:phase-map -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- The exact installer-written MCP entry and whether the daemon survives app close are verified live during phase 002 and phase 004 rather than assumed here.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: see sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
+- **The mcp-magicpath skill**: `.opencode/skills/mcp-magicpath/` (structural model for the new skill).
+- **The sk-interface-design skill**: `.opencode/skills/sk-interface-design/`.
+- **Graph Metadata**: see `graph-metadata.json` for the `derived.last_active_child_id` pointer.
