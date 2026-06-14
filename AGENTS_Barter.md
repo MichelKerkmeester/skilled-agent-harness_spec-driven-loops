@@ -1,0 +1,1 @@
+../Barter/ai-speckit/coder/AGENTS.md

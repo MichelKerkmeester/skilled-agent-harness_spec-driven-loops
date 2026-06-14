@@ -6,7 +6,7 @@
 
 ### Multi-Repository Architecture
 
-**Universal Framework:** Code work is handled automatically by the `sk-code` skill. It detects the active code surface from CWD/target paths and library markers, loads patterns from `.opencode/skills/sk-code/references/<surface>/`, and selects surface-appropriate verification (see Quick Reference). Surfaces it does not recognize trigger a disambiguation question rather than guessing. The active detection markers and per-surface patterns live inside `sk-code` — see `.opencode/skills/sk-code/SKILL.md` §2 Smart Routing.
+**Universal Framework:** Code work routes through the `sk-code` skill, which auto-detects the active surface and loads its patterns and verification; unrecognized surfaces trigger a disambiguation question. Detection markers and per-surface patterns live in `.opencode/skills/sk-code/SKILL.md` §2 Smart Routing.
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
 
@@ -35,11 +35,10 @@ Reinventing a workflow's core feature because you assumed friction you never che
 
 #### Halt Conditions — Stop and Report
 
-- Target file does not exist or line numbers don't match.
-- Syntax check or tests fail after edit.
+Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
+- Target file missing, or the Edit tool reports "string not found".
 - Merge conflicts encountered.
-- Edit tool reports "string not found".
-- Test/Production boundary is unclear.
+- Test/Production boundary unclear.
 
 #### Operational Mandates
 
@@ -50,10 +49,10 @@ Reinventing a workflow's core feature because you assumed friction you never che
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
 
 **Code Quality**
-- **Comment Hygiene [HARD] BLOCK** — Never embed ephemeral tracking artifact labels in code comments: no spec-folder paths, packet/phase numbers, ADR ids, task/checklist/requirement ids, or finding ids (`// ADR-007:`, `// REQ-003:`, `// specs/042-foo` are all forbidden). Keep the durable WHY; drop the perishable label. Allowed stable references: `// CWE-79`, `// RFC 2616`, `// POSIX`.
+- **Comment Hygiene [HARD] BLOCK** — Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ/task/finding ids) in code comments; keep the durable WHY. Full forbidden + allowed-refs list: `constitutional/comment-hygiene.md` (also enforced by the pre-commit gate).
 
 **Dispatch Rules**
-- **CLI dispatch rule** — Before composing any `cli-X` prompt (codex / claude-code / opencode), MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Skills carry model-specific prompt contracts not in `--help`; required for every `<binary> --model <X>` invocation.
+- **CLI dispatch rule** — Before composing any `cli-X` prompt (codex / claude-code / opencode), MUST `Read` `.opencode/skills/cli-X/SKILL.md` first (model-specific prompt contracts not in `--help`). See `constitutional/cli-dispatch-skill-preload.md`.
 - **Small-model dispatch rule** — Before dispatching to small models (MiniMax, Kimi, Qwen, etc. via cli-opencode), MUST consult `sk-prompt-small-model` — canonical home for context-budget defaults, output-verification, model-profile registry, permissions schema, and dispatch matrix (executor + provider + quota_pool).
 - **Agent I/O pointer** — Optional agent dispatch headers and result envelopes are documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`; missing advisory metadata must never block an otherwise valid agent exchange.
 
@@ -62,10 +61,10 @@ Reinventing a workflow's core feature because you assumed friction you never che
 How to think, decide, build, and communicate on any non-trivial task: keep every load-bearing claim legible, size effort to its blast radius, and close out honestly.
 
 - **Confirmed vs inferred — make it legible.** For any load-bearing claim (behavior, type, version, API shape, "this works", "this is the cause"), the prose must let a reader tell confirmed from inferred. A confirmed claim names its evidence (file:line, the command run, the artifact read); an inferred claim says so and names what would confirm it. Hold your own plan to this bar before you run it.
-- **Baseline before "no regressions"; report the delta.** Capture the real starting numbers (test pass/fail counts + the names of the failing ones, base commit, fixture mtime) BEFORE the change. After each step re-run the WHOLE gate on a real exit code — not a grep scoped to your own files — and report the delta ("baseline 2 failing {a,b} → still 2"). A green suite says nothing about a path it never exercised; gate anything visual or stateful on a real observation.
-- **A finding is a hypothesis until you open the cited code.** A sub-agent's "COMPLETE", a reviewer's "P0", an Explore lead, a stale note in a plan or README — confirm it against the real symptom before acting. Agents over-report and contradict each other; keep what holds and name what you discarded.
+- **Baseline before "no regressions"; report the delta.** Capture the real starting numbers before the change, re-run the WHOLE gate on a real exit code after each step, and report the delta — never claim "no regressions" against an uncaptured baseline. Full rule: `constitutional/regression-baseline-and-delta.md`.
+- **A finding is a hypothesis until you open the cited code.** A sub-agent's "COMPLETE", a reviewer's "P0", an Explore lead or a stale note — confirm it against the real symptom before acting; agents over-report and contradict each other. Full rule: `constitutional/finding-is-a-hypothesis.md`.
 - **Match effort to blast-radius.** Open non-trivial work with a one-phrase stakes read ("low-blast, reversible" / "high-blast: touches auth + data"); do the shallow check and stop on low-blast, and save the heavy machinery for work that earns it.
-- **Name the rollback, stop for a yes — outward/irreversible class.** Before delete/overwrite/migrate/deploy/send or any write to shared, global, or native state, write in one line how to undo it and wait for explicit confirmation unless already told to proceed. For commit/push, `main-branch-direct-push.md` is authoritative — scope to explicit pathspecs (never a blanket `git add`, which can revert concurrent work) and report what landed.
+- **Name the rollback, stop for a yes — outward/irreversible class.** Before delete/overwrite/migrate/deploy/send or any write to shared, global, or native state, write in one line how to undo it and wait for explicit confirmation unless already told to proceed. For commit/push, `main-branch-direct-push.md` is authoritative.
 - **Name what still speaks the old contract before you call a change safe.** A deployed old server meeting your new schema, installed clients still sending the old shape, a cache holding the previous value, the consumer of the API you changed — confirm it won't break.
 - **At a fork, lead with your recommendation** and the alternatives you weighed, grounded in the project's own data, source-of-truth, and history — not an invented one.
 - **Close a substantive turn with honest status:** what you ran or read and its result, what you only inferred, and what only the user can verify; committed vs pushed vs dirty; and the one claim you'd most expect to be wrong.
@@ -80,7 +79,7 @@ How to think, decide, build, and communicate on any non-trivial task: keep every
 #### Execution Behavior
 
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
-- **Use a research-first approach.** Read the actual code, docs, and local instructions first. Never use an edit-first approach, and prefer surgical edits over broad rewrites.
+- **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
 - **Apply project-specific conventions from `AGENTS.md`** before acting.
 - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
 - **Do not stop early when the requested solution is still incomplete.** Do not frame partial progress as a `good stopping point`, `natural checkpoint`, or `future work` when a safe path forward exists.
@@ -99,35 +98,15 @@ How to think, decide, build, and communicate on any non-trivial task: keep every
 - **Git (sk-git)** - worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 - **Daemon-backed CLI front doors** - The three daemon MCP systems remain primary MCP transports and also expose additive CLI fallbacks over the same warm daemons: `spec-memory.cjs` (37 tools), `code-index.cjs` (8 tools), and `skill-advisor.cjs` (9 tools, with trusted mutations gated). Prompt-time fallback is warm-only; exit `75` is retryable daemon/IPC unavailability.
 
-**CODE SEARCH DECISION TREE:**
+**CODE SEARCH DECISION TREE** (full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`):
 
-```text
-Need to find code?
-  |
-  +-- Know the exact text/token/symbol?
-  |     YES --> Grep (exact match)
-  |
-  +-- Know the file name or path?
-  |     YES --> Glob (pattern match)
-  |
-  +-- Searching by concept, intent, or "how does X work"?
-  |     YES --> Code Graph structural query + Grep pattern search
-  |             +-- Verify hits with Read
-  |             +-- Iterate Grep terms from likely symbols, filenames, domain words, and errors
-  |
-  +-- Exploring unfamiliar code?
-        YES --> Code Graph overview/structure FIRST, then Grep/Glob and Read to fill gaps
-```
+| Need | Use |
+| --- | --- |
+| Exact text / token / symbol | **Grep** — `rg -n "<pattern>" <path>` |
+| Known file or path | **Glob** |
+| Concept, intent, "how does X work", or unfamiliar code | **Code Graph** (`code_graph_query`, `code_graph_context`, `detect_changes`) + Grep; verify hits with Read |
 
-Hybrid code discovery triggers: "find code that does X", "how is X implemented", "where is the logic for X", "similar code", "find patterns", exploring unfamiliar modules, and any intent-based query where exact tokens are unknown.
-
-| Approach | Command | When |
-| -------- | ------- | ---- |
-| **Code Graph** | `code_graph_query`, `code_graph_context`, `detect_changes` | Structural discovery: callers, imports, symbols, outlines, impact |
-| **Grep** | `rg -n "<pattern>" <path>` | Concept discovery via likely tokens, domain terms, filenames, and errors |
-| **Glob** | `rg --files <path> \| rg "<path-pattern>"` | File/path discovery |
-
-Use `memory_search` only for spec docs, saved decisions, and memory context. It does not index arbitrary project code.
+`memory_search` is for spec docs and saved memory only — it does not index arbitrary code.
 
 ---
 
@@ -135,7 +114,7 @@ Use `memory_search` only for spec docs, saved decisions, and memory context. It 
 
 Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
 
-Current Spec Kit Memory rollout baseline: schema v37. Shipped default-off or opt-in gates to keep in view include `SPECKIT_SEMANTIC_TRIGGERS`, `SPECKIT_SEMANTIC_TRIGGERS_MODE`, `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE`, `SPECKIT_FEEDBACK_RETENTION_LEARNING`, `SPECKIT_FEEDBACK_RETENTION_MODE`, `SPECKIT_SOFT_DELETE_TOMBSTONES`, `SPECKIT_MEMORY_IDEMPOTENCY`, `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT`, and `SPECKIT_COMPLETION_FRESHNESS`; check `ENV_REFERENCE.md` and the relevant hook docs before enabling any results-affecting path.
+Before enabling any results-affecting path, check `ENV_REFERENCE.md` ("Feature flags reference table") for the current schema baseline and the default-off / opt-in feature-flag gates.
 
 **Recovery flow when hooks are unavailable or fail:**
 
@@ -144,17 +123,15 @@ Current Spec Kit Memory rollout baseline: schema v37. Shipped default-off or opt
 3. Stale or missing structural context: run `session_bootstrap()`, then `code_graph_scan` if needed. Graph unavailable: use Grep/Glob + direct reads, but keep the packet-local continuity ladder as source-of-truth. Code-graph implementation/docs are owned by `.opencode/skills/system-code-graph/`; tool names stay stable.
 4. Re-anchor on spec folder, current task, blockers, and next steps before making changes.
 
-**Spec Memory CLI Transport Fallback:**
+**Daemon CLI Transport Fallback (all three daemons):**
 
-Use the CLI only when the `mk-spec-memory` MCP tools are missing from the runtime, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm. Exact recovery invocation: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000`. Exit `75` means retryable daemon/IPC unavailability; retry after MCP reconnect, daemon prewarm, or a short backoff instead of treating it as user error. Prompt-time hooks must probe the daemon socket first and skip if absent; cold spawn is allowed only from SessionStart, explicit prewarm, cron, or other non-prompt maintenance contexts.
+Use a daemon's CLI only when its MCP tools are missing, fail to initialize, or return transport errors while the daemon is expected to be warm. Prompt-time hooks MUST probe the socket first and skip if absent — cold spawn only from SessionStart, explicit prewarm, or cron. Exit `75` means retryable daemon/IPC unavailability (retry after reconnect, prewarm, or backoff — not a user error). Maintenance/mutation commands (`code_graph_scan` / `apply` / `verify`, `advisor_rebuild`, `skill_graph_scan`) never run from prompt-time hooks; advisor mutations require `--trusted`.
 
-**Code Index CLI Transport Fallback:**
-
-Use the CLI only when the `mk-code-index` MCP transport is missing/down or `code_graph_status` transport returns a daemon/IPC failure while the daemon is otherwise expected to be warm. Exact warm read: `node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 3000 --warm-only`. Exit `75` means retryable daemon/IPC unavailability; retry after MCP reconnect, daemon prewarm, or a short backoff. Prompt-time hooks must probe the code-index socket first and skip if absent; `code_graph_scan`, `code_graph_apply`, and `code_graph_verify` are maintenance commands and must never run from prompt-time hooks.
-
-**Skill Advisor CLI Transport Fallback:**
-
-Use the CLI only when the `mk_skill_advisor` MCP tools are missing from the runtime, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm. Exact warm read: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000`. Exit `75` means retryable daemon/IPC unavailability; retry after MCP reconnect, daemon prewarm, or a short backoff instead of treating it as user error. Warm-only policy: prompt-time use must probe the advisor socket first and skip if absent — never cold-spawn the daemon from a prompt-time path; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are maintenance-only and require `--trusted`.
+| Daemon | Warm read invocation |
+| --- | --- |
+| Spec Memory | `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000` |
+| Code Index | `node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 3000 --warm-only` |
+| Skill Advisor | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000` |
 
 ---
 
