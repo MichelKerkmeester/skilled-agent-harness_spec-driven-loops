@@ -970,10 +970,6 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - **Manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing
 - **Agent-safe by design:** enforces per-list status resolution, dry-run before batch completion, `--json` output, and empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
 
-**mcp-magicpath**
-- **Find, install, and author MagicPath UI components from the assistant.** Drives the `magicpath-ai` CLI to search, inspect, and `add` design components into a React/TypeScript app, or author canvas components from local code with the `code` subcommands
-- **CLI-only surface** (no MCP server, the `mcp-` prefix is the external-tool family bucket): browser-session auth, an in-skill CLI vendor via `mcp-servers/`, and an `npx` fallback
-
 &nbsp;
 #### OTHER
 
@@ -1320,7 +1316,6 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `cli-*` (codex/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
-| `mcp-magicpath`                                     | ✅ Codebase-agnostic                        | MagicPath UI-component CLI (find / inspect / install / author). CLI-only, no MCP server. Requires a MagicPath account (browser login). Stack-independent.                                                |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
