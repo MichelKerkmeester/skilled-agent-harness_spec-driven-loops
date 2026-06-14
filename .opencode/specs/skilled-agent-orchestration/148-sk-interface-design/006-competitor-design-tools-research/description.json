@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
+  "description": "Research Specification: Competitor AI design-tool ideas for sk-interface-design and mcp-magicpath",
+  "keywords": [
+    "research",
+    "specification",
+    "competitor-design-tools-research",
+    "sk-interface-design",
+    "mcp-magicpath",
+    "phase",
+    "deep-research"
+  ],
+  "lastUpdated": "2026-06-14T08:50:00Z",
+  "specId": "006",
+  "folderSlug": "competitor-design-tools-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "148-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,198 @@
+{
+  "mergedFrom": [
+    "gpt55fast",
+    "opus48-claude2"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-claude-baseline",
+      "question": "What Claude Design capabilities matter for parity?",
+      "answeredBy": [
+        "iteration-001"
+      ],
+      "answer": "Design-system inheritance, context attachments, chat plus inline comments, versioning, exports, Claude Code handoff, and rollout controls are the relevant target dimensions.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "q-sk-interface-gap",
+      "question": "Where does sk-interface-design fall short?",
+      "answeredBy": [
+        "iteration-002"
+      ],
+      "answer": "It has strong design judgment and quality rules, but lacks persistent design-system input, visual iteration capture, and handoff artifacts.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "q-magicpath-gap",
+      "question": "Where does mcp-magicpath fall short?",
+      "answeredBy": [
+        "iteration-003"
+      ],
+      "answer": "It has canvas and code workflows, but lacks a structured conversational revision loop, comment translation, fidelity gate, and export/handoff manifest.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "q-priorities",
+      "question": "Which improvements are highest value?",
+      "answeredBy": [
+        "iteration-004",
+        "iteration-005"
+      ],
+      "answer": "Add a shared parity protocol: design-system/context intake, iteration ledger, visual feedback handling, fidelity scorecard, and implementation handoff manifest.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-claude-design-system-first",
+      "title": "Claude Design's differentiator is design-system-first generation, not raw generation alone.",
+      "source": "https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design",
+      "iterations": [
+        1
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-sk-interface-judgment-strong-execution-weak",
+      "title": "sk-interface-design already protects distinctive design judgment but needs persistent inputs and observable iteration artifacts.",
+      "source": "file:.opencode/skills/sk-interface-design/SKILL.md:90",
+      "iterations": [
+        2
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-magicpath-canvas-strong-protocol-weak",
+      "title": "mcp-magicpath has the canvas and code-session primitives needed for parity, but its skill contract is operational rather than conversational.",
+      "source": "file:.opencode/skills/mcp-magicpath/references/magicpath_operations.md:289",
+      "iterations": [
+        3
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-shared-protocol",
+      "title": "A shared Claude Design parity protocol should coordinate both skills without merging their responsibilities.",
+      "source": "file:.opencode/skills/mcp-magicpath/SKILL.md:307",
+      "iterations": [
+        4,
+        5
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "F9",
+      "title": "Skills already composed via depends_on; recommendations split along the judgment-vs-canvas seam",
+      "iteration": 1,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F10",
+      "title": "sk-interface-design: inheritance is endorsed-but-absent — add inherit-if-present + optional token emit",
+      "iteration": 2,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F11",
+      "title": "mcp-magicpath: near-parity on theme consume; bridge repo tokens -> theme; no theme generation back to account",
+      "iteration": 2,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F14",
+      "title": "sk-interface-design iterates privately (reveal-at-confidence) — the inverse of Claude Design; ADAPT to a bounded rendered loop",
+      "iteration": 3,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F15",
+      "title": "mcp-magicpath fidelity verification after code submit is the single highest-value move (closes named dim-2 gap)",
+      "iteration": 3,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F16",
+      "title": "Visual feedback loop = missing protocol, not missing parts; compose existing judgment+canvas+screenshot",
+      "iteration": 3,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F17",
+      "title": "Name bounded quality levers (boldness/density/motion) but NEVER style presets — primary philosophy guardrail",
+      "iteration": 4,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F19",
+      "title": "sk-interface-design: emit a structured handoff artifact (token system + signature + copy rules)",
+      "iteration": 4,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F20",
+      "title": "mcp-magicpath: design-token export closes 'no token generation'; multi-format export ruled out",
+      "iteration": 4,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F21",
+      "title": "Parity scorecard: magicpath leads on mechanical dims (1,2,3,5), sk-interface-design leads on judgment (4)",
+      "iteration": 5,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "F22",
+      "title": "Prioritized recommendation: P1 magicpath fidelity + loop protocol; P2 token emit/export; P3 levers/context/revision",
+      "iteration": 5,
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "keyFindings": 15,
+    "convergenceScore": 0.41,
+    "coverageBySources": {}
+  }
+}

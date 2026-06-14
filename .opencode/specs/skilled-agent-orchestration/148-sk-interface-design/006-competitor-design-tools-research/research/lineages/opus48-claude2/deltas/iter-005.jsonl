@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":5,"newInfoRatio":0.25,"status":"complete","focus":"Convergence + prioritization"}
+{"type":"finding","id":"f-iter005-001","label":"Convergence genuine: newInfoRatio 1.00->0.70->0.55->0.40->0.25, iter4 added 0 new themes, all 5 Qs answered","iteration":5}
+{"type":"finding","id":"f-iter005-002","label":"Final ranking: T2 constrain-to-system (keystone) > T3 error self-healing > T1 direct edits > T4 persistent brief > T5 diff-before-apply","iteration":5}
+{"type":"finding","id":"f-iter005-003","label":"Cross-lineage hooks: expect agreement on T2/T3 + guardrails; resolve divergence toward lower-risk + anti-default; host spot-verifies","iteration":5}
+{"type":"observation","id":"obs-iter005-001","classification":"converged","label":"STOP at maxIterations 5/5 with genuine diminishing-novelty convergence","iteration":5}

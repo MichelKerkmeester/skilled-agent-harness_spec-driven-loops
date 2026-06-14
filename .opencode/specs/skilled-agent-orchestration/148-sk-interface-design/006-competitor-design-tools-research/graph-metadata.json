@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
+  "spec_folder": "skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
+  "parent_id": "skilled-agent-orchestration/148-sk-interface-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/148-sk-interface-design/005-claude-design-parity-research",
+      "skilled-agent-orchestration/147-mcp-magicpath"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "competitor design tool research",
+      "v0 lovable figma make subframe ideas",
+      "ai ui generation tool comparison"
+    ],
+    "key_topics": [
+      "competitor tools",
+      "v0",
+      "lovable",
+      "figma make",
+      "subframe",
+      "sk-interface-design",
+      "mcp-magicpath",
+      "deep-research",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase 006 runs a web-heavy 10-iteration parallel-by-model deep-research loop to surface adoptable ideas from leading AI design tools (v0, Lovable, Figma Make, Subframe) for sk-interface-design and mcp-magicpath, widening the lens past the 005 Claude Design parity findings. Output is a prioritized recommendation; implementation is later.",
+    "created_at": "2026-06-14T08:50:00Z",
+    "last_save_at": "2026-06-14T08:50:00Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

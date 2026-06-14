@@ -6,7 +6,11 @@
   "children_ids": [
     "skilled-agent-orchestration/148-sk-interface-design/001-install-claude-frontend-design",
     "skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research",
-    "skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge"
+    "skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
+    "skilled-agent-orchestration/148-sk-interface-design/004-doc-alignment-catalog-playbook",
+    "skilled-agent-orchestration/148-sk-interface-design/005-claude-design-parity-research",
+    "skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
+    "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build"
   ],
   "manual": {
     "depends_on": [],
@@ -35,7 +39,7 @@
     "last_save_at": "2026-06-13T16:30:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "skilled-agent-orchestration/148-sk-interface-design/003-ui-ux-pro-max-merge",
-    "last_active_at": "2026-06-13T17:10:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build",
+    "last_active_at": "2026-06-14T09:35:00Z"
   }
 }
