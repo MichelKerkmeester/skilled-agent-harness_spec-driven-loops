@@ -11,7 +11,7 @@ This scenario verifies the default-on daemon-ownership reelection path in the mk
 
 The check is automated-test-backed. A human runs the launcher syntax check, the reelection unit suite, and the live two-session durability test, plus a grep that proves the flag resolver, the spawn-io selector, and the release predicate are defined and wired.
 
-Reelection is default-on in the committed runtime configs. The launcher's code default stays off, so the configs are the single on-switch and `0` reverts to the kill-on-disposal behavior.
+Reelection is default-on in the launcher code. Set `SPECKIT_DAEMON_REELECTION=0` (or `off`) to revert to the kill-on-disposal behavior.
 
 ## 2. SCENARIO CONTRACT
 
@@ -51,7 +51,7 @@ Shell transcript for all commands: the `node --check` exit status, the vitest pa
 
 ### Pass / Fail
 
-- **Pass**: the syntax check passes, both test suites pass, the flag resolves on from the runtime configs, and a fresh session after disposal leaves a single writer.
+- **Pass**: the syntax check passes, both test suites pass, the flag resolves on by default, and a fresh session after disposal leaves a single writer.
 - **Fail**: the syntax check fails, either suite fails, the live single-writer case shows two daemons on the database, or the release predicate releases the daemon while reelection is off.
 
 ### Failure Triage

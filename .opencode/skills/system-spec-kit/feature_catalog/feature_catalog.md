@@ -3618,7 +3618,7 @@ The shared daemon used to die with its owner because the owner killed it on shut
 
 #### How It Works
 
-When `SPECKIT_DAEMON_REELECTION` is on (the default in the runtime configs; the launcher code default stays off so the configs are the on-switch), the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) so a connected live secondary keeps MCP transport. A fresh session that finds the released daemon under the now-stale owner lease reaps the recorded child before respawn, so the database keeps a single writer and a cold restart matches the prior behavior. An unadopted released daemon is bounded by its idle self-exit. Validated by the hermetic release-vs-kill test and the live two-session adoption test `daemon-reelection-adoption-live.vitest.ts`.
+When `SPECKIT_DAEMON_REELECTION` is on (the launcher code default; set `0` or `off` to disable), the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) so a connected live secondary keeps MCP transport. A fresh session that finds the released daemon under the now-stale owner lease reaps the recorded child before respawn, so the database keeps a single writer and a cold restart matches the prior behavior. An unadopted released daemon is bounded by its idle self-exit. Validated by the hermetic release-vs-kill test and the live two-session adoption test `daemon-reelection-adoption-live.vitest.ts`.
 
 #### Source Files
 
