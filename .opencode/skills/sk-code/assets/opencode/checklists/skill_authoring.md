@@ -12,18 +12,24 @@ contextType: implementation
 
 # Skill Authoring Checklist
 
-## 1. PURPOSE
+Checklist for authoring or modifying `sk-*` skills under `.opencode/skills/` with correct metadata, resource layout, versioning, and validation.
+
+## 1. OVERVIEW
+
+### Purpose
 
 This checklist keeps new and modified OpenCode skills consistent with the shared skill contract. Use it to verify the skill metadata, resource layout, versioning, and validation path before handing the skill to another runtime or authoring command.
 
-## 2. WHEN TO USE
+### Usage
 
 - Use this when authoring a new sk-* skill under `.opencode/skills/`.
 - Use this when modifying an existing skill's frontmatter, `SKILL.md` structure, allowed tools, bundled references, assets, or scripts.
 - Use this when promoting a skill from a local draft into the shared OpenCode skill inventory.
 - Use this when a skill changes routing behavior, resource discovery, or version metadata.
 
-## 3. PRE-CHECKS
+---
+
+## 2. PRE-CHECKS
 
 - [ ] Read existing canonical skills at `.opencode/skills/sk-doc/SKILL.md`, `.opencode/skills/sk-code/SKILL.md`, and `.opencode/skills/sk-git/SKILL.md`.
 - [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/references/specific/skill_creation.md`.
@@ -32,7 +38,9 @@ This checklist keeps new and modified OpenCode skills consistent with the shared
 - [ ] Keep the frontmatter description to 1-2 sentences that explain when the skill should activate.
 - [ ] Verify bundled `references/`, `assets/`, and `scripts/` are separated by purpose, not convenience.
 
-## 4. STEPS
+---
+
+## 3. STEPS
 
 1. Define the skill's activation boundary before drafting content.
 2. Create or update `SKILL.md` with required frontmatter, a focused description, and the standard sections used by canonical skills.
@@ -42,7 +50,9 @@ This checklist keeps new and modified OpenCode skills consistent with the shared
 6. Add changelog coverage when the skill has a versioned release stream.
 7. Check that new links resolve from the file that contains them.
 
-## 5. POST-CHECKS
+---
+
+## 4. POST-CHECKS
 
 - [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict` when the skill change is part of a spec folder.
 - [ ] Run `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/<skill-name>` for OpenCode alignment drift.
@@ -50,7 +60,9 @@ This checklist keeps new and modified OpenCode skills consistent with the shared
 - [ ] grep verification: `rg -n "\"version\"|\"keywords\"" .opencode/skills/<skill-name>/description.json`.
 - [ ] Cross-runtime mirror parity check if the skill is referenced by mirrored agents or commands.
 
-## 6. RELATED RESOURCES
+---
+
+## 5. RELATED RESOURCES
 
 - sk-doc references/specific/skill_creation.md (source-of-truth for skill structure rules)
 - Prior examples: `.opencode/skills/sk-doc/SKILL.md`, `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/sk-git/SKILL.md`

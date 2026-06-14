@@ -12,18 +12,24 @@ contextType: implementation
 
 # Spec Folder Authoring Checklist
 
-## 1. PURPOSE
+Checklist for writing spec folders that satisfy the Level contract, continuity frontmatter, metadata files, and strict validation.
+
+## 1. OVERVIEW
+
+### Purpose
 
 This checklist keeps spec folder writes compatible with the system-spec-kit validator and memory resume ladder. It is the companion checklist to the spec folder write recipe and focuses on required files, anchors, metadata, and strict validation.
 
-## 2. WHEN TO USE
+### Usage
 
 - Use this when authoring a new spec folder under `specs/` or `.opencode/specs/`.
 - Use this when modifying a spec folder's canonical docs, frontmatter, `_memory.continuity`, or metadata files.
 - Use this when creating a phase child under a phase parent.
 - Use this when a workflow writes `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `description.json`, or `graph-metadata.json`.
 
-## 3. PRE-CHECKS
+---
+
+## 2. PRE-CHECKS
 
 - [ ] Read the Level 1 contract files in an existing packet such as `<spec-folder>`.
 - [ ] Read templates from `.opencode/skills/system-spec-kit/templates/` and the manifest entries under `.opencode/skills/system-spec-kit/templates/manifest/`.
@@ -32,7 +38,9 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 - [ ] Confirm `_memory.continuity.packet_pointer` is slash-separated and relative to the specs track.
 - [ ] Confirm `description.json` and `graph-metadata.json` will be refreshed after authoring.
 
-## 4. STEPS
+---
+
+## 3. STEPS
 
 1. Decide the spec root, packet number, short name, phase child name, and documentation level.
 2. Scaffold from system-spec-kit templates or `create.sh` instead of freehanding the contract.
@@ -42,7 +50,9 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 6. Run strict validation and fix every warning as a failure.
 7. Record verification evidence in the implementation summary or handoff output.
 
-## 5. POST-CHECKS
+---
+
+## 4. POST-CHECKS
 
 - [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict`.
 - [ ] grep verification: `rg -n "ANCHOR:metadata|ANCHOR:summary|ANCHOR:notation|_memory:|packet_pointer" <path>`.
@@ -50,7 +60,9 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 - [ ] Cross-runtime mirror parity check if the spec folder changes command or agent mirrors.
 - [ ] Confirm the companion recipe was followed: `.opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md`.
 
-## 6. RELATED RESOURCES
+---
+
+## 5. RELATED RESOURCES
 
 - sk-doc templates and system-spec-kit/templates/manifest/ (source-of-truth for document contract rules)
 - Prior example: `<spec-folder>`

@@ -35,8 +35,8 @@ Phase lifecycle defines the gated progression from research through verification
 
 ### Key Sources
 
-- [code_surface_detection.md](./stack_detection.md)
-- [intent_classification.md](./smart_routing.md)
+- [stack_detection.md](./stack_detection.md) — surface detection and OPENCODE language sub-detection
+- [smart_routing.md](./smart_routing.md) — intent classification and resource maps
 
 ---
 
@@ -105,6 +105,5 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ## 7. RELATED RESOURCES
 
-- [code_surface_detection.md](./stack_detection.md)
-- [intent_classification.md](./smart_routing.md)
-- [resource_loading.md](./smart_routing.md)
+- [stack_detection.md](./stack_detection.md) — surface detection and OPENCODE language sub-detection
+- [smart_routing.md](./smart_routing.md) — intent classification, resource maps, and load tiers

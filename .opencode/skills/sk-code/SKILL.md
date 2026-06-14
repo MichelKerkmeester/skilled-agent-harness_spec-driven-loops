@@ -17,8 +17,6 @@ version: 3.3.1.0
 
 ## 1. WHEN TO USE
 
-> **🎯 Template customization surface.** This is the **only** skill end users should edit when adopting this template repo for their own project. Replace the shipped `references/{webflow,opencode,motion_dev}/` and `assets/{webflow,opencode,motion_dev}/` trees with your stack's references and assets. Update `STACK_FOLDERS` (§2) + `RESOURCE_MAP` to match. Every other skill (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `system-code-graph`, etc.) is codebase-agnostic and must stay that way to keep upstream pulls clean. See root [README §4 Customizing for Your Stack](../../../README.md#customizing-for-your-stack).
-
 Use this skill when doing code work in either supported surface:
 
 - **WEBFLOW**: Webflow / vanilla frontend work in HTML, CSS, and JavaScript, including Motion.dev runtime usage, GSAP, Lenis, HLS, Swiper, FilePond, CDN/minification, and browser verification.
@@ -43,6 +41,8 @@ Documentation-only edits to skill markdown route to `sk-doc`, even when the file
 | Phase 3: Verification | Run surface verification commands and record evidence | Required before any done/works claim |
 
 **Iron Law**: no completion claim without fresh verification evidence from the detected surface.
+
+**Baseline & blast-radius**: before Phase 1, capture the starting gate state (pass/fail counts + the names of failing tests, base commit) so Phase 3 reports the *delta*, not just a green — a green suite says nothing about a path it never ran. Open non-trivial work with a one-phrase blast-radius read ("low-blast, reversible" / "high-blast: touches auth + data") so effort matches stakes.
 
 ### Review Baseline Contract
 
@@ -119,6 +119,17 @@ fi
 
 For details: `references/stack_detection.md`.
 
+### UNKNOWN_FALLBACK Checklist
+
+Returned when no supported surface matches, when intent confidence is low (`max(intent_scores) < 0.5`), or when the user explicitly asks for stack-agnostic guidance. Ask for the missing routing inputs instead of guessing:
+
+- Confirm the active runtime surface — Webflow/frontend or `.opencode/` system code.
+- Confirm the task intent (implementation / debugging / verification / etc.).
+- Provide one concrete input, error, or expected output.
+- Confirm the verification command set before any completion claim.
+
+Do not load Go / Next.js / React Native / Swift resources — canonical `sk-code` owns only WEBFLOW + OPENCODE + MOTION_DEV. Full fallback logic: `references/smart_routing.md §8`.
+
 ### Phase Detection
 
 ```text
@@ -164,6 +175,16 @@ Ambiguous multi-language tasks load the top matching language references plus th
 - `references/opencode/`, `assets/opencode/`: OpenCode system-code language standards, shared patterns, hooks, alignment automation, and quality checklists.
 - `assets/webflow/scripts/`: Webflow build, minification, and runtime verification utilities.
 - `assets/scripts/`: Cross-surface helper scripts, including the OpenCode alignment verifier.
+
+### Resource Loading Levels
+
+Loading follows the canonical three levels; the finer `ALWAYS / SURFACE / INTENT / LANGUAGE / ON_DEMAND` tiers live in `references/smart_routing.md §3`.
+
+| Level | When to Load | Resources |
+| --- | --- | --- |
+| ALWAYS | Every sk-code invocation | `references/stack_detection.md`, `references/smart_routing.md`, `references/phase_detection.md`, and the `references/universal/` quality + error-recovery baseline |
+| CONDITIONAL | After surface + intent (and OPENCODE language) detection | the detected `references/<surface>/` + `assets/<surface>/` trees, the matching language standards, intent-mapped resources, the authoring checklists below, and `references/motion_dev/` for `MOTION_DEV` intent |
+| ON_DEMAND | Only on an explicit deep-dive request | extended checklists and niche references, plus the full `INTENT_MODEL` / `RESOURCE_MAP` in `references/smart_routing.md` |
 
 ### OpenCode Authoring Resources
 
