@@ -55,4 +55,4 @@ Command docs were aligned to shipped 027 runtime reality without restructuring c
 
 ### Follow-Ups
 
-- The structural command router/presentation split was intentionally deferred to the 011 command-presentation workflow separation phases.
+- The structural command router/presentation split was intentionally deferred to the 004/002 command-presentation workflow separation phases.

@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-14T07:20:50Z"
+    last_updated_at: "2026-06-14T09:38:25Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-14T07:20:50Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-14T09:38:25Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -39,29 +39,29 @@ _memory:
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
 > **Most recent live spec folder:** `004-shared-infrastructure/008-mcp-config-alignment-reelection-default`
-> **Oldest live spec folder:** `005-verification-and-remediation/001-finding-remediation/sandbox-test`
-> **Counts:** 159 live spec folders · 0 archived (`z_archive/`).
+> **Oldest live spec folder:** `000-release-cleanup/001-public-root-readme`
+> **Counts:** 160 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-14 09:09  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
- 2. 2026-06-14 09:09  004-shared-infrastructure
- 3. 2026-06-14 08:55  005-verification-and-remediation
- 4. 2026-06-14 08:55  003-advisor-and-codegraph
- 5. 2026-06-14 08:55  002-memory-store-and-search
- 6. 2026-06-14 08:55  001-research-and-doctrine
- 7. 2026-06-14 08:55  000-release-cleanup/000-spec-tree-consolidation
- 8. 2026-06-14 08:55  005-verification-and-remediation/004-residual-design-units
- 9. 2026-06-14 08:55  004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening
-10. 2026-06-14 08:55  005-verification-and-remediation/003-deep-research-remediation
-11. 2026-06-14 08:55  004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format
-12. 2026-06-14 08:55  004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research
-13. 2026-06-14 08:55  005-verification-and-remediation/002-tri-system-deep-research
-14. 2026-06-14 08:55  005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity
-15. 2026-06-14 08:55  005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency
+ 1. 2026-06-14 11:25  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
+ 2. 2026-06-14 11:25  005-verification-and-remediation
+ 3. 2026-06-14 11:25  004-shared-infrastructure
+ 4. 2026-06-14 11:25  003-advisor-and-codegraph
+ 5. 2026-06-14 11:25  002-memory-store-and-search
+ 6. 2026-06-14 11:25  001-research-and-doctrine
+ 7. 2026-06-14 11:25  004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening
+ 8. 2026-06-14 11:25  005-verification-and-remediation/001-finding-remediation
+ 9. 2026-06-14 11:25  002-memory-store-and-search/012-hybrid-search-scope-then-limit
+10. 2026-06-14 11:25  002-memory-store-and-search/011-vector-resilience-durability
+11. 2026-06-14 11:25  003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect
+12. 2026-06-14 11:25  002-memory-store-and-search/010-bm25-warmup-churn-reduction
+13. 2026-06-14 11:25  004-shared-infrastructure/004-cli-tooling-ux
+14. 2026-06-14 11:25  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph
+15. 2026-06-14 11:25  004-shared-infrastructure/003-storage-adapter-ports
 ```
 
 ---
@@ -73,12 +73,12 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-14 09:09 | 2026-06-14 | `004-shared-infrastructure/` |
-| 2 | 2026-06-14 08:55 | 2026-06-14 | `005-verification-and-remediation/` |
-| 3 | 2026-06-14 08:55 | 2026-06-14 | `003-advisor-and-codegraph/` |
-| 4 | 2026-06-14 08:55 | 2026-06-14 | `002-memory-store-and-search/` |
-| 5 | 2026-06-14 08:55 | 2026-06-14 | `001-research-and-doctrine/` |
-| 6 | 2026-06-14 08:55 | 2026-06-10 | `000-release-cleanup/` |
+| 1 | 2026-06-14 11:25 | 2026-06-14 | `005-verification-and-remediation/` |
+| 2 | 2026-06-14 11:25 | 2026-06-14 | `004-shared-infrastructure/` |
+| 3 | 2026-06-14 11:25 | 2026-06-14 | `003-advisor-and-codegraph/` |
+| 4 | 2026-06-14 11:25 | 2026-06-14 | `002-memory-store-and-search/` |
+| 5 | 2026-06-14 11:25 | 2026-06-14 | `001-research-and-doctrine/` |
+| 6 | 2026-06-14 10:48 | 2026-06-10 | `000-release-cleanup/` |
 
 > Note: `000-release-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
@@ -92,15 +92,39 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
-2026-06-14 09:09  born:2026-06-14  impl  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
-2026-06-14 09:09  born:2026-06-14        004-shared-infrastructure
-2026-06-14 08:55  born:2026-06-14        005-verification-and-remediation
-2026-06-14 08:55  born:2026-06-14        003-advisor-and-codegraph
-2026-06-14 08:55  born:2026-06-14        002-memory-store-and-search
-2026-06-14 08:55  born:2026-06-14        001-research-and-doctrine
-2026-06-14 08:55  born:2026-06-14  impl  000-release-cleanup/000-spec-tree-consolidation
+2026-06-14 11:25  born:2026-06-14  impl  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
+2026-06-14 11:25  born:2026-06-14        005-verification-and-remediation
+2026-06-14 11:25  born:2026-06-14        004-shared-infrastructure
+2026-06-14 11:25  born:2026-06-14        003-advisor-and-codegraph
+2026-06-14 11:25  born:2026-06-14        002-memory-store-and-search
+2026-06-14 11:25  born:2026-06-14        001-research-and-doctrine
+2026-06-14 11:25  born:2026-06-12  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening
+2026-06-14 11:25  born:2026-06-11        005-verification-and-remediation/001-finding-remediation
+2026-06-14 11:25  born:2026-06-11  impl  002-memory-store-and-search/012-hybrid-search-scope-then-limit
+2026-06-14 11:25  born:2026-06-11  impl  002-memory-store-and-search/011-vector-resilience-durability
+2026-06-14 11:25  born:2026-06-11  impl  003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect
+2026-06-14 11:25  born:2026-06-11  impl  002-memory-store-and-search/010-bm25-warmup-churn-reduction
+2026-06-14 11:25  born:2026-06-10        004-shared-infrastructure/004-cli-tooling-ux
+2026-06-14 11:25  born:2026-06-10        003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph
+2026-06-14 11:25  born:2026-06-10  impl  004-shared-infrastructure/003-storage-adapter-ports
+2026-06-14 11:25  born:2026-06-10  impl  002-memory-store-and-search/009-packed-bm25-field-weights
+2026-06-14 11:25  born:2026-06-10  impl  002-memory-store-and-search/008-vector-read-path-resilience
+2026-06-14 11:25  born:2026-06-10  impl  003-advisor-and-codegraph/001-causal-traversal-bfs
+2026-06-14 11:25  born:2026-06-10        004-shared-infrastructure/002-command-presentation-workflow-separation
+2026-06-14 11:25  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint
+2026-06-14 11:25  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates
+2026-06-14 11:25  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter
+2026-06-14 11:25  born:2026-06-06        001-research-and-doctrine/002-gem-team-adoption
+2026-06-14 11:25  born:2026-06-06        002-memory-store-and-search/002-memory-index-causal-lifecycle
+2026-06-14 11:25  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation
+2026-06-14 11:25  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter
+2026-06-14 11:25  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones
+2026-06-14 11:25  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation
+2026-06-14 11:25  born:??????????        005-verification-and-remediation/001-finding-remediation/sandbox-test
+2026-06-14 10:56  born:2026-06-14  impl  004-shared-infrastructure/009-code-graph-code-only-indexing
+2026-06-14 10:48  born:2026-06-14  impl  000-release-cleanup/000-spec-tree-consolidation
+2026-06-14 10:48  born:2026-06-10        000-release-cleanup
 2026-06-14 08:55  born:2026-06-13  impl  005-verification-and-remediation/004-residual-design-units
-2026-06-14 08:55  born:2026-06-12  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening
 2026-06-14 08:55  born:2026-06-12  impl  005-verification-and-remediation/003-deep-research-remediation
 2026-06-14 08:55  born:2026-06-12  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format
 2026-06-14 08:55  born:2026-06-12  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research
@@ -113,22 +137,16 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:55  born:2026-06-11  impl  005-verification-and-remediation/001-finding-remediation/003-search-and-triggers
 2026-06-14 08:55  born:2026-06-11  impl  005-verification-and-remediation/001-finding-remediation/002-causal-and-memo
 2026-06-14 08:55  born:2026-06-11  impl  005-verification-and-remediation/001-finding-remediation/001-write-safety-and-guards
-2026-06-14 08:55  born:2026-06-11        005-verification-and-remediation/001-finding-remediation
 2026-06-14 08:55  born:2026-06-11  impl  004-shared-infrastructure/007-ipc-client-cap-hardening
 2026-06-14 08:55  born:2026-06-11  impl  004-shared-infrastructure/006-code-mode-orphan-lifecycle
 2026-06-14 08:55  born:2026-06-11  impl  002-memory-store-and-search/014-idempotency-flag-on-correctness
 2026-06-14 08:55  born:2026-06-11  impl  002-memory-store-and-search/013-provenance-injection
 2026-06-14 08:55  born:2026-06-11  impl  004-shared-infrastructure/005-autonomous-dependency-patching
-2026-06-14 08:55  born:2026-06-11  impl  002-memory-store-and-search/012-hybrid-search-scope-then-limit
-2026-06-14 08:55  born:2026-06-11  impl  002-memory-store-and-search/011-vector-resilience-durability
-2026-06-14 08:55  born:2026-06-11  impl  003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect
-2026-06-14 08:55  born:2026-06-11  impl  002-memory-store-and-search/010-bm25-warmup-churn-reduction
 2026-06-14 08:55  born:2026-06-11  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors
-2026-06-14 08:55  born:2026-06-10        004-shared-infrastructure/004-cli-tooling-ux
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke
 2026-06-14 08:55  born:2026-06-10  impl  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver
 2026-06-14 08:55  born:2026-06-10  impl  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included
@@ -139,11 +157,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:55  born:2026-06-10  impl  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical
 2026-06-14 08:55  born:2026-06-10  impl  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard
 2026-06-14 08:55  born:2026-06-10  impl  003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability
-2026-06-14 08:55  born:2026-06-10        003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph
-2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/003-storage-adapter-ports
-2026-06-14 08:55  born:2026-06-10  impl  002-memory-store-and-search/009-packed-bm25-field-weights
-2026-06-14 08:55  born:2026-06-10  impl  002-memory-store-and-search/008-vector-read-path-resilience
-2026-06-14 08:55  born:2026-06-10  impl  003-advisor-and-codegraph/001-causal-traversal-bfs
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md
@@ -164,9 +177,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract
 2026-06-14 08:55  born:2026-06-10        004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands
-2026-06-14 08:55  born:2026-06-10        004-shared-infrastructure/002-command-presentation-workflow-separation
 2026-06-14 08:55  born:2026-06-10  impl  004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup
-2026-06-14 08:55  born:2026-06-10        000-release-cleanup
 2026-06-14 08:55  born:2026-06-08  impl  002-memory-store-and-search/007-openltm-continuity-resilience
 2026-06-14 08:55  born:2026-06-08  impl  002-memory-store-and-search/006-openltm-retrieval-observability
 2026-06-14 08:55  born:2026-06-06  impl  004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration
@@ -189,10 +200,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:55  born:2026-06-06  impl  001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate
 2026-06-14 08:55  born:2026-06-06  impl  001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate
 2026-06-14 08:55  born:2026-06-06  impl  001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline
-2026-06-14 08:55  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint
-2026-06-14 08:55  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates
-2026-06-14 08:55  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter
-2026-06-14 08:55  born:2026-06-06        001-research-and-doctrine/002-gem-team-adoption
 2026-06-14 08:55  born:2026-06-06  impl  002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership
 2026-06-14 08:55  born:2026-06-06  impl  002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion
 2026-06-14 08:55  born:2026-06-06  impl  002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe
@@ -202,16 +209,11 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:55  born:2026-06-06  impl  004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research
 2026-06-14 08:55  born:2026-06-06        004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli
 2026-06-14 08:55  born:2026-06-06        004-shared-infrastructure/001-mcp-to-cli-tool-transition
-2026-06-14 08:55  born:2026-06-06        002-memory-store-and-search/002-memory-index-causal-lifecycle
 2026-06-14 08:55  born:2026-06-02  impl  001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review
 2026-06-14 08:55  born:2026-06-02  impl  001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline
 2026-06-14 08:55  born:2026-06-02  impl  001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates
 2026-06-14 08:55  born:2026-06-02        001-research-and-doctrine/001-peck-teachings-adoption
 2026-06-14 08:55  born:2026-06-02  impl  001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit
-2026-06-14 08:55  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation
-2026-06-14 08:55  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter
-2026-06-14 08:55  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones
-2026-06-14 08:55  born:2026-05-13  impl  002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation
 2026-06-14 08:55  born:2026-05-12  impl  002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration
 2026-06-14 08:55  born:2026-05-12  impl  002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer
 2026-06-14 08:55  born:2026-05-12  impl  002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer
@@ -250,7 +252,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/003-skill-feature-catalog
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/002-skill-docs-alignment
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/001-public-root-readme
-??????????       born:??????????        005-verification-and-remediation/001-finding-remediation/sandbox-test
 ```
 
 ---
@@ -277,14 +278,38 @@ changelogs the rollup covers). Links resolve relative to this file.
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
 | `004-shared-infrastructure/008-mcp-config-alignment-reelection-default` | impl | (none) |
-| `004-shared-infrastructure` |  | (none) |
 | `005-verification-and-remediation` |  | (none) |
+| `004-shared-infrastructure` |  | (none) |
 | `003-advisor-and-codegraph` |  | (none) |
 | `002-memory-store-and-search` |  | (none) |
 | `001-research-and-doctrine` |  | (none) |
-| `000-release-cleanup/000-spec-tree-consolidation` | impl | (none) |
-| `005-verification-and-remediation/004-residual-design-units` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | (none) |
+| `005-verification-and-remediation/001-finding-remediation` |  | (none) |
+| `002-memory-store-and-search/012-hybrid-search-scope-then-limit` | impl | (none) |
+| `002-memory-store-and-search/011-vector-resilience-durability` | impl | (none) |
+| `003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` | impl | (none) |
+| `002-memory-store-and-search/010-bm25-warmup-churn-reduction` | impl | (none) |
+| `004-shared-infrastructure/004-cli-tooling-ux` |  | (none) |
+| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` |  | (none) |
+| `004-shared-infrastructure/003-storage-adapter-ports` | impl | (none) |
+| `002-memory-store-and-search/009-packed-bm25-field-weights` | impl | (none) |
+| `002-memory-store-and-search/008-vector-read-path-resilience` | impl | (none) |
+| `003-advisor-and-codegraph/001-causal-traversal-bfs` | impl | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation` |  | (none) |
+| `001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` | impl | (none) |
+| `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | (none) |
+| `001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter` | impl | (none) |
+| `001-research-and-doctrine/002-gem-team-adoption` |  | (none) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle` |  | (none) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation` | impl | (none) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter` | impl | (none) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` | impl | (none) |
+| `002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | (none) |
+| `005-verification-and-remediation/001-finding-remediation/sandbox-test` |  | (none) |
+| `004-shared-infrastructure/009-code-graph-code-only-indexing` | impl | (none) |
+| `000-release-cleanup/000-spec-tree-consolidation` | impl | (none) |
+| `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
+| `005-verification-and-remediation/004-residual-design-units` | impl | (none) |
 | `005-verification-and-remediation/003-deep-research-remediation` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research` | impl | (none) |
@@ -297,22 +322,16 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `005-verification-and-remediation/001-finding-remediation/003-search-and-triggers` | impl | (none) |
 | `005-verification-and-remediation/001-finding-remediation/002-causal-and-memo` | impl | (none) |
 | `005-verification-and-remediation/001-finding-remediation/001-write-safety-and-guards` | impl | (none) |
-| `005-verification-and-remediation/001-finding-remediation` |  | (none) |
 | `004-shared-infrastructure/007-ipc-client-cap-hardening` | impl | (none) |
 | `004-shared-infrastructure/006-code-mode-orphan-lifecycle` | impl | (none) |
 | `002-memory-store-and-search/014-idempotency-flag-on-correctness` | impl | (none) |
 | `002-memory-store-and-search/013-provenance-injection` | impl | (none) |
 | `004-shared-infrastructure/005-autonomous-dependency-patching` | impl | (none) |
-| `002-memory-store-and-search/012-hybrid-search-scope-then-limit` | impl | (none) |
-| `002-memory-store-and-search/011-vector-resilience-durability` | impl | (none) |
-| `003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` | impl | (none) |
-| `002-memory-store-and-search/010-bm25-warmup-churn-reduction` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` | impl | (none) |
 | `004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion` | impl | (none) |
 | `004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` | impl | (none) |
 | `004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs` | impl | (none) |
 | `004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors` | impl | (none) |
-| `004-shared-infrastructure/004-cli-tooling-ux` |  | (none) |
 | `004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke` | impl | (none) |
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` | impl | (none) |
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` | impl | (none) |
@@ -323,11 +342,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` | impl | (none) |
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | (none) |
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | (none) |
-| `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` |  | (none) |
-| `004-shared-infrastructure/003-storage-adapter-ports` | impl | (none) |
-| `002-memory-store-and-search/009-packed-bm25-field-weights` | impl | (none) |
-| `002-memory-store-and-search/008-vector-read-path-resilience` | impl | (none) |
-| `003-advisor-and-codegraph/001-causal-traversal-bfs` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md` | impl | (none) |
@@ -348,9 +362,7 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` | impl | (none) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands` |  | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation` |  | (none) |
 | `004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup` | impl | (none) |
-| `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
 | `002-memory-store-and-search/007-openltm-continuity-resilience` | impl | (none) |
 | `002-memory-store-and-search/006-openltm-retrieval-observability` | impl | (none) |
 | `004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration` | impl | (none) |
@@ -373,10 +385,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate` | impl | (none) |
 | `001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` | impl | (none) |
 | `001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline` | impl | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` | impl | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter` | impl | (none) |
-| `001-research-and-doctrine/002-gem-team-adoption` |  | (none) |
 | `002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership` | impl | (none) |
 | `002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion` | impl | (none) |
 | `002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe` | impl | (none) |
@@ -386,16 +394,11 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research` | impl | (none) |
 | `004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli` |  | (none) |
 | `004-shared-infrastructure/001-mcp-to-cli-tool-transition` |  | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle` |  | (none) |
 | `001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review` | impl | (none) |
 | `001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline` | impl | (none) |
 | `001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates` | impl | (none) |
 | `001-research-and-doctrine/001-peck-teachings-adoption` |  | (none) |
 | `001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` | impl | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation` | impl | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter` | impl | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` | impl | (none) |
-| `002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | (none) |
 | `002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration` | impl | (none) |
 | `002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` | impl | (none) |
 | `002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer` | impl | (none) |
@@ -434,5 +437,4 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-cleanup/003-skill-feature-catalog` | impl | [changelog-000-003-skill-feature-catalog.md](./changelog/000-release-cleanup/changelog-000-003-skill-feature-catalog.md) |
 | `000-release-cleanup/002-skill-docs-alignment` | impl | [changelog-000-002-skill-docs-alignment.md](./changelog/000-release-cleanup/changelog-000-002-skill-docs-alignment.md) |
 | `000-release-cleanup/001-public-root-readme` | impl | [changelog-000-001-public-root-readme.md](./changelog/000-release-cleanup/changelog-000-001-public-root-readme.md) |
-| `005-verification-and-remediation/001-finding-remediation/sandbox-test` |  | (none) |
 
