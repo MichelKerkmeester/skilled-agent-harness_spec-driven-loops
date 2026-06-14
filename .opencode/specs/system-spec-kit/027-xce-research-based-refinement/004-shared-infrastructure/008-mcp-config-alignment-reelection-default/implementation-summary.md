@@ -67,7 +67,7 @@ Parallel exploration mapped the four configs, the single flag read site, and the
 
 - One atomic commit, not two: the code-default flip and the config-entry removal are interdependent (dropping the config entry is only safe because the code default is now on), so splitting them would create a revert hazard.
 - Notes trimmed, not stripped (user follow-up): an initial "remove all" pass was too aggressive; only the drift-prone trivia (per-server token-budget estimates + full tool-list dumps) was removed, and the ~17 operational and reference notes were restored, canonicalised to "Node", and aligned 1:1.
-- `mk_code_index` INDEX_* committed defaults kept at `false`: this matches the parent commit, git history, and the config's own `_NOTE_3_INDEX_DEFAULTS` note ("committed defaults are false, end-user safe"); the working tree's uncommitted `INDEX=true` is a maintainer-mode override that belongs in the gitignored `.env.local`.
+- `mk_code_index` INDEX_* committed defaults kept at `false`: this matches the parent commit, git history, and the config's own `_NOTE_INDEX_DEFAULTS` note ("committed defaults are false, end-user safe"); the working tree's uncommitted `INDEX=true` is a maintainer-mode override that belongs in the gitignored `.env.local`.
 - `SPECKIT_ADVISOR_DOC_TRIGGERS` aligned up, not down: its (removed) note said "enabled for this repo," so propagating it to all four configs matches intent; it is a dampened derived-lane signal, low-risk to enable in Claude/opencode too.
 - Embeddings untouched: Ollama is already preferred via `EMBEDDINGS_PROVIDER=auto`; `HF_EMBED_SERVER_URL` is only the shared hf-local fallback socket, and removing it would break the shared-socket model between mk-spec-memory and mk_skill_advisor.
 

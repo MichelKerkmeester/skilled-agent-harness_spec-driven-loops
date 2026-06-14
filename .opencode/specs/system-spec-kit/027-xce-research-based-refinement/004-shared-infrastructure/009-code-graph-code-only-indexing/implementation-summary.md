@@ -100,7 +100,7 @@ A 5-iteration deep review (`review/review-report.md`) found 4 P1 + 4 P2, all ver
 - **F4 (P1) — FIXED:** added daemon-path `MK_` coverage in `advisor-recommend.vitest.ts`; also corrected a pre-existing red the review missed — `rename-invariants.vitest.ts:65` still asserted the legacy config var after the rename.
 - **F5 (P2) — FIXED:** stale re-election comment in `bin/mk-spec-memory-launcher.cjs` updated to "(on by default)".
 - **F6 (P2) — FIXED:** doc-matrix fixture in `code-graph-indexer.vitest.ts` now uses real plural `agents`/`commands` paths, genuinely exercising the opt-in scope.
-- **F7 (P2) — FIXED:** `_NOTE_3_INDEX_DEFAULTS` in `opencode.json` / `.claude/mcp.json` / `.codex/config.toml` now documents `true` (all 5) or a comma subset such as `skills,plugins`; text byte-identical across all three.
+- **F7 (P2) — FIXED:** `_NOTE_INDEX_DEFAULTS` in `opencode.json` / `.claude/mcp.json` / `.codex/config.toml` now documents `true` (all 5) or a comma subset such as `skills,plugins`; text byte-identical across all three.
 - **F8 (P2) — ASSESSED, NO CHANGE:** `.vscode/mcp.json` is the standard VS Code MCP config target, intentionally wired into `.gitattributes` and `scripts/setup-maintainer-filters.sh`; it is absent here only because this maintainer doesn't run the VS Code runtime (`README.md` documents "only the runtime you use needs to exist"). Not a false claim — editing it would desync the README from `.gitattributes`/the setup script.
 
 <!-- /ANCHOR:post-review-remediation -->

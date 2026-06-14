@@ -76,7 +76,7 @@ _memory:
 - [x] T013 F4 Daemon-path `MK_` test + fix stale `rename-invariants.vitest.ts:65` legacy assertion
 - [x] T014 F5 Re-election comment "(on by default)" (`bin/mk-spec-memory-launcher.cjs`)
 - [x] T015 F6 Doc-matrix fixture real plural `agents`/`commands` paths (`tests/code-graph-indexer.vitest.ts`)
-- [x] T016 F7 `_NOTE_3_INDEX_DEFAULTS` selectable-subset note, identical across the 3 configs
+- [x] T016 F7 `_NOTE_INDEX_DEFAULTS` selectable-subset note, identical across the 3 configs
 - [x] T017 F8 Assessed `.vscode/mcp.json` — legitimate VS Code config target, no change
 
 <!-- /ANCHOR:phase-4 -->
