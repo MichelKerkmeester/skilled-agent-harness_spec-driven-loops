@@ -1,0 +1,15 @@
+You are an adversarial deep-review worker (iteration 2 of up to 10). RED-TEAM the diff at /tmp/010-fix.diff. Read it and the surrounding source (read-only):
+- .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment + the save/scan call sites)
+- .opencode/skills/system-spec-kit/mcp_server/context-server.ts (startupScan loop)
+
+CONTEXT: Same fix as iter 1 — a defeated background-enrichment concurrency cap (counter bumped inside the deferred callback) let a burst pile up unbounded setImmediate work that starved the event loop. Fix: `start(task)` increments THEN setImmediate; `finally` decrements + re-arms via `start`; scan loop yields every 50 files.
+
+ITERATION 1 ALREADY VERIFIED SOUND (do NOT re-derive these — find what iter 1 MISSED): slot-accounting (1:1 inc/dec, cap holds under burst, queue drains, re-arm net-zero), event-loop yielding (setImmediate→next check phase), enrichment-result/backfill regression, and the three early-return error paths. Iter 1 raised only two non-blocking P2s (residual sync-CPU latency; bare setImmediate not unref'd, pre-existing).
+
+YOUR JOB — attack from DIFFERENT angles iter 1 did not cover:
+1. QUEUE MEMORY / RETENTION: `backgroundEnrichmentQueue` is capped in CONCURRENCY but UNBOUNDED in SIZE. A startup scan over ~11,000 files can enqueue thousands of `run` closures, each retaining `memoryId` and `parsed` (the full parsed memory file). Does the fix introduce or worsen sustained heap retention vs the pre-fix behavior (where everything was scheduled immediately, not queued)? Is `parsed` large? Could a huge backlog OOM or bloat RSS? Is bounding the queue or storing less per entry warranted?
+2. DAEMON RECYCLE / REAP INTERACTION: the 009 supervisor can SIGTERM/SIGKILL-reap this daemon. If a recycle/dispose happens with a large enrichment queue in flight, what happens? Lost enrichment recovered by the pending-marker backfill? Any half-written state, or a write after the DB handle is recycled (the run re-resolves `requireDb()` — verify that fully covers a mid-flight recycle)?
+3. ORDERING / FAIRNESS / STARVATION: does FIFO queue + cap ever starve a specific row indefinitely? Does the scan-yield's interaction with the enrichment check-phase drain cause any ordering surprise (e.g. enrichment for late files never running because the process exits first)?
+4. THE MAGIC NUMBER 50: is the yield interval defensible? Too large (still long stalls between yields under heavy per-file work)? Too small (overhead)? Any boundary bug (e.g. allFiles.length < 50 → never yields — is that fine)?
+
+OUTPUT (strict): findings list. Each: SEVERITY (P0/P1/P2), file:line, concrete failure scenario, minimal fix, confidence. Mark each finding NEW or matches-iter1. If a probed angle is sound, say so + evidence. Default to skepticism. No preamble.

@@ -1528,6 +1528,12 @@ async function startupScan(basePath: string): Promise<void> {
         const message = error instanceof Error ? error.message : String(error);
         console.error(`[context-server] Failed to index ${path.basename(filePath)}: ${message}`);
       }
+      // Yield to the poll phase periodically. indexSingleFile is mostly synchronous better-sqlite3
+      // work, so a large scan would otherwise drain as one uninterrupted microtask run and starve the
+      // IPC accept() loop for the scan's full duration. setImmediate hands control back between batches.
+      if ((indexed + updated + unchanged + failed) % 50 === 0) {
+        await new Promise<void>((resolve) => setImmediate(resolve));
+      }
     }
 
     if (indexed > 0 || updated > 0) {

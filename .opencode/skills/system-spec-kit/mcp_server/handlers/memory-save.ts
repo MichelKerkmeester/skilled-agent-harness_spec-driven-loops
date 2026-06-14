@@ -2922,7 +2922,8 @@ const backgroundEnrichmentQueue: Array<() => void> = [];
 
 /**
  * Run post-insert enrichment for a just-saved row in the background, bounded and crash-safe:
- * - re-resolves the DB handle at run time (the save-time handle may have been recycled),
+ * - re-resolves the DB handle when the run starts (covers a recycle before the run begins; a recycle
+ *   mid-run throws on the post-await write and the row falls back to the pending-marker backfill),
  * - skips rows that were superseded/deprecated before the deferred run starts, so it never
  *   repopulates purged entity/graph data for an inactive row,
  * - caps concurrency. The row was marked enrichment-pending inside the commit transaction, so a
@@ -2932,8 +2933,18 @@ function scheduleBackgroundEnrichment(
   memoryId: number,
   parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
 ): void {
-  const run = (): void => {
+  // Reserve a slot and schedule on a macrotask. The counter MUST be incremented here, at schedule
+  // time — not inside the deferred callback. If it were bumped inside the callback, a burst (a startup
+  // scan calling this once per row) would race: every call reads the still-zero counter before any
+  // callback runs, all pass the cap, and unbounded setImmediate callbacks pile up that then drain as a
+  // synchronous microtask chain and starve the event loop, so the daemon's IPC accept() never runs.
+  // Re-arming dequeued work through setImmediate (rather than calling it inline from the finally)
+  // returns control to the poll phase between runs.
+  const start = (task: () => void): void => {
     activeBackgroundEnrichments++;
+    setImmediate(task);
+  };
+  const run = (): void => {
     void (async () => {
       try {
         let db: ReturnType<typeof requireDb>;
@@ -2956,12 +2967,12 @@ function scheduleBackgroundEnrichment(
       } finally {
         activeBackgroundEnrichments--;
         const next = backgroundEnrichmentQueue.shift();
-        if (next) next();
+        if (next) start(next);
       }
     })();
   };
   if (activeBackgroundEnrichments < MAX_BACKGROUND_ENRICHMENTS) {
-    setImmediate(run);
+    start(run);
   } else {
     backgroundEnrichmentQueue.push(run);
   }

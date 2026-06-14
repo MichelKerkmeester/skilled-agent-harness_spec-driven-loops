@@ -1,0 +1,24 @@
+{
+  "specFolder": "010-background-enrichment-concurrency-cap",
+  "description": "Bound the background-enrichment scheduler so a save or startup-scan burst cannot starve the daemon event loop",
+  "keywords": [
+    "bound",
+    "background-enrichment",
+    "scheduler",
+    "save",
+    "startup-scan",
+    "burst",
+    "cannot",
+    "starve",
+    "daemon",
+    "event",
+    "loop"
+  ],
+  "lastUpdated": "2026-06-14T18:42:07.561Z",
+  "specId": "010",
+  "folderSlug": "background-enrichment-concurrency-cap",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
