@@ -5,8 +5,12 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/001-terminal-control-and-integration-research",
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/002-mcp-open-design-skill-build",
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/003-sk-interface-design-evolution",
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/004-validation-and-docs",
     "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/005-sk-interface-design-variation-diversity",
-    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/006-sk-prompt-design-tool-usecases"
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/006-sk-prompt-design-tool-usecases",
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/007-mcp-open-design-generation-flow-correction"
   ],
   "manual": {
     "depends_on": [],
@@ -35,13 +39,13 @@
       "spec.md"
     ],
     "entities": [],
-    "causal_summary": "The installed Open Design desktop app holds rich local-first design systems but is only reachable through its in-app chat UI. Phase 001 researched its terminal/MCP/CLI surface and designed two skills. Phase 002 builds the mcp-open-design skill to drive the app from the terminal (modeled on mcp-magicpath). Phase 003 de-vendors sk-interface-design from the MIT ui-ux-pro-max repo (data first, then notices, keeping the Apache-2.0 base) and integrates it with mcp-open-design so it reads live local sources. Phase 004 live-wires the install and validates. Phase 005 adds seed-of-thought variation-diversity logic to sk-interface-design (v1.2.0). Phase 006 adds design-generation prompt patterns to sk-prompt (v2.2.0) for the magicpath and open-design usecases.",
+    "causal_summary": "The installed Open Design desktop app holds rich local-first design systems but is only reachable through its in-app chat UI. Phase 001 researched its terminal/MCP/CLI surface and designed two skills. Phase 002 built the mcp-open-design skill to drive the app from the terminal (modeled on mcp-magicpath). Phase 003 de-vendored sk-interface-design from the MIT ui-ux-pro-max repo (data first, then notices, keeping the Apache-2.0 base) and integrated it with mcp-open-design so it reads live local sources. Phase 004 live-verified the surface (a real design rendered, od artifacts create only adds a file) and ran a 10-seat deep review with all findings remediated. Phase 005 added seed-of-thought variation-diversity logic to sk-interface-design (v1.2.0). Phase 006 added design-generation prompt patterns to sk-prompt (v2.2.0) for the magicpath and open-design usecases. Phase 007 corrected mcp-open-design (v1.1.0) to the live-verified reality: multi-turn generation via start_run plus a discovery form, gated verbs, and an HTTP API whose port rotates.",
     "created_at": "2026-06-14T12:30:00Z",
-    "last_save_at": "2026-06-14T13:00:00Z",
-    "last_updated_at": "2026-06-14T13:00:00Z",
+    "last_save_at": "2026-06-14T16:40:00Z",
+    "last_updated_at": "2026-06-14T16:40:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/006-sk-prompt-design-tool-usecases",
-    "last_active_at": "2026-06-14T13:00:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/007-mcp-open-design-generation-flow-correction",
+    "last_active_at": "2026-06-14T16:40:00Z"
   }
 }

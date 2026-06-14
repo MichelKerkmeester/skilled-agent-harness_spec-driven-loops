@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/003-sk-interface-design-evolution",
+  "description": "Feature Specification: sk-interface-design evolution",
+  "keywords": [
+    "sk-interface-design",
+    "de-vendor",
+    "ui-ux-pro-max",
+    "apache-2.0",
+    "open design integration",
+    "phase"
+  ],
+  "lastUpdated": "2026-06-14T16:30:00Z",
+  "specId": "003",
+  "folderSlug": "sk-interface-design-evolution",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "150-open-design-terminal-and-interface-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
