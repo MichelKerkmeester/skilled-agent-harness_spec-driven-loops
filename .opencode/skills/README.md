@@ -69,6 +69,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`mcp-click-up`](mcp-click-up/README.md) | Manage ClickUp tasks from your agent or terminal |
 | [`mcp-code-mode`](mcp-code-mode/README.md) | Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json` |
 | [`mcp-open-design`](mcp-open-design/README.md) | Drive the installed Open Design desktop app from the terminal: read and reuse local design systems and commission gated generation runs, via the `od` CLI and MCP |
+| [`mcp-figma`](mcp-figma/README.md) | Drive Figma Desktop from the terminal to read, author, modify, and export designs, tokens, and components, with an optional Figma MCP via Code Mode |
 
 ### sk-*: Code, Docs, Git and Prompts
 

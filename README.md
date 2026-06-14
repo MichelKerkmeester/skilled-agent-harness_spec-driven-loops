@@ -874,7 +874,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 
 ### 🎯 Skills Library
 
-23 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+24 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -973,6 +973,10 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **mcp-open-design**
 - **Drive the installed Open Design desktop app from the terminal.** Reads and reuses local design systems (tokens, components) and commissions gated, multi-turn generation runs through the `od` CLI and a stdio MCP server, instead of the in-app chat
 - **Local-first and gated:** a socket-discovered daemon on a rotating port, read-only inspection that surfaces freely, and STOP-and-confirm mutating verbs (`start_run`, then the discovery-form answer that fires the build). Pairs with `sk-interface-design` for the design judgment
+
+**mcp-figma**
+- **Drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context
+- **CLI-primary and gated:** a local daemon brokers every command, read-only inspection and exports are free, and authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Pairs with `sk-interface-design` for the design judgment
 
 &nbsp;
 #### OTHER
@@ -1321,6 +1325,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
 | `mcp-open-design`                                   | ✅ Codebase-agnostic                        | Drives the installed Open Design desktop app from the terminal (read and reuse design systems, gated generation runs) via the `od` CLI + MCP. Requires the Open Design desktop app installed. Stack-independent. |
+| `mcp-figma`                                         | ✅ Codebase-agnostic                        | Drives Figma Desktop from the terminal (read, author, export designs, tokens, components) via the silships `figma-ds-cli`, with an optional Figma MCP. Requires Figma Desktop open. Stack-independent.   |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
@@ -1461,7 +1466,7 @@ After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` sh
 
 ## 5. FAQ
 
-**Q: Do I need all 23 skills installed to use the framework?**
+**Q: Do I need all 24 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core documentation skills - `system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional local tooling or API keys depending on the surface.
 &nbsp;
@@ -1541,4 +1546,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.16 | Last updated: 2026-06-12 | Framework: 12 agents, 23 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.16 | Last updated: 2026-06-14 | Framework: 12 agents, 24 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
