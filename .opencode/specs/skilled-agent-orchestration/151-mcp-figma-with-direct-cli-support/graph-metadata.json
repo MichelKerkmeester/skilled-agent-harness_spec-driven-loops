@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support",
+  "spec_folder": "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/001-figma-cli-and-mcp-research",
+    "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/002-skill-build-and-registration"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration",
+      "skilled-agent-orchestration/147-mcp-magicpath"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-figma skill",
+      "figma terminal control",
+      "figma-ds-cli direct cli support"
+    ],
+    "key_topics": [
+      "mcp-figma",
+      "figma-ds-cli",
+      "figma terminal control",
+      "figma mcp via code mode",
+      "phase parent"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [],
+    "causal_summary": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI. Phase 001 ran a 5-iteration gpt-5.5-fast deep research into the silships figma-cli capabilities, the Figma MCP landscape, the skill architecture, and the install plus safety path. Phase 002 built the mcp-figma skill on the silships figma-cli (published to npm as figma-ds-cli; the npm package literally named figma-cli is an unrelated tool, never installed), authored the install and safety scripts, registered the skill graph and reciprocal sibling edges, and live-installed figma-ds-cli 1.2.0 from the repo build (npm publishes only a minimal 1.0.0) plus confirmed the Code Mode figma manual exposes get_figma_data and download_figma_images.",
+    "created_at": "2026-06-14T17:00:00Z",
+    "last_save_at": "2026-06-14T17:00:00Z",
+    "last_updated_at": "2026-06-14T17:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "last_active_child_id": "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/002-skill-build-and-registration",
+    "last_active_at": "2026-06-14T17:00:00Z"
+  }
+}

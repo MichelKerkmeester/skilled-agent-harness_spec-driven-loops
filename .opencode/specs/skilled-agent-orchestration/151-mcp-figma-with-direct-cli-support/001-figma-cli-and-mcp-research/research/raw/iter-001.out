@@ -1,0 +1,256 @@
+I’ll keep this strictly read-only and verify against upstream sources, starting with the requested raw docs plus the repository tree/package metadata.
+The requested `AGENTS.md` fetch returned 404; the repository tree confirms no root `AGENTS.md` is checked in. I’m using `CLAUDE.md`, `REFERENCE.md`, `package.json`, the repo tree, and selected source/docs to fill gaps and verify the command surface.
+I found the daemon is not a Unix socket: source shows an HTTP server on `127.0.0.1` with a default port and token header, plus a WebSocket path for the safe-mode plugin bridge. Next I’m checking the command registration and generated-agent files from source.
+To avoid missing source-only commands, I’m doing a read-only remote source scan of `src/commands/*.js` and selected files for Commander registrations and MCP references.
+The remote scan found no `mcp` or “Model Context Protocol” references in README, REFERENCE, CLAUDE, package metadata, docs, source, or plugin files. That points to no bundled figma-cli MCP server; I’m checking design-system format details before writing the final synthesis.
+## IT1 — figma-cli capabilities
+
+### Install & prerequisites
+
+| Item | Finding |
+|---|---|
+| Primary package name | Repo `package.json` names the package `figma-ds-cli`, version `1.2.0`, with binaries `figma-ds-cli` and `figma-cli` both resolving to `src/index.js`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/package.json |
+| Public npm status | npm registry currently reports `figma-ds-cli@1.0.0`, whose `bin` only exposes `figma-ds-cli`, not `figma-cli`. This conflicts with repo `main` and the repo changelog claim that `npx figma-ds-cli` installs both binaries. Sources: https://registry.npmjs.org/figma-ds-cli/latest, https://raw.githubusercontent.com/silships/figma-cli/main/CHANGELOG.md |
+| Practical install path | Repo README pushes users to download/clone `github.com/silships/figma-cli`, run setup from the project, and let Claude/Cursor run `npm install` and connect. npm page says `npm install -g figma-ds-cli` and `npx figma-ds-cli`, but that appears older than repo `main`. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/README.md, https://www.npmjs.com/package/figma-ds-cli |
+| PATH command | From repo `main`, `figma-cli` resolves to `src/index.js`; from current npm latest, only `figma-ds-cli` is guaranteed. Source: https://raw.githubusercontent.com/silships/figma-cli/main/package.json |
+| Node version | `engines.node` is `>=18`; setup code also exits if Node major is below 18. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/package.json, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/setup.js |
+| Figma prerequisite | Requires Figma Desktop, open with a Figma file. README says no API key and local Desktop control. npm page says Figma Desktop with a free account works. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/README.md, https://www.npmjs.com/package/figma-ds-cli |
+| OS/platform | Architecture doc says “macOS only (for now)”; npm page says macOS, Windows/Linux coming. Source code contains platform helpers for macOS, Windows, and Linux paths/commands, but the docs still treat macOS as the supported path. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/docs/ARCHITECTURE.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/platform.js |
+| Requested fetch failures | `https://raw.githubusercontent.com/silships/figma-cli/main/AGENTS.md` returned 404. Repo tree confirms no root `AGENTS.md`; `init-agent` generates one for consuming projects. Source tree: https://api.github.com/repos/silships/figma-cli/git/trees/main?recursive=1 |
+
+### Connection modes (yolo vs safe) + daemon lifecycle
+
+| Area | Finding |
+|---|---|
+| Yolo command | `figma-cli connect` uses Yolo Mode. It patches Figma Desktop, restarts Figma with remote debugging, waits for CDP, then starts the speed daemon. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/README.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/setup.js |
+| Safe command | `figma-cli connect --safe` starts the daemon in plugin mode, does not patch Figma, and instructs the user to import `plugin/manifest.json` once, then open `Plugins → Development → FigCli` each session. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/setup.js |
+| Yolo patch mechanics | Patch reads Figma’s `app.asar`, replaces `removeSwitch("remote-debugging-port")` with `removeSwitch("remote-debugXing-port")`, and on macOS attempts `codesign --force --deep --sign - /Applications/Figma.app`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/figma-patch.js |
+| Revert command | `figma-cli unpatch` restores the original string and updates local config; source description: “Restore Figma to original state (removes remote debugging patch).” Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/setup.js |
+| CDP port | Yolo uses Chrome DevTools Protocol on fixed port `9222`; source says this is fixed for `figma-use` compatibility. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/docs/ARCHITECTURE.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/figma-patch.js |
+| Daemon transport | The daemon is an HTTP server on `127.0.0.1`, default port `3456`, not a Unix socket. It exposes `/health`, `/exec`, `/reconnect`, and WebSocket `/plugin` for safe-mode plugin connections. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/daemon.js |
+| Daemon security | Requires `X-Daemon-Token`, validates host as `localhost` or `127.0.0.1`, blocks CORS preflight, and stores token at `~/.figma-ds-cli/.daemon-token`. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/src/daemon.js, https://raw.githubusercontent.com/silships/figma-cli/main/src/lib/cli-core.js |
+| Daemon PID/model | PID file is `~/.figma-cli-daemon.pid`; daemon is spawned detached via Node. It does not survive OS reboot as a process, but CLI can restart it if prior setup state exists. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/lib/cli-core.js |
+| Idle lifecycle | Code default idle timeout is `60 * 60 * 1000` ms, i.e. 60 minutes. The header comment says 10 minutes, but executable code uses 60 minutes. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/daemon.js |
+| Safe plugin discovery | Plugin UI scans ports `3456` through `3460` and connects to `ws://127.0.0.1:<port>/plugin`; daemon default is `3456`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/plugin/ui.html |
+| Daemon commands | `figma-cli daemon status [--debug]`, `daemon start [--force]`, `daemon stop`, `daemon restart`, `daemon reconnect`, `daemon diagnose`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md |
+
+### Command surface (grouped; tag each READ-ONLY / MUTATING / DESTRUCTIVE)
+
+Tags mean: `READ-ONLY` reads Figma/local state or writes export files without changing the Figma document; `MUTATING` changes the Figma document or local tool config/app/plugin state; `DESTRUCTIVE` deletes Figma document content, variables, collections, or removes installed/local resources.
+
+| Group | Command | Tag | Purpose / key flags |
+|---|---|---:|---|
+| Setup | `figma-cli` | MUTATING | First-run wizard: checks Node, patches Figma if needed, starts Figma. |
+| Setup | `init` / `setup` | MUTATING | Interactive setup; `setup` aliases `init`. |
+| Setup | `status` | READ-ONLY | Checks CDP and daemon status. |
+| Setup | `connect [--safe]` | MUTATING | Starts Yolo CDP mode or Safe plugin mode. |
+| Setup | `unpatch` | MUTATING | Restores Figma `app.asar` patch. |
+| Setup | `diagnose` | READ-ONLY | Checks system compatibility and connection status. |
+| Daemon | `daemon status [--debug]` | READ-ONLY | Daemon health/token diagnostics. |
+| Daemon | `daemon diagnose` | READ-ONLY | Full daemon troubleshooting. |
+| Daemon | `daemon start [--force]` | MUTATING | Starts daemon and generates token. |
+| Daemon | `daemon stop` | MUTATING | Stops daemon. |
+| Daemon | `daemon restart` | MUTATING | Restarts daemon and regenerates token. |
+| Daemon | `daemon reconnect` | MUTATING | Reconnects daemon to Figma. |
+| Agent setup | `init-agent [--tool claude|cursor|both] [--force]` | MUTATING | Writes `.cursor/rules/figma-cli.mdc` and/or `AGENTS.md` in the current project. |
+| Design import/export | `import <source> [-c name] [--save file] [--type tailwind|css|tokens|storybook|designmd] [--print-context]` | MUTATING | Imports DESIGN.md/Tailwind/CSS/tokens/Storybook into variables; Storybook-only import writes component context but no variables. |
+| Design import/export | `extract [output] [--sections list] [--pages list] [--selection] [--split] [--no-split]` | READ-ONLY | Exports open Figma file to DESIGN.md / optional structure files. |
+| Design import/export | `spec <component> [-f file] [--check nodeId] [--tolerance px]` | READ-ONLY | Reads DESIGN.md spec; `--check` measures built node and exits non-zero on mismatch. |
+| Variables | `var list` / `variables list` | READ-ONLY | Lists variables. |
+| Variables | `var find <pattern>` | READ-ONLY | Finds variables by pattern. |
+| Variables | `var visualize [collection]` | MUTATING | Creates color swatches on canvas. |
+| Variables | `var create <name> -c collection -t type [-v value]` | MUTATING | Creates one variable. |
+| Variables | `var create-batch <json> -c collection` | MUTATING | Creates multiple variables. |
+| Variables | `var bind-batch <json>` | MUTATING | Binds variables to multiple nodes. |
+| Variables | `var set-batch <json> [-c collection]` | MUTATING | Batch sets fill/stroke/radius/opacity/name/visible/position/size. |
+| Variables | `var rename-batch <json>` | MUTATING | Batch renames nodes. |
+| Variables | `var delete-all [-c collection]` | DESTRUCTIVE | Deletes all local variables/collections or one collection’s variables. |
+| Variables | `var delete-batch <nodeIds>` | DESTRUCTIVE | Deletes multiple nodes. |
+| Collections | `collections list` / `col list` | READ-ONLY | Lists variable collections. |
+| Collections | `collections create <name>` / `col create <name>` | MUTATING | Creates a collection. |
+| Tokens | `tokens tailwind [-c collection]` | MUTATING | Creates Tailwind color variables. |
+| Tokens | `tokens preset <shadcn|radix>` | MUTATING | Adds named token preset. |
+| Tokens | `tokens shadcn [-c collection]` | MUTATING | Creates shadcn/ui color primitives. |
+| Tokens | `tokens spacing [-c collection]` | MUTATING | Creates spacing scale. |
+| Tokens | `tokens radii [-c collection]` | MUTATING | Creates radius scale. |
+| Tokens | `tokens import <file> [-c collection] [--force-slash]` | MUTATING | Imports JSON tokens. |
+| Tokens | `tokens import-design-md <file> [-c collection] [--print-context]` | MUTATING | Imports DESIGN.md machine-readable tokens. |
+| Tokens | `tokens overlap <collections...> [--json]` | READ-ONLY | Compares token names across collections. |
+| Tokens | `tokens ds` | MUTATING | Creates IDS base design system. |
+| Tokens | `tokens components` | MUTATING | Creates IDS base components. |
+| Tokens | `tokens add <name> <value> [-c collection] [-t type]` | MUTATING | Adds one token. |
+| Binding | `bind list [-t COLOR|FLOAT]` | READ-ONLY | Lists variables available for binding. |
+| Binding | `bind fill|stroke|radius|gap <varName> [-n node]` | MUTATING | Binds selected/specified node property. |
+| Binding | `bind padding <varName> [-n node] [-s side]` | MUTATING | Binds padding variable. |
+| Creation | `render <jsx> [--parent id] [-x n] [-y n] [--no-smart-position] [--fast] [--as-component] [--keep-wrapper] [-c collection] [--verify]` | MUTATING | Renders JSX to Figma. |
+| Creation | `render-batch <jsxArray> [-g gap] [-d row|col] [--as-component] [-c collection] [--verify]` | MUTATING | Renders multiple frames. |
+| Creation | `undo` | DESTRUCTIVE | Removes node(s) created by the latest render/render-batch. |
+| Creation | `create frame <name> [-w] [-h] [-x] [-y] [--fill] [--radius] [--smart] [-g]` | MUTATING | Creates frame. |
+| Creation | `create icon <name> [-s size] [-c color] [-x] [-y] [--spacing]` | MUTATING | Creates Iconify/Lucide-style SVG icon. |
+| Creation | `create image <url> [-w] [-h] [-x] [-y] [-n name] [--spacing]` | MUTATING | Creates image node from URL. |
+| Creation aliases | `rect|rectangle`, `ellipse|circle`, `text`, `line`, `component`, `group`, `autolayout|al` | MUTATING | Source registers these as top-level legacy/convenience commands; REFERENCE also shows some as `create ...`, but current scanned source only proved top-level aliases. |
+| Layout | `sizing hug|fill [-a axis]`, `sizing fixed <w> [h]` | MUTATING | Sets auto-layout sizing. |
+| Layout | `padding|pad <value> [r] [b] [l]` | MUTATING | Sets CSS-style padding. |
+| Layout | `gap <value>` | MUTATING | Sets auto-layout gap. |
+| Layout | `align <start|center|end|stretch>` | MUTATING | Sets alignment. |
+| Layout | `set autolayout|al <row|col> [-g] [-p] [--px] [--py] [-n] [-q] [--sizing] [--align] [--wrap] [--fill-children]` | MUTATING | Applies auto-layout. |
+| Layout | `set pin <edge> [-n] [-q] [-o] [--offset-x] [--offset-y] [--start] [--end]` | MUTATING | Sets constraints/pinning. |
+| Layout | `arrange [-g gap] [-c cols]` | MUTATING | Rearranges all top-level frames; source calls it destructive because it sorts/repositions. |
+| Layout | `unstack [-g gap] [--dry-run]` | MUTATING | Spreads overlapping top-level nodes; `--dry-run` is READ-ONLY. |
+| Modification | `set fill|stroke|radius|size|scale|pos|opacity|name|text ... [-n] [-q]` | MUTATING | Changes selected/specified/query-matched nodes; stroke has `-w`, scale has `--keep-spacing`. |
+| Modification | `use <collection>` / `theme <collection> [-n] [-a] [--dry-run]` | MUTATING | Rebinds variable references to another collection; `--dry-run` is READ-ONLY. |
+| Modification | `unwrap <nodeId> [--keep-wrapper]` | DESTRUCTIVE | Moves children out and deletes wrapper unless `--keep-wrapper`. |
+| Query/select | `canvas info` | READ-ONLY | Canvas bounds/element count/free space. |
+| Query/select | `canvas next [-g gap] [-d right|below]` | READ-ONLY | Computes next free position. |
+| Query/select | `find <name> [-t type] [-l limit]` | READ-ONLY | Finds nodes by name. |
+| Query/select | `get [nodeId]` | READ-ONLY | Gets properties of node/selection. |
+| Query/select | `inspect <nodeId> [--json] [--spec]` | READ-ONLY | Emits positioning/spec properties. |
+| Query/select | `select <nodeId>` | MUTATING | Changes current selection only. |
+| Duplicate/delete | `duplicate|dup [nodeId] [--offset n]` | MUTATING | Duplicates node/selection. |
+| Duplicate/delete | `delete|remove [nodeId]` | DESTRUCTIVE | Deletes node/selection. |
+| Node | `node tree [nodeId] [-d depth]` | READ-ONLY | Shows node tree. |
+| Node | `node bindings [nodeId]` | READ-ONLY | Shows variable bindings. |
+| Node | `node to-component <nodeIds...>` | MUTATING | Converts frames to components. |
+| Node | `node delete <nodeIds...>` | DESTRUCTIVE | Deletes nodes by ID. |
+| Slots | `slot list [nodeId]` | READ-ONLY | Lists slots. |
+| Slots | `slot create <name> [-f row|col] [-g gap] [-p padding]` | MUTATING | Creates slot. |
+| Slots | `slot preferred <slotKey> <componentIds...> [-n nodeId]` | MUTATING | Sets preferred components. |
+| Slots | `slot reset [nodeId]` | MUTATING | Resets slot in instance. |
+| Slots | `slot convert [nodeId] [-n name]` | MUTATING | Converts frame to slot. |
+| Slots | `slot add <nodeId> [-c componentId] [-f] [-t text]` | MUTATING | Adds content to slot. |
+| Variants | `sizes [nodeId] [-b small|medium|large] [-g gap]` | MUTATING | Generates Small/Medium/Large variants. |
+| Variants | `variants from <ids> -p property -v values [-n name]` | MUTATING | Combines frames/components into variant set. |
+| Variants | `combos [nodeId] [-g gap] [--no-labels] [--no-boolean] [--dry-run]` | MUTATING | Generates all variant combinations; `--dry-run` is READ-ONLY. |
+| shadcn | `shadcn list` | READ-ONLY | Lists available components. |
+| shadcn | `shadcn add [names...] [--all] [-c count]` | MUTATING | Adds shadcn/ui components to canvas. |
+| Blocks | `blocks list` | READ-ONLY | Lists available blocks. |
+| Blocks | `blocks create <id>` | MUTATING | Creates prebuilt UI block. |
+| Component/dev | `component prop add|list|delete|combine ...` | MUTATING/READ-ONLY/DESTRUCTIVE | Adds/lists/deletes component properties or combines components; `list` READ-ONLY, `delete` DESTRUCTIVE. |
+| Dev resources | `dev link|list|unlink|edit ...` | MUTATING/READ-ONLY/DESTRUCTIVE | Adds/lists/removes/edits dev resource links; `list` READ-ONLY, `unlink` DESTRUCTIVE. |
+| Sections | `section create|list|add ...` | MUTATING/READ-ONLY | Creates/lists/assigns sections; `list` READ-ONLY. |
+| Grids | `grid set|list|clear ...` | MUTATING/READ-ONLY/DESTRUCTIVE | Sets/lists/clears layout grids; `clear` DESTRUCTIVE for grid metadata. |
+| Annotations | `annotate add|list|clear ...` | MUTATING/READ-ONLY/DESTRUCTIVE | Adds/lists/clears annotations; `clear` DESTRUCTIVE for annotations. |
+| Export | `export screenshot [-o file] [-s scale] [-f png|jpg|svg|pdf]` | READ-ONLY | Exports selection/page screenshot to file. |
+| Export | `export node <nodeId> [-o file] [-s scale] [-f png|svg|pdf|jpg]` | READ-ONLY | Exports node. |
+| Export | `export css` | READ-ONLY | Exports variables as CSS. |
+| Export | `export tailwind` | READ-ONLY | Exports color variables as Tailwind config. |
+| Export | `export-jsx [nodeId] [-o file] [--pretty]` | READ-ONLY | Exports node as JSX/React. |
+| Export | `export-storybook [nodeId] [-o file]` | READ-ONLY | Exports component Storybook stories. |
+| Verify | `verify [nodeId] [-s scale] [--max px] [--save path] [--measure]` | READ-ONLY | Returns/saves screenshot and optional measurement JSON. |
+| Analysis | `lint [--fix] [--json]` | READ-ONLY/MUTATING | Lints design; `--fix` mutates. |
+| Analysis | `analyze colors|typography|spacing|clusters [--json]` | READ-ONLY | Reports usage/patterns. |
+| A11y | `a11y contrast [nodeId] [--level AA|AAA] [--json]` | READ-ONLY | Checks contrast. |
+| A11y | `a11y vision [nodeId] [--type ...] [--json]` | READ-ONLY | Simulates color blindness. |
+| A11y | `a11y touch [nodeId] [--min size] [--json]` | READ-ONLY | Checks touch target sizes. |
+| A11y | `a11y text [nodeId] [--json]` | READ-ONLY | Checks text accessibility. |
+| A11y | `a11y focus [nodeId] [--json]` | READ-ONLY | Shows reading/focus order. |
+| A11y | `a11y audit [nodeId] [--level AA|AAA] [--json]` | READ-ONLY | Full accessibility audit. |
+| Raw/eval | `eval [code] [-f file]` | MUTATING | Arbitrary Figma Plugin API code; can read or mutate, treat as MUTATING. |
+| Raw/eval | `run <file>` | MUTATING | Alias for eval file execution. |
+| Raw/eval | `raw <command...>` | MUTATING | Arbitrary figma-use command; treat as MUTATING unless command is known read-only. |
+| URL/image | `screenshot-url <url> [-w] [-h] [--full] [-n] [--scale]` | MUTATING | Screenshots website and imports image into Figma. |
+| URL/image | `analyze-url <url> [-w] [-h] [--screenshot]` | READ-ONLY | Extracts webpage CSS values; `--screenshot` writes local screenshot. |
+| URL/image | `recreate-url <url> [-w] [-h] [--name]` | MUTATING | Recreates webpage in Figma. |
+| URL/image | `remove-bg [nodeId] [--api-key]` | MUTATING | Removes image background; needs remove.bg API key. |
+| Gradient | `gradient extract <image> [--mode linear|mesh] [--apply-to nodeId] [--direction] [--stops] [--blur] [--no-trim] [--json]` | READ-ONLY/MUTATING | Extracts gradient; mutates only with `--apply-to`. |
+| Gradient | `gradient mesh <colors> [--apply-to frameId] [--base] [--size] [--blur] [--grain] [--texture] [--style] [--seed] [--name] [--json]` | MUTATING | Creates/applies mesh wallpaper. |
+| FigJam | `fj list` / `figjam list` | READ-ONLY | Lists FigJam pages. |
+| FigJam | `fj info [-p page]` | READ-ONLY | Page info. |
+| FigJam | `fj nodes [-p page] [-l limit]` | READ-ONLY | Lists FigJam nodes. |
+| FigJam | `fj sticky <text> [-p] [-x] [-y] [-c color]` | MUTATING | Creates sticky. |
+| FigJam | `fj shape <text> [-p] [-x] [-y] [-w] [-h] [-t type]` | MUTATING | Creates shape. |
+| FigJam | `fj text <content> [-p] [-x] [-y] [-s size]` | MUTATING | Creates text. |
+| FigJam | `fj connect <startId> <endId> [-p]` | MUTATING | Creates connector. |
+| FigJam | `fj move <nodeId> <x> <y> [-p]` | MUTATING | Moves node. |
+| FigJam | `fj update <nodeId> <text> [-p]` | MUTATING | Updates text. |
+| FigJam | `fj delete <nodeId> [-p]` | DESTRUCTIVE | Deletes FigJam node. |
+| FigJam | `fj eval <code> [-p]` | MUTATING | Arbitrary FigJam eval; can read or mutate. |
+| Files | `files` | READ-ONLY | Lists open Figma design files as JSON. |
+| Plugins/API | `plugins list` | READ-ONLY | Lists available plugins. |
+| Plugins/API | `plugins install <name>` / `plugins setup <name>` | MUTATING | Installs/sets up plugin such as voice. |
+| Plugins/API | `plugins uninstall <name>` | DESTRUCTIVE | Removes installed plugin resource. |
+| Plugin API docs | `api setup [--update]`, `api index`, `api context [topic]`, `api age`, `api list [filter]`, `api gap`, `api search <keyword> [--json] [-l limit]` | READ-ONLY/MUTATING | Offline Figma Plugin API docs; `setup`/`index` write local docs/index, others read. |
+| Config | `config set <key> <value>` | MUTATING | Writes local config, e.g. removebg API key. |
+| Config | `config get <key>` | READ-ONLY | Reads config. |
+
+Evidence for command surface: `REFERENCE.md`, `CLAUDE.md`, and remote scan of all `src/commands/*.js`. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md, https://raw.githubusercontent.com/silships/figma-cli/main/CLAUDE.md, https://api.github.com/repos/silships/figma-cli/git/trees/main?recursive=1
+
+### init-agent + generated files
+
+| Item | Finding |
+|---|---|
+| Command | `figma-cli init-agent [--tool claude|cursor|both] [--force]`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/init.js |
+| Cursor file | Writes `.cursor/rules/figma-cli.mdc` with YAML frontmatter and rules. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/init.js |
+| Claude/Codex/shared file | Writes `AGENTS.md`; source comment says Claude Code, Cursor, and Codex read it. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/init.js |
+| Overwrite behavior | Does not clobber unrelated existing files unless `--force`; if existing file already contains `# Using figma-cli`, returns up-to-date. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/init.js |
+| DESIGN.md | Known fact said `init-agent` writes `DESIGN.md`; I could not verify that. Current `src/commands/init.js` only writes Cursor rules and `AGENTS.md`. `DESIGN.md` is produced by `extract` or `import --save` / Storybook import paths, not `init-agent`. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/init.js, https://raw.githubusercontent.com/silships/figma-cli/main/docs/COMMANDS.md |
+
+### Design-system I/O
+
+| Area | Finding |
+|---|---|
+| DESIGN.md export | `figma-cli extract [output]` scans the open file and writes a DESIGN.md; default is all pages/all sections, with `--pages`, `--selection`, `--sections`, `--split`, and `--no-split`. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/docs/COMMANDS.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/extract.js |
+| DESIGN.md sections | Exporter emits 11 sections: Identity, Structure, Color, Typography, Spacing & Layout, Depth & Motion, Components, States, Rules, Extending this system, Machine-readable tokens. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/design-extract.js |
+| Machine-readable block | Importer expects `## 11. Machine-readable tokens` with fenced block ````json design-tokens` containing color, typography, spacing, radius, shadow, fonts, and meta. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/design-md.js |
+| Other DESIGN.md formats | Importer also accepts YAML frontmatter specs with top-level `colors`/`color`, `typography`, `rounded`/`radius`/`radii`, `spacing`, `shadow`, and prose color rows like `**Name** (\`#hex\`): role`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/design-md.js |
+| Import sources | `figma-cli import <source>` supports DESIGN.md, `tailwind.config.js/.cjs/.ts`, CSS files such as `globals.css`/`styles.css`, W3C/Style Dictionary `tokens.json`, Storybook URL, and `./storybook-static/`. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/docs/COMMANDS.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/setup.js |
+| Import options | `-c/--collection`, `--save <file>`, `--type <tailwind|css|tokens|storybook|designmd>`, `--print-context`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/setup.js |
+| Storybook behavior | Storybook import yields component names/variants only and does not create Figma variables; docs say combine with Tailwind/CSS import for tokens. Source: https://raw.githubusercontent.com/silships/figma-cli/main/docs/COMMANDS.md |
+| Export targets | Exports PNG/JPG/SVG/PDF screenshots or nodes, CSS variables, Tailwind config, JSX/React, Storybook stories, and DESIGN.md. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/export-eval.js |
+| Token binding syntax | `var:name` works in `render`, `create`, and `set`, e.g. `bg="var:card"`, `color="var:foreground"`, `figma-cli set fill "var:primary"`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/CLAUDE.md |
+| Collection pinning | `render`/`render-batch` support `--collection <name>`; per-attribute syntax `var:collection:name` can force a specific collection. Source: https://raw.githubusercontent.com/silships/figma-cli/main/CLAUDE.md |
+
+### Does figma-cli ship/spawn its own MCP? (yes/no + evidence)
+
+No.
+
+Evidence:
+
+| Evidence checked | Result |
+|---|---|
+| Repo tree | No file/directory named MCP and no obvious MCP server entrypoint. Source: https://api.github.com/repos/silships/figma-cli/git/trees/main?recursive=1 |
+| Remote text scan | I scanned README, REFERENCE, CLAUDE, package.json, docs, `src/**`, and `plugin/**` for `mcp` and `model context protocol`; zero hits. |
+| Package bin/scripts | Repo `package.json` exposes only `figma-ds-cli` and `figma-cli`, both mapped to `src/index.js`; scripts only include `test`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/package.json |
+| Daemon | The bundled daemon is figma-cli’s own HTTP/WebSocket bridge for Figma Desktop, not an MCP server. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/daemon.js |
+
+Conclusion: “install the MCP inside it” cannot mean a figma-cli-owned MCP subcommand/server based on current sources. It likely refers to the separate official Figma MCP server or another external MCP integration, not figma-cli itself.
+
+### Auth / offline
+
+| Topic | Finding |
+|---|---|
+| Figma auth/API key | No Figma API key required; tool uses Figma Desktop and existing local Figma session/plugin API, not Figma REST. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/README.md, https://raw.githubusercontent.com/silships/figma-cli/main/docs/ARCHITECTURE.md |
+| Figma account | npm docs say Figma Desktop with a free account works. Source: https://www.npmjs.com/package/figma-ds-cli |
+| Daemon auth | Local daemon uses generated session token header; token file is `~/.figma-ds-cli/.daemon-token`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/daemon.js |
+| Cloud/offline | README claims local operation and support for local LLMs via LM Studio/Ollama, fully offline/no cloud/no key. Source: https://raw.githubusercontent.com/silships/figma-cli/main/README.md |
+| Exceptions | Some features necessarily call network or need external auth: `remove-bg` needs a remove.bg API key; Iconify/image/URL/Storybook/website commands may depend on network/local servers. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/url-tools.js |
+
+### Gotchas, risks, platform constraints
+
+| Risk | Detail |
+|---|---|
+| npm vs repo mismatch | Repo `main` is `1.2.0` and exposes `figma-cli`; npm latest fetch shows `1.0.0` and only `figma-ds-cli`. A skill should not assume `figma-cli` exists after `npm install -g figma-ds-cli` unless installing from repo/current unpublished package or verifying PATH. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/package.json, https://registry.npmjs.org/figma-ds-cli/latest |
+| macOS support is the documented baseline | Architecture docs say macOS only; platform source has Windows/Linux helpers, but docs/npm still frame Windows/Linux as not primary/supported. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/docs/ARCHITECTURE.md, https://www.npmjs.com/package/figma-ds-cli |
+| Yolo patch risk | Yolo modifies Figma Desktop `app.asar` and may need Full Disk Access/admin rights; a Figma update may invalidate the patch string. Revert exists via `figma-cli unpatch`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/figma-patch.js |
+| Safe mode operational friction | Safe mode requires importing the plugin manifest once and keeping `Plugins → Development → FigCli` open each session. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md, https://raw.githubusercontent.com/silships/figma-cli/main/plugin/ui.html |
+| Daemon/token failures | “Unauthorized: Invalid or missing token” is expected if token/daemon mismatch; docs recommend `figma-cli daemon diagnose` then `figma-cli daemon restart`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md |
+| Command docs drift | Current docs mention `figma-cli voice`, `figma-cli chat`, and `figma-cli prop combine`; remote source scan did not find top-level `voice`, `chat`, or `prop` registrations. Source for docs: https://raw.githubusercontent.com/silships/figma-cli/main/CLAUDE.md |
+| Primitive command drift | REFERENCE shows `create rect/circle/text/line/group/component/autolayout`; source scan proves `create frame/icon/image` plus top-level `rect|ellipse|text|line|component|group|autolayout`. Skill should prefer verified source commands or test `--help` before emitting these. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/create.js |
+| `eval` danger | Agent rules explicitly say never use `eval` to create visual nodes because it bypasses positioning/guards; use `render`/`render-batch`. Source: https://raw.githubusercontent.com/silships/figma-cli/main/CLAUDE.md |
+| Deletion guard | Generated agent rules say never delete existing user nodes; skill gating should treat all delete/clear/unlink/uninstall/undo commands as destructive. Source: https://raw.githubusercontent.com/silships/figma-cli/main/src/commands/init.js |
+| Large DESIGN.md handling | `extract` auto-splits structure above roughly 50k tokens into `DESIGN-structure/`, which means a skill must handle multi-file export artifacts. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/docs/COMMANDS.md, https://raw.githubusercontent.com/silships/figma-cli/main/src/design-extract.js |
+| Node version nuance | Node `>=18` is declared, and changelog says CI runs Node 18/20/22, but source contains a warning that `figma-use` can be broken on some Node versions if `enableCompileCache` is missing; skill should prefer the repo’s tested Node range and surface daemon/figma-use failures honestly. Sources: https://raw.githubusercontent.com/silships/figma-cli/main/package.json, https://raw.githubusercontent.com/silships/figma-cli/main/src/lib/cli-core.js |
+
+### Confidence + unknowns (what you could NOT verify, and why)
+
+Confidence: high for repo `main` behavior, command registrations, patch/daemon model, DESIGN.md format, and “no bundled MCP,” because these were verified from raw source and package metadata.
+
+Unknowns / caveats:
+
+| Unknown | Why |
+|---|---|
+| Exact current published install behavior for `figma-cli` binary | npm registry latest fetched as `1.0.0` conflicts with repo `main` `1.2.0`; I did not install or execute the package because this was read-only mode. |
+| Whether unpublished npm `1.2.0` exists elsewhere | Public registry `latest` showed only `1.0.0`; no write/exec install test performed. |
+| Runtime success on Windows/Linux | Source contains platform paths, but docs still say macOS-only/Windows-Linux coming. I did not run platform tests. |
+| Voice/chat commands | `CLAUDE.md` references them, but source command registration scan did not show top-level `voice` or `chat`; likely docs are ahead of registered CLI or plugin-based workflow is incomplete in scanned files. |
+| Official Figma MCP details | Explicitly out of scope per user instruction; only checked whether figma-cli itself bundles/spawns/references MCP.

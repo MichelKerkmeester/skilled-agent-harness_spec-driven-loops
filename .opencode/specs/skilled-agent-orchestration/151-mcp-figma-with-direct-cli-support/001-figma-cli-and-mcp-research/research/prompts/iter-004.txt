@@ -1,0 +1,41 @@
+Act as a senior install/safety engineer for developer tooling. READ-ONLY MODE: do NOT write or edit files. Your final message IS the deliverable — return it in the exact markdown skeleton at the end.
+
+# Goal
+Design the INSTALL + SAFETY + LIFECYCLE playbook for a new skill `mcp-figma` (PRIMARY = figma-cli by silships; OPTIONAL = official Figma Dev Mode MCP via this project's Code Mode). Produce a concrete install guide outline, an idempotent install-script design, the safety/consent model, and the optional-MCP wiring steps. Model it on the existing `mcp-chrome-devtools` and `mcp-open-design` install/wiring docs.
+
+# Verified facts from prior research (BUILD ON THESE)
+- figma-cli: package `figma-ds-cli` v1.2.0; bins `figma-ds-cli` + `figma-cli`, BUT npm `latest`=1.0.0 exposes only `figma-ds-cli` (mismatch — verify PATH; consider repo install). Node>=18, macOS baseline. Requires Figma Desktop open with a file; NO Figma API key.
+- Connect: yolo `figma-cli connect` PATCHES Figma Desktop app.asar (replaces a remote-debugging switch string), codesigns on macOS, restarts Figma with CDP on port 9222. Safe `connect --safe` uses the FigCli plugin (import plugin/manifest.json once; keep Plugins → Development → FigCli open). Revert: `figma-cli unpatch`. Yolo may need Full Disk Access/admin and BREAKS on Figma updates.
+- Daemon: HTTP 127.0.0.1:3456 + X-Daemon-Token (~/.figma-ds-cli/.daemon-token), PID ~/.figma-cli-daemon.pid, idle 60min, not reboot-persistent. Verbs: daemon status/diagnose/start/stop/restart/reconnect. Failure "Unauthorized" → daemon diagnose then restart.
+- Destructive verbs to gate: var delete-all/delete-batch, delete/remove, node delete, undo, unwrap, fj delete, plugins uninstall, dev unlink, component prop delete, grid clear, annotate clear; eval/raw/run = arbitrary mutation.
+- Optional MCP = official Figma Dev Mode MCP: remote https://mcp.figma.com/mcp (HTTP, OAuth, catalog-gated clients only, plan/seat rate limits, write needs Full seat) and desktop http://127.0.0.1:3845/mcp (HTTP, needs latest Figma desktop + open Design file + Dev Mode + "Enable desktop MCP server"). Community Framelink `figma-developer-mcp` (stdio, FIGMA_API_KEY) is ALREADY in .utcp_config.json as manual `figma`. Code Mode supports stdio (proven) + http (framework-loaded @utcp/http, unproven here); `mcp-remote` stdio bridge is the conservative path for the official server. Code Mode env vars are prefixed `{manual}_VARNAME` in .env (e.g. figma_FIGMA_API_KEY).
+- figma-cli license = MIT.
+
+# LOCAL files to READ (use Read; --dir is repo root)
+- .opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md  (CLI install + Code Mode MCP registration shape)
+- .opencode/skills/mcp-chrome-devtools/scripts/install.sh  (idempotent install-script pattern)
+- .opencode/skills/mcp-open-design/references/mcp_wiring.md  (MCP wiring: install commands, written config shape, manual fallback, dry-run-first)
+- .opencode/skills/mcp-code-mode/references/configuration.md  (how to add a Code Mode MCP server; .env prefixing)
+- .utcp_config.json  (real registered-manual shapes — copy the structure)
+
+# Questions to answer (concrete)
+1. FIGMA-CLI INSTALL FLOW: the safest install sequence given the npm/repo binary mismatch — detect existing binary; choose npm global vs clone+`npm install`; verify `figma-cli`/`figma-ds-cli` on PATH; check Node>=18; confirm Figma Desktop present. Design an idempotent `scripts/install.sh` (check → install → verify → report) mirroring chrome-devtools' install.sh.
+2. CONNECT + DAEMON LIFECYCLE: how the skill should choose yolo vs safe (default + when to prefer safe); bring the daemon up/check health/recover; the consent gate before the yolo patch; rollback (`unpatch`).
+3. OPTIONAL MCP INSTALL (Code Mode): the exact registration steps for (a) the already-present Framelink stdio `figma` manual (just needs figma_FIGMA_API_KEY in .env), (b) the official remote server over http, (c) the official desktop server over http, (d) the `mcp-remote` stdio bridge fallback. Include the dry-run/verify step (list_tools / tool_info) and .env prefixing. State clearly that the optional MCP is OPT-IN and the skill works fully with CLI alone.
+4. SAFETY/CONSENT MODEL: enumerate every STOP-and-confirm point (yolo app patch, every destructive verb, eval/raw, MCP write-to-canvas) with a one-line rollback each; the "never auto-patch / never auto-delete" rules.
+5. LICENSING / VENDORING: figma-cli is MIT — discipline for referencing upstream and NOT vendoring its source into this repo (mirror how mcp-open-design handles "never vendor; reference upstream").
+6. INSTALL_GUIDE.md OUTLINE + scripts plan: section-by-section outline for the skill's INSTALL_GUIDE.md and the list of scripts to ship.
+7. FAILURE MODES: a troubleshooting table (symptom → cause → fix) covering binary-not-found, Figma-not-running, patch-failed/Figma-updated, daemon Unauthorized, port 3456/9222/3845 conflicts, MCP catalog/OAuth gate, Code Mode env-var-not-found.
+
+# Output skeleton (return EXACTLY this)
+## IT4 — install, safety, lifecycle
+### figma-cli install flow + idempotent install.sh design
+### Connect + daemon lifecycle management (yolo vs safe, consent, rollback)
+### Optional MCP install via Code Mode (Framelink stdio / official http / mcp-remote bridge; opt-in)
+### Safety & consent model (STOP-and-confirm points + rollbacks)
+### Licensing / vendoring discipline
+### INSTALL_GUIDE.md outline + scripts plan
+### Failure modes & troubleshooting table
+### Confidence + unknowns
+
+Cite the local file path or source for each non-obvious choice. If a read fails, say so.

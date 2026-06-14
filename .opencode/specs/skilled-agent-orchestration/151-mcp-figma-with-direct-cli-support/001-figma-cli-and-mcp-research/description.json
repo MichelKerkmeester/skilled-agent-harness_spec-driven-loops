@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/001-figma-cli-and-mcp-research",
+  "description": "Research Specification: figma-cli and Figma MCP landscape",
+  "keywords": [
+    "research",
+    "specification",
+    "figma-cli-and-mcp-research",
+    "figma-ds-cli",
+    "mcp-figma",
+    "phase",
+    "deep-research"
+  ],
+  "lastUpdated": "2026-06-14T17:00:00Z",
+  "specId": "001",
+  "folderSlug": "figma-cli-and-mcp-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "151-mcp-figma-with-direct-cli-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

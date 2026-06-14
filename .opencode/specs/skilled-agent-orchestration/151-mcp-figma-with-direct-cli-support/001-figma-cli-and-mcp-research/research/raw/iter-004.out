@@ -1,0 +1,321 @@
+I’ll keep this read-only and use the cited local files as the evidence base for the playbook, without editing or creating anything.
+SKILL ROUTING: `mcp-code-mode`, `sk-doc`, `mcp-chrome-devtools`, and `mcp-open-design` all passed the advisor threshold; I’ll use the Code Mode/doc guidance and the two requested comparator docs as sources.
+I’ll now read the requested comparator files and the Code Mode configuration reference to ground each recommendation in the repo’s existing patterns.
+The requested files loaded successfully. I’m doing one targeted read-only search for Open Design’s upstream/vendoring wording so the licensing recommendation can be tied to local precedent rather than inferred.
+## IT4 — install, safety, lifecycle
+### figma-cli install flow + idempotent install.sh design
+Default stance: install and verify only. Do not connect, patch, start mutating commands, or edit Code Mode config from the installer.
+
+Evidence model:
+- Mirror Chrome’s phase structure: prerequisites, install, configuration, verification, usage, troubleshooting from `.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md:171`, `:216`, `:296`, `:469`, `:829`.
+- Mirror Chrome’s script pattern: `set -euo pipefail`, shared utils, flags, prerequisite check, existing install check, install, verify, summary from `.opencode/skills/mcp-chrome-devtools/scripts/install.sh:18`, `:24`, `:217`, `:228`, `:243`, `:279`.
+
+Install decision flow:
+1. Check platform.
+   - macOS is the baseline.
+   - Linux/Windows should report “unsupported or unverified for this skill” unless upstream confirms support.
+2. Check Node.js and npm.
+   - Require Node.js `>=18`, matching the Chrome installer’s minimum-node gate pattern at `.opencode/skills/mcp-chrome-devtools/scripts/install.sh:29-33` and the Chrome guide prerequisite style at `.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md:173-184`.
+3. Check Figma Desktop.
+   - Confirm `/Applications/Figma.app` or `$HOME/Applications/Figma.app`.
+   - Do not require it to be running for install, but require it for connect/daemon verification.
+4. Detect existing binaries.
+   - Prefer `command -v figma-cli`.
+   - Also check `command -v figma-ds-cli`.
+   - Run `figma-cli --version` and `figma-ds-cli --version` when present.
+5. Handle npm binary mismatch safely.
+   - Never use unqualified `npm install -g figma-ds-cli` because prior research says npm `latest=1.0.0` exposes only `figma-ds-cli`.
+   - First try pinned `npm install -g figma-ds-cli@1.2.0`.
+   - Verify both expected bins after install: `figma-cli` and `figma-ds-cli`.
+   - If `figma-cli` is missing after pinned npm install, report partial install and offer repo install.
+6. Repo install fallback.
+   - Resolve upstream from npm metadata with `npm view figma-ds-cli@1.2.0 repository.url`.
+   - Clone outside this repo, for example under `~/.figma-ds-cli/source`.
+   - Run `npm install` and `npm install -g "$install_root/source"` or `npm link` from that external checkout.
+   - Do not vendor source into `.opencode/skills/mcp-figma`.
+7. Verify.
+   - `command -v figma-cli`.
+   - `command -v figma-ds-cli`.
+   - `figma-cli --version`.
+   - `figma-cli --help`.
+   - Figma Desktop present.
+   - Optional readiness check only if Figma is open: `figma-cli daemon status`.
+
+`scripts/install.sh` design:
+- Flags:
+  - `--help`
+  - `--verbose`
+  - `--force`
+  - `--skip-verify`
+  - `--source auto|npm|repo`
+  - `--repo-url <url>`
+  - `--install-root <path>`, default `~/.figma-ds-cli/source`
+- Phases:
+  - `check_prerequisites`: platform, Node `>=18`, npm, git if repo fallback.
+  - `detect_figma_desktop`: report found/missing, never install Figma Desktop.
+  - `check_existing_installation`: inspect both binaries and versions.
+  - `install_npm_pinned`: `npm install -g figma-ds-cli@1.2.0`.
+  - `verify_binaries`: require `figma-cli`; warn if only `figma-ds-cli` exists.
+  - `install_from_repo`: clone/update external checkout and globally install from it.
+  - `verify_installation`: command paths, versions, help output, daemon status if possible.
+  - `report_next_steps`: safe connect instructions, yolo warning, daemon commands.
+- Idempotency:
+  - If `figma-cli` works and `--force` is absent, skip install.
+  - If only `figma-ds-cli` exists, classify as partial and repair via pinned npm or repo.
+  - If repo checkout exists, fetch/update only when requested; otherwise reuse.
+  - Never patch Figma Desktop during install.
+
+### Connect + daemon lifecycle management (yolo vs safe, consent, rollback)
+Default connect mode: `figma-cli connect --safe`.
+
+Why:
+- Prior research says safe mode uses the FigCli plugin and avoids patching Figma Desktop.
+- Yolo `figma-cli connect` patches Figma Desktop `app.asar`, codesigns on macOS, restarts Figma with CDP on `9222`, can require Full Disk Access/admin, and can break after Figma updates.
+- This matches the Open Design safety posture: gate mutating/destructive operations with explicit target and rollback note from `.opencode/skills/mcp-open-design/SKILL.md:243` and `.opencode/skills/mcp-open-design/references/tool_surface.md:72-78`.
+
+Connect selection:
+- Prefer safe when the user can import `plugin/manifest.json` once and keep Plugins → Development → FigCli open.
+- Use yolo only when the user explicitly accepts app patching and safe plugin mode is not viable.
+- Never auto-patch during install or routine startup.
+
+Safe connect flow:
+1. Confirm Figma Desktop is installed.
+2. Ask user to open Figma Desktop with the target file.
+3. Ask user to import FigCli plugin manifest once.
+4. Ask user to keep Plugins → Development → FigCli open.
+5. Run `figma-cli connect --safe`.
+6. Run `figma-cli daemon status`.
+7. Run `figma-cli daemon diagnose` if status is unhealthy.
+
+Yolo connect flow:
+1. STOP and confirm.
+2. State effect: patches Figma Desktop app bundle and restarts Figma with CDP on `127.0.0.1:9222`.
+3. State rollback: `figma-cli unpatch`; if that fails, reinstall or update Figma Desktop.
+4. Confirm Figma Desktop is closed or safe to restart.
+5. Run `figma-cli connect`.
+6. Verify port `9222` is localhost-only.
+7. Run `figma-cli daemon status`.
+
+Daemon lifecycle:
+- Primary endpoint: `http://127.0.0.1:3456`.
+- Auth: `X-Daemon-Token` from `~/.figma-ds-cli/.daemon-token`.
+- PID: `~/.figma-cli-daemon.pid`.
+- Idle behavior: exits after roughly 60 minutes and is not reboot-persistent.
+- Normal recovery:
+  - `figma-cli daemon status`
+  - `figma-cli daemon diagnose`
+  - `figma-cli daemon restart`
+  - `figma-cli daemon reconnect`
+- If failure says `Unauthorized`, run diagnose first, then restart. Do not delete the token file automatically.
+
+### Optional MCP install via Code Mode (Framelink stdio / official http / mcp-remote bridge; opt-in)
+The skill works fully with CLI alone. MCP is opt-in for workflows that need official Figma Dev Mode context, API-token Figma file access, or multi-tool Code Mode orchestration.
+
+Code Mode facts from local files:
+- Code Mode MCP providers live in `.utcp_config.json` under `manual_call_templates`, not native MCP config. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:161-183`.
+- Manual names become TypeScript namespaces and must be valid JS identifiers. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:188-205`.
+- Code Mode prefixes `.env` variables with `{manual_name}_`. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:306-323`.
+- The existing Framelink Figma manual is already registered as `figma`. Source: `.utcp_config.json:70-88`.
+
+Framelink stdio, already present:
+```json
+{
+  "name": "figma",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "figma": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "figma-developer-mcp@latest", "--stdio"],
+        "env": {
+          "FIGMA_API_KEY": "${FIGMA_API_KEY}"
+        }
+      }
+    }
+  }
+}
+```
+Required `.env`:
+```bash
+figma_FIGMA_API_KEY=figd_your_token_here
+```
+This prefix is required even though the config references `${FIGMA_API_KEY}`. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:320-323`, `:560-599`.
+
+Official remote HTTP, opt-in and catalog/OAuth gated:
+```json
+{
+  "name": "figma_official_remote",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "figma_official_remote": {
+        "transport": "http",
+        "url": "https://mcp.figma.com/mcp",
+        "env": {}
+      }
+    }
+  }
+}
+```
+Caveat: direct HTTP transport is unproven in this repo; prior research says Code Mode has HTTP framework support, but the local configuration guide documents stdio and SSE examples, not HTTP. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:253-283`.
+
+Official desktop HTTP, opt-in:
+```json
+{
+  "name": "figma_official_desktop",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "figma_official_desktop": {
+        "transport": "http",
+        "url": "http://127.0.0.1:3845/mcp",
+        "env": {}
+      }
+    }
+  }
+}
+```
+Prerequisites from prior research: latest Figma Desktop, open Design file, Dev Mode, and “Enable desktop MCP server”.
+
+Conservative `mcp-remote` stdio bridge for official remote:
+```json
+{
+  "name": "figma_official_remote_bridge",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "figma_official_remote_bridge": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://mcp.figma.com/mcp"],
+        "env": {}
+      }
+    }
+  }
+}
+```
+This follows the documented Code Mode remote-wrapper pattern. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:58-61`, `:467-489`.
+
+Conservative `mcp-remote` stdio bridge for official desktop:
+```json
+{
+  "name": "figma_official_desktop_bridge",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "figma_official_desktop_bridge": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "http://127.0.0.1:3845/mcp"],
+        "env": {}
+      }
+    }
+  }
+}
+```
+
+Dry-run/verify discipline:
+- First inspect the JSON snippet manually, like Open Design’s dry-run-first rule. Source: `.opencode/skills/mcp-open-design/references/mcp_wiring.md:16`, `:39-50`.
+- Validate JSON structure before restarting Code Mode.
+- Restart the AI client or Code Mode MCP.
+- Run Code Mode `list_tools()` and filter by manual prefix.
+- Run `search_tools({ task_description: "figma design file dev mode", limit: 10 })`.
+- Run `tool_info()` on one returned tool before using it.
+- Never guess callable names; Code Mode uses `{manual_name}.{manual_name}_{tool}`. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:190-191`.
+
+### Safety & consent model (STOP-and-confirm points + rollbacks)
+Global rules:
+- Never auto-patch Figma Desktop.
+- Never auto-delete, bulk-delete, clear, unlink, uninstall, unwrap, undo, raw-run, eval, or MCP-write without explicit user confirmation.
+- Before any mutation, state effect, exact target, and rollback.
+- Prefer duplicating the Figma file/page/selection before destructive work.
+- Bind all local services to `127.0.0.1`; do not expose `3456`, `9222`, or `3845` beyond localhost.
+
+STOP-and-confirm table:
+
+| Action | Why gated | Rollback |
+| --- | --- | --- |
+| `figma-cli connect` yolo | Patches Figma Desktop `app.asar`, codesigns, restarts app, opens CDP `9222` | `figma-cli unpatch`; reinstall/update Figma if needed |
+| `var delete-all` | Bulk variable deletion | Restore from duplicated file or Figma version history |
+| `var delete-batch` | Batch variable deletion | Restore from duplicated file or Figma version history |
+| `delete` / `remove` | Generic object removal | Figma undo immediately; otherwise version history |
+| `node delete` | Deletes selected or targeted nodes | Figma undo; otherwise restore duplicated page/file |
+| `undo` | Mutates document state and may reverse user work | Redo if available; otherwise version history |
+| `unwrap` | Structural mutation to selected nodes | Figma undo; otherwise restore duplicate |
+| `fj delete` | Deletes FigJam content | Figma undo; otherwise version history |
+| `plugins uninstall` | Removes local/plugin integration | Reinstall plugin from source or plugin marketplace |
+| `dev unlink` | Breaks dev resource/code links | Recreate link from saved URL or version history |
+| `component prop delete` | Removes component API surface | Restore component from duplicate or version history |
+| `grid clear` | Removes layout/grid settings | Reapply saved grid values or restore duplicate |
+| `annotate clear` | Removes annotations | Restore from duplicate/version history |
+| `eval`, `raw`, `run` | Arbitrary mutation or code execution | Only proceed after script review; rollback is Figma undo/version history |
+| Official MCP write-to-canvas tools | Can mutate live Figma file through Dev Mode MCP | Figma undo/version history; duplicate before write |
+| Killing port conflicts | May stop unrelated local tools | Identify owning process first; restart that process if needed |
+
+Open Design precedent: live tool surfaces can undercount mutating/destructive verbs, so verify live tools and gate mutations. Source: `.opencode/skills/mcp-open-design/references/tool_surface.md:22-23`, `:90-97`.
+
+### Licensing / vendoring discipline
+- figma-cli is MIT per prior research.
+- Reference upstream and install from npm or an external user-owned clone.
+- Do not vendor figma-cli source into this repo or the skill folder.
+- If repo fallback is needed, clone outside the repo, for example `~/.figma-ds-cli/source`.
+- The skill may include small wrapper scripts and documentation, but not copied upstream implementation code.
+- This mirrors Open Design’s rule: read/use upstream content live, never copy/cache/vendor it into the repo because upstream licenses would attach. Source: `.opencode/skills/mcp-open-design/SKILL.md:245`, `:323`, and `.opencode/skills/mcp-open-design/references/tool_surface.md:97`.
+
+### INSTALL_GUIDE.md outline + scripts plan
+`INSTALL_GUIDE.md` outline:
+1. AI-first install prompt.
+2. Overview.
+3. Architecture: CLI primary, optional MCP via Code Mode.
+4. Prerequisites: Node `>=18`, npm, macOS, Figma Desktop, optional git.
+5. Install flow: detect existing binary, pinned npm install, repo fallback.
+6. Verification checkpoints: binary paths, versions, help output, Figma Desktop present.
+7. Connect modes: safe plugin mode default, yolo patch mode gated.
+8. Daemon lifecycle: status, start, diagnose, restart, reconnect, Unauthorized recovery.
+9. Optional MCP via Code Mode: existing Framelink manual, official remote, official desktop, mcp-remote bridge.
+10. Safety model: destructive verbs, eval/raw/run, MCP writes, rollbacks.
+11. Licensing and upstream references.
+12. Troubleshooting table.
+13. Quick reference card.
+14. Version history.
+
+Scripts to ship:
+- `scripts/install.sh`: idempotent install and verify only.
+- `scripts/doctor.sh`: report Node/npm/Figma/binaries/ports/daemon/token state without changing anything.
+- `scripts/connect-safe.sh`: guided safe plugin connect; refuses to patch.
+- `scripts/connect-yolo.sh`: requires an explicit confirmation flag such as `--i-understand-this-patches-figma`.
+- `scripts/daemon.sh`: wrapper for status/start/diagnose/restart/reconnect.
+- `scripts/unpatch.sh`: runs `figma-cli unpatch` and reports next steps.
+- `scripts/print-utcp-snippets.sh`: prints optional Code Mode snippets only; does not edit `.utcp_config.json`.
+
+Script design should follow the Chrome installer’s check/install/verify/report pattern. Source: `.opencode/skills/mcp-chrome-devtools/scripts/install.sh:314-372`, `:374-395`.
+
+### Failure modes & troubleshooting table
+| Symptom | Likely cause | Fix |
+| --- | --- | --- |
+| `figma-cli: command not found` | Not installed, npm global bin missing from PATH, or npm latest installed only `figma-ds-cli` | Check `npm config get prefix`; install pinned `figma-ds-cli@1.2.0`; verify both bins; use repo fallback if needed |
+| `figma-ds-cli` exists but `figma-cli` missing | npm `latest=1.0.0` binary mismatch from prior research | Reinstall pinned `1.2.0`; if still missing, install from upstream repo outside this repo |
+| Node version error | Node `<18` | Install Node `>=18`; rerun installer |
+| Figma Desktop not found | Figma not installed in `/Applications` or user Applications | Install Figma Desktop or pass documented custom path if script supports it |
+| Figma not running/open file missing | Connect requires Figma Desktop with a file open | Open Figma Desktop and the target file, then retry |
+| Safe connect does not work | FigCli plugin not imported/open | Import `plugin/manifest.json` once and keep Plugins → Development → FigCli open |
+| Yolo patch failed | Permissions, Full Disk Access, admin requirement, app bundle changed | Prefer safe mode; grant permission only if user accepts; rollback with `figma-cli unpatch` |
+| Figma update broke yolo connect | App update replaced or invalidated patched `app.asar` | Run `figma-cli unpatch`, update/reinstall Figma, then reconnect or switch to safe mode |
+| Daemon `Unauthorized` | Token mismatch or stale daemon state | Run `figma-cli daemon diagnose`, then `figma-cli daemon restart` |
+| Daemon not reachable on `3456` | Daemon idle-exited, crashed, or port conflict | `figma-cli daemon status`; start/restart; inspect port owner before stopping anything |
+| Port `9222` conflict | Another CDP browser is already running | Identify process owner; stop only after confirmation; retry connect |
+| Port `3845` conflict | Official desktop MCP server disabled or occupied | In Figma Desktop, enable desktop MCP server; inspect port owner; retry |
+| Official remote MCP OAuth/catalog failure | Client not catalog-approved, OAuth not completed, plan/seat limits | Use Figma-supported client path or mcp-remote bridge; confirm plan/seat/write permissions |
+| Official MCP write fails | User lacks Full seat or file permission | Use read-only tools or ask a Full-seat user to perform write |
+| Code Mode variable not found | `.env` uses `FIGMA_API_KEY` instead of `figma_FIGMA_API_KEY` | Rename to prefixed form and restart Code Mode. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:560-599` |
+| Tools missing in Code Mode | Config missing, disabled, invalid manual name, server failed to start | Check `.utcp_config.json`, restart Code Mode, run `list_tools()` and `tool_info()`. Source: `.opencode/skills/mcp-code-mode/references/configuration.md:641-655` |
+
+### Confidence + unknowns
+Confidence: high for the local pattern recommendations and Code Mode config shape because all requested local reads succeeded.
+
+Unknowns:
+- Exact upstream repo URL for silships figma-cli should be resolved from `npm view figma-ds-cli@1.2.0 repository.url` before encoding it in a script.
+- Direct Code Mode HTTP transport for official Figma MCP is unproven in this repo; the conservative path is `mcp-remote` over stdio.
+- Exact official Figma MCP tool names and write annotations must be verified with live `list_tools()` before documenting callable names or safety classes.
+- I did not run install commands, mutate config, or test external network/OAuth because the request was read-only.
