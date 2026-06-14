@@ -39,7 +39,6 @@ constitutional/
 +-- gate-enforcement.md                           # Gate edge cases: compaction recovery + continuation validation
 +-- gate-tool-routing.md                          # Search and retrieval routing decision tree
 +-- main-branch-direct-push.md                    # Owner's AIs push directly to main; the bypass is authorized
-+-- memory-db-file-topology.md                    # Index DB and vector stores are separate files; treat as one unit
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
 +-- spec-folder-naming.md                         # Spec-folder naming and rename conventions
@@ -96,7 +95,6 @@ constitutional/
 +-- gate-enforcement.md                           # Gate edge cases: compaction recovery + continuation validation
 +-- gate-tool-routing.md                          # Search and retrieval routing decision tree
 +-- main-branch-direct-push.md                    # Owner's AIs push directly to main; the bypass is authorized
-+-- memory-db-file-topology.md                    # Index DB and vector stores are separate files; treat as one unit
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
 +-- spec-folder-naming.md                         # Spec-folder naming and rename conventions
@@ -120,7 +118,6 @@ Do not document `.DS_Store` or other local machine artifacts as part of the pack
 | `gate-enforcement.md` | Gate edge cases: compaction recovery and continuation validation (full gate definitions in AGENTS.md §2). |
 | `gate-tool-routing.md` | Search and retrieval routing across memory, code graph, and the FTS fallback chain. |
 | `main-branch-direct-push.md` | Owner's AIs push directly to `main`; the protected-branch bypass is expected and authorized. |
-| `memory-db-file-topology.md` | The index DB and embedding vectors live in separate files; wipe/restore/integrity-check them as one unit. |
 | `memory-system-spec-kit-only.md` | Use Spec Kit Memory for all saves; never write Claude native memory unless explicitly asked. |
 | `post-implementation-deep-review.md` | Run a deep-review after every substantive implementation phase or when uncertain about shipped code. |
 | `spec-folder-naming.md` | `NNN-short-name` convention and the rename/move procedure (`git mv`, never delete + recreate). |
