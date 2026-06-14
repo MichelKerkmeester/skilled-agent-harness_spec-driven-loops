@@ -10,7 +10,8 @@
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening"
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default"
   ],
   "manual": {
     "depends_on": [],
