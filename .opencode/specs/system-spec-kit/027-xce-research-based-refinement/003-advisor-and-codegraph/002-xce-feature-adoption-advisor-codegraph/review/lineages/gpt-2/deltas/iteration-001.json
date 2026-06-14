@@ -1,0 +1,6 @@
+{
+  "iteration": 1,
+  "findingRefs": ["F002"],
+  "newFindingsRatio": 1,
+  "dimensions": ["correctness"]
+}

@@ -1,0 +1,113 @@
+{
+  "sessionId": "fanout-gpt-1-1781110469935-pc6f9l",
+  "generation": 1,
+  "lineageMode": "new",
+  "releaseReadinessState": "in-progress",
+  "openFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "title": "Parent child registry omits live phase 011 from spec.md and description.json",
+      "category": "metadata-drift",
+      "dimension": "correctness",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:127",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:127",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:27",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:6",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:47"
+      ],
+      "finding_class": "metadata-drift",
+      "content_hash": "sha256:p1-001-parent-child-registry",
+      "disposition": "active"
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "title": "Parent continuity points to already-shipped 002 secret-redaction work as next action",
+      "category": "resume-state-drift",
+      "dimension": "correctness",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:26",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:26",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/implementation-summary.md:56",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/implementation-summary.md:70"
+      ],
+      "finding_class": "resume-state-drift",
+      "content_hash": "sha256:p1-002-parent-continuity-stale",
+      "disposition": "active"
+    },
+    {
+      "id": "P1-003",
+      "severity": "P1",
+      "title": "Parent resource-map is stale and excludes newer active child phases",
+      "category": "resource-map-coverage",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:30",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:30",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:72",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:127",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:17"
+      ],
+      "finding_class": "resource-map-coverage",
+      "content_hash": "sha256:p1-003-resource-map-stale",
+      "disposition": "active"
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "title": "010 implementation summary still carries 028-era metadata after relocation",
+      "category": "relocation-metadata-drift",
+      "dimension": "maintainability",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/implementation-summary.md:36",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/implementation-summary.md:36",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup/implementation-summary.md:46",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:44",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/spec.md:14"
+      ],
+      "finding_class": "relocation-metadata-drift",
+      "content_hash": "sha256:p2-001-010-metadata",
+      "disposition": "active"
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "title": "context-index still says peck T1 remains deferred after phase 001 adopted the AC coverage gate",
+      "category": "context-index-staleness",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:27",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:27",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:120",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:146"
+      ],
+      "finding_class": "context-index-staleness",
+      "content_hash": "sha256:p2-002-context-index-peck",
+      "disposition": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "convergenceScore": 1,
+  "legalStop": {
+    "passed": false,
+    "stopReason": "maxIterationsReached",
+    "blockedBy": ["activeP1"]
+  }
+}

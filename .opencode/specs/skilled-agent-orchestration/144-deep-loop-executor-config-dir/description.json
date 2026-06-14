@@ -1,18 +1,22 @@
 {
-  "specFolder": "144-deep-loop-executor-config-dir",
-  "description": "Deep loop executor config-dir override",
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/144-deep-loop-executor-config-dir",
+  "description": "Feature Specification: Deep loop executor config-dir override",
   "keywords": [
+    "feature",
+    "specification",
     "deep",
     "loop",
     "executor",
     "config-dir",
     "override"
   ],
-  "lastUpdated": "2026-06-10T16:35:59.897Z",
+  "lastUpdated": "2026-06-13T13:42:38.202Z",
   "specId": "144",
   "folderSlug": "deep-loop-executor-config-dir",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

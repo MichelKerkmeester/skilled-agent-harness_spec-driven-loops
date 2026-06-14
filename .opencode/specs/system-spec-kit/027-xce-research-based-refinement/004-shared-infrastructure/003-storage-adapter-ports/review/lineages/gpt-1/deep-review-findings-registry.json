@@ -1,0 +1,102 @@
+{
+  "sessionId": "fanout-gpt-1-1781144091708-itpir0",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "BetterSqliteVectorStore ignores caller supplied record IDs",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts",
+      "line": 175,
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "content_hash": "sha256:gpt1-f001",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:80-87",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:175-187",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:320-337"
+      ],
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "VectorStore.clear deletes memory metadata, not just vector records",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts",
+      "line": 264,
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "content_hash": "sha256:gpt1-f002",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:95-96",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:264-271"
+      ],
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "VectorStore contract tests avoid the caller-ID behavior promised by the port",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/storage-ports-contract.vitest.ts",
+      "line": 276,
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "content_hash": "sha256:gpt1-f003",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tests/storage-ports-contract.vitest.ts:276-303",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:175-187"
+      ],
+      "transitions": [{ "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "FakeContentionPolicy omits retryDelaysMs and shouldAbort parity",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/fakes/storage-ports.ts",
+      "line": 246,
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "content_hash": "sha256:gpt1-f004",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tests/fakes/storage-ports.ts:246-264",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/contention-policy.ts:120-138",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/contention-policy.ts:183-191"
+      ],
+      "transitions": [{ "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001", "F002", "F003", "F004"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001", "F002", "F003", "F004"],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true,
+    "resource-map-coverage": true,
+    "stabilization": true
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 3, "P2": 1 },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.55,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

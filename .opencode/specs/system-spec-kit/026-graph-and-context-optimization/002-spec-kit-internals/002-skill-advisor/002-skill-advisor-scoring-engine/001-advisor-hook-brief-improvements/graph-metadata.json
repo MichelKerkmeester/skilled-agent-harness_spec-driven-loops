@@ -49,7 +49,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
-      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
       "hooks/claude/hook-state.ts",
       "lib/context/shared-payload.ts",
       "checklist.md",
@@ -58,11 +57,11 @@
       "implementation-summary.md",
       "hooks/codex/user-prompt-submit.ts",
       "hooks/codex/prompt-wrapper.ts",
-      "references/hooks/skill-advisor-hook.md",
       "resource-map.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js"
+      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/prompt-wrapper.js"
     ],
     "entities": [
       {
@@ -93,12 +92,6 @@
         "name": "prompt-wrapper.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
         "source": "derived"
       },
       {
@@ -147,6 +140,12 @@
         "name": "user-prompt-submit.js",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-wrapper.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/prompt-wrapper.js",
         "source": "derived"
       },
       {
@@ -212,7 +211,7 @@
     ],
     "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`. That earlier work established the end-to-end hook surfaces, but packet-02 research still identified a bounded implementation set across OpenCode threshold parity, shared brief rendering, MCP surface symmetry, validator threshold semantics, and durable prompt-safe telemetry.",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-06-08T17:32:20.825Z",
+    "last_save_at": "2026-06-12T04:40:47.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,12 @@
+{
+  "sessionId": "fanout-gpt-3-1781110469935-pc6f9l",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/review/lineages/gpt-3",
+  "resolveArtifactRoot": "skipped-by-fanout-override",
+  "phaseInit": "complete",
+  "phaseMainLoop": "maxIterationsReached",
+  "phaseSynthesis": "complete"
+}

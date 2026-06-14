@@ -1,0 +1,11 @@
+{
+  "run_id": "1781112180955-4japyt",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/review",
+  "total_cli_lineages": 2,
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false
+}

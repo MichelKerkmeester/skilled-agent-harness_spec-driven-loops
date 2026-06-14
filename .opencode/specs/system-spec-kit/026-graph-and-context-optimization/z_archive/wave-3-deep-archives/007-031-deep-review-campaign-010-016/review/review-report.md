@@ -125,37 +125,3 @@ Convergence achieved at iteration 10: zero new findings, all dimensions covered.
 ## 7. RECOMMENDATIONS
 
 1. **P1 (F002):** Add a clarifying note in SKILL.md §4 Rules: "The skill directory name and `name` field use `system-code-graph` (the filesystem slug). The MCP server name and client namespace use `mk-code-index` (the runtime identity)."
-2. **P2 batch (F006/F011, F007, F010, F016/F020):** Resolve in a follow-up documentation packet covering: stale architecture open questions, launcher error message naming convention, MCP key convention documentation, and config table updates.
-3. **P2 (F019):** Consider adding lock staleness detection (`mtime` check) to the launcher's `acquireBootstrapLock` function.
-4. **P2 (F013/F014):** Add a reconciliation note in the feature catalog explaining feature-to-tool granularity.
-5. **All other P2s:** Document or accept as-is in follow-up docs packets.
-
----
-
-## 8. RESOURCE MAP
-
-- **Iteration files:** `review/iterations/iteration-001.md` through `iteration-010.md`
-- **Findings registry:** `review/deep-review-findings-registry.json`
-- **Strategy:** `review/deep-review-strategy.md`
-- **State log:** `review/deep-review-state.jsonl`
-- **Primary targets reviewed:** 6 production files, 7 documentation files
-- **Total files inspected:** 13+
-
----
-
-## 9. CROSS-REFERENCE STATUS
-
-| Protocol | Level | Status | Notes |
-|----------|-------|--------|-------|
-| `spec_code` | core | PASS | MCP server name matches mcp.json; tool names match schema/dispatch |
-| `checklist_evidence` | core | N/A | No checklist.md for this review scope |
-| `feature_catalog_code` | overlay | PARTIAL | 17 features vs 10 tools gap documented (F013/F014) |
-| `playbook_capability` | overlay | PARTIAL | Scenario 011 missing schema cross-ref (F015) |
-
----
-
-## 10. CONCLUSION
-
-The MCP rename from `system_code_graph` to `mk-code-index` is **complete and correct** across all production code paths. The 1 P1 finding is a documentation clarity issue about dual naming (skill directory vs MCP server), not a functional defect. All 19 P2 findings are documentation discoverability or clarity gaps that can be batch-resolved in a follow-up packet. The review converges at iteration 10 with zero new findings.
-
-**Verdict: CONDITIONAL** — Ship with P1 advisory, batch-resolve P2s in follow-up.

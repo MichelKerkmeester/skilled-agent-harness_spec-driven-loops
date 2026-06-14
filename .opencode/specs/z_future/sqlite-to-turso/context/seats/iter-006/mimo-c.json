@@ -1,0 +1,154 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "Database",
+      "kind": "dependency",
+      "signature": "import Database from 'better-sqlite3'",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:7",
+      "relevance": 1,
+      "notes": "Direct better-sqlite3 driver import; Turso uses @libsql/client — every call site in this module couples to the synchronous better-sqlite3 API surface"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "new Database",
+      "kind": "integration_point",
+      "signature": "new Database(dbPath) — synchronous constructor",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:265",
+      "relevance": 0.9,
+      "notes": "Synchronous constructor with no options; Turso/libSQL client is async and uses createClient() with URL+auth — entire initDb call chain must become async"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "db.pragma",
+      "kind": "gap",
+      "signature": "db.pragma('busy_timeout = 5000')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:270",
+      "relevance": 1,
+      "notes": "Turso/libSQL has no .pragma() method; busy_timeout must be set via connection config or PRAGMA SQL statement if supported"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "db.pragma",
+      "kind": "gap",
+      "signature": "db.pragma('journal_mode = WAL')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:271",
+      "relevance": 1,
+      "notes": "WAL journal mode is a local SQLite concept; Turso uses its own replication layer — this pragma is unsupported and the WAL file triplet model (DB_TRIPLET) collapses"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "db.pragma",
+      "kind": "gap",
+      "signature": "db.pragma('foreign_keys = ON')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:272",
+      "relevance": 0.7,
+      "notes": ".pragma() API does not exist on Turso; foreign_keys may need PRAGMA SQL or server-side config"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "integration_point",
+      "signature": "database.prepare('PRAGMA table_info(${tableName})').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:206",
+      "relevance": 0.6,
+      "notes": "PRAGMA table_info as SQL text; Turso may support some PRAGMAs as SQL but availability is undocumented — needs adapter shim"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "db.exec",
+      "kind": "integration_point",
+      "signature": "db.exec(SCHEMA_SQL) — multi-statement DDL execution",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:273",
+      "relevance": 0.8,
+      "notes": "better-sqlite3 .exec() runs multiple semicolon-separated statements synchronously; Turso .execute() is async and may require statement splitting"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "result.lastInsertRowid",
+      "kind": "integration_point",
+      "signature": "result.lastInsertRowid on RunResult",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:604",
+      "relevance": 0.7,
+      "notes": "better-sqlite3 RunResult.lastInsertRowid; Turso returns rows array — lastInsertRowid must be extracted from RETURNING or separate query"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "d.transaction",
+      "kind": "gap",
+      "signature": "d.transaction(() => { ... }) — synchronous transaction wrapper",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:692",
+      "relevance": 0.9,
+      "notes": "better-sqlite3 synchronous .transaction() returns a callable; Turso has no equivalent — must use async batch() or manual BEGIN/COMMIT"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryStartupHighlights",
+      "kind": "dependency",
+      "signature": "WITH filtered_nodes AS (...), aggregated AS (...), ranked AS (SELECT ... ROW_NUMBER() OVER (...))",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:923",
+      "relevance": 0.5,
+      "notes": "Non-recursive CTEs + ROW_NUMBER() window function; libSQL supports CTEs but window function edge cases may differ — verify after migration"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "new Database",
+      "kind": "gap",
+      "signature": "new Database(sqlitePath, { readonly: true, fileMustExist: true })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:126",
+      "relevance": 0.9,
+      "notes": "Read-only constructor options do not exist in Turso/libSQL; readonly mode and fileMustExist must be handled at server/connection level"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "db.pragma",
+      "kind": "gap",
+      "signature": "db.pragma('integrity_check')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:128",
+      "relevance": 0.8,
+      "notes": "integrity_check pragma is local SQLite; Turso has no embedded integrity check — recovery procedure CG-RP-001 must be redesigned"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "db.pragma",
+      "kind": "gap",
+      "signature": "db.pragma('wal_checkpoint(TRUNCATE)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:272",
+      "relevance": 1,
+      "notes": "WAL checkpoint is purely local SQLite; Turso has no WAL files — this recovery step (CG-RP-003 rollback) is a no-op after migration"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "DB_TRIPLET",
+      "kind": "gap",
+      "signature": "['code-graph.sqlite', 'code-graph.sqlite-wal', 'code-graph.sqlite-shm']",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:41",
+      "relevance": 1,
+      "notes": "WAL triplet file model (.sqlite + .sqlite-wal + .sqlite-shm); Turso uses remote replicas — all triplet copy/move/restore logic becomes obsolete"
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/close-db-assertion.ts",
+      "symbol": "assertDbHandleClosed",
+      "kind": "convention",
+      "signature": "handle.prepare('SELECT 1').get() — liveness probe after close",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/close-db-assertion.ts:18",
+      "relevance": 0.5,
+      "notes": "Liveness probe pattern depends on synchronous prepare().get(); Turso client has no .prepare() — needs async ping or connection state check"
+    }
+  ]
+}

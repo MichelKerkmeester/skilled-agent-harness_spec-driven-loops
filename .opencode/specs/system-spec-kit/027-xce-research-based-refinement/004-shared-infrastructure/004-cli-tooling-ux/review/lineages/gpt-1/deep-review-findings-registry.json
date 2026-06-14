@@ -1,0 +1,76 @@
+{
+  "sessionId": "fanout-gpt-1-1781144891515-7jxn7r",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent phase map and continuity still advertise planned work after child phases completed",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/spec.md",
+      "line": 119,
+      "finding_class": "spec_code_drift",
+      "content_hash": "sha256:f001-parent-phase-map-stale-completed-children",
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/spec.md:17-18",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/spec.md:31",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/spec.md:117-123",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/graph-metadata.json:118-119"
+      ],
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Completed child summaries leave continuity key_files empty despite naming changed artifacts",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/003-cli-reference-and-skill-docs/implementation-summary.md",
+      "line": 16,
+      "finding_class": "continuity_hygiene",
+      "content_hash": "sha256:f002-empty-key-files-completed-child-summaries",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/003-cli-reference-and-skill-docs/implementation-summary.md:16",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/003-cli-reference-and-skill-docs/implementation-summary.md:49-52",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion/implementation-summary.md:16",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/005-cli-automation-compact-completion/implementation-summary.md:49-52"
+      ],
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": ["code_graph_status reported stale via readiness marker; direct read/grep fallback used"],
+  "corruptionWarnings": []
+}

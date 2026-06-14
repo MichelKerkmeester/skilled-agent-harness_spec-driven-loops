@@ -108,8 +108,8 @@
       }
     ],
     "causal_summary": "Add trigger_phrases frontmatter to all 313 system-spec-kit snippets, derived from root catalog H3 headings and feature file content. Batched by category with parallel AI agents.",
-    "created_at": "2026-06-04T13:19:25.658Z",
-    "last_save_at": "2026-06-04T13:19:25.658Z",
+    "created_at": "2026-06-12T04:40:46.552Z",
+    "last_save_at": "2026-06-12T04:40:46.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

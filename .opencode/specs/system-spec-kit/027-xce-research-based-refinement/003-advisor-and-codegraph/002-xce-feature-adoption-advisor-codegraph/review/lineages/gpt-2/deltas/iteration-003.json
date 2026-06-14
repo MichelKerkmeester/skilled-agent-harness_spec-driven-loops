@@ -1,0 +1,6 @@
+{
+  "iteration": 3,
+  "findingRefs": ["F001", "F003"],
+  "newFindingsRatio": 1,
+  "dimensions": ["traceability", "maintainability"]
+}

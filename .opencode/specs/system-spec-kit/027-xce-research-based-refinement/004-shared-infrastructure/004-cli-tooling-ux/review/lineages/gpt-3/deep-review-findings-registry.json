@@ -1,0 +1,72 @@
+{
+  "sessionId": "fanout-gpt-3-1781144891515-7jxn7r",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Code-index and skill-advisor hash gates lack build-time fingerprint persistence",
+      "file": ".opencode/bin/code-index.cjs",
+      "line": 51,
+      "evidence": [
+        ".opencode/bin/code-index.cjs:51-78",
+        ".opencode/bin/skill-advisor.cjs:72-95",
+        ".opencode/skills/system-code-graph/package.json:7",
+        ".opencode/skills/system-skill-advisor/mcp_server/package.json:7-9",
+        ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs:68-82"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Advisory edge case in all-three freshness claim" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Spec-memory bridge allowlist permits cross-paired request/tool combinations",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
+      "line": 347,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs:18-19",
+        ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs:347-356",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-bridge-allowlist.vitest.ts:21-47"
+      ],
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Defense-in-depth exact-pairing gap; both tools remain read-only" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001", "F002"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001", "F002"],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

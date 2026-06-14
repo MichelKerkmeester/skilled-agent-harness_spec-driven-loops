@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption",
+  "spec_folder": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption",
+  "parent_id": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "pilot",
+      "strongest",
+      "findings",
+      "packaging-specific",
+      "back-port",
+      "them",
+      "lanes",
+      "every",
+      "deep-improvement",
+      "run",
+      "gets",
+      "same"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goodhart Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lane Adoption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The pilot's strongest findings are not packaging-specific. Back-port them to lanes A/B/C so every deep-improvement run gets the same protection against reward-hacking and noise — without breaking the byte-identical agent-improvement default path.",
+    "created_at": "2026-06-12T04:40:46.635Z",
+    "last_save_at": "2026-06-12T04:40:46.635Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

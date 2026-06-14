@@ -1,0 +1,54 @@
+{
+  "mode": "review",
+  "sessionId": "fanout-gpt-1-1781151823427-s19oy4",
+  "generation": 1,
+  "releaseReadinessState": "release-blocking",
+  "verdict": "FAIL",
+  "openFindings": [
+    {
+      "id": "GPT1-F001",
+      "severity": "P0",
+      "category": "correctness",
+      "finding_class": "production-warmup-finalization",
+      "title": "Async packed BM25 warmup never finalizes the last non-empty batch",
+      "evidence": [".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:604", ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:613", ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:616"],
+      "content_hash": "sha256:73cfa33f166cac784c71fb7d76a400703853bd6f622674f547a927e679914a2e",
+      "status": "active"
+    },
+    {
+      "id": "GPT1-F002",
+      "severity": "P0",
+      "category": "traceability",
+      "finding_class": "invalid-budget-fixture",
+      "title": "Current-corpus RAM budget fixture is mostly stop words and does not exercise body postings",
+      "evidence": [".opencode/skills/system-spec-kit/mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts:19", ".opencode/skills/system-spec-kit/mcp_server/lib/search/lexical-normalizer.ts:11", ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:177"],
+      "content_hash": "sha256:563f889df824d3987b7f4236162fca4565fb07e9094e8aaadb84cd66416c5ec4",
+      "status": "active"
+    },
+    {
+      "id": "GPT1-F003",
+      "severity": "P2",
+      "category": "metadata-drift",
+      "finding_class": "out-of-scope-key-file-contamination",
+      "title": "Graph metadata key_files includes out-of-scope drift files as if they belong to this packet",
+      "evidence": [".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights/graph-metadata.json:47", ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights/implementation-summary.md:107"],
+      "content_hash": "sha256:87cda21f310e4cf6d248867591a3013b0c5528f0e22e9218e4c9a2a7af0b5355",
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 2,
+    "P1": 0,
+    "P2": 1
+  },
+  "convergenceScore": 0.55,
+  "stopReason": "maxIterationsReached"
+}

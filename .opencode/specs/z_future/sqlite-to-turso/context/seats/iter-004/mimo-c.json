@@ -1,0 +1,148 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "gap",
+      "signature": "db.prepare('PRAGMA table_info(memory_index)').all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:98",
+      "relevance": 0.7,
+      "notes": "Turso/libSQL lacks .pragma() method and PRAGMA result-set semantics differ; schema introspection must use libSQL-specific API or INFORMATION_SCHEMA"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "db.transaction",
+      "kind": "gap",
+      "signature": "db.transaction(() => { ... })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:665",
+      "relevance": 0.9,
+      "notes": "better-sqlite3 synchronous transaction wrapper; libSQL client is async-first and transaction API differs fundamentally"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "Database.Statement.run",
+      "kind": "gap",
+      "signature": "(db.prepare(...) as Database.Statement).run(...) → { changes: number }",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:244",
+      "relevance": 0.8,
+      "notes": "better-sqlite3 .run() returns { changes, lastInsertRowid }; libSQL async execute() returns different result shape requiring adapter"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "db.exec",
+      "kind": "gap",
+      "signature": "db.exec(LEDGER_SCHEMA_SQL); db.exec(LEDGER_INDEX_SQL); db.exec(LEDGER_TRIGGER_SQL)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:144",
+      "relevance": 0.8,
+      "notes": "better-sqlite3 .exec() runs multi-statement DDL synchronously; libSQL .execute() is async and multi-statement batching differs"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "CREATE TRIGGER",
+      "kind": "gap",
+      "signature": "CREATE TRIGGER IF NOT EXISTS prevent_ledger_update BEFORE UPDATE ON mutation_ledger BEGIN SELECT RAISE(ABORT, '...'); END",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:133",
+      "relevance": 0.7,
+      "notes": "Trigger DDL syntax with BEGIN/END blocks; Turso/libSQL trigger support may differ in RAISE() semantics and BEFORE triggers"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "json_extract",
+      "kind": "gap",
+      "signature": "json_extract(linked_memory_ids, '$[0]') in CREATE INDEX",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:126",
+      "relevance": 0.9,
+      "notes": "JSON function in index expression is SQLite 3.38+; Turso/libSQL JSON support may not cover expression indexes on json_extract"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "json_each",
+      "kind": "gap",
+      "signature": "json_each(ml.linked_memory_ids) in FROM clause",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:294",
+      "relevance": 0.6,
+      "notes": "Table-valued function json_each() for array expansion; supported in libSQL but semantics may diverge for nested JSON"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "sqlite_master",
+      "kind": "gap",
+      "signature": "SELECT name FROM sqlite_master WHERE type = 'trigger' AND tbl_name = 'mutation_ledger'",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:311",
+      "relevance": 0.5,
+      "notes": "Direct sqlite_master query for trigger verification; Turso may expose schema via different system tables or API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "strftime",
+      "kind": "gap",
+      "signature": "strftime('%Y-%m-%dT%H:%M:%fZ', 'now') DEFAULT",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:108",
+      "relevance": 0.4,
+      "notes": "strftime with millisecond format %f in DEFAULT expression; libSQL may not support %f in default value expressions"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "lastInsertRowid",
+      "kind": "gap",
+      "signature": "(result as { lastInsertRowid: number | bigint }).lastInsertRowid",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:181",
+      "relevance": 0.7,
+      "notes": "better-sqlite3 result property lastInsertRowid; libSQL async execute returns different result structure needing adapter"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "json_extract",
+      "kind": "gap",
+      "signature": "json_extract(decision_meta, '$.normalizedPath') in WHERE clause",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:366",
+      "relevance": 0.5,
+      "notes": "json_extract in WHERE for filtering; libSQL supports JSON functions but performance characteristics may differ for large tables"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      "symbol": "ON CONFLICT",
+      "kind": "convention",
+      "signature": "INSERT ... ON CONFLICT(receipt_key) DO UPDATE SET ...",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts:167",
+      "relevance": 0.3,
+      "notes": "Upsert with ON CONFLICT; supported in libSQL but verify DO UPDATE SET excluded.column syntax matches exactly"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      "symbol": "datetime",
+      "kind": "convention",
+      "signature": "datetime('now')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts:166",
+      "relevance": 0.2,
+      "notes": "datetime('now') built-in; supported in libSQL but verify timezone handling consistency"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      "symbol": "IN clause",
+      "kind": "convention",
+      "signature": "WHERE id IN (${ids.map(() => '?').join(',')})",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts:118",
+      "relevance": 0.2,
+      "notes": "Dynamic IN clause with parameterized placeholders; standard SQL, supported in libSQL but verify parameter binding API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
+      "symbol": "Database.prepare",
+      "kind": "dependency",
+      "signature": "database.prepare(`SELECT ... WHERE relation IN ('contradicts','supersedes') AND source_id IN (${placeholders})`)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts:208",
+      "relevance": 0.7,
+      "notes": "better-sqlite3 synchronous .prepare().all(); libSQL async execute() requires await and different parameter passing convention"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "Database.Database",
+      "kind": "dependency",
+      "signature": "import type Database from 'better-sqlite3'; let db: Database.Database | null",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:12",
+      "relevance": 0.6,
+      "notes": "better-sqlite3 type namespace used throughout; migration requires replacing with libSQL client types and async wrappers"
+    }
+  ]
+}

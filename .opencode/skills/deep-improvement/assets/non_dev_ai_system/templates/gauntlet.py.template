@@ -64,8 +64,11 @@ def git_wt(*args: str) -> subprocess.CompletedProcess:
 
 
 def reset_wt_file(rel: str) -> None:
-    """Reset a single file in the gauntlet worktree to its committed state."""
-    shell(["git", "-C", WT_BASE, "checkout", "--", rel])
+    """Restore an attack-mutated file from the LIVE tree. The worktree data mirrors the live
+    packaging (see the overlay in main), and files relocated since HEAD do not exist for a
+    `git checkout` to restore."""
+    import shutil
+    shutil.copyfile(os.path.join(MAIN_ROOT, rel), os.path.join(WT_BASE, rel))
 
 
 def main() -> None:
@@ -74,6 +77,14 @@ def main() -> None:
     r = git_wt("add", "-d", WT_BASE, "HEAD")
     if r.returncode != 0:
         sys.exit("gauntlet: could not create worktree: " + r.stderr)
+    # Overlay the LIVE packaging onto the worktree: HEAD lacks uncommitted layout changes
+    # (e.g. relocated frozen scoring files), and the battery must test current code against
+    # current data while attacks still mutate only the isolated copy. -L materializes
+    # external symlinks (shared globals) as file content so the sandbox is self-contained
+    # even when the symlink targets were renamed/moved without being committed.
+    ov = shell(["rsync", "-aL", "--delete", MAIN_CW + "/", WT_CW + "/"])
+    if ov.returncode != 0:
+        sys.exit("gauntlet: could not overlay live packaging: " + ov.stderr)
     try:
         loop = load_loop()
         # Neutralize anything dispatch-shaped unless an attack overrides it

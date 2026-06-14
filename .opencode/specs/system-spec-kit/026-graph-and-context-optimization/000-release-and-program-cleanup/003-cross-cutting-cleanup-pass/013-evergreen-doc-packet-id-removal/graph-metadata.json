@@ -57,7 +57,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -145,9 +145,9 @@
         "source": "derived"
       },
       {
-        "name": "skill-advisor-hook.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Evergreen docs were carrying mutable packet and phase references. Those references rot when packet folders are renumbered, archived, or consolidated, even though the runtime behavior they describe remains current.",
     "created_at": "2026-04-29T20:05:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.010Z",
+    "last_save_at": "2026-06-12T04:40:47.041Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,17 @@
+[0m
+> build · mimo-v2.5-pro
+[0m
+[mk-code-graph] Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+[mk-code-graph] Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+[mk-code-graph] Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs
+[mk-code-graph] Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+[0m→ [0mRead .opencode/skills/deep-improvement/scripts/shared/extract-deliverable.cjs[90m [limit=30][0m
+[mk-code-graph] Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+P1|run-benchmark.cjs|phantom gap NaN propagation|line 552: `Number(m[1]) / selfMax` returns NaN when the regex capture is non-numeric (e.g. "~85", "N/A") or selfMax is 0; NaN silently propagates through gap_ratio→mean_gap_ratio→warning (NaN>0 is false), corrupting the phantom-gap diagnostic in the report without alerting.
+
+P2|run-benchmark.cjs|aggregated result leaks per-sample fields|line 292: `...perSample[0]` spreads sample-0's `missingHeadings`, `missingPatterns`, `forbiddenMatches`, and `extraction` into the multi-sample aggregate; when samples disagree (e.g. sample 0 missing output, sample 2 passes), consumers see sample-0-only diagnostic fields that don't represent the aggregate.
+
+P2|run-benchmark.cjs|phantom gap division by zero|line 552: when `profile.self_score_max` is configured as 0, `Number(m[1]) / 0` produces Infinity/NaN depending on the captured value, silently corrupting the phantom gap metric.
+
+VERDICT: 3 findings.

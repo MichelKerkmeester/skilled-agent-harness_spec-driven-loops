@@ -62,39 +62,4 @@ Target type: files (curated committed code). Reviewed: `shared/embeddings/{auto-
 ### P2 (advisory)
 
 | ID | Sev | Finding | File | Disposition |
-|----|-----|---------|------|-------------|
-| P2-1 | P2 | Direct `hf-model-server` startup can unlink a live Unix socket, bypassing the launcher's perimeter guard | `hf-model-server.cjs` | PLAN — apply the 005 perimeter assert on the direct-startup path too |
-| P2-2 | P2 | 005 spec file-change matrix assigns idle-eviction to `hf-model-server.cjs`; implementation lives in `model-server-supervision.cjs` | `031/005` spec.md | QUICK doc fix |
-| P2-3 | P2 | Several embedding env knobs are code/test-visible but absent from `ENV_REFERENCE.md` | `ENV_REFERENCE.md` | QUICK doc fix |
-
-## 4. Dimension Coverage
-
-All 4 covered + saturated. correctness: ×5 passes (iters 1,5,6,8,9) — the densest, yielding the WAL + lease + provider/reindex findings. security: ×1 (iter 2) — tcp-exposure + workflow-lock. traceability: ×1 (iter 3) — daemon-child-ledger + the 005 file-matrix; confirmed the honestly-gated items (flag-flip, dtype, cache-into-reindex) are correctly documented, not defects. maintainability: ×1 (iter 4) — the ENV_REFERENCE gap. Ruled clean across iters 8–9: cache lib eviction/migration, `fatalShutdown` ordering, retention sweep, embed batching, HF row-count/dim adoption, auto-select local-first, index/update embed guards.
-
-## 5. Convergence Report
-
-Ran the **full 20 iterations** (hard stop at `max_iterations`). Iterations 1–9 (sequential) reached a file-level saturation plateau (ratio 1.0 → … → 0.10) with the adjudication pass (iter 7) confirming all 7 then-open P1 (confidence 0.83–0.91, none downgraded). Rather than stop early at the file-level plateau, iterations 10–20 escalated to **line-level granularity** via 11 parallel gpt-5.5/high/fast agents on distinct surfaces — this was productive, surfacing **8 more P1** (per-pass ratios 0–0.25) that file-level passes had missed, while iters 10/18/19 returned clean (the adversarial-refutation pass refuted nothing; the security sweep found no leakage/exposure). The coverage graph was empty throughout this hand-driven run (`nodeCount=0` — CLI passes write deltas, not graph nodes), so graph convergence was vacuous and not used as a stop/continue signal; the inline composite signals + the explicit 20-iteration request governed. Net: line-level + cross-cutting depth nearly doubled the finding count vs the file-level plateau — vindicating running to the full 20.
-
-## 6. Remediation Plan
-
-1. **DONE — WAL-durability (WAL-1, WAL-2):** committed `b588951fba`.
-2. **QUICK doc reconciliation (P2-2, P2-3, TRC-1):** fix the 005 file-matrix, add the missing `ENV_REFERENCE` rows, reconcile the daemon-child verification ledgers vs impl-summaries. Low-risk; can land now.
-3. **Coordinated single-writer / lease / lifecycle hardening (LEASE-1, LEASE-2, DEEP-2, DEEP-5 + OR-R-01 + P2-1):** the model-server-supervision lease lifecycle + idle-evict root reap (DEEP-2), the code-graph owner-lease election race, the Step-11.5 stale-lease childPid gap (DEEP-5), and the direct-startup perimeter gap are the SAME single-writer class across both launchers + the standalone-save path. Land them together, after the active parallel launcher WIP settles, with a deterministic two-launcher concurrency test — not piecemeal. Dedicated follow-up packet.
-4. **Shutdown/durability ordering (DEEP-1, DEEP-7):** the clean-shutdown marker must be deleted only after a confirmed close (DEEP-1), and reindex should write a staging shard + atomic swap so a crashed same-dim re-embed cannot leave a half-written active shard (DEEP-7). Both are durability-correctness; fold into the WAL-durability follow-up.
-5. **Targeted P1 fixes (EMB-1, EMB-2, SEC-1, SEC-2, DEEP-3, DEEP-4, DEEP-6):** each needs a small design decision — provider-override/persisted-embedder precedence (EMB-1), cooperative reindex cancel (EMB-2), tcp auth/loopback (SEC-1), workflow-lock fail-closed (SEC-2), adapter-cache dimension key (DEEP-3), retention `delete_after` TOCTOU re-check (DEEP-4), `embedder_status` live-timestamp surfacing (DEEP-6). Route via `/speckit:plan` as a focused remediation packet; re-validate each against HEAD first (as WAL-1 was) since several touch operator-sensitive code.
-
-## 7. Cross-References
-
-- Parallel code-graph audit: `026/004/011` (OR-1-01..08 fixed), `026/004/013` OR-R-01 (deferred). Their lease/race hardening landed in `6bd1d7045e`/`8943837b2f`/`6f6c6595da` — re-validate the code-graph WS-2/WS-3 findings against those (likely resolved).
-- Daemon-shutdown review WS-1 == WAL-1 (fixed). WS-3 (owner-lease) resolved by the landed code-graph work.
-- Program commits reviewed: `910e87c429` `73ae557901` `6781109b97` `47a01c7170` `40806392cb` `a6ab05a4f2`; daemon `904204c272` `34604b521b` `8a30db8820` `b88390a6cd`.
-
-## 8. Methodology
-
-Faithful deep-review loop: fresh-context CLI executor per iteration (cli-codex gpt-5.5/high/fast), externalized JSONL + delta + strategy state (no context degradation), risk-ordered dimensions, severity-weighted convergence with an adversarial adjudication pass, claim-adjudication packets on P0/P1. Main loop was the single state-writer. Each iteration was READ-ONLY on the target code.
-
-## 9. Next Steps
-
-- `/speckit:plan` for the EMB-*/SEC-* P1 cluster (targeted remediation).
-- A coordinated single-writer/lease-hardening packet (LEASE-* + OR-R-01 + P2-1) once parallel launcher WIP settles, with a two-launcher concurrency test.
-- Quick doc reconciliation (P2-2/P2-3/TRC-1) can land immediately.
+<!-- /ANCHOR: deep-review-embedding-stack -->

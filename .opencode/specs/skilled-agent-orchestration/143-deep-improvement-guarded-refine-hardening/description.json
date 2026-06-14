@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening",
+  "description": "Feature Specification: Guarded Refine-Loop Hardening from Copywriter Pilot Teachings",
+  "keywords": [
+    "feature",
+    "specification",
+    "guarded",
+    "refine-loop",
+    "hardening",
+    "copywriter",
+    "pilot",
+    "teachings"
+  ],
+  "lastUpdated": "2026-06-12T11:34:44.872Z",
+  "specId": "143",
+  "folderSlug": "deep-improvement-guarded-refine-hardening",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -43,12 +43,6 @@
     "importance_tier": "normal",
     "status": "implementation_verified_(pending_user_publish_+_post_deploy_re_test)",
     "key_files": [
-      "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js",
-      "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css",
-      "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js",
-      "a_nobel_en_zn/3_staging/link_card_collapse_expand.js",
-      "a_nobel_en_zn/3_staging/link_card_collapse_expand.css",
-      "a_nobel_en_zn/1_css/global/performance.css",
       "spec.md",
       "tasks.md",
       "checklist.md",
@@ -58,30 +52,6 @@
       ".opencode/skills/sk-code/references/webflow/deployment/minification_guide.md"
     ],
     "entities": [
-      {
-        "name": "link_card_collapse_expand.js",
-        "kind": "code",
-        "path": "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js",
-        "source": "derived"
-      },
-      {
-        "name": "link_card_collapse_expand.css",
-        "kind": "file",
-        "path": "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css",
-        "source": "derived"
-      },
-      {
-        "name": "link_card_collapse_expand.min.js",
-        "kind": "code",
-        "path": "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js",
-        "source": "derived"
-      },
-      {
-        "name": "performance.css",
-        "kind": "file",
-        "path": "a_nobel_en_zn/1_css/global/performance.css",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -201,11 +171,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cleanup Handoff",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "recorded",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sector-menu link card (`[data-link-card]`) had three original defects, then one follow-up iOS",
     "created_at": "2026-05-30T00:00:00Z",
-    "last_save_at": "2026-06-06T14:09:09.691Z",
+    "last_save_at": "2026-06-10T19:22:13.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

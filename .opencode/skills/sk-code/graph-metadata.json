@@ -23,6 +23,11 @@
         "target": "sk-code-review",
         "weight": 0.4,
         "context": "review baseline"
+      },
+      {
+        "target": "sk-interface-design",
+        "weight": 0.4,
+        "context": "design-and-build pair: sk-interface-design owns the look, sk-code owns the implementation"
       }
     ],
     "conflicts_with": [],

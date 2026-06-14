@@ -1,0 +1,11 @@
+{
+  "run_id": "1781128695755-2pbqgk",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/review",
+  "total_cli_lineages": 3,
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false
+}

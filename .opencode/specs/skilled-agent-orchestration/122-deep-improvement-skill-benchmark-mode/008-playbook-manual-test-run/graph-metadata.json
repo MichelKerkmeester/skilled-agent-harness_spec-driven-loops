@@ -115,8 +115,8 @@
       }
     ],
     "causal_summary": "Run every scenario in `.opencode/skills/deep-improvement/manual_testing_playbook/`",
-    "created_at": "2026-06-04T10:32:49.990Z",
-    "last_save_at": "2026-06-04T10:32:49.990Z",
+    "created_at": "2026-06-12T04:40:46.535Z",
+    "last_save_at": "2026-06-12T04:40:46.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

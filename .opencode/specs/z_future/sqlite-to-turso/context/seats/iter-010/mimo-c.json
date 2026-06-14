@@ -1,0 +1,175 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "symbol": "import type Database from 'better-sqlite3'",
+      "kind": "dependency",
+      "signature": "import type Database from 'better-sqlite3'",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:63",
+      "relevance": 0.7,
+      "notes": "Type-level dependency on better-sqlite3; Turso/libSQL has different type surface (e.g. no Statement generic, different Database interface)."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "symbol": "db",
+      "kind": "integration_point",
+      "signature": "let db: Database.Database | null = null",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:327",
+      "relevance": 0.8,
+      "notes": "Module-level better-sqlite3 Database handle stored as singleton; Turso client is async and has different connection lifecycle (HTTP/WebSocket vs in-process)."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "symbol": "init",
+      "kind": "integration_point",
+      "signature": "function init(database: Database.Database, vectorFn, graphFn)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:377",
+      "relevance": 0.8,
+      "notes": "Init accepts better-sqlite3 Database instance; Turso libSQL client has incompatible API (async .execute() vs sync .prepare().all())."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "symbol": "isFtsAvailable",
+      "kind": "gap",
+      "signature": "SELECT name FROM sqlite_master WHERE type='table' AND name='memory_fts'",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:527",
+      "relevance": 0.9,
+      "notes": "Checks sqlite_master for memory_fts FTS5 virtual table; Turso/libSQL lacks FTS5 — query will return empty or error."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "symbol": "ftsSearch",
+      "kind": "gap",
+      "signature": "fts5Bm25Search(db, query, { limit, specFolder, includeArchived })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:559",
+      "relevance": 0.95,
+      "notes": "Delegates to FTS5 bm25() ranking function; Turso/libSQL has no FTS5 — this entire search channel fails."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "symbol": "bm25Search",
+      "kind": "integration_point",
+      "signature": "db.prepare(`SELECT id, spec_folder, importance_tier FROM memory_index WHERE id IN (...)`)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:449",
+      "relevance": 0.7,
+      "notes": "Synchronous better-sqlite3 .prepare().all() pattern; Turso requires async .execute() and returns different row shape."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "symbol": "exactTriggerSearch",
+      "kind": "integration_point",
+      "signature": "db.prepare(`SELECT m.* FROM memory_index m JOIN active_memory_projection ...`)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:680",
+      "relevance": 0.7,
+      "notes": "Synchronous .prepare().all() with positional params (? placeholders); Turso uses named params or positional but async API."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts",
+      "symbol": "to_embedding_buffer",
+      "kind": "integration_point",
+      "signature": "function to_embedding_buffer(embedding: EmbeddingInput): Buffer",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:180",
+      "relevance": 0.6,
+      "notes": "Produces Buffer for sqlite-vec vec0 virtual table storage; sqlite-vec extension not available in Turso/libSQL."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      "symbol": "import type BetterSqlite3 from 'better-sqlite3'",
+      "kind": "dependency",
+      "signature": "import type BetterSqlite3 from 'better-sqlite3'",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts:5",
+      "relevance": 0.6,
+      "notes": "Type dependency on better-sqlite3 BetterSqlite3 namespace."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      "symbol": "lookupIdempotencyReceipt",
+      "kind": "integration_point",
+      "signature": "database.prepare(`SELECT payload_hash, response_payload FROM memory_idempotency_receipts WHERE receipt_key = ?`).get()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts:131",
+      "relevance": 0.7,
+      "notes": "Synchronous .prepare().get() pattern; Turso requires async .execute() with different result envelope."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      "symbol": "storeIdempotencyReceipt",
+      "kind": "integration_point",
+      "signature": "database.prepare(`INSERT INTO memory_idempotency_receipts ... ON CONFLICT ... DO UPDATE SET ...`).run()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts:156",
+      "relevance": 0.7,
+      "notes": "Synchronous .prepare().run() with ON CONFLICT upsert; Turso async API returns different result (rowsAffected vs changes)."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      "symbol": "shouldSkipNearDuplicateCheck",
+      "kind": "integration_point",
+      "signature": "database.prepare(`SELECT updated_at, last_dedup_checked_at FROM memory_index WHERE id = ?`).get()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts:64",
+      "relevance": 0.7,
+      "notes": "Synchronous better-sqlite3 .prepare().get(); Turso async .execute() with different row access pattern."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      "symbol": "recordNearDuplicateCheck",
+      "kind": "integration_point",
+      "signature": "database.prepare(`UPDATE memory_index SET near_duplicate_of = ?, last_dedup_checked_at = datetime('now') WHERE id = ?`).run()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts:144",
+      "relevance": 0.7,
+      "notes": "Synchronous .prepare().run() with datetime('now') — SQLite-specific function; Turso supports it but async API differs."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/close-db-assertion.ts",
+      "symbol": "assertDbHandleClosed",
+      "kind": "integration_point",
+      "signature": "handle.prepare('SELECT 1').get()",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/close-db-assertion.ts:18",
+      "relevance": 0.6,
+      "notes": "Uses .prepare().get() to test handle liveness; Turso async client makes this probe async, changing the assertion contract."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      "symbol": "computeResultConfidence",
+      "kind": "convention",
+      "signature": "export function computeResultConfidence(results: ScoredResult[]): ResultConfidence[]",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:211",
+      "relevance": 0.6,
+      "notes": "No direct SQLite/driver coupling; migration-neutral."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts",
+      "symbol": "normalizeContentForEmbedding",
+      "kind": "convention",
+      "signature": "export function normalizeContentForEmbedding(content: string): string",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:216",
+      "relevance": 0.6,
+      "notes": "No direct SQLite/driver coupling; migration-neutral."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts",
+      "symbol": "chunkLargeFile",
+      "kind": "convention",
+      "signature": "export function chunkLargeFile(content: string): ChunkingResult",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts:285",
+      "relevance": 0.6,
+      "notes": "No direct SQLite/driver coupling; migration-neutral."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/statediff.ts",
+      "symbol": "planStatediff",
+      "kind": "convention",
+      "signature": "export function planStatediff(desiredRows, priorRows, options): StatediffAction[]",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/statediff.ts:132",
+      "relevance": 0.6,
+      "notes": "No direct SQLite/driver coupling; pure data-diff logic. Migration-neutral."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts",
+      "symbol": "resolveCanonicalDbDir",
+      "kind": "convention",
+      "signature": "export function resolveCanonicalDbDir(dir: string, workspaceRoot?: string): string",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts:19",
+      "relevance": 0.6,
+      "notes": "No direct SQLite/driver coupling; filesystem path resolution only. Migration-neutral."
+    }
+  ]
+}

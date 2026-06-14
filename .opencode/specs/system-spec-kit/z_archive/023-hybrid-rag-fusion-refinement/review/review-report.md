@@ -105,24 +105,3 @@
 - Impact: Each save still rescans and rehashes the whole target folder after preflight, so save latency grows with folder history even on the normal non-duplicate path.
 
 ## 4. Remediation Workstreams
-- WS-1 Packet truth-sync: reconcile root status, phase counts, and standards-doc sequencing across spec/plan/tasks/checklist/implementation-summary.
-- WS-2 Scripts boundary contract: either make the interop seam explicit in code/docs or narrow the packet claim to what the current tree actually guarantees.
-- WS-3 Runtime/save-path semantics: honor explicit session targeting, clarify recovery-first-call guidance, and reduce duplicate hashing on the hot save path.
-- WS-4 Security wording: truth-sync the V-rule bridge posture so docs match the optional fail-open runtime toggle.
-
-## 5. Spec Seed
-- The rerun confirms the next spec packet should be a remediation/closure packet rather than a new feature packet.
-
-## 6. Plan Seed
-- Start with the highest-severity packet/runtime contract drifts, then rerun deep review after each remediation wave.
-
-## 7. Traceability Status
-- Root packet and live runtime/doc surfaces still diverge on active claims; traceability remains an open release-readiness concern.
-
-## 8. Deferred Items
-- Advisory-only items can remain deferred only after the active P1 findings are truth-synced or fixed.
-
-## 9. Audit Appendix
-- 20 fresh iterations were recorded in `review/iterations/iteration-001.md` through `iteration-020.md`.
-- JSONL state rebuilt for this rerun under `review/deep-research-state.jsonl`.
-- Verdict rule: no P0, but active P1 findings remain, so the rerun stays CONDITIONAL.

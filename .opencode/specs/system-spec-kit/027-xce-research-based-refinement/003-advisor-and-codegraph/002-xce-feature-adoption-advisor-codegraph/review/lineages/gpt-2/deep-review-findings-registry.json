@@ -1,0 +1,115 @@
+{
+  "sessionId": "fanout-gpt-2-1781128695755-2pbqgk",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase parent still advertises scaffold-only planned state after child phases report implementation and verification",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/spec.md",
+      "line": 71,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "finding_class": "stale_release_state",
+      "content_hash": "sha256:f001-parent-stale-planned-state",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/spec.md:51",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/spec.md:71",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/spec.md:87",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/graph-metadata.json:43-46",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration/implementation-summary.md:77-80",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver/implementation-summary.md:70-74"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "BM25 symbol resolver does not cover ambiguous exact matches or context seed suggestions promised by phase scope",
+      "file": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "line": 484,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "finding_class": "spec_implementation_gap",
+      "content_hash": "sha256:f002-bm25-ambiguous-context-gap",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver/spec.md:72",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver/spec.md:94",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver/spec.md:103-105",
+        ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:448-484",
+        ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:137-148"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Code comment retains ephemeral bug-tracking label in a durable source file",
+      "file": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "line": 959,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "finding_class": "comment_hygiene",
+      "content_hash": "sha256:f003-query-comment-bug-label",
+      "evidence": [
+        ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:959-966",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation/implementation-summary.md:123-126"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

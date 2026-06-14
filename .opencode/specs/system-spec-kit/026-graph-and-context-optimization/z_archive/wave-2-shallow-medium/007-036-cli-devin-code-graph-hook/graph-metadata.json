@@ -50,7 +50,6 @@
       "decision-record.md",
       ".opencode/plugins/mk-code-graph.js",
       "implementation-summary.md",
-      ".devin/config.json",
       "checklist.md",
       "plan.md",
       "tasks.md",
@@ -60,7 +59,8 @@
       ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
       ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md",
       ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md"
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md"
     ],
     "entities": [
       {
@@ -109,12 +109,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.json",
-        "kind": "config",
-        "path": ".devin/config.json",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Devin Code Graph Hook",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase A research resolved the code-graph packet with one deliberate asymmetry: unlike advisor hooks, code-graph SessionStart hook sources stay under `.opencode/skills/system-spec-kit/mcp_server/hooks/`. Moving them to `system-code-graph/hooks/` would touch 110+ references, `.claude/settings.local.json` registrations, and build/finalize paths; ADR-001 accepts keeping the current source location and adding Devin beside the existing Claude/Gemini/Codex variants (F002/Q2).",
     "created_at": "2026-05-15T13:06:00.454Z",
-    "last_save_at": "2026-06-08T17:32:21.378Z",
+    "last_save_at": "2026-06-10T19:22:14.893Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

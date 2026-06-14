@@ -1,28 +1,28 @@
 ---
-title: "Implementation Plan: Deep loop executor config-dir override [template:level_2/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Deep loop executor config-dir override"
+description: "Implement a validated cli-claude-code configDir field and fanout-run environment injection, then prove it with focused executor and smoke tests."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-loop configDir plan"
+  - "Claude config-dir fanout plan"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/144-deep-loop-executor-config-dir"
-    last_updated_at: "2026-06-10T16:35:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: ".opencode/specs/skilled-agent-orchestration/144-deep-loop-executor-config-dir"
+    last_updated_at: "2026-06-10T16:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Planned and implemented configDir executor routing"
+    next_safe_action: "Use the verified --config-dir flag with cli-claude-code lineages"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+      - ".opencode/commands/deep/start-review-loop.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/144-deep-loop-executor-config-dir"
+      session_id: "deep-loop-executor-config-dir-20260610"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -30,13 +30,6 @@ _memory:
 # Implementation Plan: Deep loop executor config-dir override
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
 ---
 
@@ -47,13 +40,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript and Node CommonJS scripts |
+| **Framework** | Deep-loop runtime command workflow |
+| **Storage** | None |
+| **Testing** | Vitest, TypeScript no-emit, stubbed fanout smoke |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The implementation adds `configDir` to the executor config model and permits it only for `cli-claude-code`. `fanout-run.cjs` expands `~` and merges `CLAUDE_CONFIG_DIR` into the spawned lineage environment after the existing per-kind allowlist, so the override remains lineage-scoped.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +55,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented.
+- [x] Success criteria measurable.
+- [x] Dependencies identified.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met.
+- [x] Focused tests passing.
+- [x] Command docs and spec docs updated.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +71,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Schema-first executor configuration with per-kind support validation and spawn-time environment construction.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Executor config schema**: Owns accepted fields and rejects unsupported per-kind flags.
+- **Fanout runner**: Owns CLI lineage process spawning and environment isolation.
+- **Command setup docs**: Define how operator flags map into `config.executor` and `config.fanout`.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+`--config-dir=PATH` or `executor_config_dir` becomes `config.executor.configDir` or a fanout lineage `configDir`; fanout JSON is parsed by `parseFanoutConfig`; `fanout-run.cjs` expands `~` and injects `CLAUDE_CONFIG_DIR` only when `lineage.kind === 'cli-claude-code'`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +87,18 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Executor schema | Producer of validated executor shape | Added `configDir` and per-kind support | `executor-config.vitest.ts` configDir cases pass. |
+| Fanout runner | Consumer of lineage config and producer of spawn env | Injected expanded `CLAUDE_CONFIG_DIR` for Claude Code only | `fanout-run.vitest.ts` env cases pass; stub smoke confirms. |
+| Command setup docs | Producer of config JSON fields | Added parser mapping and repeatable group docs | Readback confirms `--config-dir` mapping in review and research docs. |
+| Single review auto YAML | Consumer of `config.executor` | Added `configDir` binding and render hint for Claude env export | Readback confirms binding and note. |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers checked: executor schema, fanout runner, review/research setup contracts.
+- Consumers checked: focused tests, review auto YAML, fanout CLI spawn path.
+- Matrix axes: kind (`cli-claude-code`, `cli-codex`), configDir (`set`, `blank`, `absent`), path expansion (`~/...`).
+- Algorithm invariant: only Claude Code lineages receive `CLAUDE_CONFIG_DIR`; other executor kinds reject `configDir` at validation time.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +107,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read executor schema, fanout runner, command docs, YAML, and focused tests.
+- [x] Scaffold Level 2 spec folder.
+- [x] Confirm requested packet number was free.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add `configDir` schema field and kind support validation.
+- [x] Add fanout-run `~` expansion and Claude env injection.
+- [x] Add command setup documentation for `--config-dir=PATH`.
+- [x] Extend tests and align typed executor fixtures.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Run focused TypeScript no-emit check with temporary config.
+- [x] Run focused Vitest suite.
+- [x] Run stubbed fanout smoke for set and absent configDir.
+- [x] Run OpenCode alignment and comment hygiene checks.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +131,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Schema validation and fanout env behavior | Vitest |
+| Static | TypeScript compatibility for changed runtime/test files | `npx tsc --noEmit` with temporary config because the skill has no local tsconfig |
+| Smoke | Stubbed `claude` spawn with Fable model and account path | `fanout-run.cjs` with temp stub binary |
+| Hygiene | OpenCode comment and alignment checks | `check-comment-hygiene.sh`, `verify_alignment_drift.py` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +144,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Claude Code `CLAUDE_CONFIG_DIR` behavior | External CLI env contract | Green, user verified | Per-account routing would not work despite env propagation. |
+| Existing deep-loop runtime tests | Internal | Green | Regression would block completion. |
+| Local `tsconfig.json` in deep-loop-runtime | Internal | Missing | Exact requested tsc command cannot run; temporary config used for focused no-emit check. |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,12 +154,9 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: ConfigDir validation or env injection causes fanout regressions.
+- **Procedure**: Remove `configDir` from schema/support docs/tests and remove the `CLAUDE_CONFIG_DIR` merge from `fanout-run.cjs`.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
@@ -168,17 +164,14 @@ Required inventories:
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Setup | None | Core |
+| Core | Setup | Verify |
+| Verify | Core | Completion |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -188,10 +181,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | Completed in-session |
+| Core Implementation | Medium | Completed in-session |
+| Verification | Medium | Completed in-session |
+| **Total** | | **Completed** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -200,27 +193,16 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] No data migration required.
+- [x] No feature flag required.
+- [x] Existing fanout timeout and salvage behavior unchanged.
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Revert the schema field and fanout env injection.
+2. Remove command documentation for `--config-dir`.
+3. Rerun the focused Vitest suite and stub smoke.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No.
+- **Reversal procedure**: N/A.
 <!-- /ANCHOR:enhanced-rollback -->
-
----
-
-<!--
-LEVEL 2 PLAN (~140 lines)
-- Core + Verification additions
-- Phase dependencies, effort estimation
-- Enhanced rollback procedures
--->
-

@@ -228,6 +228,10 @@
                 }
               ]
             }
+          },
+          "src_root": {
+            "type": "string",
+            "description": "Optional per-entry override of derive_source_root, relative to the packaging root (e.g. 'skill/assets' for asset mirrors, '.' for a SKILL.md byte-mirror). Default: derive_source_root."
           }
         }
       }

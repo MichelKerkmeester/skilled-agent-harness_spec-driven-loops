@@ -42,9 +42,7 @@
     "status": "complete_—_harness_verified_+_live_m3_vs_mimo_verdict_delivered_(m3_edges_mimo_on_reliability;_24_cell_run,_0_pollution;_see_eval/synthesis.md)",
     "key_files": [
       ".opencode/skills/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs",
-      ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/hard-merge-intervals.json",
       ".opencode/skills/deep-improvement/scripts/model-benchmark/tests/sweep-isolation.vitest.ts",
-      ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -59,21 +57,9 @@
         "source": "derived"
       },
       {
-        "name": "hard-merge-intervals.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/hard-merge-intervals.json",
-        "source": "derived"
-      },
-      {
         "name": "sweep-isolation.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/tests/sweep-isolation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "capability-m3-vs-mimo.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo.json",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current benchmark cannot say which frontier model is better: the 2 fixtures saturate (both 100% correct), so only format/brevity separated MiniMax-M3 and MiMo-V2.5-Pro. A real-dispatch smoke also revealed (a) the OpenCode JSON parser works + captures **real token counts** (usable efficiency signal), but (b) models run **agentically** (write files), and the sweep passes the repo root as the dispatch cwd — so real runs would pollute the repo.",
     "created_at": "2026-06-02T06:05:31.048Z",
-    "last_save_at": "2026-06-05T12:47:32.494Z",
+    "last_save_at": "2026-06-10T19:22:13.700Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

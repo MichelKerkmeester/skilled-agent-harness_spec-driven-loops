@@ -1,0 +1,204 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "shouldSendMemoriesBatch",
+      "kind": "integration_point",
+      "signature": "db.exec('BEGIN IMMEDIATE') / db.exec('COMMIT') / db.exec('ROLLBACK') — manual transaction control",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:631",
+      "relevance": 0.8,
+      "notes": "Manual BEGIN IMMEDIATE/COMMIT/ROLLBACK bypasses better-sqlite3 transaction wrapper; Turso lacks exec()-based transaction control and requires different TX API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "getTableColumns",
+      "kind": "dependency",
+      "signature": "db.prepare('PRAGMA table_info(session_state)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1018",
+      "relevance": 0.7,
+      "notes": "PRAGMA table_info used for migration column detection; Turso may require different schema introspection API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "hasTable",
+      "kind": "dependency",
+      "signature": "db.prepare('SELECT 1 FROM sqlite_master WHERE type = ? AND name = ?')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:296",
+      "relevance": 0.5,
+      "notes": "sqlite_master introspection; Turso supports sqlite_master but pattern should be verified"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "ensureSessionStateSchema",
+      "kind": "integration_point",
+      "signature": "db.exec() for CREATE TABLE + ALTER TABLE ADD COLUMN migrations",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1030",
+      "relevance": 0.6,
+      "notes": "ALTER TABLE ADD COLUMN migration pattern; Turso supports this but multi-statement exec() may need adaptation"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "initSessionAnalyticsDb",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:299",
+      "relevance": 0.9,
+      "notes": "Triple pragma initialization; Turso has no .pragma() API — journal_mode, busy_timeout, foreign_keys must be set via connection string or SQL PRAGMA statements"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "insertTurns",
+      "kind": "integration_point",
+      "signature": "db.transaction((rows) => { for (turn of rows) insertTurn.run(...) }) — parameterized transaction wrapper",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:498",
+      "relevance": 0.7,
+      "notes": "better-sqlite3 db.transaction() synchronous wrapper; Turso transaction API is async and has different semantics"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "analytics_turns",
+      "kind": "dependency",
+      "signature": "CREATE TABLE analytics_turns (id INTEGER PRIMARY KEY AUTOINCREMENT, ... UNIQUE(claude_session_id, transcript_path, byte_start))",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:119",
+      "relevance": 0.5,
+      "notes": "AUTOINCREMENT keyword; Turso/libSQL supports it but behavior may differ with distributed replication"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "storeEmbedding",
+      "kind": "integration_point",
+      "signature": "INSERT INTO embedding_cache (...) ON CONFLICT(...) DO UPDATE SET embedding = excluded.embedding, last_used_at = datetime('now')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:478",
+      "relevance": 0.6,
+      "notes": "Upsert with datetime('now') function; Turso supports ON CONFLICT but datetime() function behavior should be verified"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "migrateEmbeddingCacheSchema",
+      "kind": "integration_point",
+      "signature": "ALTER TABLE RENAME TO + CREATE TABLE + INSERT OR REPLACE + DROP TABLE — multi-step schema migration",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:224",
+      "relevance": 0.7,
+      "notes": "Complex migration with RENAME/INSERT/DROP in sequence; Turso schema migration may need different approach for distributed state"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "backfillActiveProfileKey",
+      "kind": "integration_point",
+      "signature": "db.transaction((key) => { DELETE FROM ... WHERE EXISTS (...); UPDATE ... SET profile_key = ? WHERE profile_key = '' })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:204",
+      "relevance": 0.6,
+      "notes": "Transaction with correlated subquery DELETE + UPDATE; Turso supports but performance characteristics differ"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "shrinkSqliteMemory",
+      "kind": "gap",
+      "signature": "db.pragma('shrink_memory')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:366",
+      "relevance": 0.9,
+      "notes": "PRAGMA shrink_memory is better-sqlite3 specific; Turso has no .pragma() API and this memory management directive does not exist in standard SQLite"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "getTableColumns",
+      "kind": "dependency",
+      "signature": "PRAGMA table_info(tableName) with optional ACTIVE_VECTOR_SCHEMA prefix",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:123",
+      "relevance": 0.7,
+      "notes": "PRAGMA table_info with schema-qualified form; Turso .pragma() absent, needs SQL EXEC adaptation"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "hasActiveVectorShard",
+      "kind": "dependency",
+      "signature": "db.prepare('PRAGMA database_list').all() — shard/schema detection",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:134",
+      "relevance": 0.8,
+      "notes": "PRAGMA database_list for ATTACH detection; Turso may not expose attached databases the same way"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts",
+      "symbol": "initEvalDb",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:147",
+      "relevance": 0.9,
+      "notes": "Same triple-pragma pattern as session-analytics-db; Turso .pragma() API absent — must be set via connection options or SQL"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts",
+      "symbol": "rebuildEntityCatalog",
+      "kind": "integration_point",
+      "signature": "db.transaction(() => { DELETE FROM entity_catalog; for (...) INSERT INTO entity_catalog (...) })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:366",
+      "relevance": 0.6,
+      "notes": "Full table rebuild inside transaction; Turso transaction API differs (async), DELETE-then-INSERT pattern safe but must wrap correctly"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts",
+      "symbol": "storeEntities",
+      "kind": "integration_point",
+      "signature": "db.transaction(() => { for (entity of entities) stmt.run(memoryId, ...) }) — INSERT OR REPLACE loop",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:182",
+      "relevance": 0.6,
+      "notes": "Synchronous transaction wrapper with INSERT OR REPLACE; Turso requires async transaction API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "retryEmbedding",
+      "kind": "integration_point",
+      "signature": "db.transaction(() => { UPDATE memory_index SET embedding_status='success'; DELETE FROM vec_memories WHERE rowid=?; INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?) })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:745",
+      "relevance": 0.8,
+      "notes": "Cross-table transaction touching memory_index + vec_memories with BigInt rowid; Turso vec_memories (sqlite-vec virtual table) likely absent, requires vector index replacement"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "claimRetryCandidate",
+      "kind": "integration_point",
+      "signature": "UPDATE memory_index SET embedding_status='retry' WHERE id=? AND embedding_status='pending' AND retry_count=? AND last_retry_at=? — optimistic concurrency",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:304",
+      "relevance": 0.6,
+      "notes": "Optimistic concurrency via retry_count+last_retry_at CAS; works in Turso but distributed replication may increase CAS conflicts"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "enforceRetryRetentionLimits",
+      "kind": "integration_point",
+      "signature": "SELECT id FROM memory_index ... LIMIT -1 OFFSET ? — SQLite-specific negative LIMIT",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:514",
+      "relevance": 0.7,
+      "notes": "LIMIT -1 OFFSET N is SQLite-specific pagination idiom; libSQL may handle differently, needs verification"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "retryEmbedding",
+      "kind": "dependency",
+      "signature": "BigInt(id) for vec_memories rowid insertion",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:762",
+      "relevance": 0.8,
+      "notes": "BigInt rowid for sqlite-vec virtual table INSERT; Turso lacks sqlite-vec loadExtension, entire vec_memories table unavailable"
+    }
+  ]
+}

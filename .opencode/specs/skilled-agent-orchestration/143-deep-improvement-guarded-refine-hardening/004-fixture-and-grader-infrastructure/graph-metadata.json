@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure",
+  "spec_folder": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure",
+  "parent_id": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "codify",
+      "testing-infrastructure",
+      "lessons",
+      "shared",
+      "reusable",
+      "conventions",
+      "fixtures",
+      "actually",
+      "graded",
+      "held-out",
+      "discipline",
+      "grader"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Grader Infrastructure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Codify",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "questions",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "locked",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Codify the testing-infrastructure lessons as shared, reusable conventions: fixtures that can actually be graded, held-out discipline, grader calibration, and dispatch pre-flight — so every future loop inherits them instead of rediscovering them live.",
+    "created_at": "2026-06-12T04:40:46.636Z",
+    "last_save_at": "2026-06-12T04:40:46.636Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

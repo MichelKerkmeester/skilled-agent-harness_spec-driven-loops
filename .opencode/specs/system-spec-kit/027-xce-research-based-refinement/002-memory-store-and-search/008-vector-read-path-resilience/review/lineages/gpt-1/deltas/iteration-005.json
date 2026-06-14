@@ -1,0 +1,7 @@
+{
+  "run": 5,
+  "focus": "stabilization-replay",
+  "status": "complete",
+  "newFindingsRatio": 0,
+  "findings": ["F001"]
+}

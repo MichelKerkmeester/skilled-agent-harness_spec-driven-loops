@@ -1,0 +1,76 @@
+{
+  "sessionId": "fanout-gpt-2-1781144091708-itpir0",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "VectorStore contract suite misses caller-supplied ID parity",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/storage-ports-contract.vitest.ts",
+      "line": 301,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/common.ts:8-9",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:79-93",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:175-187",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:236-260",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/storage-ports-contract.vitest.ts:276-304",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/fakes/storage-ports.ts:188-197"
+      ],
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "finding_class": "missing-contract-coverage",
+      "content_hash": "sha256:f001-vector-id-parity",
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery during traceability protocol review." }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "VectorStore.clear semantics are broader than the interface wording",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts",
+      "line": 264,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:79-97",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/ports/vector-store.ts:264-271"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "finding_class": "contract-semantic-drift",
+      "content_hash": "sha256:f002-vector-clear-semantics",
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery during correctness review." }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001", "F002"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001", "F002"],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.85,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

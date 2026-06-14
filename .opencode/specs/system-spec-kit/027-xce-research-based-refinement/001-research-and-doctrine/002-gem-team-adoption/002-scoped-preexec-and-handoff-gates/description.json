@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
-  "description": "Scoped pre-execution and handoff gates implemented at the approved contract and agent mirror surfaces.",
+  "description": "Feature Specification: 002 — Scoped Pre-Execution & Handoff Gates",
   "keywords": [
     "feature",
     "specification",
@@ -11,7 +11,7 @@
     "handoff",
     "gates"
   ],
-  "lastUpdated": "2026-06-10T05:18:20Z",
+  "lastUpdated": "2026-06-14T08:30:50.936Z",
   "specId": "002",
   "folderSlug": "scoped-preexec-and-handoff-gates",
   "parentChain": [

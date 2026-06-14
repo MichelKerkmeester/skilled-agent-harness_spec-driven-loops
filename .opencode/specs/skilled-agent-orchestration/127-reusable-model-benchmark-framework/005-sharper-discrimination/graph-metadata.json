@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "complete_(negative_result_—_computational_fixtures_saturated;_validation_iteration_in_006)",
     "key_files": [
-      ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/harder-semver-compare.json",
-      ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo-v2.json",
       ".opencode/skills/deep-improvement/scripts/model-benchmark/tests/sweep-isolation.vitest.ts",
       "implementation-summary.md",
       "spec.md",
@@ -51,18 +49,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "harder-semver-compare.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/harder-semver-compare.json",
-        "source": "derived"
-      },
-      {
-        "name": "capability-m3-vs-mimo-v2.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo-v2.json",
-        "source": "derived"
-      },
       {
         "name": "sweep-isolation.vitest.ts",
         "kind": "test",
@@ -194,11 +180,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 004 capability run discriminated only on the margins: 3 of 4 hard fixtures saturated (both MiniMax-M3 and MiMo-V2.5-Pro scored 1.0), so correctness could not rank and the framework fell back to a format-TIE. The only signal was `hard-roman-to-int`, where MiMo's mean (0.627) came from a single catastrophic 0.0 across n=3 — a reliability blip, not a certified capability margin. The benchmark cannot yet CI-certify which model is better.",
     "created_at": "2026-06-02T09:30:00.000Z",
-    "last_save_at": "2026-06-05T12:47:32.496Z",
+    "last_save_at": "2026-06-10T19:22:13.701Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

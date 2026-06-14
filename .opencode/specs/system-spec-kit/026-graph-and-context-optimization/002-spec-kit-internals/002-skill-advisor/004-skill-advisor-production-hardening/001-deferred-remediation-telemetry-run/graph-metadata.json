@@ -60,7 +60,6 @@
       "scripts/observability/smart-router-measurement.ts",
       "scripts/observability/live-session-wrapper.ts",
       "scripts/observability/smart-router-analyze.ts",
-      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
       ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
       "spec.md"
     ],
@@ -150,12 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "skill-advisor-hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
-        "source": "derived"
-      },
-      {
         "name": "smart-router-telemetry.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
@@ -208,11 +201,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six phases shipped with a consolidated list of deferred items:",
     "created_at": "2026-04-19T18:10:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.381Z",
+    "last_save_at": "2026-06-12T04:40:47.268Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T18:15:00.000Z",
     "source_docs": [

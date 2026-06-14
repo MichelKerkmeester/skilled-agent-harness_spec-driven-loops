@@ -1,0 +1,204 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "new Database",
+      "kind": "dependency",
+      "signature": "db = new Database(dbPath) — synchronous constructor, line 319; read-only variant at line 379",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:319",
+      "relevance": 0.9,
+      "notes": "better-sqlite3 synchronous constructor; libSQL client is async — every call site must become await-aware or use a sync wrapper"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "db.pragma",
+      "kind": "dependency",
+      "signature": "db.pragma('busy_timeout = 5000'); db.pragma('journal_mode = WAL'); db.pragma('foreign_keys = ON'); db.pragma('journal_mode = DELETE'); db.pragma('wal_checkpoint(FULL)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:320",
+      "relevance": 1,
+      "notes": "Five .pragma() call sites; Turso/libSQL has no .pragma() API — must migrate to SET PRAGMA SQL or connection-string options"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "db.pragma('journal_mode = WAL')",
+      "kind": "gap",
+      "signature": "db.pragma('journal_mode = WAL') with fallback to DELETE",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:322",
+      "relevance": 0.8,
+      "notes": "WAL mode with isWalFallbackError() fallback logic; Turso handles journaling differently — this branching logic becomes dead code"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "database.pragma('table_info(skill_nodes)')",
+      "kind": "dependency",
+      "signature": "database.prepare('PRAGMA table_info(skill_nodes)').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:290",
+      "relevance": 0.7,
+      "notes": "PRAGMA table_info used for schema introspection in ensureSchemaMigrations; must use libSQL information_schema or equivalent"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "database.pragma('wal_checkpoint(FULL)')",
+      "kind": "dependency",
+      "signature": "database.pragma('wal_checkpoint(FULL)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:427",
+      "relevance": 0.6,
+      "notes": "WAL checkpoint not applicable to Turso's replication model — becomes no-op or error"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "database.exec",
+      "kind": "dependency",
+      "signature": "database.exec(SCHEMA_SQL) — multi-statement DDL execution",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:333",
+      "relevance": 0.7,
+      "notes": "better-sqlite3 .exec() runs multiple statements in one call; libSQL may require batch() or sequential execute()"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "database.transaction",
+      "kind": "dependency",
+      "signature": "const tx = database.transaction(() => { ... }); tx()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:775",
+      "relevance": 0.8,
+      "notes": "better-sqlite3 synchronous .transaction() wrapper; Turso/libSQL transaction API is async and structurally different"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "ensureVecTableForDim",
+      "kind": "gap",
+      "signature": "ensureVecTableForDim(database, 768); ensureVecTableForDim(database, 1024)",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:275",
+      "relevance": 1,
+      "notes": "sqlite-vec virtual table creation (vec0); Turso/libSQL has no vector index support — must replace with external vector store or BLOB+brute-force"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "{ readonly: true, fileMustExist: true }",
+      "kind": "dependency",
+      "signature": "new Database(databasePath, { readonly: true, fileMustExist: true })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:379",
+      "relevance": 0.6,
+      "notes": "better-sqlite3 constructor options; libSQL open() takes different option shape — must map readonly/fileMustExist"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "Buffer.from",
+      "kind": "dependency",
+      "signature": "Buffer.from(array.buffer, array.byteOffset, array.byteLength) — embedding BLOB encoding",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:511",
+      "relevance": 0.5,
+      "notes": "Node Buffer for BLOB storage; libSQL may return Uint8Array — encoding/decoding path needs verification"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts",
+      "symbol": "database.prepare",
+      "kind": "dependency",
+      "signature": "database.prepare('SELECT ...').get(id) / .all(id) — prepared statement caching via WeakMap",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts:108",
+      "relevance": 0.7,
+      "notes": "better-sqlite3 synchronous .prepare()/.get()/.all(); libSQL prepare() is async and returns different statement objects"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts",
+      "symbol": "preparedStatementCache",
+      "kind": "dependency",
+      "signature": "WeakMap<Database.Database, PreparedStatements> — synchronous statement cache",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts:77",
+      "relevance": 0.6,
+      "notes": "WeakMap keyed on better-sqlite3 Database instance; libSQL connection type differs, cache strategy needs rework"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "new Database",
+      "kind": "dependency",
+      "signature": "new Database(dbPath) / new Database(dbPath, { readonly: true, fileMustExist: true })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:145",
+      "relevance": 0.9,
+      "notes": "Separate lease DB with its own Database instances; each open/close cycle must become async under libSQL"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "db.pragma",
+      "kind": "dependency",
+      "signature": "db.pragma('busy_timeout = 1000')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:150",
+      "relevance": 0.9,
+      "notes": "Lease DB busy_timeout via .pragma(); critical for single-writer lease protocol — must migrate to PRAGMA SQL statement"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "db.exec('PRAGMA journal_mode = WAL')",
+      "kind": "gap",
+      "signature": "db.exec('PRAGMA journal_mode = WAL') inside ensureSchema",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:124",
+      "relevance": 0.7,
+      "notes": "Lease DB sets WAL via .exec() raw SQL; WAL semantics differ in Turso embedded replicas — lease contention model may break"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "db.transaction",
+      "kind": "dependency",
+      "signature": "db.transaction((): LeaseAcquireResult => { ... }) — atomic lease acquire",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:300",
+      "relevance": 0.9,
+      "notes": "Synchronous transaction wrapping lease acquire/reserve logic; must become async — heartbeat loop timing affected"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "result.changes",
+      "kind": "dependency",
+      "signature": "result.changes === 0 — RunResult.changes for optimistic concurrency check",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:350",
+      "relevance": 0.7,
+      "notes": "better-sqlite3 RunResult.changes; libSQL execute() returns different result shape — changes field needs mapping"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/state-mutation.ts",
+      "symbol": "new Database",
+      "kind": "dependency",
+      "signature": "new Database(dbPath) — synchronous open per mutation call",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/state-mutation.ts:43",
+      "relevance": 0.8,
+      "notes": "Per-call synchronous Database open/close; runDaemonStateMutation retry loop must become fully async"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts",
+      "symbol": "new Database",
+      "kind": "dependency",
+      "signature": "new Database(dbPath, { readonly: true, fileMustExist: true })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts:20",
+      "relevance": 0.6,
+      "notes": "Read-only probe open; same constructor-options mapping needed as other new Database sites"
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts",
+      "symbol": "db.prepare('PRAGMA quick_check')",
+      "kind": "gap",
+      "signature": "db.prepare('PRAGMA quick_check').get()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts:22",
+      "relevance": 0.8,
+      "notes": "PRAGMA quick_check for corruption detection; Turso/libSQL embedded mode may not support quick_check — integrity model differs"
+    }
+  ]
+}

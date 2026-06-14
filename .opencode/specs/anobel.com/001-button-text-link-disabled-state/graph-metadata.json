@@ -40,33 +40,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "a_nobel_en_zn/1_css/button/btn_text_link.css",
-      "a_nobel_en_zn/1_css/button/btn_global.css",
-      "a_nobel_en_zn/1_css/button/btn_download.css",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "btn_text_link.css",
-        "kind": "file",
-        "path": "a_nobel_en_zn/1_css/button/btn_text_link.css",
-        "source": "derived"
-      },
-      {
-        "name": "btn_global.css",
-        "kind": "file",
-        "path": "a_nobel_en_zn/1_css/button/btn_global.css",
-        "source": "derived"
-      },
-      {
-        "name": "btn_download.css",
-        "kind": "file",
-        "path": "a_nobel_en_zn/1_css/button/btn_download.css",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -192,11 +171,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Text",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Disabled State Hook The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Disabled Styling And Interaction Disabled",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Text-link buttons currently define enabled, hover, focus and active states, but they do not expose a dedicated disabled override. Designers need a simple attribute they can apply to force one of these buttons to look disabled and stop pointer interaction without changing the broader button system.",
     "created_at": "2026-05-23T17:23:24Z",
-    "last_save_at": "2026-05-30T09:22:55.980Z",
+    "last_save_at": "2026-06-10T19:22:13.632Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

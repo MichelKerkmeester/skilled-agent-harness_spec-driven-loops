@@ -1,27 +1,27 @@
 ---
-title: "Tasks: Deep loop executor config-dir override [template:level_2/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Deep loop executor config-dir override"
+description: "Completed implementation tasks for the deep-loop cli-claude-code config-dir override."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-loop configDir tasks"
+  - "Claude config-dir fanout tasks"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/144-deep-loop-executor-config-dir"
-    last_updated_at: "2026-06-10T16:35:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: ".opencode/specs/skilled-agent-orchestration/144-deep-loop-executor-config-dir"
+    last_updated_at: "2026-06-10T16:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed configDir implementation and verification"
+    next_safe_action: "Reference implementation-summary.md for verification evidence"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/144-deep-loop-executor-config-dir"
+      session_id: "deep-loop-executor-config-dir-20260610"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +50,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read executor schema and validation flow.
+- [x] T002 Read fanout-run spawn env construction.
+- [x] T003 [P] Read review/research command setup docs and review auto YAML.
+- [x] T004 [P] Read focused executor-config, fanout-run, and executor-audit tests.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T005 Add `configDir` to executor config schema.
+- [x] T006 Restrict `configDir` support to `cli-claude-code`.
+- [x] T007 Add `~` expansion and scoped `CLAUDE_CONFIG_DIR` injection in fanout-run.
+- [x] T008 Document `--config-dir=PATH` in deep-review setup.
+- [x] T009 Document `--config-dir=PATH` in deep-research sibling setup.
+- [x] T010 Add review auto YAML binding and render hint for single cli-claude-code auto dispatch.
+- [x] T011 Add unit coverage for configDir validation and fanout env behavior.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +75,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T012 Run focused TypeScript no-emit check.
+- [x] T013 Run focused Vitest suite.
+- [x] T014 Run stubbed Fable 5 configDir smoke check.
+- [x] T015 Run absent configDir smoke check.
+- [x] T016 Run OpenCode hygiene and alignment checks.
+- [x] T017 Validate this spec folder with `validate.sh --strict`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +88,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Verification passed or deviations documented in implementation summary.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,16 +98,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
+- **Verification Evidence**: See `implementation-summary.md` and `checklist.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

@@ -1,0 +1,79 @@
+{
+  "topic": "Review of .opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+  "reviewTargetType": "spec-folder",
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/review/lineages/gpt-4",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": true,
+  "sessionId": "fanout-gpt-4-1781111094433-fahmna",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "lineage": "gpt-4"
+  },
+  "bindings": [
+    "BINDING: spec_folder=.opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+    "BINDING: artifact_dir=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/review/lineages/gpt-4",
+    "BINDING: artifact_dir_override=config.fanout_lineage_artifact_dir",
+    "BINDING: resolveArtifactRoot=skipped_by_user_instruction"
+  ],
+  "createdAt": "2026-06-10T17:12:00Z",
+  "status": "complete",
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

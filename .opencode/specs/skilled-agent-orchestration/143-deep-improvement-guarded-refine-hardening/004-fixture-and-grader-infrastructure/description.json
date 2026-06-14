@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure",
+  "description": "Phase 004: Fixture + Grader Infrastructure",
+  "keywords": [
+    "phase",
+    "004",
+    "fixture",
+    "grader",
+    "infrastructure"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.904Z",
+  "specId": "004",
+  "folderSlug": "fixture-and-grader-infrastructure",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-deep-improvement-guarded-refine-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -106,6 +106,9 @@ def validate_config(cfg):
         for i, entry in enumerate(cfg["derived_copies"]):
             if not isinstance(entry, dict) or not entry.get("src_relpath"):
                 errs.append(f"derived_copies[{i}] must be an object with a non-empty src_relpath")
+            sr = entry.get("src_root") if isinstance(entry, dict) else None
+            if sr is not None and (not isinstance(sr, str) or not sr or sr.startswith("/") or ".." in sr.split("/")):
+                errs.append(f"derived_copies[{i}].src_root must be a non-empty packaging-relative path (no leading '/', no '..')")
                 continue
             if not isinstance(entry.get("targets"), list) or not entry["targets"]:
                 errs.append(f"derived_copies[{i}].targets must be a non-empty array")

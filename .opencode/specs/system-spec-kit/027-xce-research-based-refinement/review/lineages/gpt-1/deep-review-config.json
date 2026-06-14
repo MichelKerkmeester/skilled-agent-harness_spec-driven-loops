@@ -1,0 +1,49 @@
+{
+  "topic": "Deep review of .opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+  "mode": "review",
+  "loopType": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+  "reviewTargetType": "spec-folder",
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/review/lineages/gpt-1",
+  "artifactBinding": "config.fanout_lineage_artifact_dir",
+  "executor": "cli-opencode model=openai/gpt-5.5-fast",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": true,
+  "sessionId": "fanout-gpt-1-1781110469935-pc6f9l",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability", "resource_map_coverage"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
+  "createdAt": "2026-06-10T16:56:47Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "resource-map.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "notes": [
+    "BINDING: artifact_dir=.opencode/specs/system-spec-kit/027-xce-research-based-refinement/review/lineages/gpt-1",
+    "BINDING: resolveArtifactRoot node command intentionally skipped per fanout_lineage_artifact_dir override."
+  ]
+}

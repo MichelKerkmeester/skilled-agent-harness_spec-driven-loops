@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/005-validation-and-second-packaging-rollout",
+  "spec_folder": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/005-validation-and-second-packaging-rollout",
+  "parent_id": "skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "prove",
+      "hardened",
+      "system",
+      "end",
+      "pilot",
+      "demonstrate",
+      "contract",
+      "generalizes",
+      "onboarding",
+      "second",
+      "packaging",
+      "closing"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packaging Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Prove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "phases",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "journaled",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "measured",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Prove the hardened system end to end on the pilot, then demonstrate the contract generalizes by onboarding a second packaging — closing the loop the council demanded: no autonomy claims without live evidence.",
+    "created_at": "2026-06-12T04:40:46.636Z",
+    "last_save_at": "2026-06-12T04:40:46.636Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

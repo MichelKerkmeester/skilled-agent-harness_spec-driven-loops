@@ -1,42 +1,39 @@
 ---
-title: "Feature Specification: Deep loop executor config-dir override [template:level_2/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Deep loop executor config-dir override"
+description: "Add a per-executor configDir override so cli-claude-code fan-out seats can route through a specific Claude account without wrapping the whole run environment."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-loop configDir"
+  - "CLAUDE_CONFIG_DIR fanout"
+  - "cli-claude-code config-dir"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/144-deep-loop-executor-config-dir"
-    last_updated_at: "2026-06-10T16:35:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: ".opencode/specs/skilled-agent-orchestration/144-deep-loop-executor-config-dir"
+    last_updated_at: "2026-06-10T16:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Implemented per-executor Claude config-dir override"
+    next_safe_action: "Use --config-dir=PATH with cli-claude-code fan-out seats when account routing is required"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts"
+      - ".opencode/commands/deep/start-review-loop.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/144-deep-loop-executor-config-dir"
+      session_id: "deep-loop-executor-config-dir-20260610"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "configDir is scoped to cli-claude-code and maps to CLAUDE_CONFIG_DIR in fanout-run."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Deep loop executor config-dir override
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
 ---
 
@@ -46,10 +43,10 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
-| **Branch** | `scaffold/144-deep-loop-executor-config-dir` |
+| **Branch** | Current workspace, no git workflow requested |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,10 +55,10 @@ FAILURE MODES:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Deep-loop fan-out can dispatch `cli-claude-code` seats with a selected model, but it had no per-executor way to select a Claude account directory. Operators could route Fable 5 through `CLAUDE_CONFIG_DIR=~/.claude-account2` only by wrapping the whole run environment, which incorrectly affects every seat instead of the intended Claude lineage.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Allow a specific `cli-claude-code` executor or fan-out lineage to carry `configDir`, validate it, and inject `CLAUDE_CONFIG_DIR` only for that spawned Claude process.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -70,19 +67,29 @@ FAILURE MODES:
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Add `configDir` to deep-loop executor schema and per-kind flag support for `cli-claude-code`.
+- Inject expanded `CLAUDE_CONFIG_DIR` in `fanout-run.cjs` for Claude Code lineages only.
+- Document `--config-dir=PATH` in deep-review and shared deep-research setup contracts.
+- Extend focused executor-config and fanout-run tests.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Hardcoding any Claude account path. The caller provides `configDir`.
+- Changing package manifests, lockfiles, git state, daemon configuration, or deep-improvement-owned files.
+- Running a real Claude dispatch as part of verification.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` | Modify | Add `configDir` schema field and kind support validation. |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modify | Expand `~` and inject `CLAUDE_CONFIG_DIR` for `cli-claude-code` lineages. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts` | Modify | Cover configDir acceptance, blank rejection, kind rejection, and fan-out parsing. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | Modify | Cover injected and absent Claude config-dir env behavior. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/executor-audit.vitest.ts` | Modify | Keep typed fixtures aligned with the parsed executor shape. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/dispatch-failure.vitest.ts` | Modify | Keep typed fixtures aligned with the parsed executor shape. |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Document and map `--config-dir=PATH`. |
+| `.opencode/commands/deep/start-research-loop.md` | Modify | Keep the sibling shared setup contract aligned. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Carry `configDir` in executor binding and document single auto Claude env export. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -94,13 +101,18 @@ FAILURE MODES:
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Executor configs can express an optional Claude config directory. | `parseExecutorConfig({ kind: 'cli-claude-code', configDir: '~/.claude-account2' })` succeeds and blank strings fail validation. |
+| REQ-002 | Non-Claude executor kinds do not silently accept Claude account routing. | `cli-codex` with `configDir` is rejected by per-kind support validation. |
+| REQ-003 | Fan-out Claude lineages receive the resolved config directory. | Stubbed `cli-claude-code` lineage with `configDir=~/.claude-account2` spawns with `CLAUDE_CONFIG_DIR=/Users/michelkerkmeester/.claude-account2`. |
+| REQ-004 | Absent configDir does not inject an account override. | Stubbed `cli-claude-code` lineage without `configDir` has no account path in `CLAUDE_CONFIG_DIR`. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-005 | Deep-review setup docs expose `--config-dir=PATH` for single and repeatable executor groups. | `start-review-loop.md` maps `--config-dir` to `config.executor.configDir` and lists it in fan-out group fields. |
+| REQ-006 | Deep-research sibling setup docs stay aligned with the shared parser contract. | `start-research-loop.md` includes the same field, marker, table row, and parser mapping. |
+| REQ-007 | Existing executor tests remain green. | Focused Vitest run reports 3 files and 78 tests passing. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -108,8 +120,9 @@ FAILURE MODES:
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A Fable 5 fan-out lineage can be described as `kind=cli-claude-code`, `model=claude-fable-5`, `configDir=~/.claude-account2` and spawns with the expanded `CLAUDE_CONFIG_DIR` value.
+- **SC-002**: The environment override is scoped to the spawned Claude lineage and does not require wrapping the parent process.
+- **SC-003**: Existing focused executor validation, fan-out, and audit tests remain green.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -119,8 +132,9 @@ FAILURE MODES:
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Claude Code honors `CLAUDE_CONFIG_DIR` | Account selection depends on the CLI environment contract | Verified by user-provided working command and stub smoke env propagation. |
+| Risk | Leaking Claude configDir to non-Claude seats | Other seats could inherit an unintended account path | Per-kind validation rejects `configDir` outside `cli-claude-code`; fanout injection is kind-gated. |
+| Risk | Shell `~` expansion inconsistency | Spawn env would receive a literal tilde | `fanout-run.cjs` expands `~` and `~/...` through `os.homedir()`. |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -133,16 +147,16 @@ FAILURE MODES:
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: Env construction remains synchronous and constant time per lineage.
+- **NFR-P02**: No additional subprocesses are created for config-dir resolution.
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: No account path is hardcoded in runtime code.
+- **NFR-S02**: Config directory values are not added to executor audit records.
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: Existing dispatch stack and per-lineage state-dir isolation continue to apply.
+- **NFR-R02**: Absent configDir leaves inherited env behavior unchanged except for existing allowlist filtering.
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -151,18 +165,18 @@ FAILURE MODES:
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Empty input: blank and whitespace-only `configDir` values fail schema validation.
+- Maximum length: no artificial limit is added beyond runtime argument and environment limits.
+- Invalid format: unsupported executor kinds report the existing field-support error path.
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- External service failure: not exercised; the smoke uses a stub and does not call Claude.
+- Network timeout: unchanged from existing `timeoutSeconds` behavior.
+- Concurrent access: unchanged because per-lineage state directory isolation remains intact.
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: failed lineages still use the existing pool failure summary and salvage path.
+- Session expiry: unchanged because account routing is per spawned process env.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -172,41 +186,15 @@ FAILURE MODES:
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 14/25 | One schema field, fanout env merge, command docs, focused tests. |
+| Risk | 10/25 | Environment routing can affect account selection, but kind gating limits blast radius. |
+| Research | 6/20 | Existing executor and fanout patterns were already present. |
+| **Total** | **30/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

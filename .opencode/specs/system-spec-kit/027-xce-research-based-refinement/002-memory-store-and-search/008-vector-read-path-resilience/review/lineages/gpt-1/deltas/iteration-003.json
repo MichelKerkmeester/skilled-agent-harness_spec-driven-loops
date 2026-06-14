@@ -1,0 +1,7 @@
+{
+  "run": 3,
+  "focus": "traceability",
+  "status": "insight",
+  "newFindingsRatio": 1,
+  "findings": ["F001"]
+}

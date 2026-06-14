@@ -1,0 +1,14 @@
+{
+  "iteration": 5,
+  "focus": "stabilization",
+  "newFindingsRatio": 0.08,
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "findingRefs": [],
+  "refinedFindings": [
+    "F008"
+  ]
+}

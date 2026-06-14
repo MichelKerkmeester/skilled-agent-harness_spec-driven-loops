@@ -1,0 +1,121 @@
+{
+  "sessionId": "fanout-deepseek-1781423033387-5rmxex",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "graph-metadata.json key_files contains stale pre-reorg path",
+      "file": "graph-metadata.json",
+      "line": 55,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"}]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "resource-map.md is stale pre-reorg snapshot",
+      "file": "resource-map.md",
+      "line": 33,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"}]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "description.json has stale description field from wrong phase",
+      "file": "description.json",
+      "line": 36,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "description.json specFolder uses short form inconsistent with graph-metadata.json",
+      "file": "description.json",
+      "line": 35,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "handover.md contains ephemeral /tmp/ path references",
+      "file": "handover.md",
+      "line": 42,
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "transitions": [{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "changelog directory uses old numbering; no per-track changelog indexes",
+      "file": "changelog/",
+      "line": 0,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "transitions": [{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "No single-lookup phase status summary for new maintainers",
+      "file": "spec.md",
+      "line": 122,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001","F002","F003","F004","F005","F006","F007"],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 5
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0.0,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

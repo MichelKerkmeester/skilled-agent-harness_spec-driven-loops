@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 22 on-demand skills across five families, with routing guidance and creation workflow."
+description: "Catalog and front door to 23 on-demand skills across five families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Five: `cli-*` (4), `deep-*` (6), `mcp-*` (3), `sk-*` (6), `system-*` (3) |
+| **Families** | Five: `cli-*` (3), `deep-*` (6), `mcp-*` (4), `sk-*` (7), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
@@ -30,7 +30,7 @@ trigger_phrases:
 
 ### Why This Library Exists
 
-Twenty-two skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
+Twenty-three skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
 
 ### What It Is
 
@@ -68,6 +68,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`mcp-chrome-devtools`](mcp-chrome-devtools/README.md) | Drive a real browser from your agent or terminal, with a fast CLI and an MCP fallback |
 | [`mcp-click-up`](mcp-click-up/README.md) | Manage ClickUp tasks from your agent or terminal |
 | [`mcp-code-mode`](mcp-code-mode/README.md) | Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json` |
+| [`mcp-magicpath`](mcp-magicpath/README.md) | Find, preview, inspect and install MagicPath UI components, or author them on the canvas, via the `magicpath-ai` CLI |
 
 ### sk-*: Code, Docs, Git and Prompts
 
@@ -77,6 +78,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`sk-code-review`](sk-code-review/README.md) | Stack-agnostic findings-first code review that classifies each finding by severity |
 | [`sk-doc`](sk-doc/README.md) | Document quality that starts with structure, with a deterministic script that extracts and scores |
 | [`sk-git`](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
+| [`sk-interface-design`](sk-interface-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, then hand the build to sk-code |
 | [`sk-prompt`](sk-prompt/README.md) | Turn a vague ask into a structured prompt, auto-selected from seven frameworks |
 | [`sk-prompt-small-model`](sk-prompt-small-model/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
 

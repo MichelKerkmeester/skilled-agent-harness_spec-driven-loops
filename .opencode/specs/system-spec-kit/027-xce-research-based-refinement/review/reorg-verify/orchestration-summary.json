@@ -1,0 +1,11 @@
+{
+  "run_id": "1781422660235-ysuwb4",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/review/reorg-verify",
+  "total_cli_lineages": 2,
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false
+}

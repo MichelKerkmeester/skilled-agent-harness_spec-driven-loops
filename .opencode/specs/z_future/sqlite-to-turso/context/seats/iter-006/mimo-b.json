@@ -1,0 +1,238 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "initDb",
+      "kind": "integration_point",
+      "signature": "db.pragma('busy_timeout = 5000'); db.pragma('journal_mode = WAL'); db.pragma('foreign_keys = ON')",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:270",
+      "relevance": 0.9,
+      "notes": "Three .pragma() calls at init; Turso lacks .pragma() API — busy_timeout, journal_mode, foreign_keys must be set via connection string or PRAGMA SQL statements."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "SCHEMA_SQL",
+      "kind": "dependency",
+      "signature": "CREATE TABLE IF NOT EXISTS code_files/code_nodes/code_edges/schema_version/code_graph_metadata/parse_diagnostics/parser_skip_list + 11 indexes",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:107",
+      "relevance": 0.3,
+      "notes": "Standard DDL — Turso-compatible. CHECK constraints in parser_skip_list need verification but are basic SQLite."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "ensureSchemaMigrations",
+      "kind": "integration_point",
+      "signature": "database.exec('ALTER TABLE ... ADD COLUMN ...'); database.exec('CREATE TABLE IF NOT EXISTS ...'); database.prepare('INSERT OR IGNORE INTO parser_skip_list ...').run()",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:210",
+      "relevance": 0.4,
+      "notes": "Uses database.exec() for multi-statement DDL and PRAGMA table_info() introspection. Turso supports exec() but PRAGMA table_info may need adaptation."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "hasColumn",
+      "kind": "integration_point",
+      "signature": "database.prepare('PRAGMA table_info(${tableName})').all()",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:206",
+      "relevance": 0.5,
+      "notes": "PRAGMA table_info() introspection; Turso may require alternative column-discovery approach."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "replaceNodes",
+      "kind": "reuse_candidate",
+      "signature": "const tx = d.transaction(() => { DELETE FROM code_nodes WHERE file_id = ?; DELETE FROM code_edges WHERE source_id IN (...); INSERT OR IGNORE INTO code_nodes ... }); tx()",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:692",
+      "relevance": 0.7,
+      "notes": "Synchronous transaction wrapper via better-sqlite3 .transaction() — Turso async driver requires wrapping in async transaction API; DELETE with dynamic placeholders in subquery."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "replaceEdges",
+      "kind": "reuse_candidate",
+      "signature": "const tx = d.transaction(() => { DELETE FROM code_edges WHERE source_id IN (...); INSERT INTO code_edges ...; DELETE FROM code_edges WHERE source_id NOT IN (SELECT symbol_id FROM code_nodes) OR target_id NOT IN (...) })",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:740",
+      "relevance": 0.7,
+      "notes": "Synchronous transaction with subquery-based dangling-edge prune. Turso async transaction API required; subquery DELETE is standard SQL."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "setMetadata",
+      "kind": "reuse_candidate",
+      "signature": "INSERT INTO code_graph_metadata ... ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:325",
+      "relevance": 0.3,
+      "notes": "UPSERT via ON CONFLICT — standard SQLite, Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "removeFile",
+      "kind": "reuse_candidate",
+      "signature": "const tx = d.transaction(() => { DELETE FROM code_edges WHERE source_id IN (...) OR target_id IN (...); DELETE FROM code_files WHERE id = ? })",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:896",
+      "relevance": 0.7,
+      "notes": "Transaction-wrapped cascade delete; same sync .transaction() coupling as replaceNodes/replaceEdges."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "cleanupOrphans",
+      "kind": "reuse_candidate",
+      "signature": "DELETE FROM code_nodes WHERE file_id NOT IN (SELECT id FROM code_files); DELETE FROM code_edges WHERE source_id NOT IN (SELECT symbol_id FROM code_nodes) OR target_id NOT IN (...)",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:1180",
+      "relevance": 0.4,
+      "notes": "Subquery-based orphan cleanup — standard SQL, no driver coupling beyond synchronous exec."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryStartupHighlights",
+      "kind": "dependency",
+      "signature": "WITH filtered_nodes AS (...), aggregated AS (...), ranked AS (SELECT ... ROW_NUMBER() OVER (...)) SELECT ... FROM ranked",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:922",
+      "relevance": 0.6,
+      "notes": "CTE with ROW_NUMBER() window function in SELECT. Turso supports CTEs and window functions but this is read-only — lower migration risk."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "queryFileDegrees",
+      "kind": "dependency",
+      "signature": "SELECT ... FROM (... UNION ALL ...) GROUP BY node_file_path",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:1092",
+      "relevance": 0.4,
+      "notes": "UNION ALL subquery — read-only, standard SQL, Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "pruneDanglingEdges",
+      "kind": "reuse_candidate",
+      "signature": "DELETE FROM code_edges WHERE source_id NOT IN (SELECT symbol_id FROM code_nodes) OR target_id NOT IN (SELECT symbol_id FROM code_nodes)",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:786",
+      "relevance": 0.3,
+      "notes": "Subquery-based DELETE — standard SQL, Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "DB_TRIPLET",
+      "kind": "convention",
+      "signature": "const DB_TRIPLET = ['code-graph.sqlite', 'code-graph.sqlite-wal', 'code-graph.sqlite-shm']",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:41",
+      "relevance": 0.9,
+      "notes": "WAL file triplet hardcoded; Turso uses different file layout — WAL/SHM files may not exist or behave differently with remote replicas."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "runIntegrityCheck",
+      "kind": "integration_point",
+      "signature": "db.pragma('integrity_check') as Array<Record<string, unknown>>",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:128",
+      "relevance": 0.8,
+      "notes": ".pragma('integrity_check') returns typed rows — Turso lacks .pragma() API; must use PRAGMA SQL statement and parse differently."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "rollbackBadApply",
+      "kind": "reuse_candidate",
+      "signature": "db.pragma('wal_checkpoint(TRUNCATE)')",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:272",
+      "relevance": 0.9,
+      "notes": "WAL checkpoint pragma via .pragma() — Turso has no WAL checkpoint concept for remote replicas; this recovery step must be replaced or skipped."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "recoverSqliteCorruption",
+      "kind": "integration_point",
+      "signature": "closeDb(); copyTriplet(...); moveTriplet(...); scan({incremental: false})",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:160",
+      "relevance": 0.8,
+      "notes": "Recovery assumes local file-level manipulation of SQLite triplet. Turso remote replicas cannot be quarantined/moved at file level."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "moveTriplet",
+      "kind": "dependency",
+      "signature": "renameSync(source, join(targetDir, fileName)) for each of DB_TRIPLET",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:95",
+      "relevance": 0.7,
+      "notes": "File-system rename of WAL triplet; Turso remote DB has no local WAL/SHM to move."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/close-db-assertion.ts",
+      "symbol": "assertDbHandleClosed",
+      "kind": "integration_point",
+      "signature": "handle.prepare('SELECT 1').get() — success means handle is still open",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/close-db-assertion.ts:18",
+      "relevance": 0.5,
+      "notes": "Probes DB handle liveness via prepare().get(); Turso async driver requires await — sync probe pattern breaks."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "persistIndexedFileResult",
+      "kind": "reuse_candidate",
+      "signature": "const tx = graphDb.getDb().transaction(() => { upsertFile(mtime=0); replaceNodes; replaceEdges; upsertFile(real_mtime); clearParseDiagnostic })",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:593",
+      "relevance": 0.8,
+      "notes": "Atomic per-file persistence in sync .transaction() — the core write-path unit for scans. Turso async transaction required; 4-statement atomic boundary is critical for crash safety."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "recordCandidateManifest",
+      "kind": "reuse_candidate",
+      "signature": "graphDb.setCodeGraphMetadata(CANDIDATE_MANIFEST_KEY, JSON.stringify(manifest))",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:301",
+      "relevance": 0.3,
+      "notes": "Metadata write via setCodeGraphMetadata — indirect UPSERT, Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "cleanupDeletedTrackedFiles",
+      "kind": "reuse_candidate",
+      "signature": "graphDb.removeFile(filePath) in loop",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:343",
+      "relevance": 0.4,
+      "notes": "Sequential removeFile calls (each transaction-wrapped) — same sync transaction coupling."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+      "symbol": "setLastGitHead",
+      "kind": "reuse_candidate",
+      "signature": "graphDb.setCodeGraphMetadata('last_git_head', head) via setMetadata",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:709",
+      "relevance": 0.2,
+      "notes": "Simple metadata write — Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts",
+      "symbol": "snapshotKnownGoodTriplet",
+      "kind": "integration_point",
+      "signature": "snapshotKnownGoodTriplet({dbDir, auditDir, now}) — copies WAL triplet",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:446",
+      "relevance": 0.8,
+      "notes": "Pre-apply snapshot copies DB triplet (including WAL/SHM). Turso remote replicas cannot be snapshot at file level."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts",
+      "symbol": "dispatchOperation",
+      "kind": "integration_point",
+      "signature": "switch(operation) { case 'recover-sqlite-corruption': recoverSqliteCorruption(...); case 'rollback-bad-apply': rollbackBadApply(...) }",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:261",
+      "relevance": 0.7,
+      "notes": "Apply orchestrator dispatches to file-level recovery procedures; both assume local SQLite triplet manipulation incompatible with Turso."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts",
+      "symbol": "appendAudit",
+      "kind": "convention",
+      "signature": "appendFileSync(path, JSON.stringify({...}) + '\\n', { mode: 0o600 })",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:149",
+      "relevance": 0.1,
+      "notes": "Audit log writes to filesystem, not SQLite — no migration impact."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts",
+      "symbol": "applyCodeGraph",
+      "kind": "integration_point",
+      "signature": "preflight battery -> snapshotKnownGoodTriplet -> dispatchOperation -> postflight battery -> rollbackBadApply on failure",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:361",
+      "relevance": 0.7,
+      "notes": "Full apply lifecycle depends on file-level snapshot/rollback. Turso migration needs alternative rollback strategy (e.g., logical undo or point-in-time recovery)."
+    }
+  ]
+}
