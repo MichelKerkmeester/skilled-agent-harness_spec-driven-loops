@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/148-sk-interface-design"
     last_updated_at: "2026-06-13T16:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Phases 001-007 complete; Claude Design parity keystone shipped to both skills"
-    next_safe_action: "Operator reviews/commits; exercise the previewImageUrl fidelity loop live"
+    recent_action: "Phases 001-008 complete; skill docs realigned to the parity reality"
+    next_safe_action: "Commit phase 008; exercise the previewImageUrl fidelity loop live"
     blockers: []
     key_files: []
     session_dedup:
@@ -86,6 +86,7 @@ Build `sk-interface-design` as a framework-native design skill and improve it th
 | 5 | `005-claude-design-parity-research/` | Deep research into improving sk-interface-design + mcp-magicpath toward Claude Design parity (recommendation only) | Complete |
 | 6 | `006-competitor-design-tools-research/` | Web-heavy deep research into adoptable ideas from competitor AI design tools (v0, Lovable, Figma Make, Subframe) (recommendation only) | Complete |
 | 7 | `007-claude-design-parity-build/` | Implement the keystone: one shared claude_design_parity.md protocol + minimal hooks in both skills (reuse-before-generate, previewImageUrl fidelity check, revision grammar) | Complete |
+| 8 | `008-doc-realignment/` | Realign feature catalog, playbook, READMEs to the post-007 reality (parity protocol, fidelity loop, helper) | Complete |
 
 ### Phase Transition Rules
 

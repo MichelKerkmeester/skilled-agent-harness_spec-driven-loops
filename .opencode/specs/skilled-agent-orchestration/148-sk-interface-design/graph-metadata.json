@@ -10,7 +10,8 @@
     "skilled-agent-orchestration/148-sk-interface-design/004-doc-alignment-catalog-playbook",
     "skilled-agent-orchestration/148-sk-interface-design/005-claude-design-parity-research",
     "skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
-    "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build"
+    "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build",
+    "skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
     "last_save_at": "2026-06-13T16:30:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build",
-    "last_active_at": "2026-06-14T09:35:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment",
+    "last_active_at": "2026-06-14T10:00:00Z"
   }
 }

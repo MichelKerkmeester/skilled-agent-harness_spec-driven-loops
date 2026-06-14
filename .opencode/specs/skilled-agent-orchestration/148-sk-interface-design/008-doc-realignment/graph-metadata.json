@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment",
+  "spec_folder": "skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment",
+  "parent_id": "skilled-agent-orchestration/148-sk-interface-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/147-mcp-magicpath"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-interface-design doc realignment",
+      "parity keystone doc alignment",
+      "feature catalog playbook readme realign"
+    ],
+    "key_topics": [
+      "doc realignment",
+      "feature catalog",
+      "manual testing playbook",
+      "readme",
+      "sk-interface-design",
+      "mcp-magicpath",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase 008 realigns the sk-interface-design feature catalog, manual testing playbook, and README, and the mcp-magicpath README and scripts README, to the post-007 reality (the Claude Design parity protocol, previewImageUrl fidelity loop, reuse-before-generate, design_fidelity.py helper). Fresh opus markdown agents author; the orchestrator reconciles shared files and validates.",
+    "created_at": "2026-06-14T10:00:00Z",
+    "last_save_at": "2026-06-14T10:00:00Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
