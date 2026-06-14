@@ -93,7 +93,10 @@
       ".opencode/skills/sk-interface-design/references/design_principles.md",
       ".opencode/skills/sk-interface-design/references/ux_quality_reference.md",
       ".opencode/skills/sk-interface-design/references/design_inventory.md",
+      ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
       ".opencode/skills/sk-interface-design/scripts/design_search.py",
+      ".opencode/skills/sk-interface-design/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/sk-interface-design/THIRD-PARTY-NOTICES.md",
       ".opencode/skills/sk-interface-design/LICENSE.txt"
     ],
@@ -117,7 +120,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-interface-design vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design_principles.md. A mixed-license merge from the MIT ui-ux-pro-max repo added a quality-floor reference, a critique-against pattern inventory, eight design data CSVs under assets/data/, and an optional zero-dependency BM25 search (scripts/design_search.py); the design-system generator and persistence were deliberately excluded to protect the anti-default philosophy.",
+    "causal_summary": "sk-interface-design vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design_principles.md. A mixed-license merge from the MIT ui-ux-pro-max repo added a quality-floor reference, a critique-against pattern inventory, nine design data CSVs under assets/data/, and an optional zero-dependency BM25 search (scripts/design_search.py); the design-system generator and persistence were deliberately excluded to protect the anti-default philosophy. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
     "source_docs": [
       "SKILL.md",
       "README.md",

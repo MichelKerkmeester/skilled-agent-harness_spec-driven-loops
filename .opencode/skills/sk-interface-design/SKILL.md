@@ -69,6 +69,7 @@ DESIGN TASK
 | ALWAYS | Any design task | `references/design_principles.md` (palette, type, structure, motion, restraint) |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
+| CONDITIONAL | Producing or iterating on real UI (canvas, repo recreation, code-bound) | `references/claude_design_parity.md` (ground in a system, reuse before generating, fidelity check, handoff) |
 | ON_DEMAND | Need palettes, font pairings, style or product patterns to critique against | `assets/data/*.csv` (queryable via `scripts/design_search.py`) |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
@@ -149,7 +150,16 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 - [`references/design_principles.md`](references/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
 - [`references/ux_quality_reference.md`](references/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
 - [`references/design_inventory.md`](references/design_inventory.md) - The aesthetic data (styles, palettes, type pairings, product reasoning) framed as common patterns to critique against, with the search script. Never a chooser.
+- [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-magicpath`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
 - [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) / [`LICENSE.txt`](LICENSE.txt) / [`LICENSE-ui-ux-pro-max.txt`](LICENSE-ui-ux-pro-max.txt) - Apache-2.0 (principles) plus MIT (data and search) license map and attribution.
+
+### Feature Catalog
+
+The skill's features are catalogued in `feature_catalog/feature_catalog.md` (root index) plus per-feature files under `feature_catalog/<NN>--<topic>/`: the design process, the quality floor, the critique-against data inventory, interface writing, and the integration boundary.
+
+### Manual Testing Playbook
+
+Manual testing scenarios live in `manual_testing_playbook/manual_testing_playbook.md` (root index) plus per-scenario files under `manual_testing_playbook/<NN>--<topic>/`. Validate structure with `python3 .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md`; execute scenarios in a real session for behavioral verification.
 
 ### Reference Loading Notes
 
