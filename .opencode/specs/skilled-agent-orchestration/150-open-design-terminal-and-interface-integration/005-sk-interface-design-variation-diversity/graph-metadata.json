@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/005-sk-interface-design-variation-diversity",
+  "spec_folder": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/005-sk-interface-design-variation-diversity",
+  "parent_id": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-interface-design variation diversity",
+      "seed of thought debias",
+      "give me N design variations"
+    ],
+    "key_topics": [
+      "sk-interface-design",
+      "variation diversity",
+      "seed of thought",
+      "anti-default design",
+      "non-median directions",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase 005 adds a seed-of-thought variation-diversity mechanism to sk-interface-design (v1.2.0). When a brief asks for two or more directions, a committed random seed picks a non-median start in a subject-grounded option space and the rest are spread to be distinct, with grounding and the anti-default critique still primary and never a style chooser. Ships references/variation_diversity.md plus a lean SKILL.md hook and a changelog.",
+    "created_at": "2026-06-14T14:30:00Z",
+    "last_save_at": "2026-06-14T14:30:00Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

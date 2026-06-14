@@ -2,7 +2,7 @@
 name: sk-interface-design
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0
+version: 1.2.0
 metadata:
   author: Anthropic
   source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
@@ -27,7 +27,7 @@ Approach UI work as the design lead at a studio known for visual identities that
 - Choosing palette, typography, layout, motion, or interface copy.
 - Reviewing a design direction before code is written.
 
-**Keyword Triggers**: "design", "make it look good", "redesign", "variation", "hero section", "landing page", "looks templated", "looks AI-generated", "visual identity".
+**Keyword Triggers**: "design", "make it look good", "redesign", "variation", "give me N variations", "show me options", "multiple directions", "hero section", "landing page", "looks templated", "looks AI-generated", "visual identity".
 
 ### When NOT to Use
 
@@ -68,6 +68,7 @@ DESIGN TASK
 | ----- | ------------ | -------- |
 | ALWAYS | Any design task | `references/design_principles.md` (palette, type, structure, motion, restraint) |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
+| CONDITIONAL | Producing two or more design directions at once | `references/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
 | CONDITIONAL | Producing or iterating on real UI (canvas, repo recreation, code-bound) | `references/claude_design_parity.md` (ground in a system, reuse before generating, fidelity check, handoff) |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | An Open Design system via `mcp-open-design` (`od mcp` get_file/search_files, or `od tools design-systems read`), when that app is installed |
@@ -80,6 +81,7 @@ DESIGN TASK
 # 1) Always load references/design_principles.md.
 # 2) If the brief fixes the visual direction, follow the brief verbatim and skip default-avoidance.
 # 3) If axes are free, apply Sections 2-5 (subject, principles, process, restraint).
+# 3b) If the brief asks for two or more directions, load references/variation_diversity.md and run the seed-of-thought debias so the set is not N copies of the median.
 # 4) If the task writes interface copy, also apply Section 6 (writing).
 # 5) Hand implementation to sk-code for the detected web surface. This skill owns the look, not the build mechanics.
 ```
@@ -128,6 +130,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 3. **ALWAYS critique the plan against the AI-default looks** before writing code, and revise anything generic with a stated reason.
 4. **ALWAYS treat copy as design material**, with active voice, end-user vocabulary, and consistent action names across a flow.
 5. **ALWAYS meet the quality floor**: responsive, visible focus, reduced-motion respected.
+6. **ALWAYS debias multiple directions with the seed of thought** from `references/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
 
 ### NEVER
 
@@ -150,6 +153,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 - [`references/design_principles.md`](references/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
 - [`references/ux_quality_reference.md`](references/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
 - [`references/design_inventory.md`](references/design_inventory.md) - How to use a real design system (via `mcp-open-design`, when installed) as either reuse-ground or the named default to critique against. Never a chooser.
+- [`references/variation_diversity.md`](references/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
 - [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-magicpath` and `mcp-open-design`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 

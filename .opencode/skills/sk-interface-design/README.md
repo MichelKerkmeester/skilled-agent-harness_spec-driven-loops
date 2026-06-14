@@ -161,6 +161,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (house template) |
 | [`references/design_principles.md`](./references/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
 | [`references/claude_design_parity.md`](./references/claude_design_parity.md) | The shared parity loop with `mcp-magicpath`: ground in a system, reuse before generating, fidelity check, handoff |
+| [`references/variation_diversity.md`](./references/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
 | [Skills Library](../README.md) | The skill catalog and routing front door |
