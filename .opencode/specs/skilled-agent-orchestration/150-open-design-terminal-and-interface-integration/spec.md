@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration"
     last_updated_at: "2026-06-14T12:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Phases 002-003 shipped: mcp-open-design v1.0.0.0, sk-interface-design v1.1.0.0"
-    next_safe_action: "Run phase 004: od mcp install opencode and verify tools/list live"
+    recent_action: "Phases 005-006 shipped: sk-interface-design v1.2.0, sk-prompt v2.2.0"
+    next_safe_action: "Correct mcp-open-design gen flow (007), run 004 live verify, push 027"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-150-open-design-terminal-and-interface-integration"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 92
     open_questions: []
     answered_questions: []
 ---
@@ -87,6 +87,8 @@ Make Open Design drivable from the terminal through a new `mcp-open-design` skil
 | 2 | `002-mcp-open-design-skill-build/` | Build the `mcp-open-design` skill (terminal control of Open Design), modeled on `mcp-magicpath`. Shipped into the skill at `.opencode/skills/mcp-open-design/` (v1.0.0.0) | Complete |
 | 3 | `003-sk-interface-design-evolution/` | De-vendor `sk-interface-design` from ui-ux-pro-max, integrate with `mcp-open-design`, remove the MIT notices (ordered: data then notices, keep the Apache-2.0 base). Shipped into the skill at `.opencode/skills/sk-interface-design/` (v1.1.0.0) | Complete |
 | 4 | `004-validation-and-docs/` | Live-wire `od mcp install opencode` and verify `tools/list` against the running daemon | Planned |
+| 5 | `005-sk-interface-design-variation-diversity/` | Seed-of-thought variation-diversity logic in sk-interface-design (v1.2.0) so multiple directions break the median default | Complete |
+| 6 | `006-sk-prompt-design-tool-usecases/` | Design-generation prompt patterns in sk-prompt (v2.2.0) for the magicpath and open-design usecases | Complete |
 
 ### Phase Transition Rules
 

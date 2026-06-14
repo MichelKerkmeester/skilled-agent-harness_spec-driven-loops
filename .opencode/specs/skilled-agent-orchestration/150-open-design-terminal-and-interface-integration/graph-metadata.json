@@ -4,7 +4,9 @@
   "spec_folder": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/001-terminal-control-and-integration-research"
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/001-terminal-control-and-integration-research",
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/005-sk-interface-design-variation-diversity",
+    "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/006-sk-prompt-design-tool-usecases"
   ],
   "manual": {
     "depends_on": [],
@@ -33,13 +35,13 @@
       "spec.md"
     ],
     "entities": [],
-    "causal_summary": "The installed Open Design desktop app holds rich local-first design systems but is only reachable through its in-app chat UI. Phase 001 researched its terminal/MCP/CLI surface and designed two skills. Phase 002 builds the mcp-open-design skill to drive the app from the terminal (modeled on mcp-magicpath). Phase 003 de-vendors sk-interface-design from the MIT ui-ux-pro-max repo (data first, then notices, keeping the Apache-2.0 base) and integrates it with mcp-open-design so it reads live local sources. Phase 004 live-wires the install and validates.",
+    "causal_summary": "The installed Open Design desktop app holds rich local-first design systems but is only reachable through its in-app chat UI. Phase 001 researched its terminal/MCP/CLI surface and designed two skills. Phase 002 builds the mcp-open-design skill to drive the app from the terminal (modeled on mcp-magicpath). Phase 003 de-vendors sk-interface-design from the MIT ui-ux-pro-max repo (data first, then notices, keeping the Apache-2.0 base) and integrates it with mcp-open-design so it reads live local sources. Phase 004 live-wires the install and validates. Phase 005 adds seed-of-thought variation-diversity logic to sk-interface-design (v1.2.0). Phase 006 adds design-generation prompt patterns to sk-prompt (v2.2.0) for the magicpath and open-design usecases.",
     "created_at": "2026-06-14T12:30:00Z",
     "last_save_at": "2026-06-14T13:00:00Z",
     "last_updated_at": "2026-06-14T13:00:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/001-terminal-control-and-integration-research",
+    "last_active_child_id": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/006-sk-prompt-design-tool-usecases",
     "last_active_at": "2026-06-14T13:00:00Z"
   }
 }
