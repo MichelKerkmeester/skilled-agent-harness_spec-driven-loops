@@ -1,0 +1,304 @@
+---
+name: mcp-open-design
+description: Drive the installed Open Design desktop app from the terminal through its `od` CLI and stdio MCP server. Read local design projects and design-systems, reuse them, answer the app's prompts, and commission headless generation runs without using the in-app chat. Wires Open Design's MCP server into opencode or Claude Code.
+compatibility: Requires the Open Design desktop app (v0.9.0+) installed and running (it hosts the local daemon), Node.js, and the target agent CLI (opencode or claude) for MCP install.
+metadata:
+  author: nexu-io (Open Design)
+  source: https://github.com/nexu-io/open-design
+allowed-tools: [Read, Bash]
+version: 1.0.0
+user-invocable: true
+---
+
+<!-- keywords: open-design od-cli mcp-open-design design-systems local-first claude-design-alternative terminal-design daemon start-run -->
+
+# Open Design (mcp-open-design)
+
+Drive the installed **Open Design** desktop app (nexu-io/open-design, "the official open-source, local-first Claude Design alternative") from the terminal, so a coding agent (opencode / Claude Code) can read your local design projects and design-systems, reuse them, answer the app's prompts, and commission generation runs **without typing into the in-app chat**. The interface is the `od` CLI plus a stdio MCP server that Open Design exposes; deep operational detail lives in [`references/od_cli_reference.md`](references/od_cli_reference.md).
+
+> **Terminology.** Open Design calls a workspace a **project**, a brand/style a **design system** (DESIGN.md + tokens.css + components.html), a build a **run**, and an output file an **artifact**. The CLI brands itself **`od`** but is `app/prebundled/daemon/daemon-cli.mjs` run under Node — it is NOT the bundled `vela` binary (vela is the cloud auth client).
+
+---
+
+## 1. WHEN TO USE
+
+### Activation Triggers
+
+**Use when** the user:
+- Wants a terminal agent to use Open Design's local projects, design-systems, or artifacts.
+- Wants to wire Open Design's MCP server into opencode or Claude Code ("connect open design", "od mcp install").
+- Wants to ground a design in one of Open Design's ~150 design-systems, or reuse its tokens/components.
+- Wants to commission an Open Design generation run headlessly, or answer a run's prompt from the terminal.
+
+**Keyword Triggers**: "open design", "open-design", "od mcp", "od cli", "design system from open design", "drive open design from the terminal".
+
+### Use Cases
+
+**Wire direction (connect the app to your agent).** Register Open Design's stdio MCP server into opencode/Claude Code so its tools appear to the agent.
+
+**Read direction (use local content).** List projects, read the active context, read a design system's `DESIGN.md`/`tokens.css`/`components.html`, search files, fetch artifacts — all read-only.
+
+**Run direction (commission work headlessly).** `start_run` → `get_run` → `get_artifact` commissions Open Design to spawn its own inner agent and produce artifacts, the headless equivalent of the chat box. Gated.
+
+### When NOT to Use
+
+**Skip this skill when:**
+- The user wants to work in Open Design's in-app chat UI directly (that is the thing this skill replaces, not automates).
+- The work is generic app coding with no Open Design content (use `sk-code`).
+- The work is the design judgment itself (the look, the anti-default critique) — that is `sk-interface-design`; this skill is the transport.
+- Open Design is not installed, or its desktop app is not running (the local daemon, and therefore every tool call, is unavailable).
+
+---
+
+## 2. SMART ROUTING
+
+### Primary Detection Signal
+
+Detect the workflow **direction**, since it selects both the commands and the references to load:
+
+```bash
+# Direction detection (pseudo)
+echo "$REQUEST" | grep -qiE 'install|wire|connect|hook .* up|mcp add' && DIR="WIRE"
+echo "$REQUEST" | grep -qiE 'run|generate|commission|build .* in open ?design|start_run' && DIR="RUN"
+echo "$REQUEST" | grep -qiE 'read|list|search|design system|tokens|reuse|ground' && DIR="READ"
+# default when only inspecting/listing: READ
+```
+
+### Phase Detection
+
+```text
+TASK CONTEXT
+    |
+    +- STEP 0: locate the od CLI + confirm the daemon is reachable
+    +- STEP 1: Score intent -> WIRE | READ | RUN
+    +- Phase 1: Wire (od mcp install <agent>, or manual config) [WIRE]
+    +- Phase 2: Read (list_projects / get_active_context / get_file / design-systems read) [READ]
+    +- Phase 3: Run (start_run -> get_run -> get_artifact, gated) [RUN]
+    +- Phase 4: Verify (tools/list reflects what you used; artifacts landed)
+```
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+| ----- | ------------ | --------- |
+| ALWAYS | Every invocation | `references/od_cli_reference.md` (locate the CLI, daemon model, verb surface) |
+| CONDITIONAL | WIRE intent | `references/mcp_wiring.md` (opencode + Claude Code config, manual fallback) |
+| CONDITIONAL | READ / RUN intent | `references/tool_surface.md` (the MCP tools, the surface/gate/omit policy) |
+| ALWAYS (design work) | Grounding a design in an Open Design system, or any READ feeding a design decision | `sk-interface-design` design principles, applied before deciding |
+| ALWAYS (design work) | Reuse-before-generate / fidelity / handoff | `sk-interface-design/references/claude_design_parity.md` (the shared loop) |
+
+### Smart Router Pseudocode
+
+> Resilience pattern: see [sk-doc smart-router template](../sk-doc/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, derive a routing key, score intents, fall back when unsure.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references",)
+DEFAULT_RESOURCE = "references/od_cli_reference.md"
+
+INTENT_MODEL = {
+    "WIRE": {"keywords": [("install", 4), ("wire", 4), ("connect", 3), ("mcp add", 4)]},
+    "READ": {"keywords": [("read", 3), ("list", 3), ("search", 3), ("design system", 4), ("tokens", 3), ("reuse", 3), ("ground", 3)]},
+    "RUN":  {"keywords": [("run", 3), ("generate", 4), ("commission", 4), ("start_run", 4), ("artifact", 3)]},
+}
+
+RESOURCE_MAP = {
+    "WIRE": ["references/mcp_wiring.md", "references/od_cli_reference.md"],
+    "READ": ["references/tool_surface.md", "references/od_cli_reference.md"],
+    "RUN":  ["references/tool_surface.md", "references/od_cli_reference.md"],
+}
+
+# Cross-skill: any READ/RUN that feeds a design decision is design work.
+# Also load sk-interface-design and apply its principles before deciding.
+# mcp-open-design owns the transport; sk-interface-design owns the judgment.
+DESIGN_INTENTS = {"READ", "RUN"}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the direction: wire the MCP server, read local content, or commission a run",
+    "Confirm the Open Design desktop app is running (the daemon hosts every tool call)",
+    "Confirm the od CLI path: node \"<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs\"",
+    "For RUN or any mutating verb, confirm the user wants a write and name the target project",
+]
+
+AMBIGUITY_DELTA = 1
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)            # raises if path escapes the skill
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {d.relative_to(SKILL_ROOT).as_posix() for d in docs}
+
+def classify_intents(request: str):
+    text = (request or "").lower()
+    scores = {i: 0 for i in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw, w in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += w
+    ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
+    primary, top = ranked[0]
+    if top == 0:
+        return ("READ", None, scores)
+    secondary, second = ranked[1]
+    if second > 0 and (top - second) <= AMBIGUITY_DELTA:
+        return (primary, secondary, scores)
+    return (primary, None, scores)
+
+def route_open_design_resources(request: str):
+    inventory = discover_markdown_resources()
+    primary, secondary, scores = classify_intents(request)
+    intents = [primary] + ([secondary] if secondary else [])
+    loaded, seen = [], set()
+
+    def load_if_available(rel: str):
+        guarded = _guard_in_skill(rel)
+        if guarded in inventory and guarded not in seen:
+            load(guarded); loaded.append(guarded); seen.add(guarded)
+
+    load_if_available(DEFAULT_RESOURCE)
+    if max(scores.values() or [0]) < 1:
+        return {"intents": intents, "needs_disambiguation": True,
+                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded}
+    for intent in intents:
+        for rel in RESOURCE_MAP.get(intent, []):
+            load_if_available(rel)
+    return {"intents": intents, "intent_scores": scores, "resources": loaded}
+```
+
+---
+
+## 3. HOW IT WORKS
+
+### First Step (Always): locate the CLI and confirm the daemon
+
+```bash
+APP="/Applications/Open Design.app"
+OD_BIN="$APP/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"   # this is `od`
+# Either form works (system node, or the bundled Electron as node — no system node needed):
+node "$OD_BIN" --help
+ELECTRON_RUN_AS_NODE=1 "$APP/Contents/MacOS/Open Design" "$OD_BIN" --help
+```
+
+There is **no global `od` on PATH** (bare `od` is the unrelated `/usr/bin/od` octal-dump tool). Every tool call proxies to a **local daemon that the desktop app runs**; the app must be open. The daemon is discovered over a Unix socket (`OD_SIDECAR_IPC_PATH=/tmp/open-design/ipc/release-stable/daemon.sock`) on an **ephemeral** loopback port, NOT a fixed `127.0.0.1:7456` (that port is only the default for a standalone `od --no-open` daemon).
+
+### Wire Direction (od mcp install)
+
+```bash
+node "$OD_BIN" mcp install opencode --print --json    # PREVIEW only, writes nothing
+node "$OD_BIN" mcp install opencode                    # deep-merges ~/.config/opencode/opencode.json (mcp.open-design)
+node "$OD_BIN" mcp install claude --print --json       # PREVIEW
+node "$OD_BIN" mcp install claude                       # runs: claude mcp add --scope user open-design ...
+```
+
+The installed entry is `{"type":"local","command":["<electron>","<daemon-cli.mjs>","mcp"],"enabled":true,"environment":{"OD_DATA_DIR":"...","OD_SIDECAR_IPC_PATH":".../daemon.sock","ELECTRON_RUN_AS_NODE":"1"}}`. The MCP server re-discovers the live ephemeral daemon URL from the socket on each spawn, so the config stays valid across daemon restarts. Run `--print --json` first and read the exact `command`/`env` it will write. Full detail + manual config: [`references/mcp_wiring.md`](references/mcp_wiring.md).
+
+### Read Direction (the safe default)
+
+After wiring, the agent calls Open Design's MCP tools. The **read-only** tools are always safe: `list_projects`, `get_active_context` (what the user has open now), `get_project`, `get_file`, `search_files`, `list_files`, `get_artifact`, `list_skills`, `list_plugins`, `list_agents`, `get_run`. From the terminal directly: `node "$OD_BIN" tools design-systems read --path <manifest-path>` reads a registered design system's pull-layer files. A design system is a `DESIGN.md` (9-section prose) + a paste-ready `tokens.css` (`:root` block) + an optional `components.html`.
+
+### Run Direction (gated)
+
+`start_run(prompt, [skill], [agent], ...)` commissions Open Design to spawn its own inner agent and build; poll `get_run(runId)`, then `get_artifact`. Headless verbs from the CLI: `od automation` (schedule/fire routines), `od ui respond` (answer a run's GenUI prompt), `od artifacts create`, `od media generate`. Every one of these is **mutating** and is a STOP-and-confirm point (see Rules + [`references/tool_surface.md`](references/tool_surface.md)).
+
+### Verify the live tool set
+
+The `od mcp --help` text lists only a documentation subset (8 tools); the running server registers ~18 (including `write_file`, `create_project`, `start_run`, and destructive `delete_file`/`delete_project`). **Always verify the live `tools/list`** before promising a tool exists or is read-only, and gate every mutating/destructive one.
+
+---
+
+## 4. RULES
+
+### ALWAYS
+
+1. **ALWAYS locate the CLI as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`** (or the `ELECTRON_RUN_AS_NODE=1` form). Never assume a global `od` on PATH, and never hardcode `127.0.0.1:7456` — the desktop daemon is socket-discovered on an ephemeral port.
+2. **ALWAYS confirm the Open Design desktop app is running first.** The daemon it hosts answers every tool call. If it is closed, the socket is gone and calls fail.
+3. **ALWAYS verify the live `tools/list`** before relying on a tool's name or read-only status. The help text undercounts; the real surface is ~18 tools and includes mutating and destructive ones.
+4. **ALWAYS gate every mutating or destructive verb** behind explicit user confirmation, an explicit target project/name, and a one-line rollback note. This covers `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, `delete_project`, and the `od artifacts/media/automation/ui/memory/plugin` write verbs.
+5. **ALWAYS apply `sk-interface-design` when an Open Design read or run feeds a design decision.** Load its `design_principles` and run ground -> token-system -> critique before deciding. This skill owns the transport; `sk-interface-design` owns the judgment.
+6. **ALWAYS read Open Design content live; NEVER copy or cache it into a repo.** Reusing a system's `tokens.css`/`components.html` happens at build time in the target app, not by vendoring Open Design's files (its per-source Apache-2.0/MIT licenses would attach).
+7. **ALWAYS run `mcp install ... --print --json` (dry-run) first** and read the exact `command`/`env` before writing an agent config.
+
+### NEVER
+
+1. **NEVER drive Open Design's in-app chat UI** or browser-automate its canvas. This skill is the terminal alternative to that, not an automator of it.
+2. **NEVER run a destructive verb** (`delete_file`, `delete_project`) without an explicit project and `confirm:true` plus user approval, and never via the active-project fallback.
+3. **NEVER surface Open Design's ~150 design-systems as a pick-a-vibe menu.** Resolve at most one system from the subject and brief (that is `sk-interface-design`'s job); a style chooser is the templated default the design skill resists.
+4. **NEVER pipe `https://open-design.ai/install.sh` to a shell.** Its contents are unverified; use the local `node "$OD_BIN" mcp install` form instead.
+
+### ESCALATE IF
+
+1. **ESCALATE IF the desktop app is not running** and the user expected tool calls to work — offer to have them open it, or to start a standalone daemon with `od --no-open` (headless, binds `127.0.0.1:7456`).
+2. **ESCALATE IF a verb returns an auth error** — local reads work without a cloud account, but generation/media/research/plugin-publish may need a `vela login` or configured providers. Surface the requirement; do not paste credentials into prompts.
+3. **ESCALATE IF a mutating or destructive run is requested** — describe the effect and the rollback, then stop and wait for confirmation.
+
+---
+
+## 5. REFERENCES
+
+### Core References
+
+- [od_cli_reference.md](references/od_cli_reference.md) - Locating the CLI, the daemon/socket model, and the full `od` verb surface with read-only vs mutating classification.
+- [mcp_wiring.md](references/mcp_wiring.md) - Wiring the MCP server into opencode and Claude Code: the install commands, the written config shape, the manual fallback, and daemon-URL discovery.
+- [tool_surface.md](references/tool_surface.md) - The ~18 MCP tools, the surface / gate / omit policy, and the live-verification requirement.
+
+### Reference Loading Notes
+
+- Load only what the detected direction requires (see Section 2). `od_cli_reference.md` is the baseline; load `mcp_wiring.md` for WIRE, `tool_surface.md` for READ/RUN.
+- Keep Section 2 (SMART ROUTING) as the single routing authority.
+
+---
+
+## 6. SUCCESS CRITERIA
+
+**Wire complete when:**
+- ✅ `mcp install ... --print --json` was reviewed, then the install wrote the `open-design` MCP entry into the target agent's config.
+- ✅ The agent's live `tools/list` shows the Open Design tools and the desktop app is running.
+
+**Read complete when:**
+- ✅ The needed projects/files/design-systems were read with read-only tools; nothing was written.
+
+**Run complete when:**
+- ✅ The mutating verb was confirmed with an explicit target and rollback note, `start_run` finished via `get_run`, and the artifact was fetched.
+
+**Always:**
+- ✅ The desktop app (daemon) was confirmed running before acting.
+- ✅ The live `tools/list` was verified; no mutating verb ran unconfirmed.
+
+---
+
+## 7. INTEGRATION POINTS
+
+### Required Tool
+
+**The Open Design desktop app** (`/Applications/Open Design.app`, v0.9.0+), which hosts the local daemon and ships the `od` CLI at `Contents/Resources/app/prebundled/daemon/daemon-cli.mjs`. There is no separate install for the CLI; it runs under Node or the bundled Electron (`ELECTRON_RUN_AS_NODE=1`). MCP wiring needs the target agent CLI (`opencode` or `claude`) on PATH.
+
+### Related Skills
+
+- **`sk-interface-design`** owns the design judgment and is **applied whenever an Open Design read or run feeds a design decision** (grounding in a system, reusing its tokens/components). This skill is the transport; that skill is the taste. The two share `claude_design_parity.md`.
+- **`sk-code`** owns application-code standards for adapting any reused tokens/components into a real app.
+- **`mcp-magicpath`** is the sibling canvas-authoring tool; the same parity loop and reuse-before-generate discipline apply.
+- **`mcp-chrome-devtools`** can drive a real browser only if a last-mile visual preview is needed; it is never the way to operate Open Design.
+
+### Knowledge Base Dependencies
+
+**Required**: `references/od_cli_reference.md` (CLI + daemon model). **Conditional**: `references/mcp_wiring.md` (WIRE), `references/tool_surface.md` (READ/RUN) per detected direction.
+
+---
+
+## 8. REFERENCES AND RELATED RESOURCES
+
+The router (Section 2) discovers reference docs dynamically. Start from `references/od_cli_reference.md` for the CLI and daemon model, load `references/mcp_wiring.md` to wire the MCP server, and load `references/tool_surface.md` for the tool surface and gating policy.
+
+Related skills: `sk-interface-design` (applied for the design judgment whenever a read/run feeds a design decision), `sk-code` for adapting reused tokens/components into an app, `mcp-magicpath` as the sibling canvas tool sharing the parity loop, and `system-spec-kit` when packet documentation or memory continuity applies.
+
+Upstream: Open Design is [nexu-io/open-design](https://github.com/nexu-io/open-design), an open-source local-first design tool. This skill documents driving its installed desktop app from the terminal; it does not vendor or redistribute Open Design.

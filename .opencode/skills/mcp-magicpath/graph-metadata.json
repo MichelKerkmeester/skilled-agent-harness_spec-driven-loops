@@ -18,13 +18,19 @@
         "context": "Installed MagicPath component source feeds into application code that sk-code governs, wires and verifies"
       }
     ],
-    "siblings": [],
+    "siblings": [
+      {
+        "target": "mcp-open-design",
+        "weight": 0.5,
+        "context": "Sibling external design tool driven from the terminal; shares the claude_design_parity loop and the reuse-before-generate discipline"
+      }
+    ],
     "conflicts_with": [],
     "prerequisite_for": []
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-interface-design", "sk-code", "mcp-chrome-devtools"]
+    "related_to": ["sk-interface-design", "sk-code", "mcp-chrome-devtools", "mcp-open-design"]
   },
   "domains": ["ui-components", "design-to-code", "frontend", "cli", "magicpath"],
   "intent_signals": [

@@ -1,0 +1,184 @@
+---
+title: mcp-open-design
+description: Drive the installed Open Design desktop app from the terminal through its od CLI and stdio MCP server, so a coding agent can read local design content, reuse it, and commission generation runs without the in-app chat.
+trigger_phrases:
+  - "open design"
+  - "open-design"
+  - "od mcp"
+  - "od cli"
+  - "drive open design from the terminal"
+---
+
+# mcp-open-design
+
+> Read, reuse, and commission Open Design's local projects and design-systems from your agent or terminal, through the `od` CLI and its stdio MCP server, without ever typing into the in-app chat.
+
+---
+
+## 1. AT A GLANCE
+
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Wiring Open Design's MCP server into a terminal agent, reading local projects and design-systems read-only, grounding a design in one resolved system, and commissioning headless generation runs |
+| **Invoke with** | "open design", "open-design", "od mcp", "od cli", "drive open design from the terminal", or auto-routing on Open Design keywords |
+| **Works on** | The installed Open Design desktop app (v0.9.0+) while it is running, since the app hosts the local daemon every tool call depends on. Needs Node.js and the target agent CLI (opencode or claude) for MCP install |
+| **Produces** | A wired `open-design` MCP entry in your agent config, read-only design content (DESIGN.md, tokens.css, components.html, artifacts), and gated generation runs that land artifacts in your projects |
+
+---
+
+## 2. OVERVIEW
+
+### Why This Skill Exists
+
+Open Design is the official open-source, local-first Claude Design alternative, and its natural home is its own desktop chat UI. Reaching it from a coding agent is awkward without a contract. An agent needs to know that there is no global `od` command, that the real interface is a daemon CLI buried in the app bundle, that the running MCP server exposes far more tools than its help text admits, and that several of those tools mutate or delete. Guessing at any of that wastes a round-trip or, worse, fires a destructive verb against real work. This skill wraps the `od` CLI and its stdio MCP server behind one set of instructions so the agent always knows where the CLI is, which calls are safe, and exactly where the gates are.
+
+### What It Does
+
+The skill drives the installed Open Design app in three directions. The **wire direction** registers Open Design's stdio MCP server into opencode or Claude Code so its tools appear to the agent, always after a dry-run that prints the exact config first. The **read direction** is the safe default: list projects, read the active context, read a design system's `DESIGN.md` and `tokens.css`, search files, and fetch artifacts, all read-only. The **run direction** commissions Open Design to spawn its own inner agent and build, the headless equivalent of the chat box, behind explicit confirmation. Open Design's terminology is first-class throughout: a workspace is a **project**, a brand or style is a **design system**, a build is a **run**, and an output file is an **artifact**.
+
+This is a real MCP surface, not a CLI-only one. The `od` CLI is `app/prebundled/daemon/daemon-cli.mjs` run under Node or the bundled Electron, and `od mcp install` wires its stdio server into your agent. The CLI and the MCP tools are two faces of the same daemon, so the skill uses whichever fits the step.
+
+---
+
+## 3. QUICK START
+
+**Step 1: Locate the CLI and confirm the daemon.**
+
+```bash
+APP="/Applications/Open Design.app"
+OD_BIN="$APP/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"   # this is od
+node "$OD_BIN" --help
+# Expected: od usage text. The desktop app must be open so the daemon socket exists.
+# There is no global `od` on PATH (bare `od` is the unrelated octal-dump tool).
+```
+
+**Step 2: Preview the MCP wiring, then write it.**
+
+```bash
+node "$OD_BIN" mcp install opencode --print --json   # PREVIEW only, writes nothing
+# Read the command array and environment it would write, then apply:
+node "$OD_BIN" mcp install opencode                   # deep-merges opencode.json (mcp.open-design)
+# For Claude Code, swap `opencode` for `claude` (delegates to claude mcp add).
+```
+
+**Step 3: Verify the live tool set.**
+
+```bash
+# After wiring, confirm the agent's live tools/list shows the Open Design tools.
+# The help text lists about 8 tools. The running server registers roughly 18,
+# including mutating and destructive ones. Always verify live before relying on a tool.
+```
+
+**Step 4: Read local content, the safe default.**
+
+```bash
+node "$OD_BIN" tools design-systems read --path <manifest-path>
+# Expected: a 9-section DESIGN.md and a :root tokens.css. Read live, never cached into a repo.
+```
+
+For generation, `start_run` then `get_run` then `get_artifact` commissions a run. Every mutating verb is a stop-and-confirm point with an explicit target and a rollback note.
+
+---
+
+## 4. HOW IT WORKS
+
+### First Step Always
+
+Every session starts by locating the CLI as `node "$OD_BIN" --help` (or the `ELECTRON_RUN_AS_NODE=1` form) and confirming the desktop app is open. The app hosts the daemon, and the daemon answers every tool call, so a closed app means the socket is gone and nothing works. The daemon is discovered over a Unix socket on an ephemeral loopback port, not a fixed `127.0.0.1:7456`, so the CLI is never pointed at a hardcoded address.
+
+### The Wire Direction
+
+`od mcp install <agent>` registers Open Design's stdio MCP server into a terminal agent. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`. For Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
+
+### The Read Direction
+
+After wiring, the read-only tools are always safe: `list_projects`, `get_active_context`, `get_project`, `get_file`, `search_files`, `list_files`, `get_artifact`, and the list and run inspectors. From the CLI, `od tools design-systems read` reads a registered design system's files. A design system is a `DESIGN.md`, a paste-ready `tokens.css`, and an optional `components.html`. Open Design content is read live and never copied into a repo, because reusing a system happens at build time in the target app rather than by vendoring its files, whose per-source licenses would attach.
+
+### The Run Direction
+
+`start_run(prompt, ...)` commissions Open Design to spawn its own inner agent and build, then the agent polls `get_run` and fetches output with `get_artifact`. Headless mutating verbs from the CLI include `od automation`, `od ui respond`, `od artifacts create`, and `od media generate`. Every mutating verb is surfaced but gated behind explicit confirmation, an explicit target, and a one-line rollback note. The destructive verbs `delete_file` and `delete_project` are stricter still, requiring `confirm:true` plus approval and never the active-project fallback. Some verbs can return an auth error, since local reads work without a cloud account but generation and media may need a `vela login` or configured providers.
+
+### Design Grounding And Reuse
+
+When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-interface-design`. This skill owns the transport and that skill owns the taste. The agent loads its design principles and runs ground then token-system then critique before deciding, then reuses one resolved system's tokens and components at build time. The two skills share the reuse-before-generate protocol in `claude_design_parity.md`. Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
+
+---
+
+## 5. INTEGRATION AND NAVIGATION
+
+### When To Use This Skill
+
+Reach for this skill whenever a user mentions Open Design, wants to wire it into an agent, or wants to read, reuse, or generate from its local projects and design-systems. Use the **wire direction** to register the MCP server. Use the **read direction** to pull projects, files, and design-systems read-only, which is also how you ground a design. Use the **run direction** to commission a headless generation run behind its gates. Skip the skill when the user wants the in-app chat UI itself, when the work is the design judgment (that is `sk-interface-design`), or when Open Design is not installed or not running.
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `sk-interface-design` | Owns the design judgment and is applied whenever an Open Design read or run feeds a design decision. This skill is the transport, that skill is the taste. The two share `claude_design_parity.md`. |
+| `sk-code` | Owns application-code standards for adapting any reused tokens or components into a real app. |
+| `mcp-magicpath` | The sibling canvas-authoring tool. The same reuse-before-generate parity loop applies. |
+| `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Open Design. |
+
+---
+
+## 6. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| `od: command not found` | There is no global `od` on PATH, and bare `od` is the unrelated octal-dump tool | Invoke the CLI by bundle path: `node "$OD_BIN" ...` where `OD_BIN` is `daemon-cli.mjs` inside the app |
+| Every tool call fails or hangs | The desktop app is closed, so the daemon socket is gone | Open the Open Design app, or start a standalone headless daemon with `od --no-open` |
+| A tool you expected is missing from `tools/list` | The `od mcp --help` text lists only about 8 tools, but the running server registers roughly 18 | Verify the live `tools/list` against the running server, not the help text, before relying on a tool |
+| `curl 127.0.0.1:7456` refused while the app is open | The desktop daemon is socket-discovered on an ephemeral port, not the fixed `:7456` | Use the socket at `OD_SIDECAR_IPC_PATH`. The `:7456` port is only the default for a standalone `od --no-open` daemon |
+| A verb returns an auth error | Local reads work without a cloud account, but generation, media, or plugin-publish may need credentials | Surface the requirement (for example a `vela login` or configured providers). Never paste credentials into prompts |
+| A mutating verb ran without you confirming | A gate was skipped | Every mutating verb requires confirmation plus an explicit target plus a rollback note. Destructive verbs also require `confirm:true` |
+
+---
+
+## 7. FAQ
+
+**Q: Do I need to install anything first?**
+
+A: You need the Open Design desktop app (v0.9.0+) installed and running, plus Node.js. There is no separate install for the `od` CLI, since it ships inside the app bundle and runs under Node or the bundled Electron. For wiring, the target agent CLI (opencode or claude) must be on PATH.
+
+**Q: Why is there no `od` command on my PATH?**
+
+A: Open Design does not install a global shim. The real CLI is `app/prebundled/daemon/daemon-cli.mjs` inside the app bundle, and bare `od` is the unrelated `/usr/bin/od` octal-dump tool. Always invoke the CLI by its bundle path.
+
+**Q: The help text lists 8 tools. Why does the skill say there are more?**
+
+A: The `od mcp --help` text shows a documentation subset. The running stdio server registers roughly 18 tools, including `write_file`, `create_project`, `start_run`, and the destructive `delete_file` and `delete_project`. Verify the live `tools/list` before promising a tool exists or is read-only.
+
+**Q: Can it run without the desktop app open?**
+
+A: The desktop daemon is a child of the app and dies with it, so normally the app must be open. For a headless path, a standalone `od --no-open` daemon binds `127.0.0.1:7456` and answers calls without the app.
+
+**Q: How does this relate to `sk-interface-design`?**
+
+A: This skill is the transport that reads and writes Open Design content. `sk-interface-design` is the judgment that decides what good design looks like. Whenever a read or run feeds a design decision, the design skill is applied, and it reads Open Design only through this skill. The two never surface the roughly 150 systems as a pick-a-vibe menu.
+
+---
+
+## 8. VERIFICATION
+
+| Check | How to run it |
+|---|---|
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-open-design/README.md --type readme` reports zero issues |
+| SKILL.md frontmatter | `head -12 .opencode/skills/mcp-open-design/SKILL.md` shows `name: mcp-open-design`, a `description`, and `user-invocable: true` |
+| Feature catalog structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-open-design/feature_catalog/feature_catalog.md` reports zero issues |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-open-design/manual_testing_playbook/manual_testing_playbook.md` reports zero issues |
+| CLI reachability | `node "$OD_BIN" --help` returns usage text with the Open Design desktop app open (Node.js required) |
+
+---
+
+## 9. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
+| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory: wiring, reads, grounding, gated runs, and the daemon transport |
+| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation matrix with the wire, read, gated-run, and failure-path scenarios |
+| [`references/od_cli_reference.md`](./references/od_cli_reference.md) | Locating the CLI, the daemon socket model, and the full verb surface with read-only vs mutating classification |
+| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into opencode and Claude Code, the written config shape, and the manual fallback |
+| [`references/tool_surface.md`](./references/tool_surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
+| [`claude_design_parity.md`](../sk-interface-design/references/claude_design_parity.md) | The shared reuse-before-generate and critique protocol that grounding follows |
+| [Skills Library](../README.md) | The skill catalog and routing front door |
