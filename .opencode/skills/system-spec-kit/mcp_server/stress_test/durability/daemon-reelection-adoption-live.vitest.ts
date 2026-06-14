@@ -138,6 +138,7 @@ function makeClient(child: ChildProcess) {
 async function startSession(
   paths: { base: string; sockDir: string; dbDir: string; launcher: string },
   enabled: boolean,
+  extraEnv: Record<string, string> = {},
 ): Promise<{ child: ChildProcess; client: ReturnType<typeof makeClient> }> {
   const child = spawn(process.execPath, [paths.launcher], {
     cwd: paths.base,
@@ -148,6 +149,7 @@ async function startSession(
       SPEC_KIT_DB_DIR: paths.dbDir,
       SPECKIT_LAUNCHER_LOG: '1',
       AI_SESSION_CHILD: '1',
+      ...extraEnv,
     },
     stdio: ['pipe', 'pipe', 'pipe'],
   });
@@ -250,6 +252,51 @@ describe('daemon re-election: live two-session adoption', () => {
     const dbWriters = sqliteOpenerPids(paths.dbDir);
     expect(dbWriters.length).toBe(1);
   });
+
+  it('flag ON: a FRESH session does NOT adopt a WEDGED released daemon; it reaps and respawns (single writer)', async () => {
+    const paths = buildFakeRoot();
+
+    const owner = await startSession(paths, true);
+    expect(await statsOk(owner.client)).toBe(true);
+    const orphanPid = leaseDaemonPid(paths.base);
+    expect(orphanPid).toBeTypeOf('number');
+    track(orphanPid!);
+
+    // Dispose the owner: with reelection the daemon is RELEASED (survives), not killed.
+    owner.child.kill('SIGTERM');
+    await waitForExit(owner.child.pid!, 8_000);
+    await delay(1_200);
+    expect(isAlive(orphanPid!)).toBe(true);
+
+    // WEDGE the released daemon. SIGSTOP freezes its event loop, so it stays 'alive' to kill(pid,0)
+    // and still owns its listening socket, but it never services a JSON-RPC request — the exact
+    // observable state of a busy-loop / deadlock. A pre-fix launcher adopts on socket-existence alone
+    // and bridges the fresh session into a dead end; the fix must deep-probe, fail, and reap+respawn.
+    process.kill(orphanPid!, 'SIGSTOP');
+
+    // Fresh session with a short probe so the not-alive verdict is fast and deterministic. The reap
+    // grace (SIGTERM is ignored by a stopped process, then SIGKILL) is a fixed 7s, so allow generous
+    // startup time before the launcher answers initialize.
+    const fresh = await startSession(paths, true, {
+      SPECKIT_PROBE_TIMEOUT_MS: '800',
+      SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '800',
+      SPECKIT_LEASE_PROBE_RETRIES: '0',
+    });
+    expect(await statsOk(fresh.client, 20_000)).toBe(true);
+    const newPid = leaseDaemonPid(paths.base);
+    expect(newPid).toBeTypeOf('number');
+    track(newPid!);
+
+    // Recovery invariant: the wedged daemon was reaped (not adopted) and a fresh daemon replaced it.
+    expect(newPid).not.toBe(orphanPid);
+    await waitForExit(orphanPid!, 10_000);
+    expect(isAlive(orphanPid!)).toBe(false);
+    await delay(800);
+
+    // Single-writer invariant still holds: exactly one pid holds the sqlite open under the DB dir.
+    const dbWriters = sqliteOpenerPids(paths.dbDir);
+    expect(dbWriters.length).toBe(1);
+  }, 60_000);
 
   it('flag OFF: owner disposal KILLS the shared daemon; secondary loses transport', async () => {
     const paths = buildFakeRoot();

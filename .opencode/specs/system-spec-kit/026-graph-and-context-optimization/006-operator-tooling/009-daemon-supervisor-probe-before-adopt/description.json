@@ -1,0 +1,23 @@
+{
+  "specFolder": "009-daemon-supervisor-probe-before-adopt",
+  "description": "Probe before adopt so the daemon supervisor reaps a live but wedged daemon instead of bridging clients into it",
+  "keywords": [
+    "probe",
+    "adopt",
+    "daemon",
+    "supervisor",
+    "reaps",
+    "live",
+    "wedged",
+    "instead",
+    "bridging",
+    "clients"
+  ],
+  "lastUpdated": "2026-06-14T17:37:27.639Z",
+  "specId": "009",
+  "folderSlug": "daemon-supervisor-probe-before-adopt",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

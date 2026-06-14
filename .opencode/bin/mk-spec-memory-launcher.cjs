@@ -1579,14 +1579,38 @@ async function main() {
         const orphanChildPid = staleLease?.childPid;
         if (Number.isInteger(orphanChildPid) && orphanChildPid > 0 && processLiveness(orphanChildPid) !== 'dead') {
           const adoptResult = { ...leaseResult, socketPath: staleLease.socketPath || leaseResult.socketPath };
-          if (bridgeReadiness(adoptResult).ready) {
-            log(`stale-reclaim adopting live daemon pid ${orphanChildPid} via bridge instead of reaping`);
-            clearOwnerLeaseFile();
-            await bridgeOrReportLeaseHeldAndExit(adoptResult);
-            return;
+          const readiness = bridgeReadiness(adoptResult);
+          if (readiness.ready) {
+            // A live pid that still owns its socket can be WEDGED: its event loop is starved, so the
+            // kernel accepts the connection into the listen backlog but the daemon never services a
+            // request. bridgeReadiness only proves the socket file exists — adopting on that alone
+            // bridges every client into a dead end, and the launcher can never recover because the pid
+            // stays alive forever and is never reaped. Require a real JSON-RPC reply (the same deep
+            // probe the dead-socket decision uses, with its tuned timeout + retry that tolerates a
+            // busy-but-responsive daemon) before adopting. A non-responsive daemon falls through to the
+            // reap+respawn block below, which tears it down and spawns a fresh one under the lock.
+            const { probeLeaseHolderWithRetries } = loadBridgeModule();
+            let probe;
+            try {
+              probe = await probeLeaseHolderWithRetries(readiness.socketPath, {
+                onRetry: (attempt, total, result) => log(`stale-reclaim adopt probe ${attempt}/${total} not alive (${result.reason}); retrying`),
+              });
+            } catch (error) {
+              // The probe resolves to a status even on socket failure; a thrown error means the probe
+              // infrastructure itself failed. Treat that as not-alive so control falls through to
+              // reap+respawn, rather than letting the exception abort startup and strand the daemon.
+              probe = { status: 'dead', reason: `probe-threw: ${error instanceof Error ? error.message : String(error)}` };
+            }
+            if (probe.status === 'alive') {
+              log(`stale-reclaim adopting live daemon pid ${orphanChildPid} via bridge instead of reaping`);
+              clearOwnerLeaseFile();
+              await bridgeOrReportLeaseHeldAndExit(adoptResult);
+              return;
+            }
+            log(`stale-reclaim NOT adopting pid ${orphanChildPid}: liveness probe failed (${probe.reason}); reaping and respawning instead`);
           }
         }
-        // Daemon is dead or unbridgeable. Reclaiming an existing STALE owner lease is a
+        // Daemon is dead, unbridgeable, or alive but failing its liveness probe. Reclaiming an existing STALE owner lease is a
         // non-exclusive write (the owner-lease O_EXCL above only covers the no-prior-lease case), so
         // two fresh launchers racing a crashed owner could both reach the reap and spawn. Take the
         // exclusive respawn lock to serialize it, the same lock the dead-socket respawn path uses;
@@ -1599,6 +1623,20 @@ async function main() {
           process.exit(0);
         }
         if (Number.isInteger(orphanChildPid) && orphanChildPid > 0) {
+          // Re-validate under the respawn lock. The liveness probe above can take seconds, during which
+          // a racing launcher may have reaped this same orphan and spawned a fresh daemon (recording a
+          // new childPid) before we acquired the lock. Reaping now would tear down that replacement and
+          // risk a second writer, so if the recorded lease no longer names the orphan we snapshotted,
+          // defer and reconnect. Mirrors the dead-socket respawn path's post-lock lease re-read.
+          const recheckLease = readLeaseFile(leaseResult.legacyPath || leasePath());
+          if (recheckLease && recheckLease.childPid !== orphanChildPid) {
+            log('stale-reclaim deferred: lease childPid changed after acquiring respawn lock (replacement already present); reporting lease held');
+            releaseRespawnLockFile(staleRespawnLock);
+            staleRespawnLock = null;
+            clearOwnerLeaseFile();
+            writeLeaseHeldJsonRpcError(leaseResult, 'respawn-superseded');
+            process.exit(0);
+          }
           const reap = await reapLeaseChildBeforeRespawn(orphanChildPid);
           if (!reap.allowed) {
             // Cannot confirm the released daemon is gone (EPERM, or it outlived SIGKILL); spawning
