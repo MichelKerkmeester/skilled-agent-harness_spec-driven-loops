@@ -36,6 +36,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "mcp_server/lib/storage/canonical-fingerprint.ts",
+      "scripts/deploy-mcp.sh",
       "mcp_server/spec-memory-cli.ts",
       "spec.md",
       "plan.md",
@@ -43,6 +45,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "canonical-fingerprint.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/canonical-fingerprint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deploy-mcp.sh",
+        "kind": "script",
+        "path": "scripts/deploy-mcp.sh",
+        "source": "derived"
+      },
       {
         "name": "spec-memory-cli.ts",
         "kind": "code",
@@ -92,12 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "Scaffolded Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -105,6 +113,12 @@
       },
       {
         "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -128,13 +142,13 @@
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Pattern Additive",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -142,6 +156,18 @@
       {
         "name": "Task Notation",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -158,25 +184,7 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built Nothing",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Not",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
+        "name": "What Was Built",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -184,7 +192,7 @@
     ],
     "causal_summary": "The `list-tools --format json` output includes the full `inputSchema` for every tool, so machine scripts must parse large payloads to get tool names: spec (`spec-memory-cli.ts:463-481`; the spec-memory JSON was over 75KB in the assessment run), code (`code-index-cli.ts:542-562`), advisor (`skill-advisor-cli.ts:705-725`). There is no compact or names-only JSON mode. Separately, no CLI has a `completion` command; the tool registries already exist (`TOOL_DEFINITIONS`, `CODE_GRAPH_TOOL_SCHEMAS`, advisor manifest), so shell completion could be generated from the same source instead of hand-maintained.",
     "created_at": "2026-06-10T20:46:28.787Z",
-    "last_save_at": "2026-06-11T01:50:00.000Z",
+    "last_save_at": "2026-06-12T04:40:47.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

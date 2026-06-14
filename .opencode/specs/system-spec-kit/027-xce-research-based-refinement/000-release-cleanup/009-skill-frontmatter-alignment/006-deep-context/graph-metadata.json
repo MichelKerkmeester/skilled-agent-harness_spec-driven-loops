@@ -10,25 +10,211 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
+    "trigger_phrases": [
+      "deep-context frontmatter alignment",
+      "deep-context reference frontmatter",
+      "skill frontmatter standardization",
+      "deep-context frontmatter plan",
+      "frontmatter net-new authoring",
+      "skill doc contract authoring",
+      "deep-context frontmatter tasks",
+      "frontmatter authoring tasks",
+      "doc contract authoring tasks",
+      "deep-context frontmatter summary",
+      "frontmatter authoring complete",
+      "deep-context doc contract evidence"
+    ],
+    "key_topics": [
+      "deep-context",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "net-new",
+      "authoring",
+      "doc",
+      "contract",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-context/references/convergence/convergence.md",
+      ".opencode/skills/deep-context/references/convergence/convergence_graph.md",
+      ".opencode/skills/deep-context/references/convergence/convergence_recovery.md",
+      ".opencode/skills/deep-context/references/convergence/convergence_signals.md",
+      ".opencode/skills/deep-context/references/guides/quick_reference.md",
+      ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+      ".opencode/skills/deep-context/references/state/state_format.md",
+      ".opencode/skills/deep-context/references/state/state_jsonl.md",
+      ".opencode/skills/deep-context/references/state/state_outputs.md",
+      ".opencode/skills/deep-context/references/state/state_reducer_registry.md",
+      ".opencode/skills/deep-context/assets/context_report_template.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 6: deep-context",
+    "entities": [
+      {
+        "name": "convergence.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence_graph.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence_graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence_recovery.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence_recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence_signals.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/convergence/convergence_signals.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/guides/quick_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/protocol/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_jsonl.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_jsonl.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_outputs.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_outputs.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_reducer_registry.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/references/state/state_reducer_registry.md",
+        "source": "derived"
+      },
+      {
+        "name": "context_report_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-context/assets/context_report_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 6** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
     "created_at": "2026-06-11T05:47:25Z",
-    "last_save_at": "2026-06-11T05:47:25Z",
+    "last_save_at": "2026-06-12T04:40:47.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
-    ]
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

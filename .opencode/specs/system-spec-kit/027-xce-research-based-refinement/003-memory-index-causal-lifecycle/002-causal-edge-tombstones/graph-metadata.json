@@ -19,10 +19,10 @@
       "027 phase 004",
       "027 phase 004 tasks",
       "causal edge tombstone tasks",
-      "implementation",
-      "summary",
-      "template",
-      "impl summary core"
+      "causal edge tombstone checklist",
+      "tombstone verification",
+      "causal graph lifecycle verification",
+      "implementation"
     ],
     "key_topics": [
       "causal",
@@ -39,34 +39,34 @@
       "tombstone"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
-      "handlers/memory-index.ts",
+      "lib/causal/sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/handlers/memory-crud-delete.ts",
-      "mcp_server/handlers/memory-bulk-delete.ts",
-      "mcp_server/handlers/memory-index.ts",
-      "mcp_server/handlers/causal-graph.ts",
-      "mcp_server/cli.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/cli.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
+      "lib/storage/canonical-fingerprint.ts",
+      "lib/storage/memo.ts",
+      "handlers/memory-index.ts",
+      "mcp_server/lib/search/vector-index-schema.ts"
     ],
     "entities": [
       {
-        "name": "memory-index.ts",
+        "name": "sweep.ts",
         "kind": "code",
-        "path": "handlers/memory-index.ts",
+        "path": "lib/causal/sweep.ts",
         "source": "derived"
       },
       {
@@ -76,15 +76,9 @@
         "source": "derived"
       },
       {
-        "name": "memory-crud-delete.ts",
+        "name": "causal-edges.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-bulk-delete.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
         "source": "derived"
       },
       {
@@ -106,45 +100,69 @@
         "source": "derived"
       },
       {
+        "name": "memory-crud-delete.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-bulk-delete.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+        "source": "derived"
+      },
+      {
         "name": "memory-crud-health.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
-        "name": "causal-edges.ts",
+        "name": "causal-graph.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
         "source": "derived"
       },
       {
-        "name": "causal-graph.ts",
+        "name": "memory-index.ts",
         "kind": "code",
-        "path": "mcp_server/handlers/causal-graph.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
         "source": "derived"
       },
       {
         "name": "cli.ts",
         "kind": "code",
-        "path": "mcp_server/cli.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/cli.ts",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "causal-edge-tombstones.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "vector-index-schema-compatibility.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "vector-index-schema-migration-refinements.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-fingerprint.ts",
+        "kind": "code",
+        "path": "lib/storage/canonical-fingerprint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memo.ts",
+        "kind": "code",
+        "path": "lib/storage/memo.ts",
         "source": "derived"
       },
       {
@@ -188,35 +206,18 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This phase adds a tombstone lifecycle to the causal graph. Spec Kit Memory has a relational causal graph, so a delete should write a tombstone audit row before hard-deleting an active edge, with a single sweep helper that every edge-deleting path routes through.",
     "created_at": "2026-05-13T09:00:46Z",
-    "last_save_at": "2026-06-06T03:47:51.158Z",
+    "last_save_at": "2026-06-10T19:22:14.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "last_active_child_id": null,

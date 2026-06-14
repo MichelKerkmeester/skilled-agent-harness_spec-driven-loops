@@ -4,6 +4,8 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/004-release-and-program-cleanup",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -14,37 +16,211 @@
       "028 release and program cleanup",
       "004 release-and-program-cleanup",
       "cli transition doc cleanup",
-      "post-release alignment 028"
+      "post-release alignment 028",
+      "028 release cleanup plan",
+      "004 release-and-program-cleanup plan",
+      "cli transition doc cleanup plan",
+      "028 release cleanup tasks",
+      "004 release-and-program-cleanup tasks",
+      "cli transition doc cleanup tasks",
+      "028 release cleanup checklist",
+      "004 release-and-program-cleanup checklist"
     ],
     "key_topics": [
+      "028",
       "release",
+      "program",
       "cleanup",
-      "documentation",
-      "alignment",
+      "004",
+      "release-and-program-cleanup",
       "cli",
-      "dual-stack",
-      "changelog",
-      "env-reference"
+      "transition",
+      "doc",
+      "post-release",
+      "alignment",
+      "plan"
     ],
-    "importance_tier": "important",
-    "status": "in_progress",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "mcp_server/README.md",
+      ".opencode/bin/README.md",
+      ".opencode/bin/lib/README.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec.md",
+      "plan.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/README.md"
     ],
-    "entities": [],
-    "causal_summary": "Post-release documentation alignment pass for the 028 CLI program: READMEs, commands, agent rosters, references, catalogs, playbooks, and the release changelog reconciled with shipped dual-stack reality.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sweep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "any",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 028 program shipped three dual-stack CLIs (`spec-memory`, `code-index`, `skill-advisor`) over the existing daemons, warm-only hook fallbacks for Claude Code and Codex, OpenCode plugins (including the previously missing `mk-spec-memory.js` and the CLI-backed `mk-code-graph.js` bridge repair), and a family of new environment variables. The documentation surface still largely describes the MCP-only world: none of the new CLI env vars appear in `ENV_REFERENCE.md`, the root and skill READMEs present MCP as the only access path, and the doctor/memory/speckit command docs predate the CLI fallbacks. Without a coordinated cleanup pass — the 028 analog of 026's `000-release-and-program-cleanup` — the program closes with drifted docs.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": null,
-    "save_lineage": "manual_scaffold",
+    "last_save_at": "2026-06-10T19:22:14.978Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

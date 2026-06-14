@@ -46,7 +46,10 @@
       "lib/parsing/memory-parser.ts",
       "handlers/memory-index.ts",
       "lib/search/vector-index-schema.ts",
+      "lib/causal/sweep.ts",
       "lib/storage/causal-edges.ts",
+      "lib/causal/frontmatter-promoter.ts",
+      "lib/storage/statediff.ts",
       "handlers/memory-save.ts",
       "spec.md"
     ],
@@ -76,9 +79,27 @@
         "source": "derived"
       },
       {
+        "name": "sweep.ts",
+        "kind": "code",
+        "path": "lib/causal/sweep.ts",
+        "source": "derived"
+      },
+      {
         "name": "causal-edges.ts",
         "kind": "code",
         "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-promoter.ts",
+        "kind": "code",
+        "path": "lib/causal/frontmatter-promoter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "statediff.ts",
+        "kind": "code",
+        "path": "lib/storage/statediff.ts",
         "source": "derived"
       },
       {
@@ -132,7 +153,7 @@
     ],
     "causal_summary": "This phase-parent groups four children that together form one program: the memory store's incremental-index and causal-graph **write lifecycle**. They were previously flat children `003`-`006` of `027`, but they read as a single sequential effort — each child hands off to the next and the last child cannot be validated without the first.",
     "created_at": "2026-06-06T00:00:00Z",
-    "last_save_at": "2026-06-06T14:09:11.216Z",
+    "last_save_at": "2026-06-10T19:22:14.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

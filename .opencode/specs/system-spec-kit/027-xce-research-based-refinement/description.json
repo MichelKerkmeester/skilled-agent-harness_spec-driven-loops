@@ -50,24 +50,28 @@
     "022-provenance-injection",
     "023-idempotency-flag-on-correctness"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
+  "specFolder": "027-xce-research-based-refinement",
+  "description": "Residual 029 design units: vector reconcile, launcher front-proxy port, hash-class replay pool, defer-by-design bucket",
   "keywords": [
-    "feature",
-    "specification",
-    "xce-derived",
-    "spec",
-    "kit",
-    "refinement",
-    "phase",
-    "parent"
+    "residual",
+    "029",
+    "design",
+    "units",
+    "vector",
+    "reconcile",
+    "launcher",
+    "front-proxy",
+    "port",
+    "hash-class",
+    "replay",
+    "pool",
+    "defer-by-design",
+    "bucket"
   ],
-  "lastUpdated": "2026-06-11T06:34:49.134Z",
+  "lastUpdated": "2026-06-13T12:15:33.847Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
-  "parentChain": [
-    "system-spec-kit"
-  ],
+  "parentChain": [],
   "memorySequence": 5,
   "memoryNameHistory": [
     "08-05-26_16-41__2nd-pass-cross-validation-deep-research-run-via.md",

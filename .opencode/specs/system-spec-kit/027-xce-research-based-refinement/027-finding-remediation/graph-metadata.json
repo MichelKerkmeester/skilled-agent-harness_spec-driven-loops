@@ -19,36 +19,97 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "027 finding remediation",
+      "epic sweep remediation phases",
+      "p1 p2 backlog lanes"
+    ],
     "key_topics": [
-      "remediation",
+      "027",
       "finding",
-      "verify",
-      "lane"
+      "remediation",
+      "epic",
+      "sweep",
+      "phases",
+      "backlog",
+      "lanes",
+      "120-seat",
+      "deep-review",
+      "adjudicated",
+      "only"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      "backlog/p1-backlog.json",
+      "backlog/p2-backlog.json",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "p1-backlog.json",
+        "kind": "config",
+        "path": "backlog/p1-backlog.json",
+        "source": "derived"
+      },
+      {
+        "name": "p2-backlog.json",
+        "kind": "config",
+        "path": "backlog/p2-backlog.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Epic Finding Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent remediating all unadjudicated epic-sweep findings verify-first across eight subsystem lanes.",
+    "causal_summary": "The 120-seat epic deep-review sweep adjudicated only its 41 strongest finding clusters (23 confirmed and fixed). That left 101 single-seat P1 claims and 119 P2 clusters inventoried but never individually examined. Single-seat claims historically refute about half the time, so they can be neither fixed blindly nor dismissed blindly.",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-06-11T19:10:00Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-11T18:50:03.207Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": null
-  },
-  "parent_packet": "system-spec-kit/027-xce-research-based-refinement"
+    "last_active_at": "2026-06-11T18:50:03.207Z"
+  }
 }

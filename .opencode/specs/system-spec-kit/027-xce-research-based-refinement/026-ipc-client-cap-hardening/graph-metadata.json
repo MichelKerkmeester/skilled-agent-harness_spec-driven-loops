@@ -13,35 +13,195 @@
     "trigger_phrases": [
       "ipc client cap hardening",
       "max secondary clients 64",
-      "bridge skipped banner silenced"
+      "bridge skipped banner silenced",
+      "ipc cap plan",
+      "max clients 64 plan",
+      "banner suppression plan",
+      "ipc cap tasks",
+      "banner suppression tasks",
+      "max clients tasks",
+      "ipc cap hardening summary",
+      "max clients 64 shipped",
+      "bridge banner silenced summary"
     ],
     "key_topics": [
       "ipc",
-      "daemon",
+      "client",
       "cap",
+      "hardening",
+      "max",
       "secondary",
       "clients",
-      "banner",
-      "plugin",
       "bridge",
-      "epipe"
+      "skipped",
+      "banner",
+      "silenced",
+      "plan"
     ],
-    "importance_tier": "important",
-    "status": "completed",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      ".opencode/plugins/mk-code-graph.js",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "shared/ipc/socket-server.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Client Cap Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Silent Bridge Skip",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Fable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The daemon IPC socket server capped clients at 8 and refused extras by accept-then-close; session fan-outs saturated the cap so probes failed instantly with exit 75, and the plugin's stderr banner landed in the input field.",
+    "causal_summary": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket server caps concurrent clients at 8 (`DEFAULT_MAX_SECONDARY_CLIENTS`) and refuses excess connections by accepting then immediately closing them. Every live session's launcher holds one persistent slot, so a multi-seat fan-out (10+ sessions) saturates the cap and every fresh short-lived connection — the plugin's warm probe, the inner CLI call — dies with EPIPE in about 2ms, mapped to exit 75. Measured directly: with the cap saturated, 10 parallel connections produced 1 reply (3ms) and 9 instant EPIPEs; the daemon itself was healthy throughout. Worse, an at-cap refusal is byte-for-byte indistinguishable from a dead daemon to probes, so a healthy daemon can be falsely reaped by a new launcher. Separately, the plugin wrote its skip diagnostic to raw stderr while the opencode TUI was active, which renders the banner into the user's input field.",
     "created_at": "2026-06-11T17:40:00Z",
-    "last_save_at": "2026-06-11T17:40:00Z",
+    "last_save_at": "2026-06-12T04:40:47.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

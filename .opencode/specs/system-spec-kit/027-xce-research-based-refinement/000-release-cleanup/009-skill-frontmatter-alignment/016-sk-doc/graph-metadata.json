@@ -10,25 +10,204 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
+    "trigger_phrases": [
+      "sk-doc frontmatter alignment",
+      "sk-doc reference frontmatter",
+      "skill frontmatter standardization",
+      "sk-doc frontmatter plan",
+      "sk-doc guidance reconciliation",
+      "skill doc contract final phase",
+      "sk-doc frontmatter tasks",
+      "guidance reconciliation tasks",
+      "doc contract final phase tasks",
+      "sk-doc frontmatter summary",
+      "guidance reconciliation complete",
+      "frontmatter campaign final phase"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "guidance",
+      "reconciliation",
+      "doc",
+      "contract",
+      "final"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
+      ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
+      ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
+      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 16: sk-doc",
+    "entities": [
+      {
+        "name": "frontmatter_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_reference_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_asset_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog_snippet_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 16** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
     "created_at": "2026-06-11T05:47:34Z",
-    "last_save_at": "2026-06-11T05:47:34Z",
+    "last_save_at": "2026-06-12T04:40:47.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
-    ]
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

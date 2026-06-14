@@ -35,7 +35,7 @@
       "inline"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -85,7 +85,7 @@
     ],
     "causal_summary": "The create commands command family owns presentation instructions inline with routing instructions. That makes the display contract harder for assistants to find and follow, especially when command files are long or route through workflow assets.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:45:00Z",
+    "last_save_at": "2026-06-12T04:40:47.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

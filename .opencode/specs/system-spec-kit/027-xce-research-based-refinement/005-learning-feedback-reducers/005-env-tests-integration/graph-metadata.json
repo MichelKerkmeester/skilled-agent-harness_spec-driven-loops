@@ -39,7 +39,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tests/feedback-reducers-integration.vitest.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -48,9 +48,9 @@
     ],
     "entities": [
       {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "name": "feedback-reducers-integration.vitest.ts",
+        "kind": "test",
+        "path": "tests/feedback-reducers-integration.vitest.ts",
         "source": "derived"
       },
       {
@@ -90,12 +90,6 @@
         "source": "derived"
       },
       {
-        "name": "Scaffolded Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -120,6 +114,12 @@
         "source": "derived"
       },
       {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,6 +127,12 @@
       },
       {
         "name": "Target Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -144,6 +150,12 @@
         "source": "derived"
       },
       {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -151,6 +163,12 @@
       },
       {
         "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -166,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The two feedback reducer consumers introduce separate default-off flags and cross-consumer safety expectations. This closeout child verifies that flags are documented and integration behavior remains coherent across the reducers.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-10T11:55:00.000Z",
+    "last_save_at": "2026-06-10T19:22:14.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights",
-  "description": "Shipped packed-inmemory BM25 engine with typed-array postings and BM25F field weights",
+  "description": "Feature Specification: Packed In-Memory BM25 Engine with Field Weights",
   "keywords": [
     "feature",
     "specification",
@@ -12,7 +12,7 @@
     "field",
     "weights"
   ],
-  "lastUpdated": "2026-06-10T20:40:00.000Z",
+  "lastUpdated": "2026-06-11T05:33:36.380Z",
   "specId": "014",
   "folderSlug": "packed-bm25-field-weights",
   "parentChain": [

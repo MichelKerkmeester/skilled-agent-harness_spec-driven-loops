@@ -34,8 +34,9 @@
       "output"
     ],
     "importance_tier": "important",
-    "status": "spec_scaffolded",
+    "status": "implemented",
     "key_files": [
+      ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
       ".opencode/agents/orchestrate.md",
       ".opencode/agents/code.md",
       ".opencode/agents/review.md",
@@ -50,6 +51,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "agent-io-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
       {
         "name": "orchestrate.md",
         "kind": "doc",
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 is the substrate child of the Gem Team adoption work in 027. The phase-007 study (19 iterations) and the phase-009 integration synthesis (5 iterations) converged on one finding: the spec-kit's agents already carry rich, evidence-first contracts, but the orchestration-relevant facts (status, confidence, failure class, dispatch intent) are expressed in scattered prose and are not machine-parseable. This packet adds a typed, OPTIONAL adapter layer over the existing contracts — never replacing the rich-markdown bodies.",
     "created_at": "2026-06-06T10:11:05.143Z",
-    "last_save_at": "2026-06-07T09:00:47.201Z",
+    "last_save_at": "2026-06-10T19:22:14.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

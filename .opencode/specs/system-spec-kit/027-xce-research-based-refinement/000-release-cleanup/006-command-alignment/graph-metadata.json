@@ -3,7 +3,6 @@
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
-  "parent_packet": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -12,35 +11,129 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command",
-      "alignment",
-      "align",
-      "command-doc",
-      "content"
+      "command alignment",
+      "027 release cleanup 006-command-alignment",
+      "shipped 027 alignment",
+      "command alignment plan",
+      "027 release cleanup plan",
+      "command alignment tasks",
+      "027 release cleanup tasks",
+      "command alignment implementation summary",
+      "planned release cleanup scaffold"
     ],
     "key_topics": [
       "command",
       "alignment",
-      "align",
-      "command-doc",
-      "content",
-      "accuracy",
-      "for",
-      "flags",
-      "behavior",
-      "and",
-      "cli",
-      "front"
+      "027",
+      "release",
+      "cleanup",
+      "006-command-alignment",
+      "shipped",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "planned"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/commands/memory/manage.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/resume.md",
+      ".opencode/commands/doctor/speckit.md",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/update.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
+        "name": "manage.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/manage.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -49,15 +142,72 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Inventory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Align",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T14:42:40.567Z",
+    "last_save_at": "2026-06-10T19:22:14.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,13 +16,13 @@
       "active purgeable partial index split",
       "entity co-occurrence not causal truth invariant",
       "natural-key edge upsert preserve manual provenance",
+      "SPECKIT_SOFT_DELETE_TOMBSTONES default off",
       "tombstones edge promotion plan",
       "tombstone soft-delete idempotent deleted_at tasks",
       "tombstones edge promotion phase tasks",
       "tombstone idempotence checklist",
       "skip-manual edge promotion acceptance",
-      "active purgeable partial index verification",
-      "entity not causal invariant checklist"
+      "active purgeable partial index verification"
     ],
     "key_topics": [
       "tombstone",
@@ -39,15 +39,19 @@
       "index"
     ],
     "importance_tier": "normal",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
       "handlers/memory-crud-delete.ts",
       "handlers/memory-bulk-delete.ts",
       "lib/storage/causal-edges.ts",
@@ -55,12 +59,8 @@
       "handlers/causal-graph.ts",
       "handlers/causal-links-processor.ts",
       "lib/governance/memory-retention-sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/commands/doctor/assets/doctor_memory.yaml",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "constitutional/entity-cooccurrence-is-not-causal.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-write-safety.vitest.ts"
     ],
     "entities": [
       {
@@ -73,6 +73,42 @@
         "name": "memory-bulk-delete.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edge-tombstones.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-cooccurrence-is-not-causal.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md",
         "source": "derived"
       },
       {
@@ -94,61 +130,13 @@
         "source": "derived"
       },
       {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_memory.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_memory.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "causal-edges-write-safety.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-write-safety.vitest.ts",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Populate Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -173,6 +161,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Completed phase: default hard-delete remains active while SPECKIT_SOFT_DELETE_TOMBSTONES gates first-timestamp tombstones; skip-manual causal-edge promotion, active/purgeable partial indexes, and entity-not-causal advisory rule remain in place.",
+    "causal_summary": "This is **Phase 4** of the Memclaw-derived memory hardening: provenance, idempotency, feedback reframe, tombstones, edges, stale audit, tool ownership specification.",
     "created_at": "2026-06-06T10:10:48Z",
-    "last_save_at": "2026-06-10T14:30:00.000Z",
+    "last_save_at": "2026-06-10T19:22:14.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

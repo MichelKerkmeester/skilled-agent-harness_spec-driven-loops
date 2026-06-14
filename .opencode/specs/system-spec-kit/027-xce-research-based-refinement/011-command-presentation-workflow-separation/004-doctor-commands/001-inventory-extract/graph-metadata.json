@@ -19,7 +19,7 @@
       "doctor commands inventory and extract tasks",
       "command presentation tasks",
       "doctor commands - inventory and extract implementation summary",
-      "planned scaffold implementation summary"
+      "doctor command presentation extraction complete"
     ],
     "key_topics": [
       "004-doctor-commands",
@@ -36,14 +36,42 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      ".opencode/commands/doctor/speckit.md",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/update.md",
+      ".opencode/commands/doctor/_routes.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -81,12 +109,6 @@
         "source": "derived"
       },
       {
-        "name": "Scaffold Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -105,19 +127,19 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Planned Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Prepared Planned",
+        "name": "Completed Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -135,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -147,7 +175,7 @@
         "source": "derived"
       },
       {
-        "name": "Confirm Planned",
+        "name": "Presentation Boundary",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -159,33 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Family Parent",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Nothing",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Planned Scope Level",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Doctor Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T20:07:37Z",
+    "last_save_at": "2026-06-12T04:40:47.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,29 +41,58 @@
     "importance_tier": "normal",
     "status": "planned_(not_implemented)",
     "key_files": [
-      "spec.md",
-      "tasks.md",
+      ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+      ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+      ".opencode/commands/doctor/assets/doctor_skill-budget.yaml",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
       ".claude/settings.local.json",
       ".codex/hooks.json",
       ".codex/settings.json",
       ".codex/config.toml",
       ".claude/mcp.json",
-      ".devin/config.json",
-      ".devin/config.local.json",
+      "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_skill-advisor.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_skill-budget.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-budget.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
         "source": "derived"
       },
       {
@@ -97,21 +126,21 @@
         "source": "derived"
       },
       {
-        "name": "config.json",
-        "kind": "config",
-        "path": ".devin/config.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.local.json",
-        "kind": "config",
-        "path": ".devin/config.local.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -169,39 +198,15 @@
         "source": "derived"
       },
       {
-        "name": "Overview Planned",
+        "name": "Overview Shipped",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Thin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3** of the skill-advisor dual-stack CLI implementation (workstream 003-skill-advisor-cli), paired with runtime hooks and the OpenCode plugin per the program-wide pairing rule.",
     "created_at": "2026-06-06T14:45:18Z",
-    "last_save_at": "2026-06-08T17:32:21.447Z",
+    "last_save_at": "2026-06-10T19:22:14.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

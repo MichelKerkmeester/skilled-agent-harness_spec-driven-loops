@@ -19,7 +19,7 @@
       "memory commands inventory and extract tasks",
       "command presentation tasks",
       "memory commands - inventory and extract implementation summary",
-      "planned scaffold implementation summary"
+      "memory presentation extraction map"
     ],
     "key_topics": [
       "001-memory-commands",
@@ -36,14 +36,48 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      ".opencode/commands/memory/save.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/commands/memory/manage.md",
+      ".opencode/commands/memory/learn.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "manage.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/manage.md",
+        "source": "derived"
+      },
+      {
+        "name": "learn.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/learn.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,12 +97,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -76,12 +104,6 @@
       },
       {
         "name": "Memory Commands",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scaffold Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -105,6 +127,12 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -112,12 +140,6 @@
       },
       {
         "name": "Planned Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Prepared Planned",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -135,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -147,45 +175,27 @@
         "source": "derived"
       },
       {
-        "name": "Confirm Planned",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Family Parent",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Nothing",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Planned Scope Level",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "delivered",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Memory Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.980Z",
+    "last_save_at": "2026-06-12T11:12:59.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

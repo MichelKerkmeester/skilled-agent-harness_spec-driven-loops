@@ -18,8 +18,8 @@
       "command presentation workflow plan",
       "create commands inventory and extract tasks",
       "command presentation tasks",
-      "create commands - inventory and extract implementation summary",
-      "planned scaffold implementation summary"
+      "create commands inventory extract implementation summary",
+      "create command presentation inventory complete"
     ],
     "key_topics": [
       "003-create-commands",
@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -81,12 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "Scaffold Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -100,6 +94,12 @@
       },
       {
         "name": "Purpose Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -147,14 +147,20 @@
         "source": "derived"
       },
       {
-        "name": "Confirm Planned",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Family Parent",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "approval",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -165,19 +171,19 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "What Was Built The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built Nothing",
+        "name": "Inventory Results",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Planned Scope Level",
+        "name": "Existing Workflow",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -185,7 +191,7 @@
     ],
     "causal_summary": "Create Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:45:00Z",
+    "last_save_at": "2026-06-12T04:40:47.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

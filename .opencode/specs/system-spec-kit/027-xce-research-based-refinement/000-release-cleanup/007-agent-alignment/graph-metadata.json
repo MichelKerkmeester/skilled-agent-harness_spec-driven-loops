@@ -3,7 +3,6 @@
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
-  "parent_packet": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -12,30 +11,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "agent",
-      "alignment",
-      "reconcile",
-      "opencode",
-      "claude"
+      "agent alignment",
+      "027 release cleanup 007-agent-alignment",
+      "shipped 027 alignment",
+      "agent alignment plan",
+      "027 release cleanup plan",
+      "agent alignment tasks",
+      "027 release cleanup tasks",
+      "agent alignment implementation summary",
+      "planned release cleanup scaffold"
     ],
     "key_topics": [
       "agent",
       "alignment",
-      "reconcile",
-      "opencode",
-      "claude",
-      "and",
-      "codex",
-      "mirror",
-      "parity",
-      "with",
-      "the",
-      "agent-io"
+      "027",
+      "release",
+      "cleanup",
+      "007-agent-alignment",
+      "shipped",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "planned"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -45,19 +51,154 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Agent Alignment",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Inventory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reconcile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "touched",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Aligned",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agents Touched All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T15:30:42Z",
+    "last_save_at": "2026-06-10T19:22:14.921Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

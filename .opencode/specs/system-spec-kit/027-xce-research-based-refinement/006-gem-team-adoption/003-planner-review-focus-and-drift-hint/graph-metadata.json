@@ -36,7 +36,7 @@
       "hint"
     ],
     "importance_tier": "normal",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
       ".opencode/agents/orchestrate.md",
@@ -50,16 +50,28 @@
       ".codex/agents/code.toml",
       ".opencode/commands/memory/save.md",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      "tasks.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
+        "name": "agent-io-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
+      {
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -69,9 +81,21 @@
         "source": "derived"
       },
       {
+        "name": "review.toml",
+        "kind": "file",
+        "path": ".codex/agents/review.toml",
+        "source": "derived"
+      },
+      {
         "name": "code.md",
         "kind": "doc",
         "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
         "source": "derived"
       },
       {
@@ -87,6 +111,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -96,12 +126,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -175,35 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Source Proposal",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Review attention is not steered to the areas most likely to harbor defects: `@review` derives scope from the target and changed files alone, with no signal from the planner about where the risk concentrates. Separately, when implementation reveals that the spec or plan should change, that drift currently goes silent — the spec-kit has Logic-Sync for hard contradictions but no lightweight recommendation channel for \"this should be updated.\"",
     "created_at": "2026-06-06T10:11:10.201Z",
-    "last_save_at": "2026-06-10T06:30:00.000Z",
+    "last_save_at": "2026-06-10T19:22:14.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

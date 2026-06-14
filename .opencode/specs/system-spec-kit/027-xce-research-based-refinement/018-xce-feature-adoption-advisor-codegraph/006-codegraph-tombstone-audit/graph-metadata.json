@@ -39,14 +39,49 @@
       "cleanup"
     ],
     "importance_tier": "normal",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-tombstones.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-scan.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -120,13 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Planned",
+        "name": "Overview Implemented",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern Feature",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -138,15 +173,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow When",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -156,45 +185,21 @@
         "source": "derived"
       },
       {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 6** of the spec-027 feature adoption into the advisor and code-graph daemons. It adds a deletion audit lineage for stale code-graph cleanup.",
     "created_at": "2026-06-10T19:24:12Z",
-    "last_save_at": "2026-06-10T23:00:00.000Z",
+    "last_save_at": "2026-06-12T04:40:47.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

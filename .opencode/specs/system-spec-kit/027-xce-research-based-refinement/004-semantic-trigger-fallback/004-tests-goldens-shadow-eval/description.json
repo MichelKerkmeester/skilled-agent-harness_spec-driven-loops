@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
-  "description": "Completed synthetic trigger goldens, shadow telemetry, flag docs, and blocked union promotion gate",
+  "description": "Feature Specification: 004 — Tests, Goldens + Shadow Eval",
   "keywords": [
     "feature",
     "specification",
@@ -11,7 +11,7 @@
     "shadow",
     "eval"
   ],
-  "lastUpdated": "2026-06-10T10:52:00.000Z",
+  "lastUpdated": "2026-06-12T14:18:51.266Z",
   "specId": "004",
   "folderSlug": "tests-goldens-shadow-eval",
   "parentChain": [

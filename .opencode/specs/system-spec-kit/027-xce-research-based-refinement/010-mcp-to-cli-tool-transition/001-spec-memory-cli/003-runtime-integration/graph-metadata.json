@@ -43,34 +43,70 @@
     "importance_tier": "normal",
     "status": "planned_(not_implemented)",
     "key_files": [
-      "spec.md",
-      "tasks.md",
-      ".codex/hooks.json",
-      ".claude/settings.local.json",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+      ".opencode/plugins/mk-spec-memory.js",
+      ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
       ".codex/settings.json",
+      ".claude/settings.local.json",
+      ".codex/hooks.json",
       ".codex/config.toml",
       ".claude/mcp.json",
-      ".devin/config.json",
+      "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "spec-memory-cli-fallback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {
-        "name": "hooks.json",
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-memory.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
         "kind": "config",
-        "path": ".codex/hooks.json",
+        "path": ".codex/settings.json",
         "source": "derived"
       },
       {
@@ -80,9 +116,9 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
+        "name": "hooks.json",
         "kind": "config",
-        "path": ".codex/settings.json",
+        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -98,15 +134,21 @@
         "source": "derived"
       },
       {
-        "name": "config.json",
-        "kind": "config",
-        "path": ".devin/config.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -162,47 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Planned",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Thin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Add Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3** of the Dual-stack spec-memory CLI implementation: daemon-backed CLI alongside the MCP registration specification.",
     "created_at": "2026-06-06T14:09:11.248Z",
-    "last_save_at": "2026-06-08T17:32:21.439Z",
+    "last_save_at": "2026-06-10T19:22:14.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -37,8 +37,9 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
+      "mcp_server/lib/feedback/batch-learning.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -46,6 +47,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "batch-learning.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/batch-learning.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -113,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "Scaffolded Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -143,6 +144,12 @@
         "source": "derived"
       },
       {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -157,6 +164,12 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "read-only",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -177,24 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The three learning reducers need a shared interpretation of `feedback_events`. Without a common aggregation layer, each consumer can drift on confidence mapping, weighted-positive math, and window semantics.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "completion_pct": 100,
-    "last_save_at": "2026-06-10T11:06:00.000Z",
+    "last_save_at": "2026-06-10T19:22:14.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

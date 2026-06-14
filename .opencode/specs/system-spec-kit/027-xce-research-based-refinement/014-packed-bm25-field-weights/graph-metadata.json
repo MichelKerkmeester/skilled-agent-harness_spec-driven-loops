@@ -37,15 +37,18 @@
     "status": "shipped",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "mcp_server/lib/storage/canonical-fingerprint.ts",
+      "scripts/deploy-mcp.sh",
+      "mcp_server/lib/search/bm25-index.ts",
+      "mcp_server/lib/eval/bm25-baseline.ts",
+      "scratch/rss-probe-evidence.md"
     ],
     "entities": [
       {
@@ -106,6 +109,12 @@
         "name": "deploy-mcp.sh",
         "kind": "script",
         "path": "scripts/deploy-mcp.sh",
+        "source": "derived"
+      },
+      {
+        "name": "rss-probe-evidence.md",
+        "kind": "doc",
+        "path": "scratch/rss-probe-evidence.md",
         "source": "derived"
       },
       {
@@ -185,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "measured",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text). First, the legacy engine stores full token arrays per document (bm25-index.ts:197-207), an estimated 300-600 MB of heap if it ever warms the full corpus - a standing RAM hazard for the daemon whenever memory_fts is absent. Second, it flattens title/content/triggers/path into one field (bm25-index.ts:151-172), silently losing the title-x10 weighting that the FTS5 channel applies via bm25(memory_fts,10,5,2,1) - the engine slot packed-inmemory is reserved but unimplemented (bm25-index.ts:53,487-493) and BM25_FIELD_WEIGHTS is exported but unused there (:73-78). Source evidence: z_future/sqlite-to-turso 004 - gap-alternatives.md section 3.",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-06-10T19:22:14.995Z",
+    "last_save_at": "2026-06-12T04:40:47.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

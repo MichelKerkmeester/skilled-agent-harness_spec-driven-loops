@@ -3,7 +3,6 @@
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
-  "parent_packet": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -12,38 +11,94 @@
   },
   "derived": {
     "trigger_phrases": [
-      "skill",
-      "manual",
-      "playbook",
-      "add",
-      "manual_testing_playbook"
+      "skill manual playbook",
+      "027 release cleanup 004-skill-manual-playbook",
+      "shipped 027 alignment",
+      "skill manual playbook plan",
+      "027 release cleanup plan",
+      "skill manual playbook tasks",
+      "027 release cleanup tasks",
+      "skill manual playbook implementation summary",
+      "planned release cleanup scaffold"
     ],
     "key_topics": [
       "skill",
       "manual",
       "playbook",
-      "add",
-      "manual_testing_playbook",
-      "scenarios",
-      "for",
-      "each",
       "027",
-      "feature",
-      "flag",
-      "and"
+      "release",
+      "cleanup",
+      "004-skill-manual-playbook",
+      "shipped",
+      "alignment",
+      "plan",
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/retrieval-observability-trace-and-health.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/source-kind-provenance-guard.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/stale-exclusion-audit-and-tool-ownership-lint.md",
+      "implementation-summary.md",
       "tasks.md",
-      "implementation-summary.md"
+      "spec.md",
+      "plan.md"
     ],
     "entities": [
       {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-observability-trace-and-health.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/retrieval-observability-trace-and-health.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-kind-provenance-guard.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/source-kind-provenance-guard.md",
+        "source": "derived"
+      },
+      {
+        "name": "stale-exclusion-audit-and-tool-ownership-lint.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/stale-exclusion-audit-and-tool-ownership-lint.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -52,15 +107,102 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Inventory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Epic Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "MiMo",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add manual_testing_playbook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check.",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T16:12:00.000Z",
+    "last_save_at": "2026-06-10T19:22:14.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

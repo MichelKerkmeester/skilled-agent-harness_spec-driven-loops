@@ -51,7 +51,9 @@
       "plan.md",
       "tasks.md",
       "research/deep-research-state.jsonl",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/027-finding-remediation/playbook-report.md"
     ],
     "entities": [
       {
@@ -94,6 +96,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/027-finding-remediation/playbook-report.md",
         "source": "derived"
       },
       {
@@ -185,23 +199,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search ignored its parseable render template and answered in free prose. The command split needs a grounded explanation and a fix plan.",
     "created_at": "2026-06-12T06:12:49.512Z",
-    "last_save_at": "2026-06-12T06:12:49.512Z",
+    "last_save_at": "2026-06-12T11:12:59.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

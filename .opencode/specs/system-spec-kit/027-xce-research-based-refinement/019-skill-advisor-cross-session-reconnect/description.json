@@ -1,14 +1,14 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/019-skill-advisor-cross-session-reconnect",
-  "description": "Feature Specification: Phase 1: skill-advisor-cross-session-reconnect",
+  "description": "Skill Advisor Cross-Session Reconnect Hardening",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "skill-advisor-cross-session-reconnect"
+    "skill-advisor-launcher",
+    "dead-socket-respawn",
+    "stale-lease-cleanup",
+    "single-writer"
   ],
-  "lastUpdated": "2026-06-11T06:34:49.244Z",
+  "lastUpdated": "2026-06-11T10:08:00.000Z",
   "specId": "019",
   "folderSlug": "skill-advisor-cross-session-reconnect",
   "parentChain": [

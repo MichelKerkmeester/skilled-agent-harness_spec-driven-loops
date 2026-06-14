@@ -10,25 +10,207 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
+    "trigger_phrases": [
+      "cli-codex frontmatter alignment",
+      "cli-codex reference frontmatter",
+      "skill frontmatter standardization",
+      "cli-codex frontmatter plan",
+      "codex doc contract authoring",
+      "skill doc frontmatter campaign",
+      "cli-codex frontmatter tasks",
+      "codex doc contract tasks",
+      "doc frontmatter authoring tasks",
+      "cli-codex frontmatter summary",
+      "codex doc contract evidence",
+      "codex frontmatter authoring complete"
+    ],
+    "key_topics": [
+      "cli-codex",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "codex",
+      "doc",
+      "contract",
+      "authoring",
+      "campaign"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/cli-codex/references/cli_reference.md",
+      ".opencode/skills/cli-codex/references/hook_contract.md",
+      ".opencode/skills/cli-codex/references/agent_delegation.md",
+      ".opencode/skills/cli-codex/references/codex_tools.md",
+      ".opencode/skills/cli-codex/references/integration_patterns.md",
+      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-codex/assets/prompt_templates.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 3: cli-codex",
+    "entities": [
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/references/hook_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/references/agent_delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex_tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/references/codex_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Unlike",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 3** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
     "created_at": "2026-06-11T05:47:23Z",
-    "last_save_at": "2026-06-11T05:47:23Z",
+    "last_save_at": "2026-06-12T04:40:47.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
-    ]
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

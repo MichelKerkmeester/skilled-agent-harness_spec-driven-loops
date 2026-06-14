@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux/001-cli-freshness-and-smoke",
   "description": "Feature Specification: CLI Freshness Gate Fix and Offline Smoke",
   "keywords": [
@@ -11,7 +12,7 @@
     "offline",
     "smoke"
   ],
-  "lastUpdated": "2026-06-10T20:38:53.848Z",
+  "lastUpdated": "2026-06-11T01:57:23.160Z",
   "specId": "001",
   "folderSlug": "cli-freshness-and-smoke",
   "parentChain": [
@@ -20,6 +21,5 @@
     "016-cli-tooling-ux"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -22,27 +22,21 @@
     "005-mcp-cli-stress-tests",
     "006-command-alignment",
     "007-agent-alignment",
-    "008-agents-md-alignment"
+    "008-agents-md-alignment",
+    "009-skill-frontmatter-alignment"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
-  "description": "Phase parent for aligning outward and governance surfaces to the shipped 027 reality.",
+  "description": "Feature Specification: 027 Release Cleanup (Phase Parent)",
   "keywords": [
+    "feature",
+    "specification",
     "027",
     "release",
     "cleanup",
     "phase",
-    "parent",
-    "for",
-    "aligning",
-    "outward",
-    "and",
-    "governance",
-    "surfaces",
-    "the",
-    "shipped",
-    "reality"
+    "parent"
   ],
-  "lastUpdated": "2026-06-10T14:42:40.563Z",
+  "lastUpdated": "2026-06-11T16:04:31.611Z",
   "specId": "000",
   "folderSlug": "release-cleanup",
   "parentChain": [

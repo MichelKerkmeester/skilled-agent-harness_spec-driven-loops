@@ -17,11 +17,7 @@
       "fq_name name fuzzy match",
       "implementation",
       "plan",
-      "name",
-      "template",
-      "plan core",
       "tasks",
-      "tasks core",
       "summary"
     ],
     "key_topics": [
@@ -39,14 +35,62 @@
       "match"
     ],
     "importance_tier": "normal",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/symbol-bm25-resolver.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/symbol-bm25-resolver.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts",
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "symbol-bm25-resolver.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/symbol-bm25-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "symbol-bm25-resolver.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/symbol-bm25-resolver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-query-handler.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,12 +107,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -120,13 +158,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Planned",
+        "name": "Overview Implemented",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern Default",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -138,15 +176,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Query",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -156,45 +188,15 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 9** of the spec-027 feature adoption into the advisor and code-graph daemons, and the lowest-priority transfer. It adds an optional fuzzy symbol resolver strictly for disambiguation.",
     "created_at": "2026-06-10T19:24:14Z",
-    "last_save_at": "2026-06-10T21:38:20Z",
+    "last_save_at": "2026-06-12T04:40:47.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
