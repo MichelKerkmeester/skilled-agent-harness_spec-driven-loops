@@ -118,4 +118,4 @@ For open-ended visual work, it can help to sketch two or three brief-specific di
 - [ux_quality_reference.md](./ux_quality_reference.md) is the objective floor the fidelity check gates on.
 - [design_inventory.md](./design_inventory.md) frames how to use a real design system as reuse-ground or critique-against, never a generator.
 - `.opencode/skills/mcp-open-design/SKILL.md` is the Open Design terminal consumer of this protocol.
-- Research basis: packets `005-claude-design-parity-research` (hardened) and `006-competitor-design-tools-research`.
+- Research basis: the Claude Design parity and competitor design-tools research that informed this protocol.

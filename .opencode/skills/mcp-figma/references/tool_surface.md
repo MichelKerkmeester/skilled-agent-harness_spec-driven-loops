@@ -34,7 +34,7 @@ Surface read-only commands freely, gate every mutating verb behind confirmation 
 - [figma_cli_reference.md](figma_cli_reference.md) - the binary identity, connect modes, daemon model, and command examples.
 - [mcp_wiring.md](mcp_wiring.md) - the optional Framelink Figma MCP via Code Mode (a separate, opt-in surface, not part of this CLI gating).
 
-Claims here are tagged **READ-ONLY**, **MUTATING**, **DESTRUCTIVE**, or **ARBITRARY** as defined in Section 2, and were read from the repo source scan recorded in the packet research digest (`151-mcp-figma-with-direct-cli-support/001-figma-cli-and-mcp-research`). They are **source-verified for repo `main`**, not live-verified against an installed binary.
+Claims here are tagged **READ-ONLY**, **MUTATING**, **DESTRUCTIVE**, or **ARBITRARY** as defined in Section 2, and were read from a source scan of the silships figma-cli during the skill's build research. They are **source-verified for repo `main`**, not live-verified against an installed binary.
 
 ### The naming trap (read first)
 
@@ -161,7 +161,7 @@ Source-verified against repo `main` `src/commands/*.js`, `REFERENCE.md`, and `CL
 | Raw/eval | `run <file>` | ARBITRARY | Alias for executing an eval file — review before running. |
 | Raw/eval | `raw <command...>` | ARBITRARY | Arbitrary `figma-use` command — review before running. |
 
-> The full per-flag table (~130 rows) lives in the packet research raw output: `151-mcp-figma-with-direct-cli-support/001-figma-cli-and-mcp-research/research/raw/iter-001.out`.
+> The full per-flag table is large (~130 commands). Run `figma-ds-cli --help` and `figma-ds-cli <group> --help` for the live, version-accurate surface rather than a snapshot.
 
 ---
 
@@ -270,4 +270,3 @@ The command surface drifts between `REFERENCE.md`, `CLAUDE.md`, and the actual `
 - [mcp_wiring.md](mcp_wiring.md) - the optional Framelink Figma MCP via Code Mode (separate, opt-in surface).
 - [troubleshooting.md](troubleshooting.md) - failure modes and fixes.
 - [SKILL.md](../SKILL.md) - the skill contract this reference supports.
-- Packet research digest: `151-mcp-figma-with-direct-cli-support/001-figma-cli-and-mcp-research/research/iterations/iteration-001.md` (and `research/raw/iter-001.out` for the full per-flag table).

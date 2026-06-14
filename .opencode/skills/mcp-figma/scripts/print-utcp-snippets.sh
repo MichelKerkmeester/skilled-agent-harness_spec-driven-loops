@@ -39,7 +39,7 @@ Verify in Code Mode (do not guess tool names):
 
 Call pattern (naming = {manual}.{manual}_{tool}):
   call_tool_chain({ code: `
-    const data = await figma.figma_get_file({ /* args per tool_info */ });
+    const data = await figma.figma_get_figma_data({ /* args per tool_info */ });
     return { data };
   ` })
 

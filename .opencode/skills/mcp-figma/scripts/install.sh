@@ -92,7 +92,11 @@ install_repo() {
   mkdir -p "$(dirname "$INSTALL_ROOT")"
   if [ -d "$INSTALL_ROOT/.git" ]; then
     info "Updating existing checkout: $INSTALL_ROOT"
-    git -C "$INSTALL_ROOT" pull --ff-only ${VERBOSE:+} >/dev/null 2>&1 || warn "git pull failed; using existing checkout"
+    if [ -n "${VERBOSE:-}" ]; then
+      git -C "$INSTALL_ROOT" pull --ff-only || warn "git pull failed; using existing checkout"
+    else
+      git -C "$INSTALL_ROOT" pull --ff-only >/dev/null 2>&1 || warn "git pull failed; using existing checkout"
+    fi
   else
     info "Cloning $REPO_URL -> $INSTALL_ROOT (outside this repo; not vendored)"
     git clone --depth 1 "$REPO_URL" "$INSTALL_ROOT" >/dev/null 2>&1

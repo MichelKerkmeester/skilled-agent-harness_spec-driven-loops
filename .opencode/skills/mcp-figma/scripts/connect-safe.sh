@@ -17,6 +17,7 @@ Before continuing, in Figma Desktop:
   2) One-time: import the FigCli plugin manifest (plugin/manifest.json from the figma-cli install).
   3) Open: Plugins -> Development -> FigCli  (keep it open during the session).
 EOF
+if [ ! -t 0 ]; then info "Non-interactive shell detected; safe connect needs an interactive prompt. Re-run in a terminal."; exit 0; fi
 printf 'Proceed with safe connect now? [y/N] '
 read -r ans
 case "$ans" in y|Y|yes|YES) ;; *) info "Aborted."; exit 0;; esac
