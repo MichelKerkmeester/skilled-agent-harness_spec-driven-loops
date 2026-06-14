@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/147-mcp-magicpath",
+  "spec_folder": "skilled-agent-orchestration/147-mcp-magicpath",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-magicpath",
+      "magicpath skill",
+      "magicpath-ai cli",
+      "magicpath component forge"
+    ],
+    "key_topics": [
+      "mcp-magicpath",
+      "magicpath",
+      "design tool",
+      "cli installer",
+      "skill install"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Vendored the MagicPath agent skill into .opencode/skills/mcp-magicpath with a house README, schema-2 graph metadata, a global magicpath-ai CLI installer, catalog registration, and advisor-graph indexing. The advisor routes it as the top match and passes Gate 2.",
+    "created_at": "2026-06-13T14:00:00Z",
+    "last_save_at": "2026-06-13T16:30:00Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

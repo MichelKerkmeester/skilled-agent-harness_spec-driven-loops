@@ -1,0 +1,18 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/147-mcp-magicpath",
+  "description": "Feature Specification: mcp-magicpath",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp-magicpath"
+  ],
+  "lastUpdated": "2026-06-13T17:55:07.451Z",
+  "specId": "147",
+  "folderSlug": "mcp-magicpath",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
