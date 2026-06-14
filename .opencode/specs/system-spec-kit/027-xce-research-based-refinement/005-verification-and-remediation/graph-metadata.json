@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 verification and remediation",
+      "finding remediation",
+      "tri-system deep research",
+      "deep research remediation",
+      "residual design units"
+    ],
+    "key_topics": [
+      "027",
+      "verification",
+      "remediation",
+      "finding",
+      "tri-system",
+      "deep",
+      "research",
+      "adherence",
+      "residual",
+      "design",
+      "units",
+      "lanes"
+    ],
+    "importance_tier": "important",
+    "status": "phase_parent",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The verification-and-remediation track owns the verify-first program: Fable-verified finding remediation of the epic sweep across eight lanes, the tri-system deep-research sweep with its adjudicated claim registry, the deep-research and command-adherence remediation across nine lanes (single-writer kernel lock, scrubber, command-protocol correction, apply-pipeline safety), and the residual design units that each touched a high-blast-radius subsystem.",
+    "created_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-14T00:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,540 @@
+{
+  "sessionId": "2026-06-11T09:00:00Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "IN-PROGRESS",
+  "openFindings": [
+    {
+      "findingId": "R1-P0-001",
+      "severity": "P0",
+      "title": "RSS gate samples final RSS, not peak warmup RSS",
+      "file": "tests/bm25-packed-inmemory.vitest.ts",
+      "line": 114,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Realistic RSS corpus bypasses the production warmup scheduler",
+      "file": "tests/bm25-packed-inmemory.vitest.ts",
+      "line": 117,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Corpus fixture never exercises width-promotion branches",
+      "file": "lib/eval/fixtures/bm25-packed-fixture.ts",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Packed-width promotion boundaries are not directly covered",
+      "file": "tests/bm25-packed-inmemory.vitest.ts",
+      "line": 111,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Latency hard gate is a benchmark-style wall-clock assertion",
+      "file": "tests/bm25-packed-inmemory.vitest.ts",
+      "line": 122,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Verification summary overclaims byte-identical ranking evidence",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction/implementation-summary.md",
+      "line": 91,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": false,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 2,
+    "P2": 3
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [
+      "edge-case",
+      "engine-interaction",
+      "fixture-drift",
+      "free-path",
+      "hygiene",
+      "scope"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "fixture-drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "free-path": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "edge-case": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "engine-interaction": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "scope": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 4,
+      "id": "SL-4-1",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:130"
+      ],
+      "bugClass": "fixture-drift",
+      "disposition": "ruled_out",
+      "rationale": "Pinning corpus size prevents fixture drift from silently shrinking the workload and making the RSS budget easier.",
+      "evidenceRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:130"
+      ],
+      "reason": "The assertion is a useful guard against accidental corpus shrinkage, not a brittle unrelated check."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-2",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:166"
+      ],
+      "bugClass": "free-path",
+      "disposition": "ruled_out",
+      "rationale": "The typed arrays retained in packedPostings are the live index, not a duplicate mutable copy. This does not prove OS-level memory release, but it does prove the stale mutable map ownership that caused the functional warmup regression is gone.",
+      "evidenceRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:166"
+      ],
+      "reason": "Given the current implementation, cleared mutable ownership plus retained packedPostings is the intended state."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-1",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:793"
+      ],
+      "bugClass": "hygiene",
+      "disposition": "ruled_out",
+      "rationale": "No shipped-code comment hygiene violation was reachable in the changed runtime file.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:793"
+      ],
+      "reason": "No banned ephemeral comment labels were present in changed shipped code."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-2",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:530"
+      ],
+      "bugClass": "edge-case",
+      "disposition": "ruled_out",
+      "rationale": "Empty/zero-token documents become absent rather than NaN-producing records; duplicate ids replace the old packed document and postings before adding the new version.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:530"
+      ],
+      "reason": "The reviewed degenerate cases do not produce a reachable crash, NaN, or stale posting from these code paths."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-3",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1074"
+      ],
+      "bugClass": "edge-case",
+      "disposition": "ruled_out",
+      "rationale": "A term present in every document grows across chunks and promotes width before writes, while stale chunk capacity beyond length is ignored by scoring.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1074"
+      ],
+      "reason": "No reachable truncation or empty-result bug was found for posting growth within the implemented width bounds."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-4",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1277"
+      ],
+      "bugClass": "engine-interaction",
+      "disposition": "ruled_out",
+      "rationale": "The packed path still reads per-query weights after finalization; packing stores per-field tfs separately and scoring multiplies them at query time.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1277"
+      ],
+      "reason": "No packed field-weight regression was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-5",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        "commit 573904538b"
+      ],
+      "bugClass": "scope",
+      "disposition": "ruled_out",
+      "rationale": "The implementation touched the packed layout, but spec.md:163 records the operator-sanctioned layout change if parity holds; scoring constants and BM25 term-score math remain unchanged in bm25-index.ts:48-92 and bm25-index.ts:1367-1370.",
+      "evidenceRefs": [
+        "commit 573904538b"
+      ],
+      "reason": "No unrelated runtime scope drift or scoring-math edit was found."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 4,
+      "id": "SL-4-1",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:130"
+      ],
+      "bugClass": "fixture-drift",
+      "disposition": "ruled_out",
+      "rationale": "Pinning corpus size prevents fixture drift from silently shrinking the workload and making the RSS budget easier.",
+      "evidenceRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:130"
+      ],
+      "proof": "The assertion is a useful guard against accidental corpus shrinkage, not a brittle unrelated check."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-2",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:166"
+      ],
+      "bugClass": "free-path",
+      "disposition": "ruled_out",
+      "rationale": "The typed arrays retained in packedPostings are the live index, not a duplicate mutable copy. This does not prove OS-level memory release, but it does prove the stale mutable map ownership that caused the functional warmup regression is gone.",
+      "evidenceRefs": [
+        "tests/bm25-packed-inmemory.vitest.ts:166"
+      ],
+      "proof": "Given the current implementation, cleared mutable ownership plus retained packedPostings is the intended state."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-1",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:793"
+      ],
+      "bugClass": "hygiene",
+      "disposition": "ruled_out",
+      "rationale": "No shipped-code comment hygiene violation was reachable in the changed runtime file.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:793"
+      ],
+      "proof": "No banned ephemeral comment labels were present in changed shipped code."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-2",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:530"
+      ],
+      "bugClass": "edge-case",
+      "disposition": "ruled_out",
+      "rationale": "Empty/zero-token documents become absent rather than NaN-producing records; duplicate ids replace the old packed document and postings before adding the new version.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:530"
+      ],
+      "proof": "The reviewed degenerate cases do not produce a reachable crash, NaN, or stale posting from these code paths."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-3",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1074"
+      ],
+      "bugClass": "edge-case",
+      "disposition": "ruled_out",
+      "rationale": "A term present in every document grows across chunks and promotes width before writes, while stale chunk capacity beyond length is ignored by scoring.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1074"
+      ],
+      "proof": "No reachable truncation or empty-result bug was found for posting growth within the implemented width bounds."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-4",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1277"
+      ],
+      "bugClass": "engine-interaction",
+      "disposition": "ruled_out",
+      "rationale": "The packed path still reads per-query weights after finalization; packing stores per-field tfs separately and scoring multiplies them at query time.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1277"
+      ],
+      "proof": "No packed field-weight regression was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-5",
+      "dimension": "adversarial-edge",
+      "targetRefs": [
+        "commit 573904538b"
+      ],
+      "bugClass": "scope",
+      "disposition": "ruled_out",
+      "rationale": "The implementation touched the packed layout, but spec.md:163 records the operator-sanctioned layout change if parity holds; scoring constants and BM25 term-score math remain unchanged in bm25-index.ts:48-92 and bm25-index.ts:1367-1370.",
+      "evidenceRefs": [
+        "commit 573904538b"
+      ],
+      "proof": "No unrelated runtime scope drift or scoring-math edit was found."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 2,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 3,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 4,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 5,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

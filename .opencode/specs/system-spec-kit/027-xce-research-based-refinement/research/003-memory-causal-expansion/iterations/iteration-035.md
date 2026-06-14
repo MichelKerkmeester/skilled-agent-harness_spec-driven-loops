@@ -187,7 +187,7 @@ This allows offline analysis of shadow logs to compute paraphrase recall without
 **Structural prior application:**
 
 When a memory M is matched (lexically or semantically), its `specFolder` path can be looked up in the hierarchy tree to identify:
-1. **Parent scope memories** — memories in ancestor folders (e.g., if `M` is in `system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback`, then `system-spec-kit/027-xce-research-based-refinement` is a relevant parent scope).
+1. **Parent scope memories** — memories in ancestor folders (e.g., if `M` is in `system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`, then `system-spec-kit/027-xce-research-based-refinement` is a relevant parent scope).
 2. **Sibling scope memories** — memories in sibling phase folders (e.g., `006-write-path-reconciliation`) that the model should be aware of when working in this packet.
 
 This is co-activation via hierarchy rather than via embedding graph — it is cheap (tree traversal, no embedding call) and orthogonal to the semantic fallback. The co-activation module (`co-activation.ts`) already handles memory-to-memory activation spreading, but it operates on the embedding graph. The hierarchy prior provides a structural fallback when the embedding graph has sparse edges for new packets.

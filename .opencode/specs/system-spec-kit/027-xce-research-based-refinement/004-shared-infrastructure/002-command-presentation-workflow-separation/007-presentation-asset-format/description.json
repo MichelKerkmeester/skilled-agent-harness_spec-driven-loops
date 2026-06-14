@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format",
+  "description": "Feature Specification: Presentation Asset Format — .md to .txt",
+  "keywords": [
+    "feature",
+    "specification",
+    "presentation",
+    "asset",
+    "format",
+    "txt"
+  ],
+  "lastUpdated": "2026-06-12T11:12:56.949Z",
+  "specId": "007",
+  "folderSlug": "presentation-asset-format",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

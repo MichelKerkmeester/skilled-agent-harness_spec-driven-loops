@@ -1,0 +1,33 @@
+{
+  "title": "Feature Specification: Verification and Remediation (Phase Parent)",
+  "type": "coordination-parent",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "description": "Phase-parent for the verify-first remediation and research programs: epic finding remediation, tri-system deep research, deep-research remediation, and residual design units.",
+  "keywords": [
+    "027",
+    "verification",
+    "remediation",
+    "finding",
+    "tri-system",
+    "deep",
+    "research",
+    "adherence",
+    "residual",
+    "design",
+    "units",
+    "lanes"
+  ],
+  "lastUpdated": "2026-06-14T00:00:00Z",
+  "specId": "005",
+  "folderSlug": "verification-and-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "childTopology": [
+    "001-finding-remediation",
+    "002-tri-system-deep-research",
+    "003-deep-research-remediation",
+    "004-residual-design-units"
+  ]
+}

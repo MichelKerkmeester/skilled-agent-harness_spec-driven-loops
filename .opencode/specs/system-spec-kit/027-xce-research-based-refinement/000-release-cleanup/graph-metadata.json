@@ -4,6 +4,7 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement",
   "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation",
     "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
     "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
     "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",

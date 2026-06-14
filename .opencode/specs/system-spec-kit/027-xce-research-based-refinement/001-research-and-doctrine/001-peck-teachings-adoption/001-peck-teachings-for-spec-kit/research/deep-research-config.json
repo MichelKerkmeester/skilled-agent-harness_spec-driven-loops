@@ -1,0 +1,16 @@
+{
+  "topic": "Evaluate what is planned in 001-peck-teachings-adoption: T3 self-check template blocks, T4 advisory current-state content rule, T2 constitutional-rule review surface, and deferred T1 AC-coverage gate. Feasibility, risks, prior art, refinements per phase.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 9,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+  "createdAt": "2026-06-02T12:12:36Z",
+  "status": "running",
+  "executionMode": "auto",
+  "executor": { "kind": "cli-opencode", "model": "openai/gpt-5.5", "reasoningEffort": "xhigh", "serviceTier": null, "sandboxMode": null, "timeoutSeconds": 540 },
+  "lineage": { "sessionId": "dr-peck-028-001", "parentSessionId": null, "lineageMode": "new", "generation": 1, "continuedFromRun": null }
+}

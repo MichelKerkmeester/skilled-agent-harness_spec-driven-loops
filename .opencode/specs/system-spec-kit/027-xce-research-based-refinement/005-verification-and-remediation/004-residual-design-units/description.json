@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
+  "description": "Feature Specification: Residual 029 Design Units",
+  "keywords": [
+    "feature",
+    "specification",
+    "residual",
+    "029",
+    "design",
+    "units"
+  ],
+  "lastUpdated": "2026-06-13T17:55:07.504Z",
+  "specId": "004",
+  "folderSlug": "residual-design-units",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

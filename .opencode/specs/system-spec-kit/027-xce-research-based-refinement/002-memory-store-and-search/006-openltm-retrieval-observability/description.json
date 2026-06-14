@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability",
+  "description": "OpenLTM-derived retrieval observability: why_ranked traces, inline conflict warnings, degraded-vector signals, and maintenance counters without rankin",
+  "keywords": [
+    "openltm-derived",
+    "retrieval",
+    "observability",
+    "traces",
+    "inline",
+    "conflict",
+    "warnings",
+    "degraded-vector",
+    "signals",
+    "maintenance",
+    "counters",
+    "without",
+    "ranking",
+    "schema",
+    "changes"
+  ],
+  "lastUpdated": "2026-06-10T13:06:13.347Z",
+  "specId": "006",
+  "folderSlug": "openltm-retrieval-observability",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

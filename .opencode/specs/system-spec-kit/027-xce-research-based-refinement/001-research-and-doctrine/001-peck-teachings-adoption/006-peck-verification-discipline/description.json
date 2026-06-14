@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline",
+  "description": "Completion-freshness validator and governance slice for peck verification discipline.",
+  "keywords": [
+    "completion-freshness",
+    "validator",
+    "governance",
+    "slice",
+    "peck",
+    "verification",
+    "discipline"
+  ],
+  "lastUpdated": "2026-06-10T13:11:41.471Z",
+  "specId": "006",
+  "folderSlug": "peck-verification-discipline",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "001-peck-teachings-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

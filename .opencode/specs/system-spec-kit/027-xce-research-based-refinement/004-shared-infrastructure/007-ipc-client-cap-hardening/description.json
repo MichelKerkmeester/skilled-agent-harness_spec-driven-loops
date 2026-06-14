@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
+  "description": "Feature Specification: IPC Client Cap Hardening and Silent Bridge Skip",
+  "keywords": [
+    "feature",
+    "specification",
+    "ipc",
+    "client",
+    "cap",
+    "hardening",
+    "silent",
+    "bridge",
+    "skip"
+  ],
+  "lastUpdated": "2026-06-11T14:55:27.036Z",
+  "specId": "007",
+  "folderSlug": "ipc-client-cap-hardening",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

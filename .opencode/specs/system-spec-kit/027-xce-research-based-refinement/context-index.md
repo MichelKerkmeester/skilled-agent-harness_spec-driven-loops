@@ -1,4 +1,47 @@
-# Context Index: 027 to 028 Split
+# Context Index: 027
+
+> Historical phase-identity bridge for 027. Resolves old top-level phase paths to their current homes. Newest reorganization first.
+
+## Six-Track Grouping (2026-06-14)
+
+The thirty prior top-level phases (`001` through `030`) were grouped under six themed parent tracks, mirroring how `026-graph-and-context-optimization` organizes its work and how `before-vs-after.md` narrates the epic by system. `000-release-cleanup` kept its position and now also hosts the regrouping task at `000-release-cleanup/000-spec-tree-consolidation`. Children were renumbered contiguously within each new parent. Per-phase changelog files keep their original paths; see `changelog/README.md` for the changelog bridge.
+
+| Old top-level folder | Current home |
+|---|---|
+| `001-peck-teachings-adoption` | `001-research-and-doctrine/001-peck-teachings-adoption` |
+| `006-gem-team-adoption` | `001-research-and-doctrine/002-gem-team-adoption` |
+| `002-memory-write-safety` | `002-memory-store-and-search/001-memory-write-safety` |
+| `003-memory-index-causal-lifecycle` | `002-memory-store-and-search/002-memory-index-causal-lifecycle` |
+| `004-semantic-trigger-fallback` | `002-memory-store-and-search/003-semantic-trigger-fallback` |
+| `005-learning-feedback-reducers` | `002-memory-store-and-search/004-learning-feedback-reducers` |
+| `007-memclaw-derived-memory-hardening` | `002-memory-store-and-search/005-memclaw-derived-memory-hardening` |
+| `008-openltm-retrieval-observability` | `002-memory-store-and-search/006-openltm-retrieval-observability` |
+| `009-openltm-continuity-resilience` | `002-memory-store-and-search/007-openltm-continuity-resilience` |
+| `013-vector-read-path-resilience` | `002-memory-store-and-search/008-vector-read-path-resilience` |
+| `014-packed-bm25-field-weights` | `002-memory-store-and-search/009-packed-bm25-field-weights` |
+| `017-bm25-warmup-churn-reduction` | `002-memory-store-and-search/010-bm25-warmup-churn-reduction` |
+| `020-vector-resilience-durability` | `002-memory-store-and-search/011-vector-resilience-durability` |
+| `021-hybrid-search-scope-then-limit` | `002-memory-store-and-search/012-hybrid-search-scope-then-limit` |
+| `022-provenance-injection` | `002-memory-store-and-search/013-provenance-injection` |
+| `023-idempotency-flag-on-correctness` | `002-memory-store-and-search/014-idempotency-flag-on-correctness` |
+| `012-causal-traversal-bfs` | `003-advisor-and-codegraph/001-causal-traversal-bfs` |
+| `018-xce-feature-adoption-advisor-codegraph` | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` |
+| `019-skill-advisor-cross-session-reconnect` | `003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` |
+| `010-mcp-to-cli-tool-transition` | `004-shared-infrastructure/001-mcp-to-cli-tool-transition` |
+| `011-command-presentation-workflow-separation` | `004-shared-infrastructure/002-command-presentation-workflow-separation` |
+| `015-storage-adapter-ports` | `004-shared-infrastructure/003-storage-adapter-ports` |
+| `016-cli-tooling-ux` | `004-shared-infrastructure/004-cli-tooling-ux` |
+| `024-autonomous-dependency-patching` | `004-shared-infrastructure/005-autonomous-dependency-patching` |
+| `025-code-mode-orphan-lifecycle` | `004-shared-infrastructure/006-code-mode-orphan-lifecycle` |
+| `026-ipc-client-cap-hardening` | `004-shared-infrastructure/007-ipc-client-cap-hardening` |
+| `027-finding-remediation` | `005-verification-and-remediation/001-finding-remediation` |
+| `028-tri-system-deep-research` | `005-verification-and-remediation/002-tri-system-deep-research` |
+| `029-deep-research-remediation` | `005-verification-and-remediation/003-deep-research-remediation` |
+| `030-residual-design-units` | `005-verification-and-remediation/004-residual-design-units` |
+
+> Note: the prior-wave sections below predate this grouping. Where they name a `027-xce-research-based-refinement/0NN-...` child (for example the MCP-to-CLI placement at `010` and the epic-close placements at `024`/`025`), that child has since moved again under this wave. Resolve any such old path through the table above first.
+
+## 027 to 028 Split
 
 On 2026-05-28, the Code Graph phases formerly in disk folders `007`-`010` and the CocoIndex phases formerly in disk folders `013`-`017` were extracted to sibling packet `028-code-graph-and-cocoindex` and renumbered to `001`-`009`.
 

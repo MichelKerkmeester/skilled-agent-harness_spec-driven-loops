@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "007 memclaw memory hardening",
+      "memory provenance source_kind",
+      "idempotency receipts memory",
+      "feedback reducer reframe 005",
+      "tombstone edge promotion",
+      "stale exclusion audit tool ownership"
+    ],
+    "key_topics": [
+      "007",
+      "memclaw",
+      "memory",
+      "hardening",
+      "provenance",
+      "idempotency",
+      "receipts",
+      "feedback",
+      "reducer",
+      "reframe",
+      "005",
+      "tombstone"
+    ],
+    "importance_tier": "important",
+    "status": "draft_(plan_only_—_not_implemented)",
+    "key_files": [
+      "lib/storage/causal-edges.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Derived Memory Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec Kit Memory system would benefit from a coherent set of write-safety and quality hardenings derived from a deep study of the caura-memclaw fleet-memory system (research in `../research/008-caura-memclaw-fleet-memory-teachings/`). The improvements are real but small and cross-cutting (provenance, idempotency, lifecycle correctness, a cautious feedback posture, and surface governance), and they land across the same memory-server code; without a parent control doc they would scatter as disconnected edits.",
+    "created_at": "2026-06-06T10:10:44Z",
+    "last_save_at": "2026-06-07T09:00:47.208Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -11,7 +11,7 @@ Spec folder: `specs/system-spec-kit/027-xce-research-based-refinement` (pre-appr
 
 Repo roots (relative to --dir):
 - peck source: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/`
-- adopted child: `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review/`
+- adopted child: `specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review/`
 - spec-kit:    `.opencode/skills/system-spec-kit/`
 
 ## FOCUS — answer ONLY this

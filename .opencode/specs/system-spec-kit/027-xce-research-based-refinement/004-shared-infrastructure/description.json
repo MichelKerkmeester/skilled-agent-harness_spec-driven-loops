@@ -1,0 +1,35 @@
+{
+  "title": "Feature Specification: Shared Infrastructure (Phase Parent)",
+  "type": "coordination-parent",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "description": "Phase-parent for the cross-cutting transport, command, storage, dependency, and process-lifecycle phases that all three daemons rely on.",
+  "keywords": [
+    "027",
+    "shared",
+    "infrastructure",
+    "cli",
+    "transition",
+    "command",
+    "presentation",
+    "storage",
+    "adapter",
+    "ipc",
+    "dependency"
+  ],
+  "lastUpdated": "2026-06-14T00:00:00Z",
+  "specId": "004",
+  "folderSlug": "shared-infrastructure",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "childTopology": [
+    "001-mcp-to-cli-tool-transition",
+    "002-command-presentation-workflow-separation",
+    "003-storage-adapter-ports",
+    "004-cli-tooling-ux",
+    "005-autonomous-dependency-patching",
+    "006-code-mode-orphan-lifecycle",
+    "007-ipc-client-cap-hardening"
+  ]
+}

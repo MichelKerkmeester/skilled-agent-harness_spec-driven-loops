@@ -22,7 +22,7 @@
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:127-140",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:27-39",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:18",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:10"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/spec.md:10"
       ],
       "finding_class": "spec-metadata-drift",
       "content_hash": "sha256:fable1-f001-parent-inventory-omits-011",
@@ -58,12 +58,12 @@
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:131",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:137-138",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:141",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:60",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability/spec.md:45",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience/spec.md:45",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety/spec.md:60",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability/spec.md:45",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience/spec.md:45",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/spec.md:55",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter/spec.md:65",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/001-provenance-and-audit/spec.md:43",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter/spec.md:65",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit/spec.md:43",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md:18-31"
       ],
       "finding_class": "stale-status-claim",
@@ -104,7 +104,7 @@
       "evidenceRefs": [
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:30-33",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:70-82",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:116-121"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/spec.md:116-121"
       ],
       "firstSeen": 3,
       "lastSeen": 5,
@@ -261,7 +261,7 @@
       "evidence": [
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md:14",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md:20-21",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:57",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/spec.md:57",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme/spec.md:48"
       ],
       "finding_class": "status-vocabulary-drift",

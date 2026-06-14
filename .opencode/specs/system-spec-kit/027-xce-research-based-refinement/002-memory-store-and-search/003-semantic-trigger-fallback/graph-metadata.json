@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 004",
+      "memory semantic triggers",
+      "hybrid trigger matching",
+      "semantic trigger fallback",
+      "memory backend semantic trigger matching",
+      "027 phase 004 ADRs",
+      "027 phase 004 resource map"
+    ],
+    "key_topics": [
+      "027",
+      "phase",
+      "004",
+      "memory",
+      "semantic",
+      "triggers",
+      "hybrid",
+      "trigger",
+      "matching",
+      "fallback",
+      "backend",
+      "adrs"
+    ],
+    "importance_tier": "important",
+    "status": "phase_parent",
+    "key_files": [
+      "decision-record.md",
+      "resource-map.md",
+      "lib/triggers/semantic-trigger-matcher.ts",
+      "handlers/memory-triggers.ts",
+      "mcp_server/lib/parsing/trigger-matcher.ts",
+      "mcp_server/handlers/memory-triggers.ts",
+      "mcp_server/lib/cache/embedding-cache.ts",
+      "mcp_server/handlers/save/embedding-pipeline.ts",
+      "shared/embeddings/factory.ts",
+      "shared/embeddings/auto-select.ts",
+      "mcp_server/lib/search/embedding-expansion.ts",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/triggers/semantic-trigger-matcher.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-trigger-matcher.ts",
+        "kind": "code",
+        "path": "lib/triggers/semantic-trigger-matcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": "handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-matcher.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/parsing/trigger-matcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-cache.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cache/embedding-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-pipeline.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/save/embedding-pipeline.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": "shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-expansion.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/embedding-expansion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tier-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Trigger Fallback",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Soft Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Semantic Triggers",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architectural Decision Records",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why Level",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Designate Phase",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase-parent decomposes that ADAPT into four independently executable children. The semantic stage runs only when lexical is empty/weak, reuses the active embedding profile's cache (default Ollama nomic-embed-text-v1.5, 768d; never embeds in the hot path), source-tags its hits, and activates them at reduced attention (`min(0.85, score)`). It ships default-off behind `SPECKIT_SEMANTIC_TRIGGERS`, shadow-first, and is promoted to union by operator policy (env-driven mode; the evidence bar is documented, not code-enforced).",
+    "created_at": "2026-05-09T11:00:00Z",
+    "last_save_at": "2026-06-10T19:22:14.939Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "decision-record.md",
+      "resource-map.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

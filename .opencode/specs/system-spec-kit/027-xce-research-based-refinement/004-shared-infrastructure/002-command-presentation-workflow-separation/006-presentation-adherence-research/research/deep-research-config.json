@@ -1,0 +1,32 @@
+{
+  "topic": "Improve presentation-contract adherence of dispatched models running the upgraded command families - grounded in live bare-command tests where /memory:search ignored its parseable render template while /doctor and Gate-3 blocks rendered verbatim",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 18,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
+  "createdAt": "2026-06-12T09:05:00Z",
+  "status": "running",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "xiaomi/mimo-v2.5-pro (high) iterations 1-5; deepseek/deepseek-v4-pro (high) iterations 6-10",
+    "reasoningEffort": "high",
+    "sandboxMode": "read-only",
+    "timeoutSeconds": 1100,
+    "account": "default"
+  },
+  "lineage": {
+    "sessionId": "res-20260612-0905-adh",
+    "parentSessionId": "res-20260612-0045-tri",
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": { "enabled": true, "mode": "orchestrator-written" }
+}

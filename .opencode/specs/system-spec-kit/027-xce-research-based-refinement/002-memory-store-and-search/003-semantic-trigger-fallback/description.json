@@ -1,0 +1,52 @@
+{
+  "title": "Phase 004 — Semantic Trigger Fallback (Hybrid)",
+  "trigger_phrases": [
+    "027 phase 004",
+    "memory semantic triggers",
+    "hybrid trigger matching",
+    "semantic trigger fallback",
+    "memory backend semantic trigger matching"
+  ],
+  "level": 3,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P0",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "manual": {
+    "depends_on": []
+  },
+  "soft_depends_on": [
+    "006-code-graph-adoption-eval"
+  ],
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "description": "Feature Specification: 004 — Semantic Trigger Fallback (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "004",
+    "semantic",
+    "trigger",
+    "fallback",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-12T14:18:51.262Z",
+  "specId": "003",
+  "folderSlug": "semantic-trigger-fallback",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

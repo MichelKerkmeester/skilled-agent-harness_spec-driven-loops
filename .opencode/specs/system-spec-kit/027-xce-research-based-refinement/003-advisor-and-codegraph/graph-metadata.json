@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 advisor and code graph",
+      "causal traversal bfs",
+      "xce feature adoption advisor codegraph",
+      "skill advisor cross session reconnect"
+    ],
+    "key_topics": [
+      "027",
+      "advisor",
+      "code",
+      "graph",
+      "causal",
+      "traversal",
+      "bfs",
+      "adoption",
+      "reconnect",
+      "provenance",
+      "observability"
+    ],
+    "importance_tier": "important",
+    "status": "phase_parent",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor-and-code-graph track owns the cross-subsystem hardening: a shared BFS helper replacing recursive-CTE traversals, the XCE feature adoption that carries memory-store patterns (observability, provenance guard, packed BM25F, feedback calibration, tombstone audit, why-included breadcrumbs, BM25 symbol resolver) into the advisor and code-graph, and the advisor launcher parity that brings owner-lease and reconnecting-proxy resilience.",
+    "created_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-14T00:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

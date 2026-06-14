@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 004 goldens shadow eval",
+      "trigger goldens fixture",
+      "shadow to union promotion",
+      "semantic trigger flags",
+      "027 phase 004 goldens shadow eval plan",
+      "shadow to union promotion plan",
+      "027 phase 004 goldens shadow eval tasks",
+      "implementation",
+      "summary",
+      "template",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "027",
+      "phase",
+      "004",
+      "goldens",
+      "shadow",
+      "eval",
+      "trigger",
+      "fixture",
+      "union",
+      "promotion",
+      "semantic",
+      "flags"
+    ],
+    "importance_tier": "important",
+    "status": "completed;_union_promotion_blocked",
+    "key_files": [
+      "mcp_server/tests/fixtures/trigger-goldens.json",
+      "mcp_server/tests/trigger-golden-fixture.ts",
+      "mcp_server/tests/trigger-shadow-db-fixture.ts",
+      "mcp_server/tests/trigger-goldens.vitest.ts",
+      "mcp_server/tests/trigger-cold-start.vitest.ts",
+      "mcp_server/tests/trigger-latency-budget.vitest.ts",
+      "mcp_server/tests/trigger-threshold-tuning.vitest.ts",
+      "mcp_server/tests/trigger-backfill-resume.vitest.ts",
+      "mcp_server/lib/triggers/semantic-trigger-matcher.ts",
+      "mcp_server/ENV_REFERENCE.md",
+      "tests/trigger-goldens.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "trigger-goldens.json",
+        "kind": "config",
+        "path": "mcp_server/tests/fixtures/trigger-goldens.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-golden-fixture.ts",
+        "kind": "code",
+        "path": "mcp_server/tests/trigger-golden-fixture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-shadow-db-fixture.ts",
+        "kind": "code",
+        "path": "mcp_server/tests/trigger-shadow-db-fixture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-goldens.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/trigger-goldens.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-cold-start.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/trigger-cold-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-latency-budget.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/trigger-latency-budget.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-threshold-tuning.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/trigger-threshold-tuning.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-backfill-resume.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/trigger-backfill-resume.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-trigger-matcher.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/triggers/semantic-trigger-matcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Eval",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 4** (final) of the semantic trigger fallback decomposition (parent `004-semantic-trigger-fallback`).",
+    "created_at": "2026-06-06T13:35:46Z",
+    "last_save_at": "2026-06-10T19:22:14.944Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

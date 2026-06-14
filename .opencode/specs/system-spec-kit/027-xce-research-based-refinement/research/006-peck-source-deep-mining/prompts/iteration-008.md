@@ -11,7 +11,7 @@ This is the HEADLINE focus. The 2026-06-02 analysis named T1 (acceptance-criteri
 
 Repo roots (relative to --dir):
 - peck source: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/`
-- prior analysis: `specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/peck-teachings-analysis.md` (section 3 = T1) and `001-peck-teachings-adoption/spec.md` (T1 deferral rationale + OPEN QUESTIONS)
+- prior analysis: `specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/peck-teachings-analysis.md` (section 3 = T1) and `001-peck-teachings-adoption/spec.md` (T1 deferral rationale + OPEN QUESTIONS)
 - spec-kit:    `.opencode/skills/system-spec-kit/`
 
 ## FOCUS — answer ONLY this

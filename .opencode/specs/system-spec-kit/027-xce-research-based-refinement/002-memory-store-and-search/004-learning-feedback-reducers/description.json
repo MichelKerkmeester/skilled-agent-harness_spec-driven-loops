@@ -1,0 +1,58 @@
+{
+  "title": "Phase 005 — Learning Feedback Reducers (Phase Parent)",
+  "trigger_phrases": [
+    "027 phase 005",
+    "008 feedback reducers",
+    "feedback reducer phase parent",
+    "learning reducers",
+    "feedback aggregation"
+  ],
+  "level": "phase-parent",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "phase-parent",
+  "priority": "P0",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety"
+    ],
+    "children": [
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator",
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer",
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer",
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration"
+    ]
+  },
+  "soft_depends_on": [],
+  "derived": {
+    "status": "phase-parent",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "description": "Feature Specification: 005 — Learning Feedback Reducers (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "005",
+    "learning",
+    "feedback",
+    "reducers",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-10T04:53:31.259Z",
+  "specId": "004",
+  "folderSlug": "learning-feedback-reducers",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

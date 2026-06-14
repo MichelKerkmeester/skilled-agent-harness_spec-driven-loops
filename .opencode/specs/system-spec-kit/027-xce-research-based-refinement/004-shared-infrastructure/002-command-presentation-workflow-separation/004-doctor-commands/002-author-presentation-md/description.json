@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md",
+  "description": "Feature Specification: Doctor Commands - Author Presentation Markdown",
+  "keywords": [
+    "feature",
+    "specification",
+    "doctor",
+    "commands",
+    "author",
+    "presentation",
+    "markdown"
+  ],
+  "lastUpdated": "2026-06-10T21:52:41.785Z",
+  "specId": "002",
+  "folderSlug": "author-presentation-md",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation",
+    "004-doctor-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

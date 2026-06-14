@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
+  "description": "Completed optional planner reviewer-focus and spec-drift advisory fields",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "planner",
+    "reviewer-focus",
+    "spec-drift",
+    "hint"
+  ],
+  "lastUpdated": "2026-06-10T06:30:00.000Z",
+  "specId": "003",
+  "folderSlug": "planner-review-focus-and-drift-hint",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "002-gem-team-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

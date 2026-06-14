@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience",
+  "description": "OpenLTM-derived continuity resilience: bounded startup restore panel, authored PreCompact continuity snapshot, and goal decision progress gotcha facet",
+  "keywords": [
+    "openltm-derived",
+    "continuity",
+    "resilience",
+    "bounded",
+    "startup",
+    "restore",
+    "panel",
+    "authored",
+    "precompact",
+    "snapshot",
+    "goal",
+    "decision",
+    "progress",
+    "gotcha",
+    "facets",
+    "markdown",
+    "ladder"
+  ],
+  "lastUpdated": "2026-06-10T12:35:44.366Z",
+  "specId": "007",
+  "folderSlug": "openltm-continuity-resilience",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

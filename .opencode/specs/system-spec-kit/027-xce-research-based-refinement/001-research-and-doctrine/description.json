@@ -1,0 +1,30 @@
+{
+  "title": "Feature Specification: Research and Doctrine (Phase Parent)",
+  "type": "coordination-parent",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "description": "Phase-parent for the research-derived doctrine adoptions: peck verification discipline and gem-team agent I/O contracts.",
+  "keywords": [
+    "027",
+    "research",
+    "doctrine",
+    "peck",
+    "gem-team",
+    "agent",
+    "io",
+    "contract",
+    "self-check",
+    "verification",
+    "discipline"
+  ],
+  "lastUpdated": "2026-06-14T00:00:00Z",
+  "specId": "001",
+  "folderSlug": "research-and-doctrine",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "childTopology": [
+    "001-peck-teachings-adoption",
+    "002-gem-team-adoption"
+  ]
+}

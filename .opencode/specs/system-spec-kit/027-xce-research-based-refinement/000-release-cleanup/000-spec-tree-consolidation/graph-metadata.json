@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 spec tree consolidation",
+      "027 six track regroup",
+      "themed parent tracks 027"
+    ],
+    "key_topics": [
+      "027",
+      "spec",
+      "tree",
+      "consolidation",
+      "six",
+      "track",
+      "regroup",
+      "themed",
+      "parents"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "027 grew to 31 flat top-level phase children; this packet groups them under six themed parents (the 026 model), renumbers children contiguously, and realigns the root tracking docs (spec.md, graph-metadata.json, description.json, before-vs-after.md, context-index.md, timeline.md).",
+    "created_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-14T00:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

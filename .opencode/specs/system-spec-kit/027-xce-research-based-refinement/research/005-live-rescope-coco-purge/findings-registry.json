@@ -2693,11 +2693,11 @@
     },
     {
       "id": "finding-49-4-embedding-cache-support-has-drifted-richer-than-the-phase-text-the-live-cache-in",
-      "text": "Embedding-cache support has drifted richer than the phase text: the live cache includes `profile_key`, `input_kind`, byte budgets, query-specific budgets, and per-profile entry caps, so trigger embeddings should use a distinct profile/input-kind instead of assuming only `(content_hash, model_id, dimensions)`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-29] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:63-103] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:106-115]",
+      "text": "Embedding-cache support has drifted richer than the phase text: the live cache includes `profile_key`, `input_kind`, byte budgets, query-specific budgets, and per-profile entry caps, so trigger embeddings should use a distinct profile/input-kind instead of assuming only `(content_hash, model_id, dimensions)`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-29] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:63-103] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:106-115]",
       "addedAtIteration": 49,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:85-209",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:36-108",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:85-209",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:36-108",
         ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-252",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-385",
         ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-103",
@@ -2706,11 +2706,11 @@
     },
     {
       "id": "finding-49-6-latency-pressure-is-real-the-matcher-marks-pass-below-50ms-and-warns-at-30ms-so-",
-      "text": "Latency pressure is real: the matcher marks PASS below 50ms and warns at 30ms, so semantic work must remain cache-only and short-circuited on strong lexical hits. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-168] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:115-120]",
+      "text": "Latency pressure is real: the matcher marks PASS below 50ms and warns at 30ms, so semantic work must remain cache-only and short-circuited on strong lexical hits. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-168] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:115-120]",
       "addedAtIteration": 49,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:85-209",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:36-108",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:85-209",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:36-108",
         ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-252",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-385",
         ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-103",
@@ -2719,11 +2719,11 @@
     },
     {
       "id": "finding-49-1-phase-007-is-still-directionally-valid-the-current-matcher-loads-canonical-spec-",
-      "text": "Phase 007 is still directionally valid: the current matcher loads canonical spec docs plus `_memory.continuity` rows from `memory_index`, and still relies on lexical trigger phrases rather than semantic trigger embeddings. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:85-98] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:209-219]",
+      "text": "Phase 007 is still directionally valid: the current matcher loads canonical spec docs plus `_memory.continuity` rows from `memory_index`, and still relies on lexical trigger phrases rather than semantic trigger embeddings. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:85-98] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:209-219]",
       "addedAtIteration": 49,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:85-209",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:36-108",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:85-209",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:36-108",
         ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-252",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-385",
         ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-103",
@@ -2732,11 +2732,11 @@
     },
     {
       "id": "finding-49-3-the-current-handler-has-no-semantic-stage-2-branch-it-calls-matchtriggerphrasesw",
-      "text": "The current handler has no semantic Stage 2 branch: it calls `matchTriggerPhrasesWithStats(prompt, limit * 2)`, scope-filters lexical results, returns empty on no lexical match, and assigns full attention `1.0` to every activated match. This confirms the planned `matchSource` and reduced-attention guard are still unimplemented and still needed. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-371] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:377-385] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:121-123]",
+      "text": "The current handler has no semantic Stage 2 branch: it calls `matchTriggerPhrasesWithStats(prompt, limit * 2)`, scope-filters lexical results, returns empty on no lexical match, and assigns full attention `1.0` to every activated match. This confirms the planned `matchSource` and reduced-attention guard are still unimplemented and still needed. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-371] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:377-385] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:121-123]",
       "addedAtIteration": 49,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:85-209",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:36-108",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:85-209",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:36-108",
         ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-252",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-385",
         ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-103",
@@ -2745,11 +2745,11 @@
     },
     {
       "id": "finding-49-5-the-env-slot-exists-but-the-semantic-trigger-flags-are-not-documented-in-the-liv",
-      "text": "The ENV slot exists but the semantic trigger flags are not documented in the live reference table; phase 007 must still fill the slot with the five planned flags before implementation can claim closeout. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:124-129]",
+      "text": "The ENV slot exists but the semantic trigger flags are not documented in the live reference table; phase 007 must still fill the slot with the five planned flags before implementation can claim closeout. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:124-129]",
       "addedAtIteration": 49,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:85-209",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:36-108",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:85-209",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:36-108",
         ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-252",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-385",
         ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-103",
@@ -2758,11 +2758,11 @@
     },
     {
       "id": "finding-49-2-the-matcher-already-preserves-the-cjk-substring-and-latin-boundary-nuance-that-p",
-      "text": "The matcher already preserves the CJK-substring and Latin-boundary nuance that phase 007 must not regress: pure CJK phrases bypass word-boundary regex, while other phrases use Unicode word boundaries. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:238-252] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:143-145]",
+      "text": "The matcher already preserves the CJK-substring and Latin-boundary nuance that phase 007 must not regress: pure CJK phrases bypass word-boundary regex, while other phrases use Unicode word boundaries. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:238-252] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:143-145]",
       "addedAtIteration": 49,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:85-209",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:36-108",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:85-209",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:36-108",
         ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:140-252",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-385",
         ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:13-103",
@@ -2771,10 +2771,10 @@
     },
     {
       "id": "finding-50-3-existing-learned-feedback-ts-is-not-a-replacement-for-phase-008-reducers-it-writ",
-      "text": "Existing `learned-feedback.ts` is not a replacement for phase 008 reducers: it writes learned triggers into `memory_index.learned_triggers`, has a separate `SPECKIT_LEARN_FROM_SELECTION` flag, and includes safeguards for term learning rather than reducer consumers for rerank weights, causal edges, or retention policy. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:7-24] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:71-93] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:57-63]",
+      "text": "Existing `learned-feedback.ts` is not a replacement for phase 008 reducers: it writes learned triggers into `memory_index.learned_triggers`, has a separate `SPECKIT_LEARN_FROM_SELECTION` flag, and includes safeguards for term learning rather than reducer consumers for rerank weights, causal edges, or retention policy. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:7-24] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:71-93] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:57-63]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -2785,10 +2785,10 @@
     },
     {
       "id": "finding-50-1-phase-008-s-reducer-parent-shape-remains-valid-it-is-explicitly-a-phase-parent-f",
-      "text": "Phase 008's reducer-parent shape remains valid: it is explicitly a phase parent for an aggregator plus three consumers and env/tests integration, with the shared aggregator reading SQLite `feedback_events` from `feedback-ledger.ts`. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-66]",
+      "text": "Phase 008's reducer-parent shape remains valid: it is explicitly a phase parent for an aggregator plus three consumers and env/tests integration, with the shared aggregator reading SQLite `feedback_events` from `feedback-ledger.ts`. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-66]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -2799,10 +2799,10 @@
     },
     {
       "id": "finding-50-7-reducer-modules-are-absent-under-the-live-mcp-server-lib-glob-for-reducer-this-c",
-      "text": "Reducer modules are absent under the live `mcp_server/lib` glob for `*reducer*`; this confirms phase 008 is still planned/scaffolded rather than partially shipped. [INFERENCE: based on Glob result `No files found` for `.opencode/skills/system-spec-kit/mcp_server/lib/**/*reducer*`] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:83-91]",
+      "text": "Reducer modules are absent under the live `mcp_server/lib` glob for `*reducer*`; this confirms phase 008 is still planned/scaffolded rather than partially shipped. [INFERENCE: based on Glob result `No files found` for `.opencode/skills/system-spec-kit/mcp_server/lib/**/*reducer*`] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:83-91]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -2813,10 +2813,10 @@
     },
     {
       "id": "finding-50-6-relation-coverage-is-a-real-guardrail-for-the-causal-reducer-default-targets-set",
-      "text": "Relation coverage is a real guardrail for the causal reducer: default targets set minimum shares/counts for `caused` and `supports`, zero floors for others, and a max share for `supersedes`. The phase amendment to check these before inserting feedback-derived edges remains appropriate. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36-45] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:71-99] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:61-62]",
+      "text": "Relation coverage is a real guardrail for the causal reducer: default targets set minimum shares/counts for `caused` and `supports`, zero floors for others, and a max share for `supersedes`. The phase amendment to check these before inserting feedback-derived edges remains appropriate. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36-45] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:71-99] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:61-62]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -2830,7 +2830,7 @@
       "text": "Stage 3 no longer has model-based reranking; it performs algorithmic MMR and MPAB only. The planned rerank consumer should therefore avoid assuming an active cross-encoder reducer target in Stage 3 and instead treat rerank-weight learning as a separate/legacy-adapter surface. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-117] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:118-130]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -2841,10 +2841,10 @@
     },
     {
       "id": "finding-50-5-stage-4-exposes-tier-priorities-and-state-limits-as-file-local-constants-while-p",
-      "text": "Stage 4 exposes tier priorities and `STATE_LIMITS` as file-local constants, while phase 008 says the retention reducer should import `STATE_LIMITS`; because the live constant is not exported in the read slice, the child plan needs an export-or-helper adjustment before implementation. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:55-80] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:61-63]",
+      "text": "Stage 4 exposes tier priorities and `STATE_LIMITS` as file-local constants, while phase 008 says the retention reducer should import `STATE_LIMITS`; because the live constant is not exported in the read slice, the child plan needs an export-or-helper adjustment before implementation. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:55-80] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:61-63]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -2855,10 +2855,10 @@
     },
     {
       "id": "finding-50-8-the-env-reference-still-has-only-insertion-comments-for-feedback-reducer-flags-i",
-      "text": "The ENV reference still has only insertion comments for feedback reducer flags; implementation should fill the phase slot with concrete defaults before closeout. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:63-66]",
+      "text": "The ENV reference still has only insertion comments for feedback reducer flags; implementation should fill the phase slot with concrete defaults before closeout. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:63-66]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -2872,7 +2872,7 @@
       "text": "The live feedback ledger is shadow-only and has no ranking side effects; it records five event types, confidence tiers, and a SQLite `feedback_events` table with indexes. This supports reducer learning as batch/deferred consumption rather than live mutation. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-12] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:115-137] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:161-169]",
       "addedAtIteration": 50,
       "sources": [
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:45-107",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:45-107",
         ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:1-170",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-180",
         ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:87-130",
@@ -3290,7 +3290,7 @@
     },
     {
       "id": "finding-57-5-folding-the-curator-into-existing-phase-008-would-blur-concerns-phase-008-alread",
-      "text": "Folding the curator into existing Phase 008 would blur concerns: Phase 008 already owns learning-feedback reducers and shadow-first retention/reducer paths, while the curator is a response-packaging feature with its own LLM cache, schema, timeout, telemetry, and eval questions. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:61-86] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:82-108]",
+      "text": "Folding the curator into existing Phase 008 would blur concerns: Phase 008 already owns learning-feedback reducers and shadow-first retention/reducer paths, while the curator is a response-packaging feature with its own LLM cache, schema, timeout, telemetry, and eval questions. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:61-86] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-026.md:82-108]",
       "addedAtIteration": 57,
       "sources": []
     },
@@ -3320,75 +3320,75 @@
     },
     {
       "id": "finding-58-1-phase-007-already-makes-the-key-safety-decision-lexical-matching-remains-primary",
-      "text": "Phase 007 already makes the key safety decision: lexical matching remains primary, semantic recall is a feature-flagged fallback, semantic-only hits are source-tagged and reduced-activation, and the master flag defaults off with `shadow|union` modes. The backfill/promotion plan should preserve those controls rather than introduce an alternate live path. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:47] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:124]",
+      "text": "Phase 007 already makes the key safety decision: lexical matching remains primary, semantic recall is a feature-flagged fallback, semantic-only hits are source-tagged and reduced-activation, and the master flag defaults off with `shadow|union` modes. The backfill/promotion plan should preserve those controls rather than introduce an alternate live path. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:47] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:124]",
       "addedAtIteration": 58,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:106`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:129`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:269`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/decision-record.md:163`"
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:106`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:129`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:269`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/decision-record.md:163`"
       ]
     },
     {
       "id": "finding-58-5-promotion-from-shadow-to-union-needs-all-existing-phase-007-success-metrics-gree",
-      "text": "Promotion from shadow to union needs all existing Phase 007 success metrics green: exact lexical precision 1.0, semantic paraphrase recall at threshold 0.84 at least 0.7, distractor false-positive rate at most 0.05, p95 latency within 100ms WARN, zero embed calls in trigger requests, flag-off diff identical, and external/equivalent eval recall lift at least 0.15. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:269] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:285]",
+      "text": "Promotion from shadow to union needs all existing Phase 007 success metrics green: exact lexical precision 1.0, semantic paraphrase recall at threshold 0.84 at least 0.7, distractor false-positive rate at most 0.05, p95 latency within 100ms WARN, zero embed calls in trigger requests, flag-off diff identical, and external/equivalent eval recall lift at least 0.15. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:269] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:285]",
       "addedAtIteration": 58,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:106`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:129`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:269`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/decision-record.md:163`"
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:106`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:129`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:269`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/decision-record.md:163`"
       ]
     },
     {
       "id": "finding-58-4-resume-should-be-cursor-plus-status-based-restart-from-the-last-committed-memory",
-      "text": "Resume should be cursor-plus-status based: restart from the last committed memory cursor, skip rows with matching ready `(phrase_hash, model_id, dimensions)`, retry failed/pending rows only within bounded retry policy, and preserve cold-start no-op behavior when embeddings are absent. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:147] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:258]",
+      "text": "Resume should be cursor-plus-status based: restart from the last committed memory cursor, skip rows with matching ready `(phrase_hash, model_id, dimensions)`, retry failed/pending rows only within bounded retry policy, and preserve cold-start no-op behavior when embeddings are absent. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:147] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:258]",
       "addedAtIteration": 58,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:106`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:129`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:269`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/decision-record.md:163`"
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:106`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:129`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:269`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/decision-record.md:163`"
       ]
     },
     {
       "id": "finding-58-3-safe-batching-metrics-should-be-tracked-per-memory-id-phrase-hash-model-id-dimen",
-      "text": "Safe batching metrics should be tracked per `(memory_id, phrase_hash, model_id, dimensions)`: scanned memories, eligible trigger phrases, ready/failed/pending counts, cache-hit/cache-miss counts, provider error class, rate-limit count, elapsed time, and high-water cursor. This follows from the derived table primary key and `embedding_status` design. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:106] [INFERENCE: batching fields derived from Phase 007 table key plus `embedding_status` requirements]",
+      "text": "Safe batching metrics should be tracked per `(memory_id, phrase_hash, model_id, dimensions)`: scanned memories, eligible trigger phrases, ready/failed/pending counts, cache-hit/cache-miss counts, provider error class, rate-limit count, elapsed time, and high-water cursor. This follows from the derived table primary key and `embedding_status` design. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:106] [INFERENCE: batching fields derived from Phase 007 table key plus `embedding_status` requirements]",
       "addedAtIteration": 58,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:106`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:129`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:269`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/decision-record.md:163`"
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:106`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:129`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:269`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/decision-record.md:163`"
       ]
     },
     {
       "id": "finding-58-2-the-existing-scope-puts-trigger-embedding-generation-in-memory-index-scan-and-sa",
-      "text": "The existing scope puts trigger embedding generation in `memory_index_scan` and save-time best-effort generation, while forbidding synchronous embedding inside `memory_match_triggers`; therefore large-index backfill must be an out-of-band resumable maintenance job with cached-runtime-only lookup. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:112] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:129]",
+      "text": "The existing scope puts trigger embedding generation in `memory_index_scan` and save-time best-effort generation, while forbidding synchronous embedding inside `memory_match_triggers`; therefore large-index backfill must be an out-of-band resumable maintenance job with cached-runtime-only lookup. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:112] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:129]",
       "addedAtIteration": 58,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:106`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:129`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:269`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/decision-record.md:163`"
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:106`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:129`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:269`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/decision-record.md:163`"
       ]
     },
     {
       "id": "finding-59-4-causal-reducer-live-promotion-must-be-stricter-than-has-citations-it-emits-weak-",
-      "text": "Causal reducer live promotion must be stricter than \"has citations\": it emits weak `ENABLED` edges only from deferred same-session evidence, preserves manual-edge guards, caps 3-5 prior shown sources, and should check relation coverage floors before insertion so it does not overfill already-saturated relation types. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:56] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:61] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36]",
+      "text": "Causal reducer live promotion must be stricter than \"has citations\": it emits weak `ENABLED` edges only from deferred same-session evidence, preserves manual-edge guards, caps 3-5 prior shown sources, and should check relation coverage floors before insertion so it does not overfill already-saturated relation types. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:56] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:61] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36]",
       "addedAtIteration": 59,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:48`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:48`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:20`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6`"
@@ -3396,15 +3396,15 @@
     },
     {
       "id": "finding-59-6-coco-rerank-is-the-only-reducer-allowed-to-adjust-ranking-but-still-only-through",
-      "text": "Coco rerank is the only reducer allowed to adjust ranking, but still only through aggregate counts/deltas, min support, clamped `[-0.10,+0.10]`, and a default-off flag; raw comments and active rollout without eval gate remain out of scope. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:64]",
+      "text": "Coco rerank is the only reducer allowed to adjust ranking, but still only through aggregate counts/deltas, min support, clamped `[-0.10,+0.10]`, and a default-off flag; raw comments and active rollout without eval gate remain out of scope. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:64]",
       "addedAtIteration": 59,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:48`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:48`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:20`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6`"
@@ -3412,15 +3412,15 @@
     },
     {
       "id": "finding-59-1-phase-008-is-intentionally-a-phase-parent-not-a-direct-implementation-packet-its",
-      "text": "Phase 008 is intentionally a phase parent, not a direct implementation packet; its root purpose is to coordinate reducer children only after correctness preconditions land, with all reducer behavior default-off and shadow-first until evaluation gates allow live mutation. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:86]",
+      "text": "Phase 008 is intentionally a phase parent, not a direct implementation packet; its root purpose is to coordinate reducer children only after correctness preconditions land, with all reducer behavior default-off and shadow-first until evaluation gates allow live mutation. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:47] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:86]",
       "addedAtIteration": 59,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:48`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:48`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:20`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6`"
@@ -3428,15 +3428,15 @@
     },
     {
       "id": "finding-59-5-retention-reducer-live-promotion-must-respect-stage-4-s-read-only-score-invarian",
-      "text": "Retention reducer live promotion must respect Stage 4's read-only score invariant and tier limits: Stage 4 removes/annotates results without reordering or score changes, while the reducer owns retention decisions as a separate deferred/audited mutation surface. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:128] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:56]",
+      "text": "Retention reducer live promotion must respect Stage 4's read-only score invariant and tier limits: Stage 4 removes/annotates results without reordering or score changes, while the reducer owns retention decisions as a separate deferred/audited mutation surface. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:128] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/spec.md:56]",
       "addedAtIteration": 59,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:48`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:48`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:20`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6`"
@@ -3447,12 +3447,12 @@
       "text": "The feedback ledger is suitable as a shadow evidence source because it records five event types with confidence tiers into SQLite, defaults logging on, and explicitly has no ranking side effects. Reducer gates should consume ledger aggregates, not live event callbacks. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:20] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:161]",
       "addedAtIteration": 59,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:48`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:48`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:20`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6`"
@@ -3460,15 +3460,15 @@
     },
     {
       "id": "finding-59-3-the-shared-aggregator-child-should-be-the-only-interpretation-layer-for-feedback",
-      "text": "The shared aggregator child should be the only interpretation layer for feedback windows: it aggregates by memory, tracks strong/medium/weak counts and sessions/queries, and defines a bounded `weightedHitCount` formula. Shadow-to-live gates must verify deterministic reruns and bounded window memory behavior before consumers run. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:48] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:101]",
+      "text": "The shared aggregator child should be the only interpretation layer for feedback windows: it aggregates by memory, tracks strong/medium/weak counts and sessions/queries, and defines a bounded `weightedHitCount` formula. Shadow-to-live gates must verify deterministic reruns and bounded window memory behavior before consumers run. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:48] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:101]",
       "addedAtIteration": 59,
       "sources": [
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/spec.md:48`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
-        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:47`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/spec.md:48`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/spec.md:56`",
+        "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/spec.md:56`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:20`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts:36`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:6`"
@@ -3476,7 +3476,7 @@
     },
     {
       "id": "finding-60-3-iteration-058-supports-keeping-phase-007-s-lexical-first-semantic-trigger-design",
-      "text": "Iteration 058 supports keeping Phase 007's lexical-first semantic trigger design while revising it to add explicit backfill cursor/status metrics and a shadow-to-union promotion checklist. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04/iterations/iteration-058.md] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/plan.md:269]",
+      "text": "Iteration 058 supports keeping Phase 007's lexical-first semantic trigger design while revising it to add explicit backfill cursor/status metrics and a shadow-to-union promotion checklist. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04/iterations/iteration-058.md] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/plan.md:269]",
       "addedAtIteration": 60,
       "sources": [
         "`specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04/deep-research-strategy.md:19`",
@@ -3489,7 +3489,7 @@
     },
     {
       "id": "finding-60-4-iteration-059-supports-keeping-phase-008-as-a-reducer-phase-parent-while-revisin",
-      "text": "Iteration 059 supports keeping Phase 008 as a reducer phase parent while revising it to make ledger-quality, shadow replay, and consumer-specific live gates explicit; all mutating consumers remain default-off. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04/iterations/iteration-059.md] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:86]",
+      "text": "Iteration 059 supports keeping Phase 008 as a reducer phase parent while revising it to make ledger-quality, shadow replay, and consumer-specific live gates explicit; all mutating consumers remain default-off. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04/iterations/iteration-059.md] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md:86]",
       "addedAtIteration": 60,
       "sources": [
         "`specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04/deep-research-strategy.md:19`",
@@ -3681,13 +3681,13 @@
     },
     {
       "id": "ruled-out-8972498b5544",
-      "text": "Do not search for shipped `SPECKIT_SEMANTIC_TRIGGERS_*` behavior as if implemented; current evidence shows only the ENV insertion slot and planned requirements. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:170-173]",
+      "text": "Do not search for shipped `SPECKIT_SEMANTIC_TRIGGERS_*` behavior as if implemented; current evidence shows only the ENV insertion slot and planned requirements. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:170-173]",
       "contentHash": "8972498b5544",
       "addedAtIteration": 49
     },
     {
       "id": "ruled-out-2f09441ebd55",
-      "text": "Implementation-summary closeout evidence was ruled out as unavailable because the phase is still scaffolded and explicitly says post-implementation sections are unfilled. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:36-48] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/implementation-summary.md:100-108]",
+      "text": "Implementation-summary closeout evidence was ruled out as unavailable because the phase is still scaffolded and explicitly says post-implementation sections are unfilled. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:36-48] [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md:100-108]",
       "contentHash": "2f09441ebd55",
       "addedAtIteration": 49
     },
@@ -3783,13 +3783,13 @@
     },
     {
       "id": "ruled-out-0c08067412c4",
-      "text": "Direct semantic replacement of lexical matching: rejected because explicit command triggers are a control surface and false positives affect cognitive activation. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:49]",
+      "text": "Direct semantic replacement of lexical matching: rejected because explicit command triggers are a control surface and false positives affect cognitive activation. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:49]",
       "contentHash": "0c08067412c4",
       "addedAtIteration": 58
     },
     {
       "id": "ruled-out-1a9bf47ed1c0",
-      "text": "Live synchronous embedding during trigger calls: rejected because Phase 007 states the hot path must never generate embeddings and latency budget is tight. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md:115]",
+      "text": "Live synchronous embedding during trigger calls: rejected because Phase 007 states the hot path must never generate embeddings and latency budget is tight. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/spec.md:115]",
       "contentHash": "1a9bf47ed1c0",
       "addedAtIteration": 58
     },
@@ -3807,7 +3807,7 @@
     },
     {
       "id": "ruled-out-40f05d5f3620",
-      "text": "Per-event live reducer firing: explicitly out of scope for causal reducer and incompatible with shadow-first phase-parent policy. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer/spec.md:65]",
+      "text": "Per-event live reducer firing: explicitly out of scope for causal reducer and incompatible with shadow-first phase-parent policy. [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/spec.md:65]",
       "contentHash": "40f05d5f3620",
       "addedAtIteration": 59
     },

@@ -1,0 +1,31 @@
+{
+  "title": "Feature Specification: Advisor and Code Graph (Phase Parent)",
+  "type": "coordination-parent",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "description": "Phase-parent for the skill-advisor and code-graph subsystem phases: causal traversal, cross-subsystem feature adoption, and advisor launcher resilience.",
+  "keywords": [
+    "027",
+    "advisor",
+    "code",
+    "graph",
+    "causal",
+    "traversal",
+    "bfs",
+    "adoption",
+    "reconnect",
+    "provenance",
+    "observability"
+  ],
+  "lastUpdated": "2026-06-14T00:00:00Z",
+  "specId": "003",
+  "folderSlug": "advisor-and-codegraph",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "childTopology": [
+    "001-causal-traversal-bfs",
+    "002-xce-feature-adoption-advisor-codegraph",
+    "003-skill-advisor-cross-session-reconnect"
+  ]
+}

@@ -5,35 +5,11 @@
   "parent_id": null,
   "children_ids": [
     "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
-    "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
-    "system-spec-kit/027-xce-research-based-refinement/003-memory-index-causal-lifecycle",
-    "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback",
-    "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers",
-    "system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption",
-    "system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening",
-    "system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability",
-    "system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience",
-    "system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition",
-    "system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation",
-    "system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs",
-    "system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience",
-    "system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights",
-    "system-spec-kit/027-xce-research-based-refinement/015-storage-adapter-ports",
-    "system-spec-kit/027-xce-research-based-refinement/016-cli-tooling-ux",
-    "system-spec-kit/027-xce-research-based-refinement/017-bm25-warmup-churn-reduction",
-    "system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph",
-    "system-spec-kit/027-xce-research-based-refinement/019-skill-advisor-cross-session-reconnect",
-    "system-spec-kit/027-xce-research-based-refinement/020-vector-resilience-durability",
-    "system-spec-kit/027-xce-research-based-refinement/021-hybrid-search-scope-then-limit",
-    "system-spec-kit/027-xce-research-based-refinement/022-provenance-injection",
-    "system-spec-kit/027-xce-research-based-refinement/023-idempotency-flag-on-correctness",
-    "system-spec-kit/027-xce-research-based-refinement/024-autonomous-dependency-patching",
-    "system-spec-kit/027-xce-research-based-refinement/025-code-mode-orphan-lifecycle",
-    "system-spec-kit/027-xce-research-based-refinement/026-ipc-client-cap-hardening",
-    "system-spec-kit/027-xce-research-based-refinement/027-finding-remediation",
-    "system-spec-kit/027-xce-research-based-refinement/028-tri-system-deep-research",
-    "system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation"
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -252,7 +228,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "last_active_child_id": "029-deep-research-remediation",
-    "last_active_at": "2026-06-12T21:45:00+00:00"
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+    "last_active_at": "2026-06-14T00:00:00Z"
   }
 }

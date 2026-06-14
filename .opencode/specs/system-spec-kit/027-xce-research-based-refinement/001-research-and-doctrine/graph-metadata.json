@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 research and doctrine",
+      "peck teachings adoption",
+      "gem team agent io contract",
+      "self-check templates",
+      "reviewer benchmark substrate"
+    ],
+    "key_topics": [
+      "027",
+      "research",
+      "doctrine",
+      "peck",
+      "gem-team",
+      "agent",
+      "io",
+      "contract",
+      "self-check",
+      "verification",
+      "discipline"
+    ],
+    "importance_tier": "important",
+    "status": "phase_parent",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research-and-doctrine track is the home for the peck and gem-team adoptions: peck contributes self-check templates, current-state discipline, constitutional review cadence, a reviewer-prompt benchmark substrate, non-diff read-budget discipline, and the acceptance-coverage and completion-freshness gates; gem-team contributes the typed advisory agent I/O contract across the five core agents and three runtime mirrors.",
+    "created_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-14T00:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

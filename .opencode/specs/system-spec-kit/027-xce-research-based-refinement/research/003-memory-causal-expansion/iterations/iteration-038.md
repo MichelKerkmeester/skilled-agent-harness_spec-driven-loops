@@ -39,7 +39,7 @@ The key conclusion is that **two phases can be merged** (004 into 003), and **on
 **Verdict**: ADOPT
 **Cite**: `002-memory-write-safety/spec.md:49` — "Ordering decision: '009 P0 fixes before reducers' and before all code_graph phases in the refreshed 027 sequence."
 **Cite**: `002-memory-write-safety/spec.md:59,65` — Priority P0, LOC ~50-80 prod + 60-100 tests, no blockers.
-**Cite**: `005-learning-feedback-reducers/spec.md:59` — 008/001-aggregator "Depends On: 027-xce-research-based-refinement/002-memory-write-safety".
+**Cite**: `005-learning-feedback-reducers/spec.md:59` — 008/001-aggregator "Depends On: 027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety".
 
 The three P0 fixes (auto-provenance cap broadening, manual-edge overwrite guard, retention-sweep tier basement gap) are small and correctness-critical. Shipping them first unblocks the entire 008 learning-reducer family and prevents silent data corruption in the causal graph before any volume-increasing phases (005, 007) land. Blast radius is minimal — three surgical fixes to existing handlers with no schema changes. Acceptance criteria are fully specified.
 

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
+  "description": "Feature Specification: Skill-Advisor CLI Feasibility",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill-advisor",
+    "cli",
+    "feasibility"
+  ],
+  "lastUpdated": "2026-06-07T14:08:18.252Z",
+  "specId": "000",
+  "folderSlug": "skill-advisor-cli-research",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition",
+    "003-skill-advisor-cli"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-06-26_15-11__reconcile-skill-advisor.md"
+  ]
+}

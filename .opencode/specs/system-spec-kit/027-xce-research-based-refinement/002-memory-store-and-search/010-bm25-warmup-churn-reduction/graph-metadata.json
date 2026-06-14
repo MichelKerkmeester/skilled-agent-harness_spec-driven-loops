@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bm25 warmup churn reduction",
+      "packed bm25 rss spike",
+      "warmup memory budget",
+      "bm25 warmup churn plan",
+      "tasks",
+      "name",
+      "template",
+      "tasks core",
+      "bm25 warmup churn reduction summary"
+    ],
+    "key_topics": [
+      "bm25",
+      "warmup",
+      "churn",
+      "reduction",
+      "packed",
+      "rss",
+      "spike",
+      "memory",
+      "budget",
+      "plan",
+      "tasks",
+      "name"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/lib/search/bm25-index.ts",
+      "mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+      "tests/bm25-packed-inmemory.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+      "lib/search/bm25-index.ts",
+      "tests/hybrid-search.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "bm25-index.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/bm25-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-packed-inmemory.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.vitest.ts",
+        "kind": "test",
+        "path": "tests/hybrid-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Warmup Churn Reduction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase closes phase 014's REQ-001 on the original 150MB RSS metric. The 014 deep review (adversarially verified) found that the packed BM25 engine's *retained* heap meets the budget (~105MB) but the transient *warmup* RSS spike breaches it (~687MB on a realistic 10,245-doc / 69.2MB corpus). The breach is allocation churn during warmup, not retained index size; 014 left the RSS test assertion advisory (`SPECKIT_BM25_RSS_GATE`) pending this fix.",
+    "created_at": "2026-06-11T05:11:29Z",
+    "last_save_at": "2026-06-12T04:40:47.920Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

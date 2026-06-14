@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation",
+  "description": "Feature Specification: 006 — Write-Path Reconciliation",
+  "keywords": [
+    "feature",
+    "specification",
+    "006",
+    "write-path",
+    "reconciliation"
+  ],
+  "lastUpdated": "2026-06-10T11:00:20.790Z",
+  "specId": "004",
+  "folderSlug": "write-path-reconciliation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "002-memory-index-causal-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

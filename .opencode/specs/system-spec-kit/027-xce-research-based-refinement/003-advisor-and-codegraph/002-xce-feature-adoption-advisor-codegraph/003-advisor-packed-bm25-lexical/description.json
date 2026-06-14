@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
+  "description": "Feature Specification: Phase 3: advisor-packed-bm25-lexical",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "advisor-packed-bm25-lexical"
+  ],
+  "lastUpdated": "2026-06-10T21:52:41.637Z",
+  "specId": "003",
+  "folderSlug": "advisor-packed-bm25-lexical",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "003-advisor-and-codegraph",
+    "002-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
