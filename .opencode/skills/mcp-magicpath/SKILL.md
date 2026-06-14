@@ -6,7 +6,7 @@ metadata:
   author: MagicPathAI
   source: https://github.com/MagicPathAI/agent-skills
 allowed-tools: [Read, Bash(npx -y magicpath-ai *)]
-version: 1.0.0
+version: 1.1.0
 user-invocable: true
 ---
 
