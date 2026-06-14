@@ -31,3 +31,4 @@ The `main` branch (`MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestra
 2. Still apply normal commit hygiene: scope the commit to intended files only (the tree often has concurrent parallel-session work + daemon metadata churn — NEVER `git add -A` blindly; use explicit pathspecs and prefer atomic `git commit -F - -- <paths>`).
 3. Use Conventional Commit messages; report what landed (verify `local HEAD == origin/main`).
 4. Only raise commit-signing if the owner specifically asks for verified signatures (needs local signing config).
+5. This authorization covers git only. For any OTHER outward or irreversible action — deploy, send, migrate, `pnpm patch`, overwrite shared/global/native state, or a live draft on a remote service — name the rollback in one line and stop for explicit confirmation unless already told to proceed. A green gate or a finished diagnosis is not license to ship outside git.

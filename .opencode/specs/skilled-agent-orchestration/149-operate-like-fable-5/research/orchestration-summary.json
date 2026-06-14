@@ -1,0 +1,11 @@
+{
+  "run_id": "1781419932748-tk8p6k",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5",
+  "base_artifact_dir": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/research",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}
