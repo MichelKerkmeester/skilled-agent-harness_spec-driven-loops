@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-150-open-design-terminal-and-interface-integration"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---

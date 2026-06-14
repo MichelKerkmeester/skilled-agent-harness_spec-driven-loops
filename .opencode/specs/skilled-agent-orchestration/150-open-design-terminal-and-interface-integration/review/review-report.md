@@ -47,23 +47,23 @@ No P0 was a real license violation; the one FAIL (seat-08) was a broken relative
 - `validate_document.py` on all 4 affected indexes → VALID (0 issues)
 - Every fixed path resolved against its real target on disk
 
-## P2 backlog (captured, not auto-fixed - for triage)
+## P2 backlog (resolved 2026-06-14)
 
-Fixed inline already: 8 em-dashes in mcp-open-design SKILL.md (house voice); the stale 150 `spec.md` description.
+All record-integrity and doc-consistency items below are now FIXED in the P2-remediation commit. Three by-convention items remain WONTFIX with rationale retained. (Earlier inline fixes: the 8 em-dashes in mcp-open-design SKILL.md and the stale 150 spec.md description.)
 
-Record-integrity (recommend fixing):
+Record-integrity - FIXED:
 - `research.md:45` attributes the live `curl :7456` probe to `seat-a Task 4` + `seat-c §5c`, but only seat-c ran `curl` (seat-a ran `--help`/`--version` only). Mis-attributed evidence.
 - `research.md:62` states the installed MCP `command`/`OD_DATA_DIR` without an inline INFERRED marker (seat-a flags both UNVERIFIED); the caveat appears only later in §5.
 - `research.md:117` NEEDS-LIVE-VERIFICATION list dropped seat-a UNCERTAIN #8 (the `od mcp install` 7456-fallback-vs-socket-mode case).
 - 150 `graph-metadata.json` `children_ids` lists `002/003/004` folders that do not exist (the build/de-vendor/validate work shipped into the skills, not separate folders); parent `completion_pct: 0` + `Status: In Progress` are stale; `research.md` frontmatter still `completion_pct: 80` / "build mcp-open-design skill" next-action.
 
-Doc consistency (minor):
+Doc consistency - FIXED:
 - sk-interface-design `SKILL.md:153` names only mcp-magicpath as the parity partner (now mcp-open-design too); `SKILL.md §7` Related Skills omits mcp-magicpath.
 - `claude_design_parity.md` frontmatter description omits mcp-open-design; `:108`/`:119` "data"/"catalog" wording references the now-removed CSV inventory.
 - mcp-open-design `tool_surface.md:82` `daemon stop`/`db vacuum` listed without an UNVERIFIED tag (same class as #8).
 - feature_catalog directory numbering gap (no `06--`) so section numbers drift after 5.
 
-Cosmetic / by-convention (likely WONTFIX):
+Cosmetic / by-convention - WONTFIX (rationale retained):
 - All three skills' `graph-metadata.json` lack `sanitizer_version` in the derived block (`skill_graph_validate` DERIVED-FRESHNESS warn) - matches the mcp-magicpath template, so a convention gap, not a regression.
 - mcp-open-design `SKILL.md` `metadata.author: nexu-io (Open Design)` attributes to the upstream app vendor - matches the mcp-magicpath convention (author = upstream tool vendor).
 - sk-interface-design `SKILL.md` STEP 0-4 (§2) vs STEP 1-5 (§3) numbering for the same phases - pre-existing (packet 148).

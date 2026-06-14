@@ -1,6 +1,6 @@
 ---
 title: "Claude Design Parity Protocol"
-description: "The shared cross-skill protocol that moves sk-interface-design (judgment) and mcp-magicpath (canvas/CLI) closer to Claude Design: ground in a design system, reuse before generating, iterate against a real render, and hand off cleanly, without becoming a templated generator."
+description: "The shared cross-skill protocol that moves sk-interface-design (judgment), mcp-magicpath (canvas/CLI), and mcp-open-design (Open Design terminal transport) closer to Claude Design: ground in a design system, reuse before generating, iterate against a real render, and hand off cleanly, without becoming a templated generator."
 trigger_phrases:
   - "claude design parity protocol"
   - "reuse before generate design system"
@@ -104,7 +104,7 @@ For open-ended visual work, it can help to sketch two or three brief-specific di
 ## 8. WHAT THIS PROTOCOL DOES NOT ADD (guardrails)
 
 - No style presets, no pick-a-vibe or theme-swap menu, no named aesthetic dials (boldness/density/motion). A choosable style axis is the templated default the skill exists to resist.
-- No converting the `design_inventory.md` data into a generator; it stays critique-against.
+- No converting a matched design system into a generator. It stays reuse-ground or critique-against, never a preset.
 - No multi-format export (PDF, PPTX, Canva), no hosted canvas, no live comment threads.
 - No writing themes back to MagicPath (there is no `create-theme`); token export is local files only.
 - No full-stack or backend generation, no Git branch/PR ownership (route to `sk-git`), no deploy or publishing.
@@ -116,7 +116,7 @@ For open-ended visual work, it can help to sketch two or three brief-specific di
 
 - [design_principles.md](./design_principles.md) sets the look and owns the anti-default mandate.
 - [ux_quality_reference.md](./ux_quality_reference.md) is the objective floor the fidelity check gates on.
-- [design_inventory.md](./design_inventory.md) is the critique-against catalog (never a generator).
+- [design_inventory.md](./design_inventory.md) frames how to use a real design system as reuse-ground or critique-against, never a generator.
 - `.opencode/skills/mcp-magicpath/SKILL.md` is the canvas/CLI consumer of this protocol.
 - `.opencode/skills/mcp-open-design/SKILL.md` is the Open Design terminal consumer of this protocol.
 - Research basis: packets `005-claude-design-parity-research` (hardened) and `006-competitor-design-tools-research`.

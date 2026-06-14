@@ -79,7 +79,7 @@ Before any of these, state the effect and a one-line rollback, name the explicit
 Keep these out of the normal flow. Reach for them only on an explicit, specific user request:
 
 - MCP: `delete_file`, `delete_project` (destructive), and `write_file` (overwrites).
-- CLI: `plugin publish/login/trust`, `daemon stop`, `db vacuum`, raw connector `execute`, and desktop import or auth internals.
+- CLI: `plugin publish/login/trust`, `daemon stop` `[UNVERIFIED]`, `db vacuum` `[UNVERIFIED]` (neither appears in the confirmed `od --help` verb table; confirm with a live `od --help` before relying on them), raw connector `execute`, and desktop import or auth internals.
 
 The investigation reached this gating posture two independent ways (a code read of the registry and an adversarial cross-check), and the stricter gating wins where they differed. **[CONFIRMED - cross-validated]**
 

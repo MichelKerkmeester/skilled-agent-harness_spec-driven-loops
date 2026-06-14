@@ -92,22 +92,22 @@ DESIGN TASK
 
 **Process Flow**:
 ```
-STEP 1: Ground the subject
+STEP 0: Ground the subject
        └─ Name one concrete subject, its audience, and the page's single job
        ↓
-STEP 2: Brainstorm a compact token system
+STEP 1: Brainstorm a compact token system
        ├─ Color: 4-6 named hex values
        ├─ Type: a display face used with restraint + a body face (+ utility face)
        ├─ Layout: a concept with one-sentence prose + ASCII wireframes
        └─ Signature: the one element the page will be remembered by
        ↓
-STEP 3: Critique the plan against the brief
+STEP 2: Critique the plan against the brief
        └─ Anything that reads like a generic default gets revised, with a stated reason
        ↓
-STEP 4: Build from the revised plan
+STEP 3: Build from the revised plan
        └─ Derive every color and type decision from the plan, mind CSS specificity
        ↓
-STEP 5: Self-critique
+STEP 4: Self-critique
        └─ Screenshot if possible, remove one accessory, confirm the quality floor
 ```
 
@@ -150,7 +150,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 - [`references/design_principles.md`](references/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
 - [`references/ux_quality_reference.md`](references/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
 - [`references/design_inventory.md`](references/design_inventory.md) - How to use a real design system (via `mcp-open-design`, when installed) as either reuse-ground or the named default to critique against. Never a chooser.
-- [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-magicpath`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
+- [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-magicpath` and `mcp-open-design`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
 ### Feature Catalog
@@ -188,6 +188,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - **`sk-code`** owns implementation. This skill decides the look, and sk-code builds it to the detected web surface's standards and verifies it.
 - **`sk-code-review`** can audit the built UI against the standards sk-code enforces.
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
+- **`mcp-magicpath`** is the sibling canvas tool that shares the same parity loop (`claude_design_parity.md`). This skill owns the judgment, that skill owns the canvas and CLI.
 - **`mcp-open-design`** is the optional transport to a real Open Design design system when that app is installed, for grounding and reuse through the shared parity loop. This skill owns the judgment, that skill owns the transport.
 
 ### Knowledge Base Dependencies

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/001-terminal-control-and-integration-research"
     last_updated_at: "2026-06-14T12:25:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Wave-1 research fleet synthesized into research.md"
-    next_safe_action: "Author 150 spec docs; build mcp-open-design skill"
+    recent_action: "Fleet synthesized; both skills shipped and deep-reviewed"
+    next_safe_action: "Live od mcp install verify, then push 027"
     blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/001-terminal-control-and-integration-research/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-150-001-terminal-control-research"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ Cross-validated corrections to the initial read (Seat A confirmed by reading the
 
 - **The `od` CLI is `app/prebundled/daemon/daemon-cli.mjs` run under a Node-compatible runtime — NOT `bin/vela`.** `vela` is the cloud AMR/auth client (`vela agent/login/whoami`, v0.0.9). There is **no global `od` shim** (`/usr/bin/od` is the unrelated octal-dump tool). [SOURCE: seats/seat-a.findings.md Task 1 — ran `--help`/`--version`]
 - **`od mcp` registers ~18 tools, not the 8 in `--help`.** The stdio server returns the full `TOOL_DEFS`: 11 read-only, 5 mutating (incl. `start_run` = the headless equivalent of the chat box, which commissions OD to spawn its own inner agent), 2 destructive (`delete_file`, `delete_project`, gated on `confirm:true`). [SOURCE: seats/seat-a.findings.md Task 3b; seats/seat-c.out §3]
-- **Daemon transport is Unix-socket discovery + ephemeral loopback HTTP, not a fixed `:7456`.** `7456` is only the default for a standalone `od --no-open` daemon. The desktop sidecar is socket-discovered via `OD_SIDECAR_IPC_PATH`; a live `curl :7456` failed while the sockets existed. [SOURCE: seat-a Task 4; seat-c §5c — live-observed]
+- **Daemon transport is Unix-socket discovery + ephemeral loopback HTTP, not a fixed `:7456`.** `7456` is only the default for a standalone `od --no-open` daemon. The desktop sidecar is socket-discovered via `OD_SIDECAR_IPC_PATH`; a live `curl :7456` failed while the sockets existed. [SOURCE: seat-c §5c — live-observed]
 - **The desktop daemon is a child Electron sidecar → it dies with the app** (strongly inferred; needs a live close-the-app check). Headless-without-the-app = run a standalone `od --no-open` daemon.
 
 ### Exact wiring (this machine)
@@ -59,7 +59,7 @@ node "$OD_BIN" mcp install opencode                  # install
 # Wire Claude Code (delegates to `claude mcp add --scope user open-design ...`):
 node "$OD_BIN" mcp install claude --print --json
 ```
-Installed opencode MCP entry: `{type:"local", command:[<electron>, <daemon-cli.mjs>, "mcp"], enabled:true, environment:{OD_DATA_DIR, OD_SIDECAR_IPC_PATH=/tmp/open-design/ipc/release-stable/daemon.sock, ELECTRON_RUN_AS_NODE=1}}`. The MCP server then auto-discovers the live ephemeral daemon URL from the socket at startup, so configs survive daemon restarts. [SOURCE: seat-a Task 2]
+Installed opencode MCP entry: `{type:"local", command:[<electron>, <daemon-cli.mjs>, "mcp"], enabled:true, environment:{OD_DATA_DIR, OD_SIDECAR_IPC_PATH=/tmp/open-design/ipc/release-stable/daemon.sock, ELECTRON_RUN_AS_NODE=1}}` (exact command[0] and OD_DATA_DIR are INFERRED, confirm via `mcp install --print --json`). The MCP server then auto-discovers the live ephemeral daemon URL from the socket at startup, so configs survive daemon restarts. [SOURCE: seat-a Task 2]
 
 ### Headless verb surface (drive work without the chat UI)
 `start_run`+`get_run`+`get_artifact` (commission a generation), `od automation` (schedule/fire routines), `od ui respond/prefill` (answer the app's GenUI prompts headlessly), `od artifacts create`, `od media generate`, `od research search`, `od tools design-systems read`, `od memory tree`, `od plugin`.
@@ -114,7 +114,7 @@ Folds into `claude_design_parity.md` §2 (intake: if an OD system matches the br
 
 ## 5. Negative knowledge — what to SKIP / verify live
 - SKIP: cloning OD's hosted product, the in-app chat workflow, OD `skills` as a knowledge base (thin stubs), caching OD content into either skill, a style-chooser menu, destructive verbs in the default path.
-- NEEDS LIVE VERIFICATION (carry into 002/004): exact `command[0]`/`OD_DATA_DIR` the installer writes (`mcp install --print --json`); whether the daemon truly dies on app-close; whether `od --no-open` gives a working headless daemon; per-verb auth (does `start_run`/`media generate` need a `vela` login); `od mcp live-artifacts` tool set; `install.sh` contents (do not pipe-to-shell). [SOURCE: seat-a UNCERTAIN list; seat-c §5]
+- NEEDS LIVE VERIFICATION (carry into 002/004): exact `command[0]`/`OD_DATA_DIR` the installer writes (`mcp install --print --json`); whether the daemon truly dies on app-close; whether `od --no-open` gives a working headless daemon; per-verb auth (does `start_run`/`media generate` need a `vela` login); `od mcp live-artifacts` tool set; `install.sh` contents (do not pipe-to-shell); whether `od mcp install` re-derives a `7456` fallback entry when run while the daemon is down versus the socket-mode entry when it is up. [SOURCE: seat-a UNCERTAIN list; seat-c §5]
 
 ## 6. Prioritized recommendation (phaseable)
 1. **002 — build `mcp-open-design`** (additive, safe): SKILL.md + references + feature_catalog + manual_testing_playbook + changelog v1.0.0.0 + schema-2 graph-metadata, encoding §1–§2 above.
