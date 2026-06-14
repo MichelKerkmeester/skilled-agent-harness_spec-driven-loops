@@ -112,7 +112,7 @@ function disabledOutput(
     freshness: 'unavailable',
     trustState: unavailableTrustState('ADVISOR_DISABLED'),
     warnings: ['ADVISOR_DISABLED'],
-    abstainReasons: ['Skill advisor disabled by SPECKIT_SKILL_ADVISOR_HOOK_DISABLED.'],
+    abstainReasons: ['Skill advisor disabled by MK_SKILL_ADVISOR_HOOK_DISABLED.'],
   });
 }
 
@@ -411,7 +411,8 @@ export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResp
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
   });
-  const data = process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'
+  const data = process.env.MK_SKILL_ADVISOR_HOOK_DISABLED === '1'
+    || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'
     ? disabledOutput(workspaceRoot, effectiveThresholds)
     : await computeRecommendationOutput(input);
   return {

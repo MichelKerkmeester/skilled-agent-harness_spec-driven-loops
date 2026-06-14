@@ -23,6 +23,11 @@ describe('resolveMaintainerModeCategories', () => {
     expect(launcher.resolveMaintainerModeCategories(' Skills , bogus , PLUGINS ').sort()).toEqual(['plugins', 'skills']);
   });
 
+  it('drops Object prototype names so they never set junk INDEX_* env keys', () => {
+    expect(launcher.resolveMaintainerModeCategories('constructor,toString')).toEqual([]);
+    expect(launcher.resolveMaintainerModeCategories('hasOwnProperty,__proto__,valueOf')).toEqual([]);
+  });
+
   it('"false", empty, and unset force nothing', () => {
     expect(launcher.resolveMaintainerModeCategories('false')).toEqual([]);
     expect(launcher.resolveMaintainerModeCategories('')).toEqual([]);

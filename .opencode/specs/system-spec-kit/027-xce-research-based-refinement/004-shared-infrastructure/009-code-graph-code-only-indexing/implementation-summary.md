@@ -89,6 +89,24 @@ Investigation established the two independent gates: the file-type allowlist (`d
 
 ---
 
+<!-- ANCHOR:post-review-remediation -->
+## Post-Review Remediation
+
+A 5-iteration deep review (`review/review-report.md`) found 4 P1 + 4 P2, all verified real. Dispositions (all in the working tree; both dists rebuilt clean; code-graph + skill-advisor suites green):
+
+- **F1 (P1) — FIXED:** `collectSpecificFiles` (`lib/structural-indexer.ts`) now applies the full-walk file-type allowlist (`config.includeGlobs` via `globToRegExp`), so a changed `.md` can no longer re-enter the graph through the incremental/stale-file reindex path. New indexer test proves it.
+- **F2 (P1) — FIXED:** `resolveMaintainerModeCategories` (`bin/mk-code-index-launcher.cjs`) uses `Object.hasOwn` instead of `in`, so prototype names (`constructor`/`toString`) no longer set junk `INDEX_*` env keys. New resolver test.
+- **F3 (P1) — FIXED:** the daemon path now treats `MK_SKILL_ADVISOR_HOOK_DISABLED` as canonical with the legacy `SPECKIT_` name as fallback — `handlers/advisor-recommend.ts`, the launcher CHILD_ENV_ALLOWLIST, and the plugin bridge env list. `PLUGIN_DISABLED` confirmed plugin-host-only (no daemon-side gap).
+- **F4 (P1) — FIXED:** added daemon-path `MK_` coverage in `advisor-recommend.vitest.ts`; also corrected a pre-existing red the review missed — `rename-invariants.vitest.ts:65` still asserted the legacy config var after the rename.
+- **F5 (P2) — FIXED:** stale re-election comment in `bin/mk-spec-memory-launcher.cjs` updated to "(on by default)".
+- **F6 (P2) — FIXED:** doc-matrix fixture in `code-graph-indexer.vitest.ts` now uses real plural `agents`/`commands` paths, genuinely exercising the opt-in scope.
+- **F7 (P2) — FIXED:** `_NOTE_3_INDEX_DEFAULTS` in `opencode.json` / `.claude/mcp.json` / `.codex/config.toml` now documents `true` (all 5) or a comma subset such as `skills,plugins`; text byte-identical across all three.
+- **F8 (P2) — ASSESSED, NO CHANGE:** `.vscode/mcp.json` is the standard VS Code MCP config target, intentionally wired into `.gitattributes` and `scripts/setup-maintainer-filters.sh`; it is absent here only because this maintainer doesn't run the VS Code runtime (`README.md` documents "only the runtime you use needs to exist"). Not a false claim — editing it would desync the README from `.gitattributes`/the setup script.
+
+<!-- /ANCHOR:post-review-remediation -->
+
+---
+
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 

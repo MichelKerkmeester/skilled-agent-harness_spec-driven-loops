@@ -67,6 +67,21 @@ _memory:
 <!-- /ANCHOR:phase-3 -->
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Post-Review Remediation
+
+- [x] T010 F1 Enforce include-glob file-type policy in `collectSpecificFiles` + indexer test (`lib/structural-indexer.ts`, `tests/code-graph-indexer.vitest.ts`)
+- [x] T011 F2 `Object.hasOwn` own-property check in `resolveMaintainerModeCategories` + test (`bin/mk-code-index-launcher.cjs`, `tests/launcher-maintainer-mode.vitest.ts`)
+- [x] T012 F3 `MK_` canonical + legacy fallback on the daemon path (`advisor-recommend.ts`, launcher allowlist, bridge); dist rebuilt
+- [x] T013 F4 Daemon-path `MK_` test + fix stale `rename-invariants.vitest.ts:65` legacy assertion
+- [x] T014 F5 Re-election comment "(on by default)" (`bin/mk-spec-memory-launcher.cjs`)
+- [x] T015 F6 Doc-matrix fixture real plural `agents`/`commands` paths (`tests/code-graph-indexer.vitest.ts`)
+- [x] T016 F7 `_NOTE_3_INDEX_DEFAULTS` selectable-subset note, identical across the 3 configs
+- [x] T017 F8 Assessed `.vscode/mcp.json` — legitimate VS Code config target, no change
+
+<!-- /ANCHOR:phase-4 -->
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

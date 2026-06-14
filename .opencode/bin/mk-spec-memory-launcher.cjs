@@ -1446,7 +1446,7 @@ async function shutdownLauncherForSignal(signal) {
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
 
-  // Re-election release path (default off): release the detached context-server for a live secondary to adopt
+  // Re-election release path (on by default): release the detached context-server for a live secondary to adopt
   // instead of killing it. Reap only the non-adoptable model-server, KEEP the daemon lease (its socket
   // stays findable for adoption), drop only OWNERSHIP, and exit without killing the daemon. When the
   // flag is off this branch is skipped and the original kill path below runs unchanged.

@@ -1471,6 +1471,7 @@ function findFiles(config: IndexerConfig, pattern: string): FileFindResult {
 
 function collectSpecificFiles(config: IndexerConfig, specificFiles: string[]): string[] {
   const { rootDir, maxFileSizeBytes } = config;
+  const includePatterns = config.includeGlobs.map(globToRegExp);
   const dedupedFiles: string[] = [];
   const seenFiles = new Set<string>();
   const canonicalWorkspaceRoot = resolveCanonicalPath(resolve(rootDir));
@@ -1484,6 +1485,13 @@ function collectSpecificFiles(config: IndexerConfig, specificFiles: string[]): s
 
     const relativePath = normalizeGlobPath(relative(rootDir, workspaceCandidate.originalPath));
     if (relativePath === '..' || relativePath.startsWith('../')) {
+      continue;
+    }
+    // Apply the same file-type allowlist the full walk enforces: an incremental
+    // or stale-file reindex must still match an include glob, so excluded types
+    // such as markdown are not re-added through this path when scope would allow
+    // the folder.
+    if (!includePatterns.some((pattern) => pattern.test(relativePath))) {
       continue;
     }
     if (!shouldIndexForCodeGraph(workspaceCandidate.canonicalPath, config.scopePolicy)) {

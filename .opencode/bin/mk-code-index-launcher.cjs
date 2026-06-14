@@ -80,7 +80,7 @@ function resolveMaintainerModeCategories(rawValue) {
   const raw = (rawValue || '').trim().toLowerCase();
   if (raw === 'true') return Object.keys(MAINTAINER_CATEGORY_ENV);
   if (!raw || raw === 'false') return [];
-  return raw.split(',').map((c) => c.trim()).filter((c) => c in MAINTAINER_CATEGORY_ENV);
+  return raw.split(',').map((c) => c.trim()).filter((c) => Object.hasOwn(MAINTAINER_CATEGORY_ENV, c));
 }
 
 function bootstrapLauncherEnv() {
