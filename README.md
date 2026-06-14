@@ -970,6 +970,10 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - **Manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing
 - **Agent-safe by design:** enforces per-list status resolution, dry-run before batch completion, `--json` output, and empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
 
+**mcp-open-design**
+- **Drive the installed Open Design desktop app from the terminal.** Reads and reuses local design systems (tokens, components) and commissions gated, multi-turn generation runs through the `od` CLI and a stdio MCP server, instead of the in-app chat
+- **Local-first and gated:** a socket-discovered daemon on a rotating port, read-only inspection that surfaces freely, and STOP-and-confirm mutating verbs (`start_run`, then the discovery-form answer that fires the build). Pairs with `sk-interface-design` for the design judgment
+
 &nbsp;
 #### OTHER
 
@@ -1316,6 +1320,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `cli-*` (codex/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
+| `mcp-open-design`                                   | ✅ Codebase-agnostic                        | Drives the installed Open Design desktop app from the terminal (read and reuse design systems, gated generation runs) via the `od` CLI + MCP. Requires the Open Design desktop app installed. Stack-independent. |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
