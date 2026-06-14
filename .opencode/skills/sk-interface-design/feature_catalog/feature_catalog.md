@@ -5,12 +5,12 @@ trigger_phrases:
   - "sk-interface-design"
   - "interface design feature catalog"
   - "feature catalog"
-last_updated: "2026-06-13"
+last_updated: "2026-06-14"
 ---
 
 # sk-interface-design: Feature Catalog
 
-This document combines the current feature inventory for the `sk-interface-design` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, the critique-against data inventory, interface writing, the integration boundary, and the Claude Design parity loop, and it points to the per-feature files that carry the deeper behavior and source anchors.
+This document combines the current feature inventory for the `sk-interface-design` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, design grounding through Open Design, interface writing, the integration boundary, and the Claude Design parity loop, and it points to the per-feature files that carry the deeper behavior and source anchors.
 
 ---
 
@@ -21,8 +21,8 @@ Use this catalog as the canonical inventory for the live `sk-interface-design` f
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | Design process | 4 features | `SKILL.md`, `references/design_principles.md` |
-| Quality floor | 1 feature | `references/ux_quality_reference.md`, `assets/data/ux-guidelines.csv` |
-| Critique-against data inventory | 3 features | `references/design_inventory.md`, `assets/data/*.csv`, `scripts/design_search.py` |
+| Quality floor | 1 feature | `references/ux_quality_reference.md` |
+| Design grounding | 1 feature | `references/design_inventory.md`, `references/claude_design_parity.md` |
 | Interface writing | 1 feature | `references/design_principles.md` (Section 6) |
 | Integration boundary | 1 feature | `SKILL.md` (Sections 2 and 7) |
 | Claude Design parity loop | 3 features | `references/claude_design_parity.md`, `SKILL.md` (Sections 2 and 5) |
@@ -117,55 +117,23 @@ See [`02--quality-floor/objective-quality-floor.md`](02--quality-floor/objective
 
 ---
 
-## 4. CRITIQUE-AGAINST DATA INVENTORY
+## 4. DESIGN GROUNDING
 
-These entries cover the design data the skill critiques against: the inventory framing, the underlying data sets, and the optional query-only search script. The data is always read as common patterns to deviate from, never as a chooser.
+This entry covers how the skill grounds in a real design system: read live via `mcp-open-design` when that app is installed, used as either reuse-ground or the named default to deviate from. One system is resolved from the subject, never a chooser, and nothing is cached into the skill.
 
-### Critique-against inventory framing
-
-#### Description
-
-Frames the design data sets as common expected patterns to deviate from, never as an auto-recommend chooser.
-
-#### Current Reality
-
-The inventory names the expected look for a given product type or mood so a designer can push against it deliberately. It documents hard rules: the data is never wired into an auto-recommend or generator flow, a catalog recommendation is never presented as the design decision, and the quality floor still applies. The semantic token schema and WCAG pairings are the exception, adopted directly because they are quality rather than taste.
-
-#### Source Files
-
-See [`03--critique-against-data-inventory/critique-against-inventory.md`](03--critique-against-data-inventory/critique-against-inventory.md) for full implementation and validation file listings.
-
----
-
-### Design data sets
+### Open Design grounding
 
 #### Description
 
-Nine MIT-licensed CSV data sets covering styles, palettes, type pairings, product reasoning, landing flows, and quality rules.
+Uses a real Open Design design system, read live via `mcp-open-design`, as either reuse-ground or the named default to deviate from.
 
 #### Current Reality
 
-The skill ships nine CSV data sets under `assets/data/`: styles, colors, typography, products, ui-reasoning, landing, charts, ux-guidelines, and app-interface. The style, color, type, product, and landing files supply expected patterns to deviate from. The ux-guidelines, app-interface, and charts files back the objective quality floor. Counts are measured from the CSVs themselves rather than upstream marketing figures.
+When the Open Design app is installed, `mcp-open-design` reads one matching system live: `DESIGN.md` for direction, `tokens.css` for paste-ready tokens, and `components.html` for reusable markup. The system serves one of two anti-default-safe roles, chosen by the brief. As reuse-ground it is reused before authoring net-new, and as critique-against it is the closest realized example of the generic default that a deliberate move pushes against. Exactly one system is resolved from the subject, never a list surfaced as a chooser, the read is live and never cached into the skill, and `design_principles.md` remains the authority. The grounding is optional, and when no real system fits the free-axis anti-default process governs as before.
 
 #### Source Files
 
-See [`03--critique-against-data-inventory/design-data-sets.md`](03--critique-against-data-inventory/design-data-sets.md) for full implementation and validation file listings.
-
----
-
-### Design data search
-
-#### Description
-
-A zero-dependency BM25 search over the design data sets, query-only with no generator or persistence surface.
-
-#### Current Reality
-
-`scripts/design_search.py` runs a standard-library BM25 query over the data sets, with auto-domain detection across nine domains and optional JSON output. The upstream generator and persistence modes were deliberately not adopted, so the script is query-only and never writes design-system files. It is an optional lookup, never a required step, and `design_principles.md` remains the authority.
-
-#### Source Files
-
-See [`03--critique-against-data-inventory/design-data-search.md`](03--critique-against-data-inventory/design-data-search.md) for full implementation and validation file listings.
+See [`03--design-grounding/open-design-grounding.md`](03--design-grounding/open-design-grounding.md) for full implementation and validation file listings.
 
 ---
 

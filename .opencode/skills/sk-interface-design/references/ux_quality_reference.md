@@ -32,9 +32,7 @@ These are not style choices. They are the rules that, when broken, make an inter
 ### Key Sources
 
 - [design_principles.md](./design_principles.md) decides what the interface is. This reference confirms it does not break.
-- Full, queryable rule sets live in [`../assets/data/`](../assets/data/): `ux-guidelines.csv`, `app-interface.csv`, `charts.csv`.
-- Distilled from the CRITICAL and HIGH severity rows of the adopted data sets.
-- Data provenance: adopted from the MIT-licensed `ui-ux-pro-max` repo. See [`../THIRD-PARTY-NOTICES.md`](../THIRD-PARTY-NOTICES.md).
+- This is the authored quality floor for the skill. The rules below are the distilled accessibility, motion, touch, responsive, forms, and data-visualization facts an interface must clear, kept here as paraphrased non-copyrightable facts rather than as shipped data.
 
 ---
 
@@ -79,7 +77,7 @@ These are not style choices. They are the rules that, when broken, make an inter
 
 ---
 
-## 7. DATA VISUALIZATION (`charts.csv`)
+## 7. DATA VISUALIZATION
 
 - **Match the chart to the data shape** (trend to line, compare to bar, parts-of-whole to stacked or waffle). Do not force a default chart.
 - **Charts meet the a11y grade.** Differentiate series by more than color (line style, pattern, direct labels), and provide a data-table or CSV fallback.
@@ -87,11 +85,11 @@ These are not style choices. They are the rules that, when broken, make an inter
 
 ---
 
-## 8. SCOPE NOTE: `react-performance.csv` (DEFERRED TO `sk-code`)
+## 8. SCOPE NOTE: REACT IMPLEMENTATION PERFORMANCE (DEFERRED TO `sk-code`)
 
-The 002 research marked `react-performance.csv` as ADAPT, to extract only cross-cutting design-quality rows. On inspection, that file is entirely React and Next.js *implementation* performance (async waterfalls, bundle size, re-render control, hydration). Its only design-adjacent concerns, reduced motion, loading and skeleton states, and layout stability, are already covered, and covered better, by the `ux-guidelines.csv` Animation, Accessibility, and Responsive rows distilled above.
+React and Next.js implementation performance (async waterfalls, bundle size, re-render control, hydration) is out of scope for this floor. Its only design-adjacent concerns, reduced motion, loading and skeleton states, and layout stability, are already covered, and covered better, by the Motion, Accessibility, and Responsive rules above.
 
-**Decision:** `react-performance.csv` is NOT adopted into `sk-interface-design`. React implementation performance is `sk-code`'s domain. This records the explicit deferral that requirement R9 allows, so the 002 verdict is honored without pulling stack-implementation rules into a design skill.
+**Decision:** React implementation performance is `sk-code`'s domain and is not pulled into this design floor.
 
 ---
 
@@ -99,5 +97,3 @@ The 002 research marked `react-performance.csv` as ADAPT, to extract only cross-
 
 - [design_principles.md](./design_principles.md) sets the aesthetic direction this reference gates.
 - [design_inventory.md](./design_inventory.md) names the expected default look to deviate from.
-- [`../assets/data/`](../assets/data/) holds the queryable rule sets (`ux-guidelines.csv`, `app-interface.csv`, `charts.csv`).
-- [`../THIRD-PARTY-NOTICES.md`](../THIRD-PARTY-NOTICES.md) records the `ui-ux-pro-max` data provenance.

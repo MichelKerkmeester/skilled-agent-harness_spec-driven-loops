@@ -73,9 +73,9 @@
       "avoiding AI-default looks",
       "brainstorm-critique-build process",
       "interface writing",
-      "design data and BM25 search",
+      "live open design grounding via mcp-open-design",
       "ux quality-floor reference",
-      "critique-against pattern inventory"
+      "reuse-ground or critique-against design system"
     ],
     "intent_signals": [
       "interface design",
@@ -94,10 +94,8 @@
       ".opencode/skills/sk-interface-design/references/ux_quality_reference.md",
       ".opencode/skills/sk-interface-design/references/design_inventory.md",
       ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
-      ".opencode/skills/sk-interface-design/scripts/design_search.py",
       ".opencode/skills/sk-interface-design/feature_catalog/feature_catalog.md",
       ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-interface-design/THIRD-PARTY-NOTICES.md",
       ".opencode/skills/sk-interface-design/LICENSE.txt"
     ],
     "entities": [
@@ -120,7 +118,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-interface-design vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design_principles.md. A mixed-license merge from the MIT ui-ux-pro-max repo added a quality-floor reference, a critique-against pattern inventory, nine design data CSVs under assets/data/, and an optional zero-dependency BM25 search (scripts/design_search.py); the design-system generator and persistence were deliberately excluded to protect the anti-default philosophy. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
+    "causal_summary": "sk-interface-design vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design_principles.md. The skill is Apache-2.0 only: the design principles are unchanged vendored Apache content and LICENSE.txt is its single license. The aesthetic inventory is sourced live from a real Open Design design system through the mcp-open-design skill, read only when that app is installed, and used as either reuse-ground (reuse its tokens and components before generating) or critique-against (name the closest realized default, then deviate). Exactly one system is resolved from the subject, never a chooser, and nothing is cached into the skill, which keeps it free of any third party license burden. The objective quality floor stays authored in references/ux_quality_reference.md as paraphrased non-copyrightable facts. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -128,6 +126,6 @@
       "LICENSE.txt"
     ],
     "created_at": "2026-06-13T00:00:00Z",
-    "last_updated_at": "2026-06-13T00:00:00Z"
+    "last_updated_at": "2026-06-14T00:00:00Z"
   }
 }

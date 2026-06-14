@@ -1,19 +1,19 @@
 ---
-title: "Design Inventory (critique-against catalog)"
-description: "An inventory of the common, expected answers in UI design (styles, palettes, font pairings, per-product recommendations) used to name the default for a brief so you can deviate from it deliberately."
+title: "Design Inventory (reuse-ground or critique-against)"
+description: "How to use a real Open Design design system, read live via mcp-open-design when that app is installed, as either reuse-ground or the named default to critique against. Resolve one system from the subject, never a pick-a-vibe menu."
 trigger_phrases:
-  - "design inventory critique against catalog"
-  - "expected default ui look"
-  - "ui style palette typography catalog"
-  - "per product design recommendation"
+  - "design inventory reuse ground critique against"
+  - "open design system ground or deviate"
+  - "name the default to deviate from"
+  - "real design system reuse before generate"
   - "deviate from templated default"
 importance_tier: normal
 contextType: implementation
 ---
 
-# Design Inventory (critique-against catalog)
+# Design Inventory (reuse-ground or critique-against)
 
-An inventory of the common, expected answers in UI design: the styles, palettes, font pairings, and per-product recommendations that most interfaces converge on. Its job here is the opposite of a generator.
+How to put a real, fully-realized design system to work without letting it turn the skill into a chooser. When the Open Design app is installed, `mcp-open-design` can read one matching system live. That system is either the ground to reuse or the named default to deviate from. It is never a menu of vibes to pick.
 
 ---
 
@@ -21,62 +21,61 @@ An inventory of the common, expected answers in UI design: the styles, palettes,
 
 ### Core Principle
 
-`design_principles.md` says a design that reads as a templated default has failed. This catalog is how you find out what the default *is* for a given brief, so you can deviate from it deliberately. Read it as "what everyone else does," not "what to do."
+`design_principles.md` says a design that reads as a templated default has failed. A real design system helps two ways without breaking that rule. It can be the concrete ground a brief should reuse before generating anything net-new, and it can be the closest realized example of the generic default so a deliberate move off it reads as a choice. Resolve exactly one system from the subject and brief, the same way `design_principles.md` Step 0 grounds the subject. Surfacing a list of systems to choose from is itself the templated-default behavior this skill resists.
 
 ### When to Use
 
-- When you need to name the expected look for a product type or mood in one line.
-- When critiquing a design plan against AI-default looks before writing code.
-- When you want to make a justified move away from the convention rather than ship it.
+- When the brief names or strongly implies a brand or aesthetic that a real design system already realizes.
+- When you need a concrete system to ground in and reuse before authoring net-new.
+- When you want to name the expected look for a brief in one line so you can deviate from it deliberately.
 
-### Key Sources
+### Source Of The Systems
 
-- Data sets live in [`../assets/data/`](../assets/data/), queryable via [`../scripts/design_search.py`](../scripts/design_search.py).
-- Adopted from the MIT-licensed `ui-ux-pro-max` repo. See [`../THIRD-PARTY-NOTICES.md`](../THIRD-PARTY-NOTICES.md).
-- All counts here are measured from the CSVs, not upstream marketing figures.
-- When the data says luxury e-commerce points to glassmorphism plus premium-minimal plus Playfair and Inter, that is the cliche to subvert, not the answer to ship. Use it to name the expected look in one line, then make a justified move away from it.
+- An Open Design design system, read live via `mcp-open-design` when that app is installed (`od mcp` get_file/search_files, or `od tools design-systems read`). Read `DESIGN.md` for direction, `tokens.css` for the paste-ready `:root` tokens, and `components.html` for reusable component markup.
+- The read is live and never cached. Open Design content is never copied into this skill, which keeps the skill Apache-2.0 only and free of any new third party notice burden.
+- `mcp-open-design` is optional and never required. When no real system fits, the free-axis anti-default process in `design_principles.md` governs exactly as before.
 
 ---
 
-## 2. HOW TO USE IT IN THE PROCESS
+## 2. THE TWO ANTI-DEFAULT-SAFE USES
 
-This catalog plugs into **STEP 2 (critique the plan against AI-default looks)** of the `design_principles.md` process:
+A resolved system is put to work in one of two ways, chosen by the brief.
+
+### Reuse-ground (reuse before generate)
+
+When a real brand or aesthetic fits the subject, treat its system as the ground. Reuse its `tokens.css` tokens and `components.html` components before authoring anything net-new, the same reuse-before-generate move the parity loop defines. Reuse is anti-default by construction, so grounding in a real system strengthens the mandate rather than diluting it. The one justified aesthetic risk is still spent, now within the grounded system.
+
+### Critique-against (name the default, then move off it)
+
+When the goal is a distinctive answer rather than reuse, resolve the one system that is the closest realized example of the generic default for the brief, then write one line naming it. That named look is now a constraint to push against. Take the one justified aesthetic risk away from it, and keep the quality floor (`ux_quality_reference.md`).
+
+---
+
+## 3. HOW TO USE IT IN THE PROCESS
+
+This plugs into **STEP 2 (critique the plan against AI-default looks)** of the `design_principles.md` process:
 
 1. Name the subject and brief (STEP 0-1).
-2. Query the catalog for the expected pattern for that product type or mood.
-3. Write one line: "the expected look here is X." That X is now a constraint to push against.
-4. Take your one justified aesthetic risk *away* from X. Keep the quality floor (`ux_quality_reference.md`).
+2. Resolve one system from the subject and brief. If the brief fits a real brand, that brand is the reuse-ground. Otherwise name the single closest realized default.
+3. For reuse-ground, reuse its tokens and components before generating. For critique-against, write one line: "the expected look here is X." That X is now a constraint to push against.
+4. Take your one justified aesthetic risk grounded in the system or away from the named default. Keep the quality floor.
 
 If a brief explicitly pins the direction, the brief wins (NEVER override a pinned brief), even if it asks for the expected look.
 
 ---
 
-## 3. THE CATALOGS AND HOW EACH IS CRITIQUE-AGAINST FUEL
+## 4. HARD RULES FOR THIS INVENTORY
 
-| Catalog | File | Rows | Read it as |
-|---------|------|------|------------|
-| UI styles | `styles.csv` | 84 | The named looks (Minimalism, Glassmorphism, Brutalism, and the rest) with their effects, best-for, and contraindications. The "Do Not Use For" and contraindication fields are often more useful than "Best For": they tell you where a popular style is wrong. |
-| Color palettes | `colors.csv` | 160 | Full shadcn-style semantic token sets (primary, accent, muted, destructive, ring, plus foregrounds) with WCAG-pair notes. Use the **token schema and contrast discipline** directly (that is quality, not taste). Treat the specific palettes as common starting points to shift off. |
-| Type pairings | `typography.csv` | 73 | Conventional heading and body pairings by mood (for example, Playfair plus Inter for "elegant or luxury"). These are the expected pairings. Knowing them is how you avoid reaching for the same one. |
-| Product reasoning | `ui-reasoning.csv` | 161 | The per-product-type "recommended pattern, style priority, color and type mood, anti-patterns." This is the most dangerous file to take literally: its `Recommended_Pattern` and `Decision_Rules` are exactly the templated defaults. Mine its `Anti_Patterns` column (what to avoid) and treat `Recommended_Pattern` as the cliche to subvert. |
-| Product patterns | `products.csv` | 161 | Per-product-type style, landing, dashboard, and palette-focus recommendations. Same rule: the expected answer, not the answer. |
-| Landing patterns | `landing.csv` | 34 | Conventional section orders and CTA placements. Useful for knowing the default flow so a deliberate reorder reads as a choice, not an accident. |
-
----
-
-## 4. HARD RULES FOR THIS CATALOG
-
-- **NEVER wire this data into an auto-recommend or generator flow.** The upstream repo's design-system generator and its `--design-system` and `--persist` modes were deliberately not adopted, for exactly this reason. The search script is query-only.
-- **NEVER present a catalog recommendation as the design decision.** It is the baseline to deviate from. The decision comes from the subject and the brief, per `design_principles.md`.
+- **NEVER surface a list of systems as a chooser.** Resolve exactly one system from the subject and brief. A pick-a-vibe menu is precisely the templated default the skill resists, and `claude_design_parity.md` Section 8 already forbids it.
+- **NEVER wire a system into an auto-recommend or generator flow.** A real system is input to judgment, read only. Generation and handoff belong to `mcp-open-design`, `mcp-magicpath`, and `sk-code`.
+- **NEVER present a reused or named system as the design decision.** It is the ground to reuse or the baseline to deviate from. The decision comes from the subject and the brief, per `design_principles.md`.
+- **NEVER cache or copy a system into the skill.** Read it live via `mcp-open-design`. Copying its `DESIGN.md`, `tokens.css`, or `components.html` into the repo would attach that source's license and require a new third party notice.
 - **The quality floor still applies.** A deviation that breaks contrast, touch targets, or motion sensitivity is not a bold choice, it is a defect (`ux_quality_reference.md`).
-- **Use the token schema and WCAG pairings from `colors.csv` directly.** Semantic tokens and contrast are quality, not aesthetics, so those are safe to adopt as-is.
 
 ---
 
 ## 5. RELATED RESOURCES
 
-- [design_principles.md](./design_principles.md) sets the aesthetic direction this catalog helps you deviate from.
-- [ux_quality_reference.md](./ux_quality_reference.md) holds the quality floor every deviation must still clear.
-- [`../assets/data/`](../assets/data/) holds the queryable CSV catalogs.
-- [`../scripts/design_search.py`](../scripts/design_search.py) is the query-only search script over the catalogs.
-- [`../THIRD-PARTY-NOTICES.md`](../THIRD-PARTY-NOTICES.md) records the `ui-ux-pro-max` data provenance.
+- [design_principles.md](./design_principles.md) sets the aesthetic direction this inventory grounds in or helps you deviate from, and stays the authority.
+- [ux_quality_reference.md](./ux_quality_reference.md) holds the quality floor every reuse and every deviation must still clear.
+- [claude_design_parity.md](./claude_design_parity.md) is the shared loop where reuse-before-generate from a real system happens, and it owns the no-chooser guardrail.

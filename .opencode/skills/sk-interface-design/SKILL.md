@@ -2,11 +2,11 @@
 name: sk-interface-design
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0
+version: 1.1.0
 metadata:
   author: Anthropic
-  source: https://github.com/anthropics/skills/tree/main/skills/frontend-design  data_source: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill (MIT, design data and search)
-license: Apache-2.0 (principles) plus MIT (data and search); see LICENSE.txt, LICENSE-ui-ux-pro-max.txt, THIRD-PARTY-NOTICES.md
+  source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
+license: Apache-2.0; see LICENSE.txt
 ---
 
 <!-- keywords: interface-design frontend-design visual-design typography palette ui-aesthetics -->
@@ -70,7 +70,7 @@ DESIGN TASK
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
 | CONDITIONAL | Producing or iterating on real UI (canvas, repo recreation, code-bound) | `references/claude_design_parity.md` (ground in a system, reuse before generating, fidelity check, handoff) |
-| ON_DEMAND | Need palettes, font pairings, style or product patterns to critique against | `assets/data/*.csv` (queryable via `scripts/design_search.py`) |
+| ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | An Open Design system via `mcp-open-design` (`od mcp` get_file/search_files, or `od tools design-systems read`), when that app is installed |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
 ### Smart Router Pseudocode
@@ -149,13 +149,13 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 
 - [`references/design_principles.md`](references/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
 - [`references/ux_quality_reference.md`](references/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
-- [`references/design_inventory.md`](references/design_inventory.md) - The aesthetic data (styles, palettes, type pairings, product reasoning) framed as common patterns to critique against, with the search script. Never a chooser.
+- [`references/design_inventory.md`](references/design_inventory.md) - How to use a real design system (via `mcp-open-design`, when installed) as either reuse-ground or the named default to critique against. Never a chooser.
 - [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-magicpath`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
-- [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) / [`LICENSE.txt`](LICENSE.txt) / [`LICENSE-ui-ux-pro-max.txt`](LICENSE-ui-ux-pro-max.txt) - Apache-2.0 (principles) plus MIT (data and search) license map and attribution.
+- [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
 ### Feature Catalog
 
-The skill's features are catalogued in `feature_catalog/feature_catalog.md` (root index) plus per-feature files under `feature_catalog/<NN>--<topic>/`: the design process, the quality floor, the critique-against data inventory, interface writing, and the integration boundary.
+The skill's features are catalogued in `feature_catalog/feature_catalog.md` (root index) plus per-feature files under `feature_catalog/<NN>--<topic>/`: the design process, the quality floor, design grounding and critique via Open Design, interface writing, and the integration boundary.
 
 ### Manual Testing Playbook
 
@@ -166,7 +166,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - Load `design_principles.md` on every design task. It is the authority for palette, type, structure, motion, and copy.
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
 - `references/ux_quality_reference.md` is the objective quality-floor gate; apply it after the direction is set.
-- `assets/data/*.csv` + `scripts/design_search.py` are an OPTIONAL lookup, never a required step. Treat the data as common/expected patterns to critique against, not as authoritative "use this" answers. Run with `python3 scripts/design_search.py "<query>" [--domain <domain>]`.
+- When the Open Design app is installed, `mcp-open-design` is an OPTIONAL source of real design systems to ground in or to name the default to deviate from, never a required step and never a style chooser. `design_principles.md` stays the authority.
 
 ---
 
@@ -188,6 +188,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - **`sk-code`** owns implementation. This skill decides the look, and sk-code builds it to the detected web surface's standards and verifies it.
 - **`sk-code-review`** can audit the built UI against the standards sk-code enforces.
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
+- **`mcp-open-design`** is the optional transport to a real Open Design design system when that app is installed, for grounding and reuse through the shared parity loop. This skill owns the judgment, that skill owns the transport.
 
 ### Knowledge Base Dependencies
 

@@ -16,7 +16,7 @@ trigger_phrases:
 
 The objective floor of accessibility, motion, touch, responsive, forms, and chart rules that every interface must clear.
 
-This is the pass or fail gate applied after the aesthetic direction is set. Where the design principles decide what the interface is, the quality floor confirms it does not break for real users, and when a rule and an aesthetic choice collide the rule wins. It is distilled from the highest-severity rows of the adopted data sets.
+This is the pass or fail gate applied after the aesthetic direction is set. Where the design principles decide what the interface is, the quality floor confirms it does not break for real users, and when a rule and an aesthetic choice collide the rule wins. It is the authored floor, a distilled set of paraphrased accessibility, motion, touch, responsive, forms, and data-visualization facts kept in `ux_quality_reference.md`.
 
 ## 2. HOW IT WORKS
 
@@ -24,9 +24,9 @@ This is the pass or fail gate applied after the aesthetic direction is set. Wher
 
 The accessibility floor requires WCAG AA contrast verified rather than eyeballed, never encoding meaning in color alone, alt text on every image, accessible names on interactive elements including icon-only buttons, full keyboard operability with a visible focus ring, and real form labels with announced, specific errors. The motion floor honors the reduced-motion setting, avoids scattered animation in favor of one orchestrated moment, and makes loading states explicit. Touch targets are at least 44 by 44 pixels with adequate spacing and do not depend on hover for primary actions.
 
-### Responsive, forms, and charts
+### Responsive, forms, and data visualization
 
-The responsive floor sets the viewport meta tag, designs from mobile up, avoids unintended horizontal scroll, and keeps a readable body font floor around 16 pixels. Forms keep labels visible and persistent with immediate, specific feedback placed next to the field. Charts match the chart type to the data shape, differentiate series by more than color, provide a data-table or CSV fallback, and respect data-volume thresholds. React implementation performance is explicitly deferred to `sk-code` rather than pulled into this floor.
+The responsive floor sets the viewport meta tag, designs from mobile up, avoids unintended horizontal scroll, and keeps a readable body font floor around 16 pixels. Forms keep labels visible and persistent with immediate, specific feedback placed next to the field. Data visualization matches the chart type to the data shape, differentiates series by more than color, provides a data-table fallback, and respects data-volume thresholds. React implementation performance is explicitly deferred to `sk-code` rather than pulled into this floor.
 
 ---
 
@@ -36,10 +36,7 @@ The responsive floor sets the viewport meta tag, designs from mobile up, avoids 
 
 | File | Layer | Role |
 |---|---|---|
-| `references/ux_quality_reference.md` | Shared | Defines the full quality floor across accessibility, motion, touch, responsive, forms, and charts, plus the React-performance deferral. |
-| `assets/data/ux-guidelines.csv` | Shared | Backs the accessibility, motion, and responsive rows the floor is distilled from. |
-| `assets/data/app-interface.csv` | Shared | Backs the application-interface usability rows behind the floor. |
-| `assets/data/charts.csv` | Shared | Backs the data-visualization rules including chart-type fit, a11y grade, and fallbacks. |
+| `references/ux_quality_reference.md` | Shared | Defines the full authored quality floor across accessibility, motion, touch, responsive, forms, and data visualization, plus the React-performance deferral. |
 
 ### Validation And Tests
 
@@ -57,4 +54,4 @@ The responsive floor sets the viewport meta tag, designs from mobile up, avoids 
 
 Related references:
 - [../01--design-process/build-and-self-critique.md](../01--design-process/build-and-self-critique.md) - Build and self-critique
-- [../03--critique-against-data-inventory/critique-against-inventory.md](../03--critique-against-data-inventory/critique-against-inventory.md) - Critique-against inventory framing
+- [../03--design-grounding/open-design-grounding.md](../03--design-grounding/open-design-grounding.md) - Open Design grounding

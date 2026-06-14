@@ -12,9 +12,9 @@ contextType: implementation
 
 # Claude Design Parity Protocol
 
-The connective protocol two skills share so their output approaches Claude Design's quality without cloning a hosted product. `sk-interface-design` owns the judgment; `mcp-magicpath` owns the canvas and CLI. This reference is the seam between them. Read it when producing or iterating on real UI, in addition to `design_principles.md` (the authority on the look) and `ux_quality_reference.md` (the objective floor).
+The connective protocol these skills share so their output approaches Claude Design's quality without cloning a hosted product. `sk-interface-design` owns the judgment, `mcp-magicpath` owns the canvas and CLI, and `mcp-open-design` owns the Open Design terminal transport. This reference is the seam between them. Read it when producing or iterating on real UI, in addition to `design_principles.md` (the authority on the look) and `ux_quality_reference.md` (the objective floor).
 
-Both skills consume this file. `mcp-magicpath` references it cross-skill because it already depends on `sk-interface-design`.
+These skills consume this file. `mcp-magicpath` and `mcp-open-design` reference it cross-skill because they integrate with `sk-interface-design`.
 
 ---
 
@@ -45,7 +45,7 @@ Claude Design's advantage is that context, iteration, and handoff are visible, c
 Before choosing anything, capture what grounds the work. This is intake, never a chooser. Capture only what is present.
 
 - Subject, audience, and the page's single job (from `design_principles.md` Step 0).
-- An existing design system if present: brand colors, typography, component patterns, semantic tokens. For `mcp-magicpath`, read these via `get-theme` and from the repo during import.
+- An existing design system if present: brand colors, typography, component patterns, semantic tokens. For `mcp-magicpath`, read these via `get-theme` and from the repo during import. For an installed Open Design app, read a matching system via `mcp-open-design` (`od mcp` get_file/search_files, or `od tools design-systems read`): its DESIGN.md for direction, tokens.css for the paste-ready tokens, components.html for reusable markup.
 - Reference material if supplied: screenshots, competitor examples, wireframes, a codebase. Treat references as inherit-from or critique-against inputs, never copy.
 - Target viewport and output target.
 
@@ -57,7 +57,7 @@ If a persisted project design brief exists, read it at the start to ground work 
 
 The strongest move toward parity, and anti-default by construction: when a design system is present, build from it rather than inventing.
 
-- **Reuse before generate.** Before authoring net-new markup, search the active system for a component or token that fits. For `mcp-magicpath`, `search`/`inspect` the theme's registered components first; author net-new only when nothing fits.
+- **Reuse before generate.** Before authoring net-new markup, search the active system for a component or token that fits. For `mcp-magicpath`, `search`/`inspect` the theme's registered components first; author net-new only when nothing fits. When an Open Design system is the ground, reuse its `tokens.css` tokens and `components.html` components (read live via `mcp-open-design`, never copied into the repo) before authoring net-new.
 - **Adherence check.** When a system exists, treat these as violations to flag and fix: raw color values instead of semantic tokens, arbitrary one-off spacing, inline style overrides, and bypassing a system component with a hand-rolled one. For `mcp-magicpath` this is a mechanical scan of generated output; for `sk-interface-design` it is a critique question ("am I reinventing something the system already has?").
 - **Inherit-if-present.** When a token system exists, ground in it and spend the one justified aesthetic risk within it.
 
@@ -118,4 +118,5 @@ For open-ended visual work, it can help to sketch two or three brief-specific di
 - [ux_quality_reference.md](./ux_quality_reference.md) is the objective floor the fidelity check gates on.
 - [design_inventory.md](./design_inventory.md) is the critique-against catalog (never a generator).
 - `.opencode/skills/mcp-magicpath/SKILL.md` is the canvas/CLI consumer of this protocol.
+- `.opencode/skills/mcp-open-design/SKILL.md` is the Open Design terminal consumer of this protocol.
 - Research basis: packets `005-claude-design-parity-research` (hardened) and `006-competitor-design-tools-research`.

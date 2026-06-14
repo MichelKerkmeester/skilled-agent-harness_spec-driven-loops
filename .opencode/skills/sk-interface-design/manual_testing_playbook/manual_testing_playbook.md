@@ -18,7 +18,7 @@ Canonical package artifacts:
 - `01--direction-freedom-and-deviation/`
 - `02--brief-pinning-and-precedence/`
 - `03--quality-floor-gate/`
-- `04--data-as-critique-against/`
+- `04--system-as-critique-against/`
 - `05--abstention-and-routing/`
 - `06--licensing-and-provenance/`
 - `07--claude-design-parity/`
@@ -29,7 +29,7 @@ Canonical package artifacts:
 
 This playbook provides 9 deterministic scenarios across 7 categories validating the `sk-interface-design` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the data-as-critique-against lookup through `scripts/design_search.py` including a negative control that no generator or persistence mode exists, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity for the vendored Apache-2.0 principles plus the MIT data and search, and the Claude Design parity loop covering reuse-before-generate when a design system is present and the `previewImageUrl` fidelity check gated on the quality floor and the anti-default critique, each with a negative control. `sk-interface-design` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and the data sets on disk.
+Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real Open Design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, and the Claude Design parity loop covering reuse-before-generate when a design system is present and the `previewImageUrl` fidelity check gated on the quality floor and the anti-default critique, each with a negative control. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and the `feature_catalog/` entries on disk.
 
 ### Realistic Test Model
 
@@ -52,10 +52,10 @@ Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critiqu
 
 1. Working directory is the repository root.
 2. `.opencode/skills/sk-interface-design/SKILL.md` and all files under `.opencode/skills/sk-interface-design/references/` resolve on disk.
-3. `.opencode/skills/sk-interface-design/scripts/design_search.py` and the data sets under `.opencode/skills/sk-interface-design/assets/data/` resolve on disk.
+3. `.opencode/skills/sk-interface-design/LICENSE.txt` resolves on disk and is the skill's single Apache-2.0 license.
 4. The operator can run `python3`, `rg`, and `git diff` from the repository root.
-5. Routing scenarios assume `sk-code` and `sk-doc` are installed under `.opencode/skills/`; otherwise record SKIP with the missing skill path.
-6. No scenario writes design-system files, persists generated data, or edits the skill's reference or data files. Any such mutation is contradictory evidence.
+5. Routing scenarios assume `sk-code` and `sk-doc` are installed under `.opencode/skills/`; the Open Design grounding scenario assumes `mcp-open-design` and the Open Design app, otherwise record SKIP with the missing skill or app path.
+6. No scenario writes design-system files, copies any Open Design content into the skill, or edits the skill's reference files. Any such mutation is contradictory evidence.
 
 ---
 
@@ -75,11 +75,10 @@ Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critiqu
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - Bash commands shown as `bash: <command>`.
-- Python script runs shown as `bash: python3 scripts/design_search.py "<query>" [args]`.
 - Skill-routing decisions shown as `route: -> <skill-name>`.
 - Agent prompts shown as `agent: <instruction>`.
 - `->` separates sequential steps inside one deterministic command sequence.
-- All script runs are query-only. Any generated design-system file, persisted output, or edited reference is contradictory evidence.
+- All reads of an Open Design system are live and read-only. Any generated design-system file, copied Open Design content, or edited reference is contradictory evidence.
 
 ---
 
@@ -144,8 +143,8 @@ Before declaring this playbook release-ready, confirm:
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference section 5.
 6. Every SCENARIO CONTRACT prompt equals its table prompt.
 7. Every pass/fail rule cites a real sk-interface-design source file.
-8. The data-as-critique-against scenario records both the named default pattern and the no-generator negative control.
-9. The licensing scenario records the actual provenance state honestly, including any missing notices file.
+8. The system-as-critique-against scenario records both the named default look and the no-chooser, no-cache negative control.
+9. The licensing scenario records the actual provenance state honestly, confirming the skill is Apache-2.0 only with no vendored MIT material remaining.
 10. The parity scenarios record their negative controls: no style-preset menu for reuse-before-generate, and no session-gated browser screenshot for the fidelity check.
 11. The final report separates playbook defects from sk-interface-design product defects.
 
@@ -254,25 +253,25 @@ Desired user-visible outcome: A pass/fail gate report keyed to the `ux_quality_r
 
 ---
 
-## 10. DATA AS CRITIQUE-AGAINST (ID-004)
+## 10. SYSTEM AS CRITIQUE-AGAINST (ID-004)
 
 This category covers 1 scenario while the linked feature file remains the canonical execution contract.
 
-### ID-004 | Query the data to find the default, then deviate
+### ID-004 | Read a design system as the default, then deviate
 
 #### Description
 
-Querying `scripts/design_search.py` returns the common expected pattern for a product type, which is then deviated from rather than copied, with a negative control proving no generator or persistence surface exists.
+Reading a matching Open Design system live via `mcp-open-design` returns one realized look for a subject, which is then deviated from rather than copied, with a negative control proving it is never surfaced as a chooser menu and never cached into the skill.
 
 #### Scenario Contract
 
 Prompt: `Look up the typical look for a luxury e-commerce site so we know the cliche, then propose something that deliberately moves off it.`
 
-Desired user-visible outcome: A named expected-default pattern from the data, a justified deviation away from it, and confirmation that the search is query-only with no `--design-system` and no `--persist` mode.
+Desired user-visible outcome: A named expected-default look from a real system, a justified deviation away from it, and confirmation that the system is read live, resolved as one system rather than a chooser, and never copied into the skill.
 
 #### Test Execution
 
-> **Feature File:** [ID-004](04--data-as-critique-against/query-default-then-deviate.md)
+> **Feature File:** [ID-004](04--system-as-critique-against/query-default-then-deviate.md)
 
 ---
 
@@ -376,11 +375,11 @@ Desired user-visible outcome: A fidelity verdict over the real render that names
 
 ## 14. AUTOMATED TEST CROSS-REFERENCE
 
-The current repository has no dedicated automated test module for `sk-interface-design/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The script-backed scenarios exercise the on-disk search surface directly.
+The current repository has no dedicated automated test module for `sk-interface-design/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The scenarios exercise the on-disk reference surface and the live Open Design transport directly.
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `scripts/design_search.py` | Query-only BM25 lookup over the design data sets; argparse rejects generator and persistence flags | ID-004 |
+| `references/design_inventory.md` | The reuse-ground and critique-against framing over a live Open Design system; the no-chooser and no-cache hard rules | ID-004 |
 | `references/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
 | `references/claude_design_parity.md` | The shared parity loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
 | `../mcp-magicpath/scripts/design_fidelity.py` | Query-only helper that fetches the backend-rendered preview for the fidelity check | ID-009 |
@@ -396,7 +395,7 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-001 | Free-axis brainstorm critique and deliberate deviation | DIRECTION FREEDOM AND DEVIATION | [ID-001](01--direction-freedom-and-deviation/free-axis-brainstorm-and-deviation.md) |
 | ID-002 | Pinned brief is followed verbatim | BRIEF PINNING AND PRECEDENCE | [ID-002](02--brief-pinning-and-precedence/pinned-brief-followed-verbatim.md) |
 | ID-003 | Quality-floor gate on a built UI | QUALITY FLOOR GATE | [ID-003](03--quality-floor-gate/quality-floor-gate-on-built-ui.md) |
-| ID-004 | Query the data to find the default, then deviate | DATA AS CRITIQUE-AGAINST | [ID-004](04--data-as-critique-against/query-default-then-deviate.md) |
+| ID-004 | Read a design system as the default, then deviate | SYSTEM AS CRITIQUE-AGAINST | [ID-004](04--system-as-critique-against/query-default-then-deviate.md) |
 | ID-005 | Pure-logic task routes away to sk-code | ABSTENTION AND ROUTING | [ID-005](05--abstention-and-routing/pure-logic-routes-to-sk-code.md) |
 | ID-006 | Documentation task routes away to sk-doc | ABSTENTION AND ROUTING | [ID-006](05--abstention-and-routing/docs-task-routes-to-sk-doc.md) |
 | ID-007 | Licensing and provenance integrity | LICENSING AND PROVENANCE | [ID-007](06--licensing-and-provenance/licensing-and-provenance-integrity.md) |
