@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Superseded (by spec 150) |
 | **Created** | 2026-06-13 |
 | **Branch** | `028-mcp-to-cli-tool-transition` |
 <!-- /ANCHOR:metadata -->

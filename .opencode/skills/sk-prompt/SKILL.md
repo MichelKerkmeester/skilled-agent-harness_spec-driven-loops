@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering specialist: structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 2.2.0.0
+version: 2.3.0.0
 ---
 
 <!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, DEPTH, RICCE, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
@@ -38,7 +38,7 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 Transform vague requests into structured prompts using RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, or CRAFT frameworks with CLEAR scoring (40+/50 threshold).
 
 #### Design-Generation Prompt
-Construct a grounded, anti-default generation brief for the design tools the framework drives (`mcp-magicpath` canvas authoring, `mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design_generation_patterns.md](./references/design_generation_patterns.md). This skill owns the prompt only, never the design judgment (`sk-interface-design`) or the run transport.
+Construct a grounded, anti-default generation brief for the design tool the framework drives (`mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design_generation_patterns.md](./references/design_generation_patterns.md). This skill owns the prompt only, never the design judgment (`sk-interface-design`) or the run transport.
 
 ### When NOT to Use
 
@@ -83,7 +83,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 ```text
 references/depth_framework.md            - DEPTH methodology, RICCE integration
 references/patterns_evaluation.md        - 7 frameworks, CLEAR scoring
-references/design_generation_patterns.md - Design-generation briefs (magicpath/open-design), seed-of-thought, discovery-form pre-answer
+references/design_generation_patterns.md - Design-generation briefs (open-design start_run), seed-of-thought, discovery-form pre-answer
 assets/format_guide_markdown.md          - Markdown format deep-dive
 assets/format_guide_json.md              - JSON format deep-dive
 assets/format_guide_yaml.md              - YAML format deep-dive
@@ -110,7 +110,7 @@ DEFAULT_RESOURCE = "references/depth_framework.md"
 INTENT_MODEL = {
     "TEXT_ENHANCE": {"keywords": [("improve", 4), ("enhance", 4), ("prompt", 3), ("text", 3), ("refine", 4)]},
     "FRAMEWORK": {"keywords": [("framework", 4), ("rcaf", 5), ("costar", 5), ("tidd-ec", 5), ("scoring", 3)]},
-    "DESIGN_GEN": {"keywords": [("magicpath", 5), ("open design", 5), ("start_run", 5), ("design generation", 5), ("generate ui", 4), ("canvas", 3), ("design brief", 4), ("variations", 3)]},
+    "DESIGN_GEN": {"keywords": [("open design", 5), ("start_run", 5), ("design generation", 5), ("generate ui", 4), ("canvas", 3), ("design brief", 4), ("variations", 3)]},
 }
 
 RESOURCE_MAP = {
@@ -339,7 +339,7 @@ See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodol
 
 - [depth_framework.md](./references/depth_framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
 - [patterns_evaluation.md](./references/patterns_evaluation.md) - 7 framework definitions, CLEAR scoring
-- [design_generation_patterns.md](./references/design_generation_patterns.md) - Design-generation prompt patterns for magicpath/open-design: grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer, sk-code handoff
+- [design_generation_patterns.md](./references/design_generation_patterns.md) - Design-generation prompt patterns for open-design: grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer, sk-code handoff
 
 ### Asset Files
 

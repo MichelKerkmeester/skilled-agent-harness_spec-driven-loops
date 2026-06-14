@@ -212,7 +212,7 @@ A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the mode table, the agent contract and the full rule set |
 | [`references/patterns_evaluation.md`](./references/patterns_evaluation.md) | The seven framework definitions, the selection algorithm and the CLEAR rubric |
 | [`references/depth_framework.md`](./references/depth_framework.md) | The DEPTH five-phase methodology, energy levels, round configuration and RICCE integration |
-| [`references/design_generation_patterns.md`](./references/design_generation_patterns.md) | Design-generation prompt patterns for magicpath and open-design: the grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer and the sk-code handoff |
+| [`references/design_generation_patterns.md`](./references/design_generation_patterns.md) | Design-generation prompt patterns for open-design: the grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer and the sk-code handoff |
 | [`assets/framework-registry.json`](./assets/framework-registry.json) | Machine-readable scaffold registry with code-oriented slot templates for a subset of five frameworks |
 | [`assets/format_guide_markdown.md`](./assets/format_guide_markdown.md) | Markdown delivery format deep-dive |
 | [`assets/format_guide_json.md`](./assets/format_guide_json.md) | JSON delivery format deep-dive |

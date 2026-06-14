@@ -26,7 +26,7 @@ The loop keeps generated component source, the wrapper or adaptation files, and 
 
 ### Guarded direction gate and guardrails
 
-For open-ended visual work, the loop can sketch two or three brief-specific directions, critique each against the AI-default looks, and recommend one before building, but only when each direction is grounded in the subject. If the directions could be reused across briefs it has become a preset and must not ship. The protocol holds a hard line on what it never adds. There are no style presets, pick-a-vibe menus, or named aesthetic dials. The design inventory is never turned into a generator. There is no multi-format export, hosted canvas, or live comment thread, and no writing themes back to MagicPath. There is no full-stack, backend, Git ownership, or deploy, and no heavyweight visual-regression engine, since judgment over a render is the gate.
+For open-ended visual work, the loop can sketch two or three brief-specific directions, critique each against the AI-default looks, and recommend one before building, but only when each direction is grounded in the subject. If the directions could be reused across briefs it has become a preset and must not ship. The protocol holds a hard line on what it never adds. There are no style presets, pick-a-vibe menus, or named aesthetic dials. The design inventory is never turned into a generator. There is no multi-format export or live comment thread, and no unsanctioned write-back to the Open Design app beyond its gated verbs. There is no full-stack, backend, Git ownership, or deploy, and no heavyweight visual-regression engine, since judgment over a render is the gate.
 
 ---
 

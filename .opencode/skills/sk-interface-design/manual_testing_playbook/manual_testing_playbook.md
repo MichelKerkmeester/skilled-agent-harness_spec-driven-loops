@@ -29,7 +29,7 @@ Canonical package artifacts:
 
 This playbook provides 9 deterministic scenarios across 7 categories validating the `sk-interface-design` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real Open Design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, and the Claude Design parity loop covering reuse-before-generate when a design system is present and the `previewImageUrl` fidelity check gated on the quality floor and the anti-default critique, each with a negative control. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and the `feature_catalog/` entries on disk.
+Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real Open Design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, and the Claude Design parity loop covering reuse-before-generate when a design system is present and the `previewUrl` fidelity check gated on the quality floor and the anti-default critique, each with a negative control. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and the `feature_catalog/` entries on disk.
 
 ### Realistic Test Model
 
@@ -145,7 +145,7 @@ Before declaring this playbook release-ready, confirm:
 7. Every pass/fail rule cites a real sk-interface-design source file.
 8. The system-as-critique-against scenario records both the named default look and the no-chooser, no-cache negative control.
 9. The licensing scenario records the actual provenance state honestly, confirming the skill is Apache-2.0 only with no vendored MIT material remaining.
-10. The parity scenarios record their negative controls: no style-preset menu for reuse-before-generate, and no session-gated browser screenshot for the fidelity check.
+10. The parity scenarios record their negative controls: no style-preset menu for reuse-before-generate, and no finished-design claim from a run left awaiting input or an artifact-only file-add for the fidelity check.
 11. The final report separates playbook defects from sk-interface-design product defects.
 
 ---
@@ -173,7 +173,7 @@ This section records wave planning and capacity guidance for executing the 7-sce
 | 1 | Direction freedom + brief pinning | ID-001, ID-002 | The deviate-vs-obey precedence pair is the core behavior and isolates cleanly |
 | 2 | Quality floor + system critique | ID-003, ID-004 | The objective gate reads on-disk references while the critique-against scenario reads one Open Design system live via `mcp-open-design`, and both are read-only and isolate cleanly |
 | 3 | Abstention and routing | ID-005, ID-006 | Routing away from non-visual work is read-only and isolates from the design path |
-| 4 | Claude design parity | ID-008, ID-009 | Reuse-before-generate and the fidelity check share the parity protocol and the magicpath surface |
+| 4 | Claude design parity | ID-008, ID-009 | Reuse-before-generate and the fidelity check share the parity protocol and the mcp-open-design surface |
 | 5 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
 
 ### What Belongs In Per-Feature Files
@@ -355,17 +355,17 @@ Desired user-visible outcome: A result that reuses the system's components and t
 
 > **Feature File:** [ID-008](07--claude-design-parity/reuse-before-generate-with-design-system.md)
 
-### ID-009 | previewImageUrl fidelity check gated on the quality floor and anti-default critique
+### ID-009 | previewUrl fidelity check gated on the quality floor and anti-default critique
 
 #### Description
 
-The fidelity check fetches the backend-rendered `previewImageUrl` and judges it against the quality floor and the anti-default critique, with a negative control proving the check is not a browser screenshot of the session-gated canvas.
+The fidelity check inspects the completed run's `previewUrl` and written files and judges them against the quality floor and the anti-default critique, with a negative control proving a design is not claimed from a run left awaiting input or an artifact-only file-add.
 
 #### Scenario Contract
 
-Prompt: `Verify the built MagicPath component matches the design intent using its rendered preview, and tell me if it clears our quality bar.`
+Prompt: `Verify the Open Design generation actually rendered a design that matches the intent, and tell me if it clears our quality bar.`
 
-Desired user-visible outcome: A fidelity verdict over the real render that names the quality-floor result and the anti-default result, with no pixel-diff claim and no browser screenshot of the hosted canvas.
+Desired user-visible outcome: A fidelity verdict over the real render that names the quality-floor result and the anti-default result, with no pixel-diff claim and no design claimed from an unfinished run or a file-add.
 
 #### Test Execution
 
@@ -382,7 +382,7 @@ The current repository has no dedicated automated test module for `sk-interface-
 | `references/design_inventory.md` | The reuse-ground and critique-against framing over a live Open Design system; the no-chooser and no-cache hard rules | ID-004 |
 | `references/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
 | `references/claude_design_parity.md` | The shared parity loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
-| `../../mcp-magicpath/scripts/design_fidelity.py` | Query-only helper that fetches the backend-rendered preview for the fidelity check | ID-009 |
+| `../../mcp-open-design/references/tool_surface.md` | The mcp-open-design run and previewUrl surface the fidelity check inspects | ID-009 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 
@@ -400,4 +400,4 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-006 | Documentation task routes away to sk-doc | ABSTENTION AND ROUTING | [ID-006](05--abstention-and-routing/docs-task-routes-to-sk-doc.md) |
 | ID-007 | Licensing and provenance integrity | LICENSING AND PROVENANCE | [ID-007](06--licensing-and-provenance/licensing-and-provenance-integrity.md) |
 | ID-008 | Reuse before generate when a design system is present | CLAUDE DESIGN PARITY | [ID-008](07--claude-design-parity/reuse-before-generate-with-design-system.md) |
-| ID-009 | previewImageUrl fidelity check gated on the quality floor and anti-default critique | CLAUDE DESIGN PARITY | [ID-009](07--claude-design-parity/preview-image-fidelity-check.md) |
+| ID-009 | previewUrl fidelity check gated on the quality floor and anti-default critique | CLAUDE DESIGN PARITY | [ID-009](07--claude-design-parity/preview-image-fidelity-check.md) |

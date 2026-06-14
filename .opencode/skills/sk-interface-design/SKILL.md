@@ -2,7 +2,7 @@
 name: sk-interface-design
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0
+version: 1.3.0
 metadata:
   author: Anthropic
   source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
@@ -154,7 +154,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 - [`references/ux_quality_reference.md`](references/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
 - [`references/design_inventory.md`](references/design_inventory.md) - How to use a real design system (via `mcp-open-design`, when installed) as either reuse-ground or the named default to critique against. Never a chooser.
 - [`references/variation_diversity.md`](references/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
-- [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-magicpath` and `mcp-open-design`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
+- [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-open-design`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
 ### Feature Catalog
@@ -192,7 +192,6 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - **`sk-code`** owns implementation. This skill decides the look, and sk-code builds it to the detected web surface's standards and verifies it.
 - **`sk-code-review`** can audit the built UI against the standards sk-code enforces.
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
-- **`mcp-magicpath`** is the sibling canvas tool that shares the same parity loop (`claude_design_parity.md`). This skill owns the judgment, that skill owns the canvas and CLI.
 - **`mcp-open-design`** is the optional transport to a real Open Design design system when that app is installed, for grounding and reuse through the shared parity loop. This skill owns the judgment, that skill owns the transport.
 
 ### Knowledge Base Dependencies

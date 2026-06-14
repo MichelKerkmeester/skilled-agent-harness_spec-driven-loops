@@ -1,9 +1,8 @@
 ---
 title: "Design-Generation Prompt Patterns - Grounded Briefs, Anti-Median Variation, Discovery-Form Pre-Answer"
-description: "Prompt-craft patterns for design-generation tools (mcp-magicpath canvas authoring, mcp-open-design start_run). Covers the grounded anti-default generation brief, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to sk-code. Plugs into the existing DEPTH pass and CLEAR scoring, and owns the prompt only, never the design judgment or the run transport."
+description: "Prompt-craft patterns for the mcp-open-design start_run design-generation usecase. Covers the grounded anti-default generation brief, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to sk-code. Plugs into the existing DEPTH pass and CLEAR scoring, and owns the prompt only, never the design judgment or the run transport."
 trigger_phrases:
   - "design generation prompt"
-  - "magicpath generation brief"
   - "open design start_run prompt"
   - "seed of thought variation"
   - "anti-default design brief"
@@ -14,9 +13,9 @@ contextType: implementation
 
 # Design-Generation Prompt Patterns
 
-Prompt-craft for the design-generation tools the framework drives from the terminal: `mcp-magicpath` (canvas authoring through the `magicpath-ai` CLI) and `mcp-open-design` (headless `start_run` against the Open Design app). The visible design these tools emit is driven by the generation prompt, so the prompt is where quality is won or lost.
+Prompt-craft for the design-generation tool the framework drives from the terminal: `mcp-open-design` (headless `start_run` against the installed Open Design app). The visible design it emits is driven by the generation prompt, so the prompt is where quality is won or lost.
 
-This reference owns the PROMPT only. The look and the anti-default mandate belong to `sk-interface-design` (`design_principles.md`). The run mechanics, gating, and reuse-before-generate loop belong to the two MCP skills and their shared `claude_design_parity.md`. Read this when a request is to write or improve a prompt that will be fed to one of those tools.
+This reference owns the PROMPT only. The look and the anti-default mandate belong to `sk-interface-design` (`design_principles.md`). The run mechanics, gating, and reuse-before-generate loop belong to `mcp-open-design` and the shared `claude_design_parity.md`. Read this when a request is to write or improve a prompt that will be fed to that tool.
 
 ---
 
@@ -28,7 +27,7 @@ A generic content brief asked of a design tool produces the median AI look: the 
 
 ### When to Use
 
-- The deliverable is a natural-language brief headed for `mcp-magicpath` canvas authoring or `mcp-open-design` `start_run`.
+- The deliverable is a natural-language brief headed for `mcp-open-design` `start_run`.
 - The user wants several distinct design variations rather than one safe answer.
 - A generation run is multi-turn (Open Design's discovery form) and the prompt should pre-answer it.
 
@@ -50,7 +49,7 @@ Layer these slots onto the chosen framework. Capture only what is present, never
 |---|---|---|
 | Subject and single job | The product, and the one job this screen does (from `design_principles.md` Step 0) | An ungrounded brief defaults to a generic dashboard |
 | Audience and context | Who uses it, on what device, in what moment | Drives density, tone, and motion |
-| Design-system ground | Reuse the active system's tokens and components before inventing (`get-theme` for MagicPath, `od tools design-systems read` for Open Design) | Reuse-before-generate is anti-default by construction |
+| Design-system ground | Reuse the active system's tokens and components before inventing (`od tools design-systems read` for Open Design) | Reuse-before-generate is anti-default by construction |
 | Anti-default constraints | An explicit avoid-list (generic SaaS gradient, centered hero plus three cards, untouched component-library surface) plus the one justified aesthetic risk to spend | Names the median so the tool steers away from it |
 | Fidelity target | What "matches intent" means: clears the UX quality floor AND survives the anti-default critique | "Looks roughly like the brief" is too weak a bar |
 | Output target | Viewport, stack or framework, single interactive screen | Keeps the generation buildable and scoped |
@@ -95,10 +94,6 @@ Write the `start_run` prompt so it answers the discovery questions inline:
 
 If the form still surfaces, answer it with `od ui respond --run <runId> <surfaceId> --value …` carrying the same explicit answers. Do not `--skip` a design-shaping question into its default. The run itself is a mutating, STOP-and-confirm verb owned by `mcp-open-design`, and this reference only shapes the prompt that drives it.
 
-### MagicPath parallel
-
-MagicPath canvas authoring has no discovery form, but the same front-loading applies: bake the Design Defaults (responsive, centered, single screen, fully interactive, no device mockups) and the grounded brief into the authoring prompt so the first build is already on-brief, which cuts fidelity-check retries.
-
 ---
 
 ## 5. HANDOFF TO sk-code
@@ -110,7 +105,7 @@ When a generated design heads into application code, the handoff is already owne
 ## 6. GUARDRAILS
 
 - No style presets, no pick-a-vibe menu, no named aesthetic dials. The Seed of Thought selects a grounded angle, not a canned style.
-- This reference owns the prompt. It does not restate the design judgment (`sk-interface-design`) or the run transport and gating (`mcp-magicpath`, `mcp-open-design`).
+- This reference owns the prompt. It does not restate the design judgment (`sk-interface-design`) or the run transport and gating (`mcp-open-design`).
 - Respect the tools' gates. `start_run` and a canvas submit are mutating actions that the MCP skills hold as STOP-and-confirm points.
 - Keep the anti-default mandate intact. A grounded brief plus a forced-distinct angle is the point. A reusable style chooser is the failure mode.
 
@@ -122,4 +117,4 @@ When a generated design heads into application code, the handoff is already owne
 - [depth_framework.md](./depth_framework.md) owns the DEPTH pass and the context-aware CLEAR weighting this pattern leans on.
 - `.opencode/skills/sk-interface-design/references/claude_design_parity.md` owns the reuse-before-generate loop, the pre-build direction gate (§7), the handoff manifest (§6), and the no-preset guardrail (§8).
 - `.opencode/skills/sk-interface-design/references/design_principles.md` owns the look and the anti-default mandate.
-- `.opencode/skills/mcp-magicpath/SKILL.md` and `.opencode/skills/mcp-open-design/SKILL.md` own the CLI and run transports this brief feeds.
+- `.opencode/skills/mcp-open-design/SKILL.md` owns the run transport this brief feeds.

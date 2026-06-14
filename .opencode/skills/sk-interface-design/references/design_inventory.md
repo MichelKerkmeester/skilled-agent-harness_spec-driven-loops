@@ -67,7 +67,7 @@ If a brief explicitly pins the direction, the brief wins (NEVER override a pinne
 ## 4. HARD RULES FOR THIS INVENTORY
 
 - **NEVER surface a list of systems as a chooser.** Resolve exactly one system from the subject and brief. A pick-a-vibe menu is precisely the templated default the skill resists, and `claude_design_parity.md` Section 8 already forbids it.
-- **NEVER wire a system into an auto-recommend or generator flow.** A real system is input to judgment, read only. Generation and handoff belong to `mcp-open-design`, `mcp-magicpath`, and `sk-code`.
+- **NEVER wire a system into an auto-recommend or generator flow.** A real system is input to judgment, read only. Generation and handoff belong to `mcp-open-design` and `sk-code`.
 - **NEVER present a reused or named system as the design decision.** It is the ground to reuse or the baseline to deviate from. The decision comes from the subject and the brief, per `design_principles.md`.
 - **NEVER cache or copy a system into the skill.** Read it live via `mcp-open-design`. Copying its `DESIGN.md`, `tokens.css`, or `components.html` into the repo would attach that source's license and require a new third party notice.
 - **The quality floor still applies.** A deviation that breaks contrast, touch targets, or motion sensitivity is not a bold choice, it is a defect (`ux_quality_reference.md`).

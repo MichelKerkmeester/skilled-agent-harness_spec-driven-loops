@@ -68,7 +68,6 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`mcp-chrome-devtools`](mcp-chrome-devtools/README.md) | Drive a real browser from your agent or terminal, with a fast CLI and an MCP fallback |
 | [`mcp-click-up`](mcp-click-up/README.md) | Manage ClickUp tasks from your agent or terminal |
 | [`mcp-code-mode`](mcp-code-mode/README.md) | Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json` |
-| [`mcp-magicpath`](mcp-magicpath/README.md) | Find, preview, inspect and install MagicPath UI components, or author them on the canvas, via the `magicpath-ai` CLI |
 
 ### sk-*: Code, Docs, Git and Prompts
 

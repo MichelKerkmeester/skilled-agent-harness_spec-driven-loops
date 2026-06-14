@@ -88,7 +88,7 @@ Words exist to make an interface easier to use. The skill writes from the end us
 
 ### Producing Real UI
 
-When the work moves past a plan into a real render, on a canvas, a recreated repo, or code, the skill follows a shared parity loop with `mcp-magicpath`: ground in the design system, reuse registered components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/claude_design_parity.md`](./references/claude_design_parity.md).
+When the work moves past a plan into a real render, on a recreated repo, an Open Design generation run, or code, the skill follows a shared parity loop with `mcp-open-design`: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/claude_design_parity.md`](./references/claude_design_parity.md).
 
 ### Where The Detail Lives
 
@@ -160,7 +160,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (house template) |
 | [`references/design_principles.md`](./references/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
-| [`references/claude_design_parity.md`](./references/claude_design_parity.md) | The shared parity loop with `mcp-magicpath`: ground in a system, reuse before generating, fidelity check, handoff |
+| [`references/claude_design_parity.md`](./references/claude_design_parity.md) | The shared parity loop with `mcp-open-design`: ground in a system, reuse before generating, fidelity check, handoff |
 | [`references/variation_diversity.md`](./references/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |

@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": []
+    "related_to": ["skilled-agent-orchestration/150-open-design-terminal-and-interface-integration"]
   },
   "derived": {
     "trigger_phrases": [
@@ -24,7 +24,7 @@
       "skill install"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "superseded",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -33,7 +33,7 @@
       "implementation-summary.md"
     ],
     "entities": [],
-    "causal_summary": "Vendored the MagicPath agent skill into .opencode/skills/mcp-magicpath with a house README, schema-2 graph metadata, a global magicpath-ai CLI installer, catalog registration, and advisor-graph indexing. The advisor routes it as the top match and passes Gate 2.",
+    "causal_summary": "Vendored the MagicPath agent skill into .opencode/skills/mcp-magicpath with a house README, schema-2 graph metadata, a global magicpath-ai CLI installer, catalog registration, and advisor-graph indexing. The advisor routes it as the top match and passes Gate 2. Superseded by spec 150: the mcp-magicpath skill is deprecated and removed in favor of mcp-open-design, which drives the installed Open Design app from the terminal.",
     "created_at": "2026-06-13T14:00:00Z",
     "last_save_at": "2026-06-13T16:30:00Z",
     "save_lineage": "manual",

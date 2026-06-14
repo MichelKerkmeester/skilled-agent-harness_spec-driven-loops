@@ -116,7 +116,6 @@ Reach for this skill whenever a user mentions Open Design, wants to wire it into
 |---|---|
 | `sk-interface-design` | Owns the design judgment and is applied whenever an Open Design read or run feeds a design decision. This skill is the transport, that skill is the taste. The two share `claude_design_parity.md`. |
 | `sk-code` | Owns application-code standards for adapting any reused tokens or components into a real app. |
-| `mcp-magicpath` | The sibling canvas-authoring tool. The same reuse-before-generate parity loop applies. |
 | `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Open Design. |
 
 ---

@@ -26,7 +26,7 @@ A resolved system is put to work in one of two ways, chosen by the brief. As reu
 
 ### Hard rules
 
-Five rules hold. Exactly one system is resolved from the subject and brief, never a list surfaced as a chooser. A system is read only and is never wired into an auto-recommend or generator flow, since generation and handoff belong to `mcp-open-design`, `mcp-magicpath`, and `sk-code`. A reused or named system is never presented as the design decision, since the decision comes from the subject and the brief. A system is never cached or copied into the skill, which would attach its license and require a new notice. The quality floor still applies, so a deviation that breaks contrast, touch targets, or motion sensitivity is a defect rather than a bold choice.
+Five rules hold. Exactly one system is resolved from the subject and brief, never a list surfaced as a chooser. A system is read only and is never wired into an auto-recommend or generator flow, since generation and handoff belong to `mcp-open-design` and `sk-code`. A reused or named system is never presented as the design decision, since the decision comes from the subject and the brief. A system is never cached or copied into the skill, which would attach its license and require a new notice. The quality floor still applies, so a deviation that breaks contrast, touch targets, or motion sensitivity is a defect rather than a bold choice.
 
 ---
 

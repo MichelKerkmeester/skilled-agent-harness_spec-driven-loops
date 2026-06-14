@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Open Design terminal control and interface integration"
-description: "Make the installed Open Design desktop app drivable from the terminal via a new mcp-open-design skill, then de-vendor and integrate sk-interface-design with it. Phases 001-007 are complete: research, the skill build, the de-vendor, live verification plus deep review, variation-diversity and prompt patterns, and the generation-flow correction to v1.1.0. Deprecating the now-superseded mcp-magicpath skill is the remaining follow-up."
+description: "Make the installed Open Design desktop app drivable from the terminal via a new mcp-open-design skill, then de-vendor and integrate sk-interface-design with it. Phases 001-007 are complete: research, the skill build, the de-vendor, live verification plus deep review, variation-diversity and prompt patterns, and the generation-flow correction to v1.1.0. Phase 008 then deprecated and removed the now-superseded mcp-magicpath skill, re-centering the shared parity protocol on mcp-open-design."
 trigger_phrases:
   - "open design terminal control"
   - "mcp-open-design skill"
@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration"
-    last_updated_at: "2026-06-14T16:40:00Z"
+    last_updated_at: "2026-06-14T17:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Filled phase gap 002-004, corrected mcp-open-design to v1.1.0 (007)"
-    next_safe_action: "Deprecate mcp-magicpath (008), then commit and push to 027"
+    recent_action: "Deprecated mcp-magicpath (008): deleted skill, re-centered references"
+    next_safe_action: "Push to origin/027 (advisor skill-graph rescan deferred)"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-150-open-design-terminal-and-interface-integration"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | Phase Parent |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-14 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Handoff Criteria** | Each child phase ships and validates independently; both skills stay advisor-routable and house-conformant |
@@ -90,6 +90,7 @@ Make Open Design drivable from the terminal through a new `mcp-open-design` skil
 | 5 | `005-sk-interface-design-variation-diversity/` | Seed-of-thought variation-diversity logic in sk-interface-design (v1.2.0) so multiple directions break the median default | Complete |
 | 6 | `006-sk-prompt-design-tool-usecases/` | Design-generation prompt patterns in sk-prompt (v2.2.0) for the magicpath and open-design usecases | Complete |
 | 7 | `007-mcp-open-design-generation-flow-correction/` | Correct `mcp-open-design` (v1.1.0) to the live-verified reality: multi-turn generation via `od run start` plus a discovery form, `od artifacts create` adds a file only, HTTP API and ephemeral-port rotation, and `od run` verbs | Complete |
+| 8 | `008-mcp-magicpath-deprecation/` | Deprecate `mcp-magicpath` completely now that `mcp-open-design` covers the usecase: delete the skill, re-center the Claude Design parity protocol and the sk-prompt design-generation patterns onto `mcp-open-design`, sweep all live references, and mark spec 147 superseded | Complete |
 
 ### Phase Transition Rules
 

@@ -179,7 +179,7 @@ See [`05--integration-boundary/design-and-implementation-boundary.md`](05--integ
 
 ## 7. CLAUDE DESIGN PARITY LOOP
 
-These entries cover the shared cross-skill protocol that moves this skill's judgment closer to Claude Design without becoming a templated generator. The protocol is a loop, not a product: ground, reuse before generate, render, check the real render, revise, then hand off. This skill owns the judgment and `mcp-magicpath` owns the canvas and CLI, and the single source for the protocol is `references/claude_design_parity.md`. The entries below summarize it and never duplicate its content.
+These entries cover the shared cross-skill protocol that moves this skill's judgment closer to Claude Design without becoming a templated generator. The protocol is a loop, not a product: ground, reuse before generate, render, check the real render, revise, then hand off. This skill owns the judgment and `mcp-open-design` owns the Open Design terminal transport, and the single source for the protocol is `references/claude_design_parity.md`. The entries below summarize it and never duplicate its content.
 
 ### Ground and reuse before generate
 
@@ -205,7 +205,7 @@ Checks the real render against the quality floor and anti-default critique, then
 
 #### Current Reality
 
-The loop checks the latest render rather than treating "compiles" as done. On a MagicPath canvas it uses the backend-rendered `previewImageUrl` with `code status`, and on a local dev-server UI it uses a real-browser screenshot, never the auth-gated hosted canvas. The render must clear the quality floor and survive the anti-default critique, and because automated comparison is unreliable for subtle differences, the check is judgment over a render rather than pixel diffing. Revisions name the target, the visual evidence, the change, the scope, the expected verification, and whether the feedback is broad, which re-plans, or targeted, which scopes one edit.
+The loop checks the latest render rather than treating "compiles" as done. For an Open Design generation run it uses the completed run's `previewUrl` and written files read via `get_artifact`, and on a local dev-server UI it uses a real-browser screenshot. The render must clear the quality floor and survive the anti-default critique, and because automated comparison is unreliable for subtle differences, the check is judgment over a render rather than pixel diffing. Revisions name the target, the visual evidence, the change, the scope, the expected verification, and whether the feedback is broad, which re-plans, or targeted, which scopes one edit.
 
 #### Source Files
 
@@ -221,7 +221,7 @@ Keeps generated source separate, emits an optional handoff manifest, and holds t
 
 #### Current Reality
 
-The loop keeps generated source, wrapper or adaptation files, and business logic distinct, imports installed components rather than copying them, and treats generated source as one-way. At the end it can emit one small handoff block covering the token system, files changed, key interactions, the checks run, open risks, and the next `sk-code` steps. A guarded direction gate may sketch a few brief-specific directions only when each is grounded in the subject, and the protocol holds a hard line against style presets, named aesthetic dials, turning the design inventory into a generator, multi-format export, hosted canvas, comment threads, theme write-back, backend or deploy ownership, and any heavyweight visual-regression engine.
+The loop keeps generated source, wrapper or adaptation files, and business logic distinct, imports installed components rather than copying them, and treats generated source as one-way. At the end it can emit one small handoff block covering the token system, files changed, key interactions, the checks run, open risks, and the next `sk-code` steps. A guarded direction gate may sketch a few brief-specific directions only when each is grounded in the subject, and the protocol holds a hard line against style presets, named aesthetic dials, turning the design inventory into a generator, multi-format export, comment threads, unsanctioned write-back beyond Open Design's gated verbs, backend or deploy ownership, and any heavyweight visual-regression engine.
 
 #### Source Files
 

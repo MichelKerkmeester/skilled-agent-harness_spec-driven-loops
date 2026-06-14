@@ -4,7 +4,7 @@ description: "Checks the real render against the quality floor and anti-default 
 trigger_phrases:
   - "fidelity check and revision grammar"
   - "design fidelity check loop"
-  - "previewImageUrl render check"
+  - "previewUrl render check"
   - "element-target revision grammar"
 ---
 
@@ -22,7 +22,7 @@ This is the iterate-against-a-real-render half of the Claude Design parity loop.
 
 ### Fidelity check against the real render
 
-The loop checks the latest render with the right mechanism for the surface. On a MagicPath canvas it uses `previewImageUrl`, the backend-rendered screenshot returned by `list-components` and `search`, which is already authenticated and needs no browser, paired with `code status` for build pass or fail. On a local dev-server UI the agent controls, a real-browser screenshot tool is the right mechanism, never pointed at the auth-gated hosted canvas. The render must clear the `ux_quality_reference.md` floor and survive the anti-default critique from `design_principles.md`, since "looks roughly like the brief" is a weaker bar than the skill already enforces. Automated screenshot comparison is unreliable for subtle visual and color differences, so the check is judgment over a render rather than pixel diffing, and completion is never claimed from a screenshot alone.
+The loop checks the latest render with the right mechanism for the surface. For an Open Design generation run it uses the project's `previewUrl` and the build's written files, read via `get_artifact` once `get_run` reports the run completed, which are local-first and need no remote sign-in. On a local dev-server UI the agent controls, a real-browser screenshot tool is the right mechanism. The render must clear the `ux_quality_reference.md` floor and survive the anti-default critique from `design_principles.md`, since "looks roughly like the brief" is a weaker bar than the skill already enforces. Automated screenshot comparison is unreliable for subtle visual and color differences, so the check is judgment over a render rather than pixel diffing, and completion is never claimed from a screenshot alone.
 
 ### Element-target revision grammar
 
