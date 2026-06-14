@@ -135,3 +135,42 @@ Implement the keystone leanly: one shared protocol reference both skills consume
 Low-moderate. The change is one reference doc + small hooks; the risk is conceptual (keeping it lean and anti-default), not technical.
 <!-- /ANCHOR:complexity -->
 <!-- /ANCHOR:questions -->
+
+---
+
+## BEFORE vs AFTER
+
+The detailed transformation both skills underwent across the 148 epic (research 002/005/006, build 003/007, docs 004/008). This documents skill capability, not spec-folder history.
+
+### sk-interface-design
+
+| Dimension | Before (v1.0.0 vendored install) | After (v1.1.0.0) |
+|---|---|---|
+| What it is | Prose-only design judgment skill | Judgment skill backed by design data, search, and a shared parity loop |
+| Design data | None | `assets/data/` with 9 MIT CSVs (styles, colors, typography, ui-reasoning, products, landing, ux-guidelines, charts, app-interface) |
+| Lookup | None | `scripts/design_search.py` (optional, zero-dep BM25, query-only) |
+| Quality floor | One sentence in SKILL.md ("responsive, visible focus, reduced motion") | `references/ux_quality_reference.md` as an explicit pass/fail gate |
+| Aesthetic guidance | The anti-default principles only | + `references/design_inventory.md` (data framed as patterns to deviate from, never a chooser) |
+| Iteration | Private, in-thinking; "screenshot if possible" | The parity loop: render -> `previewImageUrl` fidelity check gated on the quality floor + anti-default critique -> targeted revision |
+| Design-system inheritance | Not addressed | Reuse-before-generate + adherence framing when a system is present |
+| Output/handoff | Prose intent handed to sk-code | Optional structured handoff block (tokens, files, checks, next steps) |
+| Docs | SKILL.md + 1 reference | + 3 references, feature_catalog (13 features), manual_testing_playbook (9 scenarios), changelog |
+| License | Apache-2.0 | Apache-2.0 (principles) + MIT (data and search), attributed |
+| Philosophy | Anti-default, anti-templated | Unchanged and reinforced: no presets, no generator, no style dials |
+
+### mcp-magicpath
+
+| Dimension | Before (v1.0.0.0 install) | After (v1.1.0.0) |
+|---|---|---|
+| "Done" criterion | Build compiles + responsive | + render matches intent via the `previewImageUrl` fidelity check |
+| Design grounding | Apply sk-interface-design before building | + reuse-before-generate from the registered theme's components |
+| Build errors | Reported to the user | Self-healed within the editable boundary (capped retries) |
+| Revisions | Generic re-prompt | Element-target grammar: broad feedback re-plans, targeted feedback scopes `code start --component --revision` |
+| Fidelity tooling | None | `scripts/design_fidelity.py` (fetches the backend-rendered preview; query-only) |
+| Boundary | Editable-file boundary only | + generated/presentational boundary (import installed components, never copy generated markup) |
+| Docs | README + scripts README | + parity subsections, helper docs, changelog |
+
+### The connective change (the keystone)
+
+Before, the two skills were composed (`mcp-magicpath depends_on sk-interface-design`) but the transitions between design context, iteration, and handoff were implicit. After, one shared `references/claude_design_parity.md` protocol makes that loop explicit and single-sourced, so both skills approach Claude Design's workflow without cloning a hosted product, merging the skills, or adding a templated-style chooser.
+
