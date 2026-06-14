@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# YOLO connect — PATCHES Figma Desktop (app.asar) and restarts it with CDP on 9222.
+# YOLO connect: PATCHES Figma Desktop (app.asar) and restarts it with CDP on 9222.
 # Gated behind an explicit consent flag. Rollback: unpatch.sh (figma-ds-cli unpatch).
 
 set -euo pipefail
@@ -26,7 +26,7 @@ EOF
   exit 2
 fi
 
-b="$(figma_bin)" || { err "No figma-ds-cli on PATH — run install.sh first"; exit 1; }
+b="$(figma_bin)" || { err "No figma-ds-cli on PATH, run install.sh first"; exit 1; }
 figma_desktop_path >/dev/null || { err "Figma Desktop not found; cannot patch."; exit 1; }
 
 warn "Consent received. Patching Figma Desktop and starting yolo connect."

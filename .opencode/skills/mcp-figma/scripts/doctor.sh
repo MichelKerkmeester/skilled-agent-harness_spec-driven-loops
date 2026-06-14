@@ -20,8 +20,8 @@ command -v npm >/dev/null 2>&1 && ok "npm $(npm -v)" || warn "npm not found"
 log "-- figma binary --"
 if command -v figma-ds-cli >/dev/null 2>&1; then ok "figma-ds-cli: $(command -v figma-ds-cli) ($(figma-ds-cli --version 2>/dev/null|head -1||echo '?'))"; else info "figma-ds-cli: not on PATH"; fi
 if command -v figma-cli >/dev/null 2>&1; then ok "figma-cli: $(command -v figma-cli) (silships repo build, if from upstream)"; else info "figma-cli: not on PATH (expected unless installed from the silships repo)"; fi
-if command -v figma >/dev/null 2>&1; then warn "a 'figma' command is on PATH — this is likely the UNRELATED unic/figma-cli, NOT the silships tool"; fi
-if b="$(figma_bin)"; then ok "Resolved skill binary: $b"; else err "No silships figma binary resolved — run install.sh (do NOT 'npm i -g figma-cli')"; fi
+if command -v figma >/dev/null 2>&1; then warn "a 'figma' command is on PATH, likely the UNRELATED unic/figma-cli, NOT the silships tool"; fi
+if b="$(figma_bin)"; then ok "Resolved skill binary: $b"; else err "No silships figma binary resolved, run install.sh (do NOT 'npm i -g figma-cli')"; fi
 
 # Figma Desktop
 log "-- Figma Desktop --"
@@ -30,7 +30,7 @@ if pgrep -x Figma >/dev/null 2>&1; then ok "Figma Desktop: running"; else info "
 
 # Daemon
 log "-- Daemon --"
-if [ -f "$DAEMON_TOKEN_FILE" ]; then ok "Token file present: $DAEMON_TOKEN_FILE (contents NOT shown)"; else info "No token file ($DAEMON_TOKEN_FILE) — daemon not initialized yet"; fi
+if [ -f "$DAEMON_TOKEN_FILE" ]; then ok "Token file present: $DAEMON_TOKEN_FILE (contents NOT shown)"; else info "No token file ($DAEMON_TOKEN_FILE), daemon not initialized yet"; fi
 if [ -f "$DAEMON_PID_FILE" ]; then info "PID file: $DAEMON_PID_FILE ($(cat "$DAEMON_PID_FILE" 2>/dev/null||echo '?'))"; else info "No PID file ($DAEMON_PID_FILE)"; fi
 case "$(port_listening "$DAEMON_PORT"; echo $?)" in
   0) ok "Daemon port $DAEMON_PORT: LISTENING";;

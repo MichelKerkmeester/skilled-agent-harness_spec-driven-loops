@@ -15,9 +15,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The skill works fully with the CLI alone. When the agent must pull design context FROM Figma as model input, this opt-in path uses the community Framelink `figma-developer-mcp` manual, already registered as `figma` in this repo's Code Mode (`.utcp_config.json`, stdio). The CLI is the primary surface; the MCP is opt-in.
+The skill works fully with the CLI alone. When the agent must pull design context FROM Figma as model input, this opt-in path uses the community Framelink `figma-developer-mcp` manual, already registered as `figma` in this repo's Code Mode (`.utcp_config.json`, stdio). The CLI is the primary surface, and the MCP is opt-in.
 
-The caller reaches this path only when CLI inspection is not enough and design data must enter the model as context. It is READ-ONLY. The boundary to hold: the OFFICIAL Figma Dev Mode MCP is out of scope for this release and is not a supported path — it is mentioned at most as a future option, never promoted. Note that `figma-ds-cli` itself does not ship or spawn its own MCP (source-verified zero hits); its daemon is a private HTTP/WebSocket bridge, not an MCP server.
+The caller reaches this path only when CLI inspection is not enough and design data must enter the model as context. It is READ-ONLY. The boundary to hold: the OFFICIAL Figma Dev Mode MCP is out of scope for this release and is not a supported path, so it is mentioned at most as a future option, never promoted. Note that `figma-ds-cli` itself does not ship or spawn its own MCP (source-verified zero hits), and its daemon is a private HTTP/WebSocket bridge, not an MCP server.
 
 ---
 

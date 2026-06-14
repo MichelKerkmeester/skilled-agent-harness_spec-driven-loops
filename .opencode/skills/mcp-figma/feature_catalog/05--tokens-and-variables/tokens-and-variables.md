@@ -25,11 +25,11 @@ A typical caller lists variables read-only, then creates or binds tokens behind 
 
 ### Read and bind
 
-`figma-ds-cli var list | var find <q> | collections list` lists variables, collections, or finds a variable, and `figma-ds-cli tokens overlap` reports overlapping or conflicting tokens — all READ-ONLY. `figma-ds-cli var bind <node> <prop> <var> | bind <node> <var>` binds a variable to a node property and is MUTATING.
+`figma-ds-cli var list | var find <q> | collections list` lists variables, collections, or finds a variable, and `figma-ds-cli tokens overlap` reports overlapping or conflicting tokens, all READ-ONLY. `figma-ds-cli var bind <node> <prop> <var> | bind <node> <var>` binds a variable to a node property and is MUTATING.
 
 ### Author tokens
 
-`figma-ds-cli var create <name> <value>` creates a variable, `figma-ds-cli var set|rename <name> ...` sets a value or renames it, `figma-ds-cli var visualize` renders a token visualization, and `figma-ds-cli use|theme <name> [--dry-run]` applies a collection or theme. All of these are MUTATING; the `--dry-run` form of use/theme is a read-only preview.
+`figma-ds-cli var create <name> <value>` creates a variable, `figma-ds-cli var set|rename <name> ...` sets a value or renames it, `figma-ds-cli var visualize` renders a token visualization, and `figma-ds-cli use|theme <name> [--dry-run]` applies a collection or theme. All of these are MUTATING, and the `--dry-run` form of use/theme is a read-only preview.
 
 ### Destructive deletes
 

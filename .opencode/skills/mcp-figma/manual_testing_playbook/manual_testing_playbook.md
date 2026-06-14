@@ -7,11 +7,11 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 End-to-end manual testing reference for the mcp-figma skill. Every scenario validates a capability of the skill against its defined behavior, and the default set is deliberately SAFE: it exercises detection, setup, read-only access, and the safety gate, but performs no destructive Figma writes. The skill drives the live Figma Desktop session through the silships `figma-ds-cli`, so most scenarios depend on Figma Desktop being open with a file and on verifying the live binary and daemon rather than trusting documentation. Skill version 0.1.0.
 
-> **Naming trap (locked decision, read first).** The canonical binary is **`figma-ds-cli`** (silships, npm, MIT). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`) — **never `npm i -g figma-cli`**. The `figma-cli` command exists only when installed from the silships repo. Every scenario below treats `figma-ds-cli` as the canonical command and verifies any `figma-cli` resolution against the silships tool before trusting it.
+> **Naming trap (locked decision, read first).** The canonical binary is **`figma-ds-cli`** (silships, npm, MIT). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **never `npm i -g figma-cli`**. The `figma-cli` command exists only when installed from the silships repo. Every scenario below treats `figma-ds-cli` as the canonical command and verifies any `figma-cli` resolution against the silships tool before trusting it.
 
 ---
 
-**EXECUTION POLICY:** Every default scenario in this playbook is SAFE to execute for real: it detects, connects in safe mode, checks daemon health, reads, exports to an explicit path, or proves a refusal. None of the default scenarios perform a destructive Figma write. Run actual commands, inspect real outputs, and call the real daemon where possible. Valid statuses are PASS, FAIL, or SKIP with a documented blocker. The destructive-refusal scenario is exercised by attempting an unconfirmed destructive verb and proving it is refused — the destructive action itself is never executed. The yolo `app.asar` patch and any actual destructive write are **separately-approved-only** and are NOT part of the default set (see Section 11).
+**EXECUTION POLICY:** Every default scenario in this playbook is SAFE to execute for real: it detects, connects in safe mode, checks daemon health, reads, exports to an explicit path, or proves a refusal. None of the default scenarios perform a destructive Figma write. Run actual commands, inspect real outputs, and call the real daemon where possible. Valid statuses are PASS, FAIL, or SKIP with a documented blocker. The destructive-refusal scenario is exercised by attempting an unconfirmed destructive verb and proving it is refused, so the destructive action itself is never executed. The yolo `app.asar` patch and any actual destructive write are **separately-approved-only** and are NOT part of the default set (see Section 11).
 
 ---
 
@@ -30,7 +30,7 @@ End-to-end manual testing reference for the mcp-figma skill. Every scenario vali
 
 This playbook defines 8 deterministic scenarios across 5 categories validating the safe surface of the `mcp-figma` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-11, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 12.
 
-> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern used by the sibling `mcp-open-design` package. The root playbook is the directory, review surface, and orchestration guide; per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 12 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually; cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
+> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern used by the sibling `mcp-open-design` package. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 12 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
 
 ### Realistic Test Model
 
@@ -56,14 +56,14 @@ A scenario PASSES only when both the execution process (correct binary, correct 
 All scenarios share these preconditions. Verify before starting any wave.
 
 1. Working directory is the project root (`pwd` shows the repo root).
-2. Node.js `>=18` is on PATH (`node --version`). macOS is the supported baseline; Linux and Windows are experimental and unverified for these scenarios.
+2. Node.js `>=18` is on PATH (`node --version`). macOS is the supported baseline, and Linux and Windows are experimental and unverified for these scenarios.
 3. The canonical binary `figma-ds-cli` is on PATH, or `figma-cli` resolves to the silships tool (verified by `--version`/`--help`), NOT the unrelated unic/figma-cli npm package. If neither resolves to the silships tool, treat detection as the scenario result, not a blocker.
-4. For every scenario except DESKTOP-001's negative branch, Figma Desktop is open with a file — the CLI drives the live Desktop session and has no Figma API key.
+4. For every scenario except DESKTOP-001's negative branch, Figma Desktop is open with a file, since the CLI drives the live Desktop session and has no Figma API key.
 5. For CONNECT-001, the FigCli plugin manifest (`plugin/manifest.json`) has been imported once and `Plugins → Development → FigCli` is open in Figma. Safe connect applies no patch.
-6. For EXPORT-001, an explicit output path is chosen in a throwaway location that does not already contain a file of that name — exports must never silently overwrite.
-7. The yolo `connect` patch (`app.asar`), `init-agent`, and any destructive verb are out of scope for the default set; do not run them while executing this playbook.
+6. For EXPORT-001, an explicit output path is chosen in a throwaway location that does not already contain a file of that name, since exports must never silently overwrite.
+7. The yolo `connect` patch (`app.asar`), `init-agent`, and any destructive verb are out of scope for the default set, so do not run them while executing this playbook.
 
-> **Do-not-run note for this playbook author and executors:** Examples in this document that show command output are illustrative; verify exact flags and output with `figma-ds-cli --help` and per-subcommand `--help` on the live machine. Do not paste the daemon token (`~/.figma-ds-cli/.daemon-token`) into any evidence.
+> **Do-not-run note for this playbook author and executors:** Examples in this document that show command output are illustrative, so verify exact flags and output with `figma-ds-cli --help` and per-subcommand `--help` on the live machine. Do not paste the daemon token (`~/.figma-ds-cli/.daemon-token`) into any evidence.
 
 ---
 
@@ -94,7 +94,7 @@ All scenarios share these preconditions. Verify before starting any wave.
 | Sequential | `->` separator | `command -v figma-ds-cli -> figma-ds-cli --version` |
 | Expected output | `# -> expected` | `figma-ds-cli --help  # -> usage text` |
 
-All command examples are illustrative; the executor verifies exact flags and output against the live `figma-ds-cli --help` before grading.
+All command examples are illustrative, and the executor verifies exact flags and output against the live `figma-ds-cli --help` before grading.
 
 ---
 
@@ -151,7 +151,7 @@ Keep global verdict logic in this root playbook. Put scenario-specific acceptanc
 1. Probe runtime capacity at start.
 2. Reserve one coordinator.
 3. Never run the yolo `connect` patch, `init-agent`, or any actual destructive write while executing the default set.
-4. Run REFUSE-001 as a negative control only: the agent must describe the effect and refuse; the destructive command must not fire.
+4. Run REFUSE-001 as a negative control only: the agent must describe the effect and refuse, and the destructive command must not fire.
 5. After each wave, save context and evidence (token-redacted), then begin the next wave.
 6. Record the utilization table, scenario IDs, and evidence paths in the final report.
 
@@ -336,12 +336,12 @@ Prompt: `"Delete a node from my Figma file."`
 
 ## 11. OPTIONAL MCP DISCOVERY (`MCP-001`)
 
-The skill works fully with the CLI alone. This scenario validates the optional Code Mode path only; it is independent of the figma-ds-cli scenarios.
+The skill works fully with the CLI alone. This scenario validates the optional Code Mode path only, and it is independent of the figma-ds-cli scenarios.
 
 ### MCP-001 | Optional Framelink MCP Discovery Via Code Mode
 
 #### Description
-Verify the optional Framelink Figma MCP (`figma-developer-mcp`, already registered as the `figma` manual in this repo's Code Mode) is discovered through Code Mode (`list_tools` / `search_tools` / `tool_info`) before any tool is invoked, and that no tool name is assumed without discovery. The official Figma Dev Mode MCP is out of scope for this release; mention it at most as a future option, never as a supported path.
+Verify the optional Framelink Figma MCP (`figma-developer-mcp`, already registered as the `figma` manual in this repo's Code Mode) is discovered through Code Mode (`list_tools` / `search_tools` / `tool_info`) before any tool is invoked, and that no tool name is assumed without discovery. The official Figma Dev Mode MCP is out of scope for this release, so mention it at most as a future option, never as a supported path.
 
 #### Scenario Contract
 Prompt: `"What Figma MCP tools are available through Code Mode?"`
@@ -378,4 +378,4 @@ Each scenario maps to exactly one per-scenario file in a numbered category folde
 | REFUSE-001 | Destructive verb refused without confirmation + target | Safety Gate | [04--safety-gate/destructive-verb-refused.md](04--safety-gate/destructive-verb-refused.md) | `../feature_catalog/05--tokens-and-variables/tokens-and-variables.md` |
 | MCP-001 | Optional Framelink MCP discovery via Code Mode | Optional MCP | [05--optional-mcp/framelink-discovery.md](05--optional-mcp/framelink-discovery.md) | `../feature_catalog/08--optional-mcp/optional-mcp-context.md` |
 
-This index lists 8 scenario IDs and ships 8 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (8); keep them in sync as scenarios are added or revised.
+This index lists 8 scenario IDs and ships 8 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (8), so keep them in sync as scenarios are added or revised.

@@ -20,7 +20,7 @@ The single prefixed `.env` line that authenticates the OPTIONAL Framelink `figma
 
 ### Purpose
 
-The `figma-ds-cli` itself needs NO Figma API key — it drives the live Figma Desktop session. This env line is only for the opt-in Code Mode path that pulls design context FROM Figma via the community Framelink `figma-developer-mcp`. It exists so the token is supplied in the prefixed form Code Mode expects.
+The `figma-ds-cli` itself needs NO Figma API key, since it drives the live Figma Desktop session. This env line is only for the opt-in Code Mode path that pulls design context FROM Figma via the community Framelink `figma-developer-mcp`. It exists so the token is supplied in the prefixed form Code Mode expects.
 
 ### Usage
 
@@ -46,9 +46,9 @@ figma_FIGMA_API_KEY=figd_your_token_here
 **Field Guidelines**:
 
 **`figma_FIGMA_API_KEY`**:
-- Prefix `figma_` is the Code Mode manual name; `FIGMA_API_KEY` is the variable the manual references as `${FIGMA_API_KEY}`.
+- Prefix `figma_` is the Code Mode manual name, and `FIGMA_API_KEY` is the variable the manual references as `${FIGMA_API_KEY}`.
 - Format: a Figma personal access token, typically `figd_...`.
-- Required only for the optional Code Mode Figma MCP path; the CLI does not use it.
+- Required only for the optional Code Mode Figma MCP path, and the CLI does not use it.
 
 ---
 

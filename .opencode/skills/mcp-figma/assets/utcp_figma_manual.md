@@ -26,7 +26,7 @@ This is the community Framelink MCP, not the official Figma Dev Mode MCP server.
 
 ### Usage
 
-Add the manual object below into the `manual_call_templates` array of the project's `.utcp_config.json`, then put the prefixed key in `.env` (see [env_template.md](./env_template.md)). Code Mode names the manual `figma`, so calls are `figma.figma_<tool>` via `call_tool_chain()`, and the env var is prefixed `figma_`. Always discover the live surface with `search_tools()` / `tool_info()` before invoking — do not assume a tool exists.
+Add the manual object below into the `manual_call_templates` array of the project's `.utcp_config.json`, then put the prefixed key in `.env` (see [env_template.md](./env_template.md)). Code Mode names the manual `figma`, so calls are `figma.figma_<tool>` via `call_tool_chain()`, and the env var is prefixed `figma_`. Always discover the live surface with `search_tools()` / `tool_info()` before invoking, and do not assume a tool exists.
 
 ---
 
@@ -34,9 +34,9 @@ Add the manual object below into the `manual_call_templates` array of the projec
 
 **Key Points**:
 - Manual `name` is `figma` → call namespace is `figma.figma_<tool>` and env prefix is `figma_`.
-- Transport is `stdio`; the server is the community `figma-developer-mcp` (Framelink), launched on demand via `npx`.
+- Transport is `stdio`, and the server is the community `figma-developer-mcp` (Framelink), launched on demand via `npx`.
 - The server needs a Figma personal access token, referenced as `${FIGMA_API_KEY}` and supplied in `.env` as `figma_FIGMA_API_KEY`.
-- Live-confirmed tools are `get_figma_data` and `download_figma_images`; verify the rest of the surface at runtime.
+- Live-confirmed tools are `get_figma_data` and `download_figma_images`, but verify the rest of the surface at runtime.
 
 **Template** (add to `manual_call_templates` in `.utcp_config.json`):
 
@@ -77,7 +77,7 @@ Add the manual object below into the `manual_call_templates` array of the projec
 **Key Points**:
 - Code Mode prefixes every env var with `{manual_name}_`. With manual `figma`, the `.env` key is `figma_FIGMA_API_KEY` (NOT bare `FIGMA_API_KEY`).
 - The value is a Figma personal access token from Figma → Settings → Account → Personal Access Tokens.
-- Never commit `.env`; never paste the token into user-facing output.
+- Never commit `.env`, and never paste the token into user-facing output.
 
 **Template** (add to `.env`):
 
@@ -104,7 +104,7 @@ call_tool_chain({
 });
 ```
 
-The other live-confirmed tool is `figma.figma_download_figma_images` (export node images). Treat both as read-only context pulls; the CLI (`figma-ds-cli`) remains the surface for any authoring or mutation.
+The other live-confirmed tool is `figma.figma_download_figma_images` (export node images). Treat both as read-only context pulls. The CLI (`figma-ds-cli`) remains the surface for any authoring or mutation.
 
 ---
 

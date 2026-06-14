@@ -15,7 +15,7 @@ FORCE=0; SKIP_VERIFY=0; VERBOSE=0
 
 usage() {
   cat <<EOF
-mcp-figma install.sh — install + verify the silships figma-cli (as figma-ds-cli).
+mcp-figma install.sh: install + verify the silships figma-cli (as figma-ds-cli).
 
 Usage: install.sh [options]
   --source auto|npm|repo   Install source (default: auto = try npm, fall back to repo)
@@ -69,7 +69,7 @@ check_prerequisites() {
 
 detect_figma_desktop() {
   log "== Figma Desktop (not installed by this script) =="
-  if p="$(figma_desktop_path)"; then ok "Figma Desktop found: $p"; else warn "Figma Desktop not found — required at connect time, not for install"; fi
+  if p="$(figma_desktop_path)"; then ok "Figma Desktop found: $p"; else warn "Figma Desktop not found, required at connect time, not for install"; fi
 }
 
 check_existing() {
@@ -119,7 +119,7 @@ verify_install() {
   if [ "$b" = "figma-ds-cli" ]; then ok "Canonical binary present"; else warn "Using 'figma-cli' (silships repo build); 'figma-ds-cli' is the canonical name"; fi
   local v; v="$(installed_version)"
   if [ -n "$v" ] && version_lt "$v" "$MIN_FULL_VERSION"; then
-    warn "Version $v is STALE/minimal — the documented skill surface (safe connect, daemon, extract, most commands) needs >=$MIN_FULL_VERSION."
+    warn "Version $v is STALE/minimal: the documented skill surface (safe connect, daemon, extract, most commands) needs >=$MIN_FULL_VERSION."
     warn "Run: install.sh --source repo   (builds $MIN_FULL_VERSION from silships/figma-cli)"
   else
     ok "Version $v (full surface)"
@@ -155,7 +155,7 @@ main() {
       else
         v="$(installed_version)"
         if [ -n "$v" ] && version_lt "$v" "$MIN_FULL_VERSION"; then
-          warn "npm figma-ds-cli is $v — stale/minimal (lacks safe connect, daemon, and most commands)."
+          warn "npm figma-ds-cli is $v, stale/minimal (lacks safe connect, daemon, and most commands)."
           warn "Upgrading from the silships repo for the full $MIN_FULL_VERSION surface."
           install_repo
         fi

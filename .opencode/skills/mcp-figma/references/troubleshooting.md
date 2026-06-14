@@ -14,7 +14,7 @@ contextType: "implementation"
 
 # Figma CLI Troubleshooting
 
-> **IMPORTANT:** Examples in this guide are illustrative. The CLI is not assumed to be installed in any given environment, so command output is not reproduced literally — verify the actual surface with `figma-ds-cli --help` (or the relevant subcommand's `--help`) before relying on a flag or verb.
+> **IMPORTANT:** Examples in this guide are illustrative. The CLI is not assumed to be installed in any given environment, so command output is not reproduced literally. Verify the actual surface with `figma-ds-cli --help` (or the relevant subcommand's `--help`) before relying on a flag or verb.
 
 ---
 
@@ -22,7 +22,7 @@ contextType: "implementation"
 
 ### Core Principle
 
-Find the root cause before applying a fix — symptom fixes create cascading failures. The most common traps are upstream of any Figma operation: the wrong package installed under a colliding name, an old Node, Figma Desktop not open, or a connect mode that was never completed. Work the quick diagnostics first, then jump to the matching symptom row.
+Find the root cause before applying a fix, because symptom fixes create cascading failures. The most common traps are upstream of any Figma operation: the wrong package installed under a colliding name, an old Node, Figma Desktop not open, or a connect mode that was never completed. Work the quick diagnostics first, then jump to the matching symptom row.
 
 ### When to Use
 
@@ -38,7 +38,7 @@ Find the root cause before applying a fix — symptom fixes create cascading fai
 Two hard facts shape every fix below:
 
 - **The canonical binary is `figma-ds-cli`** (silships, npm, MIT). The npm package literally named `figma-cli` is an **unrelated** tool (unic/figma-cli, bin `figma`). The `figma-cli` command only exists when installed from the silships git repo. **Never `npm i -g figma-cli`.**
-- **The CLI drives the live Figma Desktop session** — Figma Desktop must be **open with a file**, Node must be **>=18**, and there is **no Figma API key** for the CLI. macOS is the supported baseline; Linux/Windows are experimental and unverified.
+- **The CLI drives the live Figma Desktop session**, so Figma Desktop must be **open with a file**, Node must be **>=18**, and there is **no Figma API key** for the CLI. macOS is the supported baseline, and Linux/Windows are experimental and unverified.
 
 ---
 
@@ -47,7 +47,7 @@ Two hard facts shape every fix below:
 Before deeper troubleshooting, confirm the foundation:
 
 - **5-Check Sequence**: Binary identity -> Node version -> Figma Desktop open -> Connect mode completed -> Daemon health.
-- **Platform Awareness**: macOS is the supported baseline. Linux/Windows are experimental and unverified — treat platform-specific failures there as unsupported.
+- **Platform Awareness**: macOS is the supported baseline. Linux/Windows are experimental and unverified, so treat platform-specific failures there as unsupported.
 - **Error Capture**: Use `2>&1` so stderr is visible when a command appears to do nothing.
 
 **Required knowledge**:
@@ -60,7 +60,7 @@ Before deeper troubleshooting, confirm the foundation:
 
 ## 3. QUICK DIAGNOSTICS
 
-Run these checks first. All examples are illustrative — confirm with `--help`.
+Run these checks first. All examples are illustrative, so confirm with `--help`.
 
 ```bash
 # 1. Which Figma binary is on PATH? (canonical = figma-ds-cli)
@@ -122,8 +122,8 @@ echo "$PATH"
    npm i -g git+https://github.com/silships/figma-cli.git
    # or: clone OUTSIDE this repo, then npm link
    ```
-2. **Fix PATH** if the binary exists but is not found — add the npm global bin to your shell profile and re-source it.
-3. **Never** `npm i -g figma-cli` to recover — that pulls the unrelated tool (see next row).
+2. **Fix PATH** if the binary exists but is not found, adding the npm global bin to your shell profile and re-sourcing it.
+3. **Never** `npm i -g figma-cli` to recover, because that pulls the unrelated tool (see next row).
 
 ---
 
@@ -193,7 +193,7 @@ $ command -v figma-cli      # → not found
 
 **Cause**: The **npm-published** package exposes **only `figma-ds-cli`**. The dual-bin form (`figma-ds-cli` + `figma-cli`) exists only in the newer silships **repo** build (`main`), which is not published to npm.
 
-**Fix**: This is normal and not an error. **Use `figma-ds-cli` as the canonical command** — every verb in this skill works through it. Only install from the silships repo if you specifically need the newer repo build; do not chase the `figma-cli` alias.
+**Fix**: This is normal and not an error. **Use `figma-ds-cli` as the canonical command**, since every verb in this skill works through it. Only install from the silships repo if you specifically need the newer repo build, and do not chase the `figma-cli` alias.
 
 ---
 
@@ -236,7 +236,7 @@ ls -d /Applications/Figma.app 2>/dev/null || ls -d ~/Applications/Figma.app 2>/d
   || echo "Figma Desktop not installed"
 ```
 
-**Cause**: The CLI drives the **local Figma Desktop session** — there is no API-key/cloud fallback. Without Figma Desktop installed, nothing connects.
+**Cause**: The CLI drives the **local Figma Desktop session**, so there is no API-key/cloud fallback. Without Figma Desktop installed, nothing connects.
 
 **Fix**: Install Figma Desktop, then return to the connect flow. (macOS is the supported baseline.)
 
@@ -246,7 +246,7 @@ ls -d /Applications/Figma.app 2>/dev/null || ls -d ~/Applications/Figma.app 2>/d
 
 **Symptoms**: The binary is present and Figma is installed, but connect or any document command fails to reach a live document.
 
-**Cause**: figma-ds-cli requires Figma Desktop to be **open with a file** — the daemon bridges to the active Desktop session, not to a cloud document.
+**Cause**: figma-ds-cli requires Figma Desktop to be **open with a file**, since the daemon bridges to the active Desktop session, not to a cloud document.
 
 **Fix**: Launch Figma Desktop, open (or create) a file, keep it focused, then re-run `figma-ds-cli connect --safe` and `figma-ds-cli daemon status`.
 
@@ -254,7 +254,7 @@ ls -d /Applications/Figma.app 2>/dev/null || ls -d ~/Applications/Figma.app 2>/d
 
 ### Issue: safe-mode plugin not imported / not open
 
-**Symptoms**: `figma-ds-cli connect --safe` does not establish a working bridge; daemon stays unhealthy.
+**Symptoms**: `figma-ds-cli connect --safe` does not establish a working bridge, and the daemon stays unhealthy.
 
 **Cause**: Safe mode runs the **FigCli plugin** as the bridge (no app patch). The plugin must be imported once and then kept open every session.
 
@@ -265,7 +265,7 @@ ls -d /Applications/Figma.app 2>/dev/null || ls -d ~/Applications/Figma.app 2>/d
 3. Open and **keep open** `Plugins -> Development -> FigCli` for the whole session.
 4. Re-run `figma-ds-cli connect --safe`, then `figma-ds-cli daemon status`.
 
-> Safe connect (`connect --safe`) is the **default and recommended** path — it never patches Figma.
+> Safe connect (`connect --safe`) is the **default and recommended** path, and it never patches Figma.
 
 ---
 
@@ -277,7 +277,7 @@ ls -d /Applications/Figma.app 2>/dev/null || ls -d ~/Applications/Figma.app 2>/d
 
 **Symptoms**: `figma-ds-cli connect` (yolo) fails while patching the Figma app, codesigning, or restarting Figma.
 
-**Cause**: The patch writes to the Figma application bundle and re-signs it. On macOS this can require **Full Disk Access** and/or admin rights; the operation also restarts Figma.
+**Cause**: The patch writes to the Figma application bundle and re-signs it. On macOS this can require **Full Disk Access** and/or admin rights, and the operation also restarts Figma.
 
 **Fix**:
 
@@ -326,7 +326,7 @@ figma-ds-cli daemon diagnose 2>&1   # inspect the mismatch first
 figma-ds-cli daemon restart 2>&1    # restart re-aligns the token
 ```
 
-> **Never auto-delete the token** (`~/.figma-ds-cli/.daemon-token`) and never print its contents in user-facing output. Diagnose, then restart — deletion is not the remedy.
+> **Never auto-delete the token** (`~/.figma-ds-cli/.daemon-token`) and never print its contents in user-facing output. Diagnose, then restart, because deletion is not the remedy.
 
 ---
 
@@ -344,14 +344,14 @@ lsof -nP -iTCP:3456 -sTCP:LISTEN 2>/dev/null # who, if anyone, owns 3456
 
 **Causes**:
 
-- The daemon idled out (~60 min) — it is not reboot-persistent.
+- The daemon idled out (~60 min), since it is not reboot-persistent.
 - The daemon crashed.
 - Another process holds port 3456.
 
 **Fix**:
 
 1. **Idle / crashed**: `figma-ds-cli daemon restart` (then `daemon reconnect` if the bridge is up but the document link dropped).
-2. **Port owned by another process**: identify the owner with `lsof` first — **never blind-kill** the port. If it is a stale figma-ds-cli daemon, `daemon restart`; otherwise resolve the owning process before reusing 3456.
+2. **Port owned by another process**: identify the owner with `lsof` first, and **never blind-kill** the port. If it is a stale figma-ds-cli daemon, `daemon restart`, but otherwise resolve the owning process before reusing 3456.
 
 ---
 
@@ -370,14 +370,14 @@ lsof -nP -iTCP:9222 -sTCP:LISTEN 2>/dev/null   # identify the owner FIRST
 ```
 
 - If a different tool owns 9222 (for example a `mcp-chrome-devtools` session), stop that tool or free the port, then re-establish the Figma yolo connection.
-- Do not kill an unidentified process — confirm the owner before acting.
+- Do not kill an unidentified process, and confirm the owner before acting.
 - Prefer `connect --safe`, which uses the plugin bridge and does not need port 9222.
 
 ---
 
 ## 9. OPTIONAL MCP (CODE MODE) ISSUES
 
-The optional Figma MCP is the community **Framelink `figma-developer-mcp`**, already registered in this repo's Code Mode as the manual **`figma`** (stdio). The CLI works fully without it; the MCP is opt-in and only for pulling design context FROM Figma. The official Figma Dev Mode MCP is **out of scope for this release** — do not document it as a supported path. (A future option only.)
+The optional Figma MCP is the community **Framelink `figma-developer-mcp`**, already registered in this repo's Code Mode as the manual **`figma`** (stdio). The CLI works fully without it, and the MCP is opt-in and only for pulling design context FROM Figma. The official Figma Dev Mode MCP is **out of scope for this release**, so do not document it as a supported path. (A future option only.)
 
 ### Issue: Code Mode "variable not found" for the Figma token
 
@@ -388,7 +388,7 @@ The optional Figma MCP is the community **Framelink `figma-developer-mcp`**, alr
 **Fix**:
 
 ```bash
-# In .env (illustrative — do not paste the token into chat output):
+# In .env (illustrative, do not paste the token into chat output):
 figma_FIGMA_API_KEY=figd_your_token_here
 ```
 
@@ -421,7 +421,7 @@ Set `figma_FIGMA_API_KEY` in `.env`, then restart Code Mode so the manual reload
 | --- | --- | --- |
 | `figma-ds-cli: command not found` | Not installed, or npm global bin not on PATH | `npm i -g figma-ds-cli`; fix PATH; never `npm i -g figma-cli` |
 | `figma` works but figma-ds-cli verbs fail | Installed the unrelated unic/`figma-cli` (bin `figma`) | Uninstall `figma-cli`; install `figma-ds-cli`; verify silships |
-| Only `figma-ds-cli` present, no `figma-cli` | npm build ships only `figma-ds-cli`; dual-bin is repo-only | Normal — use `figma-ds-cli` as canonical |
+| Only `figma-ds-cli` present, no `figma-cli` | npm build ships only `figma-ds-cli`; dual-bin is repo-only | Normal, use `figma-ds-cli` as canonical |
 | Errors on old Node | Node <18 | `nvm install 18 && nvm use 18` |
 | Figma Desktop not found | Desktop not installed (no cloud fallback) | Install Figma Desktop |
 | Connect/doc commands fail | Figma Desktop not running or no file open | Open Figma Desktop with a file, keep it focused |
@@ -443,11 +443,11 @@ Before escalating, confirm:
 - [ ] `figma-ds-cli` is the binary in use (NOT the unrelated unic `figma-cli`).
 - [ ] Node is **>=18** (`node --version`).
 - [ ] Figma Desktop is **installed, open, and has a file open**.
-- [ ] A connect mode completed — safe plugin (default) imported and FigCli kept open, or yolo consented + patched.
+- [ ] A connect mode completed: safe plugin (default) imported and FigCli kept open, or yolo consented + patched.
 - [ ] `daemon status` is healthy (`diagnose` -> `restart` -> `reconnect` if not).
-- [ ] The daemon endpoint (`127.0.0.1:3456`) and token file exist; the token was never printed.
+- [ ] The daemon endpoint (`127.0.0.1:3456`) and token file exist, and the token was never printed.
 - [ ] For Code Mode: `figma_FIGMA_API_KEY` is set in `.env`, Code Mode was restarted, and tools were discovered before calling.
-- [ ] No port conflict on 3456 or (yolo) 9222 — owner identified before any kill.
+- [ ] No port conflict on 3456 or (yolo) 9222, with the owner identified before any kill.
 - [ ] Examples were verified against the live `--help` surface, not assumed.
 
 ---
@@ -456,11 +456,11 @@ Before escalating, confirm:
 
 Stop and escalate to the user (with the effect and a one-line rollback) when a quick fix is not safe to choose unilaterally:
 
-- The binary is **missing or ambiguous** — ask whether to install `figma-ds-cli` (npm) or the silships repo build; do not guess.
-- A **yolo patch**, an **unpatch**, or any **destructive verb** is needed to recover — describe the effect and rollback, then wait for confirmation.
-- A **port conflict** can only be cleared by stopping an unidentified process — confirm the owner first.
-- The **optional Figma MCP** is requested but no token / `figma` manual is configured — surface the `.env` requirement; never paste credentials.
-- A failure persists on **Linux/Windows** — those platforms are experimental and unverified; flag the limitation rather than improvising an unsupported fix.
+- The binary is **missing or ambiguous**, so ask whether to install `figma-ds-cli` (npm) or the silships repo build, and do not guess.
+- A **yolo patch**, an **unpatch**, or any **destructive verb** is needed to recover, so describe the effect and rollback, then wait for confirmation.
+- A **port conflict** can only be cleared by stopping an unidentified process, so confirm the owner first.
+- The **optional Figma MCP** is requested but no token / `figma` manual is configured, so surface the `.env` requirement, and never paste credentials.
+- A failure persists on **Linux/Windows**, where those platforms are experimental and unverified, so flag the limitation rather than improvising an unsupported fix.
 
 When reporting a bug upstream, include: the binary in use and version (`figma-ds-cli --version`), Node version, platform (macOS supported), connect mode (safe/yolo), `daemon diagnose` output (token redacted), and the full error with `2>&1`.
 
@@ -476,4 +476,4 @@ When reporting a bug upstream, include: the binary in use and version (`figma-ds
 - Code Mode transport for the optional MCP: [mcp-code-mode SKILL.md](../../mcp-code-mode/SKILL.md). Browser-debugging owner for port 9222 conflicts: [mcp-chrome-devtools SKILL.md](../../mcp-chrome-devtools/SKILL.md).
 - Upstream: [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). [Node.js](https://nodejs.org/) (>=18). This skill does not vendor either.
 
-> **Note**: Most failures are upstream of any Figma operation — wrong package under the colliding `figma-cli` name, Node <18, Figma Desktop not open, an incomplete connect mode, or a missing Code Mode env prefix. Verify the binary, Desktop state, and daemon health before deeper diagnosis, and confirm every illustrative command against the live `--help` surface.
+> **Note**: Most failures are upstream of any Figma operation: wrong package under the colliding `figma-cli` name, Node <18, Figma Desktop not open, an incomplete connect mode, or a missing Code Mode env prefix. Verify the binary, Desktop state, and daemon health before deeper diagnosis, and confirm every illustrative command against the live `--help` surface.

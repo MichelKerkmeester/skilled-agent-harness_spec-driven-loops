@@ -1,6 +1,6 @@
 ---
 title: "Export"
-description: "Write assets and code out of the Figma document — PNG/SVG, CSS, Tailwind, JSX, Storybook — read-only against the document but always to an explicit output path with no silent overwrite."
+description: "Write assets and code out of the Figma document (PNG/SVG, CSS, Tailwind, JSX, Storybook), read-only against the document but always to an explicit output path with no silent overwrite."
 trigger_phrases:
   - "figma export"
   - "figma export css"

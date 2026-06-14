@@ -6,7 +6,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=_common.sh
 . "$HERE/_common.sh"
 
-b="$(figma_bin)" || { err "No figma-ds-cli on PATH — run install.sh first (do NOT 'npm i -g figma-cli')"; exit 1; }
+b="$(figma_bin)" || { err "No figma-ds-cli on PATH, run install.sh first (do NOT 'npm i -g figma-cli')"; exit 1; }
 figma_desktop_path >/dev/null || warn "Figma Desktop not found; safe connect needs it open with a file."
 
 cat <<EOF

@@ -1,6 +1,6 @@
 ---
 title: "mcp-figma: Feature Catalog"
-description: "Unified capability inventory for the mcp-figma skill, covering figma-ds-cli connect/daemon, inspect, design-system extract/import, render/create, tokens/variables, export, a11y/analysis, and the optional Figma MCP via Code Mode — each capability tagged read-only, mutating, or destructive."
+description: "Unified capability inventory for the mcp-figma skill, covering figma-ds-cli connect/daemon, inspect, design-system extract/import, render/create, tokens/variables, export, a11y/analysis, and the optional Figma MCP via Code Mode, with each capability tagged read-only, mutating, or destructive."
 trigger_phrases:
   - "figma cli"
   - "figma-ds-cli"
@@ -10,11 +10,11 @@ last_updated: "2026-06-14"
 
 # mcp-figma: Feature Catalog
 
-This document is the canonical capability inventory for the `mcp-figma` skill. The root catalog acts as the system-level directory: it summarizes each capability area, names the canonical `figma-ds-cli` command for each feature, and tags every command read-only, mutating, or destructive so the gating model is visible at a glance. The skill drives the installed Figma Desktop app from the terminal through the silships `figma-ds-cli` so a coding agent can connect, inspect, author, modify, and export designs, tokens, and components — and **optionally** pull design context out of Figma through a community Figma MCP via Code Mode. The CLI is the primary surface; the MCP is opt-in.
+This document is the canonical capability inventory for the `mcp-figma` skill. The root catalog acts as the system-level directory: it summarizes each capability area, names the canonical `figma-ds-cli` command for each feature, and tags every command read-only, mutating, or destructive so the gating model is visible at a glance. The skill drives the installed Figma Desktop app from the terminal through the silships `figma-ds-cli` so a coding agent can connect, inspect, author, modify, and export designs, tokens, and components, and **optionally** pull design context out of Figma through a community Figma MCP via Code Mode. The CLI is the primary surface, and the MCP is opt-in.
 
-> **Naming trap (read first).** The canonical binary is **`figma-ds-cli`** (silships, npm, MIT). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`) — **NEVER `npm i -g figma-cli`**. The `figma-cli` command exists only when installed from the silships repo. This catalog uses `figma-ds-cli` as the canonical command throughout.
+> **Naming trap (read first).** The canonical binary is **`figma-ds-cli`** (silships, npm, MIT). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **NEVER `npm i -g figma-cli`**. The `figma-cli` command exists only when installed from the silships repo. This catalog uses `figma-ds-cli` as the canonical command throughout.
 
-> **Verification note.** Commands below are illustrative and sourced from the figma-cli capability research digest; verify any exact verb, flag, or output with `figma-ds-cli <command> --help` before relying on it. The research flags known doc drift (REFERENCE shows `create rect/circle`, source proves `create frame/icon/image` plus top-level aliases; `voice`/`chat`/`prop combine` appear in docs but were not found in source). Do NOT run `figma-ds-cli` against a live document without verifying the command and its gating class first.
+> **Verification note.** Commands below are illustrative and sourced from the figma-cli capability research digest, so verify any exact verb, flag, or output with `figma-ds-cli <command> --help` before relying on it. The research flags known doc drift (REFERENCE shows `create rect/circle`, source proves `create frame/icon/image` plus top-level aliases; `voice`/`chat`/`prop combine` appear in docs but were not found in source). Do NOT run `figma-ds-cli` against a live document without verifying the command and its gating class first.
 
 ---
 
@@ -24,7 +24,7 @@ Use this catalog as the inventory for the live `mcp-figma` surface. The numbered
 
 The capability surface has one hard prerequisite and three working directions, plus an optional context pull. Everything depends on a **connection**: figma-cli drives **Figma Desktop (open with a file)**, with no Figma API key, over a local daemon. From there the **read** direction inspects and exports without changing the document, the **write** direction authors, renders, sets tokens, and imports design systems behind gates, and a small **destructive** subset deletes content behind hard confirms. Underneath the optional last direction sits the community Figma MCP, reached through this repo's Code Mode rather than by anything figma-cli ships.
 
-A note on what stays out of scope. This skill is the terminal transport, not the design judgment: the look-and-feel decisions belong to `sk-interface-design`. figma-cli does **not** ship or spawn its own MCP (source-verified zero hits) — its daemon is a private HTTP/WebSocket bridge, not an MCP server. The OFFICIAL Figma Dev Mode MCP is out of scope for this release; only the community Framelink `figma` manual is documented as a supported optional path.
+A note on what stays out of scope. This skill is the terminal transport, not the design judgment: the look-and-feel decisions belong to `sk-interface-design`. figma-cli does **not** ship or spawn its own MCP (source-verified zero hits), and its daemon is a private HTTP/WebSocket bridge, not an MCP server. The OFFICIAL Figma Dev Mode MCP is out of scope for this release, and only the community Framelink `figma` manual is documented as a supported optional path.
 
 ### Command class tags
 
@@ -54,7 +54,7 @@ Every command below carries one tag. Local exports are read-only but still write
 
 ## 2. CONNECT AND DAEMON
 
-Bring up and maintain the link between the terminal and Figma Desktop. Safe plugin mode is the default; the yolo patch that edits Figma's `app.asar` is gated behind explicit consent and a stated rollback. The daemon is a local HTTP server on `127.0.0.1:3456` (not a Unix socket), authed with `X-Daemon-Token` from `~/.figma-ds-cli/.daemon-token`, idle ~60 min, not reboot-persistent. Daemon status/diagnose verbs are read-only; start/stop/restart and connect/unpatch change app or daemon state.
+Bring up and maintain the link between the terminal and Figma Desktop. Safe plugin mode is the default, and the yolo patch that edits Figma's `app.asar` is gated behind explicit consent and a stated rollback. The daemon is a local HTTP server on `127.0.0.1:3456` (not a Unix socket), authed with `X-Daemon-Token` from `~/.figma-ds-cli/.daemon-token`, idle ~60 min, not reboot-persistent. Daemon status/diagnose verbs are read-only, while start/stop/restart and connect/unpatch change app or daemon state.
 
 | Feature | One-line description | Class | figma-ds-cli command |
 |---|---|---|---|
@@ -96,7 +96,7 @@ See [`02--inspect/inspect.md`](02--inspect/inspect.md) for the read-only inspect
 
 ## 4. DESIGN-SYSTEM EXTRACT AND IMPORT
 
-Move a design system out of Figma (read-only) or into Figma (gated). `extract` produces a `DESIGN.md` with 11 sections including a machine-readable `design-tokens` JSON block, and auto-splits very large structure into a `DESIGN-structure/` folder (handle multi-file output). `import` ingests Tailwind config, CSS variables, W3C/Style-Dictionary `tokens.json`, or a Storybook source. Extract is read-only but writes a file, so it needs an explicit output path and must not silently overwrite; import changes the document and is gated.
+Move a design system out of Figma (read-only) or into Figma (gated). `extract` produces a `DESIGN.md` with 11 sections including a machine-readable `design-tokens` JSON block, and auto-splits very large structure into a `DESIGN-structure/` folder (handle multi-file output). `import` ingests Tailwind config, CSS variables, W3C/Style-Dictionary `tokens.json`, or a Storybook source. Extract is read-only but writes a file, so it needs an explicit output path and must not silently overwrite. Import changes the document and is gated.
 
 | Feature | One-line description | Class | figma-ds-cli command |
 |---|---|---|---|
@@ -125,7 +125,7 @@ Author content in the document: render JSX-described nodes, create frames/icons/
 | Variants / sizes / combos | Generates component variants, sizes, or combos | MUTATING | `figma-ds-cli variants\|sizes\|combos ... [--dry-run]` |
 | shadcn add | Adds shadcn primitives into the document | MUTATING | `figma-ds-cli shadcn add <component>` |
 | Screenshot/recreate from URL | Captures or recreates a design from a URL | MUTATING | `figma-ds-cli screenshot-url \| recreate-url <url>` |
-| Arbitrary execution | Runs arbitrary code/commands — can do anything; review first | ARBITRARY | `figma-ds-cli eval\|raw\|run ...` |
+| Arbitrary execution | Runs arbitrary code/commands, can do anything, review first | ARBITRARY | `figma-ds-cli eval\|raw\|run ...` |
 
 See [`04--render-and-create/render-and-create.md`](04--render-and-create/render-and-create.md) for the authoring surface, the dry-run previews, and the arbitrary-execution caveat.
 
@@ -133,7 +133,7 @@ See [`04--render-and-create/render-and-create.md`](04--render-and-create/render-
 
 ## 6. TOKENS AND VARIABLES
 
-Manage Figma variables and collections, bind `var:name` references, and visualize tokens. Reads and binds are read-only or gated; create/bind/set/rename/visualize change the document; bulk deletes are destructive and require an explicit target and rollback. Token binding uses `var:name` (e.g. `bg="var:card"`), `var:collection:name` to pin a collection, or `render --collection <name>`.
+Manage Figma variables and collections, bind `var:name` references, and visualize tokens. Reads and binds are read-only or gated, create/bind/set/rename/visualize change the document, and bulk deletes are destructive and require an explicit target and rollback. Token binding uses `var:name` (e.g. `bg="var:card"`), `var:collection:name` to pin a collection, or `render --collection <name>`.
 
 | Feature | One-line description | Class | figma-ds-cli command |
 |---|---|---|---|
@@ -145,7 +145,7 @@ Manage Figma variables and collections, bind `var:name` references, and visualiz
 | Visualize tokens | Renders a token visualization | MUTATING | `figma-ds-cli var visualize` |
 | Use / theme | Applies a collection or theme | MUTATING | `figma-ds-cli use\|theme <name> [--dry-run]` |
 | Delete one variable | Deletes a single variable | DESTRUCTIVE | `figma-ds-cli delete\|remove <node-or-var>` |
-| Delete all variables | Deletes every variable — requires confirm + rollback | DESTRUCTIVE | `figma-ds-cli var delete-all` |
+| Delete all variables | Deletes every variable, requires confirm + rollback | DESTRUCTIVE | `figma-ds-cli var delete-all` |
 | Delete variable batch | Deletes a batch of variables by id | DESTRUCTIVE | `figma-ds-cli var delete-batch <ids>` |
 
 See [`05--tokens-and-variables/tokens-and-variables.md`](05--tokens-and-variables/tokens-and-variables.md) for the bind syntax and the destructive delete gate.
@@ -185,7 +185,7 @@ See [`06--a11y-and-analysis/a11y-and-analysis.md`](06--a11y-and-analysis/a11y-an
 
 ## 9. OPTIONAL MCP CONTEXT
 
-The skill works fully with the CLI alone. When the agent must pull design context FROM Figma as model input, use the **community Framelink `figma-developer-mcp` manual already registered as `figma` in this repo's Code Mode** (`.utcp_config.json`, stdio). It needs a Figma personal token in `.env` as `figma_FIGMA_API_KEY` (Code Mode prefixes the manual name). Calls go through `call_tool_chain()` with the naming `figma.figma_<tool>`; always discover first with `search_tools()` / `tool_info()` before invoking, and never claim a tool works until discovery confirms it. The OFFICIAL Figma Dev Mode MCP is out of scope for this release and is not a supported path (a future option only).
+The skill works fully with the CLI alone. When the agent must pull design context FROM Figma as model input, use the **community Framelink `figma-developer-mcp` manual already registered as `figma` in this repo's Code Mode** (`.utcp_config.json`, stdio). It needs a Figma personal token in `.env` as `figma_FIGMA_API_KEY` (Code Mode prefixes the manual name). Calls go through `call_tool_chain()` with the naming `figma.figma_<tool>`. Always discover first with `search_tools()` / `tool_info()` before invoking, and never claim a tool works until discovery confirms it. The OFFICIAL Figma Dev Mode MCP is out of scope for this release and is not a supported path (a future option only).
 
 | Feature | One-line description | Class | Invocation |
 |---|---|---|---|

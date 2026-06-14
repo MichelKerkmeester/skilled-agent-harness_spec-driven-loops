@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Print the OPTIONAL Code Mode wiring for the Framelink figma MCP manual.
-# PRINTS ONLY — never edits .utcp_config.json or .env. The official Figma Dev Mode
+# PRINTS ONLY, never edits .utcp_config.json or .env. The official Figma Dev Mode
 # MCP is out of scope for this skill release.
 
 set -euo pipefail
 
 cat <<'EOF'
-== Optional Figma MCP via Code Mode (Framelink) — print only ==
+== Optional Figma MCP via Code Mode (Framelink), print only ==
 
 This project already ships a Code Mode manual named "figma" (figma-developer-mcp).
 If it is missing from .utcp_config.json, add this entry under manual_call_templates[]:

@@ -15,7 +15,7 @@ This scenario validates the destructive-verb gate for `REFUSE-001`. It focuses o
 
 ### Why This Matters
 
-The destructive subset deletes document content or resources, and the worst failure mode is a destructive verb that fires without confirmation, without an explicit target, or via the active-selection fallback. This is a critical-path scenario. It proves the gate by attempting the verb and showing it is refused — the destructive command itself never runs.
+The destructive subset deletes document content or resources, and the worst failure mode is a destructive verb that fires without confirmation, without an explicit target, or via the active-selection fallback. This is a critical-path scenario. It proves the gate by attempting the verb and showing it is refused, so the destructive command itself never runs.
 
 ---
 

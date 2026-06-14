@@ -14,6 +14,6 @@ case "$verb" in
   *) err "Unknown daemon verb: $verb"; echo "Use: status|diagnose|start|stop|restart|reconnect" >&2; exit 2;;
 esac
 
-b="$(figma_bin)" || { err "No figma-ds-cli on PATH — run install.sh first"; exit 1; }
+b="$(figma_bin)" || { err "No figma-ds-cli on PATH, run install.sh first"; exit 1; }
 info "Running: $b daemon $verb"
 "$b" daemon "$verb"
