@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-006` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: staged diff captured; Step 2: secret patterns searched; Step 3: report classifies exposure and remediation
 - Desired user-visible outcome: a severity-ranked secrets review that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if hardcoded credentials are P0/P1 per references/security_checklist.md section 4 and no inline secret appears in evidence; FAIL if real secrets are repeated in output
+- Pass/fail: PASS if hardcoded credentials are P0/P1 per assets/security_checklist.md section 4 and no inline secret appears in evidence; FAIL if real secrets are repeated in output
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-006` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-006 | Secrets and hardcoded credentials | Confirm committed secrets and sensitive logs are treated as security blockers. | `Scan the staged diff for hardcoded credentials, private keys, passwords, tokens, and sensitive logs without echoing real secrets.` | bash: git diff --staged -> bash: rg -n -i -e "api[_-]?key" -e "secret" -e "token" -e "password" -e "BEGIN .* PRIVATE KEY" -e "console\.log" path/to/changed/files -> agent: @review secrets scan | Step 1: staged diff captured; Step 2: secret patterns searched; Step 3: report classifies exposure and remediation | Diff transcript, rg output, final report | PASS if hardcoded credentials are P0/P1 per references/security_checklist.md section 4 and no inline secret appears in evidence; FAIL if real secrets are repeated in output | 1. Redact evidence; 2. Confirm whether token is test fixture; 3. Recommend rotation if exposure is real |
+| CR-006 | Secrets and hardcoded credentials | Confirm committed secrets and sensitive logs are treated as security blockers. | `Scan the staged diff for hardcoded credentials, private keys, passwords, tokens, and sensitive logs without echoing real secrets.` | bash: git diff --staged -> bash: rg -n -i -e "api[_-]?key" -e "secret" -e "token" -e "password" -e "BEGIN .* PRIVATE KEY" -e "console\.log" path/to/changed/files -> agent: @review secrets scan | Step 1: staged diff captured; Step 2: secret patterns searched; Step 3: report classifies exposure and remediation | Diff transcript, rg output, final report | PASS if hardcoded credentials are P0/P1 per assets/security_checklist.md section 4 and no inline secret appears in evidence; FAIL if real secrets are repeated in output | 1. Redact evidence; 2. Confirm whether token is test fixture; 3. Recommend rotation if exposure is real |
 
 ### Optional Supplemental Checks
 
@@ -66,7 +66,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 
 | File | Role |
 |---|---|
-| `../../references/security_checklist.md` | Security, authz, secrets, injection, abuse, and reliability checks |
+| `../../assets/security_checklist.md` | Security, authz, secrets, injection, abuse, and reliability checks |
 | `../../references/review_core.md` | Mandatory P0/P1 evidence and baseline minimums |
 | `../../SKILL.md` | Baseline plus sk-code surface-evidence contract |
 

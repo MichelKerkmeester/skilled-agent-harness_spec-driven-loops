@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-022` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: the ceiling: comment is located and names shortcut, ceiling, and upgrade trigger; Step 2: the matching P2 simplicity finding is downgraded or suppressed; Step 3: a co-located security or correctness finding keeps full severity.
 - Desired user-visible outcome: a review that stops nagging about an explained shortcut while still blocking on the security or correctness issue beside it.
-- Pass/fail: PASS if the ceiling comment downgrades only the simplicity finding and never a protected-class finding per references/code_quality_checklist.md section 7; FAIL if it suppresses a security, auth, persistence, sandbox, public-contract, or correctness finding, or ignores a valid ceiling note.
+- Pass/fail: PASS if the ceiling comment downgrades only the simplicity finding and never a protected-class finding per assets/code_quality_checklist.md section 7; FAIL if it suppresses a security, auth, persistence, sandbox, public-contract, or correctness finding, or ignores a valid ceiling note.
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-022` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-022 | Ceiling-comment downgrade | Confirm a concrete ceiling: comment downgrades a matching too-simple KISS or YAGNI P2 while a co-located security or correctness finding stays full severity. | `Review this diff where a deliberate shortcut carries a ceiling: comment; downgrade the matching too-simple KISS or YAGNI finding, but keep any security, auth, persistence, or correctness finding at full severity.` | bash: git diff --staged -U5 -> bash: rg -n "ceiling:" path/to/file -> agent: @review for KISS or YAGNI downgrade and protected-class hold | Step 1: ceiling: comment located with shortcut, ceiling, upgrade trigger; Step 2: matching P2 simplicity finding downgraded or suppressed; Step 3: co-located security or correctness finding stays full severity | Diff hunk, the ceiling: line, both findings with final severity | PASS if the ceiling comment downgrades only the simplicity finding and never a protected-class finding per references/code_quality_checklist.md section 7; FAIL if it suppresses a protected-class finding or ignores a valid ceiling note | 1. Confirm the ceiling: comment is concrete, not a bare label; 2. Check the protected-class exclusion list; 3. Re-grade each finding independently |
+| CR-022 | Ceiling-comment downgrade | Confirm a concrete ceiling: comment downgrades a matching too-simple KISS or YAGNI P2 while a co-located security or correctness finding stays full severity. | `Review this diff where a deliberate shortcut carries a ceiling: comment; downgrade the matching too-simple KISS or YAGNI finding, but keep any security, auth, persistence, or correctness finding at full severity.` | bash: git diff --staged -U5 -> bash: rg -n "ceiling:" path/to/file -> agent: @review for KISS or YAGNI downgrade and protected-class hold | Step 1: ceiling: comment located with shortcut, ceiling, upgrade trigger; Step 2: matching P2 simplicity finding downgraded or suppressed; Step 3: co-located security or correctness finding stays full severity | Diff hunk, the ceiling: line, both findings with final severity | PASS if the ceiling comment downgrades only the simplicity finding and never a protected-class finding per assets/code_quality_checklist.md section 7; FAIL if it suppresses a protected-class finding or ignores a valid ceiling note | 1. Confirm the ceiling: comment is concrete, not a bare label; 2. Check the protected-class exclusion list; 3. Re-grade each finding independently |
 
 ### Optional Supplemental Checks
 
@@ -66,7 +66,7 @@ If the primary run passes, repeat against a `ceiling:` comment that is vague (no
 
 | File | Role |
 |---|---|
-| `../../references/code_quality_checklist.md` | Section 7 ceiling: intentional-simplification downgrade rule and the protected-class exclusion list |
+| `../../assets/code_quality_checklist.md` | Section 7 ceiling: intentional-simplification downgrade rule and the protected-class exclusion list |
 | `../../SKILL.md` | Findings-first severity contract the downgrade applies within |
 
 ---

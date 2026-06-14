@@ -23,6 +23,10 @@ Test adequacy, coverage quality, and anti-pattern detection checklist for identi
 
 Provide a systematic pass for test defects that reduce confidence in code correctness or mask regressions.
 
+### Usage
+
+Apply when the diff changes tests; check each item against the test diff and flag false-confidence patterns that mask regressions.
+
 ### Core Principle
 
 Tests that cannot fail are worse than no tests. They create false confidence and hide real defects.
@@ -132,7 +136,7 @@ Severity guidance:
 
 ## 7. RELATED RESOURCES
 
-- [quick_reference.md](./quick_reference.md) - Baseline review flow and severity output contract.
+- [quick_reference.md](../references/quick_reference.md) - Baseline review flow and severity output contract.
 - [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
 - [security_checklist.md](./security_checklist.md) - Security, authz, abuse, and privacy risk checks.
 - [solid_checklist.md](./solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.

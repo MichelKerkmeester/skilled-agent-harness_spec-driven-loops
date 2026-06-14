@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-020` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: diff captured; Step 2: review flags the hand-rolled duplication as a §6 maintainability finding; Step 3: recommended fix names the standard or native API.
 - Desired user-visible outcome: a maintainability finding that points the author at an existing standard or native primitive instead of a bespoke re-implementation.
-- Pass/fail: PASS if a reinvented-wheel instance is flagged with the standard or native replacement per references/code_quality_checklist.md section 6; FAIL if hand-rolled duplication is waved through.
+- Pass/fail: PASS if a reinvented-wheel instance is flagged with the standard or native replacement per assets/code_quality_checklist.md section 6; FAIL if hand-rolled duplication is waved through.
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-020` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-020 | Reinvent-the-wheel detection | Confirm the reviewer flags hand-rolled standard-library or native duplication and recommends the built-in primitive. | `Review this diff for code that re-implements standard-library or native platform behavior, and recommend the built-in primitive where the behavior and edge cases match.` | bash: git diff --staged -U5 -> agent: @review for reinvented-wheel maintainability findings -> bash: rg -n "the duplicated primitive name" path/to/file | Step 1: diff captured; Step 2: review flags duplication as section 6 maintainability; Step 3: fix names the standard or native API | Diff hunk, the named primitive, final maintainability finding | PASS if a reinvented-wheel instance is flagged with the standard or native replacement per references/code_quality_checklist.md section 6; FAIL if duplication is waved through | 1. Confirm the primitive truly matches behavior and edge cases; 2. Check section 6 rows loaded; 3. Add the named replacement to the finding |
+| CR-020 | Reinvent-the-wheel detection | Confirm the reviewer flags hand-rolled standard-library or native duplication and recommends the built-in primitive. | `Review this diff for code that re-implements standard-library or native platform behavior, and recommend the built-in primitive where the behavior and edge cases match.` | bash: git diff --staged -U5 -> agent: @review for reinvented-wheel maintainability findings -> bash: rg -n "the duplicated primitive name" path/to/file | Step 1: diff captured; Step 2: review flags duplication as section 6 maintainability; Step 3: fix names the standard or native API | Diff hunk, the named primitive, final maintainability finding | PASS if a reinvented-wheel instance is flagged with the standard or native replacement per assets/code_quality_checklist.md section 6; FAIL if duplication is waved through | 1. Confirm the primitive truly matches behavior and edge cases; 2. Check section 6 rows loaded; 3. Add the named replacement to the finding |
 
 ### Optional Supplemental Checks
 
@@ -66,7 +66,7 @@ If the primary run passes, repeat the scenario against a diff where the hand-rol
 
 | File | Role |
 |---|---|
-| `../../references/code_quality_checklist.md` | Section 6 reinvent-the-wheel maintainability rows and recommended-fix wording |
+| `../../assets/code_quality_checklist.md` | Section 6 reinvent-the-wheel maintainability rows and recommended-fix wording |
 | `../../SKILL.md` | Findings-first severity contract the maintainability finding slots into |
 
 ---

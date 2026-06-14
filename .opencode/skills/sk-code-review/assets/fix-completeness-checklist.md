@@ -13,11 +13,21 @@ contextType: implementation
 
 # Fix Completeness Checklist
 
-## 1. Overview
+Checklist for turning a review finding into a complete fix that covers same-class producers, consumers, changed algorithms, matrix coverage, and hostile runtime state.
 
-Use this checklist when turning review findings into complete fixes. It keeps the proof focused on sibling producers, consumers, changed algorithms, matrix coverage, and hostile runtime state.
+## 1. OVERVIEW
 
-## 2. Classification
+### Purpose
+
+Turn a review finding into a complete fix that covers same-class producers, consumers, changed algorithms, matrix coverage, and hostile runtime state, not just the one cited site.
+
+### Usage
+
+Use this when a finding becomes a fix: classify the finding, run the required inventories, and include the completion output before claiming done. A finding that meets the instance-only opt-out may use the narrow path with grep proof.
+
+---
+
+## 2. CLASSIFICATION
 
 State one class for every actionable finding:
 
@@ -41,7 +51,9 @@ A finding may use the narrow fix path only when all are true:
 
 Otherwise, run the full fix completeness checklist.
 
-## 3. Required Inventories
+---
+
+## 3. REQUIRED INVENTORIES
 
 Same-class producers:
 
@@ -65,7 +77,7 @@ rg -n '\.replace\(|new RegExp|startsWith\(|includes\(|split\(' <changed-files>
 Matrix/evidence:
 
 ```bash
-rg -n 'it\.each|test\.each|describe\.each|REQ-|source:' <changed-tests-and-packet-docs>
+rg -n 'it\.each|test\.each|describe\.each|requirement-id|source:' <changed-tests-and-packet-docs>
 git rev-parse --verify HEAD
 git diff --name-only <FIX_SHA>^..<FIX_SHA>
 ```
@@ -78,7 +90,9 @@ env -u <RELEVANT_ENV> <focused-test-command>
 rg -n '<ENV_OR_GLOBAL_NAME>|original.*Env|afterEach|finally|reset\(' <changed-test-files>
 ```
 
-## 4. Completion Output
+---
+
+## 4. COMPLETION OUTPUT
 
 The fix response must include:
 
@@ -90,3 +104,11 @@ The fix response must include:
 - Hostile env command when relevant.
 - Previously closed gates rechecked.
 - Intentionally unchanged siblings/consumers with evidence.
+
+---
+
+## 5. RELATED RESOURCES
+
+- [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, performance, and maintainability checks.
+- [security_checklist.md](./security_checklist.md) - Security, authz, and reliability checks.
+- [../references/review_core.md](../references/review_core.md) - Findings-first review doctrine, severity model, and evidence rules.

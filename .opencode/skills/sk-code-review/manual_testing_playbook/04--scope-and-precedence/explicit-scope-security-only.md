@@ -68,7 +68,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 |---|---|
 | `../../references/review_core.md` | Baseline and surface precedence rules |
 | `../../references/review_ux_single_pass.md` | Scope source and interactive report behavior |
-| `../../references/test_quality_checklist.md` | Test-only review severity guidance |
+| `../../assets/test_quality_checklist.md` | Test-only review severity guidance |
 
 ---
 

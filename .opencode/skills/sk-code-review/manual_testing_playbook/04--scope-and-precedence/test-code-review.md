@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-012` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: test diff captured; Step 2: test-quality checklist applied; Step 3: findings avoid production-style-only noise
 - Desired user-visible outcome: a test-quality findings report that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if findings use references/test_quality_checklist.md severity guidance and cite file:line; FAIL if assertion-free tests are approved
+- Pass/fail: PASS if findings use assets/test_quality_checklist.md severity guidance and cite file:line; FAIL if assertion-free tests are approved
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-012` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-012 | Test code review | Confirm test-only changes are reviewed for false confidence, isolation, and meaningful assertions. | `Review the staged test-only diff for assertion-free tests, swallowed assertions, over-mocking, flaky state, and cleanup gaps.` | bash: git diff --staged -- '*test*' '*spec*' -> agent: @review test-only diff -> bash: rg -n -e "catch" -e "expect\(" -e "assert" -e "mock" -e "beforeEach" -e "afterEach" path/to/tests | Step 1: test diff captured; Step 2: test-quality checklist applied; Step 3: findings avoid production-style-only noise | Test diff, grep transcript, final report | PASS if findings use references/test_quality_checklist.md severity guidance and cite file:line; FAIL if assertion-free tests are approved | 1. Count assertions; 2. Inspect catch blocks; 3. Check isolation and cleanup |
+| CR-012 | Test code review | Confirm test-only changes are reviewed for false confidence, isolation, and meaningful assertions. | `Review the staged test-only diff for assertion-free tests, swallowed assertions, over-mocking, flaky state, and cleanup gaps.` | bash: git diff --staged -- '*test*' '*spec*' -> agent: @review test-only diff -> bash: rg -n -e "catch" -e "expect\(" -e "assert" -e "mock" -e "beforeEach" -e "afterEach" path/to/tests | Step 1: test diff captured; Step 2: test-quality checklist applied; Step 3: findings avoid production-style-only noise | Test diff, grep transcript, final report | PASS if findings use assets/test_quality_checklist.md severity guidance and cite file:line; FAIL if assertion-free tests are approved | 1. Count assertions; 2. Inspect catch blocks; 3. Check isolation and cleanup |
 
 ### Optional Supplemental Checks
 
@@ -68,7 +68,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 |---|---|
 | `../../references/review_core.md` | Baseline and surface precedence rules |
 | `../../references/review_ux_single_pass.md` | Scope source and interactive report behavior |
-| `../../references/test_quality_checklist.md` | Test-only review severity guidance |
+| `../../assets/test_quality_checklist.md` | Test-only review severity guidance |
 
 ---
 

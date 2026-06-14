@@ -120,7 +120,7 @@ Suggested shape:
 
 - [review_ux_single_pass.md](./review_ux_single_pass.md) - Interactive single-pass report flow and next-step prompts.
 - [quick_reference.md](./quick_reference.md) - Lightweight index across baseline review references.
-- [security_checklist.md](./security_checklist.md) - Security and reliability checks.
-- [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, KISS, DRY, and maintainability checks.
+- [security_checklist.md](../assets/security_checklist.md) - Security and reliability checks.
+- [code_quality_checklist.md](../assets/code_quality_checklist.md) - Correctness, KISS, DRY, and maintainability checks.
 
 ---

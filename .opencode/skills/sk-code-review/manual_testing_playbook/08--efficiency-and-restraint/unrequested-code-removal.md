@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-021` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: diff and stated scope captured; Step 2: unrequested code flagged with a removal recommendation and a Replacement entry; Step 3: finding defaults P2, escalates P1 only on added attack surface, contract, or regression risk.
 - Desired user-visible outcome: a removal recommendation a maintainer can act on, naming what replaces the deleted code and why nothing in scope needs it.
-- Pass/fail: PASS if unrequested code earns a removal recommendation per references/code_quality_checklist.md section 7 with a Replacement per references/removal_plan.md section 2; FAIL if it gets only a simplification note or is ignored.
+- Pass/fail: PASS if unrequested code earns a removal recommendation per assets/code_quality_checklist.md section 7 with a Replacement per assets/removal_plan.md section 2; FAIL if it gets only a simplification note or is ignored.
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-021` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-021 | Unrequested-code removal prompt | Confirm the reviewer recommends removal with a Replacement entry for code tracing to no requirement, P2 default with P1 escalation on added risk. | `Review this diff for code that traces to no stated requirement, and recommend removal with a Replacement entry when nothing in scope asked for it.` | bash: git diff --staged -U5 -> agent: @review with the stated scope for needed-ness -> bash: rg -n "the unrequested symbol" path/to/file | Step 1: diff and scope captured; Step 2: removal recommendation with a Replacement entry; Step 3: P2 default, P1 only on added surface or contract or regression risk | Diff hunk, stated scope, removal finding with Replacement | PASS if unrequested code earns a removal recommendation per references/code_quality_checklist.md section 7 with a Replacement per references/removal_plan.md section 2; FAIL if it gets only a simplification note | 1. Confirm the code traces to no requirement; 2. Check section 7 needed-ness prompt loaded; 3. Add Replacement and re-grade P2 vs P1 |
+| CR-021 | Unrequested-code removal prompt | Confirm the reviewer recommends removal with a Replacement entry for code tracing to no requirement, P2 default with P1 escalation on added risk. | `Review this diff for code that traces to no stated requirement, and recommend removal with a Replacement entry when nothing in scope asked for it.` | bash: git diff --staged -U5 -> agent: @review with the stated scope for needed-ness -> bash: rg -n "the unrequested symbol" path/to/file | Step 1: diff and scope captured; Step 2: removal recommendation with a Replacement entry; Step 3: P2 default, P1 only on added surface or contract or regression risk | Diff hunk, stated scope, removal finding with Replacement | PASS if unrequested code earns a removal recommendation per assets/code_quality_checklist.md section 7 with a Replacement per assets/removal_plan.md section 2; FAIL if it gets only a simplification note | 1. Confirm the code traces to no requirement; 2. Check section 7 needed-ness prompt loaded; 3. Add Replacement and re-grade P2 vs P1 |
 
 ### Optional Supplemental Checks
 
@@ -66,8 +66,8 @@ If the primary run passes, repeat against a diff where the new code DOES trace t
 
 | File | Role |
 |---|---|
-| `../../references/code_quality_checklist.md` | Section 7 needed-ness removal prompt and P2/P1 escalation rule |
-| `../../references/removal_plan.md` | Section 2 safe-to-remove-now table and the Replacement field |
+| `../../assets/code_quality_checklist.md` | Section 7 needed-ness removal prompt and P2/P1 escalation rule |
+| `../../assets/removal_plan.md` | Section 2 safe-to-remove-now table and the Replacement field |
 
 ---
 

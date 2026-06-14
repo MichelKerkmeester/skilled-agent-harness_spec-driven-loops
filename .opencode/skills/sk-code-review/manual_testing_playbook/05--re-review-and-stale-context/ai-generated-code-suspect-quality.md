@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-015` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: changed size visible; Step 2: suspect patterns checked; Step 3: findings tie to behavior not authorship
 - Desired user-visible outcome: a balanced quality review that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if over-engineering and missing tests are assessed via references/code_quality_checklist.md and test_quality_checklist.md; FAIL if report relies on AI-generated label alone
+- Pass/fail: PASS if over-engineering and missing tests are assessed via assets/code_quality_checklist.md and test_quality_checklist.md; FAIL if report relies on AI-generated label alone
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-015` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-015 | AI-generated suspect quality | Confirm AI-generated code is reviewed for over-abstraction, missing tests, and invented contracts without biasing severity unfairly. | `Review this suspected AI-generated diff for over-abstraction, contract safety, and test adequacy based on behavior, not authorship.` | bash: git diff --staged --stat -> bash: rg -n -e "TODO" -e "placeholder" -e "future" -e "generic" -e "any" -e "unknown" -e "mock" path/to/changed/files -> agent: @review generated-code diff | Step 1: changed size visible; Step 2: suspect patterns checked; Step 3: findings tie to behavior not authorship | Diff stat, pattern grep, final report | PASS if over-engineering and missing tests are assessed via references/code_quality_checklist.md and test_quality_checklist.md; FAIL if report relies on AI-generated label alone | 1. Remove authorship assumptions; 2. Cite behavior risk; 3. Verify tests cover changed behavior |
+| CR-015 | AI-generated suspect quality | Confirm AI-generated code is reviewed for over-abstraction, missing tests, and invented contracts without biasing severity unfairly. | `Review this suspected AI-generated diff for over-abstraction, contract safety, and test adequacy based on behavior, not authorship.` | bash: git diff --staged --stat -> bash: rg -n -e "TODO" -e "placeholder" -e "future" -e "generic" -e "any" -e "unknown" -e "mock" path/to/changed/files -> agent: @review generated-code diff | Step 1: changed size visible; Step 2: suspect patterns checked; Step 3: findings tie to behavior not authorship | Diff stat, pattern grep, final report | PASS if over-engineering and missing tests are assessed via assets/code_quality_checklist.md and test_quality_checklist.md; FAIL if report relies on AI-generated label alone | 1. Remove authorship assumptions; 2. Cite behavior risk; 3. Verify tests cover changed behavior |
 
 ### Optional Supplemental Checks
 
@@ -66,8 +66,8 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 
 | File | Role |
 |---|---|
-| `../../references/fix-completeness-checklist.md` | Disposition and proof requirements for fixes |
-| `../../references/code_quality_checklist.md` | Contract, KISS, DRY, and correctness checks |
+| `../../assets/fix-completeness-checklist.md` | Disposition and proof requirements for fixes |
+| `../../assets/code_quality_checklist.md` | Contract, KISS, DRY, and correctness checks |
 | `../../references/review_core.md` | Evidence-first severity and uncertainty discipline |
 
 ---

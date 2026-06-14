@@ -72,21 +72,22 @@ Knowledge is organized by domain mapping:
 ```text
 references/review_core.md
 references/review_ux_single_pass.md
-references/*_checklist.md
-assets/review/...
+references/pr_state_dedup.md
+assets/*_checklist.md
+assets/removal_plan.md
 ```
 
 - `references/review_core.md` for shared doctrine consumed by both `@review` and `@deep-review`.
 - `references/review_ux_single_pass.md` for interactive single-pass review behavior.
-- `references/` for baseline review flow, severity contracts, and risk checklists.
-- `assets/` for optional reusable templates/checklists (if present in this skill).
+- `references/` for shared review doctrine, single-pass UX behavior, and the PR-state dedup spec.
+- `assets/` for the review checklists and the removal-plan template (security, code-quality, fix-completeness, SOLID, test-quality, removal).
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md` |
-| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/code_quality_checklist.md`, `references/removal_plan.md`, `references/test_quality_checklist.md` |
+| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, `assets/code_quality_checklist.md`, `assets/fix-completeness-checklist.md` |
+| CONDITIONAL | Intent score indicates need | `assets/solid_checklist.md`, `assets/code_quality_checklist.md`, `assets/removal_plan.md`, `assets/test_quality_checklist.md` |
 | ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
@@ -120,9 +121,9 @@ RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCES = [
     "references/review_core.md",
     "references/review_ux_single_pass.md",
-    "references/security_checklist.md",
-    "references/code_quality_checklist.md",
-    "references/fix-completeness-checklist.md",
+    "assets/security_checklist.md",
+    "assets/code_quality_checklist.md",
+    "assets/fix-completeness-checklist.md",
 ]
 
 INTENT_SIGNALS = {
@@ -136,13 +137,13 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "SECURITY": ["references/security_checklist.md"],
-    "QUALITY": ["references/code_quality_checklist.md"],
-    "KISS": ["references/code_quality_checklist.md"],
-    "DRY": ["references/code_quality_checklist.md"],
-    "SOLID": ["references/solid_checklist.md"],
-    "REMOVAL": ["references/removal_plan.md"],
-    "TESTING": ["references/test_quality_checklist.md"],
+    "SECURITY": ["assets/security_checklist.md"],
+    "QUALITY": ["assets/code_quality_checklist.md"],
+    "KISS": ["assets/code_quality_checklist.md"],
+    "DRY": ["assets/code_quality_checklist.md"],
+    "SOLID": ["assets/solid_checklist.md"],
+    "REMOVAL": ["assets/removal_plan.md"],
+    "TESTING": ["assets/test_quality_checklist.md"],
 }
 
 ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only", "underrepresented", "scope correctly"]
@@ -407,11 +408,11 @@ Downstream automation parses this final line via exact string match — do not v
 - [review_core.md](./references/review_core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
 - [review_ux_single_pass.md](./references/review_ux_single_pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
 - [quick_reference.md](./references/quick_reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
-- [security_checklist.md](./references/security_checklist.md) - Mandatory security and reliability checks.
-- [code_quality_checklist.md](./references/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
-- [solid_checklist.md](./references/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
-- [removal_plan.md](./references/removal_plan.md) - Safe-now vs deferred removal planning template.
-- [test_quality_checklist.md](./references/test_quality_checklist.md) - Test quality, coverage, and anti-pattern detection.
+- [security_checklist.md](./assets/security_checklist.md) - Mandatory security and reliability checks.
+- [code_quality_checklist.md](./assets/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
+- [solid_checklist.md](./assets/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
+- [removal_plan.md](./assets/removal_plan.md) - Safe-now vs deferred removal planning template.
+- [test_quality_checklist.md](./assets/test_quality_checklist.md) - Test quality, coverage, and anti-pattern detection.
 
 ### Reference Loading Notes
 
@@ -439,7 +440,7 @@ Downstream automation parses this final line via exact string match — do not v
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md`, `references/removal_plan.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `assets/code_quality_checklist.md`, `assets/fix-completeness-checklist.md`, `assets/removal_plan.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ### Manual Testing Playbook
 

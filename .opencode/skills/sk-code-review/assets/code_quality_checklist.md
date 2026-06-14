@@ -23,6 +23,10 @@ Correctness, performance, and boundary-condition checklist for identifying produ
 
 Provide a systematic pass for non-security defects that still cause outages, regressions, or high maintenance cost.
 
+### Usage
+
+Run this pass on every findings-first review; walk each section against the changed diff and cite file:line for anything flagged.
+
 ### Core Principle
 
 Prioritize silent-failure and data-corruption risks above stylistic concerns.
@@ -151,7 +155,7 @@ Intentional-simplification evidence:
 
 ## 8. RELATED RESOURCES
 
-- [quick_reference.md](./quick_reference.md) - Baseline review flow and severity output contract.
+- [quick_reference.md](../references/quick_reference.md) - Baseline review flow and severity output contract.
 - [security_checklist.md](./security_checklist.md) - Security, authz, abuse, and privacy risk checks.
 - [solid_checklist.md](./solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.
 - [removal_plan.md](./removal_plan.md) - Removal candidate classification and migration planning.

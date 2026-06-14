@@ -44,11 +44,11 @@ Use this file as an entry index, not as the primary source of review rules. Load
 
 | Checklist | Purpose |
 |-----------|---------|
-| [security_checklist.md](./security_checklist.md) | Security, reliability, and abuse-prevention checks |
-| [code_quality_checklist.md](./code_quality_checklist.md) | Non-security correctness, KISS, and DRY checks |
-| [solid_checklist.md](./solid_checklist.md) | Architecture and SOLID (SRP/OCP/LSP/ISP/DIP) checks |
-| [removal_plan.md](./removal_plan.md) | Safe-now versus deferred deletion planning |
-| [test_quality_checklist.md](./test_quality_checklist.md) | Test quality, coverage, and anti-pattern detection |
+| [security_checklist.md](../assets/security_checklist.md) | Security, reliability, and abuse-prevention checks |
+| [code_quality_checklist.md](../assets/code_quality_checklist.md) | Non-security correctness, KISS, and DRY checks |
+| [solid_checklist.md](../assets/solid_checklist.md) | Architecture and SOLID (SRP/OCP/LSP/ISP/DIP) checks |
+| [removal_plan.md](../assets/removal_plan.md) | Safe-now versus deferred deletion planning |
+| [test_quality_checklist.md](../assets/test_quality_checklist.md) | Test quality, coverage, and anti-pattern detection |
 
 Surface portability: apply this baseline with `sk-code` surface evidence.
 

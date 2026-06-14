@@ -24,6 +24,10 @@ Structured risk checklist for security vulnerabilities, runtime reliability issu
 
 Help reviewers prioritize exploitability and business impact, not just code style.
 
+### Usage
+
+Apply on security-relevant diffs; classify each finding by exploitability and business impact, and cite file:line evidence.
+
 ### Core Principle
 
 When impact is unclear, prefer conservative classification and state uncertainty explicitly.
@@ -183,7 +187,7 @@ Review prompt:
 
 ## 12. RELATED RESOURCES
 
-- [quick_reference.md](./quick_reference.md) - Findings-first review flow, severity model, and output contract.
+- [quick_reference.md](../references/quick_reference.md) - Findings-first review flow, severity model, and output contract.
 - [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, scaling, and maintainability checks.
 - [solid_checklist.md](./solid_checklist.md) - Architecture cohesion and coupling checks.
 - [removal_plan.md](./removal_plan.md) - Safe deletion and deferred removal planning.

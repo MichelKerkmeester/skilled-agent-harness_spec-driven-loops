@@ -197,11 +197,11 @@ The skill ships a manual testing playbook with per-feature scenarios for finding
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, smart router and the full rule set |
 | [`references/review_core.md`](./references/review_core.md) | Shared doctrine: severity taxonomy, evidence rules and baseline-plus-surface precedence |
 | [`references/review_ux_single_pass.md`](./references/review_ux_single_pass.md) | Single-pass report flow and the next-action prompt |
-| [`references/security_checklist.md`](./references/security_checklist.md) | Mandatory security checks: auth, injection, secrets, concurrency and supply chain |
-| [`references/code_quality_checklist.md`](./references/code_quality_checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
-| [`references/solid_checklist.md`](./references/solid_checklist.md) | SOLID principles and architecture smell detection |
-| [`references/test_quality_checklist.md`](./references/test_quality_checklist.md) | Test coverage quality, structure and reliability |
-| [`references/fix-completeness-checklist.md`](./references/fix-completeness-checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
-| [`references/removal_plan.md`](./references/removal_plan.md) | Safe-now versus deferred deletion and rollback planning |
+| [`assets/security_checklist.md`](./assets/security_checklist.md) | Mandatory security checks: auth, injection, secrets, concurrency and supply chain |
+| [`assets/code_quality_checklist.md`](./assets/code_quality_checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
+| [`assets/solid_checklist.md`](./assets/solid_checklist.md) | SOLID principles and architecture smell detection |
+| [`assets/test_quality_checklist.md`](./assets/test_quality_checklist.md) | Test coverage quality, structure and reliability |
+| [`assets/fix-completeness-checklist.md`](./assets/fix-completeness-checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
+| [`assets/removal_plan.md`](./assets/removal_plan.md) | Safe-now versus deferred deletion and rollback planning |
 | [`references/pr_state_dedup.md`](./references/pr_state_dedup.md) | Content-hash dedup gate: signature scheme, cache format and retention |
 | [`references/quick_reference.md`](./references/quick_reference.md) | Lightweight routing index across all references |

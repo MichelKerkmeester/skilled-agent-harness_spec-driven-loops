@@ -481,7 +481,7 @@ Use `sk-code-review` for formal findings-first review output and severity handli
 For review runs:
 
 1. Use `sk-code-review/references/quick_reference.md` for severity model and output contract.
-2. Use `sk-code-review/references/code_quality_checklist.md`, `security_checklist.md`, and `test_quality_checklist.md` for baseline risk checks.
+2. Use `sk-code-review/assets/code_quality_checklist.md`, `security_checklist.md`, and `test_quality_checklist.md` for baseline risk checks.
 3. Cite this shell standards file as the overlay source for shell-specific findings.
 
 ---

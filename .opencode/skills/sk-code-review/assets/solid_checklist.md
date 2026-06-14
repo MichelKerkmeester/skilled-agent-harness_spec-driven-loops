@@ -22,6 +22,10 @@ Review prompts and smell patterns for evaluating architecture cohesion, coupling
 
 Provide repeatable prompts to detect structural issues that create long-term maintenance risk.
 
+### Usage
+
+Walk each SOLID prompt and architecture smell against the changed design; name the module and the principle at risk for any flagged item.
+
 ### Core Principle
 
 Favor cohesive modules and low-coupling boundaries so behavior can evolve without broad side effects.
@@ -103,7 +107,7 @@ When suggesting a refactor, include:
 
 ## 5. RELATED RESOURCES
 
-- [quick_reference.md](./quick_reference.md) - Baseline review flow and severity mapping.
+- [quick_reference.md](../references/quick_reference.md) - Baseline review flow and severity mapping.
 - [security_checklist.md](./security_checklist.md) - Security and runtime risk checks.
 - [code_quality_checklist.md](./code_quality_checklist.md) - Correctness and performance checklist.
 - [removal_plan.md](./removal_plan.md) - Safe deletion and deferred migration planning.

@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-008` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: sibling pattern inventory exists; Step 2: report assigns findingClass; Step 3: instance-only opt-out has proof if used
 - Desired user-visible outcome: a finding-class disposition table that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if finding class follows references/fix-completeness-checklist.md classification and SKILL.md instance-only opt-out; FAIL if no scopeProof is provided
+- Pass/fail: PASS if finding class follows assets/fix-completeness-checklist.md classification and SKILL.md instance-only opt-out; FAIL if no scopeProof is provided
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-008` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-008 | Class of bug vs instance-only | Confirm findings classify same-class inventory instead of patching only the cited instance by default. | `Review this repeated bug pattern and inventory same-class producers before accepting an instance-only fix.` | bash: rg -n -e "errors\.push" -e "warnings\.push" -e "throw new Error" -e "return \{.*error" -e "message:" path/to/module -> agent: @review repeated-pattern diff | Step 1: sibling pattern inventory exists; Step 2: report assigns findingClass; Step 3: instance-only opt-out has proof if used | rg transcript, finding-class line, final report | PASS if finding class follows references/fix-completeness-checklist.md classification and SKILL.md instance-only opt-out; FAIL if no scopeProof is provided | 1. Re-run same-class rg; 2. Classify class-of-bug or instance-only; 3. Add scopeProof evidence |
+| CR-008 | Class of bug vs instance-only | Confirm findings classify same-class inventory instead of patching only the cited instance by default. | `Review this repeated bug pattern and inventory same-class producers before accepting an instance-only fix.` | bash: rg -n -e "errors\.push" -e "warnings\.push" -e "throw new Error" -e "return \{.*error" -e "message:" path/to/module -> agent: @review repeated-pattern diff | Step 1: sibling pattern inventory exists; Step 2: report assigns findingClass; Step 3: instance-only opt-out has proof if used | rg transcript, finding-class line, final report | PASS if finding class follows assets/fix-completeness-checklist.md classification and SKILL.md instance-only opt-out; FAIL if no scopeProof is provided | 1. Re-run same-class rg; 2. Classify class-of-bug or instance-only; 3. Add scopeProof evidence |
 
 ### Optional Supplemental Checks
 
@@ -67,7 +67,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 | File | Role |
 |---|---|
 | `../../references/review_core.md` | File:line evidence, ordering, finding schema, affectedSurfaceHints |
-| `../../references/fix-completeness-checklist.md` | Finding class, scopeProof, producer and consumer inventories |
+| `../../assets/fix-completeness-checklist.md` | Finding class, scopeProof, producer and consumer inventories |
 | `../../SKILL.md` | Instance-only opt-out and fix completeness expectations |
 
 ---
