@@ -2,7 +2,7 @@
 name: sk-interface-design
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0
+version: 1.0.0
 metadata:
   author: Anthropic
   source: https://github.com/anthropics/skills/tree/main/skills/frontend-design  data_source: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill (MIT, design data and search)

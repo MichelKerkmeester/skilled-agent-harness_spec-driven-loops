@@ -144,7 +144,7 @@ The detailed transformation both skills underwent across the 148 epic (research 
 
 ### sk-interface-design
 
-| Dimension | Before (v1.0.0 vendored install) | After (v1.1.0.0) |
+| Dimension | Before (vendored Anthropic install) | After (v1.0.0.0) |
 |---|---|---|
 | What it is | Prose-only design judgment skill | Judgment skill backed by design data, search, and a shared parity loop |
 | Design data | None | `assets/data/` with 9 MIT CSVs (styles, colors, typography, ui-reasoning, products, landing, ux-guidelines, charts, app-interface) |
