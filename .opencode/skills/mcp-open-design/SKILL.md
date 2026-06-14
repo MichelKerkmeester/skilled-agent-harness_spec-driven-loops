@@ -16,7 +16,7 @@ user-invocable: true
 
 Drive the installed **Open Design** desktop app (nexu-io/open-design, "the official open-source, local-first Claude Design alternative") from the terminal, so a coding agent (opencode / Claude Code) can read your local design projects and design-systems, reuse them, answer the app's prompts, and commission generation runs **without typing into the in-app chat**. The interface is the `od` CLI plus a stdio MCP server that Open Design exposes; deep operational detail lives in [`references/od_cli_reference.md`](references/od_cli_reference.md).
 
-> **Terminology.** Open Design calls a workspace a **project**, a brand/style a **design system** (DESIGN.md + tokens.css + components.html), a build a **run**, and an output file an **artifact**. The CLI brands itself **`od`** but is `app/prebundled/daemon/daemon-cli.mjs` run under Node — it is NOT the bundled `vela` binary (vela is the cloud auth client).
+> **Terminology.** Open Design calls a workspace a **project**, a brand/style a **design system** (DESIGN.md + tokens.css + components.html), a build a **run**, and an output file an **artifact**. The CLI brands itself **`od`** but is `app/prebundled/daemon/daemon-cli.mjs` run under Node - it is NOT the bundled `vela` binary (vela is the cloud auth client).
 
 ---
 
@@ -36,7 +36,7 @@ Drive the installed **Open Design** desktop app (nexu-io/open-design, "the offic
 
 **Wire direction (connect the app to your agent).** Register Open Design's stdio MCP server into opencode/Claude Code so its tools appear to the agent.
 
-**Read direction (use local content).** List projects, read the active context, read a design system's `DESIGN.md`/`tokens.css`/`components.html`, search files, fetch artifacts — all read-only.
+**Read direction (use local content).** List projects, read the active context, read a design system's `DESIGN.md`/`tokens.css`/`components.html`, search files, fetch artifacts - all read-only.
 
 **Run direction (commission work headlessly).** `start_run` → `get_run` → `get_artifact` commissions Open Design to spawn its own inner agent and produce artifacts, the headless equivalent of the chat box. Gated.
 
@@ -45,7 +45,7 @@ Drive the installed **Open Design** desktop app (nexu-io/open-design, "the offic
 **Skip this skill when:**
 - The user wants to work in Open Design's in-app chat UI directly (that is the thing this skill replaces, not automates).
 - The work is generic app coding with no Open Design content (use `sk-code`).
-- The work is the design judgment itself (the look, the anti-default critique) — that is `sk-interface-design`; this skill is the transport.
+- The work is the design judgment itself (the look, the anti-default critique) - that is `sk-interface-design`; this skill is the transport.
 - Open Design is not installed, or its desktop app is not running (the local daemon, and therefore every tool call, is unavailable).
 
 ---
@@ -85,7 +85,7 @@ TASK CONTEXT
 | CONDITIONAL | WIRE intent | `references/mcp_wiring.md` (opencode + Claude Code config, manual fallback) |
 | CONDITIONAL | READ / RUN intent | `references/tool_surface.md` (the MCP tools, the surface/gate/omit policy) |
 | ALWAYS (design work) | Grounding a design in an Open Design system, or any READ feeding a design decision | `sk-interface-design` design principles, applied before deciding |
-| ALWAYS (design work) | Reuse-before-generate / fidelity / handoff | `sk-interface-design/references/claude_design_parity.md` (the shared loop) |
+| ALWAYS (design work) | Reuse-before-generate / fidelity / handoff | `../sk-interface-design/references/claude_design_parity.md` (the shared loop) |
 
 ### Smart Router Pseudocode
 
@@ -184,7 +184,7 @@ def route_open_design_resources(request: str):
 ```bash
 APP="/Applications/Open Design.app"
 OD_BIN="$APP/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"   # this is `od`
-# Either form works (system node, or the bundled Electron as node — no system node needed):
+# Either form works (system node, or the bundled Electron as node - no system node needed):
 node "$OD_BIN" --help
 ELECTRON_RUN_AS_NODE=1 "$APP/Contents/MacOS/Open Design" "$OD_BIN" --help
 ```
@@ -220,7 +220,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ### ALWAYS
 
-1. **ALWAYS locate the CLI as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`** (or the `ELECTRON_RUN_AS_NODE=1` form). Never assume a global `od` on PATH, and never hardcode `127.0.0.1:7456` — the desktop daemon is socket-discovered on an ephemeral port.
+1. **ALWAYS locate the CLI as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`** (or the `ELECTRON_RUN_AS_NODE=1` form). Never assume a global `od` on PATH, and never hardcode `127.0.0.1:7456` - the desktop daemon is socket-discovered on an ephemeral port.
 2. **ALWAYS confirm the Open Design desktop app is running first.** The daemon it hosts answers every tool call. If it is closed, the socket is gone and calls fail.
 3. **ALWAYS verify the live `tools/list`** before relying on a tool's name or read-only status. The help text undercounts; the real surface is ~18 tools and includes mutating and destructive ones.
 4. **ALWAYS gate every mutating or destructive verb** behind explicit user confirmation, an explicit target project/name, and a one-line rollback note. This covers `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, `delete_project`, and the `od artifacts/media/automation/ui/memory/plugin` write verbs.
@@ -237,9 +237,9 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ### ESCALATE IF
 
-1. **ESCALATE IF the desktop app is not running** and the user expected tool calls to work — offer to have them open it, or to start a standalone daemon with `od --no-open` (headless, binds `127.0.0.1:7456`).
-2. **ESCALATE IF a verb returns an auth error** — local reads work without a cloud account, but generation/media/research/plugin-publish may need a `vela login` or configured providers. Surface the requirement; do not paste credentials into prompts.
-3. **ESCALATE IF a mutating or destructive run is requested** — describe the effect and the rollback, then stop and wait for confirmation.
+1. **ESCALATE IF the desktop app is not running** and the user expected tool calls to work - offer to have them open it, or to start a standalone daemon with `od --no-open` (headless, binds `127.0.0.1:7456`).
+2. **ESCALATE IF a verb returns an auth error** - local reads work without a cloud account, but generation/media/research/plugin-publish may need a `vela login` or configured providers. Surface the requirement; do not paste credentials into prompts.
+3. **ESCALATE IF a mutating or destructive run is requested** - describe the effect and the rollback, then stop and wait for confirmation.
 
 ---
 

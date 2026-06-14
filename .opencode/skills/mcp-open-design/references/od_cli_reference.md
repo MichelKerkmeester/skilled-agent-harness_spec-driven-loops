@@ -146,7 +146,7 @@ From `od --help`. Read-only verbs are safe to surface freely. Mutating verbs are
 
 ## 5. DRIVING THE APP'S WORK WITHOUT THE CHAT UI
 
-These are the headless equivalents of typing into the in-app chat box. Every one is mutating and is a STOP-and-confirm point.
+These are the headless equivalents of typing into the in-app chat box. The mutating members are STOP-and-confirm points: `start_run`, `cancel_run`, artifact writes (`od artifacts create`, MCP `write_file`/`create_artifact`), `od ui respond/revoke/prefill`, `od automation create/run/...`, and `od media generate`. The polling reads `get_run` and `get_artifact` are read-only and surface freely.
 
 - **`start_run(prompt, [skill], [plugin], [inputs], [agent], [model])` plus `get_run(runId)` plus `get_artifact`** is the true headless equivalent of the chat box. Open Design spawns its own inner agent (`claude` / `codex` / `gemini`, per `list_agents`) to do the design work and returns files plus a `previewUrl`/`studioUrl`. `cancel_run` aborts. These are MCP tools (see [tool_surface.md](tool_surface.md)). **[CONFIRMED - read registry]**
 - **`od automation create/run/runs/…`** schedules or fires a routine and harvests results, the same store as the UI Automations tab, explicitly designed for external agents. Schedules use `hourly:` / `daily:` / `weekdays:` / `weekly:`. **[CONFIRMED - ran `--help`]**

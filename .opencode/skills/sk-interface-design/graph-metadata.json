@@ -25,12 +25,17 @@
         "target": "mcp-magicpath",
         "weight": 0.7,
         "context": "mcp-magicpath applies this skill's visual direction whenever it authors or shapes MagicPath UI"
+      },
+      {
+        "target": "mcp-open-design",
+        "weight": 0.7,
+        "context": "mcp-open-design applies this skill's anti-default judgment whenever an Open Design read or run feeds a design decision"
       }
     ]
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-magicpath"]
+    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-magicpath", "mcp-open-design"]
   },
   "domains": ["frontend", "ui-design", "visual-design", "typography", "design-systems"],
   "intent_signals": [

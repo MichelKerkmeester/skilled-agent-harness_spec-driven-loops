@@ -171,7 +171,7 @@ This section records wave planning and capacity guidance for executing the 7-sce
 | Wave | Categories | Scenarios | Rationale |
 |---|---|---|---|
 | 1 | Direction freedom + brief pinning | ID-001, ID-002 | The deviate-vs-obey precedence pair is the core behavior and isolates cleanly |
-| 2 | Quality floor + data critique | ID-003, ID-004 | The objective gate and the query-only lookup share script and data preconditions |
+| 2 | Quality floor + system critique | ID-003, ID-004 | The objective gate reads on-disk references while the critique-against scenario reads one Open Design system live via `mcp-open-design`, and both are read-only and isolate cleanly |
 | 3 | Abstention and routing | ID-005, ID-006 | Routing away from non-visual work is read-only and isolates from the design path |
 | 4 | Claude design parity | ID-008, ID-009 | Reuse-before-generate and the fidelity check share the parity protocol and the magicpath surface |
 | 5 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
@@ -321,13 +321,13 @@ This category covers 1 scenario while the linked feature file remains the canoni
 
 #### Description
 
-Provenance is intact: the vendored Apache-2.0 principles are unchanged from upstream and the MIT data and search are attributed, with the notices map verified against what is actually present on disk.
+Provenance is intact: the vendored Apache-2.0 principles are unchanged from upstream, `LICENSE.txt` resolves on disk, and a de-vendor grep confirms no vendored MIT data, search-script, vendored-license, or third party notice material remains, so the skill is Apache-2.0 only.
 
 #### Scenario Contract
 
 Prompt: `Confirm the design data and principles in this skill are properly licensed and attributed before we ship it.`
 
-Desired user-visible outcome: A provenance report confirming `design_principles.md` is unchanged Apache-2.0 content, the data and search are MIT-attributed, and an honest note on whether the referenced notices file is present.
+Desired user-visible outcome: A provenance report confirming `design_principles.md` is unchanged Apache-2.0 content, `LICENSE.txt` is present, and the skill is Apache-2.0 only with no vendored MIT material or notices remaining.
 
 #### Test Execution
 
@@ -382,7 +382,7 @@ The current repository has no dedicated automated test module for `sk-interface-
 | `references/design_inventory.md` | The reuse-ground and critique-against framing over a live Open Design system; the no-chooser and no-cache hard rules | ID-004 |
 | `references/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
 | `references/claude_design_parity.md` | The shared parity loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
-| `../mcp-magicpath/scripts/design_fidelity.py` | Query-only helper that fetches the backend-rendered preview for the fidelity check | ID-009 |
+| `../../mcp-magicpath/scripts/design_fidelity.py` | Query-only helper that fetches the backend-rendered preview for the fidelity check | ID-009 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 

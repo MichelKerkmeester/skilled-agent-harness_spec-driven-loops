@@ -200,7 +200,7 @@ Expected: the socket is gone so the call fails with a meaningful error naming th
 
 | ID | Scenario | Category | Feature File | Catalog File |
 |---|---|---|---|---|
-| WIRE-001 | Install and verify the live tools | Wiring | [01--wiring/install-and-verify.md](01--wiring/install-and-verify.md) | `01--wiring/od-mcp-install.md` |
-| READ-001 | Read a design system | Reading | [02--reading/read-design-system.md](02--reading/read-design-system.md) | `02--reading/read-only-content.md` |
-| RUN-001 | Gated verb requires confirmation | Gated Runs | [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md) | `04--runs/headless-runs.md` |
-| FAIL-001 | Daemon not running | Failure Paths | [04--failure-paths/daemon-not-running.md](04--failure-paths/daemon-not-running.md) | `05--transport/daemon-and-verification.md` |
+| WIRE-001 | Install and verify the live tools | Wiring | [01--wiring/install-and-verify.md](01--wiring/install-and-verify.md) | `../feature_catalog/01--wiring/od-mcp-install.md` |
+| READ-001 | Read a design system | Reading | [02--reading/read-design-system.md](02--reading/read-design-system.md) | `../feature_catalog/02--reading/read-only-content.md` |
+| RUN-001 | Gated verb requires confirmation | Gated Runs | [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md) | `../feature_catalog/04--runs/headless-runs.md` |
+| FAIL-001 | Daemon not running | Failure Paths | [04--failure-paths/daemon-not-running.md](04--failure-paths/daemon-not-running.md) | `../feature_catalog/05--transport/daemon-and-verification.md` |

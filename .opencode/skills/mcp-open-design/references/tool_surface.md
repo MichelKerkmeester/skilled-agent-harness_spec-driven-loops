@@ -65,7 +65,7 @@ This policy is the spine of how the skill exposes the surface. It spans both the
 Call these without ceremony:
 
 - MCP: `list_projects`, `get_active_context`, `get_artifact`, `get_project`, `get_file`, `search_files`, `list_files`, `list_skills`, `list_plugins`, `list_agents`, `get_run`.
-- CLI: `od tools design-systems read`, `od daemon status` / `doctor`, and the `list`/`view`/`show` forms of `od automation`, `od memory tree`, and `od ui`.
+- CLI: `od tools design-systems read`, and the `list`/`view`/`show` forms of `od automation`, `od memory tree`, and `od ui`. (`od daemon status` and a standalone `od doctor` are **[UNVERIFIED]**. They are not in the confirmed `od --help` verb table, which only implements `od --no-open` to start the daemon and exposes `doctor` under `od plugin ... doctor`. Confirm with a live `od --help` before surfacing them.)
 
 ### Surface but GATE (confirmation + explicit target + rollback note)
 
