@@ -22,7 +22,7 @@ trigger_phrases:
 Current state:
 
 - The indexer parses TypeScript, JavaScript, Python and shell files through tree-sitter with fallback handling.
-- Markdown, JSON, JSONC, YAML, YML and TOML files can be registered as `language='doc'` rows when `.opencode/` folders are explicitly opted in.
+- JSON, JSONC, YAML, YML and TOML config files can be registered as `language='doc'` rows when `.opencode/` folders are explicitly opted in. Markdown and other prose docs are not indexed — the code graph models code and structured config, not documentation.
 - The database layer stores files, nodes, edges, metadata, diagnostics, parser skip-list rows and verification records.
 - Context builders merge structural graph, Spec Kit memory and Code Graph inputs under token budgets.
 - Apply-mode recovery runs pre and post verification before committing graph repair operations.

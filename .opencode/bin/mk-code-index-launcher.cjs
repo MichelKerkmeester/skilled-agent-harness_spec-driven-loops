@@ -64,6 +64,25 @@ function isStrictModeDisabled(value) {
   return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
 }
 
+// Category -> INDEX_* env key. Module-level so the launcher and its tests share one source.
+const MAINTAINER_CATEGORY_ENV = {
+  skills: 'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
+  agents: 'SPECKIT_CODE_GRAPH_INDEX_AGENTS',
+  commands: 'SPECKIT_CODE_GRAPH_INDEX_COMMANDS',
+  specs: 'SPECKIT_CODE_GRAPH_INDEX_SPECS',
+  plugins: 'SPECKIT_CODE_GRAPH_INDEX_PLUGINS',
+};
+
+// Pure resolver for SPECKIT_CODE_GRAPH_MAINTAINER_MODE: "true" forces every category (back-compat),
+// "false"/empty/unset forces none, and a comma list forces the recognized subset (unknown names
+// dropped). Returns category names; the caller maps them to env keys via MAINTAINER_CATEGORY_ENV.
+function resolveMaintainerModeCategories(rawValue) {
+  const raw = (rawValue || '').trim().toLowerCase();
+  if (raw === 'true') return Object.keys(MAINTAINER_CATEGORY_ENV);
+  if (!raw || raw === 'false') return [];
+  return raw.split(',').map((c) => c.trim()).filter((c) => c in MAINTAINER_CATEGORY_ENV);
+}
+
 function bootstrapLauncherEnv() {
   for (const fname of ['.env.local', '.env']) {
     const p = path.join(root, fname);
@@ -73,26 +92,20 @@ function bootstrapLauncherEnv() {
     }
   }
 
-  // Maintainer-mode override: when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true is set in
-  // .env.local (gitignored maintainer-only file), force all 5 INDEX_* flags to "true"
-  // regardless of what the runtime's MCP config injected. Committed configs ship "false"
-  // defaults (end-user safe); the maintainer flips this one flag locally to enable
-  // indexing of .opencode/{skills,agents,commands,specs,plugins} on their machine only.
-  // Per-call code_graph_scan args (includeSkills, etc.) still override env for fine-grained
-  // control. See ENV_REFERENCE.md § GRAPH.
-  if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
-    const INDEX_KEYS = [
-      'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
-      'SPECKIT_CODE_GRAPH_INDEX_AGENTS',
-      'SPECKIT_CODE_GRAPH_INDEX_COMMANDS',
-      'SPECKIT_CODE_GRAPH_INDEX_SPECS',
-      'SPECKIT_CODE_GRAPH_INDEX_PLUGINS',
-    ];
-    for (const key of INDEX_KEYS) {
-      process.env[key] = 'true';
-    }
+  // Maintainer-mode override: SPECKIT_CODE_GRAPH_MAINTAINER_MODE selects which .opencode
+  // categories to force-index on this machine, overriding whatever the runtime's MCP config
+  // injected. Committed configs ship "false" (end-user safe: only code outside .opencode is
+  // graphed); a maintainer opts in locally via .env.local (gitignored). Accepts "true" (all
+  // five categories, back-compat) or a comma-separated subset such as "skills,plugins" so a
+  // maintainer can index just the .opencode folders that hold code without pulling in the rest.
+  // Per-call code_graph_scan args (includeSkills, etc.) still override env. See ENV_REFERENCE.md § GRAPH.
+  const maintainerCategories = resolveMaintainerModeCategories(process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE);
+  for (const cat of maintainerCategories) {
+    process.env[MAINTAINER_CATEGORY_ENV[cat]] = 'true';
+  }
+  if (maintainerCategories.length > 0) {
     process.stderr.write(
-      '[mk-code-index-launcher] MAINTAINER_MODE=true: forcing all 5 INDEX_* to "true"\n'
+      `[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for ${maintainerCategories.join(', ')}\n`
     );
   }
 }
@@ -1069,4 +1082,6 @@ module.exports = {
   CODE_INDEX_UNSAFE_TOOL_NAMES,
   classifyCodeIndexFrame,
   bridgeStdioThroughSessionProxy,
+  MAINTAINER_CATEGORY_ENV,
+  resolveMaintainerModeCategories,
 };

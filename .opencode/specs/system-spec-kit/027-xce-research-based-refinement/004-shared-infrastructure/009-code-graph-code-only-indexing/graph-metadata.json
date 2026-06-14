@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph code only indexing",
+      "code graph exclude markdown",
+      "maintainer mode selectable categories",
+      "code only indexing plan",
+      "exclude markdown code graph plan",
+      "selectable maintainer mode plan",
+      "code only indexing tasks",
+      "exclude markdown tasks",
+      "selectable maintainer mode tasks",
+      "code only indexing summary",
+      "exclude markdown shipped",
+      "selectable maintainer mode summary"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "only",
+      "indexing",
+      "exclude",
+      "markdown",
+      "maintainer",
+      "mode",
+      "selectable",
+      "categories",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "lib/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/launcher-maintainer-mode.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "indexer-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-indexer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-maintainer-mode.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/launcher-maintainer-mode.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Indexing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Selectable Maintainer Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Investigation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code graph (`mk_code_index`) is meant to model code structure, but its default include globs pulled in `**/*.md`, registering markdown/prose docs as `language='doc'` rows alongside real code. For an external user, that meant their READMEs/docs were graphed; for the maintainer, opting `.opencode` in graphed every `SKILL.md`, agent, command and spec doc. Separately, `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` was all-or-nothing — `=true` force-indexed all five `.opencode` categories, with no way to pick only the code-bearing ones (the per-`INDEX_*` `.env.local` route is inert because the committed config already sets those keys, and config wins over file).",
+    "created_at": "2026-06-14T08:55:44.858Z",
+    "last_save_at": "2026-06-14T08:55:44.858Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
