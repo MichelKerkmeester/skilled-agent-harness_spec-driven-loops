@@ -68,6 +68,7 @@ Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, search, r
 | `004-shared-infrastructure/005` | autonomous dependency patching | shipped | [changelog-024-autonomous-dependency-patching.md](./024-autonomous-dependency-patching/changelog-024-autonomous-dependency-patching.md) |
 | `004-shared-infrastructure/006` | code mode orphan lifecycle | shipped | [changelog-025-code-mode-orphan-lifecycle.md](./025-code-mode-orphan-lifecycle/changelog-025-code-mode-orphan-lifecycle.md) |
 | `004-shared-infrastructure/007` | ipc client cap hardening | shipped | [changelog-026-ipc-client-cap-hardening.md](./026-ipc-client-cap-hardening/changelog-026-ipc-client-cap-hardening.md) |
+| `004-shared-infrastructure/008` | mcp config alignment reelection default | shipped | [008-mcp-config-alignment-reelection-default/](../004-shared-infrastructure/008-mcp-config-alignment-reelection-default/) |
 
 ### 005 verification and remediation
 

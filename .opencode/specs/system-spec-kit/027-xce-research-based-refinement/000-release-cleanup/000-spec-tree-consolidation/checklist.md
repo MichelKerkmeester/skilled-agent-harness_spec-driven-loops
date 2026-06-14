@@ -51,14 +51,14 @@ Mark each item `[x]` only with evidence (command + result). Structural move: cod
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] CHK-020 [P0] `validate.sh --recursive` on the 027 root: 0 errors.
-- [ ] CHK-021 [P0] `validate.sh --strict` on this folder: exit 0.
+- [x] CHK-020 [P0] `validate.sh --recursive` on the 027 root: 0 errors. → PASSED (0 errors / 0 warnings).
+- [x] CHK-021 [P0] `validate.sh --strict` on this folder: exit 0. → PASSED.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 - [x] CHK-030 [P0] All 30 phases moved; zero stray old top-level dirs.
-- [ ] CHK-031 [P1] Root docs realigned; `timeline.md` regenerated.
+- [x] CHK-031 [P1] Root docs realigned; `timeline.md` regenerated. → spec.md map, graph-metadata, description, before-vs-after, context-index, changelog, timeline all realigned.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -68,7 +68,7 @@ Mark each item `[x]` only with evidence (command + result). Structural move: cod
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] CHK-050 [P1] `before-vs-after.md` references updated; `context-index.md` wave added.
+- [x] CHK-050 [P1] `before-vs-after.md` references updated; `context-index.md` wave added. → cross-model deep review confirmed 0 broken references.
 - [x] CHK-051 [P1] Five parent lean trios authored and validate.
 <!-- /ANCHOR:docs -->
 

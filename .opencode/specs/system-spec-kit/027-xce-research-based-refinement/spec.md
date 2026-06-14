@@ -23,8 +23,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
     last_updated_at: "2026-06-14T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Grouped 30 phases under six themed tracks"
-    next_safe_action: "Validate recursively and commit the regroup"
+    recent_action: "Reconciled reorg metadata after cross-model deep review"
+    next_safe_action: "Harmonize per-phase status vocabulary if desired"
     blockers: []
     key_files:
       - "spec.md"
@@ -124,11 +124,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Track | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 000 | `000-release-cleanup/` | Outward and governance surface alignment for release: public README, skill docs, feature catalog, manual playbook, MCP/CLI stress, commands, agents, AGENTS.md | In Progress |
+| 000 | `000-release-cleanup/` | Outward and governance surface alignment for release: public README, skill docs, feature catalog, manual playbook, MCP/CLI stress, commands, agents, AGENTS.md; hosts the spec-tree regroup task | Complete |
 | 001 | `001-research-and-doctrine/` | Research-derived doctrine adoption: peck verification discipline and gem-team agent I/O contract (2 phases) | In Progress |
 | 002 | `002-memory-store-and-search/` | Memory store and retrieval hardening: write-safety, index and causal lifecycle, semantic triggers, feedback reducers, memclaw hardening, observability, continuity, vector and BM25 search resilience (14 phases) | In Progress |
 | 003 | `003-advisor-and-codegraph/` | Skill-advisor and code-graph subsystems: causal-traversal BFS, XCE feature adoption, advisor reconnect resilience (3 phases) | Complete |
-| 004 | `004-shared-infrastructure/` | Cross-cutting layers: CLI front-doors, command presentation, storage adapter ports, CLI UX, dependency patching, code-mode lifecycle, IPC client cap (7 phases) | Complete |
+| 004 | `004-shared-infrastructure/` | Cross-cutting layers: CLI front-doors, command presentation, storage adapter ports, CLI UX, dependency patching, code-mode lifecycle, IPC client cap, MCP config alignment + daemon re-election (8 phases) | Complete |
 | 005 | `005-verification-and-remediation/` | Verify-first program: finding remediation, tri-system deep research, deep-research remediation, residual design units (4 phases) | In Progress |
 
 ### Phase Transition Rules

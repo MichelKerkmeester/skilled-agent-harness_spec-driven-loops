@@ -25,6 +25,8 @@ _memory:
       - "004-cli-tooling-ux/spec.md"
       - "005-autonomous-dependency-patching/spec.md"
       - "006-code-mode-orphan-lifecycle/spec.md"
+      - "007-ipc-client-cap-hardening/spec.md"
+      - "008-mcp-config-alignment-reelection-default/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-14-027-six-track"
@@ -115,6 +117,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 005 | `005-autonomous-dependency-patching/` | Autonomous npm-audit detection + lockfile-only remediation across OpenCode skill package roots | Complete |
 | 006 | `006-code-mode-orphan-lifecycle/` | mcp-code-mode stdio server exits with its session; PPID-1 orphan reap | Complete |
 | 007 | `007-ipc-client-cap-hardening/` | Daemon IPC client cap raised 8 to 64 across sources and nine config env blocks | Complete |
+| 008 | `008-mcp-config-alignment-reelection-default/` | MCP config 1:1 alignment across runtimes + daemon re-election default-on | Complete |
 
 ### Phase Transition Rules
 

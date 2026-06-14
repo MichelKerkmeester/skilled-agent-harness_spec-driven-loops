@@ -34,7 +34,7 @@ _memory:
 ## Metadata
 | Field | Value |
 |-------|-------|
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Updated** | 2026-06-14 |
 | **Branch** | `028-mcp-to-cli-tool-transition` |
 <!-- /ANCHOR:metadata -->
@@ -68,7 +68,8 @@ Deterministic scripts performed the `git mv` moves (with untracked-leftover relo
 ## Verification
 - Five parents: `validate.sh --no-recursive` → PASSED (0/0) each.
 - Canonical-doc grep sweep: clean (no stale old top-level paths).
-- Pending: full `validate.sh --recursive` and `--strict` on this folder, recorded on completion.
+- Full `validate.sh --recursive` on the 027 root: PASSED (0/0). `validate.sh --strict` on this folder: PASSED.
+- Cross-model deep review (5 MiMo v2.5 Pro + 4 DeepSeek v4 Pro iterations, max reasoning): verdict CONDITIONAL — zero P0, structure confirmed sound by both models; metadata punch-list reconciled (008 child, key_files, status freshness).
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
