@@ -5,13 +5,13 @@
   "keywords": [
     "research",
     "specification",
-    "claude-design-parity-research",
+    "claude",
+    "design",
+    "parity",
     "sk-interface-design",
-    "mcp-magicpath",
-    "phase",
-    "deep-research"
+    "mcp-magicpath"
   ],
-  "lastUpdated": "2026-06-14T08:30:00Z",
+  "lastUpdated": "2026-06-14T08:30:50.879Z",
   "specId": "005",
   "folderSlug": "claude-design-parity-research",
   "parentChain": [

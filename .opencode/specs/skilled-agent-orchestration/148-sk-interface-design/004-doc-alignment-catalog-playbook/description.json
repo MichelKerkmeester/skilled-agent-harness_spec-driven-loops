@@ -5,12 +5,13 @@
   "keywords": [
     "feature",
     "specification",
-    "doc-alignment-catalog-playbook",
     "sk-interface-design",
-    "phase",
-    "sk-doc"
+    "doc",
+    "alignment",
+    "catalog",
+    "playbook"
   ],
-  "lastUpdated": "2026-06-13T19:15:00Z",
+  "lastUpdated": "2026-06-14T08:30:50.876Z",
   "specId": "004",
   "folderSlug": "doc-alignment-catalog-playbook",
   "parentChain": [

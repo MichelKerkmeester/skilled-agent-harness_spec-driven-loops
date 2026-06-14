@@ -5,12 +5,12 @@
   "keywords": [
     "feature",
     "specification",
-    "doc-realignment",
-    "sk-interface-design",
-    "mcp-magicpath",
-    "phase"
+    "doc",
+    "realignment",
+    "parity",
+    "keystone"
   ],
-  "lastUpdated": "2026-06-14T10:00:00Z",
+  "lastUpdated": "2026-06-14T08:30:50.887Z",
   "specId": "008",
   "folderSlug": "doc-realignment",
   "parentChain": [

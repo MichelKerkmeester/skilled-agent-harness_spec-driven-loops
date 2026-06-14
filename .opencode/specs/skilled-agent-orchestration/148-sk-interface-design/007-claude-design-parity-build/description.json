@@ -5,12 +5,13 @@
   "keywords": [
     "feature",
     "specification",
-    "claude-design-parity-build",
-    "sk-interface-design",
-    "mcp-magicpath",
-    "phase"
+    "claude",
+    "design",
+    "parity",
+    "keystone",
+    "build"
   ],
-  "lastUpdated": "2026-06-14T09:35:00Z",
+  "lastUpdated": "2026-06-14T08:37:06.259Z",
   "specId": "007",
   "folderSlug": "claude-design-parity-build",
   "parentChain": [
