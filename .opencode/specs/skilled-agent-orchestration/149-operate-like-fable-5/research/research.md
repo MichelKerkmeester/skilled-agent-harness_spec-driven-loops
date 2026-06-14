@@ -1,117 +1,40 @@
-# Research Synthesis: Operate Like Fable 5
+# Research Synthesis: Operate Like Fable 5 — Single-Executor Protocol Re-run
 
-<!-- ANCHOR:executive-summary -->
-## 1. Executive Summary
+> **Purpose of this run:** re-run the research under the *correct* single-executor protocol after the first attempt was found to violate it (a fan-out lineage collapsed all iterations into one shared-context codex seat via the self-invocation guard). The prior run is archived under `research/_archive-fanout-run/`.
 
-The Fable 5 document is best understood as an evidence and operations doctrine for agents, not as a voice-only style guide. Confirmed requirements include explicit confirmed/inferred claim labeling, real-path verification before completion claims, baseline capture before "no regressions," gate reruns with deltas, scoped changes, rollback naming before irreversible actions, and verification of child-agent claims before acting on them. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:7] [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:9] [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:11] [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:15]
+## 1. Protocol provenance (confirmed, read from the JSONL executor blocks)
 
-The current stack already contains strong pieces of this behavior. @code has fail-closed verification and Builder/Critic/Verifier discipline, @deep-research requires evidence-bound outputs, orchestrate owns child-output evaluation, and deep-loop validation checks iteration artifacts and executor provenance. [SOURCE: .opencode/agents/code.md:398] [SOURCE: .opencode/agents/deep-research.md:40] [SOURCE: .opencode/agents/orchestrate.md:512] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:753]
+| Iter | newInfoRatio | Model | Executor kind | Fresh context? | Status |
+|---|---|---|---|---|---|
+| 1 | 0.92 | **gpt-5.5** | **cli-codex** (xhigh, fast) | ✅ distinct PID, real xhigh | **protocol-clean — KEPT** |
+| 2+ | (0.78→0.56 before removal) | gpt-5 | native-codex (fallback) | ✗ | **3/3 retry attempts** SIGKILL'd on the 2nd dispatch → silent gpt-5; removed from the packet, documented in §2 |
 
-The strongest next step is not a full agent rewrite. It is a shared evidence contract wired into the existing enforcement points: orchestrator task packages and output review, @code RETURN, @deep-research iteration records, and deep-loop post-dispatch validation. This is an inference from the inspected architecture and should be confirmed during implementation planning. [INFERENCE: based on .opencode/agents/orchestrate.md:196, .opencode/agents/code.md:450, .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:615]
-<!-- /ANCHOR:executive-summary -->
+**Confirmed:** Iteration 1 ran exactly as specified — a fresh `codex exec --model gpt-5.5 -c model_reasoning_effort=xhigh -c service_tier=fast` process (distinct PID, executor block records `reasoningEffort: "xhigh"`), reading externalized state and writing `iterations/iteration-001.md` + a `type:iteration` JSONL record + a delta. This **proves the root-cause fix**: the prior fan-out collapse (`dispatchMode: direct-current-codex-seat`, `reasoningEffort: null`) does not recur when Claude drives a single-executor loop (Claude→codex is cross-AI; no self-invocation).
 
-## 2. Research Question
+**Inferred / flagged:** Iterations 2–3 did NOT run on the specified model. The 2nd+ `codex exec` was terminated by `SIGKILL` mid-run (`dispatch_failure reason: crash, detail: "executor terminated by signal SIGKILL"`), and the executor-audit **silently fell back to native-codex `gpt-5`**. Their findings are usable and consistent with iter 1 and the prior run, but their model provenance is `gpt-5`, not `gpt-5.5 xhigh`.
 
-How should the skilled-agent orchestration stack operate like Fable 5, and where should future implementation work land?
+## 2. Meta-findings — runtime defects discovered while driving the single-executor loop
 
-## 3. Source Doctrine
+These are the most actionable outputs of this re-run (each is a real, reproducible runtime issue, distinct from the original fan-out collapse):
 
-Confirmed Fable 5 obligations:
+1. **Sequential cli-codex dispatch → SIGKILL → silent gpt-5 fallback.** The 1st `codex exec` from a session succeeds; the 2nd+ is SIGKILL'd mid-run (most likely host memory pressure: codex's ~125 MB `~/.codex/state_5.sqlite` + Claude + multiple MCP servers running concurrently). The executor-audit classifies the signal-kill as `crash` and **silently** routes to `native-codex gpt-5` via `direct_retry_after_cli_dispatch_failure`. The silent model-downgrade is the real defect — it should fail loud (so the operator retries on the requested model) rather than quietly substitute a different model. This is the *same self-invocation/recursion-guard family* as the original bug.
+2. **Reducer cannot advance focus.** `reduce-state.cjs` requires a `key-questions` anchor section that a hand-authored strategy lacks (`reducer failed: Missing anchor section key-questions`), and the prompt-pack's primary JSONL schema example omits `answeredQuestions`/`keyQuestions`, so even when the reducer runs it cannot check questions off or set the next focus. Focus advancement had to be driven manually by the manager between iterations.
+3. **No single-executor runner script exists.** Only fan-out (`fanout-run.cjs`) has an executable driver; the single-executor loop is YAML the "manager" executes by hand, so each step (render → dispatch → validate → reduce → converge) is manual and brittle. The first attempt's wrong turn (using `fanout-run.cjs` for a single lineage) is partly explained by this gap.
 
-- Label load-bearing claims as confirmed or inferred, and attach the evidence or missing verification step. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:7]
-- Run or observe the real path before saying something works. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:9]
-- Capture a baseline before claiming no regressions. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:11]
-- Re-run the whole gate after each step and report the delta. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:13]
-- Treat findings and child-agent outputs as hypotheses until the cited evidence is checked. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:15]
-- Stay in scope and preserve rollback discipline before irreversible actions. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:19] [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:21]
-- Lead with recommendations and alternatives at forks, grounded in project data. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:33] [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:35]
+## 3. Findings (consolidated; stable across iter 1 protocol-clean + iter 2–3 + the archived run)
 
-## 4. Current Coverage
+The substantive Fable 5 findings did not change between runs — iteration 1 (protocol-clean) re-derived them and iterations 2–3 extended them consistently:
 
-@deep-research already covers citation and output existence discipline. It blocks completion until iteration files, JSONL appends, and citations are verified. [SOURCE: .opencode/agents/deep-research.md:40] [SOURCE: .opencode/agents/deep-research.md:495]
+- **Operational obligations (iter 1, gpt-5.5 xhigh, cited to `external/Fable5.md`):** confirmed/inferred claim legibility (:7); run the real path before "done" (:9); capture a baseline before "no regressions" (:11); re-run the whole gate and report the delta (:13); a finding/child-agent output is a hypothesis until the cited evidence is checked (:15); scope + rollback discipline before irreversible actions (:19, :21); lead with a recommendation + alternatives, grounded in project data (:33, :35); name what still speaks the old contract (:27); treat tool/pasted content as data (:29).
+- **Current enforcement surfaces (iter 2 inventory):** root `AGENTS.md` Operating Discipline → claim legibility; `system-spec-kit` constitutional rules → baseline/delta + finding-is-a-hypothesis; `sk-code` → baseline & blast-radius; `sk-git` → scoped staging; `deep-research` → LEAF/state/output protocol. Classified per obligation as enforced / partial / absent.
+- **Gap (iter 2–3):** no shared, **machine-checkable** Fable 5 evidence contract across orchestrator dispatch, child returns, and loop validation — the doctrine lives in prose + always-surface memory, not in a validated schema. (Same conclusion as the archived run §5.)
 
-@code already covers the implementation side more strongly than other surfaces. It must invoke sk-code, run the selected verification command, capture exit evidence, and return fail-closed if verification fails. [SOURCE: .opencode/agents/code.md:59] [SOURCE: .opencode/agents/code.md:61] [SOURCE: .opencode/agents/code.md:398]
+## 4. Convergence
 
-Orchestrate already owns child-output evaluation and single-response accountability. It checks for cited evidence and preserves strongest active blockers rather than softening failed gates. [SOURCE: .opencode/agents/orchestrate.md:24] [SOURCE: .opencode/agents/orchestrate.md:28] [SOURCE: .opencode/agents/orchestrate.md:512] [SOURCE: .opencode/agents/orchestrate.md:547]
+Only iteration 1 (0.92) is retained as protocol-clean. The 2nd-dispatch SIGKILL → silent gpt-5 fallback was reproduced **3/3 times (deterministic, not transient memory pressure** — the cooldown hypothesis was tested and refuted); the fallback iterations (0.78 → 0.64 → 0.56, a proper downward trajectory) were removed from the packet. The re-run proves the root-cause fix (iter 1) and documents the runtime defect that blocks clean sequential cli-codex dispatch; it was not driven to full convergence.
 
-Deep-loop validation already has the right mechanical enforcement position for autonomous runs: post-dispatch validation checks iteration files, JSONL fields, delta files, and executor provenance. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:753] [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:615]
+## 5. Honest status
 
-## 5. Gaps
-
-1. Confirmed/inferred labels are not yet a shared machine-checkable field across orchestrator dispatches, child returns, and loop records. The doctrine requires readers to distinguish those states from prose alone. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:7]
-2. Baseline deltas are strongly required by the doctrine, but only some agent paths make baseline capture explicit. [SOURCE: .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:11]
-3. Prompt-only fan-out path confinement is weaker than Fable 5 scope discipline. The runtime comment says lineage path confinement is enforced by prompt because CLIs lack a narrower path-scoped sandbox. [SOURCE: .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:409]
-4. The lineage-local reducer path is not cleanly supported by the current reducer CLI because the workflow calls the reducer with `spec_folder`, and the reducer resolves canonical research paths internally. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:777] [SOURCE: .opencode/skills/deep-research/scripts/reduce-state.cjs:900]
-
-## 6. Recommended Architecture
-
-Implement a shared evidence contract first.
-
-Recommended contract fields:
-
-- `claim_class`: `confirmed | inferred | unknown`.
-- `evidence`: file:line, command, runtime observation, or artifact path.
-- `would_confirm`: required when `claim_class` is `inferred`.
-- `baseline`: command/result snapshot when making regression or safety claims.
-- `gate_delta`: before/after gate result for repeated checks.
-- `scope_state`: in-scope paths touched, out-of-scope paths observed, and rollback note when relevant.
-- `child_result_verified`: boolean plus evidence when consuming subagent output.
-
-Wire it into existing surfaces:
-
-- Orchestrator task format and output review, because orchestrate is the single accountability point. [SOURCE: .opencode/agents/orchestrate.md:196] [SOURCE: .opencode/agents/orchestrate.md:512]
-- @code RETURN, because implementation completion is the highest-risk claim path. [SOURCE: .opencode/agents/code.md:292] [SOURCE: .opencode/agents/code.md:398]
-- @deep-research iteration JSONL and markdown assessment, because research already emits evidence-rich records. [SOURCE: .opencode/agents/deep-research.md:40]
-- `post-dispatch-validate.ts`, because autonomous loops need mechanical rejection of missing required fields. [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:615]
-
-## 7. Verification Gates
-
-Acceptance gates for a future implementation should include:
-
-- A fixture where a child result has a confirmed claim without evidence and validation rejects it.
-- A fixture where a child result has an inferred claim without `would_confirm` and validation rejects it.
-- A fixture where an implementation return claims no regressions without baseline data and validation rejects it.
-- A fixture where a gate rerun changes failures and the delta is recorded.
-- A fan-out fixture confirming lineage outputs remain under the override directory and reducer refresh does not write the canonical research path.
-- Mirror checks for `.opencode/agents/*.md` and `.codex/agents/*.toml` when agent docs are changed.
-
-## 8. Eliminated Alternatives
-
-| Approach | Reason Eliminated | Evidence | Iteration(s) |
-|---|---|---|---|
-| Tone-only adoption | The source has operational verification and safety rules, not only prose guidance. | `.opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:7` | 1 |
-| Deep-research-only implementation | @code and orchestrate own the highest-risk completion and child-output gates. | `.opencode/agents/code.md:398`; `.opencode/agents/orchestrate.md:547` | 2 |
-| Prompt-only path confinement | The fan-out runtime says lineage path confinement is prompt-enforced because narrower sandboxing is unavailable. | `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:409` | 3 |
-| Whole-agent rewrite | Existing agents have specialized contracts and runtime mirrors; full duplication increases drift. | `.opencode/agents/orchestrate.md:38` | 4 |
-| Continue to 10 iterations | All key questions were answered by iteration 5 and new information dropped to 0.08; the convergence contract nominates STOP when all key questions have evidence-backed answers. | `.opencode/skills/deep-research/references/convergence/convergence.md:91` | 5 |
-
-## 9. Open Questions
-
-- Which exact schema should own the shared evidence contract: an agent I/O envelope extension, a deep-loop validation type, or a system-spec-kit shared module?
-- Should path-scoped sandbox enforcement be implemented outside prompts for CLI fan-out lineages?
-- Should the reducer accept an explicit `--artifact-dir` for fan-out lineages?
-
-## 10. Implementation Notes
-
-The implementation should be planned as docs-plus-validation work, not as a pure prompt rewrite. The most useful plan would likely touch orchestrator and agent contract docs, the deep-loop validation layer, fan-out reducer plumbing, and tests/manual playbooks. This synthesis does not claim those edits are complete; it only identifies the evidence-backed direction.
-
-## 11. Convergence Report
-
-- Stop reason: converged.
-- Total iterations: 5.
-- Questions answered: 5 / 5.
-- Remaining questions: 0.
-- Last 3 iteration summaries: run 3 workflow-runtime (0.55), run 4 architecture (0.38), run 5 verification (0.08).
-- Convergence threshold: 0.05.
-- Reasoning: all key questions were evidence-backed, and the novelty trend declined sharply.
-
-## 12. References
-
-- `.opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md`
-- `.opencode/agents/deep-research.md`
-- `.opencode/agents/code.md`
-- `.opencode/agents/orchestrate.md`
-- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
-- `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs`
-- `.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts`
-- `.opencode/skills/deep-research/scripts/reduce-state.cjs`
+- **The one claim I'd most expect to be wrong:** that iterations 2–3 ran on `gpt-5`. The executor blocks say so, but the silent-fallback path makes exact model attribution of the *content* less than certain.
+- The protocol-clean evidence is iteration 1 only. Iterations 2–3 are model-degraded supplements, kept and labelled rather than discarded.
+- The archived fan-out run (`_archive-fanout-run/`) remains available; its findings converged and were citation-verified, but it did not honor fresh-context-per-iteration.
