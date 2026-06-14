@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: MCP Config 1:1 Alignment and Daemon Re-election Default-On"
-description: "Flip the launcher re-election code default to on, and sort/clean/align the four MCP runtime configs 1:1 with notes stripped and the legacy advisor env renamed."
+description: "Flip the launcher re-election code default to on, and sort/clean/align the four MCP runtime configs 1:1 — trimming the drift-prone note trivia (keeping the operational notes) and renaming the legacy advisor env."
 trigger_phrases:
   - "mcp config alignment plan"
   - "reelection default on plan"
@@ -35,7 +35,7 @@ _memory:
 | **Adoption** | Next session / launcher respawn; no live process touched |
 
 ### Overview
-Re-election was on only because every runtime config set `SPECKIT_DAEMON_REELECTION=1`; the launcher's own default was off. Flipping the one read site to default-on (off only on explicit `0`/`off`) makes the configs' explicit entry redundant, which lets the config-alignment pass drop it. The four configs are then made valid, note-free, and byte-identical per server; the five docs that described code-default-off are corrected.
+Re-election was on only because every runtime config set `SPECKIT_DAEMON_REELECTION=1`; the launcher's own default was off. Flipping the one read site to default-on (off only on explicit `0`/`off`) makes the configs' explicit entry redundant, which lets the config-alignment pass drop it. The four configs are then made valid, trimmed of the drift-prone note trivia (operational notes kept), and byte-identical per server; the five docs that described code-default-off are corrected.
 <!-- /ANCHOR:summary -->
 ---
 

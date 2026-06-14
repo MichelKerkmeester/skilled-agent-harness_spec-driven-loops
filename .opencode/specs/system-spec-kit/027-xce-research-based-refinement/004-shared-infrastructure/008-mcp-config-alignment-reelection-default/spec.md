@@ -59,10 +59,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Daemon re-election was "default-on" only by convention: the launcher's `daemonReelectionEnabled` returned true exclusively for an explicit `1`/`on`, so an unconfigured launcher fell back to kill-on-disposal, and every doc claimed "the launcher's code default stays off, so the runtime configs are the on-switch." Separately, the four MCP runtime configs had drifted: `.mcp.json`/`.claude/mcp.json` carried an invalid-JSON missing comma in the code-index block; all four were larded with ~25 `_NOTE_*` pseudo-comment keys passed into the launcher's real environment; the skill-advisor block used the legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` name; `SPECKIT_ADVISOR_DOC_TRIGGERS` existed only in the codex config; and key ordering differed per file.
+Daemon re-election was "default-on" only by convention: the launcher's `daemonReelectionEnabled` returned true exclusively for an explicit `1`/`on`, so an unconfigured launcher fell back to kill-on-disposal, and every doc claimed "the launcher's code default stays off, so the runtime configs are the on-switch." Separately, the four MCP runtime configs had drifted: `.mcp.json`/`.claude/mcp.json` carried an invalid-JSON missing comma in the code-index block; all four were inflated by drift-prone `_NOTE_*` trivia (per-server token-budget estimates and full tool-list dumps) alongside the useful operational notes, all passed into the launcher's real environment; the skill-advisor block used the legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` name; `SPECKIT_ADVISOR_DOC_TRIGGERS` existed only in the codex config; and key ordering differed per file.
 
 ### Purpose
-Make re-election genuinely default-on in the launcher code (disabled only by an explicit `0`/`off`), and make the four runtime configs valid, note-free, and byte-identical per server so they are trivially diffable and 1:1.
+Make re-election genuinely default-on in the launcher code (disabled only by an explicit `0`/`off`), and make the four runtime configs valid, trimmed of the drift-prone note trivia, and byte-identical per server so they are trivially diffable and 1:1.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -73,7 +73,7 @@ Make re-election genuinely default-on in the launcher code (disabled only by an 
 ### In Scope
 - Flip the launcher code default: `daemonReelectionEnabled` returns true unless `SPECKIT_DAEMON_REELECTION` is explicitly `0`/`off`.
 - Invert the reelection unit test's default assertion and sync the five living docs that asserted code-default-off.
-- Sort + align the four MCP configs 1:1: fix the JSON syntax error, strip all `_NOTE_*`, drop the now-redundant `SPECKIT_DAEMON_REELECTION` entries, rename the legacy advisor env, align `SPECKIT_ADVISOR_DOC_TRIGGERS`, alphabetise each server's env block.
+- Sort + align the four MCP configs 1:1: fix the JSON syntax error, trim only the drift-prone `_NOTE_*` trivia (token-budget notes + tool-list dumps) while keeping the operational/reference notes, drop the now-redundant `SPECKIT_DAEMON_REELECTION` entries, rename the legacy advisor env, align `SPECKIT_ADVISOR_DOC_TRIGGERS`, alphabetise each server's env block.
 
 ### Out of Scope
 - Embedding provider changes — Ollama is already preferred via `EMBEDDINGS_PROVIDER=auto`; `HF_EMBED_SERVER_URL` is only the shared hf-local fallback socket and is kept as-is.
@@ -85,7 +85,7 @@ Make re-election genuinely default-on in the launcher code (disabled only by an 
 |-----------|-------------|-------------|
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Modify | `daemonReelectionEnabled` default-on; comment rewritten |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-daemon-reelection.vitest.ts` | Modify | Default assertion inverted (unset→on, `0`/`off`→off) |
-| `.claude/mcp.json` (`.mcp.json` symlink) | Modify | Valid JSON, notes stripped, sorted, aligned 1:1 |
+| `.claude/mcp.json` (`.mcp.json` symlink) | Modify | Valid JSON, trivia notes trimmed, sorted, aligned 1:1 |
 | `opencode.json`, `.codex/config.toml` | Modify | Same env content aligned 1:1 in each schema |
 | `ENV_REFERENCE.md`, `README.md`, `feature_catalog.md`, `feature_catalog/14--…/daemon-ownership-reelection.md`, `manual_testing_playbook/14--…/daemon-ownership-reelection.md` | Modify | Reflect code-default-on; historical changelog left intact |
 <!-- /ANCHOR:scope -->
@@ -97,7 +97,7 @@ Make re-election genuinely default-on in the launcher code (disabled only by an 
 
 ### P0 - Blockers (MUST complete)
 - **REQ-001**: `SPECKIT_DAEMON_REELECTION` is on by default in launcher code; an explicit `0`/`off` disables it; the unit suite asserts the inverted contract and passes.
-- **REQ-002**: All four configs parse, and every server's env block is byte-identical (keys, values, order) across files, with no `_NOTE_*`, no redundant reelection entry, and no legacy advisor name.
+- **REQ-002**: All four configs parse, and every server's env block is byte-identical (keys, values, order) across files, with the drift-prone trivia notes, the redundant reelection entry, and the legacy advisor name all absent.
 
 ### P1 - Required (complete OR user-approved deferral)
 - **REQ-003**: Every current doc reflects code-default-on; the historical changelog stays the accurate as-of-release record.
@@ -109,7 +109,7 @@ Make re-election genuinely default-on in the launcher code (disabled only by an 
 ## 5. SUCCESS CRITERIA
 
 - `launcher-daemon-reelection.vitest.ts` passes 5/5 with the inverted default; `daemonReelectionEnabled({})` returns true and `{…:'0'}`/`{…:'off'}` return false.
-- A parse-and-compare check confirms all four configs parse and each server's env block is identical across files with zero banned keys.
+- A parse-and-compare check confirms all four configs parse and each server's env block (functional vars + kept notes) is identical across files, with the trivia notes / redundant reelection entry / legacy advisor name absent.
 - Doc-sync grep finds zero stale "configs are the on-switch" claims outside the changelog; comment-hygiene is clean.
 <!-- /ANCHOR:success-criteria -->
 
