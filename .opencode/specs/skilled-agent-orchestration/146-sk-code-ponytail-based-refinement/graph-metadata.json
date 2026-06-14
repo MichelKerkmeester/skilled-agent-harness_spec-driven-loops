@@ -9,7 +9,9 @@
     "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
     "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards",
     "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
-    "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/006-optional-addons"
+    "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/006-optional-addons",
+    "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment",
+    "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification"
   ],
   "manual": {
     "depends_on": [],
@@ -218,7 +220,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
+    "last_active_child_id": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
     "last_active_at": "2026-06-13T11:40:00Z"
   }
 }
