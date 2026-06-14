@@ -121,7 +121,7 @@ A supersede-and-re-center deprecation. mcp-open-design was confirmed as the sing
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The skill-advisor sqlite rescan is deferred.** The mcp-magicpath node still lives in `skill-graph.sqlite` until a later rescan drops it. The graph metadata edges are removed now, but the runtime graph database is not yet rebuilt.
+1. **The skill-advisor sqlite rescan was deferred at deprecation time, then completed.** A later `skill_graph_scan` dropped the mcp-magicpath node and edges from `skill-graph.sqlite`, verified clean (0 occurrences across all tables). The graph metadata edges were removed during the deprecation itself.
 2. **Documentation and metadata deprecation, not a code change.** The removal lands by deleting markdown and metadata and re-centering what agents read, not by changing any binary.
 3. **Recovery is from version control.** The deleted folder is recoverable only from version-control history, not from a kept copy in the tree.
 <!-- /ANCHOR:limitations -->

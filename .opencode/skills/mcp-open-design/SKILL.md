@@ -6,7 +6,7 @@ metadata:
   author: nexu-io (Open Design)
   source: https://github.com/nexu-io/open-design
 allowed-tools: [Read, Bash]
-version: 1.2.0
+version: 1.2.0.0
 user-invocable: true
 ---
 
