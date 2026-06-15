@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/148-sk-interface-design/009-mobbin-refero-design-reference-integration",
+  "description": "Mobbin and Refero design-reference integration: wire both reference MCPs into Code Mode and integrate them into sk-interface-design as a critique-against reference",
+  "keywords": [
+    "mobbin",
+    "refero",
+    "design",
+    "reference",
+    "code-mode",
+    "critique-against",
+    "sk-interface-design"
+  ],
+  "lastUpdated": "2026-06-15T11:07:40.945Z",
+  "specId": "009",
+  "folderSlug": "mobbin-refero-design-reference-integration",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "148-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

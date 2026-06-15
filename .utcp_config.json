@@ -125,6 +125,42 @@
           }
         }
       }
+    },
+    {
+      "name": "mobbin",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "mobbin": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "mcp-remote",
+              "https://api.mobbin.com/mcp"
+            ],
+            "env": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "refero",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "refero": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "mcp-remote",
+              "https://api.refero.design/mcp"
+            ],
+            "env": {}
+          }
+        }
+      }
     }
   ]
 }

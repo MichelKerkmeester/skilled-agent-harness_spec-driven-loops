@@ -72,6 +72,7 @@ DESIGN TASK
 | CONDITIONAL | Verifying the quality floor / charts | `references/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
 | CONDITIONAL | Producing or iterating on real UI (canvas, repo recreation, code-bound) | `references/claude_design_parity.md` (ground in a system, reuse before generating, fidelity check, handoff) |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | An Open Design system via `mcp-open-design` (`od mcp` get_file/search_files, or `od tools design-systems read`), when that app is installed |
+| ON_DEMAND | Need the real-world default for a category to name and deviate from | A real shipped-UI reference via Mobbin or Refero through Code Mode (`mobbin.*` / `refero.*`), when those subscriptions are connected. See `references/design_references_mcp.md` |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
 ### Smart Router Pseudocode
@@ -153,6 +154,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 - [`references/design_principles.md`](references/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
 - [`references/ux_quality_reference.md`](references/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
 - [`references/design_inventory.md`](references/design_inventory.md) - How to use a real design system (via `mcp-open-design`, when installed) as either reuse-ground or the named default to critique against. Never a chooser.
+- [`references/design_references_mcp.md`](references/design_references_mcp.md) - How to read real-world shipped UI live via Mobbin or Refero (Code Mode) to name the real-world default and deviate from it. Critique-against only, one reference, never a chooser, never copied.
 - [`references/variation_diversity.md`](references/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
 - [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-open-design`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
@@ -171,6 +173,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
 - `references/ux_quality_reference.md` is the objective quality-floor gate; apply it after the direction is set.
 - When the Open Design app is installed, `mcp-open-design` is an OPTIONAL source of real design systems to ground in or to name the default to deviate from, never a required step and never a style chooser. `design_principles.md` stays the authority.
+- When the Mobbin or Refero subscriptions are connected, they are an OPTIONAL real-world critique-against reference (via Code Mode) for naming the category default to deviate from, never a chooser and never copied. `references/design_references_mcp.md` owns the rules and `design_principles.md` stays the authority.
 
 ---
 
@@ -194,6 +197,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
 - **`mcp-open-design`** is the optional transport to a real Open Design design system when that app is installed, for grounding and reuse through the shared parity loop. This skill owns the judgment, that skill owns the transport.
 - **`mcp-figma`** is the sibling transport to Figma Desktop. This skill's judgment applies whenever a Figma read or export feeds a design decision, the same boundary it holds with `mcp-open-design`.
+- **Mobbin and Refero** (via Code Mode, `mobbin.*` / `refero.*`) are optional real-world UI reference libraries for naming the category's real-world default so a design can deviate from it deliberately. Read live, one reference, never a chooser, never copied. `references/design_references_mcp.md` owns the discipline.
 
 ### Knowledge Base Dependencies
 

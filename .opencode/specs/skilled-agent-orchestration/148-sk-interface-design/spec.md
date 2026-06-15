@@ -87,6 +87,7 @@ Build `sk-interface-design` as a framework-native design skill and improve it th
 | 6 | `006-competitor-design-tools-research/` | Web-heavy deep research into adoptable ideas from competitor AI design tools (v0, Lovable, Figma Make, Subframe) (recommendation only) | Complete |
 | 7 | `007-claude-design-parity-build/` | Implement the keystone: one shared claude_design_parity.md protocol + minimal hooks in both skills (reuse-before-generate, previewImageUrl fidelity check, revision grammar) | Complete |
 | 8 | `008-doc-realignment/` | Realign feature catalog, playbook, READMEs to the post-007 reality (parity protocol, fidelity loop, helper) | Complete |
+| 9 | `009-mobbin-refero-design-reference-integration/` | Wire the Mobbin and Refero design-reference MCPs into Code Mode and integrate them into the skill as a critique-against reference (name the real-world default, then deviate) | Review |
 
 ### Phase Transition Rules
 
@@ -100,6 +101,7 @@ Build `sk-interface-design` as a framework-native design skill and improve it th
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001 | next | Skill installed, advisor-routable, house-conformant; `package_skill.py` valid | `package_skill.py` + `validate.sh --strict` green |
+| 008-doc-realignment | 009-mobbin-refero-design-reference-integration | MCPs wired into Code Mode; the skill integrates them as critique-against and passes `package_skill --check` | `package_skill --check` + endpoint probe + `validate.sh --strict` green |
 <!-- /ANCHOR:phase-map -->
 
 ---
