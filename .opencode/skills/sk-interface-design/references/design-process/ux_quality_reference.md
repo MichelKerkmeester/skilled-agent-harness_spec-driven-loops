@@ -85,7 +85,7 @@ These are not style choices. They are the rules that, when broken, make an inter
 
 ---
 
-## 8. SCOPE NOTE: REACT IMPLEMENTATION PERFORMANCE (DEFERRED TO `sk-code`)
+## 8. SCOPE NOTE: REACT IMPLEMENTATION PERFORMANCE
 
 React and Next.js implementation performance (async waterfalls, bundle size, re-render control, hydration) is out of scope for this floor. Its only design-adjacent concerns, reduced motion, loading and skeleton states, and layout stability, are already covered, and covered better, by the Motion, Accessibility, and Responsive rules above.
 

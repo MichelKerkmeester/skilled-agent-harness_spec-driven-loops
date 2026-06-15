@@ -40,7 +40,7 @@ Claude Design's advantage is that context, iteration, and handoff are visible, c
 
 ---
 
-## 2. DESIGN-CONTEXT SNAPSHOT (intake)
+## 2. DESIGN-CONTEXT SNAPSHOT (INTAKE)
 
 Before choosing anything, capture what grounds the work. This is intake, never a chooser. Capture only what is present.
 
@@ -76,7 +76,7 @@ A revision names: the target element or component, the visual evidence (what is 
 
 ---
 
-## 5. FIDELITY CHECK (does the render match intent)
+## 5. FIDELITY CHECK (DOES THE RENDER MATCH INTENT)
 
 These skills today treat "done" as compiles plus responsive, never matches-intent. Close that gap by checking the real render, with the right mechanism and the right bar.
 
@@ -95,13 +95,13 @@ These skills today treat "done" as compiles plus responsive, never matches-inten
 
 ---
 
-## 7. PRE-BUILD DIRECTION GATE (guarded, optional)
+## 7. PRE-BUILD DIRECTION GATE (GUARDED, OPTIONAL)
 
 For open-ended visual work, it can help to sketch two or three brief-specific directions, critique each against the AI-default looks, and recommend one before building. This is allowed only when each direction is grounded in the subject. It is never a menu of reusable styles or palettes. If the directions could be reused across briefs, it has become a preset and must not ship.
 
 ---
 
-## 8. WHAT THIS PROTOCOL DOES NOT ADD (guardrails)
+## 8. WHAT THIS PROTOCOL DOES NOT ADD (GUARDRAILS)
 
 - No style presets, no pick-a-vibe or theme-swap menu, no named aesthetic dials (boldness/density/motion). A choosable style axis is the templated default the skill exists to resist.
 - No converting a matched design system into a generator. It stays reuse-ground or critique-against, never a preset.

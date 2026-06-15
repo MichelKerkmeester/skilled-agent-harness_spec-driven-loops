@@ -102,6 +102,9 @@
       ".opencode/skills/sk-interface-design/references/design-grounding/design_inventory.md",
       ".opencode/skills/sk-interface-design/references/design-process/claude_design_parity.md",
       ".opencode/skills/sk-interface-design/references/design-process/variation_diversity.md",
+      ".opencode/skills/sk-interface-design/references/design-grounding/design_references_mcp.md",
+      ".opencode/skills/sk-interface-design/references/mcp-tooling/mobbin_tools.md",
+      ".opencode/skills/sk-interface-design/references/mcp-tooling/refero_tools.md",
       ".opencode/skills/sk-interface-design/feature_catalog/feature_catalog.md",
       ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/sk-interface-design/LICENSE.txt"
