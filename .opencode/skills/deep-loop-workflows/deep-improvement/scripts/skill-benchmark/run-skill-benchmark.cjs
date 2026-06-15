@@ -39,7 +39,7 @@ const { dispatchScenario } = require('./executor-dispatch.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..'); // .opencode/skills
+const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode/skills
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS

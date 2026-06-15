@@ -31,7 +31,7 @@ const { spawnSync } = require('child_process');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..'); // .opencode/skills
+const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode/skills
 const DEFAULT_ADVISOR_PY = path.join(
   SKILLS_DIR, 'system-skill-advisor', 'mcp_server', 'scripts', 'skill_advisor.py',
 );

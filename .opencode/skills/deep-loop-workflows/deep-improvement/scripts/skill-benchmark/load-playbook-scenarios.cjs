@@ -311,7 +311,7 @@ if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
   const skillRoot = args.skill && (args.skill.includes('/') || args.skill.startsWith('.'))
     ? path.resolve(args.skill)
-    : path.join(path.resolve(__dirname, '..', '..', '..'), args.skill || '');
+    : path.join(path.resolve(__dirname, '..', '..', '..', '..'), args.skill || '');
   const res = loadPlaybookScenarios({ skillRoot, playbookDir: args['playbook-dir'] });
   process.stdout.write(JSON.stringify(res, null, 2) + '\n');
 }

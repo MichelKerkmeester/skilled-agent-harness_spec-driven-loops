@@ -6,7 +6,7 @@ import { join, resolve } from 'node:path';
 
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
-const REPO_SKILLS = resolve(SKILL_ROOT, '..');
+const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 
 // A genuinely router-less skill dir (no INTENT_SIGNALS/RESOURCE_MAP). The
 // deep-improvement skill itself now HAS a router (Lane B), so it cannot serve as
@@ -296,7 +296,8 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
     // actually produced a scored row.
     const out = mkdtempSync(join(tmpdir(), 'lc-e2e-scored-'));
     e2eDirs.push(out);
-    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'deep-improvement', '--outputs-dir', out], { encoding: 'utf8' });
+    const fixturesDir = join(SKILL_ROOT, 'assets', 'skill_benchmark', 'fixtures', 'deep-improvement');
+    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', SKILL_ROOT, '--fixtures-dir', fixturesDir, '--outputs-dir', out], { encoding: 'utf8' });
     const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
     expect(Array.isArray(report.scenarioRows)).toBe(true);
     expect(report.scenarioRows.length).toBeGreaterThan(0);

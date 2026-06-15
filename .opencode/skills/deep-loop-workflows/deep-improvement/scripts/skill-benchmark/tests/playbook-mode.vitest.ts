@@ -5,7 +5,7 @@ import { resolve, join } from 'node:path';
 // spine). No live dispatch, no network — all pure-function / filesystem.
 
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
-const REPO_SKILLS = resolve(SKILL_ROOT, '..');
+const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const SKCODE = join(REPO_SKILLS, 'sk-code');
 
@@ -22,16 +22,16 @@ const { tmpdir } = require('node:os');
 describe('playbook parser — sk-code', () => {
   const { scenarios, shape } = loadPlaybookScenarios({ skillRoot: SKCODE });
 
-  it('parses the sk-code playbook into 24 scenarios', () => {
+  it('parses the sk-code playbook into 28 scenarios', () => {
     expect(shape).toBe('sk-code');
-    expect(scenarios.length).toBe(24);
+    expect(scenarios.length).toBe(28);
   });
 
-  it('splits classKind into 17 text-runnable + 7 browser', () => {
+  it('splits classKind into 21 text-runnable + 7 browser', () => {
     const browser = scenarios.filter((s: any) => s.classKind === 'browser');
     const text = scenarios.filter((s: any) => s.classKind !== 'browser');
     expect(browser.length).toBe(7);
-    expect(text.length).toBe(17);
+    expect(text.length).toBe(21);
   });
 
   it('tags advisor-only scenarios (SA-001, RD-002) as advisor', () => {
@@ -243,7 +243,7 @@ describe('playbook-generator — coverage + 4 gates (dry, no LLM)', () => {
   it('derives coverage targets from the sk-code router', () => {
     const cov = analyzeCoverage(SKCODE);
     expect(cov.intents.length).toBeGreaterThan(5);
-    expect(cov.existingCount).toBe(24);
+    expect(cov.existingCount).toBe(28);
     expect(cov.routerParseable).toBe(true);
   });
 

@@ -16,7 +16,7 @@ import { join, resolve, relative } from 'node:path';
 // Run standalone: npx vitest run tests/sk-code-router-sync.vitest.ts
 
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
-const REPO_SKILLS = resolve(SKILL_ROOT, '..');
+const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SKCODE = join(REPO_SKILLS, 'sk-code');
 const { parseRouter } = require(join(SKILL_ROOT, 'scripts', 'skill-benchmark', 'router-replay.cjs'));
 
