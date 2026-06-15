@@ -22,17 +22,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install advisor deps
-        working-directory: .opencode/skills/system-skill-advisor/mcp_server
-        run: npm ci
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
       - name: Routing-registry drift-guard + parity suites
         working-directory: .opencode/skills/system-skill-advisor/mcp_server
         # The drift-guard asserts the hardcoded Python/TS routing maps equal the
-        # registry projection; the parity suites assert per-mode routing. Both shell
-        # to python3 (the routing paths are stdlib-only), preinstalled on the runner.
+        # registry projection; the parity suites assert per-mode routing. The
+        # routing surface is dependency-free (aliases.ts has no imports;
+        # workspace-root.ts is node-only) and the suites shell to a stdlib-only
+        # python3 dump — so the gate installs only vitest on demand rather than the
+        # full skill (which carries native + ML deps unrelated to routing).
         run: |
           set -euo pipefail
-          npx vitest run \
+          npx --yes vitest@4.0.18 run \
             tests/routing-registry-drift-guard.vitest.ts \
             tests/routing-parity-deep-skills.vitest.ts \
             tests/routing-parity-deep-council.vitest.ts
