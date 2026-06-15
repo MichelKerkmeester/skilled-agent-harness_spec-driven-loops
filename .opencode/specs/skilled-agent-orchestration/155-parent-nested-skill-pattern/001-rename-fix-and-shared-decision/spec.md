@@ -25,7 +25,7 @@ _memory:
     completion_pct: 90
     open_questions: []
     answered_questions:
-      - "Does shared/ move into deep-loop-runtime? (No — it would create a runtime→system-spec-kit dependency violating the frozen MCP-free boundary)"
+      - "Does shared/ move into deep-loop-runtime? (No — execution-vs-synthesis only; the runtime already depends on system-spec-kit, so the dependency rationale was struck post-research)"
 ---
 # Feature Specification: Fix the four-folder rename and record the shared/ decision
 
@@ -89,7 +89,7 @@ Make the renamed structure consistent and working again — zero broken referenc
 - **R1 (MUST):** Zero references to `deep-loop-workflows/{context,research,review,improvement}/` (slash and bare/quote-terminated forms) remain in live surfaces (skills, commands, agents, advisor, root docs), excluding historical spec/changelog evidence.
 - **R2 (MUST):** Every `.cjs` script under the four renamed packets resolves its `require()`/import paths (depth correct after the rename).
 - **R3 (MUST):** `mode-registry.json` is valid JSON; the four renamed `packet` keys point at the `deep-`-prefixed folders; `ai-council` is unchanged.
-- **R4 (MUST):** The `shared/`-stays decision is recorded in `decision-record.md` with its frozen-boundary and semantic-mismatch rationale.
+- **R4 (MUST):** The `shared/`-stays decision is recorded in `decision-record.md` with its execution-vs-synthesis rationale.
 - **R5 (MUST):** No regression in the `deep-loop-runtime` test suite beyond the known pre-existing cross-process loop-lock flake; the advisor `skill_graph_scan` stays clean.
 <!-- /ANCHOR:requirements -->
 

@@ -38,7 +38,7 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 ### The three-tier discriminator
 - **`workflowMode`** — the public mode key (all modes): `context`, `research`, `review`, `ai-council`, and the four improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement` (its loop-host mode stays `non-dev-ai-system-refine`).
 - **`runtimeLoopType`** — the graph-backed convergence key consumed by `deep-loop-runtime/scripts/convergence.cjs` (validated against exactly `research|review|council|context`). **Explicit `null` for all four improvement lanes; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
-- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (context/research/review/ai-council), `improvement-host` (`improvement/scripts/shared/loop-host.cjs --mode`), or `external-adapter` (non-dev-ai-system; the loop is owned by external packaging).
+- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (context/research/review/ai-council), `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`), or `external-adapter` (non-dev-ai-system; the loop is owned by external packaging).
 
 ### Routing rule
 ```
@@ -61,7 +61,7 @@ deep-loop-workflows/
   SKILL.md               # this routing hub (no per-mode logic)
   mode-registry.json     # the three-tier discriminator (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  context/   research/   review/   ai-council/   improvement/   # five verbatim mode packets
+  deep-context/   deep-research/   deep-review/   ai-council/   deep-improvement/   # five verbatim mode packets
   shared/synthesis/      # workflows-shared synthesis (e.g. emitResourceMap)
 ```
 
@@ -94,6 +94,6 @@ All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, promp
 ## 5. REFERENCES
 
 - Backend: `.opencode/skills/deep-loop-runtime/` (frozen, consumed by every mode).
-- Mode packets: `context/SKILL.md`, `research/SKILL.md`, `review/SKILL.md`, `ai-council/SKILL.md`, `improvement/SKILL.md` (per-mode detail).
+- Mode packets: `deep-context/SKILL.md`, `deep-research/SKILL.md`, `deep-review/SKILL.md`, `ai-council/SKILL.md`, `deep-improvement/SKILL.md` (per-mode detail).
 - Commands: the eight `/deep:*` commands under `.opencode/commands/deep/`.
 - Registry: `mode-registry.json` (the routing contract).

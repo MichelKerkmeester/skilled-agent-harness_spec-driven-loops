@@ -25,7 +25,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Does shared/ move into deep-loop-runtime? (No — runtime→system-spec-kit dependency + semantic mismatch)"
+      - "Does shared/ move into deep-loop-runtime? (No — execution-vs-synthesis; runtime already depends on system-spec-kit, dependency rationale struck post-research)"
 ---
 # Implementation Summary: Fix the four-folder rename and record the shared/ decision
 
@@ -76,7 +76,7 @@ The sweep was executed directly by the orchestrator — a mechanical, determinis
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- **`shared/` stays in `deep-loop-workflows`** (ADR-001): moving it into `deep-loop-runtime` would create a `runtime→system-spec-kit` dependency (its `shared/synthesis/resource-map.cjs` re-exports `system-spec-kit` synthesis), violating the frozen MCP-free isolation boundary, and is a semantic mismatch (synthesis is a workflows-layer concern, not a runtime execution primitive).
+- **`shared/` stays in `deep-loop-workflows`** (ADR-001, amended post-research): the decision stands on the **execution-vs-synthesis** axis — `deep-loop-runtime/lib` is execution-only (zero renderers), `emitResourceMap` is workflow synthesis, and promoting it buys zero dedup. The originally-recorded "would create a `runtime→system-spec-kit` dependency" reason was **struck**: the runtime already depends on `system-spec-kit` by design (`artifact-root.cjs:18`), so "frozen" means MCP-free, not dependency-free.
 - **`ai-council` folder ≠ `SKILL.md` name accepted** (ADR-002): under one advisor identity the packet folder name is not load-bearing for discovery; renaming would churn refs for no routing benefit, and the naming/discovery convention is exactly what the phase-2 research will define.
 
 <!-- /ANCHOR:decisions -->

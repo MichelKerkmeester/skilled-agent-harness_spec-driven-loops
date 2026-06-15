@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": ".opencode/specs/skilled-agent-orchestration/155-parent-nested-skill-pattern/001-rename-fix-and-shared-decision",
   "description": "Feature Specification: Fix the four-folder rename and record the shared/ decision",
   "keywords": [
@@ -11,7 +12,7 @@
     "shared",
     "decision"
   ],
-  "lastUpdated": "2026-06-15T09:10:11.819Z",
+  "lastUpdated": "2026-06-15T10:27:05.566Z",
   "specId": "001",
   "folderSlug": "rename-fix-and-shared-decision",
   "parentChain": [
@@ -21,6 +22,5 @@
     "155-parent-nested-skill-pattern"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

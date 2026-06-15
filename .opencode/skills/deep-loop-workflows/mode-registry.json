@@ -5,7 +5,7 @@
   "discriminator": {
     "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
     "runtimeLoopType": "The graph-backed convergence loop key consumed by deep-loop-runtime/scripts/convergence.cjs. Validated against exactly research|review|council|context. Explicit null for improvement-host and external-adapter modes; NEVER inferred from workflowMode.",
-    "backendKind": "Which backend actually runs the mode: runtime-loop-type (deep-loop-runtime convergence), improvement-host (improvement/scripts/shared/loop-host.cjs --mode), or external-adapter (loop owned by external packaging)."
+    "backendKind": "Which backend actually runs the mode: runtime-loop-type (deep-loop-runtime convergence), improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode), or external-adapter (loop owned by external packaging)."
   },
   "modes": [
     {

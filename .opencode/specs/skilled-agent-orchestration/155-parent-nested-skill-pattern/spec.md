@@ -10,21 +10,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/155-parent-nested-skill-pattern"
-    last_updated_at: "2026-06-15T09:00:00Z"
+    last_updated_at: "2026-06-15T13:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Scaffolded parent; phase 001 rename-fix done and being documented"
-    next_safe_action: "Land phase 001 then run the 15-iteration pattern research"
+    recent_action: "Phase 2 research done (15 iters): Model A via C-plus; 2 corrections applied"
+    next_safe_action: "Implement Phase 3 (registry advisorRouting block + drift-guard test)"
     blockers: []
     key_files:
+      - "research/research.md (converged recommendation)"
       - ".opencode/skills/deep-loop-workflows/ (the parent skill under study)"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-155-parent-nested-skill-pattern"
       parent_session_id: null
-    completion_pct: 25
-    open_questions:
-      - "Routing/identity model A/B/C/D — deliberately open, resolved by the phase-2 research"
-    answered_questions: []
+    completion_pct: 50
+    open_questions: []
+    answered_questions:
+      - "Routing/identity model? Model A (one identity) via C-plus drift-guard; see research/research.md"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -86,9 +87,9 @@ Make `deep-loop-workflows` the clean reference implementation of a reusable fram
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | `001-rename-fix-and-shared-decision/` | Fix the four-folder rename refs across the repo; record the `shared/`-stays decision | Complete |
-| 2 | `research/` (parent-level evidence) | 15-iteration deep research on the parent-nested-skill pattern (10× gpt-5.5-fast xhigh + 5× opus-4.8) → `research/research.md` + adversarial verification | Pending |
-| 3 | `002-…` (research-gated) | Implement the research-chosen routing/identity model (expected: registry-driven routing); hold routing-parity fixtures green | Pending |
-| 4 | `003-…` | Formalize: `sk-doc` §21 + parent-skill templates + routing/discovery benchmark (dogfooded) + `/create:parent-skill` | Pending |
+| 2 | `research/` (parent-level evidence) | 15-iteration deep research (10× gpt-5.5-fast xhigh + 5× opus-4.8) → `research/research.md`: **Model A via C-plus** (15/15), `advisorRouting` block, lexical-stays-in-code, ai-council grandfathered; surfaced 2 Phase-1 corrections | **Complete** |
+| 3 | `002-…` (research-gated) | Implement Model A: add the registry `advisorRouting` block + the CI drift-guard test (maps == registry); hold the routing-parity fixtures green | Pending |
+| 4 | `003-…` | Formalize: new `sk-doc` parent-skill section + templates + routing/discovery benchmark (dogfooded) + `/create:parent-skill` + `/doctor:parent-skill` route | Pending |
 
 ### Phase Transition Rules
 - Each numbered phase child MUST pass `validate.sh --strict` independently before the next begins.
@@ -107,9 +108,12 @@ Make `deep-loop-workflows` the clean reference implementation of a reusable fram
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- **Routing/identity model (deliberately open):** A) one-identity + registry-driven routing, B) discoverable nested packets (each with `skill_id==folder` `graph-metadata.json`), C) derived mode-hints, D) hybrid. Resolved by the phase-2 research with benchmarks **before** any parent rework. Option B is known to break `tests/routing-parity-deep-*.vitest.ts`; the research must weigh that.
-- **Registry-driven routing:** should `skill_advisor.py` + `aliases.ts` **read** `mode-registry.json` instead of hardcoding the mode map (closing the hardcode-drift gap)? This is the central optimization question.
-- **`ai-council` folder ≠ `SKILL.md` name mismatch:** accepted now under one-identity (the operator locked "keep `ai-council`"); the research may revisit naming/discovery conventions.
+**All resolved by the phase-2 research** (`research/research.md`); kept here for traceability:
+- **Routing/identity model → A (one identity), via C-plus.** Unanimous (15/15). Keep one hub `graph-metadata.json`; make `mode-registry.json` the declarative source of truth via a per-mode `advisorRouting` block; close the drift gap with a **CI drift-guard test** (`maps == registry`), **not** runtime registry-loading (the adversarial pass showed runtime-load adds novel cross-skill coupling for no gain). Option B rejected — it breaks the parity fixtures.
+- **Registry-driven routing → yes, declaratively; advisor runtime unchanged.** The registry gains `advisorRouting` (routingClass + advisorDefaultMode + legacyAliases + packetSkillName); lexical regex weights **stay in Python** (JSON escaping would corrupt the fixture thresholds). The drift-guard test makes the registry authoritative without the advisor loading it at runtime.
+- **`ai-council` mismatch → grandfather this instance, standardize folder==name.** Keep `ai-council/` (folder non-load-bearing under one-identity), record it via `packetSkillName`; the reusable standard requires `folder == packetSkillName == deep-<mode>` for *new* parent skills.
+
+Two Phase-1 corrections were surfaced and applied: stale bare packet paths (done), and the ADR-001 rationale amendment (done — the runtime already depends on `system-spec-kit`; `shared/` stays on the execution-vs-synthesis axis only).
 <!-- /ANCHOR:questions -->
 
 ---

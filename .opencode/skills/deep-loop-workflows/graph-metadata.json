@@ -149,11 +149,11 @@
       "SKILL.md",
       "README.md",
       "mode-registry.json",
-      "context/SKILL.md",
-      "research/SKILL.md",
-      "review/SKILL.md",
+      "deep-context/SKILL.md",
+      "deep-research/SKILL.md",
+      "deep-review/SKILL.md",
       "ai-council/SKILL.md",
-      "improvement/SKILL.md"
+      "deep-improvement/SKILL.md"
     ],
     "created_at": "2026-06-15T00:00:00Z",
     "last_updated_at": "2026-06-15T06:50:00Z"

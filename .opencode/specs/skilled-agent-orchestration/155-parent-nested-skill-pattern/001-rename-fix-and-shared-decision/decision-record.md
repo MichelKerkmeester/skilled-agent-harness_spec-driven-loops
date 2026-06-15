@@ -49,7 +49,7 @@ The merge that created `deep-loop-workflows` left a packet-shared `shared/` dire
 
 ### Constraints
 
-- `deep-loop-runtime` is the FULL_ISOLATE_NO_MCP backend: it is frozen, MCP-free, and deliberately carries **no dependency on `system-spec-kit`**. That isolation is the whole point of the runtime.
+- `deep-loop-runtime` is the FULL_ISOLATE_NO_MCP backend: it is frozen and **MCP-free**. "Frozen" means MCP-free — **not** `system-spec-kit`-free: the runtime already depends on `system-spec-kit` by design (`artifact-root.cjs` re-exports `system-spec-kit/shared/review-research-paths.cjs`; `executor-config.ts`/`prompt-pack.ts` import zod; the coverage/council graph DBs import better-sqlite3; the runtime `graph-metadata.json` declares a `depends_on: system-spec-kit` edge).
 - Promotions into the runtime (per the 152 runtime-ownership ADR) must be **generic execution primitives** — lock adapters, artifact-root resolution, capability resolution, lifecycle taxonomy — never higher-layer synthesis.
 
 ### Decision
@@ -60,15 +60,19 @@ The merge that created `deep-loop-workflows` left a packet-shared `shared/` dire
 
 | Alternative | Why rejected |
 |-------------|--------------|
-| Move `shared/` into `deep-loop-runtime` | `shared/synthesis/resource-map.cjs` re-exports `system-spec-kit` synthesis, so moving it would create a `runtime→system-spec-kit` dependency — a direct violation of the runtime's frozen MCP-free isolation boundary. |
+| Move `shared/` into `deep-loop-runtime` | Rejected on the **execution-vs-synthesis** axis: `deep-loop-runtime/lib` is execution-only (lock / artifact-root / capability / coverage primitives, zero renderers), whereas `emitResourceMap` is workflow output-formatting synthesis. Moving it adds an out-of-class responsibility for **zero dedup gain** (the implementation already lives in `system-spec-kit`; the packet just re-exports it). _(The dependency-based objection originally recorded here was struck — see the Amendment below.)_ |
 | Move only the non-synthesis parts of `shared/` | The directory is small and cohesive; splitting it to chase a "backend purity" goal adds indirection for no functional gain and still leaves a workflows-layer concern (synthesis) needing a home. |
-| Keep `shared/` in `deep-loop-workflows` (**chosen**) | Preserves the runtime's zero-dependency isolation; keeps synthesis at the workflows layer where it belongs; consistent with the 152 ADR-001 ruling that `emitResourceMap` stays a workflows-shared synthesis primitive, not a backend module. |
+| Keep `shared/` in `deep-loop-workflows` (**chosen**) | Keeps synthesis at the workflows layer where it belongs (the runtime is execution-only); consistent with the 152 ADR-001 ruling that `emitResourceMap` stays a workflows-shared synthesis primitive, not a backend module. |
 
 ### Consequences
 
-- Positive: the runtime stays clean and frozen; the two-skill boundary (workflows = personas + synthesis; runtime = execution primitives) stays semantically honest.
-- Forward: a non-discoverable packet-shared `shared/` directory becomes a **documented element of the parent-nested-skill pattern** in the phase-4 `sk-doc` write-up (the `/create:parent-skill` scaffolder generates one).
-- Semantic note: synthesis (assembling resource maps from research output) is a workflows concern; the runtime's job is loop execution. Co-locating synthesis with execution would blur that line even if the dependency problem did not exist.
+- Positive: the two-skill boundary (workflows = personas + synthesis; runtime = execution primitives) stays semantically honest — the runtime stays execution-only and MCP-free.
+- Forward: the real reusable invariant is **exactly one `graph-metadata.json` per parent skill** (all nested dirs are advisor-invisible); the non-discoverable `shared/` is an incidental consequence of nesting, documented in the phase-4 `sk-doc` write-up (the `/create:parent-skill` scaffolder generates one).
+- Semantic note: synthesis (assembling resource maps from research output) is a workflows concern; the runtime's job is loop execution. With no dependency-based objection (see Amendment), this semantic separation is the **entire** basis for the decision.
+
+### Amendment (2026-06-15, post phase-2 research)
+
+The original ADR-001 gave **two** reasons to keep `shared/` in workflows; one was factually wrong and is struck. **Struck reason:** "moving `shared/` would *create* a `runtime→system-spec-kit` dependency, violating the frozen boundary." Host verification during the phase-2 research showed that dependency **already exists by design** (`artifact-root.cjs:18` re-exports a `system-spec-kit` path helper; the runtime `graph-metadata.json` declares the `depends_on` edge; zod / better-sqlite3 imports) — "frozen" means MCP-free, not dependency-free. The **decision is unchanged** (`shared/` stays) but now rests **solely** on the execution-vs-synthesis argument, which the research's adversarial pass independently confirmed sufficient (runtime `lib` is execution-only with zero renderers; promoting `emitResourceMap` buys zero dedup). Evidence: `../research/research.md` §"The two Phase-1 corrections" + `../research/iterations/iteration-014.md`.
 
 <!-- /ANCHOR:adr-001 -->
 ---

@@ -10,7 +10,7 @@ Every mode is described once, in `mode-registry.json`, by a three-tier discrimin
 
 - **`workflowMode`** — the public key used by commands, the advisor, and the registry (e.g. `research`, `ai-council`, `agent-improvement`).
 - **`runtimeLoopType`** — the graph-backed convergence key for `deep-loop-runtime/scripts/convergence.cjs`, one of `research|review|council|context`. It is an explicit `null` for the four improvement lanes and is never guessed from `workflowMode`.
-- **`backendKind`** — what actually runs the mode: a runtime convergence loop, the improvement host (`improvement/scripts/shared/loop-host.cjs`), or an external adapter whose loop lives in external packaging.
+- **`backendKind`** — what actually runs the mode: a runtime convergence loop, the improvement host (`deep-improvement/scripts/shared/loop-host.cjs`), or an external adapter whose loop lives in external packaging.
 
 A router reads the registry, loads the mode packet, and either calls the runtime convergence loop (when `runtimeLoopType` is set) or the improvement host / external adapter (when it is `null`). No router re-derives that mapping.
 
@@ -21,7 +21,7 @@ A router reads the registry, loads the mode packet, and either calls the runtime
 | `SKILL.md` | the routing hub (no per-mode logic) |
 | `mode-registry.json` | the single source of truth for the three-tier discriminator |
 | `graph-metadata.json` | the one advisor identity for the whole skill |
-| `context/` · `research/` · `review/` · `ai-council/` · `improvement/` | the five verbatim mode packets, each with its own `SKILL.md`, references, scripts, assets, and governance |
+| `deep-context/` · `deep-research/` · `deep-review/` · `ai-council/` · `deep-improvement/` | the five verbatim mode packets, each with its own `SKILL.md`, references, scripts, assets, and governance |
 | `shared/synthesis/` | workflows-shared synthesis helpers (e.g. resource-map emission) |
 
 Each mode keeps its own convergence math, state shape, artifacts, and tool-permission guards — the merge preserves behavior rather than flattening it. The packets carry no `graph-metadata.json` of their own, so the advisor discovers exactly one skill.

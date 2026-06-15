@@ -119,7 +119,7 @@ _memory:
 
 - [x] CHK-040 [P1] spec/plan/tasks synchronized for this phase
   - **Evidence**: this packet's docs describe the same scope.
-- [x] CHK-041 [P1] Decision rationale captured (frozen-boundary + semantic-mismatch)
+- [x] CHK-041 [P1] Decision rationale captured (execution-vs-synthesis; dependency rationale struck post-research)
   - **Evidence**: `decision-record.md` ADR-001.
 
 <!-- /ANCHOR:docs -->

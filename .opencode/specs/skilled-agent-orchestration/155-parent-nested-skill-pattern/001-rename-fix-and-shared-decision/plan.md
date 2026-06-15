@@ -98,7 +98,7 @@ Orchestrator reads (grep/baseline), writes (per-packet `perl`/`Edit` sweeps + th
 - [x] T005 Per-packet internal doc sweep across the four renamed packets (slash form). (`.opencode/skills/deep-loop-workflows/deep-*/`) — _verify:_ 388 files swept; zero double-prefix (`deep-deep-`) hits.
 - [x] T006 Bare-form straggler sweep for quote-terminated refs missed by the slash pattern. (`.opencode/skills/deep-loop-workflows/deep-*/`) — _verify:_ 3 files swept; bare-form grep returns 0.
 - [x] T007 Fix the cross-reference straggler outside the packet file-lists. (`.opencode/skills/cli-opencode/references/destructive_scope_violations.md`) — _verify:_ the three `review/` refs now read `deep-review/`; repo-wide grep returns 0.
-- [x] T008 Author the `shared/`-stays decision record. (`decision-record.md`) — _verify:_ ADR states the frozen-boundary + semantic-mismatch rationale.
+- [x] T008 Author the `shared/`-stays decision record. (`decision-record.md`) — _verify:_ ADR states the execution-vs-synthesis rationale (amended post-research).
 - [x] T009 Refresh phase metadata and run strict validation. (`description.json`, `graph-metadata.json`) — _verify:_ `validate.sh --strict` exits 0.
 
 ### Phase 3: Verification
