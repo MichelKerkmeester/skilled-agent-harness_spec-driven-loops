@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Roasters - Portland Small-Batch Coffee</title>
+<style>
+/* Token system grounded in Pacific Northwest coastal identity, not warm-brown coffee defaults */
+:root {
+  --ink-water: #1B2A3D;
+  --slate: #5A6B7A;
+  --fog: #E8EDF1;
+  --copper-oxide: #B86F4A;
+  --pale-steel: #F5F7F9;
+  --graphite: #2C3E50;
+  --fog-warm: #D0D8E0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--graphite);
+  background: var(--pale-steel);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navigational rail: left-side vertical marker inspired by chart margins */
+.nav-rail {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 100vh;
+  background: var(--ink-water);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+}
+
+.nav-rail__brand {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: var(--copper-oxide);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.nav-rail__lat {
+  writing-mode: vertical-rl;
+  color: var(--slate);
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Main content offset for the rail */
+.content {
+  margin-left: 48px;
+}
+
+/* Hero: editorial split, not centered */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--ink-water);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__text {
+  padding: 80px 60px 60px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--copper-oxide);
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.hero__heading {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  color: var(--fog);
+  line-height: 1.05;
+  margin-bottom: 32px;
+  letter-spacing: -1px;
+}
+
+.hero__heading strong {
+  font-weight: 700;
+  color: var(--copper-oxide);
+  display: block;
+}
+
+.hero__desc {
+  font-size: 1.1rem;
+  color: var(--fog-warm);
+  max-width: 420px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--copper-oxide);
+  color: var(--pale-steel);
+  padding: 14px 32px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  width: fit-content;
+}
+
+.hero__cta:hover {
+  background: #9A5D3E;
+}
+
+.hero__cta:focus-visible {
+  outline: 2px solid var(--copper-oxide);
+  outline-offset: 3px;
+}
+
+.hero__visual {
+  background: linear-gradient(160deg, #243650 0%, var(--ink-water) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Signature: the roast curve, a data-visualization of first crack timing */
+.roast-curve {
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+}
+
+.roast-curve svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Compass mark at the hero join */
+.hero__compass {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.hero__compass svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Section: our approach */
+.section {
+  padding: 100px 60px;
+}
+
+.section--fog {
+  background: var(--fog);
+}
+
+.section--white {
+  background: var(--pale-steel);
+}
+
+.section__eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--copper-oxide);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.section__heading {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  color: var(--ink-water);
+  line-height: 1.15;
+  margin-bottom: 48px;
+  max-width: 600px;
+}
+
+.section__heading strong {
+  font-weight: 700;
+}
+
+/* Origin cards: horizontal scroll on mobile, grid on desktop */
+.origins {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.origin-card {
+  background: var(--pale-steel);
+  border: 1px solid var(--fog-warm);
+  padding: 36px 28px;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.origin-card:hover {
+  border-color: var(--copper-oxide);
+}
+
+.origin-card__region {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.origin-card__name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ink-water);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.origin-card__detail {
+  font-size: 0.95rem;
+  color: var(--slate);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.origin-card__notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.note-tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  background: var(--fog);
+  color: var(--ink-water);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Process section: horizontal steps */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--fog-warm);
+}
+
+.process-step {
+  padding: 36px 24px;
+  border-bottom: 1px solid var(--fog-warm);
+  border-right: 1px solid var(--fog-warm);
+  position: relative;
+}
+
+.process-step:last-child {
+  border-right: none;
+}
+
+.process-step__number {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.5rem;
+  color: var(--fog-warm);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.process-step__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink-water);
+  margin-bottom: 8px;
+}
+
+.process-step__desc {
+  font-size: 0.9rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+/* Tasting wheel */
+.tasting-section {
+  background: var(--ink-water);
+  padding: 100px 60px;
+  color: var(--fog);
+}
+
+.tasting-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.tasting-wheel {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  position: relative;
+  margin: 0 auto;
+}
+
+.tasting-wheel__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--slate);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tasting-wheel__ring:nth-child(1) { width: 100%; height: 100%; }
+.tasting-wheel__ring:nth-child(2) { width: 70%; height: 70%; }
+.tasting-wheel__ring:nth-child(3) { width: 40%; height: 40%; }
+
+.tasting-wheel__label {
+  position: absolute;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--copper-oxide);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tasting-wheel__label:nth-child(4) { top: -8px; left: 50%; transform: translateX(-50%); }
+.tasting-wheel__label:nth-child(5) { right: -12px; top: 50%; transform: translateY(-50%); }
+.tasting-wheel__label:nth-child(6) { bottom: -8px; left: 50%; transform: translateX(-50%); }
+.tasting-wheel__label:nth-child(7) { left: -12px; top: 50%; transform: translateY(-50%); }
+
+.tasting-wheel__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fog);
+  font-weight: 600;
+}
+
+.tasting-text h3 {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 24px;
+  color: var(--fog);
+  line-height: 1.3;
+}
+
+.tasting-text h3 strong {
+  font-weight: 700;
+  color: var(--copper-oxide);
+}
+
+.tasting-text p {
+  color: var(--fog-warm);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+/* Footer */
+.footer {
+  background: var(--ink-water);
+  padding: 60px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+}
+
+.footer__brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--fog);
+  margin-bottom: 12px;
+}
+
+.footer__tagline {
+  font-size: 0.9rem;
+  color: var(--slate);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.footer__heading {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--copper-oxide);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.footer__links {
+  list-style: none;
+}
+
+.footer__links li {
+  margin-bottom: 8px;
+}
+
+.footer__links a {
+  color: var(--slate);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer__links a:hover {
+  color: var(--fog);
+}
+
+.footer__links a:focus-visible {
+  outline: 1px solid var(--copper-oxide);
+  outline-offset: 2px;
+}
+
+.footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.8rem;
+  color: var(--slate);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .nav-rail {
+    display: none;
+  }
+  .content {
+    margin-left: 0;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero__text {
+    padding: 60px 24px 48px;
+  }
+  .hero__visual {
+    min-height: 300px;
+  }
+  .section {
+    padding: 60px 24px;
+  }
+  .origins {
+    grid-template-columns: 1fr;
+  }
+  .process-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tasting-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .tasting-section {
+    padding: 60px 24px;
+  }
+  .footer {
+    padding: 48px 24px;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__heading {
+    font-size: 2.2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-rail" aria-label="Page navigation">
+  <span class="nav-rail__brand">Meridian</span>
+  <span class="nav-rail__lat">45.5155 N</span>
+</nav>
+
+<div class="content">
+
+  <section class="hero">
+    <div class="hero__text">
+      <span class="hero__eyebrow">Portland, Oregon &middot; Small-Batch Roasters</span>
+      <h1 class="hero__heading">
+        Every bean has a<br>
+        <strong>coordinates</strong>
+      </h1>
+      <p class="hero__desc">
+        We roast in batches of forty pounds or less, sourced from single estates we visit ourselves. Each origin lands in Portland with its passport stamped and its story intact.
+      </p>
+      <a href="#origins" class="hero__cta">Explore our origins</a>
+    </div>
+    <div class="hero__visual">
+      <div class="roast-curve">
+        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Roast temperature curve showing first crack at 385 degrees">
+          <!-- Grid lines representing time and temperature -->
+          <line x1="60" y1="20" x2="60" y2="260" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="140" y1="20" x2="140" y2="260" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="220" y1="20" x2="220" y2="260" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="300" y1="20" x2="300" y2="260" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="60" y1="260" x2="360" y2="260" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="60" y1="200" x2="360" y2="200" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="60" y1="140" x2="360" y2="140" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="60" y1="80" x2="360" y2="80" stroke="#5A6B7A" stroke-width="0.5" opacity="0.3"/>
+          <!-- Roast curve -->
+          <path d="M60 250 C100 245, 120 230, 160 200 S240 120, 280 90 S320 70, 360 65" stroke="#B86F4A" stroke-width="2.5" fill="none"/>
+          <!-- First crack marker -->
+          <circle cx="280" cy="90" r="4" fill="#B86F4A"/>
+          <text x="290" y="85" fill="#B86F4A" font-size="10" font-family="Helvetica Neue, sans-serif" letter-spacing="1">FIRST CRACK</text>
+          <text x="290" y="100" fill="#5A6B7A" font-size="9" font-family="Georgia, serif">385 F / 6:42</text>
+          <!-- Axis labels -->
+          <text x="200" y="285" fill="#5A6B7A" font-size="9" text-anchor="middle" font-family="Helvetica Neue, sans-serif" letter-spacing="2">TIME (MINUTES)</text>
+          <text x="20" y="150" fill="#5A6B7A" font-size="9" text-anchor="middle" font-family="Helvetica Neue, sans-serif" letter-spacing="2" transform="rotate(-90, 20, 150)">TEMP F</text>
+        </svg>
+      </div>
+    </div>
+    <div class="hero__compass" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="23" stroke="#5A6B7A" stroke-width="0.5"/>
+        <line x1="24" y1="4" x2="24" y2="44" stroke="#5A6B7A" stroke-width="0.5"/>
+        <line x1="4" y1="24" x2="44" y2="24" stroke="#5A6B7A" stroke-width="0.5"/>
+        <polygon points="24,6 22,18 26,18" fill="#B86F4A"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section section--fog" id="origins">
+    <span class="section__eyebrow">Current offerings</span>
+    <h2 class="section__heading"><strong>Three estates,</strong> three stories this season</h2>
+    <div class="origins">
+      <article class="origin-card">
+        <span class="origin-card__region">Huila, Colombia</span>
+        <h3 class="origin-card__name">Finca El Paraiso</h3>
+        <p class="origin-card__detail">Diego Bermudez processes this lot entirely on his own estate, using a controlled anaerobic fermentation that gives the cup an unusual clarity at light roast. We pull it 45 seconds past first crack.</p>
+        <div class="origin-card__notes">
+          <span class="note-tag">Jasmine</span>
+          <span class="note-tag">Tropical</span>
+          <span class="note-tag">Clean finish</span>
+        </div>
+      </article>
+      <article class="origin-card">
+        <span class="origin-card__region">Yirgacheffe, Ethiopia</span>
+        <h3 class="origin-card__name">Konga Cooperative</h3>
+        <p class="origin-card__detail">Washed process from 650 smallholder farms at 1,900 meters. The cooperative has operated since 2002 and their lot separation is meticulous. We roast this one light to preserve the floral top notes.</p>
+        <div class="origin-card__notes">
+          <span class="note-tag">Bergamot</span>
+          <span class="note-tag">Stone fruit</span>
+          <span class="note-tag">Silky</span>
+        </div>
+      </article>
+      <article class="origin-card">
+        <span class="origin-card__region">Guji, Ethiopia</span>
+        <h3 class="origin-card__name">Shakiso Natural</h3>
+        <p class="origin-card__detail">Natural process dried on raised beds for 21 days. This is our most fruit-forward offering. We take it medium to balance the intense berry character with some caramelized body.</p>
+        <div class="origin-card__notes">
+          <span class="note-tag">Blueberry</span>
+          <span class="note-tag">Dark chocolate</span>
+          <span class="note-tag">Heavy body</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <span class="section__eyebrow">Our process</span>
+    <h2 class="section__heading">From green to cup in <strong>four honest steps</strong></h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-step__number">1</div>
+        <h3 class="process-step__title">Source</h3>
+        <p class="process-step__desc">We visit farms and cooperatives directly. No middlemen, no mystery lots. We cup on site before committing to a purchase.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__number">2</div>
+        <h3 class="process-step__title">Sample roast</h3>
+        <p class="process-step__desc">Every new lot gets roasted on our sample roaster at least five times before we find the profile that does it justice.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__number">3</div>
+        <h3 class="process-step__title">Production roast</h3>
+        <p class="process-step__desc">Batches of 40 pounds or less on our Loring S35. We log every roast and share the curves on the bag label.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__number">4</div>
+        <h3 class="process-step__title">Rest and ship</h3>
+        <p class="process-step__desc">We rest every lot 48 hours before packing. Orders ship within one roast day so the coffee arrives at its peak.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tasting-section">
+    <span class="section__eyebrow" style="color: var(--copper-oxide);">How we taste</span>
+    <h2 class="section__heading" style="color: var(--fog); max-width: 500px;"><strong>Every cup has a compass bearing.</strong> We label ours clearly.</h2>
+    <div class="tasting-grid">
+      <div class="tasting-wheel" aria-label="Tasting wheel showing four flavor quadrants: floral, fruit, chocolate, spice">
+        <div class="tasting-wheel__ring"></div>
+        <div class="tasting-wheel__ring"></div>
+        <div class="tasting-wheel__ring"></div>
+        <span class="tasting-wheel__label">Floral</span>
+        <span class="tasting-wheel__label">Fruit</span>
+        <span class="tasting-wheel__label">Chocolate</span>
+        <span class="tasting-wheel__label">Spice</span>
+        <span class="tasting-wheel__center">Origin</span>
+      </div>
+      <div class="tasting-text">
+        <h3>We describe coffee the way <strong>a sommelier describes wine.</strong> No made-up adjectives, no marketing fluff.</h3>
+        <p>Every bag we sell carries a tasting card with the roast date, the roast curve, and three to four flavor notes we actually tasted during cupping. If we write "jasmine" on the bag, it is because three of us independently identified jasmine in a blind cupping.</p>
+        <p>We publish our cupping scores and invite you to disagree. Coffee is personal, and your palate is the one that matters.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">Meridian Roasters</div>
+        <p class="footer__tagline">Small-batch coffee roasters in Portland, Oregon. We source directly, roast carefully, and ship fresh.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Visit</h4>
+        <ul class="footer__links">
+          <li><a href="#">Our roastery</a></li>
+          <li><a href="#">Tasting room hours</a></li>
+          <li><a href="#">Wholesale inquiries</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Shop</h4>
+        <ul class="footer__links">
+          <li><a href="#">Current offerings</a></li>
+          <li><a href="#">Subscriptions</a></li>
+          <li><a href="#">Gift cards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Learn</h4>
+        <ul class="footer__links">
+          <li><a href="#">Brew guides</a></li>
+          <li><a href="#">Origin stories</a></li>
+          <li><a href="#">Roast logs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 Meridian Roasters. Portland, Oregon.
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

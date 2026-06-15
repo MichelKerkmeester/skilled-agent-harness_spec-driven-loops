@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Roasters — Small-Batch Coffee, Portland</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --steel: #1E293B;
+  --near-black: #0F172A;
+  --mist: #F8FAFC;
+  --white: #FFFFFF;
+  --conifer: #2D5A27;
+  --bridge: #64748B;
+  --cloud: #E2E8F0;
+  --conifer-light: #3D7A35;
+  --conifer-pale: #ECF3EB;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--mist);
+  color: var(--near-black);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.nav-brand {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--bridge);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a:focus { color: var(--conifer); }
+.nav-links a:focus-visible {
+  outline: 2px solid var(--conifer);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Hero */
+.hero {
+  max-width: 1200px;
+  margin: 4rem auto 3rem;
+  padding: 0 2rem;
+}
+.hero-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--conifer);
+  margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--steel);
+  letter-spacing: -0.02em;
+  max-width: 900px;
+}
+.hero h1 span { color: var(--conifer); }
+.hero p {
+  font-size: 1.125rem;
+  color: var(--bridge);
+  max-width: 540px;
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Divider */
+.section-divider {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.section-divider hr {
+  border: none;
+  border-top: 1px solid var(--cloud);
+}
+
+/* Offerings header */
+.offerings-header {
+  max-width: 1200px;
+  margin: 3rem auto 2rem;
+  padding: 0 2rem;
+}
+.offerings-header h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bridge);
+  margin-bottom: 0.5rem;
+}
+
+/* Product grid */
+.product-grid {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: 4px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.product-card:hover {
+  border-color: var(--conifer);
+  box-shadow: 0 2px 12px rgba(45, 90, 39, 0.08);
+}
+.product-card:focus-within {
+  outline: 2px solid var(--conifer);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.product-origin {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bridge);
+  margin-bottom: 0.5rem;
+}
+.product-name {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--steel);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+.product-desc {
+  font-size: 0.875rem;
+  color: var(--bridge);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+.product-specs {
+  list-style: none;
+  border-top: 1px solid var(--cloud);
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+.product-specs li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  padding: 0.375rem 0;
+}
+.product-specs .spec-label { color: var(--bridge); font-weight: 500; }
+.product-specs .spec-value { color: var(--near-black); font-weight: 600; }
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--steel);
+  margin-bottom: 1rem;
+}
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--conifer);
+  background: var(--conifer);
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn:hover { background: var(--conifer-light); border-color: var(--conifer-light); }
+.btn:focus-visible {
+  outline: 2px solid var(--conifer);
+  outline-offset: 3px;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--cloud);
+  padding: 2.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-location {
+  font-size: 0.875rem;
+  color: var(--bridge);
+}
+.footer-ethos {
+  font-size: 0.8125rem;
+  color: var(--bridge);
+  font-style: italic;
+}
+
+/* Scroll animation */
+@media (prefers-reduced-motion: no-preference) {
+  .product-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.2s, box-shadow 0.2s;
+  }
+  .product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
+  .hero p { font-size: 1rem; }
+  .nav { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+  .nav-links { gap: 1.25rem; }
+}
+@media (max-width: 480px) {
+  .hero { margin: 2.5rem auto 2rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .footer { flex-direction: column; align-items: flex-start; }
+  .product-card { padding: 1.5rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav-brand">Meridian</div>
+  <ul class="nav-links">
+    <li><a href="#coffees">Coffees</a></li>
+    <li><a href="#subscribe">Subscribe</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-label">Portland, Oregon</p>
+  <h1>Coffee that knows <span>where it's from</span>.</h1>
+  <p>Every bean we roast is a single origin, sourced directly from the grower and profiled to bring out what the land put in. No blends, no shortcuts, no mystery bags.</p>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<div class="offerings-header" id="coffees">
+  <h2>Current Offerings</h2>
+</div>
+
+<div class="product-grid">
+  <article class="product-card">
+    <p class="product-origin">Ethiopia / Yirgacheffe</p>
+    <h3 class="product-name">Kochere Washed</h3>
+    <p class="product-desc">Bright and clean with distinct lemon zest, white peach, and a honeyed finish. From the Kochere washing station at 1,950 meters in southern Ethiopia's Gedeo Zone.</p>
+    <ul class="product-specs">
+      <li><span class="spec-label">Origin</span><span class="spec-value">Kochere, Gedeo</span></li>
+      <li><span class="spec-label">Altitude</span><span class="spec-value">1,850–2,100 m</span></li>
+      <li><span class="spec-label">Process</span><span class="spec-value">Washed</span></li>
+      <li><span class="spec-label">Roasted</span><span class="spec-value">June 10, 2026</span></li>
+    </ul>
+    <p class="product-price">$22 &middot; 12 oz</p>
+    <button class="btn" aria-label="Add Kochere Washed coffee to cart">Add to Cart</button>
+  </article>
+
+  <article class="product-card">
+    <p class="product-origin">Colombia / Huila</p>
+    <h3 class="product-name">Finca El Diviso</h3>
+    <p class="product-desc">A natural-process standout from a 5-hectare family farm near Pitalito. Dense sweetness of black cherry and dark chocolate with a creamy body and a long, clean finish.</p>
+    <ul class="product-specs">
+      <li><span class="spec-label">Origin</span><span class="spec-value">Pitalito, Huila</span></li>
+      <li><span class="spec-label">Altitude</span><span class="spec-value">1,750 m</span></li>
+      <li><span class="spec-label">Process</span><span class="spec-value">Natural</span></li>
+      <li><span class="spec-label">Roasted</span><span class="spec-value">June 12, 2026</span></li>
+    </ul>
+    <p class="product-price">$24 &middot; 12 oz</p>
+    <button class="btn" aria-label="Add Finca El Diviso coffee to cart">Add to Cart</button>
+  </article>
+
+  <article class="product-card">
+    <p class="product-origin">Guatemala / Huehuetenango</p>
+    <h3 class="product-name">La Esperanza</h3>
+    <p class="product-desc">From a small cooperative in Huehuetenango's highlands, this washed lot delivers toasted almond, ripe pear, and a gentle cocoa powder finish. Balanced and approachable all day.</p>
+    <ul class="product-specs">
+      <li><span class="spec-label">Origin</span><span class="spec-value">Huehuetenango</span></li>
+      <li><span class="spec-label">Altitude</span><span class="spec-value">1,600–1,800 m</span></li>
+      <li><span class="spec-label">Process</span><span class="spec-value">Washed</span></li>
+      <li><span class="spec-label">Roasted</span><span class="spec-value">June 8, 2026</span></li>
+    </ul>
+    <p class="product-price">$20 &middot; 12 oz</p>
+    <button class="btn" aria-label="Add La Esperanza coffee to cart">Add to Cart</button>
+  </article>
+</div>
+
+<footer class="footer">
+  <p class="footer-location">3610 SE Hawthorne Blvd, Portland, OR 97214</p>
+  <p class="footer-ethos">Roasted in small batches. Shipped the same day. Tracked to the farm.</p>
+</footer>
+
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.product-card').forEach(function(card) {
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.product-card').forEach(function(card) {
+    observer.observe(card);
+  });
+})();
+</script>
+</body>
+</html>
