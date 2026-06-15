@@ -85,7 +85,7 @@ TASK CONTEXT
 | CONDITIONAL | WIRE intent | `references/mcp_wiring.md` (opencode + Claude Code config, manual fallback) |
 | CONDITIONAL | READ / RUN intent | `references/tool_surface.md` (the MCP tools, the surface/gate/omit policy) |
 | ALWAYS (design work) | Grounding a design in an Open Design system, or any READ feeding a design decision | `sk-interface-design` design principles, applied before deciding |
-| ALWAYS (design work) | Reuse-before-generate / fidelity / handoff | `../sk-interface-design/references/claude_design_parity.md` (the shared loop) |
+| ALWAYS (design work) | Reuse-before-generate / fidelity / handoff | `../sk-interface-design/references/design-process/claude_design_parity.md` (the shared loop) |
 
 ### Smart Router Pseudocode
 

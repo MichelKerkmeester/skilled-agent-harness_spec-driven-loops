@@ -18,7 +18,7 @@ importance_tier: "important"
 
 Turns a read of an Open Design system into a grounded design decision. The transport belongs to this skill, but the taste belongs to `sk-interface-design`, which is applied whenever a read or run feeds a design decision.
 
-The point of the loop is to reuse a real, lint-governed design system instead of drifting into AI defaults. An Open Design system is an input to judgment, never the authority, and the two skills share the parity protocol in `sk-interface-design/references/claude_design_parity.md`.
+The point of the loop is to reuse a real, lint-governed design system instead of drifting into AI defaults. An Open Design system is an input to judgment, never the authority, and the two skills share the parity protocol in `sk-interface-design/references/design-process/claude_design_parity.md`.
 
 ---
 
@@ -40,7 +40,7 @@ Reuse before generating: prefer one resolved system's tokens and components, and
 
 | File | Layer | Role |
 |---|---|---|
-| `../sk-interface-design/references/claude_design_parity.md` | Shared | The shared reuse-before-generate and critique protocol |
+| `../sk-interface-design/references/design-process/claude_design_parity.md` | Shared | The shared reuse-before-generate and critique protocol |
 | `references/tool_surface.md` | Shared | The read tools that feed grounding |
 
 ### Validation And Tests

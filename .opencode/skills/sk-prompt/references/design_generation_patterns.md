@@ -115,6 +115,6 @@ When a generated design heads into application code, the handoff is already owne
 
 - [patterns_evaluation.md](./patterns_evaluation.md) is the source of truth for COSTAR, CRISPE, CRAFT, and CLEAR scoring.
 - [depth_framework.md](./depth_framework.md) owns the DEPTH pass and the context-aware CLEAR weighting this pattern leans on.
-- `.opencode/skills/sk-interface-design/references/claude_design_parity.md` owns the reuse-before-generate loop, the pre-build direction gate (§7), the handoff manifest (§6), and the no-preset guardrail (§8).
-- `.opencode/skills/sk-interface-design/references/design_principles.md` owns the look and the anti-default mandate.
+- `.opencode/skills/sk-interface-design/references/design-process/claude_design_parity.md` owns the reuse-before-generate loop, the pre-build direction gate (§7), the handoff manifest (§6), and the no-preset guardrail (§8).
+- `.opencode/skills/sk-interface-design/references/design-process/design_principles.md` owns the look and the anti-default mandate.
 - `.opencode/skills/mcp-open-design/SKILL.md` owns the run transport this brief feeds.

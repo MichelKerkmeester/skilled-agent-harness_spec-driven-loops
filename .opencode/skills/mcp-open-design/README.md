@@ -186,5 +186,5 @@ A: This skill is the transport that reads and writes Open Design content. `sk-in
 | [`references/od_cli_reference.md`](./references/od_cli_reference.md) | Locating the CLI, the daemon socket model, and the full verb surface with read-only vs mutating classification |
 | [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into opencode and Claude Code, the written config shape, and the manual fallback |
 | [`references/tool_surface.md`](./references/tool_surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
-| [`claude_design_parity.md`](../sk-interface-design/references/claude_design_parity.md) | The shared reuse-before-generate and critique protocol that grounding follows |
+| [`claude_design_parity.md`](../sk-interface-design/references/design-process/claude_design_parity.md) | The shared reuse-before-generate and critique protocol that grounding follows |
 | [Skills Library](../README.md) | The skill catalog and routing front door |
