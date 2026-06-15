@@ -41,7 +41,7 @@ def test_nested_example_fence_does_not_swallow_following_headings():
 def test_detect_document_type_supports_command_path():
     module = _load_module()
     doc_type, source = module.detect_document_type(
-        "/tmp/project/.opencode/commands/create/skill.md"
+        "/tmp/project/.opencode/commands/create/sk-skill.md"
     )
     assert doc_type == "command"
     assert source == "path"

@@ -4,7 +4,7 @@ argument-hint: "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--path
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
-# /create:parent-skill Router
+# /create:sk-skill-parent Router
 
 This command is a thin router. It separates execution routing from user-facing presentation.
 
@@ -42,7 +42,7 @@ The generated package is:
 
 ## Routing Rules
 
-- This command is the canonical `/create:parent-skill` entrypoint.
+- This command is the canonical `/create:sk-skill-parent` entrypoint.
 - Do not split behavior across legacy or ad-hoc parent-skill scaffolders.
 - Do not edit workflow YAML while executing this command.
 - If any referenced asset is missing, stop and report the missing path.

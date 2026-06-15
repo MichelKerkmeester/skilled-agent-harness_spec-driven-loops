@@ -1,6 +1,6 @@
-# /create:parent-skill Presentation Contract
+# /create:sk-skill-parent Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/create:parent-skill`: startup questions, setup/status dashboards, and result display. The command router owns asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/create:sk-skill-parent`: startup questions, setup/status dashboards, and result display. The command router owns asset routing only. The workflow YAML owns execution behavior.
 
 ## 1. Phase 0 Verification Display
 
@@ -27,7 +27,7 @@ Hard-block message:
 
 ```text
 This command requires @markdown for template-first generation and sk-doc validation.
-Restart with: @markdown /create:parent-skill <skill-name> [create|update]
+Restart with: @markdown /create:sk-skill-parent <skill-name> [create|update]
 
 STATUS=FAIL ERROR="Markdown agent required"
 ```

@@ -2,7 +2,7 @@
 # OPENCODE CREATE: PARENT SKILL WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: interactive execution with checkpoints
-# Entrypoint: /create:parent-skill
+# Entrypoint: /create:sk-skill-parent
 # Operations: create | update
 # ─────────────────────────────────────────────────────────────────
 role: Parent Skill Creator using sk-doc

@@ -203,7 +203,7 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 
 | Problem | Fix |
 | --- | --- |
-| `"no skills found"` | Create at least one skill via `/create:skill` |
+| `"no skills found"` | Create at least one skill via `/create:sk-skill` |
 | `"graph health: missing"` | Run `skill_graph_scan({})` through MCP, or `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json` on the daemon-backed CLI, then re-run the command |
 | Build fails after apply | Rollback (see Section 7), inspect diff in `<spec-folder>/scratch/skill-advisor-proposal-*.md` (or `.opencode/scratch/...` outside a spec folder) |
 | Tests fail after apply | Rollback, then re-run with `--scope=derived` only |

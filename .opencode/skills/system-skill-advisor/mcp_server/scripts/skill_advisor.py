@@ -1866,8 +1866,8 @@ COMMAND_BRIDGES = {
         "slash_markers": ["/create:changelog", "create:changelog"],
     },
     "command-create-sk-skill": {
-        "description": "Create or update an OpenCode skill using /create:skill.",
-        "slash_markers": ["/create:skill", "create:sk-skill"],
+        "description": "Create or update an OpenCode skill using /create:sk-skill.",
+        "slash_markers": ["/create:sk-skill", "create:sk-skill"],
     },
     "command-create-feature-catalog": {
         "description": "Create or update a feature catalog using /create:feature-catalog.",

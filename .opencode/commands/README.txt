@@ -125,8 +125,8 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a changelog entry from recent work |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature_catalog/` package |
 | Folder README | `/create:folder_readme [readme\|install] <target>` | Unified README and install guide workflow |
-| Parent Skill | `/create:parent-skill <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
-| Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
+| Parent Skill | `/create:sk-skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
+| Skill | `/create:sk-skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
 | Testing Playbook | `/create:testing-playbook <skill> [create\|update]` | Create or update a rooted `manual_testing_playbook/` package |
 
 ### Doctor Commands
@@ -207,7 +207,7 @@ Structured workflows for the spec folder development lifecycle.
 ```
 /create:feature-catalog system-spec-kit create :confirm
 /create:testing-playbook system-spec-kit update :auto
-/create:skill my-new-skill full-create :auto
+/create:sk-skill my-new-skill full-create :auto
 /deep:start-agent-improvement-loop .opencode/agents/review.md :confirm
 /prompt $improve "Build a clearer CLI handoff prompt" :auto
 /memory:save specs/007-feature

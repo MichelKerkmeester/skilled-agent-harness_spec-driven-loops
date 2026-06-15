@@ -31,7 +31,7 @@ This checklist keeps `/<command>` workflows consistent across command markdown, 
 
 ## 2. PRE-CHECKS
 
-- [ ] Read canonical command examples at `.opencode/commands/speckit/complete.md` and `.opencode/commands/create/skill.md`.
+- [ ] Read canonical command examples at `.opencode/commands/speckit/complete.md` and `.opencode/commands/create/sk-skill.md`.
 - [ ] Verify whether the command needs execution-path files such as `assets/<command>_auto.yaml` and `assets/<command>_confirm.yaml`.
 - [ ] Confirm command scope, required user inputs, dispatch targets, and file-write authority.
 - [ ] Check mirror destinations: `.claude/commands/` and `.codex/prompts/`.
@@ -61,5 +61,5 @@ This checklist keeps `/<command>` workflows consistent across command markdown, 
 ## 5. RELATED RESOURCES
 
 - sk-doc assets/command/command_template.md (source-of-truth for command document shape)
-- Prior examples: `.opencode/commands/speckit/complete.md`, `.opencode/commands/create/skill.md`
+- Prior examples: `.opencode/commands/speckit/complete.md`, `.opencode/commands/create/sk-skill.md`
 - Verification recipes: `.opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md`

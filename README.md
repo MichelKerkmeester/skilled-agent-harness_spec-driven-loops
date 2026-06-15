@@ -783,7 +783,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🔄 Deep Loop
 
-The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loop families (context, research, review, AI council, improvement) run on one shared runtime, `deep-loop-runtime`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries four co-equal lanes (agent improvement, model benchmark, skill benchmark, non-dev AI system refine), giving eight `/deep:*` loop commands in total.
+The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loop families (context, research, review, AI council, improvement) live as nested mode packets inside one parent skill, `deep-loop-workflows`, and all run on one shared runtime, `deep-loop-runtime`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries four co-equal lanes (agent improvement, model benchmark, skill benchmark, non-dev AI system refine), giving eight `/deep:*` loop commands in total.
 
 #### How It Works
 
@@ -821,6 +821,7 @@ One engine under every loop, so they all work the same way and you learn the wor
 - **Pause and resume anytime:** progress is saved outside the chat, so a loop survives crashes, new sessions and long runs
 - **Trustworthy stops:** a loop ends only when the work has actually converged and passed its quality checks, never because an agent says it is done
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
+- **Self-contained and MCP-free:** the runtime declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`, with no reach-ins into a sibling skill. It carries executor config, atomic state, scoring, fallback routing and the coverage / council graph scripts
 
 &nbsp;
 #### Deep Research
@@ -916,13 +917,13 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 &nbsp;
 #### DEEP LOOP
 
-The shared runtime plus the unified `deep-loop-workflows` skill behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
+The shared runtime plus the `deep-loop-workflows` parent skill behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
 
 **deep-loop-runtime**
-- Shared runtime under every deep loop: executor config, state safety, scoring, fallback routing, coverage-graph scripts, `storage/deep-loop-graph.sqlite`. See [Deep Loop](#deep-loop).
+- Self-contained, MCP-free runtime under every deep loop: executor config, state safety, scoring, fallback routing, coverage-graph scripts and `database/deep-loop-graph.sqlite`. Declares its own dependency manifest and resolves `zod`, `better-sqlite3` and `tsx` from its own `node_modules`. See [Deep Loop](#deep-loop).
 
 **deep-loop-workflows**
-- Unified deep-loop skill that routes a request to one of five modes over the shared runtime: **context** (codebase-context by-model sweep, `/deep:context`), **research** (autonomous research loop with 3-signal convergence, `/deep:research`), **review** (P0/P1/P2 code-review loop across 4 dimensions, `/deep:review`), **ai-council** (multi-seat planning to packet-local `ai-council/**` artifacts, `/deep:ai-council`), and **improvement** (four co-equal lanes: agent-improvement, model-benchmark, skill-benchmark and non-dev-ai-system). The five native agent names (`@deep-context`, `@deep-research`, `@deep-review`, `@ai-council`, `@deep-improvement`) and all eight `/deep:*` commands are unchanged. See [Deep Loop](#deep-loop).
+- A formalized parent skill with nested mode packets: one routing-only `SKILL.md` and a single hub `graph-metadata.json` give it one advisor identity, while `mode-registry.json` is the declarative source of truth the modes project from, and a non-discoverable `shared/` holds cross-mode helpers. The nested packets are `deep-context`, `deep-research`, `deep-review`, `ai-council` and `deep-improvement` (folder names carry the `deep-` prefix except `ai-council`), routing one request to one of five modes over the shared runtime: **context** (codebase-context by-model sweep, `/deep:context`), **research** (autonomous research loop with 3-signal convergence, `/deep:research`), **review** (P0/P1/P2 code-review loop across 4 dimensions, `/deep:review`), **ai-council** (multi-seat planning to packet-local `ai-council/**` artifacts, `/deep:ai-council`), and **improvement** (four co-equal lanes: agent-improvement, model-benchmark, skill-benchmark and non-dev-ai-system). The five native agent names (`@deep-context`, `@deep-research`, `@deep-review`, `@ai-council`, `@deep-improvement`) and all eight `/deep:*` commands are unchanged. This parent-nested-skill pattern is the reusable, documented standard, scaffolded with `/create:sk-skill-parent` and described in `sk-doc`. See [Deep Loop](#deep-loop).
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1129,6 +1130,11 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Unified skill creation and update workflow
 - Creates SKILL.md with 8-section structure, README.md, references and assets directories
 - Registers in skill catalog. Modes: `:auto`, `:confirm`
+
+**Parent Skill**
+- Scaffolds a parent skill with nested mode packets — one hub identity plus a `mode-registry.json` source of truth the modes project from
+- Generates the routing-only `SKILL.md`, single hub `graph-metadata.json`, N mode packets and a non-discoverable `shared/`
+- The reusable pattern behind `deep-loop-workflows`. Modes: `:auto`, `:confirm`
 
 **Agent**
 - Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions
@@ -1477,7 +1483,7 @@ A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) wo
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 
-A: Use `/create:skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.md`.
+A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.md`.
 &nbsp;
 **Q: What does "local-first" mean for the memory system?**
 
