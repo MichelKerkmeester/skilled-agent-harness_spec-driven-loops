@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/150-mcp-open-design",
+  "spec_folder": "skilled-agent-orchestration/150-mcp-open-design",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/150-mcp-open-design/001-terminal-control-and-integration-research",
+    "skilled-agent-orchestration/150-mcp-open-design/002-mcp-open-design-skill-build",
+    "skilled-agent-orchestration/150-mcp-open-design/003-sk-interface-design-evolution",
+    "skilled-agent-orchestration/150-mcp-open-design/004-validation-and-docs",
+    "skilled-agent-orchestration/150-mcp-open-design/005-sk-interface-design-variation-diversity",
+    "skilled-agent-orchestration/150-mcp-open-design/006-sk-prompt-design-tool-usecases",
+    "skilled-agent-orchestration/150-mcp-open-design/007-mcp-open-design-generation-flow-correction",
+    "skilled-agent-orchestration/150-mcp-open-design/008-mcp-magicpath-deprecation"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open design terminal control",
+      "mcp-open-design skill",
+      "sk-interface-design open design integration"
+    ],
+    "key_topics": [
+      "open",
+      "design",
+      "terminal",
+      "control",
+      "mcp-open-design",
+      "skill",
+      "sk-interface-design",
+      "integration",
+      "installed",
+      "desktop",
+      "app",
+      "nexu-io"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consolidate Opus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. There is no terminal path. Separately, the `sk-interface-design` skill still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and AI-default patterns the skill exists to resist. Both gaps want closing together: a terminal control surface for Open Design, and a de-vendored design skill that reads from the user's own app instead.",
+    "created_at": "2026-06-14T12:30:00Z",
+    "last_save_at": "2026-06-15T09:09:33.181Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

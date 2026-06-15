@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/150-mcp-open-design/006-sk-prompt-design-tool-usecases",
+  "description": "Feature Specification: sk-prompt design-tool usecases (assess + improve)",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-prompt",
+    "design-tool",
+    "usecases",
+    "assess",
+    "improve"
+  ],
+  "lastUpdated": "2026-06-15T05:34:46.665Z",
+  "specId": "006",
+  "folderSlug": "sk-prompt-design-tool-usecases",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "150-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/150-mcp-open-design",
+  "description": "Feature Specification: Open Design terminal control and interface integration",
+  "keywords": [
+    "feature",
+    "specification",
+    "open",
+    "design",
+    "terminal",
+    "control",
+    "interface",
+    "integration"
+  ],
+  "lastUpdated": "2026-06-15T05:34:46.640Z",
+  "specId": "150",
+  "folderSlug": "mcp-open-design",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
