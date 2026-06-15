@@ -223,6 +223,8 @@ node "$OD_BIN" ui respond --run <runId> <surfaceId> --value "use the recommended
 #   A follow-up message ("use the recommended defaults") works too.
 ```
 
+The inner agent is `claude` / `codex` / `gemini` (per `od run start --help`). `opencode` also works (verified live) and needs an explicit `--model <id>`, or the run uses opencode's default (shown as `"model":null` in the run's `events.jsonl` start event).
+
 Answering the form fires a **build run** that writes the design files (`index.html` and friends). Only then does the project gain an `entryFile` and a `previewUrl` and actually render. Poll `get_run(runId)` and fetch with `get_artifact`. CLI run verbs: `od run start|watch|cancel|list|info`. Other headless write verbs: `od automation` (schedule or fire routines) and `od media generate`. Every one is **mutating** and a STOP-and-confirm point (see Rules + [`references/tool_surface.md`](references/tool_surface.md)).
 
 > **Adding a file is not creating a design.** `od artifacts create --name <path> --input <file>` only **adds one file** to a project. It does NOT create a rendered design and does NOT update the project preview. To create a design that renders, use the multi-turn flow above, never `artifacts create`.
