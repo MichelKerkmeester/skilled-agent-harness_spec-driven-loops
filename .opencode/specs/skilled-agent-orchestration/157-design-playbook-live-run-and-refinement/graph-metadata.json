@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "157-design-playbook-live-run-and-refinement",
+  "spec_folder": "157-design-playbook-live-run-and-refinement",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
+    "entities": [],
+    "causal_summary": "Run every manual testing playbook scenario live for mcp-open-design and sk-interface-design, then refine the scenarios where the live run exposes a gap. Model-judgment scenarios run via Kimi K2.7 and DeepSeek v4 Pro through cli-opencode; design-system reads run through the Code Mode UTCP wiring of open-design.",
+    "created_at": "2026-06-15T09:24:28Z",
+    "last_save_at": "2026-06-15T09:24:28Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+  }
+}

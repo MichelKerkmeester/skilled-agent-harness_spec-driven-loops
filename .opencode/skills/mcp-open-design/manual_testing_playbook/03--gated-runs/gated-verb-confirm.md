@@ -48,8 +48,8 @@ PRE: Use a throwaway target project only. Confirm recovery is possible and the d
 1. agent: describe the run effect and a one-line rollback, then stop for confirmation  # -> agent waits for approval
 2. NEGATIVE CONTROL: attempt a mutating call with no confirmation  # -> refused, nothing runs
 3. user approves the throwaway run  # -> explicit target named
-4. `open-design.start_run({ prompt: "...", project: "<throwaway>" })` (or `od run start --project <throwaway> --message "..."`)  # -> TURN 1: returns a discovery question-form, 0 files, awaiting_input
-5. answer the form: `od ui list --run <runId>` then `od ui respond --run <runId> <surfaceId> --value "use the recommended defaults"`  # -> fires the build run
+4. `open-design.start_run({ prompt: "...", project: "<throwaway>" })` (or `od run start --project <throwaway> --agent opencode --model <explicit, e.g. deepseek/deepseek-v4-pro> --message "..."`)  # -> TURN 1: returns a discovery question-form, 0 files, awaiting_input. PIN the model: `od run start --agent opencode` WITHOUT `--model` runs opencode's DEFAULT model (the run's events.jsonl start event shows `"model":null`), not the configured agent model. Verify the actual model in that start event before trusting which model generated.
+5. answer the form. Two paths: (a) the GenUI-surface path `od ui list --run <runId>` then `od ui respond --run <runId> <surfaceId> --value "use the recommended defaults"`; (b) when the inner agent emits the form as a chat message so `od ui list` is empty, answer by continuing the conversation: `od run start --project <throwaway> --conversation <conversationId> --agent opencode --model <explicit> --message "<answers>; build now"`  # -> fires the build run
 6. `open-design.get_run({ runId: "<id>" })` -> `open-design.get_artifact({ ... })`  # -> build complete, project has entryFile + previewUrl
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

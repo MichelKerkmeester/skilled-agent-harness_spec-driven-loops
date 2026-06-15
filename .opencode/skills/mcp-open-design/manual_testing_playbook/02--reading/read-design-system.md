@@ -46,7 +46,7 @@ Operators run the exact command sequence for `READ-001` and confirm the expected
 PRE: Confirm the desktop app is open so the daemon socket exists.
 
 1. `open-design.list_projects({})`  # -> projects returned, including the active context
-2. `node "$OD_BIN" tools design-systems read --path <manifest-path>`  # -> DESIGN.md plus tokens.css
+2. Read one system. The built-in systems (~150) live in the app bundle at `/Applications/Open Design.app/Contents/Resources/open-design/design-systems/<name>/` (each with DESIGN.md, tokens.css, components.html). Read via the wired Code Mode MCP (it receives the daemon-injected token), via `node "$OD_BIN" tools design-systems read --path <manifest-path>` when `OD_TOOL_TOKEN` is present, or directly from the bundle path. Standalone `od tools design-systems read` without the token fails with "OD_TOOL_TOKEN is required".  # -> 9-section DESIGN.md plus :root tokens.css
 3. `bash: git status --short`  # -> no new or modified repo files from the read
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

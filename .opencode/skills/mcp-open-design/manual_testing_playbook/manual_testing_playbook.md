@@ -45,7 +45,7 @@ All scenarios share these preconditions. Verify before starting any wave.
 1. Working directory is the project root (`pwd` shows the repo root).
 2. The Open Design desktop app (v0.9.0+) is installed at `/Applications/Open Design.app`.
 3. For every scenario except the failure path, the desktop app is open so the daemon socket exists.
-4. The CLI is located by its bundle path: `OD_BIN="$APP/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`, never a global `od`.
+4. The CLI is located by its bundle path: `OD_BIN="$APP/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`, never a global `od`. To drive `od run` / `od project` standalone (outside a daemon-spawned agent), export the daemon socket first: `export OD_SIDECAR_IPC_PATH=/tmp/open-design/ipc/release-stable/daemon.sock`. Without it the CLI falls back to the unused TCP port `127.0.0.1:7456` and the call is refused. The `od tools` read wrappers additionally need `OD_TOOL_TOKEN`, which the daemon injects only for agents it spawns, so run those through the wired MCP rather than standalone.
 5. For the wiring scenario, the target agent CLI (`opencode` or `claude`) is on PATH and its config is backed up first.
 6. Mutating scenario MCP-RUN-001 MUST use a throwaway target project and confirm recovery is possible before running.
 

@@ -104,6 +104,27 @@
           }
         }
       }
+    },
+    {
+      "name": "open_design",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "open_design": {
+            "transport": "stdio",
+            "command": "/Applications/Open Design.app/Contents/Frameworks/Open Design Helper.app/Contents/MacOS/Open Design Helper",
+            "args": [
+              "/Applications/Open Design.app/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs",
+              "mcp"
+            ],
+            "env": {
+              "OD_DATA_DIR": "/Users/michelkerkmeester/Library/Application Support/Open Design/namespaces/release-stable/data",
+              "OD_SIDECAR_IPC_PATH": "/tmp/open-design/ipc/release-stable/daemon.sock",
+              "ELECTRON_RUN_AS_NODE": "1"
+            }
+          }
+        }
+      }
     }
   ]
 }

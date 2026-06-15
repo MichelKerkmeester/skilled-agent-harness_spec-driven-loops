@@ -140,6 +140,27 @@ The per-client "Settings to MCP server" copy-paste snippet in the desktop app is
 
 ---
 
+## 5b. CODE MODE (UTCP) WIRING
+
+This project also drives MCP servers through Code Mode (`.utcp_config.json`), so Open Design can be wired there instead of (or in addition to) an agent config. `od mcp install` has no `utcp` target, so add the manual by hand, mirroring the existing stdio-MCP entries and using the socket-mode launch spec the dry-run prints:
+
+```json
+{
+  "name": "open_design",
+  "call_template_type": "mcp",
+  "config": { "mcpServers": { "open_design": {
+    "transport": "stdio",
+    "command": "/Applications/Open Design.app/Contents/Frameworks/Open Design Helper.app/Contents/MacOS/Open Design Helper",
+    "args": ["/Applications/Open Design.app/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs", "mcp"],
+    "env": { "OD_DATA_DIR": "<from the dry-run>", "OD_SIDECAR_IPC_PATH": "/tmp/open-design/ipc/release-stable/daemon.sock", "ELECTRON_RUN_AS_NODE": "1" }
+  } } }
+}
+```
+
+The Code Mode MCP server receives the daemon-injected `OD_TOOL_TOKEN`, so the read tools (`design-systems read`, `live-artifacts`) work through it without the standalone-token wall. **Caveat:** Code Mode loads MCP-stdio manuals at startup, so a newly added manual needs a fresh Code Mode session (or a reload) before it appears in `list_tools`. **[CONFIRMED - live-verified this session]**
+
+---
+
 ## 6. DAEMON-URL DISCOVERY ORDER
 
 The wired MCP server resolves the daemon endpoint in this order. With `OD_SIDECAR_IPC_PATH` set, the ephemeral port is found automatically. Without it, the server depends on a `7456` daemon. **[CONFIRMED - read]**
