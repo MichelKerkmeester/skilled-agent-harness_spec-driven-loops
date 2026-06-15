@@ -73,7 +73,7 @@
       }
     },
     "code_mode": {
-      "command": "node",
+      "command": "/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node",
       "args": [
         ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"
       ],

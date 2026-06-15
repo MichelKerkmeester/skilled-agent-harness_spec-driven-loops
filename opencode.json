@@ -87,7 +87,7 @@
     "code_mode": {
       "type": "local",
       "command": [
-        "node",
+        "/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node",
         ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"
       ],
       "environment": {
