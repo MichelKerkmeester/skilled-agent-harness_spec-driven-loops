@@ -40,6 +40,7 @@ import {
 } from './handlers/index.js';
 import * as memoryIndexDiscovery from './handlers/memory-index-discovery.js';
 import { runPostMutationHooks } from './handlers/mutation-hooks.js';
+import { shutdownBackgroundEnrichment } from './handlers/memory-save.js';
 
 // Utils
 import { validateInputLengths } from './utils/index.js';
@@ -1383,6 +1384,9 @@ registerContextServerHandlers(server);
 ──────────────────────────────────────────────────────────────── */
 
 let startupScanInProgress = false;
+// Tracked (not fire-and-forget) so fatalShutdown can await the scan to a safe stopping point before
+// closeDb — a resuming scan writes through the DB and would otherwise reopen a closed connection.
+let startupScanPromise: Promise<void> | null = null;
 
 function getStartupWorkspaceRoots(basePath: string): string[] {
   const configuredMemoryRoot = process.env.MEMORY_BASE_PATH?.trim();
@@ -1518,6 +1522,7 @@ async function startupScan(basePath: string): Promise<void> {
     let indexed = 0, updated = 0, unchanged = 0, failed = 0;
 
     for (const filePath of allFiles) {
+      if (shuttingDown) break; // stop touching the DB once shutdown begins so closeDb's checkpoint stays clean
       try {
         const result: IndexResult = await indexSingleFile(filePath, false);
         if (result.status === 'indexed') indexed++;
@@ -1610,6 +1615,10 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
 
   runCleanupStep('sessionManager', () => sessionManager.shutdown());
   runCleanupStep('retryManager', () => retryManager.stopBackgroundJob());
+  // Fence the background-enrichment scheduler synchronously here, before the awaited drains below: a
+  // queued/in-flight enrichment run re-resolves the DB via requireDb() (which reopens a closed
+  // connection), so without this it could reopen the DB and re-dirty the WAL after closeDb's checkpoint.
+  runCleanupStep('backgroundEnrichment', () => shutdownBackgroundEnrichment());
   runCleanupStep('shadowEvaluationRuntime', () => shadowEvaluationRuntime.stopShadowEvaluationScheduler());
   runCleanupStep('scheduledGraphRefresh', () => cancelScheduledRefresh());
   runCleanupStep('accessTracker', () => accessTracker.reset());
@@ -1623,6 +1632,12 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
 
   let deadlineTimer: NodeJS.Timeout | undefined;
   const cleanup = (async () => {
+    // Fence the startup scan before closeDb: it is otherwise fire-and-forget and writes through the
+    // DB, so a resuming scan would reopen a closed connection. It breaks on `shuttingDown` at its loop
+    // head, so awaiting it here resolves within the current file (and is bounded by SHUTDOWN_DEADLINE).
+    await runAsyncCleanupStep('startupScan', async () => {
+      if (startupScanPromise) await startupScanPromise;
+    });
     // Drain the file watcher FIRST: fileWatcher.close() awaits in-flight reindex/remove tasks,
     // which write through requireDb()/getDb() — and getDb() REOPENS the connection if it was
     // already closed. So closeDb() must run AFTER the drain, otherwise a draining task reopens
@@ -2253,7 +2268,7 @@ async function main(): Promise<void> {
         const message = repairErr instanceof Error ? repairErr.message : String(repairErr);
         console.warn('[context-server] Pre-scan checkpoint derived rebuild repair failed (non-fatal):', message);
       }
-      void startupScan(DEFAULT_BASE_PATH);
+      startupScanPromise = startupScan(DEFAULT_BASE_PATH);
     });
   });
 

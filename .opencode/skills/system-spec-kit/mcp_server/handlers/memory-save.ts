@@ -2920,6 +2920,24 @@ const MAX_BACKGROUND_ENRICHMENTS = 4;
 let activeBackgroundEnrichments = 0;
 const backgroundEnrichmentQueue: Array<() => void> = [];
 
+// Set during shutdown BEFORE closeDb. A deferred/queued enrichment run re-resolves the DB handle via
+// requireDb(), which REOPENS a closed connection — so without this fence a run firing during the
+// shutdown drain would reopen the DB and write fresh WAL frames after the TRUNCATE checkpoint, leaving
+// a non-empty WAL at rest and defeating the close durability guarantee. Same hazard the fileWatcher
+// and ingestWorker fences guard against.
+let enrichmentShuttingDown = false;
+
+/**
+ * Fence the background-enrichment scheduler for shutdown: stop accepting/draining work and let any
+ * in-flight run bail before it touches the DB. Synchronous so fatalShutdown can call it in its
+ * pre-close fence block, before any await lets a queued setImmediate run fire. Dropped rows remain
+ * enrichment-pending in the commit transaction and are recovered by the backfill path on next boot.
+ */
+export function shutdownBackgroundEnrichment(): void {
+  enrichmentShuttingDown = true;
+  backgroundEnrichmentQueue.length = 0;
+}
+
 /**
  * Run post-insert enrichment for a just-saved row in the background, bounded and crash-safe:
  * - re-resolves the DB handle when the run starts (covers a recycle before the run begins; a recycle
@@ -2933,6 +2951,7 @@ function scheduleBackgroundEnrichment(
   memoryId: number,
   parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
 ): void {
+  if (enrichmentShuttingDown) return; // do not schedule new enrichment work during shutdown
   // Reserve a slot and schedule on a macrotask. The counter MUST be incremented here, at schedule
   // time — not inside the deferred callback. If it were bumped inside the callback, a burst (a startup
   // scan calling this once per row) would race: every call reads the still-zero counter before any
@@ -2947,6 +2966,7 @@ function scheduleBackgroundEnrichment(
   const run = (): void => {
     void (async () => {
       try {
+        if (enrichmentShuttingDown) return; // fenced before this run started — do not reopen the DB during shutdown
         let db: ReturnType<typeof requireDb>;
         try {
           db = requireDb();
@@ -2960,14 +2980,17 @@ function scheduleBackgroundEnrichment(
           return; // superseded/removed/archived since the save — do not repopulate stale graph/entity data (mirrors the search layer's inactive-tier exclusion)
         }
         const result = await runPostInsertEnrichment(db, memoryId, parsed);
+        if (enrichmentShuttingDown) return; // shutdown began during the embed await — do not write after the close checkpoint
         recordEnrichmentResult(db, memoryId, result);
         emitPostInsertEnrichmentSubscribers(memoryId, 'post-insert-enrichment-async');
       } catch (bgErr: unknown) {
         console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${bgErr instanceof Error ? bgErr.message : String(bgErr)}`);
       } finally {
         activeBackgroundEnrichments--;
-        const next = backgroundEnrichmentQueue.shift();
-        if (next) start(next);
+        if (!enrichmentShuttingDown) {
+          const next = backgroundEnrichmentQueue.shift();
+          if (next) start(next);
+        }
       }
     })();
   };

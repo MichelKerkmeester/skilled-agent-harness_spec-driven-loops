@@ -1,0 +1,28 @@
+{
+  "specFolder": "011-enrichment-and-scan-shutdown-fence",
+  "description": "Fence the background-enrichment scheduler and the startup scan in fatalShutdown before closeDb so a deferred run or scan cannot reopen the DB and re-d",
+  "keywords": [
+    "fence",
+    "background-enrichment",
+    "scheduler",
+    "startup",
+    "scan",
+    "fatalshutdown",
+    "closedb",
+    "deferred",
+    "run",
+    "cannot",
+    "reopen",
+    "re-dirty",
+    "wal",
+    "close",
+    "checkpoint"
+  ],
+  "lastUpdated": "2026-06-15T05:48:42.784Z",
+  "specId": "011",
+  "folderSlug": "enrichment-and-scan-shutdown-fence",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
