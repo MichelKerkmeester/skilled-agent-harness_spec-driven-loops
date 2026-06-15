@@ -113,7 +113,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] Seat briefs and logs kept in `scratch/` only
-- [x] CHK-051 [P1] `scratch/` is git-ignored, so the briefs and logs never enter the commit
+- [x] CHK-051 [P1] Per repo convention `scratch/` is tracked; the seat briefs are kept as provenance and the large seat JSON event-stream logs were removed from the commit as throwaway noise
 <!-- /ANCHOR:file-org -->
 
 ---
