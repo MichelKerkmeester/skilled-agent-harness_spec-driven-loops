@@ -71,7 +71,7 @@ opencode run \
 
 ### Layer B — instruction-only guard
 
-Before the RM-8 mitigation shipped, the only safeguard against the model was a single prose line in `.opencode/skills/deep-loop-workflows/review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
+Before the RM-8 mitigation shipped, the only safeguard against the model was a single prose line in `.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
 
 > "Review target is READ-ONLY. Do not modify reviewed files."
 
@@ -87,7 +87,7 @@ The default risk surface for cli-opencode is **any non-interactive `opencode run
 
 ### Layer 1 (REQUIRED) — RM-8 prompt hardening, already shipped
 
-`.opencode/skills/deep-loop-workflows/review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS now includes:
+`.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS now includes:
 
 - An **ALLOWED WRITE PATHS** list enumerating the five state-path tokens (`{state_paths_iteration_pattern}`, `{state_paths_state_log}`, `{state_paths_delta_pattern}`, `{state_paths_strategy}`, `{state_paths_findings_registry}`)
 - A **BANNED OPERATIONS** list naming `rm`, `rm -rf`, `git rm`, `mv`, `sed -i` (including `sed -i ''`), `rmdir`, `find ... -delete`, and shell output-redirect truncate `>` against any non-allowed path
@@ -168,6 +168,6 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 
 - **Incident source**: local destructive-scope violation policy
 - **RM-8 hardening context**: local destructive-scope violation policy
-- **Hardened prompt template**: `.opencode/skills/deep-loop-workflows/review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS
+- **Hardened prompt template**: `.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS
 - **YAML dispatch surface**: `.opencode/commands/deep/assets/deep_review_auto.yaml` step `if_cli_opencode`
 - **Memory feedback**: `feedback_opencode_run_requires_dev_null_stdin.md`, `feedback_opencode_provider_fallback.md`, `feedback_cli_executor_only_when_requested.md`

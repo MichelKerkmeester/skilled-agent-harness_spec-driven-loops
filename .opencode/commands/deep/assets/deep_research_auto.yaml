@@ -65,15 +65,15 @@ context_loading:
 # ─────────────────────────────────────────────────────────────────
 skill_reference:
   skill: deep-loop-workflows
-  skill_md: .opencode/skills/deep-loop-workflows/research/SKILL.md
+  skill_md: .opencode/skills/deep-loop-workflows/deep-research/SKILL.md
   references:
-    loop_protocol: .opencode/skills/deep-loop-workflows/research/references/protocol/loop_protocol.md
-    spec_check_protocol: .opencode/skills/deep-loop-workflows/research/references/protocol/spec_check_protocol.md
-    state_format: .opencode/skills/deep-loop-workflows/research/references/state/state_format.md
-    convergence: .opencode/skills/deep-loop-workflows/research/references/convergence/convergence.md
+    loop_protocol: .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md
+    spec_check_protocol: .opencode/skills/deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md
+    state_format: .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md
+    convergence: .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md
   templates:
-    config: .opencode/skills/deep-loop-workflows/research/assets/deep_research_config.json
-    strategy: .opencode/skills/deep-loop-workflows/research/assets/deep_research_strategy.md
+    config: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json
+    strategy: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT CONFIGURATION
@@ -282,7 +282,7 @@ workflow:
 
       step_create_config:
         action: "Create deep-research-config.json from template"
-        template: .opencode/skills/deep-loop-workflows/research/assets/deep_research_config.json
+        template: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json
         populate:
           topic: "{research_topic}"
           maxIterations: "{max_iterations}"
@@ -315,7 +315,7 @@ workflow:
 
       step_create_strategy:
         action: "Create strategy file from template with initial questions"
-        template: .opencode/skills/deep-loop-workflows/research/assets/deep_research_strategy.md
+        template: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md
         populate:
           topic: "{research_topic}"
           key_questions: "Derive 3-5 key questions from the research topic"
@@ -358,7 +358,7 @@ workflow:
 
       step_preinit_spec_branch:
         action: "Run the bounded pre-init spec branch required by spec_check_protocol"
-        protocol_reference: ".opencode/skills/deep-loop-workflows/research/references/protocol/spec_check_protocol.md"
+        protocol_reference: ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md"
         branches:
           no-spec:
             create: "{spec_folder}/spec.md"
@@ -591,7 +591,7 @@ workflow:
             {resource_map_prompt_line}
             Next focus: {next_focus}
           render_prompt_pack:
-            template_path: ".opencode/skills/deep-loop-workflows/research/assets/prompt_pack_iteration.md.tmpl"
+            template_path: ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl"
             renderer: ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             variables:
@@ -776,7 +776,7 @@ workflow:
 
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
-        command: "node .opencode/skills/deep-loop-workflows/research/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs {spec_folder}"
         inputs:
           latestJSONLDelta: "Latest JSONL records written since the previous iteration"
           newIterationFile: "{state_paths.iteration_pattern}"
@@ -831,7 +831,7 @@ workflow:
           - "{state_paths.state_log}"
           - "{state_paths.registry}"
           - "{state_paths.strategy}"
-        template: .opencode/skills/deep-loop-workflows/research/assets/deep_research_dashboard.md
+        template: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_dashboard.md
         output: "{state_paths.dashboard}"
         note: "Auto-generated from JSONL + reducer registry + strategy. Never manually edited."
 
@@ -891,7 +891,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/deep-loop-workflows/research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+        command: "node .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"

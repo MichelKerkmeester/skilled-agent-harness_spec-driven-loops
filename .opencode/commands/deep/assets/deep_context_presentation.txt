@@ -57,7 +57,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 | `executor_pool` | N | repeatable `--executor=<type>` flags or `--executors=<json>`, marker `executors`, config file, or default pool; each `--executor` group accepts `--model`, `--reasoning-effort`, `--prompt-framework`, `--label` | default native-only pool, 2 native (see config) | N |
 | `concurrency` | N | flag `--concurrency=N`, marker `concurrency`, or default | `4` | N |
 
-**Pool default policy (the key difference from research/review):** deep-context is **always a shared-scope pool** — there is no single-executor path. 0 `--executor` flags and no `--executors`/marker → the default **native-only pool** (2 `@deep-context` seats) from `.opencode/skills/deep-loop-workflows/context/assets/deep_context_config.json`. Any explicit `--executor`/`--executors`/marker → that pool (native, CLI, or combined). A 1-seat pool is legal but defeats the purpose (no agreement signal); warn and continue. The pool is written to `config.fanout.executors` with `config.fanout.mode = "by-model-shared-scope"`.
+**Pool default policy (the key difference from research/review):** deep-context is **always a shared-scope pool** — there is no single-executor path. 0 `--executor` flags and no `--executors`/marker → the default **native-only pool** (2 `@deep-context` seats) from `.opencode/skills/deep-loop-workflows/deep-context/assets/deep_context_config.json`. Any explicit `--executor`/`--executors`/marker → that pool (native, CLI, or combined). A 1-seat pool is legal but defeats the purpose (no agreement signal); warn and continue. The pool is written to `config.fanout.executors` with `config.fanout.mode = "by-model-shared-scope"`.
 
 ### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode
 
@@ -92,7 +92,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |
    |   Pool resolution:
    |   - No --executor / --executors / marker: use the default native-only pool (2 native) from
-   |     .opencode/skills/deep-loop-workflows/context/assets/deep_context_config.json
+   |     .opencode/skills/deep-loop-workflows/deep-context/assets/deep_context_config.json
    |   - Any explicit seats: write config.fanout.executors from them
    |   - ALWAYS set config.fanout.mode = "by-model-shared-scope" (every seat sweeps the SAME focus)
    |
@@ -204,7 +204,7 @@ For outward/web knowledge discovery, see `/deep:research`. For code audit / defe
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-context` (this) uses 0.10 default on relevance-gated coverage saturation, with **agreement** and **relevance** as blocking guards
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See `.opencode/skills/deep-loop-workflows/context/references/convergence/convergence_signals.md` for the full signal table, composite-score weights, and the stop contract.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See `.opencode/skills/deep-loop-workflows/deep-context/references/convergence/convergence_signals.md` for the full signal table, composite-score weights, and the stop contract.
 
 ```yaml
 role: Deep Context Loop Manager
@@ -288,13 +288,13 @@ The host applies the deep-loop-runtime durability layer for every session:
 
 ### Skill Reference
 
-Full protocol documentation: `.opencode/skills/deep-loop-workflows/context/SKILL.md`
+Full protocol documentation: `.opencode/skills/deep-loop-workflows/deep-context/SKILL.md`
 
 Key references:
-- Loop protocol: `deep-loop-workflows/context/references/protocol/loop_protocol.md`
-- Convergence: `deep-loop-workflows/context/references/convergence/convergence.md`
-- Context Report template: `deep-loop-workflows/context/assets/context_report_template.md`
-- Config shape + default pool: `deep-loop-workflows/context/assets/deep_context_config.json`
+- Loop protocol: `deep-loop-workflows/deep-context/references/protocol/loop_protocol.md`
+- Convergence: `deep-loop-workflows/deep-context/references/convergence/convergence.md`
+- Context Report template: `deep-loop-workflows/deep-context/assets/context_report_template.md`
+- Config shape + default pool: `deep-loop-workflows/deep-context/assets/deep_context_config.json`
 
 Shared runtime: `.opencode/skills/deep-loop-runtime/` (coverage-graph `loop_type='context'`, `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/fanout-run.cjs`, `lib/council/multi-seat-dispatch.cjs`).
 Per-model prompt framing: `.opencode/skills/sk-prompt-small-model/`.

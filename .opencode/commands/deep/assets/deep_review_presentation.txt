@@ -306,13 +306,13 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 
 ### Skill Reference
 
-Full protocol documentation: `.opencode/skills/deep-loop-workflows/review/SKILL.md`
+Full protocol documentation: `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
 
 Key references:
-- Review contract: `deep-loop-workflows/review/assets/review_mode_contract.yaml`
-- Review strategy template: `deep-loop-workflows/review/assets/deep_review_strategy.md`
-- Review dashboard template: `deep-loop-workflows/review/assets/deep_review_dashboard.md`
-- Review config template: `deep-loop-workflows/review/assets/deep_review_config.json`
+- Review contract: `deep-loop-workflows/deep-review/assets/review_mode_contract.yaml`
+- Review strategy template: `deep-loop-workflows/deep-review/assets/deep_review_strategy.md`
+- Review dashboard template: `deep-loop-workflows/deep-review/assets/deep_review_dashboard.md`
+- Review config template: `deep-loop-workflows/deep-review/assets/deep_review_config.json`
 
 ## 3. Results Display
 
@@ -394,7 +394,7 @@ Convergence thresholds and recovery settings used by this command are a governed
 **References:**
 - Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`, `compositeStopScore`
-- Convergence reference: `.opencode/skills/deep-loop-workflows/review/references/convergence/convergence.md`
+- Convergence reference: `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md`
 
 ## 4. Next-Step Suggestions
 

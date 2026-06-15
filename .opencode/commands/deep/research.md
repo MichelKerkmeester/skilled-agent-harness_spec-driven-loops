@@ -86,7 +86,7 @@ For `:confirm` or no suffix, the consolidated setup prompt in the presentation c
 > **Canonical mode syntax:** use attached command suffixes (`/deep:research:auto`, `/deep:research:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 > **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
-> `.opencode/skills/deep-loop-workflows/research/references/protocol/spec_check_protocol.md`.
+> `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md`.
 > Acquire `{spec_folder}/research/.deep-research.lock` before `folder_state` classification and keep `research/research.md` as the source of truth for any generated findings sync.
 > Targeted strict validation after deep-research spec mutations uses the Node validation orchestrator; the current strict path is designed for fast packet checks and was measured at about 108ms for a fresh Level 3 packet on the local harness.
 

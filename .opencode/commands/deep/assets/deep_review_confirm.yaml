@@ -54,14 +54,14 @@ context_loading:
 # ─────────────────────────────────────────────────────────────────
 skill_reference:
   skill: deep-loop-workflows
-  skill_md: .opencode/skills/deep-loop-workflows/review/SKILL.md
+  skill_md: .opencode/skills/deep-loop-workflows/deep-review/SKILL.md
   references:
-    loop_protocol: .opencode/skills/deep-loop-workflows/review/references/protocol/loop_protocol.md
-    state_format: .opencode/skills/deep-loop-workflows/review/references/state/state_format.md
-    convergence: .opencode/skills/deep-loop-workflows/review/references/convergence/convergence.md
+    loop_protocol: .opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md
+    state_format: .opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md
+    convergence: .opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md
   templates:
-    config: .opencode/skills/deep-loop-workflows/review/assets/deep_review_config.json
-    strategy: .opencode/skills/deep-loop-workflows/review/assets/deep_review_strategy.md
+    config: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json
+    strategy: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT CONFIGURATION
@@ -332,7 +332,7 @@ workflow:
 
       step_create_config:
         action: "Create deep-review-config.json from template with review-specific fields"
-        template: .opencode/skills/deep-loop-workflows/review/assets/deep_review_config.json
+        template: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json
         populate:
           topic: "Review: {review_target}"
           mode: "review"
@@ -376,7 +376,7 @@ workflow:
 
       step_create_strategy:
         action: "Create review strategy file from deep_review_strategy.md template"
-        template: .opencode/skills/deep-loop-workflows/review/assets/deep_review_strategy.md
+        template: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md
         populate:
           review_target: "{review_target}"
           review_target_type: "{review_target_type}"
@@ -718,7 +718,7 @@ workflow:
             Stuck count: {stuck_count}
             Provisional Verdict: {PASS|CONDITIONAL|FAIL|PENDING} hasAdvisories={has_advisories}
           render_prompt_pack:
-            template_path: ".opencode/skills/deep-loop-workflows/review/assets/prompt_pack_iteration.md.tmpl"
+            template_path: ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl"
             renderer: ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             variables:
@@ -945,7 +945,7 @@ workflow:
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/deep-loop-workflows/review/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs {spec_folder}"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1211,7 +1211,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/deep-loop-workflows/review/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+        command: "node .opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"

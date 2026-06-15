@@ -33,7 +33,7 @@ SELF-CHECK: Are you operating as the @general agent?
 │   ├─ You can load skill references and execute defined logic
 │
 ├─ IF YES (all indicators present):
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-loop-workflows/improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
 │
 └─ IF NO or UNCERTAIN:
     │
@@ -73,7 +73,7 @@ Resolve:
 ## RUN
 
 ```bash
-node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark \
   --skill=<skill-id-or-root> \
   --outputs-dir=<path> \

@@ -130,10 +130,10 @@ function expandHomeDir(inputPath) {
 function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage) {
   const skillFile =
     loopType === 'review'
-      ? '.opencode/skills/deep-loop-workflows/review/SKILL.md'
+      ? '.opencode/skills/deep-loop-workflows/deep-review/SKILL.md'
       : loopType === 'context'
-        ? '.opencode/skills/deep-loop-workflows/context/SKILL.md'
-        : '.opencode/skills/deep-loop-workflows/research/SKILL.md';
+        ? '.opencode/skills/deep-loop-workflows/deep-context/SKILL.md'
+        : '.opencode/skills/deep-loop-workflows/deep-research/SKILL.md';
   const agentName = loopType === 'review' ? 'deep-review' : loopType === 'context' ? 'deep-context' : 'deep-research';
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopClause = hasIterationCap

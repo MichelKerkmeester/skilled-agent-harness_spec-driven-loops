@@ -35,7 +35,7 @@ evaluation_philosophy:
 # USER INPUTS
 # ─────────────────────────────────────────────────────────────────
 user_inputs:
-  profile: "[PROFILE] - Path or ID of the benchmark profile. Default: .opencode/skills/deep-loop-workflows/improvement/assets/model_benchmark/benchmark-profiles/default.json."
+  profile: "[PROFILE] - Path or ID of the benchmark profile. Default: .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json."
   scoring_method: "[SCORING_METHOD] - 'pattern' for the default heading/pattern matcher, '5dim' for the ported 5-dimension scorer, 'reviewer' for flagged expected-verdict reviewer fixtures. Default: pattern."
   grader: "[GRADER] - 'noop' deterministic no-dispatch grader, 'mock', or 'llm' (model dispatch). Default: noop."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for benchmark runtime. REQUIRED."
@@ -48,7 +48,7 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    profile_empty: ".opencode/skills/deep-loop-workflows/improvement/assets/model_benchmark/benchmark-profiles/default.json"
+    profile_empty: ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json"
     scoring_method_empty: "pattern"
     grader_empty: "noop"
     max_iterations_empty: "5"
@@ -86,20 +86,20 @@ context_loading:
 # ─────────────────────────────────────────────────────────────────
 skill_reference:
   skill: deep-loop-workflows
-  skill_md: .opencode/skills/deep-loop-workflows/improvement/SKILL.md
+  skill_md: .opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md
   templates:
-    config: .opencode/skills/deep-loop-workflows/improvement/assets/agent_improvement/improvement_config.json
-    default_profile: .opencode/skills/deep-loop-workflows/improvement/assets/model_benchmark/benchmark-profiles/default.json
+    config: .opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_config.json
+    default_profile: .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
   scripts:
-    loop_host: .opencode/skills/deep-loop-workflows/improvement/scripts/shared/loop-host.cjs
-    benchmark_materializer: .opencode/skills/deep-loop-workflows/improvement/scripts/shared/materialize-benchmark-fixtures.cjs
-    benchmark: .opencode/skills/deep-loop-workflows/improvement/scripts/model-benchmark/run-benchmark.cjs
-    reviewer_scorer: .opencode/skills/deep-loop-workflows/improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs
-    scorer_5dim: .opencode/skills/deep-loop-workflows/improvement/scripts/model-benchmark/scorer/score-model-variant.cjs
-    dispatch_model: .opencode/skills/deep-loop-workflows/improvement/scripts/model-benchmark/dispatch-model.cjs
-    promoter: .opencode/skills/deep-loop-workflows/improvement/scripts/shared/promote-candidate.cjs
-    journal: .opencode/skills/deep-loop-workflows/improvement/scripts/shared/improvement-journal.cjs
-    reducer: .opencode/skills/deep-loop-workflows/improvement/scripts/shared/reduce-state.cjs
+    loop_host: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs
+    benchmark_materializer: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs
+    benchmark: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs
+    reviewer_scorer: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs
+    scorer_5dim: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs
+    dispatch_model: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/dispatch-model.cjs
+    promoter: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs
+    journal: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs
+    reducer: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs
 
 # ─────────────────────────────────────────────────────────────────
 # STATE PATHS
@@ -143,7 +143,7 @@ workflow:
         note: "model-benchmark writes to the same agent-improvement-state.jsonl as the agent-improvement loop; the shared lock file prevents two concurrent runs from racing on that file."
       step_resolve_profile:
         description: "Resolve the benchmark profile path or ID, defaulting to the bundled default profile"
-        action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-loop-workflows/improvement/assets/model_benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
+        action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
       step_create_directories:
         description: "Create benchmark runtime directories including the outputs dir"
         command: "mkdir -p .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}"
@@ -165,7 +165,7 @@ workflow:
         action: "Append a baseline record for profile {profile} into agent-improvement-state.jsonl"
       step_emit_journal_event:
         description: "Emit session_start journal event before the first loop iteration begins"
-        command: "node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{profile}\",\"startedAt\":\"{started_at}\"}'"
+        command: "node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{profile}\",\"startedAt\":\"{started_at}\"}'"
 
   phase_loop:
     description: "Iterative benchmark -> reduce cycle with operator gates"
@@ -184,17 +184,17 @@ workflow:
       step_run_benchmark:
         description: "Run the model-benchmark loop host, or route reviewer fixtures to the flagged reviewer scorer"
         reviewer_fixture_route: "When scoring_method is reviewer, require SPECKIT_REVIEWER_BENCHMARKS and run reviewer-scorer.cjs instead of the default pattern/5dim runner. Reviewer selection is by fixture shape only; code-task and skill fixtures keep their defaults."
-        command: "if [ \"{scoring_method}\" = \"reviewer\" ]; then SPECKIT_REVIEWER_BENCHMARKS=${SPECKIT_REVIEWER_BENCHMARKS:-0} node .opencode/skills/deep-loop-workflows/improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}\" --output \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/reviewer-report.json\" --state-log \"{spec_folder}/improvement/agent-improvement-state.jsonl\" --grader \"{grader}\"; else node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}\" --scorer \"{scoring_method}\" --grader \"{grader}\"; fi"
+        command: "if [ \"{scoring_method}\" = \"reviewer\" ]; then SPECKIT_REVIEWER_BENCHMARKS=${SPECKIT_REVIEWER_BENCHMARKS:-0} node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}\" --output \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/reviewer-report.json\" --state-log \"{spec_folder}/improvement/agent-improvement-state.jsonl\" --grader \"{grader}\"; else node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}\" --scorer \"{scoring_method}\" --grader \"{grader}\"; fi"
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
-        command: "RPT=$([ \"{scoring_method}\" = \"reviewer\" ] && echo reviewer-report.json || echo report.json); test -f .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$RPT && node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$RPT\",\"scoringMethod\":\"{scoring_method}\"}'"
+        command: "RPT=$([ \"{scoring_method}\" = \"reviewer\" ] && echo reviewer-report.json || echo report.json); test -f .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$RPT && node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$RPT\",\"scoringMethod\":\"{scoring_method}\"}'"
       step_append_ledger:
         description: "Verify the benchmark_run ledger row written by run-benchmark.cjs"
         ledger_ownership: "run-benchmark.cjs is the sole ledger writer. It appends the benchmark_run row (with mode, scoringMethod, and aggregate score) when it can infer the state-log path. This step VERIFIES that row exists. The orchestrator does NOT append a duplicate."
         action: "Confirm a benchmark_run row for this iteration was appended to agent-improvement-state.jsonl by run-benchmark.cjs; if the runner could not infer the state-log path, re-run with an explicit --state-log so the runner writes it."
       step_reduce:
         description: "Refresh dashboard, registry, and benchmark progress"
-        command: "node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
+        command: "node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
       gate_after_score:
         type: approval_gate
         description: "Operator reviews benchmark scores and decides next action"
@@ -206,19 +206,19 @@ workflow:
           C) Stop loop
       step_emit_journal_event_legal_stop_evaluated:
         description: "Emit legal_stop_evaluated journal event after the operator gate is evaluated"
-        command: "node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/improvement-journal.cjs --emit legal_stop_evaluated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"scoringMethod\":\"{scoring_method}\",\"stopReason\":\"{stop_reason}\"}'"
+        command: "node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs --emit legal_stop_evaluated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"scoringMethod\":\"{scoring_method}\",\"stopReason\":\"{stop_reason}\"}'"
       step_promote_candidate:
         description: "Promote the accepted benchmark variant to canonical target (guarded, requires Lane B benchmark evidence)"
         condition: "gate_after_score == 'B' AND benchmark report recommendation == 'benchmark-pass' AND benchmark report status == 'benchmark-complete'"
         promotion_evidence: "The Lane B gate is the benchmark report (.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads recommendation, status, target, profileId, and aggregateScore from that report, and refuses promotion unless the benchmark gate passes. Lane B has no scored agent file, so --score is not passed."
-        command: "node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$([ "{scoring_method}" = "reviewer" ] && echo reviewer-report.json || echo report.json) --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+        command: "node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/$([ "{scoring_method}" = "reviewer" ] && echo reviewer-report.json || echo report.json) --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
 
   phase_synthesis:
     description: "After loop exits, summarize findings and recommend next action"
     steps:
       step_final_dashboard:
         description: "Render the final dashboard via reduce-state and present benchmark trends and stop reason"
-        command: "node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
+        command: "node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
       step_recommendation:
         description: "Recommend continue, promote, or stop based on reducer output and the benchmark report scoringMethod"
         action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json (reviewer runs write reviewer-report.json instead; read that file for reviewer scoring)"
@@ -228,7 +228,7 @@ workflow:
       step_emit_journal_event:
         description: "Emit session_end journal event after synthesis completes"
         outcome_binding: "Bind {session_outcome} to a canonical sessionOutcome enum value (keptBaseline | promoted | rolledBack | advisoryOnly). A benchmark run that did not promote a variant binds advisoryOnly. A promoted variant binds promoted."
-        command: "node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"scoringMethod\":\"{scoring_method}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+        command: "node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"scoringMethod\":\"{scoring_method}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
       step_release_lock:
         description: "Release the advisory lock as the final step of synthesis"
         command: "Close or unlock {state_paths.lock_file} using advisory semantics only."

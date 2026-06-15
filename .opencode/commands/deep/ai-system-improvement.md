@@ -33,7 +33,7 @@ SELF-CHECK: Are you operating as the @general agent?
 │   ├─ You can load skill references and execute defined logic
 │
 ├─ IF YES (all indicators present):
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-loop-workflows/improvement/SKILL.md` and `references/non_dev_ai_system/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` and `references/non_dev_ai_system/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
 │
 └─ IF NO or UNCERTAIN:
     │
@@ -76,7 +76,7 @@ Pre-flight before any `--live` run: verify no other loop run is active (single-w
 ## RUN
 
 ```bash
-node .opencode/skills/deep-loop-workflows/improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=non-dev-ai-system-refine \
   --packaging-root <path> \
   [--live] [--max-iters <n>] [--fixtures <a,b>] [--variants <a,b>] \
