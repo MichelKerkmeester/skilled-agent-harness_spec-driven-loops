@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/157-design-playbook-live-run-and-refinement"
+    packet_pointer: "skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement"
     last_updated_at: "2026-06-15T10:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Completed the run + refinements; authored the packet record"
@@ -19,7 +19,7 @@ _memory:
       - ".opencode/skills/sk-interface-design/manual_testing_playbook/06--licensing-and-provenance/licensing-and-provenance-integrity.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-157-design-playbook-live-run-and-refinement"
+      session_id: "session-010-design-playbook-live-run-and-refinement"
       parent_session_id: null
     completion_pct: 90
     open_questions: []
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 157-design-playbook-live-run-and-refinement |
+| **Spec Folder** | 010-design-playbook-live-run-and-refinement |
 | **Completed** | 2026-06-15 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

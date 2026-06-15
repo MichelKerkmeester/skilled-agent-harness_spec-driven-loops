@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/157-design-playbook-live-run-and-refinement",
+  "specFolder": "skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement",
   "description": "Feature Specification: Live-run and refine the design playbooks",
   "keywords": [
     "feature",
@@ -11,10 +11,11 @@
     "playbooks"
   ],
   "lastUpdated": "2026-06-15T10:26:26.266Z",
-  "specId": "157",
+  "specId": "010",
   "folderSlug": "design-playbook-live-run-and-refinement",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "150-mcp-open-design"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

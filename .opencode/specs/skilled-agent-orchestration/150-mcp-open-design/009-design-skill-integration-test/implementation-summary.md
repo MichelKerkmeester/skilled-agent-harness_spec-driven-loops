@@ -8,18 +8,18 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/154-design-skill-integration-test"
+    packet_pointer: "skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test"
     last_updated_at: "2026-06-15T07:25:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Collected and verified six designs; wrote the MiMo vs DeepSeek comparison"
     next_safe_action: "Validate, commit, send designs to the user; offer live od generation"
     blockers: []
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/designs/mimo/NOTES.md"
-      - ".opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/designs/deepseek/NOTES.md"
+      - ".opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/mimo/NOTES.md"
+      - ".opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/deepseek/NOTES.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-154-design-skill-integration-test"
+      session_id: "session-009-design-skill-integration-test"
       parent_session_id: null
     completion_pct: 95
     open_questions:
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-design-skill-integration-test |
+| **Spec Folder** | 009-design-skill-integration-test |
 | **Completed** | 2026-06-15 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

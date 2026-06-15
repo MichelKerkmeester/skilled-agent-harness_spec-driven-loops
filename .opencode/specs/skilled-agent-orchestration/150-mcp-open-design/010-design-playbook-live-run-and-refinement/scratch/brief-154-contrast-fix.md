@@ -1,6 +1,6 @@
 You are a precise implementation worker. Fix WCAG AA contrast failures in the design files below, using each file's existing CSS-variable palette. Authoring only. Do NOT run git. Do NOT change layout, copy, fonts, or the design's character beyond the contrast fix.
 
-GATE 3: This work is tracked under .opencode/specs/skilled-agent-orchestration/157-design-playbook-live-run-and-refinement (pre-approved, skip Gate 3, do not ask).
+GATE 3: This work is tracked under .opencode/specs/skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement (pre-approved, skip Gate 3, do not ask).
 
 PRIMARY FILE (two independent graders found these exact AA failures - fix each, prefer the file's existing tokens):
 .opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/designs/mimo/01-meridian-roasters.html

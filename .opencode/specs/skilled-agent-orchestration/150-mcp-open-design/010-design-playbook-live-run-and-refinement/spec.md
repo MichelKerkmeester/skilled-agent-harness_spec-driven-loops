@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/157-design-playbook-live-run-and-refinement"
+    packet_pointer: "skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement"
     last_updated_at: "2026-06-15T10:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Ran all 13 scenarios live and refined the playbooks; finalizing the packet"
@@ -20,10 +20,10 @@ _memory:
     key_files:
       - ".opencode/skills/mcp-open-design/manual_testing_playbook/manual_testing_playbook.md"
       - ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/specs/skilled-agent-orchestration/157-design-playbook-live-run-and-refinement/scratch/results-matrix.md"
+      - ".opencode/specs/skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement/scratch/results-matrix.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-157-design-playbook-live-run-and-refinement"
+      session_id: "session-010-design-playbook-live-run-and-refinement"
       parent_session_id: null
     completion_pct: 85
     open_questions: []

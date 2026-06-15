@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/154-design-skill-integration-test",
+  "specFolder": "skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test",
   "description": "Feature Specification: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)",
   "keywords": [
     "feature",
@@ -13,10 +13,11 @@
     "deepseek"
   ],
   "lastUpdated": "2026-06-15T08:49:57.420Z",
-  "specId": "154",
+  "specId": "009",
   "folderSlug": "design-skill-integration-test",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "150-mcp-open-design"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,7 +1,7 @@
 You are a UI design author. This is a controlled test of the sk-interface-design skill applied through its shared design-parity loop with mcp-open-design. Apply the skill's judgment rigorously and produce real, viewable work.
 
 GATE 3: This work is tracked under the spec folder
-.opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test
+.opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test
 Gate 3 is PRE-APPROVED. Do NOT ask about spec folders. Proceed directly with the file writes below.
 
 READ FIRST (mandatory, apply throughout):
@@ -23,10 +23,10 @@ REQUIREMENTS per design:
 - Distinctive and intentional per the design principles, not a templated default.
 
 OUTPUT (write exactly these files):
-- .opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/designs/deepseek/01-meridian-roasters.html
-- .opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/designs/deepseek/02-wavelength-pricing.html
-- .opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/designs/deepseek/03-wattbird-dashboard.html
-- .opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/designs/deepseek/NOTES.md
+- .opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/mimo/01-meridian-roasters.html
+- .opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/mimo/02-wavelength-pricing.html
+- .opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/mimo/03-wattbird-dashboard.html
+- .opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/mimo/NOTES.md
 
 NOTES.md: for each of the three designs, record the subject grounding, the token system (palette hex values, type choices, layout approach, motion), the NAMED AI default you deliberately avoided, and a one-paragraph self-critique against the quality floor.
 

@@ -7,17 +7,17 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/154-design-skill-integration-test"
+    packet_pointer: "skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test"
     last_updated_at: "2026-06-15T07:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both seats dispatched; collection and comparison pending"
     next_safe_action: "Collect designs, compare, write implementation-summary"
     blockers: []
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/154-design-skill-integration-test/scratch/brief-deepseek.md"
+      - ".opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/scratch/brief-deepseek.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-154-design-skill-integration-test"
+      session_id: "session-009-design-skill-integration-test"
       parent_session_id: null
     completion_pct: 60
     open_questions: []

@@ -11,7 +11,9 @@
     "skilled-agent-orchestration/150-mcp-open-design/005-sk-interface-design-variation-diversity",
     "skilled-agent-orchestration/150-mcp-open-design/006-sk-prompt-design-tool-usecases",
     "skilled-agent-orchestration/150-mcp-open-design/007-mcp-open-design-generation-flow-correction",
-    "skilled-agent-orchestration/150-mcp-open-design/008-mcp-magicpath-deprecation"
+    "skilled-agent-orchestration/150-mcp-open-design/008-mcp-magicpath-deprecation",
+    "skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test",
+    "skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement"
   ],
   "migrated": true,
   "migration_source": "legacy",
