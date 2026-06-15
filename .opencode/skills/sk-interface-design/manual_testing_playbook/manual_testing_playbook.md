@@ -154,7 +154,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 7-scenario design battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 9-scenario design battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
