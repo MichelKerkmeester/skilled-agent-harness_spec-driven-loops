@@ -194,5 +194,5 @@ _memory:
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Michel Kerkmeester | Owner | [ ] Pending commit (deep-review PASS) | |
+| Michel Kerkmeester | Owner | [x] 010 cap fix shipped; deep-review CONDITIONAL → shutdown-fence P1s tracked in follow-up | |
 <!-- /ANCHOR:sign-off -->

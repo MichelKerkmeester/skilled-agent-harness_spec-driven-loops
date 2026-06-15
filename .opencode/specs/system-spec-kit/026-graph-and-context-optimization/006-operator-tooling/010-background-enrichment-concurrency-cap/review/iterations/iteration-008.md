@@ -1,0 +1,9 @@
+# Deep-Review Iteration 8 (gpt-5.5 xhigh) — shutdown / WAL / lifecycle
+
+## Verdict: 2 NEW/escalated P1. CONDITIONAL.
+
+- **F-008 → P1 (escalated; corroborates iter-6).** Queued enrichment runs after `fatalShutdown` → `closeDb()` (`context-server.ts:1646`). `run`'s `finally` re-arms `start(next)` with NO shutdown fence; `requireDb()` (`memory-save.ts:2952`) → `getDb()` → `initialize_db()` REOPENS the closed DB → dirties WAL after the close checkpoint → violates the documented close guarantee (`README.md:262`). Two independent models now confirm. **Fix:** a background-enrichment shutdown fence before `closeDb()` — `stopping=true`, clear queue, prevent `start(next)`, bail in `run` before `requireDb()`/`recordEnrichmentResult()`. No full drain (markers recovered via `repairIncompleteMarkers`, `memory-index.ts:680`). Confidence HIGH.
+- **F-012 (P1, NEW): startup scan unfenced — exacerbated by THIS fix's yield.** `startupScan()` is fire-and-forget (`context-server.ts:2256`), not cancelled/awaited before `closeDb()`. The new poll-phase yield (`context-server.ts:1535`) gives SIGTERM a window to enter `fatalShutdown`, close the DB, then the scan resumes during later shutdown awaits and continues `indexSingleFile()` → reopens the DB after the WAL checkpoint. **Fix:** track `startupScanPromise` + a shutdown abort flag; stop scheduling/resuming scan before `closeDb()`, bounded-await to the current file/yield boundary then abandon (scan is replayable on next boot). Confidence HIGH.
+- **Sound subcase:** a synchronous `recordEnrichmentResult()` can't interleave with `closeDb()` (same JS thread); an enrichment suspended on `await` at close gets a closed-handle throw → marker repairable. The unsound part is queued/resumed work REACQUIRING the DB after close.
+
+## Convergence impact: CONDITIONAL — shutdown-fence is now a confirmed P1 affecting BOTH the scheduler and the (yield-modified) scan.

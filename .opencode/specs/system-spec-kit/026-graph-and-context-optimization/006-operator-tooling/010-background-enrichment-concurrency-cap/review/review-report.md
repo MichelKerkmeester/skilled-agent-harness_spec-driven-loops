@@ -1,9 +1,10 @@
 ---
 title: "Deep-Review Report: Background-enrichment concurrency-cap fix (010)"
-description: "Three-iteration deep-review (opus-4.8 via claude2) of the enrichment scheduler cap fix. Verdict: PASS with P2 advisories — no P0/P1; converged at iteration 3."
+description: "Ten-iteration deep-review (opus-4.8 + gpt-5.5 xhigh) of the enrichment scheduler cap fix. Verdict: CONDITIONAL — the committed cap fix is correct, but the extended review surfaced 3 P1 (1 fix-exposed liveness, 2 pre-existing shutdown-durability) + 4 P2 in the surrounding scheduler/scan lifecycle."
 trigger_phrases:
   - "010 deep review report"
   - "enrichment cap review verdict"
+  - "enrichment scheduler hardening findings"
 importance_tier: "normal"
 contextType: "review"
 ---
@@ -12,70 +13,68 @@ contextType: "review"
 
 ## 1. Executive Summary
 
-**Verdict: PASS (hasAdvisories = true).** No P0, no P1 across 3 iterations. Converged via early-stop (3 consecutive iterations with no new P0/P1) on a 26-line, 2-file diff.
+**Verdict: CONDITIONAL.** The committed 010 cap fix is *correct for the wedge it fixes* — the concurrency cap now holds (invariant `0 ≤ active ≤ MAX` proven 4 ways; atomic gate; no re-entrancy; dist mirrors source; no enrichment regression). But running the full 10 iterations (iters 1-3 converged on a **safety-only false PASS**) surfaced that making the cap *real* exposed, and the surrounding lifecycle already contained, real liveness + shutdown-durability gaps.
 
-- **Counts:** P0 = 0 · P1 = 0 · P2 = 5 (deduplicated; 1 fix-introduced, 4 pre-existing/conditional/tuning).
-- **Reviewer:** `cli-claude-code` · `claude-opus-4-8` · account2 · `review` agent · high effort · single-executor inline, fresh context per iteration.
-- **Core finding:** the cap fix (`scheduleBackgroundEnrichment` reserve-slot-at-schedule-time + `setImmediate` re-arm) is correct. The invariant `0 ≤ activeBackgroundEnrichments ≤ MAX` was independently re-derived and proven; the gate is atomic (no `await` between read and increment → no TOCTOU); there is no re-entrancy; the compiled dist mirrors the source (fix is live, not stranded). The scan-loop yield is correct and benign.
+- **Counts:** P0 = 0 · **P1 = 2** (F-006 REFUTED on deeper trace — see registry) · P2 = 6 (deduplicated).
+- **Reviewers:** iters 1-6 `claude-opus-4-8` (account2); iters 7-9 `gpt-5.5 xhigh fast` (cli-codex); iter 10 failed to produce output (codex multi-dispatch flakiness) — meta-synthesis done by the loop-manager.
+- **Key escalation:** the safety proof (`0 ≤ active ≤ MAX`) does NOT imply liveness (slots returning to 0) or shutdown safety. Two independent models confirmed the shutdown-fence P1.
+- **Attribution:** F-006 (hung-run) is *exposed by this fix* (cap-now-real). F-008/F-012 (shutdown fences) are *pre-existing* (scheduler + scan were always unfenced); this fix only changes their timing. None is a defect in the committed cap logic.
 
 ## 2. Planning Trigger
 
-PASS with advisories → **no remediation plan required.** Per the post-implementation-deep-review rule: move on; queue the P2 backlog. One trivial advisory (the over-claiming comment, P2-D-comment) was remediated inline during synthesis. The remaining P2s are queued as Deferred Items (§8); none gates completion.
+CONDITIONAL → **remediation warranted**, but it is lifecycle/durability hardening *around* the scheduler, not a correction of the committed cap. Recommended as a follow-up packet (natural home: the `007-mcp-daemon-reliability` track, which already owns shutdown-durability packets 008/009). The committed 010 stays — it correctly fixes the CPU wedge.
 
 ## 3. Active Finding Registry (deduplicated, with evidence)
 
 | ID | Sev | Status | Location | Finding | Evidence |
 |----|-----|--------|----------|---------|----------|
-| F-001 | P2 | Open (tuning) | `memory-save.ts:2961` | Residual `accept()` latency (bounded, not the wedge) if `runPostInsertEnrichment` does heavy *synchronous* CPU work | iter1; depends on the enrichment body, outside this diff |
-| F-002 | P2 | Open (pre-existing) | `memory-save.ts:2944` | Bare `setImmediate` not `unref`'d / not in the timer registry | iter1; original used raw `setImmediate` too; self-terminating at shutdown |
-| F-003 | P2 | Open (fix-introduced) | `memory-save.ts:2921`, payload `:2946-2972` | Queue bounds concurrency but not size → `parsed` payloads retained for the serialized drain (~55-220 MB transient on an 11k-file scan); a retention-**duration** delta (not a peak regression — pre-fix peak was higher) | iter2 F1 (HIGH exists / MED harm); confirmed iter3 |
-| F-004 | P2 | **Remediated (comment) / Open (re-resolve)** | `memory-save.ts:2949-2962` | `db` handle reused after the `await`; a mid-run recycle throws → row falls back to backfill (fail-safe). The doc comment over-claimed run-time re-resolution | iter2 F2; **comment tightened this session**; optional: re-resolve `db` after the await |
-| F-005 | P2 | Open (conditional) | `lib/ipc/launcher-idle-timeout.ts:98-123` | Idle-monitor ignores enrichment depth → a short idle-timeout can shut the daemon mid-drain; late rows enrich via backfill, not the live queue | iter2 F3 (MED, conditional on idle timeout enabled+short) |
+| F-006 | ~~P1~~ **REFUTED** | not reachable | `memory-save.ts` run / embed path | Claimed: a hung embed never releases its slot → cap deadlock. REFUTED by loop-manager trace: every provider bounds the embed request with an abort-on-timeout (`ollama.ts:164`, `openai.ts:125`, `voyage.ts:150`, `hf-local.ts:433`); the embed is the only network await in the run (entity/graph steps are sync better-sqlite3). The run always settles → `finally` releases the slot. iter4's "un-timed" cite (`embeddings.ts:739`) did not verify. | loop-manager direct trace into `shared/embeddings/providers/*` |
+| F-008 | **P1** | **confirmed (2 models)** | `memory-save.ts` run / `context-server.ts:1646` | Queued enrichment runs after `closeDb()`; `requireDb()` REOPENS the closed DB → dirties WAL after the TRUNCATE checkpoint → violates README:262 close guarantee. Scheduler absent from `fatalShutdown` fence list | iter6 (opus) + iter8 (gpt-5.5); fatalShutdown comment 1626-1630; README:262 |
+| F-012 | **P1** | confirmed | `context-server.ts:2256` (scan), `:1535` (yield) | `startupScan` is fire-and-forget, unfenced before `closeDb()`; the new poll-phase yield widens the SIGTERM→close→scan-resume→reopen window | iter8 (gpt-5.5); `void startupScan(...)` confirmed |
+| F-007 | P2 | confirmed | `memory-save.ts:2921` | Queue unbounded in LENGTH (distinct from retention-duration); a continuous live-save flood grows it without bound → OOM | iter2/iter5; sibling `job-queue.ts:711-723` caps + evicts |
+| F-009 | P2 | confirmed | `memory-save.ts:2920`, `memory-crud-health.ts` | Scheduler state (`active`/`queued`) + `post_insert_enrichment_status` not exposed in `memory_health` → F-006 deadlock is silent/undiagnosable | iter9 (gpt-5.5) |
+| F-010 | P2 | confirmed | `memory-save.ts:2965` | Background failures are log-only, unaggregated (no counter/last-error/rate-limit/persisted-failed) | iter9 |
+| F-011 | P2 | confirmed | `memory-save.ts:2929` | Backfill recovery path not discoverable from `memory_health` (no remediation hint) | iter9 |
 
-All P0/P1 candidates raised during the adversarial Hunter/Skeptic/Referee pass (TOCTOU, re-arm overflow, re-entrancy, stale dist, void-rejection) were dropped with evidence (see §9).
+Iters 1-3, 7 found the safety, type, and emitted-JS dimensions fully sound.
 
 ## 4. Remediation Workstreams
 
-- **W-0 (done):** F-004 comment accuracy — tightened to state the re-resolve covers a pre-run recycle and a mid-run recycle falls back to backfill. No behavior change (comment stripped by tsc; dist unaffected).
-- **W-1 (deferred, optional):** F-003 queue payload size — store only `memoryId` in the queue and re-derive `parsed` at run time, or bound queue length and lean on the pending-marker backfill. Trade memory-retention for per-run re-read I/O; evaluate before adopting.
-- **W-2 (deferred, optional):** F-005 idle-monitor — treat a non-empty queue / `active>0` as activity, or document the live tail as best-effort. Cross-cutting (separate subsystem).
-- **W-3 (no action):** F-001, F-002 — tuning / pre-existing; no change warranted.
+- **W-1 (P1, recommended now):** Shutdown fences for F-008 + F-012. Add the enrichment scheduler AND the startup scan to `fatalShutdown` *before* `closeDb()` — a `stopping` flag, clear `backgroundEnrichmentQueue`, prevent `start(next)`, bail `run` before `requireDb()`; track `startupScanPromise` + abort. Mirror the established `fileWatcher`/`ingestWorker` fence + `job-queue` `acquireWorkerDb` idiom. Markers recovered via `repairIncompleteMarkers`.
+- ~~**W-2 (P1):** Hung-run timeout for F-006.~~ DROPPED — F-006 refuted (every embed provider already bounds the request with an abort-on-timeout; the run always settles and releases its slot).
+- **W-3 (P2):** Cap `backgroundEnrichmentQueue` length (mirror `MAX_PENDING_INGEST_JOBS`), shed overflow to the pending-marker backfill.
+- **W-4 (P2):** Observability — expose scheduler state + enrichment-status distribution in `memory_health`; aggregate/rate-limit failures; add a recovery hint.
 
 ## 5. Spec Seed
 
-No new spec required. If W-1 is adopted, it is a small amendment to this packet's scope (queue-entry payload), not a new feature. Suggested spec line: "The enrichment queue retains only scalar identifiers; `parsed` is re-derived at run time to bound heap retention during large scans."
+Follow-up packet: "Harden the background-enrichment scheduler: shutdown-fence the scheduler + startup scan, bound the run with a timeout, cap the queue, and expose health." Scope: `memory-save.ts`, `context-server.ts` (fatalShutdown + scan), `memory-crud-health.ts`. Natural track: `007-mcp-daemon-reliability` (shutdown-durability sibling to 008/009).
 
 ## 6. Plan Seed
 
-If W-1/W-2 are pursued: (1) change the queue element type to `{memoryId}` and re-read+parse the row's `file_path` inside `run`; (2) add a deterministic unit test for the bounded scheduler (extract a `createBoundedScheduler(max)` helper); (3) for W-2, thread `activeBackgroundEnrichments > 0 || queue.length > 0` into the idle-monitor's activity check. Each is independently revertible.
+Order by severity/safety: (1) W-1 shutdown fences first (durability, confirmed P1, 2-model) — add to the existing fence sequence; (2) W-2 hung-run timeout; (3) W-3 queue cap; (4) W-4 health. Each independently revertible; each needs a regression + (for fences) a shutdown-during-pending-enrichment test.
 
 ## 7. Traceability Status
 
-| Requirement | Covered | Evidence |
-|-------------|---------|----------|
-| REQ-001 cap holds under burst | ✅ | iter1+iter3 invariant proof; synchronous atomic gate |
-| REQ-002 queued work yields | ✅ | `setImmediate` re-arm → next check phase (iter1) |
-| REQ-003 no enrichment regression | ✅ | diff touches only scheduling; 14/14 regression green |
-| REQ-004 scan yields periodically | ✅ | `% 50` deterministic yield (iter2 magic-50 analysis) |
-| REQ-005 clean typecheck/build | ✅ | tsc 0 errors; dist mirrors source (iter3) |
+The 010 acceptance criteria (REQ-001..005: cap holds, queue yields, no regression, scan yields, clean build) all remain ✅ — the cap fix is correct. The findings are NEW concerns in the scheduler/scan *lifecycle*, outside the original REQ set, hence a follow-up rather than a 010 re-open.
 
 ## 8. Deferred Items
 
-- F-001 (residual sync-CPU latency) — tuning; revisit only if `accept()` latency is observed under load.
-- F-002 (bare `setImmediate` unref) — pre-existing; optional clean-shutdown symmetry.
-- F-003 (queue payload retention duration) — W-1; adopt if large-scan RSS becomes a concern.
-- F-004 re-resolve-after-await — comment fixed; the optional code hardening deferred (current behavior is fail-safe).
-- F-005 (idle-monitor) — W-2; conditional on idle-timeout config.
+If the user defers W-1/W-2: document that (a) a hung embedding can silently disable enrichment until daemon restart (recoverable via `memory_index_scan({force:true})`), and (b) a shutdown with pending enrichment can re-dirty the WAL → a possible needless boot rebuild (bounded by `wal_autocheckpoint=256` + boot integrity gate; no data loss — backfill recovers). W-3/W-4 are pure hardening.
 
 ## 9. Audit Appendix (convergence data)
 
-| Iter | Worker | New P0 | New P1 | New P2 | Note |
-|------|--------|--------|--------|--------|------|
-| 1 | opus-4.8 | 0 | 0 | 2 | Core dimensions sound (accounting, yielding, regression, error paths) |
-| 2 | opus-4.8 | 0 | 0 | 3 | New angles: queue retention, stale-handle, idle-monitor |
-| 3 | opus-4.8 | 0 | 0 | 0 | Completeness + convergence: re-derived invariant, atomic gate, no re-entrancy, dist mirrors source |
+| Iter | Model | P0 | P1 | P2 | Note |
+|------|-------|----|----|----|------|
+| 1-3 | opus-4.8 | 0 | 0 | 5 | Safety-converged (false PASS — safety only) |
+| 4 | opus-4.8 | 0 | 1 | 0 | F-006 hung-run (liveness) |
+| 5 | opus-4.8 | 0 | 0 | 1 | F-007 unbounded queue |
+| 6 | opus-4.8 | 0 | 0(→1) | 1 | F-008 shutdown fence |
+| 7 | gpt-5.5 | 0 | 0 | 0 | Type/emitted-JS sound |
+| 8 | gpt-5.5 | 0 | 2 | 0 | F-008 confirmed→P1 + F-012 scan unfenced |
+| 9 | gpt-5.5 | 0 | 0 | 3 | F-009/010/011 observability |
+| 10 | gpt-5.5 | — | — | — | FAILED (no output; process died) |
 
-- **Convergence rule:** early-stop after 3 consecutive iterations with no new P0/P1 → met at iter 3. Max was 10.
-- **Iteration records:** `review/iterations/iteration-00{1,2,3}.md`. Prompts: `review/prompts/`. Config: `review/deep-review-config.json`.
-- **Independent corroboration:** the loop-manager re-traced the slot accounting (burst of 6, MAX=4) and the gate atomicity independently; both match the workers' findings.
-- **Honesty caveat (from iter3):** workers reviewed the applied/built code (the `/tmp` diff text was outside their sandbox) — for a convergence pass the built artifact is the more load-bearing evidence.
+- **Convergence:** iters 1-3 converged on safety; iters 4-9 broke that convergence with liveness + shutdown + observability findings → the loop did NOT reach a clean-PASS convergence; verdict CONDITIONAL.
+- **Model diversity paid off:** opus found the liveness + first shutdown finding; gpt-5.5 confirmed the shutdown P1 independently and found the scan-unfence + observability cluster.
+- **Loop-manager independent corroboration:** verified F-008 (`fatalShutdown` comment + `shuttingDown` flag), F-012 (`void startupScan`), README:262 close guarantee, and the no-timeout-at-checked-layers for F-006.
+- Records: `review/iterations/iteration-00{1..9}.md`. Prompts: `review/prompts/`.

@@ -99,7 +99,7 @@ The defect was confirmed by direct source read (the counter increment was inside
 | Enrichment + async-scan regression (3 files) | PASS — 14/14 |
 | `npm run build` (tsc --build + finalize-dist) | PASS — exit 0; cap fix + scan yield confirmed in dist |
 | Comment hygiene (no spec-path/packet-id in code comments) | PASS — durable WHY only |
-| Deep-review (opus-4.8 via claude2, max 10) | PASS w/ advisories — converged iter 3, 0 P0/P1, 5 P2 deferred |
+| Deep-review (10-iter, opus-4.8 + gpt-5.5 xhigh) | CONDITIONAL — the cap fix is correct (REQ-001..005 hold); F-006 hung-run REFUTED (providers timeout-bound the embed); F-008+F-012 shutdown-fence P1 confirmed → follow-up packet; 4 P2 deferred. See `review/review-report.md` |
 | Post-review remediation | F2 over-claiming comment tightened (comment-only; dist unaffected) |
 <!-- /ANCHOR:verification -->
 
@@ -113,5 +113,5 @@ The defect was confirmed by direct source read (the counter increment was inside
 3. **Fix takes effect on next daemon launch.** dist is rebuilt, but the currently-running daemon keeps the old code until it is relaunched (the 009 fix handles recovering the wedged instance).
 4. **Queue retention duration (deep-review F-003, P2).** The fix bounds concurrency, not queue size, so a large scan retains `parsed` payloads for the throttled drain (~tens-to-~100MB transient). Not a peak regression (pre-fix peak was higher). Deferred: store only `memoryId` and re-derive `parsed` at run time, or bound the queue. See `review/review-report.md` §4 W-1.
 5. **Idle-monitor blind to enrichment (deep-review F-005, P2, conditional).** A short idle timeout could shut the daemon mid-drain; late rows recover via backfill. Deferred (cross-cutting). See `review/review-report.md` §4 W-2.
-6. **Full deep-review backlog** is recorded in `review/review-report.md` (§8 Deferred Items). Verdict: PASS with advisories; no P0/P1.
+6. **Deep-review surfaced 2 confirmed P1 shutdown-durability gaps (F-008, F-012) — handled in a follow-up packet.** The enrichment scheduler and the startup scan are not fenced in `fatalShutdown` before `closeDb()`, so a deferred run/scan can reopen the DB and re-dirty the WAL after the close checkpoint. These are pre-existing (the scheduler/scan were always unfenced); this fix only changes their timing. Harm is operational (a possibly-needless boot rebuild; bounded by `wal_autocheckpoint=256` + the boot integrity gate; no data loss — backfill recovers). The F-006 hung-run P1 was REFUTED (every embed provider already bounds the request with an abort-on-timeout). Full registry: `review/review-report.md`. Verdict: CONDITIONAL — the 010 cap fix itself is correct and stays; the fences are a separate lifecycle concern.
 <!-- /ANCHOR:limitations -->
