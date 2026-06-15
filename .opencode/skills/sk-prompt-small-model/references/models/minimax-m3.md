@@ -60,7 +60,7 @@ MiniMax wants guardrail-heavy TIDD-EC framing plus dense pre-planning — more s
 This mirrors `model-profiles.json` `recommended_frameworks` for `minimax-m3`:
 `primary: "tidd-ec"`, `fallback: "rcaf"`, `preplanning_density: "dense"`.
 
-**Counter-intuitive note:** MiniMax wants guardrail-heavy framing (TIDD-EC Do's/Don'ts) **plus** dense pre-planning — the **opposite** of the cross-model default (medium pre-planning, lighter framing). Most models plateau or regress with dense pre-plans; MiniMax actively uses the dense plan structure rather than being slowed by it. This is because TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope and format drift more effectively than RCAF's role anchor, and the dense pre-plan gives MiniMax a concrete decision scaffold it follows rather than ignoring. For all other models in the rotation (DeepSeek, Kimi, GLM, Qwen) the cross-model default applies (RCAF + medium); MiniMax is the explicit exception.
+**Counter-intuitive note:** MiniMax wants guardrail-heavy framing (TIDD-EC Do's/Don'ts) **plus** dense pre-planning — the **opposite** of the cross-model default (medium pre-planning, lighter framing). Most models plateau or regress with dense pre-plans; MiniMax actively uses the dense plan structure rather than being slowed by it. This is because TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope and format drift more effectively than RCAF's role anchor, and the dense pre-plan gives MiniMax a concrete decision scaffold it follows rather than ignoring. For other models in the rotation that follow the cross-model default (e.g. DeepSeek), RCAF + medium applies; MiniMax is the explicit exception.
 
 ---
 
@@ -150,7 +150,6 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json#minimax-m3`](../../../sk-prompt-small-model/assets/model-profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
-- [`minimax-2.7.md`](./minimax-2.7.md) — historical profile; benchmark 003 was run on this model; M3 carries its framework contract
 - [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
 - [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
 - [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow, dispatch matrix, escalation rules

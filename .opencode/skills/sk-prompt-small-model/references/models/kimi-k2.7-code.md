@@ -47,7 +47,7 @@ COSTAR + lean pre-planning, framed for the task and output shape — the 256k wi
 | Avg iteration wall-clock | not yet measured |
 | Fallback target | none |
 
-Kimi-k2.7-code is the **coding-optimized large-context** Kimi in the rotation — 256k tokens makes it a strong choice for sprawling diff reviews, long-file inspection, multi-repo evidence gathering, and cross-cutting refactors. It runs on the Kimi For Coding subscription plan (dispatch cost shows 0), on a quota pool independent of `opencode-go`. It supersedes the historical `kimi-k2.6` (which ran on the shared `opencode-go` gateway).
+Kimi-k2.7-code is the **coding-optimized large-context** Kimi in the rotation — 256k tokens makes it a strong choice for sprawling diff reviews, long-file inspection, multi-repo evidence gathering, and cross-cutting refactors. It runs on the Kimi For Coding subscription plan (dispatch cost shows 0), on a quota pool independent of `opencode-go`.
 
 ---
 
@@ -159,5 +159,5 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Kimi For Coding); non-TTY rule, permissions, model-selection guidance.
 - [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax TIDD-EC + MiMo COSTAR templates as worked examples of the format).
 - [`../pattern-index.md`](../pattern-index.md) — Index of all MECHANICS patterns + ship status.
-- [`../models/_index.md`](../models/_index.md) — Sibling model index; see GLM-5.1 and DeepSeek-v4-pro for large-context peers; `kimi-k2.6.md` for the historical opencode-go Kimi path.
+- [`../models/_index.md`](../models/_index.md) — Sibling model index; see DeepSeek-v4-pro for an opencode-go-tier reasoning peer.
 - **Executor quality card:** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

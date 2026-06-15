@@ -1,11 +1,11 @@
 ---
 name: sk-prompt-small-model
-description: Per-model prompt-craft hub for small-model dispatch (DeepSeek-v4-pro + Kimi-k2.7-code + Qwen3.6 + GLM-5.1 + MiniMax-M3 + MiMo-V2.5-Pro via cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-opencode. Advisor co-surfaces it with that executor.
+description: Per-model prompt-craft hub for small-model dispatch (DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro via cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-opencode. Advisor co-surfaces it with that executor.
 allowed-tools: []
 version: 0.7.2.0
 ---
 
-<!-- Keywords: small-model, deepseek-v4-pro, kimi-k2.7-code, kimi-for-coding, qwen3.6, glm-5.1, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
+<!-- Keywords: small-model, deepseek-v4-pro, kimi-k2.7-code, kimi-for-coding, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
 
 # Small-Model Prompt-Craft Hub
 
@@ -18,8 +18,7 @@ The model-knowledge hub for small-model dispatch: per-model prompt-craft profile
 ### Activation Triggers
 
 **Use when** — before dispatching any active small model, to look up its prompt-craft profile:
-- DeepSeek-v4-pro, Kimi-k2.7-code, GLM-5.1 (via `cli-opencode`)
-- Qwen3.6 (via `cli-opencode`)
+- DeepSeek-v4-pro, Kimi-k2.7-code (via `cli-opencode`)
 - MiniMax-M3 (via `cli-opencode`)
 - MiMo-V2.5-Pro (via `cli-opencode`)
 - Optional future target: Claude Haiku
@@ -29,7 +28,7 @@ The exact provider, quota pool, and dispatch flags for each path live in the §3
 
 **Keyword Triggers**:
 - `small model`, `small-model dispatch`
-- Model names: `kimi-k2.7-code`, `deepseek-v4-pro`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `mimo-v2.5-pro`, `haiku`
+- Model names: `kimi-k2.7-code`, `deepseek-v4-pro`, `minimax-m3`, `mimo-v2.5-pro`, `haiku`
 - Provider names: `opencode-go`, `deepseek-api`, `kimi-for-coding` (Kimi For Coding plan), `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe) / `xiaomi` (Xiaomi Direct API)
 - Pattern names: `context budget`, `output verification`, `model profile`, `structured permissions`, `quota fallback`, `tool scoring`
 
@@ -64,10 +63,8 @@ it to a canonical profile id with the alias map. A model name is the one signal 
 ```python
 MODEL_ALIASES = {
     "deepseek": "deepseek-v4-pro", "deepseek-v4": "deepseek-v4-pro", "deepseek-v4-pro": "deepseek-v4-pro",
-    "kimi": "kimi-k2.7-code", "kimi-k2.7": "kimi-k2.7-code", "kimi-k2.7-code": "kimi-k2.7-code", "kimi-for-coding": "kimi-k2.7-code", "k2p7": "kimi-k2.7-code", "kimi-k2.6": "kimi-k2.6",
-    "qwen": "qwen3.6", "qwen3.6": "qwen3.6",
-    "glm": "glm-5.1", "glm-5.1": "glm-5.1",
-    "minimax-m3": "minimax-m3", "minimax m3": "minimax-m3", "minimax": "minimax-m3", "minimax-2.7": "minimax-m3", "minimax m2.7": "minimax-m3",
+    "kimi": "kimi-k2.7-code", "kimi-k2.7": "kimi-k2.7-code", "kimi-k2.7-code": "kimi-k2.7-code", "kimi-for-coding": "kimi-k2.7-code", "k2p7": "kimi-k2.7-code",
+    "minimax-m3": "minimax-m3", "minimax m3": "minimax-m3", "minimax": "minimax-m3",
     "mimo": "mimo-v2.5-pro", "mimo-v2.5-pro": "mimo-v2.5-pro", "mimo pro": "mimo-v2.5-pro",
 }
 ```
@@ -199,8 +196,6 @@ invocation loads the right profile.
 | --- | --- | --- |
 | DeepSeek-v4-pro | `cli-opencode` → deepseek-api (deepseek-api) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
 | Kimi-k2.7-code | `cli-opencode` → kimi-for-coding (kimi-for-coding) | active (single path; Kimi For Coding plan) |
-| Qwen3.6 | `cli-opencode` → opencode-go (opencode-go) | active (single path) |
-| GLM-5.1 | `cli-opencode` → opencode-go (opencode-go) | active (single path) |
 | MiniMax-M3 | `cli-opencode` → minimax-coding-plan (minimax-token-plan) · `cli-opencode` → minimax (minimax-api) | active — Token Plan (default) + Direct API (pay-per-token) |
 | MiMo-V2.5-Pro | `cli-opencode` → xiaomi-token-plan-ams (xiaomi-token-plan) · `cli-opencode` → xiaomi (xiaomi-direct-api) | active — Token Plan (default) + Direct API (pay-per-token) |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
@@ -225,7 +220,7 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt-small-model/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when models ship or move.** `_index.md` and `pattern-index.md` are contracts; broken links and missing rows erode trust.
-5. **Honor the in-scope model set** — DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3, MiMo-V2.5-Pro active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
+5. **Honor the in-scope model set** — DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 
 ### NEVER
 
@@ -274,7 +269,7 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 ```text
 sk-prompt-small-model (this skill)  ← OWNS per-model prompt-craft profiles + indexes + model registry (assets/model-profiles.json)
     |
-    +-- cli-opencode                ← owns MECHANICS: DeepSeek/Kimi/Qwen/GLM/MiniMax/MiMo flags + permissions
+    +-- cli-opencode                ← owns MECHANICS: DeepSeek/Kimi/MiniMax/MiMo flags + permissions
     +-- sk-prompt                   ← owns generic framework definitions
     +-- system-spec-kit             ← owns runtime helpers (TS code)
 ```

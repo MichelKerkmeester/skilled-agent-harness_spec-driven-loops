@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Looking up the prompt framework, scaffold and gotchas for a small model before dispatch |
 | **Invoke with** | Advisor co-surfaces this hub alongside cli-opencode when a small model is named |
-| **Works on** | DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3, MiMo-V2.5-Pro and optional Haiku |
+| **Works on** | DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro and optional Haiku |
 | **Produces** | A prompt-craft profile (framework, density, scaffold and gotchas) plus a pointer to the executor mechanics |
 
 ---
@@ -86,8 +86,9 @@ The framework assignments follow a pattern rather than a pinned count. The set d
 
 | Model | Primary framework | Pre-planning density | Evidence |
 |---|---|---|---|
-| deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1 | RCAF | medium | Default, unverified |
-| minimax-m3, minimax-2.7 | TIDD-EC (fallback RCAF) | dense | M3 empirical (benchmark), 2.7 historical |
+| deepseek-v4-pro | RCAF | medium | Default, unverified |
+| kimi-k2.7-code | COSTAR (fallback TIDD-EC, avoid RCAF) | lean | Empirical (benchmark 007) |
+| minimax-m3 | TIDD-EC (fallback RCAF) | dense | Empirical (benchmark 003, run on M2.7; carried to M3) |
 | mimo-v2.5-pro | COSTAR (fallback RACE, avoid TIDD-EC and CIDI) | lean | Empirical (benchmark 004) |
 
 RCAF is the default. TIDD-EC is the MiniMax choice, backed by a benchmark run. COSTAR is the MiMo choice, also backed by a benchmark. The profiles cite their evidence and the benchmarks live in `benchmarks/`. The generic framework definitions (the closed seven-framework set: RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) are defined once in `sk-prompt`. This hub only records the per-model choice.

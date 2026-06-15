@@ -9,7 +9,7 @@
       {
         "target": "cli-opencode",
         "weight": 0.8,
-        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Qwen/GLM via opencode-go pool + Kimi-k2.7-code via the Kimi For Coding plan + MiniMax-M3 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan"
+        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek via opencode-go pool + Kimi-k2.7-code via the Kimi For Coding plan + MiniMax-M3 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan"
       }
     ],
     "siblings": [],
@@ -35,8 +35,6 @@
     "deepseek-v4",
     "kimi-k2.7-code",
     "kimi-for-coding",
-    "qwen3.6",
-    "glm-5.1",
     "minimax-m3",
     "mimo-v2.5-pro",
     "opencode-go",
@@ -54,14 +52,9 @@
       "kimi-k2.7",
       "kimi-for-coding",
       "kimi for coding",
-      "kimi-k2.6",
       "deepseek",
       "deepseek-v4",
       "deepseek-api",
-      "qwen",
-      "qwen3.6",
-      "glm",
-      "glm-5.1",
       "opencode-go",
       "haiku",
       "claude haiku",

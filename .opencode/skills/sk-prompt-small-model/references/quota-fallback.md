@@ -41,7 +41,7 @@ This design replaced the older small-to-frontier escalation idea.
 
 The user does not run frontier models in this rotation.
 
-No gpt-5.5, Opus, Sonnet, or GLM-5.1 entry belongs in the Phase 005 registry.
+No gpt-5.5, Opus, or Sonnet entry belongs in the Phase 005 registry.
 
 The fallback engine should not invent a larger model.
 
@@ -55,7 +55,7 @@ It may route to a configured separate-pool target later, after the operator adop
 
 ADR-001 says:
 
-> The user's actual model rotation is small-only: DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 (all sharing one opencode-go pool via cli-opencode), with optional future Claude Haiku. There are no frontier models (Opus / Sonnet / gpt-5.5 / GLM-5.1) in scope to escalate to. The original Phase D plan assumed a small→frontier escalation chain — that assumption is gone. Naïve "pick another model" routing on hard-fail would just pick a same-pool sibling — accomplishing nothing while spending more quota.
+> The user's actual model rotation is small-only: DeepSeek-v4-pro (opencode-go pool via cli-opencode), Kimi-k2.7-code (kimi-for-coding pool), MiniMax-M3 (minimax-token-plan pool), MiMo-V2.5-Pro (xiaomi-token-plan pool), with optional future Claude Haiku. There are no frontier models (Opus / Sonnet / gpt-5.5) in scope to escalate to. The original Phase D plan assumed a small→frontier escalation chain — that assumption is gone. Naïve "pick another model" routing on hard-fail would just pick a same-pool sibling — accomplishing nothing while spending more quota.
 
 Implementation follows that rationale.
 
@@ -67,8 +67,9 @@ The safe result is explicit failure when no configured separate-pool target exis
 
 | Quota pool | Active members | Optional members | Notes |
 | --- | --- | --- | --- |
-| `opencode-go` | `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1` | none | Shared opencode-go credit pool. |
+| `opencode-go` | `deepseek-v4-pro` | none | Shared opencode-go credit pool. |
 | `deepseek-api` | `deepseek-v4-pro` | none | Direct DeepSeek API key path. |
+| `kimi-for-coding` | `kimi-k2.7-code` | none | Kimi For Coding subscription pool. |
 | `minimax-token-plan` | `minimax-m3` | none | MiniMax Token Plan subscription. |
 | `xiaomi-token-plan` | `mimo-v2.5-pro` | none | Xiaomi Token Plan Europe. |
 | `anthropic` | none | `haiku` | Optional separate provider pool. |
@@ -170,25 +171,25 @@ Result:
 }
 ```
 
-This prevents a useless retry through Kimi or Qwen.
+This prevents a useless retry through another opencode-go model.
 
-### DeepSeek-v4-pro To Kimi-k2.6
+### Same-Pool Fallback Rejected (hypothetical)
 
-Registry change:
+If `deepseek-v4-pro` were configured to fall back to a second model that also lived on the `opencode-go` pool:
 
 ```json
 {
   "id": "deepseek-v4-pro",
   "quota_pool": "opencode-go",
-  "fallback_target": "kimi-k2.6"
+  "fallback_target": "some-opencode-go-model"
 }
 ```
 
-Target:
+Target (same pool):
 
 ```json
 {
-  "id": "kimi-k2.6",
+  "id": "some-opencode-go-model",
   "quota_pool": "opencode-go"
 }
 ```
@@ -198,59 +199,11 @@ Result:
 ```json
 {
   "action": "fail-fast",
-  "reason": "opencode-go pool exhausted, fallback target kimi-k2.6 shares the same pool; same-pool fallback rejected"
+  "reason": "opencode-go pool exhausted, fallback target some-opencode-go-model shares the same pool; same-pool fallback rejected"
 }
 ```
 
-Same-pool siblings are rejected.
-
-### Kimi-k2.6 Default
-
-Registry:
-
-```json
-{
-  "id": "kimi-k2.6",
-  "quota_pool": "opencode-go",
-  "fallback_target": null
-}
-```
-
-Result:
-
-```json
-{
-  "action": "fail-fast",
-  "reason": "opencode-go pool exhausted, no separate-pool fallback configured for kimi-k2.6"
-}
-```
-
-Kimi shares the same pool as DeepSeek and Qwen.
-
-### Qwen3.6 Default
-
-Registry:
-
-```json
-{
-  "id": "qwen3.6",
-  "quota_pool": "opencode-go",
-  "fallback_target": null
-}
-```
-
-Result:
-
-```json
-{
-  "action": "fail-fast",
-  "reason": "opencode-go pool exhausted, no separate-pool fallback configured for qwen3.6"
-}
-```
-
-Qwen's small context window is not the issue when the pool is exhausted.
-
-The pool is the boundary.
+Same-pool siblings are rejected. The pool is the boundary, not the model's context window.
 
 ### Haiku To DeepSeek-v4-pro
 
@@ -350,7 +303,7 @@ Empirical simulations to keep:
 
 - default `resolveFallback("deepseek-v4-pro", registry)` fails fast
 - in-memory `deepseek-v4-pro.fallback_target = "haiku"` routes to Haiku (separate pool)
-- same-pool `deepseek-v4-pro -> kimi-k2.6` is rejected
+- a same-pool fallback target on the `opencode-go` pool is rejected
 
 ---
 

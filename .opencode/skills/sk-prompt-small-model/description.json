@@ -1,6 +1,6 @@
 {
   "name": "sk-prompt-small-model",
-  "description": "Per-model prompt-craft hub covering DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3 + MiMo-V2.5-Pro via cli-opencode (DeepSeek API + opencode-go + MiniMax Token Plan minimax-coding-plan / MiniMax Direct API minimax + Xiaomi Token Plan xiaomi-token-plan-ams / Xiaomi Direct API xiaomi mimo-v2.5-pro) dispatch paths. Gives the skill advisor one discoverable routing anchor for small-model dispatch alongside cli-opencode.",
+  "description": "Per-model prompt-craft hub covering DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro via cli-opencode (DeepSeek API + opencode-go + Kimi For Coding kimi-for-coding + MiniMax Token Plan minimax-coding-plan / MiniMax Direct API minimax + Xiaomi Token Plan xiaomi-token-plan-ams / Xiaomi Direct API xiaomi mimo-v2.5-pro) dispatch paths. Gives the skill advisor one discoverable routing anchor for small-model dispatch alongside cli-opencode.",
   "version": "0.2.1",
   "importance_tier": "important",
   "keywords": [
@@ -11,9 +11,8 @@
     "deepseek-v4",
     "deepseek-v4-pro",
     "deepseek-api",
-    "kimi-k2.6",
-    "qwen3.6",
-    "glm-5.1",
+    "kimi-k2.7-code",
+    "kimi-for-coding",
     "minimax",
     "minimax-m3",
     "minimax-coding-plan",
@@ -37,7 +36,7 @@
   ],
   "trigger_examples": [
     "what is the small-model output verification pattern",
-    "route Kimi-k2.6 through cli-opencode opencode-go with a context budget",
+    "route DeepSeek-v4-pro through cli-opencode opencode-go with a context budget",
     "dispatch DeepSeek-v4-pro through DeepSeek API direct",
     "check structured permissions before DeepSeek-v4-pro dispatch",
     "dispatch MiniMax via the Token Plan minimax-coding-plan default"

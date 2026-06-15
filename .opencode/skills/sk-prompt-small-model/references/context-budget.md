@@ -20,7 +20,7 @@ contextType: implementation
 
 This reference documents the small-model budget pattern for bounded CLI dispatches.
 
-The pattern is adapted from SmallCode's context budget engine and scoped to the slim model set: DeepSeek-v4-pro, Kimi-k2.6, and Qwen3.6 are required; Claude Haiku is an optional unverified stub.
+The pattern is adapted from SmallCode's context budget engine and scoped to the slim model set: DeepSeek-v4-pro is the required budgeted model; Claude Haiku is an optional unverified stub.
 
 The purpose is not to add a new runtime dispatcher. It gives prompt composers and future automation one shared asset for model windows, budget percentages, line thresholds, truncation markers, and eviction order.
 
@@ -133,8 +133,6 @@ The canonical asset is `../assets/per-model-budgets.json`.
 | Model | Provider | Context length | 70% budget | Status |
 | --- | --- | ---: | ---: | --- |
 | `deepseek-v4-pro` | DeepSeek | 64,000 | 44,800 | required |
-| `kimi-k2.6` | Moonshot | 200,000 | 140,000 | required |
-| `qwen3.6` | Alibaba | 32,000 | 22,400 | required |
 | `claude-haiku` | Anthropic | unverified | unverified | optional stub |
 
 ---
@@ -256,7 +254,7 @@ If a simulated tool result exceeds that budget, the output must include `[... tr
 
 ## Limits
 
-This reference does not implement tokenizer-accurate counting. It does not enable Haiku routing. It does not include GLM-5.1, gpt-5.5, Opus, or Sonnet in the budget lookup (registry profiles, not budget defaults, govern those).
+This reference does not implement tokenizer-accurate counting. It does not enable Haiku routing. It does not include gpt-5.5, Opus, or Sonnet in the budget lookup (registry profiles, not budget defaults, govern those).
 
 ---
 
@@ -272,31 +270,7 @@ working_memory_tokens = 500
 remaining_after_working_memory = 44300
 ```
 
-For DeepSeek-v4-pro, large file reads should summarize before inclusion because a few long logs can consume the dynamic budget quickly.
-
-### Kimi-k2.6
-
-```text
-context_length = 200000
-max_budget_pct = 70
-token_budget = 140000
-working_memory_tokens = 500
-remaining_after_working_memory = 139500
-```
-
-Kimi can carry broader context, but the same marker and eviction rules still apply. Large context is not a license to include stale evidence.
-
-### Qwen3.6
-
-```text
-context_length = 32000
-max_budget_pct = 70
-token_budget = 22400
-working_memory_tokens = 500
-remaining_after_working_memory = 21900
-```
-
-Qwen is the tightest required window. Prefer summaries and exact line ranges.
+For DeepSeek-v4-pro, large file reads should summarize before inclusion because a few long logs can consume the dynamic budget quickly. At 64k it is the tightest required window — prefer summaries and exact line ranges.
 
 ---
 
