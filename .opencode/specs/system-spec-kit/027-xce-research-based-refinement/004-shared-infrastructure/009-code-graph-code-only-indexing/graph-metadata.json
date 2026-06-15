@@ -42,6 +42,10 @@
     "status": "complete",
     "key_files": [
       "lib/README.md",
+      "review/review-report.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "scripts/setup-maintainer-filters.sh",
       ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
       ".opencode/bin/mk-code-index-launcher.cjs",
       ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts",
@@ -56,6 +60,30 @@
         "name": "README.md",
         "kind": "doc",
         "path": "lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "setup-maintainer-filters.sh",
+        "kind": "script",
+        "path": "scripts/setup-maintainer-filters.sh",
         "source": "derived"
       },
       {
@@ -171,35 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Investigation",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code graph (`mk_code_index`) is meant to model code structure, but its default include globs pulled in `**/*.md`, registering markdown/prose docs as `language='doc'` rows alongside real code. For an external user, that meant their READMEs/docs were graphed; for the maintainer, opting `.opencode` in graphed every `SKILL.md`, agent, command and spec doc. Separately, `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` was all-or-nothing — `=true` force-indexed all five `.opencode` categories, with no way to pick only the code-bearing ones (the per-`INDEX_*` `.env.local` route is inert because the committed config already sets those keys, and config wins over file).",
     "created_at": "2026-06-14T08:55:44.858Z",
-    "last_save_at": "2026-06-14T08:55:44.858Z",
+    "last_save_at": "2026-06-15T09:09:34.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -337,14 +337,14 @@ Promotion is blocked by active P0 or failed binary gates, conditional with activ
 - `resume`: continue the active review session; same `sessionId`, no archive.
 - `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
 - Deferred: `fork`, `completed-continue`.
-- Canonical event contract: `.opencode/skills/deep-loop-workflows/review/references/protocol/loop_protocol.md §Lifecycle Branches (current release)`.
+- Canonical event contract: `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md §Lifecycle Branches (current release)`.
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.
 
 Reducer boundary:
 
 - `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
-- `.opencode/skills/deep-loop-workflows/review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
+- `.opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
 - This leaf agent may read registry for continuity and deduplication.
 - This leaf agent must not overwrite reducer-owned files.
 

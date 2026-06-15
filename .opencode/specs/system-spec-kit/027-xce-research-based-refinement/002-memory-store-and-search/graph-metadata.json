@@ -40,12 +40,12 @@
       "search",
       "write",
       "safety",
-      "index",
-      "causal",
-      "triggers",
+      "semantic",
+      "trigger",
+      "fallback",
+      "feedback",
       "reducers",
-      "vector",
-      "bm25"
+      "vector"
     ],
     "importance_tier": "important",
     "status": "phase_parent",
@@ -58,11 +58,47 @@
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Store",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The memory-store-and-search track owns the memory subsystem hardening: always-on write-path protections (auto-* edge cap, manual-edge overwrite guard, tier/pin-aware retention, fail-closed secret scrubber, provenance guard, causal-edge tombstones), the incremental-index and causal-graph foundation, default-off semantic triggers and learning feedback reducers under shadow mode, retrieval observability and session continuity, and the vector/BM25 read-path resilience and ranking-correctness work.",
+    "causal_summary": "The bulk of 027 hardens the Spec Kit memory store and its retrieval path: write-path safety, incremental index and causal lifecycle, semantic trigger matching, learning feedback reducers, derived-memory hardening, retrieval observability, session continuity, and vector/BM25 search resilience. These share the memory subsystem and a single deployment doctrine (results-affecting features default-off, protections always-on), so they belong under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-15T09:09:34.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

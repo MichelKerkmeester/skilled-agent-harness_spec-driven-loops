@@ -4,46 +4,203 @@
   "spec_folder": "skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment",
   "parent_id": "skilled-agent-orchestration/148-sk-interface-design",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/147-mcp-magicpath"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "sk-interface-design doc realignment",
       "parity keystone doc alignment",
-      "feature catalog playbook readme realign"
+      "feature catalog playbook readme realign",
+      "doc realignment plan",
+      "parity keystone doc alignment plan",
+      "doc realignment tasks",
+      "doc realignment summary"
     ],
     "key_topics": [
-      "doc realignment",
-      "feature catalog",
-      "manual testing playbook",
-      "readme",
       "sk-interface-design",
-      "mcp-magicpath",
-      "phase"
+      "doc",
+      "realignment",
+      "parity",
+      "keystone",
+      "alignment",
+      "feature",
+      "catalog",
+      "playbook",
+      "readme",
+      "realign",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "scripts/README.md",
+      ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 008 realigns the sk-interface-design feature catalog, manual testing playbook, and README, and the mcp-magicpath README and scripts README, to the post-007 reality (the Claude Design parity protocol, previewImageUrl fidelity loop, reuse-before-generate, design_fidelity.py helper). Fresh opus markdown agents author; the orchestrator reconciles shared files and validates.",
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude_design_parity.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Realign",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Realign",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 007 keystone added the Claude Design parity protocol (`claude_design_parity.md`), the `previewImageUrl` fidelity loop, reuse-before-generate, and the `design_fidelity.py` helper. But the feature catalog, manual testing playbook, and README for `sk-interface-design` were authored in 004 (before 007), and `mcp-magicpath`'s README + scripts README predate its new canvas-side parity rule + helper. These docs no longer match reality.",
     "created_at": "2026-06-14T10:00:00Z",
-    "last_save_at": "2026-06-14T10:00:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-06-15T09:09:33.176Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

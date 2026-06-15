@@ -1,0 +1,37 @@
+Act as a senior reliability engineer designing a fix. READ-ONLY MODE: do NOT write or edit files. Final message IS the deliverable — use the skeleton at the end.
+
+# Established root cause (from iterations 001-004 + orchestrator-verifications — READ them; do not re-derive)
+Daemon liveness is session-coupled with NO always-on supervisor. (1) re-election is spec-memory-ONLY and is release-for-adopt + reactive-respawn, NOT autonomous resurrect; an unadopted released daemon idle-times-out and dies. (2) advisor + code-index kill-child-on-shutdown (no release) and can kill what concurrent sessions bridge to. (3) the warm-probe trap: prompt-time/SessionStart hooks are warm-only → never cold-spawn → a session starting with a dead daemon reports it down all session; only a NON-warm CLI/launcher invocation cold-spawns. (4) stale sockets reaped only reactively on a fresh non-warm bind. (5) ungraceful death (SIGKILL/OOM/crash-loop give-up) → no resurrector. (6) lease is process-based, not runtime-aware.
+
+# YOUR TASK: design FIX B = "uniform launcher-hardening, NO OS dependency"
+The idea: fix this WITHIN the existing launcher/lease model (pure Node, cross-platform), WITHOUT depending on launchd/systemd (that is Fix A, covered separately). Design it concretely and map it against every failure mode.
+
+# READ (use Read; --dir is repo root) — under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/
+- iterations/iteration-001.md, iteration-002.md, iteration-003.md, iteration-004.md, orchestrator-verifications.md, live-diagnosis.md
+# and the code to change:
+- .opencode/bin/mk-spec-memory-launcher.cjs (the hardened reference: release/adopt/reap-respawn, shouldAbortRelaunchOnFire)
+- .opencode/bin/mk-skill-advisor-launcher.cjs and .opencode/bin/mk-code-index-launcher.cjs (the un-hardened ones)
+- .opencode/bin/lib/model-server-supervision.cjs (shared helpers; superviseChildExit; HF sidecar lifecycle)
+- .opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts (idle monitor) and the shared socket-server (stale-socket reap on bind)
+- the 3 CLI spawnLauncher paths (spec-memory-cli/code-index-cli/skill-advisor-cli dist) for the warm/non-warm branch
+
+# Design questions (be concrete — name functions/files to change)
+1. UNIFORM RELEASE/ADOPT: extend spec-memory's release-for-adopt + stale-reclaim (adopt-live / reap-respawn-dead) to advisor + code-index, replacing their kill-child-on-shutdown. What exactly moves into model-server-supervision.cjs as shared, what stays per-launcher? How to make shutdown check for active secondary IPC clients before killing.
+2. PROACTIVE STALE-SOCKET SWEEP: add an explicit unlink-dead-same-uid-socket step at launcher start (before relying on EADDRINUSE), so a leftover socket from an unclean death is reclaimed even by the FIRST binder. Where.
+3. RESURRECTOR WITHOUT A FRESH SESSION: the hard part. Without OS supervision, what brings a fully-dead daemon back when sessions are warm-only? Options to evaluate: (a) make the warm-only prompt-time path FIRE-AND-FORGET a background cold-spawn (detached) instead of only throwing 75 — "warm-probe but kick a cold start"; (b) a lightweight resident watchdog the first session detaches that outlives the session and KeepAlive-restarts the daemon; (c) escalate to non-warm after N consecutive warm failures. Pick the best + say why; note the chicken-and-egg (who keeps the watchdog alive).
+4. HF SIDECAR REFCOUNT: make the shared HF model-server refcounted/owner-agnostic so spec-memory's release can't kill the sidecar advisor still needs. Where.
+5. IDLE-TIMEOUT: should an UNADOPTED released daemon idle-die at all, or stay warm? Tradeoffs (resource vs availability); what to tune.
+6. FAILURE-MODE MAP: for EACH of the 6 root-cause failure modes above, does Fix B fully fix / partially fix / not fix it? Be honest about what pure-Node hardening canNOT fix (esp. SIGKILL of the last resident process, and all-sessions-gone).
+7. PROS/CONS vs Fix A (OS supervision): cross-platform, complexity, blast radius, alignment with the existing 30-phase work.
+
+# Output skeleton
+## IT5 — Fix B: uniform launcher-hardening (no OS dependency)
+### Design (concrete change sites)
+### Resurrector-without-fresh-session (the hard part — chosen approach + why)
+### HF sidecar refcount + idle-timeout policy
+### Failure-mode map (fully/partial/not fixed, per mode — honest)
+### Pros/cons vs Fix A (OS supervision)
+### Residual gaps (what Fix B canNOT fix)
+### Confidence + unknowns
+
+Cite file:line for each change site. Prefer concrete recommendations.

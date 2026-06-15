@@ -38,8 +38,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -47,18 +45,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -190,11 +176,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Created Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-review coverage graph accepted only coarse review node kinds: `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION`. Phase B seeded graph fixtures proved that ledger-led search evidence could not be represented as structured graph nodes because `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` events were rejected or filtered out.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-06-07T09:00:45.865Z",
+    "last_save_at": "2026-06-15T09:09:33.755Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

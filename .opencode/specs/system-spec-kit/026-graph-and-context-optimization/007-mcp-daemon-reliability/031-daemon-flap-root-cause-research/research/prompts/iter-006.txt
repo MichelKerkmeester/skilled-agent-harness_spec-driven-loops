@@ -1,0 +1,37 @@
+Act as a senior systems architect designing a fix. READ-ONLY MODE: do NOT write or edit files. Final message IS the deliverable — use the skeleton at the end.
+
+# Established root cause (from iterations 001-004 + orchestrator-verifications — READ them; do not re-derive)
+Daemon liveness is session-coupled with NO always-on supervisor; re-election is spec-memory-only + adopt-not-resurrect; advisor/code-index kill-on-shutdown; warm-probe trap (prompt-time hooks warm-only → never cold-spawn; non-warm DOES cold-spawn); stale sockets reaped reactively only; ungraceful death (SIGKILL/OOM/crash-loop give-up) has no resurrector; lease is process-based. Fix A (launchd/systemd OS supervision) and Fix B (uniform pure-Node launcher hardening) are designed separately.
+
+# YOUR TASK: design FIX C = "dedicated supervisor process AND/OR cold-start-on-demand self-heal", plus the SIGKILL/OOM resilience analysis
+Two sub-options to design + compare:
+- C1: a single long-lived in-repo SUPERVISOR process (pure Node, cross-platform — no launchd/systemd) that owns + KeepAlive-restarts all 3 daemons (+ the shared HF sidecar). Sessions become pure clients. The crux: who starts the supervisor and keeps IT alive (the chicken-and-egg)? Evaluate bootstraps: first-session-spawns-detached-supervisor; a tiny launchd/systemd unit JUST for the supervisor (one unit vs N); cron/heartbeat re-spawn.
+- C2: minimal-change SELF-HEAL — make the warm-only prompt-time path KICK a detached background cold-spawn (fire-and-forget) when the probe is dead, instead of only throwing 75, so the daemon self-heals within ~1 prompt without blocking prompt time. Plus: a SessionStart cold-start (non-warm, backgrounded) so a session never runs a whole turn against a dead daemon.
+
+# READ (use Read; --dir is repo root) — under .../031-daemon-flap-root-cause-research/research/
+- iterations/iteration-001.md, 002, 003, 004, orchestrator-verifications.md, live-diagnosis.md
+# and code:
+- The 3 CLI warm/non-warm spawnLauncher branches (spec-memory-cli/code-index-cli/skill-advisor-cli dist) — the exact place C2 would change.
+- The Claude/Codex SessionStart + UserPromptSubmit hooks (.opencode/skills/system-spec-kit/mcp_server/dist/hooks/...) — where a backgrounded cold-start could be added.
+- .opencode/bin/lib/model-server-supervision.cjs (crash-loop guard, give-up cooldown, HF sidecar) and the orphan-sweeper (.opencode/scripts/orphan-mcp-sweeper.sh) for reaping.
+- .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist (the only existing plist) to reuse the install pattern for a supervisor bootstrap.
+
+# Design questions (concrete — name files/functions)
+1. C1 SUPERVISOR: design the supervisor process — what it owns, how it detects death (child exit + socket probe), restart policy (backoff, crash-loop cap, SIGKILL/OOM survival), how sessions discover + bridge to it, and how it coexists with / replaces the current per-launcher ownership + leases. Solve the chicken-and-egg bootstrap explicitly (recommend one).
+2. C2 SELF-HEAL: the exact change to the warm-only CLI path to fire a detached cold-spawn without blocking (so prompt-time stays fast but the daemon heals by the next call). And the SessionStart backgrounded cold-start. Why this is safe (no flap) given shouldAbortRelaunchOnFire + crash-loop guard.
+3. SIGKILL/OOM RESILIENCE: only an EXTERNAL supervisor can restart a process that received SIGKILL or was OOM-killed (the process can't respawn itself). Which of A/B/C1/C2 actually survive SIGKILL of the LAST resident owner? Be precise.
+4. RESOURCE/OOM ROOT (RC-1): iteration 001 notes RC-1 = native/sidecar RSS/OOM. Does any fix need to ALSO cap RSS / recycle on memory pressure so the daemon doesn't get OOM-killed in the first place? Tie to the RSS watchdog in model-server-supervision.cjs.
+5. C1 vs C2: when is the heavy supervisor (C1) worth it vs the minimal self-heal (C2)? Could C2 be the 80/20 immediate fix and C1/A the durable fix?
+6. FAILURE-MODE MAP: for C1 and C2 separately, fully/partial/not-fixed per the 6 root-cause modes.
+
+# Output skeleton
+## IT6 — Fix C: supervisor process (C1) + cold-start self-heal (C2)
+### C1 dedicated supervisor (design + bootstrap chicken-and-egg solution)
+### C2 cold-start-on-demand self-heal (exact change sites + safety)
+### SIGKILL/OOM resilience (which fixes actually survive it)
+### OOM-prevention (RSS cap / recycle) tie-in
+### C1 vs C2 (80/20 immediate vs durable)
+### Failure-mode map (C1 and C2, per mode)
+### Confidence + unknowns
+
+Cite file:line. Prefer concrete recommendations; flag chicken-and-egg honestly.

@@ -42,9 +42,7 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/scripts/test-council-matrix.sh",
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
-      ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
       "mcp_server/package.json",
       "scripts/test-council-matrix.sh",
@@ -68,21 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "council-playbook-anchor-integrity.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "replay-graph-from-artifacts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
         "source": "derived"
       },
       {
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur; (2) the playbook's §17 FEATURE CATALOG CROSS-REFERENCE INDEX carries 32 \"No feature catalog exists yet\" placeholders inherited from packet 002; (3) playbook scenario → vitest test-name anchors are one-way strings with no integrity check; (4) DAC-025's \"delete graph + replay from artifacts\" path is doc-only with no helper script; (5) the Codex TOML runtime mirror is only checked for sandbox/permission strings, not name + description prose; (6) DAC-030 and DAC-032 fixture helpers normalize operator-facing answers from grouped runtime responses without code-level provenance for future maintainers.",
     "created_at": "2026-05-11T11:00:00Z",
-    "last_save_at": "2026-06-07T09:00:45.696Z",
+    "last_save_at": "2026-06-15T09:09:33.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,29 @@
+Act as a senior reliability architect evaluating OS-level process supervision. READ-ONLY MODE: do NOT write or edit files. Final message IS the deliverable — use the skeleton at the end.
+
+# Context (build on prior findings — do not re-derive)
+The core root cause (iterations 001-002, READ them): these 3 local daemons (mk-spec-memory, mk-code-index, mk-skill-advisor) have NO always-on supervisor — liveness is tied to live sessions; nothing resurrects a fully-dead daemon until a fresh non-warm launcher runs. CRUCIAL LEAD: phase 026 ("026-daemon-reliability-followups") ADDED a LaunchAgent template but it is NOT the default (the system still uses per-session launchers). This iteration evaluates whether OS-level supervision (macOS launchd / Linux systemd) is the right root-cause fix.
+
+# READ (use Read; --dir is repo root)
+- research/iterations/iteration-001.md , iteration-002.md (paths under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/)
+- Phase 026: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/ (spec.md + implementation-summary.md)
+- FIND the LaunchAgent/plist template it added: grep the repo for "LaunchAgent", ".plist", "launchd", "KeepAlive", "RunAtLoad" (try .opencode/, system-spec-kit/, scripts/, templates/). READ the template.
+- .opencode/bin/README.md and ENV_REFERENCE.md for any launchd/always-on notes.
+- The 3 launchers (skim) to understand how a launchd-supervised daemon would coexist with the existing owner-lease/re-election logic.
+
+# Questions (cite file:line; mark CONFIRMED vs INFERRED)
+1. THE TEMPLATE: where is the LaunchAgent template, what does it supervise (which daemon[s]?), and what are its key keys (RunAtLoad, KeepAlive, ThrottleInterval, StandardOut/Err, ProgramArguments)? Is it installed/active (would live at ~/Library/LaunchAgents/*.plist) — note you cannot run commands, so reason from the template + any install script.
+2. WHY NOT DEFAULT: from phase 026 + later phases, WHY was the LaunchAgent added but not made the default activation path? What concerns/deferrals were cited (machine-specific plist, the per-session-launcher model, cross-platform, the shared-daemon/owner-lease design)?
+3. DOES IT FIX THE ROOT CAUSE: would a launchd KeepAlive (and Linux systemd equivalent) daemon solve the live failure — i.e. always-on, auto-restart on ANY death (incl. SIGKILL/OOM/crash), session-independent, and sweeping/rebinding the stale socket on relaunch? Map it against each failure mode from iterations 001-002 (advisor kill-on-shutdown, adopt-not-resurrect, stale-socket-not-swept, ungraceful death, cross-session kill, warm-probe trap).
+4. CONFLICTS: how would an always-on launchd/systemd daemon interact with the EXISTING owner-lease + re-election + per-session launchers? Would they fight (two things trying to own/spawn the daemon)? What must change in the launchers so OS-supervision and session-bridging coexist (e.g. launchers become pure clients/bridges; the daemon is owned only by launchd)?
+5. CROSS-PLATFORM + SCOPE: launchd is macOS-only; Linux needs systemd --user; Windows? The repo says macOS baseline. Is OS-supervision viable as the primary fix, or only on macOS with a fallback supervisor elsewhere? Would it need to supervise all 3 daemons (+ the shared HF model-server sidecar)?
+
+# Output skeleton
+## IT4 — OS-level supervision (launchd/systemd) as the root-cause fix
+### The LaunchAgent template (location, what it supervises, key keys, install state)
+### Why it was added but not made default (cited deferrals/concerns)
+### Does it fix the root cause? (mapped against each failure mode)
+### Conflicts with the existing lease/re-election/launcher model (what must change)
+### Cross-platform + scope (macOS/Linux/Windows; all 3 daemons + HF sidecar?)
+### Confidence + unknowns
+
+Cite file:line. If the template can't be found, say so explicitly.

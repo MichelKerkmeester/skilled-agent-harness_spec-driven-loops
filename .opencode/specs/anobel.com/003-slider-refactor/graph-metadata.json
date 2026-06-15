@@ -43,6 +43,11 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "a_nobel_en_zn/1_css/slider/slider_timeline.css",
+      "a_nobel_en_zn/2_javascript/slider_testimonial.js",
+      "a_nobel_en_zn/2_javascript/slider_timeline.js",
+      "a_nobel_en_zn/2_javascript/z_minified/slider_testimonial.min.js",
+      "a_nobel_en_zn/2_javascript/z_minified/slider_timeline.min.js",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,6 +55,36 @@
       "handover.md"
     ],
     "entities": [
+      {
+        "name": "slider_timeline.css",
+        "kind": "file",
+        "path": "a_nobel_en_zn/1_css/slider/slider_timeline.css",
+        "source": "derived"
+      },
+      {
+        "name": "slider_testimonial.js",
+        "kind": "code",
+        "path": "a_nobel_en_zn/2_javascript/slider_testimonial.js",
+        "source": "derived"
+      },
+      {
+        "name": "slider_timeline.js",
+        "kind": "code",
+        "path": "a_nobel_en_zn/2_javascript/slider_timeline.js",
+        "source": "derived"
+      },
+      {
+        "name": "slider_testimonial.min.js",
+        "kind": "code",
+        "path": "a_nobel_en_zn/2_javascript/z_minified/slider_testimonial.min.js",
+        "source": "derived"
+      },
+      {
+        "name": "slider_timeline.min.js",
+        "kind": "code",
+        "path": "a_nobel_en_zn/2_javascript/z_minified/slider_timeline.min.js",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -163,41 +198,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Webflow Designer",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Tab Styling Architecture",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "External Webflow Designer",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`, `__testimonialSliderCdnInit`, etc.). This prevented the same engine from being reused for other slider patterns without renaming collisions and conflicting injected styles.",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:13.637Z",
+    "last_save_at": "2026-06-15T09:09:32.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

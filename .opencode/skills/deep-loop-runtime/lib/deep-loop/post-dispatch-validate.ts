@@ -512,6 +512,33 @@ export function runOptionalVerificationPass(
  * @param input - Validation input with paths, field requirements, and config.
  * @returns Validation result indicating pass/fail with details.
  */
+// Heuristic behavioral signals for an iteration's prose — drift nudges toward the
+// fable-5 signature (result-first openers, lean hedging, evidence-backed claims).
+// These are advisory only: callers see them in `warnings`, never in the `ok` verdict.
+function computeBehavioralAdvisories(text: string): PostDispatchAdvisory[] {
+  const out: PostDispatchAdvisory[] = [];
+  const firstLine = (text.split('\n').find((l) => l.trim() && !l.trim().startsWith('#')) || '').trim();
+  if (/^(?:I'?ll\b|I will\b|Let me\b|Let's\b|I'?m going to\b|Now I\b|First,?\s+I\b|I need to\b)/i.test(firstLine)) {
+    out.push({ code: 'behavioral_self_opener', detail: 'iteration opens with self-narration; prefer a result-first opener' });
+  }
+  const caveats = (text.match(/\b(?:however|that said|worth noting|keep in mind|bear in mind|on the other hand|to be fair)\b/gi) || []).length;
+  if (caveats >= 4) {
+    out.push({ code: 'behavioral_high_caveat', detail: `${caveats} hedging caveats; keep only load-bearing qualifiers` });
+  }
+  let claims = 0;
+  let backed = 0;
+  for (const sentence of text.split(/(?<=[.!?])\s+/)) {
+    if (/\b(?:done|completed?|verified|passes|passing|works|confirmed|shipped)\b/i.test(sentence)) {
+      claims += 1;
+      if (/(?:\[SOURCE:|`[^`]+`|\b[\w./-]+\.(?:ts|js|cjs|py|sh|md|json|yaml)\b|:\d+\b|\bvalidate\.sh\b|\bvitest\b|\bPASS)/.test(sentence)) backed += 1;
+    }
+  }
+  if (claims >= 2 && backed / claims < 0.5) {
+    out.push({ code: 'behavioral_uncited_completion', detail: `${claims - backed}/${claims} completion claims lack nearby evidence` });
+  }
+  return out;
+}
+
 export function validateIterationOutputs(input: PostDispatchValidateInput): PostDispatchValidateResult {
   const warnings: PostDispatchAdvisory[] = [];
 
@@ -707,6 +734,12 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
   } catch (error: unknown) {
     const details = error instanceof Error ? error.message : String(error);
     return { ok: false, reason: 'jsonl_parse_error', details };
+  }
+
+  try {
+    warnings.push(...computeBehavioralAdvisories(readFileSync(input.iterationFile, 'utf8')));
+  } catch {
+    // behavioral advisory is best-effort and verdict-neutral; never fail on it
   }
 
   return warnings.length > 0 ? { ok: true, warnings } : { ok: true };

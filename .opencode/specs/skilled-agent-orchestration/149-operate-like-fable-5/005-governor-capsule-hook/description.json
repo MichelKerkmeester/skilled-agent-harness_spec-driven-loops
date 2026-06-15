@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/149-operate-like-fable-5/005-governor-capsule-hook",
+  "description": "Feature Specification: Compact fable-5 governor capsule on the live per-turn skill-advisor hook reminder",
+  "keywords": [
+    "feature",
+    "specification",
+    "compact",
+    "fable-5",
+    "governor",
+    "capsule",
+    "live",
+    "per-turn",
+    "skill-advisor",
+    "hook",
+    "reminder"
+  ],
+  "lastUpdated": "2026-06-15T14:22:42.411Z",
+  "specId": "005",
+  "folderSlug": "governor-capsule-hook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "149-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

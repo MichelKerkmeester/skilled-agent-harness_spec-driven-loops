@@ -4,6 +4,8 @@
   "spec_folder": "skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research",
   "parent_id": "skilled-agent-orchestration/148-sk-interface-design",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,33 +15,198 @@
     "trigger_phrases": [
       "ui-ux-pro-max merge research",
       "sk-interface-design improvement research",
-      "design data merge recommendation"
+      "ui ux pro max skill",
+      "design data merge recommendation",
+      "ui-ux-pro-max merge plan",
+      "sk-interface-design research plan",
+      "design data merge research",
+      "ui-ux-pro-max merge tasks",
+      "sk-interface-design research tasks",
+      "ui-ux-pro-max merge summary",
+      "sk-interface-design research outcome",
+      "sk-interface-design merge recommendation"
     ],
     "key_topics": [
       "ui-ux-pro-max",
+      "merge",
+      "research",
       "sk-interface-design",
-      "deep-research",
-      "design data",
-      "skill merge",
-      "phase"
+      "improvement",
+      "pro",
+      "max",
+      "skill",
+      "design",
+      "data",
+      "recommendation",
+      "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merge Recommendation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the Merge Recommendation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run a 10-iteration deep-research loop to produce a concrete, evidence-backed merge recommendation: what to ADOPT, HOW to integrate it into the house skill structure, what to LEAVE OUT, and the LICENSING path. The actual merge is a separate follow-up packet.",
+    "created_at": "2026-06-13T16:30:00Z",
+    "last_save_at": "2026-06-15T09:09:33.166Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
       "research/research.md"
-    ],
-    "entities": [],
-    "causal_summary": "Phase 002 runs a 10-iteration parallel-by-model deep-research loop (gpt-5.5-fast xhigh + opus-4.8 xhigh) to determine how the vendored ui-ux-pro-max-skill-main repo can merge into and improve sk-interface-design. Output is a merge recommendation; the merge itself is a later phase.",
-    "created_at": "2026-06-13T16:30:00Z",
-    "last_save_at": "2026-06-13T16:30:00Z",
-    "save_lineage": "manual",
-    "last_accessed_at": null,
-    "source_docs": [
-      "spec.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

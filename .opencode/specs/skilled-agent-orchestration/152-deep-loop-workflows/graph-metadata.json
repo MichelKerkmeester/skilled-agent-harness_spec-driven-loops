@@ -40,7 +40,7 @@
       "deep-ai-council"
     ],
     "importance_tier": "important",
-    "status": "planning",
+    "status": "complete",
     "key_files": [
       "context/context-report.md",
       "research/research.md",
@@ -147,7 +147,7 @@
     ],
     "causal_summary": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` — that already share one backend (`deep-loop-runtime`, the MCP-free runtime created by the FULL_ISOLATE_NO_MCP consolidation). The five skills duplicate generic plumbing (capability resolvers, locking adapters, atomic-write mirrors, artifact-root resolution), spread eight `/deep:*` commands and fifteen native agent mirrors across an unmanaged surface, and force every cross-repo reference, advisor edge, and governance tree to enumerate five skill IDs. The split is only half-realized: the backend boundary exists, but the five persona surfaces remain separate, which makes routing, documentation, and maintenance brittle.",
     "created_at": "2026-06-14T20:16:09.672Z",
-    "last_save_at": "2026-06-14T20:16:09.672Z",
+    "last_save_at": "2026-06-15T09:09:33.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

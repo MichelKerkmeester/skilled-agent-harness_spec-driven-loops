@@ -22,7 +22,19 @@ describe('executor-config', () => {
       serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
+      governor: null,
     });
+  });
+
+  it('defaults governor to null and accepts a governor string on any kind', () => {
+    expect(parseExecutorConfig({ kind: 'native' }).governor).toBeNull();
+    expect(parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4', governor: 'be terse; act not narrate' }))
+      .toMatchObject({ kind: 'cli-codex', governor: 'be terse; act not narrate' });
+  });
+
+  it('rejects a non-string or empty governor', () => {
+    expect(() => parseExecutorConfig({ kind: 'native', governor: 123 as unknown as string })).toThrow(ExecutorConfigError);
+    expect(() => parseExecutorConfig({ kind: 'native', governor: '' })).toThrow(ExecutorConfigError);
   });
 
   it('defaults to native when given an empty object', () => {

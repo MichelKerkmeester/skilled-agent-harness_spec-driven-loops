@@ -3,7 +3,17 @@
   "packet_id": "skilled-agent-orchestration/149-operate-like-fable-5",
   "spec_folder": "skilled-agent-orchestration/149-operate-like-fable-5",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "skilled-agent-orchestration/149-operate-like-fable-5/001-initial-refinement",
+    "skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research",
+    "skilled-agent-orchestration/149-operate-like-fable-5/003-measurement-baseline",
+    "skilled-agent-orchestration/149-operate-like-fable-5/004-doctrine-quick-wins",
+    "skilled-agent-orchestration/149-operate-like-fable-5/005-governor-capsule-hook",
+    "skilled-agent-orchestration/149-operate-like-fable-5/006-subagent-governor-recursion",
+    "skilled-agent-orchestration/149-operate-like-fable-5/007-sk-code-rituals",
+    "skilled-agent-orchestration/149-operate-like-fable-5/008-fail-loud-provenance",
+    "skilled-agent-orchestration/149-operate-like-fable-5/009-evidence-contract"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,71 +21,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "fable 5",
-      "operating doctrine",
-      "claim legibility",
-      "blast radius",
-      "verify before completion",
-      "implementation plan",
-      "constitutional rules",
-      "surgical distribution",
-      "tasks",
-      "verification",
-      "checklist",
-      "implementation summary"
+      "149 operate like fable-5",
+      "149 root packet",
+      "fable-5 operating doctrine program",
+      "149 phase map"
     ],
     "key_topics": [
-      "fable",
+      "149",
+      "operate",
+      "like",
+      "fable-5",
+      "root",
+      "packet",
       "operating",
       "doctrine",
-      "claim",
-      "legibility",
-      "blast",
-      "radius",
-      "verify",
-      "completion",
-      "implementation",
-      "plan",
-      "constitutional"
+      "program",
+      "phase",
+      "map",
+      "profile"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/constitutional/regression-baseline-and-delta.md",
-      ".opencode/skills/system-spec-kit/constitutional/finding-is-a-hypothesis.md",
-      ".opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md",
-      ".opencode/skills/sk-code/SKILL.md",
-      "external/Fable5.md",
-      "research/research.md",
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "external/Fable5.md",
+      "research/research.md"
     ],
     "entities": [
       {
-        "name": "regression-baseline-and-delta.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/regression-baseline-and-delta.md",
-        "source": "derived"
-      },
-      {
-        "name": "finding-is-a-hypothesis.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/finding-is-a-hypothesis.md",
-        "source": "derived"
-      },
-      {
-        "name": "main-branch-direct-push.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -91,125 +67,79 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Distribute Fable",
+        "name": "Operate Like Fable",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Operating Doctrine Across Spec",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Kit Surfaces",
+        "name": "Purpose Get",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Authored Level",
+        "name": "Phase Documentation Map",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Research Synthesis",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Executor Protocol Re",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Operating Discipline",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Convergence Only",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Absorb the Fable 5 doctrine into the framework's most reliable surfaces (AGENTS.md, constitutional rules, sk-code) so the rules are auto-surfaced and enforced, without bloating AGENTS.md past its line budget.",
-    "created_at": "2026-06-14T07:21:49Z",
-    "last_save_at": "2026-06-14T08:24:03.922Z",
-    "save_lineage": "same_pass",
+    "causal_summary": "The \"fable-5\" operating profile (claim legibility, blast-radius sizing, mechanism-over-narration, measured efficiency) lives in external source material, not in this framework's behavioral surfaces. Without distribution into the surfaces an AI actually reads at dispatch, the doctrine has no behavioral effect here. This packet is the root coordination surface for moving that doctrine — and its supporting mechanisms and measurement — into the framework.",
+    "created_at": "2026-06-15T11:53:02.676Z",
+    "last_save_at": "2026-06-15T14:22:43.307Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
       "research/research.md"
     ],
     "last_active_child_id": null,

@@ -26,9 +26,12 @@ const options = {
   runtime: 'codex' as const,
 };
 const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+// Appended in full after the capped advisor portion (lib/render.ts), so every
+// brief ends with this capsule and it is excluded from the advisor token cap.
+const GOVERNOR_DIRECTIVE = 'Fable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 
 function expectedBrief(summary: string): string {
-  return `${summary}\n${HYGIENE_DIRECTIVE}`;
+  return `${summary}\n${HYGIENE_DIRECTIVE}\n${GOVERNOR_DIRECTIVE}`;
 }
 
 function expectedSharedSummary(summary: string): string {
@@ -386,7 +389,13 @@ describe('buildSkillAdvisorBrief', () => {
     });
 
     expect(result.metrics.tokenCap).toBe(120);
-    expect(Math.ceil((result.brief?.length ?? 0) / 4)).toBeLessThanOrEqual(120);
+    // The hard cap governs the advisor portion only; the fixed governor capsule
+    // is appended in full afterward, so strip it before measuring the cap.
+    const governorSuffix = `\n${GOVERNOR_DIRECTIVE}`;
+    const cappedPortion = (result.brief ?? '').endsWith(governorSuffix)
+      ? (result.brief ?? '').slice(0, -governorSuffix.length)
+      : (result.brief ?? '');
+    expect(Math.ceil(cappedPortion.length / 4)).toBeLessThanOrEqual(120);
   });
 
   it('records metalinguistic skill-name diagnostics without leaking prompt text', async () => {

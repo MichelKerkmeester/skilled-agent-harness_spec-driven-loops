@@ -41,117 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-research/references/convergence/convergence.md",
-      ".opencode/skills/deep-research/references/convergence/convergence_graph.md",
-      ".opencode/skills/deep-research/references/convergence/convergence_recovery.md",
-      ".opencode/skills/deep-research/references/convergence/convergence_reference_only.md",
-      ".opencode/skills/deep-research/references/convergence/convergence_signals.md",
-      ".opencode/skills/deep-research/references/guides/capability_matrix.md",
-      ".opencode/skills/deep-research/references/guides/quick_reference.md",
-      ".opencode/skills/deep-research/references/protocol/loop_protocol.md",
-      ".opencode/skills/deep-research/references/protocol/spec_check_protocol.md",
-      ".opencode/skills/deep-research/references/state/state_format.md",
-      ".opencode/skills/deep-research/references/state/state_jsonl.md",
-      ".opencode/skills/deep-research/references/state/state_outputs.md",
-      ".opencode/skills/deep-research/references/state/state_reducer_registry.md",
-      ".opencode/skills/deep-research/assets/deep_research_dashboard.md",
-      ".opencode/skills/deep-research/assets/deep_research_strategy.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/convergence/convergence.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence_graph.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/convergence/convergence_graph.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence_recovery.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/convergence/convergence_recovery.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence_reference_only.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/convergence/convergence_reference_only.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence_signals.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/convergence/convergence_signals.md",
-        "source": "derived"
-      },
-      {
-        "name": "capability_matrix.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/guides/capability_matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/guides/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/protocol/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_check_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/protocol/spec_check_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/state/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_jsonl.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/state/state_jsonl.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_outputs.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/state/state_outputs.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_reducer_registry.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/state/state_reducer_registry.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_dashboard.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/assets/deep_research_dashboard.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/assets/deep_research_strategy.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -205,11 +100,101 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 9** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
     "created_at": "2026-06-11T05:47:28Z",
-    "last_save_at": "2026-06-12T04:40:47.834Z",
+    "last_save_at": "2026-06-15T09:09:34.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

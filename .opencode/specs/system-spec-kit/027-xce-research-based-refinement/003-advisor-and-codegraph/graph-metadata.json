@@ -6,7 +6,8 @@
   "children_ids": [
     "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
     "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect"
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect",
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair"
   ],
   "manual": {
     "depends_on": [],
@@ -28,10 +29,11 @@
       "causal",
       "traversal",
       "bfs",
+      "xce",
+      "feature",
       "adoption",
-      "reconnect",
-      "provenance",
-      "observability"
+      "codegraph",
+      "skill"
     ],
     "importance_tier": "important",
     "status": "phase_parent",
@@ -44,11 +46,47 @@
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The advisor-and-code-graph track owns the cross-subsystem hardening: a shared BFS helper replacing recursive-CTE traversals, the XCE feature adoption that carries memory-store patterns (observability, provenance guard, packed BM25F, feedback calibration, tombstone audit, why-included breadcrumbs, BM25 symbol resolver) into the advisor and code-graph, and the advisor launcher parity that brings owner-lease and reconnecting-proxy resilience.",
+    "causal_summary": "Two sibling daemons beyond the memory store needed 027's hardening: the skill-advisor lacked launcher resilience and had not adopted the proven write-safety and observability patterns, and the code-graph carried recursive-CTE traversals that defeated its indexes. The advisor and code-graph work is cross-cutting between two subsystems, so it belongs under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-15T16:24:38.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

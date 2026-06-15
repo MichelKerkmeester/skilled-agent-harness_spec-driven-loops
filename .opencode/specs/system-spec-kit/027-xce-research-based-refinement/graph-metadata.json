@@ -51,8 +51,7 @@
     "status": "phase_parent",
     "key_files": [
       "resource-map.md",
-      ".opencode/specs/z_future/sqlite-to-turso/research/research.md",
-      "001-research-and-doctrine/001-peck-teachings-adoption/spec.md",
+      "changelog/README.md",
       "spec.md",
       ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
@@ -69,13 +68,20 @@
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md"
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json"
     ],
     "entities": [
       {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "changelog/README.md",
         "source": "derived"
       },
       {
@@ -175,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+        "source": "derived"
+      },
+      {
         "name": "Derived Spec Kit Refinement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,23 +215,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Coordinate",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Phase Index This",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-12T11:12:59.453Z",
+    "last_save_at": "2026-06-15T09:09:34.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [

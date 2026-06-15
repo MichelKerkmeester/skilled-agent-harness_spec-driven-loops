@@ -52,6 +52,12 @@ const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 // the comment hygiene rule even when AGENTS.md is absent from session context.
 const HYGIENE_DIRECTIVE = '\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 
+// The compact fable-5 governor capsule, appended after the capped advisor
+// portion so it is always delivered in full every turn — the thermostat that
+// re-states the disposition as context grows. Steers efficiency (result-first,
+// less narration), not capability.
+const GOVERNOR_DIRECTIVE = '\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────
@@ -185,13 +191,13 @@ export function renderAdvisorBrief(
     return capText(
       `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.${HYGIENE_DIRECTIVE}`,
       Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
-    );
+    ) + GOVERNOR_DIRECTIVE;
   }
 
   return capText(
     `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.${HYGIENE_DIRECTIVE}`,
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
-  );
+  ) + GOVERNOR_DIRECTIVE;
 }
 
 // Shared timeout-fallback renderer. Previously the Codex hook

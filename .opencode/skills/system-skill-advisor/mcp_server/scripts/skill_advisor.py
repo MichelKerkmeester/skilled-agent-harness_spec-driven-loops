@@ -3160,14 +3160,20 @@ def _apply_deep_research_disambiguation(
         if note not in existing_reason:
             loser["reason"] = f"{existing_reason}{note}"
 
+    # The five legacy deep-loop skills are folded into MERGED_DEEP_SKILL_ID, so
+    # the deep candidate surfaces under the merged id. Prefer it and keep the
+    # legacy mode-level ids as a mid-migration fallback.
+    def _deep_winner(legacy_id: str) -> Optional[Dict[str, Any]]:
+        return _find(MERGED_DEEP_SKILL_ID) or _find(legacy_id)
+
     if any(phrase in prompt_lower for phrase in DEEP_RESEARCH_DISAMBIGUATION_PHRASES):
-        winner = _find("deep-research")
+        winner = _deep_winner("deep-research")
         loser = _find("sk-code-review")
         if winner and loser:
             _enforce_margin(winner, loser, "deep-research")
 
     if any(phrase in prompt_lower for phrase in DEEP_REVIEW_DISAMBIGUATION_PHRASES):
-        winner = _find("deep-review")
+        winner = _deep_winner("deep-review")
         loser = _find("sk-code-review")
         if winner and loser:
             _enforce_margin(winner, loser, "deep-review")

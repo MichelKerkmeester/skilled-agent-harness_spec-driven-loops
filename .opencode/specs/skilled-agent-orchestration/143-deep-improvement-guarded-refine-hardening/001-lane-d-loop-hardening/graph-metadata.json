@@ -77,8 +77,8 @@
       }
     ],
     "causal_summary": "Take the packaging-side loop host (`<packaging-root>/_loop/loop.py`, pilot at `Barter/Copywriter/_loop/loop.py`) from \"live-validated prototype\" to production grade: resumable, session-kill-safe, portable, observable, with the promotion-accept path proven by a controlled live firing.",
-    "created_at": "2026-06-12T04:40:46.634Z",
-    "last_save_at": "2026-06-12T04:40:46.634Z",
+    "created_at": "2026-06-15T09:09:33.145Z",
+    "last_save_at": "2026-06-15T09:09:33.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

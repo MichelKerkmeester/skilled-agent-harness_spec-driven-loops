@@ -32,8 +32,6 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
-      ".opencode/commands/deep/start-review-loop.md",
-      ".opencode/commands/deep/start-agent-improvement-loop.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -45,18 +43,6 @@
         "name": "auto_mode_contract.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "start-review-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-review-loop.md",
-        "source": "derived"
-      },
-      {
-        "name": "start-agent-improvement-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
         "source": "derived"
       },
       {
@@ -184,11 +170,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/deep/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.",
     "created_at": "2026-05-11T11:01:36Z",
-    "last_save_at": "2026-06-07T09:00:45.712Z",
+    "last_save_at": "2026-06-15T09:09:33.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

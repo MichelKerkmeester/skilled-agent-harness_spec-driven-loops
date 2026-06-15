@@ -1,40 +1,34 @@
 ---
-title: "Feature Specification: Distribute Fable 5 Operating Doctrine Across Spec-Kit Surfaces"
-description: "external/Fable5.md is a distilled agent operating doctrine that lives outside the framework's enforced surfaces, so its verify-before-claim, claim-legibility, and blast-radius rules are not reliably applied. This packet absorbs that doctrine into the most reliable surfaces without bloating AGENTS.md."
+title: "Feature Specification: Operate Like Fable-5 [skilled-agent-orchestration/149-operate-like-fable-5/spec]"
+description: "Root coordination packet for distributing fable-5 operating doctrine and mechanisms into the framework's most-read surfaces so any AI operates with fable-5 efficiency."
 trigger_phrases:
-  - "fable 5"
-  - "operating doctrine"
-  - "claim legibility"
-  - "blast radius"
-  - "verify before completion"
-importance_tier: "normal"
-contextType: "general"
+  - "149 operate like fable-5"
+  - "149 root packet"
+  - "fable-5 operating doctrine program"
+  - "149 phase map"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/149-operate-like-fable-5"
-    last_updated_at: "2026-06-14T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored Level 2 spec docs for the Fable 5 distribution"
-    next_safe_action: "Owner decides Barter git-posture contradiction"
+    last_updated_at: "2026-06-15T13:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Implemented + verified phase 004 (doctrine quick-wins)"
+    next_safe_action: "Implement phase 005 (governor capsule on hook) next"
     blockers: []
     key_files:
-      - "AGENTS.md"
-      - ".opencode/skills/system-spec-kit/constitutional/regression-baseline-and-delta.md"
-      - ".opencode/skills/system-spec-kit/constitutional/finding-is-a-hypothesis.md"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "markdown-agent-session"
-      parent_session_id: null
-    completion_pct: 100
-    open_questions:
-      - "Barter ships main-branch-direct-push.md yet its AGENTS.md declares git read-only; owner must decide which prevails."
-    answered_questions:
-      - "Where should the Fable 5 doctrine land? Surgically across AGENTS.md, constitutional rules, and sk-code, not as a single AGENTS.md dump."
+      - "spec.md"
+      - "description.json"
+      - "graph-metadata.json"
+    completion_pct: 49
+    open_questions: []
+    answered_questions: []
 ---
-# Feature Specification: Distribute Fable 5 Operating Doctrine Across Spec-Kit Surfaces
 
-<!-- SPECKIT_LEVEL: 2 -->
+# Feature Specification: Operate Like Fable-5
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -44,10 +38,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | P1 |
-| **Status** | Complete |
+| **Priority** | P2 |
+| **Status** | In Progress |
 | **Created** | 2026-06-14 |
-| **Branch** | `028-mcp-to-cli-tool-transition` |
+| **Updated** | 2026-06-15 |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,10 +51,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`external/Fable5.md` is a distilled agent operating doctrine — verify before you claim, make confirmed-vs-inferred claims legible, capture a baseline before "no regressions" and report the delta, treat a finding as a hypothesis until you open the cited code, stay in scope, name the rollback before irreversible or outward actions, and match effort to blast radius. The doctrine lives in an external note, so none of its rules are wired into the framework's enforced surfaces, and they are not reliably applied across agent work.
+The "fable-5" operating profile (claim legibility, blast-radius sizing, mechanism-over-narration, measured efficiency) lives in external source material, not in this framework's behavioral surfaces. Without distribution into the surfaces an AI actually reads at dispatch, the doctrine has no behavioral effect here. This packet is the root coordination surface for moving that doctrine — and its supporting mechanisms and measurement — into the framework.
 
 ### Purpose
-Absorb the Fable 5 doctrine into the framework's most reliable surfaces (AGENTS.md, constitutional rules, sk-code) so the rules are auto-surfaced and enforced, without bloating AGENTS.md past its line budget.
+Get our AIs, and any AI operating in this framework, closer to fable-5 *efficiency*: less token burn, less context decay, more result-first output. Round 1 distributed the distilled doctrine into the highest-read text surfaces; later rounds research and rank the mechanism/measurement leverage (a governor on the live per-turn hook, a behavioral metric, executor fail-loud) before any further edits. The root packet owns navigation, the phase map, and aggregate status only.
+
+> **Phase-parent note:** This spec.md is the ONLY authored planning document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and research live in the child phase folders listed in the Phase Documentation Map below. Phase/migration history, if recorded, lives in `context-index.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -68,128 +65,69 @@ Absorb the Fable 5 doctrine into the framework's most reliable surfaces (AGENTS.
 ## 3. SCOPE
 
 ### In Scope
-- A new `Operating Discipline — Claim Legibility & Blast-Radius` subsection in §1 of the Public root `AGENTS.md` (and its byte-identical `CLAUDE.md` twin), cross-referencing the Four Laws and Completion Verification Rule rather than restating them.
-- The same subsection in `Barter/ai-speckit/coder/AGENTS.md`, adapted to that surface's read-only-git posture.
-- Two new constitutional rules in `.opencode/skills/system-spec-kit/constitutional/` (Public + Barter mirror): `regression-baseline-and-delta.md` and `finding-is-a-hypothesis.md`.
-- A 5th "How to apply" bullet folded into the existing `main-branch-direct-push.md` constitutional rule covering non-git outward/irreversible actions.
-- A "Baseline & blast-radius" line added to `sk-code/SKILL.md` after the Iron Law.
+- Coordinate the fable-5 phase tracks and their aggregate status.
+- Provide the navigation map from round to child phase folder.
+- Track which rounds are shipped, in progress, or research-only.
 
 ### Out of Scope
-- sk-git embedding of the doctrine — already covered by sk-git rule #12 plus `commit_workflows.md`; adding it would duplicate.
-- A direct hard-checklist edit to `orchestrate.md` §5 — superseded by the auto-surfacing `finding-is-a-hypothesis.md` rule, and `orchestrate.md` is three drifting mirrors making a direct edit drift-prone.
-- A machine-checkable "shared evidence contract" wired into post-dispatch-validate — surfaced by the research as a larger follow-up, outside this packet's surgical scope.
+- Per-round implementation and research detail (lives in each child phase folder).
+- Framework-surface edits driven by research rounds (gated, owner-directed after review).
+- Phase history narration (lives in `context-index.md` if needed).
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `AGENTS.md` (Public root) | Modify | Add Operating Discipline subsection to §1 |
-| `CLAUDE.md` (Public root) | Modify | Byte-identical auto-synced twin of AGENTS.md |
-| `Barter/ai-speckit/coder/AGENTS.md` | Modify | Same subsection, read-only-git variant |
-| `.opencode/skills/system-spec-kit/constitutional/regression-baseline-and-delta.md` | Create | Baseline-before-no-regressions rule (Public + Barter mirror) |
-| `.opencode/skills/system-spec-kit/constitutional/finding-is-a-hypothesis.md` | Create | Finding-is-a-hypothesis rule (Public + Barter mirror) |
-| `.opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md` | Modify | Fold a 5th "How to apply" bullet for non-git outward/irreversible actions |
-| `.opencode/skills/sk-code/SKILL.md` | Modify | Add Baseline & blast-radius line after the Iron Law |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `00N-*/` | Modify | all | Per-round work lives in child phase folders |
+| `spec.md`, `description.json`, `graph-metadata.json` | Modify | root | Root navigation + metadata |
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
+> Each round is an independently executable child spec folder owning its own plan, tasks,
+> checklist, decisions, and continuity. The Status column reports aggregate round state.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Public root `AGENTS.md` and `CLAUDE.md` stay byte-identical after the edit | `diff AGENTS.md CLAUDE.md` reports no difference |
-| REQ-002 | Both Public `AGENTS.md` and Barter `AGENTS.md` stay under the ~500-line budget | Line counts: Public 446, Barter 467 |
-| REQ-003 | The Operating Discipline subsection is present in all three AGENTS surfaces | grep finds the subsection heading in each file |
-| REQ-004 | Two new constitutional rules are well-formed and present in Public and Barter | Files exist in both constitutional folders; rule format matches existing rules |
+> Rounds 001–002 are the research arc (shipped doctrine + 6-lineage research). Phases 003–009 are the
+> implementation arc derived from `002/recommendations.md`, ordered structural-first (measure → enforce →
+> govern → rituals → dedicated). Each is planned; none is implemented yet.
 
-### P1 - Required (complete OR user-approved deferral)
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-initial-refinement/` | Round 1 — surgical distribution of the distilled Fable5.md doctrine into the highest-read surfaces | complete |
+| 002 | `002-fable-mode-efficiency-research/` | Round 2–4 — 6-lineage deep research mapping every adjustable surface; ranked, tiered recommendation map (`recommendations.md`) | complete |
+| 003 | `003-measurement-baseline/` | C1 fable-metrics script + C2 non-blocking advisories + C3 `/doctor` delivery — ships first to baseline behavior | complete |
+| 004 | `004-doctrine-quick-wins/` | A1 dead-pointer fix + pointer-resolution check, A2 efficiency doctrine spine, A3 scar-tissue handoff | complete |
+| 005 | `005-governor-capsule-hook/` | B2 compact fable-5 governor capsule on the live per-turn skill-advisor hook | planned |
+| 006 | `006-subagent-governor-recursion/` | B3 sub-agent governor via prompt-pack + agent prompts, rec#3 recursion-control rule, B6 executor-config governor field | planned |
+| 007 | `007-sk-code-rituals/` | B4 mutation-check + B5 verification ladder + rec#11 decision-economy / fail-closed into sk-code | planned |
+| 008 | `008-fail-loud-provenance/` | B1 (=P2) requested-vs-actual model diff + fail-loud in the executor audit | planned |
+| 009 | `009-evidence-contract/` | P1 machine-checkable evidence-contract schema in post-dispatch-validate + agent-io-contract | planned |
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-005 | `main-branch-direct-push.md` covers non-git outward/irreversible actions | A 5th "How to apply" bullet names deploy/send/migrate/overwrite shared state with rollback-then-stop |
-| REQ-006 | `sk-code/SKILL.md` carries the baseline/blast-radius discipline | A "Baseline & blast-radius" line follows the Iron Law |
-| REQ-007 | Constitutional rules are re-indexed into spec-memory | Deferred: blocked by a pre-existing stale spec-memory dist; will index on the next daemon scan |
-<!-- /ANCHOR:requirements -->
+### Phase Transition Rules
 
----
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- The parent spec tracks aggregate progress via this map; per-phase detail stays in the children.
+- Implementation phases are gated: each is owner-directed and ships on its own; **start order is structural-first** — `003` (baseline) before behavioral changes so movement is measurable.
+- `006` depends on `005` (the governor capsule text must exist first); the rest are independent.
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: The Fable 5 doctrine is enforced through auto-surfacing constitutional rules and the framework's most-read surfaces, not an external note.
-- **SC-002**: No AGENTS.md surface exceeds its line budget and the Public AGENTS/CLAUDE pair stays byte-identical.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | Auto-sync of `AGENTS.md` → `CLAUDE.md` and `.opencode` → `.claude` mirrors | Edits could drift between mirrors | Edit the source surface; verify byte-identical twin and mirrors after the sync |
-| Risk | AGENTS.md bloat | Med | Cross-reference existing laws instead of restating; keep the subsection to 9 bullets / +14 lines |
-| Risk | `orchestrate.md` triple-mirror drift if edited directly | Med | Rely on the auto-surfacing `finding-is-a-hypothesis.md` rule instead of a direct edit |
-| Dependency | spec-memory dist for constitutional re-index | Low | Pre-existing stale dist; re-index deferred to the next daemon scan |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:nfr -->
-## L2: NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: No measurable change to agent runtime; this is documentation and policy text only.
-
-### Security
-- **NFR-S01**: New rules tighten safety posture (rollback-before-irreversible coverage extended to non-git outward actions); no secrets or credentials involved.
-
-### Reliability
-- **NFR-R01**: Public `AGENTS.md` ≡ `CLAUDE.md` byte-identical invariant must hold after every edit.
-- **NFR-R02**: Constitutional rules must remain well-formed so the advisor can surface them.
-<!-- /ANCHOR:nfr -->
-
----
-
-<!-- ANCHOR:edge-cases -->
-## L2: EDGE CASES
-
-### Data Boundaries
-- Empty input: N/A — this is static policy text, not a runtime input path.
-- Maximum length: AGENTS.md must stay under the ~500-line budget; folding rather than restating keeps it inside.
-- Invalid format: A malformed constitutional rule would fail to surface; rule format is matched against existing rules in the same folder.
-
-### Error Scenarios
-- Mirror sync failure: if `CLAUDE.md` or `.claude` mirror does not match the source, the byte-identical check catches it before completion.
-- Stale spec-memory dist: constitutional re-index is deferred rather than forced against a stale build.
-
-### State Transitions
-- Partial completion: each surface edit is independent; an incomplete run leaves the others valid and re-runnable.
-- Pre-existing contradiction surfaced: Barter authorizes direct push via `main-branch-direct-push.md` while its AGENTS.md §1 declares git read-only; flagged for the owner rather than auto-resolved.
-<!-- /ANCHOR:edge-cases -->
-
----
-
-<!-- ANCHOR:complexity -->
-## L2: COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Notes |
-|-----------|-------|-------|
-| Scope | 10/25 | ~5 files touched across two repos; +13/+13 lines in AGENTS surfaces, 2 new rule files, 2 small folds |
-| Risk | 8/25 | Policy/doc only; main risk is mirror drift and budget overrun, both checkable |
-| Research | 12/20 | Deep-research loop ran to convergence (5 iterations) to validate the surgical distribution and redundancy analysis |
-| **Total** | **30/70** | **Level 2** |
-<!-- /ANCHOR:complexity -->
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Barter ships `main-branch-direct-push.md` (authorizes direct push) yet its `AGENTS.md` §1 declares git READ-ONLY. This pre-existing contradiction surfaced during this work and is flagged for the owner's decision; it was not auto-fixed.
-- Should the larger machine-checkable "shared evidence contract" (claim_class / evidence / would_confirm / baseline / gate_delta / scope_state / child_result_verified, wired into post-dispatch-validate) be taken up as a follow-up packet?
+- None blocking at the parent level. Round-level open questions are tracked in each child phase folder.
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: `001-initial-refinement/` (shipped) + `002-fable-mode-efficiency-research/` (research) form the research arc; `003-measurement-baseline/` … `009-evidence-contract/` are the planned implementation phases. Each holds its own spec.md, plan.md, tasks.md, and (Level 3) decision-record.md.
+- **External sources**: See `external/` for the fable-5 source corpus (`Fable5.md`, `fable-mode-main/`, `opus-fable-mode-main/`).
+- **Graph Metadata**: See `graph-metadata.json` for the `derived.last_active_child_id` pointer (the most recently active round).

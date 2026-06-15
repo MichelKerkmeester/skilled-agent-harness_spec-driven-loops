@@ -13,9 +13,12 @@ import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
 const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+// Every brief now ends with the always-delivered fable-5 governor capsule that
+// renderAdvisorBrief appends after the capped advisor portion (lib/render.ts).
+const GOVERNOR_DIRECTIVE = 'Fable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 
 function expectedBrief(summary: string): string {
-  return `${summary}\n${HYGIENE_DIRECTIVE}`;
+  return `${summary}\n${HYGIENE_DIRECTIVE}\n${GOVERNOR_DIRECTIVE}`;
 }
 
 function fixture(name: string): AdvisorHookResult & Record<string, unknown> {
@@ -63,7 +66,15 @@ describe('renderAdvisorBrief', () => {
     expect(renderAdvisorBrief(ambiguous)).toBe(
       expectedBrief('Advisor: live; ambiguous: sk-code 0.80/0.35 vs sk-doc 0.75/0.32 pass.'),
     );
-    expect(renderAdvisorBrief(ambiguous)?.length).toBeLessThanOrEqual(480);
+    // The 120-token (480-char) cap governs the advisor portion only; the fixed
+    // governor capsule is appended in full afterward, so strip it before the
+    // length check.
+    const governorSuffix = `\n${GOVERNOR_DIRECTIVE}`;
+    const ambiguousBrief = renderAdvisorBrief(ambiguous) ?? '';
+    const cappedPortion = ambiguousBrief.endsWith(governorSuffix)
+      ? ambiguousBrief.slice(0, -governorSuffix.length)
+      : ambiguousBrief;
+    expect(cappedPortion.length).toBeLessThanOrEqual(480);
   });
 
   it('renders score-near ambiguity when confidence is separated', () => {

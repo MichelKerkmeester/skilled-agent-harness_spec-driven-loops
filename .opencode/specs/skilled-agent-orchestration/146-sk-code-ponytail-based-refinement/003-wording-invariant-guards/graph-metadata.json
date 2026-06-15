@@ -4,6 +4,8 @@
   "spec_folder": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
   "parent_id": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -14,31 +16,194 @@
       "phase 3 canary guard",
       "review status triplet lock",
       "iron law canonicalize",
-      "rule invariant guard"
+      "rule invariant guard",
+      "phase 3 plan canary guard",
+      "phase 3 tasks canary guard",
+      "phase 3 summary canary guard"
     ],
     "key_topics": [
       "phase",
-      "exact",
-      "wording",
-      "guards",
       "canary",
+      "guard",
+      "review",
+      "status",
+      "triplet",
+      "lock",
       "iron",
       "law",
-      "cleanup"
+      "canonicalize",
+      "rule",
+      "invariant"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".github/workflows/rule-canary-sync.yml",
+      ".opencode/package.json",
+      ".opencode/skills/sk-code-review/scripts/check-rule-copies.js",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".github/workflows/comment-hygiene.yml",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron Law wording, a minimal Iron Law invariant. Wired as a script + CI workflow (the proven comment-hygiene.yml pattern), not a vitest.",
+    "entities": [
+      {
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wording Guards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bonus Bug",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Downstream automation parses the review final line (`Review status: APPROVED|REQUESTED_CHANGES|COMMENTED`) by exact string match; a typo or stray bold silently breaks gating. Separately, the Iron Law is **already written three different ways** (`sk-code/SKILL.md:45` \"fresh verification evidence from the detected surface\" / `:137` \"surface-appropriate verification\" / `CLAUDE.md:11` \"stack-appropriate verification\"). Purpose: build a ponytail-style canary guard (locks load-bearing wording across files) and use it to fix + freeze both invariants.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-06-13T11:40:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-06-15T09:09:33.155Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

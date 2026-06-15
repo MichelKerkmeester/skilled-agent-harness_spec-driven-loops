@@ -1,0 +1,100 @@
+{
+  "target": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research/research",
+  "generatedFrom": "deep-loop state (json stream + iteration markdown)",
+  "lineages": [
+    {
+      "label": "codex-xhigh",
+      "source": "iteration-markdown",
+      "toolTextRatio": null,
+      "toolActions": 0,
+      "streamTextMessages": 0,
+      "sampleSize": 46,
+      "medianWordsPerMsg": 33,
+      "selfOpenerPct": 0,
+      "unsolicitedCaveatPct": 4.3,
+      "evidenceBackedCompletionRatio": 0.2,
+      "completionClaims": 5,
+      "sufficient": true
+    },
+    {
+      "label": "deepseek-v4-pro",
+      "source": "json-stream",
+      "toolTextRatio": 5.42,
+      "toolActions": 65,
+      "streamTextMessages": 12,
+      "sampleSize": 12,
+      "medianWordsPerMsg": 11,
+      "selfOpenerPct": 16.7,
+      "unsolicitedCaveatPct": 0,
+      "evidenceBackedCompletionRatio": 0,
+      "completionClaims": 3,
+      "sufficient": true
+    },
+    {
+      "label": "kimi-k2p7",
+      "source": "iteration-markdown",
+      "toolTextRatio": null,
+      "toolActions": 64,
+      "streamTextMessages": 0,
+      "sampleSize": 103,
+      "medianWordsPerMsg": 28,
+      "selfOpenerPct": 0,
+      "unsolicitedCaveatPct": 2.9,
+      "evidenceBackedCompletionRatio": 0.76,
+      "completionClaims": 62,
+      "sufficient": true
+    },
+    {
+      "label": "mimo-v25-pro",
+      "source": "iteration-markdown",
+      "toolTextRatio": 14.2,
+      "toolActions": 71,
+      "streamTextMessages": 5,
+      "sampleSize": 104,
+      "medianWordsPerMsg": 30,
+      "selfOpenerPct": 4.8,
+      "unsolicitedCaveatPct": 9.6,
+      "evidenceBackedCompletionRatio": 0.32,
+      "completionClaims": 22,
+      "sufficient": true
+    },
+    {
+      "label": "opus-account2",
+      "source": "iteration-markdown",
+      "toolTextRatio": null,
+      "toolActions": 0,
+      "streamTextMessages": 0,
+      "sampleSize": 32,
+      "medianWordsPerMsg": 92,
+      "selfOpenerPct": 0,
+      "unsolicitedCaveatPct": 12.5,
+      "evidenceBackedCompletionRatio": 0.7,
+      "completionClaims": 10,
+      "sufficient": true
+    },
+    {
+      "label": "opus-account2-r4",
+      "source": "iteration-markdown",
+      "toolTextRatio": null,
+      "toolActions": 0,
+      "streamTextMessages": 0,
+      "sampleSize": 29,
+      "medianWordsPerMsg": 93,
+      "selfOpenerPct": 0,
+      "unsolicitedCaveatPct": 13.8,
+      "evidenceBackedCompletionRatio": 0.5,
+      "completionClaims": 8,
+      "sufficient": true
+    }
+  ],
+  "aggregate": {
+    "lineagesMeasured": 6,
+    "lineagesWithStream": 1,
+    "toolTextRatio_mean": 9.81,
+    "medianWordsPerMsg_median": 32,
+    "selfOpenerPct_mean": 3.58,
+    "unsolicitedCaveatPct_mean": 7.18,
+    "evidenceBackedCompletionRatio_mean": 0.41,
+    "note": "Metrics are drift detectors, not quality scores. Higher tool:text and evidence ratio, lower words/opener/caveat = closer to the fable-5 signature."
+  }
+}

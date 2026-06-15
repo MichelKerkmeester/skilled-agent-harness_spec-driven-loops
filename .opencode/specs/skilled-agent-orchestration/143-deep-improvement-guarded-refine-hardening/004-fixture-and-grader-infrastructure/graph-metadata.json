@@ -77,8 +77,8 @@
       }
     ],
     "causal_summary": "Codify the testing-infrastructure lessons as shared, reusable conventions: fixtures that can actually be graded, held-out discipline, grader calibration, and dispatch pre-flight — so every future loop inherits them instead of rediscovering them live.",
-    "created_at": "2026-06-12T04:40:46.636Z",
-    "last_save_at": "2026-06-12T04:40:46.636Z",
+    "created_at": "2026-06-15T09:09:33.146Z",
+    "last_save_at": "2026-06-15T09:09:33.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,53 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/**/*.md"[90m in . · 10 matches[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/*.md"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-001.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-003.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-004.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-005.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-007.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/orchestrator-verifications.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-008.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-006.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGrep "SPECKIT_PROMPT_SELF_HEAL|kickBackgroundColdStart|warmOnly|warm-only|spawnLauncher|SPECKIT_BACKEND_ONLY|backend-only|SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN|daemonReelectionEnabled|shouldReleaseDaemonForReelection"[90m in .opencode/bin · 14 matches[0m
+[0m✱ [0mGrep "childProcess\.kill|process\.kill|SIGKILL|SIGTERM|clearLease|release.*daemon|secondary|clientCount|client.*count|shutdown.*signal"[90m in .opencode/bin · 82 matches[0m
+[0m✱ [0mGrep "SPECKIT_PROMPT_SELF_HEAL|kickBackgroundColdStart|warmOnly|--warm-only|SessionStart|session-prime|SPECKIT_CLI_PROMPT_TIME|OPENCODE_PROMPT_TIME|CODEX_PROMPT_TIME|CLAUDE_CODE_PROMPT_TIME"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/code-index-cli.ts[90m [offset=1070, limit=55][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts[90m [offset=880, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts[90m [offset=1170, limit=55][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1140, limit=75][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=880, limit=60][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1440, limit=80][0m
+[0m✗ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js failed[90m [offset=250, limit=170][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js[90m [offset=190, limit=80][0m
+[0m✱ [0mGrep "warm-only|--warm-only|code-index|skill-advisor|spec-memory|warmOnly|advisor|memory"[90m in .opencode/skills/system-spec-kit/mcp_server/dist/hooks · 100 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/**/session-prime.js"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/hooks/**/session-prime.ts"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js[90m [offset=220, limit=65][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/spec-memory-cli-fallback.js[90m [offset=130, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/code-index-cli-fallback.js[90m [offset=135, limit=35][0m
+[0m✗ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/advisor-cli-fallback.js failed[90m [offset=1, limit=220][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server/dist/hooks/advisor-cli-fallback.js
+[0m✱ [0mGrep "--warm-only|warm-only|advisor.*fallback|buildWarm|skill-advisor\.cjs"[90m in .opencode/skills/system-skill-advisor/mcp_server/dist/hooks · 5 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js[90m [offset=273, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js[90m [offset=79, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/lib/skill-advisor-cli-fallback.js[90m [offset=160, limit=55][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/claude/user-prompt-submit.js[90m [offset=1, limit=130][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=160, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=560, limit=25][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts[90m [offset=740, limit=45][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/code-index-cli.ts[90m [offset=920, limit=45][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts[90m [offset=1018, limit=45][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=220, limit=70][0m
+[0m✱ [0mGrep "launcher-idle-timeout|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN|startIdle|idle.*timeout"[90m in .opencode · 32 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts[90m [offset=1, limit=130][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/lib/ipc/launcher-idle-timeout.ts[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/lib/ipc/launcher-idle-timeout.ts[90m [offset=1, limit=120][0m
+[0m✱ [0mGrep "SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN|launcher idle timeout|idle timeout"[90m in .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md · 5 matches[0m

@@ -34,20 +34,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-schema.md",
-      ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json",
-      ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-softened-fail.json",
-      ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-over-read.json",
-      ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-ac-coverage.json",
-      ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md",
-      ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
-      ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/README.md",
-      ".opencode/commands/deep/start-model-benchmark-loop.md",
-      ".opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml",
-      ".opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/commands/deep/assets/deep_start-model-benchmark-loop_confirm.yaml",
-      ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs",
-      ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
       ".github/workflows/prompt-card-sync.yml",
       "spec.md",
       "plan.md",
@@ -56,84 +42,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "reviewer-schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-stale-verdict.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-softened-fail.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-softened-fail.json",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-over-read.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-over-read.json",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-ac-coverage.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-ac-coverage.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-scorer.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "start-model-benchmark-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-model-benchmark-loop.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-model-benchmark-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-model-benchmark-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-model-benchmark-loop_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "code-task-scorer.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-model.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
-        "source": "derived"
-      },
       {
         "name": "prompt-card-sync.yml",
         "kind": "config",
@@ -199,11 +107,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Verdict",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 010 adopts **T10**, the highest-novelty mechanism (newInfoRatio 0.85) from the peck-source deep-mining pass (`research/006-peck-source-deep-mining/research.md` §2): peck's untouched `revim-*` harness runs a reviewer prompt over a real repo fixture that carries an **expected verdict** (`CHECKOUT/INPUT/EXPECTED` -> `Pass|Fail|Block`) and asserts the reviewer still catches that known bug class. spec-kit's deep-improvement Lane B (code-task oracles) and Lane C (routing gold) cannot currently answer \"does this reviewer prompt still catch this known bug class\" — cross-model verification (MiniMax M3, iteration-016) confirmed the gap is real and supplied a low-cost implementation sketch.",
     "created_at": "2026-06-06T10:22:05.630Z",
-    "last_save_at": "2026-06-10T19:22:14.926Z",
+    "last_save_at": "2026-06-15T09:09:34.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

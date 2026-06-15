@@ -30,11 +30,11 @@
       "tri-system",
       "deep",
       "research",
-      "adherence",
       "residual",
       "design",
       "units",
-      "lanes"
+      "program",
+      "produced"
     ],
     "importance_tier": "important",
     "status": "phase_parent",
@@ -47,11 +47,47 @@
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Own",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The verification-and-remediation track owns the verify-first program: Fable-verified finding remediation of the epic sweep across eight lanes, the tri-system deep-research sweep with its adjudicated claim registry, the deep-research and command-adherence remediation across nine lanes (single-writer kernel lock, scrubber, command-protocol correction, apply-pipeline safety), and the residual design units that each touched a high-blast-radius subsystem.",
+    "causal_summary": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims. The epic finding remediation, the tri-system deep-research sweep, the deep-research remediation, and the residual high-blast-radius design units share a single verify-first doctrine, so they belong under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-15T09:09:34.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

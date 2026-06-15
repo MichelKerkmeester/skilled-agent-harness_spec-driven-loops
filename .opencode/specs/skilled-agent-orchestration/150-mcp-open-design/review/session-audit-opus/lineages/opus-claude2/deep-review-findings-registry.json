@@ -1,0 +1,28 @@
+{
+  "openFindings": [
+    {"id": "F005", "severity": "P1", "category": "traceability", "file": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite", "title": "Deleted mcp-magicpath skill still present in skill-graph.sqlite (12 occ); advisor can route to a nonexistent skill (disclosed/deferred)", "iterations": [3], "contentHash": "f005-magicpath-advisor-db-drift"},
+    {"id": "F001", "severity": "P2", "category": "correctness", "file": ".opencode/skills/mcp-open-design/SKILL.md", "line": 116, "title": "DESIGN_INTENTS declared but unused in routing pseudocode; cross-skill load contract unexpressed", "iterations": [1], "contentHash": "f001-design-intents-dead"},
+    {"id": "F002", "severity": "P2", "category": "correctness", "file": ".opencode/skills/mcp-open-design/references/mcp_wiring.md", "line": 65, "title": "Daemon-down install fallback asserted in mcp_wiring.md but listed as unverified in od_cli_reference.md", "iterations": [1], "contentHash": "f002-fallback-confidence-inconsistency"},
+    {"id": "F003", "severity": "P2", "category": "correctness", "file": ".opencode/skills/mcp-open-design/references/mcp_wiring.md", "line": 60, "title": "command[0] guidance self-contradicts between install-info spec and manual fallback", "iterations": [1], "contentHash": "f003-command0-contradiction"},
+    {"id": "F004", "severity": "P2", "category": "security", "file": ".opencode/skills/mcp-open-design/references/od_cli_reference.md", "line": 131, "title": "No safe-handling directive for OD_TOOL_TOKEN bearer in standalone od tools invocation", "iterations": [2], "contentHash": "f004-od-tool-token-handling"},
+    {"id": "F006", "severity": "P2", "category": "maintainability", "file": ".opencode/skills/mcp-open-design/SKILL.md", "line": 9, "title": "Version-format drift: mcp-open-design (1.2.0) and sk-interface-design (1.3.0) 3-part vs 4-part library convention and own changelog filenames", "iterations": [4], "contentHash": "f006-version-format-drift"},
+    {"id": "F007", "severity": "P2", "category": "maintainability", "file": ".opencode/skills/sk-interface-design/SKILL.md", "line": 192, "title": "sk-interface-design build/hand-off contract ambiguous; tool grant follows the build reading", "iterations": [4], "contentHash": "f007-build-handoff-contract-ambiguity"}
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 1, "P2": 6 },
+  "convergenceScore": 0.82,
+  "rejectedSiblingFindings": [
+    {"siblingId": "deepseek-F001", "reason": "RESOLVED in live state — mcp-open-design SKILL.md:9 now 1.2.0 matching changelog"},
+    {"siblingId": "deepseek-F006", "reason": "RULED OUT — socket perms srwxr-xr-x deny write to group/other; cross-user connect blocked"},
+    {"siblingId": "deepseek-F013", "reason": "NOT REPRODUCIBLE — ephemeral-id grep over references clean; line 121 is generic research reference"},
+    {"siblingId": "deepseek-F014", "reason": "FALSE POSITIVE — dual REFERENCES sections (5+8) are house template convention (sk-git/sk-doc/mcp-figma)"},
+    {"siblingId": "deepseek-F005", "reason": "RULED OUT — fidelity check is intentional judgment over a render, not an automation gap (parity §5:86)"}
+  ]
+}

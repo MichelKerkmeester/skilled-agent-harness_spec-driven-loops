@@ -42,13 +42,11 @@
     "status": "draft",
     "key_files": [
       "research/research.md",
-      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
       "research/deep-research-config.json",
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
       "research/findings-registry.json",
       "research/run-log.txt",
-      ".opencode/commands/deep/start-agent-improvement-loop.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -65,12 +63,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-agent-improvement-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
         "source": "derived"
       },
       {
@@ -101,12 +93,6 @@
         "name": "run-log.txt",
         "kind": "file",
         "path": "research/run-log.txt",
-        "source": "derived"
-      },
-      {
-        "name": "start-agent-improvement-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
         "source": "derived"
       },
       {
@@ -204,11 +190,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Report Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 059 produced a stress-test methodology that surfaced two real design gaps in `@code` after a single round of failure-path scenarios — gaps that the pre-merge structural smoke test (CP-026) had missed entirely. The methodology is reusable: same-task A/B dispatch, sandboxed isolation, grep-only verdict signals, multi-round iterative edits with measurable score progression, and a smart-router audit asking \"does the skill *actually fire its routing logic*, or does the agent just read SKILL.md and stop?\"",
     "created_at": "2026-05-02T08:57:14.987Z",
-    "last_save_at": "2026-06-05T12:47:32.719Z",
+    "last_save_at": "2026-06-15T09:09:33.377Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

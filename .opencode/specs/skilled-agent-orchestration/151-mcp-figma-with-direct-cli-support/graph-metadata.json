@@ -7,13 +7,12 @@
     "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/001-figma-cli-and-mcp-research",
     "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/002-skill-build-and-registration"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration",
-      "skilled-agent-orchestration/147-mcp-magicpath"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -23,24 +22,76 @@
     ],
     "key_topics": [
       "mcp-figma",
+      "skill",
+      "figma",
+      "terminal",
+      "control",
       "figma-ds-cli",
-      "figma terminal control",
-      "figma mcp via code mode",
-      "phase parent"
+      "direct",
+      "cli",
+      "support",
+      "desktop",
+      "holds",
+      "project"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI. Phase 001 ran a 5-iteration gpt-5.5-fast deep research into the silships figma-cli capabilities, the Figma MCP landscape, the skill architecture, and the install plus safety path. Phase 002 built the mcp-figma skill on the silships figma-cli (published to npm as figma-ds-cli; the npm package literally named figma-cli is an unrelated tool, never installed), authored the install and safety scripts, registered the skill graph and reciprocal sibling edges, and live-installed figma-ds-cli 1.2.0 from the repo build (npm publishes only a minimal 1.0.0) plus confirmed the Code Mode figma manual exposes get_figma_data and download_figma_images.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Figma Desktop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Figma Desktop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI or a remote-API workflow. There was no terminal control path that drives the live Figma Desktop session directly. The framework needed a house-conformant skill that wires a coding agent into Figma from the terminal, names the safe and the gated commands, and avoids the common npm naming trap (the npm package literally named `figma-cli` is an unrelated tool and must never be installed).",
     "created_at": "2026-06-14T17:00:00Z",
-    "last_save_at": "2026-06-14T17:00:00Z",
-    "last_updated_at": "2026-06-14T17:00:00Z",
+    "last_save_at": "2026-06-15T09:09:33.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/002-skill-build-and-registration",
-    "last_active_at": "2026-06-14T17:00:00Z"
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

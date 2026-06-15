@@ -77,8 +77,8 @@
       }
     ],
     "causal_summary": "The pilot's strongest findings are not packaging-specific. Back-port them to lanes A/B/C so every deep-improvement run gets the same protection against reward-hacking and noise — without breaking the byte-identical agent-improvement default path.",
-    "created_at": "2026-06-12T04:40:46.635Z",
-    "last_save_at": "2026-06-12T04:40:46.635Z",
+    "created_at": "2026-06-15T09:09:33.146Z",
+    "last_save_at": "2026-06-15T09:09:33.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

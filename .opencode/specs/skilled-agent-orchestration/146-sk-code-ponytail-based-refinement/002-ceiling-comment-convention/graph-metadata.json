@@ -4,6 +4,8 @@
   "spec_folder": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
   "parent_id": "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,29 +15,190 @@
     "trigger_phrases": [
       "phase 2 ceiling comment",
       "intentional simplification convention",
-      "ceiling comment downgrade"
+      "ceiling comment downgrade",
+      "phase 2 plan ceiling comment",
+      "phase 2 tasks ceiling comment",
+      "phase 2 summary ceiling comment"
     ],
     "key_topics": [
       "phase",
-      "intentional",
-      "simplification",
       "ceiling",
       "comment",
-      "convention"
+      "intentional",
+      "simplification",
+      "convention",
+      "downgrade",
+      "plan",
+      "tasks",
+      "summary",
+      "deliberate",
+      "simplifications"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-code/references/universal/code_style_guide.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Define a neutral 'ceiling:' comment convention for deliberate shortcuts in sk-code, and let sk-code-review treat a present ceiling comment as P2-downgrade evidence against over-engineering false positives. Never the ponytail brand; never in the comment-hygiene allow-list.",
+    "entities": [
+      {
+        "name": "code_style_guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/universal/code_style_guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comment Convention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deliberate simplifications (a global lock, an O(n²) scan chosen on purpose) read as ignorance, not intent — and reviewers flag them as \"too simple.\" Ponytail marks them with a comment naming the shortcut + its ceiling + the upgrade path; the content is durable WHY (allowed by comment-hygiene), but the literal `ponytail:` brand is a perishable label. Purpose: adopt a neutral `ceiling:` convention and let the reviewer trust it to suppress over-engineering false positives — without ever excusing a real defect.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-06-13T11:40:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-06-15T09:09:33.154Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

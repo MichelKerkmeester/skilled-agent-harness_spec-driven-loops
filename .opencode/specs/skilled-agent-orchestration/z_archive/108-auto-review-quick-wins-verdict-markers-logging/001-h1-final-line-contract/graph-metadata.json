@@ -39,9 +39,6 @@
     "status": "planned_—_gated_on_council_approval",
     "key_files": [
       ".opencode/skills/sk-code-review/SKILL.md",
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
-      ".opencode/skills/deep-review/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,18 +49,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code-review/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
         "source": "derived"
       },
       {
@@ -191,11 +176,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Our review skills (sk-code-review, deep-review) emit free-form verdicts that are unreliable to parse via regex or NLP. sk-code-review SKILL.md:308 produces \"APPROVE / REQUEST_CHANGES / COMMENT\" in prose; deep-review SKILL.md:367-372 produces \"FAIL/CONDITIONAL/PASS\" embedded in synthesis text. CI bots, PR status checks, and automation scripts cannot reliably extract review status without ad-hoc regex that breaks on prose variation.",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-06-07T09:00:45.722Z",
+    "last_save_at": "2026-06-15T09:09:33.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

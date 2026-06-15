@@ -48,8 +48,6 @@
       "tasks.md",
       "checklist.md",
       "scratch/batch-plan.md",
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
@@ -62,7 +60,9 @@
       ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
       "core/config.ts",
       "decision-record.md",
-      "mcp_server/tests/launcher-lease.vitest.ts"
+      "mcp_server/tests/launcher-lease.vitest.ts",
+      "scripts/tests/process-memory-harness.vitest.ts",
+      "scripts/tests/process-sweep.vitest.ts"
     ],
     "entities": [
       {
@@ -93,18 +93,6 @@
         "name": "batch-plan.md",
         "kind": "doc",
         "path": "scratch/batch-plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
         "source": "derived"
       },
       {
@@ -180,6 +168,18 @@
         "source": "derived"
       },
       {
+        "name": "process-memory-harness.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/process-memory-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "process-sweep.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/process-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Findings Remediation",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Arc 009's deep review returned a CONDITIONAL verdict with P0=0, P1=40, and P2=20. Phase 014 converts those findings into six bounded implementation batches so later dispatches can close correctness races, cleanup gaps, local-service security boundaries, audit/data integrity failures, traceability evidence gaps, and P2 maintainability drift without reopening the review packet itself.",
     "created_at": "2026-05-22T19:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.860Z",
+    "last_save_at": "2026-06-15T09:09:34.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

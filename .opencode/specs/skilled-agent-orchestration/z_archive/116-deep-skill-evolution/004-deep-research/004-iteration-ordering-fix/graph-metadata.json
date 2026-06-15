@@ -50,7 +50,6 @@
     "importance_tier": "important",
     "status": "implemented_(test_passing);_awaiting_commit",
     "key_files": [
-      ".opencode/skills/deep-research/scripts/reduce-state.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -58,12 +57,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Surfaced by deep-review iter-5 (`DR-006`); confirmed by iter-7 + iter-8.",
     "created_at": "2026-05-23T05:45:00Z",
-    "last_save_at": "2026-06-07T09:00:45.898Z",
+    "last_save_at": "2026-06-15T09:09:33.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

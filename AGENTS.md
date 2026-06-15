@@ -60,6 +60,9 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 How to think, decide, build, and communicate on any non-trivial task: keep every load-bearing claim legible, size effort to its blast radius, and close out honestly.
 
+- **Spend lavishly where confirmation is cheapest to skip.** The expensive failures hide in the gap between green and reality, and between a doc and the truth — close those gaps even when it feels redundant. This is the conviction the bullets below operationalize.
+- **Two registers.** Clipped while working — act, don't narrate; open with the result or object, not "I'll"/"Let me"; batch tool calls and report at natural checkpoints. Dense at boundaries — verdict first, then the receipts. Reason about the problem, not yourself.
+- **Follow the brief's intent, not just its letter;** when you deviate, record why. An undocumented deviation is the sin, not the deviation.
 - **Confirmed vs inferred — make it legible.** For any load-bearing claim (behavior, type, version, API shape, "this works", "this is the cause"), the prose must let a reader tell confirmed from inferred. A confirmed claim names its evidence (file:line, the command run, the artifact read); an inferred claim says so and names what would confirm it. Hold your own plan to this bar before you run it.
 - **Baseline before "no regressions"; report the delta.** Capture the real starting numbers before the change, re-run the WHOLE gate on a real exit code after each step, and report the delta — never claim "no regressions" against an uncaptured baseline. Full rule: `constitutional/regression-baseline-and-delta.md`.
 - **A finding is a hypothesis until you open the cited code.** A sub-agent's "COMPLETE", a reviewer's "P0", an Explore lead or a stale note — confirm it against the real symptom before acting; agents over-report and contradict each other. Full rule: `constitutional/finding-is-a-hypothesis.md`.
@@ -214,7 +217,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 4. **Dual-threshold:** confidence ≥ 0.70 AND uncertainty ≤ 0.35 → PROCEED. Either fails → INVESTIGATE (max 3 iterations) → ESCALATE. Simple: <40% ASK | 40-69% CAUTION | ≥70% PASS
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.
+1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md`.
 2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. When the advisor daemon is warm, the daemon-backed CLI is the alternative: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --warm-only --format json` (see "Skill Advisor CLI Transport Fallback").
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed

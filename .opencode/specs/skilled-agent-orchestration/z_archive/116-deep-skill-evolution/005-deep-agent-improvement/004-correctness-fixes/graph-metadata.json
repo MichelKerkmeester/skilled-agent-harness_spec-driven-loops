@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
@@ -52,18 +50,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "deep_start-agent-improvement-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-agent-improvement-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
-        "source": "derived"
-      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 124 closes eight confirmed `deep-agent-improvement` findings from packet 123: five P0 operator-trust defects and three P1 path/scoring defects. The work repairs typed profile-generation failures, makes unscored scoring dimensions explicit instead of silently perfect, aligns stop-reason documentation to the shipped journal enum, updates version/changelog truth, corrects command/manifest paths, and adds a guarded runtime-mirror sync flag for the promotion path.",
     "created_at": "2026-05-23T05:48:51.754Z",
-    "last_save_at": "2026-06-07T09:00:45.904Z",
+    "last_save_at": "2026-06-15T09:09:33.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

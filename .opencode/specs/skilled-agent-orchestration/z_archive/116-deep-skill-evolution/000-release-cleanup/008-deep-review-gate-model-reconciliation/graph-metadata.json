@@ -41,35 +41,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/review-quality-guards-block-premature-stop.md",
-      ".opencode/skills/deep-review/changelog/v1.10.0.0.md",
-      ".opencode/skills/deep-review/SKILL.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "review-quality-guards-block-premature-stop.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/review-quality-guards-block-premature-stop.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.10.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/changelog/v1.10.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -86,12 +64,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
         "source": "derived"
       },
       {
@@ -195,11 +167,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "one-line",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-review legal-stop gate model has drifted across documentation surfaces. The `003-deep-review` phase-5 deep-research loop surfaced a 4-gap cluster (LG-0013, LG-0016, LG-0031, LG-0032) plus a deeper finding during this packet's investigation: the AUTHORITATIVE producer (both `deep_start-review-loop_{auto,confirm}.yaml` workflows) emits **9 gates** with the `Gate` suffix at the `step_emit_blocked_stop` append_jsonl step, but every documentation surface describes a different, incomplete model:",
     "created_at": "2026-05-23T18:38:12.948Z",
-    "last_save_at": "2026-06-07T09:00:45.811Z",
+    "last_save_at": "2026-06-15T09:09:33.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

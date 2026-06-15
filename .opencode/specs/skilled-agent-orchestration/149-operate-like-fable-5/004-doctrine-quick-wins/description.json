@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/149-operate-like-fable-5/004-doctrine-quick-wins",
+  "description": "Feature Specification: Doctrine quick-wins: fix the AGENTS.md dead hook pointer plus a pointer-resolution check, add an efficiency doctrine spine, and",
+  "keywords": [
+    "feature",
+    "specification",
+    "doctrine",
+    "quick-wins",
+    "fix",
+    "agents",
+    "dead",
+    "hook",
+    "pointer",
+    "plus",
+    "pointer-resolution",
+    "check",
+    "add",
+    "efficiency",
+    "spine"
+  ],
+  "lastUpdated": "2026-06-15T14:22:42.246Z",
+  "specId": "004",
+  "folderSlug": "doctrine-quick-wins",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "149-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

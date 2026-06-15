@@ -14,10 +14,15 @@
       "deep research remediation",
       "029 remediation lanes",
       "tri-system finding fixes",
-      "029 remediation handover",
-      "dashboard adherence true solution",
-      "deep research remediation resume",
-      "resume 029"
+      "deep research remediation plan",
+      "029 remediation plan",
+      "lane remediation order",
+      "verify first remediation",
+      "029 remediation tasks",
+      "remediation lane tasks",
+      "verify first task loop",
+      "029 implementation summary",
+      "remediation program summary"
     ],
     "key_topics": [
       "deep",
@@ -28,39 +33,57 @@
       "tri-system",
       "finding",
       "fixes",
-      "handover",
-      "dashboard",
-      "adherence",
-      "true"
+      "plan",
+      "lane",
+      "order",
+      "verify"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
-      "shared/ipc/socket-server.ts",
-      "L8-command-adherence/disposition.md",
+      "final-review/deep-review-report.md",
+      "mcp_server/lib/search/db-instance-lock.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "shared/parsing/secret-scrubber.ts",
       "scripts/core/workflow.ts",
-      "mcp_server/lib/parsing/secret-scrubber.ts",
+      "mcp_server/lib/telemetry/consumption-logger.ts",
       "spec.md",
+      "implementation-summary.md",
+      "tests/db-instance-lock.vitest.ts",
+      "tests/launcher-db-lock-exit.vitest.ts",
+      "L1-security-safety/disposition.md",
+      "backlog/remediation-backlog.json",
+      "L8-command-adherence/probe.sh",
+      "plan.md",
+      "L8-command-adherence/disposition.md",
+      "ai-council/council-report.md",
+      "mcp_server/package.json",
+      "tasks.md",
       "handover.md"
     ],
     "entities": [
       {
-        "name": "context-index.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
-        "source": "derived"
-      },
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": "shared/ipc/socket-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "disposition.md",
+        "name": "deep-review-report.md",
         "kind": "doc",
-        "path": "L8-command-adherence/disposition.md",
+        "path": "final-review/deep-review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "db-instance-lock.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/db-instance-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.ts",
+        "kind": "code",
+        "path": "shared/parsing/secret-scrubber.ts",
         "source": "derived"
       },
       {
@@ -70,15 +93,75 @@
         "source": "derived"
       },
       {
-        "name": "secret-scrubber.ts",
+        "name": "consumption-logger.ts",
         "kind": "code",
-        "path": "mcp_server/lib/parsing/secret-scrubber.ts",
+        "path": "mcp_server/lib/telemetry/consumption-logger.ts",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "db-instance-lock.vitest.ts",
+        "kind": "test",
+        "path": "tests/db-instance-lock.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-db-lock-exit.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-db-lock-exit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "disposition.md",
+        "kind": "doc",
+        "path": "L1-security-safety/disposition.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-backlog.json",
+        "kind": "config",
+        "path": "backlog/remediation-backlog.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe.sh",
+        "kind": "script",
+        "path": "L8-command-adherence/probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -100,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "Continue Goal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,51 +205,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Remediate",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Adherence True",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Solution Investigation",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Dashboard True",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Presentation Boundary",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Opus",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-separation/006-presentation-adherence-research`) produced 239 findings. The 48 confirmed and 8 canonical adherence recommendations are actionable now; the 53 downgraded and 92 unadjudicated P2/P3 findings still need direct verification before they become work. Nothing is fixed unverified.",
     "created_at": "2026-06-12T11:12:59.644Z",
-    "last_save_at": "2026-06-12T11:12:59.644Z",
+    "last_save_at": "2026-06-15T09:09:34.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "handover.md"
     ],
     "last_active_child_id": null,

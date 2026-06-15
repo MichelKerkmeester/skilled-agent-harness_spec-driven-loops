@@ -1,0 +1,5 @@
+Now I'll initialize the research lineage. Let me read the key source files and set up the state.Now I have all source context. Let me initialize the lineage state and run the research loop.Now I'll create the init state files for the mimo-v25-pro lineage.Now I have the cross-runtime hook architecture data. Let me write Iteration 1.All phases complete. All outputs written to `.opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research/research/lineages/mimo-v25-pro/`.
+
+**Summary:** 5 iterations, 25 findings (M1-M25), newInfoRatio trend 0.75→0.60, stop reason: max_iterations. Key contribution: the cross-runtime transferability lens — the thermostat surface is already verified across all 3 runtimes (correcting the prior lineages' "unverified" claim), the governor is model-specific (Opus's anxious texture), and the three-layer architecture (setpoint/thermostat/measurement) maps cleanly to Public's surfaces. Five new surface types identified for governor/measurement attachment (agent prompts, renderPromptPack, post-dispatch-validate, executor-config, deep-loop state JSONL).
+
+FANOUT_LINEAGE_COMPLETE:mimo-v25-pro

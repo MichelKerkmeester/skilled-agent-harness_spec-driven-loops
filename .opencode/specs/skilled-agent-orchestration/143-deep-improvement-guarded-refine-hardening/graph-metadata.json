@@ -83,8 +83,8 @@
       }
     ],
     "causal_summary": "The Copywriter pilot built and live-validated a **guarded autonomous benchmark-and-refine loop**: benchmark a multi-packaging AI system (CLI runtime / claude.ai Project / native skill), re-grade outputs with an independent different-family grader, propose bounded technique-doc edits, and promote only inside an isolated git worktree when held-out grades do not regress. It was folded into the shared `deep-improvement` skill as **Lane D** (`packaging-benchmark-refine`), with the loop host living packaging-side (`<packaging-root>/_loop/loop.py` contract).",
-    "created_at": "2026-06-12T04:40:46.634Z",
-    "last_save_at": "2026-06-12T04:40:46.634Z",
+    "created_at": "2026-06-15T09:09:33.144Z",
+    "last_save_at": "2026-06-15T09:09:33.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

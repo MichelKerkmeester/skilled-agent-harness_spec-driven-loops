@@ -1,0 +1,76 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "sk-code"
+[0m→ [0mSkill "sk-code-review"
+[0m✱ [0mGrep "kickBackgroundColdStart|warm-only|kill-on-shutdown|release|adopt|model-server-supervision|orphan|sweep|HF|refcount|idle|shutdown|socket"[90m in .opencode · 100 matches[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/iterations/iteration-00[1-6].md"[90m in . · 6 matches[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/orchestrator-verifications.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/live-diagnosis.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/*verification*.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/*orphan*"[90m in .opencode · 16 matches[0m
+[0m✱ [0mGlob "**/*model-server-supervision.cjs"[90m in .opencode · 1 match[0m
+[0m✱ [0mGlob ".opencode/bin/*.cjs"[90m in . · 10 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-001.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-003.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-004.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-005.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-006.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGrep "orchestrator-verification|orchestrator verification|orchestrator-verifications"[90m in .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research · 1 match[0m
+[0m✱ [0mGlob "**/orchestrator-verifications.md"[90m in . · 2 matches[0m
+[0m✱ [0mGlob "**/*orchestrator*verification*.md"[90m in . · 2 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/orchestrator-verifications.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=150, limit=300][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1120, limit=120][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=650, limit=140][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=860, limit=130][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1420, limit=260][0m
+[0m→ [0mRead .opencode/scripts/orphan-mcp-sweeper.sh[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/scripts/orphan-mcp-sweeper.sh[90m [offset=221, limit=280][0m
+[0m→ [0mRead .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist[90m [offset=1, limit=200][0m
+[0m✗ [0mRead .opencode/bin/spec-memory.cjs failed[90m [offset=760, limit=180][0m
+[91m[1mError: [0mOffset 760 is out of range for this file (130 lines)
+[0m✗ [0mRead .opencode/bin/code-index.cjs failed[90m [offset=920, limit=190][0m
+[91m[1mError: [0mOffset 920 is out of range for this file (129 lines)
+[0m✗ [0mRead .opencode/bin/skill-advisor.cjs failed[90m [offset=1020, limit=190][0m
+[91m[1mError: [0mOffset 1020 is out of range for this file (125 lines)
+[0m→ [0mRead .opencode/bin/spec-memory.cjs[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/bin/code-index.cjs[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/bin/skill-advisor.cjs[90m [offset=1, limit=180][0m
+[0m✱ [0mGrep "ensureDaemonReady|warmOnly|spawnLauncher|CliRetryableError|detached|unref|WARM_ONLY|warm-only"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts[90m [offset=1030, limit=190][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts[90m [offset=740, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/code-index-cli.ts[90m [offset=920, limit=210][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=620, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs[90m [offset=300, limit=80][0m
+[0m✱ [0mGlob "**/session-prime.ts"[90m in .opencode · 1 match[0m
+[0m✱ [0mGlob "**/session-start.ts"[90m in .opencode · 1 match[0m
+[0m✱ [0mGrep "SessionStart|warm-only|SPECKIT_CLI_PROMPT_TIME|OPENCODE_PROMPT_TIME|CLAUDE_CODE_PROMPT_TIME|CODEX_PROMPT_TIME"[90m in .opencode · 100 matches[0m
+[0m✱ [0mGrep "function canUnlinkExistingSocket|canUnlinkExistingSocket|startIpcSocketServer|EADDRINUSE|active|client|connection|unlink|socketDir"[90m in .opencode/skills · 100 matches[0m
+[0m✱ [0mGlob "**/socket-server.ts"[90m in .opencode/skills · 4 matches[0m
+[0m✱ [0mGrep "launcher-idle-timeout|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN|active secondary|clientCount|idle"[90m in .opencode/skills · 68 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=130, limit=310][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/lib/ipc/launcher-idle-timeout.ts[90m [offset=1, limit=150][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/context-server.ts[90m [offset=2260, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts[90m [offset=292, limit=30][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/index.ts[90m [offset=128, limit=30][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=790, limit=380][0m
+[0m✱ [0mGrep "shutdownModelServerForLauncherExit|createModelServerControl|modelServer|hfControl|SPECKIT_HF|releaseModel|ref|stopDemandListener|startModelServerDemandListener"[90m in .opencode/bin/mk-spec-memory-launcher.cjs · 100 matches[0m
+[0m✱ [0mGrep "shutdownModelServerForLauncherExit|modelServer|hf|HF|createModelServerControl|stopDemandListener"[90m in .opencode/bin/mk-skill-advisor-launcher.cjs · 100 matches[0m
+[0m✱ [0mGrep "active client|secondary_clients_count|backend-only|SPECKIT_BACKEND_ONLY|ownerLease|childPid|clearAllLeaseFiles|reap|respawn lock"[90m in .opencode/bin/*.cjs · 100 matches[0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=1169, limit=260][0m
+[0m→ [0mRead .opencode/bin/hf-model-server.cjs[90m [offset=150, limit=180][0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017*/**/{spec.md,implementation-summary.md,plan.md,tasks.md,checklist.md}"[90m in . · 5 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021*/**/{spec.md,implementation-summary.md,plan.md,tasks.md,checklist.md}"[90m in . · 5 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029*/**/{spec.md,implementation-summary.md,plan.md,tasks.md,checklist.md}"[90m in . · 4 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028*/**/{spec.md,implementation-summary.md,plan.md,tasks.md,checklist.md}"[90m in . · 5 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard/implementation-summary.md[90m [offset=1, limit=800][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation/implementation-summary.md[90m [offset=1, limit=800][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/implementation-summary.md[90m [offset=1, limit=800][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/implementation-summary.md[90m [offset=1, limit=800][0m
+[0m✱ [0mGrep "operator.*reject|rejected.*orphan|orphan cleanup|auto-restart|auto restart|without confirmation|confirm|opencode sessions|kill opencode|not auto"[90m in .opencode/specs · 100 matches[0m
+[0m✱ [0mGrep "SPECKIT_STOP_HOOK_ORPHAN_SWEEP|operator-approved|dry-run|default-off|auto.*restart|restart.*confirmation"[90m in .opencode/skills · 100 matches[0m
+[0m→ [0mRead .opencode/scripts/session-cleanup.sh[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=560, limit=130][0m

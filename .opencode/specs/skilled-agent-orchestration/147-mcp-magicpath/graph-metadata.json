@@ -4,39 +4,208 @@
   "spec_folder": "skilled-agent-orchestration/147-mcp-magicpath",
   "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": ["skilled-agent-orchestration/150-open-design-terminal-and-interface-integration"]
+    "related_to": [
+      {
+        "packet_id": "skilled-agent-orchestration/150-mcp-open-design",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
   },
   "derived": {
     "trigger_phrases": [
-      "mcp-magicpath",
       "magicpath skill",
-      "magicpath-ai cli",
-      "magicpath component forge"
+      "install magicpath",
+      "mcp-magicpath",
+      "vendor third-party skill",
+      "skill registration",
+      "magicpath plan",
+      "skill install plan",
+      "vendor skill",
+      "magicpath tasks",
+      "skill install tasks",
+      "magicpath checklist",
+      "verification"
     ],
     "key_topics": [
-      "mcp-magicpath",
       "magicpath",
-      "design tool",
-      "cli installer",
-      "skill install"
+      "skill",
+      "install",
+      "mcp-magicpath",
+      "vendor",
+      "third-party",
+      "registration",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "operator"
     ],
-    "importance_tier": "important",
-    "status": "superseded",
+    "importance_tier": "normal",
+    "status": "superseded_(by_spec_150)",
     "key_files": [
+      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Vendored the MagicPath agent skill into .opencode/skills/mcp-magicpath with a house README, schema-2 graph metadata, a global magicpath-ai CLI installer, catalog registration, and advisor-graph indexing. The advisor routes it as the top match and passes Gate 2. Superseded by spec 150: the mcp-magicpath skill is deprecated and removed in favor of mcp-open-design, which drives the installed Open Design app from the terminal.",
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Vendor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Vendor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Vendored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator wants MagicPath (a platform for finding, installing and authoring UI components) usable from this agent environment. The upstream skill at `github.com/MagicPathAI/agent-skills` is shaped for the generic agent-skills CLI and plugin marketplaces, not for this repository's curated `.opencode/skills` framework, which has a family-prefix naming convention, a house README format, schema-2 graph metadata, a hand-maintained catalog index, and a separate advisor SQLite graph that drives Gate 2 routing.",
     "created_at": "2026-06-13T14:00:00Z",
-    "last_save_at": "2026-06-13T16:30:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-06-15T09:09:33.162Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

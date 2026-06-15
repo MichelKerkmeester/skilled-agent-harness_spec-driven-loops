@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "topic": "Fable-5 efficiency: map every adjustable Public-repo surface and optimization — mimo-v25-pro lineage",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research/research/lineages/mimo-v25-pro",
+  "sessionId": "fanout-mimo-v25-pro-1781518620710-yepc7q",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "xiaomi/mimo-v2.5-pro"
+  },
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "resource_map_present": false,
+  "status": "complete",
+  "generation": 1,
+  "lineageLabel": "mimo-v25-pro",
+  "fanoutLineageArtifactDir": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research/research/lineages/mimo-v25-pro",
+  "created_at": "2026-06-15T12:30:00Z"
+}

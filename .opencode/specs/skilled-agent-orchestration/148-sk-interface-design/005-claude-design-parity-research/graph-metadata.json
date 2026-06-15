@@ -4,44 +4,207 @@
   "spec_folder": "skilled-agent-orchestration/148-sk-interface-design/005-claude-design-parity-research",
   "parent_id": "skilled-agent-orchestration/148-sk-interface-design",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/147-mcp-magicpath"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "claude design parity research",
       "sk-interface-design mcp-magicpath improvement",
-      "claude design tool gap analysis"
+      "claude design tool gap analysis",
+      "claude design parity plan",
+      "sk-interface-design mcp-magicpath research plan",
+      "claude design parity tasks",
+      "sk-interface-design mcp-magicpath research tasks",
+      "claude design parity summary",
+      "sk-interface-design mcp-magicpath research outcome",
+      "claude design gap analysis"
     ],
     "key_topics": [
-      "claude design",
+      "claude",
+      "design",
+      "parity",
+      "research",
       "sk-interface-design",
       "mcp-magicpath",
-      "deep-research",
-      "design parity",
-      "phase"
+      "improvement",
+      "tool",
+      "gap",
+      "analysis",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anthropic Labs",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "WebFetch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The framework has two UI-design skills: `sk-interface-design` (design judgment plus the merged critique-against data) and `mcp-magicpath` (a MagicPath canvas-generation CLI that already depends on sk-interface-design). The operator wants their results to get closer to **Claude Design** (Anthropic Labs' conversational design tool): conversational generation of designs, prototypes, presentations, and more, with org design-system inheritance, canvas plus inline-comment iteration, context attachments, multi-format export, and Claude Code handoff. Where the two skills fall short of that experience is not yet mapped.",
+    "created_at": "2026-06-14T08:30:00Z",
+    "last_save_at": "2026-06-15T09:09:33.171Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
       "research/research.md"
-    ],
-    "entities": [],
-    "causal_summary": "Phase 005 runs a 10-iteration parallel-by-model deep-research loop (opus-4.8 via claude account #2 + gpt-5.5-fast, xhigh) to determine how to improve sk-interface-design and mcp-magicpath so their UI-design output gets closer to Claude Design (Anthropic's conversational design tool). Output is a prioritized parity recommendation; implementation is a later packet.",
-    "created_at": "2026-06-14T08:30:00Z",
-    "last_save_at": "2026-06-14T08:30:00Z",
-    "save_lineage": "manual",
-    "last_accessed_at": null,
-    "source_docs": [
-      "spec.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

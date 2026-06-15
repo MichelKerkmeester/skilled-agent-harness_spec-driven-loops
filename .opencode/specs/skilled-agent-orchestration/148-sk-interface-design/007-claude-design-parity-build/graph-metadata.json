@@ -4,44 +4,198 @@
   "spec_folder": "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build",
   "parent_id": "skilled-agent-orchestration/148-sk-interface-design",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/148-sk-interface-design/005-claude-design-parity-research",
-      "skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/147-mcp-magicpath"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "claude design parity build",
       "shared design parity protocol",
-      "reuse before generate fidelity check"
+      "reuse before generate fidelity check",
+      "claude design parity build plan",
+      "shared design parity protocol plan",
+      "claude design parity build tasks",
+      "claude design parity build checklist",
+      "claude design parity build summary"
     ],
     "key_topics": [
-      "claude design parity",
-      "shared protocol",
-      "sk-interface-design",
-      "mcp-magicpath",
-      "fidelity check",
-      "phase"
+      "claude",
+      "design",
+      "parity",
+      "build",
+      "shared",
+      "protocol",
+      "reuse",
+      "generate",
+      "fidelity",
+      "check",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 007 implements the hardened 005 + 006 keystone as one shared protocol (sk-interface-design/references/claude_design_parity.md) consumed by both skills, plus minimal hooks: context intake, design-system reuse/adherence, element-target revision grammar, a previewImageUrl-based fidelity check gated on the quality floor + anti-default critique, the generated/presentational boundary, and build-error self-healing. No style presets; design_principles.md unchanged; both skills stay lean and valid.",
+    "entities": [
+      {
+        "name": "claude_design_parity.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Functional Requirements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core References",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 005 (hardened) and 006 research converged on a keystone: wire `sk-interface-design` (judgment) and `mcp-magicpath` (canvas/CLI) into the loop Claude Design has, grounded in a real design system, without cloning a hosted product or adding a style chooser. The connective protocol did not exist.",
     "created_at": "2026-06-14T09:35:00Z",
-    "last_save_at": "2026-06-14T09:35:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-06-15T09:09:33.174Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

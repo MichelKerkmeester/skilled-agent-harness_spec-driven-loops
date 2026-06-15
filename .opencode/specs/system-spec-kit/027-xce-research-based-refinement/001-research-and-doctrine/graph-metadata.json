@@ -25,13 +25,14 @@
       "research",
       "doctrine",
       "peck",
-      "gem-team",
+      "teachings",
+      "adoption",
+      "gem",
+      "team",
       "agent",
-      "io",
       "contract",
       "self-check",
-      "verification",
-      "discipline"
+      "templates"
     ],
     "importance_tier": "important",
     "status": "phase_parent",
@@ -44,11 +45,47 @@
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The research-and-doctrine track is the home for the peck and gem-team adoptions: peck contributes self-check templates, current-state discipline, constitutional review cadence, a reviewer-prompt benchmark substrate, non-diff read-budget discipline, and the acceptance-coverage and completion-freshness gates; gem-team contributes the typed advisory agent I/O contract across the five core agents and three runtime mirrors.",
+    "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces. These adoptions share a research provenance and a process-quality target, so they belong under one themed parent that points to the per-source child phases.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-15T09:09:34.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

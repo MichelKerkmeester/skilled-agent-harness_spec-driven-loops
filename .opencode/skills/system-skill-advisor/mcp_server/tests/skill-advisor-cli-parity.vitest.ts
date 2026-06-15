@@ -41,7 +41,7 @@ const parityPrompts: ReadonlyArray<{ readonly skill: string; readonly prompt: st
   { skill: 'sk-prompt', prompt: 'Use sk-prompt to improve this prompt and score it with the CLEAR rubric.' },
   { skill: 'mcp-code-mode', prompt: 'Use mcp-code-mode for external MCP orchestration with search_tools, list_tools, and call_tool_chain.' },
   { skill: 'mcp-chrome-devtools', prompt: 'Use mcp-chrome-devtools to inspect the local page and capture console failures.' },
-  { skill: 'deep-ai-council', prompt: 'Use deep-ai-council for a multi-seat planning council with persisted artifacts.' },
+  { skill: 'deep-loop-workflows', prompt: 'Use deep-loop-workflows for a multi-seat planning council with persisted artifacts.' },
 ];
 
 function pythonFixtureUnavailableReason(): string | null {

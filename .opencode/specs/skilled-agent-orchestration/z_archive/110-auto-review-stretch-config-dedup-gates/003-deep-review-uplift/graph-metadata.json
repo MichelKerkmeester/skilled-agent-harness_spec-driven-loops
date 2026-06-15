@@ -50,40 +50,12 @@
     "importance_tier": "important",
     "status": "planned_—_gated_on_council_approval",
     "key_files": [
-      ".opencode/skills/deep-review/SKILL.md",
-      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -203,11 +175,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two efficiency gaps in deep-review's multi-dimensional iteration model:",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-07T09:00:45.733Z",
+    "last_save_at": "2026-06-15T09:09:33.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

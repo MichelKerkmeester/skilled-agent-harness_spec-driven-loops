@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements/005-subheadings-spec-kit",
+  "spec_folder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/005-subheadings-spec-kit",
+  "parent_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "long",
+      "works",
+      "sections",
+      "without",
+      "navigation",
+      "anchors",
+      "hard",
+      "scan",
+      "3-paragraph",
+      "rule",
+      "section",
+      "paragraphs"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimate Based",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operations For",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Entry Point",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prediction Error",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Cases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Action Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Long HOW IT WORKS sections without navigation anchors are hard to scan. The 3-paragraph rule: any HOW IT WORKS section with >3 paragraphs MUST have H3 sub-headings. The phase 002 audit identifies all such files. This phase applies the restructuring.",
+    "created_at": "2026-06-15T09:09:33.021Z",
+    "last_save_at": "2026-06-15T09:09:33.021Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

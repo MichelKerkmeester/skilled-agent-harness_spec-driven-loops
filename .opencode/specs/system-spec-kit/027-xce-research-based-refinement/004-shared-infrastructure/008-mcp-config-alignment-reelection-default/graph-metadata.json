@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Daemon re-election was \"default-on\" only by convention: the launcher's `daemonReelectionEnabled` returned true exclusively for an explicit `1`/`on`, so an unconfigured launcher fell back to kill-on-disposal, and every doc claimed \"the launcher's code default stays off, so the runtime configs are the on-switch.\" Separately, the four MCP runtime configs had drifted: `.mcp.json`/`.claude/mcp.json` carried an invalid-JSON missing comma in the code-index block; all four were larded with ~25 `_NOTE_*` pseudo-comment keys passed into the launcher's real environment; the skill-advisor block used the legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` name; `SPECKIT_ADVISOR_DOC_TRIGGERS` existed only in the codex config; and key ordering differed per file.",
+    "causal_summary": "Daemon re-election was \"default-on\" only by convention: the launcher's `daemonReelectionEnabled` returned true exclusively for an explicit `1`/`on`, so an unconfigured launcher fell back to kill-on-disposal, and every doc claimed \"the launcher's code default stays off, so the runtime configs are the on-switch.\" Separately, the four MCP runtime configs had drifted: `.mcp.json`/`.claude/mcp.json` carried an invalid-JSON missing comma in the code-index block; all four were inflated by drift-prone `_NOTE_*` trivia (per-server token-budget estimates and full tool-list dumps) alongside the useful operational notes, all passed into the launcher's real environment; the skill-advisor block used the legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` name; `SPECKIT_ADVISOR_DOC_TRIGGERS` existed only in the codex config; and key ordering differed per file.",
     "created_at": "2026-06-14T07:07:19.444Z",
-    "last_save_at": "2026-06-14T07:07:19.444Z",
+    "last_save_at": "2026-06-15T09:09:34.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

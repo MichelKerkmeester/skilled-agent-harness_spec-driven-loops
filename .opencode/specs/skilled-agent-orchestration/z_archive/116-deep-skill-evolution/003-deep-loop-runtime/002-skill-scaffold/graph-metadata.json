@@ -42,9 +42,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
-      ".opencode/skills/deep-review/SKILL.md",
-      ".opencode/skills/deep-research/SKILL.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -194,7 +192,7 @@
     ],
     "causal_summary": "The 118 arc executes a FULL_ISOLATE_NO_MCP migration that relocates 13 runtime library files, 4 MCP handler files, the SQLite coverage-graph DB, and 4 MCP tool schema entries out of `.opencode/skills/system-spec-kit/mcp_server/` and into a new peer skill `.opencode/skills/deep-loop-runtime/`. Subsequent phases (002 lib migration, 003 script shim and DB relocation, 004 MCP surface removal, 005 YAML update, 006 collateral update, 007 test migration, 008 verification/changelog) require the destination skill folder structure to exist before any moves can land. Without a stable, validated scaffold, phase 002 file moves would land in an inconsistent state and downstream phases would have no anchor.",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-06-07T09:00:45.873Z",
+    "last_save_at": "2026-06-15T09:09:33.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -169,6 +169,21 @@ routes:
       - "mode-registry drift guard"
       - "single graph-metadata identity"
 
+  - target: fable-mode
+    yaml: doctor_fable-mode.yaml
+    setup_vars: [execution_mode, target_dir]
+    allowed_flags: ["--dir=<path>", "--baseline=<path>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only behavioral-metric diagnostic; reads deep-loop state + iteration markdown + baseline snapshot, writes no files)"
+    mcp_tools: []   # script-only behavioral-metric read; no MCP calls
+    script_invocations:
+      - 'node .opencode/commands/doctor/scripts/fable-mode-check.cjs --dir "{target_dir}"'
+    trigger_phrases:
+      - "fable-5 behavioral metrics"
+      - "fable mode efficiency check"
+      - "tool text ratio diagnostic"
+      - "result-first opener metric"
+
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
 # ─────────────────────────────────────────────────────────────────

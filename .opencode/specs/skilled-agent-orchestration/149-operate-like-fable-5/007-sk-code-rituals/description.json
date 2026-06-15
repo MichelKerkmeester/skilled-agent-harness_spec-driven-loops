@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/149-operate-like-fable-5/007-sk-code-rituals",
+  "description": "Feature Specification: sk-code engineering rituals: mutation-check, verification ladder with named blind spots, and decision-economy plus fail-closed-",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-code",
+    "engineering",
+    "rituals",
+    "mutation-check",
+    "verification",
+    "ladder",
+    "named",
+    "blind",
+    "spots",
+    "decision-economy",
+    "plus",
+    "fail-closed"
+  ],
+  "lastUpdated": "2026-06-15T14:22:42.788Z",
+  "specId": "007",
+  "folderSlug": "sk-code-rituals",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "149-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -160,11 +160,12 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     };
     console.log(`advisor-parity-report ${JSON.stringify(report)}`);
 
-    // Scorer P0 routing fixes (memory-save model-B normalization, code-mode
-    // disambiguation, low-information ambiguity abstention) currently keep
-    // Python at 61 legacy-correct rows; TS preserves all 61.
-    expect(pythonCorrect).toBe(61);
-    expect(tsAlsoCorrect).toBe(61);
+    // The deep-loop merge folded five deep-loop skills into deep-loop-workflows
+    // and the registry/scorer hardening that followed lifted Python from 61 to
+    // 62 legacy-correct rows on the unchanged corpus; the contract that TS
+    // preserves every Python-correct decision still holds at the new baseline.
+    expect(pythonCorrect).toBe(62);
+    expect(tsAlsoCorrect).toBe(62);
     expect(regressions).toBe(0);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

@@ -27,6 +27,10 @@ export const executorConfigSchema = z.object({
   serviceTier: z.enum(SERVICE_TIERS).nullable().default(null),
   sandboxMode: z.enum(SANDBOX_MODES).nullable().default(null),
   timeoutSeconds: z.number().int().positive().default(900),
+  // Optional fable-5 governor capsule for this executor's prompts. Universal and
+  // kind-agnostic on purpose: intentionally absent from EXECUTOR_KIND_FLAG_SUPPORT
+  // and the unsupported-field scan, so any executor kind may carry it. null = none.
+  governor: z.string().min(1).nullable().default(null),
 });
 
 export type ExecutorConfig = z.infer<typeof executorConfigSchema>;

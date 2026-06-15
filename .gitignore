@@ -9,6 +9,7 @@
 # The negation pattern below overrides the global ignore.
 !.opencode/
 !specs
+~
 
 # ───────────────────────────────────────────
 # Archive

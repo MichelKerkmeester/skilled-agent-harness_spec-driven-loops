@@ -32,14 +32,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-ai-council/scripts/lib/findings-registry.cjs",
-      ".opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs",
-      ".opencode/skills/deep-ai-council/scripts/tests/findings-registry.vitest.ts",
-      ".opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml",
       "decision-record.md",
-      ".opencode/commands/deep/ask-ai-council.md",
-      ".opencode/skills/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts",
-      ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -48,51 +41,9 @@
     ],
     "entities": [
       {
-        "name": "findings-registry.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-ai-council/scripts/lib/findings-registry.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-session.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-ai-council/scripts/tests/findings-registry.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep_ask-ai-council_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "ask-ai-council.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/ask-ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-session.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep_ask-ai-council_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
         "source": "derived"
       },
       {
@@ -190,11 +141,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Multi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This placeholder phase consumes ADR-002 and ADR-005 from 129/001 and will be filled by the Wave 6 implementation agent. The scope is intentionally narrow so the architecture decisions are implemented in order.",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-06-07T09:00:45.848Z",
+    "last_save_at": "2026-06-15T09:09:33.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

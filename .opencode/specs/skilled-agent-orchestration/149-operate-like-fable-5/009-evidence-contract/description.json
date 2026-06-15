@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/149-operate-like-fable-5/009-evidence-contract",
+  "description": "Feature Specification: Machine-checkable evidence contract schema in post-dispatch-validate and the agent IO contract",
+  "keywords": [
+    "feature",
+    "specification",
+    "machine-checkable",
+    "evidence",
+    "contract",
+    "schema",
+    "post-dispatch-validate",
+    "agent"
+  ],
+  "lastUpdated": "2026-06-15T14:22:43.131Z",
+  "specId": "009",
+  "folderSlug": "evidence-contract",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "149-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

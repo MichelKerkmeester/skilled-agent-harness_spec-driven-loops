@@ -1,18 +1,16 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/150-mcp-open-design",
-  "description": "Feature Specification: Open Design terminal control and interface integration",
+  "description": "Feature Specification: mcp-open-design skill, integration, and verification",
   "keywords": [
     "feature",
     "specification",
-    "open",
-    "design",
-    "terminal",
-    "control",
-    "interface",
-    "integration"
+    "mcp-open-design",
+    "skill",
+    "integration",
+    "verification"
   ],
-  "lastUpdated": "2026-06-15T05:34:46.640Z",
+  "lastUpdated": "2026-06-15T13:45:21.678Z",
   "specId": "150",
   "folderSlug": "mcp-open-design",
   "parentChain": [

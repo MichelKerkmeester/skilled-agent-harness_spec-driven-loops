@@ -41,19 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-ai-council/assets/prompt_pack_round.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "prompt_pack_round.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/assets/prompt_pack_round.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 5** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
     "created_at": "2026-06-11T05:47:24Z",
-    "last_save_at": "2026-06-12T04:40:47.830Z",
+    "last_save_at": "2026-06-15T09:09:34.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

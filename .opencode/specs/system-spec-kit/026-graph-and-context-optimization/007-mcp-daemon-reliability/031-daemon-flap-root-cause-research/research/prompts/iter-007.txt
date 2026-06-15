@@ -1,0 +1,31 @@
+Act as a principal engineer making a build decision. READ-ONLY MODE: do NOT write/edit files. Final message IS the deliverable — use the skeleton.
+
+# Inputs (READ all — under .../031-daemon-flap-root-cause-research/research/)
+- iterations/iteration-001.md (phase ledger), 002 (code trace), 003 (cross-runtime/failure-seq), 004 (Fix A: launchd/systemd), 005 (Fix B: pure-Node launcher hardening), 006 (Fix C1 supervisor + C2 cold-start self-heal), orchestrator-verifications.md, live-diagnosis.md
+
+# Task: synthesize a DECISION. Compare the fixes and recommend a concrete LAYERED architecture.
+The candidate fixes:
+- A: launchd (macOS) / systemd --user (Linux) KeepAlive per daemon; session launchers become pure clients.
+- B: uniform pure-Node launcher hardening (give advisor+code-index spec-memory's release/adopt; proactive pre-bind stale-socket sweep; HF refcount; active-client fail-open; long/no idle).
+- C1: a single pure-Node supervisor process owning all daemons+HF, bootstrapped by ONE OS unit.
+- C2: cold-start self-heal (warm probe kicks a detached cold-start; SessionStart kick).
+- Prevention: calibrate+enable RSS caps + free-RAM preflight (RC-1).
+
+# Questions
+1. DECISION MATRIX: score A/B/C1/C2 (and the prevention layer) against weighted criteria — (a) survives SIGKILL/OOM of the LAST resident owner [highest weight], (b) cross-platform (macOS/Linux/WSL), (c) blast radius / regression risk vs the 30 shipped phases, (d) implementation complexity & time, (e) operational friction (install/uninstall), (f) cures-vs-prevents, (g) alignment with existing launcher/lease/proxy machinery, (h) multi-concurrent-session safety. Use a numeric or H/M/L table and SHOW the weighting.
+2. THE RECOMMENDATION: pick a concrete LAYERED architecture (what ships now vs next vs durable). Be specific about which pieces of A/B/C1/C2/prevention combine, and WHY this layering beats any single fix. State explicitly which layer actually closes the SIGKILL/OOM-last-owner gap.
+3. NON-OVERLAP WITH SHIPPED WORK: which existing phases (017/019/020/021/022/027/028/029/030) does the recommendation EXTEND vs SUPERSEDE vs leave alone? Flag anything it would undo.
+4. MINIMAL VIABLE FIX vs FULL FIX: define the smallest change that materially fixes the live symptom (advisor+spec-memory staying dead), and the full durable target.
+5. OPEN DECISIONS for the operator (the choices only a human makes): e.g. accept a new always-on OS unit? always-warm daemons (RAM cost) vs idle? supervisor vs per-daemon units? scope to macOS-first?
+
+# Output skeleton
+## IT7 — synthesis, decision matrix, recommendation
+### Decision matrix (criteria + weights + scores A/B/C1/C2/prevention)
+### Recommended layered architecture (now / next / durable) + why it beats any single fix
+### Where the SIGKILL/OOM-last-owner gap is actually closed
+### Relationship to shipped phases (extend / supersede / leave alone / would-undo)
+### Minimal viable fix vs full durable fix
+### Open decisions for the operator
+### Confidence + unknowns
+
+Be decisive; lead with the recommendation. Cite iterations for load-bearing claims.

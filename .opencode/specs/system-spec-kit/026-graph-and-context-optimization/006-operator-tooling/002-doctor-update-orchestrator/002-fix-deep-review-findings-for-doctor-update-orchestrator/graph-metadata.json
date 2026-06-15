@@ -46,8 +46,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
-      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl"
+      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "doctor-runtime-bootstrap.sh",
         "kind": "script",
         "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "key_phrase",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "note",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3** of `010-doctor-update-orchestrator`. The 10-iteration deep-review (commit `8d794afad`, 2026-05-11) emitted a **CONDITIONAL** verdict with 0 P0, 30 P1, and 30 P2 findings against the 013 phase parent + 001 + 002. This packet closes those findings out.",
     "created_at": "2026-05-11T08:32:25Z",
-    "last_save_at": "2026-05-30T10:12:02.697Z",
+    "last_save_at": "2026-06-15T09:09:34.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

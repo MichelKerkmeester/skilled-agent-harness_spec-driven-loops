@@ -1,0 +1,141 @@
+{
+  "sessionId": "fanout-mimo-v25-pro-1781458383576-j9ykio",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "mcp-open-design SKILL.md version stale at 1.1.0",
+      "file": ".opencode/skills/mcp-open-design/SKILL.md",
+      "line": 9,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" },
+        { "iteration": 3, "from": "P1", "to": "P1", "reason": "Refinement with checklist evidence" },
+        { "iteration": 4, "from": "P1", "to": "P1", "reason": "Reinforced by changelog desync" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "sk-interface-design source URL points to upstream origin",
+      "file": ".opencode/skills/sk-interface-design/SKILL.md",
+      "line": 8,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "od_cli_reference.md has 5 open uncertainty items at v1.2.0",
+      "file": ".opencode/skills/mcp-open-design/references/od_cli_reference.md",
+      "line": 233,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Auth requirements per verb partially inferred",
+      "file": ".opencode/skills/mcp-open-design/references/od_cli_reference.md",
+      "line": 241,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Parity protocol write-back guardrail terminology loose",
+      "file": ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
+      "line": 109,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent spec.md missing final version numbers",
+      "file": "spec.md",
+      "line": 84,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "mcp-open-design changelog/SKILL.md version desync",
+      "file": ".opencode/skills/mcp-open-design/SKILL.md",
+      "line": 9,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    { "findingId": "F001", "severity": "P1", "count": 3 }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    { "findingId": "F001", "severity": "P1", "count": 3 }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 6
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

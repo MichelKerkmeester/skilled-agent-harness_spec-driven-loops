@@ -1,29 +1,6 @@
 {
   "title": "Feature Specification: Memory Store and Search (Phase Parent)",
   "type": "coordination-parent",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
-  "description": "Phase-parent for the memory store, write-path safety, indexing/causal lifecycle, trigger matching, feedback reducers, and search resilience phases.",
-  "keywords": [
-    "027",
-    "memory",
-    "store",
-    "search",
-    "write",
-    "safety",
-    "index",
-    "causal",
-    "triggers",
-    "reducers",
-    "vector",
-    "bm25"
-  ],
-  "lastUpdated": "2026-06-14T00:00:00Z",
-  "specId": "002",
-  "folderSlug": "memory-store-and-search",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement"
-  ],
   "childTopology": [
     "001-memory-write-safety",
     "002-memory-index-causal-lifecycle",
@@ -39,5 +16,25 @@
     "012-hybrid-search-scope-then-limit",
     "013-provenance-injection",
     "014-idempotency-flag-on-correctness"
-  ]
+  ],
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "description": "Feature Specification: Memory Store and Search (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "store",
+    "search",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-14T09:49:51.050Z",
+  "specId": "002",
+  "folderSlug": "memory-store-and-search",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -39,6 +39,7 @@ ALLOWED_FAMILIES = {"cli", "mcp", "sk-code", "deep-loop", "sk-util", "system"}
 ALLOWED_CATEGORIES = {
     "cli-orchestrator", "mcp-tool", "code-quality",
     "autonomous-loop", "utility", "system",
+    "workflow", "design",
 }
 EDGE_TYPES = {"depends_on", "enhances", "siblings", "conflicts_with", "prerequisite_for"}
 ALLOWED_ENTITY_KINDS = {"skill", "agent", "script", "config", "reference"}

@@ -13,7 +13,15 @@
     "trigger_phrases": [
       "deep-loop-workflows hub skill build",
       "mode-registry.json build",
-      "verbatim mode packets"
+      "verbatim mode packets",
+      "deep-loop-workflows phase 003",
+      "merged-hub-and-mode-packets",
+      "deep loop merge implementation plan",
+      "deep loop merge tasks",
+      "deep loop merge verification checklist",
+      "deep-loop-workflows phase 003 summary",
+      "merged hub mode packets built",
+      "five mode packets verbatim"
     ],
     "key_topics": [
       "deep-loop-workflows",
@@ -25,20 +33,76 @@
       "verbatim",
       "mode",
       "packets",
-      "five",
-      "persona",
-      "skills"
+      "phase",
+      "003",
+      "merged-hub-and-mode-packets"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "planned_(scaffold)",
     "key_files": [
-      "spec.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      ".opencode/skills/deep-loop-workflows/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/graph-metadata.json",
+      ".opencode/skills/deep-loop-workflows/README.md",
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -66,25 +130,83 @@
         "source": "derived"
       },
       {
+        "name": "Open Items",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase Documentation Map",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "multi-segment",
-        "kind": "key_phrase",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The five persona skills must become one skill without flattening their five distinct convergence contracts (coverage-saturation, dual-layer newInfoRatio, P0-gated verdict, two-of-three council, config-driven plateau). The mandatory mode-registry.json that enforces the three-tier discriminator does not yet exist (blocker B4). And the verdict on path scope (blocker / risk R3) corrected the earlier \"single-segment rename\" claim: internal references need multi-segment rewrites (for example deep-review/references/protocol/loop_protocol.md becomes deep-loop-workflows/review/references/protocol/loop_protocol.md).",
+    "causal_summary": "The five persona skills must become one skill without flattening their five distinct convergence contracts (coverage-saturation, dual-layer newInfoRatio, P0-gated verdict, two-of-three council, config-driven plateau). The mandatory mode-registry.json that enforces the three-tier discriminator does not yet exist (blocker B4). And the verdict on path scope (risk R3) corrected the earlier \"single-segment rename\" claim: internal references need multi-segment rewrites (for example deep-review/references/protocol/loop_protocol.md becomes deep-loop-workflows/review/references/protocol/loop_protocol.md).",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-06-14T20:16:09.678Z",
+    "last_save_at": "2026-06-15T09:09:33.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

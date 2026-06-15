@@ -6,10 +6,11 @@
     "feature",
     "specification",
     "mcp-figma",
-    "figma-ds-cli",
-    "figma terminal control"
+    "direct",
+    "cli",
+    "support"
   ],
-  "lastUpdated": "2026-06-14T17:00:00Z",
+  "lastUpdated": "2026-06-15T05:34:46.679Z",
   "specId": "151",
   "folderSlug": "mcp-figma-with-direct-cli-support",
   "parentChain": [

@@ -41,11 +41,8 @@
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
       "implementation-summary.md",
       "handover.md",
-      ".opencode/commands/deep/start-agent-improvement-loop.md",
       "stress-runs/stage4-summary.md",
       "spec.md",
       "plan.md",
@@ -56,18 +53,6 @@
     ],
     "entities": [
       {
-        "name": "deep_start-agent-improvement-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-agent-improvement-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -77,12 +62,6 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "start-agent-improvement-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
         "source": "derived"
       },
       {
@@ -198,11 +177,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Apply Diff Sketches",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Round Stress Runs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Dependencies",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 produced 854 lines of research synthesizing 10 cli-copilot iterations into prioritized improvement recommendations for the sk-improve-agent triad. Phase 002 turns those recommendations into shipped behavior:",
     "created_at": "2026-05-02T09:47:05.342Z",
-    "last_save_at": "2026-06-05T12:47:32.723Z",
+    "last_save_at": "2026-06-15T09:09:33.380Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

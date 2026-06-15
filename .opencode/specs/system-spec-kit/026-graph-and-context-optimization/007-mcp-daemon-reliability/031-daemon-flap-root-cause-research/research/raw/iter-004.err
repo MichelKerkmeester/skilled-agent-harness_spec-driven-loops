@@ -1,0 +1,73 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "sk-code"
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-001.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/spec.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/implementation-summary.md[90m [offset=1, limit=2000][0m
+[0m✗ [0mGrep "LaunchAgent|\.plist|launchd|KeepAlive|RunAtLoad" failed[90m in .opencode[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m→ [0mRead .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/bin/spec-memory.cjs[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/bin/README.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/bin/skill-advisor.cjs[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/bin/code-index.cjs[90m [offset=1, limit=220][0m
+[0m✱ [0mGlob "**/ENV_REFERENCE.md"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "daemonReelectionEnabled|shouldReleaseDaemonForReelection|release.*re-election|released|adopt|warm-only|proxy|SPECKIT_DAEMON_REELECTION|shutdown|SIGTERM|clearLease|spawnDetached|superviseChildExit"[90m in .opencode/bin · 92 matches[0m
+[0m✱ [0mGrep "LaunchAgent|launchd|plist|KeepAlive|RunAtLoad|StartInterval|orphan-sweep"[90m in .opencode · 6 matches[0m
+[0m✱ [0mGrep "LaunchAgent|launchd|plist|KeepAlive|RunAtLoad|StartInterval|orphan-sweep"[90m in .opencode · 0 matches[0m
+[0m✱ [0mGrep "LaunchAgent|launchd|plist|KeepAlive|RunAtLoad|StartInterval|orphan-sweep"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=190, limit=35][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1308, limit=65][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1436, limit=42][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1148, limit=65][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=148, limit=38][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=900, limit=40][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1568, limit=55][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=850, limit=60][0m
+[0m→ [0mRead .opencode/scripts/README.md[90m [offset=1, limit=150][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/README.md[90m [offset=250, limit=20][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md[90m [offset=1, limit=75][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/README.md[90m [offset=185, limit=25][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/README.md[90m [offset=1, limit=140][0m
+[0m✱ [0mGrep "LaunchAgent|orphan|lifecycle|idle|daemon|warm-only|warm"[90m in .opencode/skills/system-skill-advisor · 100 matches[0m
+[0m✱ [0mGrep "LaunchAgent|orphan|lifecycle|idle|daemon|warm-only|warm"[90m in .opencode/skills/system-code-graph · 36 matches[0m
+[0m✱ [0mGrep "KeepAlive|RunAtLoad|StartInterval|ProgramArguments|StandardOutPath|StandardErrorPath|ThrottleInterval"[90m in .opencode/scripts/launchagents · 5 matches[0m
+[0m✱ [0mGrep "systemd|Windows|launchd|LaunchAgent|KeepAlive|RunAtLoad|always-on|supervisor|supervision"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/README.md[90m [offset=68, limit=12][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/README.md[90m [offset=106, limit=10][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/README.md[90m [offset=80, limit=10][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/README.md[90m [offset=154, limit=8][0m
+[0m→ [0mRead .opencode/bin/lib/README.md[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=468, limit=15][0m
+[0m✗ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts failed[90m [offset=300, limit=90][0m
+[91m[1mError: [0mOffset 300 is out of range for this file (22 lines)
+[0m✱ [0mGrep "EADDRINUSE|unlinkSync|socket path|same uid|foreign|symlink"[90m in .opencode/skills · 36 matches[0m
+[0m✱ [0mGlob ".opencode/skills/**/mcp_server/lib/ipc/socket-server.ts"[90m in . · 3 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=340, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=270, limit=35][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=108, limit=20][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts[90m [offset=1, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts[90m [offset=340, limit=90][0m
+[0m✗ [0mRead .opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts failed[90m [offset=340, limit=90][0m
+[91m[1mError: [0mOffset 340 is out of range for this file (22 lines)
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts[90m [offset=1, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md[90m [offset=35, limit=15][0m
+[0m→ [0mRead .opencode/install_guides/README.md[90m [offset=55, limit=15][0m
+[0m→ [0mRead .opencode/install_guides/README.md[90m [offset=170, limit=25][0m
+[0m✱ [0mGrep "full-live|unsafe|hardcoded|env override|machine-specific|Machine|absolute paths|not installed|not loaded|operator-approved|operator approved|default"[90m in .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups · 21 matches[0m
+[0m✱ [0mGrep "macOS.*baseline|baseline.*macOS|Linux|Windows WSL|Windows|systemd|launchd|LaunchAgent"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/plan.md[90m [offset=145, limit=60][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/plan.md[90m [offset=40, limit=65][0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-*/implementation-summary.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-*/implementation-summary.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-*/implementation-summary.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-*/implementation-summary.md"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout/implementation-summary.md[90m [offset=47, limit=85][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/implementation-summary.md[90m [offset=47, limit=110][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/implementation-summary.md[90m [offset=47, limit=95][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival/implementation-summary.md[90m [offset=47, limit=95][0m
+[0m✱ [0mGlob "**/*.plist"[90m in .opencode · 1 match[0m
+[0m✱ [0mGlob "**/*.plist"[90m in . · 1 match[0m
