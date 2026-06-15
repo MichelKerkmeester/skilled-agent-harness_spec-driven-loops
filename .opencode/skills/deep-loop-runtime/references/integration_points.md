@@ -99,12 +99,13 @@ The runtime tests are discovered from the system-spec-kit MCP server Vitest conf
   '../deep-loop-runtime/tests/**/*.{vitest,test}.ts'
 ```
 
-Production imports from this skill still depend on `system-spec-kit`-local dependencies:
+Production imports resolve from this skill's own `node_modules` via bare specifiers — no reach-in to a sibling skill's installed packages:
 
-- `executor-config.ts` and `prompt-pack.ts` import `zod` from `system-spec-kit/mcp_server/node_modules/zod/index.js`.
-- `coverage-graph-db.ts` and `coverage-graph-signals.ts` import `better-sqlite3` from `system-spec-kit/mcp_server/node_modules/better-sqlite3/lib/index.js`.
+- `executor-config.ts` and `prompt-pack.ts` import `zod` (declared in this skill's `package.json`).
+- `coverage-graph-db.ts`, `coverage-graph-signals.ts`, and `council/council-graph-db.ts` import `better-sqlite3` (declared here; pinned to the same version `system-spec-kit` uses so the native binding stays ABI-compatible).
+- The `*.cjs` scripts boot the tsx loader through `require.resolve('tsx')`, which resolves from this skill's own `node_modules`.
 
-That dependency shape is why graph metadata lists `system-spec-kit` under `depends_on`.
+The dependency versions are kept in lockstep with `system-spec-kit` (see `package.json`), which is why graph metadata still lists `system-spec-kit` under `depends_on`. The standalone suite runs via `npm test` (local `vitest.config.ts`); the combined CI run still discovers these tests through the `system-spec-kit` MCP server config above.
 
 ---
 
@@ -165,7 +166,7 @@ The following consumers were surfaced by a deep-research audit and were absent f
 | 4 | `/doctor` update command | `.opencode/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
 | 5 | `system-code-graph` playbook | `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-*.md` + `010-*.md` | Operator scenarios exercising the coverage-graph scripts end-to-end |
 | 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
-| 7 | Doctor + deep-improvement | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` + `doctor_update.yaml` + `.opencode/skills/deep-loop-workflows/improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
+| 7 | Doctor + deep-improvement | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` + `doctor_update.yaml` + `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
 
 ### Note: cross-package test discovery
 

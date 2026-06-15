@@ -1,6 +1,6 @@
 // MODULE: Coverage Graph Signals
 
-import Database from '../../../system-spec-kit/mcp_server/node_modules/better-sqlite3/lib/index.js';
+import Database from 'better-sqlite3';
 import type {
   Namespace,
   LoopType,

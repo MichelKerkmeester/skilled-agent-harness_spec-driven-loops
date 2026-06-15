@@ -32,7 +32,7 @@ const {
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TSX_LOADER = path.resolve(__dirname, '..', '..', 'system-spec-kit', 'scripts', 'node_modules', 'tsx', 'dist', 'loader.mjs');
+const TSX_LOADER = require.resolve('tsx');
 
 if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(process.execPath, ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)], {

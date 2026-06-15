@@ -1,0 +1,21 @@
+{
+  "name": "@deep-loop/runtime",
+  "version": "1.0.0",
+  "description": "Shared deep-loop runtime: executor, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, and fallback routing. Self-contained dependency root so lib and scripts resolve zod, better-sqlite3, and the tsx loader from this skill rather than reaching into a sibling skill's node_modules.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "test": "vitest run --no-coverage"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.10.0",
+    "tsx": "4.21.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "vitest": "4.1.6"
+  }
+}

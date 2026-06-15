@@ -30,17 +30,7 @@ const {
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TSX_LOADER = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  'system-spec-kit',
-  'scripts',
-  'node_modules',
-  'tsx',
-  'dist',
-  'loader.mjs',
-);
+const TSX_LOADER = require.resolve('tsx');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP

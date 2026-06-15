@@ -1,6 +1,6 @@
 // MODULE: Coverage Graph Database
 
-import Database from '../../../system-spec-kit/mcp_server/node_modules/better-sqlite3/lib/index.js';
+import Database from 'better-sqlite3';
 import { mkdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';

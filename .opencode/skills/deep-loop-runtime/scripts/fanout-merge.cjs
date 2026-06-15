@@ -23,17 +23,7 @@ const { spawnSync } = require('node:child_process');
 // 1. TSX BOOTSTRAP
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TSX_LOADER = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  'system-spec-kit',
-  'scripts',
-  'node_modules',
-  'tsx',
-  'dist',
-  'loader.mjs',
-);
+const TSX_LOADER = require.resolve('tsx');
 
 // The merged registry and attribution share the runtime's atomic-state helpers,
 // which are TypeScript ESM. Re-exec once under the tsx loader so the dynamic
