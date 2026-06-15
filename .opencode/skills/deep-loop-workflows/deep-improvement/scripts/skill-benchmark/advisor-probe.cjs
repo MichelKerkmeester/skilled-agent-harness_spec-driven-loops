@@ -72,6 +72,72 @@ function probeAdvisor({ prompt, advisorPy, timeoutMs }) {
 }
 
 /**
+ * Probe the advisor's deep-loop mode routing for a prompt (ADVISORY only).
+ *
+ * Uses the `--deep-skill-routing-json` surface, which projects the legacy
+ * deep-* discriminator onto registry workflowMode names and returns the winning
+ * mode plus per-mode scores. This is separate from {@link probeAdvisor}: that
+ * call ranks SKILLS (the D1-inter gate); this one resolves the MODE within the
+ * merged deep-loop-workflows skill. Deterministic (SQLite scorer, no LLM).
+ *
+ * @param {Object} params - Probe parameters.
+ * @param {string} params.prompt - Public prompt text to route.
+ * @param {string} [params.advisorPy] - Path to the advisor CLI; defaults to DEFAULT_ADVISOR_PY.
+ * @param {number} [params.timeoutMs] - Spawn timeout in milliseconds.
+ * @returns {{ ok: boolean, mode: string|null, scores: Object, error?: string }}
+ */
+function probeAdvisorMode({ prompt, advisorPy, timeoutMs }) {
+  const py = advisorPy || DEFAULT_ADVISOR_PY;
+  const res = spawnSync('python3', [py, '--deep-skill-routing-json'], {
+    input: JSON.stringify({ prompt: String(prompt || '') }),
+    encoding: 'utf8',
+    timeout: timeoutMs || 60000,
+    maxBuffer: 8 * 1024 * 1024,
+  });
+  if (res.status !== 0 || !res.stdout) {
+    return { ok: false, mode: null, scores: {}, error: (res.stderr || `exit ${res.status}`).slice(0, 200) };
+  }
+  try {
+    const parsed = JSON.parse(res.stdout);
+    return {
+      ok: true,
+      mode: parsed.mode || parsed.winner || null,
+      scores: parsed.scores && typeof parsed.scores === 'object' ? parsed.scores : {},
+    };
+  } catch (err) {
+    return { ok: false, mode: null, scores: {}, error: `unparseable routing output: ${err.message}` };
+  }
+}
+
+/**
+ * Score the ADVISORY mode-precision signal for one scenario. NEVER a gate: the
+ * skill-id D1-inter dimension and the parity fixtures remain the mode-precision
+ * authority. This surfaces whether the advisor's resolved mode matches the
+ * fixture's expected.mode so per-mode routing regressions are visible.
+ *
+ * @param {Object} params - Scoring parameters.
+ * @param {{ ok: boolean, mode: string|null }} [params.modeRouting] - Result from probeAdvisorMode.
+ * @param {string} [params.expectedMode] - Fixture expected.mode (e.g. "research").
+ * @returns {{ score: number|null, expectedMode: string|null, observedMode: string|null,
+ *   advisory: true, unscored?: string }}
+ */
+function scoreModePrecision({ modeRouting, expectedMode }) {
+  if (!expectedMode) {
+    return { score: null, expectedMode: null, observedMode: null, advisory: true, unscored: 'fixture carries no expected.mode' };
+  }
+  if (!modeRouting || !modeRouting.ok) {
+    return { score: null, expectedMode, observedMode: null, advisory: true, unscored: 'no mode-routing probe (run with --advisor-mode=python)' };
+  }
+  const observedMode = modeRouting.mode || null;
+  return {
+    score: observedMode === expectedMode ? 1 : 0,
+    expectedMode,
+    observedMode,
+    advisory: true,
+  };
+}
+
+/**
  * Score the D1-inter dimension for one scenario from an advisor probe result.
  * Rank-weighted: top-1 = 1.0, top-3 = 0.75, top-5 = 0.5, else 0. Negative
  * scenarios invert: the target must NOT appear in the recommendations.
@@ -101,7 +167,7 @@ function scoreD1Inter({ advisorResult, expectedSkillId, negative }) {
 // 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { probeAdvisor, scoreD1Inter, DEFAULT_ADVISOR_PY };
+module.exports = { probeAdvisor, probeAdvisorMode, scoreD1Inter, scoreModePrecision, DEFAULT_ADVISOR_PY };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));

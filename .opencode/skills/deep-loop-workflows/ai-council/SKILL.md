@@ -428,10 +428,10 @@ Related skills: `deep-research` for evidence-first investigation vantages and `s
 
 Council alignment is complete when:
 
-- ✅ Council requests route to `deep-ai-council` surfaces.
-- ✅ Runtime mirrors use `@deep-ai-council` as the primary agent identity.
+- ✅ Council requests route to the `deep-ai-council` advisor/packet surface (`packetSkillName` and `legacyAdvisorId` in `mode-registry.json`); `deep-ai-council` is the grandfathered SKILL.md name, not the dispatched agent.
+- ✅ Runtime mirrors dispatch `@ai-council` as the primary agent identity — the three agent files (`.opencode/agents/ai-council.md`, `.claude/agents/ai-council.md`, `.codex/agents/ai-council.toml`) all declare `name: ai-council`, matching the registry `agent: ai-council` field.
 - ✅ Council references and scripts live inside this skill package.
-- ✅ Scoped grep shows no active runtime/config dispatch references to `ai-council`.
+- ✅ Persisted artifacts and append-only state stay under packet-local `ai-council/**`.
 - ✅ Persistence helpers parse and write the existing council artifact contract while graph support remains a derived projection.
 
 ### Quality Targets

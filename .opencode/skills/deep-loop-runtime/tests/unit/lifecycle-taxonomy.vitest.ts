@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 const nodeRequire = createRequire(import.meta.url);
 
 const TAXONOMY = '../../lib/deep-loop/lifecycle-taxonomy.cjs';
-const JOURNAL = '../../../deep-loop-workflows/improvement/scripts/shared/improvement-journal.cjs';
+const JOURNAL = '../../../deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs';
 
 const taxonomy = nodeRequire(TAXONOMY) as {
   STOP_REASONS: Record<string, string>;
@@ -18,7 +18,7 @@ const journal = nodeRequire(JOURNAL) as {
 };
 
 describe('lifecycle taxonomy (promoted contract)', () => {
-  it('declares exactly the six stopReasons in contractual order', () => {
+  it('declares exactly the seven stopReasons in contractual order', () => {
     expect(Object.values(taxonomy.STOP_REASONS)).toEqual([
       'converged',
       'maxIterationsReached',
@@ -26,6 +26,7 @@ describe('lifecycle taxonomy (promoted contract)', () => {
       'manualStop',
       'error',
       'stuckRecovery',
+      'userPaused',
     ]);
   });
 
@@ -65,7 +66,7 @@ describe('improvement-journal consumes the promoted taxonomy', () => {
     });
     expect(result.valid).toBe(false);
     expect(result.errors).toContain(
-      'Invalid stopReason: "nope". Valid reasons: converged, maxIterationsReached, blockedStop, manualStop, error, stuckRecovery',
+      'Invalid stopReason: "nope". Valid reasons: converged, maxIterationsReached, blockedStop, manualStop, error, stuckRecovery, userPaused',
     );
   });
 

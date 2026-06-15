@@ -1,7 +1,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Terminal Lifecycle Taxonomy (shared backend contract)                   ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ One canonical enum for how a deep-loop session terminates: six           ║
+// ║ One canonical enum for how a deep-loop session terminates: seven         ║
 // ║ stopReasons (WHY a session ended) and four sessionOutcomes (WHAT         ║
 // ║ happened to the candidate). The two axes are orthogonal and must never   ║
 // ║ be overloaded into one another. Consumers (e.g. the improvement journal) ║
@@ -26,6 +26,10 @@ const STOP_REASONS = Object.freeze({
   manualStop: 'manualStop',
   error: 'error',
   stuckRecovery: 'stuckRecovery',
+  // Operator-initiated pause: the graph-backed runtime-loop modes (context,
+  // research, review) emit this terminal reason at pause-sentinel time. New
+  // values append to preserve the contractual error-string order above.
+  userPaused: 'userPaused',
 });
 
 /**

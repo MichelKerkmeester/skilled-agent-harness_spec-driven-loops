@@ -24,7 +24,7 @@
 // 1. IMPORTS/REQUIRES
 // ─────────────────────────────────────────────────────────────────────────────
 
-const { scoreD1Inter } = require('./advisor-probe.cjs');
+const { scoreD1Inter, scoreModePrecision } = require('./advisor-probe.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -64,6 +64,9 @@ function expectedFromScenario(scenario, obs, arg) {
     // router defers assets/* on demand, so folding them into resource recall
     // would distort D2/D3.
     assets: scenario.expectedAssets || [],
+    // Mode is the parent-skill routing target (advisory only); skill-id stays
+    // the gate, so this rides a separate non-weighted lane.
+    mode: scenario.expectedMode || (scenario.expected && scenario.expected.mode) || null,
     negativeActivation: scenario.negativeActivation === true,
   };
 }
@@ -272,6 +275,16 @@ function scoreScenario(arg) {
   // D4 usefulness ablation: still needs live skill-on/off dispatch (follow-on).
   dims.d4 = { score: null, unscored: 'requires skill-on/off ablation (live mode)' };
 
+  // Mode-precision (ADVISORY, never gated): for parent-skill fixtures the gate
+  // is skill-id (D1-inter); this only reports whether the advisor's resolved
+  // deep-loop mode matches the fixture's expected.mode. Scored when the
+  // orchestrator supplies a mode-routing probe, else unscored. The parity
+  // fixtures remain the authoritative mode-precision check.
+  dims.modePrecision = scoreModePrecision({
+    modeRouting: arg.modeRouting,
+    expectedMode: expected && expected.mode,
+  });
+
   // First failing stage (funnel): advisor activate -> router parse -> surface -> intra -> discovery.
   const failingStage = firstFailingStage({ dims, routerResult, surfaceMatch });
 
@@ -368,6 +381,10 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     ? Math.round(r.d4TaskOutcome.score * 100) : null));
   const assetRecallAvg = avg((r) => (r.dims && r.dims.assetRecall && typeof r.dims.assetRecall.score === 'number'
     ? Math.round(r.dims.assetRecall.score * 100) : null));
+  // Mode-precision advisory: share of scored rows whose advisor-resolved mode
+  // matched the fixture's expected.mode. Never folded into aggregateScore.
+  const modePrecisionAvg = avg((r) => (r.dims && r.dims.modePrecision && typeof r.dims.modePrecision.score === 'number'
+    ? Math.round(r.dims.modePrecision.score * 100) : null));
   const gateFailed = connectivity.gateFailed;
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
@@ -413,6 +430,9 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       assetRecall: assetRecallAvg === null
         ? { score: null, status: 'deferred (router) or no asset gold', note: 'deferred-asset support recall; advisory, not weighted' }
         : { score: assetRecallAvg, note: 'deferred-asset support recall; advisory, not weighted' },
+      modePrecision: modePrecisionAvg === null
+        ? { score: null, status: 'unscored (no mode-routing probe or no expected.mode)', note: 'advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id' }
+        : { score: modePrecisionAvg, note: 'advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id' },
     },
     funnel,
     headlineBottleneck: headlineBottleneck ? headlineBottleneck[0] : null,

@@ -28,7 +28,7 @@ trigger_phrases:
 | `fallback-router.ts` | Executor fallback routing. |
 | `runtime-capabilities.cjs` | Parameterized capability-matrix resolver shared by the graph-backed modes. The deep-research and deep-review scripts bind a label plus default matrix path and re-export it as byte-compatible shims. |
 | `artifact-root.cjs` | Canonical seam for the artifact-topology resolver (`resolveArtifactRoot`). The single implementation stays in `system-spec-kit/shared/review-research-paths.cjs`; the research, review and context reducers import it from here so the dependency points at the backend. |
-| `lifecycle-taxonomy.cjs` | Terminal lifecycle enum: six `stopReason` values and four `sessionOutcome` values. The improvement journal imports it so accepted values and the derived validation strings stay identical across modes. |
+| `lifecycle-taxonomy.cjs` | Terminal lifecycle enum: seven `stopReason` values and four `sessionOutcome` values. The improvement journal imports it so accepted values and the derived validation strings stay identical across modes. |
 
 The `scripts/loop-lock.cjs` CLI adapter is a thin front door over `loop-lock.ts` for non-TypeScript callers (command YAML, shells, other runtimes). It adds only argv parsing and JSON framing. These shared-backend contracts register no MCP tools and carry no public workflow routing; the runtime stays MCP-free.
 

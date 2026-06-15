@@ -53,6 +53,7 @@ skill_reference:
 
 state_paths:
   packet_dir: "{spec_folder}/ai-council"
+  lock_file: "{spec_folder}/ai-council/.deep-ai-council.lock"
   session_config: "{spec_folder}/ai-council/council-session.json"
   session_state_log: "{spec_folder}/ai-council/session-state.jsonl"
   findings_registry: "{spec_folder}/ai-council/deep-ai-council-findings-registry.json"
@@ -76,6 +77,21 @@ workflow:
       step_create_directories:
         action: "Create packet-local ai-council directories"
         command: "mkdir -p {state_paths.packet_dir} {state_paths.topics_dir} {state_paths.prompt_dir}"
+      step_acquire_lock:
+        action: "Acquire the single-writer advisory lock before building the session config"
+        command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
+        on_acquire: "Capture ownerPid from the JSON output and reuse it for every release below. If acquired=false, fail closed — another deep-ai-council run already holds this packet."
+        note: "Uses the promoted deep-loop-runtime loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls; stale-lock override is confirm-only or explicit recovery-only."
+        # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
+        on_halt:
+          action: "Release the lock before any terminal halt branch returns control"
+          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; failures here are logged but do not block the halt"
+        on_cancel:
+          action: "Release the lock on user cancel before sentinel processing"
+          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; cancel completes regardless of cleanup result"
+        on_workflow_exit:
+          action: "Release the lock as the final step of any workflow exit path (success or failure)"
+          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent — safe to invoke when already released"
       step_create_config:
         action: "Create council-session.json"
         populate:
@@ -137,3 +153,7 @@ workflow:
           - "{spec_folder}/description.json"
           - "{spec_folder}/graph-metadata.json"
           - "{spec_folder}/implementation-summary.md"
+      step_release_lock:
+        action: "Release the single-writer lock after the session save has resolved"
+        command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
+        append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'

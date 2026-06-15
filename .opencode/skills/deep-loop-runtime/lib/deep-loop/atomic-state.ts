@@ -34,8 +34,23 @@ function makeTempPath(targetPath: string): string {
  * @throws If write, fsync, or rename fails.
  */
 export function writeStateAtomic(path: string, data: unknown): void {
+  writeTextAtomic(path, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+/**
+ * Atomically write a text payload to a file.
+ *
+ * Same temp + fsync + rename guarantee as writeStateAtomic, but for
+ * already-serialized content (e.g. markdown) that must not be re-encoded
+ * as JSON. Readers always see either the previous complete file or the
+ * new one, never a torn mid-write tail.
+ *
+ * @param path - Target file path.
+ * @param content - Exact bytes to write.
+ * @throws If write, fsync, or rename fails.
+ */
+export function writeTextAtomic(path: string, content: string): void {
   const tempPath = makeTempPath(path);
-  const content = `${JSON.stringify(data, null, 2)}\n`;
 
   try {
     writeFileSync(tempPath, content, 'utf8');

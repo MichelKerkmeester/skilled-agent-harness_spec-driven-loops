@@ -229,6 +229,47 @@ describe('Lane C — D1-inter advisor scoring', () => {
   });
 });
 
+describe('Lane C — mode-precision advisory signal (non-gating)', () => {
+  const { scoreModePrecision } = require(join(SB, 'advisor-probe.cjs'));
+  const baseRouter = { parseable: true, intents: ['X'], resources: ['references/a.md'], missingResources: [], scores: [] };
+  const baseExpected = { skillId: 'deep-loop-workflows', mode: 'research', intentKeys: [], resources: ['references/a.md'] };
+
+  it('scoreModePrecision is unscored without a mode-routing probe', () => {
+    const r = scoreModePrecision({ expectedMode: 'research' });
+    expect(r.score).toBeNull();
+    expect(r.advisory).toBe(true);
+  });
+
+  it('scoreModePrecision credits a matching advisor mode and fails a mismatch', () => {
+    expect(scoreModePrecision({ modeRouting: { ok: true, mode: 'research' }, expectedMode: 'research' }).score).toBe(1);
+    expect(scoreModePrecision({ modeRouting: { ok: true, mode: 'review' }, expectedMode: 'research' }).score).toBe(0);
+  });
+
+  it('attaches dims.modePrecision (unscored) without changing the skill-id-gated score', () => {
+    const withRouting = scoreScenario({ scenarioId: 'm1', tier: 'T1', routerResult: baseRouter, expected: baseExpected, modeRouting: { ok: true, mode: 'research' } });
+    const withoutRouting = scoreScenario({ scenarioId: 'm1', tier: 'T1', routerResult: baseRouter, expected: baseExpected });
+    // Advisory mode signal must NOT move the weighted Mode A score.
+    expect(withRouting.modeAScore).toBe(withoutRouting.modeAScore);
+    expect(withRouting.dims.modePrecision.score).toBe(1);
+    expect(withoutRouting.dims.modePrecision.score).toBeNull();
+  });
+
+  it('a wrong advisor mode does not lower the scenario score (gate stays skill-id)', () => {
+    const matched = scoreScenario({ scenarioId: 'm2', tier: 'T1', routerResult: baseRouter, expected: baseExpected, modeRouting: { ok: true, mode: 'research' } });
+    const mismatched = scoreScenario({ scenarioId: 'm2', tier: 'T1', routerResult: baseRouter, expected: baseExpected, modeRouting: { ok: true, mode: 'context' } });
+    expect(mismatched.modeAScore).toBe(matched.modeAScore);
+    expect(mismatched.dims.modePrecision.score).toBe(0);
+  });
+
+  it('aggregate surfaces modePrecision in advisorySignals, outside the weighted aggregate', () => {
+    const row = scoreScenario({ scenarioId: 'm3', tier: 'T1', routerResult: baseRouter, expected: baseExpected, modeRouting: { ok: true, mode: 'research' } });
+    const report = aggregate({ skillId: 'deep-loop-workflows', skillRoot: '/x', scenarioRows: [row], connectivity: { score: 90, gateFailed: false, findings: [] }, traceMode: 'router' });
+    expect(report.advisorySignals.modePrecision.score).toBe(100);
+    // The advisory signal is not listed as a weighted dimension.
+    expect(report.dimensionScores.modePrecision).toBeUndefined();
+  });
+});
+
 describe('Lane C — end-to-end via run-skill-benchmark', () => {
   const e2eDirs: string[] = [];
   afterAll(() => {
