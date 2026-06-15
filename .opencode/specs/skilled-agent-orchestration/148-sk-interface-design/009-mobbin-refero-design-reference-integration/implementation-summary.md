@@ -102,7 +102,7 @@ The config was validated by JSON parse and a `POST` liveness probe to each endpo
 | `package_skill --check` (sk-interface-design) | PASS |
 | Em-dash sweep + SKILL.md word count | PASS (clean, 1964 words) |
 | Live `mobbin.*` / `refero.*` resolution in Code Mode | PASS (all 10 tools resolve with full schemas after reload + OAuth) |
-| First live tool invocation via `call_tool_chain` | Dropped the Code Mode connection; bridge-stability retry pending |
+| First live tool invocation via `call_tool_chain` | PASS - `mobbin_search_screens` returns real screen data once Code Mode runs on Node 24 (see the separate isolated-vm fix) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -110,7 +110,7 @@ The config was validated by JSON parse and a `POST` liveness probe to each endpo
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Tool resolution confirmed; live invocation needs a retry.** After the Code Mode reload and OAuth, all 10 `mobbin.*` / `refero.*` tools resolve with full schemas, which means the bridges connected and auth succeeded. The first live `call_tool_chain` invocation then closed the Code Mode connection, which points at `mcp-remote` bridge stability under an actual call rather than at the wiring. Retry after a fresh `/mcp` reconnect, isolating one tool at a time.
+1. **Fully verified after a Code Mode infra fix.** Tools resolve and invoke: a live `mobbin_search_screens` call returns real screen data (a Substack pricing screen plus a webp image). The first invocation attempts had dropped the Code Mode connection, root-caused to an unrelated pre-existing bug (isolated-vm 6.0.2 segfaults under Node 25), fixed by pinning the Code Mode launcher to Node 24 (committed separately). Tools are called synchronously (no top-level await) and return the MCP content array.
 2. **Refero auth model assumed to be OAuth.** Both manuals use plain `mcp-remote` OAuth. If Refero turns out to require a static Bearer, add `--header "Authorization: Bearer ${REFERO_TOKEN}"` to its args and a `REFERO_TOKEN` entry in `.env`.
 3. **No reuse-ground path.** By design, these references are critique-against only; there is no token or component reuse from them (that path stays with `mcp-open-design` design systems).
 <!-- /ANCHOR:limitations -->

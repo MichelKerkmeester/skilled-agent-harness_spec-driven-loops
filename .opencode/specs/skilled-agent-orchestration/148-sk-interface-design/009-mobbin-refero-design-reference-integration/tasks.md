@@ -71,8 +71,8 @@ _memory:
 
 - [x] T007 JSON parse plus endpoint liveness probe (both endpoints return an auth challenge)
 - [x] T008 `package_skill --check` PASS, em-dash sweep clean, SKILL.md under the word cap
-- [B] T009 Live tool resolution (`mobbin.*` / `refero.*` in Code Mode) - blocked on user OAuth plus a Code Mode reload
-- [ ] T010 `validate.sh --strict` on this phase, scoped commit
+- [x] T009 Live tool resolution + invocation (`mobbin.*` / `refero.*`) confirmed: `mobbin_search_screens` returns real screen data on Node 24
+- [x] T010 `validate.sh --strict` on this phase, scoped commit
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining (T009 is user-gated: OAuth plus Code Mode reload)
-- [x] Static verification passed (JSON, package_skill, endpoint probe)
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Static verification passed (JSON, package_skill, endpoint probe); live invocation confirmed on Node 24
 <!-- /ANCHOR:completion -->
 
 ---
