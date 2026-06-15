@@ -93,7 +93,7 @@ export const MERGED_DEEP_SKILL_ID = 'deep-loop-workflows';
 // its Lane A default workflowMode ('agent-improvement'); the other improvement
 // sub-lanes (model-benchmark, skill-benchmark, non-dev-ai-system-refine) keep
 // their own command bridges and are not folded through this alias map.
-const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({
+export const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({
   'deep-research': 'research',
   'deep-review': 'review',
   'deep-ai-council': 'ai-council',

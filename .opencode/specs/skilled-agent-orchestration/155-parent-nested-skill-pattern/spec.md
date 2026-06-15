@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/155-parent-nested-skill-pattern"
-    last_updated_at: "2026-06-15T13:00:00Z"
+    last_updated_at: "2026-06-15T13:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Phase 2 research done (15 iters): Model A via C-plus; 2 corrections applied"
-    next_safe_action: "Implement Phase 3 (registry advisorRouting block + drift-guard test)"
+    recent_action: "Phase 3 done: advisorRouting block + drift-guard test, 19/19 vitest green"
+    next_safe_action: "Phase 4 formalization (sk-doc + /create + /doctor + benchmark)"
     blockers: []
     key_files:
       - "research/research.md (converged recommendation)"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-155-parent-nested-skill-pattern"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 75
     open_questions: []
     answered_questions:
       - "Routing/identity model? Model A (one identity) via C-plus drift-guard; see research/research.md"
@@ -88,7 +88,7 @@ Make `deep-loop-workflows` the clean reference implementation of a reusable fram
 |-------|--------|-------|--------|
 | 1 | `001-rename-fix-and-shared-decision/` | Fix the four-folder rename refs across the repo; record the `shared/`-stays decision | Complete |
 | 2 | `research/` (parent-level evidence) | 15-iteration deep research (10× gpt-5.5-fast xhigh + 5× opus-4.8) → `research/research.md`: **Model A via C-plus** (15/15), `advisorRouting` block, lexical-stays-in-code, ai-council grandfathered; surfaced 2 Phase-1 corrections | **Complete** |
-| 3 | `002-…` (research-gated) | Implement Model A: add the registry `advisorRouting` block + the CI drift-guard test (maps == registry); hold the routing-parity fixtures green | Pending |
+| 3 | `002-advisor-routing-drift-guard/` | Implement Model A via C-plus: registry `advisorRouting` block (8 modes) + CI drift-guard test (maps == registry) + `--dump-routing-maps`; parity fixtures green (19/19) | **Complete** |
 | 4 | `003-…` | Formalize: new `sk-doc` parent-skill section + templates + routing/discovery benchmark (dogfooded) + `/create:parent-skill` + `/doctor:parent-skill` route | Pending |
 
 ### Phase Transition Rules

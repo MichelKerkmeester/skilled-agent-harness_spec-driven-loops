@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/155-parent-nested-skill-pattern/002-advisor-routing-drift-guard",
+  "description": "Feature Specification: Registry advisorRouting block + CI drift-guard (Model A via C-plus)",
+  "keywords": [
+    "feature",
+    "specification",
+    "registry",
+    "advisorrouting",
+    "block",
+    "drift-guard",
+    "model",
+    "via",
+    "c-plus"
+  ],
+  "lastUpdated": "2026-06-15T10:46:49.705Z",
+  "specId": "002",
+  "folderSlug": "advisor-routing-drift-guard",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "155-parent-nested-skill-pattern"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

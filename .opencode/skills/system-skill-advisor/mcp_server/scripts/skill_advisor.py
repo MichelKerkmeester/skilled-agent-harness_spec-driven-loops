@@ -2311,7 +2311,7 @@ DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 # deep-loop-workflows, discriminated by workflowMode. The Candidate-3 internal
 # discriminator keys below stay spelled as the legacy skill ids because the
 # regex pattern groups and prior-art matchers key off them and match live
-# artifact/agent names that survive until the old dirs are deleted (phase 009);
+# artifact/agent names still present across the live agent and artifact surfaces;
 # DEEP_ROUTING_MODE_BY_KEY projects each onto the merged skill's workflowMode so
 # the routing contract emits {skill: deep-loop-workflows, mode}. deep-context is
 # intentionally NOT a Candidate-3 discriminator: it stays metadata-routed
@@ -3726,6 +3726,8 @@ Examples:
                         help='Prefer stdin for single-prompt input and fall back to argv when stdin is empty.')
     parser.add_argument('--deep-skill-routing-json', action='store_true',
                         help='Read {"prompt": str, "packet_context": object} from stdin and emit Candidate-3 deep routing.')
+    parser.add_argument('--dump-routing-maps', action='store_true',
+                        help='Dump the hardcoded deep-loop-workflows routing projection maps as JSON (consumed by the registry drift-guard test).')
     parser.add_argument('--health', action='store_true',
                         help='Run health check diagnostics')
     parser.add_argument('--validate-only', action='store_true',
@@ -3773,6 +3775,13 @@ Examples:
             print(json.dumps({"error": "packet_context must be an object"}, indent=2))
             return 2
         print(json.dumps(deep_skill_routing_payload(prompt, packet_context), indent=2))
+        return 0
+
+    if args.dump_routing_maps:
+        print(json.dumps({
+            "DEEP_ROUTING_SKILLS": list(DEEP_ROUTING_SKILLS),
+            "DEEP_ROUTING_MODE_BY_KEY": dict(DEEP_ROUTING_MODE_BY_KEY),
+        }, indent=2))
         return 0
 
     if args.health:
