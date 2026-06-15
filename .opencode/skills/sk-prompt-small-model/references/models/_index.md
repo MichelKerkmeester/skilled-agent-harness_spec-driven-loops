@@ -25,7 +25,7 @@ These per-model profiles are the WEIGHT of `sk-prompt-small-model` — its promp
 | `minimax-m3` | [`minimax-m3.md`](./minimax-m3.md) | TIDD-EC; RCAF fallback | dense | empirical (benchmark 003, run on M2.7; contract carried to M3) |
 | `mimo-v2.5-pro` | [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) | COSTAR; RACE fallback (avoid TIDD-EC, CIDI) | lean | empirical (benchmark 004, confidence high) |
 | `deepseek-v4-pro` | [`deepseek-v4-pro.md`](./deepseek-v4-pro.md) | RCAF; no fallback | medium | default-unverified |
-| `kimi-k2.7-code` | [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) | RCAF; no fallback | medium | default-unverified (bakeoff 006: TIE, correctness-saturated) |
+| `kimi-k2.7-code` | [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) | COSTAR; TIDD-EC fallback (avoid rcaf) | lean | empirical (benchmark 007; perfect tier tied, rcaf weakest) |
 | `qwen3.6` | [`qwen3.6.md`](./qwen3.6.md) | RCAF; no fallback | medium | default-unverified |
 | `glm-5.1` | [`glm-5.1.md`](./glm-5.1.md) | RCAF; no fallback | medium | default-unverified |
 

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/156-kimi-k2-7-code-support/001-model-registration"
+    packet_pointer: "skilled-agent-orchestration/154-kimi-k2-7-code-support/001-model-registration"
     last_updated_at: "2026-06-15T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Executed the 8-file registration edit plan, steps 1-8"

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-kimi-k2-7-code-support/004-discriminating-bakeoff",
+  "description": "Feature Specification: Phase 1: discriminating-bakeoff",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "discriminating-bakeoff"
+  ],
+  "lastUpdated": "2026-06-15T13:45:21.760Z",
+  "specId": "004",
+  "folderSlug": "discriminating-bakeoff",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "154-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

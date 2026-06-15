@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "groupBy": "framework",
+  "gate_threshold": 0,
+  "ranking_key": "correctness",
+  "correctness_saturated": false,
+  "groups": [
+    {
+      "group": "tidd-ec",
+      "n": 18,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 25,
+      "eligible": true,
+      "rank": 1
+    },
+    {
+      "group": "race",
+      "n": 18,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 53.5,
+      "eligible": true,
+      "rank": 2
+    },
+    {
+      "group": "costar",
+      "n": 18,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 70,
+      "eligible": true,
+      "rank": 3
+    },
+    {
+      "group": "cidi",
+      "n": 18,
+      "correctness_mean": 0.9960317460317459,
+      "format_adherent_rate": 1,
+      "output_words_median": 83.5,
+      "eligible": true,
+      "rank": 4
+    },
+    {
+      "group": "rcaf",
+      "n": 18,
+      "correctness_mean": 0.9920634920634919,
+      "format_adherent_rate": 1,
+      "output_words_median": 64.5,
+      "eligible": true,
+      "rank": 5
+    }
+  ],
+  "saturation": {
+    "status": "separable",
+    "action": null,
+    "detail": "correctness still separates the eligible groups.",
+    "fixtures": [
+      {
+        "fixture": "validate-ipv4",
+        "cells": 30,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      },
+      {
+        "fixture": "validate-date",
+        "cells": 30,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      },
+      {
+        "fixture": "validate-semver",
+        "cells": 30,
+        "correctness_mean": 0.9928571428571428,
+        "saturated": false,
+        "action": "keep"
+      }
+    ]
+  },
+  "verdict": {
+    "verdict": "TIE",
+    "reason": "inside_noise_floor",
+    "ranking_key": "correctness",
+    "n_samples": 6,
+    "margin": 0,
+    "noise_floor": 0.01785714285714285,
+    "ci": {
+      "point": 0,
+      "lo": 0,
+      "hi": 0,
+      "confidence": 0.9
+    },
+    "top_pair": [
+      "tidd-ec",
+      "race"
+    ]
+  },
+  "profile": {
+    "id": "kimi-k2.7-discriminating",
+    "mode": "framework-bakeoff",
+    "version": "1.0"
+  }
+}

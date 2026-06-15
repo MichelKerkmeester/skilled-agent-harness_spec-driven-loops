@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/156-kimi-k2-7-code-support/001-model-registration",
+  "specFolder": "skilled-agent-orchestration/154-kimi-k2-7-code-support/001-model-registration",
   "description": "Feature Specification: Phase 1: model-registration",
   "keywords": [
     "feature",
@@ -8,12 +8,12 @@
     "phase",
     "model-registration"
   ],
-  "lastUpdated": "2026-06-15T10:26:26.252Z",
+  "lastUpdated": "2026-06-15T13:45:21.744Z",
   "specId": "001",
   "folderSlug": "model-registration",
   "parentChain": [
     "skilled-agent-orchestration",
-    "156-kimi-k2-7-code-support"
+    "154-kimi-k2-7-code-support"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

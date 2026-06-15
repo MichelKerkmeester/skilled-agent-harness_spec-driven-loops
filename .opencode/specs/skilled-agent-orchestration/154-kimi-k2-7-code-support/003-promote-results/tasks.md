@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/156-kimi-k2-7-code-support/003-promote-results"
+    packet_pointer: "skilled-agent-orchestration/154-kimi-k2-7-code-support/003-promote-results"
     last_updated_at: "2026-06-15T11:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Promoted TIE finding; kept default-unverified, RCAF retained"

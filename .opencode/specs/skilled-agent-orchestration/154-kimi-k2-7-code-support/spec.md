@@ -2,13 +2,13 @@
 title: "Feature Specification: kimi-k2-7-code-support"
 description: "Phase parent for kimi-k2-7-code-support"
 trigger_phrases:
-  - "156-kimi-k2-7-code-support"
+  - "154-kimi-k2-7-code-support"
   - "phase parent"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/156-kimi-k2-7-code-support"
+    packet_pointer: "skilled-agent-orchestration/154-kimi-k2-7-code-support"
     last_updated_at: "2026-06-15T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase 1 registration shipped; bakeoff and promote phases planned"
@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-06-15 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | skilled-agent-orchestration/156-kimi-k2-7-code-support |
+| **Parent Packet** | skilled-agent-orchestration/154-kimi-k2-7-code-support |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Phase 1 registration shipped (card-sync green); phases 2-3 carry the bakeoff and promotion |
@@ -109,6 +109,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 1 | 001-model-registration/ | Wire kimi-k2.7-code in, retire k2.6, smoke-test, card-sync green | Complete |
 | 2 | 002-framework-bakeoff/ | 5-framework bakeoff (run 006); result: correctness-saturated TIE, no winner | Complete |
 | 3 | 003-promote-results/ | Fold the bakeoff finding (TIE, RCAF retained) into the registry + profile | Complete |
+| 4 | 004-discriminating-bakeoff/ | Strict-validator re-run (run 007); correctness separated, costar promoted, rcaf retired | Complete |
 
 ### Phase Transition Rules
 
@@ -123,6 +124,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |------|-----|----------|--------------|
 | 001-model-registration | 002-framework-bakeoff | Model registered, smoke dispatch returns, card-sync guard green | Card-sync exit 0; smoke `opencode run` returns "pong" |
 | 002-framework-bakeoff | 003-promote-results | Bakeoff complete with an LLM-judged winning framework | Judged results identify one framework with a clear verdict |
+| 003-promote-results | 004-discriminating-bakeoff | Strict-validator bakeoff separates frameworks; registry promoted to empirical | Run 007 status `separable`; `model-profiles.json` kimi-k2.7-code status empirical citing benchmark 007 |
 <!-- /ANCHOR:phase-map -->
 
 ---

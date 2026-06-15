@@ -31,7 +31,7 @@ This profile is the single source for how to prompt Kimi-k2.7-code, the coding-o
 
 ### Core Principle
 
-RCAF + medium pre-planning: the 256k window is for front-loading explicit file-anchored Context, not for unstructured raw dumps. (Bakeoff 006 returned a correctness-saturated TIE — see §4 — so RCAF is retained as the default; framework choice did not affect correctness for this model.)
+COSTAR + lean pre-planning, framed for the task and output shape — the 256k window is for front-loading explicit file-anchored Context, not unstructured raw dumps. (Benchmark 007 on strict validators put COSTAR/RACE/TIDD-EC at perfect correctness and rcaf weakest — see §4 — so the default moved off rcaf to COSTAR.)
 
 ---
 
@@ -53,14 +53,14 @@ Kimi-k2.7-code is the **coding-optimized large-context** Kimi in the rotation �
 
 ## 3. RECOMMENDED FRAMEWORK
 
-**Primary:** RCAF
-**Fallback:** none specified in registry
-**Avoid:** none specified in registry
-**Pre-planning density:** MEDIUM
+**Primary:** COSTAR
+**Fallback:** TIDD-EC
+**Avoid:** RCAF (objectively weakest on strict validators — benchmark 007)
+**Pre-planning density:** LEAN
 
 These choices mirror `recommended_frameworks` in [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `kimi-k2.7-code` (the DATA source of truth). See `patterns_evaluation.md` for the generic RCAF, COSTAR, and RACE definitions — this profile records the per-model choice and rationale only.
 
-**Why RCAF for Kimi-k2.7-code (default-unverified, benchmark-inconclusive):** RCAF's four elements — Role, Context, Action, Format — map cleanly onto large-context coding work, and RCAF at medium pre-planning density is the convention default for unverified models in this rotation. Benchmark `006-kimi-k2.7-prompt-framework` ran a full 5-framework bakeoff but returned a **TIE — correctness saturated** (see §4): Kimi K2.7 Code produced fully-correct code under every framework, so the bakeoff could not crown a winner. RCAF is therefore retained as the convention default rather than replaced. The weak secondary signals (efficiency within noise; a subjective LLM-judge that slightly favored COSTAR/CIDI for clarity) are not strong enough to override it.
+**Why COSTAR for Kimi-k2.7-code (empirical, benchmark 007):** On invalid-dominant strict validators, three frameworks tied at perfect correctness — COSTAR, RACE, TIDD-EC — while RCAF (the old default) and CIDI were the measured-weakest (see §4). Among the perfect tier, COSTAR is the most cross-validated pick: it is MiMo's empirical winner (benchmark 004, a comparable strong coding model) and was favored by run 006's judge, so it is the safest default across evidence sources. COSTAR frames by objective + output-shape rather than guardrails, which fits a strong model that does not need heavy scaffolding. TIDD-EC (fallback) tied on correctness and is the most token-efficient; RACE is an equally-correct simpler alternative. **Avoid RCAF** — it was objectively weakest (0.992) and is retired as this model's default. The trust verdict was a TIE among the perfect tier, so this is "best-of-tied + corroborated", not a decisive single winner.
 
 **Counter-intuitive note:** the large context window is a capability, not a licence to send unstructured dumps. Prompt structure still matters — pad the `Context` block with explicit file anchors and line ranges rather than trusting the model to self-select from a raw paste. This keeps the action section tight and makes the output verifiable.
 
@@ -68,65 +68,65 @@ These choices mirror `recommended_frameworks` in [`../../../sk-prompt-small-mode
 
 ## 4. BENCHMARK EVIDENCE
 
-Benchmark **`006-kimi-k2.7-prompt-framework`** ran a full 5-framework bakeoff (`rcaf`, `race`, `cidi`, `tidd-ec`, `costar`) across 2 T3 coding fixtures × 3 samples, with 30/30 real `kimi-for-coding/k2p7` dispatches succeeding.
+Two bakeoffs were run. **Run `006`** used easy T3 fixtures and **saturated** — all five frameworks scored correctness 1.0, so it returned an uninformative TIE (a strong coding model aces easy fixtures regardless of framing). **Run `007-kimi-k2.7-discriminating`** fixed that with **invalid-dominant strict validators** (`validate-ipv4` + `validate-date` + `validate-semver`), where a lax-but-plausible solution scores <1.0, at 6 samples/cell of throttled serial real `kimi-for-coding/k2p7` dispatches. (The 4th fixture `hard-roman-to-int` was excluded — its run stalled under orchestration churn; the 3-fixture result is conclusive.)
 
-**Verdict: TIE — correctness SATURATED.** Every framework scored correctness 1.0 + format 1.0 on the deterministic oracle: Kimi K2.7 Code produced fully-correct code under all five frameworks, so correctness could not rank them. The saturation guard dropped to efficiency as the ranking key, where the top-pair margin (0.5 words) sat far inside the noise floor (90% CI [-4.67, 5.17] overlaps zero) — no trustworthy winner. The engine's own action for these fixtures was "demote-to-smoke" (too easy to discriminate this model).
+**Run 007 result: correctness SEPARATED.** Per-framework correctness (n=18):
 
-**Secondary LLM-judge (gpt-5.5, the saturation tie-break — subjective, NOT a correctness verdict):** mean scores cidi 0.989 ≈ costar 0.989 > tidd-ec 0.983 ≫ race 0.881 > rcaf 0.726. Treat with caution — the judge flagged some oracle-*confirmed-correct* code (RCAF/RACE on the SemVer fixture) as buggy, the known LLM-judge subjectivity failure mode, so this ranks perceived clarity, not correctness.
+| Rank | Framework | Correctness | Output words (median) |
+| ---: | --- | ---: | ---: |
+| 1 | tidd-ec | 1.000 | 25 |
+| 2 | race | 1.000 | 53.5 |
+| 3 | costar | 1.000 | 70 |
+| 4 | cidi | 0.996 | 83.5 |
+| 5 | rcaf | 0.992 | 64.5 |
 
-**What this means for framework choice:** for Kimi K2.7 Code on coding tasks, framework choice does **not** affect correctness — it is robust across all five. RCAF is retained as the `default-unverified` convention default; the registry status stays `default-unverified` because no framework empirically won. A sharper recommendation would need a follow-up bakeoff with harder, less-saturating fixtures (and ideally a correctness-anchored judge); the weak secondary signal hints COSTAR/CIDI for clarity. Do not carry scores from sibling models — their contexts and providers differ enough that score transfer would be misleading.
+**Trust verdict: TIE on correctness** — the three perfect frameworks (tidd-ec, race, costar) cannot be statistically separated (top-pair margin 0, 90% CI [0,0]). But the structure is actionable: **`rcaf` — the former convention default — is objectively the weakest**, producing strict-validator code that missed adversarial cases (SemVer precedence / leading-zero edges); `cidi` is second-weakest. So rcaf is retired/avoided for this model, and the default moves into the perfect tier (COSTAR; see §3 for why COSTAR over the equally-correct TIDD-EC/RACE).
+
+**This objectively refutes run 006's secondary gpt-5.5 judge**, which had subjectively ranked rcaf/race highest and read oracle-*confirmed-correct* code as buggy — the deterministic oracle is the source of truth here. Do not carry scores from sibling models — contexts and providers differ enough that score transfer would mislead.
 
 ---
 
 ## 5. TUNED TEMPLATE SNIPPET
 
-The generic RCAF framework definition and its full layered-RCAF YAML are defined in [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) § 3 "RCAF Mastery Patterns" — do not restate them here.
+The generic COSTAR framework definition is defined in [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — do not restate it here.
 
-The scaffold below is the Kimi-k2.7-code-specific fill of the RCAF body. Copy-paste-ready; executor-agnostic (no opencode invocation wrapper included — those live in the executor cards).
+The scaffold below is the Kimi-k2.7-code-specific COSTAR fill (lean pre-planning). Copy-paste-ready; executor-agnostic (no opencode invocation wrapper included — those live in the executor cards).
 
 ```text
-## Role
-You are a senior software engineer specialising in [domain: e.g. TypeScript / Python / Go].
-Your task requires reading across [N] files / [N] repos and producing a unified analysis or change.
-
 ## Context
-<!-- LARGE-CONTEXT ANCHOR BLOCK — keep explicit; do not paste raw file dumps -->
+<!-- LARGE-CONTEXT ANCHOR BLOCK — explicit file anchors, not raw dumps -->
 Target files / ranges:
   - <path/to/file-A.ts>  (lines <start>–<end> or "full file")
-  - <path/to/file-B.py>  (lines <start>–<end> or "full file")
-  [add entries for every relevant file or module]
+  [add an entry for every relevant file or module]
+Background: [one-paragraph purpose of the code area + hard constraints (API compatibility, do-not-touch areas, prior work)]
 
-Background:
-  - [One-paragraph description of the codebase area, its purpose, and why this task exists]
-  - Constraints: [Any hard limits — API compatibility, performance envelope, do-not-touch areas]
-  - Related prior work: [PR/commit/spec link if relevant]
-
-## Action
-[Single primary directive, e.g.:]
-  "Review all listed files for <concern> and produce a ranked list of findings."
+## Objective
+[Single precise directive, e.g.:]
+  "Implement <fn> so it satisfies every acceptance rule below."
   OR
-  "Refactor <pattern X> to <pattern Y> across all listed files, maintaining the existing public API."
+  "Refactor <pattern X> to <pattern Y> across the listed files, preserving the public API."
+Enumerate the non-obvious / adversarial edge cases EXPLICITLY — this is the decisive lever:
+weaker framings are exactly where Kimi occasionally let a strict edge case slip (benchmark 007).
 
-Pre-plan (medium density):
-  1. Read each anchored file in the order listed above.
-  2. Identify occurrences of [target pattern / concern].
-  3. [Next logical step — e.g. "Group by severity" or "Produce a unified diff".]
-  4. Verify the output satisfies [acceptance criterion].
+## Style
+Production code, no narration. Strictly in scope: no invented parameters, helper globals, or behaviour.
 
-## Format
-Output:
-  - [Structured list / unified diff / markdown table — pick one]
-  - Max [N] items or [N] lines; favour precision over completeness.
-  - Include file path + line number for every finding or edit.
-  - End with a one-paragraph summary of confidence and any unresolved ambiguities.
+## Tone
+Terse and literal.
+
+## Audience
+A senior engineer who will run the output against a strict hidden-test oracle.
+
+## Response
+[Exact output contract, e.g.: "Return ONLY the function source — no prose, no test code, no markdown fence."]
 ```
 
 **Kimi-k2.7-code-specific notes for the scaffold:**
 
-- Keep `Context` as the longest block — this is where the 256k window earns its place.
-- The `Action` pre-plan should name files in the same order as the `Context` block; large-context Kimi models are sensitive to ordering mismatches on long contexts.
-- Avoid open-ended `Action` directives like "analyse and improve" — scope to one concern per dispatch to keep results verifiable.
-- This scaffold reflects the RCAF default; revisit it once bakeoff 006 names the empirically-best framework (§4).
+- Keep `Context` as the longest block — this is where the 256k window earns its place; name files in a stable order (large-context Kimi is sensitive to ordering mismatches).
+- The decisive lever is the `Objective`: enumerate adversarial edge cases explicitly. That is exactly where benchmark 007 separated the frameworks — rcaf/cidi let strict-validator edges slip; costar/race/tidd-ec did not.
+- Scope to one concern per dispatch; avoid open-ended directives like "analyse and improve" — keeps output verifiable against the oracle.
+- For the tersest correct output (token budget), TIDD-EC (the fallback) was the most token-efficient of the perfect tier in benchmark 007.
 
 ---
 

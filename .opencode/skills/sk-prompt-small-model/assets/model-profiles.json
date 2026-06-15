@@ -89,25 +89,27 @@
       ],
       "weaknesses": [
         "single executor path (no fallback if the kimi-for-coding pool is exhausted)",
-        "prompt framework not yet benchmarked (default-unverified pending bakeoff 006)",
+        "weaker framings (rcaf/cidi) occasionally miss adversarial edge cases on strict validators (benchmark 007) - use costar/race/tidd-ec",
         "--variant effect unverified (flag accepted, reasoning-effort impact not benchmark-confirmed)"
       ],
       "avg_iter_wall_clock_min": null,
       "status": "active",
       "recommended_frameworks": {
-        "primary": "rcaf",
-        "fallback": null,
-        "avoid": [],
-        "preplanning_density": "medium",
+        "primary": "costar",
+        "fallback": "tidd-ec",
+        "avoid": [
+          "rcaf"
+        ],
+        "preplanning_density": "lean",
         "evidence": {
-          "benchmark": "006-kimi-k2.7-prompt-framework",
-          "primary_score": null,
-          "fallback_score": null,
-          "sample": "5-framework bakeoff (rcaf/race/cidi/tidd-ec/costar), 2 T3 coding fixtures x 3 samples, real kimi-for-coding/k2p7 dispatches (30/30 ok). Verdict TIE - correctness SATURATED: every framework scored correctness 1.0 + format 1.0, so no framework discriminates on coding correctness for this model; efficiency margin inside the noise floor (90% CI overlaps zero). Secondary gpt-5.5 LLM-judge (subjective clarity, NOT a correctness verdict - it read oracle-confirmed-correct code as buggy) ranked cidi~=costar > tidd-ec >> race > rcaf. No trustworthy winner; RCAF retained as the convention default. A future bakeoff needs harder/less-saturating fixtures to discriminate.",
-          "confidence": "low"
+          "benchmark": "007-kimi-k2.7-discriminating",
+          "primary_score": 1.0,
+          "fallback_score": 1.0,
+          "sample": "5-framework bakeoff on invalid-dominant STRICT VALIDATORS (validate-ipv4 + validate-date + validate-semver), 6 samples/cell, throttled serial real kimi-for-coding/k2p7 dispatches. (The 4th fixture hard-roman-to-int was excluded - its run stalled under orchestration churn; the 3-fixture result is conclusive.) Unlike the saturated run 006, correctness SEPARATED here. Per-framework correctness (n=18): tidd-ec 1.0 = race 1.0 = costar 1.0 (perfect tier) > cidi 0.996 > rcaf 0.992. Trust verdict: TIE on correctness (the 3 perfect frameworks cannot be statistically separated, top-pair margin 0, 90% CI [0,0]). The actionable signal: rcaf (the former convention default) is objectively the WEAKEST - it produced strict-validator code that missed adversarial cases - so it is retired/avoided for this model. Among the perfect tier, costar is primary for cross-evidence robustness (also MiMo's empirical winner, benchmark 004; favored by run 006's judge); tidd-ec is the most token-efficient (25 vs costar 70 median words) and is the fallback. This objectively refutes run 006's subjective gpt-5.5 judge, which had wrongly ranked rcaf/race highest.",
+          "confidence": "medium"
         },
         "profile_ref": "sk-prompt-small-model/references/models/kimi-k2.7-code.md",
-        "status": "default-unverified"
+        "status": "empirical"
       }
     },
     {

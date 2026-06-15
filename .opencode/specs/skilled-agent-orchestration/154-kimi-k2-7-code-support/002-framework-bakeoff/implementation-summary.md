@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/156-kimi-k2-7-code-support/002-framework-bakeoff"
+    packet_pointer: "skilled-agent-orchestration/154-kimi-k2-7-code-support/002-framework-bakeoff"
     last_updated_at: "2026-06-15T11:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Ran bakeoff 006; verdict TIE, RCAF retained"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json"
       - ".opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework/synthesis.md"
-      - ".opencode/specs/skilled-agent-orchestration/156-kimi-k2-7-code-support/002-framework-bakeoff/improvement/model-benchmark-state.jsonl"
+      - ".opencode/specs/skilled-agent-orchestration/154-kimi-k2-7-code-support/002-framework-bakeoff/improvement/model-benchmark-state.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-framework-bakeoff"
