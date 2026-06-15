@@ -5,7 +5,7 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 # mcp-figma: Manual Testing Playbook
 
-End-to-end manual testing reference for the mcp-figma skill. Every scenario validates a capability of the skill against its defined behavior, and the default set is deliberately SAFE: it exercises detection, setup, read-only access, and the safety gate, but performs no destructive Figma writes. The skill drives the live Figma Desktop session through the silships `figma-ds-cli`, so most scenarios depend on Figma Desktop being open with a file and on verifying the live binary and daemon rather than trusting documentation. Skill version 0.1.0.
+End-to-end manual testing reference for the mcp-figma skill. Every scenario validates a capability of the skill against its defined behavior, and the default set is deliberately SAFE: it exercises detection, setup, read-only access, and the safety gate, but performs no destructive Figma writes. The skill drives the live Figma Desktop session through the silships `figma-ds-cli`, so most scenarios depend on Figma Desktop being open with a file and on verifying the live binary and daemon rather than trusting documentation. Skill version 1.0.0.0.
 
 > **Naming trap (locked decision, read first).** The canonical binary is **`figma-ds-cli`** (silships, npm, MIT). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **never `npm i -g figma-cli`**. The `figma-cli` command exists only when installed from the silships repo. Every scenario below treats `figma-ds-cli` as the canonical command and verifies any `figma-cli` resolution against the silships tool before trusting it.
 

@@ -305,6 +305,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 - **`sk-interface-design`** owns the design judgment and is **applied whenever an Open Design read or run feeds a design decision** (grounding in a system, reusing its tokens/components). This skill is the transport; that skill is the taste. The two share `claude_design_parity.md`.
 - **`sk-code`** owns application-code standards for adapting any reused tokens/components into a real app.
+- **`mcp-figma`** is the sibling terminal-driven design tool for Figma Desktop, a CLI plus optional MCP hybrid with the same daemon model and gating taxonomy.
 - **`mcp-chrome-devtools`** can drive a real browser only if a last-mile visual preview is needed; it is never the way to operate Open Design.
 
 ### Knowledge Base Dependencies
@@ -317,6 +318,6 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 The router (Section 2) discovers reference docs dynamically. Start from `references/od_cli_reference.md` for the CLI and daemon model, load `references/mcp_wiring.md` to wire the MCP server, and load `references/tool_surface.md` for the tool surface and gating policy.
 
-Related skills: `sk-interface-design` (applied for the design judgment whenever a read/run feeds a design decision), `sk-code` for adapting reused tokens/components into an app, and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-interface-design` (applied for the design judgment whenever a read/run feeds a design decision), `mcp-figma` (the sibling terminal-driven design tool for Figma Desktop), `sk-code` for adapting reused tokens/components into an app, and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Upstream: Open Design is [nexu-io/open-design](https://github.com/nexu-io/open-design), an open-source local-first design tool. This skill documents driving its installed desktop app from the terminal; it does not vendor or redistribute Open Design.

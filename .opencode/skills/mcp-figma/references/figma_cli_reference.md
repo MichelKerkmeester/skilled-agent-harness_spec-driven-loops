@@ -32,9 +32,9 @@ figma-ds-cli drives the live Figma **Desktop** session over a local HTTP daemon,
 - [troubleshooting.md](troubleshooting.md) - failure modes and fixes.
 - [INSTALL_GUIDE.md](../INSTALL_GUIDE.md) - install steps and binary verification (installation detail lives there, not here).
 
-This skill is **version 0.1.0** and does **not** vendor figma-cli source.
+This skill is **version 1.0.0.0** and installs figma-ds-cli through the embedded `mcp-servers/figma-cli` scaffold rather than source-vendoring it.
 
-All load-bearing claims below are tagged **[CONFIRMED]** (read from the upstream source or package metadata during the spec-151 research, or verified live with `npm view`) or **[INFERRED]** (reasoned from source, needs a live `--help` or run to close). The figma-ds-cli itself was **not executed** during research (read-only; it may not be installed), so every command example is **illustrative; verify the exact flags with `<bin> <group> --help`** before relying on it. The full uncertainty list is Section 8.
+All load-bearing claims below are tagged **[CONFIRMED]** (read from the upstream source or package metadata, or verified live with `npm view`) or **[INFERRED]** (reasoned from source, needs a live `--help` or run to close). The figma-ds-cli binary was verified live at 1.2.0 for this release, but the command examples below were drafted from source rather than transcribed from each subcommand, so treat them as **illustrative and verify the exact flags with `<bin> <group> --help`** before relying on them. The full uncertainty list is Section 8.
 
 ---
 
@@ -355,7 +355,7 @@ A full read-only scan of the repo tree, `README` / `REFERENCE` / `CLAUDE.md` / `
 
 So an "MCP for Figma" means a **separate, external** MCP server, not a figma-ds-cli subcommand. In this repo that is the community **Framelink `figma-developer-mcp`** manual, already registered as the `figma` manual in Code Mode (`.utcp_config.json`, stdio, needs `figma_FIGMA_API_KEY` in `.env`; call via `call_tool_chain` with naming `figma.figma_<tool>`, discovered with `search_tools` / `tool_info` first). Full wiring is in [mcp_wiring.md](mcp_wiring.md).
 
-> The **official Figma Dev Mode MCP is OUT OF SCOPE for this 0.1.0 release**, so do not document it as a supported path. It is at most a future option (e.g. via an `mcp-remote` stdio bridge), not part of this skill's contract.
+> The **official Figma Dev Mode MCP is OUT OF SCOPE for this skill**, so do not document it as a supported path. It is at most a future option (e.g. via an `mcp-remote` stdio bridge), not part of this skill's contract.
 
 ---
 

@@ -182,6 +182,41 @@ servers:
     note: "npx-based server — no local install needed, just pre-cache"
 
 # ─────────────────────────────────────────────────────────────────
+# REFERENCE: CLI-PRIMARY DESIGN SKILLS (not registered MCP servers)
+# ─────────────────────────────────────────────────────────────────
+# These mcp-* skills drive an external app or browser from the terminal and
+# expose an OPTIONAL MCP via Code Mode rather than running a registered MCP
+# server, so they are NOT part of the server install/repair loop above and
+# have no entry_point or build. Each ships its own install plus diagnostics,
+# so run those per-skill for CLI readiness. Listed here so the mcp install and
+# doctor setup covers every mcp skill, not only the registered servers.
+cli_skill_diagnostics:
+  mcp-figma:
+    label: "Figma (CLI)"
+    skill_dir: ".opencode/skills/mcp-figma"
+    install_script: "scripts/install.sh"
+    doctor_script: "scripts/doctor.sh"
+    install_guide: ".opencode/skills/mcp-figma/INSTALL_GUIDE.md"
+  mcp-open-design:
+    label: "Open Design (CLI)"
+    skill_dir: ".opencode/skills/mcp-open-design"
+    install_script: "scripts/install.sh"
+    doctor_script: "scripts/doctor.sh"
+    install_guide: ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md"
+  mcp-chrome-devtools:
+    label: "Chrome DevTools (CLI)"
+    skill_dir: ".opencode/skills/mcp-chrome-devtools"
+    install_script: "scripts/install.sh"
+    doctor_script: "scripts/doctor.sh"
+    install_guide: ".opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md"
+  mcp-click-up:
+    label: "ClickUp (CLI)"
+    skill_dir: ".opencode/skills/mcp-click-up"
+    install_script: "scripts/install.sh"
+    doctor_script: "scripts/doctor.sh"
+    install_guide: ".opencode/skills/mcp-click-up/INSTALL_GUIDE.md"
+
+# ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 config_files:

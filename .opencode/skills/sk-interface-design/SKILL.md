@@ -193,6 +193,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - **`sk-code-review`** can audit the built UI against the standards sk-code enforces.
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
 - **`mcp-open-design`** is the optional transport to a real Open Design design system when that app is installed, for grounding and reuse through the shared parity loop. This skill owns the judgment, that skill owns the transport.
+- **`mcp-figma`** is the sibling transport to Figma Desktop. This skill's judgment applies whenever a Figma read or export feeds a design decision, the same boundary it holds with `mcp-open-design`.
 
 ### Knowledge Base Dependencies
 

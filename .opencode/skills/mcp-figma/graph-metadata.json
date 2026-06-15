@@ -96,7 +96,7 @@
       ".opencode/skills/mcp-figma/references/troubleshooting.md",
       ".opencode/skills/mcp-figma/feature_catalog/feature_catalog.md",
       ".opencode/skills/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/mcp-figma/changelog/v0.1.0.0.md"
+      ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md"
     ],
     "entities": [
       {"name": "mcp-figma", "kind": "skill", "path": ".opencode/skills/mcp-figma/SKILL.md", "source": "derived"},
@@ -117,7 +117,7 @@
       "references/troubleshooting.md",
       "feature_catalog/feature_catalog.md",
       "manual_testing_playbook/manual_testing_playbook.md",
-      "changelog/v0.1.0.0.md"
+      "changelog/v1.0.0.0.md"
     ],
     "created_at": "2026-06-14T16:00:00Z",
     "last_updated_at": "2026-06-14T16:00:00Z"

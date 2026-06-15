@@ -164,4 +164,6 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | [`references/variation_diversity.md`](./references/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
+| [`mcp-open-design`](../mcp-open-design/README.md) | Optional transport to a real Open Design design system for grounding and reuse, through the shared parity loop |
+| [`mcp-figma`](../mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed, as it does for `mcp-open-design` |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

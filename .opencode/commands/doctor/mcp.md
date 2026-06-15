@@ -48,6 +48,7 @@ No workflow-asset gap exists for this command.
 - `install` and `debug` have overlapping `--server` flag names; keep their schemas separate.
 - If any referenced asset is missing, stop and report the missing path.
 - This command repairs MCP infrastructure itself; subsystem database diagnostics stay under `/doctor <target>` and `/doctor:update`.
+- This command's `install` workflow covers the registered MCP servers (the `servers:` block in `doctor_mcp_install.yaml`). The CLI-primary design skills (`mcp-figma`, `mcp-open-design`, `mcp-chrome-devtools`, `mcp-click-up`) are not registered servers; each self-diagnoses via its own `scripts/install.sh` and read-only `scripts/doctor.sh`, enumerated under `cli_skill_diagnostics:` in the same YAML. Run those per-skill for CLI readiness.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
 ## Presentation Boundary

@@ -3,7 +3,7 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 0.1.0
+version: 1.0.0.0
 user-invocable: true
 ---
 

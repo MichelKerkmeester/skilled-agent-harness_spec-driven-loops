@@ -25,12 +25,17 @@
         "target": "mcp-open-design",
         "weight": 0.7,
         "context": "mcp-open-design applies this skill's anti-default judgment whenever an Open Design read or run feeds a design decision"
+      },
+      {
+        "target": "mcp-figma",
+        "weight": 0.7,
+        "context": "mcp-figma applies this skill's anti-default judgment whenever a Figma read or export feeds a design decision"
       }
     ]
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-open-design"]
+    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-open-design", "mcp-figma"]
   },
   "domains": ["frontend", "ui-design", "visual-design", "typography", "design-systems"],
   "intent_signals": [
