@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability"
-    last_updated_at: "2026-06-15T10:30:00Z"
+    last_updated_at: "2026-06-15T11:30:00Z"
     last_updated_by: "main-agent"
-    recent_action: "Authored fresh-session test-plan handover"
-    next_safe_action: "Fresh session: call memory_health, verify backgroundEnrichment block, run the vitest suites"
+    recent_action: "Fresh-session verify: memory_health block + vitest 36/36"
+    next_safe_action: "Packet closed, no further action"
     blockers: []
     key_files:
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "012-enrichment-queue-cap-and-observability"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ Test plan + context for verifying the spec-memory daemon-blockage fixes in a fre
 
 Use this handover to verify, in a fresh session, the daemon-blockage fix chain (packets 009/010/011/012) before relying on it.
 
-**Status values:** draft | in_progress | review | complete | archived — this handover: **review** (fixes shipped + verified by tests; awaiting fresh-session/runtime confirmation).
+**Status values:** draft | in_progress | review | complete | archived — this handover: **complete** (fixes shipped + verified by tests + fresh-session runtime confirmation on 2026-06-15).
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -121,7 +121,7 @@ Before relying on the fixes, verify:
 - [x] All work committed + pushed (009 `a17138b854`, 010 `25587fa412`, 011 `81cba1fbd9`, 012 `c603bfdff9`)
 - [x] Tests passing locally (tsc 0; enrichment+scan+health 24/24; lifecycle-shutdown 4/4; shutdown-hooks 4/4; daemon-reelection 4/4)
 - [x] No breaking changes left mid-implementation
-- [ ] Fresh-session runtime confirmation (the tasks in Section 3.2) — **to be done in the fresh session**
+- [x] Fresh-session runtime confirmation (Section 3.2) — DONE 2026-06-15: `memory_health` returns the `backgroundEnrichment` block (`max:4`, `maxQueued:2000`, drop/failure counters, `pendingByStatus`); vitest 36/36 (enrichment+health 24/24, lifecycle+shutdown 4/4 + 4/4, daemon-reelection-adoption-live 4/4 incl. the wedged-daemon "do NOT adopt" case)
 - [x] This handover document is complete
 <!-- /ANCHOR:validation-checklist -->
 

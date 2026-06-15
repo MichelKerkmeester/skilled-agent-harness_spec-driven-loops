@@ -1,5 +1,7 @@
 # Changelog Rollup — Track 004: Shared Infrastructure
 
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure` (Phase Parent)
+
 Top rollup for the `004-shared-infrastructure/` themed track. Each row links to a phase changelog (or that phase's own rollup). The chronological view lives in `../../timeline.md`; the old-to-new path bridge in `../../context-index.md`.
 
 ## Included Phases

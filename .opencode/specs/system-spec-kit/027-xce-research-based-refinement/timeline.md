@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-14T13:05:52Z"
+    last_updated_at: "2026-06-15T10:20:23Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-14T13:05:52Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-15T10:20:23Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -47,9 +47,9 @@ _memory:
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-14 12:09  004-shared-infrastructure/009-code-graph-code-only-indexing
- 2. 2026-06-14 12:09  004-shared-infrastructure
- 3. 2026-06-14 11:25  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
+ 1. 2026-06-14 15:42  004-shared-infrastructure/009-code-graph-code-only-indexing
+ 2. 2026-06-14 15:42  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
+ 3. 2026-06-14 15:42  004-shared-infrastructure
  4. 2026-06-14 11:25  005-verification-and-remediation
  5. 2026-06-14 11:25  003-advisor-and-codegraph
  6. 2026-06-14 11:25  002-memory-store-and-search
@@ -73,7 +73,7 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-14 12:09 | 2026-06-14 | `004-shared-infrastructure/` |
+| 1 | 2026-06-14 15:42 | 2026-06-14 | `004-shared-infrastructure/` |
 | 2 | 2026-06-14 11:25 | 2026-06-14 | `005-verification-and-remediation/` |
 | 3 | 2026-06-14 11:25 | 2026-06-14 | `003-advisor-and-codegraph/` |
 | 4 | 2026-06-14 11:25 | 2026-06-14 | `002-memory-store-and-search/` |
@@ -92,9 +92,9 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
-2026-06-14 12:09  born:2026-06-14  impl  004-shared-infrastructure/009-code-graph-code-only-indexing
-2026-06-14 12:09  born:2026-06-14        004-shared-infrastructure
-2026-06-14 11:25  born:2026-06-14  impl  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
+2026-06-14 15:42  born:2026-06-14  impl  004-shared-infrastructure/009-code-graph-code-only-indexing
+2026-06-14 15:42  born:2026-06-14  impl  004-shared-infrastructure/008-mcp-config-alignment-reelection-default
+2026-06-14 15:42  born:2026-06-14        004-shared-infrastructure
 2026-06-14 11:25  born:2026-06-14        005-verification-and-remediation
 2026-06-14 11:25  born:2026-06-14        003-advisor-and-codegraph
 2026-06-14 11:25  born:2026-06-14        002-memory-store-and-search
@@ -278,12 +278,12 @@ changelogs the rollup covers). Links resolve relative to this file.
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
 | `004-shared-infrastructure/009-code-graph-code-only-indexing` | impl | [changelog-004-009-code-graph-code-only-indexing.md](./changelog/004-shared-infrastructure/changelog-004-009-code-graph-code-only-indexing.md) |
-| `004-shared-infrastructure` |  | (none) |
 | `004-shared-infrastructure/008-mcp-config-alignment-reelection-default` | impl | [changelog-004-008-mcp-config-alignment-reelection-default.md](./changelog/004-shared-infrastructure/changelog-004-008-mcp-config-alignment-reelection-default.md) |
-| `005-verification-and-remediation` |  | (none) |
-| `003-advisor-and-codegraph` |  | (none) |
-| `002-memory-store-and-search` |  | (none) |
-| `001-research-and-doctrine` |  | (none) |
+| `004-shared-infrastructure` |  | [changelog-004-shared-infrastructure-root.md](./changelog/004-shared-infrastructure/changelog-004-shared-infrastructure-root.md) |
+| `005-verification-and-remediation` |  | [changelog-005-verification-and-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
+| `003-advisor-and-codegraph` |  | [changelog-003-advisor-and-codegraph-root.md](./changelog/003-advisor-and-codegraph/changelog-003-advisor-and-codegraph-root.md) |
+| `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
+| `001-research-and-doctrine` |  | [changelog-001-research-and-doctrine-root.md](./changelog/001-research-and-doctrine/changelog-001-research-and-doctrine-root.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | [changelog-004-002-008-router-consistency-hardening.md](./changelog/004-shared-infrastructure/changelog-004-002-008-router-consistency-hardening.md) |
 | `005-verification-and-remediation/001-finding-remediation` |  | [changelog-005-001-finding-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-001-finding-remediation-root.md) |
 | `002-memory-store-and-search/012-hybrid-search-scope-then-limit` | impl | [changelog-002-012-hybrid-search-scope-then-limit.md](./changelog/002-memory-store-and-search/changelog-002-012-hybrid-search-scope-then-limit.md) |
@@ -307,7 +307,7 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` | impl | [changelog-002-002-002-causal-tombstone-sweep.md](./changelog/002-memory-store-and-search/changelog-002-002-002-causal-tombstone-sweep.md) |
 | `002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` | impl | [changelog-002-002-001-incremental-index-foundation.md](./changelog/002-memory-store-and-search/changelog-002-002-001-incremental-index-foundation.md) |
 | `005-verification-and-remediation/001-finding-remediation/sandbox-test` |  | (none) |
-| `000-release-cleanup/000-spec-tree-consolidation` | impl | (none) |
+| `000-release-cleanup/000-spec-tree-consolidation` | impl | [changelog-000-000-spec-tree-consolidation.md](./changelog/000-release-cleanup/changelog-000-000-spec-tree-consolidation.md) |
 | `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
 | `005-verification-and-remediation/004-residual-design-units` | impl | [changelog-005-004-residual-design-units.md](./changelog/005-verification-and-remediation/changelog-005-004-residual-design-units.md) |
 | `005-verification-and-remediation/003-deep-research-remediation` | impl | [changelog-005-003-deep-research-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-003-deep-research-remediation-root.md) |
@@ -342,25 +342,25 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` | impl | [changelog-003-002-003-advisor-packed-bm25-lexical.md](./changelog/003-advisor-and-codegraph/changelog-003-002-003-advisor-packed-bm25-lexical.md) |
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` | impl | [changelog-003-002-002-advisor-provenance-guard.md](./changelog/003-advisor-and-codegraph/changelog-003-002-002-advisor-provenance-guard.md) |
 | `003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability` | impl | [changelog-003-002-001-advisor-observability.md](./changelog/003-advisor-and-codegraph/changelog-003-002-001-advisor-observability.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract` | impl | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/004-verify-and-ux` | impl | [changelog-004-004-verify-and-ux.md](./changelog/004-shared-infrastructure/changelog-004-004-verify-and-ux.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire` | impl | [changelog-004-003-router-rewire.md](./changelog/004-shared-infrastructure/changelog-004-003-router-rewire.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md` | impl | [changelog-004-002-author-presentation-md.md](./changelog/004-shared-infrastructure/changelog-004-002-author-presentation-md.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract` | impl | [changelog-004-001-inventory-extract.md](./changelog/004-shared-infrastructure/changelog-004-001-inventory-extract.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands` |  | [changelog-004-002-004-doctor-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-004-doctor-commands.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/001-inventory-extract` | impl | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux` | impl | [changelog-003-004-verify-and-ux.md](./changelog/004-shared-infrastructure/changelog-003-004-verify-and-ux.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire` | impl | [changelog-003-003-router-rewire.md](./changelog/004-shared-infrastructure/changelog-003-003-router-rewire.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md` | impl | [changelog-003-002-author-presentation-md.md](./changelog/004-shared-infrastructure/changelog-003-002-author-presentation-md.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/001-inventory-extract` | impl | [changelog-003-001-inventory-extract.md](./changelog/004-shared-infrastructure/changelog-003-001-inventory-extract.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands` |  | [changelog-004-002-003-create-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-003-create-commands.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract` | impl | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux` | impl | [changelog-002-004-verify-and-ux.md](./changelog/004-shared-infrastructure/changelog-002-004-verify-and-ux.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/003-router-rewire` | impl | [changelog-002-003-router-rewire.md](./changelog/004-shared-infrastructure/changelog-002-003-router-rewire.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md` | impl | [changelog-002-002-author-presentation-md.md](./changelog/004-shared-infrastructure/changelog-002-002-author-presentation-md.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract` | impl | [changelog-002-001-inventory-extract.md](./changelog/004-shared-infrastructure/changelog-002-001-inventory-extract.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands` |  | [changelog-004-002-002-speckit-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-002-speckit-commands.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md` | impl | (none) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` | impl | (none) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux` | impl | [changelog-001-004-verify-and-ux.md](./changelog/004-shared-infrastructure/changelog-001-004-verify-and-ux.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` | impl | [changelog-001-003-router-rewire.md](./changelog/004-shared-infrastructure/changelog-001-003-router-rewire.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md` | impl | [changelog-001-002-author-presentation-md.md](./changelog/004-shared-infrastructure/changelog-001-002-author-presentation-md.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` | impl | [changelog-001-001-inventory-extract.md](./changelog/004-shared-infrastructure/changelog-001-001-inventory-extract.md) |
 | `004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands` |  | [changelog-004-002-001-memory-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-001-memory-commands.md) |
 | `004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup` | impl | [changelog-004-001-004-release-and-program-cleanup.md](./changelog/004-shared-infrastructure/changelog-004-001-004-release-and-program-cleanup.md) |
 | `002-memory-store-and-search/007-openltm-continuity-resilience` | impl | [changelog-002-007-openltm-continuity-resilience.md](./changelog/002-memory-store-and-search/changelog-002-007-openltm-continuity-resilience.md) |
@@ -406,28 +406,28 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-memory-store-and-search/001-memory-write-safety` | impl | [changelog-002-001-memory-write-safety.md](./changelog/002-memory-store-and-search/changelog-002-001-memory-write-safety.md) |
 | `002-memory-store-and-search/004-learning-feedback-reducers` |  | [changelog-002-004-learning-feedback-reducers-root.md](./changelog/002-memory-store-and-search/changelog-002-004-learning-feedback-reducers-root.md) |
 | `002-memory-store-and-search/003-semantic-trigger-fallback` |  | [changelog-002-003-semantic-trigger-fallback-root.md](./changelog/002-memory-store-and-search/changelog-002-003-semantic-trigger-fallback-root.md) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` | impl | (none) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` | impl | (none) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` | impl | [changelog-000-009-022-system-spec-kit.md](./changelog/000-release-cleanup/changelog-000-009-022-system-spec-kit.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` | impl | [changelog-000-009-021-system-skill-advisor.md](./changelog/000-release-cleanup/changelog-000-009-021-system-skill-advisor.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` | impl | [changelog-000-009-020-system-code-graph.md](./changelog/000-release-cleanup/changelog-000-009-020-system-code-graph.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model` | impl | [changelog-000-009-019-sk-prompt-small-model.md](./changelog/000-release-cleanup/changelog-000-009-019-sk-prompt-small-model.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt` | impl | [changelog-000-009-018-sk-prompt.md](./changelog/000-release-cleanup/changelog-000-009-018-sk-prompt.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git` | impl | [changelog-000-009-017-sk-git.md](./changelog/000-release-cleanup/changelog-000-009-017-sk-git.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc` | impl | [changelog-000-009-016-sk-doc.md](./changelog/000-release-cleanup/changelog-000-009-016-sk-doc.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review` | impl | [changelog-000-009-015-sk-code-review.md](./changelog/000-release-cleanup/changelog-000-009-015-sk-code-review.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code` | impl | [changelog-000-009-014-sk-code.md](./changelog/000-release-cleanup/changelog-000-009-014-sk-code.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode` | impl | [changelog-000-009-013-mcp-code-mode.md](./changelog/000-release-cleanup/changelog-000-009-013-mcp-code-mode.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up` | impl | [changelog-000-009-012-mcp-click-up.md](./changelog/000-release-cleanup/changelog-000-009-012-mcp-click-up.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools` | impl | [changelog-000-009-011-mcp-chrome-devtools.md](./changelog/000-release-cleanup/changelog-000-009-011-mcp-chrome-devtools.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review` | impl | [changelog-000-009-010-deep-review.md](./changelog/000-release-cleanup/changelog-000-009-010-deep-review.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research` | impl | [changelog-000-009-009-deep-research.md](./changelog/000-release-cleanup/changelog-000-009-009-deep-research.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime` | impl | [changelog-000-009-008-deep-loop-runtime.md](./changelog/000-release-cleanup/changelog-000-009-008-deep-loop-runtime.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement` | impl | [changelog-000-009-007-deep-improvement.md](./changelog/000-release-cleanup/changelog-000-009-007-deep-improvement.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context` | impl | [changelog-000-009-006-deep-context.md](./changelog/000-release-cleanup/changelog-000-009-006-deep-context.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council` | impl | [changelog-000-009-005-deep-ai-council.md](./changelog/000-release-cleanup/changelog-000-009-005-deep-ai-council.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode` | impl | [changelog-000-009-004-cli-opencode.md](./changelog/000-release-cleanup/changelog-000-009-004-cli-opencode.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex` | impl | [changelog-000-009-003-cli-codex.md](./changelog/000-release-cleanup/changelog-000-009-003-cli-codex.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` | impl | [changelog-000-009-002-cli-claude-code.md](./changelog/000-release-cleanup/changelog-000-009-002-cli-claude-code.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` | impl | [changelog-000-009-001-frontmatter-benefit-investigation.md](./changelog/000-release-cleanup/changelog-000-009-001-frontmatter-benefit-investigation.md) |
 | `000-release-cleanup/009-skill-frontmatter-alignment` |  | [changelog-000-009-skill-frontmatter-alignment.md](./changelog/000-release-cleanup/changelog-000-009-skill-frontmatter-alignment.md) |
 | `000-release-cleanup/008-agents-md-alignment` | impl | [changelog-000-008-agents-md-alignment.md](./changelog/000-release-cleanup/changelog-000-008-agents-md-alignment.md) |
 | `000-release-cleanup/007-agent-alignment` | impl | [changelog-000-007-agent-alignment.md](./changelog/000-release-cleanup/changelog-000-007-agent-alignment.md) |

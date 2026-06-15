@@ -1,5 +1,7 @@
 # Changelog Rollup — Track 005: Verification and Remediation
 
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation` (Phase Parent)
+
 Top rollup for the `005-verification-and-remediation/` themed track. Each row links to a phase changelog (or that phase's own rollup). The chronological view lives in `../../timeline.md`; the old-to-new path bridge in `../../context-index.md`.
 
 ## Included Phases

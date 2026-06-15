@@ -1,5 +1,7 @@
 # Changelog Rollup — Track 002: Memory Store and Search
 
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search` (Phase Parent)
+
 Top rollup for the `002-memory-store-and-search/` themed track. Each row links to a phase changelog (or that phase's own rollup). The chronological view lives in `../../timeline.md`; the old-to-new path bridge in `../../context-index.md`.
 
 ## Included Phases
