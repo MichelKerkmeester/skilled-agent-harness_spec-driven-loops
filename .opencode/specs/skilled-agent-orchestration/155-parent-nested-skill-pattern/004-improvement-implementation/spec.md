@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-nested-skill-pattern/004-improvement-implementation"
     last_updated_at: "2026-06-15T15:40:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Made C-plus real (CI gate + /doctor advisor-sync); clusters B/C/D in flight"
-    next_safe_action: "Integrate the cluster agents, verify, commit; track the codegen follow-on"
+    recent_action: "All 4 clusters integrated; suites green at HEAD; phase docs written"
+    next_safe_action: "Track the registry codegen follow-on; push is user-gated"
     blockers: []
     key_files:
       - ".github/workflows/routing-registry-drift.yml"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-155-004-improvement-implementation"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 95
     open_questions:
       - "Codegen the projection maps from the registry (P1) — staged as a follow-on; A3+A4 already make drift reliably caught"
     answered_questions: []
@@ -34,6 +34,18 @@ _memory:
 
 ---
 
+<!-- ANCHOR:executive-summary -->
+## EXECUTIVE SUMMARY
+
+This phase implements the actionable findings from the 5-iteration improvement research (`../improvement-research/improvement-research.md`). The architecture was judged SOUND, so there is no rearchitecture; the dominant theme is making the "C-plus" routing guarantee REAL (the drift-guard test existed but nothing ran it), plus runtime self-containment, loop-lock unification, and low-regret hardening. The work is decomposed into four independent clusters (A/B/C/D) plus the orchestrator.
+
+**Key Decisions**: Lightweight CI (`npx vitest` + `setup-python`) over heavy `npm ci`; keep the hardcoded projection maps plus a CI drift-guard rather than codegen now (the advisor must not read the registry at runtime); the single codegen item (#3) is deferred as a tracked follow-on.
+
+**Critical Dependencies**: `../improvement-research/improvement-research.md` and the `../001-rename-fix-and-shared-decision` frozen-boundary decision.
+
+<!-- /ANCHOR:executive-summary -->
+---
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
@@ -41,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-15 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Phase** | 004 (parent: `155-parent-nested-skill-pattern`) |
@@ -142,8 +154,43 @@ Medium-high breadth (advisor, runtime, loop, tooling, docs), low-to-medium risk 
 
 ---
 
+<!-- ANCHOR:risk-matrix -->
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Runtime manifest (Cluster B): native better-sqlite3 ABI mismatch or bare-specifier resolution failure | H | M | Pin deps to `system-spec-kit` versions; agent works in an isolated worktree with an explicit "revert + report if infeasible" mandate |
+| R-002 | Loop-lock (Cluster C) is behavior-adjacent (concurrency) | M | L | Verify against the lock test suite; race-safe stale-reclaim via atomic rename |
+| R-003 | The deferred codegen must byte-match the current maps | M | L | Defer to careful follow-on work; A3+A4 already make drift reliably caught |
+| R-004 | CI gate cannot install on a fresh clone (untracked advisor manifest) | M | M | Rewrite to lightweight `npx vitest` + `setup-python` against the dependency-free routing surface |
+
+<!-- /ANCHOR:risk-matrix -->
+---
+
+<!-- ANCHOR:user-stories -->
+## 11. USER STORIES
+
+### US-001: Drift is caught in CI (Priority: P1)
+
+**As a** framework maintainer, **I want** a PR CI gate that runs the routing drift-guard + parity + `/doctor:parent-skill`, **so that** a divergence between the advisor maps and `mode-registry.json` fails CI instead of shipping silently.
+
+**Acceptance Criteria**:
+1. Given a PR touches the routing surface, When CI runs, Then the drift-guard + parity suites + `/doctor` execute and the gate is YAML-valid.
+2. Given a non-canonical lexical mode's `legacyAdvisorId` is absent from the advisor map, When `/doctor` runs, Then it WARNs (not fails) while the canonical asserts exact equality.
+
+### US-002: The runtime is self-contained (Priority: P1)
+
+**As a** runtime maintainer, **I want** `deep-loop-runtime` to resolve its deps from its own manifest, **so that** it no longer reaches into `system-spec-kit/node_modules` and stays installable on a fresh clone.
+
+**Acceptance Criteria**:
+1. Given a fresh clone, When `npm ci` runs in the runtime, Then it installs cleanly with zero `system-spec-kit/node_modules` reach-ins (both forms).
+2. Given the runtime suite runs, When tests execute, Then they stay green at pinned, ABI-safe versions.
+
+<!-- /ANCHOR:user-stories -->
+---
+
 <!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 12. OPEN QUESTIONS
 
 - Codegen the projection maps from the registry (the i01 top pick) — staged as a follow-on; the CI gate + advisor-sync check already deliver reliable drift-catching.
 <!-- /ANCHOR:questions -->
