@@ -30,7 +30,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## What This Scaffolds
 
-This command generates the "parent skill with nested mode packets" pattern. The canonical example is `deep-loop-workflows`; the pattern is standardized in `.opencode/skills/sk-doc/references/skill_creation.md` under "Parent Skills with Nested Mode Packets". The hub and registry templates are `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md` and `.opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json`.
+This command generates the "parent skill with nested mode packets" pattern. The canonical example is `deep-loop-workflows`; the pattern is standardized in `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md`. The hub and registry templates are `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md` and `.opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json`.
 
 The generated package is:
 

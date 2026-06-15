@@ -417,7 +417,7 @@ The indexed-continuity store includes built-in tools for measuring search qualit
 
 ### 4.3 COMMANDS
 
-Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`, `implement`, `plan` and `resume`, where `plan` also has an `--intake-only` variant) plus the `/memory:*` operations. Repository-wide command entry points also include the `/deep:*` loop commands (one of which, `start-agent-improvement-loop`, supersedes the former `improve` commands), the `/create:*` commands, the `/doctor` diagnostics and the `agent_router` and `prompt` utilities. Each command opens access to a specific set of tools.
+Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`, `implement`, `plan` and `resume`, where `plan` also has an `--intake-only` variant) plus the `/memory:*` operations. Repository-wide command entry points also include the `/deep:*` loop commands (one of which, `agent-improvement`, supersedes the former `improve` commands), the `/create:*` commands, the `/doctor` diagnostics and the `agent_router` and `prompt` utilities. Each command opens access to a specific set of tools.
 
 #### Spec Kit Commands
 
@@ -428,8 +428,8 @@ Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`
 | `/speckit:plan`        | 7     | Planning only: spec through plan, no implementation, with the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) for `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade` packets |
 | `/speckit:implement`   | 9     | Execute pre-planned work. Requires existing `plan.md`. Packet-aware targets also generate local changelog output during closeout |
 | `/speckit:resume`      | 4     | Resume a previous session on an existing spec folder                                                                             |
-| `/deep:start-research-loop` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../deep-research/references/protocol/spec_check_protocol.md) |
-| `/deep:start-review-loop` | N/A   | Autonomous code review loop with convergence detection                                                                           |
+| `/deep:research` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md) |
+| `/deep:review` | N/A   | Autonomous code review loop with convergence detection                                                                           |
 
 **Mode Suffixes** change how commands run:
 
@@ -611,9 +611,9 @@ The **spec folder workflow** is the filing system. Every time you modify files, 
 
 The **memory system** is the librarian. When a session ends, `generate-context.js` updates the packet's canonical continuity surfaces so the next session can recover from packet-local sources first. The MCP server indexes those packet docs into vector, FTS5 and BM25 surfaces, while graph and degree signals are computed at retrieval time. When a new session starts, `/speckit:resume` compares folder-local `handover.md` and `_memory.continuity` in `implementation-summary.md`, selects the fresher source, then falls back to the packet docs. If you need deeper retrieval after that, `session_bootstrap()` bundles resume context, health and structural readiness into one follow-up recovery call before broader `memory_context` work begins.
 
-The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:start-research-loop` anchors research to `spec.md` through [spec_check_protocol.md](../deep-research/references/protocol/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
+The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:research` anchors research to `spec.md` through [spec_check_protocol.md](../deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
 
-The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair. `/deep:start-research-loop` can enrich that packet under the bounded `spec_check_protocol.md` rules. `/speckit:plan` or `/speckit:complete` then continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
+The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair. `/deep:research` can enrich that packet under the bounded `spec_check_protocol.md` rules. `/speckit:plan` or `/speckit:complete` then continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
 
 ```text
 Session starts

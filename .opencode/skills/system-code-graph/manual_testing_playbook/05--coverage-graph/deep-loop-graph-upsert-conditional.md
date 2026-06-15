@@ -31,8 +31,8 @@ Verify deep-loop graph upsert runs only when graphEvents exist.
 
 ### Commands
 
-1. Read `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:854-865`.
-2. Read `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1032-1051`.
+1. Read `.opencode/commands/deep/assets/deep_research_auto.yaml:794-807`.
+2. Read `.opencode/commands/deep/assets/deep_review_auto.yaml:1027-1047`.
 3. Run or inspect a fixture with and without `graphEvents`.
 
 ### Expected Output / Verification

@@ -35,7 +35,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:start-review-loop`, `/prompt`, `/memory:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
+Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt`, `/memory:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
 Commands are organized into five groups plus root-level utilities:
 
@@ -144,11 +144,11 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| AI Council | `/deep:ask-ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
-| Agent Improvement | `/deep:start-agent-improvement-loop <agent_path> [:auto\|:confirm]` | Evaluate and improve agents across 5 integration-aware dimensions |
-| Model Benchmark | `/deep:start-model-benchmark-loop [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
-| Research Loop | `/deep:start-research-loop <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
-| Review Loop | `/deep:start-review-loop <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
+| AI Council | `/deep:ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
+| Agent Improvement | `/deep:agent-improvement <agent_path> [:auto\|:confirm]` | Evaluate and improve agents across 5 integration-aware dimensions |
+| Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
+| Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
+| Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 
 ### Root Commands
 
@@ -208,7 +208,7 @@ Structured workflows for the spec folder development lifecycle.
 /create:feature-catalog system-spec-kit create :confirm
 /create:testing-playbook system-spec-kit update :auto
 /create:sk-skill my-new-skill full-create :auto
-/deep:start-agent-improvement-loop .opencode/agents/review.md :confirm
+/deep:agent-improvement .opencode/agents/review.md :confirm
 /prompt $improve "Build a clearer CLI handoff prompt" :auto
 /memory:save specs/007-feature
 /speckit:plan "Add user authentication" :auto

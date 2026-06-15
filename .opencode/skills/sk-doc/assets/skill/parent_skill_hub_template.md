@@ -14,7 +14,7 @@ contextType: general
 
 Template for the thin routing hub of a **parent skill**: one advisor-routable identity that dispatches by mode key through `mode-registry.json` to N verbatim, self-contained mode packets over a shared backend. The hub holds **no** per-mode logic.
 
-Read the pattern first: [skill_creation.md § 10. PARENT SKILLS WITH NESTED MODE PACKETS](../../references/skill_creation.md#10-parent-skills-with-nested-mode-packets). Canonical example: [`deep-loop-workflows/SKILL.md`](../../../deep-loop-workflows/SKILL.md).
+Read the pattern first: [parent_skills_nested_packets.md](../../references/skill_creation/parent_skills_nested_packets.md). Canonical example: [`deep-loop-workflows/SKILL.md`](../../../deep-loop-workflows/SKILL.md).
 
 ---
 
@@ -173,7 +173,7 @@ Before claiming the hub complete:
 
 ## 5. RELATED RESOURCES
 
-- [skill_creation.md § 10. PARENT SKILLS WITH NESTED MODE PACKETS](../../references/skill_creation.md#10-parent-skills-with-nested-mode-packets) - the full pattern, invariant, and routing contract.
+- [parent_skills_nested_packets.md](../../references/skill_creation/parent_skills_nested_packets.md) - the full pattern, invariant, and routing contract.
 - [parent_skill_registry_template.json](./parent_skill_registry_template.json) - the companion `mode-registry.json` scaffold.
 - [skill_md_template.md](./skill_md_template.md) - the single-skill `SKILL.md` template (use for each mode packet).
 - Canonical example: [`deep-loop-workflows/SKILL.md`](../../../deep-loop-workflows/SKILL.md), [`mode-registry.json`](../../../deep-loop-workflows/mode-registry.json), [`graph-metadata.json`](../../../deep-loop-workflows/graph-metadata.json).

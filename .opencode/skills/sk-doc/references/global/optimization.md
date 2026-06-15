@@ -28,7 +28,7 @@ Optimization transforms documentation from reference-style to question-answering
 - **Code completeness** - Runnable, standalone examples with imports
 - **Metadata removal** - Strip non-instructional content
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../skill_creation/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on transformation patterns for AI-friendly documentation.
 

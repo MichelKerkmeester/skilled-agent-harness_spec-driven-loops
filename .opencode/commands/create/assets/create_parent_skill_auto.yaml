@@ -265,7 +265,7 @@ workflow:
   step_3_template_loading:
     purpose: Load standards and templates before generation
     activities:
-      - Read skill_creation.md and locate the "Parent Skills with Nested Mode Packets" section
+      - Read skill_creation/parent_skills_nested_packets.md for the Parent Skills with Nested Mode Packets pattern
       - Read parent_skill_hub_template.md
       - Read parent_skill_registry_template.json
       - Read parent_skill_graph_metadata_template.json

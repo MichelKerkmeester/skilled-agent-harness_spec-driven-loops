@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/152-deep-loop-workflows/009-old-skill-deletion-and-validation"
-    last_updated_at: "2026-06-15T05:45:00Z"
+    last_updated_at: "2026-06-15T20:45:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Assembled verification checklist from parallel planning fleet"
-    next_safe_action: "Execute phase 009 per the gated pipeline"
+    recent_action: "Built B1 council-graph doctor probe; verified 6/18 P0 gates"
+    next_safe_action: "Run remaining 12 P0 gates: parity replay, skill-graph rebuild, validations"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-152-009-old-skill-deletion-and-validation-verificationchecklist"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 33
     open_questions: []
     answered_questions: []
 ---
@@ -72,16 +72,16 @@ _memory:
   - **Evidence**: verified during phase 009 execution.
 - [ ] CHK-021 [P0] Phase 008 handoff is green before deletion.
   - **Evidence**: verified during phase 009 execution.
-- [ ] CHK-022 [P0] deep-loop-workflows has exactly one hub graph-metadata.json and no per-mode graph metadata.
-  - **Evidence**: verified during phase 009 execution.
-- [ ] CHK-023 [P0] /doctor deep-loop covers both deep-loop-graph.sqlite and council-graph.sqlite.
-  - **Evidence**: verified during phase 009 execution.
-- [ ] CHK-024 [P0] Route validation passes.
-  - **Evidence**: verified during phase 009 execution.
-- [ ] CHK-025 [P0] Runtime council graph status/query/convergence smoke checks pass.
-  - **Evidence**: verified during phase 009 execution.
-- [ ] CHK-026 [P0] Exactly five old skill directories are deleted.
-  - **Evidence**: verified during phase 009 execution.
+- [x] CHK-022 [P0] deep-loop-workflows has exactly one hub graph-metadata.json and no per-mode graph metadata.
+  - **Evidence**: `find .opencode/skills/deep-loop-workflows -name graph-metadata.json` returns exactly one hub file; no per-mode metadata (2026-06-15).
+- [x] CHK-023 [P0] /doctor deep-loop covers both deep-loop-graph.sqlite and council-graph.sqlite.
+  - **Evidence**: `doctor_deep-loop.yaml` + `_routes.yaml` extended with council scope/probe/staleness/replay recommendation (scope=council|all); live `status.cjs --loop-type council` returns status:ok, totalNodes:2 (2026-06-15).
+- [x] CHK-024 [P0] Route validation passes.
+  - **Evidence**: `route-validate.sh` → PASS, 9 routes, 0 errors; allowed_flags now accepts `--scope=research|review|council|both|all` (2026-06-15).
+- [x] CHK-025 [P0] Runtime council graph status/query/convergence smoke checks pass.
+  - **Evidence**: `status.cjs`/`query.cjs`/`convergence.cjs --loop-type council` all return status:ok (convergence decision:CONTINUE score:0.4; query unresolved_disagreements:0) (2026-06-15).
+- [x] CHK-026 [P0] Exactly five old skill directories are deleted.
+  - **Evidence**: `ls .opencode/skills/deep-*` → only deep-loop-runtime + deep-loop-workflows remain; the five old skill dirs (research/review/context/improvement/ai-council) are merged-and-deleted (2026-06-15).
 
 <!-- /ANCHOR:testing -->
 ---
@@ -97,8 +97,8 @@ _memory:
   - **Evidence**: verified during phase 009 execution.
 - [ ] CHK-063 [P0] Registry completeness passes.
   - **Evidence**: verified during phase 009 execution.
-- [ ] CHK-064 [P0] convergence.cjs still accepts exactly research\|review\|council\|context and no improvement loop type.
-  - **Evidence**: verified during phase 009 execution.
+- [x] CHK-064 [P0] convergence.cjs still accepts exactly research\|review\|council\|context and no improvement loop type.
+  - **Evidence**: `convergence.cjs:300` rejects any loopType outside research|review|council|context; no improvement loop type (2026-06-15).
 - [ ] CHK-065 [P0] Full phase-001 parity rerun is byte-identical for all five modes and eight commands.
   - **Evidence**: verified during phase 009 execution.
 - [ ] CHK-066 [P0] validate.sh --strict passes for phase 009 and parent recursive validation is green.
@@ -145,11 +145,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 18 | 0/18 |
+| P0 Items | 18 | 6/18 |
 | P1 Items | 6 | 0/6 |
 | P2 Items | 2 | 0/2 |
 
-**Verification Date**: pending execution
-**Verified By**: pending
+**Verification Date**: 2026-06-15 (partial — council/route/deletion surface verified: CHK-022/023/024/025/026/064; parity-replay, skill-graph rebuild, advisor/mirror/registry, and process gates not yet run)
+**Verified By**: claude-opus (B1 council-graph remediation under packet 156 deep-review)
 
 <!-- /ANCHOR:summary -->

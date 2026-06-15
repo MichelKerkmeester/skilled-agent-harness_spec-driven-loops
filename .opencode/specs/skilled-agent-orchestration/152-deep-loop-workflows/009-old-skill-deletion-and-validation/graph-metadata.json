@@ -35,8 +35,9 @@
       "coverage"
     ],
     "importance_tier": "important",
-    "status": "planned_(scaffold)",
+    "status": "in_progress",
     "key_files": [
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",

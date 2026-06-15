@@ -27,7 +27,7 @@ Core standards define the structural foundation for all OpenCode skill documenta
 - **Type-specific rules** - Tailored requirements for SKILL, Knowledge, Command, Spec, README files
 - **Quality gates** - Filename, frontmatter, and heading standards
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../skill_creation/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on structure validation, document type detection, and quality enforcement.
 

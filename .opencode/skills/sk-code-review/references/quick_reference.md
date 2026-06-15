@@ -57,6 +57,6 @@ Surface portability: apply this baseline with `sk-code` surface evidence.
 ## 4. RELATED RESOURCES
 
 - [SKILL.md](../SKILL.md) - Parent skill definition with activation triggers and resource loading rules
-- [review_mode_contract.yaml](../../deep-review/assets/review_mode_contract.yaml) - Canonical review-mode contract manifest (source of truth for deep review taxonomy)
+- [review_mode_contract.yaml](../../deep-loop-workflows/deep-review/assets/review_mode_contract.yaml) - Canonical review-mode contract manifest (source of truth for deep review taxonomy)
 
 ---

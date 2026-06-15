@@ -104,8 +104,8 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/spec_kit:plan` - define or refine a scoped spec and plan
 - `/spec_kit:implement` - execute an existing spec and plan packet
 - `/spec_kit:complete` - run the full spec-to-implementation lifecycle
-- `/deep:start-research-loop` - run iterative research before planning
-- `/deep:start-review-loop` - run iterative review and finding synthesis
+- `/deep:research` - run iterative research before planning
+- `/deep:review` - run iterative review and finding synthesis
 
 **Memory commands**
 - `/memory:save` - preserve the current session context into spec memory and refresh packet continuity

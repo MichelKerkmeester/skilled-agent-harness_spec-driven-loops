@@ -26,7 +26,7 @@ Base-live on the same 5 was strong: aggregate 88, D2 100, D3 60; `assetRecall` 9
 ## Reproduce
 
 ```bash
-cd .opencode/skills/deep-improvement/scripts
+cd .opencode/skills/deep-loop-workflows/deep-improvement/scripts
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high GRADER_MODEL=claude-sonnet-4-5 \
 node skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode live \
   --scenarios LS-001,LS-002,LS-003,LS-004,SD-002 --d4 \

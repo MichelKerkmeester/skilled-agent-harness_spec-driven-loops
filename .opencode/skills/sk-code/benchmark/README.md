@@ -49,7 +49,7 @@ Run from the repository root.
 Router mode (deterministic, no network):
 
 ```bash
-node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
   --outputs-dir=.opencode/skills/sk-code/benchmark/router-final \
   --trace-mode=router
@@ -59,7 +59,7 @@ Live mode (dispatches through cli-opencode, needs a configured provider):
 
 ```bash
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high \
-node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
   --outputs-dir=.opencode/skills/sk-code/benchmark/live-final \
   --trace-mode=live --advisor-mode=python \
@@ -121,7 +121,7 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 | Skill | Relationship | Use When |
 |---|---|---|
-| [`deep-improvement`](../../deep-improvement/SKILL.md) | Owns the Lane C benchmark harness | Running or extending the benchmark |
+| [`deep-improvement`](../../deep-loop-workflows/deep-improvement/SKILL.md) | Owns the Lane C benchmark harness | Running or extending the benchmark |
 | [`sk-code`](../SKILL.md) | The skill under measurement | Reading or tuning the router being scored |
 
 ### Related Documents

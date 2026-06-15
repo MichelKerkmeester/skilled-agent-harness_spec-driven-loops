@@ -57,8 +57,8 @@ SEARCH ROUTING: semantic or concept code discovery routes to `code_graph_query +
 |---------|------------|-------|-------------|
 | **plan** | `/speckit:plan <description> [:auto\|:confirm] [:with-phases]` | 7 | Create spec folder and plan without implementation. `:with-phases` adds phase decomposition pre-workflow |
 | **implement** | `/speckit:implement <spec-folder> [:auto\|:confirm]` | 9 | Execute pre-planned work (requires existing plan.md) |
-| **deep-research** | `/deep:start-research-loop <topic> [:auto\|:confirm\|:review\|:review:auto\|:review:confirm]` | iterative | Autonomous deep research loop with convergence detection |
-| **deep-review** | `/deep:start-review-loop <target> [:auto\|:confirm]` | iterative | Autonomous code review loop with severity-weighted findings |
+| **deep-research** | `/deep:research <topic> [:auto\|:confirm\|:review\|:review:auto\|:review:confirm]` | iterative | Autonomous deep research loop with convergence detection |
+| **deep-review** | `/deep:review <target> [:auto\|:confirm]` | iterative | Autonomous code review loop with severity-weighted findings |
 | **resume** | `/speckit:resume [spec-folder] [:auto\|:confirm]` | varies | Resume or recover work on an existing spec folder |
 | **plan --intake-only** | `/speckit:plan --intake-only [description] [:auto\|:confirm]` | intake-only | Standalone intake that publishes `spec.md`, `description.json`, and `graph-metadata.json` |
 | **complete** | `/speckit:complete <description> [:auto\|:confirm] [:with-research] [:with-phases]` | 14+ | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
@@ -99,15 +99,15 @@ spec_kit/
     └── speckit_resume_confirm.yaml
 
 deep/                 # Deep workflows (research, review, AI council)
-├── start-research-loop.md    # /deep:start-research-loop - Autonomous deep research loop
-├── start-review-loop.md      # /deep:start-review-loop - Autonomous code review loop
-├── ask-ai-council.md         # /deep:ask-ai-council - Multi-topic deep AI council
+├── research.md               # /deep:research - Autonomous deep research loop
+├── review.md                 # /deep:review - Autonomous code review loop
+├── ai-council.md             # /deep:ai-council - Multi-topic deep AI council
 └── assets/
-    ├── deep_start-research-loop_auto.yaml
-    ├── deep_start-research-loop_confirm.yaml
-    ├── deep_start-review-loop_auto.yaml
-    ├── deep_start-review-loop_confirm.yaml
-    └── deep_ask-ai-council_auto.yaml
+    ├── deep_research_auto.yaml
+    ├── deep_research_confirm.yaml
+    ├── deep_review_auto.yaml
+    ├── deep_review_confirm.yaml
+    └── deep_ai-council_auto.yaml
 
 > Note: `/doctor skill-advisor` previously lived under `spec_kit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
 ```
@@ -122,7 +122,7 @@ deep/                 # Deep workflows (research, review, AI council)
 The typical development lifecycle follows this progression:
 
 ```text
-/deep:start-research-loop (optional)
+/deep:research (optional)
     |
     v
 /speckit:plan (create spec folder + plan.md)
@@ -143,13 +143,13 @@ The `complete` command combines research, plan, and implement into a single invo
 
 | Command | Delegates To |
 |---------|-------------|
-| plan | Main agent owns planning and may reuse the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`); /deep:start-research-loop optional |
+| plan | Main agent owns planning and may reuse the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`); /deep:research optional |
 | implement | @general (code changes), distributed governance for packet docs |
-| deep-research | /deep:start-research-loop (iterative investigation) |
-| deep-review | /deep:start-review-loop (iterative code audit) |
+| deep-research | /deep:research (iterative investigation) |
+| deep-review | /deep:review (iterative code audit) |
 | resume | Loads memory context, continues from last state |
 | phase | Main agent creates packet folders, @general runs scripts as needed |
-| complete | /deep:start-research-loop and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`) when packet state requires repair |
+| complete | /deep:research and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`) when packet state requires repair |
 
 <!-- /ANCHOR:workflow-progression -->
 
@@ -188,7 +188,7 @@ Each mode maps to a YAML workflow file in `assets/`:
 /speckit:implement specs/012-rate-limiting :confirm
 
 # Deep research a topic before planning
-/deep:start-research-loop "OAuth 2.0 token refresh patterns" :auto
+/deep:research "OAuth 2.0 token refresh patterns" :auto
 
 # Decompose a complex feature into phases
 /speckit:plan:auto "Build hybrid RAG search system" :with-phases --phases 3

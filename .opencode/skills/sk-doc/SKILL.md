@@ -65,7 +65,7 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 
 For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and the `references/` root for creation-specific workflows.
 
-Start with: [skill_creation.md](./references/skill_creation.md) (Section 9)
+Start with: [skill_creation.md](./references/skill_creation.md), then [overview.md](./references/skill_creation/overview.md) for skill structure
 Primary templates:
 - [skill_md_template.md](./assets/skill/skill_md_template.md)
 - [skill_readme_template.md](./assets/skill/skill_readme_template.md)

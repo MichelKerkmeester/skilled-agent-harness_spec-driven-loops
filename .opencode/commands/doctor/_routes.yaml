@@ -101,9 +101,9 @@ routes:
   - target: deep-loop
     yaml: doctor_deep-loop.yaml
     setup_vars: [execution_mode, intent, scope, no_snapshot, dry_run]
-    allowed_flags: ["--scope=research|review|both", "--no-snapshot", "--dry-run"]
+    allowed_flags: ["--scope=research|review|council|both|all", "--no-snapshot", "--dry-run"]
     mutating: read-only
-    gate3_location: "n/a (read-only diagnostic; reads coverage graph + iteration folders, never upserts)"
+    gate3_location: "n/a (read-only diagnostic; reads coverage + council graphs and iteration folders + ai-council artifacts, never upserts)"
     mcp_tools: []
     script_invocations:
       - 'node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'

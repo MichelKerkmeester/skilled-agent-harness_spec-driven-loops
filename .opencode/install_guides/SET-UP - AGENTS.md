@@ -599,7 +599,7 @@ Commands are slash-prefixed shortcuts for common workflows.
 | Command               | Description                           | Output                      |
 | --------------------- | ------------------------------------- | --------------------------- |
 | `/speckit:complete`  | Full spec workflow (plan + implement) | Complete implementation     |
-| `/deep:start-research-loop` | Iterative deep research workflow | Research findings and state |
+| `/deep:research` | Iterative deep research workflow | Research findings and state |
 | `/speckit:implement` | Execute pre-planned work              | Implementation from plan    |
 | `/speckit:plan :with-phases` | Phase decomposition (integrated into plan/complete) | Parent and child spec packs |
 | `/speckit:plan`      | Planning phase only                   | Plan without implementation |
