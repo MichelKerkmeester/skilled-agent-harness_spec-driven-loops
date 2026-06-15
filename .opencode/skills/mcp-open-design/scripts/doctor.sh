@@ -84,14 +84,15 @@ else
   info "opencode config not found at $OPENCODE_CONFIG"
 fi
 
-if command -v claude >/dev/null 2>&1; then
-  if claude mcp list 2>/dev/null | grep -qi 'open-design'; then
-    ok "Claude MCP list: open-design entry present"
+CLAUDE_CONFIG="$HOME/.claude.json"
+if [ -f "$CLAUDE_CONFIG" ]; then
+  if grep -qi 'open-design' "$CLAUDE_CONFIG" 2>/dev/null; then
+    ok "Claude config: open-design entry present"
   else
-    info "Claude MCP list: open-design entry not found"
+    info "Claude config: open-design entry not found"
   fi
 else
-  info "claude CLI not on PATH"
+  info "Claude config not found at $CLAUDE_CONFIG"
 fi
 
 log ""

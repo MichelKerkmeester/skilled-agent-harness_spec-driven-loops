@@ -35,7 +35,7 @@ This command generates the "parent skill with nested mode packets" pattern. The 
 The generated package is:
 
 - A thin hub `SKILL.md` (routing only, no per-mode logic).
-- A declarative `mode-registry.json` with one `advisorRouting` block per mode (`routingClass`, optional `advisorDefaultMode`, `legacyAliases`, `packetSkillName`). The registry is the single source of truth; routers and tests read it, none re-derive it.
+- A declarative `mode-registry.json` with one `advisorRouting` block per mode (`routingClass`, `legacyAdvisorId` for lexical/alias-fold modes, optional `advisorDefaultMode`, `legacyAliases`, `packetSkillName`). The registry is the single source of truth; routers and tests read it, none re-derive it.
 - Exactly one hub `graph-metadata.json` — the one hard invariant.
 - N mode packets, each self-contained with its own `SKILL.md`, where `folder == packetSkillName == deep-<mode>`, and with NO per-packet `graph-metadata.json`.
 - A non-discoverable `shared/` directory for packet-shared workflow-layer helpers.

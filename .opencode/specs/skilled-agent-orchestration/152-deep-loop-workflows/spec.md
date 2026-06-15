@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/152-deep-loop-workflows"
-    last_updated_at: "2026-06-15T06:00:00Z"
+    last_updated_at: "2026-06-15T21:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "EPIC COMPLETE: built, deep-reviewed, merged to 027; 5 old skills deleted; advisor rescanned"
-    next_safe_action: "Optional: push 027 (note secret-scan blocker); monitor live advisor routing"
+    recent_action: "Merged to 027 + functional; formal per-phase gate sign-off pending (009 6/18 P0)"
+    next_safe_action: "Run remaining per-phase P0 gates (byte-parity replay + strict validation)"
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/ (merged skill, live in 027)"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-152-deep-loop-workflows"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | Phase Parent |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Merged & functional (351 runtime tests); formal per-phase gate sign-off pending |
 | **Created** | 2026-06-14 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Handoff Criteria** | Each child phase ships and validates independently with byte-identical per-mode parity held; old skill dirs are deleted only in the final phase |
@@ -95,7 +95,7 @@ Collapse the five persona surfaces into ONE public skill, `deep-loop-workflows`,
 | 6 | `006-advisor-graph-mode-routing/` | Correct council+improvement family `sk-util`→`deep-loop` FIRST (B7), then collapse the 5 skill IDs → `deep-loop-workflows` + mode-alias layer; resolve `deep-context` Candidate-3 asymmetry (B3) and the `aliases.ts` schema (B6) | Complete |
 | 7 | `007-governance-consolidation/` | One unified governance tree partitioned by mode; mode-qualify CP- ID collisions at the index (no file renumber); normalize council casing | Complete |
 | 8 | `008-framework-docs-sweep/` | Rewrite framework docs from the 5-skill to the 2-skill model (root README, CLAUDE.md/AGENTS.md, runtime README, constitutional, sibling lines); stamp v1.0.0; preserve per-mode changelog history | Complete |
-| 9 | `009-old-skill-deletion-and-validation/` | Delete the 5 old skill directories; run the full-surface Acceptance Gate set; resolve the `/doctor` council-graph coverage blocker (B1) | Complete |
+| 9 | `009-old-skill-deletion-and-validation/` | Delete the 5 old skill directories; run the full-surface Acceptance Gate set; resolve the `/doctor` council-graph coverage blocker (B1) | Partial — 6/18 P0 (deletion done + B1 council-graph probe built/verified; byte-parity replay + strict-validation gates pending) |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

@@ -108,6 +108,13 @@ Keep the advisor's **hardcoded** projection maps (Python `DEEP_ROUTING_MODE_BY_K
 - **Lexical regex weights stay in code** (`DEEP_ROUTING_LEXICAL_PATTERNS`). Moving weighted regex into JSON risks silent escaping corruption against exact fixture thresholds. The registry governs only the lexical **set** (which modes are lexically routed), guarded by a coverage fixture — not the weights.
 - The guard lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts` for the worked example.
 
+### Single-Parent Limitation (current state)
+
+The worked example is the only parent skill, and two pieces are still **deep-loop-specific**, not generic — design for this before scaffolding a second:
+
+- The advisor's merged-identity projection (`MERGED_DEEP_SKILL_ID` + `DEEP_MODE_BY_CANONICAL`) is a single global map. A second parent skill needs its **own** merged-identity layer and its **own** drift-guard test scoped to its `mode-registry.json`.
+- The `/doctor:parent-skill` validator's drift-guard check only `existsSync`-tests the *canonical* guard path, so it reports PASS vacuously for a non-canonical target with no guard of its own. Until that check is made target-aware, treat its drift-guard PASS as canonical-only and verify a new parent skill's guard by hand.
+
 ### ALWAYS / NEVER
 
 **ALWAYS**
