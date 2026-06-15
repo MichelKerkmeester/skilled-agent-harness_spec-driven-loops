@@ -7,6 +7,26 @@ trigger_phrases:
   - "enrichment scheduler fixes test plan"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability"
+    last_updated_at: "2026-06-15T10:30:00Z"
+    last_updated_by: "main-agent"
+    recent_action: "Authored fresh-session test-plan handover"
+    next_safe_action: "Fresh session: call memory_health, verify backgroundEnrichment block, run the vitest suites"
+    blockers: []
+    key_files:
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "012-enrichment-queue-cap-and-observability"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
 ---
 # Session Handover Document
 
