@@ -132,7 +132,7 @@ Local project reads and writes are gated by a loopback same-origin check (cross-
 
 ---
 
-## 4. THE FULL `od` VERB SURFACE
+## 4. THE FULL VERB SURFACE
 
 From `od --help`. Read-only verbs are safe to surface freely. Mutating verbs are STOP-and-confirm points (see [tool_surface.md](tool_surface.md) for the gating policy). **[CONFIRMED - ran]**
 
