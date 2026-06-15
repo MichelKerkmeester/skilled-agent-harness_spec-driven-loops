@@ -243,6 +243,7 @@ No supported providers are configured on this machine. Run one:
   - `opencode providers login minimax`      (MiniMax Direct API — pay-per-token; needs MINIMAX_API_KEY; model minimax/MiniMax-M3)
   - `opencode auth login`                   (Xiaomi Token Plan — default Xiaomi path; pick "Xiaomi Token Plan (Europe)" → provider xiaomi-token-plan-ams; model xiaomi-token-plan-ams/mimo-v2.5-pro)
   - `opencode providers login xiaomi`       (Xiaomi Direct API — pay-per-token; models xiaomi/mimo-v2.5-pro and xiaomi/mimo-v2.5-pro-ultraspeed)
+  - `opencode auth login`                   (Kimi For Coding plan — Kimi/Moonshot coding subscription; provider kimi-for-coding; model kimi-for-coding/k2p7)
   - `opencode providers login openai`       (OpenAI premium alternative — paid)
 Which would you like to set up? Confirm when login finishes; the skill will retry the original dispatch.
 ```
@@ -269,7 +270,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*`, the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (omit `--agent`), the pay-per-token `minimax/MiniMax-M3` (Direct API), `xiaomi-token-plan-ams/mimo-v2.5-pro --variant high` (Xiaomi Token Plan Europe — MiMo; high reasoning preset; omit `--agent`), `xiaomi/mimo-v2.5-pro --variant high` (Xiaomi Direct API — MiMo; pay-per-token) and `xiaomi/mimo-v2.5-pro-ultraspeed --variant high` (low-latency MiMo tier, same prompt contract) remain available. OpenAI chat models (`openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) are usable when explicitly requested.
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*`, the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (omit `--agent`), the pay-per-token `minimax/MiniMax-M3` (Direct API), `xiaomi-token-plan-ams/mimo-v2.5-pro --variant high` (Xiaomi Token Plan Europe — MiMo; high reasoning preset; omit `--agent`), `xiaomi/mimo-v2.5-pro --variant high` (Xiaomi Direct API — MiMo; pay-per-token) and `xiaomi/mimo-v2.5-pro-ultraspeed --variant high` (low-latency MiMo tier, same prompt contract) remain available. The Kimi For Coding plan model `kimi-for-coding/k2p7` ("Kimi K2.7 Code"; 256k / 262,144-token context; subscription billing — dispatch cost 0; omit `--agent`; `--variant high` accepted but effect benchmark-unverified) is the coding-optimized large-context Kimi path (it supersedes the historical opencode-go `kimi-k2.6`). OpenAI chat models (`openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) are usable when explicitly requested.
 
 Shared small-model facts, context defaults, quota pools, and fallback targets live in `../sk-prompt-small-model/assets/model-profiles.json`.
 

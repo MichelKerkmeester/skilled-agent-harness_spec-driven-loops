@@ -1,0 +1,18 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/156-kimi-k2-7-code-support",
+  "description": "Feature Specification: kimi-k2-7-code-support",
+  "keywords": [
+    "feature",
+    "specification",
+    "kimi-k2-7-code-support"
+  ],
+  "lastUpdated": "2026-06-15T10:26:26.245Z",
+  "specId": "156",
+  "folderSlug": "kimi-k2-7-code-support",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

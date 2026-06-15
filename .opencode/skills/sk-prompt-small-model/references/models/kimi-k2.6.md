@@ -13,7 +13,9 @@ contextType: implementation
 
 # Kimi-k2.6 Prompt-Craft Profile
 
-Single source of truth for how to prompt Kimi-k2.6 in the small-model rotation. Framework choices mirror `recommended_frameworks` in the model-profiles registry (the DATA source); executor MECHANICS live in `cli-opencode`.
+> **HISTORICAL — superseded by [`kimi-k2.7-code.md`](./kimi-k2.7-code.md).** Kimi-k2.6 ran on the shared `opencode-go` gateway; the active Kimi is now Kimi-k2.7-code on the dedicated **Kimi For Coding** plan (`kimi-for-coding/k2p7`). This profile is retained for reference only — the bare `kimi` alias now resolves to `kimi-k2.7-code`. Do not dispatch against this path for new work.
+
+Single source of truth for how Kimi-k2.6 *was* prompted in the small-model rotation. Framework choices mirror `recommended_frameworks` in the model-profiles registry (the DATA source); executor MECHANICS live in `cli-opencode`.
 
 ---
 

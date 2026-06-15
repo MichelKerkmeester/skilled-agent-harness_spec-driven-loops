@@ -1,6 +1,6 @@
 {
   "version": "1.5",
-  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`; free opencode/mimo-v2.5-free sibling). Optional unverified separate-pool stub: Claude Haiku.",
+  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), Qwen3.6, GLM-5.1, MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`; free opencode/mimo-v2.5-free sibling). Historical (retained for reference): Kimi-k2.6 (opencode-go path, superseded by Kimi-k2.7-code), MiniMax-2.7. Optional unverified separate-pool stub: Claude Haiku.",
   "models": [
     {
       "id": "deepseek-v4-pro",
@@ -55,6 +55,62 @@
       }
     },
     {
+      "id": "kimi-k2.7-code",
+      "context_length": 262144,
+      "tool_calling": "native",
+      "chat_template": "default",
+      "executors": [
+        {
+          "executor": "cli-opencode",
+          "provider": "kimi-for-coding",
+          "quota_pool": "kimi-for-coding",
+          "status": "active",
+          "notes": "Kimi For Coding plan (subscription) via opencode provider `kimi-for-coding`. Live slug `kimi-for-coding/k2p7` (display name 'Kimi K2.7 Code'); confirmed via `opencode models kimi-for-coding` 2026-06-15 → k2p5/k2p6/k2p7/kimi-k2-thinking, all 262,144-token context / 32,768 output. Coding-optimized Kimi K2.7; dispatch cost 0 (subscription). Omit `--agent` at top level (opencode rejects named agents there). `--variant high` is accepted (exit 0, smoke-tested 2026-06-15) though its effect is benchmark-unverified. Re-verify the live slug before dispatch — Kimi/Moonshot ids drift; do NOT use the invented `kimi-token-plan-ams` slug."
+        }
+      ],
+      "primary_quota_pool": "kimi-for-coding",
+      "fallback_target": null,
+      "free_tier": false,
+      "capability": {
+        "model_slug": "kimi-for-coding/k2p7",
+        "default_variant": "high",
+        "variant_flag": "--variant",
+        "agent_policy": "omit-general",
+        "format_mode": "json",
+        "quota_pool": "kimi-for-coding",
+        "variant_status": "accepted-unverified",
+        "notes": "Live slug `kimi-for-coding/k2p7` confirmed responsive 2026-06-15 (`opencode models kimi-for-coding`; smoke dispatch returned 'pong', cost 0). agent_policy omit-general: do not pass `--agent` at the top level. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high + variant_status accepted-unverified: `--variant high` is accepted without error but its reasoning-effort effect is not benchmark-confirmed for this provider — safe to pass, do not depend on it. Subscription billing: dispatch cost shows 0. Re-verify slug before dispatch (Kimi/Moonshot ids drift)."
+      },
+      "strengths": [
+        "dedicated Kimi For Coding subscription pool (`kimi-for-coding`), independent of opencode-go / minimax / xiaomi pools",
+        "coding-optimized Kimi K2.7 (display name 'Kimi K2.7 Code')",
+        "256k (262,144-token) context for long-file and multi-file work",
+        "subscription billing — dispatch cost 0 (no pay-per-token burn)"
+      ],
+      "weaknesses": [
+        "single executor path (no fallback if the kimi-for-coding pool is exhausted)",
+        "prompt framework not yet benchmarked (default-unverified pending bakeoff 006)",
+        "--variant effect unverified (flag accepted, reasoning-effort impact not benchmark-confirmed)"
+      ],
+      "avg_iter_wall_clock_min": null,
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "rcaf",
+        "fallback": null,
+        "avoid": [],
+        "preplanning_density": "medium",
+        "evidence": {
+          "benchmark": "006-kimi-k2.7-prompt-framework",
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "5-framework bakeoff (rcaf/race/cidi/tidd-ec/costar), 2 T3 coding fixtures x 3 samples, real kimi-for-coding/k2p7 dispatches (30/30 ok). Verdict TIE - correctness SATURATED: every framework scored correctness 1.0 + format 1.0, so no framework discriminates on coding correctness for this model; efficiency margin inside the noise floor (90% CI overlaps zero). Secondary gpt-5.5 LLM-judge (subjective clarity, NOT a correctness verdict - it read oracle-confirmed-correct code as buggy) ranked cidi~=costar > tidd-ec >> race > rcaf. No trustworthy winner; RCAF retained as the convention default. A future bakeoff needs harder/less-saturating fixtures to discriminate.",
+          "confidence": "low"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/kimi-k2.7-code.md",
+        "status": "default-unverified"
+      }
+    },
+    {
       "id": "kimi-k2.6",
       "context_length": 200000,
       "tool_calling": "native",
@@ -64,8 +120,8 @@
           "executor": "cli-opencode",
           "provider": "opencode-go",
           "quota_pool": "opencode-go",
-          "status": "active",
-          "notes": "Through opencode-go provider credits. ~5–10% hang rate on complex fixtures (see cli-opencode SKILL.md §3)."
+          "status": "historical",
+          "notes": "Historical. opencode-go gateway path; superseded by kimi-k2.7-code (Kimi For Coding plan, provider kimi-for-coding). Use kimi-k2.7-code instead. ~5–10% hang rate on complex fixtures was documented for this path."
         }
       ],
       "primary_quota_pool": "opencode-go",
@@ -96,7 +152,7 @@
           "confidence": "low"
         },
         "profile_ref": "sk-prompt-small-model/references/models/kimi-k2.6.md",
-        "status": "default-unverified"
+        "status": "historical"
       }
     },
     {

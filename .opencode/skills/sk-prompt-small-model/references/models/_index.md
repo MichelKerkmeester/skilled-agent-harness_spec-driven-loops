@@ -25,7 +25,7 @@ These per-model profiles are the WEIGHT of `sk-prompt-small-model` — its promp
 | `minimax-m3` | [`minimax-m3.md`](./minimax-m3.md) | TIDD-EC; RCAF fallback | dense | empirical (benchmark 003, run on M2.7; contract carried to M3) |
 | `mimo-v2.5-pro` | [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) | COSTAR; RACE fallback (avoid TIDD-EC, CIDI) | lean | empirical (benchmark 004, confidence high) |
 | `deepseek-v4-pro` | [`deepseek-v4-pro.md`](./deepseek-v4-pro.md) | RCAF; no fallback | medium | default-unverified |
-| `kimi-k2.6` | [`kimi-k2.6.md`](./kimi-k2.6.md) | RCAF; no fallback | medium | default-unverified |
+| `kimi-k2.7-code` | [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) | RCAF; no fallback | medium | default-unverified (bakeoff 006: TIE, correctness-saturated) |
 | `qwen3.6` | [`qwen3.6.md`](./qwen3.6.md) | RCAF; no fallback | medium | default-unverified |
 | `glm-5.1` | [`glm-5.1.md`](./glm-5.1.md) | RCAF; no fallback | medium | default-unverified |
 
@@ -34,6 +34,7 @@ These per-model profiles are the WEIGHT of `sk-prompt-small-model` — its promp
 | Model | Profile | Framework (primary; fallback) | Pre-planning | Status |
 | --- | --- | --- | --- | --- |
 | `minimax-2.7` | [`minimax-2.7.md`](./minimax-2.7.md) | TIDD-EC; RCAF fallback | dense | historical (benchmark 003 host; see minimax-m3.md for active profile) |
+| `kimi-k2.6` | [`kimi-k2.6.md`](./kimi-k2.6.md) | RCAF; no fallback | medium | historical (opencode-go path; superseded by kimi-k2.7-code) |
 
 Status legend mirrors the registry's `recommended_frameworks.status`:
 - **empirical** — framework chosen from a real benchmark on this model.

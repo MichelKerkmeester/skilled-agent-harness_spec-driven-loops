@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-kimi-k2-7-code-support/003-promote-results",
+  "description": "Feature Specification: Phase 3: promote-results",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "promote-results"
+  ],
+  "lastUpdated": "2026-06-15T10:26:26.261Z",
+  "specId": "003",
+  "folderSlug": "promote-results",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
