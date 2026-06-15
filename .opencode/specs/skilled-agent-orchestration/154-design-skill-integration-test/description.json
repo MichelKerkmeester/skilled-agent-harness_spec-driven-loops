@@ -1,36 +1,23 @@
 {
-  "specFolder": "154-design-skill-integration-test",
-  "description": "Live integration test of sk-interface-design with mcp-open-design: have MiMo v2.5 Pro and DeepSeek v4 Pro each create several designs through the shar",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-design-skill-integration-test",
+  "description": "Feature Specification: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)",
   "keywords": [
-    "live",
-    "integration",
-    "test",
+    "feature",
+    "specification",
     "sk-interface-design",
     "mcp-open-design",
+    "integration",
+    "test",
     "mimo",
-    "pro",
-    "deepseek",
-    "create",
-    "several",
-    "designs",
-    "shared",
-    "design-parity",
-    "loop",
-    "ground",
-    "anti-default",
-    "critique",
-    "build",
-    "real",
-    "render",
-    "compare",
-    "two",
-    "models"
+    "deepseek"
   ],
-  "lastUpdated": "2026-06-15T07:10:36.718Z",
+  "lastUpdated": "2026-06-15T08:49:57.420Z",
   "specId": "154",
   "folderSlug": "design-skill-integration-test",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

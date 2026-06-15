@@ -76,10 +76,15 @@ Both passed the test. The separation is on rigor and adherence, not on whether t
 
 MiMo edges ahead on instruction adherence, accessibility markup, and notes-to-code fidelity. DeepSeek edges ahead on self-critique honesty and bolder color choices. Neither is a clear overall winner, and both validate that sk-interface-design changes model behavior in the intended direction.
 
+### Live Open Design follow-up
+
+After the user opened the app and chose the opencode connection (not vela), the same Meridian brief was generated live through Open Design's own engine via the `opencode` agent: one run pinned to `xiaomi/mimo-v2.5-pro` (MiMo) and one to `deepseek/deepseek-v4-pro` (DeepSeek), each confirmed by the run's start-event model field. Both built a real `index.html` (Barlow Condensed editorial type, brand kept, Portland-grounded) with no vela login. The shell unlock was `OD_SIDECAR_IPC_PATH`, which lets the socket-only daemon resolve. Live outputs are under `designs/open-design-live/{mimo,deepseek}/`.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
+| `designs/open-design-live/{mimo,deepseek}/meridian-roasters.html` | Created | Live Open Design generations, model-pinned per arm |
 | `designs/mimo/0{1,2,3}-*.html` + `NOTES.md` | Created | MiMo's three designs and rationale |
 | `designs/deepseek/0{1,2,3}-*.html` + `NOTES.md` | Created | DeepSeek's three designs and rationale |
 <!-- /ANCHOR:what-built -->
@@ -102,7 +107,7 @@ Two cli-opencode seats ran concurrently under an identical brief (same three sub
 | Identical brief for both models | Hold everything constant except the model so differences are attributable to the model |
 | Chose subjects where the AI default is tempting | A coffee page, a SaaS pricing page, and a dashboard are exactly where models fall into templates, so avoiding the default is a real test |
 | Verified palette claims against the CSS | Self-reported notes are a hypothesis; opening the files caught the DeepSeek amber that never shipped |
-| Did not fire live Open Design generation | The app is closed and `od` generation is mutating, gated, and likely needs cloud auth, so the skill's own rules require explicit user confirmation first |
+| Fired live Open Design generation as a follow-up | After the user opened the app and chose the opencode connection over vela, drove `od run start --agent opencode` end to end with an explicit `--model` per arm. The unlock was setting `OD_SIDECAR_IPC_PATH` so the socket-only daemon resolves from the shell. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -128,7 +133,7 @@ Two cli-opencode seats ran concurrently under an identical brief (same three sub
 ## Known Limitations
 
 1. **Not visually rendered.** Verification covered structure, self-containment, palette fidelity, and adherence, not how the pages actually look. The user should open the six files in a browser to judge the visual result.
-2. **mcp-open-design was exercised at the methodology level, not live.** The shared parity loop drove the work, but the Open Design app was closed, so no live `od` grounding or generation ran. Live generation is offered as a user-confirmed follow-up (launch the app, fire the gated runs, possibly cloud auth).
+2. **mcp-open-design was also run live (follow-up).** After the app was opened, live `od run start --agent opencode` generated the Meridian Roasters landing page with `--model xiaomi/mimo-v2.5-pro` and again with `--model deepseek/deepseek-v4-pro`, end to end (discovery form, answer, build, index.html), with no vela login. The live designs are under `designs/open-design-live/`.
 3. **Three designs per model is a small sample.** The convergence on avoided defaults is a strong signal but not a statistical claim.
-4. **Side observation (out of scope here).** The installed `od` CLI exposes `od tools <...>` verbs, while mcp-open-design's SKILL.md shows simplified examples like `od projects list` that the installed build rejects. Worth a doc-accuracy pass on that skill later.
+4. **Correction to an earlier finding.** A previous version of this note wrongly claimed mcp-open-design's SKILL.md documents a non-existent `od run start`. That was wrong: `od run start` and `od ui respond` both exist and the skill is accurate (the top-level `--help` summary just omits `run`). The real finding from the live run: `od run start --agent opencode` without an explicit `--model` uses opencode's default model, not the app-config `agentModels.opencode` (MiMo), so the first exploratory run was the opencode default rather than MiMo and renamed the brand. Pin the model with `--model` to control it.
 <!-- /ANCHOR:limitations -->
