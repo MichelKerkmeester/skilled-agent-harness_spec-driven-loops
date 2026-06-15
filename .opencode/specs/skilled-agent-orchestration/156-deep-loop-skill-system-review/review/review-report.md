@@ -1,6 +1,6 @@
 # Comprehensive Deep Review — deep-loop + skill-system trio (152 / 153 / 155)
 
-## VERDICT: CONDITIONAL PASS
+## VERDICT: CONDITIONAL PASS → conditions MET (remediated + 3 adversarial waves; 0 P0, all P1 fixed on origin/027)
 
 The deep-loop merge (152), the mcp skill-install/doctor standardization (153), and the parent-nested-skill formalization (155) are **functionally sound — zero P0**. The conditions are a contained **completion-honesty + dead-path** cluster (3 P1) and routine P2 cleanup, plus the operator-requested sk-doc dissection.
 
@@ -39,3 +39,22 @@ Dead-path/stale fallout from the 152 deletion (broken `node`/`npx` commands in s
 
 ## Coverage note (honest)
 The review **converged**: round-2 downgraded every escalated P1 except one and no P0 survived, so the verdict is stable. ~15 verified passes covered the high-value surface across all three packets. The genuine *remaining* surface (152's per-phase merged tree, agent-mirror three-way parity, runtime-promotion seams; 155 research→impl fidelity) is lower-yield P2-hunting — pushing to the full 50-seat budget would add P2s, not change the verdict. Available on request if exhaustive coverage is wanted.
+
+---
+
+## Post-remediation (3 adversarial waves, ~9 claude2-opus seats — all on origin/027)
+
+The CONDITIONAL conditions are now **met**: the 3 original P1s fixed (failing sk-doc test, stale 155 key_files, 152 metadata reconciled), the operator-requested **sk-doc dissection** shipped, the **B1 council-graph probe built + verified**, and the dead-path sweep completed. Three further waves on the post-remediation code + the genuinely-uncovered surface found **1 P1 + ~12 P2** (commits `7dd2792a58`, `df37d442e4`, `22b65aaffd`):
+
+- **Wave 1** — review of the shipped remediation: 3 P2, all fixed.
+- **Wave 2** — 152 tree / 155 fidelity / 153 installers: **1 P1** (parent `152/spec.md` claimed EPIC COMPLETE while `009` = 6/18 — reconciled) + real installer safety bugs (`--dry-run` global npx-cache wipe; a "read-only" doctor connecting to every approved MCP server) — 6 fixed, 3 flagged.
+- **Wave 3** — backend / installers / mirrors: 6 P2 — 3 installer bugs fixed; backend writer-lock hardening + one cosmetic mirror line flagged.
+
+**Final: 0 P0; every P1 fixed and pushed.** The trio is functionally sound; agent-mirror three-way parity holds, runtime promotions are wired, the MCP-free boundary holds, and live advisor↔parent-skill routing parity is proven.
+
+### Open flags (operator decisions / follow-ups — not fresh defects)
+1. **Phase-007 governance R1** — the one-consolidated-catalog MUST was never built (5 per-mode trees ship). Decide: implement R1, or record a decision-record amendment (per-packet governance supersedes R1) + reconcile the 007 row.
+2. **Full 009 gate sign-off** — 10 P0 gates unrun (byte-parity replay = the acceptance bar; strict validation; skill-graph rebuild; advisor/mirror/registry). Dedicated pass.
+3. **deep-loop-runtime writer-lock hardening** — no stale-lock reclamation (an orphaned lock bricks all writers); convergence snapshot writes skip the lock. Focused backend pass.
+4. **153 mutation-class CI** + **`/doctor:parent-skill` 4a target-awareness** — small follow-ons (limitations documented).
+5. **`.claude/agents/deep-review.md` path-convention line** — one-line cosmetic fix, left to its concurrent-session owner.
