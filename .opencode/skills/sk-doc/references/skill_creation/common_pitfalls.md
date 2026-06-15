@@ -29,7 +29,7 @@ This reference catalogs the eight pitfalls that most often degrade a skill: from
 - Packaging or budget checks are failing
 - Reviewing a freshly authored skill for common defects
 
-> **Note on examples below**: illustrative SKILL.md headings inside the fenced examples are backslash-escaped (`\##`) so they read as content rather than as this document's own section headers.
+> **Note on examples below**: illustrative SKILL.md headings inside the fenced examples are written `\##` (not `##`) so the section-numbering validator — which scans `## N.` lines regardless of code fences — does not count them as this document's own sections. Drop the leading `\` when copying a heading into a real SKILL.md.
 
 ---
 

@@ -104,7 +104,7 @@ This slice was executed as remediation of the packet-156 deep-review P1 (B1 neve
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Twelve P0 gates remain unrun (6/18 verified).** CHK-001/002/010/020/021/030 (process/pre-impl), CHK-060 (skill-graph rebuild rejectedEdges=0 — mutation-class, intentionally not run from this slice), CHK-061/062/063 (advisor/mirror/registry validation), CHK-065 (byte-identical phase-001 parity replay — the acceptance bar). Full phase-009 sign-off requires running these.
+1. **Twelve P0 gates remain unrun (6/18 verified).** CHK-001/002/010/020/021/030 (process/pre-impl), CHK-060 (skill-graph rebuild rejectedEdges=0 — mutation-class, intentionally not run from this slice), CHK-061/062/063 (advisor/mirror/registry validation), CHK-065 (byte-identical phase-001 parity replay — the acceptance bar), CHK-066 (validate.sh --strict for phase 009 + parent recursive validation). Full phase-009 sign-off requires running these.
 2. **Parent 152 "Complete/100%" remains contingent.** The destructive deletion already shipped and is git-recoverable; the merge is functionally validated by the 351 passing deep-loop-runtime tests (per the packet-156 review), but the parent's completion claim is not fully backed until the remaining gates run.
 3. **B1 verified against an existing council namespace fixture** (`sandbox/dac-019`), not a full live `/doctor deep-loop --scope=all` end-to-end run through the interactive command surface.
 

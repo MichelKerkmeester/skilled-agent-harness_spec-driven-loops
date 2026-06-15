@@ -146,7 +146,7 @@ interactive_gates:
 # ─────────────────────────────────────────────────────────────────
 staleness_signals:
   empty_graph:
-    detection: "deep_loop_graph_status reports totalNodes == 0 while iteration folders exist"
+    detection: "deep_loop_graph_status reports totalNodes == 0 while iteration folders or ai-council artifacts exist (per scope)"
     severity: high
   stale_graph:
     detection: "deep-loop-graph.sqlite or council-graph.sqlite last write age > 7 days OR older than its newest source file (iteration .md / ai-council artifact)"
@@ -172,13 +172,14 @@ workflow:
       - "Bash: stat -f '%m %z' .opencode/skills/deep-loop-runtime/database/council-graph.sqlite when present and scope includes council."
       - "Group iteration files and ai-council artifacts by specFolder, loopType (research|review|context|council), and inferred sessionId from metadata or folder path."
       - "Run deep_loop_graph_status({specFolder, loopType, sessionId}) for up to 10 sampled packet/session namespaces; use loopType='council' for ai-council namespaces when scope includes council."
-      - "Set lazy_init.available=true when empty_graph=true and iteration_folder_count > 0."
+      - "Set lazy_init.available=true when empty_graph=true and (iteration_folder_count > 0 or ai_council_artifact_count > 0)."
       - "Interactive gate: before_phase_1_analysis."
     outputs:
       - graph_present: true|false
       - empty_graph: true|false
       - stale_graph: true|false
       - iteration_folder_count: N
+      - ai_council_artifact_count: N
       - sampled_status: list
       - lazy_init_available: true|false
     validation: discovery_complete
