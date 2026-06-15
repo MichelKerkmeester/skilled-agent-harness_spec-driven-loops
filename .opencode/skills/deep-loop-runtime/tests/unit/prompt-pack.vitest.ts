@@ -99,9 +99,9 @@ describe('prompt-pack', () => {
 
   it('both production templates load and render successfully with the expected bound variables', () => {
     const researchTemplatePath =
-      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/research/assets/prompt_pack_iteration.md.tmpl';
+      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl';
     const reviewTemplatePath =
-      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/review/assets/prompt_pack_iteration.md.tmpl';
+      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl';
 
     const researchRendered = renderPromptPack(researchTemplatePath, {
       state_summary: 'Summary block',
@@ -111,12 +111,12 @@ describe('prompt-pack', () => {
       next_focus: 'Graph event capture',
       remaining_questions_list: '- Q1\n- Q2',
       last_3_summaries: 'Iter 1: baseline',
-      state_paths_config: '.opencode/skills/deep-loop-workflows/research/assets/deep_research_config.json',
-      state_paths_state_log: '.opencode/skills/deep-loop-workflows/research/runtime/state.jsonl',
-      state_paths_strategy: '.opencode/skills/deep-loop-workflows/research/assets/deep_research_strategy.md',
-      state_paths_registry: '.opencode/skills/deep-loop-workflows/research/runtime/registry.json',
-      state_paths_iteration_pattern: '.opencode/skills/deep-loop-workflows/research/runtime/iteration-002.md',
-      state_paths_delta_pattern: '.opencode/skills/deep-loop-workflows/research/runtime/deltas/iter-002.jsonl',
+      state_paths_config: '.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json',
+      state_paths_state_log: '.opencode/skills/deep-loop-workflows/deep-research/runtime/state.jsonl',
+      state_paths_strategy: '.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md',
+      state_paths_registry: '.opencode/skills/deep-loop-workflows/deep-research/runtime/registry.json',
+      state_paths_iteration_pattern: '.opencode/skills/deep-loop-workflows/deep-research/runtime/iteration-002.md',
+      state_paths_delta_pattern: '.opencode/skills/deep-loop-workflows/deep-research/runtime/deltas/iter-002.jsonl',
     });
 
     const reviewRendered = renderPromptPack(reviewTemplatePath, {
@@ -129,17 +129,17 @@ describe('prompt-pack', () => {
       p0_count: 0,
       p1_count: 1,
       p2_count: 2,
-      state_paths_config: '.opencode/skills/deep-loop-workflows/review/assets/deep_review_config.json',
-      state_paths_state_log: '.opencode/skills/deep-loop-workflows/review/runtime/state.jsonl',
-      state_paths_findings_registry: '.opencode/skills/deep-loop-workflows/review/runtime/findings.json',
-      state_paths_strategy: '.opencode/skills/deep-loop-workflows/review/assets/deep_review_strategy.md',
-      state_paths_iteration_pattern: '.opencode/skills/deep-loop-workflows/review/runtime/iteration-003.md',
-      state_paths_delta_pattern: '.opencode/skills/deep-loop-workflows/review/runtime/deltas/iter-003.jsonl',
+      state_paths_config: '.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json',
+      state_paths_state_log: '.opencode/skills/deep-loop-workflows/deep-review/runtime/state.jsonl',
+      state_paths_findings_registry: '.opencode/skills/deep-loop-workflows/deep-review/runtime/findings.json',
+      state_paths_strategy: '.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md',
+      state_paths_iteration_pattern: '.opencode/skills/deep-loop-workflows/deep-review/runtime/iteration-003.md',
+      state_paths_delta_pattern: '.opencode/skills/deep-loop-workflows/deep-review/runtime/deltas/iter-003.jsonl',
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');
-    expect(researchRendered).toContain('State Log: .opencode/skills/deep-loop-workflows/research/runtime/state.jsonl');
+    expect(researchRendered).toContain('State Log: .opencode/skills/deep-loop-workflows/deep-research/runtime/state.jsonl');
     expect(reviewRendered).toContain('Dimension: traceability');
-    expect(reviewRendered).toContain('Findings Registry: .opencode/skills/deep-loop-workflows/review/runtime/findings.json');
+    expect(reviewRendered).toContain('Findings Registry: .opencode/skills/deep-loop-workflows/deep-review/runtime/findings.json');
   });
 });

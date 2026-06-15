@@ -10,7 +10,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const nodeRequire = createRequire(import.meta.url);
 
 const CONVERGENCE_CLI = resolve(here, '..', '..', 'scripts', 'convergence.cjs');
-const LOOP_HOST = '../../../deep-loop-workflows/improvement/scripts/shared/loop-host.cjs';
+const LOOP_HOST = '../../../deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs';
 
 describe('improvement stays host-driven, never a runtime convergence loopType', () => {
   it('convergence.cjs rejects loopType=improvement with the existing validation message', () => {

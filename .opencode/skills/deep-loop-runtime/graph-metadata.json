@@ -143,13 +143,13 @@
       {
         "name": "deep-loop-workflows",
         "kind": "skill",
-        "path": ".opencode/skills/deep-loop-workflows/review/SKILL.md",
+        "path": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
         "source": "derived"
       },
       {
         "name": "deep-loop-workflows",
         "kind": "skill",
-        "path": ".opencode/skills/deep-loop-workflows/research/SKILL.md",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
         "source": "derived"
       },
       {

@@ -8,8 +8,8 @@ import { join, resolve } from 'node:path';
 const nodeRequire = createRequire(import.meta.url);
 
 const RUNTIME_MODULE = '../../lib/deep-loop/runtime-capabilities.cjs';
-const DR_SHIM = '../../../deep-loop-workflows/research/scripts/runtime-capabilities.cjs';
-const DRV_SHIM = '../../../deep-loop-workflows/review/scripts/runtime-capabilities.cjs';
+const DR_SHIM = '../../../deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs';
+const DRV_SHIM = '../../../deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs';
 
 const { createRuntimeCapabilities } = nodeRequire(RUNTIME_MODULE) as {
   createRuntimeCapabilities: (opts: { label: string; defaultCapabilityPath: string }) => {
@@ -88,8 +88,8 @@ describe('per-skill shims stay byte-compatible', () => {
   });
 
   it('point DEFAULT_CAPABILITY_PATH at each skill assets dir', () => {
-    expect(dr.DEFAULT_CAPABILITY_PATH.endsWith('deep-loop-workflows/research/assets/runtime_capabilities.json')).toBe(true);
-    expect(drv.DEFAULT_CAPABILITY_PATH.endsWith('deep-loop-workflows/review/assets/runtime_capabilities.json')).toBe(true);
+    expect(dr.DEFAULT_CAPABILITY_PATH.endsWith('deep-loop-workflows/deep-research/assets/runtime_capabilities.json')).toBe(true);
+    expect(drv.DEFAULT_CAPABILITY_PATH.endsWith('deep-loop-workflows/deep-review/assets/runtime_capabilities.json')).toBe(true);
   });
 
   it('preserve the frozen baseline runtime id set', () => {
