@@ -16,10 +16,10 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   commonjs: [['sk-code', 0.75]],
   context: [['system-spec-kit', 0.65]],
   corpus: [['system-spec-kit', 0.45]],
-  council: [['deep-ai-council', 0.9]],
+  council: [['deep-loop-workflows', 0.9]],
   css: [['sk-code', 0.55]],
   dashboard: [['sk-code', 0.35]],
-  deliberation: [['deep-ai-council', 0.8]],
+  deliberation: [['deep-loop-workflows', 0.8]],
   debug: [['sk-code', 0.25]],
   devtools: [['mcp-chrome-devtools', 1]],
   docs: [['sk-doc', 0.8]],
@@ -93,18 +93,18 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   '/create:testing-playbook': [['create:testing-playbook', 1.8], ['command-create-testing-playbook', 1.2], ['sk-doc', 0.2]],
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
-  '/deep:start-research-loop': [['deep-research', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:start-review-loop': [['deep-review', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:start-research-loop': [['deep-loop-workflows', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:start-review-loop': [['deep-loop-workflows', 1.6], ['command-spec-kit', 0.45]],
   '/deep:start-model-benchmark-loop': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:start-agent-improvement-loop': [['deep-improvement', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:start-agent-improvement-loop': [['deep-loop-workflows', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
-  'auto review release readiness': [['deep-review', 1]],
+  'auto review release readiness': [['deep-loop-workflows', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
   // distinct from natural-language "auto review this PR" (which stays
   // sk-code-review). Strong direct-evidence anchor + a bounded code-review
   // penalty so the loop skill wins the rank.
-  ':review:auto': [['deep-review', 1.6], ['sk-code-review', -0.6]],
-  ':review:confirm': [['deep-review', 1.6], ['sk-code-review', -0.6]],
+  ':review:auto': [['deep-loop-workflows', 1.6], ['sk-code-review', -0.6]],
+  ':review:confirm': [['deep-loop-workflows', 1.6], ['sk-code-review', -0.6]],
   // Domain phrase anchors (multi-token, so they lift confidence via the direct
   // lane without firing on single tokens like "scan"/"profile"/"search"/"cms").
   'webflow cms': [['mcp-code-mode', 1.5], ['sk-code', -0.5]],
@@ -113,29 +113,28 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'code graph search': [['system-code-graph', 1.5]],
   'find code that': [['system-code-graph', 1.4]],
   'code that handles': [['system-code-graph', 1.4]],
-  '5d scoring': [['deep-improvement', 1.5]],
-  '5-dimension agent scoring': [['deep-improvement', 1.6]],
-  'integration scan': [['deep-improvement', 1.5]],
-  'dynamic profile': [['deep-improvement', 1.5]],
+  '5d scoring': [['deep-loop-workflows', 1.5]],
+  '5-dimension agent scoring': [['deep-loop-workflows', 1.6]],
+  'integration scan': [['deep-loop-workflows', 1.5]],
+  'dynamic profile': [['deep-loop-workflows', 1.5]],
   // Lane B (model-benchmark) command anchors. These benchmark or optimize a
   // model / prompt framework against fixtures, routed by the
   // /deep:start-model-benchmark-loop command (canonical deep-model-benchmark).
-  // Lane B runs as a MODE of the deep-agent-improvement skill. The projection
-  // exposes a single canonical node for that skill (deep-improvement),
-  // so the disambiguation penalty must target that canonical id to actually
-  // lower the ranked Lane A candidate. The earlier alias-shaped target
-  // (command-spec-kit-deep-agent-improvement) is not a projection node, so it
-  // never reached the ranked skill and the penalty was inert. The bounded
-  // penalty keeps benchmark phrasing from out-ranking deep-model-benchmark.
-  'benchmark a model': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.6]],
-  'benchmark a prompt framework': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.6]],
-  'benchmark a prompt': [['deep-model-benchmark', 1.4], ['deep-improvement', -0.4]],
-  'optimize a model': [['deep-model-benchmark', 1.5], ['deep-improvement', -0.6]],
-  'optimize a prompt framework': [['deep-model-benchmark', 1.5], ['deep-improvement', -0.6]],
-  'model benchmark loop': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.4]],
-  'model benchmark': [['deep-model-benchmark', 1.4], ['deep-improvement', -0.4]],
+  // Lane B runs as a MODE of the agent-improvement skill, now folded into
+  // deep-loop-workflows. The projection exposes that merged node, so the
+  // disambiguation penalty must target deep-loop-workflows to actually lower the
+  // ranked Lane A candidate; an alias-shaped target is not a projection node and
+  // its penalty would be inert. The bounded penalty keeps benchmark phrasing
+  // from out-ranking deep-model-benchmark.
+  'benchmark a model': [['deep-model-benchmark', 1.6], ['deep-loop-workflows', -0.6]],
+  'benchmark a prompt framework': [['deep-model-benchmark', 1.6], ['deep-loop-workflows', -0.6]],
+  'benchmark a prompt': [['deep-model-benchmark', 1.4], ['deep-loop-workflows', -0.4]],
+  'optimize a model': [['deep-model-benchmark', 1.5], ['deep-loop-workflows', -0.6]],
+  'optimize a prompt framework': [['deep-model-benchmark', 1.5], ['deep-loop-workflows', -0.6]],
+  'model benchmark loop': [['deep-model-benchmark', 1.6], ['deep-loop-workflows', -0.4]],
+  'model benchmark': [['deep-model-benchmark', 1.4], ['deep-loop-workflows', -0.4]],
   'benchmark fixtures': [['deep-model-benchmark', 1.3]],
-  'prompt framework benchmark': [['deep-model-benchmark', 1.5], ['deep-improvement', -0.4]],
+  'prompt framework benchmark': [['deep-model-benchmark', 1.5], ['deep-loop-workflows', -0.4]],
   'chrome devtools': [['mcp-chrome-devtools', 1]],
   'staging url': [['mcp-chrome-devtools', 0.65]],
   'staging site': [['mcp-chrome-devtools', 0.65]],
@@ -160,18 +159,18 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'classifier vocabulary': [['sk-code-review', 0.9]],
   'commonjs helper': [['sk-code', 1]],
   'create a prompt': [['sk-prompt', 0.95]],
-  'deep research': [['deep-research', 1]],
-  'deep review': [['deep-review', 1]],
-  'deep ai council': [['deep-ai-council', 1.6]],
-  'deep-ai-council': [['deep-ai-council', 1.6]],
-  'deep-research': [['deep-research', 1.3]],
-  'deep-review': [['deep-review', 1.3]],
-  'ai council': [['deep-ai-council', 1.4]],
-  'planning council': [['deep-ai-council', 1.2]],
-  'council deliberation': [['deep-ai-council', 1.4]],
-  'persist council artifacts': [['deep-ai-council', 1.2]],
-  'ai-council artifacts': [['deep-ai-council', 1.2]],
-  'multi-ai-council': [['deep-ai-council', 1.2]],
+  'deep research': [['deep-loop-workflows', 1]],
+  'deep review': [['deep-loop-workflows', 1]],
+  'deep ai council': [['deep-loop-workflows', 1.6]],
+  'deep-ai-council': [['deep-loop-workflows', 1.6]],
+  'deep-research': [['deep-loop-workflows', 1.3]],
+  'deep-review': [['deep-loop-workflows', 1.3]],
+  'ai council': [['deep-loop-workflows', 1.4]],
+  'planning council': [['deep-loop-workflows', 1.2]],
+  'council deliberation': [['deep-loop-workflows', 1.4]],
+  'persist council artifacts': [['deep-loop-workflows', 1.2]],
+  'ai-council artifacts': [['deep-loop-workflows', 1.2]],
+  'multi-ai-council': [['deep-loop-workflows', 1.2]],
   'gate 3': [['system-spec-kit', 0.35], ['sk-code', 0.25]],
   'gate-3-classifier': [['sk-code', 1]],
   'generate implementation-summary': [['system-spec-kit', 1]],
@@ -183,8 +182,8 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'negative-trigger whitelist': [['sk-code', 0.9]],
   'list any mismatches': [['sk-code-review', 0.8]],
   'pull request': [['sk-code-review', 0.45], ['sk-git', 0.45]],
-  'resume deep research': [['deep-research', 1]],
-  'resume deep review': [['deep-review', 1]],
+  'resume deep research': [['deep-loop-workflows', 1]],
+  'resume deep review': [['deep-loop-workflows', 1]],
   'resume the phase folder': [['system-spec-kit', 1]],
   'phase folder': [['system-spec-kit', 0.75]],
   'routing dashboard': [['sk-code', 0.35]],
@@ -288,7 +287,7 @@ export function scoreExplicitLane(prompt: string, projection: AdvisorProjection)
     push(scores, 'sk-code-review', -2.0, 'review-plus-write-disambiguation');
   }
   if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
-    push(scores, 'deep-research', 0.85, 'research-loop');
+    push(scores, 'deep-loop-workflows', 0.85, 'research-loop');
   }
   // Disambiguation: "cli-opencode" / "cli opencode" / "opencode CLI" routes to the
   // cli-opencode orchestrator skill. Bare "opencode" continues to route to sk-code
@@ -299,14 +298,14 @@ export function scoreExplicitLane(prompt: string, projection: AdvisorProjection)
     push(scores, 'sk-code', -0.5, 'cli-opencode-disambiguation');
   }
   if (/\b(continue|resume|launch|start|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
-    push(scores, 'deep-review', 0.85, 'review-loop');
+    push(scores, 'deep-loop-workflows', 0.85, 'review-loop');
     if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {
       push(scores, 'sk-code-review', -0.6, 'iterative-review-vs-pr-disambiguation');
     }
   }
   if (/\b(figure out|find|diagnose|debug)\b.{0,40}\b(wrong|broken|failing|bug|issue)\b.{0,40}\bcode\b|\b(wrong|broken|failing)\b.{0,30}\bcode\b/.test(lower)) {
     push(scores, 'sk-code-review', 0.9, 'ambiguous-code-problem');
-    push(scores, 'deep-review', 0.45, 'ambiguous-code-problem');
+    push(scores, 'deep-loop-workflows', 0.45, 'ambiguous-code-problem');
     push(scores, 'sk-code', -0.45, 'ambiguous-code-problem');
   }
 

@@ -1,0 +1,98 @@
+{
+  "skill": "deep-loop-workflows",
+  "version": "1.0.0",
+  "description": "Declarative mode registry: the single source of truth for the three-tier discriminator that routes every deep-loop-workflows mode. Routers (hub SKILL.md, commands, advisor) read this; none re-derive the mapping.",
+  "discriminator": {
+    "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
+    "runtimeLoopType": "The graph-backed convergence loop key consumed by deep-loop-runtime/scripts/convergence.cjs. Validated against exactly research|review|council|context. Explicit null for improvement-host and external-adapter modes; NEVER inferred from workflowMode.",
+    "backendKind": "Which backend actually runs the mode: runtime-loop-type (deep-loop-runtime convergence), improvement-host (improvement/scripts/shared/loop-host.cjs --mode), or external-adapter (loop owned by external packaging)."
+  },
+  "modes": [
+    {
+      "workflowMode": "context",
+      "runtimeLoopType": "context",
+      "backendKind": "runtime-loop-type",
+      "packet": "context",
+      "command": "/deep:context",
+      "agent": "deep-context",
+      "artifactRoot": "context/",
+      "aliases": ["deep-context", "context loop", "gather context", "gather codebase context", "context sweep", "reuse catalog", "pre-plan context", "context-gathering-loop"]
+    },
+    {
+      "workflowMode": "research",
+      "runtimeLoopType": "research",
+      "backendKind": "runtime-loop-type",
+      "packet": "research",
+      "command": "/deep:research",
+      "agent": "deep-research",
+      "artifactRoot": "research/",
+      "aliases": ["deep-research", "research loop", "iterative investigation workflow", "research convergence detection", "autoresearch", "iterative-research"]
+    },
+    {
+      "workflowMode": "review",
+      "runtimeLoopType": "review",
+      "backendKind": "runtime-loop-type",
+      "packet": "review",
+      "command": "/deep:review",
+      "agent": "deep-review",
+      "artifactRoot": "review/",
+      "aliases": ["deep-review", "review loop", "iterative code audit", "severity weighted findings", "code-audit", "release-readiness"]
+    },
+    {
+      "workflowMode": "ai-council",
+      "runtimeLoopType": "council",
+      "backendKind": "runtime-loop-type",
+      "packet": "ai-council",
+      "command": "/deep:ai-council",
+      "agent": "ai-council",
+      "artifactRoot": "ai-council/",
+      "aliases": ["deep-ai-council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"]
+    },
+    {
+      "workflowMode": "agent-improvement",
+      "runtimeLoopType": null,
+      "backendKind": "improvement-host",
+      "packet": "improvement",
+      "loopHostMode": "agent-improvement",
+      "command": "/deep:agent-improvement",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "mutating": true,
+      "aliases": ["improve agent", "evaluate agent", "agent scoring", "score agent candidate", "promote or rollback agent change", "agent-improvement"]
+    },
+    {
+      "workflowMode": "model-benchmark",
+      "runtimeLoopType": null,
+      "backendKind": "improvement-host",
+      "packet": "improvement",
+      "loopHostMode": "model-benchmark",
+      "command": "/deep:model-benchmark",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "aliases": ["model benchmark", "benchmark a model", "prompt framework benchmark", "benchmark-harness"]
+    },
+    {
+      "workflowMode": "skill-benchmark",
+      "runtimeLoopType": null,
+      "backendKind": "improvement-host",
+      "packet": "improvement",
+      "loopHostMode": "skill-benchmark",
+      "command": "/deep:skill-benchmark",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "aliases": ["skill benchmark", "benchmark a skill", "skill routing benchmark"]
+    },
+    {
+      "workflowMode": "ai-system-improvement",
+      "runtimeLoopType": null,
+      "backendKind": "external-adapter",
+      "packet": "improvement",
+      "loopHostMode": "non-dev-ai-system-refine",
+      "command": "/deep:ai-system-improvement",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "externalLoopOwner": "external packaging (e.g. Barter Copywriter) owns the Python loop, gates, scoring, and kill-switches",
+      "aliases": ["non-dev ai system", "non-dev-ai-system", "package ai system benchmark"]
+    }
+  ]
+}

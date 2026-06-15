@@ -13,7 +13,7 @@ Output: JSON array of skill recommendations with confidence scores
 Options:
     --stdin      Read the single prompt from stdin instead of argv
     --stdin-preferred  Prefer stdin for the single-prompt mode, falling back to argv when stdin is empty
-    --deep-skill-routing-json  Score deep-review/deep-research/deep-ai-council routing from JSON stdin
+    --deep-skill-routing-json  Score deep-loop-workflows mode routing (research|review|ai-council) from JSON stdin
     --health      Run health check diagnostics
     --validate-only  Run strict skill-graph validation
     --threshold   Confidence threshold used by default dual-threshold filtering (default: 0.8)
@@ -2307,6 +2307,22 @@ def _apply_memory_save_file_operation_cap(
 DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
 DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 
+# The five legacy deep-loop skills are folded into one public skill,
+# deep-loop-workflows, discriminated by workflowMode. The Candidate-3 internal
+# discriminator keys below stay spelled as the legacy skill ids because the
+# regex pattern groups and prior-art matchers key off them and match live
+# artifact/agent names that survive until the old dirs are deleted (phase 009);
+# DEEP_ROUTING_MODE_BY_KEY projects each onto the merged skill's workflowMode so
+# the routing contract emits {skill: deep-loop-workflows, mode}. deep-context is
+# intentionally NOT a Candidate-3 discriminator: it stays metadata-routed
+# (resolved from its graph-metadata.json), so DEEP_ROUTING_SKILLS stays 3.
+MERGED_DEEP_SKILL_ID = "deep-loop-workflows"
+DEEP_ROUTING_MODE_BY_KEY = {
+    "deep-review": "review",
+    "deep-research": "research",
+    "deep-ai-council": "ai-council",
+}
+
 DEEP_ROUTING_LEXICAL_PATTERNS = {
     "deep-review": (
         (r"\bdeep[- ]review\b", 1.8),
@@ -2482,29 +2498,46 @@ def _deep_routing_confidence_band(max_score: float) -> str:
 
 
 def _deep_routing_clarifying_question(prompt_lower: str, winner: str, runner_up: str) -> str:
-    """Return the targeted clarification for low-confidence deep-* routing."""
+    """Return the targeted clarification for low-confidence deep-loop mode routing.
+
+    `winner`/`runner_up` are deep-loop-workflows workflowMode names
+    (research|review|ai-council), not legacy skill ids.
+    """
     if "architecture" in prompt_lower or "decision" in prompt_lower or "strategy" in prompt_lower:
-        return "Are you comparing existing strategies (deep-ai-council) or discovering new ones (deep-research)?"
+        return "Are you comparing existing strategies (ai-council mode) or discovering new ones (research mode)?"
     if "findings" in prompt_lower or "convergence" in prompt_lower or "stabilize" in prompt_lower:
-        return "Are these findings defects to audit until stable (deep-review), research discoveries to exhaust (deep-research), or council opinions to deliberate (deep-ai-council)?"
-    return f"Should this route to {winner} or {runner_up}, and what output do you expect: review-report.md, research.md, or council-report.md?"
+        return "Are these findings defects to audit until stable (review mode), research discoveries to exhaust (research mode), or council opinions to deliberate (ai-council mode)?"
+    return f"Should this route to {winner} or {runner_up} mode, and what output do you expect: review-report.md, research.md, or council-report.md?"
 
 
 def deep_skill_routing_payload(prompt: str, packet_context: dict) -> Dict[str, Any]:
-    """Return full Candidate-3 routing payload with LOW-confidence clarification."""
+    """Return the merged deep-loop routing payload with LOW-confidence clarification.
+
+    The five legacy deep-loop skills are collapsed into deep-loop-workflows, so
+    the contract is {skill: deep-loop-workflows, mode: <workflowMode>} plus
+    mode-keyed scores. Internal scoring still discriminates per mode; this layer
+    projects the legacy discriminator keys onto registry workflowMode names so a
+    prompt that used to win "deep-research" now resolves to
+    (deep-loop-workflows, research) WITHOUT flattening the mode distinction.
+    """
     scores = score_deep_skill_routing(prompt, packet_context)
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    winner, max_score = ranked[0]
-    runner_up = ranked[1][0] if len(ranked) > 1 else ""
+    winner_key, max_score = ranked[0]
+    runner_up_key = ranked[1][0] if len(ranked) > 1 else ""
+    winner_mode = DEEP_ROUTING_MODE_BY_KEY[winner_key]
+    runner_up_mode = DEEP_ROUTING_MODE_BY_KEY.get(runner_up_key, runner_up_key)
+    mode_scores = {DEEP_ROUTING_MODE_BY_KEY[key]: value for key, value in scores.items()}
     payload: Dict[str, Any] = {
-        "scores": scores,
-        "winner": winner,
+        "skill": MERGED_DEEP_SKILL_ID,
+        "mode": winner_mode,
+        "scores": mode_scores,
+        "winner": winner_mode,
         "confidence": max_score,
         "confidence_band": _deep_routing_confidence_band(max_score),
         "candidate": "Candidate-3" if _packet_context_has_prior_art(packet_context if isinstance(packet_context, dict) else {}) else "Candidate-2",
     }
     if max_score < DEEP_ROUTING_CONFIDENCE_THRESHOLD:
-        payload["clarifying_question"] = _deep_routing_clarifying_question(prompt.lower(), winner, runner_up)
+        payload["clarifying_question"] = _deep_routing_clarifying_question(prompt.lower(), winner_mode, runner_up_mode)
     return payload
 
 
@@ -2526,22 +2559,27 @@ def _apply_deep_skill_routing_layer(
         return
 
     payload = deep_skill_routing_payload(prompt, packet_context or {})
-    score_map = payload["scores"]
-    mapped_scores = {
-        "deep-review": score_map["deep-review"],
-        "deep-research": score_map["deep-research"],
-        "deep-ai-council": score_map["deep-ai-council"],
-    }
+    mode_scores = payload["scores"]  # keyed by workflowMode
+    winner_mode = payload["mode"]
 
     for recommendation in recommendations:
         skill = recommendation.get("skill")
-        if skill not in mapped_scores:
+        # Resolve which mode's confidence to blend in. The merged node
+        # (deep-loop-workflows) carries the winning mode; legacy mode-level ids
+        # still present mid-migration carry their own mode. Anything else is
+        # left untouched.
+        if skill == MERGED_DEEP_SKILL_ID:
+            mode = winner_mode
+        elif skill in DEEP_ROUTING_MODE_BY_KEY:
+            mode = DEEP_ROUTING_MODE_BY_KEY[skill]
+        else:
             continue
-        routed_confidence = mapped_scores[skill]
+        routed_confidence = mode_scores.get(mode, 0.0)
         recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
         recommendation["uncertainty"] = min(float(recommendation.get("uncertainty", 0.0)), 0.30)
+        recommendation["mode"] = mode
         reason = str(recommendation.get("reason", ""))
-        note = f" [Candidate-3 deep routing: {payload['winner']} {payload['confidence_band']}]"
+        note = f" [Candidate-3 deep routing: {payload['skill']} {mode} {payload['confidence_band']}]"
         if note not in reason:
             recommendation["reason"] = f"{reason}{note}"
         if "clarifying_question" in payload:

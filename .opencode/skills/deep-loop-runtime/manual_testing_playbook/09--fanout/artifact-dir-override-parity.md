@@ -41,11 +41,11 @@ runs for users who never use fan-out. The `skip_when` guards are the primary pro
 
 ### Steps
 
-1. `bash: grep -n "if_absent\|skip_when\|fanout_lineage_artifact_dir" .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml | head -20`
+1. `bash: grep -n "if_absent\|skip_when\|fanout_lineage_artifact_dir" .opencode/commands/deep/assets/deep_research_auto.yaml | head -20`
 2. Confirm `if_absent.command` contains `resolveArtifactRoot('{spec_folder}', 'research')` — byte-identical to pre-change.
 3. Confirm `step_fanout_spawn:` has `skip_when: "config.fanout is absent"`.
 4. Confirm `step_fanout_merge:` has `skip_when: "config.fanout is absent"`.
-5. Repeat steps 1–4 for `deep_start-review-loop_auto.yaml` (substituting `'review'`).
+5. Repeat steps 1–4 for `deep_review_auto.yaml` (substituting `'review'`).
 6. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/`
 7. Confirm 197/197 pass (or 196+1 known loop-lock flake that passes in isolation).
 
@@ -67,10 +67,10 @@ Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps s
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | `step_resolve_artifact_root` (if_present/if_absent), `step_fanout_spawn`, `step_fanout_merge` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Same steps (review variant) |
-| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Same steps (confirm variant) |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Same steps (review confirm) |
+| `.opencode/commands/deep/assets/deep_research_auto.yaml` | `step_resolve_artifact_root` (if_present/if_absent), `step_fanout_spawn`, `step_fanout_merge` |
+| `.opencode/commands/deep/assets/deep_review_auto.yaml` | Same steps (review variant) |
+| `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Same steps (confirm variant) |
+| `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Same steps (review confirm) |
 
 ### Validation
 

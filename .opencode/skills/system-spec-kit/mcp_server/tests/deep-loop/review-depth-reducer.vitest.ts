@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const { reduceReviewState } = require('../../../../deep-review/scripts/reduce-state.cjs') as {
+const { reduceReviewState } = require('../../../../deep-loop-workflows/review/scripts/reduce-state.cjs') as {
   reduceReviewState: (specFolder: string, options?: { write?: boolean }) => { registry: Record<string, unknown> };
 };
 

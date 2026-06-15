@@ -12,7 +12,7 @@ Executes ONE read-only analysis sweep of an assigned code slice within a heterog
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
-**CRITICAL**: This agent is a READ-ONLY analyzer SEAT, not the loop. It NEVER writes files. The host (`/deep:start-context-loop`) writes every iteration file, the coverage-graph, and the merged Context Report. This seat's entire deliverable is the structured finding set it returns in stdout.
+**CRITICAL**: This agent is a READ-ONLY analyzer SEAT, not the loop. It NEVER writes files. The host (`/deep:context`) writes every iteration file, the coverage-graph, and the merged Context Report. This seat's entire deliverable is the structured finding set it returns in stdout.
 
 **IMPORTANT**: This agent is one member of a shared-scope agreement pool. Multiple seats (native, and optionally CLI, executors) sweep the SAME scope in parallel; the host dedups by `file:symbol` and boosts confidence by cross-executor agreement. The default pool is native-only (2 seats); CLI seats join only when the operator configures a heterogeneous pool. This seat owns only its own analysis of its assigned slice — it does not merge, persist, or reconcile against other seats.
 
@@ -175,8 +175,8 @@ WebFetch, Chrome DevTools, Write, Edit, Patch, Bash, and the Task tool are denie
 
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
-| Dispatcher command | `/deep:start-context-loop` | Owns the loop, parallel dispatch, merge, state writes, convergence, synthesis; dispatches this seat once per iteration |
-| Loop skill | `deep-context` | Owns the seat contract, convergence signals, and Context Report schema this seat feeds |
+| Dispatcher command | `/deep:context` | Owns the loop, parallel dispatch, merge, state writes, convergence, synthesis; dispatches this seat once per iteration |
+| Loop skill | `deep-loop-workflows` (context mode) | Owns the seat contract, convergence signals, and Context Report schema this seat feeds |
 | Runtime primitives | `deep-loop-runtime` | Owns coverage-graph (`loop_type='context'`), convergence script, and parallel seat dispatch the host uses |
 | Frontier + verification | `system-code-graph` | Source of slice anchors and `file:symbol` verification |
 | Prompt framing | `sk-prompt-small-model` | Per-model prompt framework applied to CLI seats; this seat receives an already-framed contract |

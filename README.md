@@ -7,7 +7,7 @@
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
 | 🔍 **Code Graph** | Callers, imports, impact paths, and Code Graph + Grep code discovery |
 | 🤖 **12 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **21 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| 🎯 **17 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
 **Reasons to try it**
 
@@ -84,7 +84,7 @@ The framework adds four layers on top of the base platform:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 12 specialized│          │ 21 domain skills │
+         │ 12 specialized│          │ 17 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -193,7 +193,7 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, the deep-context/deep-research/deep-review loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, the `deep-loop-workflows` loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
@@ -788,7 +788,7 @@ The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispa
 #### How It Works
 
 ```
-  /deep:start-*-loop  ─►  INIT / RESUME / RESTART
+  /deep:<mode>  ─►  INIT / RESUME / RESTART
                               │  anchor to a real spec.md, load JSONL state + lineage
                               ▼
         ┌───────────────────────────────────────────┐
@@ -825,7 +825,7 @@ One engine under every loop, so they all work the same way and you learn the wor
 &nbsp;
 #### Deep Research
 
-Investigates a question for you, one focused pass at a time, until the answers hold up. `/deep:start-research-loop` runs `@deep-research`.
+Investigates a question for you, one focused pass at a time, until the answers hold up. `/deep:research` runs `@deep-research`.
 - **Knows when it's done:** stops once findings stabilize, not after a fixed number of tries
 - **Won't quit early:** keeps going until the question is covered from enough angles and sources
 - **Remembers dead ends:** ruled-out directions are saved, so you never re-investigate them
@@ -834,7 +834,7 @@ Investigates a question for you, one focused pass at a time, until the answers h
 &nbsp;
 #### Deep Review
 
-Audits your code in passes and never edits it. `/deep:start-review-loop` runs `@deep-review`.
+Audits your code in passes and never edits it. `/deep:review` runs `@deep-review`.
 - **Fix what matters first:** every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability
 - **Fewer false alarms:** each critical finding gets re-challenged before it sticks
 - **Won't sign off on hidden problems:** an open P0 forces another pass, and the audit must clear its quality checks before it can stop
@@ -843,7 +843,7 @@ Audits your code in passes and never edits it. `/deep:start-review-loop` runs `@
 &nbsp;
 #### Deep Context
 
-Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:start-context-loop` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
+Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:context` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
 - **Reuse first:** the top of every Context Report is a catalog of existing `file:symbol` pointers to extend, compose or wrap
 - **Many models, one scope:** a heterogeneous pool (native agents plus cli models) sweeps the same code in parallel, and agreement across models drives confidence
 - **Pointers, not dumps:** it ships verified references instead of pasted source, so planning context stays sharp rather than bloated
@@ -852,7 +852,7 @@ Maps the existing codebase before you plan, so you extend what's already there i
 &nbsp;
 #### Multi AI Council
 
-Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/deep:ask-ai-council` handles multi-topic sessions.
+Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/deep:ai-council` handles multi-topic sessions.
 - **More than one opinion:** different AI seats reason from different angles, then critique each other
 - **A plan you can trust:** the seats converge on a recommendation with the evidence behind it
 - **Safe to run:** planning only, so it never touches your implementation files
@@ -861,20 +861,20 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 &nbsp;
 #### Agent Improvement & Benchmarking
 
-Four co-equal lanes on one skill (`deep-improvement`). Lane A reviews and upgrades any of your agents: `/deep:start-agent-improvement-loop` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:start-model-benchmark-loop`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:start-skill-benchmark-loop`. Lane D benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails: `/deep:start-non-dev-ai-system-loop`.
+Four co-equal lanes in the `deep-loop-workflows` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:skill-benchmark`. Lane D benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails: `/deep:ai-system-improvement`.
 - **Objective scoring:** rates an agent across five dimensions with fixed, repeatable checks, not another AI's opinion
 - **Sees the whole footprint:** finds every place the agent lives (definition, mirrors, commands, workflows, skills) before changing anything
 - **Never breaks the original:** changes go to a sandbox copy and only get promoted after they pass scoring, benchmarks and your approval, with rollback if they don't
 - **Knows when to stop:** ends once the scores stop improving
 - **Benchmarks too (Lanes B/C/D):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring (deterministic or graded), skills against real routing and discovery behavior, and non-dev AI-system packagings against a correctness-gated gauntlet
 
-For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runtime/README.md), or each loop's own README under `.opencode/skills/`.
+For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runtime/README.md), or the [deep-loop-workflows README](.opencode/skills/deep-loop-workflows/README.md), which documents each mode.
 
 ---
 
 ### 🎯 Skills Library
 
-24 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+20 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -916,25 +916,13 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 &nbsp;
 #### DEEP LOOP
 
-The shared runtime plus the five loop skills behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
+The shared runtime plus the unified `deep-loop-workflows` skill behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
 
 **deep-loop-runtime**
-- Shared runtime under all five deep loops: executor config, state safety, scoring, fallback routing, coverage-graph scripts, `storage/deep-loop-graph.sqlite`. See [Deep Loop](#deep-loop).
+- Shared runtime under every deep loop: executor config, state safety, scoring, fallback routing, coverage-graph scripts, `storage/deep-loop-graph.sqlite`. See [Deep Loop](#deep-loop).
 
-**deep-research**
-- Autonomous research loop: iterative LEAF cycles, fresh context per pass, externalized JSONL state, 3-signal convergence. Dispatched by `/deep:start-research-loop`. See [Deep Loop](#deep-loop).
-
-**deep-review**
-- Autonomous code-review loop: P0/P1/P2 findings across 4 dimensions, a PASS/CONDITIONAL/FAIL verdict, adversarial P0 self-check. Dispatched by `/deep:start-review-loop`. See [Deep Loop](#deep-loop).
-
-**deep-context**
-- Autonomous codebase-context loop: scans your existing code with multiple AI models in parallel, finds agreement on what's already there, and produces a Context Report of verified `file:symbol` pointers to reuse. Dispatched by `/deep:start-context-loop`; optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. See [Deep Loop](#deep-loop).
-
-**deep-ai-council**
-- Multi-seat planning council: diverse AI seats, cross-seat critique, convergence to evidence-backed recommendations, packet-local `ai-council/**` artifacts. Planning-only. See [Deep Loop](#deep-loop).
-
-**deep-improvement**
-- Four co-equal lanes. Lane A (agent-improvement): evaluator-first agent improvement with 5-dimension deterministic scoring, integration scanner, and proposal-first candidates under guarded promotion, dispatched by `/deep:start-agent-improvement-loop`. Lane B (model-benchmark): benchmark a model or prompt framework against fixtures with pattern or 5-dimension scoring, deterministic or graded runs, dispatched by `/deep:start-model-benchmark-loop`. Lane C (skill-benchmark): diagnose a skill's routing, discovery, efficiency and usefulness, dispatched by `/deep:start-skill-benchmark-loop`. Lane D (non-dev-ai-system): benchmark and refine an AI-system packaging behind hard guardrails, dispatched by `/deep:start-non-dev-ai-system-loop`. See [Deep Loop](#deep-loop).
+**deep-loop-workflows**
+- Unified deep-loop skill that routes a request to one of five modes over the shared runtime: **context** (codebase-context by-model sweep, `/deep:context`), **research** (autonomous research loop with 3-signal convergence, `/deep:research`), **review** (P0/P1/P2 code-review loop across 4 dimensions, `/deep:review`), **ai-council** (multi-seat planning to packet-local `ai-council/**` artifacts, `/deep:ai-council`), and **improvement** (four co-equal lanes: agent-improvement, model-benchmark, skill-benchmark and non-dev-ai-system). The five native agent names (`@deep-context`, `@deep-research`, `@deep-review`, `@ai-council`, `@deep-improvement`) and all eight `/deep:*` commands are unchanged. See [Deep Loop](#deep-loop).
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1047,20 +1035,20 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Planning-only, scored on a 5-dimension rubric. See [Deep Loop](#deep-loop)
 
 **Deep Research**
-- **One research iteration at a time, state on disk.** Executes a single LEAF pass. The `/deep:start-research-loop` command owns the loop
+- **One research iteration at a time, state on disk.** Executes a single LEAF pass. The `/deep:research` command owns the loop
 - Writes `research.md` and `scratch/`, keeps negative knowledge, and stops only when the 3-signal convergence and graph guards agree. See [Deep Loop](#deep-loop)
 
 **Deep Review**
-- **Audits one review pass, read-only on code.** Produces P0/P1/P2 findings with `file:line` evidence across 4 dimensions. The `/deep:start-review-loop` command owns the loop
+- **Audits one review pass, read-only on code.** Produces P0/P1/P2 findings with `file:line` evidence across 4 dimensions. The `/deep:review` command owns the loop
 - Any open P0 forces another pass and faces a Hunter/Skeptic/Referee check before it stands. See [Deep Loop](#deep-loop)
 
 **Deep Context**
-- **Maps one slice of the codebase, read-only.** A LEAF seat in the heterogeneous by-model parallel sweep, returning a reuse-first set of verified `file:symbol` findings. The `/deep:start-context-loop` command owns the loop
+- **Maps one slice of the codebase, read-only.** A LEAF seat in the heterogeneous by-model parallel sweep, returning a reuse-first set of verified `file:symbol` findings. The `/deep:context` command owns the loop
 - Agreement across models drives confidence; the loop converges on relevance-gated coverage saturation. See [Deep Loop](#deep-loop)
 
 **Agent Improver**
 - **Proposes one agent improvement, safely.** Reads the target's charter, manifest and integration surface, then writes a single candidate to packet-local runtime
-- Never scores, promotes or edits the canonical target. The `/deep:start-agent-improvement-loop` command handles scoring and promotion. See [Deep Loop](#deep-loop)
+- Never scores, promotes or edits the canonical target. The `/deep:agent-improvement` command handles scoring and promotion. See [Deep Loop](#deep-loop)
 
 ---
 
@@ -1103,12 +1091,12 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 ```text
 /speckit:plan --intake-only
   ├─► /speckit:plan -> /speckit:implement
-  ├─► /deep:start-research-loop -> /speckit:plan
+  ├─► /deep:research -> /speckit:plan
   └─► /speckit:complete
        └─► reuses the shared intake contract from /speckit:plan --intake-only when folder_state still needs intake
 ```
 
-`/deep:start-research-loop` only enters that chain after a real `spec.md` exists. It follows `spec_check_protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
+`/deep:research` only enters that chain after a real `spec.md` exists. It follows `spec_check_protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
 
 &nbsp;
 #### MEMORY
@@ -1173,28 +1161,28 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 
 The five autonomous loop families (the improvement family carries four lanes). See the [Deep Loop](#deep-loop) section for how they run.
 
-**Deep Context** (`/deep:start-context-loop`)
+**Deep Context** (`/deep:context`)
 - Maps the existing codebase before you plan: a heterogeneous by-model parallel sweep over a shared scope, cross-executor-agreement convergence, and a reuse-first Context Report of verified `file:symbol` pointers. Optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. Modes: `:auto`, `:confirm`
 
-**AI Council** (`/deep:ask-ai-council`)
+**AI Council** (`/deep:ai-council`)
 - Multi-seat planning for complex decisions. Produces packet-local `ai-council/**` artifacts and convergence evidence, planning-only. Modes: `:auto`, `:confirm`
 
-**Deep Research** (`/deep:start-research-loop`)
+**Deep Research** (`/deep:research`)
 - Iterative research until convergence, anchored to a real `spec.md`. Externalized JSONL state pauses and resumes across sessions, with `new`/`resume`/`restart` lifecycle. Modes: `:auto`, `:confirm`
 
-**Deep Review** (`/deep:start-review-loop`)
+**Deep Review** (`/deep:review`)
 - Iterative code audit until convergence. Severity-weighted P0/P1/P2 findings across 4 dimensions, a PASS/CONDITIONAL/FAIL verdict and an adversarial P0 self-check. Modes: `:auto`, `:confirm`
 
-**Agent Improvement** (`/deep:start-agent-improvement-loop`)
+**Agent Improvement** (`/deep:agent-improvement`)
 - Evaluates and improves any agent across 5 deterministic dimensions. Proposal-first with guarded promotion (scoring, benchmark, repeatability, operator approval) and rollback. Modes: `:auto`, `:confirm`
 
-**Model Benchmark** (`/deep:start-model-benchmark-loop`)
+**Model Benchmark** (`/deep:model-benchmark`)
 - Benchmarks a model or prompt framework against fixtures. Pattern or 5-dimension scoring, deterministic or graded runs, with mode-aware records and optional promotion. Modes: `:auto`, `:confirm`
 
-**Skill Benchmark** (`/deep:start-skill-benchmark-loop`)
+**Skill Benchmark** (`/deep:skill-benchmark`)
 - Diagnoses a skill's real-world behavior: routing accuracy, discovery, efficiency and usefulness, scored against repeatable scenarios. Modes: `:auto`, `:confirm`
 
-**Non-Dev AI System** (`/deep:start-non-dev-ai-system-loop`)
+**Non-Dev AI System** (`/deep:ai-system-improvement`)
 - Benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails, with correctness as a gate so saturation can never crown a winner. Modes: `:auto`, `:confirm`
 
 &nbsp;
@@ -1319,8 +1307,8 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-interface-design`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults. Pairs with `sk-code` for the build. Works for any project.                                              |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
-| `deep-loop-runtime` / `deep-context` / `deep-research` / `deep-review` / `deep-ai-council` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
-| `sk-prompt` / `deep-improvement`                    | ✅ Codebase-agnostic                        | Prompt, agent improvement, and model/skill benchmarking frameworks. Work for any project.                                                                                                                                             |
+| `deep-loop-runtime` / `deep-loop-workflows` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |
+| `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
 | `cli-*` (codex/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |

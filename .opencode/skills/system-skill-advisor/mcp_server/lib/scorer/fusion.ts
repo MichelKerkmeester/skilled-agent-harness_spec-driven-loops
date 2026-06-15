@@ -230,7 +230,7 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'system-spec-kit' && /\b(packet|spec folder|save memory|phase|continuation prompts|resume handling)\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'deep-ai-council' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
+  if (skillId === 'deep-loop-workflows' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }
   if (skillId === 'mcp-chrome-devtools' && /\b(\.codex\/agents|state log|predictions schema|current labels|gate-3-classifier\.ts)\b/.test(promptLower)) {
@@ -299,12 +299,12 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   // near-tie this phrase produces, prefer sk-code-review over deep-review.
   if (/\bcode audit\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code-review') return R.codeAuditCodeReviewBonus;
-    if (recommendation.skill === 'deep-review') return R.codeAuditDeepReviewPenalty;
+    if (recommendation.skill === 'deep-loop-workflows') return R.codeAuditDeepReviewPenalty;
   }
   // Colon-command review-loop syntax (":review:auto") invokes the deep-review
   // loop; rank it above single-pass code review.
   if (/:review:(auto|confirm)\b/.test(promptLower)) {
-    if (recommendation.skill === 'deep-review') return R.reviewLoopDeepReviewBonus;
+    if (recommendation.skill === 'deep-loop-workflows') return R.reviewLoopDeepReviewBonus;
     if (recommendation.skill === 'sk-code-review') return R.deepReviewSkCodeReviewPenalty;
   }
   // Auditing recommendation quality is a review task, not an advisor-self task.
@@ -323,7 +323,7 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:testing-playbook')) {
     if (recommendation.skill === 'create:testing-playbook' || recommendation.skill === 'command-create-testing-playbook') return R.createTestingPlaybookBonus;
     if (recommendation.skill === 'sk-doc') return R.createTestingPlaybookSkDocPenalty;
-    if (recommendation.skill === 'deep-improvement') return R.createTestingPlaybookOtherSkillsPenalty;
+    if (recommendation.skill === 'deep-loop-workflows') return R.createTestingPlaybookOtherSkillsPenalty;
   }
   if (/\bphase folder\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.phaseFolderSpecKitBonus;

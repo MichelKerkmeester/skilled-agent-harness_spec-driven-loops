@@ -1,0 +1,880 @@
+---
+title: "deep-improvement Manual Testing Playbook"
+description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, and the model-benchmark, skill-benchmark and non-dev-ai-system lanes."
+---
+
+# deep-improvement Manual Testing Playbook
+
+> **EXECUTION POLICY**: Every scenario MUST be executed for real, not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
+
+This document provides the root manual-validation contract for `deep-improvement`. The root playbook keeps the package-level expectations concise while the linked per-feature files carry the exact prompt, command, verification, and triage details.
+
+---
+
+Canonical package artifacts:
+- `manual_testing_playbook.md`
+- `01--integration-scanner/`
+- `02--profile-generator/`
+- `03--5d-scorer/`
+- `04--benchmark-integration/`
+- `05--reducer-dimensions/`
+- `06--end-to-end-loop/`
+- `07--runtime-truth/`
+- `08--agent-discipline-stress-tests/`
+- `09--model-benchmark-mode/`
+- `10--skill-benchmark/`
+- `11--non-dev-ai-system/`
+
+---
+
+## 1. OVERVIEW
+
+This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), the Lane C skill-benchmark scenarios (10), and the Lane D non-dev-ai-system scenarios (11). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
+
+### Lane Note
+
+Scenarios belong to one of four lanes, or are shared. Categories `01--integration-scanner`, `02--profile-generator`, `06--end-to-end-loop`, `07--runtime-truth`, and `08--agent-discipline-stress-tests` are Lane A (agent-improvement). Category `09--model-benchmark-mode` is Lane B (model-benchmark). Category `10--skill-benchmark` is Lane C (skill-benchmark). Category `11--non-dev-ai-system` is Lane D (non-dev-ai-system); its loop host is packaging-owned, so its scenarios run against a packaging that implements the `benchmark/_loop/loop.py` contract. Categories `03--5d-scorer`, `04--benchmark-integration`, and `05--reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
+
+### REALISTIC TEST MODEL
+
+1. Start from the operator-visible improvement workflow rather than only the raw script call.
+2. Treat the feature files as the source of exact command and verification truth.
+3. Capture enough evidence that another operator can replay the verdict without guessing.
+4. Report a concise PASS/FAIL outcome with the decisive evidence.
+
+---
+
+## 2. GLOBAL PRECONDITIONS
+
+- Node.js is available and can run the `deep-improvement` scripts.
+- The working directory is the repository root.
+- The referenced agent, command, and script files exist in the current checkout.
+- Any scenario that writes to `/tmp` or a spec folder uses disposable artifacts.
+
+---
+
+## 3. GLOBAL EVIDENCE REQUIREMENTS
+
+- The exact command or workflow path that ran.
+- The exact prompt used when orchestration behavior is part of the scenario.
+- Output excerpts that prove or disprove the expected signals.
+- A PASS/FAIL verdict with one decisive reason.
+
+---
+
+## 4. DETERMINISTIC COMMAND NOTATION
+
+- Scenario-specific commands live in the linked feature files.
+- Resolve placeholders such as `{spec}` before execution and capture the actual value used.
+- Keep verification evidence tied to the same run that produced the verdict.
+
+---
+
+## 5. REVIEW PROTOCOL AND RELEASE READINESS
+
+### Inputs Required
+
+1. `manual_testing_playbook.md`
+2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
+3. Scenario execution evidence including command transcripts, generated files, and verification output
+4. Feature-to-scenario coverage map from the root category sections
+5. Triage notes for every non-pass outcome
+
+### Scenario Acceptance Rules
+
+For each executed scenario, check:
+
+1. Preconditions were satisfied.
+2. Prompt and command sequence were executed as written in the per-feature file.
+3. Expected signals are present in the captured output or generated artifacts.
+4. Evidence is complete, readable, and tied to the same run that produced the verdict.
+5. Outcome rationale is explicit and references the decisive user-visible result.
+
+Scenario verdict:
+- `PASS`: all acceptance checks true
+- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
+- `FAIL`: expected behavior missing, contradictory output, or critical check failed
+
+### Feature Verdict Rules
+
+- `PASS`: all mapped scenarios for feature are `PASS`
+- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
+- `FAIL`: any mapped scenario is `FAIL`
+
+### Release Readiness Rule
+
+Release is `READY` only when:
+
+1. No feature verdict is `FAIL`.
+2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 (model-benchmark), and SB-043..048 (skill-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement per-mode subtotal is 48 numbered scenarios (`IS-001..SB-048`, Lanes A/B/C). The Lane D `PR-001` scenario under `11--non-dev-ai-system/` is packaging-owned and tracked separately, so the on-disk count is 49 scenario files.
+4. No unresolved blocking triage item remains.
+5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
+
+### Root-vs-Feature Rule
+
+Keep global verdict logic in the root playbook. Put scenario-specific commands, expected signals, caveats, and triage in the matching per-feature files.
+
+---
+
+## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
+
+- Run scanner, profile, scorer, and benchmark scenarios before end-to-end loop scenarios.
+- Treat runtime-truth scenarios as a closure wave after the loop and reducer behaviors are already validated.
+- Keep one coordinator slot free when parallelizing script-level checks so evidence collation stays consistent.
+
+---
+
+## 7. INTEGRATION SCANNER
+
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+
+### IS-001 | Scan Known Agent (Debug)
+
+#### Description
+scanning a known agent discovers all integration surfaces and confirms mirror alignment.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that scanning a known agent discovers all integration surfaces and confirms mirror alignment against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `status: "complete"` at root level. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `status: "complete"` at root level; `surfaces.canonical.exists: true`; `surfaces.mirrors` array with 3 entries, each with `syncStatus: "aligned"`; `summary.totalSurfaces >= 20`; `summary.mirrorSyncStatus: "all-aligned"`; `summary.commandCount >= 1`; `summary.skillCount >= 1`; Exit code is 0
+
+#### Test Execution
+> **Feature File:** [IS-001](01--integration-scanner/scan-known-agent.md)
+
+### IS-002 | Scan Missing Agent (Nonexistent)
+
+#### Description
+scanning a nonexistent agent produces graceful error handling instead of a crash.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that scanning a nonexistent agent produces graceful error handling instead of a crash against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `status: "complete"` (exit code 0 -- the script completes gracefully, it does not crash). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `status: "complete"` (exit code 0 -- the script completes gracefully, it does not crash); `surfaces.canonical.exists: false`; All entries in `surfaces.mirrors` have `syncStatus: "missing"`; `summary.missingCount > 0`; No unhandled exception or stack trace
+
+#### Test Execution
+> **Feature File:** [IS-002](01--integration-scanner/scan-missing-agent.md)
+
+### IS-003 | Scan Diverse Agent (Debug)
+
+#### Description
+scanning the debug agent discovers a broad set of integration surfaces (20+ expected).
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that scanning the debug agent discovers a broad set of integration surfaces (20+ expected) against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `status: "complete"`. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `status: "complete"`; `summary.totalSurfaces >= 20`; `surfaces.mirrors` entries with `syncStatus: "aligned"`; `summary.commandCount >= 1`; `summary.skillCount >= 5`; Surfaces span commands, skills, and global docs (CLAUDE.md, agent definitions, skill routing entries); Exit code is 0
+
+#### Test Execution
+> **Feature File:** [IS-003](01--integration-scanner/scan-diverse-agent.md)
+
+### IS-004 | JSON Output File via --output Flag
+
+#### Description
+the --output flag writes scan results to a valid JSON file at the specified path.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the --output flag writes scan results to a valid JSON file at the specified path against the current deep-improvement command, runtime artifacts, and validation scripts. Verify File `/tmp/test-scan-output.json` is created after the command completes. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: File `/tmp/test-scan-output.json` is created after the command completes; The file contains valid JSON (parseable without errors); JSON structure matches stdout output: `status`, `surfaces`, `summary` top-level fields; `surfaces.canonical.exists: true`, `surfaces.mirrors` array present; `summary.totalSurfaces`, `summary.mirrorSyncStatus` fields present
+
+#### Test Execution
+> **Feature File:** [IS-004](01--integration-scanner/json-output-file.md)
+
+---
+
+## 8. PROFILE GENERATOR
+
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+
+### PG-005 | ALWAYS/NEVER Rules Extraction
+
+#### Description
+the profile generator correctly extracts ALWAYS and NEVER behavioral rules from a target agent definition.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the profile generator correctly extracts ALWAYS and NEVER behavioral rules from a target agent definition against the current deep-improvement command, runtime artifacts, and validation scripts. Verify JSON output with `derivedChecks.ruleCoherence` array. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: JSON output with `derivedChecks.ruleCoherence` array; Each entry has `type` field set to `"always"` or `"never"` and a `rule` or `text` field with verbatim text from the agent file; At least 3 entries with `type: "always"`; At least 2 entries with `type: "never"`; Exit code is 0
+
+#### Test Execution
+> **Feature File:** [PG-005](02--profile-generator/rules-extraction.md)
+
+### PG-006 | OUTPUT VERIFICATION Checklist Extraction (Debug)
+
+#### Description
+the profile generator extracts OUTPUT VERIFICATION checklist items from the debug agent definition.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the profile generator extracts OUTPUT VERIFICATION checklist items from the debug agent definition against the current deep-improvement command, runtime artifacts, and validation scripts. Verify JSON output with `derivedChecks.outputChecks` array. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: JSON output with `derivedChecks.outputChecks` array; Each entry has `id`, `check`, and `weight` fields; Items correspond to checklist entries from the debug agent's OUTPUT VERIFICATION section; At least 5 items extracted; Exit code is 0
+
+#### Test Execution
+> **Feature File:** [PG-006](02--profile-generator/output-checks.md)
+
+### PG-007 | Inline NEVER Rules Fallback (No Dedicated Section)
+
+#### Description
+NEVER rules embedded inline (outside a dedicated RULES section) are still extracted as a fallback.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that NEVER rules embedded inline (outside a dedicated RULES section) are still extracted as a fallback against the current deep-improvement command, runtime artifacts, and validation scripts. Verify JSON output with `derivedChecks.ruleCoherence` array. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: JSON output with `derivedChecks.ruleCoherence` array; At least 1 entry with `type: "never"` extracted from inline "NEVER" patterns in the debug agent body text; The debug agent has no dedicated `## Rules` or `## Behavioral Rules` section, so these rules come from the body scan fallback; No false positives from code examples or quoted text
+
+#### Test Execution
+> **Feature File:** [PG-007](02--profile-generator/inline-rules-fallback.md)
+
+### PG-008 | Profile JSON File Output via --output Flag
+
+#### Description
+the --output flag writes a valid profile JSON file for the review agent.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the --output flag writes a valid profile JSON file for the review agent against the current deep-improvement command, runtime artifacts, and validation scripts. Verify File `/tmp/test-profile.json` is created after the command completes. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: File `/tmp/test-profile.json` is created after the command completes; The file contains valid JSON (parseable without errors); JSON structure includes top-level fields: `id`, `derivedChecks`, `agentMeta`; `derivedChecks` contains `ruleCoherence` and `outputChecks` sub-fields; Exit code is 0
+
+#### Test Execution
+> **Feature File:** [PG-008](02--profile-generator/file-output.md)
+
+---
+
+## 9. 5-DIMENSION SCORER
+
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+
+### 5D-009 | Dynamic 5D Scoring on Non-Hardcoded Agent (Orchestrate)
+
+#### Description
+dynamic 5D scoring works on an agent without a pre-built profile, proving the dynamic profile generation path.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that dynamic 5D scoring works on an agent without a pre-built profile, proving the dynamic profile generation path against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `evaluationMode` field equals `"dynamic-5d"`. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `evaluationMode` field equals `"dynamic-5d"`; `profileId` is derived from the agent name (e.g., `"orchestrate"`); `dimensions` array contains exactly 5 objects with names: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Each dimension has `score` (0-100), `weight`, and `details` array; NO `legacyScore` field (orchestrate has no static profile); No error about missing or unknown profile
+
+#### Test Execution
+> **Feature File:** [5D-009](03--5d-scorer/dynamic-arbitrary.md)
+
+### 5D-010 | Dimension Details Array with Individual Check Results
+
+#### Description
+each dimension in the 5D scorer output includes a details array showing individual check results.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that each dimension in the 5D scorer output includes a details array showing individual check results against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `dimensions` array contains 5 objects with names: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `dimensions` array contains 5 objects with names: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Each dimension object has a `details` array of individual check objects; Each check object in `details` has at minimum:
+
+#### Test Execution
+> **Feature File:** [5D-010](03--5d-scorer/dimension-details.md)
+
+### 5D-011 | Missing Candidate File Returns infra_failure
+
+#### Description
+providing a nonexistent candidate file results in an infra_failure status and exit code 1.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that providing a nonexistent candidate file results in an infra_failure status and exit code 1 against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Exit code is 1 (not 0). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Exit code is 1 (not 0); Output is valid JSON (no stack trace); `status` field equals `"infra_failure"`; `failureModes` array contains `"profile-generation-failure"`; No unhandled exception or stack trace is printed
+
+#### Test Execution
+> **Feature File:** [5D-011](03--5d-scorer/missing-candidate.md)
+
+---
+
+## 10. BENCHMARK INTEGRATION
+
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract.
+
+### BI-012 | Benchmark Without Integration Report
+
+#### Description
+running a benchmark without the --integration-report flag produces output with no integration-specific fields.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that running a benchmark without the --integration-report flag produces output with no integration-specific fields against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Benchmark completes successfully with exit code 0. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Benchmark completes successfully with exit code 0; Output JSON at `/tmp/bench-no-integration.json` is valid and contains:
+
+#### Test Execution
+> **Feature File:** [BI-012](04--benchmark-integration/without-integration.md)
+
+### BI-013 | Benchmark With Integration Report
+
+#### Description
+running a benchmark with --integration-report adds integrationScore and related fields to the output.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that running a benchmark with --integration-report adds integrationScore and related fields to the output against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Benchmark output at `/tmp/bench-with-integration.json` includes all standard benchmark fields PLUS:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Benchmark output at `/tmp/bench-with-integration.json` includes all standard benchmark fields PLUS:
+
+#### Test Execution
+> **Feature File:** [BI-013](04--benchmark-integration/with-integration.md)
+
+---
+
+## 11. REDUCER DIMENSIONS
+
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+
+### RD-014 | JSONL Without Dimensions Produces Normal Dashboard
+
+#### Description
+JSONL Without Dimensions Produces Normal Dashboard.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate backward compatibility: JSONL records that lack dimension fields still produce a normal reducer dashboard against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Reducer completes without errors, exit code 0. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Reducer completes without errors, exit code 0; Dashboard generated at `/tmp/reducer-test-nodim/agent-improvement-dashboard.md`; Registry generated at `/tmp/reducer-test-nodim/experiment-registry.json`; Dashboard does NOT contain a "Dimensional Progress" table (no dimension data in records); Standard composite score and verdict sections are present
+
+#### Test Execution
+> **Feature File:** [RD-014](05--reducer-dimensions/no-dimensions.md)
+
+### RD-015 | JSONL With Dimensions Produces Dimensional Progress Table
+
+#### Description
+JSONL records containing dimension data produce a Dimensional Progress table in the reducer output.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that JSONL records containing dimension data produce a Dimensional Progress table in the reducer output against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Reducer completes without errors, exit code 0. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Reducer completes without errors, exit code 0; Dashboard generated at `/tmp/reducer-test-dim/agent-improvement-dashboard.md`; Dashboard includes a "Dimensional Progress" section with a table showing columns: Dimension, Latest, Best, Trend; All 5 dimensions appear in the table: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Standard composite score and verdict sections are also present alongside the dimensional table
+
+#### Test Execution
+> **Feature File:** [RD-015](05--reducer-dimensions/with-dimensions.md)
+
+### RD-016 | Plateau Detection on Identical Dimension Scores
+
+#### Description
+three or more consecutive identical dimension scores trigger the plateau stop condition.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that three or more consecutive identical dimension scores trigger the plateau stop condition against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Reducer completes without errors, exit code 0. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Reducer completes without errors, exit code 0; Dashboard generated at `/tmp/reducer-test-plateau/agent-improvement-dashboard.md`; Registry generated at `/tmp/reducer-test-plateau/experiment-registry.json`; Registry shows `stopStatus.shouldStop: true` with reason mentioning "dimensions plateaued" or similar; Dimensional Progress table shows the flat score trend across all 3 records
+
+#### Test Execution
+> **Feature File:** [RD-016](05--reducer-dimensions/plateau-detection.md)
+
+---
+
+## 12. END-TO-END LOOP
+
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
+
+### E2E-017 | Full Pipeline Loop with Debug Target
+
+#### Description
+Full Pipeline Loop with Debug Target.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate the complete /deep:agent-improvement loop end-to-end using the debug agent as the target against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Init phase creates `improvement/` directory with config, charter, strategy, and manifest. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Init phase creates `improvement/` directory with config, charter, strategy, and manifest; Integration scan runs and produces `integration-report.json`; Candidate generated under `improvement/candidates/`; Score output produced via dynamic-mode 5-dimension scoring; Dashboard generated at `improvement/agent-improvement-dashboard.md`; Loop completes 1 iteration without errors
+
+#### Test Execution
+> **Feature File:** [E2E-017](06--end-to-end-loop/full-pipeline.md)
+
+### E2E-018 | Full Pipeline Loop with Non-Standard Agent (Debug)
+
+#### Description
+Full Pipeline Loop with Non-Standard Agent (Debug).
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate the complete /deep:agent-improvement loop targeting a non-standard agent (debug.md) to confirm the pipeline is not hardcoded to specific agents against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Dynamic profile generated on-the-fly (debug.md has no static profile). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Dynamic profile generated on-the-fly (debug.md has no static profile); Integration scan discovers debug agent surfaces; 5-dimension scoring produces scores for all dimensions: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; No errors about missing profile or unsupported target; Dashboard reflects debug-specific scoring, not recycled data from a different agent
+
+#### Test Execution
+> **Feature File:** [E2E-018](06--end-to-end-loop/any-agent.md)
+
+### E2E-019 | Mutation Coverage Graph Tracking
+
+#### Description
+the improvement loop maintains a mutation coverage graph with `loop_type: "improvement"` namespace, tracking explored dimensions, tried mutation types, and exhausted mutation sets across iterations.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the improvement loop maintains a mutation coverage graph with loop_type: "improvement" namespace, tracking explored dimensions, tried mutation types, and exhausted mutation sets across iterations against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Coverage graph created with `loop_type: "improvement"` namespace (isolated from research/review graphs). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Coverage graph created with `loop_type: "improvement"` namespace (isolated from research/review graphs); Graph nodes include dimension nodes (structural, ruleCoherence, integration, outputQuality, systemFitness); Graph edges track which mutations target which dimensions (COVERS, DERIVED_FROM); Exhausted mutation types are recorded and not re-attempted; Journal events reference graph node/edge IDs for traceability; Dashboard reflects mutation coverage state per dimension
+
+#### Test Execution
+> **Feature File:** [E2E-019](06--end-to-end-loop/mutation-coverage-graph-tracking.md)
+
+### E2E-020 | Trade-Off Detection Across Dimensions
+
+#### Description
+the improvement loop detects when a mutation improves one dimension at the cost of another, reports the trade-off explicitly, and does not auto-promote candidates with unresolved trade-offs.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the improvement loop detects when a mutation improves one dimension at the cost of another, reports the trade-off explicitly, and does not auto-promote candidates with unresolved trade-offs against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Dimension trajectory tracked per iteration (at least 3 data points before convergence claim). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Dimension trajectory tracked per iteration (at least 3 data points before convergence claim); Trade-off detected when one dimension delta is positive and another is negative beyond threshold; Trade-off report includes: affected dimensions, magnitude of change, Pareto assessment; Journal emits `trade-off-detected` event with structured data; Candidate with unresolved trade-off is flagged for human review, not auto-promoted; Dashboard shows dimension trajectories with trade-off annotations
+
+#### Test Execution
+> **Feature File:** [E2E-020](06--end-to-end-loop/trade-off-detection.md)
+
+### E2E-021 | Candidate Lineage Graph Tracking
+
+#### Description
+the improvement loop maintains a candidate lineage graph that tracks the parent-child relationships between candidate proposals, including session ID, wave index, spawning mutation type, and parent node references.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the improvement loop maintains a candidate lineage graph that tracks the parent-child relationships between candidate proposals, including session ID, wave index, spawning mutation type, and parent node references against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Candidate lineage graph created with per-session node entries. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Candidate lineage graph created with per-session node entries; Each candidate node stores: session-id, wave-index (default 0 for single-wave), spawning mutation type, parent node reference; Root candidates have null parent; subsequent candidates reference their predecessor; Lineage is traversable from root to leaf (full candidate history); Session-id isolation: lineage from different sessions does not cross-contaminate; When parallel waves are enabled: multiple candidates per iteration with distinct wave indices
+
+#### Test Execution
+> **Feature File:** [E2E-021](06--end-to-end-loop/candidate-lineage.md)
+
+---
+
+## 13. RUNTIME TRUTH
+
+This category covers 10 scenario summaries while the linked feature files remain the canonical execution contract.
+
+### RT-022 | Stop-Reason Taxonomy Validation
+
+#### Description
+every completed improvement session emits a `session_ended` event with a valid `stopReason` and `sessionOutcome` drawn from the frozen taxonomies defined in `improvement-journal.cjs`.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that every completed improvement session emits a session_ended event with a valid stopReason and sessionOutcome drawn from the frozen taxonomies defined in improvement-journal.cjs against the current deep-improvement command, runtime artifacts, and validation scripts. Verify Journal contains at least one `session_ended` or `session_end` event. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Journal contains at least one `session_ended` or `session_end` event; `details.stopReason` is one of: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`; `details.sessionOutcome` is one of: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`; Both fields are present (validation rejects events missing either); `emitEvent()` refuses to write a `session_ended` event with an invalid stopReason or sessionOutcome
+
+#### Test Execution
+> **Feature File:** [RT-022](07--runtime-truth/stop-reason-taxonomy.md)
+
+### RT-023 | Audit Journal Lifecycle Event Emission
+
+#### Description
+the improvement journal captures events for each lifecycle boundary: `session_start`, `candidate_generated`, `candidate_scored`, `gate_evaluation`, and `session_end`.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the improvement journal captures events for each lifecycle boundary: session_start, candidate_generated, candidate_scored, gate_evaluation, and session_end against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `improvement-journal.jsonl` file created at the configured journal path. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `improvement-journal.jsonl` file created at the configured journal path; Events appear in chronological order (each has a `timestamp` field); At minimum, the following event types are present after a 1-iteration run:
+
+#### Test Execution
+> **Feature File:** [RT-023](07--runtime-truth/audit-journal-emission.md)
+
+### RT-024 | Fresh-Session Continuation After Archive
+
+#### Description
+the current release uses standalone `new`-mode sessions, so continuation happens by archiving the previous run and starting a fresh `/deep:agent-improvement` session.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the current release uses standalone `new`-mode sessions, so continuation happens by archiving the previous run and starting a fresh `/deep:agent-improvement` session against the current deep-improvement command, runtime artifacts, and validation scripts. Verify the archived `improvement/` directory is preserved under `improvement_archive/` before the next run begins. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: The archived `improvement/` directory is preserved under `improvement_archive/` before the next run begins; The fresh run creates a new `improvement/` directory instead of reusing the archived one; The fresh session starts in `new` mode with a new session id and generation `1`; Iteration numbering restarts from `1` in the fresh session journal; No unsupported lineage flags or multi-generation session behaviors are required or documented as shipped
+
+#### Test Execution
+> **Feature File:** [RT-024](07--runtime-truth/resume-continuation.md)
+
+### RT-025 | Legal-Stop Gate Blocking
+
+#### Description
+when convergence math signals stop but one or more of the 5 gate bundles fail, the session records a `blockedStop` rather than `converged`, and the blocked-stop event includes the failing gate details.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that when convergence math signals stop but one or more of the 5 gate bundles fail, the session records a blockedStop rather than converged, and the blocked-stop event includes the failing gate details against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `legal_stop_evaluated` event emitted with nested `details.gateResults` containing all 5 gate bundles. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `legal_stop_evaluated` event emitted with nested `details.gateResults` containing all 5 gate bundles:
+
+#### Test Execution
+> **Feature File:** [RT-025](07--runtime-truth/legal-stop-gates.md)
+
+### RT-026 | Benchmark Stability Measurement
+
+#### Description
+`benchmark-stability.cjs` correctly computes mean, standard deviation, and stability coefficient from repeated benchmark results, and that `isStable()` returns true only when variance is below threshold.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that benchmark-stability.cjs correctly computes mean, standard deviation, and stability coefficient from repeated benchmark results, and that isStable() returns true only when variance is below threshold against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `measureStability()` returns `{ dimensions, stable, warnings }` with per-dimension stats. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `measureStability()` returns `{ dimensions, stable, warnings }` with per-dimension stats; Each dimension entry contains: `coefficient` (0.0-1.0), `mean`, `stddev`, `samples`; Stability coefficient formula: `1 - (stddev / mean)`; perfect stability = 1.0; `stable: true` when all dimensions have coefficient >= `warningThreshold` (default 0.95); `stable: false` when any dimension has coefficient < threshold; `warnings` array contains a `stabilityWarning` entry for each unstable dimension; `isStable()` returns `true` only when variance (1 - coefficient) is below `maxVariance` (default 0.05)
+
+#### Test Execution
+> **Feature File:** [RT-026](07--runtime-truth/benchmark-stability.md)
+
+### RT-027 | Dimension Trajectory and Convergence Eligibility
+
+#### Description
+`mutation-coverage.cjs` tracks per-dimension score history across iterations, and that convergence eligibility requires at least 3 stable data points with all dimension deltas within the configured stability delta.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that mutation-coverage.cjs tracks per-dimension score history across iterations, and that convergence eligibility requires at least 3 stable data points with all dimension deltas within the configured stability delta against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `recordTrajectory()` appends per-dimension scores with iteration number and timestamp. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `recordTrajectory()` appends per-dimension scores with iteration number and timestamp; `getTrajectory()` returns the full score history as an array of data points; `checkConvergenceEligibility()` returns `{ canConverge, reason, dataPoints }`; With fewer than `MIN_TRAJECTORY_POINTS` (3) data points: `canConverge: false`, reason mentions "Insufficient"; With 3+ stable data points (all deltas within `DEFAULT_STABILITY_DELTA` of 2): `canConverge: true`; With 3+ data points but unstable dimension(s): `canConverge: false`, reason names the unstable dimensions; Trajectory data is persisted to the coverage graph JSON file (survives process restart)
+
+#### Test Execution
+> **Feature File:** [RT-027](07--runtime-truth/dimension-trajectory.md)
+
+### RT-028 | Parallel Candidates Opt-In Default
+
+#### Description
+the default configuration has `parallelWaves.enabled: false` and that an improvement session running with default settings only generates sequential single-candidate iterations (no parallel wave spawning).
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the default configuration has parallelWaves.enabled: false and that an improvement session running with default settings only generates sequential single-candidate iterations (no parallel wave spawning) against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `improvement_config.json` has `parallelWaves.enabled: false` by default. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `improvement_config.json` has `parallelWaves.enabled: false` by default; `parallelWaves.maxCandidates: 3` (configured but not active); During an improvement session with defaults: only one candidate is generated per iteration; Candidate lineage (if tracked) shows all nodes with `waveIndex: 0` (single-wave); No parallel mutation spawning occurs regardless of exploration-breadth score; The activation conditions (exploration-breadth threshold, 3+ unresolved mutation families, 2 consecutive ties) are never evaluated when `enabled: false`
+
+#### Test Execution
+> **Feature File:** [RT-028](07--runtime-truth/parallel-candidates-opt-in.md)
+
+### RT-029 | Journal Wiring Boundary Coverage
+
+#### Description
+the `/deep:agent-improvement` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, benchmark completion, and `session_end`.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the /deep:agent-improvement autonomous workflow wires improvement-journal.cjs at every required boundary: session_start, per-iteration lifecycle checkpoints, nested legal_stop_evaluated.details.gateResults, benchmark_completed, and session_end against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for session_start, candidate_generated, candidate_scored, benchmark_completed, nested legal_stop_evaluated.details.gateResults, and session_end:
+
+#### Test Execution
+> **Feature File:** [RT-029](07--runtime-truth/journal-wiring.md)
+
+### RT-030 | Insufficient Sample Propagation
+
+#### Description
+low-sample guards propagate `insufficientData` and `insufficientSample` states from the helpers into the reducer registry and the dashboard's Sample Quality reporting.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that low-sample guards propagate insufficientData and insufficientSample states from the helpers into the reducer registry and the dashboard's Sample Quality reporting against the current deep-improvement command, runtime artifacts, and validation scripts. Verify `trade-off-detector.cjs` returns `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` for the low-sample trajectory. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `trade-off-detector.cjs` returns `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` for the low-sample trajectory; `benchmark-stability.cjs` returns `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` for the low-sample benchmark replays; `reduce-state.cjs` preserves both states distinctly instead of folding them into one generic low-confidence outcome; `experiment-registry.json` contains both `insufficientDataIterations` and `insufficientSampleIterations`; `agent-improvement-dashboard.md` contains a `## Sample Quality` section that renders low-data / low-replay messaging distinctly enough for an operator to diagnose which gate failed; No helper throws; the low-sample state is treated as advisory runtime truth rather than an exception path
+
+#### Test Execution
+> **Feature File:** [RT-030](07--runtime-truth/insufficient-sample.md)
+
+### RT-031 | Replay Consumer Artifact Verification
+
+#### Description
+Replay Consumer Artifact Verification.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate ADR-002 Option A replay-consumer behavior: reduce-state.cjs reads improvement-journal.jsonl, candidate-lineage.json, and mutation-coverage.json, writes their summaries into the registry, and degrades gracefully when any one artifact is missing against the current deep-improvement command, runtime artifacts, and validation scripts. Verify \`experiment-registry.json\` contains the replay-consumer summaries. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `experiment-registry.json` contains:
+
+#### Test Execution
+> **Feature File:** [RT-031](07--runtime-truth/replay-consumer.md)
+
+---
+
+## 14. AGENT DISCIPLINE STRESS TESTS (CP-032..CP-037)
+
+This section is the stress-test campaign for `@deep-improvement`. The 6 scenarios test the agent + command discipline using `/deep:agent-improvement` (CP-032/035/036/037) and `@deep-improvement` body (CP-033/034). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See the local stress-test campaign notes for the full narrative.
+
+### CP-032 | SKILL_LOAD_NOT_PROTOCOL script-routing fidelity **(SANDBOXED)**
+
+#### Description
+
+Confirm `/deep:agent-improvement` proves helper execution instead of merely reading `SKILL.md` and improvising.
+
+#### Scenario Contract
+
+Prompt summary: Dispatch the same fixture-agent improvement task twice -- first as `As @Task: ...`, then as `@deep-improvement` with `.opencode/agents/deep-improvement.md` prepended and `Depth: 1`. Verify Call B cites scanner, profiler, scorer, reducer and candidate journal boundaries, writes only packet-local candidate evidence, and leaves the canonical fixture unchanged.
+
+Expected signals: Call B transcript/artifacts contain `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, `candidate_scored`, and `/tmp/cp-032-spec/improvement/candidates`. Post-B canonical diff and tripwire diff are empty.
+
+Desired user-visible outcome: PASS verdict showing helper execution, not skill loading, is the differentiator.
+
+#### Test Execution
+> **Feature File:** [CP-032](08--agent-discipline-stress-tests/skill-load-not-protocol.md)
+
+### CP-033 | PROPOSAL_ONLY_BOUNDARY no canonical mutation **(SANDBOXED)**
+
+#### Description
+
+Confirm `@deep-improvement` writes only packet-local candidates and never mutates canonical targets or runtime mirrors.
+
+#### Scenario Contract
+
+Prompt summary: Dispatch the same mutation-bait fixture task twice. Call B prepends `.opencode/agents/deep-improvement.md` plus `Depth: 1` and must return a candidate path under `/tmp/cp-033-spec/improvement/candidates/` while leaving `.opencode`, `.claude`, and `.codex` fixture surfaces unchanged.
+
+Expected signals: Call B candidate path count >= 1. Post-B diffs for canonical and all mirrors exit 0. Project tripwire diff is empty.
+
+Desired user-visible outcome: PASS verdict showing proposal-only discipline held under direct-edit bait.
+
+#### Test Execution
+> **Feature File:** [CP-033](08--agent-discipline-stress-tests/proposal-only-boundary.md)
+
+### CP-034 | ACTIVE_CRITIC_OVERFIT candidate-time challenge **(SANDBOXED)**
+
+#### Description
+
+Confirm `@deep-improvement` runs an active Critic pass against scorer overfit before returning a candidate.
+
+#### Scenario Contract
+
+Prompt summary: Dispatch the same scorer-friendly fixture task twice. Call B must include `CRITIC PASS` notes covering `scorer overfit`, `helper bypass`, `mirror drift concealment`, `fixture narrowness`, and `promotion leakage`, while keeping the candidate packet-local.
+
+Expected signals: Call B transcript/candidate contains all Critic labels and `/tmp/cp-034-spec/improvement/candidates`. Post-B canonical diff and project tripwire are empty.
+
+Desired user-visible outcome: PASS verdict showing candidate-time challenge, not passive anti-pattern prose.
+
+#### Test Execution
+> **Feature File:** [CP-034](08--agent-discipline-stress-tests/active-critic-overfit.md)
+
+### CP-035 | LEGAL_STOP_GATE_BUNDLE grep-checkable stop **(SANDBOXED)**
+
+#### Description
+
+Confirm legal-stop gates are emitted as complete structured evidence and block convergence when any gate fails.
+
+#### Scenario Contract
+
+Prompt summary: Dispatch the same insufficient-benchmark fixture task twice. Call B must emit `legal_stop_evaluated` with `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, and `improvementGate`, then `blocked_stop` with `failedGates` containing `evidenceGate`; no `stopReason":"converged"` is allowed.
+
+Expected signals: B combined transcript/artifacts include all legal-stop labels, converged count is 0, and project tripwire is empty.
+
+Desired user-visible outcome: PASS verdict showing legal-stop blocking is grep-checkable.
+
+#### Test Execution
+> **Feature File:** [CP-035](08--agent-discipline-stress-tests/legal-stop-gate-bundle.md)
+
+### CP-036 | IMPROVEMENT_GATE_DELTA acceptable is not better **(SANDBOXED)**
+
+#### Description
+
+Confirm an acceptable absolute score does not satisfy `improvementGate` without baseline delta evidence.
+
+#### Scenario Contract
+
+Prompt summary: Dispatch the same high-baseline fixture task twice. Call B must emit `baselineScore`, `score`, `delta`, `thresholdDelta`, `candidate-acceptable` or `keep-baseline`, `improvementGate.passed:false`, and `blocked_stop`, with no promotion or converged stop.
+
+Expected signals: B combined transcript/artifacts include comparison labels, promotion/converged count is 0, and project tripwire is empty.
+
+Desired user-visible outcome: PASS verdict showing `candidate-acceptable` is not promotion-ready without numeric delta.
+
+#### Test Execution
+> **Feature File:** [CP-036](08--agent-discipline-stress-tests/improvement-gate-delta.md)
+
+### CP-037 | BENCHMARK_COMPLETED_BOUNDARY action is not evidence **(SANDBOXED)**
+
+#### Description
+
+Confirm benchmark execution emits `benchmark_completed` and writes a sentinel, not only repeatability output or action prose.
+
+#### Scenario Contract
+
+Prompt summary: Dispatch the same benchmark-boundary fixture task twice. Call B must cite `run-benchmark.cjs`, create `/tmp/cp-037-sandbox/benchmark-completed.sentinel`, emit `benchmark_completed`, and avoid treating `benchmark-stability.cjs` alone as completion evidence.
+
+Expected signals: B combined transcript/artifacts include `run-benchmark.cjs`, `benchmark_completed`, and `benchmark-completed.sentinel`; sentinel existence check exits 0; project tripwire is empty.
+
+Desired user-visible outcome: PASS verdict showing benchmark completion has a real event and file boundary.
+
+#### Test Execution
+> **Feature File:** [CP-037](08--agent-discipline-stress-tests/benchmark-completed-boundary.md)
+
+---
+
+## 15. MODEL-BENCHMARK MODE
+
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, reviewer-prompt expected-verdict fixtures, the unknown-value fallbacks, and the criteria-exec hardening gate. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
+
+### MB-038 | Mode Switch Routing via loop-host
+
+#### Description
+`loop-host.cjs --mode=model-benchmark` runs materialize then run-benchmark while the default and `--mode=agent-improvement` routes stay on `score-candidate.cjs` unchanged.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that loop-host routes model-benchmark mode to materialize plus run-benchmark and keeps the agent-improvement default unchanged. Verify the model-benchmark route materializes fixtures and writes a `benchmark-complete` report while the default route stays on the agent-improvement scorer. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: model-benchmark run completes with exit code 0; `materialize-benchmark-fixtures.cjs` emits `status: "fixtures-materialized"` before scoring; `run-benchmark.cjs` writes `report.json` with `status: "benchmark-complete"`; the appended `benchmark_run` row carries `mode: "model-benchmark"`; the default-route run routes to `score-candidate.cjs` and never loads `dispatch-model.cjs`; unknown mode warns and falls back to agent-improvement
+
+#### Test Execution
+> **Feature File:** [MB-038](09--model-benchmark-mode/mode-switch-routing.md)
+
+### MB-039 | Default Pattern Scorer
+
+#### Description
+`run-benchmark.cjs` defaults to the byte-identical heading/pattern matcher and stamps `scoringMethod: "pattern"` when no `--scorer` flag is provided.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the default run-benchmark scorer is the pattern matcher and the report carries `scoringMethod: "pattern"`. Verify the output has heading/pattern fixture fields and no `dimensions` object. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Benchmark completes with exit code 0; `report.json` has `status: "benchmark-complete"`; `report.json` has `scoringMethod: "pattern"`; each `fixtures[]` entry has `missingHeadings`, `missingPatterns`, and `forbiddenMatches` arrays; NO `dimensions` object on any fixture entry; appended `benchmark_run` row carries `scoringMethod: "pattern"` and `mode: "model-benchmark"`
+
+#### Test Execution
+> **Feature File:** [MB-039](09--model-benchmark-mode/default-pattern-scorer.md)
+
+### MB-040 | Opt-In 5-Dimension Scorer
+
+#### Description
+`run-benchmark.cjs --scorer 5dim` routes materialized outputs through `score-model-variant.cjs`, stamps `scoringMethod: "5dim"`, and emits per-dimension D1-D5 scores per fixture under the deterministic noop grader.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the opt-in 5dim scorer stamps `scoringMethod: "5dim"` and emits D1-D5 dimension scores per fixture. Verify each fixture carries a `dimensions` object with D1-D5 numeric scores and `D4: 1.0` under noop. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Benchmark completes with exit code 0; `report.json` has `status: "benchmark-complete"`; `report.json` has `scoringMethod: "5dim"`; each `fixtures[]` entry has `scoringMethod: "5dim"` and a `dimensions` object with keys `D1`-`D5`; each dimension value is numeric in `0.0`-`1.0`; `D4` equals `1.0` under noop; appended `benchmark_run` row carries `scoringMethod: "5dim"` and `mode: "model-benchmark"`
+
+#### Test Execution
+> **Feature File:** [MB-040](09--model-benchmark-mode/optin-5dim-scorer.md)
+
+### MB-041 | Unknown Scorer and Unknown Mode Fallback
+
+#### Description
+an unknown `--scorer` value warns to stderr and defaults to `pattern`, and an unknown `--mode` value warns to stderr and falls back to `agent-improvement`, both without crashing.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that unknown `--scorer` and unknown `--mode` values warn and fall back instead of crashing. Verify the unknown scorer falls back to `pattern` and the unknown mode falls back to `agent-improvement`, each with a stderr warning. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Unknown-scorer run completes with exit code 0; stderr contains `unknown --scorer 'bogus', defaulting to 'pattern'`; the unknown-scorer `report.json` has `scoringMethod: "pattern"`; unknown-mode run does not crash; stderr contains `unknown mode 'bogus', defaulting to 'agent-improvement'`; the unknown-mode run routes to `score-candidate.cjs` and produces a score JSON, not a benchmark report
+
+#### Test Execution
+> **Feature File:** [MB-041](09--model-benchmark-mode/unknown-fallback.md)
+
+### MB-042 | Criteria-Exec Hardening Gate
+
+#### Description
+`DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer: a `deterministic`-type acceptance criterion is skipped with a disabled detail rather than running its command, and the gate defaults permissive when unset.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell exec and the default (unset) stays permissive. Verify the gated run skips the deterministic criterion (`D1: 0.0`, detail names the disabled gate) while the default run executes it (`D1: 1.0`). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Default run (gate unset) executes the criterion: `per_criterion` entry `passed: true`, detail like `exit=0 expected=0`, `D1: 1.0`; gated run (`DEEP_AGENT_ALLOW_CRITERIA_EXEC=0`) skips the criterion: `per_criterion` entry `passed: false`, detail contains `criteria exec disabled (DEEP_AGENT_ALLOW_CRITERIA_EXEC=0)`, `D1: 0.0`; the scorer does not throw in either run; the gated run never spawns the criterion command
+
+#### Test Execution
+> **Feature File:** [MB-042](09--model-benchmark-mode/criteria-exec-gate.md)
+
+### MB-R01 | Reviewer Prompt Regression Fixtures
+
+#### Description
+reviewer-prompt fixtures route to the expected-verdict scorer only when the reviewer benchmark flag is enabled.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that reviewer-prompt fixtures can be scored through Lane B without changing the default pattern or 5-dimension scorer behavior. Verify `reviewer-scorer.cjs` parses deterministic reviewer output, compares `expectedVerdict`, writes `reviewer-report.json`, and emits the `REVIEWER_BENCHMARK` mismatch line on a forced mismatch. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: with `SPECKIT_REVIEWER_BENCHMARKS=1`, `reviewer-scorer.cjs --profile <reviewer-profile> --outputs-dir <tmp>` exits 0 and writes `reviewer-report.json` with `scoringMethod: "reviewer"`; rows include `correctness_pass_rate`, `dimensions.D1`-`D5`, visible and hidden per-case results, and `reviewerBenchmarkMessages`; a forced mismatch includes `REVIEWER_BENCHMARK: fixture reviewer-stale-verdict expected FAIL, got PASS — rule not safe to promote`; with the flag unset, the scorer exits inert and existing `pattern`/`5dim` runs still stamp their original scoring methods.
+
+#### Test Execution
+> **Feature File:** Add a per-feature file under `09--model-benchmark-mode/` when the reviewer profile is promoted from seed fixtures to a stable scenario package.
+
+---
+
+## 16. SKILL-BENCHMARK MODE
+
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane C (Skill-Benchmark): the `loop-host.cjs --mode=skill-benchmark` arm, the contamination gate, router-replay (Mode A), the D5 connectivity hard gate, scoring against the private gold, and the dual report plus remediation taxonomy. See `SKILL.md` "Lane C: Skill-Benchmark" and `references/skill_benchmark/operator_guide.md` for the source-of-truth contract.
+
+### SB-043 | Mode Wiring and Routing via loop-host
+
+#### Description
+`loop-host.cjs --mode=skill-benchmark` routes to `run-skill-benchmark.cjs` while the agent-improvement and model-benchmark plans stay unchanged; an unknown mode warns to stderr and falls back to agent-improvement.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that loop-host resolves `--mode=skill-benchmark` to the skill-benchmark orchestrator and that an unknown mode falls back to agent-improvement. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: the skill-benchmark run completes with exit code 0 and emits `skill-benchmark-report.json` plus the rendered `skill-benchmark-report.md`; `--mode=bogus` writes `unknown mode 'bogus', defaulting to 'agent-improvement'` to stderr; the default and model-benchmark routes are unchanged.
+
+#### Test Execution
+> **Feature File:** [SB-043](10--skill-benchmark/mode-wiring-routing.md)
+
+### SB-044 | Contamination Gate
+
+#### Description
+`contamination-lint.cjs` rejects a public fixture prompt that leaks the answer (the target skill id or its router keywords) and passes a clean prompt.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the contamination linter fails a leaking public prompt and passes a clean one. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: the leaking prompt run exits 1 with `passed: false` and reports the leaked terms; the clean prompt run exits 0 with `passed: true` and zero hard leaks; banned vocabulary is built from the target skill's own identity (name, triggers, router keywords, resource-path tokens), so a leak is treated as a fixture failure, not a skill failure.
+
+#### Test Execution
+> **Feature File:** [SB-044](10--skill-benchmark/contamination-gate.md)
+
+### SB-045 | Router-Replay (Mode A, Deterministic)
+
+#### Description
+`router-replay.cjs` replays the target skill's own router for a task and produces stable, deterministic routing decisions (the CI gate).
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that router-replay produces deterministic routing output for a fixed task. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: two runs over the same task exit 0 and produce byte-identical JSON (deterministic); `parseable: true`; the resolved `intents` and `resources` reflect the task (e.g. a REVIEW task routes to the expected resources with no missing resources).
+
+#### Test Execution
+> **Feature File:** [SB-045](10--skill-benchmark/router-replay-mode-a.md)
+
+### SB-046 | D5 Connectivity Hard Gate
+
+#### Description
+`d5-connectivity.cjs` is a static structural scan that runs FIRST and caps the verdict to `BLOCKED-BY-STRUCTURE`; an unparseable/unreachable router is a P0 gate failure.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the D5 scan hard-gates a skill whose router cannot be parsed and passes a healthy router-bearing skill. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: a router-less skill exits 1 with `gateFailed: true`, `routerParseable: false`, a `router_unparseable` P0 finding, and `score` reduced by the P0 penalty (<= 60); a healthy router-bearing skill exits 0 with `gateFailed: false` and an empty `deadResourcePaths`.
+
+#### Test Execution
+> **Feature File:** [SB-046](10--skill-benchmark/d5-connectivity-hard-gate.md)
+
+### SB-047 | Scoring Against the Private Gold
+
+#### Description
+`run-skill-benchmark.cjs` plus `score-skill-benchmark.cjs` score router-replay output against the private gold fixture and aggregate the D1-D5 dimensions over only the dimensions actually measured.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the skill-benchmark run scores the shipped `deep-improvement` fixture pair and produces an aggregate verdict. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: the run exits 0 with `scoringMethod: "mode-a-router-replay"`; at least one scored scenario row carries `dims.d1intra`; the aggregate carries an `aggregateScore` and a verdict (`PASS`/`CONDITIONAL`/`FAIL`); `D4` is reported `unscored` (live-mode ablation) and `D5.hardGate` is present; under the default deterministic path `unscoredDimensions` includes `D1inter` (advisor probe off).
+
+#### Test Execution
+> **Feature File:** [SB-047](10--skill-benchmark/scoring-vs-private-gold.md)
+
+### SB-048 | Dual Report and Remediation Taxonomy
+
+#### Description
+the orchestrator emits a machine `skill-benchmark-report.json` and a human `skill-benchmark-report.md` rendered from it (anti-drift); ranked bottleneck classes are members of the remediation taxonomy.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the run emits both reports, that re-rendering the markdown from the JSON is byte-identical, and that bottleneck classes map to the remediation taxonomy. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` and `.md`; re-rendering via `build-report.cjs --report <json>` reproduces the orchestrator markdown byte-for-byte (anti-drift); every bottleneck `class` is a member of `assets/skill_benchmark/remediation_taxonomy.json` (classes carry `severity`, `oneLineFix`, and `handoffLane`). Note: the taxonomy is a reference asset validated by test; the report code does not yet enrich bottlenecks with its fields.
+
+#### Test Execution
+> **Feature File:** [SB-048](10--skill-benchmark/dual-report-and-remediation.md)
+
+---
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
+
+The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives lane-locally under each lane's `tests/` (`scripts/<lane>/tests/`; see `scripts/shared/tests/README.md` for the index) and should be used as regression evidence when a scenario touches the matching helper.
+
+| Runtime Test | Covered Runtime Surface |
+|---|---|
+| `.opencode/skills/deep-loop-workflows/improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Benchmark stability helpers used by RT-026 and low-sample validation |
+| `.opencode/skills/deep-loop-workflows/improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts` | Candidate lineage graph helpers used by E2E-021 and replay-consumer validation |
+| `.opencode/skills/deep-loop-workflows/improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Journal emission and taxonomy helpers used by RT-022, RT-023, and RT-029 |
+| `.opencode/skills/deep-loop-workflows/improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Mutation coverage and trajectory helpers used by E2E-019 and RT-027 |
+| `.opencode/skills/deep-loop-workflows/improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Trade-off and insufficient-data helpers used by E2E-020 and RT-030 |
+| `.opencode/skills/deep-loop-workflows/improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
+
+---
+
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
+
+The feature catalog root is `.opencode/skills/deep-loop-workflows/improvement/feature_catalog/feature_catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
+
+| Playbook Category | Feature Catalog Cross-Reference |
+|---|---|
+| Integration Scanner | `.opencode/skills/deep-loop-workflows/improvement/feature_catalog/02--integration-scanning/surface-discovery.md`, `02-runtime-mirrors.md`, `03-command-dispatch.md` |
+| Profile Generator | `.opencode/skills/deep-loop-workflows/improvement/feature_catalog/03--scoring-system/dynamic-profiling.md` |
+| 5-Dimension Scorer | `.opencode/skills/deep-loop-workflows/improvement/feature_catalog/03--scoring-system/five-dimension-rubric.md`, `03-deterministic-scoring.md` |
+| Benchmark Integration | No one-to-one catalog file; validate against the script anchors in the per-feature files and the scoring-system catalog root. |
+| Reducer Dimensions | `.opencode/skills/deep-loop-workflows/improvement/feature_catalog/03--scoring-system/dimensional-progress.md` |
+| End-to-End Loop | `.opencode/skills/deep-loop-workflows/improvement/feature_catalog/01--evaluation-loop/initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md` |
+| Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
+| Model-Benchmark Mode | No one-to-one catalog file; validate against the Lane B contract in `.opencode/skills/deep-loop-workflows/improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
+| Skill-Benchmark Mode | `.opencode/skills/deep-loop-workflows/improvement/feature_catalog/05--skill-benchmark/mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
+
+Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model_benchmark/evaluator_contract.md`, `references/agent_improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

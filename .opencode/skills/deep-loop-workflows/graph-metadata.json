@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "packet_id": "152-deep-loop-workflows",
+  "skill_id": "deep-loop-workflows",
+  "family": "deep-loop",
+  "category": "workflow",
+  "importance_tier": "important",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "deep-loop-runtime",
+        "weight": 0.8,
+        "context": "consumes the frozen MCP-free backend (executor, coverage-graph, scoring, fan-out, council primitives, promoted plumbing) for every mode"
+      },
+      {
+        "target": "system-spec-kit",
+        "weight": 0.6,
+        "context": "spec-folder workflow, artifact-root topology, and command YAML consumers"
+      }
+    ],
+    "enhances": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.6,
+        "context": "context and research modes feed /speckit:plan and /speckit:implement"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "deep-loop-runtime",
+        "weight": 0.7,
+        "context": "the backend peer in the deep-loop family"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": ["deep-loop-runtime"],
+    "related_to": ["system-spec-kit", "system-code-graph", "system-skill-advisor"]
+  },
+  "domains": [
+    "deep-loop",
+    "workflow",
+    "context-gathering",
+    "research",
+    "code-review",
+    "ai-council",
+    "agent-improvement",
+    "convergence",
+    "coverage-graph",
+    "mode-registry"
+  ],
+  "intent_signals": [
+    "deep loop workflow",
+    "deep-context",
+    "deep-research",
+    "deep-review",
+    "deep-ai-council",
+    "deep-improvement",
+    "context gathering loop",
+    "research loop",
+    "code review loop",
+    "ai council deliberation",
+    "agent improvement benchmark"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-workflows",
+      "deep loop workflows",
+      "deep context",
+      "context loop",
+      "gather codebase context",
+      "reuse catalog",
+      "deep-context",
+      "deep research",
+      "research loop",
+      "iterative investigation workflow",
+      "deep-research",
+      "autoresearch",
+      "deep review",
+      "review loop",
+      "iterative code audit",
+      "severity weighted findings",
+      "deep-review",
+      "code audit",
+      "deep-ai-council",
+      "ai council deliberation",
+      "multi-seat planning council",
+      "council convergence",
+      "improve agent",
+      "evaluate agent",
+      "score agent candidate",
+      "deep-improvement",
+      "agent-improvement",
+      "model benchmark",
+      "benchmark a model or prompt framework",
+      "skill benchmark",
+      "non-dev ai system"
+    ],
+    "key_topics": [
+      "deep-loop-workflows",
+      "mode-registry",
+      "workflowMode",
+      "runtimeLoopType",
+      "backendKind",
+      "context-mode",
+      "research-mode",
+      "review-mode",
+      "ai-council-mode",
+      "improvement-mode",
+      "agent-improvement",
+      "model-benchmark",
+      "skill-benchmark",
+      "non-dev-ai-system-refine"
+    ],
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      ".opencode/skills/deep-loop-workflows/context/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/research/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/review/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/ai-council/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/improvement/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs"
+    ],
+    "entities": [
+      {
+        "name": "deep-loop-workflows",
+        "kind": "skill",
+        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime",
+        "kind": "skill",
+        "path": ".opencode/skills/deep-loop-runtime/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "deep-loop-workflows is the single public skill that merges the five former deep-loop persona skills (deep-context, deep-research, deep-review, deep-ai-council, deep-improvement) into one advisor identity with five verbatim mode packets, routed by workflowMode through mode-registry.json over the frozen MCP-free deep-loop-runtime backend. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind) keeps graph-backed modes and improvement-host/external-adapter modes distinct.",
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "mode-registry.json",
+      "context/SKILL.md",
+      "research/SKILL.md",
+      "review/SKILL.md",
+      "ai-council/SKILL.md",
+      "improvement/SKILL.md"
+    ],
+    "created_at": "2026-06-15T00:00:00Z",
+    "last_updated_at": "2026-06-15T06:50:00Z"
+  }
+}
