@@ -1,0 +1,20 @@
+{
+  "specFolder": "skilled-agent-orchestration/152-deep-loop-workflows/008-framework-docs-sweep",
+  "description": "Feature Specification: Framework documentation sweep",
+  "keywords": [
+    "feature",
+    "specification",
+    "framework",
+    "documentation",
+    "sweep"
+  ],
+  "lastUpdated": "2026-06-15T05:34:46.719Z",
+  "specId": "008",
+  "folderSlug": "framework-docs-sweep",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "152-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

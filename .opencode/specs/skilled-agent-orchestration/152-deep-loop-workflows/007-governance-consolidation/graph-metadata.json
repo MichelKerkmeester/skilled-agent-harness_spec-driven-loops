@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/152-deep-loop-workflows/007-governance-consolidation",
+  "spec_folder": "skilled-agent-orchestration/152-deep-loop-workflows/007-governance-consolidation",
+  "parent_id": "skilled-agent-orchestration/152-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop governance consolidation",
+      "feature catalog playbook merge",
+      "cp- id collision mode qualify"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "governance",
+      "consolidation",
+      "feature",
+      "catalog",
+      "playbook",
+      "merge",
+      "collision",
+      "mode",
+      "qualify",
+      "five",
+      "skills"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "All five skills ship a feature_catalog and a manual_testing_playbook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council). Feature-ID prefixes collide (CP- reused across research, review, and improvement at different bands), some count self-checks are machine-enforced literals (deep-improvement == 48) and others are prose, the council catalog is UPPERCASE while the others are lowercase, and there is pre-existing intra-skill drift (false \"no catalog exists\" prose, duplicate headings). Every per-feature file embeds old skill-rooted SOURCE FILES paths.",
+    "created_at": "2026-06-14T20:16:09.680Z",
+    "last_save_at": "2026-06-14T20:16:09.680Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

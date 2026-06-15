@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/152-deep-loop-workflows/009-old-skill-deletion-and-validation",
+  "description": "Feature Specification: Old-skill deletion and full-surface validation",
+  "keywords": [
+    "feature",
+    "specification",
+    "old-skill",
+    "deletion",
+    "full-surface",
+    "validation"
+  ],
+  "lastUpdated": "2026-06-15T05:34:46.723Z",
+  "specId": "009",
+  "folderSlug": "old-skill-deletion-and-validation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "152-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

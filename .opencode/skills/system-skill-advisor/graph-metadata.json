@@ -42,12 +42,12 @@
         "context": "routes code review requests"
       },
       {
-        "target": "deep-research",
+        "target": "deep-loop-workflows",
         "weight": 0.7,
         "context": "routes autonomous research requests"
       },
       {
-        "target": "deep-review",
+        "target": "deep-loop-workflows",
         "weight": 0.7,
         "context": "routes autonomous review requests"
       },
@@ -62,7 +62,7 @@
         "context": "routes git workflow requests"
       },
       {
-        "target": "deep-improvement",
+        "target": "deep-loop-workflows",
         "weight": 0.7,
         "context": "routes agent improvement requests"
       },
@@ -82,7 +82,7 @@
         "context": "routes opencode delegation requests"
       },
       {
-        "target": "deep-ai-council",
+        "target": "deep-loop-workflows",
         "weight": 0.7,
         "context": "routes deep-ai-council delegation requests",
         "auto_added_at": "2026-05-15T14:10:44.259Z",

@@ -22,7 +22,7 @@
     "conflicts_with": [],
     "prerequisite_for": [
       {
-        "target": "deep-review",
+        "target": "deep-loop-workflows",
         "weight": 0.8,
         "context": "deep-review depends on review baseline"
       }
@@ -33,7 +33,7 @@
       "sk-code"
     ],
     "related_to": [
-      "deep-review",
+      "deep-loop-workflows",
       "system-spec-kit",
       "sk-doc"
     ]

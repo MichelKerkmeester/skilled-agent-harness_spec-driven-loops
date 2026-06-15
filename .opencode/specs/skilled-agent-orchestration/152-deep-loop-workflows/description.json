@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/152-deep-loop-workflows",
+  "description": "Feature Specification: deep-loop-workflows — consolidate the five deep-loop skills",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-loop-workflows",
+    "consolidate",
+    "five",
+    "deep-loop",
+    "skills"
+  ],
+  "lastUpdated": "2026-06-15T05:34:46.684Z",
+  "specId": "152",
+  "folderSlug": "deep-loop-workflows",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

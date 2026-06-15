@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/152-deep-loop-workflows/005-agent-mirror-repoint",
+  "spec_folder": "skilled-agent-orchestration/152-deep-loop-workflows/005-agent-mirror-repoint",
+  "parent_id": "skilled-agent-orchestration/152-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep agent mirror repoint",
+      "three-way agent parity",
+      "codex toml agent mirror"
+    ],
+    "key_topics": [
+      "deep",
+      "agent",
+      "mirror",
+      "repoint",
+      "three-way",
+      "parity",
+      "codex",
+      "toml",
+      "five",
+      "agents",
+      "deep-context",
+      "deep-research"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Repoint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "output_schema.md",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5). The decision is to keep the five agent names (the ai-council/deep-ai-council asymmetry is precedent that a skill rename does not force an agent rename). The ai-council agent is the highest-effort (~27 path edits, executing persist-artifacts.cjs from literal paths in lockstep with output_schema.md), and the .codex toml mirrors are hand-maintained derived files guarded by the mirror-sync verifier.",
+    "created_at": "2026-06-14T20:16:09.679Z",
+    "last_save_at": "2026-06-14T20:16:09.679Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/152-deep-loop-workflows/003-merged-hub-and-mode-packets",
+  "description": "Feature Specification: Merged hub and mode packets",
+  "keywords": [
+    "feature",
+    "specification",
+    "merged",
+    "hub",
+    "mode",
+    "packets"
+  ],
+  "lastUpdated": "2026-06-15T05:34:46.699Z",
+  "specId": "003",
+  "folderSlug": "merged-hub-and-mode-packets",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "152-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
