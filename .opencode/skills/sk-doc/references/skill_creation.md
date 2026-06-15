@@ -1021,7 +1021,7 @@ Most skills are a single `SKILL.md` plus bundled resources. A small number of sk
 
 **Use this pattern only when** a family of related workflows shares one backend but keeps genuinely distinct per-mode contracts (convergence math, state shape, artifacts, tool permissions). For two or three near-identical modes, prefer one `SKILL.md` with mode subsections — do not reach for nested packets to chase organization.
 
-Worked example throughout: [`.opencode/skills/deep-loop-workflows/`](../../deep-loop-workflows/SKILL.md) (hub + `mode-registry.json` + five mode packets over the frozen `deep-loop-runtime` backend).
+Worked example throughout: [`.opencode/skills/deep-loop-workflows/`](../../deep-loop-workflows/SKILL.md) (hub + `mode-registry.json` + five mode packets — four over the frozen `deep-loop-runtime` backend, the `deep-improvement` packet over `improvement-host`/`external-adapter` per its `backendKind`).
 
 ### Anatomy
 
@@ -1039,7 +1039,7 @@ parent-skill/
 - **Thin hub `SKILL.md`** — routes by mode key through `mode-registry.json` and holds **no** per-mode convergence, state, or synthesis logic. Every mode keeps its own contract in its packet.
 - **Declarative `mode-registry.json`** — the single source of truth. Routers, commands, and tests **read** it; none re-derive the mapping. It carries the 3-tier discriminator plus the `advisorRouting` projection (below).
 - **Exactly one `graph-metadata.json`** — the hub's. This is the one hard invariant (next subsection). Mode packets and `shared/` carry **none**.
-- **N mode packets** — each is verbatim self-contained (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, and any `feature_catalog/` or `manual_testing_playbook/`), with internal paths repointed to its packet root. Naming standard: `folder == packetSkillName == deep-<mode>`.
+- **N mode packets** — each is verbatim self-contained (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, and any `feature_catalog/` or `manual_testing_playbook/`), with internal paths repointed to its packet root. Naming standard: `folder == packetSkillName == deep-<mode>` for single-mode packets. A packet MAY host several modes (the canonical `deep-improvement` hosts four) — it keeps one `packetSkillName`; and a grandfathered `folder != packetSkillName` is allowed when recorded via `packetSkillName` (the canonical `ai-council`/`deep-ai-council`).
 - **Non-discoverable `shared/`** — packet-shared **workflow-layer** helpers only (e.g. output-formatting synthesis). Execution primitives (scoring, fan-out, state, coverage-graph) belong in the backend, not here. `shared/` being advisor-invisible is *incidental* — it follows from nesting, not from a special mechanism.
 
 ### The One Hard Invariant: exactly one `graph-metadata.json` per parent skill
@@ -1050,7 +1050,7 @@ Consequences that make the pattern work:
 - Add a `graph-metadata.json` inside a mode packet and discovery either throws (`skill_id != folder`) or — if you force `skill_id == folder` — registers a **second** skill identity, re-creating the multi-ID brittleness the hub was built to remove and breaking any routing-parity fixture that asserts a single `{skill, mode}` mapping.
 - Because discovery keys **only** on `graph-metadata.json`, every nested directory without one (mode packets, `shared/`) is **advisor-invisible** by construction. "Non-discoverable `shared/`" is therefore a consequence of the invariant, not a separate feature to engineer.
 
-Net rule: **one hub `graph-metadata.json`, `skill_id == folder`, `family` in the allowed set; zero `graph-metadata.json` anywhere below it.**
+Net rule: **one hub `graph-metadata.json`, `skill_id == folder`, `family` in the allowed set `{cli, mcp, sk-code, deep-loop, sk-util, system}`; zero `graph-metadata.json` anywhere below it.**
 
 ### The Registry `advisorRouting` Contract
 

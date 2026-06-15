@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-155-003-formalize-pattern-verificationchecklist"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,11 +73,11 @@ _memory:
 - [x] CHK-021 [P0] /create YAMLs parse; 3 runtime agent mirrors consistent
   - **Evidence**: `yaml.safe_load` OK; `.opencode/.claude/.codex` markdown agent each 2 parent-skill hits.
 - [x] CHK-022 [P0] /doctor check PASS on the deep-loop-workflows reference (exit 0)
-  - **Evidence**: 12 invariants PASS, "all invariants passed, 0 warnings".
+  - **Evidence**: 11 invariants PASS, "all invariants passed, 0 warnings".
 - [x] CHK-023 [P0] /doctor check is meaningful: FAIL on broken fixture (exit 1), missing dir (exit 2)
   - **Evidence**: negative-path proof (2 graph-metadata / skill_id mismatch / bad family / nested identity all FAIL).
 - [x] CHK-024 [P0] Benchmark fixtures valid (10 files) + scorecard routes the lexical modes correctly
-  - **Evidence**: 0 invalid; scorecard 3/3 (research/review/ai-council → deep-loop-workflows + mode).
+  - **Evidence**: 0 invalid; advisor-probe 3/3 lexical (research/review/ai-council → deep-loop-workflows + mode); the harness scores skill-id only, so mode precision is via the parity fixtures.
 
 <!-- /ANCHOR:testing -->
 ---
@@ -87,8 +87,8 @@ _memory:
 
 - [x] CHK-060 [P0] sk-doc §10 covers anatomy + one-identity invariant + 4-class advisorRouting + C-plus drift-guard + ALWAYS/NEVER + worked example
   - **Evidence**: §10 content; all 4 routingClasses present.
-- [x] CHK-061 [P0] /create enforces the one-identity invariant as a hard gate
-  - **Evidence**: `H4_one_identity` gate in both YAMLs + rogue-identity warning in the doc.
+- [x] CHK-061 [P0] /create enforces the one-identity invariant as a hard gate (verified end-to-end)
+  - **Evidence**: `H4_one_identity` gate in both YAMLs; verified by the create→doctor round-trip — a throwaway parent skill scaffolded from the templates passes `/doctor:parent-skill` (all invariants, exit 0), and a nested `graph-metadata.json` fails 1a+2a (exit 1).
 - [x] CHK-062 [P0] /create registered in both README indexes + the @markdown command-map (3 mirrors)
   - **Evidence**: README.txt ×2 + markdown agent ×3 updated.
 - [x] CHK-063 [P1] research.md routingClass reconciled 3 → 4 (alias-fold)

@@ -1,0 +1,69 @@
+{
+  "_template": "Parent-skill hub graph-metadata.json scaffold. Replace every [bracketed] placeholder. This is the ONE discoverable identity for the whole parent skill — write exactly one of these, at the hub root, and zero inside any mode packet or shared/. The skill-graph compiler throws when skill_id != the containing folder name or when family is outside the allowed set, so both are load-bearing. See sk-doc/references/skill_creation.md section 10.",
+  "schema_version": 2,
+  "packet_id": "[NNN-parent-skill-name]",
+  "skill_id": "[parent-skill-name]",
+  "_family_note": "family MUST equal one of: cli | mcp | sk-code | deep-loop | sk-util | system. Any other value makes the hub undiscoverable (compiler rejects it).",
+  "family": "[deep-loop]",
+  "category": "workflow",
+  "importance_tier": "important",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "[backend-skill]",
+        "weight": 0.8,
+        "context": "[why this parent skill depends on the shared backend]"
+      }
+    ],
+    "enhances": [],
+    "siblings": [],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": ["[backend-skill]"],
+    "related_to": []
+  },
+  "domains": [
+    "[domain-keyword-a]",
+    "[domain-keyword-b]"
+  ],
+  "intent_signals": [
+    "[intent phrase a]",
+    "[intent phrase b]"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "[parent-skill-name]",
+      "[trigger phrase a]",
+      "[trigger phrase b]"
+    ],
+    "key_topics": [
+      "[parent-skill-name]",
+      "mode-registry",
+      "workflowMode",
+      "runtimeLoopType",
+      "backendKind"
+    ],
+    "key_files": [
+      ".opencode/skills/[parent-skill-name]/SKILL.md",
+      ".opencode/skills/[parent-skill-name]/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "[parent-skill-name]",
+        "kind": "skill",
+        "path": ".opencode/skills/[parent-skill-name]/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[One paragraph: the parent skill routes a request to one of N modes by workflowMode through mode-registry.json over the [backend] backend; the three-tier discriminator keeps the modes distinct.]",
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "mode-registry.json"
+    ],
+    "created_at": "[ISO-8601 timestamp]",
+    "last_updated_at": "[ISO-8601 timestamp]"
+  }
+}

@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: shared/ stays in deep-loop-workflows; ai-council mismatch accepted"
-description: "ADR-001 keeps the packet-shared shared/ directory in deep-loop-workflows rather than moving it into the frozen deep-loop-runtime backend (moving it would create a runtime→system-spec-kit dependency and is a semantic mismatch). ADR-002 accepts the ai-council folder ≠ SKILL.md name mismatch under one advisor identity, pending the phase-2 research."
+description: "ADR-001 keeps the packet-shared shared/ directory in deep-loop-workflows rather than moving it into the deep-loop-runtime backend, on the execution-vs-synthesis axis (the runtime is execution-only; emitResourceMap is workflow synthesis). The earlier dependency rationale was struck post-research because the runtime already depends on system-spec-kit by design (frozen means MCP-free, not dependency-free). ADR-002 accepts the ai-council folder ≠ SKILL.md name mismatch under one advisor identity."
 trigger_phrases:
   - "shared stays in deep-loop-workflows adr"
   - "deep-loop-runtime frozen boundary shared"

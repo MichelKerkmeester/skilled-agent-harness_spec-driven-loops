@@ -173,6 +173,7 @@ reference_sources:
 template_sources:
   hub_skill: .opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md
   mode_registry: .opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json
+  hub_graph_metadata: .opencode/skills/sk-doc/assets/skill/parent_skill_graph_metadata_template.json
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
@@ -183,15 +184,21 @@ quality_standards:
   frontmatter_required: true
   hub_requirements:
     - thin routing-only SKILL.md (no per-mode logic)
-    - exactly one graph-metadata.json at the hub root
+    - "exactly one graph-metadata.json at the hub root (from parent_skill_graph_metadata_template.json) with skill_id == hub folder name and family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
     - mode-registry.json present and valid JSON
   registry_requirements:
+    - "each mode carries the 3-tier discriminator: workflowMode (string), runtimeLoopType (present, may be null, NEVER inferred from workflowMode), backendKind (one of runtime-loop-type | improvement-host | external-adapter)"
+    - "each mode has a top-level packet field naming its packet sub-directory (a direct child of the hub)"
     - one advisorRouting block per mode
-    - advisorRouting fields: routingClass, advisorDefaultMode (optional), legacyAliases, packetSkillName
-    - registry keys match packet folder names
+    - "advisorRouting fields: routingClass (lexical | alias-fold | metadata | command-bridge), legacyAdvisorId (lexical + alias-fold modes only), advisorDefaultMode (optional, alias-fold default), legacyAliases (system-id alias set, lexical + alias-fold only), packetSkillName"
+    - "registry keys (mode.packet) match packet folder names; canonical default folder == packetSkillName == deep-<mode>, grandfathered mismatches recorded via packetSkillName"
+    - "runtimeLoopType allowed set when non-null: research | review | council | context"
   packet_requirements:
-    - folder == packetSkillName == deep-<mode>
+    - "RECOMMENDED DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode> (soft guidance, not a hard gate)"
+    - "ALLOWED: many modes mapping to one packet folder (canonical: 4 improvement modes -> deep-improvement)"
+    - "ALLOWED: grandfathered packets where folder != packetSkillName (canonical: folder ai-council, packetSkillName deep-ai-council)"
     - each packet has its own SKILL.md
+    - "each mode's packet folder is a direct child of the hub (no absolute or ../ paths)"
     - NO per-packet graph-metadata.json
   shared_requirements:
     - non-discoverable shared/ for packet-shared workflow-layer helpers (synthesis, not execution primitives)
@@ -223,8 +230,8 @@ gate_logic:
       fail_action: "Run fix-and-revalidate loop"
   soft:
     S1_packet_naming:
-      description: "Prefer folder == packetSkillName == deep-<mode> for every new packet"
-      fail_action: "Proceed with logged assumption only when grandfathering an existing packet"
+      description: "DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode>. NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid (canonical: 4 modes -> deep-improvement; ai-council/deep-ai-council)."
+      fail_action: "Proceed with a logged assumption when grandfathering an existing packet or mapping several modes to one packet"
 
 interactive_execution:
   principle: "Pause at each checkpoint and wait for explicit approval"
@@ -274,10 +281,12 @@ workflow:
   step_2_mode_planning:
     purpose: Resolve and propose the per-packet plan
     activities:
-      - For each mode, compute packetSkillName = "deep-[mode]" and the packet folder of the same name
-      - Plan the advisorRouting block per mode (routingClass, advisorDefaultMode, legacyAliases, packetSkillName)
+      - "For a net-new single-mode packet, default packetSkillName = \"deep-[mode]\" and a packet folder of the same name (recommended, not enforced)"
+      - "Allow several modes to share one packet folder (canonical: 4 improvement modes -> deep-improvement); allow a grandfathered packet whose folder != packetSkillName (canonical: ai-council/deep-ai-council)"
+      - "Set each mode's top-level packet field to its packet sub-directory and plan the 3-tier discriminator (workflowMode, runtimeLoopType may be null, backendKind)"
+      - Plan the advisorRouting block per mode (routingClass, legacyAdvisorId for lexical/alias-fold, advisorDefaultMode, legacyAliases, packetSkillName)
       - Preserve existing packet names, registry keys, and routing blocks when update mode
-      - Confirm no two modes resolve to the same packet folder
+      - "When several modes intentionally share one packet folder, log it as an assumption — do not treat it as a duplicate-folder failure"
     outputs:
       - packet_plan
       - registry_plan
@@ -290,12 +299,13 @@ workflow:
         - abort
 
   step_3_template_loading:
-    purpose: Load references and both templates
+    purpose: Load references and templates
     activities:
       - Read skill_creation.md and locate the "Parent Skills with Nested Mode Packets" section
       - Read parent_skill_hub_template.md
       - Read parent_skill_registry_template.json
-      - Extract the hub SKILL.md and registry section contracts
+      - Read parent_skill_graph_metadata_template.json
+      - Extract the hub SKILL.md, registry, and hub graph-metadata contracts
     outputs:
       - template_contract_loaded
 
@@ -304,9 +314,9 @@ workflow:
     activities:
       - Ensure skill_root exists
       - Create or update the thin hub SKILL.md (routing only)
-      - Create or update mode-registry.json with one advisorRouting block per mode
-      - Create or update exactly one hub graph-metadata.json
-      - Create or update one packet dir per mode (folder == packetSkillName == deep-<mode>) with its own SKILL.md
+      - Create or update mode-registry.json with the 3-tier discriminator, a top-level packet, and one advisorRouting block per mode
+      - "Create or update exactly one hub graph-metadata.json from parent_skill_graph_metadata_template.json (skill_id == hub folder, family in the allowed set)"
+      - "Create or update one packet dir per distinct packet value (default folder == packetSkillName == deep-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md"
       - Create the non-discoverable shared/ dir
       - Never write a graph-metadata.json inside any packet or inside shared/
     outputs:
@@ -321,16 +331,20 @@ workflow:
         - abort
 
   step_5_validation:
-    purpose: Validate generated package and identity
+    purpose: Validate generated package and identity (success gate == the /doctor parent-skill-check gate)
     activities:
       - Run validate_document.py on the hub SKILL.md
+      - "Assert the hub graph-metadata.json has skill_id == hub folder name AND family in {cli, mcp, sk-code, deep-loop, sk-util, system} (else the hub is undiscoverable and fails /doctor)"
       - Check mode-registry.json is valid JSON and has one advisorRouting block per mode
-      - Check registry keys match packet folder names
-      - Check each packet folder == packetSkillName == deep-<mode> and contains its own SKILL.md
+      - "Per mode, assert the 3-tier discriminator: workflowMode is a non-empty string; runtimeLoopType key is present and is null or one of {research, review, council, context}; backendKind is one of {runtime-loop-type, improvement-host, external-adapter}"
+      - "Per mode, assert an advisorRouting block with routingClass in {lexical, alias-fold, metadata, command-bridge}"
+      - "Check each mode's top-level packet resolves to an existing direct-child sub-directory (no absolute or ../ paths) that contains its own SKILL.md; the default folder == packetSkillName == deep-<mode> is recommended, NOT required (allow many-modes-to-one-packet and grandfathered folder!=packetSkillName)"
       - Count graph-metadata.json files under skill_root; assert exactly 1 (the hub) and 0 inside packets/shared
     outputs:
       - hub_validation_passed
+      - hub_identity_passed
       - registry_coverage_passed
+      - discriminator_passed
       - packet_structure_passed
       - one_identity_passed
 
@@ -339,9 +353,24 @@ workflow:
     activities:
       - Summarize operation, mode list, and generated paths
       - Report identity counts and validation results
+      - "Emit the advisor-map sync warning when any mode is routingClass lexical or alias-fold (see advisor_map_sync_note): the registry block is registry-declared but INERT until the hardcoded advisor maps and a per-skill drift-guard test are hand-added"
       - Return STATUS=OK PATH=[skill_root]
     outputs:
       - completion_report
+
+  advisor_map_sync_note:
+    when: "any generated mode has advisorRouting.routingClass == lexical or alias-fold"
+    warning: |
+      Advisor routing for lexical/alias-fold modes is registry-declared, NOT live.
+      The advisor does NOT read mode-registry.json at runtime. Each such mode is
+      INERT until you hand-add the matching hardcoded projection-map entries and a
+      per-skill drift-guard test:
+        - Python  DEEP_ROUTING_MODE_BY_KEY  (skill_advisor.py)
+        - TypeScript  DEEP_MODE_BY_CANONICAL  (advisor scorer)
+        - a drift-guard vitest asserting (hardcoded maps == this registry projection)
+      Until then the mode will not route, and adding a lexical/alias-fold mode by
+      update without this wiring will turn an existing drift-guard test RED.
+      metadata and command-bridge modes need no advisor-map entry.
 
 error_recovery:
   checkpoint_rejected:
@@ -376,9 +405,14 @@ completion_report_template: |
 
   Validation:
   - Hub structure: [passed/failed]
-  - Registry advisorRouting coverage: [passed/failed]
+  - Hub identity (skill_id == folder, family in allowed set): [passed/failed]
+  - Registry advisorRouting: registry-declared (advisor map sync required) [present/missing per mode]
+  - Mode discriminator (workflowMode/runtimeLoopType/backendKind): [passed/failed]
   - Per-packet structure: [passed/failed]
   - One-identity invariant: [passed/failed]
+
+  Advisor map sync (lexical/alias-fold modes only):
+  - [none | REQUIRED: hand-add Python/TS projection maps + drift-guard test before the mode routes]
 
   STATUS=[OK|CANCELLED|FAIL] PATH=[skill_root]
 

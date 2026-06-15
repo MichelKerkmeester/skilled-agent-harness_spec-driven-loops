@@ -55,7 +55,7 @@ function registryProjection(classes: readonly string[]): Record<string, string> 
   return map;
 }
 
-function dumpPythonMaps(): { DEEP_ROUTING_SKILLS: string[]; DEEP_ROUTING_MODE_BY_KEY: Record<string, string> } {
+function dumpPythonMaps(): { DEEP_ROUTING_SKILLS: string[]; DEEP_ROUTING_MODE_BY_KEY: Record<string, string>; PY_ALIAS_GROUP_KEYS: string[] } {
   const stdout = execFileSync('python3', [advisorScript, '--dump-routing-maps'], {
     cwd: repoRoot,
     encoding: 'utf8',
@@ -92,13 +92,18 @@ describe('routing-registry-drift-guard', () => {
     expect(defaults.map((m) => m.workflowMode)).toEqual(['agent-improvement']);
   });
 
-  it('registry legacyAliases match SKILL_ALIAS_GROUPS for each routed mode (order-insensitive)', () => {
+  it('registry legacyAliases match the TS scorer aliases; legacyAdvisorId keys exist on both TS and Python', () => {
+    const pyKeys = new Set(dumpPythonMaps().PY_ALIAS_GROUP_KEYS);
     for (const mode of registry.modes) {
       const ar = mode.advisorRouting;
       if (ar.routingClass === 'lexical' || ar.routingClass === 'alias-fold') {
-        const expected = SKILL_ALIAS_GROUPS[ar.legacyAdvisorId as string];
-        expect(expected, `no SKILL_ALIAS_GROUPS entry for ${ar.legacyAdvisorId}`).toBeDefined();
+        const id = ar.legacyAdvisorId as string;
+        // legacyAliases mirrors the TypeScript scorer set (the merged-identity layer keys on it).
+        const expected = SKILL_ALIAS_GROUPS[id];
+        expect(expected, `no TS SKILL_ALIAS_GROUPS entry for ${id}`).toBeDefined();
         expect(new Set(ar.legacyAliases ?? [])).toEqual(new Set(expected));
+        // The Python deep-router has its own alias values by design; cross-check only that the key exists.
+        expect(pyKeys.has(id), `legacyAdvisorId ${id} missing from Python SKILL_ALIAS_GROUPS`).toBe(true);
       }
     }
   });

@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-155-003-formalize-pattern-implementationplan"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,7 +60,7 @@ Four additive deliverables formalizing the now-stable pattern, authored by three
 - [x] sk-doc §10 + 2 templates; validator clean.
 - [x] /create:parent-skill + assets + registration + agent mirrors; YAMLs parse.
 - [x] /doctor:parent-skill route + check; PASS on reference, FAIL on broken; hygiene clean.
-- [x] Benchmark fixtures valid + scorecard 3/3.
+- [x] Benchmark fixtures valid + advisor-probe routing 3/3 lexical (harness scores skill-id).
 - [x] `validate.sh --strict` green on this phase (close-out).
 
 <!-- /ANCHOR:quality-gates -->
@@ -101,7 +101,7 @@ Agents author their non-overlapping surfaces (different dirs); the orchestrator 
 - [x] sk-doc validator clean (0 new warnings); templates parse.
 - [x] /create YAMLs parse; 3 agent mirrors consistent.
 - [x] /doctor check PASS on deep-loop-workflows + negative-path proof; hygiene exit 0.
-- [x] Benchmark fixtures valid; scorecard 3/3.
+- [x] Benchmark fixtures valid; advisor-probe routing 3/3 lexical (harness scores skill-id).
 - [x] `validate.sh --strict` on this phase folder (close-out).
 
 <!-- /ANCHOR:phases -->

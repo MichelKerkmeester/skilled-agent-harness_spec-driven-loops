@@ -183,8 +183,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "parity",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Turn the reference implementation into a reusable, documented, tooled standard with four deliverables: (1) an `sk-doc` authoring section + templates; (2) a `/create:parent-skill` scaffolder; (3) a read-only `/doctor:parent-skill` validator route; (4) a routing/discovery benchmark dogfooded through `deep-loop-workflows`'s own `skill-benchmark` mode. This phase adds no behavior to the advisor or the skill — it is documentation + tooling around the now-stable pattern.",
     "created_at": "2026-06-15T11:05:31.179Z",
-    "last_save_at": "2026-06-15T11:05:31.179Z",
+    "last_save_at": "2026-06-15T12:25:45.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

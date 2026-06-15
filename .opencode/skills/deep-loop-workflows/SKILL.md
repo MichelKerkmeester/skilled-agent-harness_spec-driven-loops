@@ -44,7 +44,7 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 ```
 read mode-registry.json
   → resolve workflowMode from the command / advisor alias
-  → load the mode packet at registry[mode].packet/   (the 4 improvement modes all share the improvement/ packet)
+  → load the mode packet at registry[mode].packet/   (the 4 improvement modes all share the deep-improvement/ packet)
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
      else: backend = improvement loop-host (--mode) or external adapter, per backendKind
 ```

@@ -38,6 +38,21 @@ const ALLOWED_FAMILIES = ['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'syst
 // declares it per mode so the projection maps stay auditable.
 const VALID_ROUTING_CLASSES = ['lexical', 'alias-fold', 'metadata', 'command-bridge'];
 
+// The graph-backed convergence loop keys consumed by the runtime backend.
+// null is the explicit, load-bearing value for host/adapter modes that do not
+// run a convergence loop — it is never inferred from the workflow mode.
+const VALID_RUNTIME_LOOP_TYPES = ['research', 'review', 'council', 'context', null];
+
+// Which backend actually runs a mode. Any other value points at a backend the
+// router cannot dispatch to.
+const VALID_BACKEND_KINDS = ['runtime-loop-type', 'improvement-host', 'external-adapter'];
+
+// The canonical reference implementation. Some cross-checks compare against the
+// single global advisor projection map, which only mirrors this one skill; for
+// any other target the per-skill drift-guard test is the authoritative parity
+// guard, so those checks scope themselves to this basename.
+const CANONICAL_BASENAME = 'deep-loop-workflows';
+
 // The drift-guard that keeps the advisor's hardcoded projection maps equal
 // to the registry projection. Its presence is the structural guarantee that
 // the registry is the single source of truth, not a parallel copy.
@@ -199,21 +214,33 @@ function main() {
       for (const mode of modes) {
         const label = mode.workflowMode || '<unnamed>';
 
-        // 3c — every mode's packet value must be an existing sub-dir.
+        // 3c — every mode's packet value must be a DIRECT child sub-dir. An
+        // absolute path or one that escapes the hub (e.g. "../sk-code") would
+        // otherwise resolve to a real directory outside the skill and pass.
         const packet = mode.packet;
         if (!packet || typeof packet !== 'string') {
           fail(`3c: mode "${label}" has no packet value`);
           packetOk = false;
+        } else if (path.isAbsolute(packet) || packet.split(/[\\/]/).includes('..')) {
+          fail(`3c: mode "${label}" packet "${packet}" must be a direct child directory (no absolute or "../" paths)`);
+          packetOk = false;
         } else {
           const packetDir = path.join(target, packet);
-          if (!fs.existsSync(packetDir) || !fs.statSync(packetDir).isDirectory()) {
+          // Confirm the resolved path is still contained within the hub.
+          const rel = path.relative(target, packetDir);
+          if (rel.startsWith('..') || path.isAbsolute(rel)) {
+            fail(`3c: mode "${label}" packet "${packet}" resolves outside the hub directory`);
+            packetOk = false;
+          } else if (!fs.existsSync(packetDir) || !fs.statSync(packetDir).isDirectory()) {
             fail(`3c: mode "${label}" packet "${packet}" is not an existing sub-directory`);
             packetOk = false;
           }
         }
 
         // 3d — three-tier discriminator: workflowMode + backendKind required;
-        // runtimeLoopType must be present as a key but may be null.
+        // runtimeLoopType must be present as a key but may be null. Values are
+        // validated against the allowed sets, not merely checked for presence —
+        // an out-of-set value silently breaks dispatch.
         if (typeof mode.workflowMode !== 'string' || mode.workflowMode.length === 0) {
           fail(`3d: mode "${label}" is missing workflowMode`);
           discriminatorOk = false;
@@ -221,9 +248,15 @@ function main() {
         if (!('runtimeLoopType' in mode)) {
           fail(`3d: mode "${label}" is missing the runtimeLoopType key (null is allowed, absence is not)`);
           discriminatorOk = false;
+        } else if (!VALID_RUNTIME_LOOP_TYPES.includes(mode.runtimeLoopType)) {
+          fail(`3d: mode "${label}" has invalid runtimeLoopType ${JSON.stringify(mode.runtimeLoopType)} (expected one of {research, review, council, context, null})`);
+          discriminatorOk = false;
         }
         if (typeof mode.backendKind !== 'string' || mode.backendKind.length === 0) {
           fail(`3d: mode "${label}" is missing backendKind`);
+          discriminatorOk = false;
+        } else if (!VALID_BACKEND_KINDS.includes(mode.backendKind)) {
+          fail(`3d: mode "${label}" has invalid backendKind ${JSON.stringify(mode.backendKind)} (expected one of {${VALID_BACKEND_KINDS.join(', ')}})`);
           discriminatorOk = false;
         }
 
@@ -258,7 +291,15 @@ function main() {
   // projection {legacyAdvisorId -> workflowMode} against the advisor's live
   // DEEP_ROUTING_MODE_BY_KEY. Soft: a missing interpreter or dump just skips,
   // because the drift-guard test (4a) is the authoritative parity assertion.
-  if (registry && Array.isArray(registry.modes)) {
+  //
+  // Scoped to the canonical skill only. The advisor's projection map is a single
+  // global table that mirrors the canonical reference; running this against any
+  // other skill compares its registry to a map that never mentions it and
+  // false-fails. For every non-canonical skill the per-skill drift-guard test
+  // (4a) is the authoritative guard, so 4b explicitly skips them.
+  if (basename !== CANONICAL_BASENAME) {
+    info(`4b: dynamic cross-check is canonical-only; the drift-guard test (4a) is authoritative for "${basename}" — skipping`);
+  } else if (registry && Array.isArray(registry.modes)) {
     const expected = {};
     for (const mode of registry.modes) {
       const routing = mode.advisorRouting;

@@ -3781,6 +3781,7 @@ Examples:
         print(json.dumps({
             "DEEP_ROUTING_SKILLS": list(DEEP_ROUTING_SKILLS),
             "DEEP_ROUTING_MODE_BY_KEY": dict(DEEP_ROUTING_MODE_BY_KEY),
+            "PY_ALIAS_GROUP_KEYS": sorted(SKILL_ALIAS_GROUPS.keys()),
         }, indent=2))
         return 0
 

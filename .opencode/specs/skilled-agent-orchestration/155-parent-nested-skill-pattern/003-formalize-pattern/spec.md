@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-155-003-formalize-pattern"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "How to dogfood the benchmark? deep-loop-workflows skill-benchmark fixtures + advisor-probe scorecard"
@@ -69,7 +69,7 @@ Turn the reference implementation into a reusable, documented, tooled standard w
 ### In Scope
 - **sk-doc:** a new section "Parent Skills with Nested Mode Packets" in `sk-doc/references/skill_creation.md` (§10; RELATED RESOURCES renumbered §11) + `assets/skill/parent_skill_hub_template.md` + `assets/skill/parent_skill_registry_template.json`.
 - **/create:parent-skill:** `commands/create/parent-skill.md` + `create_parent_skill_{presentation.txt,auto.yaml,confirm.yaml}` (mirrors the self-contained `/create:feature-catalog` precedent); registration in both `README.txt` indexes + the `@markdown` agent's command-map across all three runtime mirrors.
-- **/doctor:parent-skill:** a read-only route in `commands/doctor/_routes.yaml` + `doctor_parent-skill.yaml` workflow asset + `scripts/parent-skill-check.cjs` (12 invariant checks) + a `speckit.md` router row.
+- **/doctor:parent-skill:** a read-only route in `commands/doctor/_routes.yaml` + `doctor_parent-skill.yaml` workflow asset + `scripts/parent-skill-check.cjs` (11 invariant checks) + a `speckit.md` router row.
 - **Benchmark:** a `deep-loop-workflows/` skill-benchmark fixtures corpus (5 mode scenarios, public/private pairs) + a routing-precision scorecard, dogfooding the existing skill-benchmark harness.
 - A 3→4 `routingClass` reconcile in `../research/research.md` (the shipped code added `alias-fold`).
 
@@ -86,7 +86,7 @@ Turn the reference implementation into a reusable, documented, tooled standard w
 
 - **R1 (MUST):** The sk-doc section documents the anatomy, the one-`graph-metadata.json` invariant + mechanism, the 4-class `advisorRouting` contract, the C-plus drift-guard rule, ALWAYS/NEVER rules, and `deep-loop-workflows` as the worked example; the sk-doc validator passes with no new issues.
 - **R2 (MUST):** `/create:parent-skill` mirrors an existing self-contained create command exactly; its YAMLs parse; it enforces the one-identity invariant as a hard gate; it is registered in every index + agent mirror.
-- **R3 (MUST):** `/doctor:parent-skill` is a read-only route that runs the 12 invariant checks; it PASSES on the `deep-loop-workflows` reference and FAILS on a broken fixture (meaningful, not vacuous); its script is comment-hygiene clean.
+- **R3 (MUST):** `/doctor:parent-skill` is a read-only route that runs the 11 invariant checks; it PASSES on the `deep-loop-workflows` reference and FAILS on a broken fixture (meaningful, not vacuous); its script is comment-hygiene clean.
 - **R4 (MUST):** The benchmark fixtures are valid; the routing-precision scorecard runs and the lexical modes route correctly.
 - **R5 (MUST):** No advisor/registry/skill behavior changes; `validate.sh --strict` green on this phase.
 <!-- /ANCHOR:requirements -->
@@ -99,7 +99,7 @@ Turn the reference implementation into a reusable, documented, tooled standard w
 - sk-doc §10 + templates present + validator clean (0 new warnings).
 - `/create:parent-skill` files present + YAMLs parse + mirrors consistent (3/3 runtimes).
 - `/doctor:parent-skill` runs PASS on deep-loop-workflows (exit 0), FAIL on broken (exit 1), missing (exit 2); hygiene exit 0.
-- Benchmark fixtures valid (10 files) + scorecard 3/3 lexical modes.
+- Benchmark fixtures valid (10 files) + advisor-probe routing 3/3 lexical modes (harness scores skill-id; mode precision via parity fixtures).
 - `validate.sh --strict` green on this phase.
 <!-- /ANCHOR:success-criteria -->
 

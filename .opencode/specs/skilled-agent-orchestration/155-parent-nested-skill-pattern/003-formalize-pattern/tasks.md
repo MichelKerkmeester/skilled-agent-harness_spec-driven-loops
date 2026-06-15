@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-155-003-formalize-pattern-tasks"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,7 +72,7 @@ _memory:
 - [x] T006 sk-doc validator clean (0 new warnings); §10 present; templates parse
 - [x] T007 /create YAMLs parse; 3 agent mirrors consistent (2 hits each)
 - [x] T008 /doctor check PASS on deep-loop-workflows (exit 0) + negative-path (broken exit 1, missing exit 2); hygiene exit 0
-- [x] T009 Benchmark fixtures valid (10 files); scorecard 3/3 lexical modes
+- [x] T009 Benchmark fixtures valid (10 files); advisor-probe routing 3/3 lexical modes (harness scores skill-id; mode precision via parity fixtures)
 - [x] T010 `validate.sh --strict` on this phase folder
 - [x] T011 Commit scoped
 

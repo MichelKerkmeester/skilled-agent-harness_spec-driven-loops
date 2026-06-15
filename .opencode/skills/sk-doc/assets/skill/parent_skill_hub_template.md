@@ -124,7 +124,7 @@ Per-mode behavior is **not flattened**: each packet keeps its own convergence ma
 Each mode packet is self-contained (own `SKILL.md`, `references/`, `scripts/`, `assets/`) with internal paths repointed and **no per-packet `graph-metadata.json`**.
 
 ### Backend
-All modes consume `[backend]`. Name what it provides and what it must never gain.
+Modes consume `[backend]` per their `backendKind` (a mode may run over the shared backend, a host process, or an external adapter). Name what it provides and what it must never gain.
 
 ---
 

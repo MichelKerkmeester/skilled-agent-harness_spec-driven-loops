@@ -89,7 +89,7 @@ Make `deep-loop-workflows` the clean reference implementation of a reusable fram
 | 1 | `001-rename-fix-and-shared-decision/` | Fix the four-folder rename refs across the repo; record the `shared/`-stays decision | Complete |
 | 2 | `research/` (parent-level evidence) | 15-iteration deep research (10× gpt-5.5-fast xhigh + 5× opus-4.8) → `research/research.md`: **Model A via C-plus** (15/15), `advisorRouting` block, lexical-stays-in-code, ai-council grandfathered; surfaced 2 Phase-1 corrections | **Complete** |
 | 3 | `002-advisor-routing-drift-guard/` | Implement Model A via C-plus: registry `advisorRouting` block (8 modes) + CI drift-guard test (maps == registry) + `--dump-routing-maps`; parity fixtures green (19/19) | **Complete** |
-| 4 | `003-formalize-pattern/` | Formalize: `sk-doc` §10 + hub/registry templates + `/create:parent-skill` + read-only `/doctor:parent-skill` route + dogfood benchmark (3/3 routing precision) | **Complete** |
+| 4 | `003-formalize-pattern/` | Formalize: `sk-doc` §10 + hub/registry templates + `/create:parent-skill` + read-only `/doctor:parent-skill` route + dogfood benchmark (advisor-probe 3/3 lexical; harness scores skill-id) | **Complete** |
 
 ### Phase Transition Rules
 - Each numbered phase child MUST pass `validate.sh --strict` independently before the next begins.
