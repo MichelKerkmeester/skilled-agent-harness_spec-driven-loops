@@ -41,7 +41,7 @@ How to put real-world shipped UI to work as judgment input without letting it tu
 These are Code Mode (UTCP) manuals, not in-process tools. Discover first, then call:
 
 1. `search_tools("mobbin app screens")` or `tool_info(...)` to resolve the exact tool name and arguments.
-2. `call_tool_chain([...])` with the resolved call, for example `mobbin.mobbin_search_screens({ query, platform })` or `refero.refero_refero_search_screens({ query, platform })`. Call the tools synchronously (no top-level `await`). Each returns the content array: the first block is the parsed data object (`.screens` or `.flows`, each item carrying a citable `mobbin_url`), followed by `type: "image"` blocks holding the screenshots.
+2. `call_tool_chain([...])` with the resolved call, run synchronously (no top-level `await`), for example `mobbin.mobbin_search_screens({ query, platform })` or `refero.refero_refero_search_styles({ query })`. The result shape differs per MCP: Mobbin returns a content array (first block is the parsed `.screens`/`.flows` object, then `type: "image"` blocks), while Refero with `response_format: "json"` returns `{ pagination, records }`. The full tool catalogs, arguments, and result shapes are in [`mobbin_tools.md`](./mobbin_tools.md) and [`refero_tools.md`](./refero_tools.md).
 
 Newly-wired manuals load at Code Mode startup, so a reference that does not resolve usually means the session predates the wiring or the subscription is not yet authorized.
 
@@ -92,5 +92,6 @@ If a brief explicitly pins the direction, the brief wins (NEVER override a pinne
 
 - [design_principles.md](./design_principles.md) sets the aesthetic direction and the anti-default mandate this reference helps you deviate from, and stays the authority.
 - [design_inventory.md](./design_inventory.md) is the sibling critique-against (and reuse-ground) path for a real design system read via `mcp-open-design`. Same one-reference, no-chooser, read-live discipline.
+- [mobbin_tools.md](./mobbin_tools.md) and [refero_tools.md](./refero_tools.md) are the tool catalogs for the two MCPs: arguments, the verified Code Mode call convention, result shapes, and troubleshooting.
 - [ux_quality_reference.md](./ux_quality_reference.md) holds the quality floor every deviation must still clear.
 - [claude_design_parity.md](./claude_design_parity.md) owns the no-chooser guardrail across the design loop.

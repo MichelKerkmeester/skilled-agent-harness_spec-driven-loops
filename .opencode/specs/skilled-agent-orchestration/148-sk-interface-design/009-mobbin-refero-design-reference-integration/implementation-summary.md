@@ -57,7 +57,7 @@ Two `mcp` manuals were added to `.utcp_config.json` (`mobbin`, `refero`), each b
 
 ### A critique-against reference in the skill
 
-A new `references/design_references_mcp.md` defines exactly how these references are used: resolve one reference, name the real-world default, deviate from it, honor a convention only where it serves the user. It draws the line that these are never reuse-ground and never a copy source, because they are third-party records of other companies' shipped products. SKILL.md routes to it (an ON_DEMAND row, a references entry, a Related Skills bullet, and a loading note), and `design_inventory.md` carries a cross-pointer so the design-system and real-world critique-against paths sit side by side.
+A new `references/design_references_mcp.md` defines exactly how these references are used: resolve one reference, name the real-world default, deviate from it, honor a convention only where it serves the user. It draws the line that these are never reuse-ground and never a copy source, because they are third-party records of other companies' shipped products. SKILL.md routes to it (an ON_DEMAND row, a references entry, a Related Skills bullet, and a loading note), and `design_inventory.md` carries a cross-pointer so the design-system and real-world critique-against paths sit side by side. Two tool catalogs, `references/mobbin_tools.md` and `references/refero_tools.md`, document each MCP's tools, the verified Code Mode call convention, and result shapes (Mobbin's content array vs Refero's `{pagination, records}`), modeled on a dedicated MCP skill's tooling reference.
 
 ### Files Changed
 
@@ -65,6 +65,8 @@ A new `references/design_references_mcp.md` defines exactly how these references
 |------|--------|---------|
 | `.utcp_config.json` | Modified | Added the `mobbin` and `refero` mcp-remote stdio manuals |
 | `.opencode/skills/sk-interface-design/references/design_references_mcp.md` | Created | The critique-against use and the hard rules |
+| `.opencode/skills/sk-interface-design/references/mobbin_tools.md` | Created | Mobbin MCP tool catalog (search_screens, search_flows) |
+| `.opencode/skills/sk-interface-design/references/refero_tools.md` | Created | Refero MCP tool catalog (8 tools: styles, screens, flows) |
 | `.opencode/skills/sk-interface-design/SKILL.md` | Modified | ON_DEMAND row, references entry, Related Skills bullet, loading note |
 | `.opencode/skills/sk-interface-design/references/design_inventory.md` | Modified | Cross-pointer to the new reference |
 <!-- /ANCHOR:what-built -->

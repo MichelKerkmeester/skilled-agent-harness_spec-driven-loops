@@ -108,6 +108,7 @@ Wire Mobbin and Refero into Code Mode and integrate them into sk-interface-desig
 |-----------|-------------|-------------|
 | `.utcp_config.json` | Modify | Add `mobbin` + `refero` mcp-remote stdio manuals |
 | `.opencode/skills/sk-interface-design/references/design_references_mcp.md` | Create | The critique-against reference doc and hard rules |
+| `.opencode/skills/sk-interface-design/references/{mobbin_tools.md, refero_tools.md}` | Create | Per-MCP tool catalogs (tools, call convention, result shapes), modeled on a dedicated MCP skill's tooling reference |
 | `.opencode/skills/sk-interface-design/SKILL.md` | Modify | ON_DEMAND row, references entry, Related Skills bullet, loading note |
 | `.opencode/skills/sk-interface-design/references/design_inventory.md` | Modify | Cross-pointer to the new reference path |
 <!-- /ANCHOR:scope -->
