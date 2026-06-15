@@ -23,8 +23,8 @@ const { verifyMirrorSync } = require('./lib/mirror-sync-verify.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Repo root relative to this file: scripts -> deep-improvement -> skills -> .opencode -> root
-const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..');
+// Repo root relative to this file: scripts -> deep-improvement -> deep-loop-workflows -> skills -> .opencode -> root
+const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const AGENTS_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
 
 // A changed path counts as an agent definition only when it sits directly inside

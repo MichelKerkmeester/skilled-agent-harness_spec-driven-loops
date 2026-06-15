@@ -39,10 +39,12 @@ const dispatcher = require('./dispatch-model.cjs');
 
 const SCRIPTS_ROOT = __dirname;
 // Canonical framework definitions live in sk-prompt; benchmark consumes them.
-// From scripts/model-benchmark/, sk-prompt is five levels up to the skills root.
+// From scripts/model-benchmark/, the skills root is four levels up
+// (model-benchmark -> scripts -> deep-improvement -> deep-loop-workflows -> skills);
+// sk-prompt is a top-level skill there.
 const DEFAULT_REGISTRY_PATH = path.resolve(
   SCRIPTS_ROOT,
-  '..', '..', '..',
+  '..', '..', '..', '..',
   'sk-prompt', 'assets', 'framework-registry.json',
 );
 

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
-const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
+const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-loop-workflows/deep-improvement/scripts');
 const require = createRequire(import.meta.url);
 

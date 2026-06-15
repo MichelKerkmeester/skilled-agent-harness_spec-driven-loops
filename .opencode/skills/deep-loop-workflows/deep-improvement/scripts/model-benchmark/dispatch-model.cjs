@@ -162,7 +162,7 @@ function repoRoot() {
   try {
     return execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
   } catch (_) {
-    return path.resolve(SCRIPTS_ROOT, '..', '..', '..', '..', '..');
+    return path.resolve(SCRIPTS_ROOT, '..', '..', '..', '..', '..', '..');
   }
 }
 
@@ -336,7 +336,7 @@ function buildResumeHint(sentinelPath) {
   const root = repoRoot();
   const relSentinel = path.relative(root, sentinelPath) || sentinelPath;
   const loopHost = path.join(
-    '.opencode', 'skills', 'deep-improvement', 'scripts', 'shared', 'loop-host.cjs',
+    '.opencode', 'skills', 'deep-loop-workflows', 'deep-improvement', 'scripts', 'shared', 'loop-host.cjs',
   );
   return `rm ${shellQuote(relSentinel)} && node ${shellQuote(loopHost)} --mode=model-benchmark --profile=<profile> --outputs-dir=<outputs-dir>`;
 }

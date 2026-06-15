@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, it, expect } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
-const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
+const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const MB_ROOT = path.join(
   WORKSPACE_ROOT,
   '.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark',

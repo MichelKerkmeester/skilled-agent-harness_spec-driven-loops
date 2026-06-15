@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
-const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
+const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const REDUCE_SCRIPT = path.join(
   WORKSPACE_ROOT,
   '.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs',
