@@ -297,40 +297,53 @@ function main() {
   // other skill compares its registry to a map that never mentions it and
   // false-fails. For every non-canonical skill the per-skill drift-guard test
   // (4a) is the authoritative guard, so 4b explicitly skips them.
-  if (basename !== CANONICAL_BASENAME) {
-    info(`4b: dynamic cross-check is canonical-only; the drift-guard test (4a) is authoritative for "${basename}" — skipping`);
-  } else if (registry && Array.isArray(registry.modes)) {
-    const expected = {};
+  // The drift-guard test (4a) is the authoritative parity assertion. This dynamic
+  // check additionally surfaces the inert-routing gap: a lexical mode
+  // whose legacyAdvisorId is absent from the advisor's hardcoded map will not route
+  // until it is wired into the Python/TS projection maps + a per-skill drift-guard
+  // (the advisor-sync step). For the canonical skill it asserts exact equality.
+  const lexicalIds = {};
+  if (registry && Array.isArray(registry.modes)) {
     for (const mode of registry.modes) {
       const routing = mode.advisorRouting;
       if (routing && routing.routingClass === 'lexical' && routing.legacyAdvisorId) {
-        expected[routing.legacyAdvisorId] = mode.workflowMode;
+        lexicalIds[routing.legacyAdvisorId] = mode.workflowMode;
       }
     }
-    if (Object.keys(expected).length === 0) {
-      info('4b: registry declares no lexical-class modes; skipping dynamic cross-check');
-    } else if (!fs.existsSync(path.resolve(ADVISOR_SCRIPT))) {
-      warn(`4b: advisor script not found at ${ADVISOR_SCRIPT}; skipping dynamic cross-check`);
-    } else {
-      let dumped = null;
-      try {
-        const raw = execFileSync('python3', [ADVISOR_SCRIPT, '--dump-routing-maps'], {
-          encoding: 'utf8',
-          stdio: ['ignore', 'pipe', 'ignore'],
-          timeout: 15000,
-        });
-        dumped = JSON.parse(raw).DEEP_ROUTING_MODE_BY_KEY || {};
-      } catch (e) {
-        warn(`4b: could not dump advisor routing maps (${e.message.split('\n')[0]}); skipping dynamic cross-check`);
-      }
-      if (dumped) {
-        const expectedKeys = Object.keys(expected).sort();
+  }
+  if (Object.keys(lexicalIds).length === 0) {
+    info('4b: registry declares no lexical modes; nothing to wire into the advisor');
+  } else if (!fs.existsSync(path.resolve(ADVISOR_SCRIPT))) {
+    warn(`4b: advisor script not found at ${ADVISOR_SCRIPT}; skipping advisor coverage check`);
+  } else {
+    let dumped = null;
+    try {
+      const raw = execFileSync('python3', [ADVISOR_SCRIPT, '--dump-routing-maps'], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+        timeout: 15000,
+      });
+      dumped = JSON.parse(raw).DEEP_ROUTING_MODE_BY_KEY || {};
+    } catch (e) {
+      warn(`4b: could not dump advisor routing maps (${e.message.split('\n')[0]}); skipping advisor coverage check`);
+    }
+    if (dumped) {
+      // Only the canonical skill is expected to fully own the live global map.
+      if (basename === CANONICAL_BASENAME) {
+        const expectedKeys = Object.keys(lexicalIds).sort();
         const dumpedKeys = Object.keys(dumped).sort();
-        let match = expectedKeys.length === dumpedKeys.length && expectedKeys.every((k) => dumped[k] === expected[k]);
+        const match = expectedKeys.length === dumpedKeys.length && expectedKeys.every((k) => dumped[k] === lexicalIds[k]);
         if (match) {
           pass(`4b: registry lexical projection matches advisor DEEP_ROUTING_MODE_BY_KEY (${expectedKeys.length} keys)`);
         } else {
-          fail(`4b: registry lexical projection ${JSON.stringify(expected)} != advisor DEEP_ROUTING_MODE_BY_KEY ${JSON.stringify(dumped)}`);
+          fail(`4b: registry lexical projection ${JSON.stringify(lexicalIds)} != advisor DEEP_ROUTING_MODE_BY_KEY ${JSON.stringify(dumped)}`);
+        }
+      } else {
+        const inert = Object.keys(lexicalIds).filter((id) => !(id in dumped));
+        if (inert.length === 0) {
+          pass(`4c: all ${Object.keys(lexicalIds).length} lexical mode(s) are wired into the advisor projection map`);
+        } else {
+          warn(`4c: ${inert.length} lexical mode(s) are INERT — legacyAdvisorId(s) [${inert.join(', ')}] are absent from the advisor's routing map; wire them into the Python/TS maps + a per-skill drift-guard or they will not route`);
         }
       }
     }
