@@ -31,8 +31,8 @@ How to put real-world shipped UI to work as judgment input without letting it tu
 
 ### Source Of The References
 
-- **Mobbin** (`mobbin.*` via Code Mode): real iOS, Android, and web app screens and flows. Tools resolve under names like `mobbin_quick_search`, `mobbin_get_app_screens`, `mobbin_get_app_flows`, and `mobbin_get_screen_detail`.
-- **Refero** (`refero.*` via Code Mode): a large library of shipped UI screens, searchable by pattern, product, and element.
+- **Mobbin** (`mobbin.*` via Code Mode): real iOS and web app screens and flows. Two tools, `mobbin_search_screens` and `mobbin_search_flows`, take a natural-language `query` and a required `platform` of `ios` or `web`. Each result carries a `mobbin_url` worth citing back to the user.
+- **Refero** (`refero.*` via Code Mode): shipped UI screens, flows, and styles. Tools include `refero_search_screens`, `refero_get_similar_screens`, `refero_get_screen`, `refero_get_screen_image`, `refero_search_flows`, `refero_get_flow`, `refero_search_styles`, and `refero_get_style`. Search styles for visual direction, screens for concrete UI, each with a `platform` of `ios` or `web`.
 - Both are read live through Code Mode and need the user's own paid subscription and OAuth. Nothing is cached or copied into the skill, which keeps it Apache-2.0 only with no new third-party notice burden.
 - Both are OPTIONAL and never required. When no real-world reference fits, or the subscription is not connected, the free-axis anti-default process in `design_principles.md` governs exactly as before.
 
@@ -41,7 +41,7 @@ How to put real-world shipped UI to work as judgment input without letting it tu
 These are Code Mode (UTCP) manuals, not in-process tools. Discover first, then call:
 
 1. `search_tools("mobbin app screens")` or `tool_info(...)` to resolve the exact tool name and arguments.
-2. `call_tool_chain([...])` with the resolved `mobbin.mobbin_*` or `refero.refero_*` call.
+2. `call_tool_chain([...])` with the resolved call, for example `mobbin.mobbin_search_screens({ query, platform })` or `refero.refero_refero_search_screens({ query, platform })`.
 
 Newly-wired manuals load at Code Mode startup, so a reference that does not resolve usually means the session predates the wiring or the subscription is not yet authorized.
 

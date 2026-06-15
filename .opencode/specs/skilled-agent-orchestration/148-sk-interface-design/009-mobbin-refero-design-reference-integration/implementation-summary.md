@@ -101,7 +101,8 @@ The config was validated by JSON parse and a `POST` liveness probe to each endpo
 | Endpoint liveness (Mobbin, Refero) | PASS (both HTTP 401, auth required) |
 | `package_skill --check` (sk-interface-design) | PASS |
 | Em-dash sweep + SKILL.md word count | PASS (clean, 1964 words) |
-| Live `mobbin.*` / `refero.*` resolution in Code Mode | PENDING (user OAuth plus Code Mode reload) |
+| Live `mobbin.*` / `refero.*` resolution in Code Mode | PASS (all 10 tools resolve with full schemas after reload + OAuth) |
+| First live tool invocation via `call_tool_chain` | Dropped the Code Mode connection; bridge-stability retry pending |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -109,7 +110,7 @@ The config was validated by JSON parse and a `POST` liveness probe to each endpo
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Live tool resolution is user-gated.** The manuals are installed and valid, but Code Mode loads stdio manuals at startup, so `mobbin.*` / `refero.*` resolve only after the user completes the browser OAuth and reloads Code Mode.
+1. **Tool resolution confirmed; live invocation needs a retry.** After the Code Mode reload and OAuth, all 10 `mobbin.*` / `refero.*` tools resolve with full schemas, which means the bridges connected and auth succeeded. The first live `call_tool_chain` invocation then closed the Code Mode connection, which points at `mcp-remote` bridge stability under an actual call rather than at the wiring. Retry after a fresh `/mcp` reconnect, isolating one tool at a time.
 2. **Refero auth model assumed to be OAuth.** Both manuals use plain `mcp-remote` OAuth. If Refero turns out to require a static Bearer, add `--header "Authorization: Bearer ${REFERO_TOKEN}"` to its args and a `REFERO_TOKEN` entry in `.env`.
 3. **No reuse-ground path.** By design, these references are critique-against only; there is no token or component reuse from them (that path stays with `mcp-open-design` design systems).
 <!-- /ANCHOR:limitations -->
