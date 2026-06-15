@@ -96,4 +96,4 @@ React and Next.js implementation performance (async waterfalls, bundle size, re-
 ## 9. RELATED RESOURCES
 
 - [design_principles.md](./design_principles.md) sets the aesthetic direction this reference gates.
-- [design_inventory.md](./design_inventory.md) names the expected default look to deviate from.
+- [design_inventory.md](../design-grounding/design_inventory.md) names the expected default look to deviate from.

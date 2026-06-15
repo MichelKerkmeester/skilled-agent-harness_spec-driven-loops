@@ -36,7 +36,7 @@ The responsive floor sets the viewport meta tag, designs from mobile up, avoids 
 
 | File | Layer | Role |
 |---|---|---|
-| `references/ux_quality_reference.md` | Shared | Defines the full authored quality floor across accessibility, motion, touch, responsive, forms, and data visualization, plus the React-performance deferral. |
+| `references/design-process/ux_quality_reference.md` | Shared | Defines the full authored quality floor across accessibility, motion, touch, responsive, forms, and data visualization, plus the React-performance deferral. |
 
 ### Validation And Tests
 

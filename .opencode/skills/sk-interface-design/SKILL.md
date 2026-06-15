@@ -13,7 +13,7 @@ license: Apache-2.0; see LICENSE.txt
 
 # Interface Design (sk-interface-design)
 
-Approach UI work as the design lead at a studio known for visual identities that could not be mistaken for anyone else's. Make deliberate, opinionated choices specific to the brief, take one justified aesthetic risk, and reject anything that reads as a templated default. Full guidance lives in [`references/design_principles.md`](references/design_principles.md). Vendored from Anthropic's `frontend-design` skill (Apache-2.0).
+Approach UI work as the design lead at a studio known for visual identities that could not be mistaken for anyone else's. Make deliberate, opinionated choices specific to the brief, take one justified aesthetic risk, and reject anything that reads as a templated default. Full guidance lives in [`references/design-process/design_principles.md`](references/design-process/design_principles.md). Vendored from Anthropic's `frontend-design` skill (Apache-2.0).
 
 ---
 
@@ -66,23 +66,23 @@ DESIGN TASK
 
 | Level | When to Load | Resource |
 | ----- | ------------ | -------- |
-| ALWAYS | Any design task | `references/design_principles.md` (palette, type, structure, motion, restraint) |
+| ALWAYS | Any design task | `references/design-process/design_principles.md` (palette, type, structure, motion, restraint) |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
-| CONDITIONAL | Producing two or more design directions at once | `references/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
-| CONDITIONAL | Verifying the quality floor / charts | `references/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
-| CONDITIONAL | Producing or iterating on real UI (canvas, repo recreation, code-bound) | `references/claude_design_parity.md` (ground in a system, reuse before generating, fidelity check, handoff) |
+| CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
+| CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
+| CONDITIONAL | Producing or iterating on real UI (canvas, repo recreation, code-bound) | `references/design-process/claude_design_parity.md` (ground in a system, reuse before generating, fidelity check, handoff) |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | An Open Design system via `mcp-open-design` (`od mcp` get_file/search_files, or `od tools design-systems read`), when that app is installed |
-| ON_DEMAND | Need the real-world default for a category to name and deviate from | A real shipped-UI reference via Mobbin or Refero through Code Mode (`mobbin.*` / `refero.*`), when those subscriptions are connected. See `references/design_references_mcp.md` |
+| ON_DEMAND | Need the real-world default for a category to name and deviate from | A real shipped-UI reference via Mobbin or Refero through Code Mode (`mobbin.*` / `refero.*`), when those subscriptions are connected. See `references/design-grounding/design_references_mcp.md` |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
 ### Smart Router Pseudocode
 
 ```python
 # Route a design task to the right guidance.
-# 1) Always load references/design_principles.md.
+# 1) Always load references/design-process/design_principles.md.
 # 2) If the brief fixes the visual direction, follow the brief verbatim and skip default-avoidance.
 # 3) If axes are free, apply Sections 2-5 (subject, principles, process, restraint).
-# 3b) If the brief asks for two or more directions, load references/variation_diversity.md and run the seed-of-thought debias so the set is not N copies of the median.
+# 3b) If the brief asks for two or more directions, load references/design-process/variation_diversity.md and run the seed-of-thought debias so the set is not N copies of the median.
 # 4) If the task writes interface copy, also apply Section 6 (writing).
 # 5) Hand implementation to sk-code for the detected web surface. This skill owns the look, not the build mechanics.
 ```
@@ -114,7 +114,7 @@ STEP 4: Self-critique
        └─ Screenshot if possible, remove one accessory, confirm the quality floor
 ```
 
-Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full calibration, two-pass detail, and writing rules are in [`references/design_principles.md`](references/design_principles.md).
+Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full calibration, two-pass detail, and writing rules are in [`references/design-process/design_principles.md`](references/design-process/design_principles.md).
 
 ### Quality Floor
 
@@ -131,7 +131,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 3. **ALWAYS critique the plan against the AI-default looks** before writing code, and revise anything generic with a stated reason.
 4. **ALWAYS treat copy as design material**, with active voice, end-user vocabulary, and consistent action names across a flow.
 5. **ALWAYS meet the quality floor**: responsive, visible focus, reduced-motion respected.
-6. **ALWAYS debias multiple directions with the seed of thought** from `references/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
+6. **ALWAYS debias multiple directions with the seed of thought** from `references/design-process/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
 
 ### NEVER
 
@@ -151,14 +151,14 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 
 ### Core References
 
-- [`references/design_principles.md`](references/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
-- [`references/ux_quality_reference.md`](references/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
-- [`references/design_inventory.md`](references/design_inventory.md) - How to use a real design system (via `mcp-open-design`, when installed) as either reuse-ground or the named default to critique against. Never a chooser.
-- [`references/design_references_mcp.md`](references/design_references_mcp.md) - How to read real-world shipped UI live via Mobbin or Refero (Code Mode) to name the real-world default and deviate from it. Critique-against only, one reference, never a chooser, never copied.
-- [`references/mobbin_tools.md`](references/mobbin_tools.md) - Mobbin MCP tool catalog (search_screens, search_flows): arguments, the verified Code Mode call convention, result shape, troubleshooting.
-- [`references/refero_tools.md`](references/refero_tools.md) - Refero MCP tool catalog (8 tools across styles, screens, flows): the styles-first model, call convention, result shape, troubleshooting.
-- [`references/variation_diversity.md`](references/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
-- [`references/claude_design_parity.md`](references/claude_design_parity.md) - The shared cross-skill loop with `mcp-open-design`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
+- [`references/design-process/design_principles.md`](references/design-process/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
+- [`references/design-process/ux_quality_reference.md`](references/design-process/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
+- [`references/design-grounding/design_inventory.md`](references/design-grounding/design_inventory.md) - How to use a real design system (via `mcp-open-design`, when installed) as either reuse-ground or the named default to critique against. Never a chooser.
+- [`references/design-grounding/design_references_mcp.md`](references/design-grounding/design_references_mcp.md) - How to read real-world shipped UI live via Mobbin or Refero (Code Mode) to name the real-world default and deviate from it. Critique-against only, one reference, never a chooser, never copied.
+- [`references/mcp-tooling/mobbin_tools.md`](references/mcp-tooling/mobbin_tools.md) - Mobbin MCP tool catalog (search_screens, search_flows): arguments, the verified Code Mode call convention, result shape, troubleshooting.
+- [`references/mcp-tooling/refero_tools.md`](references/mcp-tooling/refero_tools.md) - Refero MCP tool catalog (8 tools across styles, screens, flows): the styles-first model, call convention, result shape, troubleshooting.
+- [`references/design-process/variation_diversity.md`](references/design-process/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
+- [`references/design-process/claude_design_parity.md`](references/design-process/claude_design_parity.md) - The shared cross-skill loop with `mcp-open-design`: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
 ### Feature Catalog
@@ -173,9 +173,9 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 
 - Load `design_principles.md` on every design task. It is the authority for palette, type, structure, motion, and copy.
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
-- `references/ux_quality_reference.md` is the objective quality-floor gate; apply it after the direction is set.
+- `references/design-process/ux_quality_reference.md` is the objective quality-floor gate; apply it after the direction is set.
 - When the Open Design app is installed, `mcp-open-design` is an OPTIONAL source of real design systems to ground in or to name the default to deviate from, never a required step and never a style chooser. `design_principles.md` stays the authority.
-- When the Mobbin or Refero subscriptions are connected, they are an OPTIONAL real-world critique-against reference (via Code Mode) for naming the category default to deviate from, never a chooser and never copied. `references/design_references_mcp.md` owns the rules and `design_principles.md` stays the authority.
+- When the Mobbin or Refero subscriptions are connected, they are an OPTIONAL real-world critique-against reference (via Code Mode) for naming the category default to deviate from, never a chooser and never copied. `references/design-grounding/design_references_mcp.md` owns the rules and `design_principles.md` stays the authority.
 
 ---
 
@@ -199,16 +199,16 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
 - **`mcp-open-design`** is the optional transport to a real Open Design design system when that app is installed, for grounding and reuse through the shared parity loop. This skill owns the judgment, that skill owns the transport.
 - **`mcp-figma`** is the sibling transport to Figma Desktop. This skill's judgment applies whenever a Figma read or export feeds a design decision, the same boundary it holds with `mcp-open-design`.
-- **Mobbin and Refero** (via Code Mode, `mobbin.*` / `refero.*`) are optional real-world UI reference libraries for naming the category's real-world default so a design can deviate from it deliberately. Read live, one reference, never a chooser, never copied. `references/design_references_mcp.md` owns the discipline.
+- **Mobbin and Refero** (via Code Mode, `mobbin.*` / `refero.*`) are optional real-world UI reference libraries for naming the category's real-world default so a design can deviate from it deliberately. Read live, one reference, never a chooser, never copied. `references/design-grounding/design_references_mcp.md` owns the discipline.
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/design_principles.md`. **Conditional**: `sk-code` web-surface references for the target stack during implementation.
+**Required**: `references/design-process/design_principles.md`. **Conditional**: `sk-code` web-surface references for the target stack during implementation.
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) loads `references/design_principles.md` for every design task. Hand implementation to `sk-code`, use `mcp-chrome-devtools` for screenshot-based self-critique, and reach for `system-spec-kit` when the work needs packet documentation.
+The router (Section 2) loads `references/design-process/design_principles.md` for every design task. Hand implementation to `sk-code`, use `mcp-chrome-devtools` for screenshot-based self-critique, and reach for `system-spec-kit` when the work needs packet documentation.
 
 Upstream: vendored from [anthropics/skills/skills/frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design) under Apache-2.0. `LICENSE.txt` carries the full terms.

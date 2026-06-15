@@ -26,10 +26,10 @@ Operators run the exact prompt and command sequence for `ID-003` and confirm the
 - Objective: Confirm a built UI is graded against the `ux_quality_reference.md` floor across contrast, focus, reduced motion, touch targets, and responsive behavior.
 - Real user request: `Before I ship this landing page, tell me what accessibility or quality issues it has.`
 - Prompt: `Check this finished landing page against the accessibility and quality floor and tell me what fails before I ship.`
-- Expected execution process: Supply a real built UI as the fixture (for example a built page like `.opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/mimo/01-meridian-roasters.html`, or any rendered HTML the operator provides) so the gate has something concrete to grade. Load `references/ux_quality_reference.md`, apply it as the pass/fail gate after the direction is set, and report each failing rule across the five floor areas with a concrete fix.
+- Expected execution process: Supply a real built UI as the fixture (for example a built page like `.opencode/specs/skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test/designs/mimo/01-meridian-roasters.html`, or any rendered HTML the operator provides) so the gate has something concrete to grade. Load `references/design-process/ux_quality_reference.md`, apply it as the pass/fail gate after the direction is set, and report each failing rule across the five floor areas with a concrete fix.
 - Expected signals: Step 1: the five floor areas (contrast, focus, reduced motion, touch targets, responsive) are each evaluated; Step 2: each failure names the broken rule; Step 3: each failure includes a specific fix
 - Desired user-visible outcome: a pass/fail gate report keyed to the `ux_quality_reference.md` rules, naming each failing rule with the specific floor it breaks and how to fix it.
-- Pass/fail: PASS if the report evaluates all five floor areas and cites `references/ux_quality_reference.md` for each finding; FAIL if any floor area is skipped or a finding is given with no rule citation
+- Pass/fail: PASS if the report evaluates all five floor areas and cites `references/design-process/ux_quality_reference.md` for each finding; FAIL if any floor area is skipped or a finding is given with no rule citation
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `ID-003` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ID-003 | Quality-floor gate on a built UI | Confirm a built UI is graded against the ux_quality_reference.md floor across contrast, focus, reduced motion, touch targets, and responsive behavior. | `Check this finished landing page against the accessibility and quality floor and tell me what fails before I ship.` | bash: rg -n "Color contrast" references/ux_quality_reference.md -> agent: grade the built UI against the floor -> bash: rg -n "quality floor" SKILL.md | Step 1: the five floor areas are each evaluated; Step 2: each failure names the broken rule; Step 3: each failure includes a specific fix | Terminal transcript, the gate report, and the per-area pass/fail list | PASS if the report evaluates all five floor areas and cites references/ux_quality_reference.md for each finding; FAIL if any floor area is skipped or a finding lacks a rule citation | 1. Re-read references/ux_quality_reference.md Sections 1-4; 2. Confirm SKILL.md Quality Floor note was loaded; 3. Re-run the gate covering all five floor areas |
+| ID-003 | Quality-floor gate on a built UI | Confirm a built UI is graded against the ux_quality_reference.md floor across contrast, focus, reduced motion, touch targets, and responsive behavior. | `Check this finished landing page against the accessibility and quality floor and tell me what fails before I ship.` | bash: rg -n "Color contrast" references/design-process/ux_quality_reference.md -> agent: grade the built UI against the floor -> bash: rg -n "quality floor" SKILL.md | Step 1: the five floor areas are each evaluated; Step 2: each failure names the broken rule; Step 3: each failure includes a specific fix | Terminal transcript, the gate report, and the per-area pass/fail list | PASS if the report evaluates all five floor areas and cites references/design-process/ux_quality_reference.md for each finding; FAIL if any floor area is skipped or a finding lacks a rule citation | 1. Re-read references/design-process/ux_quality_reference.md Sections 1-4; 2. Confirm SKILL.md Quality Floor note was loaded; 3. Re-run the gate covering all five floor areas |
 
 ### Optional Supplemental Checks
 
@@ -67,7 +67,7 @@ If the UI under test includes charts, also apply the data-visualization rules fr
 | File | Role |
 |---|---|
 | `../../SKILL.md` | The Quality Floor note and ALWAYS rule 5 |
-| `../../references/ux_quality_reference.md` | The objective quality floor: accessibility, motion, touch, responsive, forms, charts |
+| `../../references/design-process/ux_quality_reference.md` | The objective quality floor: accessibility, motion, touch, responsive, forms, charts |
 
 ---
 

@@ -33,7 +33,7 @@ Complexity is matched to the vision, so a maximalist direction plans elaborate e
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Shared | Section 3 process flow lists the color, type, layout, and signature parts of the token system. |
-| `references/design_principles.md` | Shared | Section 4 defines the first pass and the full token-system contract. |
+| `references/design-process/design_principles.md` | Shared | Section 4 defines the first pass and the full token-system contract. |
 
 ### Validation And Tests
 

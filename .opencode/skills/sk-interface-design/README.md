@@ -36,7 +36,7 @@ AI-generated UI clusters around a handful of default looks that appear regardles
 
 The skill owns aesthetic direction, not implementation. It routes a design task through a two-pass process: ground the subject, brainstorm a compact token system (4-6 named colors, a display and body face, a layout concept, one signature element), then critique that plan against the known AI-default looks and revise anything generic with a stated reason. Only then does code get written, deriving every choice from the revised plan. It also carries interface-writing rules, because copy can make a design feel as templated as the visuals. Implementation is handed to `sk-code`, which builds and verifies against the detected web surface.
 
-This is vendored from Anthropic's `frontend-design` skill (Apache-2.0). The full design guidance lives verbatim in `references/design_principles.md`, and the `SKILL.md` is a lean house-template router over it.
+This is vendored from Anthropic's `frontend-design` skill (Apache-2.0). The full design guidance lives verbatim in `references/design-process/design_principles.md`, and the `SKILL.md` is a lean house-template router over it.
 
 ---
 
@@ -68,7 +68,7 @@ If yes, it is a default, not a choice. Revise it and say what changed and why.
 Then build from the revised plan and hand implementation to sk-code.
 ```
 
-Full guidance: [`references/design_principles.md`](./references/design_principles.md).
+Full guidance: [`references/design-process/design_principles.md`](./references/design-process/design_principles.md).
 
 ---
 
@@ -88,11 +88,11 @@ Words exist to make an interface easier to use. The skill writes from the end us
 
 ### Producing Real UI
 
-When the work moves past a plan into a real render, on a recreated repo, an Open Design generation run, or code, the skill follows a shared parity loop with `mcp-open-design`: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/claude_design_parity.md`](./references/claude_design_parity.md).
+When the work moves past a plan into a real render, on a recreated repo, an Open Design generation run, or code, the skill follows a shared parity loop with `mcp-open-design`: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/design-process/claude_design_parity.md`](./references/design-process/claude_design_parity.md).
 
 ### Where The Detail Lives
 
-`references/design_principles.md` holds the verbatim guidance: grounding, the full design principles, the two-pass process with the AI-default calibration, restraint and self-critique, and interface writing.
+`references/design-process/design_principles.md` holds the verbatim guidance: grounding, the full design principles, the two-pass process with the AI-default calibration, restraint and self-critique, and interface writing.
 
 ---
 
@@ -139,7 +139,7 @@ A: The brief wins, verbatim, even when it asks for one of the default looks. Def
 
 **Q: Where did this come from?**
 
-A: It is vendored from Anthropic's official `frontend-design` skill under Apache-2.0. `LICENSE.txt` carries the full terms and attribution, and the guidance is preserved verbatim in `references/design_principles.md`.
+A: It is vendored from Anthropic's official `frontend-design` skill under Apache-2.0. `LICENSE.txt` carries the full terms and attribution, and the guidance is preserved verbatim in `references/design-process/design_principles.md`.
 
 ---
 
@@ -149,7 +149,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 |---|---|
 | Skill structure | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-interface-design/` reports the skill valid |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-interface-design/README.md --type readme` reports zero issues |
-| Reference structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-interface-design/references/design_principles.md --type reference` reports zero issues |
+| Reference structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-interface-design/references/design-process/design_principles.md --type reference` reports zero issues |
 | Advisor discovery | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"make this landing page look distinctive"}' --warm-only --format json` lists `sk-interface-design` |
 
 ---
@@ -159,9 +159,9 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (house template) |
-| [`references/design_principles.md`](./references/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
-| [`references/claude_design_parity.md`](./references/claude_design_parity.md) | The shared parity loop with `mcp-open-design`: ground in a system, reuse before generating, fidelity check, handoff |
-| [`references/variation_diversity.md`](./references/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
+| [`references/design-process/design_principles.md`](./references/design-process/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
+| [`references/design-process/claude_design_parity.md`](./references/design-process/claude_design_parity.md) | The shared parity loop with `mcp-open-design`: ground in a system, reuse before generating, fidelity check, handoff |
+| [`references/design-process/variation_diversity.md`](./references/design-process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
 | [`mcp-open-design`](../mcp-open-design/README.md) | Optional transport to a real Open Design design system for grounding and reuse, through the shared parity loop |

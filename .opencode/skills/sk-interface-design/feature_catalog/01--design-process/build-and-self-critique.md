@@ -37,8 +37,8 @@ The self-critique spends boldness in one place: the signature element stays the 
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Shared | Section 3 process flow covers building from the revised plan and the screenshot-based self-critique. |
-| `references/design_principles.md` | Shared | Section 4 covers CSS specificity during the build, and Section 5 covers restraint and self-critique. |
-| `references/ux_quality_reference.md` | Shared | Supplies the quality floor confirmed during the self-critique. |
+| `references/design-process/design_principles.md` | Shared | Section 4 covers CSS specificity during the build, and Section 5 covers restraint and self-critique. |
+| `references/design-process/ux_quality_reference.md` | Shared | Supplies the quality floor confirmed during the self-critique. |
 
 ### Validation And Tests
 

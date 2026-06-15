@@ -67,7 +67,7 @@ If the primary run passes, repeat with a borderline request that mentions a UI i
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Section 1 When NOT to Use and the integration boundary with sk-code |
-| `../../references/design_principles.md` | Confirms the skill owns the look, not the build mechanics |
+| `../../references/design-process/design_principles.md` | Confirms the skill owns the look, not the build mechanics |
 
 ---
 

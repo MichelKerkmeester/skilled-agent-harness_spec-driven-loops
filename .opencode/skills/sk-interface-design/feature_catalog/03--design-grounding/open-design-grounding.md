@@ -36,9 +36,9 @@ Five rules hold. Exactly one system is resolved from the subject and brief, neve
 
 | File | Layer | Role |
 |---|---|---|
-| `references/design_inventory.md` | Shared | Defines the reuse-ground and critique-against uses, the process plug-in, and the no-chooser hard rules over a live-read Open Design system. |
-| `references/claude_design_parity.md` | Shared | Sections 2 and 3 own the intake and reuse-before-generate steps where a live Open Design system grounds the work. |
-| `references/design_principles.md` | Shared | Section 4 owns the authority that the grounding defers to during the critique. |
+| `references/design-grounding/design_inventory.md` | Shared | Defines the reuse-ground and critique-against uses, the process plug-in, and the no-chooser hard rules over a live-read Open Design system. |
+| `references/design-process/claude_design_parity.md` | Shared | Sections 2 and 3 own the intake and reuse-before-generate steps where a live Open Design system grounds the work. |
+| `references/design-process/design_principles.md` | Shared | Section 4 owns the authority that the grounding defers to during the critique. |
 
 ### Validation And Tests
 

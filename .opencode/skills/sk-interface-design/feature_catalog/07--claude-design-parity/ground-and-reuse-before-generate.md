@@ -16,7 +16,7 @@ trigger_phrases:
 
 Captures the design-context snapshot and builds from a present design system before authoring anything net-new.
 
-This is the grounding half of the Claude Design parity loop and its strongest anti-default move. It captures what already constrains the work, then prefers an existing system component or token over inventing one, so output stays grounded in a real system rather than drifting into AI defaults. The full protocol lives in `references/claude_design_parity.md`, and this entry is the catalog summary rather than a second copy of it.
+This is the grounding half of the Claude Design parity loop and its strongest anti-default move. It captures what already constrains the work, then prefers an existing system component or token over inventing one, so output stays grounded in a real system rather than drifting into AI defaults. The full protocol lives in `references/design-process/claude_design_parity.md`, and this entry is the catalog summary rather than a second copy of it.
 
 ## 2. HOW IT WORKS
 
@@ -36,15 +36,15 @@ When a design system is present, the loop builds from it instead of inventing. B
 
 | File | Layer | Role |
 |---|---|---|
-| `references/claude_design_parity.md` | Shared | Sections 2 and 3 define the design-context snapshot intake and the design-system adherence plus reuse-before-generate move. |
-| `references/design_principles.md` | Shared | Step 0 grounding that the snapshot draws the subject, audience, and page job from. |
+| `references/design-process/claude_design_parity.md` | Shared | Sections 2 and 3 define the design-context snapshot intake and the design-system adherence plus reuse-before-generate move. |
+| `references/design-process/design_principles.md` | Shared | Step 0 grounding that the snapshot draws the subject, audience, and page job from. |
 | `SKILL.md` | Shared | Section 2 resource-loading row and Section 5 Core References entry load the parity protocol when producing or iterating on real UI. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `references/claude_design_parity.md` | Manual playbook | Section 8 guardrails assert reuse stays anti-default and the snapshot never becomes a style chooser. |
+| `references/design-process/claude_design_parity.md` | Manual playbook | Section 8 guardrails assert reuse stays anti-default and the snapshot never becomes a style chooser. |
 | `SKILL.md` | Manual playbook | Section 2 resource-loading table requires the protocol to load for canvas, repo recreation, and code-bound work. |
 
 ---

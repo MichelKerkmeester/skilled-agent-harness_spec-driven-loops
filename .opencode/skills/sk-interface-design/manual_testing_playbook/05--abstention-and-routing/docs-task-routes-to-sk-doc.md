@@ -67,7 +67,7 @@ If the primary run passes, repeat with a request that asks to "make the docs loo
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Section 1 When NOT to Use routing documentation work to sk-doc |
-| `../../references/design_principles.md` | Confirms the skill scope is interface look, not prose authoring |
+| `../../references/design-process/design_principles.md` | Confirms the skill scope is interface look, not prose authoring |
 
 ---
 

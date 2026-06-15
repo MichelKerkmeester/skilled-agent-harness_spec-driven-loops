@@ -16,7 +16,7 @@ trigger_phrases:
 
 Keeps generated source separate, emits an optional handoff manifest, and holds the line against style presets and scope the protocol refuses to add.
 
-This is the closing half of the Claude Design parity loop, where a verified result is handed off cleanly and where the protocol states what it deliberately does not become. It keeps the loop from collapsing into a templated generator, which is the exact failure mode the skill exists to resist. The boundary, manifest, and guardrails are defined in `references/claude_design_parity.md`, and this entry is the catalog summary.
+This is the closing half of the Claude Design parity loop, where a verified result is handed off cleanly and where the protocol states what it deliberately does not become. It keeps the loop from collapsing into a templated generator, which is the exact failure mode the skill exists to resist. The boundary, manifest, and guardrails are defined in `references/design-process/claude_design_parity.md`, and this entry is the catalog summary.
 
 ## 2. HOW IT WORKS
 
@@ -36,15 +36,15 @@ For open-ended visual work, the loop can sketch two or three brief-specific dire
 
 | File | Layer | Role |
 |---|---|---|
-| `references/claude_design_parity.md` | Shared | Sections 6, 7, and 8 define the generated-versus-presentational boundary and handoff manifest, the guarded direction gate, and the guardrails the protocol refuses to cross. |
-| `references/design_principles.md` | Shared | Owns the anti-default mandate the guarded direction gate and the no-presets guardrail enforce. |
+| `references/design-process/claude_design_parity.md` | Shared | Sections 6, 7, and 8 define the generated-versus-presentational boundary and handoff manifest, the guarded direction gate, and the guardrails the protocol refuses to cross. |
+| `references/design-process/design_principles.md` | Shared | Owns the anti-default mandate the guarded direction gate and the no-presets guardrail enforce. |
 | `SKILL.md` | Shared | Section 7 names `sk-code` as the implementation handoff target the manifest's next steps route to. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `references/claude_design_parity.md` | Manual playbook | Section 8 guardrails enumerate the presets, exports, and scope the loop must not ship. |
+| `references/design-process/claude_design_parity.md` | Manual playbook | Section 8 guardrails enumerate the presets, exports, and scope the loop must not ship. |
 | `SKILL.md` | Manual playbook | Section 4 NEVER rules forbid shipping a templated default on a free axis. |
 
 ---

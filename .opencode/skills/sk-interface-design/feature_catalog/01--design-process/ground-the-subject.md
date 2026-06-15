@@ -33,7 +33,7 @@ Once the subject is named, distinctive direction is drawn from the subject's own
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Shared | Defines STEP 0 grounding in the phase detection and process flow, and the ground-the-subject ALWAYS rule. |
-| `references/design_principles.md` | Shared | Section 2 carries the full grounding guidance, including pinning the subject when the brief does not. |
+| `references/design-process/design_principles.md` | Shared | Section 2 carries the full grounding guidance, including pinning the subject when the brief does not. |
 
 ### Validation And Tests
 

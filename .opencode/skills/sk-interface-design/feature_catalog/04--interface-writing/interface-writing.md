@@ -32,7 +32,7 @@ Active voice is the default, so a control says exactly what happens when it is u
 
 | File | Layer | Role |
 |---|---|---|
-| `references/design_principles.md` | Shared | Section 6 carries the full writing-in-design guidance. |
+| `references/design-process/design_principles.md` | Shared | Section 6 carries the full writing-in-design guidance. |
 | `SKILL.md` | Shared | Section 4 ALWAYS rule requires treating copy as design material with active voice and consistent action names. |
 
 ### Validation And Tests

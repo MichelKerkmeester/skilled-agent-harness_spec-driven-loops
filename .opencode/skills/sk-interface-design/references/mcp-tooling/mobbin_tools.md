@@ -84,5 +84,5 @@ Each tool returns the MCP **content array**. The FIRST block is the parsed data 
 
 ## 8. RELATED RESOURCES
 
-- [`design_references_mcp.md`](./design_references_mcp.md) - the critique-against discipline that governs WHEN and HOW to use these tools (one reference, read live, never copy, grounding stays upstream).
+- [`design_references_mcp.md`](../design-grounding/design_references_mcp.md) - the critique-against discipline that governs WHEN and HOW to use these tools (one reference, read live, never copy, grounding stays upstream).
 - [`refero_tools.md`](./refero_tools.md) - the sibling real-world reference MCP (styles, screens, flows).

@@ -16,7 +16,7 @@ trigger_phrases:
 
 Checks the real render against the quality floor and anti-default critique, then scopes revisions with an element-target grammar.
 
-This is the iterate-against-a-real-render half of the Claude Design parity loop. It closes the gap where "done" used to mean compiles plus responsive rather than matches-intent, by judging an actual render and routing feedback precisely instead of vaguely reprompting. The mechanism and pass bar live in `references/claude_design_parity.md`, and this entry summarizes the capability rather than restating the protocol.
+This is the iterate-against-a-real-render half of the Claude Design parity loop. It closes the gap where "done" used to mean compiles plus responsive rather than matches-intent, by judging an actual render and routing feedback precisely instead of vaguely reprompting. The mechanism and pass bar live in `references/design-process/claude_design_parity.md`, and this entry summarizes the capability rather than restating the protocol.
 
 ## 2. HOW IT WORKS
 
@@ -36,15 +36,15 @@ Feedback is made precise and auditable instead of a vague reprompt. A revision n
 
 | File | Layer | Role |
 |---|---|---|
-| `references/claude_design_parity.md` | Shared | Sections 4 and 5 define the element-target revision grammar and the fidelity check, including the mechanism, pass bar, and the pixel-diff caveat. |
-| `references/ux_quality_reference.md` | Shared | The objective floor the fidelity check gates the render on. |
-| `references/design_principles.md` | Shared | The anti-default critique the render must survive, and the re-plan target for broad feedback. |
+| `references/design-process/claude_design_parity.md` | Shared | Sections 4 and 5 define the element-target revision grammar and the fidelity check, including the mechanism, pass bar, and the pixel-diff caveat. |
+| `references/design-process/ux_quality_reference.md` | Shared | The objective floor the fidelity check gates the render on. |
+| `references/design-process/design_principles.md` | Shared | The anti-default critique the render must survive, and the re-plan target for broad feedback. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `references/claude_design_parity.md` | Manual playbook | Section 5 caveat requires judgment over a render and forbids claiming completion from a screenshot alone. |
+| `references/design-process/claude_design_parity.md` | Manual playbook | Section 5 caveat requires judgment over a render and forbids claiming completion from a screenshot alone. |
 | `SKILL.md` | Manual playbook | Section 6 success criteria require the quality floor to hold on the built result. |
 
 ---

@@ -35,8 +35,8 @@ When the work runs through an Open Design generation run, this boundary is opera
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Shared | Section 2 router hands implementation to sk-code, and Section 7 names the related skills and the boundary that this skill owns the look, not the build. |
-| `references/design_principles.md` | Shared | Section 5 covers the screenshot-based self-critique that the browser tool supports. |
-| `references/ux_quality_reference.md` | Shared | Records the explicit deferral of React implementation performance to sk-code. |
+| `references/design-process/design_principles.md` | Shared | Section 5 covers the screenshot-based self-critique that the browser tool supports. |
+| `references/design-process/ux_quality_reference.md` | Shared | Records the explicit deferral of React implementation performance to sk-code. |
 
 ### Validation And Tests
 

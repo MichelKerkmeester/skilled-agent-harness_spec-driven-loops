@@ -66,7 +66,7 @@ Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critiqu
 - Command transcript, including exit status where a command is executed
 - Design plan, gate result, or routing decision produced
 - The expected-default pattern named when a scenario critiques against the data
-- Source-reference mapping to `SKILL.md`, `references/design_principles.md`, `references/ux_quality_reference.md`, or `references/design_inventory.md`
+- Source-reference mapping to `SKILL.md`, `references/design-process/design_principles.md`, `references/design-process/ux_quality_reference.md`, or `references/design-grounding/design_inventory.md`
 - Routing notes when the workflow hands off to `sk-code` or `sk-doc`
 - Final scenario verdict with rationale: PASS, PARTIAL, FAIL, or SKIP
 
@@ -379,9 +379,9 @@ The current repository has no dedicated automated test module for `sk-interface-
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `references/design_inventory.md` | The reuse-ground and critique-against framing over a live Open Design system; the no-chooser and no-cache hard rules | ID-004 |
-| `references/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
-| `references/claude_design_parity.md` | The shared parity loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
+| `references/design-grounding/design_inventory.md` | The reuse-ground and critique-against framing over a live Open Design system; the no-chooser and no-cache hard rules | ID-004 |
+| `references/design-process/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
+| `references/design-process/claude_design_parity.md` | The shared parity loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
 | `../../mcp-open-design/references/tool_surface.md` | The mcp-open-design run and previewUrl surface the fidelity check inspects | ID-009 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.

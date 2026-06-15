@@ -20,12 +20,12 @@ Use this catalog as the canonical inventory for the live `sk-interface-design` f
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
-| Design process | 4 features | `SKILL.md`, `references/design_principles.md` |
-| Quality floor | 1 feature | `references/ux_quality_reference.md` |
-| Design grounding | 1 feature | `references/design_inventory.md`, `references/claude_design_parity.md` |
-| Interface writing | 1 feature | `references/design_principles.md` (Section 6) |
+| Design process | 4 features | `SKILL.md`, `references/design-process/design_principles.md` |
+| Quality floor | 1 feature | `references/design-process/ux_quality_reference.md` |
+| Design grounding | 1 feature | `references/design-grounding/design_inventory.md`, `references/design-process/claude_design_parity.md` |
+| Interface writing | 1 feature | `references/design-process/design_principles.md` (Section 6) |
 | Integration boundary | 1 feature | `SKILL.md` (Sections 2 and 7) |
-| Claude Design parity loop | 3 features | `references/claude_design_parity.md`, `SKILL.md` (Sections 2 and 5) |
+| Claude Design parity loop | 3 features | `references/design-process/claude_design_parity.md`, `SKILL.md` (Sections 2 and 5) |
 
 ---
 
@@ -179,7 +179,7 @@ See [`05--integration-boundary/design-and-implementation-boundary.md`](05--integ
 
 ## 7. CLAUDE DESIGN PARITY LOOP
 
-These entries cover the shared cross-skill protocol that moves this skill's judgment closer to Claude Design without becoming a templated generator. The protocol is a loop, not a product: ground, reuse before generate, render, check the real render, revise, then hand off. This skill owns the judgment and `mcp-open-design` owns the Open Design terminal transport, and the single source for the protocol is `references/claude_design_parity.md`. The entries below summarize it and never duplicate its content.
+These entries cover the shared cross-skill protocol that moves this skill's judgment closer to Claude Design without becoming a templated generator. The protocol is a loop, not a product: ground, reuse before generate, render, check the real render, revise, then hand off. This skill owns the judgment and `mcp-open-design` owns the Open Design terminal transport, and the single source for the protocol is `references/design-process/claude_design_parity.md`. The entries below summarize it and never duplicate its content.
 
 ### Ground and reuse before generate
 

@@ -37,8 +37,8 @@ Each part of the plan is tested by working through a similar prompt to see wheth
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Shared | Section 3 names the three default looks and the rule to not spend a free axis on them, and the Section 4 NEVER rule forbids shipping a templated default. |
-| `references/design_principles.md` | Shared | Section 4 carries the default calibration and the revise-and-justify second review. |
-| `references/design_inventory.md` | Shared | Supplies the expected-pattern naming used to deviate deliberately during the critique. |
+| `references/design-process/design_principles.md` | Shared | Section 4 carries the default calibration and the revise-and-justify second review. |
+| `references/design-grounding/design_inventory.md` | Shared | Supplies the expected-pattern naming used to deviate deliberately during the critique. |
 
 ### Validation And Tests
 
