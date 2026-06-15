@@ -1,0 +1,27 @@
+{
+  "specFolder": "012-enrichment-queue-cap-and-observability",
+  "description": "Cap the background-enrichment queue length and expose scheduler state plus enrichment-status health so a backed-up or stuck scheduler is bounded and d",
+  "keywords": [
+    "cap",
+    "background-enrichment",
+    "queue",
+    "length",
+    "expose",
+    "scheduler",
+    "state",
+    "plus",
+    "enrichment-status",
+    "health",
+    "backed-up",
+    "stuck",
+    "bounded",
+    "diagnosable"
+  ],
+  "lastUpdated": "2026-06-15T06:00:22.364Z",
+  "specId": "012",
+  "folderSlug": "enrichment-queue-cap-and-observability",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

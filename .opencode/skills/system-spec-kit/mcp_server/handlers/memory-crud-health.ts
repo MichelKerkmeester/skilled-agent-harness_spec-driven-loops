@@ -26,6 +26,7 @@ import { toErrorMessage } from '../utils/index.js';
 import { summarizeAliasConflicts } from './memory-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import { getCircuitFlapState, getEmbeddingRetryStats, getRetryStats } from '../lib/providers/retry-manager.js';
+import { getBackgroundEnrichmentStats } from './memory-save.js';
 import {
   getSnapshot as getRoutingTelemetrySnapshot,
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
@@ -891,6 +892,22 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     console.warn(`[memory-health] Failed to get memory count [requestId=${requestId}]:`, message);
   }
 
+  // Background-enrichment observability: scheduler counters (module-local) + the at-rest enrichment
+  // backlog by status. Without this a stuck or backed-up enrichment scheduler is a silent outage.
+  const enrichmentStats = getBackgroundEnrichmentStats();
+  let enrichmentPendingByStatus: Record<string, number> = {};
+  if (database) {
+    try {
+      const rows = database.prepare(
+        "SELECT post_insert_enrichment_status AS status, COUNT(*) AS n FROM memory_index WHERE post_insert_enrichment_status != 'complete' GROUP BY post_insert_enrichment_status",
+      ).all() as Array<{ status: string; n: number }>;
+      enrichmentPendingByStatus = Object.fromEntries(rows.map((r) => [r.status, r.n]));
+    } catch {
+      // Schema/edge — leave the distribution empty; the scheduler counters still surface.
+    }
+  }
+  const backgroundEnrichment = { ...enrichmentStats, pendingByStatus: enrichmentPendingByStatus };
+
   const indexHealth = await getIndexHealthBlock(
     database,
     memoryCount,
@@ -1103,6 +1120,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         maintenance,
         exclusionAudit: exclusionAuditOut,
         embeddingRetry,
+        backgroundEnrichment,
         ...(fullMemoryReport ?? {}),
       },
       hints: [
@@ -1120,6 +1138,17 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   }
   if (!vectorIndex.isVectorSearchAvailable()) {
     hints.push('Vector search unavailable - fallback to BM25');
+  }
+  {
+    const backlog = (enrichmentPendingByStatus.pending ?? 0) + (enrichmentPendingByStatus.failed ?? 0) + (enrichmentPendingByStatus.partial ?? 0);
+    const stuck = enrichmentStats.active >= enrichmentStats.max && enrichmentStats.queued > 0;
+    if (enrichmentStats.failureTotal > 0 || enrichmentStats.droppedTotal > 0 || backlog > 500 || stuck) {
+      hints.push(
+        `Background enrichment: ${enrichmentStats.active}/${enrichmentStats.max} active, ${enrichmentStats.queued} queued, ` +
+        `${enrichmentStats.failureTotal} failed, ${enrichmentStats.droppedTotal} dropped, ${backlog} rows still pending enrichment. ` +
+        'If slots look stuck, restart the daemon, then run memory_index_scan({ force: true }) to backfill enrichment.',
+      );
+    }
   }
   // FTS5 consistency check
   if (database) {
@@ -1317,6 +1346,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databasePath: redactPath(vectorIndex.getDbPath() ?? ''),
       },
       embeddingRetry,
+      backgroundEnrichment,
       routing: {
         graphChannelInvocationRate: routingTelemetry.graphChannelInvocationRate,
         channelInvocationCounts: routingTelemetry.channelInvocationCounts,

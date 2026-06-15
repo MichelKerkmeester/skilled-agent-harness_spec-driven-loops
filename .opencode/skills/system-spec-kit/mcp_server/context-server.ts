@@ -1480,6 +1480,7 @@ async function startupScan(basePath: string): Promise<void> {
 
   startupScanInProgress = true;
   try {
+    if (shuttingDown) return; // shutdown began before/at scan start — do not touch the DB before closeDb (the loop below also breaks on shuttingDown)
     // Recover any pending files from previous failed index operations
     await recoverPendingFiles(basePath);
 

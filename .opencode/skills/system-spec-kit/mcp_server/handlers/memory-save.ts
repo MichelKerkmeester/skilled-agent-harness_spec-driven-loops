@@ -2938,6 +2938,41 @@ export function shutdownBackgroundEnrichment(): void {
   backgroundEnrichmentQueue.length = 0;
 }
 
+// Bound the OVERFLOW queue, not just concurrency. A sustained live-save flood (saves arriving faster
+// than the 4-wide drain) would otherwise grow the queue — and the parsed payload each entry retains —
+// without bound. On overflow we DROP rather than push: the row is enrichment-pending in the commit
+// transaction, so the backfill path re-enriches it. The counters below make a backed-up or failing
+// scheduler visible through memory_health (otherwise a stuck scheduler is a silent enrichment outage).
+const MAX_QUEUED_ENRICHMENTS = 2000;
+let enrichmentDroppedTotal = 0;
+let enrichmentFailureTotal = 0;
+let enrichmentLastError: string | null = null;
+let enrichmentLastErrorAt: string | null = null;
+let enrichmentSuppressedWarnings = 0;
+
+/** Scheduler observability snapshot for memory_health — module-local counters only, no DB access. */
+export function getBackgroundEnrichmentStats(): {
+  active: number;
+  queued: number;
+  max: number;
+  maxQueued: number;
+  droppedTotal: number;
+  failureTotal: number;
+  lastError: string | null;
+  lastErrorAt: string | null;
+} {
+  return {
+    active: activeBackgroundEnrichments,
+    queued: backgroundEnrichmentQueue.length,
+    max: MAX_BACKGROUND_ENRICHMENTS,
+    maxQueued: MAX_QUEUED_ENRICHMENTS,
+    droppedTotal: enrichmentDroppedTotal,
+    failureTotal: enrichmentFailureTotal,
+    lastError: enrichmentLastError,
+    lastErrorAt: enrichmentLastErrorAt,
+  };
+}
+
 /**
  * Run post-insert enrichment for a just-saved row in the background, bounded and crash-safe:
  * - re-resolves the DB handle when the run starts (covers a recycle before the run begins; a recycle
@@ -2961,6 +2996,8 @@ function scheduleBackgroundEnrichment(
   // returns control to the poll phase between runs.
   const start = (task: () => void): void => {
     activeBackgroundEnrichments++;
+    // setImmediate (a MACROTASK boundary) is required here, not queueMicrotask: only a macrotask hands
+    // control back to libuv's poll phase, so the IPC accept() runs between enrichment runs.
     setImmediate(task);
   };
   const run = (): void => {
@@ -2984,7 +3021,19 @@ function scheduleBackgroundEnrichment(
         recordEnrichmentResult(db, memoryId, result);
         emitPostInsertEnrichmentSubscribers(memoryId, 'post-insert-enrichment-async');
       } catch (bgErr: unknown) {
-        console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${bgErr instanceof Error ? bgErr.message : String(bgErr)}`);
+        enrichmentFailureTotal++;
+        enrichmentLastError = bgErr instanceof Error ? bgErr.message : String(bgErr);
+        enrichmentLastErrorAt = new Date().toISOString();
+        // Rate-limit the per-failure warning so a systemic failure burst cannot spam the log; the
+        // running total + last error stay available via memory_health. Log the first few, then suppress
+        // and fold a suppressed-count summary into the next emitted line.
+        if (enrichmentFailureTotal <= 5 || enrichmentFailureTotal % 100 === 0) {
+          const suppressed = enrichmentSuppressedWarnings;
+          enrichmentSuppressedWarnings = 0;
+          console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${enrichmentLastError} (total=${enrichmentFailureTotal}${suppressed ? `, ${suppressed} suppressed since last log` : ''})`);
+        } else {
+          enrichmentSuppressedWarnings++;
+        }
       } finally {
         activeBackgroundEnrichments--;
         if (!enrichmentShuttingDown) {
@@ -2996,8 +3045,13 @@ function scheduleBackgroundEnrichment(
   };
   if (activeBackgroundEnrichments < MAX_BACKGROUND_ENRICHMENTS) {
     start(run);
-  } else {
+  } else if (backgroundEnrichmentQueue.length < MAX_QUEUED_ENRICHMENTS) {
     backgroundEnrichmentQueue.push(run);
+  } else {
+    // Overflow: drop rather than grow the queue (and its retained parsed payloads) without bound under
+    // a sustained save flood. The row is enrichment-pending in the commit transaction, so the backfill
+    // path re-enriches it later. Surfaced via the dropped counter in memory_health.
+    enrichmentDroppedTotal++;
   }
 }
 
