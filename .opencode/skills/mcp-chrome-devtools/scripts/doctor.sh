@@ -60,7 +60,7 @@ if command -v bdg >/dev/null 2>&1; then
     ok "bdg: $(command -v bdg) (version unavailable)"
   fi
 elif command -v npx >/dev/null 2>&1; then
-  if npx --no-install browser-debugger-cli@alpha --version >/dev/null 2>&1; then
+  if timeout 5 npx --no-install --prefer-offline browser-debugger-cli@alpha --version >/dev/null 2>&1; then
     ok "browser-debugger-cli@alpha: resolvable via npx --no-install"
   else
     warn "bdg not on PATH and browser-debugger-cli@alpha not resolvable via npx --no-install"

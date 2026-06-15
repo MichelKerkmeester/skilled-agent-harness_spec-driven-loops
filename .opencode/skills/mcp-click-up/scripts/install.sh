@@ -66,7 +66,7 @@ check_python() {
       local major minor
       major="$(echo "$version" | cut -d. -f1)"
       minor="$(echo "$version" | cut -d. -f2)"
-      if [[ "$major" -ge "$PYTHON_MIN_MAJOR" ]] && [[ "$minor" -ge "$PYTHON_MIN_MINOR" ]]; then
+      if [[ "$major" -gt "$PYTHON_MIN_MAJOR" || ( "$major" -eq "$PYTHON_MIN_MAJOR" && "$minor" -ge "$PYTHON_MIN_MINOR" ) ]]; then
         python_cmd="$cmd"
         success "Python $version found at $(command -v "$cmd")"
         break
