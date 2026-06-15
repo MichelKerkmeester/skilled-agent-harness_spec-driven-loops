@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: promote-results [template:level_1/spec.md]"
-description: "Fold the bakeoff-006 finding (a TIE) back into the registry and the kimi-k2.7-code reference doc, keeping default-unverified and recording why, then re-run the card-sync guard."
+description: "Folded the inconclusive bakeoff-006 finding (a TIE) into the registry and the kimi-k2.7-code reference doc as a placeholder, keeping default-unverified, then re-ran the card-sync guard. Superseded by phase 004 (run 007: COSTAR promoted, empirical)."
 trigger_phrases:
   - "kimi promote bakeoff results"
   - "registry empirical framework"
@@ -30,6 +30,8 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 3: promote-results
+
+> **SUPERSEDED BY PHASE 004 (run 007).** This phase promoted the **inconclusive** run-006 finding (RCAF retained, `status: default-unverified`) into the registry as a placeholder, because run 006's easy fixtures saturated and named no winner. Phase 004 then superseded that promotion: its run 007 on strict adversarial validators promoted **COSTAR (primary), TIDD-EC fallback, RCAF retired**, status **empirical**. The live registry (`model-profiles.json`), `kimi-k2.7-code.md`, and `_index.md` now hold the phase-004 result, NOT the run-006 placeholder described below. Any "final" or "current registry state" wording in this phase refers to its interim placeholder; the authoritative current state is phase 004.
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -143,8 +145,8 @@ Promote the bakeoff-006 verdict into the registry and the kimi reference doc so 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `model-profiles.json#kimi-k2.7-code.recommended_frameworks.status` reads `"empirical"` (or `"default-unverified"` with a recorded TIE/INCONCLUSIVE reason), with `evidence` citing benchmark `006`.
-- **SC-002**: `check-prompt-quality-card-sync.sh .` exits 0 and the kimi reference doc §3/§4 cite run `006`.
+- **SC-001** *(interim state at this phase's close; superseded by phase 004)*: `model-profiles.json#kimi-k2.7-code.recommended_frameworks.status` read `"default-unverified"` with a recorded TIE/saturation reason, `evidence` citing benchmark `006`. Phase 004's run 007 later set this to `"empirical"` citing benchmark `007-kimi-k2.7-discriminating` (COSTAR primary).
+- **SC-002**: `check-prompt-quality-card-sync.sh .` exits 0 and the kimi reference doc §3/§4 stayed in sync with the registry (run `006` at this phase; run `007` after phase 004).
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -165,8 +167,8 @@ Promote the bakeoff-006 verdict into the registry and the kimi reference doc so 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- ~~On a marginal WINNER inside noise, does the operator want `empirical` status or a `default-unverified` hold?~~ **Resolved:** the verdict was a TIE (not even a marginal winner), so status held at `default-unverified` with the margin/saturation caveat recorded.
-- ~~Should the promotion also update `preplanning_density` if a denser/leaner framework wins?~~ **Resolved:** no framework won, so `preplanning_density` held at MEDIUM unchanged.
+- ~~On a marginal WINNER inside noise, does the operator want `empirical` status or a `default-unverified` hold?~~ **Resolved (interim, superseded):** run 006's verdict was a TIE (not even a marginal winner), so this phase held `default-unverified` with the saturation caveat. Phase 004's run 007 later flipped the registry to `empirical` (COSTAR).
+- ~~Should the promotion also update `preplanning_density` if a denser/leaner framework wins?~~ **Resolved (interim, superseded):** no framework won run 006, so this phase held `preplanning_density: medium`. Phase 004 later set it to `lean` (COSTAR).
 <!-- /ANCHOR:questions -->
 
 ---

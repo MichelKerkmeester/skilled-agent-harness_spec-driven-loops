@@ -1,7 +1,7 @@
 ---
 title: Kimi-k2.7-code Prompt-Craft Profile
 model_id: "kimi-k2.7-code"
-description: How to prompt Kimi-k2.7-code (Kimi For Coding plan, slug kimi-for-coding/k2p7) via cli-opencode — RCAF framework with medium pre-planning over the 256k window pending the bakeoff-006 result, file-anchored context scaffold, and Kimi For Coding dispatch gotchas.
+description: How to prompt Kimi-k2.7-code (Kimi For Coding plan, slug kimi-for-coding/k2p7) via cli-opencode — COSTAR framework (empirical, benchmark 007; fallback TIDD-EC, avoid rcaf) with lean pre-planning over the 256k window, file-anchored context scaffold, and Kimi For Coding dispatch gotchas.
 trigger_phrases:
   - "kimi k2.7 prompt framework"
   - "kimi k2.7 code dispatch scaffold"

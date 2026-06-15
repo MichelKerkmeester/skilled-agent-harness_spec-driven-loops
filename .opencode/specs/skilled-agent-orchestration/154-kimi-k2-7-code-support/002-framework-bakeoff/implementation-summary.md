@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Status: DONE. Bakeoff 006 ran (30/30 real Kimi dispatches); verdict TIE - correctness saturated; RCAF retained."
+description: "Status: DONE (interim, superseded by phase 004). Bakeoff 006 ran 30/30 real Kimi dispatches; verdict TIE - correctness saturated; RCAF retained as interim default. Phase 004 run 007 promoted COSTAR (empirical)."
 trigger_phrases:
   - "kimi bakeoff status"
   - "framework bakeoff complete"
@@ -33,6 +33,8 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+> **SUPERSEDED BY PHASE 004 (run 007).** Run 006 documented here truly ran and truly returned a TIE; its easy fixtures saturated the correctness gate, so the result was inconclusive and could not name a best framework. The authoritative verdict is phase 004's run 007 on strict adversarial validators: **COSTAR promoted (primary), TIDD-EC fallback, RCAF retired**, status **empirical** — which is what the registry, `kimi-k2.7-code.md`, and `_index.md` now hold. Read the RCAF-retained finding below as the **interim/historical** outcome of this inconclusive run, not the packet's final state.
 
 ---
 
@@ -114,7 +116,7 @@ The bakeoff ran through the deep-loop **sweep** engine (`sweep-benchmark.cjs`), 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Verdict is a TIE, not a winner.** Correctness saturated across all five frameworks, so the bakeoff could not name an empirically-best framework for this model. The result is a finding (framework choice does not affect correctness for Kimi K2.7 Code), not a ranking; RCAF is retained as the convention default.
+1. **Verdict is a TIE, not a winner.** Correctness saturated across all five frameworks, so this run could not name an empirically-best framework for this model. The result was an interim finding (framework choice did not appear to affect correctness on these easy fixtures), not a ranking; RCAF was retained only as an interim default after this inconclusive run. Phase 004 superseded this with run 007 on strict validators (COSTAR promoted, RCAF retired, status empirical).
 2. **Fixtures too easy to discriminate.** The two T3 coding fixtures were too easy for this strong model (engine action: "demote-to-smoke"). A sharper recommendation would need harder, less-saturating fixtures and ideally a correctness-anchored judge.
 3. **Secondary judge is subjective.** The gpt-5.5 clarity ranking flagged some oracle-confirmed-correct code as buggy (a known LLM-judge failure mode), so it ranks perceived clarity, not correctness, and is not load-bearing for the verdict.
 4. **No fallback pool.** `kimi-k2.7-code` has `fallback_target: null`; the run completed on the `kimi-for-coding` pool with no fallback needed, but a future re-run must defer rather than retry the same pool if it is exhausted.

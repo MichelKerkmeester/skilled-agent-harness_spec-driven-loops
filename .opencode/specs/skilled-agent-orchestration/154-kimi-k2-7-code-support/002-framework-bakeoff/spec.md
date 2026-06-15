@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 2: framework-bakeoff [template:level_1/spec.md]"
-description: "kimi-k2.7-code ships with an unverified RCAF default; this phase runs the model-benchmark bakeoff to find its empirically-best prompt framework."
+description: "kimi-k2.7-code shipped with an unverified RCAF default; this phase ran the model-benchmark bakeoff (run 006) to find its best prompt framework but saturated on easy fixtures (TIE). Superseded by phase 004 (run 007: COSTAR promoted, empirical)."
 trigger_phrases:
   - "kimi k2.7 framework bakeoff"
   - "prompt framework benchmark"
@@ -30,6 +30,8 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 2: framework-bakeoff
+
+> **SUPERSEDED BY PHASE 004 (run 007).** Run 006 below DID happen and DID return a TIE, but its easy fixtures saturated the correctness gate, so it could not separate the frameworks and the verdict was inconclusive. The authoritative framework verdict for `kimi-k2.7-code` comes from phase 004's run 007 on strict adversarial validators: **COSTAR promoted (primary), TIDD-EC fallback, RCAF retired**, status **empirical**. That is what the registry (`model-profiles.json`), `kimi-k2.7-code.md`, and `_index.md` now hold. The run-006 findings here are retained as the **interim/historical** result; treat any RCAF-as-default statement below as the short-lived interim default it was, not the packet's final outcome.
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -166,8 +168,8 @@ Empirically determine kimi-k2.7-code's best prompt framework by running the mode
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- ~~If the verdict is TIE or INCONCLUSIVE, does Phase 003 keep RCAF `default-unverified` or pick the marginal leader?~~ **Resolved:** verdict was TIE (correctness saturated); Phase 003 kept `default-unverified` and recorded why.
-- ~~Are the fixtures enough sample to separate frameworks if the gate saturates?~~ **Resolved (open follow-up):** they were not — correctness saturated across all five frameworks. A future bakeoff needs harder, less-saturating fixtures (and ideally a correctness-anchored judge) to discriminate.
+- ~~If the verdict is TIE or INCONCLUSIVE, does Phase 003 keep RCAF `default-unverified` or pick the marginal leader?~~ **Resolved (interim, superseded):** verdict was TIE (correctness saturated); Phase 003 kept `default-unverified` as an interim hold. Phase 004's run 007 later superseded this and promoted COSTAR (empirical, RCAF retired).
+- ~~Are the fixtures enough sample to separate frameworks if the gate saturates?~~ **Resolved + acted on:** they were not — correctness saturated across all five frameworks. The follow-up bakeoff with harder, less-saturating fixtures became phase 004 (run 007 on strict validators), which DID discriminate.
 <!-- /ANCHOR:questions -->
 
 ---
