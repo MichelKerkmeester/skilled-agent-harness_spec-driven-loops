@@ -71,7 +71,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 ## Global Preconditions
 
 1. `.opencode/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
-2. All `references/global/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/agent_template.md`, and `assets/command_template.md` resolve on disk.
+2. All `references/global/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `assets/agent_template.md` resolve on disk.
 3. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 3 CLI runtimes (cli-codex, cli-opencode, cli-claude-code) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.

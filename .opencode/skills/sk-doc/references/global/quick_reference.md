@@ -134,7 +134,7 @@ python scripts/package_skill.py skill-path        # Package skill
 - H1 without subtitle
 - Required sections: purpose, instructions
 - Recommended sections: contract, examples, notes
-- Template: `assets/command_template.md`
+- Template: `assets/command/command_template.md`
 
 **llms.txt** (Moderate):
 - Plain text format (not markdown)
@@ -181,7 +181,9 @@ python scripts/package_skill.py skill-path        # Package skill
 │       └── manual_testing_playbook_creation.md (playbook standards and workflow)
 ├── assets/
 │   ├── agent_template.md (agent definition template)
-│   ├── command_template.md (slash command template)
+│   ├── command/
+│   │   ├── command_template.md (slash command template)
+│   │   └── command_presentation_template.md (command presentation/contract template)
 │   ├── feature_catalog/ (feature catalog template bundle)
 │   ├── testing_playbook/ (manual testing playbook template bundle)
 │   ├── changelog_template.md (changelog/release-notes template)
@@ -362,7 +364,7 @@ Validation note: the current validator checks the root playbook and does not rec
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
 - [frontmatter_templates.md](../../assets/frontmatter_templates.md) - Frontmatter by document type
-- [command_template.md](../../assets/command_template.md) - Command file templates
+- [command_template.md](../../assets/command/command_template.md) - Command file templates
 - [feature_catalog_template.md](../../assets/feature_catalog/feature_catalog_template.md) - Feature catalog template
 - [feature_catalog_snippet_template.md](../../assets/feature_catalog/feature_catalog_snippet_template.md) - Per-feature catalog template
 - [manual_testing_playbook_template.md](../../assets/testing_playbook/manual_testing_playbook_template.md) - Playbook creation template

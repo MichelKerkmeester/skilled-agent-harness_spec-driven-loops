@@ -303,4 +303,4 @@ done
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../../assets/command_template.md) - Command file templates
+- [command_template.md](../../assets/command/command_template.md) - Command file templates

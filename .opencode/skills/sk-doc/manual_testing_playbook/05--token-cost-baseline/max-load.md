@@ -20,7 +20,7 @@ expected_resources:
   - assets/skill/skill_readme_template.md
   - assets/skill/skill_reference_template.md
   - assets/agent_template.md
-  - assets/command_template.md
+  - assets/command/command_template.md
   - assets/readme/readme_template.md
   - assets/changelog_template.md
   - assets/flowcharts/simple_workflow.md
