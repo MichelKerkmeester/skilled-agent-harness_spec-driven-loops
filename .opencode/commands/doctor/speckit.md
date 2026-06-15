@@ -35,6 +35,7 @@ These existing YAML assets are referenced only. The router must not modify them.
 | `deep-loop` | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` |
 | `skill-advisor` | `.opencode/commands/doctor/assets/doctor_skill-advisor.yaml` |
 | `skill-budget` | `.opencode/commands/doctor/assets/doctor_skill-budget.yaml` |
+| `parent-skill` | `.opencode/commands/doctor/assets/doctor_parent-skill.yaml` |
 
 No workflow-asset gap exists for this command.
 

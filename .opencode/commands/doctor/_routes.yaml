@@ -154,6 +154,21 @@ routes:
       - "skill char count drift"
       - "frontmatter description trim"
 
+  - target: parent-skill
+    yaml: doctor_parent-skill.yaml
+    setup_vars: [execution_mode, parent_skill_dir]
+    allowed_flags: ["--dir=<path>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only structural audit; inspects a parent skill's graph-metadata/registry and reports, no writes)"
+    mcp_tools: []   # script-only structural audit; no MCP calls
+    script_invocations:
+      - 'node .opencode/commands/doctor/scripts/parent-skill-check.cjs "{parent_skill_dir}"'
+    trigger_phrases:
+      - "parent skill structure audit"
+      - "nested mode packet check"
+      - "mode-registry drift guard"
+      - "single graph-metadata identity"
+
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
 # ─────────────────────────────────────────────────────────────────

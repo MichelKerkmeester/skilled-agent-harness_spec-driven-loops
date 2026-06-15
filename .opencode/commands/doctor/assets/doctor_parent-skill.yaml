@@ -1,0 +1,103 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: PARENT SKILL WORKFLOW (INTERACTIVE READ-ONLY MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator running the parent-skill structural audit in interactive mode
+purpose: Read-only audit of the "parent skill with nested mode packets" pattern — single hub identity, non-discoverable packets, and a registry-backed routing contract
+action: Run parent-skill-check.cjs against the target parent-skill dir -> present per-invariant PASS/FAIL report -> final status
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_only_audit
+  compliance: MANDATORY
+  execution: interactive
+  approvals: none
+  tracking: audit_report_and_exit_code
+  validation: audit_script_exit_code
+  read_only: true
+
+# ─────────────────────────────────────────────────────────────────
+# PARENT-SKILL AUDIT INVARIANT
+# ─────────────────────────────────────────────────────────────────
+parent_skill_doctor_invariant: |
+  Parent-skill doctor is strictly read-only. It inspects a parent skill that
+  routes to nested mode packets and asserts the structure that keeps the hub a
+  single advisor identity:
+    1. EXACTLY ONE graph-metadata.json (the hub's), whose skill_id equals the
+       directory name and whose family is in the allowed set.
+    2. NO graph-metadata.json inside any mode packet or shared/.
+    3. mode-registry.json exists; every mode's packet resolves to a sub-dir and
+       carries the 3-tier discriminator (workflowMode / runtimeLoopType / backendKind)
+       plus an advisorRouting block with a valid routingClass.
+    4. The CI drift-guard test (registry projection == hardcoded advisor maps)
+       is wired; optionally the registry's lexical projection is cross-checked
+       against the advisor's live DEEP_ROUTING_MODE_BY_KEY.
+  It NEVER writes files, mutates graph metadata, re-indexes the advisor, or
+  edits the audited skill. Exit code is non-zero only when an invariant fails.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  contract: "local command design contract"
+  audit_script: ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+  reference_implementation: ".opencode/skills/deep-loop-workflows"
+  reference_doc: ".opencode/skills/sk-doc/references/skill_creation.md"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+  parent_skill_dir: "[PARENT_SKILL_DIR] path"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    parent_skill_dir_empty: ".opencode/skills/deep-loop-workflows"
+  validation:
+    execution_mode_must_be: INTERACTIVE
+    parent_skill_dir_must_be_existing_directory: true
+  command_mapping:
+    parent_skill_dir: "pass as the first positional argument to the audit script"
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This workflow is read-only. It may execute the audit script and print output, but it must not write files, reindex databases, mutate graph metadata, or edit the audited skill."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_0_audit:
+    purpose: "Run the parent-skill structural audit (read-only)."
+    activities:
+      - "Resolve parent_skill_dir (default to upstream_assets.reference_implementation when empty)."
+      - "Execute upstream_assets.audit_script via Bash with parent_skill_dir as the first positional argument."
+      - "Capture stdout and exit code."
+    outputs:
+      - per_invariant_report
+      - exit_code
+
+  phase_1_report:
+    purpose: "Present the per-invariant PASS/FAIL report and the final status."
+    activities:
+      - "Print the audit report."
+      - "Map exit code 0 to STATUS=OK, exit code 1 to STATUS=FAIL, exit code 2 to STATUS=ERROR (target missing)."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT FORMAT
+# ─────────────────────────────────────────────────────────────────
+output_format: |
+  STATUS=OK when every invariant passes (audit script exits 0).
+  STATUS=FAIL ERROR="parent-skill invariant failed" when the audit script exits 1.
+  STATUS=ERROR ERROR="parent skill directory not found" when the audit script exits 2.

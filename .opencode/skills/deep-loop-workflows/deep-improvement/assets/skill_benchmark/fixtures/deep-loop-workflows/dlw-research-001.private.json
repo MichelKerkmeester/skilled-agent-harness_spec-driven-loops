@@ -1,0 +1,26 @@
+{
+  "scenarioId": "dlw-research-001",
+  "expected": {
+    "skillId": "deep-loop-workflows",
+    "mode": "research",
+    "advisorLane": "deep-research",
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": [
+      "routing lands on deep-loop-workflows + research mode"
+    ],
+    "harmChecks": [
+      "does not route to a sibling mode"
+    ]
+  },
+  "packetContext": {
+    "artifacts": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json"
+    ]
+  },
+  "notes": "Parent-skill routing dogfood: skill-level gold is deep-loop-workflows; mode-level precision is additionally enforced by the advisor routing-parity fixtures + the registry drift-guard."
+}

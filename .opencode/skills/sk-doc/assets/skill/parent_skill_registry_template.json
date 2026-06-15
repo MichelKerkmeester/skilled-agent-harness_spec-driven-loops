@@ -1,0 +1,86 @@
+{
+  "_template": "Parent-skill mode-registry.json scaffold. Replace every [bracketed] placeholder. This file is the single source of truth for the discriminator + advisorRouting; routers/commands/tests READ it and none re-derive the mapping. The advisor keeps its hardcoded projection maps in sync via a CI drift-guard test (maps == registry projection); it does NOT read this file at runtime. See sk-doc/references/skill_creation.md section 10.",
+  "skill": "[parent-skill-name]",
+  "version": "1.0.0",
+  "description": "[Declarative mode registry: the discriminator (workflowMode/runtimeLoopType/backendKind) PLUS the advisorRouting projection for [parent-skill-name]. Hardcoded projection maps stay in sync via a CI drift-guard test; the advisor does not read this file at runtime.]",
+  "discriminator": {
+    "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
+    "runtimeLoopType": "The backend convergence loop key consumed by [backend]'s convergence step. Validated against the allowed set. Explicit null for non-loop (host/adapter) modes; NEVER inferred from workflowMode.",
+    "backendKind": "Which backend actually runs the mode: [runtime-loop-type | improvement-host | external-adapter | ...]."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the mode. 'lexical' = weighted-regex scoring in skill_advisor.py AND present in both projection maps. 'alias-fold' = TS projection map only (an alias projection, not lexically scored). 'metadata' = resolved by skill membership; no advisor map entry. 'command-bridge' = routed by its command, not an advisor map entry.",
+    "legacyAdvisorId": "The legacy skill id the projection maps key on (present for lexical + alias-fold modes only).",
+    "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to. Never inferred from array order.",
+    "legacyAliases": "The advisor's SYSTEM-ID alias set (not the natural-language aliases[] phrases); the drift-guard asserts these match order-insensitively.",
+    "packetSkillName": "The packet's SKILL.md name. Standard for new parent skills: folder == packetSkillName == deep-<mode>. Grandfather any mismatch here.",
+    "driftGuard": "[path to the vitest that asserts the hardcoded Python + TS maps equal this registry's projection]."
+  },
+  "modes": [
+    {
+      "_example": "routingClass 'lexical' — weighted-regex scored AND in both projection maps.",
+      "workflowMode": "[mode-a]",
+      "runtimeLoopType": "[loop-type-a]",
+      "backendKind": "runtime-loop-type",
+      "packet": "deep-[mode-a]",
+      "command": "[/cmd:mode-a]",
+      "agent": "[agent-a]",
+      "artifactRoot": "[mode-a]/",
+      "aliases": ["deep-[mode-a]", "[natural-language phrase]", "[another phrase]"],
+      "advisorRouting": {
+        "routingClass": "lexical",
+        "legacyAdvisorId": "deep-[mode-a]",
+        "legacyAliases": ["command-spec-kit-deep-[mode-a]", "spec_kit:deep-[mode-a]", "deep-[mode-a]", "sk-deep-[mode-a]"],
+        "packetSkillName": "deep-[mode-a]"
+      }
+    },
+    {
+      "_example": "routingClass 'alias-fold' — a multi-mode legacy id folding to its default mode via advisorDefaultMode; projected in TS only, not lexically scored.",
+      "workflowMode": "[mode-b]",
+      "runtimeLoopType": null,
+      "backendKind": "improvement-host",
+      "packet": "deep-[mode-b]",
+      "command": "[/cmd:mode-b]",
+      "agent": "[agent-b]",
+      "artifactRoot": "[mode-b]/",
+      "aliases": ["[natural-language phrase]", "[another phrase]"],
+      "advisorRouting": {
+        "routingClass": "alias-fold",
+        "legacyAdvisorId": "deep-[mode-b-family]",
+        "advisorDefaultMode": true,
+        "legacyAliases": ["command-spec-kit-deep-[mode-b]", "deep-[mode-b]", "sk-deep-[mode-b]"],
+        "packetSkillName": "deep-[mode-b]"
+      }
+    },
+    {
+      "_example": "routingClass 'metadata' — resolved by skill membership; no advisor map entry of its own (no legacyAdvisorId).",
+      "workflowMode": "[mode-c]",
+      "runtimeLoopType": "[loop-type-c]",
+      "backendKind": "runtime-loop-type",
+      "packet": "deep-[mode-c]",
+      "command": "[/cmd:mode-c]",
+      "agent": "[agent-c]",
+      "artifactRoot": "[mode-c]/",
+      "aliases": ["deep-[mode-c]", "[natural-language phrase]"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "deep-[mode-c]"
+      }
+    },
+    {
+      "_example": "routingClass 'command-bridge' — routed by its command, not by an advisor map entry (no legacyAdvisorId).",
+      "workflowMode": "[mode-d]",
+      "runtimeLoopType": null,
+      "backendKind": "external-adapter",
+      "packet": "deep-[mode-d]",
+      "command": "[/cmd:mode-d]",
+      "agent": "[agent-d]",
+      "artifactRoot": "[mode-d]/",
+      "aliases": ["[natural-language phrase]", "[another phrase]"],
+      "advisorRouting": {
+        "routingClass": "command-bridge",
+        "packetSkillName": "deep-[mode-d]"
+      }
+    }
+  ]
+}

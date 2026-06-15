@@ -1,0 +1,23 @@
+{
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/155-parent-nested-skill-pattern/003-formalize-pattern",
+  "description": "Feature Specification: Formalize the parent-nested-skill pattern",
+  "keywords": [
+    "feature",
+    "specification",
+    "formalize",
+    "parent-nested-skill",
+    "pattern"
+  ],
+  "lastUpdated": "2026-06-15T11:05:30.844Z",
+  "specId": "003",
+  "folderSlug": "formalize-pattern",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "155-parent-nested-skill-pattern"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

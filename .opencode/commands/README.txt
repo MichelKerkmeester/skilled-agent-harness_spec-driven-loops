@@ -125,6 +125,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a changelog entry from recent work |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature_catalog/` package |
 | Folder README | `/create:folder_readme [readme\|install] <target>` | Unified README and install guide workflow |
+| Parent Skill | `/create:parent-skill <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
 | Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
 | Testing Playbook | `/create:testing-playbook <skill> [create\|update]` | Create or update a rooted `manual_testing_playbook/` package |
 

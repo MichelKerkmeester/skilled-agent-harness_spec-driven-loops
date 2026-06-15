@@ -1,0 +1,15 @@
+{
+  "scenarioId": "dlw-research-001",
+  "tier": "T2",
+  "public": {
+    "prompt": "resume the autonomous research loop and check newinforatio convergence on the original investigation topic",
+    "runtime": "deep-loop-workflows",
+    "mutationBoundary": "read-only",
+    "outputContract": "routes to deep-loop-workflows research mode"
+  },
+  "provenance": {
+    "promptAuthor": "pattern-dogfood",
+    "goldAuthor": "pattern-dogfood",
+    "blindToRouterKeywords": false
+  }
+}

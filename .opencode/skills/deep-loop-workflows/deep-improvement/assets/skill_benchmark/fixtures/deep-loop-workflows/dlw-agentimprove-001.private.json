@@ -1,0 +1,25 @@
+{
+  "scenarioId": "dlw-agentimprove-001",
+  "expected": {
+    "skillId": "deep-loop-workflows",
+    "mode": "agent-improvement",
+    "advisorLane": "deep-improvement",
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": [
+      "routing lands on deep-loop-workflows + agent-improvement mode"
+    ],
+    "harmChecks": [
+      "does not route to a sibling mode"
+    ]
+  },
+  "packetContext": {
+    "artifacts": [
+      "improvement/improvement-state.jsonl"
+    ]
+  },
+  "notes": "Parent-skill routing dogfood: skill-level gold is deep-loop-workflows; mode-level precision is additionally enforced by the advisor routing-parity fixtures + the registry drift-guard."
+}

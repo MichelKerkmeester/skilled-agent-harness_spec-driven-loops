@@ -41,6 +41,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **changelog** | `/create:changelog <spec-folder-or-component> [--bump <major\|minor\|patch\|build>] [:auto\|:confirm]` | Create a changelog entry by detecting recent work, resolving the target component folder, and generating a formatted changelog file |
 | **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature_catalog/` package using the shipped `sk-doc` contract |
 | **folder_readme** | `/create:folder_readme [readme\|install] <target> [flags] [:auto\|:confirm]` | Unified README and install guide creation |
+| **parent-skill** | `/create:parent-skill <skill-name> [create\|update] [--modes <m1,m2,...>] [--path <dir>] [:auto\|:confirm]` | Scaffold a parent skill with nested mode packets (one hub `graph-metadata.json`, `mode-registry.json` source of truth, N `deep-<mode>` packets, non-discoverable `shared/`) |
 | **skill** | `/create:skill <name> <operation> [type] [--chained] [:auto\|:confirm]` | Unified skill workflow (full-create, full-update, reference-only, asset-only) |
 | **testing-playbook** | `/create:testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual_testing_playbook/` package using the shipped `sk-doc` contract |
 
@@ -65,6 +66,7 @@ create/
 ├── changelog.md          # /create:changelog command
 ├── feature-catalog.md    # /create:feature-catalog command
 ├── folder_readme.md      # /create:folder_readme — unified README + install guide command
+├── parent-skill.md       # /create:parent-skill command
 ├── skill.md           # /create:skill command
 ├── testing-playbook.md   # /create:testing-playbook command
 └── assets/               # YAML workflow definitions
@@ -76,6 +78,8 @@ create/
     ├── create_feature_catalog_confirm.yaml
     ├── create_folder_readme_auto.yaml
     ├── create_folder_readme_confirm.yaml
+    ├── create_parent_skill_auto.yaml
+    ├── create_parent_skill_confirm.yaml
     ├── create_skill_auto.yaml
     ├── create_skill_confirm.yaml
     ├── create_testing_playbook_auto.yaml
@@ -124,6 +128,9 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 
 # Create a full skill
 /create:skill my-new-skill full-create :auto
+
+# Scaffold a parent skill with nested mode packets
+/create:parent-skill my-loop-workflows create --modes research,review,ai-council :confirm
 
 # Create a rooted feature catalog package
 /create:feature-catalog system-spec-kit create :confirm
@@ -187,4 +194,6 @@ A: The command reads the most recent changelog entry in the target component fol
 | [manual_testing_playbook_creation.md](../../skills/sk-doc/references/manual_testing_playbook_creation.md) | Standards for rooted testing playbook packages |
 | [agent_template.md](../../skills/sk-doc/assets/agent_template.md) | Agent creation template |
 | [command_template.md](../../skills/sk-doc/assets/command/command_template.md) | Command creation template |
-| [skill_creation.md](../../skills/sk-doc/references/skill_creation.md) | Skill creation workflow reference |
+| [skill_creation.md](../../skills/sk-doc/references/skill_creation.md) | Skill creation workflow reference (includes "Parent Skills with Nested Mode Packets") |
+| [parent_skill_hub_template.md](../../skills/sk-doc/assets/skill/parent_skill_hub_template.md) | Parent-skill hub `SKILL.md` template |
+| [parent_skill_registry_template.json](../../skills/sk-doc/assets/skill/parent_skill_registry_template.json) | Parent-skill `mode-registry.json` template |
