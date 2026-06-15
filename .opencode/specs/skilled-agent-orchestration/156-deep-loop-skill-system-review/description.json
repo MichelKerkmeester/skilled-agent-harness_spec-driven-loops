@@ -1,0 +1,30 @@
+{
+  "specFolder": "156-deep-loop-skill-system-review",
+  "description": "Feature Specification: Comprehensive deep review of the deep-loop + skill-system trio (152/153/155)",
+  "keywords": [
+    "feature",
+    "specification",
+    "comprehensive",
+    "deep",
+    "review",
+    "deep-loop",
+    "skill-system",
+    "trio",
+    "152",
+    "153",
+    "155"
+  ],
+  "lastUpdated": "2026-06-15T18:14:25.486Z",
+  "specId": "156",
+  "folderSlug": "deep-loop-skill-system-review",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-06-26_19-14__comprehensive-deep-review-of-the-deep-loop-skill.md"
+  ]
+}

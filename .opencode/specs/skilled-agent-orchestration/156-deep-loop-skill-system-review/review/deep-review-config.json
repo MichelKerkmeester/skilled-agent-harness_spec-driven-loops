@@ -1,0 +1,31 @@
+{
+  "topic": "Comprehensive deep review of the deep-loop + skill-system trio: packet 152 (deep-loop-workflows merge, 9 phases), packet 153 (mcp-skill-install-doctor-standardization), packet 155 (parent-nested-skill-pattern, second adversarial pass + the sk-doc skill_creation.md dissection finding). Read-only; P0/P1/P2 with file:line evidence; round-2 adversarial verify of every P0/P1.",
+  "maxIterations": 50,
+  "convergenceThreshold": 0.08,
+  "mode": "review",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/156-deep-loop-skill-system-review",
+  "status": "running",
+  "executionMode": "auto",
+  "scope": {
+    "packets": [
+      "152-deep-loop-workflows",
+      "153-mcp-skill-install-doctor-standardization",
+      "155-parent-nested-skill-pattern"
+    ],
+    "allocation": { "152": 20, "153": 18, "155": 12 }
+  },
+  "executor": {
+    "primary": { "kind": "claude2-opus", "model": "opus", "config_dir": "~/.claude-account2", "permission_mode": "plan", "sandboxMode": "orchestrator-driven-read-only", "timeoutSeconds": 1200 },
+    "fallback": { "kind": "cli-opencode", "model": "openai/gpt-5.5-fast", "variant": "xhigh", "sandboxMode": "orchestrator-driven-read-only", "timeoutSeconds": 1200, "trigger": "claude2 session-limit or opus-budget-window exhausted" },
+    "dispatch": "orchestrator-driven read-only seats; claude2-opus primary, gpt-5.5-fast-xhigh fallback; orchestrator writes iteration/delta/state (Gate-3 safe). Waves of <=3 concurrent."
+  },
+  "rounds": { "round1": "discovery (~38 seats)", "round2": "adversarial verify every P0/P1 (~12 seats, fresh seat prompted to REFUTE)" },
+  "lineage": { "sessionId": "2026-06-15-156-comprehensive-review", "generation": 1, "lineageMode": "new" },
+  "fileProtection": {
+    "deep-review-config.json": "mutable-seat-table-grows",
+    "deep-review-state.jsonl": "append-only",
+    "deltas/iter-*.jsonl": "write-once",
+    "iterations/iteration-*.md": "write-once",
+    "review-report.md": "mutable"
+  }
+}
