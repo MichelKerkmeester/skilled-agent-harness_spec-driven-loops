@@ -12,7 +12,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const FIXTURE_DIR = join(TEST_DIR, 'fixtures/multi-ai-council');
 const HELPER_PATH = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs',
+  '.opencode/skills/deep-loop-workflows/ai-council/scripts/persist-artifacts.cjs',
 );
 const require = createRequire(import.meta.url);
 

@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 23 on-demand skills across five families, with routing guidance and creation workflow."
+description: "Catalog and front door to 19 on-demand skills across five families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Five: `cli-*` (3), `deep-*` (6), `mcp-*` (4), `sk-*` (7), `system-*` (3) |
+| **Families** | Five: `cli-*` (3), `deep-*` (2), `mcp-*` (4), `sk-*` (7), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
@@ -30,7 +30,7 @@ trigger_phrases:
 
 ### Why This Library Exists
 
-Twenty-three skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
+Nineteen skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
 
 ### What It Is
 
@@ -54,12 +54,8 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`deep-ai-council`](deep-ai-council/README.md) | Put multiple reasoning lenses on a plan, let them disagree honestly and converge only when they earn it |
-| [`deep-context`](deep-context/README.md) | Map the existing code you can reuse, connect and follow before you write a single line |
-| [`deep-improvement`](deep-improvement/README.md) | Score a packet-local agent candidate across five dimensions before you ship it |
+| [`deep-loop-workflows`](deep-loop-workflows/README.md) | The unified deep-loop skill: routes a request to one of five modes (context, research, review, ai-council, improvement) over the shared runtime |
 | [`deep-loop-runtime`](deep-loop-runtime/README.md) | The shared foundation every deep loop rides, a runtime library rather than a loop you invoke directly |
-| [`deep-research`](deep-research/README.md) | Run an autonomous research loop that stores findings on disk and dispatches a fresh agent per iteration |
-| [`deep-review`](deep-review/README.md) | Run an autonomous review loop that audits one dimension per pass with fresh context and classifies findings |
 
 ### mcp-*: External Tool Surfaces
 

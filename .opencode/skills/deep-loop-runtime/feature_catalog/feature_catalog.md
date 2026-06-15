@@ -29,6 +29,8 @@ Use this catalog as the canonical inventory for the live `deep-loop-runtime` fea
 | [08--council](08--council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
 | [09--fanout](09--fanout/) | 5 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 
+**Shared backend contracts (consolidation promotions).** Beyond the numbered entries above, the backend hosts a small set of generic plumbing the consumer modes import rather than duplicate: `lib/deep-loop/runtime-capabilities.cjs` (parameterized capability resolver, with byte-compatible per-skill shims), `lib/deep-loop/artifact-root.cjs` (canonical seam re-exporting `resolveArtifactRoot` from `system-spec-kit/shared/review-research-paths.cjs`), `lib/deep-loop/lifecycle-taxonomy.cjs` (terminal lifecycle enum: six `stopReason` plus four `sessionOutcome` values) and `scripts/loop-lock.cjs` (CLI adapter over `loop-lock.ts`). These contracts register no MCP tools and carry no public workflow routing; resource-map emission stays in the workflow shared-synthesis layer, not in this runtime.
+
 ---
 
 ## 2. EXECUTOR

@@ -14,7 +14,7 @@ const REPO_ROOT = path.resolve(THIS_DIR, '../../../../..');
 const VALIDATE_SCRIPT = path.resolve(THIS_DIR, '../../scripts/spec/validate.sh');
 const REVIEWER_STALE_VERDICT = path.resolve(
   REPO_ROOT,
-  '.opencode/skills/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json',
+  '.opencode/skills/deep-loop-workflows/improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json',
 );
 const TEMP_DIRS: string[] = [];
 

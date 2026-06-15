@@ -28,9 +28,12 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'system-spec-kit': ['spec folder', 'packet', 'plan', 'tasks', 'checklist', 'memory save', 'handover', 'implementation summary', 'corpus'],
   'sk-code-review': ['review', 'audit', 'findings', 'regression', 'drift', 'readiness', 'false positives'],
   'system-code-graph': ['code graph', 'structural search', 'grep not enough', 'find code', 'where logic'],
-  'deep-research': ['deep research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage'],
-  'deep-review': ['deep review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review'],
-  'deep-ai-council': ['deep ai council', 'ai council', 'planning council', 'council deliberation', 'multi-seat planning', 'ai-council artifacts', 'persist council artifacts', 'multi-ai-council'],
+  // Merged deep-loop hub hints. The legacy per-mode skills (deep-research,
+  // deep-review, deep-ai-council) are folded into deep-loop-workflows; their
+  // hint phrases are unioned here so any deep-loop phrase lifts the merged node.
+  // Per-mode discrimination (research|review|ai-council) is handled by the
+  // Python Candidate-3 layer, not this skill-level lexical lane.
+  'deep-loop-workflows': ['deep research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage', 'deep review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review', 'deep ai council', 'ai council', 'planning council', 'council deliberation', 'multi-seat planning', 'ai-council artifacts', 'persist council artifacts', 'multi-ai-council'],
   'mcp-chrome-devtools': ['chrome devtools', 'har', 'console errors', 'staging'],
   'sk-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],

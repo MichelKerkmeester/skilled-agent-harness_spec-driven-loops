@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const capabilityModulePath = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-research/scripts/runtime-capabilities.cjs',
+  '.opencode/skills/deep-loop-workflows/research/scripts/runtime-capabilities.cjs',
 );
 const capabilityModule = fs.existsSync(capabilityModulePath) ? require(capabilityModulePath) as {
   listRuntimeCapabilityIds: () => string[];
@@ -24,13 +24,13 @@ function readWorkspaceFile(relativePath: string): string {
 
 (capabilityModule ? describe : describe.skip)('deep-research contract parity', () => {
   const primaryDocs = [
-    '.opencode/skills/deep-research/SKILL.md',
-    '.opencode/skills/deep-research/README.md',
-    '.opencode/skills/deep-research/references/state/state_format.md',
-    '.opencode/skills/deep-research/references/protocol/loop_protocol.md',
-    '.opencode/skills/deep-research/references/guides/quick_reference.md',
-    '.opencode/skills/deep-research/references/guides/capability_matrix.md',
-    '.opencode/skills/deep-research/assets/deep_research_config.json',
+    '.opencode/skills/deep-loop-workflows/research/SKILL.md',
+    '.opencode/skills/deep-loop-workflows/research/README.md',
+    '.opencode/skills/deep-loop-workflows/research/references/state/state_format.md',
+    '.opencode/skills/deep-loop-workflows/research/references/protocol/loop_protocol.md',
+    '.opencode/skills/deep-loop-workflows/research/references/guides/quick_reference.md',
+    '.opencode/skills/deep-loop-workflows/research/references/guides/capability_matrix.md',
+    '.opencode/skills/deep-loop-workflows/research/assets/deep_research_config.json',
   ];
 
   const runtimeMirrors = [
@@ -77,7 +77,7 @@ function readWorkspaceFile(relativePath: string): string {
       expect(content, `${docPath} should write the findings registry`).toContain('findings-registry.json');
       expect(content, `${docPath} should mention completed-continue`).toContain('completed-continue');
       expect(content, `${docPath} should invoke the reducer script`).toContain(
-        'node .opencode/skills/deep-research/scripts/reduce-state.cjs {spec_folder}',
+        'node .opencode/skills/deep-loop-workflows/research/scripts/reduce-state.cjs {spec_folder}',
       );
     }
   });

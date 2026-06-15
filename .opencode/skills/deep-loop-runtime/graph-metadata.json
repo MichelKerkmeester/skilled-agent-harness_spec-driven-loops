@@ -143,13 +143,13 @@
       {
         "name": "deep-review",
         "kind": "skill",
-        "path": ".opencode/skills/deep-review/SKILL.md",
+        "path": ".opencode/skills/deep-loop-workflows/review/SKILL.md",
         "source": "derived"
       },
       {
         "name": "deep-research",
         "kind": "skill",
-        "path": ".opencode/skills/deep-research/SKILL.md",
+        "path": ".opencode/skills/deep-loop-workflows/research/SKILL.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
       {
         "name": "deep-ai-council",
         "kind": "skill",
-        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "path": ".opencode/skills/deep-loop-workflows/ai-council/SKILL.md",
         "source": "derived"
       },
       {

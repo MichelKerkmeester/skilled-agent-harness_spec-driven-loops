@@ -12,7 +12,7 @@ const opencodeRoot = resolve(testDir, '../../../..');
  */
 function readWorkflow(name: 'auto' | 'confirm'): string {
   return readFileSync(
-    resolve(opencodeRoot, `commands/deep/assets/deep_start-review-loop_${name}.yaml`),
+    resolve(opencodeRoot, `commands/deep/assets/deep_review_${name}.yaml`),
     'utf8',
   );
 }

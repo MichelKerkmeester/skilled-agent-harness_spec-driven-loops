@@ -1,0 +1,169 @@
+# DEEP COUNCIL: MULTI-TOPIC SESSION LOOP (CONFIRM MODE)
+role: Deep AI Council Session Manager
+purpose: Multi-topic council deliberation with user approval gates, findings registry, and cross-topic priors
+action: Run deep-ai-council session orchestration with confirmation before setup, loop, synthesis, and save
+operating_mode:
+  workflow: iterative_multi_topic_loop
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: phase_gates
+  tracking: council_session_state
+  validation: adjudicator_verdict_stability
+
+operating_principles:
+  core: "Session -> topic -> round state with registry-backed cross-topic priors"
+  approach: "Preview each phase, ask for approval, then persist bounded council artifacts"
+  mandate: "Command surface is live. Persist ai-council/** artifacts as source-of-truth and replay derived graph state through deep-loop-runtime --loop-type council."
+
+user_inputs:
+  deliberation_topic: "[DELIBERATION_TOPIC] - Overall council topic or question set. REQUIRED."
+  spec_folder: "[SPEC_FOLDER] - Packet/spec folder path for ai-council artifacts. REQUIRED."
+  max_rounds_per_topic: "[MAX_ROUNDS_PER_TOPIC] - Default: 3."
+  max_topics_per_session: "[MAX_TOPICS_PER_SESSION] - Default: 5."
+  saturation_threshold: "[SATURATION_THRESHOLD] - Default: 0.20."
+  executor:
+    mode: "[in-cli|external-cli] - Default: in-cli."
+    cli: "[active-runtime|cli-codex|cli-claude-code|cli-opencode] - One CLI per round."
+    model: "[MODEL] - Runtime-selected default unless provided."
+    reasoning: "[REASONING_LEVEL] - Optional executor-specific setting."
+
+context_loading:
+  trigger: "At workflow START, before phase_init"
+  purpose: "Load prior council context and memory hints for the deliberation topic"
+  mcp_integration:
+    tool: memory_context
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { input: "{deliberation_topic}", mode: "focused", intent: "understand", includeContent: true }
+  when_to_skip: ["User says 'skip context' or 'fresh start'"]
+
+skill_reference:
+  skill: deep-loop-workflows
+  skill_md: .opencode/skills/deep-loop-workflows/ai-council/SKILL.md
+  scripts:
+    orchestrate_session: .opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-session.cjs
+    findings_registry: .opencode/skills/deep-loop-workflows/ai-council/scripts/lib/findings-registry.cjs
+    replay_graph: .opencode/skills/deep-loop-workflows/ai-council/scripts/replay-graph-from-artifacts.cjs
+  runtime_primitives:
+    session_state: .opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs
+    round_state: .opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs
+    cost_guards: .opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs
+    graph_upsert: .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --loop-type council
+    graph_status: .opencode/skills/deep-loop-runtime/scripts/status.cjs --loop-type council
+    graph_convergence: .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --loop-type council
+
+state_paths:
+  packet_dir: "{spec_folder}/ai-council"
+  session_config: "{spec_folder}/ai-council/council-session.json"
+  session_state_log: "{spec_folder}/ai-council/session-state.jsonl"
+  findings_registry: "{spec_folder}/ai-council/deep-ai-council-findings-registry.json"
+  topics_dir: "{spec_folder}/ai-council/topics"
+  topic_report_pattern: "{spec_folder}/ai-council/topics/{topic_id}/topic-report.md"
+  council_report_pattern: "{spec_folder}/ai-council/topics/{topic_id}/council-report.md"
+  session_report: "{spec_folder}/ai-council/session-report.md"
+  prompt_dir: "{spec_folder}/ai-council/prompts"
+
+workflow:
+  gate_setup_approval:
+    ask: "Create or resume packet-local ai-council session state for this deliberation topic?"
+    options: [continue, cancel]
+    on_cancel:
+      halt: true
+      message: "Deep council setup cancelled before writes."
+
+  phase_setup:
+    purpose: "Resolve inputs, initialize state paths, and build the session config"
+    steps:
+      step_preflight_contract:
+        action: "Validate required bindings and workflow contract before writes"
+        verify:
+          - required_values_present: [deliberation_topic, spec_folder, max_rounds_per_topic, max_topics_per_session, saturation_threshold, executor]
+          - spec_folder_is_within: "specs/ or .opencode/specs/"
+          - command_surface_activation: "LIVE via ai-council.md and deep_ai-council_*.yaml"
+        on_fail: "Halt with STATUS=FAIL and report the missing binding"
+      step_create_directories:
+        action: "Create packet-local ai-council directories"
+        command: "mkdir -p {state_paths.packet_dir} {state_paths.topics_dir} {state_paths.prompt_dir}"
+      step_create_config:
+        action: "Create council-session.json"
+        populate:
+          deliberationTopic: "{deliberation_topic}"
+          maxRoundsPerTopic: "{max_rounds_per_topic}"
+          maxTopicsPerSession: "{max_topics_per_session}"
+          saturationThreshold: "{saturation_threshold}"
+          # Semantic: adjudicator-verdict Round-N -> Round-N+1 stability delta. Lower = more rounds / higher stability requirement.
+          convergenceThreshold: "{saturation_threshold}"
+          executor: "{executor}"
+          specFolder: "{spec_folder}"
+          createdAt: "{ISO_8601_NOW}"
+          status: "initialized"
+
+  gate_loop_approval:
+    ask: "Run orchestrate-session.cjs with the resolved topics, executor, and cost guards?"
+    options: [continue, cancel]
+    on_cancel:
+      halt: true
+      message: "Deep council loop cancelled; setup artifacts are preserved."
+
+  phase_loop:
+    purpose: "Run the F2 session orchestrator with F3 registry wiring"
+    steps:
+      step_build_session_state:
+        action: "Map deliberation_topic into session -> topic -> round state"
+        outputs:
+          - session_state: "Council session state object consumed by orchestrate-session.cjs"
+          - executor_config: "Executor config with seats, cost guards, and dispatch/adjudication functions"
+      step_orchestrate_session:
+        action: "Run bounded multi-topic council session"
+        command: "node .opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-session.cjs --session-state {session_state_json} --executor-config {executor_config_json}"
+        writes:
+          - "{state_paths.session_state_log}"
+          - "{state_paths.findings_registry}"
+          - "{state_paths.topics_dir}/**"
+        outputs:
+          - session_result: "topics_completed, topic_results, skipped_topic_ids, stop_reason"
+
+  gate_synthesis_approval:
+    ask: "Compile per-topic council reports and the session-wide session-report.md?"
+    options: [continue, cancel]
+    on_cancel:
+      halt: true
+      message: "Deep council synthesis cancelled; loop artifacts are preserved."
+
+  phase_synthesis:
+    purpose: "Compile per-topic and session-wide council reports"
+    steps:
+      step_compile_topic_reports:
+        action: "Compile each topic's council-report.md and topic-report.md from round artifacts"
+        inputs:
+          - "{state_paths.topics_dir}"
+          - "{state_paths.findings_registry}"
+      step_compile_session_report:
+        action: "Compile session-report.md from per-topic council reports and registry priors"
+        writes:
+          - "{state_paths.session_report}"
+        include:
+          - completed_topics
+          - skipped_topics
+          - final_verdicts
+          - cross_topic_priors
+          - stop_reason
+
+  gate_save_approval:
+    ask: "Route the completed council session through memory:save?"
+    options: [continue, skip, cancel]
+    on_skip:
+      log: "Memory save skipped by user; ai-council artifacts remain packet-local."
+    on_cancel:
+      halt: true
+      message: "Deep council save cancelled after synthesis."
+
+  phase_save:
+    purpose: "Route completion context into memory save"
+    steps:
+      step_memory_save:
+        action: "Invoke memory:save routing after synthesis"
+        command_hint: "/memory:save spec_folder={spec_folder} recent_action='deep-ai-council multi-topic session complete'"
+        writes:
+          - "{spec_folder}/description.json"
+          - "{spec_folder}/graph-metadata.json"
+          - "{spec_folder}/implementation-summary.md"

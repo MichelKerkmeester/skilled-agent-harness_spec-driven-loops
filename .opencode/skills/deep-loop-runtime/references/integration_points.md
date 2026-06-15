@@ -35,9 +35,9 @@ The removed MCP tool surface is not an integration point.
 
 | Surface | Call Shape | Purpose |
 |---|---|---|
-| `deep_start-review-loop_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"` | Graph convergence before stop decision. |
-| `deep_start-review-loop_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'` | Persist reducer graph events. |
-| `deep_start-review-loop_confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
+| `deep_review_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"` | Graph convergence before stop decision. |
+| `deep_review_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'` | Persist reducer graph events. |
+| `deep_review_confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
 | `deep-review/assets/prompt_pack_iteration.md.tmpl` | Optional `graphEvents` array in iteration JSONL. | Produces coverage graph source events. |
 | `deep-review/scripts/reduce-state.cjs` | Imports coverage-graph runtime. | Consumes moved runtime helpers. |
 
@@ -49,9 +49,9 @@ Review graph semantics: `loopType` is `review`; node kinds include `DIMENSION`, 
 
 | Surface | Call Shape | Purpose |
 |---|---|---|
-| `deep_start-research-loop_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"` | Graph convergence before inline stop vote. |
-| `deep_start-research-loop_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'` | Persist research graph events. |
-| `deep_start-research-loop_confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
+| `deep_research_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"` | Graph convergence before inline stop vote. |
+| `deep_research_auto.yaml` | `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'` | Persist research graph events. |
+| `deep_research_confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
 | `deep-research/assets/prompt_pack_iteration.md.tmpl` | Optional `graphEvents` array in iteration JSONL. | Produces research coverage graph source events. |
 
 Research graph semantics: `loopType` is `research`; node kinds include `QUESTION`, `FINDING`, `CLAIM`, and `SOURCE`.
@@ -159,13 +159,13 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 | # | Consumer | Path | Integration Shape |
 |---|----------|------|-------------------|
-| 1 | `/deep:ask-ai-council` command | `.opencode/commands/deep/assets/deep_ask-ai-council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
-| 2 | `deep-ai-council` orchestration | `.opencode/skills/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
+| 1 | `/deep:ai-council` command | `.opencode/commands/deep/assets/deep_ai-council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
+| 2 | `deep-ai-council` orchestration | `.opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
 | 3 | `/doctor` route manifest | `.opencode/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to deep-loop-runtime scripts |
 | 4 | `/doctor` update command | `.opencode/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
 | 5 | `system-code-graph` playbook | `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-*.md` + `010-*.md` | Operator scenarios exercising the coverage-graph scripts end-to-end |
 | 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
-| 7 | Doctor + deep-improvement | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` + `doctor_update.yaml` + `.opencode/skills/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
+| 7 | Doctor + deep-improvement | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` + `doctor_update.yaml` + `.opencode/skills/deep-loop-workflows/improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
 
 ### Note: cross-package test discovery
 
@@ -194,8 +194,8 @@ The following consumers were surfaced by a deep-research audit and were absent f
 | `scripts/*.cjs` | Direct integration entry points. |
 | `lib/deep-loop/*.ts` | Shared executor, validation, state, scoring, and permission primitives. |
 | `lib/coverage-graph/*.ts` | Graph storage, query, and signal primitives. |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Review auto consumer. |
-| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Research auto consumer. |
+| `.opencode/commands/deep/assets/deep_review_auto.yaml` | Review auto consumer. |
+| `.opencode/commands/deep/assets/deep_research_auto.yaml` | Research auto consumer. |
 | `.opencode/commands/doctor/speckit.md` | Doctor route boundary. |
 | `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` | Runtime test discovery. |
 

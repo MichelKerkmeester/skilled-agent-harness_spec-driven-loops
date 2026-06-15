@@ -58,7 +58,7 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:start-research-loop` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
@@ -122,7 +122,7 @@ Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI 
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/protocol/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:research` to `../deep-loop-workflows/research/references/protocol/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -516,7 +516,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Worktree isolation | `.opencode/bin/worktree-session.sh` creates a per-session git worktree with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`. Pair with `worktree-reaper.sh` for teardown and `worktree-guard.sh` for lock enforcement |
 | Session cleanup | `.opencode/scripts/session-cleanup.sh` (renamed from `claude-session-cleanup.sh` with a back-compat shim retained) resolves PIDs across claude/opencode/codex runtimes |
 
-Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:start-research-loop` follows `../deep-research/references/protocol/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
+Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:research` follows `../deep-loop-workflows/research/references/protocol/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
 
@@ -528,4 +528,4 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 
-Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, `deep-research` for iterative research, and `deep-review` for iterative audit workflows.
+Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, and `deep-loop-workflows` for iterative research and audit (its `research` and `review` modes).

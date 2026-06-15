@@ -23,7 +23,7 @@ triggerPhrases:
 
 ## Rule
 
-**Run `/deep:start-review-loop` after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
+**Run `/deep:review` after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
 
 ## What counts as "substantive implementation"
 
@@ -49,7 +49,7 @@ triggerPhrases:
 
 ## How to dispatch
 
-Run it through `/deep:start-review-loop`, which owns iter sequencing, convergence, the per-iter prompt contract, and the `review/` output. Two roles: a **native Anthropic Agent** as loop-manager (iter adjudication + synthesis) and a **CLI review worker** (`cli-codex` / `cli-opencode`) per iteration — preload the executor's SKILL.md first per `cli-dispatch-skill-preload.md`. Default **10 iterations** (3-7 for a single patch/commit, ~20 for a full umbrella stack); convergence default 0.10, early-stop after 3 iters with no new P0/P1.
+Run it through `/deep:review`, which owns iter sequencing, convergence, the per-iter prompt contract, and the `review/` output. Two roles: a **native Anthropic Agent** as loop-manager (iter adjudication + synthesis) and a **CLI review worker** (`cli-codex` / `cli-opencode`) per iteration — preload the executor's SKILL.md first per `cli-dispatch-skill-preload.md`. Default **10 iterations** (3-7 for a single patch/commit, ~20 for a full umbrella stack); convergence default 0.10, early-stop after 3 iters with no new P0/P1.
 
 ## Verdict → next action
 
@@ -79,5 +79,5 @@ The 020 deep-review surfaced 3 confirmed P0 in code that had passed all unit tes
 ## Cross-references
 
 - `cli-dispatch-skill-preload.md` — preload the chosen CLI executor's SKILL.md first
-- `.opencode/commands/deep/start-review-loop.md` — workflow surface
+- `.opencode/commands/deep/review.md` — workflow surface
 - AGENTS.md OPERATIONAL MANDATES — adjacent rule
