@@ -41,7 +41,7 @@ How to put real-world shipped UI to work as judgment input without letting it tu
 These are Code Mode (UTCP) manuals, not in-process tools. Discover first, then call:
 
 1. `search_tools("mobbin app screens")` or `tool_info(...)` to resolve the exact tool name and arguments.
-2. `call_tool_chain([...])` with the resolved call, for example `mobbin.mobbin_search_screens({ query, platform })` or `refero.refero_refero_search_screens({ query, platform })`. Call the tools synchronously (no top-level `await`); each returns the MCP content array, where the text block holds the JSON metadata (including a citable URL) and an image block holds the screenshot.
+2. `call_tool_chain([...])` with the resolved call, for example `mobbin.mobbin_search_screens({ query, platform })` or `refero.refero_refero_search_screens({ query, platform })`. Call the tools synchronously (no top-level `await`). Each returns the content array: the first block is the parsed data object (`.screens` or `.flows`, each item carrying a citable `mobbin_url`), followed by `type: "image"` blocks holding the screenshots.
 
 Newly-wired manuals load at Code Mode startup, so a reference that does not resolve usually means the session predates the wiring or the subscription is not yet authorized.
 
