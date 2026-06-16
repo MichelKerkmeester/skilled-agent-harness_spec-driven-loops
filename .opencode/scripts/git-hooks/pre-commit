@@ -75,6 +75,28 @@ if [ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]; then
   fi
 fi
 
+# --- MCP mutation-class gate (blocking) ---
+# When an mcp-* install/doctor script or the install-doctor manifest is staged,
+# enforce the read-only / mutating contract: a "read-only" doctor that grows an
+# unguarded mutation or unbounded network call (or a missing manifest label)
+# fails the commit. Guards against the doctor-that-connected-to-all-servers and
+# the installer-that-wiped-a-global-cache regressions.
+# Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ...
+if [ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]; then
+  MUTCLASS_GUARD="${REPO_ROOT}/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"
+  if [ -f "$MUTCLASS_GUARD" ] && git diff --cached --name-only --diff-filter=ACM \
+       | grep -Eq '^\.opencode/(skills/mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor_mcp_install\.yaml)$'; then
+    if ! bash "$MUTCLASS_GUARD" "$REPO_ROOT"; then
+      echo "" >&2
+      echo "BLOCKED: MCP mutation-class contract failed (see FAIL lines above)." >&2
+      echo "Fix: a read-only doctor must not run mutations or unbounded network calls;" >&2
+      echo "     declare each script's mutation_class in doctor_mcp_install.yaml." >&2
+      echo "Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ..." >&2
+      exit 1
+    fi
+  fi
+fi
+
 # --- Tool ownership map gate (blocking) ---
 # Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
 # Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ...

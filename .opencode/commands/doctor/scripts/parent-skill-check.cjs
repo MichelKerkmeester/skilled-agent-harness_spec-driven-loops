@@ -281,10 +281,14 @@ function main() {
   // 4. The drift-guard is wired (registry == hardcoded advisor maps)
   // ───────────────────────────────────────────────────────────────
   const driftGuardPath = path.resolve(DRIFT_GUARD_TEST);
-  if (fs.existsSync(driftGuardPath)) {
-    pass('4a: routing-registry drift-guard test is present');
+  if (basename === CANONICAL_BASENAME) {
+    if (fs.existsSync(driftGuardPath)) {
+      pass('4a: routing-registry drift-guard test is present');
+    } else {
+      fail(`4a: drift-guard test is missing at ${DRIFT_GUARD_TEST} — registry/maps parity is unguarded`);
+    }
   } else {
-    fail(`4a: drift-guard test is missing at ${DRIFT_GUARD_TEST} — registry/maps parity is unguarded`);
+    info('4a: drift-guard presence is canonical-scoped; a non-canonical parent skill must author its own drift-guard test scoped to its mode-registry (not verified here — see 4c for inert-routing coverage)');
   }
 
   // 4b — optional dynamic cross-check: compare the registry's lexical

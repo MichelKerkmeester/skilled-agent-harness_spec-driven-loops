@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Old-skill deletion and full-surface validation (partial — B1 council-graph probe)"
-description: "Partial execution of phase 009: the B1 /doctor deep-loop council-graph probe built and verified, six P0 gates closed; twelve P0 gates remain unrun."
+description: "Partial execution of phase 009: the B1 /doctor deep-loop council-graph probe built and verified, plus a gate sign-off bringing P0 to 12/18; six P0 gates remain (process-circumstantial, skill-graph rebuild deferred, parity replay not cleanly replayable)."
 trigger_phrases:
   - "deep-loop-workflows phase 009 implementation"
   - "B1 council-graph doctor probe"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/152-deep-loop-workflows/009-old-skill-deletion-and-validation"
-    last_updated_at: "2026-06-15T20:45:00Z"
+    last_updated_at: "2026-06-15T22:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Built B1 council-graph doctor probe; verified 6/18 P0 gates"
-    next_safe_action: "Run remaining 12 P0 gates: parity replay, skill-graph rebuild, validations"
+    recent_action: "Ran 009 gate sign-off: 12/18 P0 verified"
+    next_safe_action: "Skill-graph rebuild on quiescent tree (CHK-060); replay baseline (CHK-065)"
     blockers: []
     key_files:
       - ".opencode/commands/doctor/assets/doctor_deep-loop.yaml"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-152-009-b1-council-graph-probe-implementation"
       parent_session_id: null
-    completion_pct: 33
+    completion_pct: 67
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 152-deep-loop-workflows/009-old-skill-deletion-and-validation |
-| **Completed** | 2026-06-15 (partial — B1 + 6/18 P0; remediation under packet 156 deep-review) |
+| **Completed** | 2026-06-15 (partial — B1 + gate sign-off, 12/18 P0; remediation under packet 156 deep-review) |
 | **Level** | 2 |
 | **Actual Effort** | B1 probe + 6-gate verification (scoped remediation slice) |
 
@@ -59,7 +59,7 @@ The read-only deep-loop doctor now covers the council graph alongside the deep-l
 |------|--------|---------|
 | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | Modified | Add council scope, council-graph probe/staleness, `ai-council/**` inventory, council convergence sampling, and council replay recommendation |
 | `.opencode/commands/doctor/_routes.yaml` | Modified | Widen `deep-loop` `allowed_flags` to `--scope=research\|review\|council\|both\|all`; update gate3_location to note council reads |
-| `checklist.md` | Modified | Mark CHK-022/023/024/025/026/064 verified with command evidence; summary to 6/18 P0 |
+| `checklist.md` | Modified | Mark the council/route/deletion six (CHK-022/023/024/025/026/064) then the gate-signoff six (CHK-002/020/061/062/063/066) verified with command evidence; honest non-pass evidence on CHK-060/065 + the four process gates; summary to 12/18 P0 |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -104,7 +104,7 @@ This slice was executed as remediation of the packet-156 deep-review P1 (B1 neve
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Twelve P0 gates remain unrun (6/18 verified).** CHK-001/002/010/020/021/030 (process/pre-impl), CHK-060 (skill-graph rebuild rejectedEdges=0 — mutation-class, intentionally not run from this slice), CHK-061/062/063 (advisor/mirror/registry validation), CHK-065 (byte-identical phase-001 parity replay — the acceptance bar), CHK-066 (validate.sh --strict for phase 009 + parent recursive validation). Full phase-009 sign-off requires running these.
+1. **Six P0 gates remain (12/18 verified).** A 2026-06-15 gate sign-off closed CHK-002/020 (phase-001 baseline present + coverage), CHK-061/062/063 (advisor routing, agent mirror parity, registry completeness), and CHK-066 (validate.sh --strict for phase 009 + parent control file, both 0/0) on top of the earlier council/route/deletion six. The remaining six are: CHK-001/010/021/030 (circumstantial-process — the merge completed the 001→009 chain and shipped functional, and this is a doc/code reorg with no secrets, but these were not formally gate-run), CHK-060 (skill-graph rebuild rejectedEdges=0 — deferred because a concurrent session holds uncommitted graph-metadata edits; a clean rebuild belongs to a quiescent tree), and CHK-065 (byte-identical phase-001 parity replay — not cleanly replayable, since the captured baseline is PRE-merge source hashes at old paths that the merge's intentional moves + path rewrites invalidate; no artifact-hash baseline or path-rewrite map exists, so behavioral correctness rests on the 351 passing deep-loop-runtime tests plus the packet-156 wave-2/3 verifications). Full phase-009 sign-off requires resolving these.
 2. **Parent 152 "Complete/100%" remains contingent.** The destructive deletion already shipped and is git-recoverable; the merge is functionally validated by the 351 passing deep-loop-runtime tests (per the packet-156 review), but the parent's completion claim is not fully backed until the remaining gates run.
 3. **B1 verified against an existing council namespace fixture** (`sandbox/dac-019`), not a full live `/doctor deep-loop --scope=all` end-to-end run through the interactive command surface.
 

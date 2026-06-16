@@ -35,8 +35,9 @@
       "phase"
     ],
     "importance_tier": "important",
-    "status": "planned_(scaffold)",
+    "status": "complete",
     "key_files": [
+      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",

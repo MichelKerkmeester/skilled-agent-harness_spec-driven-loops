@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/152-deep-loop-workflows"
-    last_updated_at: "2026-06-15T21:00:00Z"
+    last_updated_at: "2026-06-15T22:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Merged to 027 + functional; formal per-phase gate sign-off pending (009 6/18 P0)"
-    next_safe_action: "Run remaining per-phase P0 gates (byte-parity replay + strict validation)"
+    recent_action: "Merged + functional; 009 gate sign-off 12/18 P0; 007 R1 descoped by decision"
+    next_safe_action: "Quiescent-tree skill-graph rebuild + artifact-replay baseline (CHK-060/065)"
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/ (merged skill, live in 027)"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-152-deep-loop-workflows"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 92
     open_questions: []
     answered_questions: []
 ---
@@ -93,9 +93,9 @@ Collapse the five persona surfaces into ONE public skill, `deep-loop-workflows`,
 | 4 | `004-command-surface-repoint/` | Repoint the 8 `/deep:*` commands + YAML assets to the new packet paths and `skill:` keys; requires the Python↔TS `{skill,mode}` contract finalized (B2) | Complete |
 | 5 | `005-agent-mirror-repoint/` | Repoint the 5 native agent bodies across the 3 runtime mirrors; hold 3-way parity (Path-Convention line whitelisted) | Complete |
 | 6 | `006-advisor-graph-mode-routing/` | Correct council+improvement family `sk-util`→`deep-loop` FIRST (B7), then collapse the 5 skill IDs → `deep-loop-workflows` + mode-alias layer; resolve `deep-context` Candidate-3 asymmetry (B3) and the `aliases.ts` schema (B6) | Complete |
-| 7 | `007-governance-consolidation/` | One unified governance tree partitioned by mode; mode-qualify CP- ID collisions at the index (no file renumber); normalize council casing | Complete |
+| 7 | `007-governance-consolidation/` | One unified governance tree partitioned by mode; mode-qualify CP- ID collisions at the index (no file renumber); normalize council casing | Complete — R1 (one-root) superseded by decision-record; per-mode trees intentional |
 | 8 | `008-framework-docs-sweep/` | Rewrite framework docs from the 5-skill to the 2-skill model (root README, CLAUDE.md/AGENTS.md, runtime README, constitutional, sibling lines); stamp v1.0.0; preserve per-mode changelog history | Complete |
-| 9 | `009-old-skill-deletion-and-validation/` | Delete the 5 old skill directories; run the full-surface Acceptance Gate set; resolve the `/doctor` council-graph coverage blocker (B1) | Partial — 6/18 P0 (deletion done + B1 council-graph probe built/verified; byte-parity replay + strict-validation gates pending) |
+| 9 | `009-old-skill-deletion-and-validation/` | Delete the 5 old skill directories; run the full-surface Acceptance Gate set; resolve the `/doctor` council-graph coverage blocker (B1) | Partial — 12/18 P0 (deletion + B1 + advisor/mirror/registry/strict-validation verified; skill-graph rebuild deferred to a quiescent tree; byte-parity replay not cleanly replayable) |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

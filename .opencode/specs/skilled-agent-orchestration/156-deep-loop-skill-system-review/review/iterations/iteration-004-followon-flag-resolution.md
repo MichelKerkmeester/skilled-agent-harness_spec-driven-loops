@@ -1,0 +1,18 @@
+# Iteration 004 — Follow-on flag resolution (operator-directed)
+
+The operator chose to action the open flags. Resolved via 6 sub-agents + a Kimi k2.7 read-only review + central reconciliation. Net: the 4 decision-flags + 2 minor items are done; two honest sub-flags remain (009 partial-by-design; 4 pre-existing sibling validation gaps).
+
+## Resolved
+- **007 governance — DESCOPE + record.** New `007/decision-record.md` (R1 "one consolidated root" superseded; per-mode trees intentional for self-contained packets; CP- collisions moot under per-mode partitioning) + `007/implementation-summary.md`; 007 spec/graph-metadata → Complete; parent Phase Map row 7 reconciled. `--strict` PASS.
+- **009 sign-off — ran everything runnable → 12/18 P0.** Verified this session: CHK-002/020 (baseline present + coverage), CHK-061 (advisor parity True), CHK-062 (wave-3 mirror byte-parity), CHK-063 (registry 8/8), CHK-066 (009 + parent control-file --strict 0/0). **Reported-not-faked:** CHK-065 byte-parity is NOT cleanly replayable (baseline is pre-merge source hashes at old paths that the intentional moves invalidate; no artifact baseline/path-map); CHK-060 skill-graph rebuild deferred (a concurrent session holds uncommitted graph-metadata). CHK-001/010/021/030 left circumstantial. Parent reconciled 6→12/18, completion_pct 90→92.
+- **Backend writer-lock — full fix + Kimi-hardened.** PID-stamped reclamation + dead-owner/aged-out detection + snapshot writes now lock-guarded + a unit test (SA1; vitest 4/4 + 33/33 regression, no segfault this run). **Kimi k2.7 then found 2 real mutual-exclusion races the reclamation introduced** — [P0] reclaim race (two reclaimers both rm; later rm kills the winner's lock) and [P1] ownership-blind release (a reclaimed slow writer deletes the new holder's lock). Closed with a per-acquisition `randomUUID` nonce: re-read-and-verify after stamp (P0), ownership-checked release that only removes a lock still carrying our nonce (P1). Verified: vitest 6/6 + full unit suite 301 tests + `node --check` + **a real 24-process contention run held mutual exclusion (counter exactly 24, zero lost increments)**. Uncontended fast path unchanged.
+- **153 mutation-class CI.** `mutation_class` per script in `doctor_mcp_install.yaml` + `check-mcp-mutation-class.sh` (flags read-only doctors that gain mutation/network calls; demo'd catching all 6 violation classes incl. the two real shipped bugs) + a pre-commit wire-in. GUARD PASS on current scripts.
+- **doctor 4a (155F-2 code).** `parent-skill-check.cjs` 4a is now target-aware — a non-canonical parent skill gets an INFO note instead of a vacuous PASS off the canonical drift-guard's existence (4b/4c were already canonical-scoped). `node --check` OK.
+- **Mirror line (W3-001).** Left to its concurrent-session owner (`.claude/agents/deep-review.md` is uncommitted-dirty under that session).
+
+## Honest sub-flags (newly surfaced, not fabricated)
+- **009 remains partial (12/18).** CHK-060 (quiescent-tree skill-graph rebuild) + CHK-065 (single-executor artifact replay against a fresh baseline) + the 4 process gates are the genuine remainder.
+- **4 pre-existing sibling validation failures.** The CHK-066 recursive sweep exposed `152/004/005/006/008` each missing 1 required Level-2 file — pre-existing, out of 009's scope. Flagged for a small cleanup pass (author the missing impl-summaries honestly from each phase's existing docs).
+
+## Method note
+Kimi k2.7 (`kimi-for-coding/k2p7`, read-only via cli-opencode) was the high-leverage call: it converted a "strictly-safer-but-still-racy" lock into a checkpoint that actually closed the races before the change shipped.

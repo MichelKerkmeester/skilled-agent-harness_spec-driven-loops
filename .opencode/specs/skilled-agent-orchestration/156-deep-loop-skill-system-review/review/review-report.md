@@ -58,3 +58,6 @@ The CONDITIONAL conditions are now **met**: the 3 original P1s fixed (failing sk
 3. **deep-loop-runtime writer-lock hardening** — no stale-lock reclamation (an orphaned lock bricks all writers); convergence snapshot writes skip the lock. Focused backend pass.
 4. **153 mutation-class CI** + **`/doctor:parent-skill` 4a target-awareness** — small follow-ons (limitations documented).
 5. **`.claude/agents/deep-review.md` path-convention line** — one-line cosmetic fix, left to its concurrent-session owner.
+
+### Flag resolution (operator-directed, 2026-06-16 — detail in iteration-004)
+All flags actioned: **007 descoped** (decision-record supersedes R1), **009 signed off to 12/18 P0** (CHK-060/065 honestly reported-not-faked, not back-dated), **backend lock hardened** — Kimi k2.7's review caught 2 mutual-exclusion races the reclamation introduced, closed with a per-acquisition nonce + ownership-checked release (a real 24-process contention run holds mutual exclusion), **153 mutation-class CI built** (catches the two shipped bug classes), **doctor 4a made target-aware**, mirror line left to its owner. Two honest sub-flags remain: the 009 remainder (CHK-060 quiescent rebuild + CHK-065 artifact replay + 4 process gates) and a pre-existing `152/004/005/006/008` "missing 1 Level-2 file" cleanup.

@@ -10,17 +10,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/152-deep-loop-workflows/007-governance-consolidation"
-    last_updated_at: "2026-06-14T22:20:00Z"
+    last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Scaffolded from deep-loop-workflows research"
-    next_safe_action: "Plan this phase via /speckit:plan"
+    recent_action: "R1 superseded by decision-record; per-mode trees intentional"
+    next_safe_action: "Orchestrator reconciles parent Phase Map for phase 007"
     blockers: []
-    key_files: []
+    key_files:
+      - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-152-007-governance-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (scaffold) |
+| **Status** | Complete — R1 superseded by decision-record.md; per-mode trees intentional |
 | **Created** | 2026-06-14 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Phase** | 007 of 009 (parent: `152-deep-loop-workflows`) |
@@ -80,7 +81,7 @@ Build one unified governance tree partitioned by mode, preserving each mode’s 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1 (MUST):** One feature_catalog root + one manual_testing_playbook root, partitioned by mode (context/research/review/improvement/council).
+- **R1 (SUPERSEDED):** ~~One feature_catalog root + one manual_testing_playbook root, partitioned by mode (context/research/review/improvement/council).~~ Superseded by `decision-record.md` (ADR-001): the shipped five per-mode trees under `.opencode/skills/deep-loop-workflows/<mode>/{feature_catalog,manual_testing_playbook}/` are intentional because the merged skill's mode packets are self-contained, which makes the CP- ID-collision concern R1 targeted moot under per-mode partitioning.
 - **R2 (MUST):** Mode-qualify CP- collisions at the merged index (no file renumber); preserve bidirectional catalog↔playbook cross-references.
 - **R3 (MUST):** Rewrite the machine-enforced count self-checks to the merged total or per-mode sub-totals; update old skill-rooted SOURCE FILES paths (preserving deep-loop-runtime paths).
 - **R4 (MUST):** Normalize council FEATURE_CATALOG.md casing; dedupe setup-cp-sandbox.sh; reconcile the pre-existing intra-skill drift.
