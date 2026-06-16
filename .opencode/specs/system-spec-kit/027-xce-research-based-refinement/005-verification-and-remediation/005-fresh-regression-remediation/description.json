@@ -30,6 +30,7 @@
     "003-code-graph-robustness",
     "004-cli-frontdoor-safety",
     "005-spec-folder-metadata-reconciliation",
-    "006-doc-truth-completion-and-mirrors"
+    "006-doc-truth-completion-and-mirrors",
+    "007-consolidation-hardening"
   ]
 }

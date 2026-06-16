@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening",
+  "description": "Feature Specification: Consolidation Cycle Hardening",
+  "keywords": [
+    "feature",
+    "specification",
+    "consolidation",
+    "cycle",
+    "hardening"
+  ],
+  "lastUpdated": "2026-06-16T15:02:05.585Z",
+  "specId": "007",
+  "folderSlug": "consolidation-hardening",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "005-fresh-regression-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
