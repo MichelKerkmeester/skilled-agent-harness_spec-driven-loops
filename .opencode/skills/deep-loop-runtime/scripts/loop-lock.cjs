@@ -16,6 +16,15 @@
 // ║   release --lock-path P --owner-pid PID                                  ║
 // ║ Output: one JSON object on stdout.                                       ║
 // ║ Exit:   0=ok, 1=script error, 3=input validation error.                 ║
+// ║                                                                          ║
+// ║ deep_research / deep_review / deep_ai-council YAMLs call THIS adapter.    ║
+// ║ Sanctioned exception to the "one contract" claim: deep-context keeps a    ║
+// ║ separate host-facing wrapper                                             ║
+// ║ (deep-loop-workflows/deep-context/scripts/loop-lock.cjs) with a          ║
+// ║ different CLI surface (--lock/--packet/--owner), a longer default TTL     ║
+// ║ (1h vs 5min), and in-process require() loading, because the host-driven   ║
+// ║ context loop has no single long-lived heartbeat process. Both wrap the    ║
+// ║ same lib/deep-loop/loop-lock.ts; keep the two header notes in sync.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';

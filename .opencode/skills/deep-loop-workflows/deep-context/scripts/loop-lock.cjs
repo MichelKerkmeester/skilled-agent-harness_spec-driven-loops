@@ -6,6 +6,23 @@
 // host-driven context loop gets single-writer, cross-session advisory locking
 // (stale-lock reclaim + clean release) from the same source of truth the mature
 // loops use, instead of a prose-only lock step.
+//
+// INTENTIONAL DIVERGENCE from the runtime adapter
+// (deep-loop-runtime/scripts/loop-lock.cjs), not accidental drift:
+//   - Flag contract: --lock / --packet / --owner here, vs the runtime
+//     adapter's --lock-path / --packet-id / --owner-pid. Do NOT copy
+//     invocations between the two loops; the wrong flag shape silently fails
+//     (exit 3). deep_context_auto/confirm.yaml call THIS wrapper's flag shape.
+//   - Default TTL: 3600000ms (1h) here vs 300000ms (5min) in the runtime
+//     adapter. The host-driven context loop has no single long-lived process
+//     holding the lock for heartbeat refresh, so it needs a wider stale window.
+//   - Loading: in-process require() (no re-exec) so a host that already runs
+//     under tsx can hold the lock for the session, vs the adapter's
+//     dynamic import() on a fresh process per invocation.
+// Both wrap the SAME lib/deep-loop/loop-lock.ts, so the lock format and
+// stale-reclaim semantics are shared; only the CLI surface and default TTL
+// differ. Keep this note and the runtime adapter's note in sync if either side
+// changes.
 
 'use strict';
 

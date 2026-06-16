@@ -1817,9 +1817,14 @@ async function main(): Promise<void> {
     console.error('[context-server] Database initialized');
     console.error('[context-server] Database path: ' + DATABASE_PATH);
 
-    // Idempotency receipts are replay caches with no other expiry path;
-    // sweep expired rows at init so they cannot grow or replay stale
-    // responses indefinitely. Best-effort: a sweep failure never blocks boot.
+    // Idempotency receipts are replay caches. This is the ONLY sweep: it runs
+    // once at boot, so the TTL is enforced across daemon restarts only. A warm
+    // daemon running longer than the receipt TTL never re-sweeps, so rows past
+    // TTL persist and the table grows until the next restart. That unbounded
+    // growth is the accepted tradeoff (receipts are small and stale replays are
+    // already gated by the active-row identity recheck at lookup time); if a
+    // long-lived daemon needs mid-run expiry, add a bounded periodic/on-write
+    // sweep here. Best-effort: a sweep failure never blocks boot.
     try {
       const prunedReceipts = pruneExpiredIdempotencyReceipts(startupDb);
       if (prunedReceipts > 0) {

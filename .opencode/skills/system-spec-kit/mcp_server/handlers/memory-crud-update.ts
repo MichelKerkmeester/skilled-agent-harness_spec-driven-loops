@@ -241,11 +241,15 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
           contentHash,
           logicalMutation,
         },
-        // The compared payload is the SEMANTIC mutation material only, identical
-        // to the fingerprint that derives the receipt key. Spreading
-        // execution-mode flags (e.g. allowPartialUpdate) into the payload but
-        // not the key turns a benign flag flip into a same-key / different-payload
-        // mismatch and a false hard conflict.
+        // The compared payload is a STRUCTURAL COPY of the fingerprint above, so
+        // payloadHash always equals requestFingerprintHash and the receiptKey is
+        // derived from it. Consequence: distinct logical updates always produce
+        // distinct keys, so the same-key/different-payload 'conflict' status can
+        // never fire from this caller; the conflict branch below is fail-safe
+        // defense-in-depth, not active protection. To make conflicts detectable
+        // the payload would have to carry MORE than the key material (e.g.
+        // execution-mode flags like allowPartialUpdate); it deliberately does
+        // not, so a benign flag flip cannot become a false hard conflict.
         payload: {
           id,
           contentHash,
@@ -256,13 +260,20 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
       if (lookup.status === 'replay') {
         // A receipt is a replay cache, not proof the cached response still
         // describes the live row. Re-read this id's current content_hash and
-        // honor the replay ONLY when it still matches the receipt's content_hash;
-        // an A->B->A content revert leaves the receipt for A intact while the row
-        // moved on, so replaying A's old response would diverge from the row.
+        // honor the replay ONLY when it still matches the receipt's content_hash
+        // AND the cached response still reports this same id; an A->B->A content
+        // revert leaves the receipt for A intact while the row moved on, and a
+        // delete-then-recreate can leave the cached response naming a stale id,
+        // so replaying it would diverge from the row.
         const liveRow = database
           .prepare('SELECT content_hash FROM memory_index WHERE id = ?')
           .get(id) as { content_hash: string | null } | undefined;
-        if (liveRow && liveRow.content_hash === lookup.key.contentHash) {
+        const replayMemoryId = extractMemoryIdFromResponse(lookup.response);
+        if (
+          liveRow
+          && liveRow.content_hash === lookup.key.contentHash
+          && (replayMemoryId == null || replayMemoryId === id)
+        ) {
           return lookup.response;
         }
         // Stale receipt for this attempt: drop the cache entry so the live
@@ -271,6 +282,10 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
         // stale receipt), then fall through to the normal update path.
         deleteIdempotencyReceiptByKey(database, lookup.key);
       } else if (lookup.status === 'conflict') {
+        // Unreachable from this caller: payload is a structural copy of
+        // requestFingerprint (above), so a key match implies a payload match and
+        // lookup never returns 'conflict'. Kept as fail-safe defense-in-depth in
+        // case the key material and payload ever diverge.
         return createMCPErrorResponse({
           tool: 'memory_update',
           error: 'Idempotency key conflict: same server-derived key with changed payload',

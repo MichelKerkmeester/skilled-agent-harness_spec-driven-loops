@@ -54,12 +54,20 @@ export interface GraphTraversal {
 export class BetterSqliteGraphTraversal implements GraphTraversal {
   constructor(private readonly database: Database.Database) {}
 
+  // Reserved / contract-only: no production caller adopts the two generic
+  // edge-reader walks through this port. They are db-agnostic primitives
+  // (the caller supplies readEdges), so unlike the causal/dependency methods
+  // below they intentionally do not bind this.database and simply forward to
+  // the bfs-traversal module functions; production code calls those module
+  // functions directly. Kept to satisfy the GraphTraversal contract and its
+  // contract test, mirroring the unadopted-port note in lexical-search.ts.
   collectWeightedWalk<TNode extends GraphTraversalNode>(
     options: WeightedWalkOptions<TNode>,
   ): Map<TNode, WeightedWalkResult<TNode>> {
     return collectWeightedWalk(options);
   }
 
+  /** Reserved / contract-only (see collectWeightedWalk above). */
   collectDirectedReachability<TNode extends GraphTraversalNode>(
     options: DirectedReachabilityOptions<TNode>,
   ): TNode[] {

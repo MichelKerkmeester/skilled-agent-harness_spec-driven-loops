@@ -3547,11 +3547,17 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   if (!shouldPlanCanonicalSave && isMemoryIdempotencyEnabled()) {
     try {
       const parsedForIdempotency = parsedForPreflight ?? memoryParser.parseMemoryFile(validatedPath);
-      // The compared payload is the SEMANTIC request material only, identical to
-      // the fingerprint that derives the receipt key. Spreading execution-mode
-      // flags (dryRun, skipPreflight, asyncEmbedding, plannerMode, ...) into the
-      // payload but not the key turns a benign flag flip into a same-key /
-      // different-payload mismatch and a false hard conflict.
+      // The compared payload IS the fingerprint object: both lookup inputs
+      // below point at this same idempotencySemantics value, so payloadHash
+      // always equals requestFingerprintHash and the receiptKey is derived from
+      // it. Consequence: distinct logical requests always produce distinct
+      // keys, so the same-key/different-payload 'conflict' status can never fire
+      // from this caller (a force-flip yields a key MISS, not a conflict). The
+      // conflict branch below is fail-safe defense-in-depth, not active
+      // protection. To make conflicts detectable, the payload would have to
+      // carry MORE than the key material (e.g. execution-mode flags); it
+      // deliberately does not, so a benign flag flip cannot become a false
+      // hard conflict.
       const idempotencySemantics = {
         filePath: canonicalValidatedPath,
         contentHash: parsedForIdempotency.contentHash,
@@ -3559,9 +3565,9 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
         mergeModeHint: mergeModeHint ?? null,
         targetAnchorId: targetAnchorId ?? null,
         scope: saveScope,
-        // A force-flipped retry is a DIFFERENT logical request: without
-        // force in the key material it collides with the stored receipt
-        // and the intentional forced write is rejected as a conflict.
+        // A force-flipped retry is a DIFFERENT logical request: keeping force in
+        // the key material makes it a distinct key (a clean MISS that re-runs),
+        // never a collision with the non-forced receipt.
         force: force === true,
       };
       const lookup = lookupIdempotencyReceipt(database, {
@@ -3577,12 +3583,16 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
         // is intact but the active row now holds B (or, after deletion, a
         // superseded row), so replaying A's old response would diverge from
         // the index. Honor the replay ONLY when the active row for this logical
-        // identity still carries the receipt's content_hash. Mirror the
-        // handler's own active-row identity (findSamePathExistingMemory) and
-        // exclude retired tiers so a deprecated/archived predecessor cannot
-        // satisfy the match.
+        // identity still carries the receipt's content_hash AND is the same row
+        // the cached response reports. Content alone is insufficient: a planner
+        // re-create of identical content (the planner branch skips this whole
+        // block and never refreshes the receipt) produces a NEW id, so a
+        // content-only match would replay a response naming a deleted id and
+        // strand a follow-up update by that id. Mirror the handler's own
+        // active-row identity (findSamePathExistingMemory) and exclude retired
+        // tiers so a deprecated/archived predecessor cannot satisfy the match.
         const activeRow = database.prepare(`
-          SELECT content_hash
+          SELECT id, content_hash
           FROM memory_index
           WHERE spec_folder = ?
             AND parent_id IS NULL
@@ -3604,9 +3614,14 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
           saveScope.userId ?? null, saveScope.userId ?? null,
           saveScope.agentId ?? null, saveScope.agentId ?? null,
           saveScope.sessionId ?? null, saveScope.sessionId ?? null,
-        ) as { content_hash: string } | undefined;
+        ) as { id: number; content_hash: string } | undefined;
 
-        if (activeRow && activeRow.content_hash === lookup.key.contentHash) {
+        const replayMemoryId = extractMemoryIdFromResponse(lookup.response);
+        if (
+          activeRow
+          && activeRow.content_hash === lookup.key.contentHash
+          && (replayMemoryId == null || activeRow.id === replayMemoryId)
+        ) {
           return lookup.response;
         }
         // Stale receipt for this attempt: drop the cache entry so the
@@ -3615,6 +3630,10 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
         // the stale receipt), then fall through to the normal save/reindex path.
         deleteIdempotencyReceiptByKey(database, lookup.key);
       } else if (lookup.status === 'conflict') {
+        // Unreachable from this caller: payload === requestFingerprint (above),
+        // so a key match implies a payload match and lookup never returns
+        // 'conflict'. Kept as fail-safe defense-in-depth in case the key
+        // material and payload ever diverge.
         return createMCPErrorResponse({
           tool: 'memory_save',
           error: 'Idempotency key conflict: same server-derived key with changed payload',
