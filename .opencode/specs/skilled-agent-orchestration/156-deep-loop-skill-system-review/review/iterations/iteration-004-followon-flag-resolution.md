@@ -12,7 +12,7 @@ The operator chose to action the open flags. Resolved via 6 sub-agents + a Kimi 
 
 ## Honest sub-flags (newly surfaced, not fabricated)
 - **009 remains partial (12/18).** CHK-060 (quiescent-tree skill-graph rebuild) + CHK-065 (single-executor artifact replay against a fresh baseline) + the 4 process gates are the genuine remainder.
-- **4 pre-existing sibling validation failures.** The CHK-066 recursive sweep exposed `152/004/005/006/008` each missing 1 required Level-2 file — pre-existing, out of 009's scope. Flagged for a small cleanup pass (author the missing impl-summaries honestly from each phase's existing docs).
+- **4 pre-existing sibling validation failures — RESOLVED.** `152/004/005/006/008` each missing 1 required Level-2 file (implementation-summary.md). Authored all four honestly (2 markdown agents) from each phase's spec/plan/tasks — per-phase checklists explicitly noted not-gate-run, no fabricated gate passes — so the full recursive 152 `--strict` sweep is now GREEN (all 9 children pass).
 
 ## Method note
 Kimi k2.7 (`kimi-for-coding/k2p7`, read-only via cli-opencode) was the high-leverage call: it converted a "strictly-safer-but-still-racy" lock into a checkpoint that actually closed the races before the change shipped.

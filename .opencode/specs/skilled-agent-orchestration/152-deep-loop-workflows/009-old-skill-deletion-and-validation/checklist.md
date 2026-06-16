@@ -102,7 +102,7 @@ _memory:
 - [ ] CHK-065 [P0] Full phase-001 parity rerun is byte-identical for all five modes and eight commands.
   - **Evidence**: NOT cleanly replayable — the captured baseline is PRE-merge source hashes at old paths, which the merge's intentional moves + path rewrites invalidate (no artifact-hash baseline or path-rewrite map exists). The merge's behavioral correctness is instead evidenced by the 351 passing deep-loop-runtime tests + the packet-156 wave-2/3 registry↔reality, mirror-parity, and runtime-promotion verifications. A true single-executor artifact replay is a separate task.
 - [x] CHK-066 [P0] validate.sh --strict passes for phase 009 and parent recursive validation is green.
-  - **Evidence**: 009 --strict PASSED (0/0); 152 parent control file --strict PASSED (0/0). NOTE: the full recursive 152 sweep is NOT green — pre-existing "missing 1 Level-2 file" errors in out-of-scope siblings 004/005/006/008, unrelated to 009 (flagged for separate cleanup) (2026-06-15).
+  - **Evidence**: 009 --strict PASSED (0/0); 152 parent control file --strict PASSED (0/0); full recursive 152 sweep GREEN — all 9 children pass --strict (the 004/005/006/008 missing-impl-summary gap was closed this session) (2026-06-16).
 
 <!-- /ANCHOR:fix-completeness -->
 ---
