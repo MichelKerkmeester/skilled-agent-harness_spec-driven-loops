@@ -39,13 +39,13 @@ The index is the contract; executor skills own the patterns. If a path here is m
 
 | Pattern | Owner Skill | Canonical Location | Status |
 | --- | --- | --- | --- |
-| Context budget engine (per-model defaults, fit-to-budget truncation, priority eviction) | `sk-prompt-small-model` | [`./context-budget.md`](./context-budget.md) | shipped |
-| Output verification pipeline (compile → execute → smoke-test → lint) | `sk-prompt-small-model` | [`./output-verification.md`](./output-verification.md) | shipped |
-| Confidence-scoring rubric (verification scoring formula) | `sk-prompt-small-model` | [`../assets/confidence-scoring-rubric.md`](../assets/confidence-scoring-rubric.md) | shipped |
-| Per-model budget defaults (3 required + 1 optional stub) | `sk-prompt-small-model` | [`../assets/per-model-budgets.json`](../assets/per-model-budgets.json) | shipped |
-| Quota-pool-aware fallback (no same-pool retry; fail-fast when no different-pool target) | `sk-prompt-small-model` | [`./quota-fallback.md`](./quota-fallback.md) | shipped |
-| Model-profile registry (unified per-model metadata) | `sk-prompt-small-model` | [`../assets/model-profiles.json`](../assets/model-profiles.json) | shipped |
-| Bayesian tool scoring (Laplace-smoothed per-call scoring) | `system-spec-kit` + `sk-prompt-small-model` | [`../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts`](../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts) + [`./output-verification.md`](./output-verification.md) § Tool scoring state file format | shipped |
+| Context budget engine (per-model defaults, fit-to-budget truncation, priority eviction) | `sk-prompt-small-model` | [`./context_budget.md`](./context_budget.md) | shipped |
+| Output verification pipeline (compile → execute → smoke-test → lint) | `sk-prompt-small-model` | [`./output_verification.md`](./output_verification.md) | shipped |
+| Confidence-scoring rubric (verification scoring formula) | `sk-prompt-small-model` | [`../assets/confidence_scoring_rubric.md`](../assets/confidence_scoring_rubric.md) | shipped |
+| Per-model budget defaults (3 required + 1 optional stub) | `sk-prompt-small-model` | [`../assets/per_model_budgets.json`](../assets/per_model_budgets.json) | shipped |
+| Quota-pool-aware fallback (no same-pool retry; fail-fast when no different-pool target) | `sk-prompt-small-model` | [`./quota_fallback.md`](./quota_fallback.md) | shipped |
+| Model-profile registry (unified per-model metadata) | `sk-prompt-small-model` | [`../assets/model_profiles.json`](../assets/model_profiles.json) | shipped |
+| Bayesian tool scoring (Laplace-smoothed per-call scoring) | `system-spec-kit` + `sk-prompt-small-model` | [`../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts`](../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts) + [`./output_verification.md`](./output_verification.md) § Tool scoring state file format | shipped |
 | Fallback router (TS helper applied via recipe field) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/fallback-router.ts`](../../deep-loop-runtime/lib/deep-loop/fallback-router.ts) | shipped |
 | Structured permissions schema (JSON Schema for tool-call gating) | `cli-opencode` | [`../../cli-opencode/assets/permissions-matrix.schema.json`](../../cli-opencode/assets/permissions-matrix.schema.json) | shipped |
 | Structured permissions reference (schema fields + 3 examples + RM-8 walkthrough) | `cli-opencode` | [`../../cli-opencode/references/permissions-matrix.md`](../../cli-opencode/references/permissions-matrix.md) | shipped |
@@ -62,7 +62,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | --- | --- | --- |
 | `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek via opencode-go pool + Kimi-k2.7-code via the Kimi For Coding plan + MiniMax-M3 via the Token Plan (`minimax-coding-plan`) and Direct API (`minimax`, pay-per-token) + MiMo-V2.5-Pro via the Xiaomi Token Plan (`xiaomi-token-plan-ams`) and Xiaomi Direct API (`xiaomi`) | Permissions matrix, budget propagation mirror. Prompt-CRAFT (framework selection, pre-planning density, per-model guidance) now lives in the hub profiles at `sk-prompt-small-model/references/models/`; cli-opencode owns only invocation MECHANICS (binary flags, provider id, quota pool). |
 | `sk-prompt` | Cross-CLI prompt quality + generic framework definitions | cli_prompt_quality_card.md |
-| `sk-prompt-small-model` (this skill) | Model registry + prompt-craft profiles + indexes + verification/fallback references | `assets/model-profiles.json` (each entry has `executors` array), `references/models/`, `references/output-verification.md`, `references/quota-fallback.md`, `assets/confidence-scoring-rubric.md`, this file, SKILL.md |
+| `sk-prompt-small-model` (this skill) | Model registry + prompt-craft profiles + indexes + verification/fallback references | `assets/model_profiles.json` (each entry has `executors` array), `references/models/`, `references/output_verification.md`, `references/quota_fallback.md`, `assets/confidence_scoring_rubric.md`, this file, SKILL.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
 
 If a pattern needs to span two executors, the rule is: ship the body in `sk-prompt-small-model` (the hub) and add a sentinel-style mirror (≤ 200 LOC, link-only) in the secondary executor. The `cli-opencode/references/context-budget.md` mirror is the canonical example of this pattern.
@@ -73,7 +73,7 @@ If a pattern needs to span two executors, the rule is: ship the body in `sk-prom
 
 When adopting Claude Haiku or any future small-model provider, follow this checklist in order. **This is the single canonical adoption checklist** — `sk-prompt-small-model/SKILL.md` §3 points here; do not maintain a second copy of these steps.
 
-1. **Populate the registry entry** at `sk-prompt-small-model/assets/model-profiles.json` — set the executor entry's `provider` + `quota_pool` (nested under `executors[]`), plus the model-level `context_length`, `tool_calling`, `primary_quota_pool`, and `recommended_frameworks` fields.
+1. **Populate the registry entry** at `sk-prompt-small-model/assets/model_profiles.json` — set the executor entry's `provider` + `quota_pool` (nested under `executors[]`), plus the model-level `context_length`, `tool_calling`, `primary_quota_pool`, and `recommended_frameworks` fields.
 2. **Author the prompt-craft profile** at `sk-prompt-small-model/references/models/<id>.md` from the 6-section per-model template, mirroring + citing the registry entry. **Without this the model has zero hub WEIGHT — a registry entry alone is not an adopted model.**
 3. **Add a row to `sk-prompt-small-model/references/models/_index.md`** (id → framework primary; fallback; pre-planning density; status).
 4. **Add a row to the `sk-prompt-small-model/SKILL.md` §3 Dispatch Matrix** (model → executor → provider (quota pool) → status).

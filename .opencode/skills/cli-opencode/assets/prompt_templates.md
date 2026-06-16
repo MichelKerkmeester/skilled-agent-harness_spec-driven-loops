@@ -49,7 +49,7 @@ Success criteria:
 - <list>
 
 Budget awareness:
-- Apply `../references/context-budget.md`; canonical semantics live in `../../sk-prompt-small-model/references/context-budget.md`.
+- Apply `../references/context-budget.md`; canonical semantics live in `../../sk-prompt-small-model/references/context_budget.md`.
 - When content is cut for context budget, keep the retained span and insert `[... truncated N tokens]`.
 - Treat truncation markers as intentional boundaries; do not infer missing evidence.
 

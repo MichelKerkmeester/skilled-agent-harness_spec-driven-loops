@@ -42,5 +42,5 @@
     "dispatch MiniMax via the Token Plan minimax-coding-plan default"
   ],
   "lastUpdated": "2026-06-01T00:00:00Z",
-  "pattern_index": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
+  "pattern_index": ".opencode/skills/sk-prompt-small-model/references/pattern_index.md"
 }

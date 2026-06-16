@@ -21,7 +21,7 @@ Single source of truth for **how to prompt** MiMo-V2.5-Pro. Framework rationale,
 
 ### Purpose
 
-The single source for how to prompt `mimo-v2.5-pro` when dispatching it through `cli-opencode`, mirroring its `model-profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
+The single source for how to prompt `mimo-v2.5-pro` when dispatching it through `cli-opencode`, mirroring its `model_profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
 
 ### When to Use
 
@@ -60,7 +60,7 @@ MiMo-V2.5-Pro is the **largest-context model in the small-model rotation** and t
 
 **Pre-planning density:** lean (2–3 ordered steps with acceptance criteria)
 
-These choices mirror `recommended_frameworks` in `model-profiles.json#mimo-v2.5-pro`: `primary: "costar"`, `fallback: "race"`, `avoid: ["tidd-ec", "cidi"]`, `preplanning_density: "lean"`, `status: "empirical"`.
+These choices mirror `recommended_frameworks` in `model_profiles.json#mimo-v2.5-pro`: `primary: "costar"`, `fallback: "race"`, `avoid: ["tidd-ec", "cidi"]`, `preplanning_density: "lean"`, `status: "empirical"`.
 
 ### Why COSTAR wins for MiMo
 
@@ -150,7 +150,7 @@ Expectation: <exact output shape; append "no preamble, no prose wrapping">
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for the capability fields below: `model-profiles.json#mimo-v2.5-pro.capability`.
+Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-pro.capability`.
 
 | Capability field | Value | Implication |
 | ---------------- | ----- | ----------- |
@@ -173,7 +173,7 @@ Source of truth for the capability fields below: `model-profiles.json#mimo-v2.5-
 
 ## 7. SEE ALSO
 
-- [`model-profiles.json#mimo-v2.5-pro`](../../../sk-prompt-small-model/assets/model-profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
+- [`model_profiles.json#mimo-v2.5-pro`](../../../sk-prompt-small-model/assets/model_profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.
 - [`../../../cli-opencode/assets/prompt_templates.md` §TEMPLATE 15](../../../cli-opencode/assets/prompt_templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
 - [`../../../cli-opencode/assets/prompt_quality_card.md` §Per-model override — MiMo](../../../cli-opencode/assets/prompt_quality_card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.

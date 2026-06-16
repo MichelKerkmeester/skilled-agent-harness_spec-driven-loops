@@ -13,7 +13,7 @@ contextType: implementation
 
 # MiniMax-M3 Prompt-Craft Profile
 
-Single source of truth for HOW TO PROMPT `minimax-m3`. Framework choices mirror `model-profiles.json` (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers) live in `cli-opencode`.
+Single source of truth for HOW TO PROMPT `minimax-m3`. Framework choices mirror `model_profiles.json` (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers) live in `cli-opencode`.
 
 ---
 
@@ -21,7 +21,7 @@ Single source of truth for HOW TO PROMPT `minimax-m3`. Framework choices mirror 
 
 ### Purpose
 
-The single source for how to prompt `minimax-m3` when dispatching it through `cli-opencode`, mirroring its `model-profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
+The single source for how to prompt `minimax-m3` when dispatching it through `cli-opencode`, mirroring its `model_profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
 
 ### When to Use
 
@@ -57,7 +57,7 @@ MiniMax wants guardrail-heavy TIDD-EC framing plus dense pre-planning — more s
 **Avoid:** nothing explicitly blocked, but lean/medium pre-planning and bare RCAF underperform (see §4)
 **Pre-planning density:** DENSE — 4–5 ordered steps, each with an explicit input, output, acceptance criterion, and verification command
 
-This mirrors `model-profiles.json` `recommended_frameworks` for `minimax-m3`:
+This mirrors `model_profiles.json` `recommended_frameworks` for `minimax-m3`:
 `primary: "tidd-ec"`, `fallback: "rcaf"`, `preplanning_density: "dense"`.
 
 **Counter-intuitive note:** MiniMax wants guardrail-heavy framing (TIDD-EC Do's/Don'ts) **plus** dense pre-planning — the **opposite** of the cross-model default (medium pre-planning, lighter framing). Most models plateau or regress with dense pre-plans; MiniMax actively uses the dense plan structure rather than being slowed by it. This is because TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope and format drift more effectively than RCAF's role anchor, and the dense pre-plan gives MiniMax a concrete decision scaffold it follows rather than ignoring. For other models in the rotation that follow the cross-model default (e.g. DeepSeek), RCAF + medium applies; MiniMax is the explicit exception.
@@ -128,7 +128,7 @@ Output shape: a `<pre-plan>` block (dense, 4-5 steps), then fenced code blocks e
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → `models[id="minimax-m3"].capability`.
+Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) → `models[id="minimax-m3"].capability`.
 
 | Capability field | Value | Dispatch rule |
 |---|---|---|
@@ -148,7 +148,7 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 
 ## 7. SEE ALSO
 
-- [`../../../sk-prompt-small-model/assets/model-profiles.json#minimax-m3`](../../../sk-prompt-small-model/assets/model-profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
+- [`../../../sk-prompt-small-model/assets/model_profiles.json#minimax-m3`](../../../sk-prompt-small-model/assets/model_profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
 - [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
 - [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)

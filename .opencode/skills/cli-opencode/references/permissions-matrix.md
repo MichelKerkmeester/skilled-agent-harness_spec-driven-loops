@@ -129,7 +129,7 @@ Core intent:
 | `write`/`edit` on the approved packet docs | allow | Packet docs are the approved continuity scope. |
 | `write`/`edit` on the packet schema, examples, reference doc, gate, and test | allow | These are the explicit implementation files. |
 | `edit` on `cli-opencode/SKILL.md` | allow | The packet updates only the relevant ALWAYS entry. |
-| `edit` on `sk-prompt-small-model/references/pattern-index.md` | allow | The packet marks the downstream pattern shipped. |
+| `edit` on `sk-prompt-small-model/references/pattern_index.md` | allow | The packet marks the downstream pattern shipped. |
 | `execute` on read-only shell commands | allow | Search and inspection stay usable. |
 | `execute` on destructive commands | deny | RM-8 prevention. |
 | `write`, `edit`, `delete` on `**` | deny | Anything outside the explicit approved packet paths blocks. |

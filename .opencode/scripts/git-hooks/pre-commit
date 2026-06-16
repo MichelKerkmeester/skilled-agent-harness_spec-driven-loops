@@ -68,7 +68,7 @@ if [ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]; then
       echo "" >&2
       echo "BLOCKED: prompt-knowledge drift guard failed (see FAIL lines above)." >&2
       echo "Fix: keep each fact in its one canonical home and point to it; see" >&2
-      echo "     .opencode/skills/sk-prompt-small-model/references/pattern-index.md." >&2
+      echo "     .opencode/skills/sk-prompt-small-model/references/pattern_index.md." >&2
       echo "Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ..." >&2
       exit 1
     fi

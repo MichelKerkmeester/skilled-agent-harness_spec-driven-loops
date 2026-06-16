@@ -579,7 +579,7 @@ Mitigation:
 
 ### Sandboxed Compile
 
-Future packets can replace static compile detection with real commands from `confidence-scoring-rubric.md`.
+Future packets can replace static compile detection with real commands from `confidence_scoring_rubric.md`.
 
 Required controls:
 
@@ -602,7 +602,7 @@ Required controls:
 
 ### Research-Quality Validator
 
-Future packets can implement the research-output formula from this doc and `confidence-scoring-rubric.md`.
+Future packets can implement the research-output formula from this doc and `confidence_scoring_rubric.md`.
 
 Required controls:
 

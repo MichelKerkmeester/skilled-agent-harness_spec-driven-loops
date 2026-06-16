@@ -101,7 +101,7 @@
     ],
     "key_files": [
       ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
+      ".opencode/skills/sk-prompt-small-model/references/pattern_index.md"
     ],
     "entities": [
       {
@@ -111,10 +111,10 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Per-model prompt-craft hub for small-model dispatch. It OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring assets/model-profiles.json) plus the model registry; executor MECHANICS stay in cli-opencode. The advisor co-surfaces it alongside that executor so every small-model dispatch has one discoverable knowledge anchor.",
+    "causal_summary": "Per-model prompt-craft hub for small-model dispatch. It OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring assets/model_profiles.json) plus the model registry; executor MECHANICS stay in cli-opencode. The advisor co-surfaces it alongside that executor so every small-model dispatch has one discoverable knowledge anchor.",
     "source_docs": [
       "SKILL.md",
-      "references/pattern-index.md"
+      "references/pattern_index.md"
     ],
     "created_at": "2026-05-18T00:00:00Z",
     "last_updated_at": "2026-06-03T00:00:00Z"

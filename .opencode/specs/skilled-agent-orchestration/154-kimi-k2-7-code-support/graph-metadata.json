@@ -7,7 +7,8 @@
     "skilled-agent-orchestration/154-kimi-k2-7-code-support/001-model-registration",
     "skilled-agent-orchestration/154-kimi-k2-7-code-support/002-framework-bakeoff",
     "skilled-agent-orchestration/154-kimi-k2-7-code-support/003-promote-results",
-    "skilled-agent-orchestration/154-kimi-k2-7-code-support/004-discriminating-bakeoff"
+    "skilled-agent-orchestration/154-kimi-k2-7-code-support/004-discriminating-bakeoff",
+    "skilled-agent-orchestration/154-kimi-k2-7-code-support/005-filename-underscore-alignment"
   ],
   "manual": {
     "depends_on": [],

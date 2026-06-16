@@ -982,7 +982,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **sk-prompt-small-model**
 - **Find the right small-model pattern fast.** A discovery anchor that points to executor-owned pattern files rather than hosting the logic itself
 - **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6 and GLM-5.1 via `cli-opencode`
-- **`references/pattern-index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
+- **`references/pattern_index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
 - **Pool-aware quota fallback** routes to a different pool only, never same-pool retries. Frontier models (Opus, Sonnet, gpt-5.5) stay out of scope
 
 ---

@@ -647,7 +647,7 @@ Verify the dispatch matrix for Kimi-k2.6 via the opencode-go path, that the oper
 
 Prompt: `Consult sk-prompt-small-model for the Kimi-k2.6 dispatch matrix and pick the cli-opencode opencode-go path. Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model opencode-go/kimi-k2.6 --variant high.`
 
-Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model-profiles.json kimi-k2.6 entry shows the opencode-go path. `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
+Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model_profiles.json kimi-k2.6 entry shows the opencode-go path. `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
 
 Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi-k2.6's large-context advantage, dispatched via the opencode-go pool with the matrix-consultation evidence trail.
 

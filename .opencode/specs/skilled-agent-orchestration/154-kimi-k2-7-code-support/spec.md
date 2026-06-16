@@ -110,6 +110,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 2 | 002-framework-bakeoff/ | 5-framework bakeoff (run 006); result: correctness-saturated TIE, no winner | Complete |
 | 3 | 003-promote-results/ | Fold the bakeoff finding (TIE, RCAF retained) into the registry + profile | Complete |
 | 4 | 004-discriminating-bakeoff/ | Strict-validator re-run (run 007); correctness separated, costar promoted, rcaf retired | Complete |
+| 5 | 005-filename-underscore-alignment/ | Align sk-prompt-small-model doc/asset filenames to the underscore convention and repair live references (the four model-profile filenames stay dashed by the drift-guard contract) | Complete |
 
 ### Phase Transition Rules
 

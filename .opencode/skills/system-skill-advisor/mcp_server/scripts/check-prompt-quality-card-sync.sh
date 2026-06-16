@@ -15,7 +15,7 @@
 #             canonical Tier-3 escalation triggers; it must point to the
 #             canonical card instead (prevents the precedence drift class).
 #   CHECK 3 — Registry/profile/_index completeness: every adopted model
-#             (a model-profiles.json entry with recommended_frameworks)
+#             (a model_profiles.json entry with recommended_frameworks)
 #             has a references/models/<id>.md profile AND an _index.md
 #             row, and every profile maps back to a registry id
 #             (prevents zero-hub-weight entries).
@@ -113,7 +113,7 @@ import json, os, re, glob, sys
 
 ROOT = os.environ["ROOT"]
 H = f"{ROOT}/.opencode/skills/sk-prompt-small-model"
-reg = json.load(open(f"{H}/assets/model-profiles.json"))
+reg = json.load(open(f"{H}/assets/model_profiles.json"))
 idx = open(f"{H}/references/models/_index.md").read()
 all_ids = {m["id"] for m in reg["models"]}
 adopted = [m for m in reg["models"] if m.get("recommended_frameworks")]

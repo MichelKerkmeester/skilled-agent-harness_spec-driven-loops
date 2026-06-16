@@ -47,7 +47,7 @@ Its `totalBudget()` calculation is:
 total_budget = model_context_length * max_budget_pct / 100
 ```
 
-The calculator remains data-first. The canonical values live in `../assets/per-model-budgets.json`, not in code.
+The calculator remains data-first. The canonical values live in `../assets/per_model_budgets.json`, not in code.
 
 Budget allocation separates four conceptual categories:
 
@@ -128,7 +128,7 @@ Recommended behavior:
 
 ## Per-Model Defaults
 
-The canonical asset is `../assets/per-model-budgets.json`.
+The canonical asset is `../assets/per_model_budgets.json`.
 
 | Model | Provider | Context length | 70% budget | Status |
 | --- | --- | ---: | ---: | --- |
@@ -204,7 +204,7 @@ Do not silently drop required acceptance criteria.
 Prompt composers should apply this order:
 
 1. Resolve the model id.
-2. Load `per-model-budgets.json`.
+2. Load `per_model_budgets.json`.
 3. Compute `budget = context_length * max_budget_pct / 100`.
 4. Reserve `working_memory_tokens`.
 5. Estimate remaining prompt content using 4 chars per token.
@@ -234,12 +234,12 @@ Keep the runtime tolerant of optional stubs. If `context_length` is `null`, do n
 
 ## Operational Notes
 
-Budgeting is advisory until a runtime prompt-pack builder consumes `per-model-budgets.json`.
+Budgeting is advisory until a runtime prompt-pack builder consumes `per_model_budgets.json`.
 
 Verification command:
 
 ```bash
-jq empty .opencode/skills/sk-prompt-small-model/assets/per-model-budgets.json
+jq empty .opencode/skills/sk-prompt-small-model/assets/per_model_budgets.json
 ```
 
 Expected DeepSeek-v4-pro budget:

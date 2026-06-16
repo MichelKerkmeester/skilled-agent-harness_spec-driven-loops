@@ -232,5 +232,5 @@ It preserves backward compatibility when verification is absent or false.
 
 ## 10. RELATED RESOURCES
 
-- [`output-verification.md`](../references/output-verification.md) — Output-verification pipeline reference that applies this rubric.
+- [`output_verification.md`](../references/output_verification.md) — Output-verification pipeline reference that applies this rubric.
 - [`../SKILL.md`](../SKILL.md) — Hub skill runtime instructions and dispatch matrix.
