@@ -13,7 +13,8 @@
     "skilled-agent-orchestration/150-mcp-open-design/007-mcp-open-design-generation-flow-correction",
     "skilled-agent-orchestration/150-mcp-open-design/008-mcp-magicpath-deprecation",
     "skilled-agent-orchestration/150-mcp-open-design/009-design-skill-integration-test",
-    "skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement"
+    "skilled-agent-orchestration/150-mcp-open-design/010-design-playbook-live-run-and-refinement",
+    "skilled-agent-orchestration/150-mcp-open-design/011-mandatory-interface-design-coupling"
   ],
   "migrated": true,
   "migration_source": "legacy",

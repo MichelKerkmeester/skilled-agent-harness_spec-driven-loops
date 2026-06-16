@@ -13,6 +13,8 @@ trigger_phrases:
 
 > Read, reuse, and commission Open Design's local projects and design-systems from your agent or terminal, through the `od` CLI and its stdio MCP server, without ever typing into the in-app chat.
 
+> **⛔ MANDATORY: design work requires `sk-interface-design`.** This skill is the transport, never the taste. Any UI/design work through Open Design — every generation run, and every read that feeds a design decision (grounding, reusing tokens/components) — must load `sk-interface-design` and run its ground → token-system → critique first, then shape the brief and answers with it. You can never produce or shape an interface from Open Design without it. Pure transport (wiring the MCP server, bare project listing) is exempt.
+
 ---
 
 ## 1. AT A GLANCE
@@ -100,7 +102,7 @@ Generation is multi-turn. `start_run(prompt, ...)` (MCP) or `od run start` (CLI)
 
 ### Design Grounding And Reuse
 
-When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-interface-design`. This skill owns the transport and that skill owns the taste. The agent loads its design principles and runs ground then token-system then critique before deciding, then reuses one resolved system's tokens and components at build time. The two skills share the reuse-before-generate protocol in `claude_design_parity.md`. Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
+When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-interface-design` as a **hard precondition, not an option**. The agent MUST load it and run ground then token-system then critique BEFORE deciding, shape the brief and discovery-form answers with that judgment, and only then reuse one resolved system's tokens and components at build time. It can never produce or shape an interface from Open Design without `sk-interface-design`; this skill owns the transport and that skill owns the non-negotiable taste. Only pure transport (wiring the MCP server, bare inventory that feeds no design decision) is exempt. The two skills share the reuse-before-generate protocol in `claude_design_parity.md`. Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
 
 ---
 
@@ -114,7 +116,7 @@ Reach for this skill whenever a user mentions Open Design, wants to wire it into
 
 | Skill | Relationship |
 |---|---|
-| `sk-interface-design` | Owns the design judgment and is applied whenever an Open Design read or run feeds a design decision. This skill is the transport, that skill is the taste. The two share `claude_design_parity.md`. |
+| `sk-interface-design` | **MANDATORY partner for all design work.** Owns the design judgment; any generation run or design-feeding read MUST load it and run ground → token-system → critique first, and you can never produce or shape UI from Open Design without it. This skill is the transport, that skill is the non-negotiable taste. Pure transport (wiring, bare inventory) is exempt. The two share `claude_design_parity.md`. |
 | `sk-code` | Owns application-code standards for adapting any reused tokens or components into a real app. |
 | `mcp-figma` | The sibling terminal-driven design tool for Figma Desktop, a CLI plus optional MCP hybrid with the same daemon and gating shape. |
 | `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Open Design. |
@@ -160,7 +162,7 @@ A: Generation is multi-turn, not one-shot. A single `start_run` or `od run start
 
 **Q: How does this relate to `sk-interface-design`?**
 
-A: This skill is the transport that reads and writes Open Design content. `sk-interface-design` is the judgment that decides what good design looks like. Whenever a read or run feeds a design decision, the design skill is applied, and it reads Open Design only through this skill. The two never surface the roughly 150 systems as a pick-a-vibe menu.
+A: This skill is the transport that reads and writes Open Design content. `sk-interface-design` is the judgment that decides what good design looks like, and it is **mandatory for any design work** — every generation run and every read that feeds a design decision must load it and run ground → token-system → critique first, and you can never produce or shape an interface from Open Design without it. It reads Open Design only through this skill. Pure transport (wiring, bare inventory) is exempt. The two never surface the roughly 150 systems as a pick-a-vibe menu.
 
 ---
 

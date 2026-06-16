@@ -94,6 +94,7 @@ Make Open Design drivable from the terminal through a new `mcp-open-design` skil
 | 8 | `008-mcp-magicpath-deprecation/` | Deprecate `mcp-magicpath` completely now that `mcp-open-design` covers the usecase: delete the skill, re-center the Claude Design parity protocol and the sk-prompt design-generation patterns onto `mcp-open-design`, sweep all live references, and mark spec 147 superseded | Complete |
 | 9 | `009-design-skill-integration-test/` | Live integration test of `sk-interface-design` with `mcp-open-design`: MiMo v2.5 Pro and DeepSeek v4 Pro each generate designs through the parity loop, then compare. Includes the WCAG AA contrast fix both models surfaced | Complete |
 | 10 | `010-design-playbook-live-run-and-refinement/` | Run all 13 `mcp-open-design` and `sk-interface-design` manual-testing-playbook scenarios live (Kimi K2.7 plus DeepSeek v4 Pro), refining each scenario the run exposed a gap in (12 PASS, 1 PARTIAL, 0 SKIP) | Complete |
+| 11 | `011-mandatory-interface-design-coupling/` | Make `sk-interface-design` an absolute hard precondition for all Open Design design work (top banner, routing hard gate, RULES ALWAYS+NEVER, success-criteria gate); README + v1.3.0.0 + changelog. Pure transport (wiring, bare inventory) stays exempt | Complete |
 
 ### Phase Transition Rules
 

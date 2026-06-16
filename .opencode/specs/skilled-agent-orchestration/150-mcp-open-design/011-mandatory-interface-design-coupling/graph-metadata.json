@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/150-mcp-open-design/011-mandatory-interface-design-coupling",
+  "spec_folder": "skilled-agent-orchestration/150-mcp-open-design/011-mandatory-interface-design-coupling",
+  "parent_id": "skilled-agent-orchestration/150-mcp-open-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open design mandatory interface design",
+      "mcp-open-design sk-interface-design hard coupling",
+      "open design ui design requires sk-interface-design",
+      "phase 011 spec"
+    ],
+    "key_topics": [
+      "mcp-open-design",
+      "sk-interface-design",
+      "mandatory",
+      "coupling",
+      "design",
+      "hard-precondition",
+      "transport",
+      "judgment"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-open-design/SKILL.md",
+      ".opencode/skills/mcp-open-design/README.md",
+      ".opencode/skills/mcp-open-design/changelog/v1.3.0.0.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 11 of mcp-open-design: upgrade the sk-interface-design coupling from a conditional best-effort into an absolute hard precondition for all design work (any generation/RUN, any READ feeding a design decision), enforced across the SKILL.md banner, routing gate, rules, and success criteria, plus README, version 1.3.0.0, and a changelog. Pure transport (wiring, bare inventory) stays exempt; sk-interface-design is not edited (the asymmetry is intentional).",
+    "created_at": "2026-06-16T00:00:00Z",
+    "last_save_at": "2026-06-16T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
