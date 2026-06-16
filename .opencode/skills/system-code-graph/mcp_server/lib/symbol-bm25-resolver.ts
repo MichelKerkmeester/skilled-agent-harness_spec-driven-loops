@@ -221,6 +221,12 @@ export class SymbolPackedBm25Index {
   }
 
   addDocument(document: SymbolBm25Document): void {
+    // Idempotency guard: re-adding an already-indexed symbolId would
+    // double-count totalDocumentLength and re-append postings under the same
+    // numericId, corrupting averageLength and per-term scoring. The production
+    // caller (querySymbolIndexRows) dedups via a UNIQUE symbol_id column, but
+    // the exported index must stay safe for arbitrary direct callers.
+    if (this.symbolNumbersById.has(document.symbolId)) return;
     const frequencies = fieldTermFrequencies(document);
     const length = Array.from(frequencies.values()).reduce((total, frequency) => total + frequency.total, 0);
     if (length === 0) return;

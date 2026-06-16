@@ -83,4 +83,31 @@ describe('symbol BM25 resolver', () => {
     });
     expect(matches[0].evidence.some((entry) => entry.startsWith('bm25:tri:'))).toBe(true);
   });
+
+  it('is idempotent when the same symbolId is added twice (no double-counted length or postings)', () => {
+    const single = new SymbolPackedBm25Index([
+      symbol({ symbolId: 'dup', name: 'Auth Guard' }),
+    ]);
+    const singleStats = single.getFootprintStats();
+
+    // Construct with the same symbolId twice; the constructor calls
+    // addDocument per entry then finalize() once, so the dedup guard must
+    // ensure the second add is a no-op before packing.
+    const doubled = new SymbolPackedBm25Index([
+      symbol({ symbolId: 'dup', name: 'Auth Guard' }),
+      symbol({ symbolId: 'dup', name: 'Auth Guard' }),
+    ]);
+    const doubledStats = doubled.getFootprintStats();
+
+    // The duplicate add is a no-op: document count, posting count, and packed
+    // byte footprint match the single-add index (no re-appended postings).
+    expect(doubledStats.documentCount).toBe(1);
+    expect(doubledStats.documentCount).toBe(singleStats.documentCount);
+    expect(doubledStats.postingCount).toBe(singleStats.postingCount);
+    expect(doubledStats.typedArrayBytes).toBe(singleStats.typedArrayBytes);
+
+    // Scoring stays correct: a search returns the symbol exactly once.
+    const matches = doubled.search('auth guard');
+    expect(matches.filter((match) => match.symbolId === 'dup')).toHaveLength(1);
+  });
 });

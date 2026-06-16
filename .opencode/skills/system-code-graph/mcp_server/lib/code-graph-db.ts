@@ -1504,31 +1504,53 @@ export function getTombstoneSummary(): CodeGraphTombstoneSummary {
 /** Remove orphaned nodes whose files no longer exist in code_files */
 export function cleanupOrphans(): number {
   const d = getDb();
-  const deletedAt = new Date().toISOString();
-  recordDanglingEdgeTombstones(d, 'cleanup_orphans', deletedAt);
-  // Find node file_ids not in code_files
-  if (codeGraphTombstonesEnabled()) {
-    ensureTombstoneSchema(d);
-    d.prepare(`
-      INSERT INTO code_graph_tombstones (entity_kind, entity_id, file_path, reason, deleted_at)
-      SELECT 'node', symbol_id, file_path, 'cleanup_orphans', ?
-      FROM code_nodes
-      WHERE file_id NOT IN (SELECT id FROM code_files)
-    `).run(deletedAt);
-    pruneTombstones(d);
-  }
-  const orphanedNodes = d.prepare(`
-    DELETE FROM code_nodes WHERE file_id NOT IN (SELECT id FROM code_files)
-  `).run();
+  // Wrap record + delete in one transaction so a crash mid-call cannot leave
+  // orphan nodes gone while their now-dangling edges remain, and so a retry
+  // cannot re-record the same tombstones — matching removeFile/replaceNodes.
+  const tx = d.transaction(() => {
+    const deletedAt = new Date().toISOString();
+    // Edges already dangling before this sweep (source/target node missing).
+    recordDanglingEdgeTombstones(d, 'cleanup_orphans', deletedAt);
+    if (codeGraphTombstonesEnabled()) {
+      ensureTombstoneSchema(d);
+      // Edges that will become dangling as a side effect of deleting the
+      // orphan nodes below. Recorded BEFORE the node DELETE so the
+      // source/target endpoints still exist for the file_path join, matching
+      // removeFile's ordering — recordDanglingEdgeTombstones alone misses
+      // these because the orphan nodes are still present when it runs.
+      const orphanSymbolRows = d.prepare(`
+        SELECT symbol_id FROM code_nodes WHERE file_id NOT IN (SELECT id FROM code_files)
+      `).all() as { symbol_id: string }[];
+      recordEdgeTombstonesForSymbols(
+        d,
+        orphanSymbolRows.map((row) => row.symbol_id),
+        'cleanup_orphans',
+        deletedAt,
+      );
+      // Orphan node tombstones.
+      d.prepare(`
+        INSERT INTO code_graph_tombstones (entity_kind, entity_id, file_path, reason, deleted_at)
+        SELECT 'node', symbol_id, file_path, 'cleanup_orphans', ?
+        FROM code_nodes
+        WHERE file_id NOT IN (SELECT id FROM code_files)
+      `).run(deletedAt);
+      pruneTombstones(d);
+    }
+    const orphanedNodes = d.prepare(`
+      DELETE FROM code_nodes WHERE file_id NOT IN (SELECT id FROM code_files)
+    `).run();
 
-  // Find edges referencing non-existent nodes
-  const orphanedEdges = d.prepare(`
-    DELETE FROM code_edges WHERE
-      source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
-      target_id NOT IN (SELECT symbol_id FROM code_nodes)
-  `).run();
+    // Sweep edges referencing non-existent nodes (now includes edges orphaned
+    // by the node delete above, whose tombstones were recorded beforehand).
+    const orphanedEdges = d.prepare(`
+      DELETE FROM code_edges WHERE
+        source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+        target_id NOT IN (SELECT symbol_id FROM code_nodes)
+    `).run();
 
-  return orphanedNodes.changes + orphanedEdges.changes;
+    return orphanedNodes.changes + orphanedEdges.changes;
+  });
+  return tx();
 }
 
 /** Convert DB row to CodeNode */

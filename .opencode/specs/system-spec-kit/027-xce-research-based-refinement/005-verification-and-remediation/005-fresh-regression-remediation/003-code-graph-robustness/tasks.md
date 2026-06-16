@@ -44,8 +44,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] 003-S1 Capture the subsystem test/validation baseline.
-- [ ] 003-S2 Re-open each finding's cited file:line to confirm real vs refuted before editing.
+- [x] 003-S1 Capture the subsystem test/validation baseline. Targeted (5 files) 56/56 pass; full mcp_server 640 pass / 16 fail (2 pre-existing env files: launcher-lease, lib/security-hardening) / 1 skip.
+- [x] 003-S2 Re-open each finding's cited file:line to confirm real vs refuted before editing. All 8 confirmed REAL against current code (registry-described state still present; no Round-2 verdicts existed for these P2s — round2 covered P1s only).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -55,14 +55,14 @@ _memory:
 
 One task per finding (id + file:line + registry recommendation + Round-2 status tag):
 
-- [ ] 003-T001 · `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:1508` — Record edge tombstones for edges referencing the soon-to-be-deleted orphan nodes BEFORE the node DELETE (e.g. recordEdgeTombstonesForSymbols over symbol_ids whose file_id NOT IN code_files), mirroring _[P2]_
-- [ ] 003-T002 · `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:1505` — Wrap the cleanupOrphans body in d.transaction(() => { ... })() so tombstone recording and the node/edge deletes commit atomically, matching removeFile/replaceNodes/replaceEdges. _[P2]_
-- [ ] 003-T003 · `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1141` — Replace with the literal `1` (the correct neutral seed for a min-reduce over confidences in [0,1]), or drop the seed and special-case empty chains explicitly if a distinct seed value was ever intended _[P2]_
-- [ ] 003-T004 · `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:412` — Stamp truncationReason only on entries actually affected: 'trace_limit' only when this file was the one omitted (or attach a section-level flag instead), 'deadline' only on entries recorded after the  _[P2]_
-- [ ] 003-T005 · `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:482` — Derive ambiguous for neighbor entries from edge evidence (e.g. evidenceClass==='INFERRED' or confidence below a threshold), or document that 'ambiguous' refers solely to anchor-resolution identity and _[P2]_
-- [ ] 003-T006 · `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:459` — On a same-depth collision, append the additional edge to edgeChain (or keep the highest-confidence edge) instead of discarding; or document that the breadcrumb is a single representative path. _[P2]_
-- [ ] 003-T007 · `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:487` — Remove lines 487-499, or add an assertion/comment that expandAnchor is symbol-anchor-only since buildContext pre-handles file anchors. _[P2]_
-- [ ] 003-T008 · `.opencode/skills/system-code-graph/mcp_server/lib/symbol-bm25-resolver.ts:223` — Guard addDocument against an already-present symbolId (early-return or rebuild that doc's postings) so the exported SymbolPackedBm25Index is safe for arbitrary callers, not only the dedup-guaranteed D _[P2]_
+- [x] 003-T001 · `lib/code-graph-db.ts` cleanupOrphans — FIXED. Added recordEdgeTombstonesForSymbols over orphan symbol_ids (file_id NOT IN code_files) BEFORE the node DELETE, mirroring removeFile. Regression: code-graph-tombstones.vitest.ts "records edge tombstones for edges orphaned by cleanupOrphans node deletion" (true-RED verified by neutralizing the call). _[P2]_
+- [x] 003-T002 · `lib/code-graph-db.ts` cleanupOrphans — FIXED. Wrapped body in d.transaction(() => {...})(); returns tx(). Matches removeFile/replaceNodes/replaceEdges. Regression: code-graph-tombstones.vitest.ts "cleanupOrphans is atomic ... no duplicate tombstone rows" (second sweep is no-op, exactly 1 edge tombstone). _[P2]_
+- [x] 003-T003 · `handlers/query.ts` buildWhyIncluded — FIXED. Replaced dead ternary `edgeChain.length > 0 ? 1 : 1` with literal `1` + WHY comment. Behavior-identical (cosmetic). Covered by existing code-graph-query-handler.vitest.ts:1548 (empty edgeChain → confidence 1). _[P2]_
+- [x] 003-T004 · `lib/code-graph-context.ts` finalize() + budget stamping — FIXED. (a) Removed the cross-section stampContextTraceTruncation(sections,'budget') call (why_included is returned in full via graphContext; deleted the now-unused fn). (b) finalize() no longer stamps the always-complete depth-0 anchor entry with a section-level truncationReason. Regression: 2 tests (budget not propagated; anchor not falsely flagged). _[P2]_
+- [x] 003-T005 · `lib/code-graph-context.ts` recordWhyIncluded — FIXED. Derive ambiguous from edge evidence (evidenceClass==='INFERRED') for neighbor entries; OR-combined across same-depth edges. Regression: "marks a neighbor reached via an INFERRED edge as ambiguous and a STRUCTURED one as not" + updated existing INFERRED-neighbor assertion. _[P2]_
+- [x] 003-T006 · `lib/code-graph-context.ts` recordWhyIncluded — FIXED. Same-depth re-discovery now appends the edge to edgeChain (was: strict `<`; equal-depth appends + min-confidence) instead of discarding. Regression: "keeps every same-depth edge in edgeChain ..." (edgeChain length 2, confidence collapses to min). _[P2]_
+- [x] 003-T007 · `lib/code-graph-context.ts` expandAnchor — FIXED. Replaced the dead file-anchor branch (was unreachable: buildContext handles file anchors inline before the sole call site) with a throwing invariant + WHY comment, eliminating the divergent why_included construction path. Unreachable-by-construction → guarded by typecheck + existing file-anchor coverage (no vacuous test for dead code). _[P2]_
+- [x] 003-T008 · `lib/symbol-bm25-resolver.ts` addDocument — FIXED. Early-return guard `if (this.symbolNumbersById.has(document.symbolId)) return;` so a duplicate add no longer double-counts totalDocumentLength or re-appends postings. Regression: symbol-bm25-resolver.vitest.ts "is idempotent when the same symbolId is added twice" (true-RED verified). _[P2]_
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,9 +70,9 @@ One task per finding (id + file:line + registry recommendation + Round-2 status 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] 003-V1 vitest per fix against a fixture graph DB.
-- [ ] 003-V2 Whole-gate delta reported (no regressions).
-- [ ] 003-V3 Update each finding's status in the registry (fixed/refuted).
+- [x] 003-V1 vitest per fix against a fixture graph DB. 7 new regression tests added (2 tombstones + 4 context + 1 bm25); T003 covered by existing test, T007 unreachable-by-construction. Mutation-checked (true-RED) for T001/T004/T005/T006/T008.
+- [x] 003-V2 Whole-gate delta reported (no regressions). Full mcp_server: baseline 640 pass/16 fail/1 skip → after 647 pass/16 fail/1 skip = +7 passing, SAME 16 failures in SAME 2 pre-existing env files (launcher-lease, lib/security-hardening); none of my 4 files among the failures. Typecheck clean; alignment-drift PASS (153 files, 0 violations); comment-hygiene exit 0 on all 4 files.
+- [x] 003-V3 Per-finding status recorded in implementation-summary.md (all 8 FIXED). Shared parent registry (`027/review/fresh-regression-75/...`) deliberately NOT mutated — it is outside this sub-phase's SCOPE LOCK and is shared by 6 concurrent sibling phases; status is carried in the sub-phase docs instead.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,7 +80,7 @@ One task per finding (id + file:line + registry recommendation + Round-2 status 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-All 8 findings resolved (fixed or refuted-with-reason); verification gate green. No fixes applied in this scaffold.
+All 8 findings resolved (all FIXED — none refuted; each confirmed a real defect against current code). Verification gate green (typecheck + alignment-drift PASS, targeted suite green, whole-gate delta +7 with no new regressions).
 <!-- /ANCHOR:completion -->
 
 ---

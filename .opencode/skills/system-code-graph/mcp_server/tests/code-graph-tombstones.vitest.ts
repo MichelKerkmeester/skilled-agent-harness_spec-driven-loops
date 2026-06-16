@@ -7,6 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
+  cleanupOrphans,
   closeDb,
   getDb,
   getTombstoneSummary,
@@ -180,5 +181,80 @@ describe('code graph tombstone audit', () => {
     expect(summary.retainedRows).toBe(2);
     expect(summary.recent).toHaveLength(2);
     expect(summary.recent.every((row) => row.filePath === '/workspace/file-3.ts')).toBe(true);
+  });
+
+  it('records edge tombstones for edges orphaned by cleanupOrphans node deletion', () => {
+    process.env[TOMBSTONES_ENV] = 'true';
+    const sourcePath = '/workspace/source.ts';
+    const targetPath = '/workspace/target.ts';
+    createFile(sourcePath, [createNode('source::fn', sourcePath, 'source')]);
+    const targetFileId = createFile(targetPath, [createNode('target::fn', targetPath, 'target')]);
+    replaceEdges(['source::fn'], [createEdge('source::fn', 'target::fn')]);
+
+    // Create the genuine orphan-node state cleanupOrphans is meant to repair:
+    // a node whose code_files row is gone but the node row survives. The
+    // schema CASCADE-deletes nodes on file delete, so temporarily disable FKs
+    // to leave target::fn behind as an orphan with file_id pointing nowhere.
+    // The source->target edge is therefore NOT dangling yet (target::fn still
+    // exists in code_nodes) — exactly the case the regression covers.
+    const db = getDb();
+    db.pragma('foreign_keys = OFF');
+    db.prepare('DELETE FROM code_files WHERE id = ?').run(targetFileId);
+    db.pragma('foreign_keys = ON');
+
+    const removed = cleanupOrphans();
+    // 1 orphan node + 1 edge swept.
+    expect(removed).toBe(2);
+
+    const summary = getTombstoneSummary();
+    // The node-orphan path records the node tombstone, and the edge attached to
+    // the soon-to-be-deleted orphan node is tombstoned BEFORE the node delete
+    // (the regression: recordDanglingEdgeTombstones alone misses it because the
+    // edge is not dangling while the orphan node is still present).
+    expect(summary.byKind.node).toBe(1);
+    expect(summary.byKind.edge).toBe(1);
+    expect(summary.byReason.cleanup_orphans).toBe(2);
+    expect(summary.recent).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        entityKind: 'edge',
+        sourceId: 'source::fn',
+        targetId: 'target::fn',
+        edgeType: 'CALLS',
+        reason: 'cleanup_orphans',
+      }),
+      expect.objectContaining({
+        entityKind: 'node',
+        entityId: 'target::fn',
+        reason: 'cleanup_orphans',
+      }),
+    ]));
+    expect(queryEdgesFrom('source::fn')).toEqual([]);
+  });
+
+  it('cleanupOrphans is atomic: a single transaction with no duplicate tombstone rows on the orphaned edge', () => {
+    process.env[TOMBSTONES_ENV] = 'true';
+    const sourcePath = '/workspace/source.ts';
+    const targetPath = '/workspace/target.ts';
+    createFile(sourcePath, [createNode('source::fn', sourcePath, 'source')]);
+    const targetFileId = createFile(targetPath, [createNode('target::fn', targetPath, 'target')]);
+    replaceEdges(['source::fn'], [createEdge('source::fn', 'target::fn')]);
+    const db = getDb();
+    db.pragma('foreign_keys = OFF');
+    db.prepare('DELETE FROM code_files WHERE id = ?').run(targetFileId);
+    db.pragma('foreign_keys = ON');
+
+    cleanupOrphans();
+    // A second sweep is a no-op (nothing left to orphan) and must not add rows.
+    const second = cleanupOrphans();
+    expect(second).toBe(0);
+
+    // Exactly one edge tombstone for source::fn->target::fn (no double-record
+    // from overlapping recordDanglingEdgeTombstones + recordEdgeTombstonesForSymbols).
+    const edgeRows = getDb().prepare(`
+      SELECT COUNT(*) AS count FROM code_graph_tombstones
+      WHERE entity_kind = 'edge' AND source_id = 'source::fn' AND target_id = 'target::fn'
+        AND reason = 'cleanup_orphans'
+    `).get() as { count: number };
+    expect(edgeRows.count).toBe(1);
   });
 });

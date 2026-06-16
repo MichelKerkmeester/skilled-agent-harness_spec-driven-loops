@@ -1136,9 +1136,11 @@ function computeBlastRadius(
       edgeType: 'IMPORTS' as const,
       confidence: step.payload.confidence,
     }));
+    // Neutral seed for a min-reduce over confidences clamped to [0,1]; an
+    // empty chain yields 1 (no edge constrains the confidence).
     const confidence = edgeChain.reduce(
       (minimum, step) => Math.min(minimum, step.confidence),
-      edgeChain.length > 0 ? 1 : 1,
+      1,
     );
     return {
       depth,

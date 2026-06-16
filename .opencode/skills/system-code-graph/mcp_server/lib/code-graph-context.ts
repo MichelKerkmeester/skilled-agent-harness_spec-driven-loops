@@ -214,10 +214,11 @@ export function buildContext(args: ContextArgs): ContextResult {
 
   const formattedTextBrief = formatTextBrief(sections, budgetTokens, resolvedAnchors);
   if (formattedTextBrief.omittedSections > 0 || formattedTextBrief.truncated) {
+    // Budget truncation only slices the human-readable textBrief; the
+    // structured why_included breadcrumbs are returned in full via
+    // graphContext, so they must not be stamped 'budget'. The budget
+    // partiality is surfaced via partialOutput.reasons / truncatedText.
     partialReasons.add('budget');
-    if (args.includeTrace === true) {
-      stampContextTraceTruncation(sections, 'budget');
-    }
   }
   const combinedSummary = buildCombinedSummary(resolvedAnchors, sections);
   const nextActions = suggestNextActions(resolvedAnchors, sections, queryMode);
@@ -277,21 +278,6 @@ function buildEmptyFallback(queryMode: QueryMode, budgetTokens: number): Context
       freshness: computeFreshness(),
     },
   };
-}
-
-function stampContextTraceTruncation(
-  sections: GraphContextSection[],
-  reason: NonNullable<ContextWhyIncluded['truncationReason']>,
-): void {
-  for (const section of sections) {
-    if (!section.why_included) {
-      continue;
-    }
-    section.why_included = section.why_included.map((entry) => ({
-      ...entry,
-      truncationReason: entry.truncationReason ?? reason,
-    }));
-  }
 }
 
 /** Generate a one-line summary of the resolved context */
@@ -417,7 +403,14 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
         : null;
     const whyIncluded = [...whyIncludedByFile.values()].map((entry) => ({
       ...entry,
-      truncationReason: entry.truncationReason ?? traceTruncationReason,
+      // The depth-0 anchor entry is recorded in full before any edge
+      // processing, deadline check, or trace-limit cap, so its breadcrumb is
+      // always complete — never stamp it with a section-level truncation
+      // reason (that would falsely signal incomplete provenance). Neighbor
+      // entries (depth >= 1) reflect a section whose expansion was cut short.
+      truncationReason: entry.depth === 0
+        ? entry.truncationReason
+        : entry.truncationReason ?? traceTruncationReason,
     }));
     return {
       section: {
@@ -456,7 +449,40 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
     const formattedEdge = formatContextEdge(input.edge);
     const confidence = formattedEdge.confidence;
     const previous = whyIncludedByFile.get(input.filePath);
-    if (previous && previous.depth <= input.depth) {
+    // A strictly-shallower existing entry wins (shortest provenance path);
+    // ignore deeper re-discoveries of the same file.
+    if (previous && previous.depth < input.depth) {
+      return;
+    }
+    const edge = {
+      from: input.from,
+      to: input.to,
+      fromFile: input.fromFile,
+      toFile: input.toFile,
+      edgeType: input.edge.edgeType,
+      confidence,
+      detectorProvenance: formattedEdge.detectorProvenance,
+      evidenceClass: formattedEdge.evidenceClass,
+      reason: formattedEdge.reason,
+      step: formattedEdge.step,
+    };
+    // A neighbor pulled in via a heuristic/inferred edge is an uncertain
+    // inclusion; flag it so consumers can distinguish it from a resolved edge.
+    // (Anchor entries instead derive ambiguous from anchor-resolution identity.)
+    const edgeAmbiguous = formattedEdge.evidenceClass === 'INFERRED';
+    // Same-depth re-discovery: a file reachable via multiple edges at the same
+    // depth was included for more than one reason — append the edge instead of
+    // dropping it so edgeChain reflects every distinct inclusion path. Track
+    // the minimum confidence as the entry's overall confidence and OR the
+    // ambiguity so any inferred path keeps the entry flagged.
+    if (previous && previous.depth === input.depth) {
+      previous.edgeChain = [...previous.edgeChain, edge];
+      previous.confidence = previous.edgeChain.reduce<number | null>((minimum, step) => {
+        if (step.confidence === null) return minimum;
+        if (minimum === null) return step.confidence;
+        return Math.min(minimum, step.confidence);
+      }, null);
+      previous.ambiguous = previous.ambiguous || edgeAmbiguous;
       return;
     }
     if (!previous && whyIncludedByFile.size >= CONTEXT_WHY_INCLUDED_LIMIT) {
@@ -466,36 +492,19 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
     whyIncludedByFile.set(input.filePath, {
       filePath: input.filePath,
       depth: input.depth,
-      edgeChain: [{
-        from: input.from,
-        to: input.to,
-        fromFile: input.fromFile,
-        toFile: input.toFile,
-        edgeType: input.edge.edgeType,
-        confidence,
-        detectorProvenance: formattedEdge.detectorProvenance,
-        evidenceClass: formattedEdge.evidenceClass,
-        reason: formattedEdge.reason,
-        step: formattedEdge.step,
-      }],
+      edgeChain: [edge],
       confidence,
-      ambiguous: false,
+      ambiguous: edgeAmbiguous,
       truncationReason: null,
     });
   };
 
+  // Invariant: buildContext handles file anchors (no symbolId) inline and
+  // continues before ever reaching expandAnchor (the sole call site), so
+  // anchor.symbolId is always present here. Assert rather than carry a second,
+  // divergent why_included construction path for a state that cannot occur.
   if (!anchor.symbolId) {
-    return {
-      section: {
-        anchor: anchor.filePath,
-        nodes,
-        edges,
-        ...(includeTrace ? { why_included: [...whyIncludedByFile.values()] } : {}),
-      },
-      deadlineExceeded: false,
-      omittedNodes: 0,
-      omittedEdges: 0,
-    };
+    throw new Error('expandAnchor requires a symbol anchor; file anchors are handled by buildContext');
   }
 
   switch (mode) {
