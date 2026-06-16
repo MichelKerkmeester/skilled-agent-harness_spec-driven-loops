@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence",
+  "description": "Feature Specification: Memory Search Intelligence (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "search",
+    "intelligence",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-16T17:14:37.244Z",
+  "specId": "028",
+  "folderSlug": "memory-search-intelligence",
+  "parentChain": [
+    "system-spec-kit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-06-26_18-01__completed-a-phase-decomposed-deep-research.md"
+  ]
+}

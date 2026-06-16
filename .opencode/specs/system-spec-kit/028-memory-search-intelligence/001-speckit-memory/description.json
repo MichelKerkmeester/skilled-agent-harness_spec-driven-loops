@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "description": "Feature Specification: Spec-Kit Memory MCP — External Mining",
+  "keywords": [
+    "feature",
+    "specification",
+    "spec-kit",
+    "memory",
+    "mcp",
+    "external",
+    "mining"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.799Z",
+  "specId": "001",
+  "folderSlug": "speckit-memory",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 deep loop mining",
+      "convergence calibration",
+      "contradiction quarantine",
+      "fan out recovery",
+      "cost guard enforcement"
+    ],
+    "key_topics": [
+      "028",
+      "deep",
+      "loop",
+      "mining",
+      "convergence",
+      "calibration",
+      "contradiction",
+      "quarantine",
+      "fan",
+      "recovery",
+      "cost",
+      "guard"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-strategy.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop Runtime",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Mining",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Baseline",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unwired Beta",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop runtime's Bayesian convergence scorer, coverage-graph contradiction handling, council adjudicator weighting, fan-out recovery, and cost guards are hardcoded or advisory. Aionforge encodes a bounded reliability-weighted Beta posterior (flood-resistant), non-destructive contradiction-edge quarantine, transient/fatal recovery with durable retries, and lag/pending/failed observability gauges; galadriel encodes threaded ambient reflection.",
+    "created_at": "2026-06-16T14:27:21.652Z",
+    "last_save_at": "2026-06-16T17:00:43.970Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "sessionId": "2026-06-16-028-001-speckit-memory",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-which-of-aionforge-s-8-retrieval-signals-bm25-lexical-anchor-dense-ann-rerank",
+      "text": "Q1: Which of aionforge's 8 retrieval signals (BM25, lexical-anchor, dense ANN+rerank, support-expansion, Personalized-PageRank, recency, decay-at-rank-time importance, trust) improve the Memory MCP's 5-channel RRF, and which conflict? Where is channel fusion implemented?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-does-aionforge-s-5-class-query-class-router-singlehopfactual-multihop-tempora",
+      "text": "Q2: Does aionforge's 5-class query-class router (SingleHopFactual/MultiHop/Temporal/Entity/Quote → per-class RetrievalProfile weights, graph-expansion gating) apply to Memory recall, and where would the classifier + per-class weights live?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-how-would-edge-based-bi-temporal-currentness-superseded-by-contradicts-edges-",
+      "text": "Q3: How would edge-based bi-temporal currentness (SUPERSEDED_BY/CONTRADICTS edges + current-support provider) integrate with the existing causal graph and the off-state soft-delete tombstones? Where is the causal-graph store?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-can-the-memory-save-path-split-into-fast-episode-write-deterministic-async-co",
+      "text": "Q4: Can the Memory save path split into fast episode-write + deterministic async consolidation with content-addressed idempotent IDs, without breaking continuity? Where is the save/index path?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-is-the-minimal-change-to-make-recall-serialization-byte-identical-galadr",
+      "text": "Q5: What is the minimal change to make recall serialization byte-identical (galadriel stable-prefix prompt-cache + aionforge content-derived SerializationId ordering)? Where is recall rendering?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-can-fsrs-decay-become-a-pure-rank-time-function-decay-at-rank-time-never-writ",
+      "text": "Q6: Can FSRS decay become a pure rank-time function (decay-at-rank-time, never written back)? Where is decay applied today?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-does-aionforge-s-session-diversity-cap-demote-single-session-dominance-improv",
+      "text": "Q7: Does aionforge's session-diversity cap (demote single-session dominance) improve Memory recall mixing, and where is result assembly?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-q8-should-recalled-memory-context-be-wrapped-in-an-untrusted-xml-tag-injection-h",
+      "text": "Q8: Should recalled memory context be wrapped in an untrusted XML tag (injection-hardening), and where is context injected?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-9-q9-how-does-graceful-embedder-degrade-skip-dense-keep-lexical-report-flag-map-to",
+      "text": "Q9: How does graceful embedder-degrade (skip dense, keep lexical, report flag) map to the semantic-trigger fallback (off) and the vector channel?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-q10-which-candidates-generalize-to-code-graph-skill-advisor-deep-loop-cross-cutt",
+      "text": "Q10: Which candidates generalize to code-graph / skill-advisor / deep-loop (cross-cutting spine: determinism, bi-temporal currentness, query-class routing, graceful degradation)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Which of aionforge's 8 retrieval signals (BM25, lexical-anchor, dense ANN+rerank, support-expansion, Personalized-PageRank, recency, decay-at-rank-time importance, trust) improve the Memory MCP's 5-channel RRF, and which conflict? Where is channel fusion implemented?",
+    "Q2: Does aionforge's 5-class query-class router (SingleHopFactual/MultiHop/Temporal/Entity/Quote → per-class RetrievalProfile weights, graph-expansion gating) apply to Memory recall, and where would the classifier + per-class weights live?",
+    "Q3: How would edge-based bi-temporal currentness (SUPERSEDED_BY/CONTRADICTS edges + current-support provider) integrate with the existing causal graph and the off-state soft-delete tombstones? Where is the causal-graph store?",
+    "Q4: Can the Memory save path split into fast episode-write + deterministic async consolidation with content-addressed idempotent IDs, without breaking continuity? Where is the save/index path?",
+    "Q5: What is the minimal change to make recall serialization byte-identical (galadriel stable-prefix prompt-cache + aionforge content-derived SerializationId ordering)? Where is recall rendering?",
+    "Q6: Can FSRS decay become a pure rank-time function (decay-at-rank-time, never written back)? Where is decay applied today?",
+    "Q7: Does aionforge's session-diversity cap (demote single-session dominance) improve Memory recall mixing, and where is result assembly?",
+    "Q8: Should recalled memory context be wrapped in an untrusted XML tag (injection-hardening), and where is context injected?",
+    "Q9: How does graceful embedder-degrade (skip dense, keep lexical, report flag) map to the semantic-trigger fallback (off) and the vector channel?",
+    "Q10: Which candidates generalize to code-graph / skill-advisor / deep-loop (cross-cutting spine: determinism, bi-temporal currentness, query-class routing, graceful degradation)?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-15-5-class-query-router-is-mandatory-not-optional-singlehopfactual-multihop-tempora",
+      "text": "**5-class query router is mandatory, not optional**: `SingleHopFactual, MultiHop, Temporal, Entity, Quote`, classified by most-specific-first regexes (quoted phrase→Quote; temporal markers→Temporal; 1-2 title-case tokens→Entity; associative cues→MultiHop; else→SingleHopFactual). Each class → a `RetrievalProfile` = per-signal weights + behavior flags `graph_expansion, bitemporal_filter, exact_rerank, quote_phrase, restrict_to_fact_kinds`. Graph expansion is gated by class because \"indiscriminate graph expansion measurably hurts simple single-hop precision while it helps multi-hop recall\" [SOURCE: retrieval.md:108-143, 187-207].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-causal-graph-store-is-lib-storage-causal-edges-ts-insert-at-434-561-table-schema",
+      "text": "**Causal-graph store** is `lib/storage/causal-edges.ts` (insert at :434, :561); table schema `causal_edges` defined in `lib/search/vector-index-schema.ts:1107` and :1775; **soft-delete tombstones** `causal_edge_tombstones` in `lib/causal/sweep.ts:70`. Traversal/boost (weighted BFS, intent-aware edge priors, hop decay, freshness) in `lib/search/causal-boost.ts:1-19` [SOURCE: lib/storage/causal-edges.ts:434, lib/search/vector-index-schema.ts:1107, lib/causal/sweep.ts:70, lib/search/causal-boost.ts:5-15].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-channels-are-gated-assembled-at-runtime-not-fixed-at-5-vector-fts5-always-then-b",
+      "text": "**Channels are gated/assembled at runtime**, not fixed at 5: `['vector','fts5']` always, then `bm25` if enabled, `graph` if graph-unified enabled, `degree` if degree-boost enabled [SOURCE: mcp_server/context-server.ts:911-914]. So \"5-channel\" is the maximal active set, flag-gated.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-core-rrf-fusion-is-shared-algorithms-rrf-fusion-ts-default-smoothing-constant-de",
+      "text": "**Core RRF fusion** is `shared/algorithms/rrf-fusion.ts`. Default smoothing constant `DEFAULT_K = 40` (NOT 60), explicitly \"optimized for ~1000-memory corpus\" with `SPECKIT_RRF_K` runtime override [SOURCE: shared/algorithms/rrf-fusion.ts:37-38, 150-164]. Source channel labels: `vector, fts, bm25, graph, degree, keyword` [SOURCE: shared/algorithms/rrf-fusion.ts:12-19]. Fusion reads rank position only (`1/(k+i+1)`), accumulates per-source, applies a convergence/overlap bonus for multi-source hits [SOURCE: shared/algorithms/rrf-fusion.ts:308-388].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-degree-channel-weight-is-capped-at-0-15-degree-boost-cap-0-15-degree-channel-wei",
+      "text": "**Degree channel** weight is capped at 0.15: `DEGREE_BOOST_CAP = 0.15`, `DEGREE_CHANNEL_WEIGHT = DEGREE_BOOST_CAP`, constitutional memories excluded [SOURCE: lib/search/graph-search-fn.ts:53-56, 567].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-fsrs-has-two-parts-rank-time-structural-freshness-lib-search-fsrs-ts-fsrs-stabil",
+      "text": "**FSRS** has two parts: rank-time *structural freshness* `lib/search/fsrs.ts` = `fsrs_stability * graph_centrality_normalized` (central nodes decay slower) [SOURCE: lib/search/fsrs.ts:26-44]; AND an **access-time write-back** `strengthenOnAccess()` doing `UPDATE memory_index` when `trackAccess=true` (the \"testing effect\", step 3 of the 13) [SOURCE: lib/search/pipeline/stage2-fusion.ts:14, 28, 574-615].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-graph-channel-gets-a-1-5x-default-weight-boost-when-no-explicit-weight-is-suppli",
+      "text": "**Graph channel gets a 1.5x default weight boost** when no explicit weight is supplied — `GRAPH_WEIGHT_BOOST = 1.5`, rationale \"curated causal edges are higher-signal\" [SOURCE: shared/algorithms/rrf-fusion.ts:40-42, 302].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-recall-serialization-today-flows-through-lib-response-envelope-ts-99-serializeen",
+      "text": "**Recall serialization** today flows through `lib/response/envelope.ts:99 serializeEnvelope`. No content-derived stable-ordering (\"SerializationId\") and no untrusted-XML wrapper were found in this pass — a likely gap for Q5/Q8 (INFERENCE, negative evidence: grep for `serializ|render|untrusted|stable.?prefix` returned only envelope/JSON helpers) [SOURCE: lib/response/envelope.ts:99-136; INFERENCE: based on absence of SerializationId/untrusted-tag matches in lib/response + lib/search].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-the-real-ranking-brain-is-a-4-stage-pipeline-not-raw-rrf-stage2-fusion-ts-docume",
+      "text": "**The real ranking brain is a 4-stage pipeline**, not raw RRF. `stage2-fusion.ts` documents a fixed **13-step signal-application order** (session boost, recency fusion, causal boost, co-activation spreading, community co-retrieval, graph signals, FSRS testing-effect write-back, intent weights, artifact routing, feedback signals, retrieval rescue, artifact limiting, anchor+validation metadata) with a hard invariant \"every score modification happens exactly once here\" [SOURCE: mcp_server/lib/search/pipeline/stage2-fusion.ts:21-45]. Stages: `stage1-candidate-gen → stage2-fusion → stage3-rerank → stage4-filter` [SOURCE: mcp_server/lib/search/pipeline/ directory].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-intent-classifier-ts-task-intent-add-feature-fix-bug-refactor-security-audit-und",
+      "text": "`intent-classifier.ts` → **task intent** `add_feature|fix_bug|refactor|security_audit|understand|find_spec|find_decision` → `IntentWeights {recency, importance, similarity, contextType}` [SOURCE: lib/search/intent-classifier.ts:13, 58-63, 67-75].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-query-classifier-ts-complexity-tier-simple-moderate-complex-term-count-stop-word",
+      "text": "`query-classifier.ts` → **complexity tier** `simple|moderate|complex` (term count, stop-word ratio) → drives channel-*subset* selection [SOURCE: lib/search/query-classifier.ts:13, 28-29].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-query-router-ts-fuses-these-into-a-routeresult-tier-channels-classification-quer",
+      "text": "`query-router.ts` fuses these into a `RouteResult {tier, channels, classification, queryPlan, qualityFallback}` — the tier→channel map (`simple/moderate/complex` channel subsets) and authority/BM25 preservation live here [SOURCE: lib/search/query-router.ts:36-52, 68-75].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-aionforge-never-writes-back-at-rank-time-decayed-importance-is-computed-at-rank-",
+      "text": "aionforge **never writes back at rank time** — decayed importance is computed at rank time and never persisted; a recall never touches `last_access` [SOURCE: retrieval.md:316-319]. Session-diversity cap default 3 demotes single-session dominance [SOURCE: retrieval.md:289-293]. Graceful embedder degrade: dense skipped, lexical/graph-by-name still run, `embedder_available:false` flag [SOURCE: retrieval.md:296-301].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-aionforge-ships-8-signals-lexical-lexicalanchor-dense-support-graph-recency-impo",
+      "text": "aionforge ships **8 signals**: `Lexical, LexicalAnchor, Dense, Support, Graph, Recency, Importance, Trust`. Lexical/anchor/dense/support/graph are *search* signals; Trust/Importance/Recency are *re-ranks* that only reorder already-surfaced candidates and can never widen recall [SOURCE: retrieval.md:34-37, 45-54].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-rrf-is-the-weighted-sum-of-1-k-rank-1-with-validated-default-k-60-per-mode-weigh",
+      "text": "RRF is the weighted sum of `1/(k+rank+1)` with validated default **k=60**; per-mode weights are how intent enters; **a zero weight elides the signal entirely** (4 levels HEAVY 1.0 / MODERATE 0.6 / LIGHT 0.3 / OFF 0.0) [SOURCE: retrieval.md:79-92, 130-133].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-the-internal-system-has-two-orthogonal-classifiers-neither-of-which-is-a-retriev",
+      "text": "The internal system has **two orthogonal classifiers, neither of which is a retrieval-shape query-class router**:",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-memory-index-scan-already-supports-a-background-job-and-reports-pending-vectors-",
+      "text": "**`memory_index_scan` already supports a background job and reports pending vectors.** Scan args carry `background?: boolean` (\"run the scan as a background job and return a jobId immediately\") [SOURCE: handlers/memory-index.ts:293-294]. The scan result tracks a `deferred` count and returns `status: results.deferred > 0 ? 'complete_with_pending_vectors' : 'complete'` with `pendingVectors` [SOURCE: handlers/memory-index.ts:153, 1062-1064, 1376-1377]. This is the *cursor/work-queue* analogue at coarse grain (file-level), not episode/fact grain.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-bi-temporal-currentness-is-already-partially-modeled-as-edge-presence-not-a-node",
+      "text": "**Bi-temporal currentness is already partially modeled as edge-presence, not a node flag — and it is flag-gated OFF.** `lib/graph/temporal-edges.ts` adds `valid_at` / `invalid_at` columns to `causal_edges` (`ensureTemporalColumns`, fail-open) and exposes `invalidateEdge()` that sets `invalid_at` to now [SOURCE: lib/graph/temporal-edges.ts:35-80]. `lib/graph/contradiction-detection.ts` queries only *live* edges (`WHERE invalid_at IS NULL OR invalid_at = ''`) [SOURCE: lib/graph/contradiction-detection.ts:85-90], auto-invalidates on `supersedes` (\"'supersedes' replaces any existing edge on the same pair\") and on conflicting pairs `supports↔contradicts`, `caused↔contradicts`, `enabled↔contradicts` [SOURCE: lib/graph/contradiction-detection.ts:38-42, 99-110]. The whole path is gated by `isTemporalEdgesEnabled()` and returns early when OFF [SOURCE: lib/graph/contradiction-detection.ts:75-77]. This is *exactly* aionforge's \"currentness = edge presence; superseded edges retired with a closed window, not deleted\" — at the causal-edge layer rather than a fact-ABOUT-edge layer [SOURCE: external/aionforge-memory-development/docs/bi-temporal-model.md:35-39, 89-113].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-content-addressing-already-exists-at-the-record-scan-level-via-content-hash-sha2",
+      "text": "**Content-addressing already exists at the record/scan level via `content_hash` (sha256), but IDs are NOT content-addressed.** `memory_index.content_hash` is a sha256 over content [SOURCE: handlers/memory-index.ts:281-284 (`createHash('sha256')`), handlers/memory-crud-types.ts:73]. Scan idempotency uses a sha256 `scanKey` over normalized options [SOURCE: handlers/memory-index.ts:272-285]. But the primary key is the sequential `memory_index.id` (autoincrement; rows reference `nextMemoryId` [SOURCE: handlers/pe-gating.ts:407]). aionforge instead makes the *id itself* a content hash (`fact_id(namespace, subject, predicate, object, episode_id, rule_version)`) so re-extraction is a no-op [SOURCE: external/aionforge-memory-development/docs/consolidation.md:84-90]. **INFERENCE:** internal IDs are sequential, not content-addressed — content-addressing is present as a *dedup signal* (`content_hash`) but not as *identity*. Closing the gap means deriving derived-artifact IDs (e.g. causal edges, future \"facts/notes\") from content, not the episode row id.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-idempotency-receipts-already-exist-and-are-aionforge-shaped-but-default-off-lib-",
+      "text": "**Idempotency-receipts already exist and are aionforge-shaped — but default OFF.** `lib/storage/idempotency-receipts.ts` defines receipts keyed by `{operation, contentHash, requestFingerprintHash, payloadHash}` over `memory_save`/`memory_update`, with explicit `miss | replay | conflict` lookup states (replay returns the stored response; conflict flags a same-key different-payload collision) [SOURCE: lib/storage/idempotency-receipts.ts:9-29, 87-90]. Client idempotency tokens are stripped before hashing so the receipt is content-derived, not token-derived [SOURCE: lib/storage/idempotency-receipts.ts:43-79]. Enablement is gated: `isMemoryIdempotencyEnabled()` reads `SPECKIT_MEMORY_IDEMPOTENCY` and is **off unless explicitly set** [SOURCE: lib/storage/idempotency-receipts.ts:54-57]. Expired receipts are pruned on the server lifecycle [SOURCE: context-server.ts:51, 1831]. So \"idempotency receipts fall out of the async split\" is already true *in code* — the work is promotion + wiring the replay/conflict path into the deferred-save flow, not invention.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-the-edge-relation-vocabulary-already-includes-supersedes-contradicts-supports-re",
+      "text": "**The edge relation vocabulary already includes supersedes/contradicts/supports.** `RELATION_TYPES = {CAUSED, ENABLED, SUPERSEDES, CONTRADICTS, DERIVED_FROM, SUPPORTS}` with traversal weights `supersedes:1.5` (strongest, \"new info replaces old\"), `contradicts:0.8` (dampened) [SOURCE: lib/storage/causal-edges.ts:21-43]. aionforge's two key currentness edges (SUPERSEDED_BY, CONTRADICTS) thus already have internal counterparts — `supersedes` and `contradicts` — though internal edges are memory↔memory, not fact↔fact (no fact layer yet).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-the-save-path-already-splits-write-from-enrichment-and-a-deferred-mode-already-e",
+      "text": "**The save path already splits write from enrichment, and a deferred mode already exists.** The save handler set lives in `handlers/save/` (`create-record.ts`, `embedding-pipeline.ts`, `response-builder.ts`, `types.ts`). `OperationStatus` is `'ran' | 'skipped' | 'failed' | 'deferred' | 'partial'` [SOURCE: handlers/save/types.ts:138], and `create-record.ts` logs `\"Using deferred indexing\"` while `embedding-pipeline.ts` logs `\"Async embedding mode - deferring embedding\"` behind an `asyncEmbedding` flag (\"embedding generation is deferred (non-blocking)\") [SOURCE: handlers/save/create-record.ts:297, handlers/save/embedding-pipeline.ts:152, handlers/save/types.ts:304]. So the *fast episode-write + deferred enrichment* shape aionforge describes is **already partially implemented** for embeddings/BM25, not absent.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-two-distinct-retirement-mechanisms-coexist-and-they-are-not-yet-unified-a-tempor",
+      "text": "**Two distinct retirement mechanisms coexist — and they are not yet unified.** (a) *Temporal invalidation* (soft-close via `invalid_at`, retains the row, drives `Current`-style reads by edge presence) [SOURCE: lib/graph/temporal-edges.ts:64-80]. (b) *Tombstone sweep* (`causal_edge_tombstones` with `lifecycle_generation`, `restore_metadata`, identity index on `(source_id,target_id,relation,lifecycle_generation DESC)`) which is a hard-delete-with-restore-receipt for active deletion [SOURCE: lib/causal/sweep.ts:68-100, 175-188]. aionforge keeps a *single* non-destructive discipline (close the window; never delete; `History` mode still reads it). **INFERENCE:** the internal system has BOTH a non-destructive temporal close AND a destructive-but-restorable tombstone sweep; a bi-temporal currentness model would lean on (a) for \"not current\" and reserve (b) for genuine off-state forgetting — they answer different questions and should not be collapsed.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-what-is-missing-for-full-bi-temporal-parity-confirmed-gaps-internal-causal-edges",
+      "text": "**What is missing for full bi-temporal parity (CONFIRMED gaps):** internal `causal_edges` has the *transaction-time-ish* pair (`valid_at`/`invalid_at`) but **not aionforge's four-timestamp split** of event-time (`valid_from`/`valid_to`) vs transaction-time (`ingested_at`/`expired_at`) [SOURCE: external/aionforge-memory-development/docs/bi-temporal-model.md:14-20 vs lib/graph/temporal-edges.ts:35-54]. There is **no `TemporalMode` (Current/AsOf/AsKnownAt/History) on the recall path** and **no maintained `current_support_facts` provider** [SOURCE: external/.../bi-temporal-model.md:46-60, 116-145; INFERENCE: negative — no such enum/provider surfaced in causal-boost.ts or contradiction-detection.ts]. So \"as-of / as-known-at\" temporal queries are not yet expressible internally even with the columns present.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-6-16-code-graph-code-graph-already-degrades-the-memory-context-ts-1513-code-graph-una",
+      "text": "**-> code-graph:** code-graph ALREADY degrades (the `memory-context.ts:1513` \"code graph unavailable -> hybrid degrades to semantic-only\" path [iter-3 #8] is the *consumer* of code-graph's own degrade). The C9 pattern — detect-unavailable, drop the dependent channel, report a flag instead of throwing — is the reusable contract: code-graph should report `graph_available:false` rather than fail when its index is cold/missing. Daemon exit-75 (retryable IPC unavailability, per the CLI front-door contract) is the same \"degrade, don't throw\" discipline at the transport layer.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-code-graph-code-graph-also-blends-multiple-ranked-signals-callers-imports-degree",
+      "text": "**-> code-graph:** code-graph also blends multiple ranked signals (callers, imports, degree, recency) and renders result sets a model caches against. The same two patterns transfer verbatim: (a) the **content-derived render-order stage** (C5-A/B) so identical structural queries render byte-identically (stable prompt-cache prefix on graph results), and (b) the **G2 \"apply-exactly-once\" invariant** [F5-14] as a single choke point so a signal is applied at fusion-time XOR post-fusion, never both. Content-addressed `derived_id` (C4-B) maps directly to code-graph's derived edges (call edges, import edges) so re-scans are idempotent no-ops.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-code-graph-code-graph-queries-also-have-retrieval-shapes-find-exact-symbol-singl",
+      "text": "**-> code-graph:** code-graph queries also have *retrieval shapes* — \"find exact symbol\" (single-hop, graph-expansion OFF) vs \"trace impact/callers\" (multi-hop, graph-expansion ON) vs \"find by entity name.\" The C2-A classifier + C2-C graph-gating pattern maps almost 1:1: a code-graph query-class router would gate transitive expansion by class, fixing the same \"indiscriminate graph expansion hurts single-hop precision\" problem [iter-1 #12] in the structural-search ranker. **This is the highest-value cross-subsystem transfer** — code-graph has the same graph-over-expansion failure mode.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-code-graph-the-strongest-sibling-match-code-structure-is-intrinsically-bi-tempor",
+      "text": "**-> code-graph:** the strongest sibling match. Code structure is intrinsically bi-temporal — a symbol/edge is valid for a range of commits (event-time) and was indexed at a scan-time (transaction-time). The internal causal-edge `valid_at`/`invalid_at` + `supersedes`/`contradicts` model (C3-A) is directly the template for \"this call edge was superseded by a refactor at commit X.\" C3-D's separation (temporal-close = \"not current in HEAD, History-readable\" vs tombstone = \"file deleted, off-state\") maps cleanly to code-graph's renamed/deleted-symbol handling. The four-timestamp window (C3-B) and `TemporalMode` (C3-C: AsOf-commit / History) would let code-graph answer \"what did the call graph look like at commit X\" — a genuinely new capability seeded here.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-deep-loop-convergence-detection-is-itself-a-determinism-problem-newinforatio-and",
+      "text": "**-> deep-loop:** convergence detection is itself a determinism problem — `newInfoRatio` and reducer state must be reproducible across re-runs. Content-derived ordering (C5) and the apply-once invariant generalize to how deep-loop reducers fold iteration records (stable ordering of findings -> stable convergence verdict).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-18-deep-loop-generalizes-as-iteration-level-resilience-a-deep-loop-iteration-whose-",
+      "text": "**-> deep-loop:** generalizes as iteration-level resilience — a deep-loop iteration whose tool/source is unavailable should degrade to a narrower evidence path and report status (`timeout`/`stuck`) honestly rather than failing the whole loop. This agent's own status-honesty contract is the deep-loop instance of spine (iv).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-deep-loop-marginal-deep-loop-state-is-append-only-by-design-the-currentness-mode",
+      "text": "**-> deep-loop:** marginal — deep-loop state is append-only by design; the currentness model is less applicable, though the `supersedes` pattern could mark a later iteration's finding as superseding an earlier contradicted one.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-15-deep-loop-marginal-none-deep-loop-dispatches-by-mode-research-review-council-not",
+      "text": "**-> deep-loop:** marginal/none — deep-loop dispatches by mode (research/review/council), not by query shape; the routing axis doesn't generalize cleanly.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-skill-advisor-advisor-prompts-also-have-shapes-single-skill-lookup-vs-multi-skil",
+      "text": "**-> skill-advisor:** advisor prompts also have shapes (single-skill lookup vs multi-skill workflow vs \"how do I\"). Per-class weight profiles (C2-B) into the advisor's fusion would tune trigger-vs-graph-vs-recency weighting by prompt shape. Additive third axis, same as memory.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-skill-advisor-lighter-touch-skill-recommendations-have-a-currentness-notion-a-sk",
+      "text": "**-> skill-advisor:** lighter touch — skill recommendations have a currentness notion (a skill SKILL.md is superseded by an edit). `supersedes` edges + edge-presence currentness apply if the advisor graph tracks skill-version edges.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-17-skill-advisor-the-advisor-daemon-s-warm-only-exit-75-fallback-is-already-this-sp",
+      "text": "**-> skill-advisor:** the advisor daemon's warm-only/exit-75 fallback is *already* this spine in practice. C9 formalizes the in-process version: when the advisor's embedding/graph component is unavailable, degrade to trigger-phrase-only matching + report a flag, never throw.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-skill-advisor-the-advisor-s-recommendation-ranker-also-fuses-signals-trigger-phr",
+      "text": "**-> skill-advisor:** the advisor's recommendation ranker also fuses signals (trigger-phrase match, graph proximity, recency). C-X1's `{bonusOverChannels:'active'|'configured'}` option is the *transferable caution*: any RRF-style multi-source bonus inherits \"turning a channel off is not score-neutral.\" A shared `fuseResultsMulti` option lets advisor profiles zero channels without distorting survivors. Same caller-clock determinism (C6-A) applies to any recency term the advisor computes.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-c2-c-graph-expansion-gating-per-class-query-router-ts-238-254-the-cheapest-high-",
+      "text": "**C2-C — graph-expansion gating per class** (`query-router.ts:238-254`): the cheapest high-leverage win. Extends the *existing* `preserved`/`includeDegree` entity-density primitive to read a retrieval-class `graph_expansion` flag; turns graph off for SingleHopFactual (precision win) for ~free. Promote, S, Low. [iter-5 #9, F5-11]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-c3-a-flip-temporal-edges-on-contradiction-detection-ts-75-77-code-complete-bi-te",
+      "text": "**C3-A — flip temporal-edges ON** (`contradiction-detection.ts:75-77`): code-complete bi-temporal edge-presence currentness + conflict auto-invalidation, gated OFF today. Flipping it makes \"currentness = edge presence\" the live retirement path. Promote-off, S, Low. [iter-2 #6, C3-A]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-c4-a-idempotency-receipts-default-on-idempotency-receipts-ts-9-29-aionforge-shap",
+      "text": "**C4-A — idempotency-receipts default-on** (`idempotency-receipts.ts:9-29`): aionforge-shaped receipt module exists, flag-gated OFF (`SPECKIT_MEMORY_IDEMPOTENCY`), already pruned on lifecycle. Promote + wire replay/conflict into deferred-save. Promote-off, S, Low-Med. [iter-2 #4, C4-A]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-c5-b-content-derived-tie-breaks-hybrid-search-ts-752-758-900-904-replace-score-o",
+      "text": "**C5-B — content-derived tie-breaks** (`hybrid-search.ts:752-758,900-904`): replace score-only/clock tie-breaks with `score desc, then canonicalId asc` — the narrowest determinism fix, prerequisite-by-spirit for galadriel's stable-prefix prompt-cache (~84% cache-write reduction). Build-small, S, Low. [iter-3 #2-3, C5-B]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-c6-a-a-always-on-caller-clock-rank-time-decay-stage2-fusion-ts-897-908-the-rank-",
+      "text": "**C6-A(a) — always-on caller-clock rank-time decay** (`stage2-fusion.ts:897-908`): the rank-time `calculateRetrievability` is already pure and already separate from the write-back; make it always-on against a caller-supplied `nowMs` (not just `trackAccess`), keeping reinforcement as a separate explicit event. Promote, S, Low. [iter-4 #3-4, C6-A]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-c9-graceful-embedder-degrade-stage1-candidate-gen-ts-700-707-today-recall-throws",
+      "text": "**C9 — graceful embedder-degrade** (`stage1-candidate-gen.ts:700-707`): today recall THROWS when the embedder is unavailable; the `useVector=false` keep-lexical substrate already exists but isn't wired. Route null-embedding -> lexical + `embedder_available:false` flag. Promote substrate, S, Low. [iter-3 #7-8, C9-A]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-19-code-graph-is-the-heaviest-beneficiary-it-is-touched-by-all-four-spines-and-is-t",
+      "text": "**code-graph is the heaviest beneficiary** — it is touched by ALL FOUR spines, and is the strongest match for spine (ii) bi-temporal currentness (commit-time = event-time) and spine (iii) query-class routing (same graph-over-expansion failure mode). The parent roadmap should prioritize a code-graph phase.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-21-deep-loop-is-touched-by-i-and-iv-meaningfully-determinism-of-convergence-iterati",
+      "text": "**deep-loop is touched by (i) and (iv)** meaningfully (determinism of convergence; iteration-level degradation), marginally by (ii)/(iii).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-20-skill-advisor-is-touched-by-all-four-but-more-lightly-mostly-via-the-shared-fuse",
+      "text": "**skill-advisor is touched by all four** but more lightly — mostly via the shared `fuseResultsMulti`/RRF substrate (C-X1, C2-B) and the already-live degrade/exit-75 discipline (C9).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-22-the-single-most-transferable-artifact-is-the-shared-fuseresultsmulti-bonusoverch",
+      "text": "The single most-transferable artifact is the **shared `fuseResultsMulti` `{bonusOverChannels}` option (C-X1)** plus the **apply-exactly-once G2 invariant** — both live in `shared/algorithms/rrf-fusion.ts` and `stage2-fusion.ts`, are already shared-library code, and underpin determinism across every sibling ranker.",
+      "addedAtIteration": 6,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 38,
+    "openQuestions": 10,
+    "resolvedQuestions": 0,
+    "keyFindings": 46,
+    "convergenceScore": 0.3,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "IN_PROGRESS"
+}
