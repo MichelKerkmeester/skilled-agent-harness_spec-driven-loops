@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-16T20:10:00Z"
+    last_updated_at: "2026-06-17T00:45:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Broadened research to 100 iterations; re-synced roadmap with audit corrections"
-    next_safe_action: "Extend research to ~150 on 027 subjects revisited with 028 findings"
+    recent_action: "Completed 027-revisit child 005 to 150 total; reconciliation ledger shipped"
+    next_safe_action: "Hand the GO list + 5 roadmap edits to a 028 implementation packet"
     blockers: []
     key_files:
       - "spec.md"
@@ -34,6 +34,7 @@ _memory:
     answered_questions:
       - "Cross-cutting spine themes that span >1 subsystem: determinism, bi-temporal currentness, query-class routing, graceful degradation, bounded reliability-weighted learning, idempotent async consolidation."
       - "Each child sustained ~4-7 productive iterations before genuine saturation; ~54 candidates surfaced total."
+      - "027-revisit (child 005, 50 iters): 028 is net-additive to 027 (0 supersedes, 0 contradicts; EXTENDS x6/ALREADY-COVERED x1/NO-TRANSFER x3); 027's shipped doctrine reverse-validates 028's deflation."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -85,6 +86,7 @@ Run a decomposed deep-research campaign that mines the two external systems for 
 - Read-only analysis of the two external systems under `external/`.
 - Per-subsystem deep-research loops producing cited, code-mapped improvement candidates.
 - A consolidated cross-cutting improvement roadmap ranked by leverage × effort.
+- A cross-packet revisit (child 005) reconciling packet 027's shipped refinements against the 028 findings.
 
 ### Out of Scope
 - Implementing any of the improvement candidates (deferred to a later packet).
@@ -100,6 +102,7 @@ Run a decomposed deep-research campaign that mines the two external systems for 
 | `003-skill-advisor/research/**` | Create | 003 | Skill advisor research artifacts |
 | `004-deep-loop/research/**` | Create | 004 | Deep loop research artifacts |
 | `research/roadmap.md` | Create | parent | Cross-cutting improvement roadmap |
+| `005-revisit-027/research/**` | Create | 005 | Cross-packet 027-revisit research artifacts |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -115,6 +118,7 @@ Run a decomposed deep-research campaign that mines the two external systems for 
 | 002 | `002-code-graph/` | Mine external systems for Code Graph improvements | Complete |
 | 003 | `003-skill-advisor/` | Mine external systems for Skill Advisor improvements | Complete |
 | 004 | `004-deep-loop/` | Mine external systems for Deep Loop runtime improvements | Complete |
+| 005 | `005-revisit-027/` | Cross-packet revisit: reconcile 027's shipped refinements against the 028 findings | Complete |
 
 ### Phase Transition Rules
 

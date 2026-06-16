@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-16T20:10:00Z"
+    last_updated_at: "2026-06-17T00:45:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Broadened to 100 iterations; roadmap re-synced; close-out committed"
-    next_safe_action: "Scaffold 005 child; research 027 subjects with 028 to ~150"
+    recent_action: "027-revisit child 005 complete to 150; ledger + roadmap addendum shipped"
+    next_safe_action: "Hand GO list + 5 roadmap edits to a 028 implementation packet"
     blockers: []
     key_files:
       - "research/roadmap.md"
@@ -50,7 +50,7 @@ You are the incoming AI. The first deep-research pass is **complete and saturate
 - **To Session:** next AI — broadening rounds
 - **Phase Completed:** RESEARCH (pass 1 — saturated)
 - **Handover Time:** 2026-06-16T17:05:00Z
-- **Recent action:** Broadened to **100 iterations** (001=38, 002=24, 003=18, 004=20) of read-only adversarial verification + deeper external mining; net-deflationary (~12 candidates refuted, both meta-spines tempered). Re-synced `research/roadmap.md` with a "BROADENING ADDENDUM (Iterations 20–100)" (authoritative, supersedes pass-1 headlines) + per-child `research.md` addenda. **Next direction:** revisit packet-027 subjects through the 028 findings, toward ~150 total.
+- **Recent action:** Research complete at **150 iterations** (001=38, 002=24, 003=18, 004=20, **005=50**). The 100→150 work added child **`005-revisit-027`**: a cross-packet reconciliation of this roadmap's findings against packet-027's shipped code. Result: **028 is net-additive to 027 — 0 supersedes, 0 contradicts** (EXTENDS ×6 / ALREADY-COVERED ×1 / NO-TRANSFER ×3), with 027's shipped doctrine reverse-validating 028's deflation. Ledger: `005-revisit-027/research/research.md`; the 5 roadmap edits + GO additions are in `research/roadmap.md` → "027-REVISIT ADDENDUM". **Next direction:** the packet is research-complete — hand the GO list + roadmap edits to a 028 *implementation* packet (a separate, later decision per spec §2).
 
 **The ask:** mine the two external systems under `.opencode/specs/system-spec-kit/028-memory-search-intelligence/external/` (aionforge-memory = Rust, galadriel = Python) for improvements to four internal subsystems — Spec-Kit Memory MCP (PRIMARY), Code Graph, Skill Advisor, Deep Loop runtime. Output is an evidence-backed, code-mapped improvement roadmap. **Pass 1 delivered the roadmap; broadening hardens and extends it.**
 <!-- /ANCHOR:handover-summary -->

@@ -1,6 +1,8 @@
 # Improvement Roadmap: Memory Search Intelligence (Packet 028)
 
 > Cross-cutting synthesis of four completed deep-research reports — **Memory MCP** (001, 21 candidates, PRIMARY), **Code Graph** (002, ~13 candidates), **Skill Advisor** (003, 9 candidates), **Deep Loop** (004, 11 candidates) — mining two external memory systems (**aionforge-memory**, Rust; **galadriel**, Python) for evidence-backed, code-mapped improvements across all four internal subsystems. This roadmap is organized by the **six cross-cutting spine themes** (not by subsystem) so that the *generalizable* external techniques are visible across systems. Per-subsystem detail lives in each child's `research/research.md` (linked in §Per-Subsystem Pointers).
+>
+> **➤ For the consolidated, digestible view of the full 150-iteration campaign (4-subsystem mining + the 027-revisit), read `research/synthesis/00-index.md` first** — it maps the actionable GO list (`01`), the 027↔028 reconciliation (`02`), and the corrections/caveats (`03`). This `roadmap.md` is the detailed/historical record: the pass-1 six-spine tables below, then two append-only addenda (BROADENING, 027-REVISIT).
 
 ## Executive Summary
 
@@ -267,3 +269,36 @@ A single ranked list of the highest-leverage, lowest-effort, lowest-conflict can
 2. **Run ONE benefit micro-benchmark** — D2 reliability (does it out-earn existing confirmation/relevance signals when every input is `r=0.5`?) or C2-C single-hop graph-gating precision. Converts the highest residual unknown (§6) into a measured delta.
 
 > **Coverage statement (honest):** External mining is **complete except `aionforge-procedural`** (one crate, follow-up #1). All other aionforge surfaces (embed/capture/mcp transport/cli/tui/config; the memory-* consumer skills) and **all** galadriel surfaces (SOUL/CONTEXT/TOOLS persona, tower/web, discord, cmd) were confirmed **no-transfer** (plumbing / agent-loop / persona). The broadening added **zero material new over-claims**; its net effect was to make the pass-1 roadmap honest.
+
+---
+
+# 027-REVISIT ADDENDUM (child `005-revisit-027`, 50 iterations) — CROSS-PACKET RECONCILIATION
+
+> A fifth child (`005-revisit-027`, 50 read-only iterations → packet total **150**) reconciled this roadmap's findings against **packet 027's shipped code** (the XCE-Derived Spec Kit Refinement epic: memory write-safety, retention, causal-edge lifecycle, feedback reducers, incremental index, triggers, search resilience, daemon re-election, observability, derived-memory). Full ledger: **`005-revisit-027/research/research.md`** (authoritative). This addendum records the **edits the revisit makes to THIS roadmap** + the cross-packet headline.
+
+## Headline
+
+**028 is overwhelmingly net-additive to 027 — zero supersedes, zero contradicts across all ten revisited subjects** (EXTENDS ×6, ALREADY-COVERED ×1, NO-TRANSFER ×3). And the relationship is bidirectional: **027's already-shipped doctrine supplies the design answers for 028's open candidates** (its always-on fail-closed scrubber is the pattern for C8; its always-on/default-off rule decides C8 + justifies C4-A; its shadow-gated reducers are the fix template for the dormant `newInfoRatio`) **and independently validates 028's own "0-of-4 clean flips" deflation** ("a built-behind-a-flag feature is a bet not yet cashed in"). 027's peck verification-discipline even pre-encodes 028's adversarial-verify methodology.
+
+## Edits to this roadmap (apply at implementation time)
+
+1. **Correct the content-hash mis-citation** (§1 + §4 shared-infra row + C4-B seam, `:33`): `memory-index.ts:281` is `createScanKey` (a 16-char scan-options hash), **not** a content base. The real bases are `computeContentHash` (content-body, `memory-parser.ts:914-916`) and `hashJson`+`normalizeForHash` (canonical-field, `idempotency-receipts.ts:81-102`). Only C4-B's `derived_id` hash is genuinely net-new.
+2. **C3-D / skip-closed is NOT a hard C3-A gate** (§2 + Sequencing Notes): adversarial verification downgraded the promoter-fork to *theoretical + tombstone-recoverable* hygiene (no automatic producer creates the `contradicts`-on-a-frontmatter-pair collision). Ship the `AND invalid_at IS NULL` guard as cheap defensive hardening before C3-A, not as a data-loss blocker.
+3. **C8 reclassified** (§6 + the "new gaps" row): the ingest-bypass framing is **refuted** (`working_memory` carries no content; ingest is pointer-only). C8 is a **real render-gap** — no untrusted-recall escaper exists anywhere, and `getTieredContent` HOT-tier emits raw memory-file content into the agent loop. Keep it BUILD-new always-on, reusing 027's fail-closed scrubber **pattern** (not its write-lane seam). Residual: leverage is gated on the threat model ("can untrusted content become a recalled memory" — Round O found yes, via `memory_save`).
+4. **Bi-temporal scoping** (§2 + §4 shared-infra row): consumers are **causal + lineage + code_edges**; **exclude retention TTL** (physical deletion is the opposite of edge-presence currentness — a category error). Canonical supersede writer = **lineage** (causal `invalid_at` is a derived projection); the real "current memory" read store is **`active_memory_projection`** (neither pass-1 framing named it). C3-C "Current"-replaces-projection would be **L** (≈12 JOIN sites / 2 writers), not M.
+4b. **C5-B is net-new on the RRF surface too** (§1): the live `compareDeterministicRows` ties on raw rowid and `rrf-fusion.ts` has no tiebreak; C5-B reuses `computeContentHash` and is **S** (its value is content-derived tie *stability*, since the comparator is already total via the unique rowid). C4-B's `derived_id` **must include anchors** or the legacy anchor-inclusive UNIQUE backfill rejects.
+
+## 027-revisit GO additions (net-new candidates this revisit surfaced)
+
+- **C9 recall-degrade** (Memory) — EXTENDS, S: 027's embedder subsystem is storage-side only; recall THROWS on a null embedding. Detect-unavailable → lexical + report.
+- **`memory_history` valid-time as-of tool** (Memory) — the lib-only `resolveLineageAsOf`/`inspectLineageChain` are unexposed; a ~5-surface tool add exposes a never-surfaced capability (full AsKnownAt is gated on C3-B).
+- **gauge `lag`/pending/failed** (Memory) — S, decoupled from C4-C (rides the existing `post_insert_enrichment_status` column + `created_at` + health query).
+- **Q7 lease-classification telemetry** (Code-Graph launcher) — low-priority observability (no metrics sink today).
+- **027-internal hardening** (not transfers): Q4 sliding-TTL absolute-deleteAfter ceiling; the `search-results.ts:528` `ce.edge_id` CTE-alias quirk.
+
+## Follow-ups for the 028 parent's sibling children (out of the Memory-scoped 005 mandate)
+
+- **028 Advisor-C4 × 027 `005-advisor-feedback-calibration`** — the bounded-Beta posterior applies to the *advisor* (→ `002-code-graph`/`003-skill-advisor` reconciliation, not Memory).
+- **028 Code-Graph cluster (Q1-C1 / Q6-C1 / CG-edge-staleness) × 027 codegraph-tombstone-audit** — edge-currentness overlap the Memory-scoped revisit bounced as "Code-Graph-scoped."
+
+> **Single most-likely-wrong (whole revisit):** the C8 verdict — its seam moved once under adversarial pressure and its leverage rests on the threat model strength. Runner-up: the C3-B four-timestamp additivity claim (no migration spec exists to verify). The revisit was net-deflationary and fabricated no benefit numbers.

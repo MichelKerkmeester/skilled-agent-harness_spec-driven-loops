@@ -7,7 +7,8 @@
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
     "system-spec-kit/028-memory-search-intelligence/002-code-graph",
     "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop"
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
+    "system-spec-kit/028-memory-search-intelligence/005-revisit-027"
   ],
   "manual": {
     "depends_on": [],
@@ -100,7 +101,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-06-16T17:02:00.255Z"
+    "last_active_child_id": "system-spec-kit/028-memory-search-intelligence/005-revisit-027",
+    "last_active_at": "2026-06-16T20:15:00Z"
   }
 }
