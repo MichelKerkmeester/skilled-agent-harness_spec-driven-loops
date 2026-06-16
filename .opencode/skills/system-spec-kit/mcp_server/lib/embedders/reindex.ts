@@ -15,6 +15,7 @@ import { invalidateProviderSingleton } from '@spec-kit/shared/embeddings';
 import {
   attachActiveVectorShard,
   detachActiveVectorShard,
+  isActiveVectorShardAttached,
   clear_vector_shard_repair_pending_sentinel,
   initializeDb,
 } from '../search/vector-index-store.js';
@@ -663,7 +664,20 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       try {
         detachActiveVectorShard(jobDb);
       } catch (_detachErr: unknown) {
-        // Not attached on this connection; the rename is still safe.
+        // Swallow only the not-attached case; a busy/locked DETACH can throw with
+        // the shard still bound, which the post-detach assertion below catches.
+      }
+      // A failed detach (e.g. busy/locked) must not fall through to the rename:
+      // it would leave this connection bound to the orphaned old inode while the
+      // post-swap path-string attach check still matches the new file, silently
+      // serving stale pre-reindex vectors. Verify the attachment is released; if
+      // it survived the first attempt, retry once and throw if it persists so the
+      // run fails cleanly instead of completing on a stale binding.
+      if (isActiveVectorShardAttached(jobDb)) {
+        detachActiveVectorShard(jobDb);
+        if (isActiveVectorShardAttached(jobDb)) {
+          throw new Error('Active vector shard remained attached after detach; aborting swap to avoid binding to an orphaned inode');
+        }
       }
       // Drop any stale sidecars next to the active shard so the renamed WAL/SHM (already
       // TRUNCATE-checkpointed at staging close) is the authoritative pair.

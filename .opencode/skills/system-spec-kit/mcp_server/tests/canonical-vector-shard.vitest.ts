@@ -14,6 +14,7 @@ import {
   attachActiveVectorShard,
   detachActiveVectorShard,
   getActiveVectorSource,
+  isActiveVectorShardAttached,
 } from '../lib/search/vector-index-store';
 import { setActiveEmbedder } from '../lib/embedders/schema';
 import { create_schema, ensure_schema_version } from '../lib/search/vector-index-schema';
@@ -209,6 +210,23 @@ describe('canonical metadata DB + active vector shard split', () => {
     expect(attachedSchemas(db)).toContain(ACTIVE_VECTOR_SCHEMA);
 
     detachActiveVectorShard(db);
+    db.close();
+  });
+
+  it('reports active shard attachment so a swap can verify detach released the inode', () => {
+    // Backstop for the reindex detach-before-rename guard: a busy/locked DETACH can
+    // throw with the shard still bound. The orchestrator asserts this returns false
+    // before rename(2); if it stayed true the connection would keep the orphaned inode.
+    const profile = makeProfile();
+    const db = openCanonical(tempDir, profile);
+    attachActiveVectorShard(db, profile);
+
+    expect(isActiveVectorShardAttached(db)).toBe(true);
+
+    detachActiveVectorShard(db);
+    expect(isActiveVectorShardAttached(db)).toBe(false);
+    expect(attachedSchemas(db)).not.toContain(ACTIVE_VECTOR_SCHEMA);
+
     db.close();
   });
 

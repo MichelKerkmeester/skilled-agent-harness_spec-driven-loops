@@ -1673,6 +1673,16 @@ export function detachActiveVectorShard(database: Database.Database): void {
   }
 }
 
+/**
+ * True when the active vector shard schema is still bound on this connection.
+ * Lets callers verify a detach actually released the attachment (e.g. a
+ * busy/locked DETACH can throw with the shard still live) before performing an
+ * inode-replacing operation such as rename(2) on the shard file.
+ */
+export function isActiveVectorShardAttached(database: Database.Database): boolean {
+  return get_attached_vector_path(database) !== null;
+}
+
 export function getActiveVectorSource(): ActiveVectorSourceTelemetry {
   if (db) {
     const profile = resolve_profile_for_active_embedder(db);

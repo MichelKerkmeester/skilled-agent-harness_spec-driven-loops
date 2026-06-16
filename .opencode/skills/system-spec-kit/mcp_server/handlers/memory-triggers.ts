@@ -522,9 +522,13 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
               latencyMs: Date.now() - unionStartTime,
             };
           } else {
+            // Over-fetch globally-ranked semantic candidates BEFORE scope filtering
+            // so in-scope matches ranked just below higher-scored out-of-scope ones
+            // survive into the scoped set, mirroring the lexical over-fetch above.
+            // The merged set is re-capped to `limit` downstream.
             const semanticMatches = filterSemanticMatchesByScope(
               semanticDatabase,
-              matchSemanticTriggers(queryEmbedding, semanticCache, { max: limit }),
+              matchSemanticTriggers(queryEmbedding, semanticCache, { max: limit * 4 }),
               args,
             );
             const mergedResults = mergeTriggerResults(results, semanticMatches);

@@ -224,4 +224,29 @@ describe('hybrid trigger handler', () => {
     expect(workingMemory.setAttentionScore).toHaveBeenCalledWith('session-1', 201, 1.0);
     expect(workingMemory.setAttentionScore).toHaveBeenCalledWith('session-1', 202, 0.85);
   });
+
+  it('over-fetches semantic candidates before scope filtering for a scoped query', async () => {
+    // Regression: scope filtering must run over a candidate pool wider than `limit`,
+    // otherwise in-scope matches ranked below out-of-scope ones are starved. The
+    // matcher must receive an over-fetch `max`, mirroring the lexical limit*2 path.
+    process.env.SPECKIT_SEMANTIC_TRIGGERS = 'true';
+    process.env.SPECKIT_SEMANTIC_TRIGGERS_MODE = 'union';
+    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(buildTriggerMatchResult([]));
+    stubSemanticLookup([buildSemanticMatch({ score: 0.73 })]);
+    stubCognitive([{ id: 701, attention_score: 0.73 }]);
+    const matcherSpy = vi.spyOn(semanticTriggerMatcher, 'matchSemanticTriggers');
+
+    const limit = 3;
+    await handler.handleMemoryMatchTriggers({
+      prompt: 'save this session for later',
+      limit,
+      specFolder: 'specs/hybrid',
+      include_cognitive: true,
+      session_id: 'session-1',
+    });
+
+    expect(matcherSpy).toHaveBeenCalledTimes(1);
+    const options = matcherSpy.mock.calls[0][2];
+    expect(options?.max).toBeGreaterThan(limit);
+  });
 });
