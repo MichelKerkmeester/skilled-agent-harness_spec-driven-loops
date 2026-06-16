@@ -39,7 +39,7 @@ _memory:
 ## What Was Built
 
 - Added `feedback-retention-reducer.ts` with `delete`, `extend`, and `protect` decisions based on aggregated feedback summaries.
-- Added `edge-tier-basement.ts` with narrow edge-floor decisions that import the existing `STATE_LIMITS` production export.
+- Added `edge-tier-basement.ts` with narrow edge-floor decisions that import the existing `STATE_LIMITS` production export. **Status: STAGED — the helper is unit-tested but is NOT yet wired into the retention sweep's edge path, so edge-flooring is inactive in production. Since retention learning is default-off / shadow-first, this is dormant by design; wire `resolveEdgeTierBasement` into the sweep's edge path as the retention-enablement follow-up.**
 - Added a default-off retention sweep branch with dry-run, shadow, and double-gated active behavior.
 - Added vitest coverage for decision rules, edge-floor scope, dry-run immutability, shadow audit-only behavior, active gating, and active apply behavior.
 <!-- /ANCHOR:what-built -->
