@@ -1712,7 +1712,10 @@
     "gpt-regression",
     "mimo"
    ],
-   "disposition": "downgraded_p2"
+   "disposition": "downgraded_p2_v2",
+   "v2_proof": "Resolved in code: bm25-baseline.ts:224 reads `const k = config.k ?? 20` and threads it through runComparisonMetrics (lines 225-227), and runComparisonMetrics:267 now calls `computeNDCG(evalResults, groundTruth, k)` instead of a hardcoded 10. The comparison helper's NDCG now honors the configured cutoff.",
+   "p2_decision": "ALREADY_FIXED",
+   "p2_reason": "The configurable-k threading the finding asked for is already present in bm25-baseline.ts; NDCG in the comparison path uses the configured k, so no further action is needed."
   },
   {
    "phase": "014-packed-bm25-field-weights",

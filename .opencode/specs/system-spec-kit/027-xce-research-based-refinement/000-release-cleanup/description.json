@@ -15,6 +15,7 @@
   "importance_tier": "important",
   "is_phase_parent": true,
   "children": [
+    "000-spec-tree-consolidation",
     "001-public-root-readme",
     "002-skill-docs-alignment",
     "003-skill-feature-catalog",

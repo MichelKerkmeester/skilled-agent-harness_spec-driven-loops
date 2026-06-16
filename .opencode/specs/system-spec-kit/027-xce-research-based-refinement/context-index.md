@@ -43,6 +43,8 @@ The thirty prior top-level phases (`001` through `030`) were grouped under six t
 
 ## 027 to 028 Split
 
+> **Historical event record (not live guidance).** The sibling packet `028-code-graph-and-cocoindex` named throughout this section no longer exists at any depth under `.opencode/specs`. The track's current `028` packet is `028-memory-search-intelligence` (placeholder: `.gitkeep` + `external/` only), which is unrelated to the Code Graph / CocoIndex work. The fate of the extracted phases after this 2026-05-28 split is not recorded here; treat the paths below as a point-in-time snapshot, not as resolvable current homes.
+
 On 2026-05-28, the Code Graph phases formerly in disk folders `007`-`010` and the CocoIndex phases formerly in disk folders `013`-`017` were extracted to sibling packet `028-code-graph-and-cocoindex` and renumbered to `001`-`009`.
 
 The `external/cocoindex-main`, `external/cocoindex-code-main`, and `backup/` assets moved with the new 028 packet. The `external/xce-mcp` source material and the memory-topic research remained in this 027 packet.
@@ -59,7 +61,7 @@ The `external/cocoindex-main`, `external/cocoindex-code-main`, and `backup/` ass
 | `016-coco-memory-context-extras` | `008-coco-memory-context-extras` | `Phase Parent 011 — Coco Memory Context Extras` | 2 (phase-parent) | cocoindex |
 | `017-cocoindex-memory-port-research` | `009-cocoindex-memory-port-research` | `cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)` | 1 | cocoindex |
 
-Use `027-xce-research-based-refinement` for the remaining memory phases and research provenance. Use `028-code-graph-and-cocoindex` for the moved Code Graph and CocoIndex phase children.
+At the time of the split, `027-xce-research-based-refinement` retained the memory phases and research provenance, while the moved Code Graph and CocoIndex phase children were placed under a then-sibling packet `028-code-graph-and-cocoindex`. That `028-code-graph-and-cocoindex` packet is no longer present on disk and the current track `028` is the unrelated `028-memory-search-intelligence`; this section is retained only as a historical record of the 2026-05-28 move, not as a live pointer.
 
 ## Peck Teachings Placement
 
