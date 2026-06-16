@@ -1,0 +1,26 @@
+# Seat gpt-mirror-parity — iteration 2 (global #60)
+
+- Model: `claude-opus-4-8` · Executor: claude · Angle: gpt-mirror-parity
+- Verdict: **CONDITIONAL** · Findings: P0=0 P1=0 P2=1
+
+## Analysis
+
+Verification complete. I have a confirmed, isolated parity defect.
+
+## Review Summary — seat `gpt-mirror-parity` (Core agent mirror parity, lens: correctness)
+
+I traced the actual "gem-team I/O" updates (commits `4040fa6a0d` Wave 1, `747a9deca7` Wave 2, `454398737e` Wave 3, `58637e9fa5` T8, `2f52299b37` Wave A, `ce9e313e7f` deep-loop merge) and compared the **current state** of all five core agents (`orchestrate`, `code`, `review`, `context`, `debug`) across the three runtime mirrors (`.opencode/*.md`, `.claude/*.md`, `.codex/*.toml`).
+
+**Method note:** prior byte-parity was verified only at Wave 1. Wave A (`2f52299b37`) then made *heavily asymmetric* edits — `.claude`/`.codex` got orchestrate +50/+53, debug +22/+23, context, review changes, while `.opencode` got only orchestrate +4. That asymmetric drift was never re-verified for parity, so I re-checked current HEAD directly rather than trusting the line counts.
+
+**Parity results:**
+- **I/O contract content has genuine 3-way parity.** The `AGENT_IO_DISPATCH`, `AGENT_IO_RESULT`, `AGENT_IO_HANDOFF`, and `AGENT_IO_PRE_EXECUTION` blocks, field lists, and enums are byte-identical across all three runtimes for every agent I checked (verified `code` envelope at `.opencode:331`/`.claude:316`/`.codex:320`; orchestrate dispatch header at `.opencode:230`/`.claude:219`/`.codex:224`; debug handoff identical).
+- The Wave 1 "`context_package` not in contract §2" follow-up was **resolved** — it's now documented at `agent-io-contract.md:51`. Not a finding.
+- The `code` envelope `status:` dropping `partial` (vs contract §3 line 68) is **consistent across all three mirrors**, so it's not a parity break. Not reported.
+- The orchestrate anti-pattern parenthetical ("canonical source lives in `.opencode/agents/`") that `.opencode` omits but `.claude`/`.codex` include is **correct intentional asymmetry** — opencode IS the canonical source. False positive; discarded.
+
+**One real defect (P2):** `.claude/agents/review.md:11` Path Convention points the Claude-runtime `@review` agent at `.opencode/agents/*.md` as its "canonical runtime path reference," while all four of its `.claude` siblings (`orchestrate.md:19`, `code.md:11`, `context.md:13`, `debug.md:11`) correctly self-reference `.claude/agents/*.md`, and `.codex/agents/review.toml:15` correctly says `.codex`. The cross-runtime design is unambiguously self-referential (`.claude` tally: 7 correct vs 2 wrong; `.codex`: 9/9 self-referential). `.claude/agents/deep-review.md` shares the same wrong pointer (out-of-slice corroboration of a copy-from-opencode sync gap). Wave A did not touch this line — it predates and was missed by the prior deep-review. Impact is bounded (advisory path-reference text; no execution/safety/data effect), hence P2, but it is a concrete, mechanical parity break squarely on this seat's angle.
+
+```json
+{"seat":"gpt-mirror-parity","model":"openai/gpt-5.5-fast","angle":"Core agent mirror parity (gem-team I/O updates): orchestrate/code/review/context/debug across the three runtime dirs.","verdict":"CONDITIONAL","summary":"I/O contract blocks have true 3-way parity; one mirror-sync defect: .claude @review Path Convention points to .opencode instead of .claude (its 4 siblings + codex are self-referential).","files_reviewed":[".opencode/agents/orchestrate.md",".opencode/agents/code.md",".opencode/agents/review.md",".opencode/agents/context.md",".opencode/agents/debug.md",".claude/agents/orchestrate.md",".claude/agents/code.md",".claude/agents/review.md",".claude/agents/context.md",".claude/agents/debug.md",".codex/agents/orchestrate.toml",".codex/agents/code.toml",".codex/agents/review.toml",".codex/agents/context.toml",".codex/agents/debug.toml",".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md"],"findings":[{"severity":"P2","dimension":"correctness","title":".claude @review Path Convention points at wrong runtime (.opencode instead of .claude)","file":".claude/agents/review.md:11","evidence":"Line 11: \"**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.\" — but its four .claude siblings say `.claude/agents/*.md` (orchestrate.md:19, code.md:11, context.md:13, debug.md:11) and .codex/agents/review.toml:15 says `.codex/agents/*.toml`. .claude tally: 7 self-referential vs 2 wrong (review.md + deep-review.md). Wave A (2f52299b37) did not touch this line.","why":"The Path Convention steers the agent's canonical runtime path reference / exploration target. A Claude-runtime @review told to treat .opencode/agents as canonical mis-points at the wrong runtime mirror, breaking the otherwise-uniform per-runtime self-reference. It is a mirror-sync leftover (copied from opencode without re-pointing) missed by the prior deep-review whose byte-parity check predated the asymmetric Wave A edits.","recommendation":"Change `.opencode/agents/*.md` -> `.claude/agents/*.md` at .claude/agents/review.md:11; apply the same fix to .claude/agents/deep-review.md for full runtime parity."}]}
+```

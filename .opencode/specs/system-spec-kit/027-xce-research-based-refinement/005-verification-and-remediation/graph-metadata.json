@@ -7,7 +7,8 @@
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units"
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation"
   ],
   "manual": {
     "depends_on": [],

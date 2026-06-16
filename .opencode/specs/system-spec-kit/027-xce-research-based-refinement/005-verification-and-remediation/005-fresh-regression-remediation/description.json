@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "description": "Feature Specification: Fresh+Regression Deep-Review Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "fresh",
+    "regression",
+    "deep-review",
+    "remediation"
+  ],
+  "lastUpdated": "2026-06-16T11:26:37.254Z",
+  "specId": "005",
+  "folderSlug": "fresh-regression-remediation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
