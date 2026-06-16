@@ -403,13 +403,45 @@ async function waitForPidExit(pid, timeoutMs) {
   return processLiveness(pid) === 'dead';
 }
 
-async function reapOwnerBeforeRespawn(ownerPid) {
+// Best-effort read of a live process's executable basename (comm). Returns null
+// when it cannot be determined (no ps, permission error, or the pid is gone), so
+// callers treat "cannot prove it is the wrong process" as "do not skip the reap".
+function readProcessExecutableBasename(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  try {
+    const result = spawnSync('ps', ['-p', String(pid), '-o', 'comm='], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    if (result.error || result.status !== 0) return null;
+    const comm = String(result.stdout || '').trim();
+    if (!comm) return null;
+    return path.basename(comm);
+  } catch {
+    return null;
+  }
+}
+
+async function reapOwnerBeforeRespawn(ownerPid, expectedExecutablePath = null) {
   const liveness = processLiveness(ownerPid);
   if (liveness === 'unknown-eperm') {
     return { allowed: false, reason: 'owner-liveness-unknown-eperm' };
   }
   if (liveness === 'dead') {
     return { allowed: true, reason: 'owner-already-dead' };
+  }
+
+  // Guard against PID reuse: if the recorded lease carried an executablePath and
+  // the live pid's executable basename provably differs, the OS recycled the pid
+  // to an unrelated process. Treat it as already-dead rather than SIGKILLing an
+  // innocent process. An indeterminate read (null) does not skip the reap.
+  if (typeof expectedExecutablePath === 'string' && expectedExecutablePath.length > 0) {
+    const expectedBasename = path.basename(expectedExecutablePath);
+    const actualBasename = readProcessExecutableBasename(ownerPid);
+    if (actualBasename !== null && actualBasename !== expectedBasename) {
+      log(`skill-advisor reap skipped; pid ${ownerPid} executable '${actualBasename}' != recorded '${expectedBasename}' (pid reused)`);
+      return { allowed: true, reason: 'owner-pid-reused' };
+    }
   }
 
   log(`confirmed-dead socket; reaping recorded skill-advisor daemon pid ${ownerPid} before respawn`);
@@ -486,26 +518,23 @@ function acquireOwnerLeaseFile() {
   }
 
   const lease = buildOwnerLease(process.pid);
-  if (!existing) {
-    if (!writeOwnerLeaseFileExclusive(lease)) {
-      const holder = readOwnerLeaseFile(currentOwnerLeasePath);
-      return {
-        acquired: false,
-        holder: holder || lease,
-        classification: holder ? classifyOwnerLease(holder) : 'live-owner',
-      };
+  // Reclaim a stale lease by removing it first, then claim exclusively (O_EXCL).
+  // This collapses the fresh-acquire and stale-reclaim paths into a single CAS so
+  // only one racer can win: the loser's exclusive create hits EEXIST and returns
+  // acquired:false instead of last-writer-wins overwriting the winner's lease.
+  if (existing) {
+    try {
+      fs.unlinkSync(currentOwnerLeasePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
     }
-    ownerLeasePid = process.pid;
-    return { acquired: true, lease, reclaimed: existing };
   }
-
-  writeOwnerLeaseFile(lease);
-  const reread = readOwnerLeaseFile(currentOwnerLeasePath);
-  if (!reread || reread.ownerPid !== process.pid) {
+  if (!writeOwnerLeaseFileExclusive(lease)) {
+    const holder = readOwnerLeaseFile(currentOwnerLeasePath);
     return {
       acquired: false,
-      holder: reread || lease,
-      classification: reread ? classifyOwnerLease(reread) : 'live-owner',
+      holder: holder || lease,
+      classification: holder ? classifyOwnerLease(holder) : 'live-owner',
     };
   }
   ownerLeasePid = process.pid;
@@ -543,9 +572,22 @@ function startOwnerLeaseHeartbeat(ownerPid = process.pid) {
     if (refreshOwnerLeaseFile(ownerPid)) return;
     log('owner lease heartbeat refresh failed; shutting down launcher to preserve single ownership');
     clearOwnerLeaseHeartbeat();
-    if (isChildRunning(childProcess)) childProcess.kill('SIGTERM');
-    clearAllLeaseFiles();
-    process.exit(128);
+    void (async () => {
+      // Escalate to SIGKILL if the child does not exit within the grace window —
+      // matching the signal-handler path. A child that hangs in async teardown would
+      // otherwise be orphaned alongside the successor launcher's fresh child, which is
+      // the exact double-ownership this branch exists to prevent.
+      if (isChildRunning(childProcess)) {
+        childProcess.kill('SIGTERM');
+        const exited = await waitForChildExit(childProcess, 5000);
+        if (!exited && isChildRunning(childProcess)) childProcess.kill('SIGKILL');
+      }
+      clearAllLeaseFiles();
+      process.exit(128);
+    })().catch(() => {
+      clearAllLeaseFiles();
+      process.exit(128);
+    });
   }, intervalMs);
   ownerLeaseHeartbeatTimer.unref?.();
 }
@@ -640,7 +682,8 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
     }
 
     const previousOwner = readOwnerLeaseFile();
-    const reapResult = await reapOwnerBeforeRespawn(targetPid);
+    const expectedExecutablePath = previousOwner?.ownerPid === targetPid ? previousOwner.executablePath : null;
+    const reapResult = await reapOwnerBeforeRespawn(targetPid, expectedExecutablePath);
     if (!reapResult.allowed) {
       log(`dead-socket respawn skipped; ${reapResult.reason} for daemonPid=${targetPid}`);
       writeLeaseHeldDiagnostic(leaseResult, ` (dead-socket-${reapResult.reason})`);
@@ -1241,7 +1284,9 @@ async function main() {
       if (Number.isInteger(pendingBootstrapReapPid) && pendingBootstrapReapPid > 0) {
         // The bootstrap lock is held through replacement launch, so stale-child cleanup
         // and spawn share one serialization point without a separate respawn lock.
-        const reapResult = await reapOwnerBeforeRespawn(pendingBootstrapReapPid);
+        const reapOwnerLease = readOwnerLeaseFile();
+        const reapExecutablePath = reapOwnerLease?.ownerPid === pendingBootstrapReapPid ? reapOwnerLease.executablePath : null;
+        const reapResult = await reapOwnerBeforeRespawn(pendingBootstrapReapPid, reapExecutablePath);
         if (!reapResult.allowed) {
           log(`stale launcher lease reap skipped; ${reapResult.reason} for daemonPid=${pendingBootstrapReapPid}`);
           clearOwnerLeaseFile();
@@ -1325,16 +1370,21 @@ if (require.main === module) {
 
 module.exports = {
   acquireBootstrapLock,
+  acquireOwnerLeaseFile,
   artifactsReady,
   bridgeStdioThroughSessionProxy,
   classifyOwnerLease,
   classifySkillAdvisorFrame,
+  clearOwnerLeaseFile,
   configureLauncherPathsForTesting,
   createChildEnv,
   latestSourceMtimeMs,
   ownerLeasePath,
   readOwnerLeaseFile,
+  readProcessExecutableBasename,
+  reapOwnerBeforeRespawn,
   removeStaleBootstrapLock,
+  startOwnerLeaseHeartbeat,
   SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES,
   SKILL_ADVISOR_UNSAFE_TOOL_NAMES,
 };

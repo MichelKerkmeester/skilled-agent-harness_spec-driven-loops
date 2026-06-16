@@ -462,27 +462,23 @@ function acquireOwnerLeaseFile() {
   }
 
   const lease = buildOwnerLease(process.pid);
-  if (!existing) {
-    if (!writeOwnerLeaseFileExclusive(lease)) {
-      const holder = readOwnerLeaseFile(currentOwnerLeasePath);
-      return {
-        acquired: false,
-        holder: holder || lease,
-        classification: holder ? classifyOwnerLease(holder) : 'live-owner',
-      };
+  // Reclaim a stale lease by removing it first, then claim exclusively (O_EXCL).
+  // This collapses the fresh-acquire and stale-reclaim paths into a single CAS so
+  // only one racer can win: the loser's exclusive create hits EEXIST and returns
+  // acquired:false instead of last-writer-wins overwriting the winner's lease.
+  if (existing) {
+    try {
+      fs.unlinkSync(currentOwnerLeasePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
     }
-    ownerLeasePid = process.pid;
-    return { acquired: true, lease, reclaimed: existing };
   }
-
-  // Re-read after reclaim so two launchers racing a stale lease cannot both act as owner.
-  writeOwnerLeaseFile(lease);
-  const reread = readOwnerLeaseFile(currentOwnerLeasePath);
-  if (!reread || reread.ownerPid !== process.pid) {
+  if (!writeOwnerLeaseFileExclusive(lease)) {
+    const holder = readOwnerLeaseFile(currentOwnerLeasePath);
     return {
       acquired: false,
-      holder: reread || lease,
-      classification: reread ? classifyOwnerLease(reread) : 'live-owner',
+      holder: holder || lease,
+      classification: holder ? classifyOwnerLease(holder) : 'live-owner',
     };
   }
   ownerLeasePid = process.pid;
@@ -758,6 +754,17 @@ async function reapOwnerBeforeRespawn(ownerPid) {
   }
   if (liveness === 'dead') {
     return { allowed: true, reason: 'owner-already-dead' };
+  }
+
+  // A socket probe cannot distinguish a genuinely-dead daemon from one that merely
+  // refused the connection at its client cap (both look "closed before reply"). Before
+  // killing a process that is still ALIVE, require the owner lease to be heartbeat-stale
+  // too: a daemon that has refreshed its lease within its TTL is serving clients, not
+  // dead, and must never be reaped on a socket-probe-only verdict regardless of cap.
+  const currentOwner = readOwnerLeaseFile();
+  if (currentOwner?.ownerPid === ownerPid && classifyOwnerLease(currentOwner) === 'live-owner') {
+    log(`spec-memory owner pid ${ownerPid} is heartbeat-fresh (live-owner); refusing socket-probe reap (likely cap-refusal, not death)`);
+    return { allowed: false, reason: 'owner-heartbeat-fresh' };
   }
 
   log(`confirmed-dead socket; reaping recorded spec-memory owner pid ${ownerPid} before respawn`);
@@ -1251,39 +1258,79 @@ function stopModelServerDemandListener() {
   return hfControl.stopDemandListener();
 }
 
+const BOOTSTRAP_LOCK_OWNER_FILE = 'owner.pid';
+
+// Returns the pid recorded inside the lock dir, or null when no readable pid
+// stamp exists (legacy lock dirs, or a holder that died before stamping).
+function readBootstrapLockOwnerPid() {
+  try {
+    const raw = fs.readFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), 'utf8').trim();
+    const pid = Number.parseInt(raw, 10);
+    return Number.isInteger(pid) && pid > 0 ? pid : null;
+  } catch {
+    return null;
+  }
+}
+
+// Reclaim a stale bootstrap lockdir. A lock is reclaimable as soon as its
+// recorded holder is provably dead; the mtime TTL is only a fallback for lock
+// dirs with no readable pid stamp (legacy dirs) or a holder whose liveness
+// cannot be determined. Without the dead-holder check, a holder killed less than
+// BOOTSTRAP_LOCK_STALE_MS ago wedges every requireLock respawn for the full wait
+// deadline (the TTL exceeds the deadline by design for a slow-but-live build).
+function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_STALE_MS) {
+  let ageMs;
+  try {
+    ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'ENOTEMPTY') return false;
+    throw error;
+  }
+  const ownerPid = readBootstrapLockOwnerPid();
+  const ownerDead = ownerPid !== null && processLiveness(ownerPid) === 'dead';
+  if (!ownerDead && ageMs <= staleMs) {
+    return false;
+  }
+  // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
+  // racer wins the rename; a successor that mkdir'd a fresh lockDir after our stat
+  // creates a new inode that our rename/rmSync cannot touch, so we never delete a
+  // live successor lock. A losing racer's rename throws ENOENT and falls through to
+  // the outer retry.
+  const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
+  try {
+    fs.renameSync(lockDir, staleClaim);
+    fs.rmSync(staleClaim, { recursive: true, force: true });
+    const reason = ownerDead ? `dead holder pid=${ownerPid}` : `mtime ${Math.round(ageMs / 1000)}s old`;
+    log(`reclaiming stale bootstrap lock ${rel(lockDir)} (${reason})`);
+    return true;
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'ENOTEMPTY') return false;
+    throw error;
+  }
+}
+
 async function acquireBootstrapLock(options = {}) {
   const requireLock = options.requireLock === true;
   fs.mkdirSync(dbDir, { recursive: true });
-  const deadline = Date.now() + 120000;
+  const deadline = Date.now() + (options.timeoutMs ?? 120000);
+  const staleMs = options.staleMs ?? BOOTSTRAP_LOCK_STALE_MS;
+  const retrySleepMs = options.retrySleepMs ?? 1000;
   while (true) {
     try {
       fs.mkdirSync(lockDir);
+      // Stamp the holder pid so a later launcher can reclaim this lock the
+      // instant we die, instead of waiting out the mtime TTL. Best-effort: a
+      // failed stamp degrades to the TTL path, never blocks acquisition.
+      try {
+        fs.writeFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), String(process.pid), { mode: 0o600 });
+      } catch { /* TTL fallback covers an unstamped lock */ }
       return true;
     } catch (error) {
       if (error.code !== 'EEXIST') {
         throw error;
       }
-      // Reclaim a stale lockdir left by a SIGKILL'd launcher (mtime-based; the lockdir records no pid),
-      // so a crashed holder cannot block a requireLock respawn for the full 120s deadline.
-      try {
-        const ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
-        if (ageMs > BOOTSTRAP_LOCK_STALE_MS) {
-          log(`reclaiming stale bootstrap lock ${rel(lockDir)} (age ${Math.round(ageMs / 1000)}s)`);
-          // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
-          // racer wins the rename; a successor that mkdir'd a fresh lockDir after our stat
-          // creates a new inode that our rename/rmSync cannot touch, so we never delete a
-          // live successor lock. A losing racer's rename throws ENOENT and falls through to
-          // the outer retry.
-          const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
-          fs.renameSync(lockDir, staleClaim);
-          fs.rmSync(staleClaim, { recursive: true, force: true });
-          continue;
-        }
-      } catch (statErr) {
-        // stat/rename race — lock disappeared or was reclaimed by another launcher; retry mkdirSync
-        if (statErr.code === 'ENOENT') continue;
-        if (statErr.code === 'ENOTEMPTY') continue;
-        throw statErr;
+      if (removeStaleBootstrapLock(staleMs)) {
+        continue;
       }
       if (artifactsReady() && !requireLock) {
         return false;
@@ -1291,7 +1338,7 @@ async function acquireBootstrapLock(options = {}) {
       if (Date.now() > deadline) {
         throw new Error(`bootstrap lock timed out at ${rel(lockDir)}`);
       }
-      await sleep(1000);
+      await sleep(retrySleepMs);
     }
   }
 }
@@ -1422,7 +1469,10 @@ async function handleDbLockHeldChildExit() {
     log(`database single-writer lock held by a non-bridgeable holder; retrying launch in ${decision.backoffMs}ms (attempt ${dbLockHeldRetries}/${DB_LOCK_HELD_MAX_RETRIES})`);
     if (supervisorRelaunchTimer) clearTimeout(supervisorRelaunchTimer);
     supervisorRelaunchTimer = setTimeout(() => {
-      if (launcherShutdownInProgress) return;
+      // Abort if the owning runtime vanished (shutdown in progress, or the launcher
+      // was reparented to init without a SIGTERM) — same guard as the primary
+      // backoff-relaunch path, so neither relaunches a daemon under a disposed session.
+      if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) return;
       launchServer();
     }, decision.backoffMs);
     if (supervisorRelaunchTimer.unref) supervisorRelaunchTimer.unref();
@@ -1723,10 +1773,30 @@ async function main() {
   }
 }
 
+function configureLauncherPathsForTesting(nextPaths) {
+  if (nextPaths.skillsDir) skillsDir = nextPaths.skillsDir;
+  if (nextPaths.kitDir) kitDir = nextPaths.kitDir;
+  if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
+  if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
+  if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
+}
+
 module.exports = {
+  acquireBootstrapLock,
   acquireModelServerRespawnLockFile,
+  acquireOwnerLeaseFile,
+  artifactsReady,
   bridgeStdioThroughSessionProxy,
   buildLeaseObject,
+  buildOwnerLease,
+  classifyOwnerLease,
+  clearOwnerLeaseFile,
+  configureLauncherPathsForTesting,
+  ownerLeasePath,
+  readBootstrapLockOwnerPid,
+  readOwnerLeaseFile,
+  reapOwnerBeforeRespawn,
+  removeStaleBootstrapLock,
   computeBackoffMs,
   decideDbLockHeldAction,
   EXIT_DB_LOCK_HELD,

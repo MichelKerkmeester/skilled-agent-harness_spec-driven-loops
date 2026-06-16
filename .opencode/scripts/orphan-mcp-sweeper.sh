@@ -305,6 +305,21 @@ EOF
   return 1
 }
 
+# The MCP daemons bridge sibling sessions over a UNIX socket (daemon-ipc.sock),
+# NOT TCP, so has_non_mcp_listener never covers them. Under default-on daemon
+# re-election a still-serving daemon is reparented to pid 1 and falls outside every
+# live-session tree — yet killing it drops the transport for any concurrent live
+# session bridged to it. A daemon actively serving connections holds MORE THAN ONE
+# unix-socket FD on its daemon-ipc.sock (the listener + one per live peer); a bare
+# listener with no clients holds exactly one. Treat >1 as "in use" and preserve it.
+has_live_ipc_socket_connection() {
+  local pid="$1"
+  local count
+  count="$(lsof -nP -a -p "$pid" -U 2>/dev/null | grep -c 'daemon-ipc\.sock' || true)"
+  [ -n "$count" ] || count=0
+  [ "$count" -gt 1 ] 2>/dev/null
+}
+
 preserve_reason() {
   local pid="$1"
   local class="$2"
@@ -337,6 +352,11 @@ preserve_reason() {
 
   if has_non_mcp_listener "$pid"; then
     printf '%s\n' "active-non-mcp-tcp-listener"
+    return 0
+  fi
+
+  if has_live_ipc_socket_connection "$pid"; then
+    printf '%s\n' "active-ipc-socket-connection"
     return 0
   fi
 
@@ -477,6 +497,11 @@ sweep_tmp() {
   done
   shopt -u nullglob
 }
+
+# Sourcing guard: when this file is sourced (not executed) the caller only wants the
+# function definitions (e.g. a unit test exercising has_live_ipc_socket_connection),
+# so skip the process-scanning/kill main flow.
+(return 0 2>/dev/null) && return 0
 
 rotate_log_if_needed
 emit "action=start dry_run=$DRY_RUN verbose=$VERBOSE age_min_sec=$AGE_MIN_SEC tmp_age_hours=$TMP_AGE_HOURS"

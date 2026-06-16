@@ -110,6 +110,38 @@ async function attemptInitialize(socketPath: string, id: number): Promise<'serve
   }
 }
 
+// A liveness probe is exactly what launcher-ipc-bridge.cjs sends: an initialize
+// frame whose clientInfo.name is 'liveness-probe'. At the cap it must receive a
+// matching-id JSON-RPC reply (proving the daemon alive) rather than a bare close,
+// and must NOT occupy a durable slot.
+async function probeAtCap(socketPath: string, id: number): Promise<'answered' | 'refused'> {
+  const socket = await connect(socketPath);
+  socket.write(`${JSON.stringify({
+    jsonrpc: '2.0',
+    id,
+    method: 'initialize',
+    params: {
+      protocolVersion: '2025-06-18',
+      capabilities: {},
+      clientInfo: { name: 'liveness-probe', version: '0' },
+    },
+  })}\n`);
+  try {
+    const line = await readLine(socket);
+    const response = JSON.parse(line) as { id?: number; result?: unknown; error?: unknown };
+    if (response.id === id && (response.result !== undefined || response.error !== undefined)) {
+      return 'answered';
+    }
+    return 'refused';
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (/closed before JSON-RPC response|ECONNRESET|EPIPE|socket hang up|timed out/i.test(message)) {
+      return 'refused';
+    }
+    throw error;
+  }
+}
+
 async function waitFor(predicate: () => boolean, label: string, timeoutMs = 1500): Promise<void> {
   const deadline = Date.now() + timeoutMs;
   while (Date.now() <= deadline) {
@@ -174,5 +206,33 @@ describe('IPC secondary client cap fanout stress', () => {
     const survivor = await attemptInitialize(handle.socketPath, 999);
     expect(survivor).toBe('served');
     expect(getIpcBridgeStats().secondary_clients_count).toBe(1);
+  });
+
+  it('answers liveness probes at the client cap without occupying a durable slot', async () => {
+    process.env.SPECKIT_MAX_SECONDARY_CLIENTS = '2';
+    const handle = await startIpcSocketServer({
+      socketPath: makeTempSocketPath('ipc-cap-probe'),
+      createServer: makeServer,
+      log: () => undefined,
+    });
+    handles.push(handle);
+
+    // Saturate the durable cap with real bridge clients.
+    const holders = await Promise.all(
+      Array.from({ length: 2 }, (_value, index) => initializeRoundTrip(handle.socketPath, index + 1)),
+    );
+    expect(getIpcBridgeStats().secondary_clients_count).toBe(2);
+
+    // A non-probe over-cap client is still refused (no regression).
+    expect(await attemptInitialize(handle.socketPath, 101)).toBe('refused');
+
+    // Liveness probes are answered at the cap and never consume a durable slot.
+    const probes = await Promise.all(
+      Array.from({ length: 5 }, (_value, index) => probeAtCap(handle.socketPath, 500 + index)),
+    );
+    expect(probes.every((result) => result === 'answered')).toBe(true);
+    expect(getIpcBridgeStats().secondary_clients_count).toBe(2);
+
+    for (const holder of holders) holder.destroy();
   });
 });

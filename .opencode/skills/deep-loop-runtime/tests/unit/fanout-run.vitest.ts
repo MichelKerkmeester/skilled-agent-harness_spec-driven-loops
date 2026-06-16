@@ -229,6 +229,67 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect(existsSync(stateBeta)).toBe(true);
     expect(stateAlpha).not.toBe(stateBeta);
   });
+
+  it('expands a single count>1 executor into replicas each receiving a distinct SPECKIT_CODEX_STATE_DIR', async () => {
+    const binDir = makeTempDir('fanout-run-replica-bin-');
+    const stubPath = join(binDir, 'codex');
+    // The stub echoes the per-replica state-dir + lineage id so the test can assert
+    // distinctness from captured stdout, not just dir existence.
+    writeFileSync(
+      stubPath,
+      '#!/bin/sh\necho "STATE_DIR=$SPECKIT_CODEX_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\nexit 0\n',
+      { mode: 0o755 },
+    );
+
+    const baseDir = makeTempDir('fanout-run-replica-base-');
+
+    // A SINGLE executor with count:2 — the actual same-kind-replica path via
+    // expandLineages' `${label}-${replica}` suffixing.
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'rep', kind: 'cli-codex', model: 'o4-mini', count: 2 }],
+      concurrency: 1,
+    });
+
+    await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-replica',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: {
+          ...process.env,
+          PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
+        },
+        timeoutMs: 15_000,
+      },
+    );
+
+    // Replicas materialize as rep-1 and rep-2.
+    const stateRep1 = join(baseDir, 'lineages', 'rep-1', '.executor-state');
+    const stateRep2 = join(baseDir, 'lineages', 'rep-2', '.executor-state');
+    expect(existsSync(stateRep1)).toBe(true);
+    expect(existsSync(stateRep2)).toBe(true);
+    expect(stateRep1).not.toBe(stateRep2);
+
+    // The stub captured the env each replica actually received; the state dir each
+    // saw must be distinct (this is what the older test never verified).
+    const out1 = readFileSync(join(baseDir, 'lineages', 'rep-1', 'logs', 'fanout-lineage.out'), 'utf8');
+    const out2 = readFileSync(join(baseDir, 'lineages', 'rep-2', 'logs', 'fanout-lineage.out'), 'utf8');
+    const dir1 = /STATE_DIR=(\S+)/.exec(out1)?.[1];
+    const dir2 = /STATE_DIR=(\S+)/.exec(out2)?.[1];
+    expect(dir1).toBeTruthy();
+    expect(dir2).toBeTruthy();
+    expect(dir1).not.toBe(dir2);
+    expect(out1).toContain('LINEAGE_ID=rep-1');
+    expect(out2).toContain('LINEAGE_ID=rep-2');
+  });
 });
 
 describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {

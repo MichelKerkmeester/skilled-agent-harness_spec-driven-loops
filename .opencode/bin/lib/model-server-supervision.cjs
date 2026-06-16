@@ -664,8 +664,21 @@ function acquireRespawnLockFileAt(lockPath, label = 'respawn', options = {}) {
     if (readErr.code !== 'ENOENT') throw readErr;
   }
   if (raw === '' || isRespawnLockStale(raw, options)) {
+    // Atomically CLAIM the stale lock via rename before deleting it, then re-open
+    // exclusively. A bare unlink+open is not mutually exclusive: two racers can
+    // interleave (A unlink, A open/holds, B unlink removes A's fresh lock, B
+    // open/holds) and both believe they hold the exclusive lock. Renaming a path
+    // only one racer can win serializes the reclaim — a loser's rename throws
+    // ENOENT and falls through to return acquired:false.
+    const staleClaim = `${currentLockPath}.stale.${process.pid}.${Date.now()}`;
     try {
-      fsApi.unlinkSync(currentLockPath);
+      fsApi.renameSync(currentLockPath, staleClaim);
+    } catch (renameErr) {
+      if (renameErr.code === 'ENOENT') return { acquired: false, path: currentLockPath };
+      throw renameErr;
+    }
+    try {
+      fsApi.unlinkSync(staleClaim);
     } catch (unlinkErr) {
       if (unlinkErr.code !== 'ENOENT') throw unlinkErr;
     }

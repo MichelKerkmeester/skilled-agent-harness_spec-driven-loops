@@ -412,7 +412,13 @@ async function main() {
         effectivePermission,
       );
 
-      // Isolate per-kind state dirs so same-kind replicas do not collide on lockfiles.
+      // Advertise a per-replica state dir hint to the child via SPECKIT_<KIND>_STATE_DIR.
+      // This is DETECTION-ONLY: the native CLIs read their own home env (CODEX_HOME /
+      // OPENCODE_HOME / CLAUDE_CODE_HOME), not this var, so it does NOT relocate the
+      // native lockfile. Real same-kind-replica isolation comes from each lineage's
+      // unique artifact dir (lineage.label); remapping the CLI home to isolate the lock
+      // is deliberately avoided here because relocating the home breaks credential/auth
+      // lookup (the "Not logged in" failure the dispatch-env allowlist guards against).
       const stateEnvKey = SPECKIT_STATE_ENV_BY_KIND[lineage.kind];
       const extraEnv = {
         SPECKIT_FANOUT_LINEAGE_ID: lineage.label,
