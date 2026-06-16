@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Spike: packed postings layout, RSS measured at 1x/3x corpus. Evidence: current corpus fixture 10,245 docs, 69.2 MB indexed text, RSS spike 111,017,984 bytes, warmup 809.17 ms; 3x projection 30,735 docs, RSS spike 247,676,928 bytes, warmup 2,689 ms.
+- [x] T001 Spike: packed postings layout, RSS measured at 1x/3x corpus. Evidence: SUPERSEDED — the original 1x measurement (10,245 docs, 69.2 MB indexed text, RSS spike 111,017,984 bytes, warmup 809.17 ms) used an all-stop-word body fixture that never indexed body postings; the realistic-fixture re-validation (2026-06-11) measured a warmup RSS spike of 686.8 MB (committed) / 799.4 MB (batched) — a breach of the 150 MB budget. 3x projection: 30,735 docs, RSS spike 247,676,928 bytes, warmup 2,689 ms. See spec.md §7 and `scratch/rss-probe-evidence.md`.
 - [x] T002 Eval baseline: legacy engine + FTS5 channel on bm25-baseline harness. Evidence: packed MRR@5 1.0000, legacy MRR@5 0.9000, FTS5 MRR@5 1.0000 on the fixture-backed comparison.
 <!-- /ANCHOR:phase-1 -->
 
@@ -67,8 +67,8 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T006 Scoring parity suite packed-vs-legacy on fixtures. Evidence: `npx vitest run tests/bm25-packed-inmemory.vitest.ts` passed 1 file, 4 tests.
-- [x] T007 Budget gates: RSS/warmup measured and recorded. Evidence: current corpus fixture stayed below 150 MB RSS and 10 s.
-- [x] T008 Eval comparison recorded; minisearch contingency decision row if budgets breached. Evidence: current corpus passed, so contingency is not triggered; 3x projection exceeds 150 MB and is recorded as a scale risk outside the current P0 gate.
+- [x] T007 Budget gates: RSS/warmup measured and recorded. Evidence: SUPERSEDED — the original "below 150 MB RSS" result was an artifact of the all-stop-word body fixture. Realistic-fixture re-validation breached the 150 MB warmup-spike budget (686.8 MB committed); retained heap after GC (104.9 MB) and warmup latency (~2 s) stayed within budget. The breach was later closed by phase 017 at a 136.5 MB peak-sampled spike. See spec.md §7.
+- [x] T008 Eval comparison recorded; minisearch contingency decision row if budgets breached. Evidence: the realistic-fixture breach FIRED the contingency (spec.md §7); the breach is tokenization/warmup churn, not retained index size, and was funded/closed in phase 017. The earlier "current corpus passed, contingency not triggered" claim is superseded. 3x projection (247 MB) remains a recorded scale risk.
 <!-- /ANCHOR:phase-3 -->
 
 ---

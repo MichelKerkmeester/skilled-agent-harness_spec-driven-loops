@@ -273,7 +273,7 @@ Trigger: Claiming "done", "complete", "finished", "works"
    - `plan.md` / `tasks.md` / `checklist.md` evidence rows.
    - `handover.md` or `_memory.continuity` fields when present.
    - `implementation-summary.md` final state, validation evidence, and continuation notes.
-4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean; warn-only unless `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`.
+4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. Under `--strict` a stale result blocks completion (exit 2) for non-grandfathered packets regardless of `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`; that flag only reclassifies the inner result label `warn`→`error`, it does not make the warn tier non-blocking under `--strict`.
 - Skip: Level 1 tasks (no checklist.md required).
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]

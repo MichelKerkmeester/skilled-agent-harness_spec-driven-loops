@@ -49,9 +49,9 @@ Fifty angles execute as fifty pooled read-only research seats. The orchestrating
 - [x] Seat brief template with findings JSON contract prepared.
 
 ### Definition of Done
-- [ ] 50/50 iterations recorded with parseable findings.
-- [ ] Findings registry synthesized and classified.
-- [ ] Packet validates strict.
+- [x] 50/50 iterations recorded with parseable findings. (tasks.md T007-T010; implementation-summary.md reports 50/50.)
+- [x] Findings registry synthesized and classified. (`research/research.md` + `findings-registry.json`.)
+- [x] Packet validates strict. (implementation-summary.md verification: `validate.sh --strict` pass.)
 
 <!-- /ANCHOR:quality-gates -->
 ---

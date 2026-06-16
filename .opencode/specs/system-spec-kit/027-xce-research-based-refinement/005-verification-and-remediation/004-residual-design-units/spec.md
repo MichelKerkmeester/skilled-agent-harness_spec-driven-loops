@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units"
     last_updated_at: "2026-06-13T14:30:00Z"
     last_updated_by: "scaffold-author"
-    recent_action: "Populated spec/plan/tasks/impl-summary from 029 handover + council"
-    next_safe_action: "Operator review; then design Unit A vector reconcile first"
+    recent_action: "Units A/B + tail shipped; Unit C documented; tri-163 refuted, tri-129 deferred"
+    next_safe_action: "None — resolved; only deferred Unit C / tri-129 remain as tracked follow-ons"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:b3db1ff916fb4c6f23bce7c21683241320a90f4d5e406396002455b735916221"
       session_id: "030-scaffold-populate-2026-06-13"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -103,7 +103,7 @@ Ship the three residual design units, each gated by its own safety contract, so 
 ## 3. SCOPE
 
 ### In Scope
-- **Unit A — Vector storage truth (tri-105 reconcile).** Reconcile the live divergence: active surface `vec_768=10381` vs `memory_index.success`/`vec_memories=10072`, composed of 6 true orphans + 308 vectors for non-success memories + 5 success rows missing their `vec_768` vector. A backup plus a daemon-quiesced maintenance op plus an explicit per-class decision (prune orphans / re-embed missing / adjudicate the 308). The divergence HEALTH already shipped; only the ~314-row data reconcile remains.
+- **Unit A — Vector storage truth (tri-105 reconcile).** Reconcile the live divergence: active surface `vec_768=10381` vs `memory_index.success`/`vec_memories=10072`, composed of 6 true orphans + 308 vectors for non-success memories + 5 success rows missing their `vec_768` vector. A backup plus a daemon-quiesced maintenance op plus an explicit per-class decision (prune orphans / re-embed missing / adjudicate the 308). The divergence HEALTH already shipped; only the ~314-row data reconcile remains. (Implemented numbers differ from this planning snapshot: the live divergence had drifted by execution time, so the shipped reconcile reset 91 success-missing-active-vector rows to retry behind an online backup — see implementation-summary.md.)
 - **Unit B — Shadow/feedback + replay pool (tri-007/009/103, feeds L2 tri-022/131).** Build a privacy-preserving hash-class synthetic replay corpus (sample synthetic eval queries by `query_hash`/intent class) and integrate it into the shadow-evaluation scheduler. Fold the Cluster B/C remnants from the L7 disposition. The honesty half (typed no-replay-pool skip) already shipped.
 - **Unit C — Launcher parity (tri-148).** Port the transparent-recycle / front-proxy to `mk-code-index-launcher.cjs` by replicating spec-memory's full packet-140 supervision scaffold (crash-loop guard, owner-disposal-race guard `shouldAbortRelaunchOnFire`, relaunch backoff, process-group reap), validated with the live-daemon adoption test harness — OR record the council's lean document-the-asymmetry decision as the terminal answer.
 - A tracked defer-by-design bucket and an L9/L2 verify-first tail (see §4 and §6).

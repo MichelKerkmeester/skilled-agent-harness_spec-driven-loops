@@ -73,12 +73,12 @@ _memory:
 
 - [x] CHK-020 [P0] New targeted regression tests pass
   - **Evidence**: `npx vitest run tests/handler-memory-ingest.vitest.ts tests/handler-memory-index.vitest.ts tests/write-provenance.vitest.ts tests/pe-gating-provenance.vitest.ts tests/pe-orchestration-provenance.vitest.ts` passed with 5 files, 18 passed, 28 skipped.
-- [ ] CHK-021 [P0] TypeScript passes
-  - **Evidence**: To be filled after final `npx tsc --noEmit` run.
-- [ ] CHK-022 [P0] Requested provenance/guard suite passes
-  - **Evidence**: To be filled after final vitest suite run.
-- [ ] CHK-023 [P1] Strict spec validation passes
-  - **Evidence**: To be filled after `validate.sh --strict` run.
+- [x] CHK-021 [P0] TypeScript passes
+  - **Evidence**: `npx tsc --noEmit` from `.opencode/skills/system-spec-kit/mcp_server` PASS, exit 0 (rerun at epic review close, 2026-06-11; corroborated by `review/review-report.md`).
+- [x] CHK-022 [P0] Requested provenance/guard suite passes
+  - **Evidence**: Provenance/guard vitest suite PASS — 5 files, 18 tests passed, 28 env-gated skips (rerun at epic review close).
+- [x] CHK-023 [P1] Strict spec validation passes
+  - **Evidence**: `validate.sh --strict` for this phase PASS — 0 errors, 0 warnings (rerun at epic review close).
 <!-- /ANCHOR:testing -->
 
 ---
@@ -118,8 +118,8 @@ _memory:
   - **Evidence**: All docs point to the same scope, files, fixes, and follow-ons.
 - [x] CHK-041 [P1] Follow-ons documented but not fixed
   - **Evidence**: `spec.md` lists same-path retire and auto-promotion guard-coverage follow-ons as P0-class out-of-scope work.
-- [ ] CHK-042 [P1] Final verification results recorded
-  - **Evidence**: To be filled after final command run.
+- [x] CHK-042 [P1] Final verification results recorded
+  - **Evidence**: Recorded in `implementation-summary.md` (Verification section): tsc 0; provenance/guard vitest 18 pass / 28 env-skips; `validate.sh --strict` 0/0; comment hygiene clean.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -140,8 +140,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 6/8 |
-| P1 Items | 7 | 5/7 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-06-11

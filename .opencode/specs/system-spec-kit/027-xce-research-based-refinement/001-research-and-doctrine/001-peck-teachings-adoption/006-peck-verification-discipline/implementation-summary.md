@@ -79,7 +79,7 @@ Implemented the final completion-freshness validator slice. The cumulative state
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered as a default-off strict validator plus additive governance text. The rule is inert when `SPECKIT_COMPLETION_FRESHNESS` is unset; when enabled it recomputes `session_dedup.fingerprint`, checks packet-scoped working-tree cleanliness, warns by default, and promotes to error only when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`.
+Delivered as a default-off strict validator plus additive governance text. The rule is inert when `SPECKIT_COMPLETION_FRESHNESS` is unset; when enabled it recomputes `session_dedup.fingerprint` and checks packet-scoped working-tree cleanliness. The result label is `warn` by default and `error` when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`, but both block `--strict` completion (exit 2) for non-grandfathered packets — `--strict` promotes any warning to exit 2, so ENFORCE only relabels the result, it does not make the warn tier non-blocking under `--strict`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

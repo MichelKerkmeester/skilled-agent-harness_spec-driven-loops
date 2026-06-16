@@ -127,7 +127,7 @@ For scan and ingest, caller args enter validation exactly as supplied. If valida
 - [x] Add and run new targeted provenance regression tests.
 - [x] Verify `memory_update` automated reachability by grep.
 - [x] Create Level 2 phase documentation.
-- [ ] Run final TypeScript, requested test suite, strict spec validation, and comment-hygiene checks.
+- [x] Run final TypeScript, requested test suite, strict spec validation, and comment-hygiene checks. Evidence: tsc 0; provenance/guard vitest 18 pass / 28 env-skips; `validate.sh --strict` 0/0; comment hygiene clean (see implementation-summary.md + review/review-report.md).
 <!-- /ANCHOR:phases -->
 
 ---

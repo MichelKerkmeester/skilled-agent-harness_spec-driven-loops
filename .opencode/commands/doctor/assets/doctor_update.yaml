@@ -406,7 +406,7 @@ workflow:
             const fs = require('fs');
             const path = require('path');
             const dir = '.opencode/skills/system-spec-kit/mcp_server/database';
-            // TODO(022): use resolveActiveProfileDbPath from shared/embeddings/profile.js for unambiguous active-profile selection when multiple provider DBs coexist.
+            // Picks the first context-index shard for the coverage count; when multiple provider DBs coexist this is ambiguous. Unambiguous active-profile selection (via shared/embeddings/profile.js resolveActiveProfileDbPath) is tracked as a follow-on code task, not wired here.
             const file = fs.readdirSync(dir).find((name) => /^context-index__.*\.sqlite$/.test(name));
             if (!file) {
               console.log(0);

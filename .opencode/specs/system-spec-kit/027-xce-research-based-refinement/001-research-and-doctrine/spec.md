@@ -103,8 +103,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 + source-pass T5-T10 (reviewer benchmark, verification discipline, acceptance-coverage gate) | In Progress |
-| 002 | `002-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract, scoped pre-execution gates, advisory reviewer/drift fields | Phase Parent |
+| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 + source-pass T5-T10 (reviewer benchmark, verification discipline, acceptance-coverage gate) | Complete |
+| 002 | `002-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract, scoped pre-execution gates, advisory reviewer/drift fields | Complete |
 
 ### Phase Transition Rules
 

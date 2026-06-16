@@ -1,15 +1,17 @@
 # Tri-System Deep Research — Synthesis
 
-> **Program:** 50 angles, 50 read-only gpt-5.5 (high) iterations over system-spec-kit, system-skill-advisor, and system-code-graph, grounded in the 027 epic. 193 evidence-bearing findings plus 2 live-incident findings. All 103 P0/P1 claims were adjudicated by a 12-seat refute-first verification wave: **48 confirmed (3 P0, 45 P1), 53 downgraded to P2/P3, 2 refuted.** Machine-readable detail: `findings-registry.json`.
+> **Program:** 50 angles, 50 read-only gpt-5.5 (high) iterations over system-spec-kit, system-skill-advisor, and system-code-graph, grounded in the 027 epic. 193 evidence-bearing findings plus 2 live-incident findings. All 103 P0/P1 claims were adjudicated by a 12-seat refute-first verification wave: **48 confirmed (3 P0, 45 P1), 53 downgraded to P2/P3, 2 refuted.** A later fresh-regression re-verification (2026-06-16) refuted all three code P0s against their full function bodies (see §1) — the only standing P0 is the live-incident cold-spawn daemon race. Machine-readable detail: `findings-registry.json`.
 
 <!-- ANCHOR:confirmed-p0 -->
 ## 1. Confirmed P0
 
-1. **Same-path reindex-retire bypasses the source-kind guard** — `mcp_server/lib/storage/lineage-state.ts:1365-1381` retires rows reading only `importance_tier` (exempting only constitutional), so an automated reindex can deprecate manually-curated rows. The known epic follow-on, now with exact coordinates.
-2. **Feedback auto-promotion overwrites manual tier decisions** — `mcp_server/lib/search/auto-promotion.ts:140-146, 259-262` updates `importance_tier` and provenance with no source-kind check; machine feedback can silently override a human's tier choice.
-3. **`generate-context.js` lacks the fail-closed secret scrubber `memory_save` has** — `scripts/core/workflow.ts:1424+` persists durable artifacts without the scrub step the MCP save path gained in remediation; the CLI save lane can still write raw secrets.
+> **Re-verification (2026-06-16, fresh-regression remediation):** the three code P0s below were re-checked against the full function bodies and **refuted** — each cited guard already exists in live code. They are retained struck-through for trail integrity. The standing live-incident P0 (cold-spawn daemon races) is unaffected.
 
-A fourth standing P0 from the live incident: **CLI cold-spawn races can produce multiple orphan daemons double-writing the memory DB** (two corruptions in 12 hours; needs daemon-side single-instance enforcement such as socket-bind-as-lock).
+1. ~~**Same-path reindex-retire bypasses the source-kind guard** — `mcp_server/lib/storage/lineage-state.ts:1365-1381`~~ **REFUTED.** `retirePredecessorForActiveReindex` selects `source_kind` (`lineage-state.ts:1374`) and carries manual tiers forward via `RetiredPredecessorCarry` (`lineage-state.ts:1392-1395`, guard comment `:1386-1391`) before deprecating the predecessor; manual rows are not lost.
+2. ~~**Feedback auto-promotion overwrites manual tier decisions** — `mcp_server/lib/search/auto-promotion.ts:140-146, 259-262`~~ **REFUTED.** `checkAutoPromotion` rejects manual source kinds (`auto-promotion.ts:178-186`) and the `UPDATE` excludes them in its `WHERE` clause (`auto-promotion.ts:273-278`); a human's tier choice cannot be silently overwritten.
+3. ~~**`generate-context.js` lacks the fail-closed secret scrubber `memory_save` has** — `scripts/core/workflow.ts:1424+`~~ **REFUTED.** Lines `1424-1435` perform tree thinning, not persistence; `scrubWorkflowSavePayloadTextFields` runs before persistence (`workflow.ts:1492-1505`, function `:260-272`) scrubbing `contentSlug`, `rawCtxFilename`, `memoryTitle`, `memoryDescription`, `sessionData`, and `collectedData` — parity with the MCP save path.
+
+The standing P0 from the live incident remains: **CLI cold-spawn races can produce multiple orphan daemons double-writing the memory DB** (two corruptions in 12 hours; needs daemon-side single-instance enforcement such as socket-bind-as-lock).
 <!-- /ANCHOR:confirmed-p0 -->
 
 <!-- ANCHOR:confirmed-p1 -->
@@ -45,7 +47,7 @@ A fourth standing P0 from the live incident: **CLI cold-spawn races can produce 
 <!-- ANCHOR:recommendations -->
 ## 4. Recommended remediation order
 
-1. **Security/safety lane (the three P0s + cold-spawn enforcement):** source-kind guards on the two ingress paths, scrubber parity in `generate-context`, daemon-side single-instance lock.
+1. **Security/safety lane (cold-spawn enforcement):** daemon-side single-instance lock for the live-incident race. The three code P0s in this lane were refuted on re-verification (§1) — the source-kind guards and scrubber parity already exist; no remediation needed there.
 2. **Code-graph apply-safety lane:** confirm-gating on the destructive paths, honest repair-nodes reporting, rollback snapshot ordering.
 3. **Idempotency flag-ON lane:** receipt key variance, loser replay, update-path winner respect — then enablement review.
 4. **Lifecycle parity lane:** port the spec-memory launcher's lease/heartbeat/reconnect hardening to mk-code-index.

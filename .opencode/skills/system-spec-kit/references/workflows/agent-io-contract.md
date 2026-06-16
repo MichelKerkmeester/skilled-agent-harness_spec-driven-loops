@@ -166,6 +166,8 @@ scope_state: in_scope | out_of_scope | scope_expanded
 child_result_verified: true | false
 ```
 
+> **Representation (where this actually lives).** Unlike §2-§6, this block is NOT a free-standing `AGENT_IO_EVIDENCE` text envelope that agents append to their output — no agent currently emits one, and nothing parses one. The Evidence Group is carried as the structured `evidence` field on a deep-loop JSONL iteration record, and the only consumer validates it as a structured object via `validateEvidenceContract(record.evidence)` (`deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts`). The fenced shape above is the documented field schema (keys + allowed values), not a literal text format to emit. Producing it as a text block appended to agent output would not be validated.
+
 Evidence rules:
 
 - The group is optional. A record that omits the evidence metadata entirely is valid and passes post-dispatch validation with no warning (absence never blocks).

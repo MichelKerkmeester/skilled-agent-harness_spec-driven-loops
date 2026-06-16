@@ -27,7 +27,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `028-tri-system-deep-research` |
+| **Spec Folder** | `002-tri-system-deep-research` |
 | **Completed** | 2026-06-12 |
 | **Level** | 1 |
 

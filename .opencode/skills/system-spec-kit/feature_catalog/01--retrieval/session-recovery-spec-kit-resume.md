@@ -61,8 +61,8 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 | File | Role |
 |------|------|
 | `.opencode/commands/speckit/resume.md` | `/speckit:resume` command: standard continuation plus interrupted-session recovery |
-| `.opencode/commands/speckit/assets/spec_kit_resume_auto.yaml` | Autonomous resume and recovery workflow |
-| `.opencode/commands/speckit/assets/spec_kit_resume_confirm.yaml` | Interactive resume and recovery workflow |
+| `.opencode/commands/speckit/assets/speckit_resume_auto.yaml` | Autonomous resume and recovery workflow |
+| `.opencode/commands/speckit/assets/speckit_resume_confirm.yaml` | Interactive resume and recovery workflow |
 
 ### Related Implementation
 

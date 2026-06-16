@@ -758,7 +758,7 @@ Prompt summary: As a manual-testing orchestrator, validate that reviewer-prompt 
 Expected signals: with `SPECKIT_REVIEWER_BENCHMARKS=1`, `reviewer-scorer.cjs --profile <reviewer-profile> --outputs-dir <tmp>` exits 0 and writes `reviewer-report.json` with `scoringMethod: "reviewer"`; rows include `correctness_pass_rate`, `dimensions.D1`-`D5`, visible and hidden per-case results, and `reviewerBenchmarkMessages`; a forced mismatch includes `REVIEWER_BENCHMARK: fixture reviewer-stale-verdict expected FAIL, got PASS — rule not safe to promote`; with the flag unset, the scorer exits inert and existing `pattern`/`5dim` runs still stamp their original scoring methods.
 
 #### Test Execution
-> **Feature File:** Add a per-feature file under `09--model-benchmark-mode/` when the reviewer profile is promoted from seed fixtures to a stable scenario package.
+> **Feature File:** [MB-R01](09--model-benchmark-mode/reviewer-prompt-regression-fixtures.md)
 
 ---
 

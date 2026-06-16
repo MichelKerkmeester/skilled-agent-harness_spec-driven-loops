@@ -119,6 +119,7 @@ Planned future implementation scope for audit only. Per-phase detail lives in ea
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
+| 0 | 000-spec-tree-consolidation/ | Regroup the 027 spec tree's flat top-level phase children under six themed parents (like 026) and realign the root tracking docs; `git mv` preserves content and history. | Complete |
 | 1 | 001-public-root-readme/ | Rewrite the repo-root README to current shipped reality: MCP and CLI dual-stack, memory capabilities, skill, command, and agent surfaces. This is the capstone and should be authored last. | Complete |
 | 2 | 002-skill-docs-alignment/ | Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice. Reconcile ENV_REFERENCE flag completeness, including SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT. | Complete |
 | 3 | 003-skill-feature-catalog/ | Add one feature_catalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable. | Complete |

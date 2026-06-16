@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Packed BM25 warmup RSS spike cut from 743MB to 134MB (under the 150MB budget) with ranking byte-identical, via no-copy chunked packed postings and compact typed-array promotion."
+description: "Packed BM25 warmup RSS spike cut from ~687MB to 136.5MB peak-sampled (under the 150MB budget) with ranking byte-identical, via no-copy chunked packed postings and compact typed-array promotion."
 trigger_phrases:
   - "bm25 warmup churn reduction summary"
 importance_tier: "normal"
@@ -47,11 +47,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The packed in-memory BM25 engine now warms a realistic 10,245-doc / 69.2 MB corpus within a **136.5 MB** peak warmup RSS spike — down from the 743 MB that the 014 realistic-fixture re-validation exposed, and under the 150 MB budget REQ-001 specifies. Ranking output is byte-identical to before: scores, ordering, and field weights are unchanged. This closes 014's REQ-001 on the original process-RSS metric (no metric amendment or external-dependency fallback was needed).
+The packed in-memory BM25 engine now warms a realistic 10,245-doc / 69.2 MB corpus within a **136.5 MB** peak warmup RSS spike — down from the ~687 MB (686.8 MB committed gate) that the 014 realistic-fixture re-validation exposed, and under the 150 MB budget REQ-001 specifies. Ranking output is byte-identical to before: scores, ordering, and field weights are unchanged. This closes 014's REQ-001 on the original process-RSS metric (no metric amendment or external-dependency fallback was needed).
 
 ### Lower warmup memory high-water-mark
 
-Two changes cut peak transient allocation during warmup. First, a prior pass replaced char-by-char token-string concatenation with range-scanning + token interning, reused per-document term-frequency scratch arrays, and stored doc term references as compact term ids (743 → ~244 MB). This phase then replaced the mutable-to-six-array finalization with **no-copy chunked packed postings**, and added **compact typed storage with width promotion** — field term frequencies as `Uint8Array → Uint16Array → Uint32Array`, doc ids as `Uint16Array → Uint32Array`, and per-document term ids sized to their range — so the build and packed structures never co-exist at full width (~244 → 134 MB).
+Two changes cut peak transient allocation during warmup. First, a prior pass replaced char-by-char token-string concatenation with range-scanning + token interning, reused per-document term-frequency scratch arrays, and stored doc term references as compact term ids (~687 → ~244 MB). This phase then replaced the mutable-to-six-array finalization with **no-copy chunked packed postings**, and added **compact typed storage with width promotion** — field term frequencies as `Uint8Array → Uint16Array → Uint32Array`, doc ids as `Uint16Array → Uint32Array`, and per-document term ids sized to their range — so the build and packed structures never co-exist at full width (~244 → 136.5 MB peak-sampled).
 
 ### Files Changed
 
@@ -103,7 +103,7 @@ Implemented by cli-opencode gpt-5.5-fast (xhigh) under a hard parity gate, then 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Memory headroom is corpus-dependent.** The 134 MB spike is measured at the current corpus shape (10,245 docs / 69.2 MB). A much larger corpus would push the spike up; the hard RSS gate will catch a regression at this fixture size, and the typed-array promotion already adapts widths to the data.
+1. **Memory headroom is corpus-dependent.** The 136.5 MB peak-sampled spike is measured at the current corpus shape (10,245 docs / 69.2 MB). A much larger corpus would push the spike up; the hard RSS gate will catch a regression at this fixture size, and the typed-array promotion already adapts widths to the data.
 <!-- /ANCHOR:limitations -->
 
 ---

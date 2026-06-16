@@ -29,7 +29,7 @@ ALL LANES CLOSED (2026-06-11). Final program census across 132 P1 + 119 P2 clust
 |---------|----|----|
 | Fixed (verified, remediated, committed) | 51 | 56 + 17 doc-batch |
 | Refuted with proof | 24 | - |
-| Downgraded to P2 and triaged there | 63 (of which fixed/waived per P2 rules) | - |
+| Downgraded to P2 | 57 (50 carry a recorded `p2_decision`; 7 downgraded-but-deferred, no decision yet) | - |
 | Waived with stated reason | - | 60 |
 | Already fixed by earlier rounds | (counted in Fixed) | 3 |
 

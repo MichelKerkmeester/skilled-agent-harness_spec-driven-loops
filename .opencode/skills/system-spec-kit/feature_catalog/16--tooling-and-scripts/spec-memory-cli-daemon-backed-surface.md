@@ -1,6 +1,6 @@
 ---
 title: "Daemon-backed spec-memory CLI surface"
-description: "Dual-stack CLI over the unchanged mk-spec-memory daemon: all 37 tools generated from TOOL_DEFINITIONS, a stable shim with dist-freshness and socket-path guards, the shared 0/1/64/69/75 exit taxonomy, warm-only no-spawn probing, and IPC auto-spawn through the launcher."
+description: "Dual-stack CLI over the unchanged mk-spec-memory daemon: all 39 tools generated from TOOL_DEFINITIONS, a stable shim with dist-freshness and socket-path guards, the shared 0/1/64/69/75 exit taxonomy, warm-only no-spawn probing, and IPC auto-spawn through the launcher."
 trigger_phrases:
   - "spec-memory cli"
   - "daemon-backed cli surface"
@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 37 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
+The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 39 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
 
 The MCP registration stays untouched through the dual-stack window. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery. Sibling skills ship the same pattern: `code-index.cjs` (8 tools, system-code-graph) and `skill-advisor.cjs` (9 tools plus a trusted-mutation gate, system-skill-advisor).
 
@@ -35,9 +35,9 @@ The MCP registration stays untouched through the dual-stack window. The CLI is t
 
 ### list-tools as the parity anchor
 
-`spec-memory list-tools --format json` enumerates the generated surface as `{ status: "ok", data: { count: 37, tools: [...] } }` straight from `TOOL_DEFINITIONS`, so surface parity against the MCP registration is a one-command check.
+`spec-memory list-tools --format json` enumerates the generated surface as `{ status: "ok", data: { count: 39, tools: [...] } }` straight from `TOOL_DEFINITIONS`, so surface parity against the MCP registration is a one-command check.
 
-The automation surface also supports `list-tools --compact` and `list-tools --names-only` across the three daemon CLIs. Compact mode keeps names, aliases, descriptions, and counts while omitting schemas; names-only mode keeps canonical tool names and counts only. Both modes preserve the 37 / 8 / 9 counts and return zero `inputSchema` fields. `completion bash|zsh` emits generated shell completion from the same registries for `spec-memory`, `code-index`, and `skill-advisor`.
+The automation surface also supports `list-tools --compact` and `list-tools --names-only` across the three daemon CLIs. Compact mode keeps names, aliases, descriptions, and counts while omitting schemas; names-only mode keeps canonical tool names and counts only. Both modes preserve the 39 / 8 / 9 counts and return zero `inputSchema` fields. `completion bash|zsh` emits generated shell completion from the same registries for `spec-memory`, `code-index`, and `skill-advisor`.
 
 ## 3. SOURCE FILES
 
@@ -56,7 +56,7 @@ The automation surface also supports `list-tools --compact` and `list-tools --na
 | File | Type | Role |
 |---|---|---|
 | `mcp_server/tests/spec-memory-cli.vitest.ts` | Automated test | Parser, IPC, retryable, and protocol-drift coverage |
-| `mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | Automated test | Locks 37-tool parity and CLI help behavior |
+| `mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | Automated test | Locks 39-tool parity and CLI help behavior |
 | `mcp_server/tests/spec-memory-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for spec-memory |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-index-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for code-index |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for skill-advisor |

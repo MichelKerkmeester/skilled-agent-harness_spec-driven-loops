@@ -225,7 +225,8 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-h
 ### Default Profile and Fixtures
 
 - Default profile: `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json`
-- Fixtures: `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`; reviewer fixtures use the `reviewer-*` shape)
+- Reviewer-regression profile (the shipped reviewer-scoring profile): `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json` — bundles the four `reviewer-*` fixtures; run with `--scorer reviewer` and `SPECKIT_REVIEWER_BENCHMARKS` on (e.g. `/deep:model-benchmark .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json --scorer reviewer`).
+- Fixtures: `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`; reviewer fixtures use the `reviewer-*` shape: `reviewer-stale-verdict`, `reviewer-softened-fail`, `reviewer-over-read`, `reviewer-ac-coverage`)
 
 ### User Input
 

@@ -93,16 +93,18 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 `CONTINUITY_FRESHNESS` is strict-only and inert by default. It runs only when `SPECKIT_COMPLETION_FRESHNESS=true`, so unset validation output stays unchanged. When enabled, it binds a completion claim to the stored `session_dedup.fingerprint`: the validator recomputes the content fingerprint, compares it to the stored value, and checks that packet-scoped working-tree paths are clean. The zero fingerprint placeholder is treated as never recorded and does not produce stale warnings.
 
 **Rule ID:** `CONTINUITY_FRESHNESS`  
-**Severity:** WARNING by default; ERROR when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`  
+**Severity (inner label):** `warn` by default; `error` when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`  
 **Default:** Disabled. Set `SPECKIT_COMPLETION_FRESHNESS=true` to run the strict-only scan.  
 **Lifecycle predicate:** strict validation only, with a completion claim present (`checklist.md` checked evidence, `completion_pct: 100`, or complete/shipped status).  
 **Clean-tree scope:** packet-scoped paths only, not the whole repository.  
 **Clock drift:** a continuity timestamp newer than graph metadata remains a benign pass path.
 
+> **Completion-blocking note (verified 2026-06-16):** because the rule runs only under `--strict` and `--strict` promotes **any** warning to exit 2 for non-grandfathered packets (`validate.sh:1062`), a stale-freshness `warn` already FAILS the documented completion gate even with `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` unset. The ENFORCE flag is therefore not a warn-vs-block switch under `--strict`: it only reclassifies the inner result label `warn`→`error` (`continuity-freshness.ts:340-342`). The `warn`/`error` distinction is observable in non-strict callers and in the JSON result, not in the `--strict` exit code. Only `LEGACY_GRANDFATHERED` packets (`validate.sh:175-182`) escape the exit-2 promotion.
+
 | Flag | Default | Effect |
 | --- | --- | --- |
-| `SPECKIT_COMPLETION_FRESHNESS` | `false` | Enables strict-only completion freshness validation. |
-| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | Promotes stale completion freshness from warning to error while the rule is enabled. |
+| `SPECKIT_COMPLETION_FRESHNESS` | `false` | Enables strict-only completion freshness validation. When on, a stale result blocks `--strict` completion regardless of ENFORCE (see note above). |
+| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | Reclassifies the stale-freshness result label from `warn` to `error`. Does not change the `--strict` exit code (both already exit 2); affects only the inner status label and non-strict consumers. |
 
 ### How to Fix `CONTINUITY_FRESHNESS`
 

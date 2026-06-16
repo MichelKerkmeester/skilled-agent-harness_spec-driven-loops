@@ -22,7 +22,7 @@ _memory:
       - "tasks.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-10-005-mcp-cli-stress-tests-complete"
       parent_session_id: null
     completion_pct: 100

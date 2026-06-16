@@ -112,7 +112,7 @@ Give deep-improvement Lane B a reviewer-prompt fixture type and a reviewer score
    - Each seed fixture carries a real repo-state/diff input and an expected verdict/finding set.
 
 4. **Wiring + flag + UX/automation surfaces**
-   - `/deep:start-model-benchmark-loop` (and its `_auto`/`_confirm` YAMLs) recognize the reviewer fixture type and route it to the reviewer scorer.
+   - `/deep:model-benchmark` (and its `_auto`/`_confirm` YAMLs) recognize the reviewer fixture type and route it to the reviewer scorer.
    - Gate the feature behind `SPECKIT_REVIEWER_BENCHMARKS` (default off in this packet; opt-in/nightly for live-LLM runs).
    - SEMI-AUTO automation: the deterministic (pattern-first) scorer runs in CI/pre-commit on reviewer-prompt PRs by reusing the existing prompt-card-sync CI plus pre-commit pattern; live-LLM runs stay opt-in/nightly.
    - Actionable UX message: `REVIEWER_BENCHMARK: fixture X expected FAIL, got PASS — rule not safe to promote`, surfaced through the existing Lane B report (no new prompt).
@@ -130,18 +130,18 @@ Give deep-improvement Lane B a reviewer-prompt fixture type and a reviewer score
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md` | Create | Reviewer-prompt fixture schema + verdict vocabulary + how-to-add doc (or fold into the existing fixtures README) |
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-stale-verdict.json` | Create | Seed fixture for the 009 stale-verdict rule (expected `fail`) |
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-softened-fail.json` | Create | Seed fixture for the 009 anti-softening rule (expected `fail`, must not be relabeled conditional) |
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-over-read.json` | Create | Seed fixture for the 009 read-budget rule (expected finding: unjustified re-read of a full/new file) |
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-ac-coverage.json` | Create | Seed fixture for the 011 AC-coverage case (expected `fail`/finding on coverage shortfall) |
-| `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md` | Modify | Document the new reviewer fixture type alongside the existing code-task fixtures |
-| `.opencode/skills/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs` | Create | Reviewer scorer: run reviewer prompt, extract verdict (pattern-first + `--grader llm` fallback), compare to oracle; reuses `dispatch-model.cjs` + 5dim envelope + visible/hidden split |
-| `.opencode/skills/deep-improvement/scripts/model-benchmark/lib/README.md` | Modify | Document the reviewer scorer alongside `code-task-scorer.cjs` |
-| `.opencode/commands/deep/start-model-benchmark-loop.md` | Modify | Recognize the reviewer fixture type; route it to the reviewer scorer; document `SPECKIT_REVIEWER_BENCHMARKS` |
-| `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml` | Modify | Wire reviewer-fixture detection + reviewer-scorer selection (auto mode) |
-| `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_confirm.yaml` | Modify | Wire reviewer-fixture detection + reviewer-scorer selection (confirm mode) |
-| `.opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add the reviewer-prompt regression flow (fixture authoring + scorer run + UX message) |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-schema.md` | Create | Reviewer-prompt fixture schema + verdict vocabulary + how-to-add doc (or fold into the existing fixtures README) |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json` | Create | Seed fixture for the 009 stale-verdict rule (expected `fail`) |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-softened-fail.json` | Create | Seed fixture for the 009 anti-softening rule (expected `fail`, must not be relabeled conditional) |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-over-read.json` | Create | Seed fixture for the 009 read-budget rule (expected finding: unjustified re-read of a full/new file) |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-ac-coverage.json` | Create | Seed fixture for the 011 AC-coverage case (expected `fail`/finding on coverage shortfall) |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md` | Modify | Document the new reviewer fixture type alongside the existing code-task fixtures |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs` | Create | Reviewer scorer: run reviewer prompt, extract verdict (pattern-first + `--grader llm` fallback), compare to oracle; reuses `dispatch-model.cjs` + 5dim envelope + visible/hidden split |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/lib/README.md` | Modify | Document the reviewer scorer alongside `code-task-scorer.cjs` |
+| `.opencode/commands/deep/model-benchmark.md` | Modify | Recognize the reviewer fixture type; route it to the reviewer scorer; document `SPECKIT_REVIEWER_BENCHMARKS` |
+| `.opencode/commands/deep/assets/deep_model-benchmark_auto.yaml` | Modify | Wire reviewer-fixture detection + reviewer-scorer selection (auto mode) |
+| `.opencode/commands/deep/assets/deep_model-benchmark_confirm.yaml` | Modify | Wire reviewer-fixture detection + reviewer-scorer selection (confirm mode) |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add the reviewer-prompt regression flow (fixture authoring + scorer run + UX message) |
 <!-- /ANCHOR:scope -->
 
 ---

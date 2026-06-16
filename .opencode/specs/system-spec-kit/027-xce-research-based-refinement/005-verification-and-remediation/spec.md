@@ -106,9 +106,9 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-finding-remediation/` | Verify-first remediation of every unadjudicated epic-sweep finding across eight subsystem lanes | Complete |
-| 002 | `002-tri-system-deep-research/` | Tri-system deep-research program — 50 read-only angles across spec-kit, code-graph, skill-advisor | In Progress |
+| 002 | `002-tri-system-deep-research/` | Tri-system deep-research program — 50 read-only angles across spec-kit, code-graph, skill-advisor | Complete |
 | 003 | `003-deep-research-remediation/` | Verify-first remediation of the deep-research and command-adherence backlog across nine lanes | In Progress |
-| 004 | `004-residual-design-units/` | Residual design units deferred from the remediation program because each touched a high-blast-radius subsystem | Planned |
+| 004 | `004-residual-design-units/` | Residual design units deferred from the remediation program because each touched a high-blast-radius subsystem | Complete |
 
 ### Phase Transition Rules
 

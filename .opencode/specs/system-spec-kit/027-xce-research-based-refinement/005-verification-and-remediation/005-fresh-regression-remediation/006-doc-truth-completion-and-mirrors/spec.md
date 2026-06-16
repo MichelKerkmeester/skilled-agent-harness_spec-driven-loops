@@ -8,8 +8,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/spec.md"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "deep-review-orchestrator"
-    recent_action: "Scaffolded sub-phase spec from fresh-regression-75 registry"
-    next_safe_action: "Operator review; then implement fixes per tasks.md"
+    recent_action: "35 doc-truth/mirror findings fixed/refuted; 7 deferred to a code phase"
+    next_safe_action: "Code phase handles deferred T022/T024-T027/T031/T032 + T042 wiring"
     blockers: []
     key_files:
       - "spec.md"
@@ -17,7 +17,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-fresh-regression-remediation-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +35,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned (findings carried as tasks; no fixes applied) |
+| **Status** | Implemented (35 fixed/refuted; 7 deferred to a code phase) |
 | **Created** | 2026-06-16 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |

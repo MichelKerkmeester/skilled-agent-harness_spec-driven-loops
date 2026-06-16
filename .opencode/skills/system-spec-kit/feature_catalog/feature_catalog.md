@@ -45,7 +45,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 
 ### Command-Surface Contract
 
-The Spec Kit Memory MCP server exposes **37 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 37-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/speckit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/speckit/resume.md`.
+The Spec Kit Memory MCP server exposes **39 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 39-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/speckit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/speckit/resume.md`.
 
 | Command | Tools | Ownership | Tool Names |
 |---------|-------|-----------|------------|
@@ -57,7 +57,7 @@ The Spec Kit Memory MCP server exposes **37 tools** overall across the 7-layer M
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
-Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 37-tool `TOOL_DEFINITIONS` surface counted above.
+Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 39-tool `TOOL_DEFINITIONS` surface counted above.
 
 ---
 
@@ -3357,7 +3357,7 @@ AI assistants sometimes invent parameters that do not exist when calling tools. 
 
 #### How It Works
 
-**IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** All 37 live mk-spec-memory MCP tool definitions (L1-L7) have Zod runtime schemas defined in `mcp_server/schemas/tool-input-schemas.ts` (re-exported via `tool-schemas.ts`), controlled by `SPECKIT_STRICT_SCHEMAS` (`.strict()` vs `.passthrough()`). Hallucinated parameters from calling LLMs are rejected with clear Zod errors and logged to stderr for audit trail (CHK-029). Adds `zod` dependency.
+**IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** All 39 live mk-spec-memory MCP tool definitions (L1-L7) have Zod runtime schemas defined in `mcp_server/schemas/tool-input-schemas.ts` (re-exported via `tool-schemas.ts`), controlled by `SPECKIT_STRICT_SCHEMAS` (`.strict()` vs `.passthrough()`). Hallucinated parameters from calling LLMs are rejected with clear Zod errors and logged to stderr for audit trail (CHK-029). Adds `zod` dependency.
 
 #### Source Files
 
@@ -3983,11 +3983,11 @@ See [`16--tooling-and-scripts/standalone-admin-cli.md`](16--tooling-and-scripts/
 
 #### Description
 
-The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon: all 37 tools become CLI commands generated at runtime from `TOOL_DEFINITIONS`, so the surface cannot drift from the MCP registration. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery; the MCP registration stays untouched through the dual-stack window. Sibling skills ship the same pattern (`code-index.cjs`, 8 tools; `skill-advisor.cjs`, 9 tools with a fail-closed trusted-mutation gate).
+The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon: all 39 tools become CLI commands generated at runtime from `TOOL_DEFINITIONS`, so the surface cannot drift from the MCP registration. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery; the MCP registration stays untouched through the dual-stack window. Sibling skills ship the same pattern (`code-index.cjs`, 8 tools; `skill-advisor.cjs`, 9 tools with a fail-closed trusted-mutation gate).
 
 #### How It Works
 
-The shim defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/mk-spec-memory`, guards Darwin socket-path length, and refuses missing or stale dist with exit 69 (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). The entrypoint validates argv with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` on probe failure, and maps results to the shared exit taxonomy: 0 success, 1 runtime, 64 usage/validation, 69 protocol/dist-freshness, 75 retryable backend-unavailable. `--warm-only` (default-on via `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`) probes the socket first and exits 75 instead of cold-spawning — the contract prompt-time hooks rely on. `spec-memory list-tools --format json` returns `{ status: "ok", data: { count: 37 } }` as the one-command parity check.
+The shim defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/mk-spec-memory`, guards Darwin socket-path length, and refuses missing or stale dist with exit 69 (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). The entrypoint validates argv with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` on probe failure, and maps results to the shared exit taxonomy: 0 success, 1 runtime, 64 usage/validation, 69 protocol/dist-freshness, 75 retryable backend-unavailable. `--warm-only` (default-on via `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`) probes the socket first and exits 75 instead of cold-spawning — the contract prompt-time hooks rely on. `spec-memory list-tools --format json` returns `{ status: "ok", data: { count: 39 } }` as the one-command parity check.
 
 #### Source Files
 
@@ -4371,7 +4371,7 @@ See [`16--tooling-and-scripts/markdown-link-integrity-guard.md`](16--tooling-and
 
 #### Description
 
-The memory health surface now reports read-only hard-exclusion audit metadata, and pre-commit tooling can fail on drift in the 37-tool ownership map. Recall behavior and stored data are unchanged; the feature exists to expose silent-risk exclusions and keep command/tool ownership documentation synchronized with the registered tool definitions.
+The memory health surface now reports read-only hard-exclusion audit metadata, and pre-commit tooling can fail on drift in the 39-tool ownership map. Recall behavior and stored data are unchanged; the feature exists to expose silent-risk exclusions and keep command/tool ownership documentation synchronized with the registered tool definitions.
 
 #### How It Works
 

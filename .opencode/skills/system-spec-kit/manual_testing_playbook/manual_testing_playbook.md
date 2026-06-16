@@ -126,8 +126,10 @@ Scenario verdict:
 
 ### Feature Verdict Rules
 
-- `PASS`: all mapped scenarios for feature are `PASS`
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
+`PARTIAL` is an aggregate evidence state, never inherited from a per-scenario `PARTIAL` (which is not a valid scenario verdict — see above):
+
+- `PASS`: all mapped scenarios for the feature are `PASS`
+- `PARTIAL`: no mapped scenario is `FAIL`, but core behavior is only partially evidenced — i.e. some mapped scenarios are `SKIP`/`UNAUTOMATABLE`, or supporting evidence for one or more `PASS` scenarios is incomplete
 - `FAIL`: any mapped scenario is `FAIL`
 
 Hard rule:
@@ -140,9 +142,9 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 410 scenario files while the feature catalog contains 341 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 407 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 341 feature files.
 5. No unresolved blocking triage item remains.
-6. Orphan scenario count does not exceed the recorded reconciliation baseline (85 as of 2026-06-12 — legacy index debt; the baseline may only ratchet DOWN), and zero index links are broken.
+6. Orphan scenario count does not exceed the recorded reconciliation baseline (82 as of 2026-06-16 — legacy index debt, recomputed after excluding 3 category README files; the baseline may only ratchet DOWN), and zero index links are broken.
 
 Otherwise release is `NOT READY`.
 
@@ -161,7 +163,7 @@ scenario_files = {
     path.relative_to(root).as_posix()
     for pattern in ('[0-9][0-9]--*/*.md', '[0-9][0-9]--*/_deprecated/*.md')
     for path in root.glob(pattern)
-    if path.is_file()
+    if path.is_file() and path.name != 'README.md'  # category README/package-map files are not executable scenarios
 }
 
 linked = {
@@ -170,12 +172,12 @@ linked = {
 }
 
 failures = []
-if len(scenario_files) != 410:
-    failures.append(f'expected 410 scenario files, found {len(scenario_files)}')
+if len(scenario_files) != 407:
+    failures.append(f'expected 407 scenario files, found {len(scenario_files)}')
 broken = sorted(linked - scenario_files)
 if broken:
     failures.append(f'{len(broken)} index link(s) resolve to no file: {broken[:5]}')
-ORPHAN_RATCHET_BASELINE = 85
+ORPHAN_RATCHET_BASELINE = 82
 orphans = sorted(f for f in scenario_files - linked if '/_deprecated/' not in f)
 if len(orphans) > ORPHAN_RATCHET_BASELINE:
     failures.append(f'{len(orphans)} orphan scenario file(s) exceed the recorded baseline of {ORPHAN_RATCHET_BASELINE}: {orphans[:5]}')
@@ -188,7 +190,7 @@ PY
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-11, the deterministic file count is 410. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-16, the deterministic executable-scenario file count is 407 (category README/package-map files excluded). Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 

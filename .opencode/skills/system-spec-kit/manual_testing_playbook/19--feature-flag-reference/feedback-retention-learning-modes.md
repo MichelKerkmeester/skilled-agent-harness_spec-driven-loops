@@ -17,7 +17,7 @@ This scenario validates feedback retention learning safety gates. The master fla
 - Real user request: `Validate feedback retention learning without letting it delete or protect anything unless active mode has evidence.`
 - Prompt: `Validate SPECKIT_FEEDBACK_RETENTION_LEARNING and SPECKIT_FEEDBACK_RETENTION_MODE across off, shadow, active, and disabled rollback steps.`
 - Expected execution process: Seed feedback summaries in a sandbox, run with the master flag off, enable shadow mode and inspect audit-only decisions, switch to active mode without evidence and confirm refusal, rerun active mode with evidence and verify bounded retention updates, then disable the master flag and confirm no further updates.
-- Expected signals: Off mode is inert; shadow mode records `feedback_retention_learning` audit rows only; active mode without evidence fails closed; active mode with evidence applies bounded `delete`, `extend`, or `protect` decisions; disabling stops mutations.
+- Expected signals: Off mode runs no feedback-driven audit or retention decisions (the baseline TTL sweep still deletes expired non-protected rows); shadow mode records `feedback_retention_learning` audit rows only; active mode without evidence fails closed; active mode with evidence applies bounded `delete`, `extend`, or `protect` decisions; disabling stops feedback-driven mutations.
 - Desired user-visible outcome: The operator can prove shadow-first retention learning does not mutate retention state until all gates are satisfied.
 - Pass/fail: PASS only when all safety gates are observed and disabling returns the reducer to inert behavior.
 
@@ -35,7 +35,7 @@ Validate SPECKIT_FEEDBACK_RETENTION_LEARNING and SPECKIT_FEEDBACK_RETENTION_MODE
 
 1. Create a sandbox DB fixture with feedback aggregates that should produce one `protect`, one `extend`, and one `delete` decision.
 2. Unset both vars: `unset SPECKIT_FEEDBACK_RETENTION_LEARNING SPECKIT_FEEDBACK_RETENTION_MODE`; restart the daemon or reducer process.
-3. Run the reducer and capture zero retention mutations plus any inert skip reason.
+3. Run the reducer and capture zero feedback-driven retention mutations and no `feedback_retention_learning` audit rows; the baseline TTL sweep still deletes expired non-protected rows, so expect baseline deletion of any expired fixture rows.
 4. Enable shadow: `export SPECKIT_FEEDBACK_RETENTION_LEARNING=true`; `export SPECKIT_FEEDBACK_RETENTION_MODE=shadow`; restart.
 5. Run the reducer and inspect `governance_audit` for `feedback_retention_learning` rows. Verify retention fields are unchanged.
 6. Switch to active without evidence: `export SPECKIT_FEEDBACK_RETENTION_MODE=active`; restart, run the reducer without shadow-evaluation evidence, and capture the fail-closed response.
@@ -44,7 +44,7 @@ Validate SPECKIT_FEEDBACK_RETENTION_LEARNING and SPECKIT_FEEDBACK_RETENTION_MODE
 
 ### Expected
 
-- Off mode writes no audit or retention state.
+- Off mode writes no feedback-driven audit or retention state; the baseline TTL sweep still deletes expired non-protected rows.
 - Shadow mode writes audit decisions only.
 - Active mode without evidence refuses to mutate.
 - Active mode with evidence applies bounded retention decisions matching the fixture.

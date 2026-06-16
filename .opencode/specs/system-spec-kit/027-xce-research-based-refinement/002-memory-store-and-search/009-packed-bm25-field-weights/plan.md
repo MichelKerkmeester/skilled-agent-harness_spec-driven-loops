@@ -112,9 +112,9 @@ Not a bug-fix packet; surfaces and verification live in the spec Files-to-Change
 - [x] Engine selection logging
 
 ### Phase 3: Verification
-- [x] Budget gates measured
+- [x] Budget gates measured (realistic-fixture re-validation: 686.8 MB warmup spike BREACHED the 150 MB budget; original 111 MB pass superseded — see spec.md §7)
 - [x] Eval parity vs legacy and FTS5 recorded
-- [x] Contingency decision: current corpus passed; 3x projection recorded as a follow-up scale risk
+- [x] Contingency decision: the realistic-fixture breach FIRED the contingency; closed by phase 017 at a 136.5 MB peak-sampled spike. 3x projection (247 MB) recorded as a follow-up scale risk
 <!-- /ANCHOR:phases -->
 
 ---

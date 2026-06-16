@@ -74,7 +74,7 @@ _memory:
 - [x] CHK-020 [P0] New flag-on tests fail against current code before the fix
   - **Evidence**: Red run failed 2 tests: replay response was decorated and repeated store replayed the later response.
 - [x] CHK-021 [P0] Flag-on idempotency/near-duplicate suite passes after the fix
-  - **Evidence**: `SPECKIT_MEMORY_IDEMPOTENCY=true npx vitest run tests/memory-idempotency-and-near-duplicate.vitest.ts` passed with 1 file, 10 tests.
+  - **Evidence**: `SPECKIT_MEMORY_IDEMPOTENCY=true npx vitest run tests/memory-idempotency-and-near-duplicate.vitest.ts` passed with 1 file, 12 tests (was 10; the deep-review remediation added the won/lost store-contract and concurrent-loser replay regressions).
 - [x] CHK-022 [P1] Related memory-save suites pass with the flag enabled
   - **Evidence**: `SPECKIT_MEMORY_IDEMPOTENCY=true npx vitest run tests/handler-memory-save.vitest.ts tests/memory-save-planner-first.vitest.ts` passed with 2 files, 17 passed, 51 skipped.
 - [x] CHK-023 [P0] Flag-off idempotency/near-duplicate suite passes

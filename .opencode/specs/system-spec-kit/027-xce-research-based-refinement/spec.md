@@ -51,6 +51,7 @@ _memory:
     - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
     - migrated from, ported from, originally in
     - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  CARVE-OUT (accepted at this parent only): the epic-rollup bridge docs `timeline.md` and `before-vs-after.md` are sanctioned reorg/rollup artifacts cross-referenced from context-index.md/handover.md; their before/after-style narrative is intentional here and is NOT the forbidden per-phase change history above.
   REQUIRED content (MUST author at phase-parent level):
     - Root purpose: what problem does this entire phased decomposition solve?
     - Sub-phase list: which child phase folders exist and what each one does
@@ -84,7 +85,7 @@ Spec Kit has coordinated refinement work across memory correctness, indexing, ca
 ### Purpose
 Coordinate the remaining child phases so each one can be resumed, implemented, and validated independently while the parent keeps the current phase map, high-level scope, and handoff order visible. This refinement builds on the now-completed 026 graph-and-context-optimization program (Status: Complete as of 2026-06-05; track 005 deferred in place).
 
-> **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level; optional cross-cutting docs (the `context-index.md` migration bridge and `resource-map.md`) may also live here. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
+> **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level. The sanctioned optional cross-cutting docs that also live here are: `context-index.md` (migration bridge), `resource-map.md`, `handover.md`, and the accepted epic-rollup bridges `timeline.md` and `before-vs-after.md` (cross-referenced from `context-index.md`/`handover.md`; see the content-discipline carve-out at the top of this file). All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -125,7 +126,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Track | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-release-cleanup/` | Outward and governance surface alignment for release: public README, skill docs, feature catalog, manual playbook, MCP/CLI stress, commands, agents, AGENTS.md; hosts the spec-tree regroup task | Complete |
-| 001 | `001-research-and-doctrine/` | Research-derived doctrine adoption: peck verification discipline and gem-team agent I/O contract (2 phases) | In Progress |
+| 001 | `001-research-and-doctrine/` | Research-derived doctrine adoption: peck verification discipline and gem-team agent I/O contract (2 phases) | Complete |
 | 002 | `002-memory-store-and-search/` | Memory store and retrieval hardening: write-safety, index and causal lifecycle, semantic triggers, feedback reducers, memclaw hardening, observability, continuity, vector and BM25 search resilience (14 phases) | In Progress |
 | 003 | `003-advisor-and-codegraph/` | Skill-advisor and code-graph subsystems: causal-traversal BFS, XCE feature adoption, advisor reconnect resilience (3 phases) | Complete |
 | 004 | `004-shared-infrastructure/` | Cross-cutting layers: CLI front-doors, command presentation, storage adapter ports, CLI UX, dependency patching, code-mode lifecycle, IPC client cap, MCP config alignment + daemon re-election (8 phases) | Complete |

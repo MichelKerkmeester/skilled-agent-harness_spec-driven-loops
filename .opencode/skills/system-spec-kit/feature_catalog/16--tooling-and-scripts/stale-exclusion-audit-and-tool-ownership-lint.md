@@ -1,11 +1,11 @@
 ---
 title: "Stale-exclusion audit and tool-ownership lint"
-description: "Read-only hard-exclusion diagnostics in memory_health plus source-derived 37-tool ownership lint that blocks drift before commit."
+description: "Read-only hard-exclusion diagnostics in memory_health plus source-derived 39-tool ownership lint that blocks drift before commit."
 trigger_phrases:
   - "stale-exclusion audit and tool-ownership lint"
   - "hard exclusion audit"
   - "tool ownership lint"
-  - "37-tool ownership map"
+  - "39-tool ownership map"
 ---
 
 # Stale-exclusion audit and tool-ownership lint
@@ -16,7 +16,7 @@ trigger_phrases:
 
 Stale-exclusion audit and tool-ownership lint add diagnostics without changing recall behavior or stored data.
 
-`memory_health` can report existing hard-exclusion predicates and their risk classification. A pre-commit runner derives the 37-tool ownership map from source and blocks drift against the committed fixture.
+`memory_health` can report existing hard-exclusion predicates and their risk classification. A pre-commit runner derives the 39-tool ownership map from source and blocks drift against the committed fixture.
 
 ---
 

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection"
     last_updated_at: "2026-06-11T12:10:00Z"
     last_updated_by: "opencode"
-    recent_action: "Completed provenance injection remediation tasks and added regression coverage."
-    next_safe_action: "Run final verification and record exact results in implementation-summary.md."
+    recent_action: "Provenance remediation done; final verification gates recorded."
+    next_safe_action: "None — phase complete; verification gates passed and recorded."
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -85,10 +85,10 @@ _memory:
 - [x] T020 Create `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `description.json`, and `graph-metadata.json` [35m]
 - [x] T021 Document `memory_update` reachability finding in phase docs [10m]
 - [x] T022 Document same-path retire and auto-promotion guard follow-ons in `spec.md` [10m]
-- [ ] T023 Run `npx tsc --noEmit` from the MCP server directory [10m]
-- [ ] T024 Run requested vitest suites and record exact counts [20m]
-- [ ] T025 Run strict spec validation for this phase [10m]
-- [ ] T026 Run changed-code comment-hygiene checks and confirm `ENV_REFERENCE.md` untouched [10m]
+- [x] T023 Run `npx tsc --noEmit` from the MCP server directory [10m]. Evidence: PASS, exit 0 (rerun at epic review close, 2026-06-11).
+- [x] T024 Run requested vitest suites and record exact counts [20m]. Evidence: provenance/guard vitest suite PASS — 5 files, 18 tests passed, 28 env-gated skips (rerun at epic review close).
+- [x] T025 Run strict spec validation for this phase [10m]. Evidence: `validate.sh --strict` PASS, 0 errors, 0 warnings (rerun at epic review close).
+- [x] T026 Run changed-code comment-hygiene checks and confirm `ENV_REFERENCE.md` untouched [10m]. Evidence: comment-hygiene clean (enforced by the pre-commit hygiene gate on the phase commit); `ENV_REFERENCE.md` not touched.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -99,7 +99,7 @@ _memory:
 - [x] All implementation and documentation tasks are complete.
 - [x] No live `mcp_server/database/**` shard or host daemon was used.
 - [x] The two guard-coverage follow-ons are documented and not fixed in this phase.
-- [ ] Final TypeScript, requested tests, strict spec validation, and comment-hygiene checks pass.
+- [x] Final TypeScript, requested tests, strict spec validation, and comment-hygiene checks pass. Evidence: `tsc --noEmit` 0; provenance/guard vitest 18 pass / 28 env-skips; `validate.sh --strict` 0/0; comment hygiene clean (rerun at epic review close, 2026-06-11; corroborated by `review/review-report.md`).
 <!-- /ANCHOR:completion -->
 
 ---

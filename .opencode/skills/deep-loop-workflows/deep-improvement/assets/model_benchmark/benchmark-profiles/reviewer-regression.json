@@ -1,0 +1,25 @@
+{
+  "profileId": "reviewer-regression",
+  "id": "reviewer-regression",
+  "version": "1.0",
+  "family": "deep-improvement",
+  "mode": "reviewer",
+  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtures": [
+    "reviewer-stale-verdict",
+    "reviewer-softened-fail",
+    "reviewer-over-read",
+    "reviewer-ac-coverage"
+  ],
+  "outputsDir": ".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}",
+  "metrics": ["correctness", "verdict_match", "finding_match"],
+  "scoring": {
+    "scorer": "reviewer",
+    "correctnessGate": { "threshold": 1.0 }
+  },
+  "benchmark": {
+    "requiredAggregateScore": 100,
+    "minimumFixtureScore": 100,
+    "note": "Reviewer-prompt regression profile. The four reviewer-* fixtures (kind: reviewer-prompt) each assert an expected verdict + expected findings against a known reviewer-prompt input. Run through the reviewer scorer, NOT run-benchmark.cjs --scorer pattern/5dim: `--scorer reviewer` routes here via the /deep:model-benchmark YAML, gated on SPECKIT_REVIEWER_BENCHMARKS. Reviewer scoring is correctness-gated: a fixture passes only when the extracted verdict and required findings match the oracle."
+  }
+}
