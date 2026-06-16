@@ -15,14 +15,18 @@ const CLI_SHIM = fileURLToPath(new URL('../../../../bin/code-index.cjs', import.
 const BRIDGE_PATH = fileURLToPath(new URL('../../../../bin/lib/launcher-ipc-bridge.cjs', import.meta.url));
 const DB_DIR = fileURLToPath(new URL('../database', import.meta.url));
 const REPO_ROOT = fileURLToPath(new URL('../../../../..', import.meta.url));
+// Normalized form folds snake/kebab/camel into one key so the maintenance blocklist
+// cannot be bypassed by passing --tool codeGraphScan instead of code_graph_scan; the
+// downstream CLI resolves all three alias casings to the same canonical maintenance tool.
+function normalizeToolName(name) {
+  return String(name).replace(/[-_]/g, '').toLowerCase();
+}
+
 const MAINTENANCE_TOOLS = new Set([
-  'code-graph-scan',
   'code_graph_scan',
-  'code-graph-apply',
   'code_graph_apply',
-  'code-graph-verify',
   'code_graph_verify',
-]);
+].map(normalizeToolName));
 
 function response(args) {
   return {
@@ -298,7 +302,7 @@ async function runCli(input) {
   const toolName = typeof input.toolName === 'string' && input.toolName.trim()
     ? input.toolName.trim()
     : 'code-graph-status';
-  if (MAINTENANCE_TOOLS.has(toolName)) {
+  if (MAINTENANCE_TOOLS.has(normalizeToolName(toolName))) {
     return skipped('maintenance_tool_blocked', {
       route: 'prompt_safe_policy',
       toolName,

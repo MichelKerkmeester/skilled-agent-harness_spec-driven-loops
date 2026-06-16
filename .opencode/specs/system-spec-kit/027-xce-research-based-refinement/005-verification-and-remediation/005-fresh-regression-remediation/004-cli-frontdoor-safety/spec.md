@@ -1,23 +1,24 @@
 ---
 title: "Feature Specification: CLI Front-Door Safety Remediation"
-description: "Remediation sub-phase of the 027 fresh+regression deep-review: 6 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied."
+description: "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest green."
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/spec.md"
-    last_updated_at: "2026-06-16T00:00:00Z"
-    last_updated_by: "deep-review-orchestrator"
-    recent_action: "Scaffolded sub-phase spec from fresh-regression-75 registry"
-    next_safe_action: "Operator review; then implement fixes per tasks.md"
+    last_updated_at: "2026-06-16T15:20:00Z"
+    last_updated_by: "cli-frontdoor-remediation"
+    recent_action: "Resolved 6 CLI front-door findings; CLI vitest green"
+    next_safe_action: "Operator review; run validate.sh --strict on this folder"
     blockers: []
     key_files:
       - "spec.md"
+      - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-fresh-regression-remediation-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned (findings carried as tasks; no fixes applied) |
+| **Status** | Resolved (5 fixed, 1 refuted-then-hardened; CLI vitest green) |
 | **Created** | 2026-06-16 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |

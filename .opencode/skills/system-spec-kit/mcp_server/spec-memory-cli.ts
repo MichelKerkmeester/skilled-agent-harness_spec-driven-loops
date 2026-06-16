@@ -7,7 +7,7 @@
 // owned by the already-running context server daemon.
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync, statSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, statSync } from 'node:fs';
 import net from 'node:net';
 import { createRequire } from 'node:module';
 import path from 'node:path';
@@ -632,6 +632,13 @@ function renderCompletion(shell: CompletionShell): string {
   return shell === 'bash' ? renderBashCompletion() : renderZshCompletion();
 }
 
+function isErrorPayload(payload: unknown): boolean {
+  return Boolean(payload)
+    && typeof payload === 'object'
+    && !Array.isArray(payload)
+    && (payload as { readonly status?: unknown }).status === 'error';
+}
+
 function extractToolPayload(toolName: string, result: unknown): { readonly payload: unknown; readonly isError: boolean } {
   const toolResult = result && typeof result === 'object' ? result as ToolResult : null;
   const firstText = toolResult?.content?.find((entry) => typeof entry.text === 'string')?.text;
@@ -750,6 +757,41 @@ function socketPathTooLong(socketPath: string): boolean {
   return process.platform === 'darwin' && Buffer.byteLength(socketPath) > 103;
 }
 
+// `mode: 0o700` only applies when mkdir CREATES the dir. A pre-existing socket dir
+// (e.g. an attacker-planted dir or symlink on a shared host) is not protected by the
+// mkdir above, so the client must refuse to probe/connect under a dir it does not own,
+// a symlinked dir, or a group/world-writable dir, and must reject a foreign-owned or
+// symlinked socket node — otherwise a fake daemon could answer initialize and spoof results.
+function assertSocketPerimeter(socketDir: string): void {
+  const dirLink = lstatSync(socketDir);
+  if (dirLink.isSymbolicLink()) {
+    throw new CliProtocolError(`IPC socket directory is a symlink; refusing to connect: ${socketDir}`);
+  }
+  const dirStat = statSync(socketDir);
+  const uid = typeof process.getuid === 'function' ? process.getuid() : null;
+  if (uid !== null && dirStat.uid !== uid) {
+    throw new CliProtocolError(`IPC socket directory is not owned by the current user (uid ${dirStat.uid} != ${uid}): ${socketDir}`);
+  }
+  if ((dirStat.mode & 0o022) !== 0) {
+    throw new CliProtocolError(`IPC socket directory is group/world-writable: ${socketDir}`);
+  }
+  const socketPath = path.join(socketDir, SOCKET_FILE_NAME);
+  let nodeLink;
+  try {
+    nodeLink = lstatSync(socketPath);
+  } catch (error: unknown) {
+    const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+    if (code === 'ENOENT') return;
+    throw error;
+  }
+  if (nodeLink.isSymbolicLink()) {
+    throw new CliProtocolError(`IPC socket path is a symlink; refusing to connect: ${socketPath}`);
+  }
+  if (uid !== null && nodeLink.uid !== uid) {
+    throw new CliProtocolError(`IPC socket is not owned by the current user (uid ${nodeLink.uid} != ${uid}): ${socketPath}`);
+  }
+}
+
 function ensureSocketEnvironment(): void {
   if (!process.env.SPECKIT_IPC_SOCKET_DIR) {
     process.env.SPECKIT_IPC_SOCKET_DIR = DEFAULT_SOCKET_DIR;
@@ -757,10 +799,7 @@ function ensureSocketEnvironment(): void {
   const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
   if (!socketDir || socketDir.startsWith('tcp://')) return;
   mkdirSync(socketDir, { recursive: true, mode: 0o700 });
-  const stat = statSync(socketDir);
-  if ((stat.mode & 0o022) !== 0) {
-    throw new CliProtocolError(`IPC socket directory is group/world-writable: ${socketDir}`);
-  }
+  assertSocketPerimeter(socketDir);
 }
 
 function sleep(ms: number): Promise<void> {
@@ -979,7 +1018,7 @@ export async function runSpecMemoryCli(argv: string[], io: CliIo = { stdout: pro
     const result = await callTool(validated.tool.name, validated.args, parsed.timeoutMs, parsed.warmOnly);
     const { payload, isError } = extractToolPayload(validated.tool.name, result);
     await writeLine(io.stdout, renderPayload(payload, parsed.format));
-    return isError ? EXIT_RUNTIME : EXIT_SUCCESS;
+    return isError || isErrorPayload(payload) ? EXIT_RUNTIME : EXIT_SUCCESS;
   } catch (error: unknown) {
     const exitCode = exitCodeForError(error);
     const message = error instanceof Error ? error.message : String(error);
@@ -1021,12 +1060,15 @@ export const __testing = {
   DEFAULT_SOCKET_DIR,
   EXIT_PROTOCOL,
   EXIT_RETRYABLE,
+  EXIT_RUNTIME,
   EXIT_USAGE,
   commandMap,
   commandAliases,
+  assertSocketPerimeter,
   ensureSocketEnvironment,
   exitCodeForError,
   findRepoPaths,
+  isErrorPayload,
   closestCommand,
   renderCompletion,
   renderToolList,

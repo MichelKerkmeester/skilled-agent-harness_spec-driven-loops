@@ -43,6 +43,7 @@ interface ParsedCommand {
   readonly help: boolean;
   readonly version: boolean;
   readonly trusted: boolean;
+  readonly promptTime: boolean;
 }
 
 interface CliIo {
@@ -350,10 +351,12 @@ function envFlagEnabled(name: string): boolean {
   return ['1', 'true', 'yes', 'on'].includes(raw.trim().toLowerCase());
 }
 
-function defaultWarmOnly(): boolean {
-  return envFlagEnabled('MK_SKILL_ADVISOR_CLI_WARM_ONLY')
-    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY')
-    || envFlagEnabled('MK_SKILL_ADVISOR_CLI_PROMPT_TIME')
+// Prompt-time markers (the env this front-door is launched with from a runtime hook).
+// Warm-only and prompt-time are orthogonal: warm-only just suppresses cold spawn, while
+// prompt-time additionally forbids shared-state mutations regardless of trusted authority,
+// because a hook process must never be the thing that scans/rebuilds the skill graph.
+function defaultPromptTime(): boolean {
+  return envFlagEnabled('MK_SKILL_ADVISOR_CLI_PROMPT_TIME')
     || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME')
     || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')
     || envFlagEnabled('OPENCODE_PROMPT_TIME')
@@ -361,15 +364,22 @@ function defaultWarmOnly(): boolean {
     || envFlagEnabled('CLAUDE_CODE_PROMPT_TIME');
 }
 
+function defaultWarmOnly(): boolean {
+  return envFlagEnabled('MK_SKILL_ADVISOR_CLI_WARM_ONLY')
+    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY')
+    || defaultPromptTime();
+}
+
 export function parseCliArgs(argv: string[]): ParsedCommand {
   const command = argv[0];
   const trustedDefault = envTrustedDefault();
   const warmOnlyDefault = defaultWarmOnly();
+  const promptTimeDefault = defaultPromptTime();
   if (!command || command === '--help' || command === '-h') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: true, version: false, trusted: trustedDefault };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: true, version: false, trusted: trustedDefault, promptTime: promptTimeDefault };
   }
   if (command === '--version' || command === '-v') {
-    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: false, version: true, trusted: trustedDefault };
+    return { command: '', format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS, warmOnly: warmOnlyDefault, toolListMode: 'full', args: {}, help: false, version: true, trusted: trustedDefault, promptTime: promptTimeDefault };
   }
 
   let format: OutputFormat = 'json';
@@ -380,6 +390,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
   let completionShell: CompletionShell | undefined;
   let jsonPayload: Record<string, unknown> | null = null;
   let trusted = trustedDefault;
+  let promptTime = promptTimeDefault;
   const tool = getToolDefinition(command);
   const parsedArgs: Record<string, unknown> = {};
   const tokens = argv.slice(1);
@@ -399,7 +410,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     const option = `--${rawFlag}`;
 
     if (rawFlag === 'help' || rawFlag === 'h') {
-      return { command, format: 'text', timeoutMs, sessionId, warmOnly, toolListMode, completionShell, args: {}, help: true, version: false, trusted };
+      return { command, format: 'text', timeoutMs, sessionId, warmOnly, toolListMode, completionShell, args: {}, help: true, version: false, trusted, promptTime };
     }
     if (rawFlag === 'format') {
       const read = readOptionValue(tokens, index, option);
@@ -426,12 +437,24 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
       continue;
     }
     if (rawFlag === 'trusted' || rawFlag === 'maintainer') {
-      trusted = true;
+      const inline = token.match(/^--[^=]+=(.*)$/);
+      trusted = inline ? parseInlineBoolean(inline[1], option) : true;
       index += 1;
       continue;
     }
     if (rawFlag === 'untrusted') {
       trusted = false;
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'prompt-time') {
+      const inline = token.match(/^--[^=]+=(.*)$/);
+      promptTime = inline ? parseInlineBoolean(inline[1], option) : true;
+      index += 1;
+      continue;
+    }
+    if (rawFlag === 'no-prompt-time') {
+      promptTime = false;
       index += 1;
       continue;
     }
@@ -495,6 +518,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     help: false,
     version: false,
     trusted,
+    promptTime,
   };
 }
 
@@ -656,11 +680,19 @@ function isPropagateApply(args: Record<string, unknown>): boolean {
   return args.mode === 'apply' && args.dryRun !== true;
 }
 
-function assertTrustedForMutation(toolName: string, args: Record<string, unknown>, trusted: boolean): void {
+function assertTrustedForMutation(toolName: string, args: Record<string, unknown>, trusted: boolean, promptTime: boolean): void {
   const requiresTrusted = toolName === 'advisor_rebuild'
     || toolName === 'skill_graph_scan'
     || (toolName === 'skill_graph_propagate_enhances' && isPropagateApply(args));
-  if (!requiresTrusted || trusted) return;
+  if (!requiresTrusted) return;
+  // Defense-in-depth: a prompt-time hook process must never run a shared-state mutation,
+  // even if it also asserts trusted authority — the documented hook convention forbids it,
+  // so the front-door enforces it structurally instead of trusting every wrapper to pass
+  // only read tools.
+  if (promptTime) {
+    throw new CliUsageError(`${toolName} is blocked at prompt-time (mutations require a non-prompt-time, trusted invocation)`);
+  }
+  if (trusted) return;
   throw new CliUsageError(`${toolName} requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1`);
 }
 
@@ -680,7 +712,7 @@ function validateCommand(parsed: ParsedCommand): { readonly tool: SkillAdvisorCl
   }
 
   const validated = validateToolArgs(tool, args);
-  assertTrustedForMutation(tool.name, validated, parsed.trusted);
+  assertTrustedForMutation(tool.name, validated, parsed.trusted, parsed.promptTime);
   return { tool, args: validated };
 }
 
@@ -1346,6 +1378,7 @@ export const __testing = {
   renderCompletion,
   renderToolList,
   resolvePropertyName,
+  validateCommand,
 };
 
 if (isCliEntrypoint()) {

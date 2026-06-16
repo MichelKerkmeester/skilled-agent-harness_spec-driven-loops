@@ -1,23 +1,24 @@
 ---
 title: "Implementation Plan: CLI Front-Door Safety Remediation"
-description: "Approach for remediating this sub-phase's 6 deep-review findings: confirm-then-fix each cited location, vitest + shell exit-code assertions across the three CLIs. Scaffold only."
+description: "Approach for remediating this sub-phase's 6 deep-review findings: confirm-then-fix each cited location, vitest + shell exit-code assertions across the three CLIs. Executed — all findings resolved."
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/plan.md"
-    last_updated_at: "2026-06-16T00:00:00Z"
-    last_updated_by: "deep-review-orchestrator"
-    recent_action: "Scaffolded sub-phase plan from fresh-regression-75 registry"
-    next_safe_action: "Operator review; then implement fixes per tasks.md"
+    last_updated_at: "2026-06-16T15:20:00Z"
+    last_updated_by: "cli-frontdoor-remediation"
+    recent_action: "Executed plan; 6 findings resolved, CLI vitest green"
+    next_safe_action: "Operator review; run validate.sh --strict on this folder"
     blockers: []
     key_files:
       - "plan.md"
+      - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-fresh-regression-remediation-scaffold"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
