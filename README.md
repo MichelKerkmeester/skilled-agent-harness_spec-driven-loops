@@ -141,13 +141,9 @@ node .opencode/bin/mk-skill-advisor-launcher.cjs --help
 node .opencode/bin/mk-code-index-launcher.cjs --help
 ```
 
-The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first invocation and the checked-in runtime configs already point at them. There is no separate build step. Launcher reliability covers the owner-disposal relaunch gate, a persistent log, lease-probe reap hardening, mk-code-index reconnect, an opt-in orphan-process sweep and daemon re-election. Re-election is on by default in the committed runtime configs, so a disposing session releases the shared daemon for another live session to adopt instead of killing it, and an unadopted daemon is bounded by the idle timeout. A single-writer database lock completes the picture: each memory database accepts exactly one daemon writer, a second cold-spawn refuses with a dedicated exit code and the launcher bridges it to the live holder instead of letting two processes write the same SQLite file. The lock is a kernel-level lock that self-releases even on `kill -9`, with `SPECKIT_DB_LOCK_DISABLE=1` as the operator kill switch. All of it is operator-tunable and documented in [`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
+The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first run and the checked-in runtime configs already point at them, so there is no separate build step. Launcher reliability (owner-disposal relaunch, lease-probe reap, mk-code-index reconnect, default-on daemon re-election and a single-writer database lock with `SPECKIT_DB_LOCK_DISABLE=1` as the kill switch) is operator-tunable and documented in [`ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
-The three daemon systems also expose full-parity CLI front doors over the same warm daemons: `spec-memory.cjs` exposes the same 39 tools as `mk-spec-memory`, `code-index.cjs` the same 8 tools as `mk_code_index`, and `skill-advisor.cjs` the same 9 tools as `mk_skill_advisor` (mutations gated behind `--trusted`). Use MCP as the primary in-session transport today; use the CLIs when the MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers probe warm-only first, and exit `75` means retryable daemon or IPC unavailability. Per-command help and aliases, the shared exit-code taxonomy (`0`/`1`/`64`/`69`/`75`), discovery modes, shell completion and the offline smoke checks are documented in [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Because the CLIs already have full parity, a later evolution could consolidate them as the primary or sole transport; that remains a possibility, not a committed plan.
-
-Runtime lifecycle guardrails are part of the native MCP stack. The servers share `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` for idle self-exit, and the repo ships a dry-run-first orphan process sweeper plus a LaunchAgent template under `.opencode/scripts/`. The LaunchAgent is not installed or loaded by default; activation is a separate operator-approved rollout. See [Repo Scripts Runbook](.opencode/scripts/README.md) and the [022 orphan MCP leak prevention packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md).
-
-Operator tooling shipped in 026: `session-cleanup.sh` (renamed from `claude-session-cleanup.sh`; a back-compat shim keeps the old name working) now resolves PIDs across `claude`, `opencode` and `codex` runtimes. Worktree-per-session isolation scripts live under `.opencode/bin/` (`worktree-session.sh`, `worktree-reaper.sh`, `worktree-guard.sh`) and set per-session `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR` so parallel sessions never share a database.
+The three daemons also expose full-parity CLI front doors (`spec-memory.cjs` 39 tools, `code-index.cjs` 8, `skill-advisor.cjs` 9, mutations gated behind `--trusted`): use MCP as the primary in-session transport and the CLIs for hooks, cron, CI and shell diagnostics, per [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Idle self-exit, a dry-run-first orphan-process sweeper and worktree-per-session isolation scripts (each session gets its own `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR`) live under `.opencode/bin/` and `.opencode/scripts/`; see the [Repo Scripts Runbook](.opencode/scripts/README.md).
 
 ### Set Up Embedding Provider
 
@@ -1198,11 +1194,11 @@ The five autonomous loop families (the improvement family carries four lanes). S
 Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
 
 **`/doctor <target>` (router)**
-- Single entry point for 6 subsystems: `memory`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, `skill-budget`
+- Single entry point for 9 subsystems: `memory`, `embeddings`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`
 - Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor code-graph --scope=stale`
+- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor code-graph --scope=stale`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`**
@@ -1217,7 +1213,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
 
-The 10 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
