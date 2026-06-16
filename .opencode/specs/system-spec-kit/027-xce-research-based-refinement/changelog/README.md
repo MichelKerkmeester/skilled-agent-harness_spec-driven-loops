@@ -22,7 +22,7 @@ Spec 027 (xce-research-based-refinement) shipped its memory, doctrine, search, r
 | 002 memory store and search | 27 | 5 | [changelog-002-memory-store-and-search-root.md](./002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
 | 003 advisor and code graph | 11 | 2 | [changelog-003-advisor-and-codegraph-root.md](./003-advisor-and-codegraph/changelog-003-advisor-and-codegraph-root.md) |
 | 004 shared infrastructure | 32 | 7 | [changelog-004-shared-infrastructure-root.md](./004-shared-infrastructure/changelog-004-shared-infrastructure-root.md) |
-| 005 verification and remediation | 9 | 4 | [changelog-005-verification-and-remediation-root.md](./005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
+| 005 verification and remediation | 16 | 5 | [changelog-005-verification-and-remediation-root.md](./005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
 
 ## How to read these
 

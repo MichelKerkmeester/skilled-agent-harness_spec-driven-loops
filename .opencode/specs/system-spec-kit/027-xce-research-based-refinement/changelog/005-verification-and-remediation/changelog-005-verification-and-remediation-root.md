@@ -12,3 +12,4 @@ Top rollup for the `005-verification-and-remediation/` themed track. Each row li
 | `005-verification-and-remediation/002` tri system deep research (rollup) | [changelog-005-002-tri-system-deep-research-root.md](./changelog-005-002-tri-system-deep-research-root.md) |
 | `005-verification-and-remediation/003` deep research remediation (rollup) | [changelog-005-003-deep-research-remediation-root.md](./changelog-005-003-deep-research-remediation-root.md) |
 | `005-verification-and-remediation/004` residual design units | [changelog-005-004-residual-design-units.md](./changelog-005-004-residual-design-units.md) |
+| `005-verification-and-remediation/005` fresh-regression remediation (rollup) | [changelog-005-005-fresh-regression-remediation-root.md](./changelog-005-005-fresh-regression-remediation-root.md) |
