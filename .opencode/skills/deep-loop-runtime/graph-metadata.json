@@ -48,7 +48,13 @@
       }
     ],
     "conflicts_with": [],
-    "prerequisite_for": []
+    "prerequisite_for": [
+      {
+        "target": "deep-loop-workflows",
+        "weight": 0.8,
+        "context": "frozen MCP-free backend that deep-loop-workflows consumes for every mode"
+      }
+    ]
   },
   "manual": {
     "depends_on": [

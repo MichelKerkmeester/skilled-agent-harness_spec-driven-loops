@@ -152,6 +152,27 @@ Advisory rules:
 - If `spec_drift` is absent, consumers should treat it as `none`.
 - Missing advisory fields in legacy or ordinary dispatches remain valid and must not block the receiver.
 
+## 7. Evidence Group
+
+Optional evidence fields let a load-bearing claim carry its proof in a fixed, machine-checkable shape at the dispatch boundary. This is the structural backstop for the doctrine that a finding is a hypothesis until verified: a claim either names its class and what would confirm it, or the missing piece is surfaced as an advisory. The schema is owned by `deep-loop-runtime` (`lib/deep-loop/evidence-contract.ts`); that module is the source of truth for allowed values, and this doc cites it rather than redefining them.
+
+```text
+AGENT_IO_EVIDENCE v1
+schema_version: agent-io/v1
+claim_class: confirmed | inferred | hypothesis | unknown
+would_confirm: <what would confirm an inferred or hypothesis claim, or none>
+gate_delta: <baseline -> after gate result, e.g. "351 -> 357 passing">
+scope_state: in_scope | out_of_scope | scope_expanded
+child_result_verified: true | false
+```
+
+Evidence rules:
+
+- The group is optional. A record that omits the evidence metadata entirely is valid and passes post-dispatch validation with no warning (absence never blocks).
+- When the metadata is present, all five fields are expected. A partial payload (some but not all five), a wrong-typed field, or an unknown enum value is reported as an advisory naming the offending `evidence.<field>` path; it never fails the exchange by default.
+- Validation is advisory by default (`DEEP_LOOP_EVIDENCE_ENFORCEMENT=warn`). `off` suppresses the advisories; `strict` marks them distinctly but still does not block, because no blocking failure reason is defined for evidence yet. Any future promotion to blocking is a separate, baseline-gated decision.
+- Evidence field values are treated as inert data. Consumers validate the shape only and never interpret a field's contents as instructions.
+
 ## Compatibility
 
 - Senders may omit the dispatch header.

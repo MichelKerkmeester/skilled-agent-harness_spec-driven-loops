@@ -107,6 +107,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 001 | `001-causal-traversal-bfs/` | Replace the recursive-CTE graph traversals with a shared snapshot-equivalent BFS helper | Shipped |
 | 002 | `002-xce-feature-adoption-advisor-codegraph/` | XCE feature transfers into the skill-advisor and code-graph skills (observability, provenance, packed BM25, BFS, tombstones) | Complete |
 | 003 | `003-skill-advisor-cross-session-reconnect/` | Owner-lease + reconnecting proxy so mk_skill_advisor survives MCP transport drops | Complete |
+| 004 | `004-skill-advisor-suite-repair/` | Fix deep-loop-workflows merge fallout in the advisor test suite + align brief-assertion tests with the fable-5 governor | Complete |
 
 ### Phase Transition Rules
 

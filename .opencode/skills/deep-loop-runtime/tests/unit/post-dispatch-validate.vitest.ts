@@ -411,4 +411,88 @@ describe('post-dispatch-validate', () => {
       });
     });
   });
+
+  it('passes with no warning when a valid evidence contract is present', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+        evidence: {
+          claim_class: 'confirmed',
+          would_confirm: 'rerun the gate and read the exit code',
+          gate_delta: '351 -> 357 passing',
+          scope_state: 'in_scope',
+          child_result_verified: true,
+        },
+      };
+      writeFileSync(stateLogPath, `${'{"type":"event"}\n'}${JSON.stringify(record)}\n`, 'utf8');
+
+      const result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath,
+        previousStateLogSize: 0,
+        requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+      });
+
+      expect(result.ok).toBe(true);
+      const evidenceWarnings = (result.warnings ?? []).filter((w) => w.code.startsWith('evidence_contract'));
+      expect(evidenceWarnings).toHaveLength(0);
+    });
+  });
+
+  it('warns but stays ok:true when the evidence contract is malformed', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+        evidence: { claim_class: 'speculative', child_result_verified: 'yes' },
+      };
+      writeFileSync(stateLogPath, `${'{"type":"event"}\n'}${JSON.stringify(record)}\n`, 'utf8');
+
+      const result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath,
+        previousStateLogSize: 0,
+        requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+      });
+
+      expect(result.ok).toBe(true);
+      const evidenceWarnings = (result.warnings ?? []).filter((w) => w.code === 'evidence_contract_malformed');
+      expect(evidenceWarnings.length).toBeGreaterThan(0);
+      expect(evidenceWarnings.some((w) => w.fieldPath === 'evidence.claim_class')).toBe(true);
+    });
+  });
+
+  it('passes with no evidence warning when the metadata is absent (backward compatible)', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+      };
+      writeFileSync(stateLogPath, `${'{"type":"event"}\n'}${JSON.stringify(record)}\n`, 'utf8');
+
+      const result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath,
+        previousStateLogSize: 0,
+        requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+      });
+
+      expect(result.ok).toBe(true);
+      const evidenceWarnings = (result.warnings ?? []).filter((w) => w.code.startsWith('evidence_contract'));
+      expect(evidenceWarnings).toHaveLength(0);
+    });
+  });
 });

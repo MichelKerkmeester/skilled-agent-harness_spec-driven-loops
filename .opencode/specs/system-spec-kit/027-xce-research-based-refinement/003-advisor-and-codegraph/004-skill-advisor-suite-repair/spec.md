@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor [template:level_2/spec.md]"
-description: "The system-skill-advisor vitest suite had 61 pre-existing failures from the deep-loop-workflows skill merge plus 15 brief-assertion failures introduced by the always-appended fable-5 governor line. This packet repairs both so the package builds clean and the suite is green except for two evidenced out-of-scope clusters."
+description: "The system-skill-advisor vitest suite had 61 pre-existing failures from the deep-loop-workflows skill merge plus 15 brief-assertion failures introduced by the always-appended fable-5 governor line. This packet drives the suite to 0 failures: it first repaired the 26 scorer/governor failures, then retargeted the settings-parity test to the committed portable settings.json and added the missing reciprocal symmetry edges so graph-health passes."
 trigger_phrases:
   - "skill advisor test repair"
   - "deep-loop-workflows merge fallout"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair"
     last_updated_at: "2026-06-15T16:20:19Z"
     last_updated_by: "opus-agent"
-    recent_action: "Repaired 26 in-scope test failures; documented 36 out-of-scope failures with evidence"
-    next_safe_action: "None — work complete; out-of-scope clusters tracked for owner of external skill metadata + local hook settings"
+    recent_action: "Suite at 0 failures after settings-parity retarget and 3 reciprocal symmetry edges"
+    next_safe_action: "None — work complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py"
       - ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b8537e78ba6609f837e65eee4fbebe6ae01f793b376e311d2b2bd6ff69b387a1"
       session_id: "027-003-004-skill-advisor-suite-repair"
       parent_session_id: null
     completion_pct: 100
@@ -62,10 +62,10 @@ FAILURE MODES:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `system-skill-advisor/mcp_server` vitest suite reported 61 of 553 tests failing in the working tree. The dominant cause was the committed deep-loop merge (`ce9e313e7f`), which folded the five legacy deep-loop skills (`deep-context`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`) into one merged skill `deep-loop-workflows`, but left scorer fixtures, corpora, ledgers, the Python disambiguation layer, and the metadata-category allowlist still expecting the now-deleted legacy skill ids. Separately, an intentional `GOVERNOR_DIRECTIVE` capsule appended to every advisor brief in `lib/render.ts` broke ~15 brief-assertion tests that hard-coded the pre-governor brief string.
+The `system-skill-advisor/mcp_server` vitest suite reported 61 of 553 tests failing in the working tree. The dominant cause was the committed deep-loop merge (`ce9e313e7f`), which folded the five legacy deep-loop skills (`deep-context`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`) into one merged skill `deep-loop-workflows`, but left scorer fixtures, corpora, ledgers, the Python disambiguation layer, and the metadata-category allowlist still expecting the now-deleted legacy skill ids. Separately, an intentional `GOVERNOR_DIRECTIVE` capsule appended to every advisor brief in `lib/render.ts` broke ~15 brief-assertion tests that hard-coded the pre-governor brief string. After those 26 were fixed, 36 failures remained in two files: the settings-parity guard read the gitignored machine-local `.claude/settings.local.json` (which carries no hooks) instead of the committed `.claude/settings.json`, and the graph-health validator failed on three edge-symmetry asymmetries in external skill metadata.
 
 ### Purpose
-Make `npm run build` clean and the vitest suite green by fixing the deep-loop-merge fallout at the root and aligning the brief-assertion tests with the new governor line, without reverting the verified `render.ts` governor change.
+Drive the full vitest suite to 0 failures with `npm run build` clean: fix the deep-loop-merge fallout at the root, align the brief-assertion tests with the new governor line without reverting the verified `render.ts` governor, retarget the settings-parity guard to the committed portable `settings.json` it should actually validate, and add the missing reciprocal symmetry edges to the three external skill graph-metadata files.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -78,11 +78,14 @@ Make `npm run build` clean and the vitest suite green by fixing the deep-loop-me
 - Fix the Python `_apply_deep_research_disambiguation` so the margin contract targets the merged `deep-loop-workflows` id (legacy ids are gone) and update the corresponding Python compat assertions.
 - Extend the metadata-category allowlist in `skill_graph_compiler.py` to recognize the `workflow` and `design` categories carried by `deep-loop-workflows` and `sk-interface-design`.
 - Update the governor brief-assertion tests (renderer, brief-producer, claude/codex hook tests) to expect the appended fable-5 governor line.
+- Retarget `tests/hooks/settings-driven-invocation-parity.vitest.ts` to validate the committed `.claude/settings.json` (the shared source of truth) instead of the gitignored machine-local `settings.local.json`, and relax only the machine-specific assertions to accept the committed portable command form while preserving every real-contract guard.
+- Add the three missing reciprocal edges to external skill `graph-metadata.json` so `advisor-graph-health` (which runs `skill_graph_compiler.py --validate-only`) passes its symmetry gate.
 
 ### Out of Scope
 - The `render.ts` `GOVERNOR_DIRECTIVE` itself — verified-correct, must not be reverted.
-- `tests/hooks/settings-driven-invocation-parity.vitest.ts` (35 tests) — reads the gitignored machine-local `.claude/settings.local.json`, which holds only `permissions` here; the committed `.claude/settings.json` uses different command paths than the test's expected fragments. Both targets are outside `system-skill-advisor/**`.
-- `tests/legacy/advisor-graph-health.vitest.ts` (1 test) — the 3 residual edge-symmetry asymmetries live in external skill metadata (`deep-loop-runtime`, `mcp-code-mode`, `sk-prompt`, `deep-loop-workflows` graph-metadata.json), outside this package and off-limits.
+- Editing the actual hook wiring in `.claude/settings.json` beyond what a preserved test guard requires; the committed file already satisfied all preserved guards, so no config edit was needed.
+- The gitignored `.claude/settings.local.json` — left untouched (machine-local override).
+- The advisory WEIGHT-BAND / WEIGHT-PARITY warnings emitted by the graph validator — they do not gate validation; only the symmetry asymmetries were fixed.
 
 ### Files to Change
 
@@ -103,6 +106,10 @@ Make `npm run build` clean and the vitest suite green by fixing the deep-loop-me
 | `tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Modify | Expected context includes governor line |
 | `tests/hooks/codex-user-prompt-submit-hook.vitest.ts` | Modify | Expected context includes governor line |
 | `tests/hooks/codex-prompt-wrapper.vitest.ts` | Modify | Expected context includes governor line |
+| `tests/hooks/settings-driven-invocation-parity.vitest.ts` | Modify | Read committed `settings.json`; accept portable `cd "${CLAUDE_PROJECT_DIR:-$PWD}"` + bare-node command form; preserve all real-contract guards |
+| `../../../../deep-loop-runtime/graph-metadata.json` | Modify | Add reciprocal `prerequisite_for: deep-loop-workflows` |
+| `../../../../mcp-code-mode/graph-metadata.json` | Modify | Add reciprocal `prerequisite_for: mcp-figma` |
+| `../../../../deep-loop-workflows/graph-metadata.json` | Modify | Add reciprocal `siblings: sk-prompt` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,13 +124,14 @@ Make `npm run build` clean and the vitest suite green by fixing the deep-loop-me
 | REQ-001 | `npm run build` is clean | tsc build exits 0 |
 | REQ-002 | Deep-loop-merge scorer fallout fixed at the root | native-scorer, parity, corpus-parity, divergence-ratchet, lane-weight-sweep, cli-parity, python-compat tests pass |
 | REQ-003 | Governor brief-assertion tests updated | renderer, brief-producer, claude/codex hook tests pass with the appended governor line |
+| REQ-006 | Settings-parity guard validates the committed source of truth | Test reads `.claude/settings.json`; all 41 assertions pass; every real-contract guard preserved |
+| REQ-007 | Graph-health symmetry gate passes | `skill_graph_compiler.py --validate-only` exits 0 with `VALIDATION PASSED` and no SYMMETRY warnings |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Out-of-scope failures proven and documented | settings-parity + graph-health remain failing with file:line evidence that the cause is outside `system-skill-advisor/**` |
-| REQ-005 | No regressions introduced | Re-run shows 26 fewer failures and no newly-failing in-scope test |
+| REQ-005 | No regressions introduced | Re-run shows 0 failures and no newly-failing test versus the 36-failed re-baseline |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -131,7 +139,7 @@ Make `npm run build` clean and the vitest suite green by fixing the deep-loop-me
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: vitest failures drop from 61/553 to 36/553, with all 36 residuals confined to two evidenced out-of-scope files.
+- **SC-001**: vitest failures drop from 61/553 to 0/553 (61 to 36 in the first pass, then 36 to 0 in this extension).
 - **SC-002**: `npm run build` exits 0 and the verified `render.ts` governor remains untouched.
 <!-- /ANCHOR:success-criteria -->
 
@@ -145,6 +153,7 @@ Make `npm run build` clean and the vitest suite green by fixing the deep-loop-me
 | Dependency | Python `skill_advisor.py` scorer (drives parity + compat tests) | Margin/ledger drift if scorer changes | Re-baseline against captured current scorer output, not memory |
 | Risk | Re-baselining locked accuracy counts could mask a real regression | Med | Verified the +1 Python-correct row is a genuine merge improvement with 0 regressions and tsAlsoCorrect preserved |
 | Risk | Divergence-ratchet ledger regeneration could approve real drift | Med | Preserved unchanged entries' original reason/date; only new/changed entries carry the merge re-baseline reason |
+| Risk | Reciprocal `prerequisite_for mcp-figma` weight (0.7, in band) differs from the existing source `depends_on` weight (0.45, out of band), adding one advisory WEIGHT-PARITY warning | Low | WEIGHT-PARITY is advisory and does not gate validation; matching 0.45 would instead breach the `prerequisite_for` [0.7,1.0] band. Left the source weight untouched (minimal symmetric addition) |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -206,8 +215,8 @@ Make `npm run build` clean and the vitest suite green by fixing the deep-loop-me
 
 ## 10. OPEN QUESTIONS
 
-- Owner of `deep-loop-runtime` / `mcp-code-mode` / `sk-prompt` graph-metadata should add the reciprocal symmetry edges so `advisor-graph-health` can pass; out of scope here.
-- Owner of the Claude hook wiring should reconcile the test's `dist/hooks/claude/*.js` expected fragments with the committed `settings.json` command paths; out of scope here.
+- RESOLVED: the reciprocal symmetry edges were added to `deep-loop-runtime`, `mcp-code-mode`, and `deep-loop-workflows` graph-metadata; `advisor-graph-health` now passes.
+- RESOLVED: the settings-parity test now validates the committed `.claude/settings.json`. The earlier note that the committed paths would not match was incorrect; the committed command path `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/<event>.js` does contain the expected `dist/hooks/claude/*.js` fragment. The real mismatch was the absolute-`cd` + pinned-node assertions, now relaxed to the portable committed form.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -18,6 +18,11 @@
         "target": "mcp-click-up",
         "weight": 0.7,
         "context": "official ClickUp MCP invoked via Code Mode for advanced operations"
+      },
+      {
+        "target": "mcp-figma",
+        "weight": 0.7,
+        "context": "optional Figma MCP (Framelink) invoked via Code Mode when MCP context is needed"
       }
     ]
   },

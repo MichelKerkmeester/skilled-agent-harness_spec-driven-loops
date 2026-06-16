@@ -16,6 +16,7 @@ export type DispatchFailureReason =
   | 'crash'
   | 'missing_output'
   | 'invalid_output'
+  | 'model_mismatch'
   | 'other'
   | RecursionGuardFailureReason;
 
@@ -302,6 +303,85 @@ function killProcessGroup(pid: number | undefined, signal: NodeJS.Signals): void
     process.kill(process.platform === 'win32' ? pid : -pid, signal);
   } catch {
   }
+}
+
+// Compare model identities tolerant of trivial formatting so a casing or
+// whitespace difference is not mistaken for a substitution. A provider prefix
+// (provider/model) is kept verbatim, since two different providers serving a
+// same-named model are genuinely different provenance.
+function normalizeModelId(model: string): string {
+  return model.trim().toLowerCase();
+}
+
+// Extract the model an executor actually ran, but only where the CLI reliably
+// reports it on stdout. Returning null means "cannot tell" — the caller must
+// then skip the mismatch check rather than guess, so an unknown actual model is
+// never treated as a substitution. This is deliberately conservative: a false
+// loud failure would block a legitimate run.
+//
+// cli-opencode is the only kind whose stdout carries a machine-readable event
+// stream (`opencode run --format json`). Even there, a successful run's
+// step/text events may omit the model on some builds; this parser pulls a model
+// id only when an event actually surfaces one, otherwise returns null.
+// cli-codex / cli-claude-code / native do not reliably report the actual model
+// on stdout, so they always return null and are skipped.
+export function extractActualModel(stdout: string, kind: ExecutorKind): string | null {
+  if (kind !== 'cli-opencode') {
+    return null;
+  }
+
+  for (const rawLine of stdout.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (line === '' || line[0] !== '{') {
+      continue;
+    }
+
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    if (!isObjectRecord(parsed)) {
+      continue;
+    }
+
+    const model = readEventModelId(parsed);
+    if (model !== null) {
+      return model;
+    }
+  }
+
+  return null;
+}
+
+// Pull a model id from a single opencode JSON event, tolerant of the shapes
+// observed across builds: a top-level providerID/modelID pair, a nested
+// part.providerID/part.modelID pair, or a bare modelID/model field. Returns the
+// provider-qualified id when a provider is present, else the bare model id.
+function readEventModelId(event: Record<string, unknown>): string | null {
+  const sources: Array<Record<string, unknown>> = [event];
+  if (isObjectRecord(event.part)) {
+    sources.push(event.part);
+  }
+  if (isObjectRecord(event.info)) {
+    sources.push(event.info);
+  }
+
+  for (const source of sources) {
+    const modelId = pickString(source.modelID) ?? pickString(source.model);
+    if (modelId === null) {
+      continue;
+    }
+    const providerId = pickString(source.providerID);
+    return providerId !== null ? `${providerId}/${modelId}` : modelId;
+  }
+
+  return null;
+}
+
+function pickString(value: unknown): string | null {
+  return typeof value === 'string' && value.trim() !== '' ? value : null;
 }
 
 // ───── EXPORTS ─────
@@ -642,6 +722,33 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       `executor terminated by signal ${result.signal}`,
     );
     return 0;
+  }
+
+  // Provenance must not lie: a clean exit can fail loud when the model the CLI
+  // actually ran differs from the one the caller requested. DISABLED BY DEFAULT —
+  // current CLIs (the live opencode build) omit the model on a successful stream,
+  // so extractActualModel returns null and the check would never fire usefully.
+  // It is opt-in via SPECKIT_PROVENANCE_CHECK=1, ready to activate once a build
+  // surfaces the model on stdout. It fails safe regardless: an unknown actual
+  // model is skipped, never a false loud failure.
+  if (process.env.SPECKIT_PROVENANCE_CHECK === '1') {
+    const requestedModel = input.executor.model;
+    const actualModel = extractActualModel(typeof result.stdout === 'string' ? result.stdout : '', getExecutorKind(input.executor));
+    if (
+      actualModel !== null &&
+      typeof requestedModel === 'string' &&
+      requestedModel.trim() !== '' &&
+      normalizeModelId(actualModel) !== normalizeModelId(requestedModel)
+    ) {
+      emitDispatchFailure(
+        input.stateLogPath,
+        input.executor,
+        'model_mismatch',
+        input.iteration,
+        `requested model ${requestedModel} but executor ran ${actualModel}`,
+      );
+      return 0;
+    }
   }
 
   return 0;

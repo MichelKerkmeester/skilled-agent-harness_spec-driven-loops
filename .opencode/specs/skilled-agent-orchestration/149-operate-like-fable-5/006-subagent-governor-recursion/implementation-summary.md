@@ -10,19 +10,24 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-subagent-governor-recursion"
-    last_updated_at: "2026-06-15T14:06:38Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "skilled-agent-orchestration/149-operate-like-fable-5/006-subagent-governor-recursion"
+    last_updated_at: "2026-06-15T14:15:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped recursion-control, executor-config field, deep-loop agent injection"
+    next_safe_action: "Phase 006 core done; implement phase 007 next"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/constitutional/recursion-control.md"
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/agents/deep-research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/006-subagent-governor-recursion"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 90
+    open_questions:
+      - "prompt-pack {governor_block} deferred: renderPromptPack has no prod caller; wire when the dispatch renderer is identified"
+      - "governor injection beyond the 3 deep-loop agents is a follow-up"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -39,8 +44,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-subagent-governor-recursion |
-| **Status** | PLANNED |
-| **Completed** | Pending implementation |
+| **Status** | Complete |
+| **Completed** | 2026-06-15 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -57,9 +62,19 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-Pending implementation — see plan.md / tasks.md. This phase opens the subagent-visible governor channel so deep-loop iterations and dispatched agents operate under the fable-5 efficiency doctrine that the per-turn hook cannot reach, and adds a recursion-control rule to damp the xhigh anxiety loop.
+Opened the subagent-visible governor channel and added the recursion-control rule, so deep-loop iterations and dispatched sub-agents operate under the fable-5 efficiency doctrine the per-turn hook cannot reach.
 
-Target files: `.opencode/skills/system-spec-kit/constitutional/recursion-control.md` (create), `.opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts`, `.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl`, `.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl`, `.opencode/agents/*.md` (canonical source; mirrored to `.claude/agents/*.md` and `.codex/agents/*.toml` via `.github/workflows/agent-mirror-sync.yml`), `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`, and `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts`.
+### Recursion-control rule
+`.opencode/skills/system-spec-kit/constitutional/recursion-control.md` (created) — the model-family layer for high-reasoning-effort executors: reason-about-the-problem-not-yourself, audit-depth-limit-1, the extended-thinking caption test, the beautiful-dead-end guardrail; links the base `fable-governor` capsule.
+
+### Sub-agent governor injection (the real subagent channel)
+The per-turn hook is subagent-blind, so the governor was injected directly into the three deep-loop LEAF agent prompts — `deep-research`, `deep-review`, `deep-context` — across all three runtime representations (`.opencode/agents/*.md`, `.claude/agents/*.md`, `.codex/agents/*.toml`), kept byte-consistent so the `check-agent-mirror-sync` drift gate passes ("all mirrors in sync — OK").
+
+### executor-config governor affordance
+A universal, kind-agnostic optional `governor` field was added to `executorConfigSchema` (intentionally outside `EXECUTOR_KIND_FLAG_SUPPORT` so any kind may carry it), inherited by the lineage/fanout schemas, with present/absent/malformed coverage. The deep-loop-runtime suite is green at 351/351 (349 + 2 new, no regression).
+
+### Deferred with evidence: prompt-pack `{governor_block}`
+Mapping the deep-loop dispatch variable-supply path showed `renderPromptPack` has no production caller (only its unit test) and `buildLoopPrompt` builds the lineage prompt without it — the iteration templates' live renderer is YAML/agent-runtime, not a TS function. Adding a `{governor_block}` token would be either a no-op (routed through the unused `renderPromptPack`) or a live-render hazard (a required token the runtime renderer may not supply). Deferred until the dispatch renderer is the wiring point; the agent-prompt injection already delivers the subagent governor.
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -213,6 +213,14 @@ Top intent always loads. A close second intent also loads when scores are within
 | OPENCODE | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>`, plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
 
+### Verification Rituals
+
+Apply these alongside the commands above, scaled to blast radius:
+
+- **Mutation check / claim-falsifier (after green).** A passing test proves nothing until you have seen it fail for the right reason. After green, break the production code the test guards, confirm that specific test fails, then restore. Distinguish **true-RED** (the assertion fails against correct intent) from **compile-RED** (the suite never compiled or ran — not a satisfying RED). A test that stays green when you break the thing it guards is a vacuous test — a defect, not coverage.
+- **Verification ladder — name each rung's blind spot.** Climb cheapest→most authoritative and state in advance what each rung CANNOT see: **unit** (integration/wiring unseen) → **in-memory** (real I/O and serialization unseen) → **on-server** (deployment/config/env-specific behavior unseen) → **live** (only proves the exact path actually exercised). In-memory-green is not production-green. Rung mapping: WEBFLOW climbs unit → headless/browser-console evidence; OPENCODE climbs unit (vitest/pytest) → real-file / spec validation → live CLI/daemon run.
+- **Decision economy + fail-closed by construction.** Leave a **named seam with a closing condition**, never a bare TODO and never a dead control (a flag or branch that does nothing). Prefer a **structural invariant** — the wrong state cannot be represented, or compiles to an error — over a disciplinary reminder asking future readers to be careful.
+
 ### Smart Router Pseudocode
 
 Smart Router pseudocode (full implementation): see [`references/smart_routing.md`](./references/smart_routing.md) for the authoritative `INTENT_MODEL`, `RESOURCE_MAP`, load tiers, and surface→intent routing logic.

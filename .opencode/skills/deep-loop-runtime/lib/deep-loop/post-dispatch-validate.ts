@@ -2,6 +2,7 @@
 
 import { existsSync, readFileSync, statSync } from 'node:fs';
 
+import { validateEvidenceContract } from './evidence-contract.js';
 import type { ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
 
@@ -266,6 +267,33 @@ function getV2EnforcementMode(): V2EnforcementMode {
     return raw;
   }
   return 'warn';
+}
+
+// The evidence contract defaults to advisory: malformed metadata warns, absent
+// metadata is silent, and only an explicit strict opt-in turns it into a hard
+// failure. This mirrors the v2 off/warn/strict pattern so operators tune it the
+// same way; the default keeps every legacy exchange passing.
+function getEvidenceEnforcementMode(): V2EnforcementMode {
+  const raw = process.env.DEEP_LOOP_EVIDENCE_ENFORCEMENT?.trim().toLowerCase();
+  if (raw === 'strict' || raw === 'off' || raw === 'warn') {
+    return raw;
+  }
+  return 'warn';
+}
+
+// Turn an evidence-contract validation into advisory warnings. Absent and
+// well-formed payloads produce nothing; a malformed payload produces one
+// advisory per offending field path. Never throws, never blocks.
+function evidenceAdvisories(record: Record<string, unknown>): PostDispatchAdvisory[] {
+  const validation = validateEvidenceContract(record.evidence);
+  if (validation.status !== 'malformed') {
+    return [];
+  }
+  return validation.issues.map((issue) => ({
+    code: 'evidence_contract_malformed',
+    detail: issue.detail,
+    fieldPath: `evidence.${issue.fieldPath}`,
+  }));
 }
 
 function isLegacyNonTrivialReviewRecord(record: Record<string, unknown>): boolean {
@@ -711,6 +739,24 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
           });
           warnings.push(...warningsFromV2Failures(v2Failures));
         }
+      }
+    }
+
+    // Optional evidence contract: malformed metadata warns, absent metadata is
+    // silent, and the verdict stays ok:true so a legacy exchange that omits the
+    // metadata still passes. No new blocking failure reason is introduced; the
+    // strict opt-in marks the advisory without rejecting the exchange.
+    if (getEvidenceEnforcementMode() !== 'off') {
+      const evidenceWarnings = evidenceAdvisories(parsedRecord);
+      if (evidenceWarnings.length > 0) {
+        if (getEvidenceEnforcementMode() === 'strict') {
+          warnings.push({
+            code: 'evidence_contract_strict_unenforced',
+            detail: 'DEEP_LOOP_EVIDENCE_ENFORCEMENT=strict surfaced malformed evidence as advisories; no blocking reason is defined yet',
+            fieldPath: 'evidence',
+          });
+        }
+        warnings.push(...evidenceWarnings);
       }
     }
 

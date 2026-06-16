@@ -41,8 +41,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-06-15 |
+| **Status** | Accepted |
+| **Date** | 2026-06-16 |
 | **Deciders** | Packet owner |
 
 ---

@@ -13,14 +13,14 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/149-operate-like-fable-5"
     last_updated_at: "2026-06-15T13:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Implemented + verified phase 004 (doctrine quick-wins)"
-    next_safe_action: "Implement phase 005 (governor capsule on hook) next"
+    recent_action: "All 7 implementation phases (003-009) shipped + verified"
+    next_safe_action: "Implementation complete; ready for owner review and commit"
     blockers: []
     key_files:
       - "spec.md"
       - "description.json"
       - "graph-metadata.json"
-    completion_pct: 49
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -92,7 +92,7 @@ Get our AIs, and any AI operating in this framework, closer to fable-5 *efficien
 
 > Rounds 001–002 are the research arc (shipped doctrine + 6-lineage research). Phases 003–009 are the
 > implementation arc derived from `002/recommendations.md`, ordered structural-first (measure → enforce →
-> govern → rituals → dedicated). Each is planned; none is implemented yet.
+> govern → rituals → dedicated). Phases 003-009 are all implemented and verified.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
@@ -100,11 +100,11 @@ Get our AIs, and any AI operating in this framework, closer to fable-5 *efficien
 | 002 | `002-fable-mode-efficiency-research/` | Round 2–4 — 6-lineage deep research mapping every adjustable surface; ranked, tiered recommendation map (`recommendations.md`) | complete |
 | 003 | `003-measurement-baseline/` | C1 fable-metrics script + C2 non-blocking advisories + C3 `/doctor` delivery — ships first to baseline behavior | complete |
 | 004 | `004-doctrine-quick-wins/` | A1 dead-pointer fix + pointer-resolution check, A2 efficiency doctrine spine, A3 scar-tissue handoff | complete |
-| 005 | `005-governor-capsule-hook/` | B2 compact fable-5 governor capsule on the live per-turn skill-advisor hook | planned |
-| 006 | `006-subagent-governor-recursion/` | B3 sub-agent governor via prompt-pack + agent prompts, rec#3 recursion-control rule, B6 executor-config governor field | planned |
-| 007 | `007-sk-code-rituals/` | B4 mutation-check + B5 verification ladder + rec#11 decision-economy / fail-closed into sk-code | planned |
-| 008 | `008-fail-loud-provenance/` | B1 (=P2) requested-vs-actual model diff + fail-loud in the executor audit | planned |
-| 009 | `009-evidence-contract/` | P1 machine-checkable evidence-contract schema in post-dispatch-validate + agent-io-contract | planned |
+| 005 | `005-governor-capsule-hook/` | B2 compact fable-5 governor capsule on the live per-turn skill-advisor hook | complete |
+| 006 | `006-subagent-governor-recursion/` | B3 sub-agent governor via prompt-pack + agent prompts, rec#3 recursion-control rule, B6 executor-config governor field | complete |
+| 007 | `007-sk-code-rituals/` | B4 mutation-check + B5 verification ladder + rec#11 decision-economy / fail-closed into sk-code | complete |
+| 008 | `008-fail-loud-provenance/` | B1 (=P2) requested-vs-actual model diff + fail-loud in the executor audit | complete |
+| 009 | `009-evidence-contract/` | P1 machine-checkable evidence-contract schema in post-dispatch-validate + agent-io-contract | complete |
 
 ### Phase Transition Rules
 

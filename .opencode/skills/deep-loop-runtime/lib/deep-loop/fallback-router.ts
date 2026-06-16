@@ -34,11 +34,24 @@ function findModel(registry: ModelRegistry, modelId: string): ModelProfile | und
  * Checks whether the failed model has a configured fallback target in a
  * different quota pool and returns the appropriate route.
  *
+ * The optional approval set closes the substitution gap: routing only ever
+ * resolves to a model the caller approved. The configured `fallback_target` is
+ * the approved route by definition, so the guard rejects only a target the
+ * caller never sanctioned, and never the legitimate cross-pool fallback. When
+ * the set is omitted, the configured target is treated as approved (existing
+ * behavior), so this is additive.
+ *
  * @param failedModelId - The model ID that failed.
  * @param registry - The model registry with fallback configurations.
+ * @param approvedModelIds - Optional set of model IDs the caller approved; when
+ *   provided, a target outside the set returns fail-fast instead of routing.
  * @returns A route indicating whether to fallback or fail-fast, with a reason.
  */
-export function resolveFallback(failedModelId: string, registry: ModelRegistry): FallbackRoute {
+export function resolveFallback(
+  failedModelId: string,
+  registry: ModelRegistry,
+  approvedModelIds?: readonly string[],
+): FallbackRoute {
   const failedModel = findModel(registry, failedModelId);
   if (failedModel === undefined) {
     return {
@@ -66,6 +79,13 @@ export function resolveFallback(failedModelId: string, registry: ModelRegistry):
     return {
       action: 'fail-fast',
       reason: `${failedModel.quota_pool} pool exhausted, fallback target ${targetModel.id} shares the same pool; same-pool fallback rejected`,
+    };
+  }
+
+  if (approvedModelIds !== undefined && !approvedModelIds.includes(targetModel.id)) {
+    return {
+      action: 'fail-fast',
+      reason: `${failedModel.quota_pool} pool exhausted, fallback target ${targetModel.id} is not in the caller-approved model set; unapproved substitution rejected`,
     };
   }
 

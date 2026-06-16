@@ -52,9 +52,9 @@ _memory:
 
 Setup here means baseline capture and seam confirmation; no scaffolding is needed since the runtime module and vitest harness already exist.
 
-- [ ] T001 Run the baseline suite green before any edit: `executor-audit.vitest.ts`, `fallback-router.vitest.ts`, `dispatch-failure.vitest.ts` (`.opencode/skills/deep-loop-runtime/tests/unit/`). Verify: all pass.
-- [ ] T002 Confirm the recording seam and types in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts` (`buildExecutorAuditRecord` ~485, `DispatchFailureReason`, `emitDispatchFailure`). Verify: `rg -n 'buildExecutorAuditRecord|DispatchFailureReason|emitDispatchFailure'`.
-- [ ] T003 [P] Confirm `resolveFallback` in `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts` branches only on quota-pool, not model approval. Verify: read + `rg -n 'fail-fast|fallback_target'`.
+- [x] T001 Run the baseline suite green before any edit: `executor-audit.vitest.ts`, `fallback-router.vitest.ts`, `dispatch-failure.vitest.ts` (`.opencode/skills/deep-loop-runtime/tests/unit/`). Verify: all pass.
+- [x] T002 Confirm the recording seam and types in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts` (`buildExecutorAuditRecord` ~485, `DispatchFailureReason`, `emitDispatchFailure`). Verify: `rg -n 'buildExecutorAuditRecord|DispatchFailureReason|emitDispatchFailure'`.
+- [x] T003 [P] Confirm `resolveFallback` in `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts` branches only on quota-pool, not model approval. Verify: read + `rg -n 'fail-fast|fallback_target'`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,10 +62,10 @@ Setup here means baseline capture and seam confirmation; no scaffolding is neede
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add a `model_mismatch` member to the `DispatchFailureReason` union (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: type-checks; `rg -n 'model_mismatch'` shows it in the union. (REQ-005)
-- [ ] T005 Add the requested-vs-actual comparison at the provenance-recording point: compare the recorded actual model to the caller-approved model (normalized), skip on native kind (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: new vitest match case writes the record, native case skips. (REQ-002)
-- [ ] T006 On mismatch, call `emitDispatchFailure(..., 'model_mismatch', ...)` instead of writing a success record (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: new vitest mismatch case emits a `dispatch_failure` with reason `model_mismatch` and writes no success record. (REQ-001)
-- [ ] T007 Add the guard in `resolveFallback` so it never routes to an unapproved model while preserving the configured `fallback_target` route (`.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts`). Verify: new vitest unapproved case returns `fail-fast`; `fallback-router.vitest.ts` stays green. (REQ-003)
+- [x] T004 Add a `model_mismatch` member to the `DispatchFailureReason` union (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: type-checks; `rg -n 'model_mismatch'` shows it in the union. (REQ-005)
+- [x] T005 Add the requested-vs-actual comparison at the provenance-recording point: compare the recorded actual model to the caller-approved model (normalized), skip on native kind (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: new vitest match case writes the record, native case skips. (REQ-002)
+- [x] T006 On mismatch, call `emitDispatchFailure(..., 'model_mismatch', ...)` instead of writing a success record (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: new vitest mismatch case emits a `dispatch_failure` with reason `model_mismatch` and writes no success record. (REQ-001)
+- [x] T007 Add the guard in `resolveFallback` so it never routes to an unapproved model while preserving the configured `fallback_target` route (`.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts`). Verify: new vitest unapproved case returns `fail-fast`; `fallback-router.vitest.ts` stays green. (REQ-003)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,10 +73,10 @@ Setup here means baseline capture and seam confirmation; no scaffolding is neede
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Create `executor-provenance-mismatch.vitest.ts` covering mismatch-loud, match-pass, native-skip, approved-fallback-pass, unapproved-substitution-fail-fast (`.opencode/skills/deep-loop-runtime/tests/unit/`). Verify: `npx vitest run tests/unit/executor-provenance-mismatch.vitest.ts` passes. (REQ-001, REQ-002, REQ-003)
-- [ ] T009 Confirm the crash path stays loud: a lost-provenance crash routes through `emitDispatchFailure` with `crash`, never a silent return (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: `rg -n "'crash'"` plus vitest or read of the close/error handlers. (REQ-004)
-- [ ] T010 Mutation check: temporarily revert the comparison, confirm the mismatch test goes RED, then restore. Verify: test bites (true-RED), not vacuous green.
-- [ ] T011 Run the full skill vitest suite and `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/008-fail-loud-provenance --strict`; sync spec/plan/tasks/checklist. Verify: green suite + clean validator.
+- [x] T008 Create `executor-provenance-mismatch.vitest.ts` covering mismatch-loud, match-pass, native-skip, approved-fallback-pass, unapproved-substitution-fail-fast (`.opencode/skills/deep-loop-runtime/tests/unit/`). Verify: `npx vitest run tests/unit/executor-provenance-mismatch.vitest.ts` passes. (REQ-001, REQ-002, REQ-003)
+- [x] T009 Confirm the crash path stays loud: a lost-provenance crash routes through `emitDispatchFailure` with `crash`, never a silent return (`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`). Verify: `rg -n "'crash'"` plus vitest or read of the close/error handlers. (REQ-004)
+- [x] T010 Mutation check: temporarily revert the comparison, confirm the mismatch test goes RED, then restore. Verify: test bites (true-RED), not vacuous green.
+- [x] T011 Run the full skill vitest suite and `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/008-fail-loud-provenance --strict`; sync spec/plan/tasks/checklist. Verify: green suite + clean validator.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -84,9 +84,9 @@ Setup here means baseline capture and seam confirmation; no scaffolding is neede
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

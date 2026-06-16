@@ -11,14 +11,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair"
-    last_updated_at: "2026-06-15T16:20:19Z"
+    last_updated_at: "2026-06-15T19:00:00Z"
     last_updated_by: "opus-agent"
-    recent_action: "All P0/P1 checklist items verified with evidence"
+    recent_action: "All checklist items verified; suite at 0 failed/553 after second-pass fixes"
     next_safe_action: "None — complete"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:eed3ec5f4dd583b35b357a24514f16534811a6fe418dd63dd74edddf5bd8b2ba"
       session_id: "027-003-004-skill-advisor-suite-repair"
       parent_session_id: null
     completion_pct: 100
@@ -65,7 +65,7 @@ FAILURE MODES:
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes build — `npm run build` exits 0
-- [x] CHK-011 [P0] No new console errors/warnings — re-run shows only 2 evidenced out-of-scope files failing
+- [x] CHK-011 [P0] No new console errors/warnings — final re-run shows 0 failed / 548 passed / 5 skipped (553)
 - [x] CHK-012 [P1] Error handling preserved — disambiguation falls back to legacy id when merged node absent
 - [x] CHK-013 [P1] Follows project patterns — test helpers/constants updated in place; no new abstractions
 <!-- /ANCHOR:code-quality -->
@@ -75,8 +75,8 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Acceptance criteria met — REQ-001..003 verified (build clean; scorer + governor tests green)
-- [x] CHK-021 [P0] Verification complete — full `npx vitest run`: 36 failed / 553 (was 61)
+- [x] CHK-020 [P0] Acceptance criteria met — REQ-001..003,006,007 verified (build clean; scorer + governor green; settings-parity 41/41; graph validate-only exit 0)
+- [x] CHK-021 [P0] Verification complete — full `npx vitest run`: 0 failed / 553 (was 61, then 36)
 - [x] CHK-022 [P1] Edge cases tested — token-cap excludes governor suffix; ambiguous brief length check excludes suffix
 - [x] CHK-023 [P1] Error scenarios validated — Python-required gate fails loudly; merged-id fallback exercised
 <!-- /ANCHOR:testing -->
@@ -93,6 +93,8 @@ FAILURE MODES:
 - [x] CHK-FIX-005 [P1] Matrix axes listed — corpus(labeled,harder) x scorer(python,ts); ledger rules a/b/c/d/e all pass.
 - [x] CHK-FIX-006 [P1] Process-state variant — ledger/parity tests run under frozen native env + forced-local Python; launcher flake noted as pre-existing parallel-state.
 - [x] CHK-FIX-007 [P1] Evidence pinned — counts from captured baseline vs post-fix full runs on this working tree.
+- [x] CHK-FIX-008 [P0] Second-pass diagnoses re-verified against real code — settings-parity confirmed reading `settings.local.json` (no hooks) while committed `settings.json` carries all four events; graph-health confirmed SYMMETRY gates (read `validate_edge_symmetry` + CLI error-count block) while WEIGHT-BAND/PARITY do not.
+- [x] CHK-FIX-009 [P0] Preserved guards intact — settings-parity retains the four events, single-element matcher arrays, matcher string, no top-level bash, inner type command, claude-adapter fragments, no copilot/codex, SessionStart worktree-guard, Stop async + 10s floor; only the absolute-anchor/pinned-node assertion was relaxed to the portable form.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -110,8 +112,8 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized — all reflect the same 14 changed files and counts
-- [x] CHK-041 [P1] Code comments adequate — durable WHY added at disambiguation + category allowlist; no ephemeral ids
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized — all reflect the full 18 changed files and the 61 to 36 to 0 counts
+- [x] CHK-041 [P1] Code comments adequate — durable WHY added at disambiguation + category allowlist + settings-parity portable-form rationale; no ephemeral ids (baseline grep clean)
 - [x] CHK-042 [P2] README updated — not applicable
 <!-- /ANCHOR:docs -->
 
@@ -131,7 +133,7 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 11/11 |
+| P0 Items | 13 | 13/13 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 2 | 2/2 |
 

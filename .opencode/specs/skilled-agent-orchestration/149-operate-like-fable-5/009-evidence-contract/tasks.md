@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Define the five fields and allowed values (`.opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts`). Verify: `grep -n "claim_class\|would_confirm\|gate_delta\|scope_state\|child_result_verified"` returns all five.
-- [ ] T002 Implement and export `validateEvidenceContract` returning present / absent / malformed plus field detail (`.opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts`). Verify: TypeScript type-check passes.
-- [ ] T003 [P] Write present / absent / malformed unit cases (`.opencode/skills/deep-loop-runtime/tests/unit/evidence-contract.vitest.ts`). Verify: `vitest` green.
+- [x] T001 Define the five fields and allowed values (`.opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts`). Verify: `grep -n "claim_class\|would_confirm\|gate_delta\|scope_state\|child_result_verified"` returns all five.
+- [x] T002 Implement and export `validateEvidenceContract` returning present / absent / malformed plus field detail (`.opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts`). Verify: TypeScript type-check passes.
+- [x] T003 [P] Write present / absent / malformed unit cases (`.opencode/skills/deep-loop-runtime/tests/unit/evidence-contract.vitest.ts`). Verify: `vitest` green.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +60,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Import and call `validateEvidenceContract` in the iteration/agent validation path (`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts`). Verify: malformed metadata produces a `PostDispatchAdvisory`.
-- [ ] T005 Map a `malformed` result to advisory `warnings`, introducing no new `PostDispatchFailureReason` (`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts`). Verify: `grep` confirms no new failure reason added.
-- [ ] T006 Add a warn-not-fail case for malformed evidence (`.opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts`). Verify: `result.ok === true` with a populated `warnings` array.
-- [ ] T007 Add an absent-stays-green regression case (`.opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts`). Verify: `result.ok === true` with no evidence warning.
+- [x] T004 Import and call `validateEvidenceContract` in the iteration/agent validation path (`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts`). Verify: malformed metadata produces a `PostDispatchAdvisory`.
+- [x] T005 Map a `malformed` result to advisory `warnings`, introducing no new `PostDispatchFailureReason` (`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts`). Verify: `grep` confirms no new failure reason added.
+- [x] T006 Add a warn-not-fail case for malformed evidence (`.opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts`). Verify: `result.ok === true` with a populated `warnings` array.
+- [x] T007 Add an absent-stays-green regression case (`.opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts`). Verify: `result.ok === true` with no evidence warning.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Add the `AGENT_IO_EVIDENCE v1` optional group with the five fields and the absence-never-blocks rule (`.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`). Verify: doc grep shows the new group.
-- [ ] T009 Run the full `vitest` suite for `evidence-contract` and `post-dispatch-validate`. Verify: all suites green.
-- [ ] T010 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`. Verify: exit 0.
+- [x] T008 Add the `AGENT_IO_EVIDENCE v1` optional group with the five fields and the absence-never-blocks rule (`.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`). Verify: doc grep shows the new group.
+- [x] T009 Run the full `vitest` suite for `evidence-contract` and `post-dispatch-validate`. Verify: all suites green.
+- [x] T010 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`. Verify: exit 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

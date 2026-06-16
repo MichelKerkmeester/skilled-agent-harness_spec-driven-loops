@@ -30,6 +30,11 @@
         "target": "deep-loop-runtime",
         "weight": 0.7,
         "context": "the backend peer in the deep-loop family"
+      },
+      {
+        "target": "sk-prompt",
+        "weight": 0.4,
+        "context": "improvement utility peer"
       }
     ],
     "conflicts_with": [],

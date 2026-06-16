@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/149-operate-like-fable-5/005-governor-capsule-hook"
-    last_updated_at: "2026-06-15T14:06:37Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored planning docs"
-    next_safe_action: "Implement per plan.md"
+    last_updated_at: "2026-06-15T14:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped + verified governor capsule; phase 005 complete"
+    next_safe_action: "Phase 005 done; finish phase 006"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/constitutional/fable-governor.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-skilled-agent-orchestration/149-operate-like-fable-5/005-governor-capsule-hook"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,8 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-governor-capsule-hook |
-| **Status** | PLANNED |
-| **Completed** | Pending implementation |
+| **Status** | Complete |
+| **Completed** | 2026-06-15 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -58,11 +58,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-Pending implementation — see `plan.md` / `tasks.md`. This phase is PLANNED, not yet built. Target files: `.opencode/skills/system-spec-kit/constitutional/fable-governor.md` (create) and `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts` (edit + rebuild).
+Shipped the compact fable-5 governor capsule. Target files: `.opencode/skills/system-spec-kit/constitutional/fable-governor.md` (created — the durable doctrine record) and `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts` (edited + rebuilt).
 
-### Governor capsule on the per-turn reminder (planned)
+### Governor capsule on the per-turn reminder
 
-When built, you will see a compact ~90-word, 4-rule fable-5 governor capsule re-asserted on every turn in the skill-advisor reminder, riding the same emission that already carries the comment-hygiene directive. The rules are generic (reason about the problem not yourself; outcome over visible process; commit and move with `// DECISION:`; minimum honest qualifier) and inherit the G4 honesty guardrail so the capsule steers efficiency, not capability. The capsule turns the efficiency doctrine from a decaying cold-surface setpoint into a live per-turn thermostat across the Claude, Codex, and OpenCode hook carriers.
+A compact ~90-word, 4-rule fable-5 governor capsule is now re-asserted on every turn in the skill-advisor reminder, riding the same emission that already carries the comment-hygiene directive — verified live (the hook emits the capsule this session). The rules are generic (reason about the problem not yourself; outcome over visible process; commit and move with `// DECISION:`; minimum honest qualifier) and inherit the G4 honesty guardrail so the capsule steers efficiency, not capability. `GOVERNOR_DIRECTIVE` is appended after `capText(...)` so it is verdict-neutral and never truncated; the brief-assertion tests were realigned and the full advisor suite is green (548 passing). The capsule turns the efficiency doctrine from a decaying cold-surface setpoint into a live per-turn thermostat across the Claude, Codex, and OpenCode hook carriers.
 
 ### Files Changed (planned)
 

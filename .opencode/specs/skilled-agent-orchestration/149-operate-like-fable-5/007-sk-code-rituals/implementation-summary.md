@@ -10,18 +10,19 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-sk-code-rituals"
-    last_updated_at: "2026-06-15T14:06:39Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "skilled-agent-orchestration/149-operate-like-fable-5/007-sk-code-rituals"
+    last_updated_at: "2026-06-15T14:25:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped sk-code verification rituals; phase 007 complete"
+    next_safe_action: "Phase 007 done; implement phase 008 next"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-code/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/007-sk-code-rituals"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,8 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-sk-code-rituals |
-| **Status** | PLANNED |
-| **Completed** | Not yet - planning only |
+| **Status** | Complete |
+| **Completed** | 2026-06-15 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -57,17 +58,22 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-Pending implementation - see `plan.md` / `tasks.md`. This phase is PLANNED, not built. Target files: `.opencode/skills/sk-code/SKILL.md` (verification section: add the mutation-check / claim-falsifier ritual, the unit -> in-memory -> on-server -> live ladder with each rung's blind spot named, and the decision-economy + fail-closed-by-construction doctrine), and optionally `.opencode/skills/system-spec-kit/constitutional/decision-economy.md` and `.opencode/skills/system-spec-kit/constitutional/fail-closed-by-construction.md` (plus `.opencode/skills/system-spec-kit/constitutional/README.md`) if the owner promotes the doctrine to always-surfacing rules (OQ-1).
+Added a **Verification Rituals** subsection to `.opencode/skills/sk-code/SKILL.md` (in the verification section; 8 lines, confined — smart-router behavior unchanged, confirmed by `git diff`):
+- **B4 — mutation-check / claim-falsifier**: after green, break the guarded code and confirm that test fails; distinguish true-RED from compile-RED; a green-but-vacuous test is a defect, not coverage.
+- **B5 — verification ladder** (unit → in-memory → on-server → live) with each rung's blind spot named in advance, plus the WEBFLOW/OPENCODE rung mapping.
+- **rec #11 — decision-economy + fail-closed by construction**: a named seam with a closing condition (never a bare TODO or dead control); structural invariants over disciplinary reminders.
 
-### Planned: Mutation-check / claim-falsifier ritual (rec B4)
+The constitutional promotion of decision-economy / fail-closed (OQ-1) is left as an owner-gated follow-up. `validate.sh --strict` passes on this folder.
+
+### Mutation-check / claim-falsifier ritual (rec B4)
 
 Once built, the `sk-code` verification guidance will tell you to break the production code after a green run and confirm the test fails, so a green is treated as evidence only after it has bitten. It distinguishes true-RED (the assertion fails against correct intent) from compile-RED (the suite never compiled or ran), which is the cheapest place to kill the most expensive failure class: a green-but-vacuous test.
 
-### Planned: Verification ladder with named blind spots (rec B5)
+### Verification ladder with named blind spots (rec B5)
 
 The guidance will add a unit -> in-memory -> on-server -> live ladder, naming what each rung leaves unproven, so you stop claiming "works" at the rung that never exercised the failing path.
 
-### Planned: Decision-economy + fail-closed-by-construction doctrine (rec #11 / B5)
+### Decision-economy + fail-closed-by-construction doctrine (rec #11 / B5)
 
 The guidance will replace bare `TODO`s with named seams that carry a closing condition, forbid dead controls, and prefer structural invariants over disciplinary reminders.
 
