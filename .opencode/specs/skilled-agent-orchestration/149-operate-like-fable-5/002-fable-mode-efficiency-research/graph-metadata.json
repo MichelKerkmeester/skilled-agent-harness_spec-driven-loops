@@ -39,19 +39,37 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "research/fanout-attribution.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "research/research.md",
       "spec.md",
-      "research/deep-research-findings-registry.json",
-      "research/fanout-attribution.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -77,27 +95,9 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-findings-registry.json",
-        "kind": "config",
-        "path": "research/deep-research-findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-attribution.md",
-        "kind": "doc",
-        "path": "research/fanout-attribution.md",
         "source": "derived"
       },
       {
@@ -125,12 +125,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -138,6 +132,12 @@
       },
       {
         "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Round 1 distributed the distilled `Fable5.md` doctrine via a surgical set (now in `149/001-initial-refinement`). Round 2 is a deep-research round over two new, mechanism-rich sources (`external/fable-mode-main/` — a 62KB forensic behavioral profile + `/fable-mode` command; `external/opus-fable-mode-main/` — a CLAUDE.md governor + a `UserPromptSubmit` reinject hook + a `leak_test.py` measurement harness + Opus recursion-control) to find **every adjustable Public-repo surface** and the **optimizations** that move our AIs — any AI — toward fable-5 *efficiency*.",
     "created_at": "2026-06-15T09:00:05Z",
-    "last_save_at": "2026-06-15T14:22:43.314Z",
+    "last_save_at": "2026-06-16T06:06:34.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

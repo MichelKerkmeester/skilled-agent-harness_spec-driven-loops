@@ -39,41 +39,22 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "plan.md",
-      "tasks.md",
       ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/system-spec-kit/constitutional/README.md",
       "checklist.md",
+      "plan.md",
       ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
       "constitutional/README.md",
       "spec.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/README.md",
         "source": "derived"
       },
       {
@@ -83,15 +64,33 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "check-comment-hygiene.sh",
         "kind": "script",
         "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "constitutional/README.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -113,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -132,6 +125,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "After this phase, the `sk-code` verification guidance makes a test prove it bites before it counts as evidence, names the blind spot left by each verification rung, and replaces bare `TODO`s with named seams and fail-closed-by-construction invariants — without changing how the smart router detects or routes any code surface.",
     "created_at": "2026-06-15T14:06:39Z",
-    "last_save_at": "2026-06-15T14:22:43.323Z",
+    "last_save_at": "2026-06-16T06:06:34.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

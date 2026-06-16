@@ -39,10 +39,12 @@
       "level"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
       ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/evidence-contract.vitest.ts",
       ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
       "plan.md",
       "tasks.md",
@@ -53,6 +55,12 @@
     ],
     "entities": [
       {
+        "name": "evidence-contract.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts",
+        "source": "derived"
+      },
+      {
         "name": "post-dispatch-validate.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
@@ -62,6 +70,12 @@
         "name": "agent-io-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/evidence-contract.vitest.ts",
         "source": "derived"
       },
       {
@@ -131,13 +145,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement Load",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Load",
+        "name": "Purpose Define",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -183,23 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Level 3 (+Arch) is appropriate when:",
     "created_at": "2026-06-15T14:06:40Z",
-    "last_save_at": "2026-06-15T14:22:43.326Z",
+    "last_save_at": "2026-06-16T06:06:34.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

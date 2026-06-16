@@ -41,7 +41,7 @@
       "profile"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "external/Fable5.md",
@@ -79,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -98,6 +92,12 @@
       },
       {
         "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -135,7 +135,7 @@
     ],
     "causal_summary": "The \"fable-5\" operating profile (claim legibility, blast-radius sizing, mechanism-over-narration, measured efficiency) lives in external source material, not in this framework's behavioral surfaces. Without distribution into the surfaces an AI actually reads at dispatch, the doctrine has no behavioral effect here. This packet is the root coordination surface for moving that doctrine — and its supporting mechanisms and measurement — into the framework.",
     "created_at": "2026-06-15T11:53:02.676Z",
-    "last_save_at": "2026-06-15T14:22:43.307Z",
+    "last_save_at": "2026-06-16T06:59:09.630Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -143,6 +143,6 @@
       "research/research.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-06-16T06:59:09.630Z"
   }
 }

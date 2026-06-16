@@ -39,10 +39,11 @@
       "deep-loop"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/executor-provenance-mismatch.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -60,6 +61,12 @@
         "name": "fallback-router.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-provenance-mismatch.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/executor-provenance-mismatch.vitest.ts",
         "source": "derived"
       },
       {
@@ -105,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -124,6 +125,12 @@
       },
       {
         "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -187,17 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop runtime already records the actual model an executor ran in its provenance audit (`buildExecutorAuditRecord` in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`, around line 485), but it never compares that actual model against the model the caller requested. When a dispatch crashes (the round-1 codex SIGKILL case) or a router silently swaps the model (the silent-gpt-5 case), the loop keeps running and an artifact ships carrying a provenance record that does not match what was approved. That violates the core fable rule that artifact claims must not lie, and `fallback-router.ts` reinforces the gap by only reasoning about quota-pool exhaustion, not unapproved model substitution.",
     "created_at": "2026-06-15T14:06:40Z",
-    "last_save_at": "2026-06-15T14:22:43.325Z",
+    "last_save_at": "2026-06-16T06:06:34.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

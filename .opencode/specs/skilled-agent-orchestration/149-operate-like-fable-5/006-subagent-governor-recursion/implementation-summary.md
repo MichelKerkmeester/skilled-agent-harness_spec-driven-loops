@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-06-15T14:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped recursion-control, executor-config field, deep-loop agent injection"
-    next_safe_action: "Phase 006 core done; implement phase 007 next"
+    next_safe_action: "Scope shipped; 2 enhancements deferred (open_questions); all 149 phases done"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/constitutional/recursion-control.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/006-subagent-governor-recursion"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions:
       - "prompt-pack {governor_block} deferred: renderPromptPack has no prod caller; wire when the dispatch renderer is identified"
       - "governor injection beyond the 3 deep-loop agents is a follow-up"

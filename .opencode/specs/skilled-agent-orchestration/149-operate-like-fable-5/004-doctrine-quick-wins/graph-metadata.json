@@ -39,8 +39,9 @@
       "land"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-doc-pointers.sh",
       ".opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl",
       ".opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md",
       "references/hooks/skill_advisor_hook.md",
@@ -51,6 +52,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "check-doc-pointers.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-doc-pointers.sh",
+        "source": "derived"
+      },
       {
         "name": "handover.md.tmpl",
         "kind": "file",
@@ -106,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -125,6 +126,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,17 +195,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Land the three cheapest, lowest-blast doctrine wins from the fable-5 recommendation map (A1, A2, A3): the dead pointer resolves and a fail-loud check stops it (or any sibling pointer) from rotting again, the byte-synced AGENTS.md/CLAUDE.md twins carry a compact efficiency doctrine spine, and the handover template hands a cold successor an explicit scar-tissue ledger plus a numbered read order.",
     "created_at": "2026-06-15T14:06:36Z",
-    "last_save_at": "2026-06-15T14:22:43.318Z",
+    "last_save_at": "2026-06-16T06:06:34.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
